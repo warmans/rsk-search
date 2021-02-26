@@ -1,13 +1,12 @@
-package cmd
+package index
 
 import (
 	"encoding/json"
 	"fmt"
 	"github.com/blevesearch/bleve/v2"
-	"github.com/lithammer/shortuuid/v3"
 	"github.com/spf13/cobra"
-	"github.com/warmans/pilkipedia-scraper/pkg/models"
 	"github.com/warmans/rsk-search/internal"
+	"github.com/warmans/rsk-search/pkg/models"
 	"go.uber.org/zap"
 	"io/ioutil"
 	"os"
@@ -15,36 +14,41 @@ import (
 	"strconv"
 )
 
-func IndexCmd() *cobra.Command {
+func LoadCmd() *cobra.Command {
 
-	return &cobra.Command{
-		Use:   "index",
+	var inputDir string
+
+	cmd := &cobra.Command{
+		Use:   "load",
 		Short: "refresh the search index from the given directory",
-		Args:  cobra.MinimumNArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
 
 			logger, _ := zap.NewProduction()
 			defer logger.Sync() // flushes buffer, if any
 
-			fmt.Printf("Using index %s...\n", cfg.indexPath)
+			fmt.Printf("Using index %s...\n", indexCfg.path)
 
-			rskIndex, err := bleve.Open(cfg.indexPath)
+			rskIndex, err := bleve.Open(indexCfg.path)
 			if err == bleve.ErrorIndexPathDoesNotExist {
 				indexMapping, err := internal.RskIndexMapping()
 				if err != nil {
 					logger.Fatal("failed to create mapping", zap.Error(err))
 				}
-				rskIndex, err = bleve.New(cfg.indexPath, indexMapping)
+				rskIndex, err = bleve.New(indexCfg.path, indexMapping)
 				if err != nil {
 					logger.Fatal("failed to create index", zap.Error(err))
 				}
 			}
 
 			logger.Info("Populating index...")
-			return populateIndex(args[0], rskIndex, logger)
+			return populateIndex(inputDir, rskIndex, logger)
 
 		},
 	}
+
+	cmd.Flags().StringVarP(&inputDir, "input-path", "i", "./var/raw", "Path to raw data files")
+
+	return cmd
 }
 
 func populateIndex(inputDataPath string, idx bleve.Index, logger *zap.Logger) error {
@@ -64,7 +68,7 @@ func populateIndex(inputDataPath string, idx bleve.Index, logger *zap.Logger) er
 
 		batch := idx.NewBatch()
 		for _, d := range docs {
-			if err := batch.Index(shortuuid.New(), d); err != nil {
+			if err := batch.Index(d.ID, d); err != nil {
 				return err
 			}
 		}
@@ -94,11 +98,14 @@ func documentsFromPath(filePath string) ([]internal.DialogDocument, error) {
 	docs := []internal.DialogDocument{}
 	for _, v := range episode.Transcript {
 		docs = append(docs, internal.DialogDocument{
+			ID:          v.ID,
+			Mapping:     "dialog",
 			Publication: episode.MetaValue(models.MetadataTypePublication),
 			Series:      stringToIntOrZero(episode.MetaValue(models.MetadataTypeSeries)),
 			Date:        episode.MetaValue(models.MetadataTypeDate),
 			ContentType: string(v.Type),
 			Actor:       v.Actor,
+			Position:    v.Position,
 			Content:     v.Content,
 		})
 	}

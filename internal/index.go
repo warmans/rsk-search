@@ -10,10 +10,13 @@ import (
 )
 
 type DialogDocument struct {
+	ID          string `json:"id"`
+	Mapping     string `json:"mapping"`
 	Publication string `json:"publication"`
 	Series      int32  `json:"series"`
 	Date        string `json:"date"`
 	Actor       string `json:"actor"`
+	Position    int64  `json:"pos"`
 	Content     string `json:"content"`
 	ContentType string `json:"type"`
 }
@@ -30,18 +33,20 @@ func RskIndexMapping() (mapping.IndexMapping, error) {
 
 	dialogMapping := bleve.NewDocumentMapping()
 
-	dialogMapping.AddFieldMappingsAt("content", englishTextFieldMapping)
 	dialogMapping.AddFieldMappingsAt("publication", keywordFieldMapping)
 	dialogMapping.AddFieldMappingsAt("series", bleve.NewNumericFieldMapping())
 	dialogMapping.AddFieldMappingsAt("date", bleve.NewDateTimeFieldMapping())
-	dialogMapping.AddFieldMappingsAt("type", keywordFieldMapping)
 	dialogMapping.AddFieldMappingsAt("actor", keywordFieldMapping)
+	dialogMapping.AddFieldMappingsAt("pos", bleve.NewNumericFieldMapping())
+	dialogMapping.AddFieldMappingsAt("content", englishTextFieldMapping)
+	dialogMapping.AddFieldMappingsAt("type", keywordFieldMapping)
 
 	indexMapping := bleve.NewIndexMapping()
 	indexMapping.AddDocumentMapping("dialog", dialogMapping)
 
 	indexMapping.DefaultMapping = dialogMapping
 	indexMapping.DefaultAnalyzer = "en"
+	indexMapping.TypeField = "mapping" // todo: not 100% sure this is correct. The default mapping will work for a single mapping anyway.
 
 	return indexMapping, nil
 }

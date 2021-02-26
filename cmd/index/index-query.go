@@ -1,4 +1,4 @@
-package cmd
+package index
 
 import (
 	"encoding/json"
@@ -15,7 +15,7 @@ import (
 
 func QueryCmd() *cobra.Command {
 
-	return &cobra.Command{
+	cmd := &cobra.Command{
 		Use:   "query",
 		Short: "query the index using the filter DSL",
 		Args:  cobra.MinimumNArgs(1),
@@ -24,9 +24,9 @@ func QueryCmd() *cobra.Command {
 			logger, _ := zap.NewProduction()
 			defer logger.Sync() // flushes buffer, if any
 
-			fmt.Printf("Using index %s...\n", cfg.indexPath)
+			fmt.Printf("Using index %s...\n", indexCfg.path)
 
-			rskIndex, err := bleve.Open(cfg.indexPath)
+			rskIndex, err := bleve.Open(indexCfg.path)
 			if err != nil {
 				return err
 			}
@@ -66,4 +66,6 @@ func QueryCmd() *cobra.Command {
 			return nil
 		},
 	}
+
+	return cmd
 }

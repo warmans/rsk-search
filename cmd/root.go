@@ -2,13 +2,8 @@ package cmd
 
 import (
 	"github.com/spf13/cobra"
+	"github.com/warmans/rsk-search/cmd/index"
 )
-
-type config struct {
-	indexPath string
-}
-
-var cfg = config{}
 
 func RootCmd() *cobra.Command {
 	root := &cobra.Command{
@@ -16,10 +11,9 @@ func RootCmd() *cobra.Command {
 		Short: "root command",
 	}
 
-	root.PersistentFlags().StringVarP(&cfg.indexPath, "index-path", "i", "./var/rsk.bleve", "Path to bleve index")
-
-	root.AddCommand(IndexCmd())
-	root.AddCommand(QueryCmd())
+	// search index commands
+	root.AddCommand(index.RootCmd())
+	root.AddCommand(ImportCmd())
 
 	return root
 }
