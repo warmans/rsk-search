@@ -44,7 +44,7 @@ func main() {
 			Episode:    -1,
 			Series:     -1,
 			Transcript: []models.Dialog{},
-			Meta:       map[models.MetadataType]string{},
+			Meta:       *new(models.Metadata),
 		}
 
 		fmt.Println("Loaded page ", e.Request.URL)

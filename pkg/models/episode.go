@@ -19,19 +19,21 @@ const (
 	MetadataTypeSpotifyPreviewURL = MetadataType("spotify_player_url")
 	MetadataTypeSpotifyURI        = MetadataType("spotify_uri")
 	MetadataTypeDurationMs        = MetadataType("duration_ms")
+
+	MetadataSongArtist = MetadataType("song_artist")
+	MetadataSongTrack  = MetadataType("song_track")
+	MetadataSongAlbum  = MetadataType("song_album")
 )
+
+type Metadata map[MetadataType]string
 
 type Dialog struct {
 	ID       string     `json:"id"`
 	Position int64      `json:"pos"`
 	Type     DialogType `json:"type"`
 	Actor    string     `json:"actor"`
+	Meta     Metadata   `json:"metadata"`
 	Content  string     `json:"content"`
-}
-
-type Metadata struct {
-	Type  MetadataType `json:"type"`
-	Value string       `json:"value"`
 }
 
 type Episode struct {
@@ -41,7 +43,7 @@ type Episode struct {
 	ReleaseDate time.Time `json:"release_date"`
 
 	// additional optional data
-	Meta map[MetadataType]string `json:"metadata"`
+	Meta Metadata `json:"metadata"`
 
 	Transcript []Dialog `json:"transcript"`
 }

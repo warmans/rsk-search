@@ -3,7 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/warmans/rsk-search/pkg/models"
+	"github.com/warmans/rsk-search/pkg/spotify"
 	"github.com/warmans/rsk-search/pkg/util"
 	"net/http"
 	"os"
@@ -19,9 +19,9 @@ func main() {
 	}
 
 	episodeDateNameMap := map[string]string{}
-	allItems := []models.SpotifyItem{}
+	allItems := []spotify.Episode{}
 
-	result := &models.SpotifyResult{Next: stringP("https://api.spotify.com/v1/shows/2vconSkxZmWl3H2El3ZH2Q/episodes?offset=0&limit=50")}
+	result := &spotify.EpisodeList{Next: stringP("https://api.spotify.com/v1/shows/2vconSkxZmWl3H2El3ZH2Q/episodes?offset=0&limit=50")}
 	for result.Next != nil {
 		req, err := http.NewRequest(http.MethodGet, *result.Next, nil)
 		if err != nil {
@@ -37,7 +37,7 @@ func main() {
 			panic(err)
 		}
 
-		result = &models.SpotifyResult{}
+		result = &spotify.EpisodeList{}
 		dec := json.NewDecoder(resp.Body)
 		if err := dec.Decode(result); err != nil {
 			panic(err)

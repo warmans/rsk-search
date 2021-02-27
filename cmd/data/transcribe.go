@@ -59,7 +59,7 @@ func ImportTranscriptsCmd() *cobra.Command {
 
 				// add any metadata provided by the transcripts
 				if ep.Meta == nil {
-					ep.Meta = map[models.MetadataType]string{}
+					ep.Meta = *new(models.Metadata)
 				}
 				for k, v := range transcript.Meta {
 					ep.Meta[k] = v
