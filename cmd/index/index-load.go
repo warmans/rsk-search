@@ -12,6 +12,7 @@ import (
 	"os"
 	"path"
 	"strconv"
+	"time"
 )
 
 func LoadCmd() *cobra.Command {
@@ -46,7 +47,7 @@ func LoadCmd() *cobra.Command {
 		},
 	}
 
-	cmd.Flags().StringVarP(&inputDir, "input-path", "i", "./var/raw", "Path to raw data files")
+	cmd.Flags().StringVarP(&inputDir, "input-path", "i", "./var/data/episodes", "Path to raw data files")
 
 	return cmd
 }
@@ -100,9 +101,9 @@ func documentsFromPath(filePath string) ([]internal.DialogDocument, error) {
 		docs = append(docs, internal.DialogDocument{
 			ID:          v.ID,
 			Mapping:     "dialog",
-			Publication: episode.MetaValue(models.MetadataTypePublication),
-			Series:      stringToIntOrZero(episode.MetaValue(models.MetadataTypeSeries)),
-			Date:        episode.MetaValue(models.MetadataTypeDate),
+			Publication: episode.Publication,
+			Series:      episode.Series,
+			Date:        episode.ReleaseDate.Format(time.RFC3339),
 			ContentType: string(v.Type),
 			Actor:       v.Actor,
 			Position:    v.Position,

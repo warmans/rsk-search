@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/spf13/cobra"
+	"github.com/warmans/rsk-search/cmd/data"
 	"github.com/warmans/rsk-search/cmd/index"
 )
 
@@ -13,7 +14,8 @@ func RootCmd() *cobra.Command {
 
 	// search index commands
 	root.AddCommand(index.RootCmd())
-	root.AddCommand(ImportCmd())
+	root.AddCommand(data.RootCmd())
+	//root.AddCommand(ImportCmd())
 
 	return root
 }

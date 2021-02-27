@@ -6,9 +6,11 @@ import (
 	"github.com/gocolly/colly/v2"
 	"github.com/lithammer/shortuuid/v3"
 	"github.com/warmans/rsk-search/pkg/models"
+	"github.com/warmans/rsk-search/pkg/util"
 	"log"
 	"os"
 	"regexp"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -39,12 +41,15 @@ func main() {
 	episodeDetailsCollector.OnHTML("div[id=content]", func(e *colly.HTMLElement) {
 
 		episode := models.Episode{
+			Episode:    -1,
+			Series:     -1,
 			Transcript: []models.Dialog{},
-			Meta:       []models.Metadata{},
+			Meta:       map[models.MetadataType]string{},
 		}
 
 		fmt.Println("Loaded page ", e.Request.URL)
-		episode.Source = e.Request.URL.String()
+
+		episode.Meta[models.MetadataTypePilkipediaURL] = e.Request.URL.String()
 
 		var pageTitle *colly.HTMLElement
 		e.ForEach("h1#firstHeading", func(i int, element *colly.HTMLElement) {
@@ -59,12 +64,17 @@ func main() {
 
 		if pageTitle != nil || pageDescription != nil {
 			fmt.Println("Parsing meta...")
-			meta, err := ParseMeta(pageTitle, pageDescription)
+
+			releaseDate, err := ParseReleaseDate(pageTitle, pageDescription)
 			if err != nil {
-				fmt.Printf("Failed to parse meta: %s", err.Error())
-				return
+				fmt.Printf("Failed to parse release date for %s: %s \n", pageTitle.Text, err.Error())
+				releaseDate = &time.Time{}
 			}
-			episode.Meta = meta
+			episode.ReleaseDate = *releaseDate
+			episode.Publication, episode.Series = ParsePublication(pageDescription)
+		} else {
+			fmt.Printf("No source for metadata found - skipping")
+			return
 		}
 
 		position := positionGap
@@ -79,31 +89,18 @@ func main() {
 			episode.Transcript = append(episode.Transcript, *dialog)
 		})
 
-		fName := fmt.Sprintf("./raw/transcript-%s.json", episode.CanonicalName())
+		if episode.Publication == "" || episode.ReleaseDate.IsZero() {
+			fmt.Printf("Skipping episode with insufficient metadata - publication: %s date: %s\n", episode.Publication, episode.ReleaseDate.String())
+			return
+		}
+
+		fName := fmt.Sprintf("./raw/transcript-%s-%s.json", episode.Publication, util.ShortDate(episode.ReleaseDate))
 		file, err := os.OpenFile(fName, os.O_RDWR|os.O_CREATE|os.O_EXCL, 0666)
 
 		// if the file already exists add a numeric suffix up until 5 then fail as something is probably
 		// broken.
 		if err != nil {
-			if err != os.ErrExist {
-				log.Fatalf("Cannot create file %q: %s\n", fName, err)
-			}
-			suffix := 1
-			for {
-				file, err = os.OpenFile(strings.ReplaceAll(fName, ".json", fmt.Sprintf("-%s.json", suffix)), os.O_RDWR|os.O_CREATE|os.O_EXCL, 0666)
-				if err != nil {
-					if err == os.ErrExist {
-						suffix++
-						if suffix >= 5 {
-							log.Fatalf("Refusing to create more than 5 files with duplicate names")
-						}
-					} else {
-						log.Fatalf("failed to open file: %s", err)
-					}
-				} else {
-					break
-				}
-			}
+			log.Fatal("failed to open file for writing ", err.Error())
 		}
 		defer file.Close()
 
@@ -122,52 +119,32 @@ func main() {
 }
 
 // e.g. This is a transcription of the 15 November 2003 episode, from Xfm Series 3
-func ParseMeta(pageTitle *colly.HTMLElement, firstParagraph *colly.HTMLElement) ([]models.Metadata, error) {
+func ParseReleaseDate(pageTitle *colly.HTMLElement, firstParagraph *colly.HTMLElement) (*time.Time, error) {
 
 	if pageTitle == nil && firstParagraph == nil {
 		return nil, nil
 	}
 
-	meta := []models.Metadata{}
-
-	date, publication := getRawMetaParts(firstParagraph)
+	date, _ := getRawMetaParts(firstParagraph)
 	if date == "" && pageTitle != nil {
 		// fall back to title
 		date = strings.TrimSpace(strings.TrimSuffix(pageTitle.Text, "/Transcript"))
 	}
-	if date == "" && publication == "" {
+	if date == "" {
 		return nil, fmt.Errorf("couldn't parse meta from line: %s", firstParagraph.Text)
-	}
-
-	dateMeta := models.Metadata{
-		Type:  models.MetadataTypeDate,
-		Value: "",
 	}
 
 	// e.g.  15 November 2003
 	parsed, err := time.Parse("02 January 2006", date)
-	if err == nil {
-		dateMeta.Value = parsed.Format(time.RFC3339)
+	if err != nil {
+		return nil, err
 	}
+	return &parsed, nil
+}
 
-	meta = append(meta, dateMeta)
-
-	// Xfm Series 3
-	publication, series := parsePublication(publication)
-	if publication != "" {
-		meta = append(meta, models.Metadata{
-			Type:  models.MetadataTypePublication,
-			Value: publication,
-		})
-	}
-	if series != "" {
-		meta = append(meta, models.Metadata{
-			Type:  models.MetadataTypeSeries,
-			Value: series,
-		})
-	}
-
-	return meta, nil
+func ParsePublication(firstParagraph *colly.HTMLElement) (string, int32) {
+	_, publicationStr := getRawMetaParts(firstParagraph)
+	return parsePublication(publicationStr)
 }
 
 // should return [date, publication series N]
@@ -195,12 +172,20 @@ func trimStrings(ss []string) []string {
 	return ss
 }
 
-func parsePublication(line string) (string, string) {
+func parsePublication(line string) (string, int32) {
 	parts := strings.Split(strings.ToLower(line), "series")
 	if len(parts) != 2 {
-		return "", ""
+		return "", 0
 	}
-	return strings.TrimSpace(parts[0]), strings.TrimSpace(parts[1])
+
+	publication := strings.TrimSpace(parts[0])
+
+	series, err := strconv.Atoi(parts[1])
+	if err != nil {
+		return publication, -1
+	}
+
+	return publication, int32(series)
 }
 
 func ParseDialog(el *colly.HTMLElement) (*models.Dialog, error) {

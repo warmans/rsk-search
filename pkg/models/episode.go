@@ -1,7 +1,6 @@
 package models
 
 import (
-	"fmt"
 	"time"
 )
 
@@ -16,9 +15,10 @@ const (
 type MetadataType string
 
 const (
-	MetadataTypePublication = MetadataType("publication")
-	MetadataTypeSeries      = MetadataType("series")
-	MetadataTypeDate        = MetadataType("date")
+	MetadataTypePilkipediaURL     = MetadataType("pilkipedia_url")
+	MetadataTypeSpotifyPreviewURL = MetadataType("spotify_player_url")
+	MetadataTypeSpotifyURI        = MetadataType("spotify_uri")
+	MetadataTypeDurationMs        = MetadataType("duration_ms")
 )
 
 type Dialog struct {
@@ -35,28 +35,13 @@ type Metadata struct {
 }
 
 type Episode struct {
-	Source     string     `json:"source"`
-	Meta       []Metadata `json:"metadata"`
-	Transcript []Dialog   `json:"transcript"`
-}
+	Publication string    `json:"publication"`
+	Series      int32     `json:"series"`
+	Episode     int32     `json:"episode"`
+	ReleaseDate time.Time `json:"release_date"`
 
-func (e Episode) MetaValue(t MetadataType) string {
-	for _, m := range e.Meta {
-		if m.Type == t {
-			return m.Value
-		}
-	}
-	return "na"
-}
+	// additional optional data
+	Meta map[MetadataType]string `json:"metadata"`
 
-func (e Episode) CanonicalName() string {
-	date := "na"
-	if rawDate := e.MetaValue(MetadataTypeDate); rawDate != "" {
-		t, err := time.Parse(time.RFC3339, rawDate)
-		if err == nil {
-			date = t.Format("Jan-02-2006")
-		}
-	}
-
-	return fmt.Sprintf("%s-%s-%s", e.MetaValue(MetadataTypePublication), e.MetaValue(MetadataTypeSeries), date)
+	Transcript []Dialog `json:"transcript"`
 }
