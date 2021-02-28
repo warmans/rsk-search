@@ -163,10 +163,7 @@ func (s *scanner) skipWhitespace() {
 
 func (s *scanner) scanField() (token, error) {
 	for !s.atEOF() && (isValidFieldRune(s.peekRune()) || isNumber(s.peekRune())) {
-		r := s.nextRune()
-		if r == '.' && (s.atEOF()) {
-			return s.error("invalid field")
-		}
+		s.nextRune()
 	}
 	tok := s.emit(tagField)
 	if tag, ok := keywords[tok.lexeme]; ok {
@@ -177,7 +174,7 @@ func (s *scanner) scanField() (token, error) {
 
 func (s *scanner) scanNumber() token {
 	hasDecimal := false
-	for !s.atEOF() && (isNumber(s.peekRune()) || s.peekRune() == '.' && !hasDecimal) {
+	for !s.atEOF() && (isNumber(s.peekRune()) || (s.peekRune() == '.' && !hasDecimal)) {
 		r := s.nextRune()
 		hasDecimal = hasDecimal || r == '.'
 	}
