@@ -1,0 +1,17 @@
+version: v1beta1
+plugins:
+  - name: go
+    out: gen_temp/api
+    opt:
+      - paths=source_relative
+  - name: go-grpc
+    out: gen_temp/api
+    opt:
+      - paths=source_relative
+      - require_unimplemented_servers=false
+  - name: grpc-gateway
+    out: gen_temp/api
+    opt:
+      - paths=source_relative
+  - name: openapiv2
+    out: gen_temp/api/open-api

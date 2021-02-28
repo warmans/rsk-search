@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package rsksearch;
+
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+import "google/protobuf/empty.proto";
+
+
+option go_package = "github.com/warmans/rsk-search/server/gen/api";
+
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    version: "1.0";
+  };
+  external_docs: {
+    url: "https://github.com/warmans/rsk-search";
+    description: "RSK search service";
+  }
+  schemes: HTTP;
+};
+
+service SearchService {
+  rpc Search(SearchRequest) returns (SearchResultList) {
+    option (google.api.http) = {
+      get: "/api/search"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Perform a search"
+      tags: "search"
+    };
+  }
+}
+
+message SearchRequest {
+  string query = 1;
+}
+
+message SearchResultList {
+  repeated SearchResult results = 1;
+  int32 result_count = 2;
+}
+
+message SearchResult {
+  repeated DialogResult dialogs = 1;
+}
+
+message DialogResult {
+  repeated Dialog lines = 1;
+}
+
+message Dialog {
+  string actor = 1;
+  string content = 2;
+  map<string, string> metadata = 3;
+}

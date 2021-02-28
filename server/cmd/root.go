@@ -4,6 +4,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/warmans/rsk-search/cmd/data"
 	"github.com/warmans/rsk-search/cmd/index"
+	"github.com/warmans/rsk-search/cmd/server"
 )
 
 func RootCmd() *cobra.Command {
@@ -15,7 +16,7 @@ func RootCmd() *cobra.Command {
 	// search index commands
 	root.AddCommand(index.RootCmd())
 	root.AddCommand(data.RootCmd())
-	//root.AddCommand(ImportCmd())
+	root.AddCommand(server.ServerCmd())
 
 	return root
 }
