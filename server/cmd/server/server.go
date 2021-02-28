@@ -1,10 +1,14 @@
 package server
 
 import (
+	"github.com/blevesearch/bleve/v2"
 	"github.com/spf13/cobra"
+	"github.com/warmans/rsk-search/internal/search"
 	"github.com/warmans/rsk-search/pkg/flag"
 	"github.com/warmans/rsk-search/pkg/server"
+	"github.com/warmans/rsk-search/pkg/service/config"
 	"github.com/warmans/rsk-search/pkg/service/grpc"
+	"github.com/warmans/rsk-search/pkg/store"
 	"go.uber.org/zap"
 )
 
@@ -25,8 +29,24 @@ func ServerCmd() *cobra.Command {
 			grpcCfg := server.GrpcServerConfig{}
 			grpcCfg.RegisterFlags(ServicePrefix)
 
+			srvCfg := config.SearchServiceConfig{}
+			srvCfg.RegisterFlags(ServicePrefix)
+
+			dbCfg := &store.Config{}
+			dbCfg.RegisterFlags(ServicePrefix)
+
+			rskIndex, err := bleve.Open(srvCfg.BleveIndexPath)
+			if err != nil {
+				return err
+			}
+
+			rskDB, err := store.NewConn(dbCfg)
+			if err != nil {
+				return err
+			}
+
 			grpcServices := []server.GRPCService{
-				grpc.NewSearchService(),
+				grpc.NewSearchService(search.NewSearch(rskIndex, rskDB)),
 			}
 
 			srv, err := server.NewServer(logger, grpcCfg, grpcServices, []server.HTTPService{})

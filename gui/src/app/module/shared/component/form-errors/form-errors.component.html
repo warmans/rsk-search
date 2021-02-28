@@ -1,0 +1,11 @@
+<div *ngIf="field.invalid" class="text-danger mt-1 p-1">
+  <div *ngIf="field?.errors?.required">
+    {{fieldName}} is required.
+  </div>
+  <div *ngIf="field?.errors?.maxlength">
+    {{fieldName}} is too long (max length is {{ field .errors .maxlength .requiredLength }} characters).
+  </div>
+  <div *ngIf="field?.errors?.apiErrors">
+    <div *ngFor="let err of (field?.errors?.apiErrors || [])">{{ err }}</div>
+  </div>
+</div>

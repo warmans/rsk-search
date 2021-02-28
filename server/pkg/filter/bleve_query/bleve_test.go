@@ -5,7 +5,7 @@ import (
 	"github.com/blevesearch/bleve/v2/mapping"
 	"github.com/blevesearch/bleve/v2/search/query"
 	"github.com/stretchr/testify/require"
-	"github.com/warmans/rsk-search/internal/filter"
+	"github.com/warmans/rsk-search/pkg/filter"
 	"testing"
 )
 

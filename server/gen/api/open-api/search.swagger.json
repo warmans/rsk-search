@@ -85,6 +85,16 @@
     "rsksearchDialog": {
       "type": "object",
       "properties": {
+        "id": {
+          "type": "string"
+        },
+        "pos": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "type": "string"
+        },
         "actor": {
           "type": "string"
         },
@@ -102,10 +112,35 @@
     "rsksearchDialogResult": {
       "type": "object",
       "properties": {
+        "episode": {
+          "$ref": "#/definitions/rsksearchEpisode"
+        },
         "lines": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/rsksearchDialog"
+          }
+        }
+      }
+    },
+    "rsksearchEpisode": {
+      "type": "object",
+      "properties": {
+        "publication": {
+          "type": "string"
+        },
+        "series": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "episode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
           }
         }
       }

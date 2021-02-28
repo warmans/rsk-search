@@ -1,0 +1,4 @@
+<div *ngFor="let a of (alerts || [])" class="alert alert-{{a.level}}">
+  ALERT {{a.content}}
+  {{a.details}}
+</div>

@@ -47,11 +47,22 @@ message SearchResult {
 }
 
 message DialogResult {
-  repeated Dialog lines = 1;
+  Episode episode = 1;
+  repeated Dialog lines = 2;
 }
 
 message Dialog {
-  string actor = 1;
-  string content = 2;
-  map<string, string> metadata = 3;
+  string id = 1;
+  int32 pos = 2;
+  string type = 3;
+  string actor = 4;
+  string content = 5;
+  map<string, string> metadata = 6;
+}
+
+message Episode {
+  string publication = 1;
+  int32 series = 2;
+  int32 episode = 3;
+  map<string, string> metadata = 4;
 }

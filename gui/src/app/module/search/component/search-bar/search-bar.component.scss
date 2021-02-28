@@ -1,0 +1,34 @@
+@import "src/scss/variables";
+
+$border: #ddd;
+
+.search-bar {
+  font-family: monospace;
+  font-size : 1.2em;
+  white-space: pre;
+  border: 1px solid #ddd;
+  padding: 10px 5px;
+  width: 100%;
+  background-color: #f6f6f6;
+
+  .FIELD {
+    color: #90BE6D;
+  }
+
+  .STRING {
+    color: #F8961E;
+  }
+
+  .AND, .OR {
+    color: #577590;
+  }
+
+}
+
+.search-bar.invalid {
+  border-color: #F94144;
+}
+
+.search-bar:active, .search-bar:focus {
+  outline: none;
+}

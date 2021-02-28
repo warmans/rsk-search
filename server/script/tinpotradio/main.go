@@ -77,7 +77,7 @@ func main() {
 	})
 
 	// main episode meta
-	if err := util.WithFile("./raw/xfm-spotify-meta.json", func(f *os.File) error {
+	if err := util.WithNewFile("./raw/xfm-spotify-meta.json", func(f *os.File) error {
 		enc := json.NewEncoder(f)
 		enc.SetIndent("  ", "  ")
 		if err := enc.Encode(allItems); err != nil {
@@ -89,7 +89,7 @@ func main() {
 	}
 
 	// also dump a map of dates -> episode names
-	if err := util.WithFile("./raw/xfm-episode-map.json", func(f *os.File) error {
+	if err := util.WithNewFile("./raw/xfm-episode-map.json", func(f *os.File) error {
 		enc := json.NewEncoder(f)
 		enc.SetIndent("  ", "  ")
 		if err := enc.Encode(episodeDateNameMap); err != nil {

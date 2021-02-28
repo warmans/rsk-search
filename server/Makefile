@@ -32,3 +32,7 @@ vendor:
 .PHONY: generate.proto
 generate.proto:
 	rm -rf gen_temp && ./bin/buf generate && rm -rf gen && mv gen_temp gen
+
+.PHONY: run
+run: build
+	./bin/rsk-search server

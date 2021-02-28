@@ -1,0 +1,10 @@
+@import "imports";
+
+body {
+  background-color: $background-color;
+  color: $font-color;
+}
+
+.navbar {
+  border-bottom: 1px solid #ccc;
+}

@@ -7,8 +7,8 @@ import (
 	_ "github.com/blevesearch/bleve/v2/config"
 	"github.com/spf13/cobra"
 	"github.com/warmans/rsk-search/internal"
-	"github.com/warmans/rsk-search/internal/filter"
-	"github.com/warmans/rsk-search/internal/filter/bleve_query"
+	"github.com/warmans/rsk-search/pkg/filter"
+	"github.com/warmans/rsk-search/pkg/filter/bleve_query"
 
 	"go.uber.org/zap"
 )

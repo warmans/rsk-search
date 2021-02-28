@@ -9,7 +9,7 @@ import (
 )
 
 func SaveEpisodeToFile(dataDir string, ep *models.Episode) error {
-	return WithJSONFile(path.Join(dataDir, fmt.Sprintf("%s.json", EpisodeName(ep))), func(encoder *json.Encoder) error {
+	return WithJSONFileEncoder(path.Join(dataDir, fmt.Sprintf("%s.json", EpisodeName(ep))), func(encoder *json.Encoder) error {
 		return encoder.Encode(ep)
 	})
 }
