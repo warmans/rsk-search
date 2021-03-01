@@ -127,40 +127,6 @@ export class SearchBarComponent implements OnInit {
     });
   }
 
-  // predictNextToken() {
-  //
-  //   this.predictedNextToken = null;
-  //
-  //   // if there is no active statement then this is the first token in the statement
-  //   if (!this.activeStatement) {
-  //     const firstToken = this.statementConfig.statementFormat[0];
-  //     this.predictedNextToken = <Token>{
-  //       start: this.caretPos,
-  //       end: this.caretPos,
-  //       type: firstToken,
-  //       token: '',
-  //       conf: this.statementConfig.configFor(firstToken),
-  //     };
-  //     return;
-  //   }
-  //
-  //   const realStatementLength = statementLength(this.activeStatement);
-  //
-  //   // no more parts to statement
-  //   if (this.statementConfig.statementFormat.length === realStatementLength) {
-  //     return;
-  //   }
-  //
-  //   const nextTokenType = this.statementConfig.statementFormat[realStatementLength];
-  //   this.predictedNextToken = <Token>{
-  //     start: this.caretPos,
-  //     end: this.caretPos,
-  //     type: nextTokenType,
-  //     token: '',
-  //     conf: this.statementConfig.configFor(nextTokenType)
-  //   };
-  // }
-
   render() {
     const rendered = this.renderer.createElement('span');
 

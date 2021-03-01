@@ -18,13 +18,14 @@ export enum Tag {
   Le = '<=',
   Lt = '<',
 
-  Whitespace = 'SPACE',
   Field = 'FIELD',
   Int = 'INT',
   Float = 'FLOAT',
   Bool = 'BOOL',
   String = 'STRING',
   Null = 'NULL',
+
+  IncompleteString = 'INCOMPLETE_STRING'
 }
 
 const keywords = {
@@ -54,6 +55,19 @@ export class Tok {
   }
 }
 
+export function Scan(str: string): Tok[] {
+  const scanner = new Scanner(str);
+  let tokens = [];
+  while (true) {
+    const tok = scanner.next();
+    tokens.push(tok);
+    if (tok.tag === Tag.EOF) {
+      break;
+    }
+  }
+  return tokens;
+}
+
 export class Scanner {
   input: string[] = [];
   pos: number = 0;
@@ -64,6 +78,7 @@ export class Scanner {
   }
 
   next(): Tok {
+    this.skipWhitespace();
     if (this.atEOF()) {
       return this.emit(Tag.EOF);
     }
@@ -97,8 +112,6 @@ export class Scanner {
         return this.emit(Tag.Lt);
       case '"':
         return this.scanString();
-      case ' ':
-        return this.scanWhitespace();
       default:
         if (this.isValidInputChar(c)) {
           return this.scanField();
@@ -110,20 +123,14 @@ export class Scanner {
     }
   }
 
-  skipWhitespace() {
-    while (!this.atEOF() && this.peekChar() === ' ') {
+  private skipWhitespace() {
+    while (!this.atEOF() && this.peekChar().match(/\s/) !== null) {
       this.nextChar();
     }
+    this.offset = this.pos;
   }
 
-  scanWhitespace() {
-    while (!this.atEOF() && this.peekChar() === ' ') {
-      this.nextChar();
-    }
-    return this.emit(Tag.Whitespace);
-  }
-
-  scanField(): Tok {
+  private scanField(): Tok {
     //todo: not sure about IsNumeric here
     while (!this.atEOF() && (this.isValidInputChar(this.peekChar()) || isNumeric(this.peekChar()))) {
       this.nextChar();
@@ -136,7 +143,7 @@ export class Scanner {
     return tok;
   }
 
-  scanNumber(): Tok {
+  private scanNumber(): Tok {
     let hasDecimal: boolean = false;
     while (!this.atEOF() && (isNumeric(this.peekChar()) || (this.peekChar() == '.' && !hasDecimal))) {
       const c = this.nextChar();
@@ -151,19 +158,21 @@ export class Scanner {
   scanString(): Tok {
     while (!this.matchNextChar('"')) {
       if (this.atEOF()) {
-        throw new Error('unclosed double quote');
+        // bit weird - allow an incomplete string in parsing to allow autocomplete even if
+        // only a single quote was added
+        return this.emit(Tag.IncompleteString);
       }
       this.nextChar();
     }
     return this.emit(Tag.String);
   }
 
-  nextChar(): string {
+  private nextChar(): string {
     this.pos++;
     return this.input[this.pos - 1];
   }
 
-  matchNextChar(c: string): boolean {
+  private matchNextChar(c: string): boolean {
     if (this.atEOF() || this.peekChar() != c) {
       return false;
     }
@@ -171,11 +180,11 @@ export class Scanner {
     return true;
   }
 
-  peekChar(): string {
+  private peekChar(): string {
     return this.input[this.pos];
   }
 
-  emit(tag: Tag): Tok {
+  private emit(tag: Tag): Tok {
     const lexeme = this.input.slice(this.offset, this.pos).join('');
     const start = this.offset;
     const end = this.pos;
@@ -185,28 +194,25 @@ export class Scanner {
     return new Tok(tag, lexeme, start, end);
   }
 
-  atEOF(): boolean {
+  private atEOF(): boolean {
     return this.pos >= this.input.length;
   }
 
-  isValidInputChar(r: string): boolean {
+  private isValidInputChar(r: string): boolean {
     return (r >= 'a' && r <= 'z') || (r >= 'A' && r <= 'Z') || r == '_'; // does this work in js?
   }
 
-  isStartOfNumber(c: string): boolean {
+  private isStartOfNumber(c: string): boolean {
     return isNumeric(c) || c == '-';
   }
 }
 
-export function Scan(str: string): Tok[] {
-  const scanner = new Scanner(str);
-  let tokens = [];
-  while (true) {
-    const tok = scanner.next();
-    tokens.push(tok);
-    if (tok.tag === Tag.EOF) {
-      break;
-    }
+export function tagPrecedence(tag: Tag): number {
+  switch (tag) {
+    case Tag.And:
+      return 2;
+    case Tag.Or:
+      return 1;
   }
-  return tokens;
+  return 0;
 }

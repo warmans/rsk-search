@@ -1,0 +1,16 @@
+<div
+  class="search-bar w-100"
+  contenteditable="true"
+  spellcheck="false"
+  (focus)="activate()"
+  (click)="activate()"
+  (keydown)="onKeydown($event)"
+  (keyup)="onKeypress($event)"
+  [ngClass]="{'border-danger': this.error !== null}"
+  #editableContent
+>
+</div>
+
+
+<div #renderedFilter class="m-2"></div>
+
