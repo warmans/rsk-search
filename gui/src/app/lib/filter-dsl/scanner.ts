@@ -23,9 +23,11 @@ export enum Tag {
   Float = 'FLOAT',
   Bool = 'BOOL',
   String = 'STRING',
+  IncompleteString = 'INCOMPLETE_EXPRESSION',
   Null = 'NULL',
 
-  IncompleteString = 'INCOMPLETE_STRING'
+  Whitespace = 'WHITESPACE',
+
 }
 
 const keywords = {
@@ -55,8 +57,8 @@ export class Tok {
   }
 }
 
-export function Scan(str: string): Tok[] {
-  const scanner = new Scanner(str);
+export function Scan(str: string, cstMode: boolean = false): Tok[] {
+  const scanner = new Scanner(str, cstMode);
   let tokens = [];
   while (true) {
     const tok = scanner.next();
@@ -69,16 +71,21 @@ export function Scan(str: string): Tok[] {
 }
 
 export class Scanner {
+
   input: string[] = [];
   pos: number = 0;
   offset: number = 0;
+  cstMode: boolean = false; //concrete syntax trees require whitespace chars to be tokenized.
 
-  constructor(str: string) {
+  constructor(str: string, cstMode: boolean = false) {
     this.input = str.split('');
+    this.cstMode = cstMode;
   }
 
   next(): Tok {
-    this.skipWhitespace();
+    if (!this.cstMode) {
+      this.skipWhitespace();
+    }
     if (this.atEOF()) {
       return this.emit(Tag.EOF);
     }
@@ -113,6 +120,9 @@ export class Scanner {
       case '"':
         return this.scanString();
       default:
+        if (this.isWhitespace(c)) {
+          return this.emit(Tag.Whitespace);
+        }
         if (this.isValidInputChar(c)) {
           return this.scanField();
         }
@@ -124,10 +134,14 @@ export class Scanner {
   }
 
   private skipWhitespace() {
-    while (!this.atEOF() && this.peekChar().match(/\s/) !== null) {
+    while (!this.atEOF() && this.isWhitespace(this.peekChar())) {
       this.nextChar();
     }
     this.offset = this.pos;
+  }
+
+  private isWhitespace(char: string): boolean {
+    return char.match(/\s/) !== null;
   }
 
   private scanField(): Tok {
@@ -158,9 +172,10 @@ export class Scanner {
   scanString(): Tok {
     while (!this.matchNextChar('"')) {
       if (this.atEOF()) {
-        // bit weird - allow an incomplete string in parsing to allow autocomplete even if
-        // only a single quote was added
-        return this.emit(Tag.IncompleteString);
+        if (this.cstMode) {
+          return this.emit(Tag.IncompleteString);
+        }
+        throw new Error('unclosed quote');
       }
       this.nextChar();
     }

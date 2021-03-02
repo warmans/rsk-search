@@ -1,15 +1,17 @@
 import { Scanner, Tag, tagPrecedence, Tok } from './scanner';
 import { And, Eq, Filter, Ge, Gt, isBoolOp, Le, Like, Lt, Neq, Or } from './filter';
 import { trimChars } from '../util';
-import { Bool, Float, Int, PartialStr, Str, Value } from './value';
+import { Bool, Float, Int, Str, Value } from './value';
 
-export function Parse(str: string) {
-  return (new Parser(new Scanner(str))).parse();
+export function ParseAST(str: string) {
+  return (new ASTParser(new Scanner(str, false))).parse();
 }
 
-export class Parser {
+export class ASTParser {
 
-  constructor(private s: Scanner, private peeked: Tok = null) {
+  private peeked: Tok = null
+
+  constructor(private s: Scanner) {
   }
 
   parse(): Filter {
@@ -75,7 +77,7 @@ export class Parser {
   }
 
   private parseValue(): Value {
-    let token = this.s.next();
+    let token = this.getNext();
     switch (token.tag) {
       case Tag.Null:
         return null;
@@ -93,8 +95,6 @@ export class Parser {
         throw new Error(`Could not parse bool from value: ${token.lexeme}`);
       case Tag.String:
         return Str(trimChars(token.lexeme, '"'));
-      case Tag.IncompleteString:
-        return PartialStr(trimChars(token.lexeme, '"'));
     }
     throw new Error(`Unexpected value ${token.lexeme}`);
   }

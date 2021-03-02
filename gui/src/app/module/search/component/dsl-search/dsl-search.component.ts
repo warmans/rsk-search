@@ -1,7 +1,7 @@
 import { Component, ElementRef, EventEmitter, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
 import { Filter } from '../../../../lib/filter-dsl/filter';
-import { Parse } from '../../../../lib/filter-dsl/parser';
-import { PrintHTML, PrintPlainText } from '../../../../lib/filter-dsl/printer';
+import { PrintPlainText } from '../../../../lib/filter-dsl/printer';
+import { CSTNode, ParseCST, renderCST } from '../../../../lib/filter-dsl/cst';
 
 @Component({
   selector: 'app-dsl-search',
@@ -19,6 +19,7 @@ export class DslSearchComponent implements OnInit {
   @ViewChild('renderedFilter')
   renderedFilter: ElementRef;
 
+  cst: CSTNode = null;
   filter: Filter = null;
   error: string = null;
 
@@ -47,13 +48,19 @@ export class DslSearchComponent implements OnInit {
 
   parse() {
     const originalCaretPos = this.getCaretPosition(this.editableContent.nativeElement);
-    console.log(this.editableContent.nativeElement.innerText.length, originalCaretPos);
     const originalText = this.editableContent.nativeElement.innerText;
     try {
-      this.filter = Parse(this.editableContent.nativeElement.innerText);
-      if (this.filter != null) {
+      // this.filter = ParseAST(this.editableContent.nativeElement.innerText);
+      // if (this.filter != null) {
+      //   this.editableContent.nativeElement.innerHTML = '';
+      //   this.renderer.appendChild(this.editableContent.nativeElement, PrintHTML(this.renderer, this.filter));
+      //   this.clearError();
+      //   this.moveCaretTo(originalCaretPos);
+      // }
+      this.cst = ParseCST(this.editableContent.nativeElement.innerText);
+      if (this.cst != null) {
         this.editableContent.nativeElement.innerHTML = '';
-        this.renderer.appendChild(this.editableContent.nativeElement, PrintHTML(this.renderer, this.filter));
+        this.renderer.appendChild(this.editableContent.nativeElement , renderCST(this.renderer, this.cst));
         this.clearError();
         this.moveCaretTo(originalCaretPos);
       }

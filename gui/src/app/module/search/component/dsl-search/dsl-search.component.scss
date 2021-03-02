@@ -16,11 +16,15 @@
   font-size: 1.1rem;
 }
 
-.filter-el.bool-filter {
+.filter-el.bool_filter {
   //background-color: rgba(255, 0, 0, 0.2);
 }
 
-.filter-el.comp-filter {
+.filter-el.invalid {
+  background-color: rgba(255, 0, 0, 0.1) !important;
+}
+
+.filter-el.comp_filter {
   background-image: linear-gradient(#ccc, #ccc),
   linear-gradient(#ccc, #ccc),
   linear-gradient(#ccc, #ccc),

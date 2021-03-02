@@ -45,8 +45,6 @@ export class PlainTextPrinter implements Visitor {
   visitCompFilter(f: CompFilter): Visitor {
     if (f.value.kind === ValueKind.String) {
       this.buff.push(f.field, f.op, `"${f.value.v}"`);
-    } else if (f.value.kind === ValueKind.PartialString) {
-      this.buff.push(f.field, f.op, `"${f.value.v}"`); // just fix it for plain text
     } else {
       this.buff.push(f.field, f.op, '' + f.value.v);
     }
@@ -114,9 +112,6 @@ export class HTMLPrinter implements Visitor {
     switch (f.value.kind) {
       case ValueKind.String:
         value = `"${f.value.v}"`;
-        break;
-      case ValueKind.PartialString:
-        value = `"${f.value.v}`;
         break;
       default:
         value = `${f.value.v}`;
