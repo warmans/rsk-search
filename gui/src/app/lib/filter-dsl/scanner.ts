@@ -23,11 +23,10 @@ export enum Tag {
   Float = 'FLOAT',
   Bool = 'BOOL',
   String = 'STRING',
-  IncompleteString = 'INCOMPLETE_EXPRESSION',
   Null = 'NULL',
 
   Whitespace = 'WHITESPACE',
-
+  Error = 'ERROR',
 }
 
 const keywords = {
@@ -39,16 +38,14 @@ const keywords = {
 };
 
 export class Tok {
-  public tag: Tag;
-  public lexeme: string;
-  public start: number;
-  public end: number;
 
-  constructor(tag: Tag, lexeme: string, start: number, end: number) {
-    this.tag = tag;
-    this.lexeme = lexeme;
-    this.start = start;
-    this.end = end;
+  constructor(
+    public tag: Tag,
+    public lexeme: string,
+    public start: number,
+    public end: number,
+    public error: string = null
+  ) {
   }
 
   trimLexeme(cutset: string): Tok {
@@ -101,12 +98,12 @@ export class Scanner {
         if (this.matchNextChar('=')) {
           return this.emit(Tag.Neq);
         }
-        throw new Error('expected = after !');
+        return this.emitError('expected = after !');
       case '~':
         if (this.matchNextChar('=')) {
           return this.emit(Tag.Like);
         }
-        throw new Error('expected = after ~');
+        return this.emitError('expected = after ~');
       case '>':
         if (this.matchNextChar('=')) {
           return this.emit(Tag.Ge);
@@ -129,8 +126,15 @@ export class Scanner {
         if (this.isStartOfNumber(c)) {
           return this.scanNumber();
         }
-        throw new Error(`Unknown entity: ${c}`);
+        return this.emitError(`unknown entity: ${c}`);
     }
+  }
+
+  backtrackWhitespace() {
+    while (!this.atEOF() && this.isWhitespace(this.input[this.pos-1])) {
+      this.pos--;
+    }
+    this.offset = this.pos;
   }
 
   private skipWhitespace() {
@@ -141,7 +145,7 @@ export class Scanner {
   }
 
   private isWhitespace(char: string): boolean {
-    return char.match(/\s/) !== null;
+    return char.match(/[\s]/) !== null;
   }
 
   private scanField(): Tok {
@@ -169,13 +173,10 @@ export class Scanner {
     return this.emit(Tag.Int);
   }
 
-  scanString(): Tok {
+  private scanString(): Tok {
     while (!this.matchNextChar('"')) {
       if (this.atEOF()) {
-        if (this.cstMode) {
-          return this.emit(Tag.IncompleteString);
-        }
-        throw new Error('unclosed quote');
+        return this.emitError('unclosed quote');
       }
       this.nextChar();
     }
@@ -209,8 +210,18 @@ export class Scanner {
     return new Tok(tag, lexeme, start, end);
   }
 
+  private emitError(reason: string): Tok {
+    const lexeme = this.input.slice(this.offset, this.input.length).join('');
+    const start = this.offset;
+    const end = this.input.length;
+    // advance
+    this.offset = this.input.length;
+    //emit
+    return new Tok(Tag.Error, lexeme, start, end);
+  }
+
   private atEOF(): boolean {
-    return this.pos >= this.input.length;
+    return this.pos >= this.input.length || this.pos === -1;
   }
 
   private isValidInputChar(r: string): boolean {

@@ -8,6 +8,7 @@
   (keyup)="onKeypress($event)"
   [ngClass]="{'border-danger': this.error !== null}"
   #editableContent
->foo = "bar" and bar = 2</div>
-
+>foo = 1 and bar = 2 and baz = 3</div>
+<div *ngIf="error" class="text-danger">{{error}}</div>
+<div *ngIf="info" class="text-info">{{info}}</div>
 <div #renderedFilter class="m-2"></div>

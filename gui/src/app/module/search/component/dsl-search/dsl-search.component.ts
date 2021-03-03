@@ -1,7 +1,8 @@
 import { Component, ElementRef, EventEmitter, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
 import { Filter } from '../../../../lib/filter-dsl/filter';
 import { PrintPlainText } from '../../../../lib/filter-dsl/printer';
-import { CSTNode, ParseCST, renderCST } from '../../../../lib/filter-dsl/cst';
+import { CSTNode, ParseCST, ParseError, renderCST } from '../../../../lib/filter-dsl/cst';
+import { Tag } from '../../../../lib/filter-dsl/scanner';
 
 @Component({
   selector: 'app-dsl-search',
@@ -22,6 +23,7 @@ export class DslSearchComponent implements OnInit {
   cst: CSTNode = null;
   filter: Filter = null;
   error: string = null;
+  info: string = null;
 
   private inputActive = false;
   private caretPos: number;
@@ -50,34 +52,44 @@ export class DslSearchComponent implements OnInit {
     const originalCaretPos = this.getCaretPosition(this.editableContent.nativeElement);
     const originalText = this.editableContent.nativeElement.innerText;
     try {
-      // this.filter = ParseAST(this.editableContent.nativeElement.innerText);
-      // if (this.filter != null) {
-      //   this.editableContent.nativeElement.innerHTML = '';
-      //   this.renderer.appendChild(this.editableContent.nativeElement, PrintHTML(this.renderer, this.filter));
-      //   this.clearError();
-      //   this.moveCaretTo(originalCaretPos);
-      // }
       this.cst = ParseCST(this.editableContent.nativeElement.innerText);
       if (this.cst != null) {
+
+        console.log(this.cst);
+
         this.editableContent.nativeElement.innerHTML = '';
         this.renderer.appendChild(this.editableContent.nativeElement , renderCST(this.renderer, this.cst));
-        this.clearError();
+        this.clearNotices();
         this.moveCaretTo(originalCaretPos);
       }
     } catch (e) {
       console.error(e);
+      if (e instanceof ParseError) {
+        if (e.cause.tag === Tag.EOF) {
+          this.setWarning(`incomplete query (${e.reason})`);
+        } else {
+          this.setError(`${e.reason} pos: ${e.cause.start} near: "${e.cause.lexeme || e.cause.tag}"`)
+        }
+      } else {
+        this.setError(e.reason);
+      }
       this.filter = null;
-      //this.editableContent.nativeElement.innerText = originalText;
-      this.setError(e.message);
+
     }
   }
 
-  clearError() {
+  clearNotices() {
     this.error = null;
+    this.info = null;
   }
 
   setError(msg: string) {
     this.error = msg;
+  }
+
+  setWarning(msg: string) {
+    this.clearNotices();
+    this.info = msg;
   }
 
   filterText(): string {
@@ -131,7 +143,11 @@ export class DslSearchComponent implements OnInit {
   }
 
   private getCaretPosition(container: HTMLElement): number {
-    const range = window.getSelection().getRangeAt(0);
+    const selection = window.getSelection();
+    if (selection.rangeCount === 0) {
+      return 0;
+    }
+    const range = selection.getRangeAt(0);
     const selected = range.toString().length;
     const preCaretRange = range.cloneRange();
     preCaretRange.selectNodeContents(container);

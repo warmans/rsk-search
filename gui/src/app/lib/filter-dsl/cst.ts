@@ -1,14 +1,17 @@
-//todo: implement lossless syntax tree parser. Using a standard AST doesn't work because it loses any non-significant
-// data on parse.
-// e.g.
-// - https://github.com/oilshell/oil/wiki/Lossless-Syntax-Tree-Pattern
-// - https://github.com/cst/cst
-
-import { Scanner, Tag, tagPrecedence, Tok } from './scanner';
+import { Scan, Scanner, Tag, tagPrecedence, Tok } from './scanner';
 import { Bool, Float, Int, Invalid, Str, Value, ValueKind } from './value';
 import { trimChars } from '../util';
 import { isBoolOp } from './filter';
 import { Renderer2 } from '@angular/core';
+
+export class ParseError {
+  constructor(readonly reason: string, readonly cause: Tok = null) {
+  }
+
+  string() {
+    return `${this.reason} (cause: ${this.cause.lexeme}`;
+  }
+}
 
 enum NodeKind {
   BoolFilter = 'bool_filter',
@@ -18,7 +21,8 @@ enum NodeKind {
   Field = 'field',
   Value = 'value',
   Whitespace = 'whitespace',
-  IncompleteExpression = 'incomplete_expression'
+  ParseError = 'parse_error',
+  Unknown = 'unknown'
 }
 
 export class CSTNode {
@@ -33,11 +37,15 @@ export class CSTNode {
   }
 
   valid(): boolean {
-    return true
+    return true;
   }
 
   appendChild(...ch: CSTNode[]) {
     this.children.push(...ch);
+  }
+
+  prependChild(...ch: CSTNode[]) {
+    this.children.unshift(...ch);
   }
 
   string(): string {
@@ -74,7 +82,7 @@ export class ValueNode extends CSTNode {
   }
 
   valid(): boolean {
-    return this.v.kind !== ValueKind.InvalidValue
+    return this.v.kind !== ValueKind.InvalidValue;
   }
 
   string(): string {
@@ -98,27 +106,33 @@ export class CSTParser {
 
   parse(): CSTNode {
     const node = this.parseOuter(1);
-    this.requireNext(Tag.EOF);
+    this.requireTag(this.nextNonWhitespace(node), Tag.EOF);
     return node;
   }
 
   private parseOuter(minPrec: number): CSTNode {
 
     let innerNode = this.parseInner();
-    this.eatWhiteSpace(innerNode); // this is a bit annoying, I don't know how to make sure the whitepace goes into the comp filter
 
-    let outerNode: CSTNode = new CSTNode(NodeKind.BoolFilter);
     while (true) {
 
+      let outerNode: CSTNode = new CSTNode(NodeKind.BoolFilter);
+
+      //some whitespace needs to be preserved before we know
+      // which node will be returned.
+      let whitespace = this.getWhitespace();
+
       const nextToken = this.peekNext();
-
-      if (nextToken.tag == Tag.IncompleteString) {
-        outerNode.appendChild(new TokenNode(NodeKind.IncompleteExpression, this.getNext()));
-        continue;
+      if (nextToken.tag == Tag.Error) {
+        throw new ParseError(`scanner returned error`, nextToken);
       }
-
+      console.log(nextToken);
       if (!isBoolOp(nextToken) || tagPrecedence(nextToken.tag) < minPrec) {
-        break;
+        if (whitespace.length > 0) {
+          this.backtrackWhitespace();
+        }
+        //innerNode.appendChild(...whitespace);
+        return innerNode;
       }
 
       // lhs
@@ -126,26 +140,27 @@ export class CSTParser {
       this.eatWhiteSpace(outerNode);
 
       // op
-      let op = this.getNext();
-      if (op.tag !== Tag.And && op.tag !== Tag.Or) {
-        throw new Error(`unexpected token ${op.tag}::'${op.lexeme}'`);
-      }
+      let op = this.requireNext(Tag.And, Tag.Or)
       outerNode.appendChild(new TokenNode(NodeKind.BoolOp, op));
       this.eatWhiteSpace(outerNode);
 
       // rhs
-      outerNode.appendChild(this.parseOuter(tagPrecedence(op.tag) + 1));
+      const rhs = this.parseOuter(tagPrecedence(op.tag) + 1);
+      if (!rhs) {
+        throw new ParseError("missing right hand statement", op)
+      }
+      outerNode.appendChild(rhs);
       this.eatWhiteSpace(outerNode);
 
       innerNode = outerNode;
     }
-    return innerNode;
   }
 
   private parseInner(): CSTNode {
 
-    const node = new CSTNode(NodeKind.CompFilter);
+    console.log("inner");
 
+    const node = new CSTNode(NodeKind.CompFilter);
     this.eatWhiteSpace(node);
 
     const t = this.getNext();
@@ -154,6 +169,7 @@ export class CSTParser {
         break;
       case Tag.LParen:
         const expr = this.parseOuter(0);
+        // bracket not handled
         this.requireNext(Tag.RParen);
         node.appendChild(expr);
         return node;
@@ -173,8 +189,10 @@ export class CSTParser {
 
         return node;
       default:
-        throw new Error(`unexpected token ${t.tag}::'${t.lexeme}`);
+        throw new ParseError(`unexpected token`, t);
     }
+
+    throw new ParseError(`unexpected EOF`, t);
   }
 
   private nextNonWhitespace(node: CSTNode): Tok {
@@ -194,6 +212,16 @@ export class CSTParser {
     }
   }
 
+  private getWhitespace(): TokenNode[] {
+    const sp: TokenNode[] = [];
+    let next = this.peekNext();
+    while (next.tag === Tag.Whitespace) {
+      sp.push(new TokenNode(NodeKind.Whitespace, this.getNext()))
+      next = this.peekNext();
+    }
+    return sp
+  }
+
   private parseValue(): Value {
 
     let token = this.getNext();
@@ -211,31 +239,37 @@ export class CSTParser {
         if (token.lexeme === 'false') {
           return Bool(false, token);
         }
-        throw new Error(`Could not parse bool from value: ${token.lexeme}`);
+        throw new ParseError(`could not parse bool from value`, token);
       case Tag.String:
         return Str(trimChars(token.lexeme, '"'), token);
-      case Tag.IncompleteString:
+      case Tag.Error:
         return Invalid(token.lexeme, token);
     }
-    throw new Error(`Unexpected value ${token.tag}::'${token.lexeme}'`);
+    throw new ParseError(`statement was missing valid value`, token);
+  }
+
+  private backtrackWhitespace() {
+    this.peeked = null;
+    this.s.backtrackWhitespace();
   }
 
   private getNext(): Tok {
     if (this.peeked !== null) {
       const t = this.peeked;
       this.peeked = null;
+      console.log("next", t.lexeme);
       return t;
     }
-    return this.s.next();
+    let n = this.s.next()
+    console.log("next", n.lexeme);
+    return n;
   }
 
   private peekNext(): Tok {
-    if (this.peeked !== null) {
-      return this.peeked;
+    if (this.peeked === null) {
+      this.peeked = this.getNext();
     }
-    const t = this.getNext();
-    this.peeked = t;
-    return t;
+    return this.peeked;
   }
 
   private requireNext(...oneOf: Tag[]): Tok {
@@ -248,7 +282,7 @@ export class CSTParser {
         return t;
       }
     }
-    throw new Error(`expected one of [${oneOf.join(', ')}], found ${t.tag} (${t.lexeme})`);
+    throw new ParseError(`expected one of [${oneOf.join(', ')}]`, t);
   }
 
 }
@@ -263,7 +297,8 @@ class CSTPrinter {
 
   el: HTMLElement;
 
-  constructor(private renderer: Renderer2) {}
+  constructor(private renderer: Renderer2) {
+  }
 
   print(v: CSTNode) {
 
@@ -271,18 +306,18 @@ class CSTPrinter {
 
     v.children.forEach((v => {
       if (!v) {
-        return
+        return;
       }
       if (v.kind === NodeKind.BoolFilter || v.kind === NodeKind.CompFilter) {
         this.el.appendChild(renderCST(this.renderer, v));
       } else {
         if (!v.valid()) {
-          this.el.appendChild(this.span(v.string(), v.kind, "invalid"));
+          this.el.appendChild(this.span(v.string(), v.kind, 'invalid'));
         } else {
           this.el.appendChild(this.span(v.string(), v.kind));
         }
       }
-    }))
+    }));
   }
 
   private span(innerText: string, ...cl: string[]): HTMLElement {
