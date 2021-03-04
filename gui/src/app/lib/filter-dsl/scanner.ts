@@ -130,13 +130,6 @@ export class Scanner {
     }
   }
 
-  backtrackWhitespace() {
-    while (!this.atEOF() && this.isWhitespace(this.input[this.pos-1])) {
-      this.pos--;
-    }
-    this.offset = this.pos;
-  }
-
   private skipWhitespace() {
     while (!this.atEOF() && this.isWhitespace(this.peekChar())) {
       this.nextChar();

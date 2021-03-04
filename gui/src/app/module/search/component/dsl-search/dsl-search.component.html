@@ -1,14 +1,24 @@
-<div
-  class="search-bar w-100"
-  contenteditable="true"
-  spellcheck="false"
-  (focus)="activate()"
-  (click)="activate()"
-  (keydown)="onKeydown($event)"
-  (keyup)="onKeypress($event)"
-  [ngClass]="{'border-danger': this.error !== null}"
-  #editableContent
->foo = 1 and bar = 2 and baz = 3</div>
+<div class="input-wapper w-100">
+  <div class="d-flex">
+    <div
+      class="search-bar flex-grow-1"
+      contenteditable="true"
+      spellcheck="false"
+      (focus)="activate()"
+      (click)="activate()"
+      (keydown)="onKeydown($event)"
+      (keyup)="onKeypress($event)"
+      [ngClass]="{'border-danger': this.error !== null}"
+      #editableContent
+    ></div>
+    <div>
+      <button class="btn btn-lg btn-primary ml-2" (click)="emitQuery()">Execute</button>
+    </div>
+  </div>
+  <div class="autocomplete-dropdown position-absolute" *ngIf="cst === null && inputActive">
+    <strong class="mb-3">Sample Queries</strong>
+    <div *ngFor="let q of sampleQueries" class="mb-2" (click)="applyQuery(q)">{{q}}</div>
+  </div>
+</div>
 <div *ngIf="error" class="text-danger">{{error}}</div>
 <div *ngIf="info" class="text-info">{{info}}</div>
-<div #renderedFilter class="m-2"></div>

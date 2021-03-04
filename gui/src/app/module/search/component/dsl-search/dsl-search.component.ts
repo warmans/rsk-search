@@ -1,4 +1,13 @@
-import { Component, ElementRef, EventEmitter, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  OnInit,
+  Output,
+  Renderer2,
+  ViewChild
+} from '@angular/core';
 import { Filter } from '../../../../lib/filter-dsl/filter';
 import { PrintPlainText } from '../../../../lib/filter-dsl/printer';
 import { CSTNode, ParseCST, ParseError, renderCST } from '../../../../lib/filter-dsl/cst';
@@ -9,7 +18,7 @@ import { Tag } from '../../../../lib/filter-dsl/scanner';
   templateUrl: './dsl-search.component.html',
   styleUrls: ['./dsl-search.component.scss']
 })
-export class DslSearchComponent implements OnInit {
+export class DslSearchComponent implements OnInit, AfterViewInit {
 
   @Output()
   executeQuery: EventEmitter<string> = new EventEmitter<string>();
@@ -17,22 +26,32 @@ export class DslSearchComponent implements OnInit {
   @ViewChild('editableContent')
   editableContent: ElementRef;
 
-  @ViewChild('renderedFilter')
-  renderedFilter: ElementRef;
-
   cst: CSTNode = null;
   filter: Filter = null;
   error: string = null;
   info: string = null;
 
+  sampleQueries: string[] = [
+    `actor = "ricky" and content ~= "chimpanzee that`,
+    `actor = "steve" and content = "arbitrary"`,
+    `type = "song" and content = "feeder"`
+  ];
+
   private inputActive = false;
   private caretPos: number;
-  private contentLength: number;
+  originalText: number;
+
+  private activeNode: CSTNode = null;
 
   constructor(private renderer: Renderer2) {
   }
 
   ngOnInit(): void {
+
+  }
+
+  ngAfterViewInit(): void {
+    this.parse();
   }
 
   activate() {
@@ -45,36 +64,34 @@ export class DslSearchComponent implements OnInit {
   }
 
   emitQuery() {
-    this.executeQuery.emit(null);
+    if (!this.cst) {
+      return;
+    }
+    this.executeQuery.emit(this.cst.string());
   }
 
   parse() {
-    const originalCaretPos = this.getCaretPosition(this.editableContent.nativeElement);
-    const originalText = this.editableContent.nativeElement.innerText;
+    this.caretPos = this.getCaretPosition(this.editableContent.nativeElement);
     try {
       this.cst = ParseCST(this.editableContent.nativeElement.innerText);
       if (this.cst != null) {
-
-        console.log(this.cst);
-
         this.editableContent.nativeElement.innerHTML = '';
-        this.renderer.appendChild(this.editableContent.nativeElement , renderCST(this.renderer, this.cst));
+        this.renderer.appendChild(this.editableContent.nativeElement, renderCST(this.renderer, this.cst));
         this.clearNotices();
-        this.moveCaretTo(originalCaretPos);
+        this.moveCaretTo(this.caretPos);
       }
     } catch (e) {
-      console.error(e);
+
       if (e instanceof ParseError) {
         if (e.cause.tag === Tag.EOF) {
           this.setWarning(`incomplete query (${e.reason})`);
         } else {
-          this.setError(`${e.reason} pos: ${e.cause.start} near: "${e.cause.lexeme || e.cause.tag}"`)
+          this.setError(`${e.reason} pos: ${e.cause.start} near: "${e.cause.lexeme || e.cause.tag}"`);
         }
       } else {
         this.setError(e.reason);
       }
-      this.filter = null;
-
+      this.cst = null;
     }
   }
 
@@ -102,6 +119,7 @@ export class DslSearchComponent implements OnInit {
       case 'ArrowUp':
       case 'Enter':
         this.activate();
+        this.emitQuery();
         return false;
       case 'Escape':
         this.deactivate();
@@ -173,6 +191,26 @@ export class DslSearchComponent implements OnInit {
     });
     const c = treeWalker.nextNode();
     return { node: (c ? c : root), position: (c ? index : 0) };
+  }
+
+  findActiveElement() {
+    if (!this.cst) {
+      return null;
+    }
+    this.activeNode = null;
+    this.cst.walk((v) => {
+      console.log(v.startPos(), v.endPos(), this.caretPos);
+      if (this.caretPos > v.startPos() && this.caretPos <= v.endPos()) {
+        this.activeNode = v;
+      }
+    });
+
+    return this.activeNode;
+  }
+
+  applyQuery(q: string) {
+    this.editableContent.nativeElement.textContent = q;
+    this.parse();
   }
 
 }

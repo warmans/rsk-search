@@ -14,11 +14,11 @@
 
 .filter-el {
 
-
+  display:  inline-block;
 }
 
 .filter-el.bool_filter {
-  //background-color: rgba(255, 0, 0, 0.2);
+  //padding: 3px;
 }
 
 .filter-el.invalid {
@@ -46,4 +46,15 @@
 
 .filter-el.value {
   background-color: rgba(0, 0, 0, 0.05);
+}
+
+
+.autocomplete-dropdown  {
+  padding: 10px;
+  background-color: #fff;
+  width: 100%;
+}
+
+.autocomplete-dropdown .line{
+
 }

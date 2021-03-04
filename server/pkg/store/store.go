@@ -1,6 +1,7 @@
 package store
 
 import (
+	"context"
 	"embed"
 	"encoding/json"
 	"fmt"
@@ -130,15 +131,15 @@ type Store struct {
 	tx *sqlx.Tx
 }
 
-func (s *Store) InsertEpisode(ep *models.Episode) error {
+func (s *Store) InsertEpisodeWithTranscript(ctx context.Context, ep *models.Episode) error {
 
 	epMeta, err := metaToString(ep.Meta)
 	if err != nil {
 		return err
 	}
-	_, err = s.tx.Exec(`
-			INSERT INTO episode (id, publication, series, episode, release_date, metadata) VALUES ($1, $2, $3, $4, $5, $6)
-		`,
+	_, err = s.tx.ExecContext(
+		ctx,
+		`INSERT INTO episode (id, publication, series, episode, release_date, metadata) VALUES ($1, $2, $3, $4, $5, $6)`,
 		util.EpisodeName(ep),
 		ep.Publication,
 		ep.Series,
@@ -152,9 +153,8 @@ func (s *Store) InsertEpisode(ep *models.Episode) error {
 		if err != nil {
 			return err
 		}
-		_, err = s.tx.Exec(`
-			INSERT INTO dialog (id, episode_id, pos, type, actor, content, metadata) VALUES ($1, $2, $3, $4, $5, $6, $7)
-		`,
+		_, err = s.tx.ExecContext(ctx,
+			`INSERT INTO dialog (id, episode_id, pos, type, actor, content, metadata) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
 			v.ID,
 			util.EpisodeName(ep),
 			v.Position,
@@ -168,6 +168,11 @@ func (s *Store) InsertEpisode(ep *models.Episode) error {
 		}
 	}
 	return err
+}
+
+func (s *Store) GetShortEpisode(ctx context.Context, id string) (*models.Episode, error) {
+	ep := &models.Episode{}
+	return ep, nil
 }
 
 func limitStmnt(pageSize int32, page int32) string {

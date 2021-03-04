@@ -67,7 +67,7 @@ func populateDB(inputDataPath string, conn *store.Conn, logger *zap.Logger) erro
 		}
 
 		if err := conn.WithStore(func(s *store.Store) error {
-			return s.InsertEpisode(episode)
+			return s.InsertEpisodeWithTranscript(episode)
 		}); err != nil {
 			return err
 		}

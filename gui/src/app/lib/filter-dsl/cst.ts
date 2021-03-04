@@ -1,11 +1,12 @@
-import { Scan, Scanner, Tag, tagPrecedence, Tok } from './scanner';
+import { Scanner, Tag, tagPrecedence, Tok } from './scanner';
 import { Bool, Float, Int, Invalid, Str, Value, ValueKind } from './value';
 import { trimChars } from '../util';
 import { isBoolOp } from './filter';
 import { Renderer2 } from '@angular/core';
 
-export class ParseError {
+export class ParseError extends Error {
   constructor(readonly reason: string, readonly cause: Tok = null) {
+    super();
   }
 
   string() {
@@ -57,6 +58,20 @@ export class CSTNode {
       v.walk(fn);
     });
   }
+
+  startPos(): number {
+    if (this.children.length === 0) {
+      return 0;
+    }
+    return this.children[0].startPos();
+  }
+
+  endPos(): number {
+    if (this.children.length === 0) {
+      return 0;
+    }
+    return this.children[this.children.length - 1].startPos();
+  }
 }
 
 export class TokenNode extends CSTNode {
@@ -73,6 +88,14 @@ export class TokenNode extends CSTNode {
 
   walk(fn: (v: CSTNode) => void): void {
     fn(this);
+  }
+
+  startPos(): number {
+    return this.tok.start;
+  }
+
+  endPos(): number {
+    return this.tok.end;
   }
 }
 
@@ -92,6 +115,14 @@ export class ValueNode extends CSTNode {
   walk(fn: (v: CSTNode) => void): void {
     fn(this);
   }
+
+  startPos(): number {
+    return this.v.token.start;
+  }
+
+  endPos(): number {
+    return this.v.token.end;
+  }
 }
 
 export function ParseCST(str: string) {
@@ -99,66 +130,60 @@ export function ParseCST(str: string) {
 }
 
 export class CSTParser {
-  private peeked: Tok = null;
+  private peeked: Tok[] = [];
 
   constructor(private s: Scanner) {
   }
 
   parse(): CSTNode {
-    const node = this.parseOuter(1);
-    this.requireTag(this.nextNonWhitespace(node), Tag.EOF);
+    const node = this.parseOuter(1, 0);
+    CSTParser.requireTag(this.nextNonWhitespace(node), Tag.EOF);
     return node;
   }
 
-  private parseOuter(minPrec: number): CSTNode {
+  private parseOuter(minPrec: number, depth: number): CSTNode {
 
-    let innerNode = this.parseInner();
+    let innerNode = this.parseInner(depth);
 
     while (true) {
 
-      let outerNode: CSTNode = new CSTNode(NodeKind.BoolFilter);
+      const nextToken = this.peekNextNonWhitespace();
 
-      //some whitespace needs to be preserved before we know
-      // which node will be returned.
-      let whitespace = this.getWhitespace();
-
-      const nextToken = this.peekNext();
       if (nextToken.tag == Tag.Error) {
         throw new ParseError(`scanner returned error`, nextToken);
       }
-      console.log(nextToken);
+
       if (!isBoolOp(nextToken) || tagPrecedence(nextToken.tag) < minPrec) {
-        if (whitespace.length > 0) {
-          this.backtrackWhitespace();
-        }
-        //innerNode.appendChild(...whitespace);
-        return innerNode;
+        break;
       }
+
+      let outerNode: CSTNode = new CSTNode(NodeKind.BoolFilter);
 
       // lhs
       outerNode.appendChild(innerNode);
       this.eatWhiteSpace(outerNode);
 
       // op
-      let op = this.requireNext(Tag.And, Tag.Or)
+      let op = this.requireNext(Tag.And, Tag.Or);
       outerNode.appendChild(new TokenNode(NodeKind.BoolOp, op));
       this.eatWhiteSpace(outerNode);
 
       // rhs
-      const rhs = this.parseOuter(tagPrecedence(op.tag) + 1);
+      const rhs = this.parseOuter(tagPrecedence(op.tag) + 1, depth + 1);
       if (!rhs) {
-        throw new ParseError("missing right hand statement", op)
+        throw new ParseError('missing right hand statement', op);
       }
       outerNode.appendChild(rhs);
-      this.eatWhiteSpace(outerNode);
-
       innerNode = outerNode;
+
+      // allow trailing whitespace
+      this.eatWhiteSpace(innerNode);
     }
+
+    return innerNode;
   }
 
-  private parseInner(): CSTNode {
-
-    console.log("inner");
+  private parseInner(depth: number): CSTNode {
 
     const node = new CSTNode(NodeKind.CompFilter);
     this.eatWhiteSpace(node);
@@ -168,7 +193,7 @@ export class CSTParser {
       case Tag.EOF:
         break;
       case Tag.LParen:
-        const expr = this.parseOuter(0);
+        const expr = this.parseOuter(0, depth + 1);
         // bracket not handled
         this.requireNext(Tag.RParen);
         node.appendChild(expr);
@@ -180,7 +205,7 @@ export class CSTParser {
 
         // op
         let next = this.nextNonWhitespace(node);
-        this.requireTag(next, Tag.Eq, Tag.Neq, Tag.Lt, Tag.Le, Tag.Gt, Tag.Ge, Tag.Like);
+        CSTParser.requireTag(next, Tag.Eq, Tag.Neq, Tag.Lt, Tag.Le, Tag.Gt, Tag.Ge, Tag.Like);
         node.appendChild(new TokenNode(NodeKind.CompOp, next));
 
         // value
@@ -193,33 +218,6 @@ export class CSTParser {
     }
 
     throw new ParseError(`unexpected EOF`, t);
-  }
-
-  private nextNonWhitespace(node: CSTNode): Tok {
-    let next = this.getNext();
-    while (next.tag === Tag.Whitespace) {
-      node.appendChild(new TokenNode(NodeKind.Whitespace, next));
-      next = this.getNext();
-    }
-    return next;
-  }
-
-  private eatWhiteSpace(node: CSTNode): void {
-    let next = this.peekNext();
-    while (next.tag === Tag.Whitespace) {
-      node.appendChild(new TokenNode(NodeKind.Whitespace, this.getNext()));
-      next = this.peekNext();
-    }
-  }
-
-  private getWhitespace(): TokenNode[] {
-    const sp: TokenNode[] = [];
-    let next = this.peekNext();
-    while (next.tag === Tag.Whitespace) {
-      sp.push(new TokenNode(NodeKind.Whitespace, this.getNext()))
-      next = this.peekNext();
-    }
-    return sp
   }
 
   private parseValue(): Value {
@@ -248,35 +246,63 @@ export class CSTParser {
     throw new ParseError(`statement was missing valid value`, token);
   }
 
-  private backtrackWhitespace() {
-    this.peeked = null;
-    this.s.backtrackWhitespace();
-  }
-
   private getNext(): Tok {
-    if (this.peeked !== null) {
-      const t = this.peeked;
-      this.peeked = null;
-      console.log("next", t.lexeme);
-      return t;
+    if (this.peeked.length > 0) {
+      return this.peeked.shift();
     }
-    let n = this.s.next()
-    console.log("next", n.lexeme);
-    return n;
-  }
-
-  private peekNext(): Tok {
-    if (this.peeked === null) {
-      this.peeked = this.getNext();
-    }
-    return this.peeked;
+    return this.s.next();
   }
 
   private requireNext(...oneOf: Tag[]): Tok {
-    return this.requireTag(this.getNext(), ...oneOf);
+    return CSTParser.requireTag(this.getNext(), ...oneOf);
   }
 
-  private requireTag(t: Tok, ...oneOf: Tag[]): Tok {
+  private nextNonWhitespace(node: CSTNode): Tok {
+    let next = this.getNext();
+    while (next.tag === Tag.Whitespace) {
+      node.appendChild(new TokenNode(NodeKind.Whitespace, next));
+      next = this.getNext();
+    }
+    return next;
+  }
+
+  private peekNext(): Tok {
+    if (this.peeked.length === 0) {
+      this.peeked.push(this.getNext());
+    }
+    return this.peeked[0];
+  }
+
+  private peekNextNonWhitespace(): Tok {
+    // existing peeked data
+    if (this.peeked.length > 0) {
+      for (let i = 0; i < this.peeked.length; i++) {
+        if (this.peeked[i].tag != Tag.Whitespace) {
+          return this.peeked[i];
+        }
+      }
+    }
+    // peek further
+    while (true) {
+      let next = this.s.next();
+      if (next.tag === Tag.Whitespace) {
+        this.peeked.push(next);
+        continue;
+      }
+      this.peeked.push(next);
+      return next;
+    }
+  }
+
+  private eatWhiteSpace(node: CSTNode): void {
+    let next = this.peekNext();
+    while (next.tag === Tag.Whitespace) {
+      node.appendChild(new TokenNode(NodeKind.Whitespace, this.getNext()));
+      next = this.peekNext();
+    }
+  }
+
+  private static requireTag(t: Tok, ...oneOf: Tag[]): Tok {
     for (let i = 0; i < oneOf.length; i++) {
       if (oneOf[i] == t.tag) {
         return t;
@@ -284,7 +310,6 @@ export class CSTParser {
     }
     throw new ParseError(`expected one of [${oneOf.join(', ')}]`, t);
   }
-
 }
 
 export function renderCST(renderer: Renderer2, root: CSTNode): HTMLElement {
@@ -327,6 +352,4 @@ class CSTPrinter {
     return el;
   }
 }
-
-
 
