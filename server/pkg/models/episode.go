@@ -1,6 +1,7 @@
 package models
 
 import (
+	"github.com/warmans/rsk-search/gen/api"
 	"time"
 )
 
@@ -27,6 +28,15 @@ const (
 
 type Metadata map[MetadataType]string
 
+func (m Metadata) Proto() map[string]string {
+	p := map[string]string{}
+	for k, v := range m {
+		p[string(k)] = v
+	}
+	return p
+
+}
+
 type Dialog struct {
 	ID       string     `json:"id"`
 	Position int64      `json:"pos"`
@@ -34,6 +44,18 @@ type Dialog struct {
 	Actor    string     `json:"actor"`
 	Meta     Metadata   `json:"metadata"`
 	Content  string     `json:"content"`
+}
+
+func (d Dialog) Proto(bestMatch bool) *api.Dialog {
+	return &api.Dialog{
+		Id:       d.ID,
+		Pos:      d.Position,
+		Type:     string(d.Type),
+		Actor:    d.Actor,
+		Content:  d.Content,
+		Metadata: d.Meta.Proto(),
+		IsMatchedRow: bestMatch,
+	}
 }
 
 type Episode struct {
@@ -46,4 +68,16 @@ type Episode struct {
 	Meta Metadata `json:"metadata"`
 
 	Transcript []Dialog `json:"transcript"`
+}
+
+func (e *Episode) Proto() *api.Episode {
+	if e == nil {
+		return nil
+	}
+	return &api.Episode{
+		Publication: e.Publication,
+		Series:      e.Series,
+		Episode:     e.Episode,
+		Metadata:    e.Meta.Proto(),
+	}
 }

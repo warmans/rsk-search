@@ -66,6 +66,11 @@ func (j *BleveQuery) condition(field string, op filter.CompOp, value filter.Valu
 
 	switch op {
 	case filter.CompOpEq:
+		if value.Type() == filter.IntType {
+			q := query.NewNumericRangeInclusiveQuery(floatP(float64(value.Value().(int64))), floatP(float64(value.Value().(int64))), boolP(true), boolP(true))
+			q.SetField(field)
+			return q, nil
+		}
 		q := query.NewMatchQuery(stripQuotes(value.String()))
 		q.SetField(field)
 		return q, nil

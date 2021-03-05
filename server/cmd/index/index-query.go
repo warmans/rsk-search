@@ -51,6 +51,7 @@ func QueryCmd() *cobra.Command {
 
 			fmt.Println("HITS:")
 			for _, v := range result.Hits {
+
 				doc, err := rskIndex.Document(v.ID)
 				if err != nil {
 					return err

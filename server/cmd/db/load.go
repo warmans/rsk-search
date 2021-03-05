@@ -1,6 +1,7 @@
 package db
 
 import (
+	"context"
 	"encoding/json"
 	"github.com/spf13/cobra"
 	"github.com/warmans/rsk-search/pkg/models"
@@ -67,7 +68,7 @@ func populateDB(inputDataPath string, conn *store.Conn, logger *zap.Logger) erro
 		}
 
 		if err := conn.WithStore(func(s *store.Store) error {
-			return s.InsertEpisodeWithTranscript(episode)
+			return s.InsertEpisodeWithTranscript(context.Background(), episode)
 		}); err != nil {
 			return err
 		}

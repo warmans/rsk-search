@@ -1,5 +1,20 @@
 @import "src/scss/variables";
 
-.searchbar {
+.result {
+  border-bottom: 1px solid $light-border;
+}
 
+.result .header {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+
+.result .line .actor {
+  width: 80px;
+  font-weight: bold;
+}
+
+.result .line.matched {
+  font-weight: bold;
 }

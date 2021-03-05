@@ -19,13 +19,11 @@ type SearchService struct {
 }
 
 func (s *SearchService) Search(ctx context.Context, request *api.SearchRequest) (*api.SearchResultList, error) {
-
-
-	filter, err := filter.Parse(request.Query)
+	f, err := filter.Parse(request.Query)
 	if err != nil {
 		return nil, ErrInvalidRequestField("query", err.Error()).Err()
 	}
-	return  s.searchBackend.Search(filter)
+	return s.searchBackend.Search(ctx, f)
 }
 
 func (s *SearchService) RegisterGRPC(server *grpc.Server) {

@@ -15,7 +15,7 @@
       <button class="btn btn-lg btn-primary ml-2" (click)="emitQuery()">Execute</button>
     </div>
   </div>
-  <div class="autocomplete-dropdown position-absolute" *ngIf="cst === null && inputActive">
+  <div class="autocomplete-dropdown position-absolute" *ngIf="cst === null && inputActive && !error && !info">
     <strong class="mb-3">Sample Queries</strong>
     <div *ngFor="let q of sampleQueries" class="mb-2" (click)="applyQuery(q)">{{q}}</div>
   </div>

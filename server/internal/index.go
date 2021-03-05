@@ -14,6 +14,7 @@ type DialogDocument struct {
 	Mapping     string `json:"mapping"`
 	Publication string `json:"publication"`
 	Series      int32  `json:"series"`
+	Episode     int32  `json:"episode"`
 	Date        string `json:"date"`
 	Actor       string `json:"actor"`
 	Position    int64  `json:"pos"`

@@ -36,3 +36,7 @@ generate.proto:
 .PHONY: run
 run: build
 	./bin/rsk-search server
+
+
+index.refresh:
+	rm -rf var/rsk.blieve && ./bin/rsk-search index load

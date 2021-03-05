@@ -89,8 +89,8 @@
           "type": "string"
         },
         "pos": {
-          "type": "integer",
-          "format": "int32"
+          "type": "string",
+          "format": "int64"
         },
         "type": {
           "type": "string"
@@ -106,20 +106,24 @@
           "additionalProperties": {
             "type": "string"
           }
+        },
+        "isMatchedRow": {
+          "type": "boolean"
         }
       }
     },
     "rsksearchDialogResult": {
       "type": "object",
       "properties": {
-        "episode": {
-          "$ref": "#/definitions/rsksearchEpisode"
-        },
         "lines": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/rsksearchDialog"
           }
+        },
+        "score": {
+          "type": "number",
+          "format": "float"
         }
       }
     },
@@ -148,6 +152,9 @@
     "rsksearchSearchResult": {
       "type": "object",
       "properties": {
+        "episode": {
+          "$ref": "#/definitions/rsksearchEpisode"
+        },
         "dialogs": {
           "type": "array",
           "items": {

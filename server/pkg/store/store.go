@@ -2,10 +2,12 @@ package store
 
 import (
 	"context"
+	"database/sql"
 	"embed"
 	"encoding/json"
 	"fmt"
 	"github.com/jmoiron/sqlx"
+	"github.com/pkg/errors"
 	"github.com/warmans/rsk-search/pkg/flag"
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/util"
@@ -170,8 +172,64 @@ func (s *Store) InsertEpisodeWithTranscript(ctx context.Context, ep *models.Epis
 	return err
 }
 
+func (s *Store) GetDialog(ctx context.Context, id string, withContext int32) ([]*models.Dialog, string, error) {
+	query := fmt.Sprintf(`
+		WITH target AS (SELECT * FROM dialog WHERE id = $1 LIMIT 1)
+		SELECT * FROM (SELECT * FROM dialog WHERE pos < (SELECT pos FROM target) AND episode_id = (SELECT episode_id FROM target) ORDER BY pos DESC LIMIT %d)
+		UNION 
+		SELECT * FROM target
+		UNION
+		SELECT * FROM (SELECT * FROM dialog WHERE pos > (SELECT pos FROM target) AND episode_id = (SELECT episode_id FROM target) ORDER BY pos ASC LIMIT %d)
+		ORDER BY pos ASC`, withContext, withContext)
+
+	res, err := s.tx.QueryxContext(ctx, query, id)
+	if err != nil {
+		return nil, "", err
+	}
+	defer res.Close()
+
+	var epID string
+
+	results := make([]*models.Dialog, 0)
+	for res.Next() {
+
+		result := &models.Dialog{
+			Meta: make(models.Metadata),
+		}
+		var meta string
+
+		if err := res.Scan(&result.ID, &epID, &result.Position, &result.Type, &result.Actor, &result.Content, &meta); err != nil {
+			return nil, "", err
+		}
+		if meta != "" {
+			if err := json.Unmarshal([]byte(meta), &result.Meta); err != nil {
+				return nil, "", errors.Wrap(err, "failed to unmarshal meta")
+			}
+		}
+		results = append(results, result)
+	}
+	return results, epID, nil
+}
+
 func (s *Store) GetShortEpisode(ctx context.Context, id string) (*models.Episode, error) {
 	ep := &models.Episode{}
+	var metadata string
+
+	err := s.tx.
+		QueryRowxContext(ctx, "SELECT publication, series, episode, release_date, metadata FROM episode WHERE id = $1", id).
+		Scan(&ep.Publication, &ep.Series, &ep.Episode, &ep.ReleaseDate, &metadata)
+
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return nil, nil
+		}
+		return nil, err
+	}
+	if metadata != "" {
+		if err := json.Unmarshal([]byte(metadata), &ep.Meta); err != nil {
+			return nil, errors.Wrap(err, "failed to decode metadata")
+		}
+	}
 	return ep, nil
 }
 

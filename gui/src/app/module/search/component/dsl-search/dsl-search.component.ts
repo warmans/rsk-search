@@ -30,6 +30,7 @@ export class DslSearchComponent implements OnInit, AfterViewInit {
   filter: Filter = null;
   error: string = null;
   info: string = null;
+  inputActive = false;
 
   sampleQueries: string[] = [
     `actor = "ricky" and content ~= "chimpanzee that`,
@@ -37,10 +38,7 @@ export class DslSearchComponent implements OnInit, AfterViewInit {
     `type = "song" and content = "feeder"`
   ];
 
-  private inputActive = false;
   private caretPos: number;
-  originalText: number;
-
   private activeNode: CSTNode = null;
 
   constructor(private renderer: Renderer2) {
@@ -71,14 +69,17 @@ export class DslSearchComponent implements OnInit, AfterViewInit {
   }
 
   parse() {
-    this.caretPos = this.getCaretPosition(this.editableContent.nativeElement);
+    if (this.editableContent.nativeElement.innerText.length === 0) {
+      return
+    }
+    //this.caretPos = this.getCaretPosition(this.editableContent.nativeElement);
     try {
       this.cst = ParseCST(this.editableContent.nativeElement.innerText);
       if (this.cst != null) {
         this.editableContent.nativeElement.innerHTML = '';
         this.renderer.appendChild(this.editableContent.nativeElement, renderCST(this.renderer, this.cst));
         this.clearNotices();
-        this.moveCaretTo(this.caretPos);
+        //this.moveCaretTo(this.caretPos);
       }
     } catch (e) {
 

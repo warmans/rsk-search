@@ -103,6 +103,7 @@ func documentsFromPath(filePath string) ([]internal.DialogDocument, error) {
 			Mapping:     "dialog",
 			Publication: episode.Publication,
 			Series:      episode.Series,
+			Episode:     episode.Episode,
 			Date:        episode.ReleaseDate.Format(time.RFC3339),
 			ContentType: string(v.Type),
 			Actor:       v.Actor,

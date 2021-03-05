@@ -43,21 +43,23 @@ message SearchResultList {
 }
 
 message SearchResult {
-  repeated DialogResult dialogs = 1;
+  Episode episode = 1;
+  repeated DialogResult dialogs = 2;
 }
 
 message DialogResult {
-  Episode episode = 1;
-  repeated Dialog lines = 2;
+  repeated Dialog lines = 1;
+  float score = 2;
 }
 
 message Dialog {
   string id = 1;
-  int32 pos = 2;
+  int64 pos = 2;
   string type = 3;
   string actor = 4;
   string content = 5;
   map<string, string> metadata = 6;
+  bool isMatchedRow = 7;
 }
 
 message Episode {
