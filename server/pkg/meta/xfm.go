@@ -17,6 +17,7 @@ func init() {
 	if err != nil {
 		panic("failed to open embedded metadata: " + err.Error())
 	}
+	defer f.Close()
 	dec := json.NewDecoder(f)
 	if err := dec.Decode(&parsedIndex); err != nil {
 		panic("failed to decode metadata: " + err.Error())

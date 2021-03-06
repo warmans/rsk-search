@@ -23,6 +23,7 @@ func WithNewFile(path string, cb func(f *os.File) error) (err error) {
 	return
 }
 
+
 func WithExistingFile(path string, cb func(f *os.File) error) (err error) {
 	f, err := os.OpenFile(path, os.O_RDWR, 0666)
 	if err != nil {
@@ -40,7 +41,7 @@ func WithExistingFile(path string, cb func(f *os.File) error) (err error) {
 	return
 }
 
-func WithJSONFileEncoder(path string, cb func(enc *json.Encoder) error) error {
+func WithCreateJSONFileEncoder(path string, cb func(enc *json.Encoder) error) error {
 	return WithNewFile(path, func(f *os.File) error {
 		enc := json.NewEncoder(f)
 		enc.SetIndent("  ", "  ")
@@ -48,7 +49,22 @@ func WithJSONFileEncoder(path string, cb func(enc *json.Encoder) error) error {
 	})
 }
 
-func WithJSONFileDecoder(path string, cb func(dec *json.Decoder) error) error {
+
+func WithReplaceJSONFileEncoder(path string, cb func(enc *json.Encoder) error) error {
+	return WithExistingFile(path, func(f *os.File) error {
+		if err := f.Truncate(0); err != nil {
+			return err
+		}
+		if _, err := f.Seek(0, 0); err != nil {
+			return err
+		}
+		enc := json.NewEncoder(f)
+		enc.SetIndent("  ", "  ")
+		return cb(enc)
+	})
+}
+
+func WithReadJSONFileDecoder(path string, cb func(dec *json.Decoder) error) error {
 	return WithExistingFile(path, func(f *os.File) error {
 		return cb(json.NewDecoder(f))
 	})

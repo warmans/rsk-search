@@ -8,8 +8,14 @@ import (
 	"path"
 )
 
+func ReplaceEpisodeFile(dataDir string, ep *models.Episode) error {
+	return WithReplaceJSONFileEncoder(path.Join(dataDir, fmt.Sprintf("%s.json", EpisodeName(ep))), func(encoder *json.Encoder) error {
+		return encoder.Encode(ep)
+	})
+}
+
 func SaveEpisodeToFile(dataDir string, ep *models.Episode) error {
-	return WithJSONFileEncoder(path.Join(dataDir, fmt.Sprintf("%s.json", EpisodeName(ep))), func(encoder *json.Encoder) error {
+	return WithCreateJSONFileEncoder(path.Join(dataDir, fmt.Sprintf("%s.json", EpisodeName(ep))), func(encoder *json.Encoder) error {
 		return encoder.Encode(ep)
 	})
 }

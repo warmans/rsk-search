@@ -34,26 +34,26 @@ func (m Metadata) Proto() map[string]string {
 		p[string(k)] = v
 	}
 	return p
-
 }
 
 type Dialog struct {
-	ID       string     `json:"id"`
-	Position int64      `json:"pos"`
-	Type     DialogType `json:"type"`
-	Actor    string     `json:"actor"`
-	Meta     Metadata   `json:"metadata"`
-	Content  string     `json:"content"`
+	ID          string            `json:"id"`
+	Position    int64             `json:"pos"`
+	Type        DialogType        `json:"type"`
+	Actor       string            `json:"actor"`
+	Meta        Metadata          `json:"metadata"`
+	Content     string            `json:"content"`
+	ContentTags map[string]string `json:"content_tags"` // content tokens mapped to tags
 }
 
 func (d Dialog) Proto(bestMatch bool) *api.Dialog {
 	return &api.Dialog{
-		Id:       d.ID,
-		Pos:      d.Position,
-		Type:     string(d.Type),
-		Actor:    d.Actor,
-		Content:  d.Content,
-		Metadata: d.Meta.Proto(),
+		Id:           d.ID,
+		Pos:          d.Position,
+		Type:         string(d.Type),
+		Actor:        d.Actor,
+		Content:      d.Content,
+		Metadata:     d.Meta.Proto(),
 		IsMatchedRow: bestMatch,
 	}
 }
@@ -65,9 +65,9 @@ type Episode struct {
 	ReleaseDate time.Time `json:"release_date"`
 
 	// additional optional data
-	Meta Metadata `json:"metadata"`
-
+	Meta       Metadata `json:"metadata"`
 	Transcript []Dialog `json:"transcript"`
+	Tags       []string `json:"tags"`
 }
 
 func (e *Episode) Proto() *api.Episode {
@@ -80,4 +80,9 @@ func (e *Episode) Proto() *api.Episode {
 		Episode:     e.Episode,
 		Metadata:    e.Meta.Proto(),
 	}
+}
+
+type DialogTags struct {
+	DialogID string            `json:"dialog_id"`
+	Tags     map[string]string `json:"tags"`
 }

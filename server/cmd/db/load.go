@@ -61,7 +61,7 @@ func populateDB(inputDataPath string, conn *store.Conn, logger *zap.Logger) erro
 		logger.Info("Parsing file...", zap.String("path", dirEntry.Name()))
 
 		episode := &models.Episode{}
-		if err := util.WithJSONFileDecoder(path.Join(inputDataPath, dirEntry.Name()), func(dec *json.Decoder) error {
+		if err := util.WithReadJSONFileDecoder(path.Join(inputDataPath, dirEntry.Name()), func(dec *json.Decoder) error {
 			return dec.Decode(episode)
 		}); err != nil {
 			return err
