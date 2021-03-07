@@ -1,23 +1,15 @@
-<nav class="navbar sticky-top navbar-light bg-light">
-  <div class="d-flex w-100">
-    <div class="navbar-brand">
-      <strong>RSK Search</strong>
-    </div>
-    <div class="flex-grow-1">
-      <app-dsl-search (executeQuery)="executeQuery($event)"></app-dsl-search>
-    </div>
-  </div>
-</nav>
-
-<div class="container-fluid">
+<div class="container-fluid pt-3">
   <div class="row">
     <div class="col">
-      <div *ngFor="let res of result?.results" class="result">
-        <div class="header">EPISODE: {{ res.episode?.publication }} S{{res.episode?.series}}E{{res.episode?.episode}}</div>
-        <div *ngFor="let dialog of res.dialogs" class="dialog">
-          <div *ngFor="let line of dialog.lines" class="line d-flex" [ngClass]="{'matched': line.isMatchedRow}">
-              <div class="actor mr-2">{{line.actor}}</div>
-              <div class="col">{{line.content}}</div>
+      <div *ngFor="let res of result?.results" class="result card mb-3">
+        <div class="card-header font-weight-bold">
+          <a [routerLink]="['/ep', res?.episode?.id]" [fragment]="'pos-'+(res?.dialogs[0]?.lines[0]?.pos || 0)">
+            {{ res.episode?.id }}
+          </a>
+        </div>
+        <div class="card-body">
+          <div *ngFor="let dialog of res.dialogs" class="dialog">
+            <app-transcript [transcript]="dialog.lines"></app-transcript>
           </div>
         </div>
       </div>

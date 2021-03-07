@@ -2,7 +2,7 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
-  EventEmitter,
+  EventEmitter, Input,
   OnInit,
   Output,
   Renderer2,
@@ -12,6 +12,7 @@ import { Filter } from '../../../../lib/filter-dsl/filter';
 import { PrintPlainText } from '../../../../lib/filter-dsl/printer';
 import { CSTNode, ParseCST, ParseError, renderCST } from '../../../../lib/filter-dsl/cst';
 import { Tag } from '../../../../lib/filter-dsl/scanner';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dsl-search',
@@ -26,6 +27,8 @@ export class DslSearchComponent implements OnInit, AfterViewInit {
   @ViewChild('editableContent')
   editableContent: ElementRef;
 
+  initialQuery: string;
+
   cst: CSTNode = null;
   filter: Filter = null;
   error: string = null;
@@ -33,7 +36,7 @@ export class DslSearchComponent implements OnInit, AfterViewInit {
   inputActive = false;
 
   sampleQueries: string[] = [
-    `actor = "ricky" and content ~= "chimpanzee that`,
+    `actor = "ricky" and content ~= "chimpanzee that"`,
     `actor = "steve" and content = "arbitrary"`,
     `type = "song" and content = "feeder"`
   ];
@@ -41,11 +44,16 @@ export class DslSearchComponent implements OnInit, AfterViewInit {
   private caretPos: number;
   private activeNode: CSTNode = null;
 
-  constructor(private renderer: Renderer2) {
+  constructor(private renderer: Renderer2, route: ActivatedRoute) {
+    route.queryParamMap.subscribe((params) => {
+      if (params.get('q') === null) {
+        return;
+      }
+      this.initialQuery = params.get('q');
+    });
   }
 
   ngOnInit(): void {
-
   }
 
   ngAfterViewInit(): void {
@@ -72,14 +80,14 @@ export class DslSearchComponent implements OnInit, AfterViewInit {
     if (this.editableContent.nativeElement.innerText.length === 0) {
       return
     }
-    //this.caretPos = this.getCaretPosition(this.editableContent.nativeElement);
+    this.caretPos = this.getCaretPosition(this.editableContent.nativeElement);
     try {
       this.cst = ParseCST(this.editableContent.nativeElement.innerText);
       if (this.cst != null) {
         this.editableContent.nativeElement.innerHTML = '';
         this.renderer.appendChild(this.editableContent.nativeElement, renderCST(this.renderer, this.cst));
         this.clearNotices();
-        //this.moveCaretTo(this.caretPos);
+        this.moveCaretTo(this.caretPos);
       }
     } catch (e) {
 

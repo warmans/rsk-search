@@ -10,7 +10,7 @@
       (keyup)="onKeypress($event)"
       [ngClass]="{'border-danger': this.error !== null}"
       #editableContent
-    ></div>
+    >{{initialQuery}}</div>
     <div>
       <button class="btn btn-lg btn-primary ml-2" (click)="emitQuery()">Execute</button>
     </div>

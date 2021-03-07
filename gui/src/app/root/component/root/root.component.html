@@ -1,1 +1,12 @@
+<nav class="navbar sticky-top navbar-light bg-light">
+  <div class="d-flex w-100">
+    <div class="navbar-brand font-weight-bold pt-2">
+      RSKDB
+    </div>
+    <div class="flex-grow-1">
+      <app-dsl-search (executeQuery)="executeSearch($event)"></app-dsl-search>
+    </div>
+  </div>
+</nav>
+
 <router-outlet></router-outlet>

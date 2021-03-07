@@ -1,10 +1,7 @@
 /* tslint:disable */
-import {
-  RsksearchDialog,
-  RsksearchEpisode,
-} from '.';
+import { RsksearchDialog, } from '.';
 
 export interface RsksearchDialogResult {
-  episode?: RsksearchEpisode;
   lines?: RsksearchDialog[];
+  score?: number;
 }

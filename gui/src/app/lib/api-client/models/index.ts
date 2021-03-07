@@ -5,3 +5,4 @@ export { RsksearchDialogResult } from './rsksearch-dialog-result.model';
 export { RsksearchEpisode } from './rsksearch-episode.model';
 export { RskSearchResult } from './rsk-search-result.model';
 export { RskSearchResultList } from './rsk-search-result-list.model';
+export { RsksearchShortEpisode } from './rsksearch-short-episode.model';

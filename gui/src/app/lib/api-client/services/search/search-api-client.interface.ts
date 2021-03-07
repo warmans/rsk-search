@@ -9,6 +9,16 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  searchServiceGetEpisode(
+    args: {
+      id: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchEpisode>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   searchServiceSearch(
     args: {
       query?: string,

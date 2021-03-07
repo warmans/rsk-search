@@ -24,10 +24,14 @@ export function isRsksearchDialog(arg: any): arg is models.RsksearchDialog {
     ( typeof arg.content === 'undefined' || typeof arg.content === 'string' ) &&
     // id?: string
     ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
+    // isMatchedRow?: boolean
+    ( typeof arg.isMatchedRow === 'undefined' || typeof arg.isMatchedRow === 'boolean' ) &&
     // metadata?: { [key: string]: string }
     ( typeof arg.metadata === 'undefined' || typeof arg.metadata === 'string' ) &&
-    // pos?: number
-    ( typeof arg.pos === 'undefined' || typeof arg.pos === 'number' ) &&
+    // pos?: string
+    ( typeof arg.pos === 'undefined' || typeof arg.pos === 'string' ) &&
+    // tags?: { [key: string]: string }
+    ( typeof arg.tags === 'undefined' || typeof arg.tags === 'string' ) &&
     // type?: string
     ( typeof arg.type === 'undefined' || typeof arg.type === 'string' ) &&
 
@@ -39,10 +43,10 @@ export function isRsksearchDialogResult(arg: any): arg is models.RsksearchDialog
   return (
   arg != null &&
   typeof arg === 'object' &&
-    // episode?: RsksearchEpisode
-    ( typeof arg.episode === 'undefined' || isRsksearchEpisode(arg.episode) ) &&
     // lines?: RsksearchDialog[]
     ( typeof arg.lines === 'undefined' || (Array.isArray(arg.lines) && arg.lines.every((item: unknown) => isRsksearchDialog(item))) ) &&
+    // score?: number
+    ( typeof arg.score === 'undefined' || typeof arg.score === 'number' ) &&
 
   true
   );
@@ -54,12 +58,18 @@ export function isRsksearchEpisode(arg: any): arg is models.RsksearchEpisode {
   typeof arg === 'object' &&
     // episode?: number
     ( typeof arg.episode === 'undefined' || typeof arg.episode === 'number' ) &&
+    // id?: string
+    ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
     // metadata?: { [key: string]: string }
     ( typeof arg.metadata === 'undefined' || typeof arg.metadata === 'string' ) &&
     // publication?: string
     ( typeof arg.publication === 'undefined' || typeof arg.publication === 'string' ) &&
     // series?: number
     ( typeof arg.series === 'undefined' || typeof arg.series === 'number' ) &&
+    // tags?: { [key: string]: string }
+    ( typeof arg.tags === 'undefined' || typeof arg.tags === 'string' ) &&
+    // transcript?: RsksearchDialog[]
+    ( typeof arg.transcript === 'undefined' || (Array.isArray(arg.transcript) && arg.transcript.every((item: unknown) => isRsksearchDialog(item))) ) &&
 
   true
   );
@@ -71,6 +81,8 @@ export function isRskSearchResult(arg: any): arg is models.RskSearchResult {
   typeof arg === 'object' &&
     // dialogs?: RsksearchDialogResult[]
     ( typeof arg.dialogs === 'undefined' || (Array.isArray(arg.dialogs) && arg.dialogs.every((item: unknown) => isRsksearchDialogResult(item))) ) &&
+    // episode?: RsksearchShortEpisode
+    ( typeof arg.episode === 'undefined' || isRsksearchShortEpisode(arg.episode) ) &&
 
   true
   );
@@ -84,6 +96,25 @@ export function isRskSearchResultList(arg: any): arg is models.RskSearchResultLi
     ( typeof arg.resultCount === 'undefined' || typeof arg.resultCount === 'number' ) &&
     // results?: RskSearchResult[]
     ( typeof arg.results === 'undefined' || (Array.isArray(arg.results) && arg.results.every((item: unknown) => isRskSearchResult(item))) ) &&
+
+  true
+  );
+  }
+
+export function isRsksearchShortEpisode(arg: any): arg is models.RsksearchShortEpisode {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // episode?: number
+    ( typeof arg.episode === 'undefined' || typeof arg.episode === 'number' ) &&
+    // id?: string
+    ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
+    // metadata?: { [key: string]: string }
+    ( typeof arg.metadata === 'undefined' || typeof arg.metadata === 'string' ) &&
+    // publication?: string
+    ( typeof arg.publication === 'undefined' || typeof arg.publication === 'string' ) &&
+    // series?: number
+    ( typeof arg.series === 'undefined' || typeof arg.series === 'number' ) &&
 
   true
   );

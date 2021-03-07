@@ -1,18 +1,30 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SearchComponent } from '../module/search/page/search/search.component';
+import { EpisodeComponent } from '../module/search/page/episode/episode.component';
 
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'search',
     component: SearchComponent,
-    pathMatch: 'full'
+  },
+  {
+    path: 'ep/:id',
+    component: EpisodeComponent,
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(
+      routes,
+      {
+        anchorScrolling: 'enabled',
+        onSameUrlNavigation: 'reload',
+        scrollPositionRestoration: 'enabled'
+      },
+    )],
   exports: [RouterModule]
 })
 export class RootRoutingModule {

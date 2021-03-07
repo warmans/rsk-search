@@ -45,6 +45,24 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  searchServiceGetEpisode(
+    args: {
+      id: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchEpisode> {
+    const path = `/api/episode/${args.id}`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<models.RsksearchEpisode>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   searchServiceSearch(
     args: {
       query?: string,

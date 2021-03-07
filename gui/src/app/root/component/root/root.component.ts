@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./root.component.scss']
 })
 export class RootComponent {
-  title = 'gui';
+  title = 'RSK DB';
+
+  constructor(private router: Router) {
+
+  }
+
+  executeSearch(query: string) {
+    this.router.navigate(['/search'], { queryParams: { q: query } });
+  }
+
 }
