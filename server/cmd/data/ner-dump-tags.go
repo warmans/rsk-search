@@ -17,6 +17,7 @@ func NERDumpTagsCmd() *cobra.Command {
 	var inputDir string
 	var outputFile string
 	var modelPath string
+	var limit int32
 
 	cmd := &cobra.Command{
 		Use:   "ner-dump-tags",
@@ -28,7 +29,7 @@ func NERDumpTagsCmd() *cobra.Command {
 
 			logger.Info("Importing transcript data from...", zap.String("path", inputDir))
 
-			model := prose.ModelFromDisk(modelPath)
+			//model := prose.ModelFromDisk(modelPath)
 			tags := make(meta.Tags)
 
 			dirEntries, err := ioutil.ReadDir(inputDir)
@@ -47,7 +48,7 @@ func NERDumpTagsCmd() *cobra.Command {
 				}
 
 				for _, v := range episode.Transcript {
-					doc, err := prose.NewDocument(v.Content, prose.WithSegmentation(false), prose.UsingModel(model))
+					doc, err := prose.NewDocument(v.Content, prose.WithSegmentation(false))
 					if err != nil {
 						logger.Error("failed to parse text", zap.Error(err))
 						continue
@@ -67,6 +68,12 @@ func NERDumpTagsCmd() *cobra.Command {
 						}
 					}
 				}
+				if limit > -1 {
+					limit--
+					if limit == 0 {
+						break
+					}
+				}
 			}
 
 			return util.WithCreateJSONFileEncoder(outputFile, func(enc *json.Encoder) error {
@@ -79,6 +86,7 @@ func NERDumpTagsCmd() *cobra.Command {
 	cmd.Flags().StringVarP(&inputDir, "input-path", "i", "./var/data/episodes", "Path to raw scraped files")
 	cmd.Flags().StringVarP(&outputFile, "output-file", "o", "./pkg/meta/data/tags-new.json", "Output file")
 	cmd.Flags().StringVarP(&modelPath, "model", "m", "./var/data/ner/rsk-model", "Model data")
+	cmd.Flags().Int32VarP(&limit, "limit", "l", -1, "max files to process")
 
 	return cmd
 }

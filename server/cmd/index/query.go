@@ -6,9 +6,9 @@ import (
 	"github.com/blevesearch/bleve/v2"
 	_ "github.com/blevesearch/bleve/v2/config"
 	"github.com/spf13/cobra"
-	"github.com/warmans/rsk-search/internal"
 	"github.com/warmans/rsk-search/pkg/filter"
 	"github.com/warmans/rsk-search/pkg/filter/bleve_query"
+	"github.com/warmans/rsk-search/pkg/search/index"
 
 	"go.uber.org/zap"
 )
@@ -56,7 +56,7 @@ func QueryCmd() *cobra.Command {
 				if err != nil {
 					return err
 				}
-				rawDoc := internal.DecodeDocument(doc)
+				rawDoc := index.DecodeDocument(doc)
 				fmt.Printf("Score: %0.2f, Fragment: %s\n", v.Score, fmt.Sprint(v.Fragments))
 				bytes, err := json.Marshal(rawDoc)
 				if err != nil {

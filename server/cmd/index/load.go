@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"github.com/blevesearch/bleve/v2"
 	"github.com/spf13/cobra"
-	"github.com/warmans/rsk-search/internal"
 	"github.com/warmans/rsk-search/pkg/models"
+	"github.com/warmans/rsk-search/pkg/search/index"
 	"go.uber.org/zap"
 	"io/ioutil"
 	"os"
@@ -31,7 +31,7 @@ func LoadCmd() *cobra.Command {
 
 			rskIndex, err := bleve.Open(indexCfg.path)
 			if err == bleve.ErrorIndexPathDoesNotExist {
-				indexMapping, err := internal.RskIndexMapping()
+				indexMapping, err := index.RskIndexMapping()
 				if err != nil {
 					logger.Fatal("failed to create mapping", zap.Error(err))
 				}
@@ -81,7 +81,7 @@ func populateIndex(inputDataPath string, idx bleve.Index, logger *zap.Logger) er
 	return nil
 }
 
-func documentsFromPath(filePath string) ([]internal.DialogDocument, error) {
+func documentsFromPath(filePath string) ([]index.DialogDocument, error) {
 
 	f, err := os.Open(filePath)
 	if err != nil {
@@ -96,9 +96,9 @@ func documentsFromPath(filePath string) ([]internal.DialogDocument, error) {
 		return nil, err
 	}
 
-	docs := []internal.DialogDocument{}
+	docs := []index.DialogDocument{}
 	for _, v := range episode.Transcript {
-		docs = append(docs, internal.DialogDocument{
+		docs = append(docs, index.DialogDocument{
 			ID:          v.ID,
 			Mapping:     "dialog",
 			Publication: episode.Publication,
@@ -109,6 +109,7 @@ func documentsFromPath(filePath string) ([]internal.DialogDocument, error) {
 			Actor:       v.Actor,
 			Position:    v.Position,
 			Content:     v.Content,
+			Tags:        vals(v.ContentTags),
 		})
 	}
 
@@ -118,4 +119,15 @@ func documentsFromPath(filePath string) ([]internal.DialogDocument, error) {
 func stringToIntOrZero(str string) int32 {
 	i, _ := strconv.Atoi(str)
 	return int32(i)
+}
+
+func vals(v map[string]string) []string {
+	arr := []string{}
+	if v == nil {
+		return arr
+	}
+	for _, tag := range v {
+		arr = append(arr, tag)
+	}
+	return arr
 }

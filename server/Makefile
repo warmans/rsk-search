@@ -37,6 +37,25 @@ generate.proto:
 run: build
 	./bin/rsk-search server
 
+.PHONY: update.transcriptions
+update.transcriptions:
+ifndef SPOTIFY_TOKEN
+	$(error "SPOTIFY TOKEN was not defined")
+endif
+	# there isn't and easy way to do this because so much is built on top of the transcription.
+	# even in this case any new tags will not be added for example
+	./bin/rsk-search data transcribe && \
+ 	SPOTIFY_TOKEN=${SPOTIFY_TOKEN} ./bin/rsk-search data spotifize && \
+ 	./bin/rsk-search data tag-dialog
 
-index.refresh:
-	rm -rf var/rsk.blieve && ./bin/rsk-search index load
+.PHONY: init.all
+init.all:
+	$(MAKE) init.db init.index
+
+.PHONY: init.db
+init.db:
+	rm ./var/rsk.sqlite3; ./bin/rsk-search db load
+
+.PHONY: init.index
+init.index:
+	rm -rf ./var/rsk.bleve; ./bin/rsk-search index load

@@ -28,6 +28,7 @@ func RootCmd() *cobra.Command {
 	index.AddCommand(NERTrainCmd())
 	index.AddCommand(NERTestCmd())
 	index.AddCommand(NERDumpTagsCmd())
+	index.AddCommand(NERCleanTagsCmd())
 
 	return index
 }

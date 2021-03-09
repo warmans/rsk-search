@@ -14,7 +14,7 @@ export class ParseError extends Error {
   }
 }
 
-enum NodeKind {
+export enum NodeKind {
   BoolFilter = 'bool_filter',
   BoolOp = 'bool_op',
   CompFilter = 'comp_filter',
@@ -100,7 +100,7 @@ export class TokenNode extends CSTNode {
 }
 
 export class ValueNode extends CSTNode {
-  constructor(public v: Value) {
+  constructor(public v: Value, public parent: CSTNode) {
     super(NodeKind.Value);
   }
 
@@ -210,7 +210,7 @@ export class CSTParser {
 
         // value
         this.eatWhiteSpace(node);
-        node.appendChild(new ValueNode(this.parseValue()));
+        node.appendChild(new ValueNode(this.parseValue(), node));
 
         return node;
       default:

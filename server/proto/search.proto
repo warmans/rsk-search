@@ -31,6 +31,36 @@ service SearchService {
       tags: "search"
     };
   }
+
+  rpc GetEpisode(GetEpisodeRequest) returns (Episode) {
+    option (google.api.http) = {
+      get: "/api/episode/{id}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Fetch the full data for an episode including the transcript"
+      tags: "search"
+    };
+  }
+
+  rpc GetSearchMetadata(google.protobuf.Empty) returns (SearchMetadata) {
+    option (google.api.http) = {
+      get: "/api/metadata"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Fetch search metadata e.g. searchable fields"
+      tags: "search"
+    };
+  }
+
+  rpc ListFieldValues(ListFieldValuesRequest) returns (FieldValueList) {
+    option (google.api.http) = {
+      get: "/api/metadata"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Fetch search metadata e.g. searchable fields"
+      tags: "search"
+    };
+  }
 }
 
 message SearchRequest {
@@ -43,8 +73,17 @@ message SearchResultList {
 }
 
 message SearchResult {
-  Episode episode = 1;
+  ShortEpisode episode = 1;
   repeated DialogResult dialogs = 2;
+}
+
+message ShortEpisode {
+  string id = 1;
+  string publication = 2;
+  int32 series = 3;
+  int32 episode = 4;
+  map<string, string> metadata = 5;
+  repeated Tag tags = 6;
 }
 
 message DialogResult {
@@ -59,12 +98,43 @@ message Dialog {
   string actor = 4;
   string content = 5;
   map<string, string> metadata = 6;
-  bool isMatchedRow = 7;
+  map<string, Tag> content_tags = 7;
+  bool isMatchedRow = 8;
+}
+
+message Tag {
+  string name = 1;
+  repeated string kind = 2;
 }
 
 message Episode {
-  string publication = 1;
-  int32 series = 2;
-  int32 episode = 3;
-  map<string, string> metadata = 4;
+  string id = 1;
+  string publication = 2;
+  int32 series = 3;
+  int32 episode = 4;
+  map<string, string> metadata = 5;
+  repeated Tag tags = 6;
+  repeated Dialog transcript = 7;
+}
+
+message GetEpisodeRequest {
+  string id = 1;
+}
+
+message SearchMetadata {
+
+}
+
+message ListFieldValuesRequest {
+  string field = 1;
+  string prefix = 2;
+}
+
+message FieldValueList {
+  repeated FieldValue values = 1;
+}
+
+message FieldValue {
+  string value = 1;
+  int32 count = 2;
 }

@@ -1,6 +1,7 @@
 /* tslint:disable */
 import {
   RsksearchDialog,
+  RsksearchTag,
 } from '.';
 
 export interface RsksearchEpisode {
@@ -9,6 +10,6 @@ export interface RsksearchEpisode {
   metadata?: { [key: string]: string };
   publication?: string;
   series?: number;
-  tags?: { [key: string]: string };
+  tags?: RsksearchTag[];
   transcript?: RsksearchDialog[];
 }

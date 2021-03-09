@@ -11,16 +11,18 @@
     },
     "transcript": [
       {
-        "id": "HrhKzRvSUB7LdNQYRxWQTX",
+        "id": "d54duhG9CsLKHf6QRxBayE",
         "pos": 100,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "104.9, I'm Ricky Gervais, with me Stephen Merchant.",
-        "content_tags": null
+        "content_tags": {
+          "Stephen Merchant": "Stephen Merchant"
+        }
       },
       {
-        "id": "sVHENBvbjAgJTJGqAMjrPg",
+        "id": "paiRzJtCRPRg43FVbK2GvJ",
         "pos": 200,
         "type": "chat",
         "actor": "steve",
@@ -29,7 +31,7 @@
         "content_tags": null
       },
       {
-        "id": "mnLaKWyCCtAhon2gXuSWAP",
+        "id": "BSEDKinD23i7TrFe58oC5Q",
         "pos": 300,
         "type": "chat",
         "actor": "ricky",
@@ -38,7 +40,7 @@
         "content_tags": null
       },
       {
-        "id": "3boDDQyAgHs9aj4pA7KpAn",
+        "id": "tY3dTrJSHy2SQjkxRxvnRP",
         "pos": 400,
         "type": "chat",
         "actor": "classic link",
@@ -47,16 +49,18 @@
         "content_tags": null
       },
       {
-        "id": "YTAU6hJPganvDknTKdxZz3",
+        "id": "gExJqh9bDVfFfawgzUh4Nb",
         "pos": 500,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Xfm 104.9, Ricky and I are on holiday obviously, it's Christmas time, but Karl is here in the studio, he's pressing buttons, alright Karl?",
-        "content_tags": null
+        "content_tags": {
+          "Karl": "Karl Pilkington"
+        }
       },
       {
-        "id": "tjLqr5B4Xmtjo4W3XvyQ2o",
+        "id": "r2QF56PY2rJckzWXiF3g6W",
         "pos": 600,
         "type": "chat",
         "actor": "karl",
@@ -65,16 +69,16 @@
         "content_tags": null
       },
       {
-        "id": "HimbeX2JPssy6ztw7vuKZj",
+        "id": "fG8Cz2PkyiFBQYDT3bEwPc",
         "pos": 700,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Ricky laughs like a horse.",
-        "content_tags": null
+        "content_tags": {}
       },
       {
-        "id": "ikiTmiPXawjZqGiZ42aTQh",
+        "id": "6xdVZnoQxaQvdeEBitTbo4",
         "pos": 800,
         "type": "unknown",
         "actor": "",
@@ -83,16 +87,18 @@
         "content_tags": null
       },
       {
-        "id": "NdYw5TDXrPNrB3hrDZN4wa",
+        "id": "QFrwDu3hS3hZBm8MNgdRWj",
         "pos": 900,
         "type": "chat",
         "actor": "classic link",
         "metadata": null,
         "content": "The Horse in the House - part 1",
-        "content_tags": null
+        "content_tags": {
+          "House": "House"
+        }
       },
       {
-        "id": "HH8TxLRcd9R9MwSV8Qcfqb",
+        "id": "ecN45ZiwS6RiUETAY8QP3g",
         "pos": 1000,
         "type": "song",
         "actor": "",
@@ -102,28 +108,34 @@
           "spotify_uri": "spotify:track:3fElupNRLRJ0tbUDahPrAb"
         },
         "content": "The Velvet Underground - Waiting for the Man",
-        "content_tags": null
+        "content_tags": {
+          "Velvet Underground": "Velvet Underground"
+        }
       },
       {
-        "id": "ceoGM5gmrCnhr7ABQPg2C4",
+        "id": "C7xARQHgYcJKyFCskBd2CV",
         "pos": 1100,
         "type": "chat",
         "actor": "classic link",
         "metadata": null,
         "content": "The Horse in the House - part 2",
-        "content_tags": null
+        "content_tags": {
+          "House": "House"
+        }
       },
       {
-        "id": "RprVXubdZakgV9fGDVynEA",
+        "id": "xWpmk9WBhkCuiyVJVLwv6F",
         "pos": 1200,
         "type": "chat",
         "actor": "classic link",
         "metadata": null,
         "content": "Karl's Removal Man",
-        "content_tags": null
+        "content_tags": {
+          "Karl": "Karl Pilkington"
+        }
       },
       {
-        "id": "uCv4WgNwbzkcEfXHppZXwd",
+        "id": "7n9KzgRdEYSBU5GWPpvMmF",
         "pos": 1300,
         "type": "chat",
         "actor": "classic link",
@@ -132,7 +144,7 @@
         "content_tags": null
       },
       {
-        "id": "A3vsWMHHKYegBYgRPXYsNg",
+        "id": "ZaBmMYFNQ85ZG5mKoWwDQC",
         "pos": 1400,
         "type": "song",
         "actor": "",
@@ -143,19 +155,23 @@
           "spotify_uri": "spotify:track:2sEbU7Z4Re2n4t1pzPbbUk"
         },
         "content": "Alpinestars - Carbon Kid",
-        "content_tags": null
+        "content_tags": {
+          "Alpinestars": "Alpinestars"
+        }
       },
       {
-        "id": "bYhSdwL2fjKuH3K3PKrcNd",
+        "id": "xQFq2dQbjM9cU4cxTXzHhc",
         "pos": 1500,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Hello, you're listening to the best of, basically, Karl Pilkington.",
-        "content_tags": null
+        "content_tags": {
+          "Karl Pilkington": "Karl Pilkington"
+        }
       },
       {
-        "id": "DND2DW5YMyUpVjXU5ra2qK",
+        "id": "ri6Hh4ijcYrH7qRN2mH3qc",
         "pos": 1600,
         "type": "unknown",
         "actor": "",
@@ -164,7 +180,7 @@
         "content_tags": null
       },
       {
-        "id": "zFusDTSEXBiUkzXbZv66CE",
+        "id": "DFZBqxmkaCuDhQNZ9sBLmT",
         "pos": 1700,
         "type": "chat",
         "actor": "classic link",
@@ -173,16 +189,18 @@
         "content_tags": null
       },
       {
-        "id": "az9nXmtNa9SFEAKmnXNZq8",
+        "id": "ktXFhiHVL7cWzFwws2pzgC",
         "pos": 1800,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "104.9, Ricky Gervais, Steve Merchant, we're not actually here, it's the 'best of'.",
-        "content_tags": null
+        "content_tags": {
+          "Steve Merchant": "Steve Merchant"
+        }
       },
       {
-        "id": "Vswo9gb32gA2Nd9d6JFhAS",
+        "id": "endS36VhFkj3CyGvznNA5R",
         "pos": 1900,
         "type": "unknown",
         "actor": "",
@@ -191,7 +209,7 @@
         "content_tags": null
       },
       {
-        "id": "yEhKKV8cKzqUanFvxFQGpX",
+        "id": "jCXVsMfjSJ2d5FXhTfm3jC",
         "pos": 2000,
         "type": "chat",
         "actor": "classic link",
@@ -200,7 +218,7 @@
         "content_tags": null
       },
       {
-        "id": "nyvXM732uxoXHQzNzVBWnD",
+        "id": "mwSebdxw3gRAKACUPCzcTi",
         "pos": 2100,
         "type": "song",
         "actor": "",
@@ -211,10 +229,12 @@
           "spotify_uri": "spotify:track:4J4LjEe33yN6gLmPib0nqz"
         },
         "content": "The Libertines - Time for Heroes",
-        "content_tags": null
+        "content_tags": {
+          "Libertines": "Libertines"
+        }
       },
       {
-        "id": "Tgcev4onZD7vd5dQMKQ8cS",
+        "id": "KyjGZs2nKCSToudTJiKRfX",
         "pos": 2200,
         "type": "chat",
         "actor": "ricky",
@@ -223,7 +243,7 @@
         "content_tags": null
       },
       {
-        "id": "abPhkcuWMhbCUmXWpyqKBh",
+        "id": "qptZUrhuanX9zPdN3aB4Wi",
         "pos": 2300,
         "type": "unknown",
         "actor": "",
@@ -232,7 +252,7 @@
         "content_tags": null
       },
       {
-        "id": "gCxxnf48ckf8S7KzTUuFth",
+        "id": "4775EhrHDhCx9gmFW4o3GZ",
         "pos": 2400,
         "type": "chat",
         "actor": "classic link",
@@ -241,16 +261,19 @@
         "content_tags": null
       },
       {
-        "id": "k43NPAAspRx7NUs5BUeCWo",
+        "id": "7hKP4E7jTqGeteizgNT8HS",
         "pos": 2500,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Alright, Xfm 104.9, Ricky Gervais, Steve Merchant, Karl Pilkington, not here, it's the 'best of', you've been voting in all week, sending in your emails, so here's the clips that you wanted.",
-        "content_tags": null
+        "content_tags": {
+          "Karl Pilkington": "Karl Pilkington",
+          "Steve Merchant": "Steve Merchant"
+        }
       },
       {
-        "id": "vbwd6HYNqs7pjZS448qKH3",
+        "id": "CLRQSzP2WN7UZSth93H2Um",
         "pos": 2600,
         "type": "unknown",
         "actor": "",
@@ -259,7 +282,7 @@
         "content_tags": null
       },
       {
-        "id": "BwgUXA2u3DfUyUYLSJHThR",
+        "id": "VnePXzTEc9rQyUAXdG95pm",
         "pos": 2700,
         "type": "chat",
         "actor": "classic link",
@@ -268,7 +291,7 @@
         "content_tags": null
       },
       {
-        "id": "VkVp7Kn5q7V8ss7tgmiToG",
+        "id": "guHUkzUmhyhbPZDNBogNCh",
         "pos": 2800,
         "type": "song",
         "actor": "",
@@ -284,16 +307,18 @@
         }
       },
       {
-        "id": "8aMUisgpoaGQhXiduLJDWd",
+        "id": "WjYxTXrLTAxE3Rr8K55vmd",
         "pos": 2900,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "This is Xfm 104.9 I'm Ricky Gervais, with me Stephen Merchant.",
-        "content_tags": null
+        "content_tags": {
+          "Stephen Merchant": "Stephen Merchant"
+        }
       },
       {
-        "id": "KfCE9mR3Zg8VjkRRQ2RQwh",
+        "id": "v43yaqeXtFJSVubxrJa5aS",
         "pos": 3000,
         "type": "chat",
         "actor": "steve",
@@ -302,16 +327,18 @@
         "content_tags": null
       },
       {
-        "id": "rMmCmFru6UcEmGzFQuccgj",
+        "id": "vn8fR4rye8aLzEzvWh9AvX",
         "pos": 3100,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "You're listening to the best of, basically, Karl Pilkington.",
-        "content_tags": null
+        "content_tags": {
+          "Karl Pilkington": "Karl Pilkington"
+        }
       },
       {
-        "id": "GCCUZBdLWsyGaqvQZbNqzG",
+        "id": "R5CaWpUdXriTkVokDoenXH",
         "pos": 3200,
         "type": "unknown",
         "actor": "",
@@ -320,7 +347,7 @@
         "content_tags": null
       },
       {
-        "id": "QfmYyzTgTNAvz5hqju7GQj",
+        "id": "hyETxx2hZSuyBmZDDfxcmn",
         "pos": 3300,
         "type": "chat",
         "actor": "classic link",
@@ -330,6 +357,13 @@
       }
     ],
     "tags": [
+      "Stephen Merchant",
+      "Karl Pilkington",
+      "House",
+      "Velvet Underground",
+      "Alpinestars",
+      "Steve Merchant",
+      "Libertines",
       "Richard Ashcroft"
     ]
   }

@@ -11,7 +11,7 @@
     },
     "transcript": [
       {
-        "id": "CwgcWBSyHSESHeK3qcviDG",
+        "id": "KqRSYwRqfqzNm4JborspPi",
         "pos": 100,
         "type": "song",
         "actor": "",
@@ -22,19 +22,23 @@
           "spotify_uri": "spotify:track:5PK1JCSdr34gWgzYHgt3Jq"
         },
         "content": "Muse - Feeling Good.",
-        "content_tags": null
+        "content_tags": {
+          "Muse": "Muse"
+        }
       },
       {
-        "id": "qwYCHmw9sAAb3dG8w8NFjQ",
+        "id": "PiGh5pPbxCtQxSZumqT8Eh",
         "pos": 200,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Muse on Xfm 104.9.",
-        "content_tags": null
+        "content_tags": {
+          "Muse": "Muse"
+        }
       },
       {
-        "id": "C5LantVXbWZZZoKpqoD3oQ",
+        "id": "8frqmenrN4d5wZrv4FqYK8",
         "pos": 300,
         "type": "chat",
         "actor": "steve",
@@ -43,7 +47,7 @@
         "content_tags": null
       },
       {
-        "id": "wiZEvuMMbpjURJxyqNzQaR",
+        "id": "kAtpprNAugrkKePn9V3ECB",
         "pos": 400,
         "type": "chat",
         "actor": "ricky",
@@ -52,7 +56,7 @@
         "content_tags": null
       },
       {
-        "id": "jnqXoLtnHRYhDaRtQyXgrB",
+        "id": "PKbLjjgCLD2ycTa2xEHsFa",
         "pos": 500,
         "type": "chat",
         "actor": "steve",
@@ -63,16 +67,18 @@
         }
       },
       {
-        "id": "wNXAwAqoviDHgF4XBg9oq9",
+        "id": "QZGswtGcZd3toxvkHLgSq9",
         "pos": 600,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Yeah, yeah, we're all here, Karl.",
-        "content_tags": null
+        "content_tags": {
+          "Karl": "Karl Pilkington"
+        }
       },
       {
-        "id": "naM87zV5HYRaq8QhKnwWgW",
+        "id": "FPthN56dJtz9qeNJoXR69C",
         "pos": 700,
         "type": "chat",
         "actor": "steve",
@@ -81,7 +87,7 @@
         "content_tags": null
       },
       {
-        "id": "YjtaGDSR5mJvPZcYwK5zuj",
+        "id": "Hyx3KJS2e4a8bYnGg4Tap4",
         "pos": 800,
         "type": "chat",
         "actor": "ricky",
@@ -90,7 +96,7 @@
         "content_tags": null
       },
       {
-        "id": "KoqJ5ccoMVD8JNSUwj8bsg",
+        "id": "vkqSbaaYzX6sYLAisMMJh5",
         "pos": 900,
         "type": "chat",
         "actor": "steve",
@@ -99,16 +105,18 @@
         "content_tags": null
       },
       {
-        "id": "kE7s8taDcEn4ku76qMuTNK",
+        "id": "KdmxDX6aGDxaTK6VaSJTpU",
         "pos": 1000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "We've got some great stuff coming up Steve.",
-        "content_tags": null
+        "content_tags": {
+          "Steve": "Steve Merchant"
+        }
       },
       {
-        "id": "N29FD4wwMfdnZoWAf24qPa",
+        "id": "TVBWPJBymR6ktk2fsSDu9m",
         "pos": 1100,
         "type": "chat",
         "actor": "steve",
@@ -117,7 +125,7 @@
         "content_tags": null
       },
       {
-        "id": "5fLp4F5doXxfQseDWbjwYL",
+        "id": "yvBvJyrwisXXKevWsmM9jC",
         "pos": 1200,
         "type": "chat",
         "actor": "steve",
@@ -126,7 +134,7 @@
         "content_tags": null
       },
       {
-        "id": "ukci7GoyfmJVgchPdtbGYc",
+        "id": "Sq9Qu5CAVHbfGye4UoGVqD",
         "pos": 1300,
         "type": "chat",
         "actor": "ricky",
@@ -135,7 +143,7 @@
         "content_tags": null
       },
       {
-        "id": "FXQnUACZLVHX3ngjfTeKJV",
+        "id": "XhaZ4UURzAi734Hc8rFTyG",
         "pos": 1400,
         "type": "chat",
         "actor": "steve",
@@ -144,7 +152,7 @@
         "content_tags": null
       },
       {
-        "id": "Zi8JaN4Qq3EiSdkZW4Etzn",
+        "id": "sSPuednmq4HVEc3ma9DRsS",
         "pos": 1500,
         "type": "chat",
         "actor": "ricky",
@@ -153,7 +161,7 @@
         "content_tags": null
       },
       {
-        "id": "yDfj7oCSBMKaefmkbWYKxd",
+        "id": "4V6z8eH5V3nk4rUwYqkzpY",
         "pos": 1600,
         "type": "chat",
         "actor": "steve",
@@ -162,7 +170,7 @@
         "content_tags": null
       },
       {
-        "id": "WN7akesCbs3fPxgT6nK2AL",
+        "id": "BMhBSfiNEgnTo9GnVUVMFg",
         "pos": 1700,
         "type": "chat",
         "actor": "ricky",
@@ -171,7 +179,7 @@
         "content_tags": null
       },
       {
-        "id": "dnb3Bs58fR4p6p83ZAip23",
+        "id": "nynaG5WBvVmWMogpwoqahf",
         "pos": 1800,
         "type": "chat",
         "actor": "steve",
@@ -180,7 +188,7 @@
         "content_tags": null
       },
       {
-        "id": "U34qw8sQJHzBNaC7PuKYnY",
+        "id": "hDNCdfgcNis66FXS27bQtU",
         "pos": 1900,
         "type": "chat",
         "actor": "ricky",
@@ -189,7 +197,7 @@
         "content_tags": null
       },
       {
-        "id": "WoEyzgjRwYZvH6HGsMZkLo",
+        "id": "QuHZzqkmuRJnH7CxhqqnDA",
         "pos": 2000,
         "type": "chat",
         "actor": "steve",
@@ -198,7 +206,7 @@
         "content_tags": null
       },
       {
-        "id": "qH7hfzK27XoviES3CjtLM5",
+        "id": "dsmZiLgAUXxubDFeTfEmDo",
         "pos": 2100,
         "type": "chat",
         "actor": "ricky",
@@ -207,7 +215,7 @@
         "content_tags": null
       },
       {
-        "id": "tfRdsd7BuojjjhW4P8EnEW",
+        "id": "JtbD4k8RfXvNstp2GWPNpb",
         "pos": 2200,
         "type": "chat",
         "actor": "steve",
@@ -216,7 +224,7 @@
         "content_tags": null
       },
       {
-        "id": "dRXw7KZKvhiPTpAzVxuSbT",
+        "id": "EN9cfuRhWeWZbrxABdLmkA",
         "pos": 2300,
         "type": "chat",
         "actor": "ricky",
@@ -225,7 +233,7 @@
         "content_tags": null
       },
       {
-        "id": "pj5U2VBTf5aCkjGWCiAXCo",
+        "id": "sSRA4DwbdMYNNwide6Euhh",
         "pos": 2400,
         "type": "chat",
         "actor": "steve",
@@ -234,7 +242,7 @@
         "content_tags": null
       },
       {
-        "id": "Dt5dzpYXUNNgPDXiM9cjYS",
+        "id": "LQqXfRKk34Ki32pw9sNi8X",
         "pos": 2500,
         "type": "chat",
         "actor": "ricky",
@@ -243,7 +251,7 @@
         "content_tags": null
       },
       {
-        "id": "EWvRVXzhkLrWudcmoe87zJ",
+        "id": "jT7BLhAV6UbrzAkB5Z4kFZ",
         "pos": 2600,
         "type": "chat",
         "actor": "steve",
@@ -252,7 +260,7 @@
         "content_tags": null
       },
       {
-        "id": "boTPFrnqtCQoK5sa7gX5se",
+        "id": "pKa7eUw5fxjVfwPNmwuGKa",
         "pos": 2700,
         "type": "chat",
         "actor": "ricky",
@@ -261,25 +269,27 @@
         "content_tags": null
       },
       {
-        "id": "3kiKJtAPGFrnPM92QnE6HJ",
+        "id": "wobwaZWvbYazxtqvXGQWEG",
         "pos": 2800,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "That's brilliant Rick.",
-        "content_tags": null
+        "content_tags": {}
       },
       {
-        "id": "VVChCYSQGv4kz5szyXVZYP",
+        "id": "cyXQ7bCVJjdFN5Nzy3xYBa",
         "pos": 2900,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Er, That Film Sounds Good, something like that.",
-        "content_tags": null
+        "content_tags": {
+          "Film Sounds Good": "Film Sounds Good"
+        }
       },
       {
-        "id": "r4AdXVKUmq2pAyb3od38t8",
+        "id": "2oYi9cLhxWEb7RsaMJvz3R",
         "pos": 3000,
         "type": "chat",
         "actor": "steve",
@@ -288,7 +298,7 @@
         "content_tags": null
       },
       {
-        "id": "AndDKqWmqfdbbdmSiKiM4B",
+        "id": "7kW6NyEU6qKPBJ5QnMwzrd",
         "pos": 3100,
         "type": "chat",
         "actor": "ricky",
@@ -297,16 +307,18 @@
         "content_tags": null
       },
       {
-        "id": "Haod3i4jtcNujQtd5TyCeK",
+        "id": "4WYziFDwb9ihKe2cGgnEi7",
         "pos": 3200,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "There'll just be some nattering, Karl, have we got anything to give away this week?.",
-        "content_tags": null
+        "content_tags": {
+          "Karl": "Karl Pilkington"
+        }
       },
       {
-        "id": "AC6XYsWUDZ2aq3HcXW23fE",
+        "id": "wwAryWBiqVuSmPNi7byhL4",
         "pos": 3300,
         "type": "chat",
         "actor": "karl",
@@ -315,7 +327,7 @@
         "content_tags": null
       },
       {
-        "id": "gBbwFxHeua7kD6kvA8dB5",
+        "id": "vPh9CEiagKWpNddvv4hkzG",
         "pos": 3400,
         "type": "chat",
         "actor": "steve",
@@ -324,7 +336,7 @@
         "content_tags": null
       },
       {
-        "id": "KkzLjED5U8AhQ8TWbTppaY",
+        "id": "4VhRRivHMVjcVfxzgNdDzh",
         "pos": 3500,
         "type": "chat",
         "actor": "ricky",
@@ -333,7 +345,7 @@
         "content_tags": null
       },
       {
-        "id": "fysQX82rCGTmVZUXQ9UbqT",
+        "id": "UUyao6F8kFPcjEreQ9kEXQ",
         "pos": 3600,
         "type": "chat",
         "actor": "steve",
@@ -342,16 +354,18 @@
         "content_tags": null
       },
       {
-        "id": "TnUpqie32UiFkTZp9UcoVb",
+        "id": "frLfKqAgLVqTWR9h9qvJaS",
         "pos": 3700,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "You know in the week, are there any meetings, like, \"Oh, what shall we give Ricky and Steve to give away?\", 'cos I'll see lots of trailers for the breakfast show and that, or do they go \"Who?\", \"Ricky Gervais, comes in Saturdays\", \"Saturdays? I don't work Saturdays\", \"No, but it's still on the air on Saturday\", \"Is it?\".",
-        "content_tags": null
+        "content_tags": {
+          "Steve": "Steve Merchant"
+        }
       },
       {
-        "id": "ks3SAbVZvByYAW2CZNwrpf",
+        "id": "pD3UmoXieohjmBtBc8rMmB",
         "pos": 3800,
         "type": "chat",
         "actor": "steve",
@@ -360,7 +374,7 @@
         "content_tags": null
       },
       {
-        "id": "ipjx4s7u5yA3pVavRiveKG",
+        "id": "8q9JUPz4kUh8saErx6sBa9",
         "pos": 3900,
         "type": "chat",
         "actor": "ricky",
@@ -369,16 +383,18 @@
         "content_tags": null
       },
       {
-        "id": "XohMX5EVwMnFMQyi633GNa",
+        "id": "FLhKtAzHDxQdzQeb8rQpg7",
         "pos": 4000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
         "content": "They sort of hear you taking the micky out of what tickets you're given, and this week, you could have had Saint Etienne, but they said \"No, we'll hold them back\".",
-        "content_tags": null
+        "content_tags": {
+          "Saint Etienne": "Saint Etienne"
+        }
       },
       {
-        "id": "euYHcM2rkyzFLD6sSkhzWY",
+        "id": "qDhSfEkpu2gxZ3cSJHJ8MG",
         "pos": 4100,
         "type": "chat",
         "actor": "ricky",
@@ -387,7 +403,7 @@
         "content_tags": null
       },
       {
-        "id": "doP9w2oxkUdmPSG2QYbPr",
+        "id": "5TtNuQCp6qKaw7j32iY5BK",
         "pos": 4200,
         "type": "chat",
         "actor": "steve",
@@ -396,7 +412,7 @@
         "content_tags": null
       },
       {
-        "id": "gDBxaCdKLt3hQQU63C58ET",
+        "id": "tkWeoKgbyrCzsxpwhx8jZY",
         "pos": 4300,
         "type": "chat",
         "actor": "ricky",
@@ -405,7 +421,7 @@
         "content_tags": null
       },
       {
-        "id": "Nj2WeRzmm9kf6Cepabwns3",
+        "id": "5DP89Tzyu8kZmqSfWoSoiB",
         "pos": 4400,
         "type": "chat",
         "actor": "steve",
@@ -414,7 +430,7 @@
         "content_tags": null
       },
       {
-        "id": "Yx8g6SS5EuTJbdunQDijkX",
+        "id": "NuCuiChvdUQxfFvdQ2KDRD",
         "pos": 4500,
         "type": "chat",
         "actor": "ricky",
@@ -423,25 +439,25 @@
         "content_tags": null
       },
       {
-        "id": "tH6GCS4825F62QwyHKjcyB",
+        "id": "mSYaNHnPhxZkg9uHe3HCvc",
         "pos": 4600,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Is that a crime, Rick? I don't think so, high five.",
-        "content_tags": null
+        "content_tags": {}
       },
       {
-        "id": "CMAqefDTsVBDNdheCz9j7K",
+        "id": "jQupfqE8Zy8pdsckwVq8Lf",
         "pos": 4700,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Ricky laughs",
-        "content_tags": null
+        "content_tags": {}
       },
       {
-        "id": "JBvvVbiFBRj3Unr4WBYbBX",
+        "id": "EgTULE95fLhpi6BLMvGCLL",
         "pos": 4800,
         "type": "chat",
         "actor": "steve",
@@ -450,7 +466,7 @@
         "content_tags": null
       },
       {
-        "id": "yBBQjWM9KoZuEpVgWdSePd",
+        "id": "UzVc2PUxRsytoQPrVKoYoC",
         "pos": 4900,
         "type": "chat",
         "actor": "ricky",
@@ -459,7 +475,7 @@
         "content_tags": null
       },
       {
-        "id": "ddeU3T9EhiCK2BBPLjpibY",
+        "id": "tcqXFH5HPEP6jbsu66VS5D",
         "pos": 5000,
         "type": "chat",
         "actor": "steve",
@@ -468,7 +484,7 @@
         "content_tags": null
       },
       {
-        "id": "wXTQyGXYnw4irTndttNp6P",
+        "id": "fYKA4bGptRs2SB2LhP2Bfc",
         "pos": 5100,
         "type": "chat",
         "actor": "ricky",
@@ -477,7 +493,7 @@
         "content_tags": null
       },
       {
-        "id": "H8xMspWd3sdrjbkizM5rFY",
+        "id": "3msUzqnh8S9sESJkMa2NPc",
         "pos": 5200,
         "type": "chat",
         "actor": "steve",
@@ -486,16 +502,18 @@
         "content_tags": null
       },
       {
-        "id": "cgRcwnfDGfWSVyP8EeT4YV",
+        "id": "oegc8kMzQWzSVgHZbHv6BD",
         "pos": 5300,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Ricky and Steve high five.",
-        "content_tags": null
+        "content_tags": {
+          "Steve": "Steve Merchant"
+        }
       },
       {
-        "id": "R2T7eAv6Riqz89mSYodwhZ",
+        "id": "MgyBDgeWSMP37hVjvn9UpA",
         "pos": 5400,
         "type": "chat",
         "actor": "steve",
@@ -504,7 +522,7 @@
         "content_tags": null
       },
       {
-        "id": "jwVHxJ6cjLa9BYJpjRSYbc",
+        "id": "JnGosLpvzSjkDqHi53uwN9",
         "pos": 5500,
         "type": "chat",
         "actor": "ricky",
@@ -513,7 +531,7 @@
         "content_tags": null
       },
       {
-        "id": "SwQcnbfvnBAAJEdwkpJ8N9",
+        "id": "zwYXMhuf3Hb9mDibhZ5FwP",
         "pos": 5600,
         "type": "song",
         "actor": "",
@@ -524,19 +542,24 @@
           "spotify_uri": "spotify:track:0t2IEhFA1OoDIO4S043Ssf"
         },
         "content": "Black Rebel Motorcycle Club - Love Burns",
-        "content_tags": null
+        "content_tags": {
+          "Black Rebel Motorcycle Club": "Black Rebel Motorcycle Club"
+        }
       },
       {
-        "id": "6disM3JDZ8F7tLVbE5khCj",
+        "id": "WdqyfeH4nzHysbDagUgQaf",
         "pos": 5700,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Black Rebel Motorcycle Club there and Love Burns, Xfm 104.9, we're really swinging now.",
-        "content_tags": null
+        "content_tags": {
+          "Black Rebel Motorcycle Club": "Black Rebel Motorcycle Club",
+          "Love Burns": "Love Burns"
+        }
       },
       {
-        "id": "Z69tKByJFxjPBfFnaTtEXN",
+        "id": "jH352e7X7n7vSa7g4XpQ5e",
         "pos": 5800,
         "type": "chat",
         "actor": "steve",
@@ -545,7 +568,7 @@
         "content_tags": null
       },
       {
-        "id": "Br3ge6YY2a6Whz4uMuaNLV",
+        "id": "7kaQfrPWkzUK3Td3TERREa",
         "pos": 5900,
         "type": "chat",
         "actor": "ricky",
@@ -554,7 +577,7 @@
         "content_tags": null
       },
       {
-        "id": "udnQGKHJV9HPTaPRWvBMNZ",
+        "id": "EGwk7K3ErzkbwRmL9cz6Eo",
         "pos": 6000,
         "type": "chat",
         "actor": "steve",
@@ -563,16 +586,18 @@
         "content_tags": null
       },
       {
-        "id": "KVynBoLbPEwbQ35FWdgwqU",
+        "id": "8N8GerbDi8BBPsccNaNdF7",
         "pos": 6100,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Well, it wasn't too bad actually, apparently, no erm, I said \"We were really off then, and Steve was hung-over, and I was tired, and we couldn't be bothered\", and they were going \"No, as good as any other week\", which is pretty disappointing, isn't it, you want them to go \"well I tell you what - it was the worst one ever, and it was still brilliant\", as opposed to \"It was one of the best!... But rubbish\" Yeah, good, so we're going to really...",
-        "content_tags": null
+        "content_tags": {
+          "Steve": "Steve Merchant"
+        }
       },
       {
-        "id": "d9RuCcPWiwNC42rmwzQTUL",
+        "id": "QwB2K2XxxP6isTKiWweiBb",
         "pos": 6200,
         "type": "chat",
         "actor": "steve",
@@ -581,16 +606,18 @@
         "content_tags": null
       },
       {
-        "id": "URaJxvevDNq6J5BQVLLgWH",
+        "id": "fFXonLStfnb3izwjDzNPXk",
         "pos": 6300,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Steve claps",
-        "content_tags": null
+        "content_tags": {
+          "Steve": "Steve Merchant"
+        }
       },
       {
-        "id": "ArEg742TFxRKFSyUPktYpN",
+        "id": "Y8T9o2jCiQD7MoGTR9nAb7",
         "pos": 6400,
         "type": "chat",
         "actor": "steve",
@@ -601,16 +628,18 @@
         }
       },
       {
-        "id": "T9YGW6bWecsGqJzRXadCDQ",
+        "id": "L46Rp7iHUdzi4PJPTfi58N",
         "pos": 6500,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Let's make this, Karl, let's make this the best show ever.",
-        "content_tags": null
+        "content_tags": {
+          "Karl": "Karl Pilkington"
+        }
       },
       {
-        "id": "36FCCrVJwBDYGrpyxJMVGn",
+        "id": "xwjRsSXDRP3huf7FQFciiD",
         "pos": 6600,
         "type": "chat",
         "actor": "steve",
@@ -619,7 +648,7 @@
         "content_tags": null
       },
       {
-        "id": "wVeiBHeRVbayn8nvzCc8KJ",
+        "id": "y7XJvwSnRrrrj9HCwHFe39",
         "pos": 6700,
         "type": "chat",
         "actor": "ricky",
@@ -628,16 +657,18 @@
         "content_tags": null
       },
       {
-        "id": "VCZn3Q5KKkxVmwzvnxMhvZ",
+        "id": "Si9B8KkFFva3QJ6yAqw6x8",
         "pos": 6800,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Oh Karl, come round.",
-        "content_tags": null
+        "content_tags": {
+          "Karl": "Karl Pilkington"
+        }
       },
       {
-        "id": "CNupAVfmK3DTScUUHDEhUN",
+        "id": "VqSMsMv7rK5SE4hx9NkKK9",
         "pos": 6900,
         "type": "chat",
         "actor": "ricky",
@@ -646,7 +677,7 @@
         "content_tags": null
       },
       {
-        "id": "W6onJRw93EiTtovXtS4YrN",
+        "id": "vJuZHRsVanVgRsncPN9n84",
         "pos": 7000,
         "type": "chat",
         "actor": "steve",
@@ -655,7 +686,7 @@
         "content_tags": null
       },
       {
-        "id": "DqdWgnsYrbaPGQPN8KdHn7",
+        "id": "zUF4RMaQbjjfSWD6NJixJ4",
         "pos": 7100,
         "type": "chat",
         "actor": "ricky",
@@ -664,7 +695,7 @@
         "content_tags": null
       },
       {
-        "id": "rjugUDoJjtMDw7LRbMVPgB",
+        "id": "ZwbaWjMTJ7jvRPU6YeaYD",
         "pos": 7200,
         "type": "chat",
         "actor": "steve",
@@ -673,16 +704,16 @@
         "content_tags": null
       },
       {
-        "id": "4LbLPPUxhC4i2qkouWrWKf",
+        "id": "iwg5RbtmfA9AdmsJf9CZri",
         "pos": 7300,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Ricky laughs",
-        "content_tags": null
+        "content_tags": {}
       },
       {
-        "id": "ToGtPegxWzNTmmECfFxBu",
+        "id": "TQwF2cVeTUzqnkHSaaADiN",
         "pos": 7400,
         "type": "chat",
         "actor": "steve",
@@ -691,7 +722,7 @@
         "content_tags": null
       },
       {
-        "id": "z6Y8b2pH47asAkmdAXhw5R",
+        "id": "tnFMiDrR9NJJuTqdXGS3j5",
         "pos": 7500,
         "type": "chat",
         "actor": "ricky",
@@ -700,7 +731,7 @@
         "content_tags": null
       },
       {
-        "id": "WkNmF7i4rMbcHATiDN6v9B",
+        "id": "fr92sknMZc5MTmx9sxrc75",
         "pos": 7600,
         "type": "chat",
         "actor": "steve",
@@ -709,7 +740,7 @@
         "content_tags": null
       },
       {
-        "id": "3gUgW2Gfa2JJftVWr4ynAK",
+        "id": "Dseys5xwJUYLURyUMoqvN4",
         "pos": 7700,
         "type": "chat",
         "actor": "ricky",
@@ -718,16 +749,16 @@
         "content_tags": null
       },
       {
-        "id": "3uMGvwc2bJd4ZbBJ7BeQJS",
+        "id": "yJYCPPNjd7RdwmcmsQthA3",
         "pos": 7800,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Ricky ruffles paper",
-        "content_tags": null
+        "content_tags": {}
       },
       {
-        "id": "gLLqMTEEGDLASqFnirWnbm",
+        "id": "KijmUJj4iHYJ4tLRe3nDQk",
         "pos": 7900,
         "type": "chat",
         "actor": "ricky",
@@ -736,7 +767,7 @@
         "content_tags": null
       },
       {
-        "id": "8NoBqqU4V4zuH3SySYMpLZ",
+        "id": "haezPgqtaHt6B7uw8aGkmW",
         "pos": 8000,
         "type": "chat",
         "actor": "steve",
@@ -745,7 +776,7 @@
         "content_tags": null
       },
       {
-        "id": "nihiWbmaUvK5RjE9hGa4P9",
+        "id": "EtK4tSzaHgUjBWi9JCsU5B",
         "pos": 8100,
         "type": "chat",
         "actor": "ricky",
@@ -754,7 +785,7 @@
         "content_tags": null
       },
       {
-        "id": "HCa9w64cknwLGV3xMHm4xJ",
+        "id": "Egp365FojrCqedsyVbbiam",
         "pos": 8200,
         "type": "chat",
         "actor": "steve",
@@ -763,7 +794,7 @@
         "content_tags": null
       },
       {
-        "id": "qhokwdjkgueErHaqoPC3hN",
+        "id": "7azVjPXYqbTtzF3Yt6ggNY",
         "pos": 8300,
         "type": "chat",
         "actor": "ricky",
@@ -772,7 +803,7 @@
         "content_tags": null
       },
       {
-        "id": "yAeiK5N8F4NJNuMQQtux9k",
+        "id": "GzgQCBgRkDAtRUf4VKfPxh",
         "pos": 8400,
         "type": "chat",
         "actor": "steve",
@@ -781,7 +812,7 @@
         "content_tags": null
       },
       {
-        "id": "kvQ6NVQdj7KKktbZ5b77Um",
+        "id": "km7QU7DcNYMHfei2PwjVbN",
         "pos": 8500,
         "type": "chat",
         "actor": "ricky",
@@ -790,7 +821,7 @@
         "content_tags": null
       },
       {
-        "id": "xggkwkKfy2tH3PvDQPTmPT",
+        "id": "DdpuHt6kZfsTZgkAMCJj8M",
         "pos": 8600,
         "type": "chat",
         "actor": "steve",
@@ -799,7 +830,7 @@
         "content_tags": null
       },
       {
-        "id": "7oE9tZRpWafBgGeBPUMSgR",
+        "id": "eLXcLNAAKqg4NZfn8yargi",
         "pos": 8700,
         "type": "chat",
         "actor": "ricky",
@@ -808,7 +839,7 @@
         "content_tags": null
       },
       {
-        "id": "sUJQ9Rb7X7PDsvSZto8xgg",
+        "id": "WXtGfzhKta88ojkv6DHQNa",
         "pos": 8800,
         "type": "chat",
         "actor": "steve",
@@ -817,16 +848,22 @@
         "content_tags": null
       },
       {
-        "id": "CaXCvbF4VwyhLCoGz2aUkg",
+        "id": "AH8P6PJHwSeTb8tW5A7xif",
         "pos": 8900,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Must be British, and come from one of the following regions: London, South East, South West.",
-        "content_tags": null
+        "content_tags": {
+          "British": "Britain",
+          "London": "London",
+          "Must": "Must",
+          "South East": "South East",
+          "South West": "South West"
+        }
       },
       {
-        "id": "3Stse6Kc5GENG66WgtDAnb",
+        "id": "Jbh7XAANPiU8fsz9Zj3NUm",
         "pos": 9000,
         "type": "chat",
         "actor": "steve",
@@ -835,34 +872,40 @@
         "content_tags": null
       },
       {
-        "id": "tEwxD7r7TjYYdxsWm9TWBe",
+        "id": "HME6Y3s2952jzccVfXmCfK",
         "pos": 9100,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "I think they just name all the regions of Britain.",
-        "content_tags": null
+        "content_tags": {
+          "Britain": "Britain"
+        }
       },
       {
-        "id": "W9xyZ68vSnES4spNRvwGEd",
+        "id": "6LzcvzMFCVBg5ELziVzzWg",
         "pos": 9200,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Yes, they could just say \"from Britain\"",
-        "content_tags": null
+        "content_tags": {
+          "Britain": "Britain"
+        }
       },
       {
-        "id": "swFkK9kzqAi3yMfCFyNmJe",
+        "id": "DKJhvcr2h3mP8A282ZRuB9",
         "pos": 9300,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Erm , employ- sorry Karl, go on...",
-        "content_tags": null
+        "content_tags": {
+          "Karl": "Karl Pilkington"
+        }
       },
       {
-        "id": "eqGhGYXGXcn5D4ZA7jPsq6",
+        "id": "tR9PLdchiYx7XsEHqFK4nU",
         "pos": 9400,
         "type": "chat",
         "actor": "karl",
@@ -871,16 +914,16 @@
         "content_tags": null
       },
       {
-        "id": "MuALP67PY6wN75ewLdbQrL",
+        "id": "UoGPpX3iJPdCqxR69ZqEAN",
         "pos": 9500,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Ricky laughs",
-        "content_tags": null
+        "content_tags": {}
       },
       {
-        "id": "jYeDy7Q8jud9kkWSzbmKJP",
+        "id": "FqvYfjU2byT7bfsCPAhpLj",
         "pos": 9600,
         "type": "chat",
         "actor": "steve",
@@ -889,7 +932,7 @@
         "content_tags": null
       },
       {
-        "id": "wDAdYPv6xtR5VFZZ4VLp6Y",
+        "id": "LyLKugoSKo3nmNttbKPhBW",
         "pos": 9700,
         "type": "chat",
         "actor": "ricky",
@@ -898,7 +941,7 @@
         "content_tags": null
       },
       {
-        "id": "MUJjrk6vd3ALvdYgDQY38K",
+        "id": "zfgAaRxpYVob5Ejn2TbLuT",
         "pos": 9800,
         "type": "chat",
         "actor": "steve",
@@ -907,7 +950,7 @@
         "content_tags": null
       },
       {
-        "id": "pmNr7oSzpBxkADjyD4pd4P",
+        "id": "bgJjxc2S3jWptDgsf74wtk",
         "pos": 9900,
         "type": "chat",
         "actor": "ricky",
@@ -916,7 +959,7 @@
         "content_tags": null
       },
       {
-        "id": "rVAev5oaZkzhVnNCWKMoqR",
+        "id": "L6BK7PDdXVW97KbjKniU9U",
         "pos": 10000,
         "type": "chat",
         "actor": "steve",
@@ -925,7 +968,7 @@
         "content_tags": null
       },
       {
-        "id": "uDuUz7V9HvQikhhJwyu5R3",
+        "id": "dz4YcqokDKWsuZdJmjvteA",
         "pos": 10100,
         "type": "chat",
         "actor": "ricky",
@@ -934,16 +977,19 @@
         "content_tags": null
       },
       {
-        "id": "dqPauLhSA3nmAwF6JwKDdT",
+        "id": "NH7QCB8nQW7bpQU6EvHtmM",
         "pos": 10200,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "The models Rob Warrington and James Polanski.",
-        "content_tags": null
+        "content_tags": {
+          "James Polanski": "James Polanski",
+          "Rob Warrington": "Rob Warrington"
+        }
       },
       {
-        "id": "56Gu3TVkumei2o7bGVUXVB",
+        "id": "xwkCJSVWhRz7ER5BrB2Uh8",
         "pos": 10300,
         "type": "chat",
         "actor": "ricky",
@@ -952,27 +998,28 @@
         "content_tags": null
       },
       {
-        "id": "Ugb7RZEFssLyCH383f7eJ5",
+        "id": "LbpPLwPpEG67uvdeWRU9g",
         "pos": 10400,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "The singers Linden David Hall, and Richard Blackwood. Wouldn't necessarily consider him a singer, err.",
         "content_tags": {
+          "Linden David Hall": "Linden David Hall",
           "Richard Blackwood": "Richard Blackwood"
         }
       },
       {
-        "id": "98VJwvZR5zHcnR2pdnHNnY",
+        "id": "h57MBgzjYQVMjAP7gESgRE",
         "pos": 10500,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Controversial - he's having a dig at Blackwood.",
-        "content_tags": null
+        "content_tags": {}
       },
       {
-        "id": "rZjzXH9RvauiGuQ2B6XstX",
+        "id": "eoivh8spsyD7pDF9Hhp4ud",
         "pos": 10600,
         "type": "chat",
         "actor": "steve",
@@ -981,7 +1028,7 @@
         "content_tags": null
       },
       {
-        "id": "ebgVk48kzjKsUCHBdoCr9J",
+        "id": "GZDJqymSPTGr4CbUQAQQxR",
         "pos": 10700,
         "type": "chat",
         "actor": "ricky",
@@ -990,7 +1037,7 @@
         "content_tags": null
       },
       {
-        "id": "DKjRK3d5xejbySkeYVFX98",
+        "id": "VecieHciNZJAqFBKcz8ZJM",
         "pos": 10800,
         "type": "chat",
         "actor": "steve",
@@ -999,7 +1046,7 @@
         "content_tags": null
       },
       {
-        "id": "XnUL3fqyKYv2M35bCHD7VD",
+        "id": "pCDWgTvHsZLXSnKErrrDSF",
         "pos": 10900,
         "type": "chat",
         "actor": "ricky",
@@ -1008,16 +1055,18 @@
         "content_tags": null
       },
       {
-        "id": "FFvtZQEVTLtzrigjj4AHzi",
+        "id": "6DF2nzSQhA8ZYpPDttsdyc",
         "pos": 11000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "And I'm thinking \"Hello, idea, Steve Merchant Wants a Wife\".",
-        "content_tags": null
+        "content_tags": {
+          "Steve Merchant": "Steve Merchant"
+        }
       },
       {
-        "id": "kRFWpEe9hYUkQQyxkkcmQA",
+        "id": "2eHiZMiE8UZsC8PZJoy6vM",
         "pos": 11100,
         "type": "chat",
         "actor": "ricky",
@@ -1026,7 +1075,7 @@
         "content_tags": null
       },
       {
-        "id": "Mzjw8iEPhNYqHyAPrL9M4",
+        "id": "2BQQJQDjh4AdvfKzwXhSqE",
         "pos": 11200,
         "type": "chat",
         "actor": "steve",
@@ -1035,7 +1084,7 @@
         "content_tags": null
       },
       {
-        "id": "HT4xRBEBrT7TNccEgga8ZQ",
+        "id": "cN5EXKLny22jb9wzJFJckJ",
         "pos": 11300,
         "type": "chat",
         "actor": "ricky",
@@ -1044,7 +1093,7 @@
         "content_tags": null
       },
       {
-        "id": "eWsq6yxHnXJiG5LNMJSLa9",
+        "id": "zQPc2mcTrfX87A4u5dpYE5",
         "pos": 11400,
         "type": "chat",
         "actor": "steve",
@@ -1053,45 +1102,50 @@
         "content_tags": null
       },
       {
-        "id": "whQhzswvmZ4Z8LNeuWVDWT",
+        "id": "svRY4WnaUenZykjUBLqWcV",
         "pos": 11500,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Ricky sniggers",
-        "content_tags": null
+        "content_tags": {}
       },
       {
-        "id": "MjvXbKHzxxqc3XfnMc6eu9",
+        "id": "qHxyUJEiUCUzJfuyUNQ4wN",
         "pos": 11600,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Steve Merchant wants a farmer! Even better.",
-        "content_tags": null
+        "content_tags": {
+          "Steve Merchant": "Steve Merchant"
+        }
       },
       {
-        "id": "gTumLB5AQpcUzZtZFXZuoF",
+        "id": "wWFQE9TX6wW59VPbiyEToH",
         "pos": 11700,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Steve Merchant wants it.",
-        "content_tags": null
+        "content_tags": {
+          "Steve Merchant": "Steve Merchant"
+        }
       },
       {
-        "id": "ZG5wGpVi2i9T5kqzg7KBAo",
+        "id": "c9mc4CpwQDre9VLo4pcFg3",
         "pos": 11800,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Yes Steve Merchant wants it, I'm thinking, ermm, maybe the Bravo channel on cable, or ITV2, it's an idea, Rick, I'm just running it up the flagpole.",
         "content_tags": {
+          "ITV2": "ITV2",
           "Steve Merchant": "Steve Merchant"
         }
       },
       {
-        "id": "RX684bGVAMibx8uQwiynd8",
+        "id": "bVjuHM5d6W4SxikkPjznTc",
         "pos": 11900,
         "type": "chat",
         "actor": "ricky",
@@ -1100,7 +1154,7 @@
         "content_tags": null
       },
       {
-        "id": "PztjHKUjJcL8keERzsoFgd",
+        "id": "2tEQv7TE5YNDUEDFFKWPp",
         "pos": 12000,
         "type": "song",
         "actor": "",
@@ -1111,28 +1165,35 @@
           "spotify_uri": "spotify:track:3yfqSUWxFvZELEM4PmlwIR"
         },
         "content": "Eminem - The Real Slim Shady",
-        "content_tags": null
+        "content_tags": {
+          "Eminem": "Eminem"
+        }
       },
       {
-        "id": "4wQugUWzDFUBhSQ2mXPehQ",
+        "id": "LYQRbKp5kFzCSjCyE8kfZg",
         "pos": 12100,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "There is a Slim Shady in all of us, that was Eminem, Xfm 104.9, Steve.",
-        "content_tags": null
+        "content_tags": {
+          "Eminem": "Eminem",
+          "Steve": "Steve Merchant"
+        }
       },
       {
-        "id": "eY4hirjCecxurpT4shoPgL",
+        "id": "5j6rfNwHuxigaJEdPtcTCR",
         "pos": 12200,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Yeah, I was just thinking, with Karl, he likes to have a little dig every so often about, you know, err, my success with the ladies, but I tell you, you'd have been proud of me last night, no listen, you'd have been proud of me. I was walking back from the shops, I was carrying 2 cans of weak lager - it was Friday night, Rick, time to go a bit crazy.",
-        "content_tags": null
+        "content_tags": {
+          "Karl": "Karl Pilkington"
+        }
       },
       {
-        "id": "5cLVrLWuLfUC42SL4FKPdQ",
+        "id": "YwLnkC86YC7F5j3YBbzYuD",
         "pos": 12300,
         "type": "chat",
         "actor": "ricky",
@@ -1141,7 +1202,7 @@
         "content_tags": null
       },
       {
-        "id": "qJf8S9kfBwnZqK5q5cWYgA",
+        "id": "TfoLQq4fvEw6EcX8Pe9PNo",
         "pos": 12400,
         "type": "chat",
         "actor": "steve",
@@ -1150,7 +1211,7 @@
         "content_tags": null
       },
       {
-        "id": "WwjfPigCRsSkHCDcaHpuSh",
+        "id": "N7vfDPdNDDpapTHpN82EjS",
         "pos": 12500,
         "type": "chat",
         "actor": "ricky",
@@ -1159,16 +1220,16 @@
         "content_tags": null
       },
       {
-        "id": "k7mGhy69ueDEuPNDUtMBFA",
+        "id": "WUEFUxSRNaRcUjfB7yhtjM",
         "pos": 12600,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Ricky laughs",
-        "content_tags": null
+        "content_tags": {}
       },
       {
-        "id": "P9ZkKkCkShmzHwaiU2kgVU",
+        "id": "e7rQjPdaEKixXNe92fchDQ",
         "pos": 12700,
         "type": "chat",
         "actor": "steve",
@@ -1177,7 +1238,7 @@
         "content_tags": null
       },
       {
-        "id": "su7sjtssQ8PNQLTrUUEAuJ",
+        "id": "XxhN32eKrB3omf83nWrKZ7",
         "pos": 12800,
         "type": "chat",
         "actor": "ricky",
@@ -1186,7 +1247,7 @@
         "content_tags": null
       },
       {
-        "id": "v9ivr2e2yR3yMuZGU4vjCn",
+        "id": "PvUZFdoKThaRxYXagmpWB5",
         "pos": 12900,
         "type": "chat",
         "actor": "steve",
@@ -1195,16 +1256,16 @@
         "content_tags": null
       },
       {
-        "id": "F9iVmW4uD3tymUCzvMyE7Z",
+        "id": "qbmPByjuFTD9yex3hSbzXY",
         "pos": 13000,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Ricky laughs",
-        "content_tags": null
+        "content_tags": {}
       },
       {
-        "id": "ECynHanCR5gP4Uf2nVLcoj",
+        "id": "ymWFcYqdGjYyF96t8juxWV",
         "pos": 13100,
         "type": "chat",
         "actor": "steve",
@@ -1213,7 +1274,7 @@
         "content_tags": null
       },
       {
-        "id": "k3jbYHe2Xxvwp3fHWmRHwn",
+        "id": "Ybx3uu3PzQhJBZjpZAowV5",
         "pos": 13200,
         "type": "chat",
         "actor": "ricky",
@@ -1222,7 +1283,7 @@
         "content_tags": null
       },
       {
-        "id": "c3eVVpZNfwXbP3vyHMzdUA",
+        "id": "YXv9q3GWZybtPYy98QuCUb",
         "pos": 13300,
         "type": "chat",
         "actor": "steve",
@@ -1231,7 +1292,7 @@
         "content_tags": null
       },
       {
-        "id": "GKMwSvvjkGDQuk4DdfnTFk",
+        "id": "xhLgqToKBa3brn4m5vHac9",
         "pos": 13400,
         "type": "chat",
         "actor": "ricky",
@@ -1240,7 +1301,7 @@
         "content_tags": null
       },
       {
-        "id": "M2E6D8HdVztiZHk3QRJnpi",
+        "id": "edSmyLXUn5DmcvD5JThKRB",
         "pos": 13500,
         "type": "chat",
         "actor": "steve",
@@ -1249,7 +1310,7 @@
         "content_tags": null
       },
       {
-        "id": "65BPURGhSAPxDdHcL6qUsb",
+        "id": "738Dfyfos3MGAjQZP8qbY4",
         "pos": 13600,
         "type": "chat",
         "actor": "ricky",
@@ -1258,7 +1319,7 @@
         "content_tags": null
       },
       {
-        "id": "g98W6xP5N9RcxHxbJt38pc",
+        "id": "NspJBRN7hjv8CPRfSj8QiU",
         "pos": 13700,
         "type": "chat",
         "actor": "steve",
@@ -1267,7 +1328,7 @@
         "content_tags": null
       },
       {
-        "id": "i9LRgUcfdJZFZZJMhMENQP",
+        "id": "WzAEZzPF7Tm9q5L3LMVmBM",
         "pos": 13800,
         "type": "chat",
         "actor": "ricky",
@@ -1276,7 +1337,7 @@
         "content_tags": null
       },
       {
-        "id": "3PyW47tHaPGMGqVbyzxcxh",
+        "id": "WSboWY5HfdU2fFXsTyNtC6",
         "pos": 13900,
         "type": "chat",
         "actor": "steve",
@@ -1285,7 +1346,7 @@
         "content_tags": null
       },
       {
-        "id": "YquTwH8bGrTfp8DFyniJuh",
+        "id": "5ahtVvLoNuW3dhCGjXpXHf",
         "pos": 14000,
         "type": "chat",
         "actor": "ricky",
@@ -1294,7 +1355,7 @@
         "content_tags": null
       },
       {
-        "id": "K7mdfxkX6N9JbrwqQLdDjX",
+        "id": "Hyg8RMu3sA3EF9jeiXPMDb",
         "pos": 14100,
         "type": "chat",
         "actor": "steve",
@@ -1303,7 +1364,7 @@
         "content_tags": null
       },
       {
-        "id": "3X9nxNoHDQikSU87e6nj5m",
+        "id": "aTo5UAypuEECJmsfSM7iAo",
         "pos": 14200,
         "type": "chat",
         "actor": "ricky",
@@ -1312,7 +1373,7 @@
         "content_tags": null
       },
       {
-        "id": "Vaonbf8Pc6RUufV6pEErNj",
+        "id": "5Guz4Snc43E9Fkp8Rksebn",
         "pos": 14300,
         "type": "chat",
         "actor": "karl",
@@ -1321,7 +1382,7 @@
         "content_tags": null
       },
       {
-        "id": "G47wZjcKq4ZrQfJpgzCbij",
+        "id": "tJmGdgNGZKmXRZEqJQcZx",
         "pos": 14400,
         "type": "chat",
         "actor": "steve",
@@ -1330,25 +1391,29 @@
         "content_tags": null
       },
       {
-        "id": "bhPgnqQstDodbs5o8HuFDd",
+        "id": "NKCAijK4rDmn72Y3VEP3yE",
         "pos": 14500,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Looking forward to Christmas?.",
-        "content_tags": null
+        "content_tags": {
+          "Christmas": "Christmas"
+        }
       },
       {
-        "id": "qKZZyZB6arQraDVW2Qqe9H",
+        "id": "7CMc24vvcKyGF6mg4zKwD7",
         "pos": 14600,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Loving it, I'm always a big fan of Christmas actually, I'm not a bah-humbug type.",
-        "content_tags": null
+        "content_tags": {
+          "Christmas": "Christmas"
+        }
       },
       {
-        "id": "roSiyPe582BKmwEyxUwvQ8",
+        "id": "4b7JBwdVPEZM82sr3MPZgn",
         "pos": 14700,
         "type": "chat",
         "actor": "ricky",
@@ -1357,7 +1422,7 @@
         "content_tags": null
       },
       {
-        "id": "HPyjGzDUzFkB7GzSWpZD57",
+        "id": "GDfXLjWTK9xMMFrHkCJJEP",
         "pos": 14800,
         "type": "chat",
         "actor": "steve",
@@ -1366,7 +1431,7 @@
         "content_tags": null
       },
       {
-        "id": "ie6GmjcNcbWCraVMAcUFZd",
+        "id": "5sacUsbMfJkDjB2Y4gt3uj",
         "pos": 14900,
         "type": "chat",
         "actor": "ricky",
@@ -1375,7 +1440,7 @@
         "content_tags": null
       },
       {
-        "id": "LA5dFDXn7FgZU8Q4XsNzYe",
+        "id": "YgyETgK6FE3kYJjHtFSCob",
         "pos": 15000,
         "type": "chat",
         "actor": "karl",
@@ -1384,7 +1449,7 @@
         "content_tags": null
       },
       {
-        "id": "U4pDCnDeb9NbDRXC52o7J4",
+        "id": "Ljm5ZxsZPF38mb5L8dWdGh",
         "pos": 15100,
         "type": "chat",
         "actor": "steve",
@@ -1393,25 +1458,27 @@
         "content_tags": null
       },
       {
-        "id": "myBnAD6h4MwVjQ8FSHVB4K",
+        "id": "45QP3VuZToXjXp2ePfSu9U",
         "pos": 15200,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Ricky laughs",
-        "content_tags": null
+        "content_tags": {}
       },
       {
-        "id": "sUj7d6dyui8CqWEVtWyFRf",
+        "id": "Y2hN98XTumUwnXeSQtxj7C",
         "pos": 15300,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Jeez - Jesus, yeah, brilliant.",
-        "content_tags": null
+        "content_tags": {
+          "Jesus": "Jesus"
+        }
       },
       {
-        "id": "HT6oFEP8kPYnu8wpyWTaQa",
+        "id": "88itKYtxCjhe49WTik2ytg",
         "pos": 15400,
         "type": "chat",
         "actor": "steve",
@@ -1420,7 +1487,7 @@
         "content_tags": null
       },
       {
-        "id": "4ypJEB4KsXS4hD6w3xEPLN",
+        "id": "Spof7cgvNq8tjJgZTntyiN",
         "pos": 15500,
         "type": "chat",
         "actor": "ricky",
@@ -1429,7 +1496,7 @@
         "content_tags": null
       },
       {
-        "id": "pZTC46t3JQu7STphdyEhTV",
+        "id": "ddcX5LpxCaCNsX5eUo6A5Q",
         "pos": 15600,
         "type": "chat",
         "actor": "steve",
@@ -1438,7 +1505,7 @@
         "content_tags": null
       },
       {
-        "id": "iQp6J2Kmd8KVUmxzPbt2pW",
+        "id": "D5CzuTjr9ycF67R9724Rz7",
         "pos": 15700,
         "type": "chat",
         "actor": "ricky",
@@ -1447,7 +1514,7 @@
         "content_tags": null
       },
       {
-        "id": "mGyYCvKAjvCWweEMkn5c9R",
+        "id": "8rCKd9mosvNrkhoXYSKynk",
         "pos": 15800,
         "type": "chat",
         "actor": "steve",
@@ -1456,7 +1523,7 @@
         "content_tags": null
       },
       {
-        "id": "FkQHpVubSxrFHBerTyr9ef",
+        "id": "ASWb4K7Qatti67KXFqeg7B",
         "pos": 15900,
         "type": "chat",
         "actor": "ricky",
@@ -1465,7 +1532,7 @@
         "content_tags": null
       },
       {
-        "id": "nhyitzbvPdSwoAWrK7gHWc",
+        "id": "MDZMyfgQp85xa9bLGkxYvE",
         "pos": 16000,
         "type": "chat",
         "actor": "steve",
@@ -1474,16 +1541,18 @@
         "content_tags": null
       },
       {
-        "id": "LHAxUUtxSQ9JZCdNoQakJY",
+        "id": "apjN6XBv5xGP5yxeogGeXK",
         "pos": 16100,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "But I remember when I was little, my sister used to work in WH Smiths, and she used to come home every Thursday, she'd been paid, big bag of sweets, for me.",
-        "content_tags": null
+        "content_tags": {
+          "WH Smiths": "WH Smiths"
+        }
       },
       {
-        "id": "66mdzk9mLVpiRAfnp3bka7",
+        "id": "6Njbe7fP6poETYV7Xkx8Jf",
         "pos": 16200,
         "type": "chat",
         "actor": "steve",
@@ -1492,7 +1561,7 @@
         "content_tags": null
       },
       {
-        "id": "jmJKQTecM5TLcZozp4CHiM",
+        "id": "vKMKQXirP9hYRC5uXV7dr5",
         "pos": 16300,
         "type": "chat",
         "actor": "ricky",
@@ -1501,7 +1570,7 @@
         "content_tags": null
       },
       {
-        "id": "rfEKfMSFGBvfG7WexVbQTd",
+        "id": "vnsAZbSDexP8zpppWSKRLG",
         "pos": 16400,
         "type": "chat",
         "actor": "steve",
@@ -1510,7 +1579,7 @@
         "content_tags": null
       },
       {
-        "id": "YfzTKzWnCDfkZQjnAYAcuB",
+        "id": "NYTRNaAvEV9e4g8RGuBq2e",
         "pos": 16500,
         "type": "chat",
         "actor": "ricky",
@@ -1519,25 +1588,29 @@
         "content_tags": null
       },
       {
-        "id": "7gQS2exgrNEEAG9RHW8fSX",
+        "id": "Lc3WXTqaD2FFRpP3rqj4K4",
         "pos": 16600,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "The Radio Times for a classier middle class gentleman like myself.",
-        "content_tags": null
+        "content_tags": {
+          "Radio Times": "Radio Times"
+        }
       },
       {
-        "id": "nafHZjtMatBjzBpQPmuVfL",
+        "id": "MnxvcDjMKSg553qgAd5XxQ",
         "pos": 16700,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Yeah, but the bumper edition at Christmas, that's like 2 weeks of telly, I'd sit down, with my sweets, and we'd tick off all the things we were going to watch over the next 2 weeks.",
-        "content_tags": null
+        "content_tags": {
+          "Christmas": "Christmas"
+        }
       },
       {
-        "id": "nXpjKdKRnTnhqEm8ZaWfYJ",
+        "id": "FL7rx8jd54eqTdxCf2Jda9",
         "pos": 16800,
         "type": "chat",
         "actor": "steve",
@@ -1546,7 +1619,7 @@
         "content_tags": null
       },
       {
-        "id": "EiVYkP6VcdQQm4gBzbbdFb",
+        "id": "mEfh96gX7BNyNHiM46iNRC",
         "pos": 16900,
         "type": "chat",
         "actor": "ricky",
@@ -1555,25 +1628,29 @@
         "content_tags": null
       },
       {
-        "id": "pCdWu45ti6gpPXhUPscb3m",
+        "id": "zaqkCg6ovstyhAwgGaao7h",
         "pos": 17000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "But I bet if you'd watched any telly, it'd have been some really rubbish stuff, the whole family, all sat , I imagine, Denis Norden's Laughter File Volume 12, or whatever it is.",
-        "content_tags": null
+        "content_tags": {
+          "Denis Norden": "Dennis Norden"
+        }
       },
       {
-        "id": "3zicK8JHh2QyQ45aL7kyLC",
+        "id": "LqQKfRMxHiJP3u7EcAAT5k",
         "pos": 17100,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "I don't think Denis Norden was going then.",
-        "content_tags": null
+        "content_tags": {
+          "Denis Norden": "Dennis Norden"
+        }
       },
       {
-        "id": "9NDZvfrt6qy5NQRkxFP2d3",
+        "id": "A3jGKDxLVKwCMPzs8drdnS",
         "pos": 17200,
         "type": "chat",
         "actor": "steve",
@@ -1582,7 +1659,7 @@
         "content_tags": null
       },
       {
-        "id": "BBniYzpEYPxGvmgn9SCKce",
+        "id": "RRhWT44hW5ETizyQEtKLmh",
         "pos": 17300,
         "type": "chat",
         "actor": "ricky",
@@ -1591,7 +1668,7 @@
         "content_tags": null
       },
       {
-        "id": "tnW4FkbCnuMfCifBSaZGHe",
+        "id": "EevEHDHkvk3ASGp7ahsejP",
         "pos": 17400,
         "type": "chat",
         "actor": "steve",
@@ -1600,7 +1677,7 @@
         "content_tags": null
       },
       {
-        "id": "QT3XtX4qUmN4umeidasHv8",
+        "id": "MHmwSKgXKHEnHXmZzgopA8",
         "pos": 17500,
         "type": "chat",
         "actor": "ricky",
@@ -1609,7 +1686,7 @@
         "content_tags": null
       },
       {
-        "id": "XVRRLB3uDXqfv4wowtXFCG",
+        "id": "CuYXXESdGn5i2ui434oZv8",
         "pos": 17600,
         "type": "chat",
         "actor": "steve",
@@ -1618,7 +1695,7 @@
         "content_tags": null
       },
       {
-        "id": "etvSjHKFnX2ovhiPiFy37m",
+        "id": "WzjBMWB22XDRDrt2iE3WwK",
         "pos": 17700,
         "type": "chat",
         "actor": "ricky",
@@ -1627,7 +1704,7 @@
         "content_tags": null
       },
       {
-        "id": "6VJY6YBhVkJGCfBtGNc93U",
+        "id": "hrA3kGZExzaKnhyZKr23uW",
         "pos": 17800,
         "type": "chat",
         "actor": "steve",
@@ -1636,7 +1713,7 @@
         "content_tags": null
       },
       {
-        "id": "T48o3wmqQ5hD7s4hbQ5ZLK",
+        "id": "MaajAn99vpru39knU77ehG",
         "pos": 17900,
         "type": "chat",
         "actor": "ricky",
@@ -1645,7 +1722,7 @@
         "content_tags": null
       },
       {
-        "id": "Ne6Rv8Fp7S68kMrHPbC5zZ",
+        "id": "3czbL6ENr7RviGJhV4pCn6",
         "pos": 18000,
         "type": "chat",
         "actor": "steve",
@@ -1654,7 +1731,7 @@
         "content_tags": null
       },
       {
-        "id": "9DoyNxja22NCypEeRfLyH9",
+        "id": "rLQGyK4nU7qvS6QYt5TSwf",
         "pos": 18100,
         "type": "chat",
         "actor": "ricky",
@@ -1663,7 +1740,7 @@
         "content_tags": null
       },
       {
-        "id": "cMAJd35iUvwToWwkuQJTLY",
+        "id": "NHDg8gSQJVLFYvfqzvmTrZ",
         "pos": 18200,
         "type": "chat",
         "actor": "steve",
@@ -1672,7 +1749,7 @@
         "content_tags": null
       },
       {
-        "id": "vnehML4Y5GCSrPSrRZigKo",
+        "id": "hwo94NQr36oAVf57XywM69",
         "pos": 18300,
         "type": "chat",
         "actor": "ricky",
@@ -1681,7 +1758,7 @@
         "content_tags": null
       },
       {
-        "id": "XXgYSEmMkZextaz6FrcY5G",
+        "id": "J9Viv67riERB5CrptPtgRa",
         "pos": 18400,
         "type": "chat",
         "actor": "steve",
@@ -1690,7 +1767,7 @@
         "content_tags": null
       },
       {
-        "id": "npLjZxDVcsbf5uRKqkS8Yj",
+        "id": "x3ugD8oMxkGsG97DYEz78c",
         "pos": 18500,
         "type": "chat",
         "actor": "ricky",
@@ -1699,7 +1776,7 @@
         "content_tags": null
       },
       {
-        "id": "xf64tYhtg3tFw3xVRuTtME",
+        "id": "TwZVLXAHycSiaiscfzyJ2E",
         "pos": 18600,
         "type": "chat",
         "actor": "steve",
@@ -1708,7 +1785,7 @@
         "content_tags": null
       },
       {
-        "id": "47n7nTnH37x4TPzAd3y5bn",
+        "id": "rNaEQhxBQCvHHeoEGrw2qi",
         "pos": 18700,
         "type": "chat",
         "actor": "ricky",
@@ -1717,7 +1794,7 @@
         "content_tags": null
       },
       {
-        "id": "kef9Dzgv5Fu3B57j4Y5vxG",
+        "id": "yCPJ8aoiR9YRkzW785DnWV",
         "pos": 18800,
         "type": "chat",
         "actor": "steve",
@@ -1726,7 +1803,7 @@
         "content_tags": null
       },
       {
-        "id": "zg9DYLJnsuLZkfmQMbvCSh",
+        "id": "FXRFQsH9rsoYi3D6G67BDi",
         "pos": 18900,
         "type": "chat",
         "actor": "ricky",
@@ -1735,7 +1812,7 @@
         "content_tags": null
       },
       {
-        "id": "aeDBtuHZueqqcgTgVQv9B9",
+        "id": "Zh6za4asesG52SFdwtipxj",
         "pos": 19000,
         "type": "chat",
         "actor": "steve",
@@ -1744,7 +1821,7 @@
         "content_tags": null
       },
       {
-        "id": "y466jsYteyHRkYamxfFQrE",
+        "id": "E64Fhihhtg5JB2qHySnpii",
         "pos": 19100,
         "type": "chat",
         "actor": "ricky",
@@ -1753,7 +1830,7 @@
         "content_tags": null
       },
       {
-        "id": "nKfche2cKrUaRBmF3t7C5",
+        "id": "fyPEKzmxh9HBA2fCowQuX",
         "pos": 19200,
         "type": "chat",
         "actor": "steve",
@@ -1762,16 +1839,18 @@
         "content_tags": null
       },
       {
-        "id": "Djijtx92HYhrXX2SAnrRHQ",
+        "id": "5Cab3425sW9rdVzZiiCi9P",
         "pos": 19300,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "It's happening again, Steve.",
-        "content_tags": null
+        "content_tags": {
+          "Steve": "Steve Merchant"
+        }
       },
       {
-        "id": "ToraxwkKskVXFt2JHiQopk",
+        "id": "NnRK7saMxDJhJPsX4FBdBi",
         "pos": 19400,
         "type": "chat",
         "actor": "steve",
@@ -1780,7 +1859,7 @@
         "content_tags": null
       },
       {
-        "id": "vrHUPocDbgCsXsV3JAJSbH",
+        "id": "tcZd7Wy4wEAK7byk4Veh3C",
         "pos": 19500,
         "type": "chat",
         "actor": "ricky",
@@ -1789,7 +1868,7 @@
         "content_tags": null
       },
       {
-        "id": "3jE6Y7tjinQTsnqhveyu2U",
+        "id": "sSEkp94xrgfUV67aKLvsBF",
         "pos": 19600,
         "type": "chat",
         "actor": "karl",
@@ -1798,7 +1877,7 @@
         "content_tags": null
       },
       {
-        "id": "rgHv65uiF3HFRafyQwdLug",
+        "id": "zf2y35RznRSZutfiSKHmS5",
         "pos": 19700,
         "type": "chat",
         "actor": "ricky",
@@ -1807,7 +1886,7 @@
         "content_tags": null
       },
       {
-        "id": "FduESMqbbFGMsSxyGhcV8",
+        "id": "Zaf2DPaTEYcWKkPD3BDgGA",
         "pos": 19800,
         "type": "chat",
         "actor": "steve",
@@ -1816,7 +1895,7 @@
         "content_tags": null
       },
       {
-        "id": "nja5c8xVf9zqfAaqDcTT2a",
+        "id": "DJpJKDJeL3nFdJcJvdw3u6",
         "pos": 19900,
         "type": "chat",
         "actor": "ricky",
@@ -1825,7 +1904,7 @@
         "content_tags": null
       },
       {
-        "id": "uXyhpfk3aBgm9svdcDUDZ3",
+        "id": "ciPkFBmrQL7PEuMLZqxKGh",
         "pos": 20000,
         "type": "chat",
         "actor": "karl",
@@ -1834,7 +1913,7 @@
         "content_tags": null
       },
       {
-        "id": "C9j5zmW7KjLGZ2pbrkJ8JW",
+        "id": "ATgBBZSSbUN6NUGNmoFK9P",
         "pos": 20100,
         "type": "chat",
         "actor": "ricky",
@@ -1843,7 +1922,7 @@
         "content_tags": null
       },
       {
-        "id": "QZdVsjhPAjzWrdnibR5EiW",
+        "id": "LTQTNQNJNeKySTsgPS4NPe",
         "pos": 20200,
         "type": "chat",
         "actor": "steve",
@@ -1852,7 +1931,7 @@
         "content_tags": null
       },
       {
-        "id": "pTgu2XdV4R2PHu9foVcK9k",
+        "id": "Qzvo7zk3qERVfAbecuj4eV",
         "pos": 20300,
         "type": "song",
         "actor": "",
@@ -1863,19 +1942,24 @@
           "spotify_uri": "spotify:track:0UQNHlrHiz19Htk7YTLVe5"
         },
         "content": "Gorillaz - Rock The House",
-        "content_tags": null
+        "content_tags": {
+          "Gorillaz": "Gorillaz"
+        }
       },
       {
-        "id": "pkhxSSRuFdW4QsMeQVqhMg",
+        "id": "AfCJiWkwMSUHLXofzTwVYM",
         "pos": 20400,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Gorillaz, Rock The House, Xfm 104.9.",
-        "content_tags": null
+        "content_tags": {
+          "Gorillaz": "Gorillaz",
+          "House": "House"
+        }
       },
       {
-        "id": "hxTz4tJbLBtetDnTYdZVkK",
+        "id": "GKbuUxC47tfybYqbf58yAP",
         "pos": 20500,
         "type": "chat",
         "actor": "steve",
@@ -1884,7 +1968,7 @@
         "content_tags": null
       },
       {
-        "id": "qPffYo7yAq4evJxcUDd5ei",
+        "id": "j4bjSkyxtmuUZ2H2W24vnT",
         "pos": 20600,
         "type": "chat",
         "actor": "ricky",
@@ -1893,16 +1977,18 @@
         "content_tags": null
       },
       {
-        "id": "x9WdCWaETgmaokqYsvsPSB",
+        "id": "yTg6jMsv3FRz6hyoKv3Lwk",
         "pos": 20700,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Steve Merchant.",
-        "content_tags": null
+        "content_tags": {
+          "Steve Merchant": "Steve Merchant"
+        }
       },
       {
-        "id": "M8KPcun4CAgkCzSu683Dkk",
+        "id": "9B49nyVmkxiSsHWXPRoLVn",
         "pos": 20800,
         "type": "chat",
         "actor": "ricky",
@@ -1911,7 +1997,7 @@
         "content_tags": null
       },
       {
-        "id": "kZspiEwH4Z8gnX3KfpK3No",
+        "id": "jeseKCCLujdma8TpMVhndP",
         "pos": 20900,
         "type": "chat",
         "actor": "steve",
@@ -1920,7 +2006,7 @@
         "content_tags": null
       },
       {
-        "id": "cQ9V6jL3X6WF3EC4PW5mZR",
+        "id": "8ZiazXfRRqbzkoN8C57LQh",
         "pos": 21000,
         "type": "chat",
         "actor": "ricky",
@@ -1929,7 +2015,7 @@
         "content_tags": null
       },
       {
-        "id": "xJe6GBwLDvxDYj7Z6hWxaK",
+        "id": "yE8XpA8umFtMJZc5qfNQNb",
         "pos": 21100,
         "type": "chat",
         "actor": "steve",
@@ -1938,7 +2024,7 @@
         "content_tags": null
       },
       {
-        "id": "8P94re4SVUccrEmtZiLkbm",
+        "id": "tWcvfTj5bVkxGamrZPJdBN",
         "pos": 21200,
         "type": "chat",
         "actor": "ricky",
@@ -1947,16 +2033,18 @@
         "content_tags": null
       },
       {
-        "id": "e2VbpPnVNj63v7T4pDJXz7",
+        "id": "bLUzSSFxAWVPKzv63EyQVg",
         "pos": 21300,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Plus Karl, he presses the buttons.",
-        "content_tags": null
+        "content_tags": {
+          "Karl": "Karl Pilkington"
+        }
       },
       {
-        "id": "WiF2dW2xan98SiWRUqpJAL",
+        "id": "UAoQNFEZkgvQ7yv9PBGngZ",
         "pos": 21400,
         "type": "chat",
         "actor": "ricky",
@@ -1965,7 +2053,7 @@
         "content_tags": null
       },
       {
-        "id": "6sqyNHq5fg2FuwiV6Z9pw4",
+        "id": "LcWVUVFkJduro6Lbd7A4bS",
         "pos": 21500,
         "type": "chat",
         "actor": "karl",
@@ -1974,7 +2062,7 @@
         "content_tags": null
       },
       {
-        "id": "oA36EQ5VL4bAjFrsxUDwud",
+        "id": "ApAGJzfJTFGVBcCGiSURW3",
         "pos": 21600,
         "type": "chat",
         "actor": "ricky",
@@ -1983,7 +2071,7 @@
         "content_tags": null
       },
       {
-        "id": "EGzPk3AhAJycp47uxQK6FA",
+        "id": "Xgna23PDEF62PrUv8X48SM",
         "pos": 21700,
         "type": "chat",
         "actor": "steve",
@@ -1992,7 +2080,7 @@
         "content_tags": null
       },
       {
-        "id": "iJmKC3VMG7eWiP9yvhX9L7",
+        "id": "6nWdugPhoqj2drToRYn7ND",
         "pos": 21800,
         "type": "chat",
         "actor": "ricky",
@@ -2001,7 +2089,7 @@
         "content_tags": null
       },
       {
-        "id": "RQTMZRJEYwZY98q4s8iYgE",
+        "id": "gjqqnA9pgYtLMqGVdKDqXe",
         "pos": 21900,
         "type": "chat",
         "actor": "steve",
@@ -2010,7 +2098,7 @@
         "content_tags": null
       },
       {
-        "id": "AQpgRiyraGmMjMgzkZiCoW",
+        "id": "oSJyiktTCkWxXPcS4AKkwA",
         "pos": 22000,
         "type": "chat",
         "actor": "ricky",
@@ -2019,7 +2107,7 @@
         "content_tags": null
       },
       {
-        "id": "6b9LVNdr5tuLmmkon4npkd",
+        "id": "jnwGurptWRmffSxEeYF4CP",
         "pos": 22100,
         "type": "chat",
         "actor": "steve",
@@ -2028,7 +2116,7 @@
         "content_tags": null
       },
       {
-        "id": "WJ6n6zGq5mXsD3rCQZXHN",
+        "id": "mMYgQ5QYmYnwnFEE4a5CvA",
         "pos": 22200,
         "type": "chat",
         "actor": "ricky",
@@ -2037,7 +2125,7 @@
         "content_tags": null
       },
       {
-        "id": "pYwDhciVrwFUdxX3BsfVuh",
+        "id": "FdDraafLUeBUhAUwvTFeVi",
         "pos": 22300,
         "type": "chat",
         "actor": "steve",
@@ -2046,7 +2134,7 @@
         "content_tags": null
       },
       {
-        "id": "tVhdChFy7WvNDmrr42oAb3",
+        "id": "zNgrmCMZMsLqfpXT2EMFBi",
         "pos": 22400,
         "type": "chat",
         "actor": "ricky",
@@ -2055,7 +2143,7 @@
         "content_tags": null
       },
       {
-        "id": "2MDWjxxJBasQpzgPjtoEP4",
+        "id": "mKJAGdJCU4zGsKUX7qM6oC",
         "pos": 22500,
         "type": "chat",
         "actor": "steve",
@@ -2064,7 +2152,7 @@
         "content_tags": null
       },
       {
-        "id": "mJJZUun3Ut6omYAWMRXdZ",
+        "id": "GLmBk2MZ5ER8N4GyvoeiwB",
         "pos": 22600,
         "type": "chat",
         "actor": "ricky",
@@ -2073,7 +2161,7 @@
         "content_tags": null
       },
       {
-        "id": "G6M2WeQk3qbNwdxf4rZjmW",
+        "id": "e7h7qFX4upkKEfCs7zYwX3",
         "pos": 22700,
         "type": "chat",
         "actor": "steve",
@@ -2082,7 +2170,7 @@
         "content_tags": null
       },
       {
-        "id": "vnRPpHAkLyKmrpNtFBwY9k",
+        "id": "4B8qfdfs3Y4XE7KGrK5xsi",
         "pos": 22800,
         "type": "chat",
         "actor": "ricky",
@@ -2091,7 +2179,7 @@
         "content_tags": null
       },
       {
-        "id": "gimVXTiZ5qy2FWqByqiPf6",
+        "id": "AcjqfB9o6uiryvFC5ZDuVF",
         "pos": 22900,
         "type": "chat",
         "actor": "steve",
@@ -2100,16 +2188,19 @@
         "content_tags": null
       },
       {
-        "id": "8facnHCnBLdzXAcbeV8GHn",
+        "id": "c3eH49zWzPcZkGbun3BiiX",
         "pos": 23000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Men Without Hats - \"We can dance if we want to\", and Pierre Trudeau's daughter was in that video.",
-        "content_tags": null
+        "content_tags": {
+          "Men Without Hats": "Men Without Hats",
+          "Pierre Trudeau": "Pierre Trudeau"
+        }
       },
       {
-        "id": "jDF7Kio7HzsastHuuvKrQ7",
+        "id": "KreKcMFTctyM5MSoQyps76",
         "pos": 23100,
         "type": "chat",
         "actor": "steve",
@@ -2118,7 +2209,7 @@
         "content_tags": null
       },
       {
-        "id": "Ges5q6E3UqPrh6b5WfHmhK",
+        "id": "i3ABA2PbRqMCzuwCw3usy6",
         "pos": 23200,
         "type": "chat",
         "actor": "ricky",
@@ -2127,7 +2218,7 @@
         "content_tags": null
       },
       {
-        "id": "mnWKrto5upXmHpoVinQky8",
+        "id": "ovqAhBpv6QRX636gyb3np7",
         "pos": 23300,
         "type": "chat",
         "actor": "steve",
@@ -2136,25 +2227,29 @@
         "content_tags": null
       },
       {
-        "id": "DPEaaZMreqD7bcncXiD84P",
+        "id": "krkx3cZ9idAYB6wovnwnX3",
         "pos": 23400,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Bruce Dickinson - he didn't recognise him, I went \"Look, Bruce\".",
-        "content_tags": null
+        "content_tags": {
+          "Bruce Dickinson": "Bruce Dickinson"
+        }
       },
       {
-        "id": "HNZrD2LxiBaDTeQZ57GLom",
+        "id": "dZy6vUDchRPwxAiT2XZT9j",
         "pos": 23500,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Bruce Dickinson from Iron Maiden",
-        "content_tags": null
+        "content_tags": {
+          "Bruce Dickinson": "Bruce Dickinson"
+        }
       },
       {
-        "id": "GEzE2LKdYkjr5tNDtXaseG",
+        "id": "Kkrh59CtDQ9xekvX7yTLzG",
         "pos": 23600,
         "type": "chat",
         "actor": "ricky",
@@ -2163,7 +2258,7 @@
         "content_tags": null
       },
       {
-        "id": "jcFnazQnB3BD9yuVNJyCL5",
+        "id": "6TXLaVEiXbVGKbQq6M38G",
         "pos": 23700,
         "type": "chat",
         "actor": "karl",
@@ -2172,7 +2267,7 @@
         "content_tags": null
       },
       {
-        "id": "yWrbwEYNq3ASfjxfALsPCf",
+        "id": "xJapScRtMYoKw2cXigpuec",
         "pos": 23800,
         "type": "chat",
         "actor": "steve",
@@ -2181,7 +2276,7 @@
         "content_tags": null
       },
       {
-        "id": "VKwmawjpRxdXSJZDvb3iMo",
+        "id": "zm6n3A8SAGxjdCBpSiVFR9",
         "pos": 23900,
         "type": "unknown",
         "actor": "",
@@ -2190,7 +2285,7 @@
         "content_tags": null
       },
       {
-        "id": "b3hMr8chvhggCCRimQXP7M",
+        "id": "zby4fBooiK5veGe4wKTBc4",
         "pos": 24000,
         "type": "chat",
         "actor": "ricky",
@@ -2199,7 +2294,7 @@
         "content_tags": null
       },
       {
-        "id": "KV7G2TyGmihccVRQqwG2cj",
+        "id": "xT7RtvFE5JSmyPxtskLfDe",
         "pos": 24100,
         "type": "chat",
         "actor": "steve",
@@ -2208,7 +2303,7 @@
         "content_tags": null
       },
       {
-        "id": "5nRyq23PxMWgg3RkKnffpS",
+        "id": "cfmEiZF5Lz8xk2PTFYftzc",
         "pos": 24200,
         "type": "chat",
         "actor": "ricky",
@@ -2217,16 +2312,16 @@
         "content_tags": null
       },
       {
-        "id": "tAc3YHJfLmbNyLAkxduNBb",
+        "id": "fhkKbQoQ9kaQYrceADdZ6Y",
         "pos": 24300,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "They never leave their bedrooms, Rick.",
-        "content_tags": null
+        "content_tags": {}
       },
       {
-        "id": "6hfjrV8D7TvkFfcKZ6vnSU",
+        "id": "djF7otJSsDZFedZM2fGhRH",
         "pos": 24400,
         "type": "chat",
         "actor": "ricky",
@@ -2235,7 +2330,7 @@
         "content_tags": null
       },
       {
-        "id": "8WeY6H2gVcenYMsyHJhgWY",
+        "id": "JkPVGoM9SuVH9RaooxcULZ",
         "pos": 24500,
         "type": "chat",
         "actor": "steve",
@@ -2244,7 +2339,7 @@
         "content_tags": null
       },
       {
-        "id": "bEwcK3vrfJgkMPqc4MhAbF",
+        "id": "nGew6QDBA4ixEyj4QBj9Rg",
         "pos": 24600,
         "type": "chat",
         "actor": "ricky",
@@ -2253,16 +2348,16 @@
         "content_tags": null
       },
       {
-        "id": "KaAfgKJcwyfNtMHY69ryXS",
+        "id": "kTnVUMQc8wh48d8HQviYpP",
         "pos": 24700,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Rick, what else is dying out?",
-        "content_tags": null
+        "content_tags": {}
       },
       {
-        "id": "YreTWytYfMYcbxgEQ8DC74",
+        "id": "p6ic7rJLVvTZwRZYgdNtMo",
         "pos": 24800,
         "type": "unknown",
         "actor": "",
@@ -2271,7 +2366,7 @@
         "content_tags": null
       },
       {
-        "id": "kkKPDCXff5fL56rcz5bove",
+        "id": "tNs6mirvWyto9rhy5SBom3",
         "pos": 24900,
         "type": "chat",
         "actor": "steve",
@@ -2280,7 +2375,7 @@
         "content_tags": null
       },
       {
-        "id": "ZmGdqmvLD47pXJ6EL4m8r8",
+        "id": "L7ewf5PRpiwAuBCm8pas7W",
         "pos": 25000,
         "type": "chat",
         "actor": "ricky",
@@ -2289,7 +2384,7 @@
         "content_tags": null
       },
       {
-        "id": "7qug6so8xdenrdJUsYQzM5",
+        "id": "4W36q74QgKzb6FDBZsUCeJ",
         "pos": 25100,
         "type": "chat",
         "actor": "steve",
@@ -2298,7 +2393,7 @@
         "content_tags": null
       },
       {
-        "id": "LD26mL6u3xDwc2v3L63co8",
+        "id": "5uh7aow96pkrAcP4mY9354",
         "pos": 25200,
         "type": "chat",
         "actor": "ricky",
@@ -2307,7 +2402,7 @@
         "content_tags": null
       },
       {
-        "id": "vUGfTwJVj68TWathCtYn94",
+        "id": "4qovG6pQ2ckaSVbGUowWCC",
         "pos": 25300,
         "type": "chat",
         "actor": "steve",
@@ -2316,7 +2411,7 @@
         "content_tags": null
       },
       {
-        "id": "8oDZmbirYdEmBX9TFQRuda",
+        "id": "moTXzByuJ9QUxkjcsHEZEo",
         "pos": 25400,
         "type": "chat",
         "actor": "ricky",
@@ -2325,7 +2420,7 @@
         "content_tags": null
       },
       {
-        "id": "GUGzA93pk8xRMZXBBbufKY",
+        "id": "H9weRWUZQHSq7dwfu6JJBc",
         "pos": 25500,
         "type": "chat",
         "actor": "steve",
@@ -2334,7 +2429,7 @@
         "content_tags": null
       },
       {
-        "id": "xuT3p2KdJXHJbtz4NxWh3L",
+        "id": "GrhaY63XemLei3JZ3NNNHE",
         "pos": 25600,
         "type": "chat",
         "actor": "ricky",
@@ -2343,7 +2438,7 @@
         "content_tags": null
       },
       {
-        "id": "jVBUwESCP33Gp4CT74AFqi",
+        "id": "3oZJ5Nd6kB8cftdd65RPkT",
         "pos": 25700,
         "type": "chat",
         "actor": "steve",
@@ -2352,7 +2447,7 @@
         "content_tags": null
       },
       {
-        "id": "67dRaYdFupgWDxTRe8EpaS",
+        "id": "WNXrtGVt8MuEQHMX43sT7A",
         "pos": 25800,
         "type": "chat",
         "actor": "ricky",
@@ -2361,7 +2456,7 @@
         "content_tags": null
       },
       {
-        "id": "BFN7gW2HYaXGJQaMDr2ccB",
+        "id": "ktzG6tPuRP9njZHNBapLf8",
         "pos": 25900,
         "type": "chat",
         "actor": "steve",
@@ -2370,7 +2465,7 @@
         "content_tags": null
       },
       {
-        "id": "QMJRH4AB2WEV5jZ9JYkP7a",
+        "id": "BKrJ5t28G7RKtgSzPnB28m",
         "pos": 26000,
         "type": "chat",
         "actor": "ricky",
@@ -2379,7 +2474,7 @@
         "content_tags": null
       },
       {
-        "id": "TgD2n5VPHv6AoDVvZD8EnC",
+        "id": "FBQBYCUzsAmeVsFTy2pRBX",
         "pos": 26100,
         "type": "chat",
         "actor": "steve",
@@ -2388,7 +2483,7 @@
         "content_tags": null
       },
       {
-        "id": "33VRfu34kUqu7x6yJXbXWj",
+        "id": "fUg6zARTEcRsx8fwwvqtaJ",
         "pos": 26200,
         "type": "chat",
         "actor": "ricky",
@@ -2397,7 +2492,7 @@
         "content_tags": null
       },
       {
-        "id": "GuKJF2DnEdMxjidjLxmggM",
+        "id": "9AohmL3Reembh5cto3sjB6",
         "pos": 26300,
         "type": "chat",
         "actor": "steve",
@@ -2406,7 +2501,7 @@
         "content_tags": null
       },
       {
-        "id": "w4WuAeesHrYERZMyySAbk7",
+        "id": "BpuvZPfC8Z7PCJhB2iCYed",
         "pos": 26400,
         "type": "chat",
         "actor": "ricky",
@@ -2415,7 +2510,7 @@
         "content_tags": null
       },
       {
-        "id": "urWmRfovqB4eSat3RFGuiS",
+        "id": "QBXUBsi34yZdJZGyMdLgJ",
         "pos": 26500,
         "type": "chat",
         "actor": "steve",
@@ -2424,16 +2519,19 @@
         "content_tags": null
       },
       {
-        "id": "NEq4DzLXLEjuow3gYbqgMg",
+        "id": "sBdyX7yJrfqTs72qogHCNU",
         "pos": 26600,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "And I'll guarantee that they went to Oxford or Cambridge.",
-        "content_tags": null
+        "content_tags": {
+          "Cambridge": "Cambridge",
+          "Oxford": "Oxford"
+        }
       },
       {
-        "id": "QN9xitQQJL68S9Sp8B8ZzA",
+        "id": "ZWMph2ZszsjnREUhCtUqxc",
         "pos": 26700,
         "type": "chat",
         "actor": "steve",
@@ -2442,7 +2540,7 @@
         "content_tags": null
       },
       {
-        "id": "Dro2TdwHUCmPKjAoWpJ5ND",
+        "id": "zh6t2fa5wPjw6qxfaXtsdB",
         "pos": 26800,
         "type": "chat",
         "actor": "karl",
@@ -2451,7 +2549,7 @@
         "content_tags": null
       },
       {
-        "id": "EvhBdkUFu25b2TyESKm6P6",
+        "id": "MJ7S3c4GvP5sPWa86XTzU6",
         "pos": 26900,
         "type": "chat",
         "actor": "steve",
@@ -2460,7 +2558,7 @@
         "content_tags": null
       },
       {
-        "id": "r9sCq4sXtWRCg7HZzqhR3Q",
+        "id": "aw7A4i5RT3s97NN8GMLLtC",
         "pos": 27000,
         "type": "chat",
         "actor": "karl",
@@ -2469,7 +2567,7 @@
         "content_tags": null
       },
       {
-        "id": "RVLXEDfZfRGgrnPJmHV7sY",
+        "id": "9mhrZAtPkRua6GM4Uus8Yd",
         "pos": 27100,
         "type": "chat",
         "actor": "steve",
@@ -2478,7 +2576,7 @@
         "content_tags": null
       },
       {
-        "id": "Km3uvbuLXqjuziqA76e5i5",
+        "id": "NpcK7QE8a5oNqXEWCF8NmL",
         "pos": 27200,
         "type": "chat",
         "actor": "ricky",
@@ -2487,7 +2585,7 @@
         "content_tags": null
       },
       {
-        "id": "qhtanui5rbmeRJGkLhrKz3",
+        "id": "AhrW2vhNJS68FzVm4wuzUb",
         "pos": 27300,
         "type": "chat",
         "actor": "steve",
@@ -2496,7 +2594,7 @@
         "content_tags": null
       },
       {
-        "id": "qtZ5PUPgRiNCtVGoan2fNo",
+        "id": "Ly26LGBQtvJgQ3MT2faTWQ",
         "pos": 27400,
         "type": "chat",
         "actor": "ricky",
@@ -2505,7 +2603,7 @@
         "content_tags": null
       },
       {
-        "id": "kw9i5hWVn4PTpmVrZrPKtA",
+        "id": "UHxS2Rb2GhLtGZLyCnYLrG",
         "pos": 27500,
         "type": "chat",
         "actor": "steve",
@@ -2514,7 +2612,7 @@
         "content_tags": null
       },
       {
-        "id": "oWvaTP6jbgGprnD2diakve",
+        "id": "2AFKwLcHUhQUQNoSgvHiTi",
         "pos": 27600,
         "type": "chat",
         "actor": "ricky",
@@ -2523,7 +2621,7 @@
         "content_tags": null
       },
       {
-        "id": "NpoSXKBhKzLqbHKfogjvke",
+        "id": "EotVJcHNcg2u3DE5GeVrmJ",
         "pos": 27700,
         "type": "chat",
         "actor": "steve",
@@ -2532,7 +2630,7 @@
         "content_tags": null
       },
       {
-        "id": "wvheZpu3GidGRD6UK2GkfJ",
+        "id": "Kc3oJcosnCJ55oHdZ6ZExR",
         "pos": 27800,
         "type": "chat",
         "actor": "ricky",
@@ -2541,16 +2639,18 @@
         "content_tags": null
       },
       {
-        "id": "Y3NJg7FLYQZdHabF3vkVzn",
+        "id": "hsaJ63ZkSDqzyBGdXVKyZ3",
         "pos": 27900,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Karl - you're not a fan of the cape?! You're turning your nose up at the cape - that's a- madness!",
-        "content_tags": null
+        "content_tags": {
+          "Karl": "Karl Pilkington"
+        }
       },
       {
-        "id": "hjcWiuKiHb7vyLsdJbK63D",
+        "id": "Rr2PsZmqtnUH4XAKYP9GEE",
         "pos": 28000,
         "type": "chat",
         "actor": "karl",
@@ -2559,16 +2659,18 @@
         "content_tags": null
       },
       {
-        "id": "u9T5HqBEVJfw4obXuA6j48",
+        "id": "55HQmHDpL5mXJuopDDE2An",
         "pos": 28100,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Steve laughs",
-        "content_tags": null
+        "content_tags": {
+          "Steve": "Steve Merchant"
+        }
       },
       {
-        "id": "oQnwQvnLXmjGmwJgM82moR",
+        "id": "CMgPo8EE3oFUxyruiYSJ2C",
         "pos": 28200,
         "type": "chat",
         "actor": "steve",
@@ -2577,7 +2679,7 @@
         "content_tags": null
       },
       {
-        "id": "dRgmQmPcg3ckbrgVz3yyui",
+        "id": "QHyFg4vRvHBCsV7MJLWwGm",
         "pos": 28300,
         "type": "chat",
         "actor": "karl",
@@ -2586,16 +2688,18 @@
         "content_tags": null
       },
       {
-        "id": "igCGwHUuhyFL8kxAUEcdjV",
+        "id": "TH63EYD5V9sve9DgVu6KiK",
         "pos": 28400,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Ricky and Steve laugh",
-        "content_tags": null
+        "content_tags": {
+          "Steve": "Steve Merchant"
+        }
       },
       {
-        "id": "6TibuLqoRRtB9cizbNVE75",
+        "id": "nc7wz3hKWAunN5fhRc9tDh",
         "pos": 28500,
         "type": "chat",
         "actor": "ricky",
@@ -2604,16 +2708,18 @@
         "content_tags": null
       },
       {
-        "id": "PBZdKBvPCaKT9r2WBxvnuc",
+        "id": "sep8PZJ3ejGCP3yK4gr9bj",
         "pos": 28600,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "I can't believe it - for a minute there, I was completely lost, remind me again, what's \"That Sounds Good\"?... No, hang on, it's \"That Film Sounds Good\"!",
-        "content_tags": null
+        "content_tags": {
+          "Film Sounds Good": "Film Sounds Good"
+        }
       },
       {
-        "id": "9xtFNFfTE5ZUwZsgRwCWAR",
+        "id": "ZhHNWsdGvajeefQszunz9X",
         "pos": 28700,
         "type": "chat",
         "actor": "ricky",
@@ -2622,7 +2728,7 @@
         "content_tags": null
       },
       {
-        "id": "f2QVuuy33osdWeEkiRwzYR",
+        "id": "Hva28FKgydAVYe2kvi2hgU",
         "pos": 28800,
         "type": "chat",
         "actor": "steve",
@@ -2631,16 +2737,18 @@
         "content_tags": null
       },
       {
-        "id": "tFpwbcNotDzQpFDtHgQhGV",
+        "id": "8mKHR83kWhZ3P6mqn3kfrQ",
         "pos": 28900,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Ermm, this is \"That Film Sounds Good\".",
-        "content_tags": null
+        "content_tags": {
+          "Film Sounds Good": "Film Sounds Good"
+        }
       },
       {
-        "id": "VKbJgfz4X6Bta69TcKn6oU",
+        "id": "XN5JRCts3WLrK9V7Qf6unm",
         "pos": 29000,
         "type": "chat",
         "actor": "steve",
@@ -2649,16 +2757,18 @@
         "content_tags": null
       },
       {
-        "id": "5Bug4J7gGriRSwx5qePfrg",
+        "id": "ZbYS7gy2vs7Fuo29vaB2R9",
         "pos": 29100,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Well, I'm going to pick a song from a film, from the soundtrack, right. I'm choosing a song from Jackie Brown, great film.",
-        "content_tags": null
+        "content_tags": {
+          "Jackie Brown": "Jackie Brown"
+        }
       },
       {
-        "id": "QPYq9HekdhvtUwMvxZwZoW",
+        "id": "Wan7iTnDZCYJr4HbnqnmMY",
         "pos": 29200,
         "type": "chat",
         "actor": "steve",
@@ -2667,16 +2777,18 @@
         "content_tags": null
       },
       {
-        "id": "C3JbuhQkYKSftTTDve748A",
+        "id": "Lor2r7euMiMmenPpmsx3Zo",
         "pos": 29300,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "And this is \"Across 110th Street\", by Bobby Womack. It's fantastic.",
-        "content_tags": null
+        "content_tags": {
+          "Bobby Womack": "Bobby Womack"
+        }
       },
       {
-        "id": "Z8347cf68WqgSqB5Z77uCT",
+        "id": "cDfds4atq6sxHWJQnymtsG",
         "pos": 29400,
         "type": "chat",
         "actor": "steve",
@@ -2685,7 +2797,7 @@
         "content_tags": null
       },
       {
-        "id": "aerxhKfpLTjMHydSC33u9L",
+        "id": "zZgrd6vqRozWaMmKZibRTK",
         "pos": 29500,
         "type": "chat",
         "actor": "ricky",
@@ -2694,7 +2806,7 @@
         "content_tags": null
       },
       {
-        "id": "6z9eBoRcX5fBYpJrii3Wse",
+        "id": "xx3y9ZnYYH4vx94uc8xujG",
         "pos": 29600,
         "type": "chat",
         "actor": "steve",
@@ -2703,7 +2815,7 @@
         "content_tags": null
       },
       {
-        "id": "Cc3SYWtqzY4EPq86h2K8Nn",
+        "id": "2WXTeEBBTQ9du8YUKs7Yf7",
         "pos": 29700,
         "type": "song",
         "actor": "",
@@ -2714,28 +2826,34 @@
           "spotify_uri": "spotify:track:2zyTP97uGsIc1C4KNNEkyn"
         },
         "content": "Across 110th Street - Bobby Womack.",
-        "content_tags": null
+        "content_tags": {
+          "Bobby Womack": "Bobby Womack"
+        }
       },
       {
-        "id": "3SWA7rV8dVn8rykjDGncG7",
+        "id": "xq7QQGY6pzhKo74eC9HBe9",
         "pos": 29800,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Ooh yeah, Bobby Womack, Across 110th Street. It's great isn't it?",
-        "content_tags": null
+        "content_tags": {
+          "Bobby Womack": "Bobby Womack"
+        }
       },
       {
-        "id": "4RALtMKnmZ2qZVXK4HsnsM",
+        "id": "7KoKXZfZEs7dLghb84gZvg",
         "pos": 29900,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "That's a lovely feature actually), and that's the first feature - wooh - \"That Film Sounds Good\".",
-        "content_tags": null
+        "content_tags": {
+          "Film Sounds Good": "Film Sounds Good"
+        }
       },
       {
-        "id": "TMPYuVXpUqSc8wxAN76jtG",
+        "id": "HkgEZkC4V6VQe35rQa7os",
         "pos": 30000,
         "type": "chat",
         "actor": "steve",
@@ -2744,7 +2862,7 @@
         "content_tags": null
       },
       {
-        "id": "FMtFZJwdVnzSWLVbsSuYW5",
+        "id": "oAFikagZoHiDnTyvJvwDEK",
         "pos": 30100,
         "type": "chat",
         "actor": "ricky",
@@ -2753,16 +2871,18 @@
         "content_tags": null
       },
       {
-        "id": "wtwuQV3KHh44TBMpGQULGD",
+        "id": "564rc8FudfbzNYUasuisY4",
         "pos": 30200,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "I'd love to hear it. What sort of things can we expect to hear in the future? 'Cos I know you're a big fan - this is brilliant - he bought, right, the soundtrack to the film Braveheart, which is just big orchestrated numbers-",
-        "content_tags": null
+        "content_tags": {
+          "Braveheart": "Braveheart"
+        }
       },
       {
-        "id": "VXkvF4jTKgvKrCe2HfkCw7",
+        "id": "CFxmTh4G3HhRAzmNcyb4Xe",
         "pos": 30300,
         "type": "chat",
         "actor": "ricky",
@@ -2771,7 +2891,7 @@
         "content_tags": null
       },
       {
-        "id": "r87fkZnqhCNFuokVmdQmFd",
+        "id": "q7KJycxPqxTehSKXGv9Qi3",
         "pos": 30400,
         "type": "chat",
         "actor": "steve",
@@ -2780,16 +2900,18 @@
         "content_tags": null
       },
       {
-        "id": "VStrUqCk6zVQo5oeYEk8An",
+        "id": "pXHzEcX7U5qH7WcHLwv3rd",
         "pos": 30500,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "He's got a classical music CD in his collection - it's the music from Braveheart.",
-        "content_tags": null
+        "content_tags": {
+          "Braveheart": "Braveheart"
+        }
       },
       {
-        "id": "BHbfG9qFuXUTsFZFeXDPoC",
+        "id": "5N97k2qmQuv3qifPMNCKdD",
         "pos": 30600,
         "type": "chat",
         "actor": "ricky",
@@ -2798,16 +2920,19 @@
         "content_tags": null
       },
       {
-        "id": "2vADstHaTTMYZsxkeuW6y8",
+        "id": "bCZuYsWjuMAzMYKGi9hCXh",
         "pos": 30700,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "He's obsessed with Braveheart, he actually relates to William Wallace, he actually thinks, \"yeah that's the sort of thing I'd be doing\".",
-        "content_tags": null
+        "content_tags": {
+          "Braveheart": "Braveheart",
+          "William Wallace": "William Wallace"
+        }
       },
       {
-        "id": "uAeeuHyY49hvBVvLUAhiV6",
+        "id": "Y8FPBggaMZ98hpoocbC5dh",
         "pos": 30800,
         "type": "chat",
         "actor": "ricky",
@@ -2816,7 +2941,7 @@
         "content_tags": null
       },
       {
-        "id": "2zJYteTXszCxv2yqnuMEMT",
+        "id": "KXfyCCps7QtmvN25KAkrzU",
         "pos": 30900,
         "type": "chat",
         "actor": "steve",
@@ -2825,7 +2950,7 @@
         "content_tags": null
       },
       {
-        "id": "RwonaWA4tvTUZrQvftJPR3",
+        "id": "LQw4rdutMx3w3etxjGJ7oe",
         "pos": 31000,
         "type": "chat",
         "actor": "ricky",
@@ -2834,7 +2959,7 @@
         "content_tags": null
       },
       {
-        "id": "jWBJgD6nCviZgdCXBwERRE",
+        "id": "GtwGxZHCKCKrmSoy9bSJeN",
         "pos": 31100,
         "type": "chat",
         "actor": "steve",
@@ -2843,7 +2968,7 @@
         "content_tags": null
       },
       {
-        "id": "2gTNN5QK2YgfUpsNkvixAA",
+        "id": "RCyG79Pd3TVcNnGtvwLm9i",
         "pos": 31200,
         "type": "chat",
         "actor": "ricky",
@@ -2852,7 +2977,7 @@
         "content_tags": null
       },
       {
-        "id": "49KW89JL8xgwPi8uN3cEdB",
+        "id": "5tB3cu4vQbgAZoempNSzmY",
         "pos": 31300,
         "type": "chat",
         "actor": "steve",
@@ -2861,16 +2986,16 @@
         "content_tags": null
       },
       {
-        "id": "xjFYcN92KUXYHnn7rAKu4J",
+        "id": "3C2Kqqog5XenpXCReXJRxJ",
         "pos": 31400,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Ricky laughs",
-        "content_tags": null
+        "content_tags": {}
       },
       {
-        "id": "EEW59nq9SLmJcSFxHSgtv6",
+        "id": "FSimH5yRDWyXpKfjBsJJbm",
         "pos": 31500,
         "type": "chat",
         "actor": "steve",
@@ -2879,7 +3004,7 @@
         "content_tags": null
       },
       {
-        "id": "o8Ps3D8oKLefUH3jCjxA3Y",
+        "id": "yWG3ehLW9mzt6A3bJGQYHg",
         "pos": 31600,
         "type": "chat",
         "actor": "karl",
@@ -2888,7 +3013,7 @@
         "content_tags": null
       },
       {
-        "id": "u8yKo5iiNjD22E4N8NVUtA",
+        "id": "ykXBccLSAhrQnneB9cyYFo",
         "pos": 31700,
         "type": "chat",
         "actor": "steve",
@@ -2897,7 +3022,7 @@
         "content_tags": null
       },
       {
-        "id": "f2ZybECTJZbzp6ugFEWFqW",
+        "id": "x7fspmzrVsmBaQdqtccQzW",
         "pos": 31800,
         "type": "chat",
         "actor": "ricky",
@@ -2906,7 +3031,7 @@
         "content_tags": null
       },
       {
-        "id": "ZHBhE9uSybCu9Psim522d5",
+        "id": "sUiQ9skthcLtfqgwb46PKB",
         "pos": 31900,
         "type": "chat",
         "actor": "steve",
@@ -2915,7 +3040,7 @@
         "content_tags": null
       },
       {
-        "id": "FTeFhoCAQNkogqedzcpSTc",
+        "id": "65H8surQzABeixWbCNG8Jd",
         "pos": 32000,
         "type": "chat",
         "actor": "ricky",
@@ -2924,7 +3049,7 @@
         "content_tags": null
       },
       {
-        "id": "m3GQbr4gXzSa9vzSudvnEP",
+        "id": "58WD987Qpd9ngeEXzsPij5",
         "pos": 32100,
         "type": "chat",
         "actor": "steve",
@@ -2933,7 +3058,7 @@
         "content_tags": null
       },
       {
-        "id": "5isjrMvbkmACYkZo2ts4Rg",
+        "id": "JHfM7NjfDBvV4TdGeDE9qK",
         "pos": 32200,
         "type": "chat",
         "actor": "ricky",
@@ -2942,7 +3067,7 @@
         "content_tags": null
       },
       {
-        "id": "npiJKkAQ2Jr8rNJnFn2SZY",
+        "id": "fkwBRM4sDXuTsejqViWDZ",
         "pos": 32300,
         "type": "chat",
         "actor": "steve",
@@ -2951,7 +3076,7 @@
         "content_tags": null
       },
       {
-        "id": "oZQJE39s7EJ2H9H2W3ocK6",
+        "id": "m5TSapCC6xdsoV2V9zCUV",
         "pos": 32400,
         "type": "chat",
         "actor": "ricky",
@@ -2960,7 +3085,7 @@
         "content_tags": null
       },
       {
-        "id": "EhSqSoRskCgVruXgiXuxZk",
+        "id": "sstCWVPwXTVNXJusqyRBHL",
         "pos": 32500,
         "type": "chat",
         "actor": "steve",
@@ -2969,25 +3094,29 @@
         "content_tags": null
       },
       {
-        "id": "R3StAPAszEExBfY5tcLBaf",
+        "id": "LED33e7peAW53nNWrmTdY3",
         "pos": 32600,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "I was working out, and training, and boxing- you're going to have to play a record after this- to the Rocky soundtrack..",
-        "content_tags": null
+        "content_tags": {
+          "Rocky": "Rocky"
+        }
       },
       {
-        "id": "pGTUPDvNx2XVBw9hWYZnrR",
+        "id": "jcSHpA6kHnn2rLEE6Qiiq6",
         "pos": 32700,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "To the Rocky soundtrack - he's bought, right, a CD which has got the best music from all of them - now was it \"Eye of the Tiger\", or was it...",
-        "content_tags": null
+        "content_tags": {
+          "Rocky": "Rocky"
+        }
       },
       {
-        "id": "B3xtXh5KfSuNpmNqKa8DzF",
+        "id": "tVBR9ZuYt229TgYtXijPe5",
         "pos": 32800,
         "type": "chat",
         "actor": "ricky",
@@ -2996,7 +3125,7 @@
         "content_tags": null
       },
       {
-        "id": "tmZJxZHbLNZfMZ6mN7xfLJ",
+        "id": "4Jd6osn23DKT3rQpcMAK7X",
         "pos": 32900,
         "type": "chat",
         "actor": "steve",
@@ -3005,16 +3134,18 @@
         "content_tags": null
       },
       {
-        "id": "qxnNfVepbnGWdJGdoZuBTK",
+        "id": "ZCMaEPdQiFvJWcvQTprRXc",
         "pos": 33000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Yeah, and I often have to help Russian peasants, 'cos their carthorse has fallen over.",
-        "content_tags": null
+        "content_tags": {
+          "Russian": "Russia"
+        }
       },
       {
-        "id": "uKkTWJXMHTH9bQXSFphzwD",
+        "id": "7gvKdpFpSHV2iRZyzpqNab",
         "pos": 33100,
         "type": "chat",
         "actor": "steve",
@@ -3023,7 +3154,7 @@
         "content_tags": null
       },
       {
-        "id": "fGasU8MsJrT8oviAPa9dTg",
+        "id": "PSMMu3Lj5sLGnEv5wvTmAR",
         "pos": 33200,
         "type": "chat",
         "actor": "ricky",
@@ -3032,16 +3163,18 @@
         "content_tags": null
       },
       {
-        "id": "be8AP3AUvA8cqQLsEojvrY",
+        "id": "yaYKmtys3t8nzCWncfCxmR",
         "pos": 33300,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Steve laughs",
-        "content_tags": null
+        "content_tags": {
+          "Steve": "Steve Merchant"
+        }
       },
       {
-        "id": "9dhzJo5fYBHtU7nZv84ZMD",
+        "id": "cqDersZKK74yt6rn3VGP3C",
         "pos": 33400,
         "type": "song",
         "actor": "",
@@ -3055,7 +3188,7 @@
         "content_tags": null
       },
       {
-        "id": "MzfXRbUpNPA3EFsTTNveTH",
+        "id": "CaFPLq7oudNGTcxZGsQ7tC",
         "pos": 33500,
         "type": "chat",
         "actor": "steve",
@@ -3064,7 +3197,7 @@
         "content_tags": null
       },
       {
-        "id": "ykKXxAnx67UG7G8pzse83n",
+        "id": "Zr3drVHZbpmRNuVofpPxpA",
         "pos": 33600,
         "type": "chat",
         "actor": "karl",
@@ -3073,7 +3206,7 @@
         "content_tags": null
       },
       {
-        "id": "pjNM9NfbXJtsDXDMdumt5V",
+        "id": "W6W7JvwANQHTuDw9dBmWic",
         "pos": 33700,
         "type": "chat",
         "actor": "steve",
@@ -3082,7 +3215,7 @@
         "content_tags": null
       },
       {
-        "id": "oDedxBPxVbSqLemUbNzqzQ",
+        "id": "xfqpW4o6WR4F3A93Mn3qxj",
         "pos": 33800,
         "type": "chat",
         "actor": "ricky",
@@ -3091,7 +3224,7 @@
         "content_tags": null
       },
       {
-        "id": "LfAu2GcVprXtAWMBJNeQU9",
+        "id": "XHbEzCPMMcZkBKNkgT8J9e",
         "pos": 33900,
         "type": "chat",
         "actor": "steve",
@@ -3100,7 +3233,7 @@
         "content_tags": null
       },
       {
-        "id": "rorVMvzmBYQckBNDTwDbCb",
+        "id": "GLm32eEyVYZW5c7dj7uMWb",
         "pos": 34000,
         "type": "chat",
         "actor": "ricky",
@@ -3109,7 +3242,7 @@
         "content_tags": null
       },
       {
-        "id": "raezSjTYsn92wZFDzs68Wn",
+        "id": "od3WjZwGJFzpgRPwZcFboR",
         "pos": 34100,
         "type": "chat",
         "actor": "steve",
@@ -3118,7 +3251,7 @@
         "content_tags": null
       },
       {
-        "id": "oj7DB6STvgambjKdgJmkGc",
+        "id": "F6ZAVD6bEzbQJ4q3bPeSHn",
         "pos": 34200,
         "type": "song",
         "actor": "",
@@ -3132,7 +3265,7 @@
         "content_tags": null
       },
       {
-        "id": "TshGtsWXNWACDPJb7GGtbZ",
+        "id": "7eLUvKFYmGAogsWdomMiB8",
         "pos": 34300,
         "type": "chat",
         "actor": "ricky",
@@ -3141,7 +3274,7 @@
         "content_tags": null
       },
       {
-        "id": "VTNNhDHhseaYMKhUdLHxZB",
+        "id": "qaDkshGMPD36RD2eRBdsVQ",
         "pos": 34400,
         "type": "chat",
         "actor": "steve",
@@ -3150,16 +3283,16 @@
         "content_tags": null
       },
       {
-        "id": "Ajy6P5mEN2ENQzYmZwLzMm",
+        "id": "CYUeRJEZjg4kBqdE5vGzQ8",
         "pos": 34500,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Win Ricky, win.",
-        "content_tags": null
+        "content_tags": {}
       },
       {
-        "id": "t6QGbMq7U3EkfxsLVpVrM",
+        "id": "Q6mnm9FNdnnbvEZSNwvJ54",
         "pos": 34600,
         "type": "song",
         "actor": "",
@@ -3170,28 +3303,32 @@
           "spotify_uri": "spotify:track:3pUWV5hvXsI9diJ9TeNeCh"
         },
         "content": "U2 - Walk On",
-        "content_tags": null
+        "content_tags": {
+          "U2": "U2"
+        }
       },
       {
-        "id": "y7iPSZJBXTFiaUFMxzEq33",
+        "id": "zF8br8dJJS4d5pM9vR8yT4",
         "pos": 34700,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "U2, Walk On, got to give it to them, I hated U2 for about 15 years.",
-        "content_tags": null
+        "content_tags": {
+          "U2": "U2"
+        }
       },
       {
-        "id": "hqiMRX4Q3vfPK2EyJVDwYJ",
+        "id": "4jQPV6zEAbYR9ch38W8BFm",
         "pos": 34800,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "you've said that before, Rick , you've said it before.",
-        "content_tags": null
+        "content_tags": {}
       },
       {
-        "id": "9Zz8U6dNSbSNvHKSneXQCi",
+        "id": "XNPR7HMS6omQa8dQmmY2Qa",
         "pos": 34900,
         "type": "chat",
         "actor": "ricky",
@@ -3200,7 +3337,7 @@
         "content_tags": null
       },
       {
-        "id": "GG24xNQqkWMxTYBiJVFY3C",
+        "id": "zkxrCLQ2pJfbFAqgP9jUWM",
         "pos": 35000,
         "type": "chat",
         "actor": "steve",
@@ -3209,16 +3346,18 @@
         "content_tags": null
       },
       {
-        "id": "RQSnVtejLhV9pZZaj4YFYG",
+        "id": "T3NghebcCAzEsttPPb9fMb",
         "pos": 35100,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "I know where is going - I bought Lyte Funky Ones.",
-        "content_tags": null
+        "content_tags": {
+          "Lyte Funky Ones": "Lyte Funky Ones"
+        }
       },
       {
-        "id": "Wwf2oRDJCtM5fQdgXVGbhH",
+        "id": "h3KodUwN2cgHCqXVRmYrwi",
         "pos": 35200,
         "type": "chat",
         "actor": "steve",
@@ -3227,52 +3366,60 @@
         "content_tags": null
       },
       {
-        "id": "wpPuzcMpZsJEMWDs65ozES",
+        "id": "NLkz2PsuJ33B4ZRLBHwmmY",
         "pos": 35300,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "I bought Lyte Funky Ones 'cos I-",
-        "content_tags": null
+        "content_tags": {
+          "Lyte Funky Ones": "Lyte Funky Ones"
+        }
       },
       {
-        "id": "uH9Xgpf3qLaZjkSeTD3zD7",
+        "id": "8kdo3mYnq25dPQChi8dHcP",
         "pos": 35400,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Steve laughs",
-        "content_tags": null
+        "content_tags": {
+          "Steve": "Steve Merchant"
+        }
       },
       {
-        "id": "E9bVST2VrLNjFMCBz2gBna",
+        "id": "UweMQ9vxbV9fAytinsqU6B",
         "pos": 35500,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "The Lyte Funky Ones, do you remember The Lyte Funky Ones, that was about like a year ago, what did they do - they did “Girl in a Green Dress”, a “Girl on TV” and err Abercrombie \u0026 Fitch",
-        "content_tags": null
+        "content_tags": {
+          "Lyte Funky Ones": "Lyte Funky Ones"
+        }
       },
       {
-        "id": "B9FU8dS6fRZjfznHqfZJcH",
+        "id": "uqzr7oMPYW5S6epLVdMUiN",
         "pos": 35600,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Yeah that one that goes \"Summertime at Abercrombie \u0026 Fitch, the girls are wearing...\" Do you remember that?",
-        "content_tags": null
+        "content_tags": {
+          "Abercrombie": "Abercrombie"
+        }
       },
       {
-        "id": "kvkXoREFAk6gAzyL8btAc8",
+        "id": "3iEWYctB8dyRbjb4Gzm8vB",
         "pos": 35700,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Ricky laughs",
-        "content_tags": null
+        "content_tags": {}
       },
       {
-        "id": "XQKyAbWXwHEtaDZihbfczX",
+        "id": "MfBMcntpGtdesns6WhQpMP",
         "pos": 35800,
         "type": "chat",
         "actor": "steve",
@@ -3281,7 +3428,7 @@
         "content_tags": null
       },
       {
-        "id": "e2sLrKwdwcv85mmiFzLZFi",
+        "id": "akiHzEH8e7gyvS7kqywpzL",
         "pos": 35900,
         "type": "chat",
         "actor": "ricky",
@@ -3290,7 +3437,7 @@
         "content_tags": null
       },
       {
-        "id": "jF7cPaEM9sdNTQxzBFzAbi",
+        "id": "BUAaePpfPwNMzDEVKcQBGm",
         "pos": 36000,
         "type": "chat",
         "actor": "steve",
@@ -3299,16 +3446,18 @@
         "content_tags": null
       },
       {
-        "id": "jGoQrwoC4W6CJWYDhVEtJg",
+        "id": "wMoSV78LcA7PeZZDLdhLP7",
         "pos": 36100,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "I want a bit of The Lyte Funky Ones once, that's 15 quid, it's nothing to me.",
-        "content_tags": null
+        "content_tags": {
+          "Lyte Funky Ones": "Lyte Funky Ones"
+        }
       },
       {
-        "id": "KAqLBDNmZG8xxK7Z38t89k",
+        "id": "5gpJ9jxAjag7RVXsxuay5h",
         "pos": 36200,
         "type": "unknown",
         "actor": "",
@@ -3317,7 +3466,7 @@
         "content_tags": null
       },
       {
-        "id": "f2Bm3pAM6UvCqwFXTuckB5",
+        "id": "ZpsnbVEKDREq6k2qGEi3w",
         "pos": 36300,
         "type": "chat",
         "actor": "steve",
@@ -3326,16 +3475,16 @@
         "content_tags": null
       },
       {
-        "id": "TDKXNJp3pmDkorgYgX9YN6",
+        "id": "P4bvwUPFnjLXXnYmu2xKii",
         "pos": 36400,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Ricky laughs",
-        "content_tags": null
+        "content_tags": {}
       },
       {
-        "id": "8SRigbRwwxtvViR9huSsUW",
+        "id": "JoNKCWGvGmz388mae7NqwP",
         "pos": 36500,
         "type": "chat",
         "actor": "ricky",
@@ -3344,34 +3493,41 @@
         "content_tags": null
       },
       {
-        "id": "x3LNM3ShVpHk4K7Y6k9Yw",
+        "id": "EDz59EexQBGzsvHxzGowZX",
         "pos": 36600,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "The Lyte Funky Ones.",
-        "content_tags": null
+        "content_tags": {
+          "Lyte Funky Ones": "Lyte Funky Ones"
+        }
       },
       {
-        "id": "VA3vzAF5Pz4CQEBqFxoqhW",
+        "id": "npzfvLvFcoP8HRzFBrDu77",
         "pos": 36700,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "ohh, my street cred's gone down hasn't it - the Rocky soundtrack, and The Lyte Funky Ones - you make two mistakes...",
-        "content_tags": null
+        "content_tags": {
+          "Lyte Funky Ones": "Lyte Funky Ones",
+          "Rocky": "Rocky"
+        }
       },
       {
-        "id": "SSzGEckyPn7ixs34ozzjpb",
+        "id": "k9bsqdTZEK7WVrGZkBBaJG",
         "pos": 36800,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Rick, let's not forget Braveheart, the soundtrack.",
-        "content_tags": null
+        "content_tags": {
+          "Braveheart": "Braveheart"
+        }
       },
       {
-        "id": "Nyemj6qTRosZ9PiN4XW82d",
+        "id": "CkACVxQHaw6JQPXMdpwvfX",
         "pos": 36900,
         "type": "chat",
         "actor": "ricky",
@@ -3380,25 +3536,28 @@
         "content_tags": null
       },
       {
-        "id": "fnkdoXQAB9UTM6LA9NduoM",
+        "id": "j7m8fQieYxyaK4UcmJSwtf",
         "pos": 37000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Rick we were talking earlier about-",
-        "content_tags": null
+        "content_tags": {}
       },
       {
-        "id": "Q9dczG9v7BT48vMFguz3KC",
+        "id": "Pv8jbDBZwE5Zu2DQTgfddW",
         "pos": 37100,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "True film about a little Australian, freed the Scottish.",
-        "content_tags": null
+        "content_tags": {
+          "Australian": "Australia",
+          "Scottish": "Scotland"
+        }
       },
       {
-        "id": "tVQtGZvCQKy5HpvX6Xrzqj",
+        "id": "9Vw9siDSgEZ5LAMB66TAkR",
         "pos": 37200,
         "type": "chat",
         "actor": "steve",
@@ -3407,7 +3566,7 @@
         "content_tags": null
       },
       {
-        "id": "xnendQooNNChs22CfozEdZ",
+        "id": "kfy8S7hq7t9C35QaRkeEWJ",
         "pos": 37300,
         "type": "chat",
         "actor": "ricky",
@@ -3416,16 +3575,19 @@
         "content_tags": null
       },
       {
-        "id": "EMRc2jnybhgmxX2E7vzrL5",
+        "id": "YUuhqPZ5WSpExdwjyGPDRk",
         "pos": 37400,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Watching Top of The Pops last night, Jamiroquai was wearing one, and lo and behold, Danii Minogue came on, and she had one as well, I thought \"Blimey there's two people there trying to salvage the trilby, and good luck to them\".",
-        "content_tags": null
+        "content_tags": {
+          "Danii Minogue": "Danni Minogue",
+          "Jamiroquai": "Jamiroquai"
+        }
       },
       {
-        "id": "CYgsv9qEGWfW5cb2Cgi5Rj",
+        "id": "HhBPnMZgy5cdpMtjQrRT7A",
         "pos": 37500,
         "type": "chat",
         "actor": "ricky",
@@ -3434,7 +3596,7 @@
         "content_tags": null
       },
       {
-        "id": "LKDFaiMqGJoSgq5fT66jcH",
+        "id": "6JrdXLbcPGcyg8JxAvPnhS",
         "pos": 37600,
         "type": "chat",
         "actor": "steve",
@@ -3443,7 +3605,7 @@
         "content_tags": null
       },
       {
-        "id": "hs59W6sW6m4km9zXrpkxMD",
+        "id": "nX7RNLyeMp4amptayC2rF6",
         "pos": 37700,
         "type": "chat",
         "actor": "ricky",
@@ -3452,7 +3614,7 @@
         "content_tags": null
       },
       {
-        "id": "7BiiD7JLkHSGztPW6HbLbX",
+        "id": "Qdhgz3k5LtKdSG9KaZXdFA",
         "pos": 37800,
         "type": "chat",
         "actor": "steve",
@@ -3461,7 +3623,7 @@
         "content_tags": null
       },
       {
-        "id": "VpisM6Asc4xNHaZuaTzenE",
+        "id": "So7Sx7qV9iTRSBjcYmsQ9",
         "pos": 37900,
         "type": "chat",
         "actor": "ricky",
@@ -3470,16 +3632,18 @@
         "content_tags": null
       },
       {
-        "id": "LtUhBPE93p5RDUeFEFFHgD",
+        "id": "Pw8kAix5PUHnnZCqu27sdd",
         "pos": 38000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "I'd love a bowler hat, Karl, would you wear a bowler hat? I know you'd wear the cape.",
-        "content_tags": null
+        "content_tags": {
+          "Karl": "Karl Pilkington"
+        }
       },
       {
-        "id": "byjC4rrcGYfywzR8ZWSCyW",
+        "id": "Qv2mogRyoyRim8csAWY95F",
         "pos": 38100,
         "type": "chat",
         "actor": "karl",
@@ -3488,7 +3652,7 @@
         "content_tags": null
       },
       {
-        "id": "k8QJtohc5zLVnYxF5xNQzB",
+        "id": "NwFCZHyocSQMvyRjz2WrfY",
         "pos": 38200,
         "type": "chat",
         "actor": "ricky",
@@ -3497,7 +3661,7 @@
         "content_tags": null
       },
       {
-        "id": "BobPZfwRTQRK5YMHxAxawQ",
+        "id": "rHVd3xw97tD2oyk52oehk6",
         "pos": 38300,
         "type": "chat",
         "actor": "steve",
@@ -3506,7 +3670,7 @@
         "content_tags": null
       },
       {
-        "id": "dXBETkvYAvpR2G9NgAyP6J",
+        "id": "wVLi84ADSVMAGoTxxid5y9",
         "pos": 38400,
         "type": "chat",
         "actor": "karl",
@@ -3515,7 +3679,7 @@
         "content_tags": null
       },
       {
-        "id": "PnSSsMMWH9FdgjJFPpqbD9",
+        "id": "Qr6BEVfvzfANSpuMo8BakN",
         "pos": 38500,
         "type": "chat",
         "actor": "steve",
@@ -3524,7 +3688,7 @@
         "content_tags": null
       },
       {
-        "id": "VrZ3Y6zUHWP39u43HeByZH",
+        "id": "fV8sNaRZ4ic6ptgsAWnHUU",
         "pos": 38600,
         "type": "chat",
         "actor": "karl",
@@ -3533,16 +3697,18 @@
         "content_tags": null
       },
       {
-        "id": "JgsRLrKtRfYqksLtTrBwVf",
+        "id": "H67fHksZgPAzFH2Wwxou8m",
         "pos": 38700,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "They got a job lot of trilbies, and persuaded you kids. \"Eer are, I tell ya what's trendy now - Shaun Ryder wears one o' these.\" \"Does 'e?\", \"Yeah, go on, yeah quid\". And then everyone in your street had trilbies on.",
-        "content_tags": null
+        "content_tags": {
+          "Shaun Ryder": "Shaun Ryder"
+        }
       },
       {
-        "id": "79hGLG3r3g5SNGipzsZqiD",
+        "id": "792eNovFS38uGZqpKZm6yB",
         "pos": 38800,
         "type": "chat",
         "actor": "steve",
@@ -3551,7 +3717,7 @@
         "content_tags": null
       },
       {
-        "id": "iVzuRwUv9xmNZQouSawWpY",
+        "id": "FVKyL6NWK9ZURvqMNaxNRj",
         "pos": 38900,
         "type": "chat",
         "actor": "karl",
@@ -3560,16 +3726,18 @@
         "content_tags": null
       },
       {
-        "id": "MjdeyAsKZkMJwaFiotTosC",
+        "id": "RTUqiUePet9VfXd8EgLDBi",
         "pos": 39000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "What about Kangol bowler?",
-        "content_tags": null
+        "content_tags": {
+          "Kangol": "Kangol"
+        }
       },
       {
-        "id": "bGERwvYP9MtZZyeUf9gBoS",
+        "id": "5GhNPkATfc5mN9pFLMsAYG",
         "pos": 39100,
         "type": "chat",
         "actor": "karl",
@@ -3578,16 +3746,18 @@
         "content_tags": null
       },
       {
-        "id": "2qSV6qvzVaxyQzqauhJmQi",
+        "id": "po3PAmu8FX7EvSVzeKakPU",
         "pos": 39200,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "I tell you what, I would like to wear a bowler hat, but I'm worried I'd look like one of those little fellas off the Homepride advert.",
-        "content_tags": null
+        "content_tags": {
+          "Homepride": "Homepride"
+        }
       },
       {
-        "id": "UkikL5qJ4KsDC4X5M6mCQn",
+        "id": "UjThuNeVF2RBihVqK7bAs6",
         "pos": 39300,
         "type": "chat",
         "actor": "steve",
@@ -3596,7 +3766,7 @@
         "content_tags": null
       },
       {
-        "id": "8MqJYamHw7WWkHTWM4x3jG",
+        "id": "pbgkf4hANTjpXm4kp6hJ6d",
         "pos": 39400,
         "type": "chat",
         "actor": "ricky",
@@ -3605,16 +3775,18 @@
         "content_tags": null
       },
       {
-        "id": "fY25N3JTwZabPEJddYgfqn",
+        "id": "QoBr5mFX5TsEAbNJFzhAMQ",
         "pos": 39500,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "They're still looking goof, they're dapper guys. There's a lot of...the Jolly Green Giant, he had quite a distinctive look, which is obviously what I've been thinking of exploiting.",
-        "content_tags": null
+        "content_tags": {
+          "Jolly Green Giant": "Jolly Green Giant"
+        }
       },
       {
-        "id": "Jn4pryWRV58vwRq4GK9Zn",
+        "id": "g5ftKVojW8ecX99r7r88aX",
         "pos": 39600,
         "type": "chat",
         "actor": "ricky",
@@ -3623,7 +3795,7 @@
         "content_tags": null
       },
       {
-        "id": "Uk5msovknvAdwVsuCyqiBM",
+        "id": "zjSHPYWvxYPAkqXKEwgrL6",
         "pos": 39700,
         "type": "chat",
         "actor": "steve",
@@ -3632,7 +3804,7 @@
         "content_tags": null
       },
       {
-        "id": "FEmbFFKfUJwGLL3puJ77cd",
+        "id": "taBisqatdYxrsytHUr9Xjg",
         "pos": 39800,
         "type": "chat",
         "actor": "ricky",
@@ -3641,16 +3813,18 @@
         "content_tags": null
       },
       {
-        "id": "Cf6LvaRkNE6nVt7WN3S5HF",
+        "id": "Uy3nq2mzgNThojcxK68Wb9",
         "pos": 39900,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "What was the Jolly Green Giant so jolly about? He was very pleased - it can't have just been the sweet corn and the peas.",
-        "content_tags": null
+        "content_tags": {
+          "Jolly Green Giant": "Jolly Green Giant"
+        }
       },
       {
-        "id": "G7uFgBrb2kd8Pp8KGVtEfW",
+        "id": "VMc9GUQQ5jFrPhwcgV9RQ8",
         "pos": 40000,
         "type": "chat",
         "actor": "ricky",
@@ -3659,7 +3833,7 @@
         "content_tags": null
       },
       {
-        "id": "cKoHsFWvDFXVwo3fy2Fkm9",
+        "id": "Fz6MyAkVnhu7hiiBDdZQb6",
         "pos": 40100,
         "type": "chat",
         "actor": "steve",
@@ -3668,7 +3842,7 @@
         "content_tags": null
       },
       {
-        "id": "q4YVMjrTqbPxBWGjDpnzW4",
+        "id": "WtZWrrbi7eBtdwThkhJm6P",
         "pos": 40200,
         "type": "chat",
         "actor": "ricky",
@@ -3677,16 +3851,21 @@
         "content_tags": null
       },
       {
-        "id": "3CTBeAWHKpBh6L434H6mn3",
+        "id": "7GYXhJ8KvJrGvBRki6fC9M",
         "pos": 40300,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "The only thing that, in the case of the Jolly Green Giant, or, like when Gulliver was a giant, and he was in Lilliput, and all the Lilliputians, they were helping him, they were feeding him and stuff.",
-        "content_tags": null
+        "content_tags": {
+          "Gulliver": "Gulliver",
+          "Jolly Green Giant": "Jolly Green Giant",
+          "Lilliput": "Lilliput",
+          "Lilliputians": "Lilliput"
+        }
       },
       {
-        "id": "7WboUB6FMM4pCKddQ5SoBd",
+        "id": "hjnv8zxJVosHbJizMmAkvi",
         "pos": 40400,
         "type": "chat",
         "actor": "ricky",
@@ -3695,7 +3874,7 @@
         "content_tags": null
       },
       {
-        "id": "abwt9Wmpk9QZmJkYzJzBhG",
+        "id": "qeiPWBjE3aRaTLoiGz3cxU",
         "pos": 40500,
         "type": "chat",
         "actor": "steve",
@@ -3704,7 +3883,7 @@
         "content_tags": null
       },
       {
-        "id": "wyReS2Nt48o9HU8zq6q6Kk",
+        "id": "6NpphnqzKSjLPn86cZZqYL",
         "pos": 40600,
         "type": "chat",
         "actor": "ricky",
@@ -3713,16 +3892,18 @@
         "content_tags": null
       },
       {
-        "id": "PVqGVwmd3hw3RerjzB7tA7",
+        "id": "gETfwRKhe9h7Ud9hASv3dJ",
         "pos": 40700,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "A little tug, a little J Arthur Rank?",
-        "content_tags": null
+        "content_tags": {
+          "Arthur Rank": "Arthur Rank"
+        }
       },
       {
-        "id": "pTmwBRBFxA84tSh4xiMyz5",
+        "id": "ZMM7G6fKzy8gmDx2HxH5Fc",
         "pos": 40800,
         "type": "chat",
         "actor": "ricky",
@@ -3731,7 +3912,7 @@
         "content_tags": null
       },
       {
-        "id": "vtNM4rsBhCPUggUxQXBUhV",
+        "id": "fCqtDQC5aT49bHPJYYw6GZ",
         "pos": 40900,
         "type": "chat",
         "actor": "steve",
@@ -3740,7 +3921,7 @@
         "content_tags": null
       },
       {
-        "id": "nb7E8zMbrmVXrNJ3UUa6ef",
+        "id": "vc3Du6DPpcLkk99ei8aA2d",
         "pos": 41000,
         "type": "chat",
         "actor": "ricky",
@@ -3749,7 +3930,7 @@
         "content_tags": null
       },
       {
-        "id": "BuMSVrtwr62JNJ5rZoXaj4",
+        "id": "TeJp72bqUcx3et63FkDCRN",
         "pos": 41100,
         "type": "chat",
         "actor": "steve",
@@ -3758,7 +3939,7 @@
         "content_tags": null
       },
       {
-        "id": "GYTRkrakQuyZB3fKqukSMT",
+        "id": "3gVQbNvDbqsx6buEu6rKYW",
         "pos": 41200,
         "type": "chat",
         "actor": "ricky",
@@ -3767,7 +3948,7 @@
         "content_tags": null
       },
       {
-        "id": "vbzkHrxCGtnzk8FE3CWTPm",
+        "id": "9RW5QenX2MEWcMtJPrX7R6",
         "pos": 41300,
         "type": "chat",
         "actor": "karl",
@@ -3776,7 +3957,7 @@
         "content_tags": null
       },
       {
-        "id": "S84QejnkLoiKtxn5gsNmwV",
+        "id": "PbUTrTfwuSexNRBGdM7cVK",
         "pos": 41400,
         "type": "chat",
         "actor": "steve",
@@ -3785,7 +3966,7 @@
         "content_tags": null
       },
       {
-        "id": "ZyCXBR7gWGrmxSsoNn7AYc",
+        "id": "5EYCQGybLLkk4qVEGvAfme",
         "pos": 41500,
         "type": "chat",
         "actor": "karl",
@@ -3794,7 +3975,7 @@
         "content_tags": null
       },
       {
-        "id": "A7UeWmPmB4opJPocxEneAi",
+        "id": "SfGcDRg8FcLNJBfUsdB3gn",
         "pos": 41600,
         "type": "chat",
         "actor": "ricky",
@@ -3803,25 +3984,29 @@
         "content_tags": null
       },
       {
-        "id": "BwBnS6hg5HeSrq5DtyYpCP",
+        "id": "3Gi3rnStniEaCnWLanAxMc",
         "pos": 41700,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Karl, Karl, you know...",
-        "content_tags": null
+        "content_tags": {
+          "Karl": "Karl Pilkington"
+        }
       },
       {
-        "id": "fyDb5rBaUSnVqccaWkAPt4",
+        "id": "MBBdcLqbZgW944NLwpQ2Q9",
         "pos": 41800,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "It's not well documented, Karl.",
-        "content_tags": null
+        "content_tags": {
+          "Karl": "Karl Pilkington"
+        }
       },
       {
-        "id": "dgVTcmG8rGRCaSMKavxHtH",
+        "id": "7wbkkJzFzDzG42DzdC8mmB",
         "pos": 41900,
         "type": "chat",
         "actor": "steve",
@@ -3830,7 +4015,7 @@
         "content_tags": null
       },
       {
-        "id": "sHmkQsC6pE6u6Q7oqTHiNj",
+        "id": "qbUEcSxRhi7WHD3CUFnyDR",
         "pos": 42000,
         "type": "unknown",
         "actor": "",
@@ -3839,7 +4024,7 @@
         "content_tags": null
       },
       {
-        "id": "LD7DkxH7oiyTqsdBe8TPHZ",
+        "id": "Uuh7SDErzpPPbrYLSvRuL5",
         "pos": 42100,
         "type": "chat",
         "actor": "karl",
@@ -3848,7 +4033,7 @@
         "content_tags": null
       },
       {
-        "id": "bqa7gfY7VdCsnHEgMVFzsL",
+        "id": "FG6WwGWDdAqqWC8WaDTPL4",
         "pos": 42200,
         "type": "chat",
         "actor": "steve",
@@ -3857,7 +4042,7 @@
         "content_tags": null
       },
       {
-        "id": "xsJirMUdMLT7i22YYU4Xr8",
+        "id": "USg6AzG5m2VJPJ85VrYvej",
         "pos": 42300,
         "type": "chat",
         "actor": "ricky",
@@ -3866,7 +4051,7 @@
         "content_tags": null
       },
       {
-        "id": "TqLpPmpz4mfVCWtcwdQkiS",
+        "id": "AhprPHBn5PQbP8275JfZ43",
         "pos": 42400,
         "type": "chat",
         "actor": "steve",
@@ -3875,7 +4060,7 @@
         "content_tags": null
       },
       {
-        "id": "fSHupqefcnF3tYCtix4qKM",
+        "id": "5uSxXbH8ET4u77z4GaAge4",
         "pos": 42500,
         "type": "chat",
         "actor": "ricky",
@@ -3884,25 +4069,29 @@
         "content_tags": null
       },
       {
-        "id": "sntUGePhKdQ55L5d6FntGe",
+        "id": "UtEqDaSPsGq3VpMH99utKW",
         "pos": 42600,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Exactly. Karl, werewolves?",
-        "content_tags": null
+        "content_tags": {
+          "Karl": "Karl Pilkington"
+        }
       },
       {
-        "id": "eRUpigQYKr877ZX3s2yTaJ",
+        "id": "4HnNEeRqdD2fmzeeuzNMcQ",
         "pos": 42700,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Michael Aspel was in it, and Michael Aspel is a top broadcaster, and therefore would not associate himself with something that did not exist.",
-        "content_tags": null
+        "content_tags": {
+          "Michael Aspel": "Michael Aspel"
+        }
       },
       {
-        "id": "mCpmYCAqv6jLriyd44tDdK",
+        "id": "gFcQWL2VfXx8NDB9CuGhkR",
         "pos": 42800,
         "type": "chat",
         "actor": "steve",
@@ -3911,7 +4100,7 @@
         "content_tags": null
       },
       {
-        "id": "WjpRL5TRUNtRYsDeHUm73Y",
+        "id": "aepEKYErGb678zN48cbK3j",
         "pos": 42900,
         "type": "chat",
         "actor": "ricky",
@@ -3920,34 +4109,43 @@
         "content_tags": null
       },
       {
-        "id": "4GiqZzAZcfc4dbFCRzZuz5",
+        "id": "wDzsCd7MR7L86DFZLFg9fN",
         "pos": 43000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Yeah. This is from an album which is a bit hit and miss, as these things often are, it's different artists covering the songs of Leonard Cohen. You've got the Pixies on there, REM, Nick Cave, different people. This, bizarrely, is Lloyd Cole, not someone I'm normally a fan of.",
-        "content_tags": null
+        "content_tags": {
+          "Leonard Cohen": "Leonard Cohen",
+          "Lloyd Cole": "Lloyd Cole",
+          "Nick Cave": "Nick Cave"
+        }
       },
       {
-        "id": "wSQdLtZHbSiA2Vov3qaU7L",
+        "id": "RSPAAAzvDyk6ATxAiJ7Qem",
         "pos": 43100,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "I like Lloyd Cole.",
-        "content_tags": null
+        "content_tags": {
+          "Lloyd Cole": "Lloyd Cole"
+        }
       },
       {
-        "id": "FbqycAP3KnyKxCu5Xpf6BN",
+        "id": "haYUDARFsXVEAkiBnTLZMn",
         "pos": 43200,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Doing a version of the fantastic Leonard Cohen song, Chelsea Hotel, play it Karl, it's beautiful.",
-        "content_tags": null
+        "content_tags": {
+          "Karl": "Karl Pilkington",
+          "Leonard Cohen": "Leonard Cohen"
+        }
       },
       {
-        "id": "wwmqaMs7t7ej3GSJYirp8h",
+        "id": "UWzLZzNg3X34gmnmuAjVpC",
         "pos": 43300,
         "type": "chat",
         "actor": "ricky",
@@ -3956,25 +4154,29 @@
         "content_tags": null
       },
       {
-        "id": "AkYNYVBFYa6y2C7p7dbvSi",
+        "id": "JxM8dUD2gdnHAACMK97Rc5",
         "pos": 43400,
         "type": "song",
         "actor": "",
         "metadata": null,
         "content": "Lloyd Cole - Chelsea Hotel",
-        "content_tags": null
+        "content_tags": {
+          "Lloyd Cole": "Lloyd Cole"
+        }
       },
       {
-        "id": "SrTuVKZHJr5EhsiPMfgxp",
+        "id": "fss4ey2rtz7WmxN2mEnkae",
         "pos": 43500,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Lloyd Cole, doing his version of Chelsea Hotel.",
-        "content_tags": null
+        "content_tags": {
+          "Lloyd Cole": "Lloyd Cole"
+        }
       },
       {
-        "id": "u4UzyGAa8iccJTcNdkhTDN",
+        "id": "btoF5nof8FKNjsZNRCLit4",
         "pos": 43600,
         "type": "chat",
         "actor": "ricky",
@@ -3983,7 +4185,7 @@
         "content_tags": null
       },
       {
-        "id": "AUsy5S85n8f9pTeunqXz3A",
+        "id": "mQfs49QyKpUzjq5tMYfgr6",
         "pos": 43700,
         "type": "chat",
         "actor": "steve",
@@ -3992,7 +4194,7 @@
         "content_tags": null
       },
       {
-        "id": "EJeB4KQhbAmbMrUDoGMDUM",
+        "id": "iHGViA7reFk26AJGF2cVaK",
         "pos": 43800,
         "type": "chat",
         "actor": "ricky",
@@ -4001,16 +4203,21 @@
         "content_tags": null
       },
       {
-        "id": "gaDJLBP7jJQJSXpbKEMzjb",
+        "id": "2NZyac8dVUVexzYGGLS3Jd",
         "pos": 43900,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "You know I think that song, written by Leonard Cohen originally, I think it's about his brief romance with Nico, who made her name, of course, with the Velvet Underground, and was a tragic drugs victim. It's interesting, 'cos I'm looking at this, this is a compilation called \"I'm Your Fan\", which is cover songs of Leonard Cohen's music, and there's people on there, REM, Nick Cave, who are still going, there's a couple of names you don't tend to hear of that often, now - the House of Love.",
-        "content_tags": null
+        "content_tags": {
+          "House": "House",
+          "Leonard Cohen": "Leonard Cohen",
+          "Nick Cave": "Nick Cave",
+          "Velvet Underground": "Velvet Underground"
+        }
       },
       {
-        "id": "H3Wn2MxU6ZdJFQNuTq46Yg",
+        "id": "JBmiPj4PR5gFqzzGXDwQpR",
         "pos": 44000,
         "type": "chat",
         "actor": "ricky",
@@ -4019,16 +4226,18 @@
         "content_tags": null
       },
       {
-        "id": "XREyKpVj2YoHp38uAAmrsh",
+        "id": "yo6AHdeoYy9Jii9RYYRekn",
         "pos": 44100,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Rarely hear them, That Petrol Emotion.",
-        "content_tags": null
+        "content_tags": {
+          "Petrol Emotion": "Petrol Emotion"
+        }
       },
       {
-        "id": "MzeRXnjJywVo5wtufYajoT",
+        "id": "KXrAxZNktqK7LoSeygsS7n",
         "pos": 44200,
         "type": "chat",
         "actor": "ricky",
@@ -4037,34 +4246,41 @@
         "content_tags": null
       },
       {
-        "id": "m5ieJhDNLCeb7X7YgwrwuV",
+        "id": "bpjuj69ip3bYW9Ah2UUT46",
         "pos": 44300,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "That Petrol Emotion, who else we got on here - it says Robert Forster, now is he a musician, or is it...",
-        "content_tags": null
+        "content_tags": {
+          "Petrol Emotion": "Petrol Emotion",
+          "Robert Forster": "Robert Forster"
+        }
       },
       {
-        "id": "B823Gn43w5WgioSk38E3z9",
+        "id": "t2FEZipbYr58Pd2CQMYyx9",
         "pos": 44400,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Well if you know who Robert Forster is...I thought he was a writer.",
-        "content_tags": null
+        "content_tags": {
+          "Robert Forster": "Robert Forster"
+        }
       },
       {
-        "id": "cFPWwTK7EfUxDPBhqHFnG3",
+        "id": "uHmXHC5KMMVRyFzJtW7BDV",
         "pos": 44500,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "The Lilac Time. They're on there as well.",
-        "content_tags": null
+        "content_tags": {
+          "Lilac Time": "Lilac Time"
+        }
       },
       {
-        "id": "V9W5wwfM2rq7KYDBqeQWX3",
+        "id": "CdyocBywHxeN4evgvH2cs6",
         "pos": 44600,
         "type": "chat",
         "actor": "ricky",
@@ -4073,25 +4289,27 @@
         "content_tags": null
       },
       {
-        "id": "vUTurGj3VWiUA4gSKcma4o",
+        "id": "hPkgg3r2RMa5BSV7jgoA5Q",
         "pos": 44700,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "You can if it's The Lilac Time.",
-        "content_tags": null
+        "content_tags": {
+          "Lilac Time": "Lilac Time"
+        }
       },
       {
-        "id": "GBMMjdVVpZ29rWyXC3MecB",
+        "id": "VM9ZJFKmXehPvvKFdEwDZQ",
         "pos": 44800,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Ricky laughs",
-        "content_tags": null
+        "content_tags": {}
       },
       {
-        "id": "wesdQ5JDJwcSKSZF5DM2A8",
+        "id": "W7GruzqZcnjd2f9uAu8QDS",
         "pos": 44900,
         "type": "chat",
         "actor": "ricky",
@@ -4100,7 +4318,7 @@
         "content_tags": null
       },
       {
-        "id": "ti5dA4eyfFB69dpD9QnYvf",
+        "id": "du48sN3KjsZpzYVQ7AoCu8",
         "pos": 45000,
         "type": "chat",
         "actor": "steve",
@@ -4109,7 +4327,7 @@
         "content_tags": null
       },
       {
-        "id": "TntwmPSKpbcgUVbARX8ewU",
+        "id": "jHEh7stzu79SvPaR5qiZMW",
         "pos": 45100,
         "type": "chat",
         "actor": "ricky",
@@ -4118,7 +4336,7 @@
         "content_tags": null
       },
       {
-        "id": "JRW3pN2HbrNppddvv5XEXJ",
+        "id": "BzNqD8o8Ugm4ou6YDrbjAb",
         "pos": 45200,
         "type": "chat",
         "actor": "steve",
@@ -4127,7 +4345,7 @@
         "content_tags": null
       },
       {
-        "id": "v325Dp9aES8F4u9yr7K4Qe",
+        "id": "ca3e2KrKWsUNwZ6R7QYrQQ",
         "pos": 45300,
         "type": "chat",
         "actor": "ricky",
@@ -4136,7 +4354,7 @@
         "content_tags": null
       },
       {
-        "id": "RFNyXCc6wMJaCTxwVxzr3b",
+        "id": "MUiTStS6fFs26WsbLMyVi5",
         "pos": 45400,
         "type": "chat",
         "actor": "steve",
@@ -4145,7 +4363,7 @@
         "content_tags": null
       },
       {
-        "id": "nYm9EkeMuyTxc98HNfi4Lk",
+        "id": "iM3rJcWaXLZKoYDbNW99Am",
         "pos": 45500,
         "type": "chat",
         "actor": "ricky",
@@ -4154,7 +4372,7 @@
         "content_tags": null
       },
       {
-        "id": "bZTVKxdSejdUMwCio5jipC",
+        "id": "NNZxWzrJ8cc5C9e5kSfrUc",
         "pos": 45600,
         "type": "chat",
         "actor": "steve",
@@ -4163,7 +4381,7 @@
         "content_tags": null
       },
       {
-        "id": "BidQhSp9EXzU8TKn96dfgg",
+        "id": "i5CRuEgKDh4XKTqGngTKAN",
         "pos": 45700,
         "type": "chat",
         "actor": "ricky",
@@ -4172,7 +4390,7 @@
         "content_tags": null
       },
       {
-        "id": "vKZcR9PrsQUJqQ8TFa8Vcj",
+        "id": "ArjGvGpX29ud7BGQYUMQUC",
         "pos": 45800,
         "type": "chat",
         "actor": "steve",
@@ -4181,7 +4399,7 @@
         "content_tags": null
       },
       {
-        "id": "dhgYeCENhLq8oCiHXAUyqn",
+        "id": "HucNob8VHvW78xq3JBj3nE",
         "pos": 45900,
         "type": "chat",
         "actor": "ricky",
@@ -4190,7 +4408,7 @@
         "content_tags": null
       },
       {
-        "id": "Td3G6QxM2FJh642sD52mNE",
+        "id": "epS48kjzDVnw6MRR8EdLnC",
         "pos": 46000,
         "type": "chat",
         "actor": "steve",
@@ -4199,7 +4417,7 @@
         "content_tags": null
       },
       {
-        "id": "pwH7xx2k9hqCttAokCsUXT",
+        "id": "8H7RNddkvtcoHT386iBbFY",
         "pos": 46100,
         "type": "chat",
         "actor": "ricky",
@@ -4208,7 +4426,7 @@
         "content_tags": null
       },
       {
-        "id": "4QjcttPE38TAETve8t3nwS",
+        "id": "FDsWJVgX9fDJmR2QzvMQa6",
         "pos": 46200,
         "type": "chat",
         "actor": "steve",
@@ -4217,7 +4435,7 @@
         "content_tags": null
       },
       {
-        "id": "ikgzQ6AXHS3RxUo7tBV7H6",
+        "id": "ZwABqECAVGsNWfJxN2E5dV",
         "pos": 46300,
         "type": "chat",
         "actor": "ricky",
@@ -4226,16 +4444,16 @@
         "content_tags": null
       },
       {
-        "id": "hKLabQaWBBgRVza5akjRqZ",
+        "id": "Ef6qrKk7RqWeGs2e6poF6c",
         "pos": 46400,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Shall we have a classic song, Rick?",
-        "content_tags": null
+        "content_tags": {}
       },
       {
-        "id": "siztdpJgktEiN9dqfmuZgG",
+        "id": "BpRx3vmVwcHs9k76UVrNrf",
         "pos": 46500,
         "type": "chat",
         "actor": "ricky",
@@ -4244,16 +4462,18 @@
         "content_tags": null
       },
       {
-        "id": "ukHkWRP9NcB9rM3Vwia6rK",
+        "id": "ptP38JKaKX3KiRirhyCnTY",
         "pos": 46600,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Oh, I don't know, maybe something by, Nirvana?",
-        "content_tags": null
+        "content_tags": {
+          "Nirvana": "Nirvana"
+        }
       },
       {
-        "id": "36yHmfxezMjsofNz4E5Lz4",
+        "id": "CUDKCu2uBymQWkW6mR93SL",
         "pos": 46700,
         "type": "chat",
         "actor": "ricky",
@@ -4262,7 +4482,7 @@
         "content_tags": null
       },
       {
-        "id": "s7CHyqbNfrPMcNNCs3b92j",
+        "id": "FDKzKLAuAGqG8Snk594QqZ",
         "pos": 46800,
         "type": "chat",
         "actor": "steve",
@@ -4271,7 +4491,7 @@
         "content_tags": null
       },
       {
-        "id": "mmoLEiErxLbZq8ztvJWeAW",
+        "id": "33YqFDmwP9m7oDYweXEjC7",
         "pos": 46900,
         "type": "chat",
         "actor": "ricky",
@@ -4280,7 +4500,7 @@
         "content_tags": null
       },
       {
-        "id": "gvuo4s8J6VtrhnwRPRJ2XF",
+        "id": "b9u8oR34ZT425cCuoFeMYD",
         "pos": 47000,
         "type": "song",
         "actor": "",
@@ -4291,10 +4511,12 @@
           "spotify_uri": "spotify:track:1f3yAtsJtY87CTmM8RLnxf"
         },
         "content": "Nirvana - Smells Like Teen Spirit",
-        "content_tags": null
+        "content_tags": {
+          "Nirvana": "Nirvana"
+        }
       },
       {
-        "id": "5VmxJsJSkAbq2WAsi8G4f8",
+        "id": "Zd9tGmKgdkJzdqtdj2z3QZ",
         "pos": 47100,
         "type": "song",
         "actor": "",
@@ -4307,7 +4529,7 @@
         "content_tags": null
       },
       {
-        "id": "E4XGriXEjv8NWZgJ97477U",
+        "id": "VJGUy8JLtA9GDoEnDsmApG",
         "pos": 47200,
         "type": "chat",
         "actor": "ricky",
@@ -4316,7 +4538,7 @@
         "content_tags": null
       },
       {
-        "id": "89XVexs5LTZkMKV2zL5v4C",
+        "id": "sQwcB2gF8RF793BpRy9woA",
         "pos": 47300,
         "type": "chat",
         "actor": "steve",
@@ -4325,25 +4547,29 @@
         "content_tags": null
       },
       {
-        "id": "9WnRsrh8RfsQpSrHR3UGgc",
+        "id": "w4TFPyhJSmfzEFnizhNnhM",
         "pos": 47400,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Well, I'm looking forward to Pop Idol.",
-        "content_tags": null
+        "content_tags": {
+          "Pop Idol": "Pop Idol"
+        }
       },
       {
-        "id": "W3iwo3ZnvfsHGkvVtzM6HH",
+        "id": "fe5aX4GnMKeSkWxNL9QTn8",
         "pos": 47500,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Pop Idol, I've not been watching it.",
-        "content_tags": null
+        "content_tags": {
+          "Pop Idol": "Pop Idol"
+        }
       },
       {
-        "id": "B46b8F7fNvpkHxE3qGDCXn",
+        "id": "rczd7N2ya2fmSCkbqTyVTU",
         "pos": 47600,
         "type": "chat",
         "actor": "ricky",
@@ -4352,7 +4578,7 @@
         "content_tags": null
       },
       {
-        "id": "DQPHooPNMGYGnD3LowJyqC",
+        "id": "fxjMDnfP6nBjNFsEPX65M6",
         "pos": 47700,
         "type": "chat",
         "actor": "steve",
@@ -4361,7 +4587,7 @@
         "content_tags": null
       },
       {
-        "id": "JJQmHESNSMUkkkZyWxsHzc",
+        "id": "68JX3b5uUuVFhaRkWXnnSi",
         "pos": 47800,
         "type": "chat",
         "actor": "ricky",
@@ -4370,7 +4596,7 @@
         "content_tags": null
       },
       {
-        "id": "QLXNhMH2utVT6PnDJsLch7",
+        "id": "PBpxyrgq9GTRW6DETX49PA",
         "pos": 47900,
         "type": "chat",
         "actor": "steve",
@@ -4379,16 +4605,18 @@
         "content_tags": null
       },
       {
-        "id": "6vyDHGBDXf3oCfb36MHAUe",
+        "id": "3FS9Xin3DARqeTgxihK5o7",
         "pos": 48000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Yeah, I know, and Simon Cowell's good, ohh.",
-        "content_tags": null
+        "content_tags": {
+          "Simon Cowell": "Simon Cowell"
+        }
       },
       {
-        "id": "3Tiaf4XNp7CYuXrRZGZUBm",
+        "id": "kED3cs9itdk66dFcMRYZJi",
         "pos": 48100,
         "type": "chat",
         "actor": "steve",
@@ -4397,7 +4625,7 @@
         "content_tags": null
       },
       {
-        "id": "6SkmHchaLBtm3mHCzxWFVo",
+        "id": "hp24rVatarXrTfHWZRuKoA",
         "pos": 48200,
         "type": "chat",
         "actor": "ricky",
@@ -4406,7 +4634,7 @@
         "content_tags": null
       },
       {
-        "id": "g3Nk6KkEsezFtU9Bx44Z9L",
+        "id": "Uisp6WNTAesdyfg6e3nMfk",
         "pos": 48300,
         "type": "chat",
         "actor": "steve",
@@ -4415,7 +4643,7 @@
         "content_tags": null
       },
       {
-        "id": "dsvXUSV9nNESYKKTDaLKHb",
+        "id": "or5ns9aKGRH4MhpEHtCspV",
         "pos": 48400,
         "type": "chat",
         "actor": "ricky",
@@ -4424,7 +4652,7 @@
         "content_tags": null
       },
       {
-        "id": "QEecHJpumsywCifw5RSLyF",
+        "id": "Q9dmiyr4GxfRcqpJXSFcaP",
         "pos": 48500,
         "type": "chat",
         "actor": "steve",
@@ -4433,7 +4661,7 @@
         "content_tags": null
       },
       {
-        "id": "FLjGgvNiJci8Vx4VhTDn77",
+        "id": "RXNwwTVoHmJ7u9p2RWpJUP",
         "pos": 48600,
         "type": "chat",
         "actor": "ricky",
@@ -4442,7 +4670,7 @@
         "content_tags": null
       },
       {
-        "id": "x2AgiEdRvjJPtiYTVLDNgJ",
+        "id": "9S7HNyBxFpdELy5CPaLLea",
         "pos": 48700,
         "type": "chat",
         "actor": "steve",
@@ -4451,7 +4679,7 @@
         "content_tags": null
       },
       {
-        "id": "YAXwaTtpmL9eWPziu8nupK",
+        "id": "VMkSCDf9aLRXP5VFBLNQgn",
         "pos": 48800,
         "type": "chat",
         "actor": "ricky",
@@ -4460,16 +4688,18 @@
         "content_tags": null
       },
       {
-        "id": "DS7TbRggvn6guUrGY77AxF",
+        "id": "yzoRRYASaPxAiC2zdaCAz6",
         "pos": 48900,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Isn't it some of the big names though - it's Darius Dinesh tonight.",
-        "content_tags": null
+        "content_tags": {
+          "Darius Dinesh": "Darius Danesh"
+        }
       },
       {
-        "id": "qHXa7JHbk8Yr97SCmmBxuD",
+        "id": "VYQSmtGobr6jLYV5BocnPb",
         "pos": 49000,
         "type": "chat",
         "actor": "ricky",
@@ -4478,7 +4708,7 @@
         "content_tags": null
       },
       {
-        "id": "u34GSsPzQk2Wi4TgvJ2zYm",
+        "id": "r7E4zhg3qFJ23XYVdf2TjW",
         "pos": 49100,
         "type": "chat",
         "actor": "steve",
@@ -4487,7 +4717,7 @@
         "content_tags": null
       },
       {
-        "id": "t7hSDkxE3Qp3nXrrHAFEGM",
+        "id": "P4xGkRyrNWWbWTXg895cbd",
         "pos": 49200,
         "type": "chat",
         "actor": "ricky",
@@ -4496,7 +4726,7 @@
         "content_tags": null
       },
       {
-        "id": "S8QGcN8gcGFpmERR3SL6uT",
+        "id": "V2i6htLk68mCxYwvnuXzUZ",
         "pos": 49300,
         "type": "chat",
         "actor": "steve",
@@ -4505,7 +4735,7 @@
         "content_tags": null
       },
       {
-        "id": "MG9P9ji5ZuczL3JXMiRJjD",
+        "id": "k9ytaxKsHnSEYgtpgR8Q",
         "pos": 49400,
         "type": "chat",
         "actor": "ricky",
@@ -4514,7 +4744,7 @@
         "content_tags": null
       },
       {
-        "id": "nKLkGWcq7QrNs9vztuiMyB",
+        "id": "VX5NNzWjEehCetj8wGTPr8",
         "pos": 49500,
         "type": "chat",
         "actor": "steve",
@@ -4523,7 +4753,7 @@
         "content_tags": null
       },
       {
-        "id": "9BfoeZuVVhWmdwPNvAfFAM",
+        "id": "hYnEj4a6wTpX5a4vyW9SkA",
         "pos": 49600,
         "type": "unknown",
         "actor": "",
@@ -4532,7 +4762,7 @@
         "content_tags": null
       },
       {
-        "id": "jY7SAxWNQfVDr2s5dcp3GB",
+        "id": "3jAWowmDEbmgdVXHCk2mpk",
         "pos": 49700,
         "type": "chat",
         "actor": "ricky",
@@ -4541,7 +4771,7 @@
         "content_tags": null
       },
       {
-        "id": "qEZ29VHQoQBCA7jbWN3xGo",
+        "id": "WJt8ZK3EadKghUT3PeJ8Vb",
         "pos": 49800,
         "type": "chat",
         "actor": "steve",
@@ -4550,7 +4780,7 @@
         "content_tags": null
       },
       {
-        "id": "hJzZfLMWdvs6tzz27z2ozD",
+        "id": "pYyndw9oeXdFSMub4XiHrh",
         "pos": 49900,
         "type": "chat",
         "actor": "ricky",
@@ -4559,7 +4789,7 @@
         "content_tags": null
       },
       {
-        "id": "sHPNcBybprf8cJxaeVvGbB",
+        "id": "QLtfDvNZC9EXCpocTGmDvn",
         "pos": 50000,
         "type": "chat",
         "actor": "steve",
@@ -4568,7 +4798,7 @@
         "content_tags": null
       },
       {
-        "id": "VBED67QKgA5jc7jEM4RfHD",
+        "id": "ydwGbKJdk3mtiPpQUakxHT",
         "pos": 50100,
         "type": "chat",
         "actor": "ricky",
@@ -4577,7 +4807,7 @@
         "content_tags": null
       },
       {
-        "id": "ZJXrimUa5uCoJYfCADFopF",
+        "id": "TfFCzrGD7fjRt5hCBfnTQL",
         "pos": 50200,
         "type": "chat",
         "actor": "steve",
@@ -4586,16 +4816,18 @@
         "content_tags": null
       },
       {
-        "id": "8snpaXeDDk4bTpdmTfVwpk",
+        "id": "rgyNBh3KCJjabKoYvy7iVC",
         "pos": 50300,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "I think so, or that Welsh girl, who was very good, the one who made Pete Waterman cry - that was great.",
-        "content_tags": null
+        "content_tags": {
+          "Pete Waterman": "Pete Waterman"
+        }
       },
       {
-        "id": "vHZxWaYoM6idivtLQUdcdS",
+        "id": "cB4KsunHMUg6WyKau9HrdD",
         "pos": 50400,
         "type": "chat",
         "actor": "karl",
@@ -4604,7 +4836,7 @@
         "content_tags": null
       },
       {
-        "id": "5Whuqn7t22ZKKDFdRL7Coj",
+        "id": "rZgjeha22PSs8zUfJGrdJc",
         "pos": 50500,
         "type": "chat",
         "actor": "ricky",
@@ -4613,7 +4845,7 @@
         "content_tags": null
       },
       {
-        "id": "veWLDcFQkhRM4ZiUC265oT",
+        "id": "TSSDiUnFJsxL3mhGM3dZ2o",
         "pos": 50600,
         "type": "chat",
         "actor": "steve",
@@ -4622,7 +4854,7 @@
         "content_tags": null
       },
       {
-        "id": "dyt9zt6cRn92LDTnuzevuP",
+        "id": "BXjc3W6CPb3UDxhvmdxsz4",
         "pos": 50700,
         "type": "chat",
         "actor": "ricky",
@@ -4631,7 +4863,7 @@
         "content_tags": null
       },
       {
-        "id": "bvd2Sfpm6C66YytULFPqk7",
+        "id": "pNrvLGe6yrrQ2T7AoA6y4W",
         "pos": 50800,
         "type": "chat",
         "actor": "steve",
@@ -4640,7 +4872,7 @@
         "content_tags": null
       },
       {
-        "id": "BwKT3TQVao5CNCLEcvMBNK",
+        "id": "V3mkYz3Wyd68uDeiNBPHDc",
         "pos": 50900,
         "type": "chat",
         "actor": "ricky",
@@ -4649,7 +4881,7 @@
         "content_tags": null
       },
       {
-        "id": "ewyFXqbijXoeKcejMNpW28",
+        "id": "JtjHeraP7889kftvLLgqFP",
         "pos": 51000,
         "type": "chat",
         "actor": "steve",
@@ -4658,16 +4890,19 @@
         "content_tags": null
       },
       {
-        "id": "i8RD3dvz6uXHV45WqeR8Q3",
+        "id": "Gm3tEFckuHLn8wgzdcaJxh",
         "pos": 51100,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "We've had Demis Roussos in the charts, Alison Moyet.",
-        "content_tags": null
+        "content_tags": {
+          "Alison Moyet": "Alison Moyet",
+          "Demis Roussos": "Demis Roussos"
+        }
       },
       {
-        "id": "8FkCrDYuwbm6R4GDJbcddm",
+        "id": "4KVE5jopjkMGx4kGrbwLWj",
         "pos": 51200,
         "type": "chat",
         "actor": "steve",
@@ -4676,7 +4911,7 @@
         "content_tags": null
       },
       {
-        "id": "FtuoCdE2WjHevNy4qnif2n",
+        "id": "yuVcmAi6n3fQxhcyQvKhMP",
         "pos": 51300,
         "type": "chat",
         "actor": "ricky",
@@ -4685,7 +4920,7 @@
         "content_tags": null
       },
       {
-        "id": "oELgCGn8NRdENDd8RnmXoa",
+        "id": "hpE93CVbcUWqUqCbqdz6RL",
         "pos": 51400,
         "type": "chat",
         "actor": "steve",
@@ -4694,7 +4929,7 @@
         "content_tags": null
       },
       {
-        "id": "TqMADTLvh5AJBbWFs5cchZ",
+        "id": "VAGrH6Hdk9eqcQadg7LW5a",
         "pos": 51500,
         "type": "chat",
         "actor": "karl",
@@ -4703,7 +4938,7 @@
         "content_tags": null
       },
       {
-        "id": "2e4vYhnm54xpwGHLGhZ9sE",
+        "id": "MRZ3Rcm7ZfyNsrWrNAbvc6",
         "pos": 51600,
         "type": "chat",
         "actor": "ricky",
@@ -4712,16 +4947,18 @@
         "content_tags": null
       },
       {
-        "id": "WJkP8TFq2HN8c93CELVMXe",
+        "id": "XKubZhuST4qbdmaZWaFFJ",
         "pos": 51700,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Geri Haliwell?",
-        "content_tags": null
+        "content_tags": {
+          "Geri Haliwell": "Geri Halliwell"
+        }
       },
       {
-        "id": "Nvyf4wQH788ty5ivfvddYf",
+        "id": "BMFesaeQd7MVHoQzMfxNd6",
         "pos": 51800,
         "type": "chat",
         "actor": "karl",
@@ -4730,25 +4967,27 @@
         "content_tags": null
       },
       {
-        "id": "Sg9YiemW2guMRJTZBhGESD",
+        "id": "74AvG6EhgVdfrt3BVCiNAZ",
         "pos": 51900,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Yeah, she was never a bloater - have you seen this bloke of Pop Idols? It's like he's got three Geri Haliwells strapped to his waist, and then wearing a big coat over the top.",
-        "content_tags": null
+        "content_tags": {
+          "Geri Haliwells": "Geri Halliwell"
+        }
       },
       {
-        "id": "czjPpYb7xtAGXxuhHz4Mjf",
+        "id": "59iAR8ZJjf4dhnEhRnrhzJ",
         "pos": 52000,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Ricky laughs",
-        "content_tags": null
+        "content_tags": {}
       },
       {
-        "id": "AE7n4eV2EwFkdhMBpznAQN",
+        "id": "zbVbqtnHY6XmoQjZPSjdoF",
         "pos": 52100,
         "type": "chat",
         "actor": "ricky",
@@ -4757,7 +4996,7 @@
         "content_tags": null
       },
       {
-        "id": "PXkenJ6pNLq5VV8kzGFTZ7",
+        "id": "koEhbHZgXFt9tfG6aKNqLC",
         "pos": 52200,
         "type": "chat",
         "actor": "steve",
@@ -4766,7 +5005,7 @@
         "content_tags": null
       },
       {
-        "id": "BmaYTGut4gEsqDNQd4N5Un",
+        "id": "CYKYDyhSMwGjtebMjZ7jeC",
         "pos": 52300,
         "type": "chat",
         "actor": "ricky",
@@ -4775,7 +5014,7 @@
         "content_tags": null
       },
       {
-        "id": "MxAcSwpnqvYgqGNtx68Lhi",
+        "id": "cNL3CUcLXS6iNKApiTSv3j",
         "pos": 52400,
         "type": "chat",
         "actor": "steve",
@@ -4784,7 +5023,7 @@
         "content_tags": null
       },
       {
-        "id": "gAe8MkdvsaZW7Kczgz2ptK",
+        "id": "wER8jcuyz4M636NTEr2LsA",
         "pos": 52500,
         "type": "chat",
         "actor": "ricky",
@@ -4793,7 +5032,7 @@
         "content_tags": null
       },
       {
-        "id": "MzCtiGHRJ5yfhPb3Z4tDEP",
+        "id": "NNaYmDQHv7rzBSspv8Jtxa",
         "pos": 52600,
         "type": "chat",
         "actor": "steve",
@@ -4802,16 +5041,18 @@
         "content_tags": null
       },
       {
-        "id": "9mAnnUbp8CduhCqn8nUxj7",
+        "id": "DzkdANs65aWFvhn5Z49VyJ",
         "pos": 52700,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "I bet she's not even Welsh.",
-        "content_tags": null
+        "content_tags": {
+          "Welsh": "Welsh"
+        }
       },
       {
-        "id": "bH4guDowLaxHrxKoSZoy2K",
+        "id": "s6ubbQqzVPQtiKbMCiNGWf",
         "pos": 52800,
         "type": "chat",
         "actor": "steve",
@@ -4820,16 +5061,16 @@
         "content_tags": null
       },
       {
-        "id": "ZyzFfcN2oAmrbrhQ7YqLH4",
+        "id": "yPt3Lg4aEJdmRThoH5iav7",
         "pos": 52900,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Ricky sniggers",
-        "content_tags": null
+        "content_tags": {}
       },
       {
-        "id": "ByacAfucGLjAAjrXaLjLsK",
+        "id": "GSuLwCV6WaiDH2prn3ctMY",
         "pos": 53000,
         "type": "chat",
         "actor": "ricky",
@@ -4838,7 +5079,7 @@
         "content_tags": null
       },
       {
-        "id": "P3T3NEyTKx6TGyCScV3xE7",
+        "id": "dqWK2EgZaA2cowG3pumXYM",
         "pos": 53100,
         "type": "song",
         "actor": "",
@@ -4849,19 +5090,23 @@
           "spotify_uri": "spotify:track:0yEhNqCwEfy8LHUmnZoHpP"
         },
         "content": "Dandy Warhols - Bohemian Like You.",
-        "content_tags": null
+        "content_tags": {
+          "Dandy Warhols": "Dandy Warhols"
+        }
       },
       {
-        "id": "iEX2LteFcrYUchAaVdCuc",
+        "id": "ZQpergrQs8e4fTxoU97m57",
         "pos": 53200,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Dandy Warhols on Xfm 104.9. It's about 20 past 2, the Ricky Gervais show.",
-        "content_tags": null
+        "content_tags": {
+          "Dandy Warhols": "Dandy Warhols"
+        }
       },
       {
-        "id": "SCywGgYHMtWduSDu5gF5DL",
+        "id": "pAVt3n5JRS7BtTpxFZhWf5",
         "pos": 53300,
         "type": "chat",
         "actor": "steve",
@@ -4872,7 +5117,7 @@
         }
       },
       {
-        "id": "enAJiFYzX9J4T5m6WQEoH9",
+        "id": "XqHThTr8biYPDRJECAdWoC",
         "pos": 53400,
         "type": "chat",
         "actor": "ricky",
@@ -4881,27 +5126,30 @@
         "content_tags": null
       },
       {
-        "id": "zmPAyvo3m8eJ66vrGXpvYZ",
+        "id": "GGc8cKMKgdq9jfxsAA8RpV",
         "pos": 53500,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "The Christmas ads have come on I notice, they're on now, and I notice, watching telly last night - do you think that the advertising executive for Cadbury's Roses chocolates just comes in once a year, and they go \"What you got this year?\", and he goes, \"What about some workmen and some old ladies singing 'Thank you very much, thank you very very much'?, just shot in a street somewhere\", \"Yeah, that'll be fine, it worked last year\". Every...that's been going, like, since I can remember. I've never seen another advert for Cadbury's Roses except for that.",
         "content_tags": {
+          "Cadbury": "Cadbury",
           "Christmas": "Christmas"
         }
       },
       {
-        "id": "cgeYRoVeYgSzq9nGsyv9Nm",
+        "id": "ipSnhfEPG3h4FpvikLwH84",
         "pos": 53600,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Exactly, well there's certain things that conjure up Christmas, like, you got your turkey and all that, you got your Roses.",
-        "content_tags": null
+        "content_tags": {
+          "Christmas": "Christmas"
+        }
       },
       {
-        "id": "LrTcit7kudvwtrcRnbfN2X",
+        "id": "JMETo3irLLHPxunzEhBoXR",
         "pos": 53700,
         "type": "chat",
         "actor": "steve",
@@ -4910,16 +5158,18 @@
         "content_tags": null
       },
       {
-        "id": "E8utSXUStA97i4MbSVvQyR",
+        "id": "geZVyxjkTPkEqQzk76psUM",
         "pos": 53800,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Ricky and Steve laugh",
-        "content_tags": null
+        "content_tags": {
+          "Steve": "Steve Merchant"
+        }
       },
       {
-        "id": "jhECQDmELN8ashUGuhCAw3",
+        "id": "EsFC7YR7x5FXHiqr9CrXXn",
         "pos": 53900,
         "type": "chat",
         "actor": "ricky",
@@ -4928,16 +5178,18 @@
         "content_tags": null
       },
       {
-        "id": "r7LJeoByTguS75ZU84HxrT",
+        "id": "qBVfC3AcyYnzuQ4rSqSgVj",
         "pos": 54000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Ha ha, pizza, Woolworth's, drink driving...oh dear, I forgot what I went in for.",
-        "content_tags": null
+        "content_tags": {
+          "Woolworth": "Woolworths"
+        }
       },
       {
-        "id": "EG2xUJTXSM7jU3vEXWTPsC",
+        "id": "5qoQbjZdCo3P3sYRiG8Qp",
         "pos": 54100,
         "type": "chat",
         "actor": "ricky",
@@ -4948,16 +5200,18 @@
         }
       },
       {
-        "id": "hoMzhE5RhY44DsNrQtRDXB",
+        "id": "BfgYRYjDHkM6ewe5BJVTJL",
         "pos": 54200,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "I was reading in the paper this week that Charlotte Church, you know, little singing sensation - she's been slagging off the firemen, who've been salvaging people, and rescuing...",
-        "content_tags": null
+        "content_tags": {
+          "Charlotte Church": "Charlotte Church"
+        }
       },
       {
-        "id": "zPpdEdS4sZfKCfSAzwNc5L",
+        "id": "3LmaSgjAZWVaHPsvwmNJKU",
         "pos": 54300,
         "type": "chat",
         "actor": "ricky",
@@ -4966,16 +5220,18 @@
         "content_tags": null
       },
       {
-        "id": "4rcMRf2ujW2J2YMvxwPq6b",
+        "id": "8oY3daPbZDQngEXzbTGAHW",
         "pos": 54400,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "No, I saw on the news that apparently, and she claims she's been misinterpreted, but the channel 5 news thought this was a big enough story, to say that Charlotte Church had been saying that the September 11 tragedy had been blown out of proportion.",
-        "content_tags": null
+        "content_tags": {
+          "Charlotte Church": "Charlotte Church"
+        }
       },
       {
-        "id": "bAUuaYofmMpXzbfdDZWYRP",
+        "id": "LfHQqdSQkuKzZPANqzqaD5",
         "pos": 54500,
         "type": "chat",
         "actor": "ricky",
@@ -4984,7 +5240,7 @@
         "content_tags": null
       },
       {
-        "id": "Qmi7hFjGecviV8gjbpk4UT",
+        "id": "ELRZonDZffSkw8qsTtZiVY",
         "pos": 54600,
         "type": "chat",
         "actor": "steve",
@@ -4993,7 +5249,7 @@
         "content_tags": null
       },
       {
-        "id": "eAafnM8hKciopzuQ8JY7M5",
+        "id": "ZaqPy6R8rw4GxkMa6Qxmd8",
         "pos": 54700,
         "type": "chat",
         "actor": "ricky",
@@ -5002,7 +5258,7 @@
         "content_tags": null
       },
       {
-        "id": "hCp6WQGF6U8xM5qVB5pmpG",
+        "id": "SYo8hkBrtXD7w4AzVZYUtQ",
         "pos": 54800,
         "type": "chat",
         "actor": "steve",
@@ -5011,7 +5267,7 @@
         "content_tags": null
       },
       {
-        "id": "KEoL9ixkPknKyQnPzJBXWg",
+        "id": "Ub7j5gCLUDzamw6Z29eU3G",
         "pos": 54900,
         "type": "chat",
         "actor": "ricky",
@@ -5020,7 +5276,7 @@
         "content_tags": null
       },
       {
-        "id": "Lb3jxBd4xuJpqPTXeq6E6a",
+        "id": "StKwWzvkpVNaLDfB5mW8RS",
         "pos": 55000,
         "type": "chat",
         "actor": "steve",
@@ -5029,16 +5285,19 @@
         "content_tags": null
       },
       {
-        "id": "TeghvQJaVVzsUkq672NZLV",
+        "id": "JKpjNHR9h3JVTXhGfL8xAJ",
         "pos": 55100,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "What she thinks about September 11th anyway. It's the same as those things like, during a presidential election, or one of our elections - \"Billie Piper says - I've always voted Labour\", who's gonna go out and say \"Ooh hold on, H from Steps, he's a Conservative, what's going on\". I don't know if he is or not, you know, that was just an example.",
-        "content_tags": null
+        "content_tags": {
+          "Billie Piper": "Billie Piper",
+          "Steps": "Steps"
+        }
       },
       {
-        "id": "Ldfcf2FzoETEonPoAqhiZT",
+        "id": "iyLiE8n2Ls4xBFTPKxq4mJ",
         "pos": 55200,
         "type": "chat",
         "actor": "steve",
@@ -5047,7 +5306,7 @@
         "content_tags": null
       },
       {
-        "id": "MewnnpRNRvFBAWmk9swYNk",
+        "id": "vgxjDsNEf7i4LWXib282kK",
         "pos": 55300,
         "type": "chat",
         "actor": "ricky",
@@ -5056,16 +5315,18 @@
         "content_tags": null
       },
       {
-        "id": "Qin29G7APAxCixc8BfLDoe",
+        "id": "aVHzA7HptQSGF6GhDhXEyX",
         "pos": 55400,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "I think Fay and Clare from Steps are both BNP members, I can't...I remember reading that somewhere.",
-        "content_tags": null
+        "content_tags": {
+          "Steps": "Steps"
+        }
       },
       {
-        "id": "p5CSNWzZxLq8LMAxC8mSvB",
+        "id": "vpfUGtMi8JiH87awXeyQv",
         "pos": 55500,
         "type": "chat",
         "actor": "ricky",
@@ -5074,7 +5335,7 @@
         "content_tags": null
       },
       {
-        "id": "4hufc82Qnk47V9aF49QRbB",
+        "id": "5xuh25gLRq9i2QrRA43BF4",
         "pos": 55600,
         "type": "chat",
         "actor": "steve",
@@ -5083,7 +5344,7 @@
         "content_tags": null
       },
       {
-        "id": "tkiokBi6W3JWnZhWGdTa3D",
+        "id": "J3ZdAxdp8RzSLjw7KnSYdB",
         "pos": 55700,
         "type": "chat",
         "actor": "ricky",
@@ -5092,7 +5353,7 @@
         "content_tags": null
       },
       {
-        "id": "eHujS7e5FLMJaaBAbuAWcj",
+        "id": "gsLB8uHcX35xdJh2EYji4c",
         "pos": 55800,
         "type": "chat",
         "actor": "steve",
@@ -5101,7 +5362,7 @@
         "content_tags": null
       },
       {
-        "id": "iECnpWQ58anJMKXoKeeCEW",
+        "id": "CjG7xgv37vUFSznirmYopM",
         "pos": 55900,
         "type": "chat",
         "actor": "ricky",
@@ -5110,7 +5371,7 @@
         "content_tags": null
       },
       {
-        "id": "xpDrms5JVnMxTM4mSjAAdk",
+        "id": "QfHFV6jD5N2WJxDb4Vjoam",
         "pos": 56000,
         "type": "chat",
         "actor": "steve",
@@ -5119,7 +5380,7 @@
         "content_tags": null
       },
       {
-        "id": "YqqYvqNjG2Gya46ir8WrKR",
+        "id": "czNQKYPkSZ4mBofRBNqjun",
         "pos": 56100,
         "type": "chat",
         "actor": "ricky",
@@ -5128,7 +5389,7 @@
         "content_tags": null
       },
       {
-        "id": "9xNLxg4FW5MRZx5Ki4CpPX",
+        "id": "cczeDeDD92AbnMUS3Ssa9i",
         "pos": 56200,
         "type": "chat",
         "actor": "steve",
@@ -5137,7 +5398,7 @@
         "content_tags": null
       },
       {
-        "id": "5b5zAKuNWLk8eZqQbxoWdm",
+        "id": "SsoKpfBTfvwEyo8HAuEQtW",
         "pos": 56300,
         "type": "chat",
         "actor": "ricky",
@@ -5146,16 +5407,16 @@
         "content_tags": null
       },
       {
-        "id": "yb9D58sJ4fwNsWhuUaWJbG",
+        "id": "kSj9TcR36AYJQFaRde65PP",
         "pos": 56400,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Now, I definitely can quote this, 'cos I read it in the Sun, Blue were being interviewed by...you know the pop band, Blue. \"All rise\". Have you bought that album yet, Rick? I imagine that would be on your Christmas list.",
-        "content_tags": null
+        "content_tags": {}
       },
       {
-        "id": "SPhB3yqh7Tw4kiGxEwqhqE",
+        "id": "n5udoNpsxWvcSxvFKLhSMS",
         "pos": 56500,
         "type": "chat",
         "actor": "ricky",
@@ -5164,7 +5425,7 @@
         "content_tags": null
       },
       {
-        "id": "qdZ8jNvMKNmnbmogkLchLX",
+        "id": "V68m6bSGD9c6e97hSUQ69n",
         "pos": 56600,
         "type": "chat",
         "actor": "ricky and steve",
@@ -5173,16 +5434,18 @@
         "content_tags": null
       },
       {
-        "id": "nA9HQySAFf8SijjD8nknFo",
+        "id": "934VYafwsHPWmmDku734va",
         "pos": 56700,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Anyway, Blue were being interviewed by the Sun, by the lovable Dominic Mohan, and, for some reason they got round to September 11th, and one of the members of the band, Blue, said, again, Church-like, \"I think it's been blown our of all proportion, what about all the whales and elephants that are dying every day?\"",
-        "content_tags": null
+        "content_tags": {
+          "Dominic Mohan": "Dominic Mohan"
+        }
       },
       {
-        "id": "yeE6AEEzoT9G9qyT98irbc",
+        "id": "GWQpS9kfNqV68TbcbL89ch",
         "pos": 56800,
         "type": "chat",
         "actor": "ricky",
@@ -5191,7 +5454,7 @@
         "content_tags": null
       },
       {
-        "id": "zmjeZsZczu59K8zMGmZEu4",
+        "id": "qvB3J3GhkH4NGr2dTKnUAC",
         "pos": 56900,
         "type": "chat",
         "actor": "steve",
@@ -5200,7 +5463,7 @@
         "content_tags": null
       },
       {
-        "id": "ZggGMhLqbwMW2TMp5zZ2iD",
+        "id": "oUy8h8gZrA29Axt4xJ72qS",
         "pos": 57000,
         "type": "chat",
         "actor": "ricky",
@@ -5209,7 +5472,7 @@
         "content_tags": null
       },
       {
-        "id": "N5cd9ABbw8E3cckUTRFcM8",
+        "id": "h3NLEfzgRjUjqRWCacgMpX",
         "pos": 57100,
         "type": "chat",
         "actor": "steve",
@@ -5218,7 +5481,7 @@
         "content_tags": null
       },
       {
-        "id": "qNav3TCYzyXnbWwZcv6RgE",
+        "id": "SvXKzosY4DcDevvDXmg8Tf",
         "pos": 57200,
         "type": "chat",
         "actor": "ricky",
@@ -5227,16 +5490,18 @@
         "content_tags": null
       },
       {
-        "id": "cghiegW2DyuNYQwDjjDfPk",
+        "id": "d6rvLL9k5sUGRKEBjivskj",
         "pos": 57300,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "This is what I mean! Why are people asking the members of Blue, or Atomic Kitten, what they think about September 11th?",
-        "content_tags": null
+        "content_tags": {
+          "Atomic Kitten": "Atomic Kitten"
+        }
       },
       {
-        "id": "792aszEDCqQwYMer2g5B35",
+        "id": "q7dfKGcpGxq4RnfDpDTT5E",
         "pos": 57400,
         "type": "chat",
         "actor": "ricky",
@@ -5245,7 +5510,7 @@
         "content_tags": null
       },
       {
-        "id": "MrN8cWj7p9RRmWjdaGtiZX",
+        "id": "Aq96jSwb4roYDM6t7MjJZj",
         "pos": 57500,
         "type": "chat",
         "actor": "steve",
@@ -5254,25 +5519,28 @@
         "content_tags": null
       },
       {
-        "id": "h4sGEfPzUAXCxUfZrsRd8f",
+        "id": "zXVv3gucEs4KJ7TF8UBcsh",
         "pos": 57600,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Ricky laughs",
-        "content_tags": null
+        "content_tags": {}
       },
       {
-        "id": "WL2vtzcrn3Xc5MQCXzFagJ",
+        "id": "iU7oJHXnta9VUj5y8mW4UC",
         "pos": 57700,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "The Atomic Kitten girls though, really, do they not look like they should be in a chip shop, or just hanging around outside an offy, drinking Diamond White Cider.",
-        "content_tags": null
+        "content_tags": {
+          "Atomic Kitten": "Atomic Kitten",
+          "Diamond White Cider": "Diamond White Cider"
+        }
       },
       {
-        "id": "ZuqEFNNZBoozwvJLHutq44",
+        "id": "4dmyKzhwjDszHbdgMrqipN",
         "pos": 57800,
         "type": "chat",
         "actor": "ricky",
@@ -5281,16 +5549,16 @@
         "content_tags": null
       },
       {
-        "id": "Rh8o2QCQsKmzuZygvVTJoP",
+        "id": "eQm6Nq3RCxMKHbFYAW3Xvb",
         "pos": 57900,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Shall I surprise you, Rick, I prefer Liberty.",
-        "content_tags": null
+        "content_tags": {}
       },
       {
-        "id": "W8iGvcnHAz8DNaa6X3pYB8",
+        "id": "yNggb4ECTdx3oM7vGEMeYY",
         "pos": 58000,
         "type": "chat",
         "actor": "ricky",
@@ -5299,7 +5567,7 @@
         "content_tags": null
       },
       {
-        "id": "A8zLfwDxXyz5V2WkruGnGV",
+        "id": "aVN7BRPRqhxGiWUFVK6As8",
         "pos": 58100,
         "type": "chat",
         "actor": "steve",
@@ -5308,7 +5576,7 @@
         "content_tags": null
       },
       {
-        "id": "Jo9nYPsbbSdete8QmNm4mf",
+        "id": "mZhE44gBFgXfBTakvzdgVn",
         "pos": 58200,
         "type": "chat",
         "actor": "ricky",
@@ -5317,7 +5585,7 @@
         "content_tags": null
       },
       {
-        "id": "beD6BZz9vDXwEiZgEBStSV",
+        "id": "TjRDzNTZoAr3Lr7RkPMF2J",
         "pos": 58300,
         "type": "chat",
         "actor": "steve",
@@ -5326,7 +5594,7 @@
         "content_tags": null
       },
       {
-        "id": "H2DfWmjpiTJaNugpvVrqH5",
+        "id": "kLSHJFg4Eyt4BET3kF3KQg",
         "pos": 58400,
         "type": "chat",
         "actor": "ricky",
@@ -5335,7 +5603,7 @@
         "content_tags": null
       },
       {
-        "id": "7MwKPoLgrX3KSUFef2Rtwd",
+        "id": "PVqwgQfZ8GAkJnMUZzbfTL",
         "pos": 58500,
         "type": "chat",
         "actor": "steve",
@@ -5344,7 +5612,7 @@
         "content_tags": null
       },
       {
-        "id": "vYZmjxVFyBKWCohVZraNS4",
+        "id": "G9ZnUJ3pUuS22EJSwRbB6e",
         "pos": 58600,
         "type": "chat",
         "actor": "ricky",
@@ -5353,7 +5621,7 @@
         "content_tags": null
       },
       {
-        "id": "zbYdLKLccmVVFkUM8n93va",
+        "id": "RjzDDAAUaEEUSJnCPUa5ia",
         "pos": 58700,
         "type": "chat",
         "actor": "steve",
@@ -5362,7 +5630,7 @@
         "content_tags": null
       },
       {
-        "id": "24BvCoarnnF8Fvt6YCB3XT",
+        "id": "V3JpV7FhkMqrLfHfPFY8zZ",
         "pos": 58800,
         "type": "chat",
         "actor": "karl",
@@ -5371,7 +5639,7 @@
         "content_tags": null
       },
       {
-        "id": "E9vZBzf7AttAQGrdcicCKK",
+        "id": "8NUdvHN5tt7L73sTjvCKVT",
         "pos": 58900,
         "type": "chat",
         "actor": "ricky",
@@ -5380,16 +5648,16 @@
         "content_tags": null
       },
       {
-        "id": "S9XDfQ8QHALxFtzjEjcbaL",
+        "id": "ABF8KVizzE4GMo7EtWzpQR",
         "pos": 59000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Play it Rick.",
-        "content_tags": null
+        "content_tags": {}
       },
       {
-        "id": "AMpaGxTBkiL4JafBNJBnq9",
+        "id": "MsKMS9CZCFUXf2Nq5qixLS",
         "pos": 59100,
         "type": "song",
         "actor": "",
@@ -5403,7 +5671,7 @@
         "content_tags": null
       },
       {
-        "id": "49cTrEAfWKMdAc75wDmMJn",
+        "id": "sezTixoA6HsYboyD4wcj7k",
         "pos": 59200,
         "type": "chat",
         "actor": "ricky",
@@ -5412,7 +5680,7 @@
         "content_tags": null
       },
       {
-        "id": "GcqBw3S6tSSMGH6Y7rTTef",
+        "id": "MCpbe7WZFDm9iHK8MLGjTM",
         "pos": 59300,
         "type": "chat",
         "actor": "steve",
@@ -5421,7 +5689,7 @@
         "content_tags": null
       },
       {
-        "id": "J9hWKR2tAauBCTHpVA3UQR",
+        "id": "5Y4xXZhyBpXeRUHCJyhd47",
         "pos": 59400,
         "type": "chat",
         "actor": "ricky",
@@ -5430,7 +5698,7 @@
         "content_tags": null
       },
       {
-        "id": "mGcHBTZpns4UAeJhppyUkH",
+        "id": "Wz9QgF4GS268RV4JxD8zJh",
         "pos": 59500,
         "type": "chat",
         "actor": "steve",
@@ -5439,25 +5707,29 @@
         "content_tags": null
       },
       {
-        "id": "iQXkRgnArRArdttaburq6a",
+        "id": "AxsAQtX8KfTJcPZCQQwzvi",
         "pos": 59600,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "I'm worried people would see it like Simon Bates' \"Our Tune\", or something.",
-        "content_tags": null
+        "content_tags": {
+          "Simon Bates": "Simon Bates"
+        }
       },
       {
-        "id": "5GuD48FkC7Spad8HfSDKHi",
+        "id": "ouZcsR22vJEfx7KGAq3ByK",
         "pos": 59700,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Steve Wright's \"Sunday Love Songs\".",
-        "content_tags": null
+        "content_tags": {
+          "Steve Wright": "Steve Wright"
+        }
       },
       {
-        "id": "Go2ADcBybpFoB4JzEdtXvA",
+        "id": "knyicHLD7CzxKAPNGkg8TA",
         "pos": 59800,
         "type": "chat",
         "actor": "ricky",
@@ -5466,7 +5738,7 @@
         "content_tags": null
       },
       {
-        "id": "JNHdGm68D4i7MnCKyieuM4",
+        "id": "FzAvCURyhG4LMno2kYieY5",
         "pos": 59900,
         "type": "chat",
         "actor": "steve",
@@ -5475,7 +5747,7 @@
         "content_tags": null
       },
       {
-        "id": "djWj5J4uqBxXtsJ8Xt59aZ",
+        "id": "oUSGMNNjhTxDUMAG2keDQ3",
         "pos": 60000,
         "type": "chat",
         "actor": "ricky",
@@ -5484,25 +5756,25 @@
         "content_tags": null
       },
       {
-        "id": "vk8XsHkdMhDM4otGz6BP6n",
+        "id": "gjevSzsFGxndsw6XmoqGGc",
         "pos": 60100,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Have I made my point, Rick?.",
-        "content_tags": null
+        "content_tags": {}
       },
       {
-        "id": "r3bpsXEARZjbiemhFaD658",
+        "id": "HDdQDvwZKkYQ2zA2fzNqvc",
         "pos": 60200,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Ricky laughs",
-        "content_tags": null
+        "content_tags": {}
       },
       {
-        "id": "Be5h53NFYjeY3JoNz5Mj48",
+        "id": "vJPqCaFNkMSmv6bCHhYwLE",
         "pos": 60300,
         "type": "chat",
         "actor": "ricky",
@@ -5511,7 +5783,7 @@
         "content_tags": null
       },
       {
-        "id": "jbg5dSokpdobGPVV4Knwjc",
+        "id": "UBZmPy5cFqPqnWBNGHvFBQ",
         "pos": 60400,
         "type": "chat",
         "actor": "steve",
@@ -5520,7 +5792,7 @@
         "content_tags": null
       },
       {
-        "id": "ivcA3j7FzH6aBNiYUs7PwU",
+        "id": "zCW2gDbNFqH6zivKciapBS",
         "pos": 60500,
         "type": "chat",
         "actor": "ricky",
@@ -5529,16 +5801,18 @@
         "content_tags": null
       },
       {
-        "id": "HH5LPhCyNHbe93N9uVdbNc",
+        "id": "uH9N2YRuGMNT4r6jJwK8jY",
         "pos": 60600,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Karl, what have you got lined up for us?",
-        "content_tags": null
+        "content_tags": {
+          "Karl": "Karl Pilkington"
+        }
       },
       {
-        "id": "Njz6XgNJ4bf7RwtWNyn3sL",
+        "id": "f86vRe33qDnHLmRfADD82U",
         "pos": 60700,
         "type": "chat",
         "actor": "karl",
@@ -5547,7 +5821,7 @@
         "content_tags": null
       },
       {
-        "id": "xoJKDwjCXgNzibXsxCxiqD",
+        "id": "TacB9gdmavtvUDeQXimi6S",
         "pos": 60800,
         "type": "song",
         "actor": "",
@@ -5561,7 +5835,7 @@
         "content_tags": null
       },
       {
-        "id": "4EcnoAujqgsHHLKceuPt3S",
+        "id": "6E7dnCbo9rHTyjYUw6WT2i",
         "pos": 60900,
         "type": "song",
         "actor": "",
@@ -5577,18 +5851,20 @@
         }
       },
       {
-        "id": "2ZmKh2V3685UhGmfLGurQ3",
+        "id": "Uc3R5B2xJxTwaXvN47c6CX",
         "pos": 61000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Strokes on Xfm 104.9, it's the Ricky Gervais show, with me, Steve Merchant, Karl Pilkington.",
         "content_tags": {
+          "Karl Pilkington": "Karl Pilkington",
+          "Steve Merchant": "Steve Merchant",
           "Strokes": "Strokes"
         }
       },
       {
-        "id": "TQqb4dMtFvBwHruRgGnh4",
+        "id": "bui28UptCrodaXWQrLrzWS",
         "pos": 61100,
         "type": "chat",
         "actor": "steve",
@@ -5597,7 +5873,7 @@
         "content_tags": null
       },
       {
-        "id": "hzeSmvamHhsFNi7HxQmssn",
+        "id": "dEXcNyUPuqM2afP5oPdEGT",
         "pos": 61200,
         "type": "chat",
         "actor": "ricky",
@@ -5606,7 +5882,7 @@
         "content_tags": null
       },
       {
-        "id": "LWC8dGAym4caSSP3BfRcJR",
+        "id": "Ye6Uv7Z4AEANqmNgL8r2K5",
         "pos": 61300,
         "type": "chat",
         "actor": "steve",
@@ -5615,7 +5891,7 @@
         "content_tags": null
       },
       {
-        "id": "DkETCeMmiYUUYGictCbazJ",
+        "id": "4zsHYxrSKChJCM4Eowq9FT",
         "pos": 61400,
         "type": "chat",
         "actor": "ricky",
@@ -5624,7 +5900,7 @@
         "content_tags": null
       },
       {
-        "id": "QvSuHRusuUefYXTevhaGSG",
+        "id": "hKZAAdx4Urqo5hVMfZk3ib",
         "pos": 61500,
         "type": "chat",
         "actor": "steve",
@@ -5633,16 +5909,19 @@
         "content_tags": null
       },
       {
-        "id": "eBxGnvqkaPcxppytUfwRFF",
+        "id": "sBdmnDfwqQd2Fc2m2cuF3b",
         "pos": 61600,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Yeah, I'll probably be asked soon by Barry Norman, or Jonathon Ross to do something, or maybe my own film show, I don't know, TV or-",
-        "content_tags": null
+        "content_tags": {
+          "Barry Norman": "Barry Norman",
+          "Jonathon Ross": "Jonathon Ross"
+        }
       },
       {
-        "id": "J77UM4de239zMRu5bnNftk",
+        "id": "wqZSrgnsdmUUhcaViieRYA",
         "pos": 61700,
         "type": "chat",
         "actor": "steve",
@@ -5651,7 +5930,7 @@
         "content_tags": null
       },
       {
-        "id": "94TcBxTxfTZj6kuZwfRaa8",
+        "id": "Ln7he6ot8FznAmb6wb46Sd",
         "pos": 61800,
         "type": "chat",
         "actor": "ricky",
@@ -5660,7 +5939,7 @@
         "content_tags": null
       },
       {
-        "id": "t43hvHpgJhJuvWiuHhGm93",
+        "id": "bvYByirryaCdPmpAdBUZAm",
         "pos": 61900,
         "type": "chat",
         "actor": "steve",
@@ -5669,16 +5948,18 @@
         "content_tags": null
       },
       {
-        "id": "qgdcMhe6FpdNMYYnBafmye",
+        "id": "ipXGry32nBrgoAwJLimkgS",
         "pos": 62000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Ok... \"The Film Review, and that\".",
-        "content_tags": null
+        "content_tags": {
+          "Film Review": "Film Review"
+        }
       },
       {
-        "id": "J3ztsfEc2cTQiN9MyCowdQ",
+        "id": "qtt3gEdNNzSwryY7bZpWrP",
         "pos": 62100,
         "type": "chat",
         "actor": "steve",
@@ -5687,7 +5968,7 @@
         "content_tags": null
       },
       {
-        "id": "YWihEA9geu8CFqLV6QcrgK",
+        "id": "yaECqxtWzxMBvMNntqotgY",
         "pos": 62200,
         "type": "chat",
         "actor": "ricky",
@@ -5696,7 +5977,7 @@
         "content_tags": null
       },
       {
-        "id": "5tHPfPYujkabjyZMFmTQWm",
+        "id": "CP52SkPVbpCGME46f2zQj8",
         "pos": 62300,
         "type": "unknown",
         "actor": "",
@@ -5705,16 +5986,18 @@
         "content_tags": null
       },
       {
-        "id": "hN8qcidr5Hw7gjVCD4ZgZY",
+        "id": "57rpPnBhJ7yqkc7hJKCWaH",
         "pos": 62400,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Ok, erm, am I right in saying you're bringing a book out of these collected...maybe for the Christmas market?",
-        "content_tags": null
+        "content_tags": {
+          "Christmas": "Christmas"
+        }
       },
       {
-        "id": "S3EPKAx2B7o6p8kQ75xTA9",
+        "id": "96FjqgXfsRkbAEZZ3V7vYA",
         "pos": 62500,
         "type": "chat",
         "actor": "ricky",
@@ -5723,7 +6006,7 @@
         "content_tags": null
       },
       {
-        "id": "XzY2z5VR8fcnPNeg9DjpUV",
+        "id": "HfapKjT26mQk7xJh6K4jCK",
         "pos": 62600,
         "type": "chat",
         "actor": "steve",
@@ -5732,7 +6015,7 @@
         "content_tags": null
       },
       {
-        "id": "dcCLYs7FAhsP2xnnioGDjV",
+        "id": "FGey6QNTnVyPPGGfrJj3xb",
         "pos": 62700,
         "type": "chat",
         "actor": "ricky",
@@ -5741,7 +6024,7 @@
         "content_tags": null
       },
       {
-        "id": "jKATRAAcbx9rCy2WkaAYYa",
+        "id": "yFRMvqKGeuTN2eHoSjV5PK",
         "pos": 62800,
         "type": "chat",
         "actor": "steve",
@@ -5750,7 +6033,7 @@
         "content_tags": null
       },
       {
-        "id": "VE85DRx8Yw5PCyG4isjNBL",
+        "id": "H5T3cNpN5GZN6SgTLmeg3m",
         "pos": 62900,
         "type": "chat",
         "actor": "ricky",
@@ -5759,7 +6042,7 @@
         "content_tags": null
       },
       {
-        "id": "UfZTAFj2nL8fDBqAD7sTuc",
+        "id": "Cgh7VZUzmn4vyc2Nch2YTm",
         "pos": 63000,
         "type": "chat",
         "actor": "steve",
@@ -5768,16 +6051,16 @@
         "content_tags": null
       },
       {
-        "id": "EZyLYJiMkdD2dXFMfqsRHc",
+        "id": "dSTZwxHJtyGDtqJucBmFUR",
         "pos": 63100,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Ricky laughs",
-        "content_tags": null
+        "content_tags": {}
       },
       {
-        "id": "qycpiC7oNBjY87dFu3twme",
+        "id": "mz7JiQRaZb6eEfDEgnb7iN",
         "pos": 63200,
         "type": "chat",
         "actor": "steve",
@@ -5786,7 +6069,7 @@
         "content_tags": null
       },
       {
-        "id": "zBJTiLCSGbpdaBSCAcgznG",
+        "id": "huBr9diadVCvhKgTTdcQBe",
         "pos": 63300,
         "type": "chat",
         "actor": "ricky",
@@ -5795,7 +6078,7 @@
         "content_tags": null
       },
       {
-        "id": "tCwx4uCvmVn7m6SQAuHDkM",
+        "id": "vzrKjXwhq4PKrAuFnaxzZ9",
         "pos": 63400,
         "type": "chat",
         "actor": "steve",
@@ -5804,7 +6087,7 @@
         "content_tags": null
       },
       {
-        "id": "RGuQoEhZDYY2h5a5EHqHoQ",
+        "id": "PJep94cu7Rf5DAXy3BawQN",
         "pos": 63500,
         "type": "song",
         "actor": "",
@@ -5818,7 +6101,7 @@
         "content_tags": null
       },
       {
-        "id": "v8dL8uqk67nTpVRzWdWGrM",
+        "id": "fSJTeduSkHdUQn9kYCz2aD",
         "pos": 63600,
         "type": "chat",
         "actor": "ricky",
@@ -5827,7 +6110,7 @@
         "content_tags": null
       },
       {
-        "id": "CwjYBdvBNKMT6uBssLhkeU",
+        "id": "dJy2ZwCdvjeZeDNhEaU9No",
         "pos": 63700,
         "type": "chat",
         "actor": "steve",
@@ -5836,7 +6119,7 @@
         "content_tags": null
       },
       {
-        "id": "2uysy3ixkELAzvBSu86rHc",
+        "id": "QUBBqYSwqhxrCfy4J3boMA",
         "pos": 63800,
         "type": "chat",
         "actor": "ricky",
@@ -5845,7 +6128,7 @@
         "content_tags": null
       },
       {
-        "id": "KBLY7NdVicQz5ECMUPmLdm",
+        "id": "FWueWXGzFrU5J58j4u4MnB",
         "pos": 63900,
         "type": "chat",
         "actor": "steve",
@@ -5854,7 +6137,7 @@
         "content_tags": null
       },
       {
-        "id": "my5dJACGsa6HemX85XM24N",
+        "id": "468tFtfQGd2AHuzVQ4Y3jX",
         "pos": 64000,
         "type": "chat",
         "actor": "ricky",
@@ -5863,7 +6146,7 @@
         "content_tags": null
       },
       {
-        "id": "5XUQLUgzfB8YRAC2LkXvnF",
+        "id": "WDbd4bCKjqiViRrXXx5o28",
         "pos": 64100,
         "type": "chat",
         "actor": "steve",
@@ -5872,7 +6155,7 @@
         "content_tags": null
       },
       {
-        "id": "BjvErwvsnyamkvsLFMjKtZ",
+        "id": "4NcufU3pH4xPVGBkPwc5vR",
         "pos": 64200,
         "type": "chat",
         "actor": "ricky",
@@ -5881,7 +6164,7 @@
         "content_tags": null
       },
       {
-        "id": "YrEHPQobBNkpdFyYMYPmyR",
+        "id": "fzhdMQqdhakSK9ZaJ6YMt6",
         "pos": 64300,
         "type": "chat",
         "actor": "steve",
@@ -5890,7 +6173,7 @@
         "content_tags": null
       },
       {
-        "id": "qdBG3cUEuvcjz6U5VU6Nr4",
+        "id": "ew5Ce9patBXqCq8xkG5qsA",
         "pos": 64400,
         "type": "chat",
         "actor": "ricky",
@@ -5899,7 +6182,7 @@
         "content_tags": null
       },
       {
-        "id": "oKCMSZZ9VweCbFwwccyiJQ",
+        "id": "kmdeUBLE23GRMBowbThmCF",
         "pos": 64500,
         "type": "chat",
         "actor": "steve",
@@ -5908,7 +6191,7 @@
         "content_tags": null
       },
       {
-        "id": "VQn2iMXmy683wTEp4X8TYZ",
+        "id": "Tn6ELQna3pXPDifv7EkuDT",
         "pos": 64600,
         "type": "chat",
         "actor": "ricky",
@@ -5917,16 +6200,19 @@
         "content_tags": null
       },
       {
-        "id": "P4Ao6YNvoGNmKUTwnhCJQC",
+        "id": "MFBnMTGmgrcigewddeZZQD",
         "pos": 64700,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Karl, have you seen it yet? I know you probably haven't, Rick, Cliff Richard's video for his new single?",
-        "content_tags": null
+        "content_tags": {
+          "Cliff Richard": "Cliff Richard",
+          "Karl": "Karl Pilkington"
+        }
       },
       {
-        "id": "jeFxBn6i7nvLyHa9BZ4E8",
+        "id": "wewW6agW8c7WigDfd7o4o6",
         "pos": 64800,
         "type": "chat",
         "actor": "karl",
@@ -5935,16 +6221,20 @@
         "content_tags": null
       },
       {
-        "id": "qxHnAihfAz7xmQ9fwSFhP3",
+        "id": "wUFs6PT7FMUFw6vnDrqU9g",
         "pos": 64900,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "It's amazing isn't it? I saw it on Lorraine Kelly in the morning, Sky One, great show, and ermm and it's amazing - he's done a version of Somewhere Over The Rainbow.",
-        "content_tags": null
+        "content_tags": {
+          "Lorraine Kelly": "Lorraine Kelly",
+          "Rainbow": "Rainbow",
+          "Sky One": "Sky One"
+        }
       },
       {
-        "id": "4ojeriJ8uuSogPCLvHqNnE",
+        "id": "YNyUikott6UVpLfAGosyKa",
         "pos": 65000,
         "type": "chat",
         "actor": "ricky",
@@ -5953,7 +6243,7 @@
         "content_tags": null
       },
       {
-        "id": "YUpBUCTFTQqsEfmT5t5UDJ",
+        "id": "8vWnrdt8vgt8JrgR9riwXm",
         "pos": 65100,
         "type": "chat",
         "actor": "steve",
@@ -5962,7 +6252,7 @@
         "content_tags": null
       },
       {
-        "id": "omC6yicWgQ6vzpyCZzRMRC",
+        "id": "YGrrDRAx6fUAGpmJZvdsxL",
         "pos": 65200,
         "type": "chat",
         "actor": "karl",
@@ -5971,16 +6261,18 @@
         "content_tags": null
       },
       {
-        "id": "2oRFtuBD4h3nYnDcPXwDhH",
+        "id": "TSp8m7ZzbMC3PWZrJLiQoY",
         "pos": 65300,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "It's What A Wonderful World, combined with Somewhere Over The Rainbow.",
-        "content_tags": null
+        "content_tags": {
+          "Rainbow": "Rainbow"
+        }
       },
       {
-        "id": "zWLD5kMnTpBMXEeTBdYVeN",
+        "id": "ffbcdrqNZM5TktMCpGxTBm",
         "pos": 65400,
         "type": "chat",
         "actor": "ricky",
@@ -5989,7 +6281,7 @@
         "content_tags": null
       },
       {
-        "id": "5ESeQP6SPDqHLEEnP8vUJX",
+        "id": "8et5pCET7ini79QCLyEGxa",
         "pos": 65500,
         "type": "chat",
         "actor": "steve",
@@ -5998,16 +6290,18 @@
         "content_tags": null
       },
       {
-        "id": "TseLQaXzc3tHmQhBbuG86k",
+        "id": "Y53KxkHF3EkyMosZp4tkaU",
         "pos": 65600,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "What was his last year's one? It was Lord's Prayer with Auld Lang Syne.",
-        "content_tags": null
+        "content_tags": {
+          "Auld Lang Syne": "Auld Lang Syne"
+        }
       },
       {
-        "id": "k7pV7YBqUW2Pp53SkgFQkd",
+        "id": "JxGg44QYMP3doPt7xcPVrm",
         "pos": 65700,
         "type": "chat",
         "actor": "steve",
@@ -6016,7 +6310,7 @@
         "content_tags": null
       },
       {
-        "id": "QKnAWrrDtPhbWNAsmVgxYD",
+        "id": "YJMNBdpDZBxjtzD7zNG2gE",
         "pos": 65800,
         "type": "chat",
         "actor": "ricky",
@@ -6025,7 +6319,7 @@
         "content_tags": null
       },
       {
-        "id": "WhygQqarPrZpNn2huLAK9L",
+        "id": "BJhAY2E9bPxL7SUGgeiSbN",
         "pos": 65900,
         "type": "chat",
         "actor": "steve",
@@ -6034,7 +6328,7 @@
         "content_tags": null
       },
       {
-        "id": "tvRZ3Q33jXERr3J5Ukh675",
+        "id": "8f2su76j4DN9thTseopVzK",
         "pos": 66000,
         "type": "chat",
         "actor": "ricky",
@@ -6043,7 +6337,7 @@
         "content_tags": null
       },
       {
-        "id": "FrimzcaQPEnTD6PSXE9vDG",
+        "id": "PffpyYtZsjeJYpPyc56BWU",
         "pos": 66100,
         "type": "chat",
         "actor": "steve",
@@ -6052,7 +6346,7 @@
         "content_tags": null
       },
       {
-        "id": "hKHgrYUtZVKBXcXVK8sQmJ",
+        "id": "kVTqF9kTegYtMmHaLhpUwV",
         "pos": 66200,
         "type": "chat",
         "actor": "ricky",
@@ -6061,7 +6355,7 @@
         "content_tags": null
       },
       {
-        "id": "tmdbfzscc9tXutNBccxcb",
+        "id": "MEJd3g9CUpiTobGiFCjof7",
         "pos": 66300,
         "type": "chat",
         "actor": "steve",
@@ -6070,7 +6364,7 @@
         "content_tags": null
       },
       {
-        "id": "VfLdab39zgEYaWpXSGaZjk",
+        "id": "FXKavnLgr6QYtGtqUJYjQ9",
         "pos": 66400,
         "type": "chat",
         "actor": "ricky",
@@ -6079,7 +6373,7 @@
         "content_tags": null
       },
       {
-        "id": "nCmsA22srLEPVQp6eN5RvP",
+        "id": "HstYtmRNogRuEv46k7Jcnm",
         "pos": 66500,
         "type": "chat",
         "actor": "steve",
@@ -6088,16 +6382,18 @@
         "content_tags": null
       },
       {
-        "id": "tkGPduyw6zbjyUvXdpuUEX",
+        "id": "6uKyUZn6TCZkEo6Xze3EPR",
         "pos": 66600,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Yeah, well everything's a disguised boast, I mean, I liked Devil Woman, I liked Miss You Nights, I liked Wired For Sound, and I like tall speakers and small speakers.",
-        "content_tags": null
+        "content_tags": {
+          "Devil Woman": "Devil Woman"
+        }
       },
       {
-        "id": "DDc5xruF6pK76Zjw5NZWHH",
+        "id": "VMVpRVeaMghQFZCoWUjHe8",
         "pos": 66700,
         "type": "chat",
         "actor": "steve",
@@ -6106,7 +6402,7 @@
         "content_tags": null
       },
       {
-        "id": "UyRN6SmANVGYPKdD5F8ZCL",
+        "id": "dm7VEFhBxLAHUgHbrc9XHM",
         "pos": 66800,
         "type": "chat",
         "actor": "ricky",
@@ -6115,7 +6411,7 @@
         "content_tags": null
       },
       {
-        "id": "zQ9LtF5w3YDdNajjZQaZ5Z",
+        "id": "FPbAZHfgkpGxAqL7buo6MK",
         "pos": 66900,
         "type": "chat",
         "actor": "steve",
@@ -6124,16 +6420,19 @@
         "content_tags": null
       },
       {
-        "id": "7K6qVFjAZy5LRfVUv3nhqQ",
+        "id": "MPyJxJH2LWE3zvYtsJmLtF",
         "pos": 67000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "I remember he was on one chat show, I think it was Des, or Michael Aspel, and they said \"So you had...\", he said \"Yeah, well, everyone knows that Elvis sold more records after his death, that when he was alive\", little dig there against Elvis, \"Well I've just overtaken his record for sales in the UK\". Right, so he sets up that Elvis is only selling 'cos he's dead, \"And anyway I've still beaten him...in the UK\". And I just think, yeah, and where did you get the quiff from, and the way to sing, where'd you get that from, Cliff? Where did you think of that?",
-        "content_tags": null
+        "content_tags": {
+          "Elvis": "Elvis",
+          "Michael Aspel": "Michael Aspel"
+        }
       },
       {
-        "id": "R7LFi4k4Z7huGez9XnLBV7",
+        "id": "yMKPonqPBnjzq4XRBQWUyR",
         "pos": 67100,
         "type": "chat",
         "actor": "steve",
@@ -6142,7 +6441,7 @@
         "content_tags": null
       },
       {
-        "id": "stHTKkTUSsnPADuyZNYNNc",
+        "id": "dfBKWAqhSEUTMXy9qnoFqb",
         "pos": 67200,
         "type": "chat",
         "actor": "ricky",
@@ -6151,7 +6450,7 @@
         "content_tags": null
       },
       {
-        "id": "6YXqvc5d8NjLhVyhdTze7H",
+        "id": "aawXe2UiKVEUCsx3wWCs37",
         "pos": 67300,
         "type": "chat",
         "actor": "steve",
@@ -6160,7 +6459,7 @@
         "content_tags": null
       },
       {
-        "id": "ieij5GX9LC3q9EM4iyRzZm",
+        "id": "xjZJC94LBtBaS2k2DcUgoN",
         "pos": 67400,
         "type": "chat",
         "actor": "ricky",
@@ -6169,7 +6468,7 @@
         "content_tags": null
       },
       {
-        "id": "MNHexEvyv5HayFqV9bN4jC",
+        "id": "BYpWUq2sLyyaDP29h7gmsC",
         "pos": 67500,
         "type": "chat",
         "actor": "steve",
@@ -6178,7 +6477,7 @@
         "content_tags": null
       },
       {
-        "id": "psn6SEfD5DK5uq7Twn2Qr8",
+        "id": "Yx6riKYPEo3EupDKk4HyPj",
         "pos": 67600,
         "type": "chat",
         "actor": "karl",
@@ -6187,7 +6486,7 @@
         "content_tags": null
       },
       {
-        "id": "Rxw3MXVmvdwgi4pFqfN75a",
+        "id": "WDMZxuZB8LBjELb7BBiZaW",
         "pos": 67700,
         "type": "chat",
         "actor": "steve",
@@ -6196,16 +6495,18 @@
         "content_tags": null
       },
       {
-        "id": "a9cqujQ2wQkM28Q8r7akaN",
+        "id": "5vc4HwUKWZGByDV7Ph7jcM",
         "pos": 67800,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
         "content": "Well...like, when you're born, you're a little baby, you're wrinkly and stuff, when you get older you sort of morph into a baby again, and you go though the same phases, so when you're young, you buy singles, you get old, you've got nothing to do all day, go to your pension money - \"What will I buy?\", Cliff Richard's on the telly, \"Here's me video, buy me song\"",
-        "content_tags": null
+        "content_tags": {
+          "Cliff Richard": "Cliff Richard"
+        }
       },
       {
-        "id": "WZg7muMk2zTcMvvwLuwkG4",
+        "id": "MivqToiPR9i3gQNTpLp7wk",
         "pos": 67900,
         "type": "chat",
         "actor": "ricky",
@@ -6214,7 +6515,7 @@
         "content_tags": null
       },
       {
-        "id": "dTyqYHqsq6SPYyrj6Nkh7P",
+        "id": "rbE6bLFMdhv23soSkgfrEU",
         "pos": 68000,
         "type": "chat",
         "actor": "karl",
@@ -6223,7 +6524,7 @@
         "content_tags": null
       },
       {
-        "id": "zS6jjuwSCSXKiSLWhcb3qj",
+        "id": "UGwuLyLuMzhqW4GekmdYMm",
         "pos": 68100,
         "type": "unknown",
         "actor": "",
@@ -6232,16 +6533,18 @@
         "content_tags": null
       },
       {
-        "id": "oueUtqCDXALGVZmgpT7kvN",
+        "id": "6wW6kwkLFPEdNKYHWr3kRH",
         "pos": 68200,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Steve laughs",
-        "content_tags": null
+        "content_tags": {
+          "Steve": "Steve Merchant"
+        }
       },
       {
-        "id": "5gVrVr5yDhGcLKqqLbmQ58",
+        "id": "VwQZLm7x8aQCv6WwZ7mT35",
         "pos": 68300,
         "type": "chat",
         "actor": "steve",
@@ -6250,16 +6553,16 @@
         "content_tags": null
       },
       {
-        "id": "oQstzWns64Notcvit8C37P",
+        "id": "UDnth7VwdVh66VPLpNvnxW",
         "pos": 68400,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Ricky laughs",
-        "content_tags": null
+        "content_tags": {}
       },
       {
-        "id": "zrNRFxpVE4LrDUHYKJjovc",
+        "id": "7F5einQqAQvJa8nEEiGRcb",
         "pos": 68500,
         "type": "chat",
         "actor": "steve",
@@ -6268,7 +6571,7 @@
         "content_tags": null
       },
       {
-        "id": "84X7N8nveYhfiYwtiNptaM",
+        "id": "kkosSogAqyU3vnYmzLPBgc",
         "pos": 68600,
         "type": "song",
         "actor": "",
@@ -6282,7 +6585,7 @@
         "content_tags": null
       },
       {
-        "id": "H9Yu8hQs2VX2xCG5pzHd5a",
+        "id": "gmyc9tcdUmNEr3foHBHR5Y",
         "pos": 68700,
         "type": "chat",
         "actor": "ricky",
@@ -6291,7 +6594,7 @@
         "content_tags": null
       },
       {
-        "id": "kxajn8XphquRj6TeZWuU7E",
+        "id": "9DvPgzEY9d4hRptBFgaXn3",
         "pos": 68800,
         "type": "chat",
         "actor": "steve",
@@ -6300,7 +6603,7 @@
         "content_tags": null
       },
       {
-        "id": "x3PexUXcJFU5PcDWixmx8Y",
+        "id": "hzcdTGwKUx49S4E5kfoD2M",
         "pos": 68900,
         "type": "chat",
         "actor": "ricky",
@@ -6309,7 +6612,7 @@
         "content_tags": null
       },
       {
-        "id": "h2DMbQXpbuRKQ6RjjKBbym",
+        "id": "dmot729Neav2jZDXb3WbP5",
         "pos": 69000,
         "type": "chat",
         "actor": "steve",
@@ -6318,7 +6621,7 @@
         "content_tags": null
       },
       {
-        "id": "ActoaFgT6Y2HPqzCQE5k3K",
+        "id": "ZsZexmRYbxGWecDTPcSsnf",
         "pos": 69100,
         "type": "chat",
         "actor": "ricky",
@@ -6327,7 +6630,7 @@
         "content_tags": null
       },
       {
-        "id": "QvcYotFJJeT2JsoiG632Lj",
+        "id": "bbxFPoZSSqC6dDVMWfhCWG",
         "pos": 69200,
         "type": "chat",
         "actor": "steve",
@@ -6336,7 +6639,7 @@
         "content_tags": null
       },
       {
-        "id": "VMQfMMELuWJ7NxnD2icVn4",
+        "id": "QzPpBGWYFe45PHj86uqPGE",
         "pos": 69300,
         "type": "chat",
         "actor": "ricky",
@@ -6345,7 +6648,7 @@
         "content_tags": null
       },
       {
-        "id": "4RD35bFddjZB5arQ4VwKpd",
+        "id": "MezGPndExnUiGG9QP3USRY",
         "pos": 69400,
         "type": "chat",
         "actor": "steve",
@@ -6354,7 +6657,7 @@
         "content_tags": null
       },
       {
-        "id": "ueYgYPjGz9rwhCyjScituK",
+        "id": "hr5mBhPPt7HK6PgnTXWmnD",
         "pos": 69500,
         "type": "chat",
         "actor": "ricky",
@@ -6363,7 +6666,7 @@
         "content_tags": null
       },
       {
-        "id": "3PtxhPkoBwPbEMfrNLPwNB",
+        "id": "2fZykHMs9G5s42nasAgNfY",
         "pos": 69600,
         "type": "chat",
         "actor": "steve",
@@ -6372,7 +6675,7 @@
         "content_tags": null
       },
       {
-        "id": "rC6E4LmbT3i8MUr2WQ4X3h",
+        "id": "e7QV2b42DiLxhGpdYseeWF",
         "pos": 69700,
         "type": "chat",
         "actor": "ricky",
@@ -6381,7 +6684,7 @@
         "content_tags": null
       },
       {
-        "id": "ApN2Z5WtBgJNsKYMQToaA9",
+        "id": "eE8t56uxsZ2yBfexuCnLpT",
         "pos": 69800,
         "type": "chat",
         "actor": "steve",
@@ -6390,7 +6693,7 @@
         "content_tags": null
       },
       {
-        "id": "hHQ4KN9ga2TUq5jJwB2zee",
+        "id": "jjft9tWmU3SeECSz3jur3X",
         "pos": 69900,
         "type": "chat",
         "actor": "ricky",
@@ -6399,7 +6702,7 @@
         "content_tags": null
       },
       {
-        "id": "jMUh2YDHY74ar4mWYCJizC",
+        "id": "NCnNN9qjChcDoSs7cNmd9k",
         "pos": 70000,
         "type": "chat",
         "actor": "steve",
@@ -6408,7 +6711,7 @@
         "content_tags": null
       },
       {
-        "id": "XNqsmdunFgjUUsT6tUL324",
+        "id": "QrUg4xn8chqh4wrjgPd94c",
         "pos": 70100,
         "type": "chat",
         "actor": "karl",
@@ -6417,7 +6720,7 @@
         "content_tags": null
       },
       {
-        "id": "QmzqGDoxWeM2oLAp4P4pyf",
+        "id": "VcLjjHD9NaYNfEowG72dtJ",
         "pos": 70200,
         "type": "chat",
         "actor": "steve",
@@ -6426,7 +6729,7 @@
         "content_tags": null
       },
       {
-        "id": "L7Xt6xZhpDUTyuYPjkpBSY",
+        "id": "VYzm3oKjawKLCUPQKKpL8",
         "pos": 70300,
         "type": "chat",
         "actor": "ricky",
@@ -6435,7 +6738,7 @@
         "content_tags": null
       },
       {
-        "id": "Nvn2pJpgbKZqt3UHJbXjH6",
+        "id": "XdvWJhG98jQZmzCqQ7ib3o",
         "pos": 70400,
         "type": "chat",
         "actor": "karl",
@@ -6444,7 +6747,7 @@
         "content_tags": null
       },
       {
-        "id": "VYQXhpbUdEWzvP6JeeaZER",
+        "id": "ZhJyWs79xbDjzRAZ9E8ZZe",
         "pos": 70500,
         "type": "chat",
         "actor": "ricky",
@@ -6453,7 +6756,7 @@
         "content_tags": null
       },
       {
-        "id": "8m3wbcVWpbnQMh2XwL9ruf",
+        "id": "SZSgLSbFxLtcPiTGWtwHW3",
         "pos": 70600,
         "type": "chat",
         "actor": "karl",
@@ -6462,25 +6765,29 @@
         "content_tags": null
       },
       {
-        "id": "gvuzCbCd6VwjSDFDqFrP5",
+        "id": "C4Rymd3oZQ7fpFQzDg2gXU",
         "pos": 70700,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Ooo excellent, yeah but that's not till after Song 2, by Blur.",
-        "content_tags": null
+        "content_tags": {
+          "Blur": "Blur"
+        }
       },
       {
-        "id": "B4j7ccioRi7q8Wx9GU4gVo",
+        "id": "qYi2x2us9dmG4DtKoU9mmL",
         "pos": 70800,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "I remember the days when Karl didn't even want to be on the air, I remember the days when he was told by the establishment that he wasn't allowed to talk on the air, and now, it's like, as far as he's concerned, he's a third member of the team.",
-        "content_tags": null
+        "content_tags": {
+          "Karl": "Karl Pilkington"
+        }
       },
       {
-        "id": "JzaacX7z3C5k4aW5oRTPgb",
+        "id": "2khEQpD79m3JTKyLMynkWE",
         "pos": 70900,
         "type": "chat",
         "actor": "ricky",
@@ -6489,7 +6796,7 @@
         "content_tags": null
       },
       {
-        "id": "npVACRva8BhXXdbjMPznoJ",
+        "id": "eybSVQpM5oAmwSFYsctMxA",
         "pos": 71000,
         "type": "chat",
         "actor": "steve",
@@ -6498,7 +6805,7 @@
         "content_tags": null
       },
       {
-        "id": "M9MA8M9gkAiveEqfwmfkB6",
+        "id": "MDnhBqXh8bvzr2Jp4FkLXR",
         "pos": 71100,
         "type": "chat",
         "actor": "karl",
@@ -6507,7 +6814,7 @@
         "content_tags": null
       },
       {
-        "id": "mBESi4jaY6WmdCLatsJUVk",
+        "id": "7DzS3txABSVDbgExZnSEB7",
         "pos": 71200,
         "type": "chat",
         "actor": "ricky",
@@ -6516,7 +6823,7 @@
         "content_tags": null
       },
       {
-        "id": "PFwLL2Mgsd5a6TRFRSMWZ8",
+        "id": "RNTFP7wATBS9rC7BbYntxX",
         "pos": 71300,
         "type": "song",
         "actor": "",
@@ -6527,28 +6834,33 @@
           "spotify_uri": "spotify:track:1FTSo4v6BOZH9QxKc3MbVM"
         },
         "content": "Blur - Song 2",
-        "content_tags": null
+        "content_tags": {
+          "Blur": "Blur"
+        }
       },
       {
-        "id": "CxddqLcJxdbNLCkaNLVuGK",
+        "id": "k7optP7VVvbenxH8BBJrPc",
         "pos": 71400,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Song 2 by Blur, we're running out of time, it's 5 to, just got time for Steve's “Song For The Ladies”.",
-        "content_tags": null
+        "content_tags": {
+          "Blur": "Blur",
+          "Steve": "Steve Merchant"
+        }
       },
       {
-        "id": "Vo95FJvCZLacrhN6yRmdfc",
+        "id": "BuUx6KkRnwj8HWf7VWB79j",
         "pos": 71500,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Wedding Present, Rick, from the album Saturnalia, I think it's pronounced, and it's track three, Dream World, a Song For The Ladies.",
-        "content_tags": null
+        "content_tags": {}
       },
       {
-        "id": "NFLu5cio8EQ3PsKMBRmDxZ",
+        "id": "oj2GBzkCmPuKkPHH8EkYvk",
         "pos": 71600,
         "type": "chat",
         "actor": "ricky",
@@ -6557,7 +6869,7 @@
         "content_tags": null
       },
       {
-        "id": "CnQDGEiM5GPXyNDogmNxam",
+        "id": "XEZmJSskvbbfqgEL2bVMpc",
         "pos": 71700,
         "type": "song",
         "actor": "",
@@ -6567,10 +6879,95 @@
       }
     ],
     "tags": [
+      "Muse",
       "Steve Merchant",
       "Karl Pilkington",
+      "Film Sounds Good",
+      "Saint Etienne",
+      "Black Rebel Motorcycle Club",
+      "Love Burns",
+      "South East",
+      "South West",
+      "Must",
+      "Britain",
+      "London",
+      "Rob Warrington",
+      "James Polanski",
       "Richard Blackwood",
+      "Linden David Hall",
+      "ITV2",
+      "Eminem",
       "Christmas",
-      "Strokes"
+      "Jesus",
+      "WH Smiths",
+      "Radio Times",
+      "Dennis Norden",
+      "Gorillaz",
+      "House",
+      "Men Without Hats",
+      "Pierre Trudeau",
+      "Bruce Dickinson",
+      "Oxford",
+      "Cambridge",
+      "Jackie Brown",
+      "Bobby Womack",
+      "Braveheart",
+      "William Wallace",
+      "Rocky",
+      "Russia",
+      "U2",
+      "Lyte Funky Ones",
+      "Abercrombie",
+      "Australia",
+      "Scotland",
+      "Jamiroquai",
+      "Danni Minogue",
+      "Shaun Ryder",
+      "Kangol",
+      "Homepride",
+      "Jolly Green Giant",
+      "Lilliput",
+      "Gulliver",
+      "Arthur Rank",
+      "Michael Aspel",
+      "Lloyd Cole",
+      "Leonard Cohen",
+      "Nick Cave",
+      "Velvet Underground",
+      "Petrol Emotion",
+      "Robert Forster",
+      "Lilac Time",
+      "Nirvana",
+      "Pop Idol",
+      "Simon Cowell",
+      "Darius Danesh",
+      "Pete Waterman",
+      "Demis Roussos",
+      "Alison Moyet",
+      "Geri Halliwell",
+      "Welsh",
+      "Dandy Warhols",
+      "Cadbury",
+      "Woolworths",
+      "Charlotte Church",
+      "Billie Piper",
+      "Steps",
+      "Dominic Mohan",
+      "Atomic Kitten",
+      "Diamond White Cider",
+      "Simon Bates",
+      "Steve Wright",
+      "Strokes",
+      "Barry Norman",
+      "Jonathon Ross",
+      "Film Review",
+      "Cliff Richard",
+      "Rainbow",
+      "Lorraine Kelly",
+      "Sky One",
+      "Auld Lang Syne",
+      "Devil Woman",
+      "Elvis",
+      "Blur"
     ]
   }

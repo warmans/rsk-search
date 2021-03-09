@@ -22,6 +22,8 @@ export function isRsksearchDialog(arg: any): arg is models.RsksearchDialog {
     ( typeof arg.actor === 'undefined' || typeof arg.actor === 'string' ) &&
     // content?: string
     ( typeof arg.content === 'undefined' || typeof arg.content === 'string' ) &&
+    // contentTags?: { [key: string]: RsksearchTag }
+    ( typeof arg.contentTags === 'undefined' || isRsksearchTag(arg.contentTags) ) &&
     // id?: string
     ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
     // isMatchedRow?: boolean
@@ -30,8 +32,6 @@ export function isRsksearchDialog(arg: any): arg is models.RsksearchDialog {
     ( typeof arg.metadata === 'undefined' || typeof arg.metadata === 'string' ) &&
     // pos?: string
     ( typeof arg.pos === 'undefined' || typeof arg.pos === 'string' ) &&
-    // tags?: { [key: string]: string }
-    ( typeof arg.tags === 'undefined' || typeof arg.tags === 'string' ) &&
     // type?: string
     ( typeof arg.type === 'undefined' || typeof arg.type === 'string' ) &&
 
@@ -66,10 +66,34 @@ export function isRsksearchEpisode(arg: any): arg is models.RsksearchEpisode {
     ( typeof arg.publication === 'undefined' || typeof arg.publication === 'string' ) &&
     // series?: number
     ( typeof arg.series === 'undefined' || typeof arg.series === 'number' ) &&
-    // tags?: { [key: string]: string }
-    ( typeof arg.tags === 'undefined' || typeof arg.tags === 'string' ) &&
+    // tags?: RsksearchTag[]
+    ( typeof arg.tags === 'undefined' || (Array.isArray(arg.tags) && arg.tags.every((item: unknown) => isRsksearchTag(item))) ) &&
     // transcript?: RsksearchDialog[]
     ( typeof arg.transcript === 'undefined' || (Array.isArray(arg.transcript) && arg.transcript.every((item: unknown) => isRsksearchDialog(item))) ) &&
+
+  true
+  );
+  }
+
+export function isRsksearchFieldValue(arg: any): arg is models.RsksearchFieldValue {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // count?: number
+    ( typeof arg.count === 'undefined' || typeof arg.count === 'number' ) &&
+    // value?: string
+    ( typeof arg.value === 'undefined' || typeof arg.value === 'string' ) &&
+
+  true
+  );
+  }
+
+export function isRsksearchFieldValueList(arg: any): arg is models.RsksearchFieldValueList {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // values?: RsksearchFieldValue[]
+    ( typeof arg.values === 'undefined' || (Array.isArray(arg.values) && arg.values.every((item: unknown) => isRsksearchFieldValue(item))) ) &&
 
   true
   );
@@ -115,6 +139,21 @@ export function isRsksearchShortEpisode(arg: any): arg is models.RsksearchShortE
     ( typeof arg.publication === 'undefined' || typeof arg.publication === 'string' ) &&
     // series?: number
     ( typeof arg.series === 'undefined' || typeof arg.series === 'number' ) &&
+    // tags?: RsksearchTag[]
+    ( typeof arg.tags === 'undefined' || (Array.isArray(arg.tags) && arg.tags.every((item: unknown) => isRsksearchTag(item))) ) &&
+
+  true
+  );
+  }
+
+export function isRsksearchTag(arg: any): arg is models.RsksearchTag {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // kind?: string[]
+    ( typeof arg.kind === 'undefined' || (Array.isArray(arg.kind) && arg.kind.every((item: unknown) => typeof item === 'string')) ) &&
+    // name?: string
+    ( typeof arg.name === 'undefined' || typeof arg.name === 'string' ) &&
 
   true
   );

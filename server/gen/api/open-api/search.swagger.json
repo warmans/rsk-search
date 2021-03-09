@@ -19,6 +19,74 @@
     "application/json"
   ],
   "paths": {
+    "/api/episode/{id}": {
+      "get": {
+        "summary": "Fetch the full data for an episode including the transcript",
+        "operationId": "SearchService_GetEpisode",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rsksearchEpisode"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      }
+    },
+    "/api/metadata": {
+      "get": {
+        "summary": "Fetch search metadata e.g. searchable fields",
+        "operationId": "SearchService_ListFieldValues",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rsksearchFieldValueList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "field",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "prefix",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      }
+    },
     "/api/search": {
       "get": {
         "summary": "Perform a search",
@@ -107,6 +175,12 @@
             "type": "string"
           }
         },
+        "contentTags": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/rsksearchTag"
+          }
+        },
         "isMatchedRow": {
           "type": "boolean"
         }
@@ -130,6 +204,9 @@
     "rsksearchEpisode": {
       "type": "object",
       "properties": {
+        "id": {
+          "type": "string"
+        },
         "publication": {
           "type": "string"
         },
@@ -146,14 +223,52 @@
           "additionalProperties": {
             "type": "string"
           }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rsksearchTag"
+          }
+        },
+        "transcript": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rsksearchDialog"
+          }
         }
       }
+    },
+    "rsksearchFieldValue": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "rsksearchFieldValueList": {
+      "type": "object",
+      "properties": {
+        "values": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rsksearchFieldValue"
+          }
+        }
+      }
+    },
+    "rsksearchSearchMetadata": {
+      "type": "object"
     },
     "rsksearchSearchResult": {
       "type": "object",
       "properties": {
         "episode": {
-          "$ref": "#/definitions/rsksearchEpisode"
+          "$ref": "#/definitions/rsksearchShortEpisode"
         },
         "dialogs": {
           "type": "array",
@@ -175,6 +290,51 @@
         "resultCount": {
           "type": "integer",
           "format": "int32"
+        }
+      }
+    },
+    "rsksearchShortEpisode": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "publication": {
+          "type": "string"
+        },
+        "series": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "episode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rsksearchTag"
+          }
+        }
+      }
+    },
+    "rsksearchTag": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     }

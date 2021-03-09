@@ -6,12 +6,20 @@ import { DslSearchComponent } from './component/dsl-search/dsl-search.component'
 import { EpisodeComponent } from './page/episode/episode.component';
 import { RouterModule } from '@angular/router';
 import { TranscriptComponent } from './component/transcript/transcript.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [SearchComponent, SearchBarComponent, DslSearchComponent, EpisodeComponent, TranscriptComponent],
+  declarations: [
+    SearchComponent,
+    SearchBarComponent,
+    DslSearchComponent,
+    EpisodeComponent,
+    TranscriptComponent,
+  ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    SharedModule
   ],
   exports: [DslSearchComponent]
 })

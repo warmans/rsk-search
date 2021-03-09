@@ -23,6 +23,10 @@ func init() {
 	}
 }
 
+func GetTag(tagName string) *Tag {
+	return parsedTagIndex[tagName]
+}
+
 func Unalias(tag string) string {
 	t, ok := parsedTagIndex[tag]
 	if !ok {
@@ -46,9 +50,12 @@ func GetTagKinds(tag string) []string {
 	return t.Kind
 }
 
+
+
 type Tags map[string]*Tag
 
 type Tag struct {
 	Kind    []string `json:"kind"`
 	AliasOf string   `json:"alias"`
 }
+

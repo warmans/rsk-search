@@ -39,7 +39,7 @@ func initEpisodeFile(outputDir string, dateStr string, name string) error {
 		return err
 	}
 
-	series, episode, err := util.ParseStandardEpisodeName(name)
+	series, episode, err := models.ParseStandardEpisodeName(name)
 	if err != nil {
 		return err
 	}

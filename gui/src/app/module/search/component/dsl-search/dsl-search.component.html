@@ -10,14 +10,26 @@
       (keyup)="onKeypress($event)"
       [ngClass]="{'border-danger': this.error !== null}"
       #editableContent
-    >{{initialQuery}}</div>
+    >{{initialQuery}}
+    </div>
     <div>
-      <button class="btn btn-lg btn-primary ml-2" (click)="emitQuery()">Execute</button>
+      <button class="btn btn-lg btn-dark ml-2" (click)="emitQuery()">Search</button>
     </div>
   </div>
-  <div class="autocomplete-dropdown position-absolute" *ngIf="cst === null && inputActive && !error && !info">
-    <strong class="mb-3">Sample Queries</strong>
-    <div *ngFor="let q of sampleQueries" class="mb-2" (click)="applyQuery(q)">{{q}}</div>
+  <div class="autocomplete-dropdown position-absolute" *ngIf="inputActive">
+    <div *ngIf="inputEmpty" class="p-3">
+      <strong class="mb-3">Sample Queries</strong>
+      <div *ngFor="let q of sampleQueries" class="line" (click)="applyQuery(q)">{{q}}</div>
+    </div>
+    <div *ngIf="dropdownActive">
+      <app-dropdown
+        [fieldName]="dropdownFieldName"
+        [valueSource]="dropdownValueSource"
+        [filter]="dropdownFilter"
+        [keyboardEvents]="keyboardEvents"
+        (onValue)="dropdownValueSelected($event)">
+      </app-dropdown>
+    </div>
   </div>
 </div>
 <div *ngIf="error" class="text-danger">{{error}}</div>

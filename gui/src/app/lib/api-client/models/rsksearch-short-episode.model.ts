@@ -1,4 +1,7 @@
 /* tslint:disable */
+import {
+  RsksearchTag,
+} from '.';
 
 export interface RsksearchShortEpisode {
   episode?: number;
@@ -6,4 +9,5 @@ export interface RsksearchShortEpisode {
   metadata?: { [key: string]: string };
   publication?: string;
   series?: number;
+  tags?: RsksearchTag[];
 }

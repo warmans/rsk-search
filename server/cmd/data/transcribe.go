@@ -59,13 +59,13 @@ func ImportTranscriptsCmd() *cobra.Command {
 
 				// add any metadata provided by the transcripts
 				if ep.Meta == nil {
-					ep.Meta = *new(models.Metadata)
+					ep.Meta = models.Metadata{}
 				}
 				for k, v := range transcript.Meta {
 					ep.Meta[k] = v
 				}
 
-				if err := util.SaveEpisodeToFile(cfg.dataDir, ep); err != nil {
+				if err := util.ReplaceEpisodeFile(cfg.dataDir, ep); err != nil {
 					return err
 				}
 				lg.Info("ok!")

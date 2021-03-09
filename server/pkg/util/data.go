@@ -9,13 +9,13 @@ import (
 )
 
 func ReplaceEpisodeFile(dataDir string, ep *models.Episode) error {
-	return WithReplaceJSONFileEncoder(path.Join(dataDir, fmt.Sprintf("%s.json", EpisodeName(ep))), func(encoder *json.Encoder) error {
+	return WithReplaceJSONFileEncoder(path.Join(dataDir, fmt.Sprintf("%s.json", models.EpisodeID(ep))), func(encoder *json.Encoder) error {
 		return encoder.Encode(ep)
 	})
 }
 
 func SaveEpisodeToFile(dataDir string, ep *models.Episode) error {
-	return WithCreateJSONFileEncoder(path.Join(dataDir, fmt.Sprintf("%s.json", EpisodeName(ep))), func(encoder *json.Encoder) error {
+	return WithCreateJSONFileEncoder(path.Join(dataDir, fmt.Sprintf("%s.json", models.EpisodeID(ep))), func(encoder *json.Encoder) error {
 		return encoder.Encode(ep)
 	})
 }
@@ -39,8 +39,4 @@ func LoadEpisode(dataDir string, publication string, name string) (*models.Episo
 
 	dec := json.NewDecoder(f)
 	return e, dec.Decode(e)
-}
-
-func EpisodeName(ep *models.Episode) string {
-	return fmt.Sprintf("ep-%s-%s", ep.Publication, FormatStandardEpisodeName(ep.Series, ep.Episode))
 }

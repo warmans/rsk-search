@@ -19,7 +19,7 @@ func TagDialogCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "tag-dialog",
-		Short: "Dumps all the tags that are found in the transcripts",
+		Short: "adds tags to transcriptions (slow)",
 		RunE: func(cmd *cobra.Command, args []string) error {
 
 			logger, _ := zap.NewProduction()
@@ -27,7 +27,7 @@ func TagDialogCmd() *cobra.Command {
 
 			logger.Info("Importing transcript data from...", zap.String("path", inputDir))
 
-			model := prose.ModelFromDisk(modelPath)
+			//model := prose.ModelFromDisk(modelPath)
 
 			dirEntries, err := ioutil.ReadDir(inputDir)
 			if err != nil {
@@ -61,7 +61,7 @@ func TagDialogCmd() *cobra.Command {
 					}
 
 					// add new tags
-					doc, err := prose.NewDocument(v.Content, prose.WithSegmentation(false), prose.UsingModel(model))
+					doc, err := prose.NewDocument(v.Content, prose.WithSegmentation(false))
 					if err != nil {
 						logger.Error("failed to parse text", zap.Error(err))
 						continue

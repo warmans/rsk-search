@@ -1,4 +1,4 @@
-package internal
+package index
 
 import (
 	"github.com/blevesearch/bleve/v2"
@@ -10,16 +10,17 @@ import (
 )
 
 type DialogDocument struct {
-	ID          string `json:"id"`
-	Mapping     string `json:"mapping"`
-	Publication string `json:"publication"`
-	Series      int32  `json:"series"`
-	Episode     int32  `json:"episode"`
-	Date        string `json:"date"`
-	Actor       string `json:"actor"`
-	Position    int64  `json:"pos"`
-	Content     string `json:"content"`
-	ContentType string `json:"type"`
+	ID          string   `json:"id"`
+	Mapping     string   `json:"mapping"`
+	Publication string   `json:"publication"`
+	Series      int32    `json:"series"`
+	Episode     int32    `json:"episode"`
+	Date        string   `json:"date"`
+	Actor       string   `json:"actor"`
+	Position    int64    `json:"pos"`
+	Content     string   `json:"content"`
+	ContentType string   `json:"type"`
+	Tags        []string `json:"tags"`
 }
 
 func RskIndexMapping() (mapping.IndexMapping, error) {
@@ -41,6 +42,7 @@ func RskIndexMapping() (mapping.IndexMapping, error) {
 	dialogMapping.AddFieldMappingsAt("pos", bleve.NewNumericFieldMapping())
 	dialogMapping.AddFieldMappingsAt("content", englishTextFieldMapping)
 	dialogMapping.AddFieldMappingsAt("type", keywordFieldMapping)
+	dialogMapping.AddFieldMappingsAt("tags", keywordFieldMapping)
 
 	indexMapping := bleve.NewIndexMapping()
 	indexMapping.AddDocumentMapping("dialog", dialogMapping)

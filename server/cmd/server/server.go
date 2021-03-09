@@ -3,8 +3,8 @@ package server
 import (
 	"github.com/blevesearch/bleve/v2"
 	"github.com/spf13/cobra"
-	"github.com/warmans/rsk-search/internal/search"
 	"github.com/warmans/rsk-search/pkg/flag"
+	"github.com/warmans/rsk-search/pkg/search"
 	"github.com/warmans/rsk-search/pkg/server"
 	"github.com/warmans/rsk-search/pkg/service/config"
 	"github.com/warmans/rsk-search/pkg/service/grpc"
@@ -46,7 +46,7 @@ func ServerCmd() *cobra.Command {
 			}
 
 			grpcServices := []server.GRPCService{
-				grpc.NewSearchService(search.NewSearch(rskIndex, rskDB)),
+				grpc.NewSearchService(search.NewSearch(rskIndex, rskDB), rskDB),
 			}
 
 			srv, err := server.NewServer(logger, grpcCfg, grpcServices, []server.HTTPService{})

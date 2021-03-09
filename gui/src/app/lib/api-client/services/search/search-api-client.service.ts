@@ -63,6 +63,31 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  searchServiceListFieldValues(
+    args: {
+      field?: string,
+      prefix?: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchFieldValueList> {
+    const path = `/api/metadata`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    if ('field' in args) {
+      options.params = options.params.set('field', String(args.field));
+    }
+    if ('prefix' in args) {
+      options.params = options.params.set('prefix', String(args.prefix));
+    }
+    return this.sendRequest<models.RsksearchFieldValueList>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   searchServiceSearch(
     args: {
       query?: string,

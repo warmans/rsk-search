@@ -32,6 +32,17 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
       .pipe(tap((res: any) => guards.isRsksearchEpisode(res) || console.error(`TypeGuard for response 'RsksearchEpisode' caught inconsistency.`, res)));
   }
 
+  searchServiceListFieldValues(
+    args: {
+      field?: string,
+      prefix?: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchFieldValueList> {
+    return super.searchServiceListFieldValues(args, requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRsksearchFieldValueList(res) || console.error(`TypeGuard for response 'RsksearchFieldValueList' caught inconsistency.`, res)));
+  }
+
   searchServiceSearch(
     args: {
       query?: string,

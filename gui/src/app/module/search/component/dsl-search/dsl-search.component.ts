@@ -2,7 +2,7 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
-  EventEmitter, Input,
+  EventEmitter,
   OnInit,
   Output,
   Renderer2,
@@ -10,14 +10,18 @@ import {
 } from '@angular/core';
 import { Filter } from '../../../../lib/filter-dsl/filter';
 import { PrintPlainText } from '../../../../lib/filter-dsl/printer';
-import { CSTNode, ParseCST, ParseError, renderCST } from '../../../../lib/filter-dsl/cst';
+import { CSTNode, NodeKind, ParseCST, ParseError, renderCST, ValueNode } from '../../../../lib/filter-dsl/cst';
 import { Tag } from '../../../../lib/filter-dsl/scanner';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { SearchAPIClient } from '../../../../lib/api-client/services/search';
+import { map } from 'rxjs/operators';
+import { ValueKind } from '../../../../lib/filter-dsl/value';
 
 @Component({
   selector: 'app-dsl-search',
   templateUrl: './dsl-search.component.html',
-  styleUrls: ['./dsl-search.component.scss']
+  styleUrls: ['./dsl-search.component.scss'],
 })
 export class DslSearchComponent implements OnInit, AfterViewInit {
 
@@ -27,6 +31,8 @@ export class DslSearchComponent implements OnInit, AfterViewInit {
   @ViewChild('editableContent')
   editableContent: ElementRef;
 
+  keyboardEvents: EventEmitter<KeyboardEvent> = new EventEmitter();
+
   initialQuery: string;
 
   cst: CSTNode = null;
@@ -34,6 +40,7 @@ export class DslSearchComponent implements OnInit, AfterViewInit {
   error: string = null;
   info: string = null;
   inputActive = false;
+  inputEmpty = true;
 
   sampleQueries: string[] = [
     `actor = "ricky" and content ~= "chimpanzee that"`,
@@ -42,9 +49,16 @@ export class DslSearchComponent implements OnInit, AfterViewInit {
   ];
 
   private caretPos: number;
-  private activeNode: CSTNode = null;
+  private activeValueNode: ValueNode;
 
-  constructor(private renderer: Renderer2, route: ActivatedRoute) {
+  // data needed for value dropdowns
+  dropdownActive: boolean = false;
+  dropdownFieldName: string;
+  dropdownFilter: string;
+  dropdownValueSource: (fieldName: string, prefix: string) => Observable<string[]>;
+  dropdownFieldWhitelist: string[] = ['actor', 'type'];
+
+  constructor(private renderer: Renderer2, route: ActivatedRoute, private apiClient: SearchAPIClient) {
     route.queryParamMap.subscribe((params) => {
       if (params.get('q') === null) {
         return;
@@ -62,11 +76,14 @@ export class DslSearchComponent implements OnInit, AfterViewInit {
 
   activate() {
     this.inputActive = true;
+    this.inputEmpty = this.editableContent.nativeElement.innerText.trim().length === 0;
     this.parse();
+    this.updateDropdown();
   }
 
   deactivate() {
     this.inputActive = false;
+    this.resetDropdown();
   }
 
   emitQuery() {
@@ -78,7 +95,7 @@ export class DslSearchComponent implements OnInit, AfterViewInit {
 
   parse() {
     if (this.editableContent.nativeElement.innerText.length === 0) {
-      return
+      return;
     }
     this.caretPos = this.getCaretPosition(this.editableContent.nativeElement);
     try {
@@ -90,7 +107,6 @@ export class DslSearchComponent implements OnInit, AfterViewInit {
         this.moveCaretTo(this.caretPos);
       }
     } catch (e) {
-
       if (e instanceof ParseError) {
         if (e.cause.tag === Tag.EOF) {
           this.setWarning(`incomplete query (${e.reason})`);
@@ -123,25 +139,40 @@ export class DslSearchComponent implements OnInit, AfterViewInit {
   }
 
   onKeydown(key: KeyboardEvent): boolean {
+
+    this.resetDropdown();
+
     switch (key.code) {
       case 'ArrowDown':
+        if (!this.dropdownActive) {
+          this.activate();
+        }
+        return false;
       case 'ArrowUp':
+        if (!this.dropdownActive) {
+          this.activate();
+        }
+        return false;
       case 'Enter':
         this.activate();
-        this.emitQuery();
+        if (!this.dropdownActive) {
+          this.emitQuery();
+        }
         return false;
       case 'Escape':
         this.deactivate();
         break;
+      default:
+        this.activate();
     }
   }
 
   onKeypress(key: KeyboardEvent) {
 
     // forward event to any other components e.g. value-list
-    //this.keyboardEvents.next(evt);
+    this.keyboardEvents.next(key);
 
-    if (['Shift', 'Alt', 'Control'].indexOf(key.code) !== -1) {
+    if (['Shift', 'Alt', 'Control', 'Escape'].indexOf(key.code) !== -1) {
       return;
     }
     this.activate();
@@ -202,19 +233,19 @@ export class DslSearchComponent implements OnInit, AfterViewInit {
     return { node: (c ? c : root), position: (c ? index : 0) };
   }
 
-  findActiveElement() {
+  findActiveValue(): ValueNode {
+    this.activeValueNode = null;
     if (!this.cst) {
       return null;
     }
-    this.activeNode = null;
     this.cst.walk((v) => {
-      console.log(v.startPos(), v.endPos(), this.caretPos);
       if (this.caretPos > v.startPos() && this.caretPos <= v.endPos()) {
-        this.activeNode = v;
+        if (v.kind === NodeKind.Value) {
+          this.activeValueNode = v as ValueNode;
+        }
       }
     });
-
-    return this.activeNode;
+    return this.activeValueNode;
   }
 
   applyQuery(q: string) {
@@ -222,4 +253,82 @@ export class DslSearchComponent implements OnInit, AfterViewInit {
     this.parse();
   }
 
+  resetDropdown() {
+    this.dropdownFieldName = null;
+    this.dropdownFilter = null;
+    this.dropdownValueSource = null;
+    this.dropdownActive = false;
+  }
+
+  updateDropdown() {
+    const el = this.findActiveValue();
+    if (!el) {
+      return;
+    }
+    const field = el.parent.children[0].string();
+    if (this.dropdownFieldWhitelist.indexOf(field) === -1) {
+      return;
+    }
+
+    if (field === this.dropdownFieldName && this.dropdownFilter === el.v.v) {
+      return;
+    }
+
+    this.resetDropdown();
+    this.dropdownActive = true;
+    this.dropdownFieldName = field;
+    this.dropdownFilter = el.v.v;
+    this.dropdownValueSource = (fieldName: string, prefix: string): Observable<string[]> => {
+      return this.apiClient.searchServiceListFieldValues({
+        field: fieldName,
+        prefix: prefix
+      }).pipe(map((res => res.values.map(val => val.value))));
+    };
+  }
+
+  dropdownValueSelected(value: string[]) {
+
+    if (!value || value.length === 0) {
+      return;
+    }
+
+    const el = this.findActiveValue();
+    if (!el) {
+      return;
+    }
+    // ignore multi-select for now. The dsl doesn't have IN support anyway.
+
+    let strVal: string = '';
+    switch (el.v.kind) {
+      case ValueKind.String:
+        strVal = `"${value[0]}"`;
+        break;
+      default:
+        strVal = value[0];
+    }
+
+    this.editableContent.nativeElement.textContent = spliceString(
+      this.editableContent.nativeElement.textContent,
+      el.startPos(),
+      el.endPos(),
+      strVal,
+    );
+
+    // move caret to end of the new token
+    this.moveCaretTo(el.startPos() + strVal.length);
+
+    // re-parse input
+    this.parse();
+
+    // clear dropdown
+    this.resetDropdown();
+  }
+}
+
+function spliceString(str: string, start: number, end: number, replace: string) {
+  if (start < 0) {
+    start = str.length + start;
+    start = start < 0 ? 0 : start;
+  }
+  return str.slice(0, start) + (replace || '') + str.slice(end);
 }

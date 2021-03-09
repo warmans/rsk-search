@@ -1,0 +1,88 @@
+$common-border-color: #e5e5e5 !default;
+$common-border-width: 1px !default;
+$common-border-style: solid !default;
+$common-border: $common-border-width $common-border-style $common-border-color !default;
+$common-focus-color: #73afea !default;
+$common-gutter-size: 5px !default;
+$common-background-color: #fff;
+$common-selectable-hover-background-color: #fff !default;
+$common-badge-background: #f8f8f8 !default;
+
+/* DROPDOWN */
+$dropdown-border: $common-border !default;
+$dropdown-min-width: 280px !default;
+$dropdown-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !default;
+$dropdown-selected-border: $common-border !default;
+$dropdown-selected-background-color: $common-badge-background !default;
+
+
+.dropdown-container {
+  min-width: $dropdown-min-width;
+  font-family: monospace;
+  font-size : 1.2em;
+
+  .selected-values {
+    display: flex;
+    flex-direction: row;
+    border-bottom: $dropdown-selected-border;
+    padding: $common-gutter-size;
+
+    div {
+      display: flex;
+      flex-direction: row;
+      flex: 1;
+
+      .selected{
+        background-color: $dropdown-selected-background-color;
+        border: $common-border;
+        padding: $common-gutter-size;
+        flex: 0;
+        margin-right: $common-gutter-size;
+      }
+    }
+
+    .confirm {
+      flex: 0;
+    }
+  }
+
+  .dropdown {
+    max-height: 200px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    .value {
+      padding: 10px;
+      cursor: pointer;
+
+      &:hover, &.active, &.selected {
+        background-color: $dropdown-selected-background-color;
+      }
+      .title {
+        font-weight: bold;
+        .icon {
+          margin: 5px 10px 5px 0;
+        }
+      }
+      .help {
+        font-size: 0.8em;
+        color: #666;
+      }
+    }
+  }
+
+  .paging {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 1px solid #ccc;
+    padding: 10px;
+
+    div {
+      &.enabled {
+        cursor: pointer;
+      }
+    }
+  }
+
+}

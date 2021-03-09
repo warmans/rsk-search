@@ -80,7 +80,7 @@ func addTinPotRadioLinks(tinPotRadioData string, logger *zap.Logger) error {
 		ep.Meta[models.MetadataTypeSpotifyURI] = d.URI
 		ep.Meta[models.MetadataTypeSpotifyPreviewURL] = d.AudioPreviewURL
 
-		if err := util.SaveEpisodeToFile(cfg.dataDir, ep); err != nil {
+		if err := util.ReplaceEpisodeFile(cfg.dataDir, ep); err != nil {
 			return err
 		}
 		lg.Info("ok!")
@@ -131,7 +131,7 @@ func addSongMeta(logger *zap.Logger, token string) error {
 			}
 		}
 
-		if err := util.SaveEpisodeToFile(cfg.dataDir, ep); err != nil {
+		if err := util.ReplaceEpisodeFile(cfg.dataDir, ep); err != nil {
 			return err
 		}
 	}

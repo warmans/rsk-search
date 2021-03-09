@@ -139,15 +139,20 @@ func (s *Store) InsertEpisodeWithTranscript(ctx context.Context, ep *models.Epis
 	if err != nil {
 		return err
 	}
+	epTags, err := tagListToString(ep.Tags)
+	if err != nil {
+		return err
+	}
 	_, err = s.tx.ExecContext(
 		ctx,
-		`INSERT INTO episode (id, publication, series, episode, release_date, metadata) VALUES ($1, $2, $3, $4, $5, $6)`,
-		util.EpisodeName(ep),
+		`INSERT INTO episode (id, publication, series, episode, release_date, metadata, tags) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+		ep.ID(),
 		ep.Publication,
 		ep.Series,
 		ep.Episode,
 		util.SqlDate(ep.ReleaseDate),
 		epMeta,
+		epTags,
 	)
 
 	for _, v := range ep.Transcript {
@@ -155,15 +160,20 @@ func (s *Store) InsertEpisodeWithTranscript(ctx context.Context, ep *models.Epis
 		if err != nil {
 			return err
 		}
+		diaTags, err := tagMapToString(v.ContentTags)
+		if err != nil {
+			return err
+		}
 		_, err = s.tx.ExecContext(ctx,
-			`INSERT INTO dialog (id, episode_id, pos, type, actor, content, metadata) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+			`INSERT INTO dialog (id, episode_id, pos, type, actor, content, metadata, content_tags) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
 			v.ID,
-			util.EpisodeName(ep),
+			ep.ID(),
 			v.Position,
 			string(v.Type),
 			v.Actor,
 			v.Content,
 			diaMeta,
+			diaTags,
 		)
 		if err != nil {
 			return err
@@ -172,7 +182,7 @@ func (s *Store) InsertEpisodeWithTranscript(ctx context.Context, ep *models.Epis
 	return err
 }
 
-func (s *Store) GetDialog(ctx context.Context, id string, withContext int32) ([]*models.Dialog, string, error) {
+func (s *Store) GetDialogWithContext(ctx context.Context, dialogID string, withContext int32) ([]models.Dialog, string, error) {
 	query := fmt.Sprintf(`
 		WITH target AS (SELECT * FROM dialog WHERE id = $1 LIMIT 1)
 		SELECT * FROM (SELECT * FROM dialog WHERE pos < (SELECT pos FROM target) AND episode_id = (SELECT episode_id FROM target) ORDER BY pos DESC LIMIT %d)
@@ -182,42 +192,17 @@ func (s *Store) GetDialog(ctx context.Context, id string, withContext int32) ([]
 		SELECT * FROM (SELECT * FROM dialog WHERE pos > (SELECT pos FROM target) AND episode_id = (SELECT episode_id FROM target) ORDER BY pos ASC LIMIT %d)
 		ORDER BY pos ASC`, withContext, withContext)
 
-	res, err := s.tx.QueryxContext(ctx, query, id)
-	if err != nil {
-		return nil, "", err
-	}
-	defer res.Close()
-
-	var epID string
-
-	results := make([]*models.Dialog, 0)
-	for res.Next() {
-
-		result := &models.Dialog{
-			Meta: make(models.Metadata),
-		}
-		var meta string
-
-		if err := res.Scan(&result.ID, &epID, &result.Position, &result.Type, &result.Actor, &result.Content, &meta); err != nil {
-			return nil, "", err
-		}
-		if meta != "" {
-			if err := json.Unmarshal([]byte(meta), &result.Meta); err != nil {
-				return nil, "", errors.Wrap(err, "failed to unmarshal meta")
-			}
-		}
-		results = append(results, result)
-	}
-	return results, epID, nil
+	return s.getTranscriptForQuery(ctx, query, dialogID)
 }
 
 func (s *Store) GetShortEpisode(ctx context.Context, id string) (*models.Episode, error) {
 	ep := &models.Episode{}
 	var metadata string
+	var tags string
 
 	err := s.tx.
-		QueryRowxContext(ctx, "SELECT publication, series, episode, release_date, metadata FROM episode WHERE id = $1", id).
-		Scan(&ep.Publication, &ep.Series, &ep.Episode, &ep.ReleaseDate, &metadata)
+		QueryRowxContext(ctx, "SELECT publication, series, episode, release_date, metadata, tags FROM episode WHERE id = $1", id).
+		Scan(&ep.Publication, &ep.Series, &ep.Episode, &ep.ReleaseDate, &metadata, &tags)
 
 	if err != nil {
 		if err == sql.ErrNoRows {
@@ -230,7 +215,61 @@ func (s *Store) GetShortEpisode(ctx context.Context, id string) (*models.Episode
 			return nil, errors.Wrap(err, "failed to decode metadata")
 		}
 	}
+	if tags != "" {
+		if err := json.Unmarshal([]byte(tags), &ep.Tags); err != nil {
+			return nil, errors.Wrap(err, "failed to decode tags")
+		}
+	}
 	return ep, nil
+}
+
+func (s *Store) GetEpisode(ctx context.Context, id string) (*models.Episode, error) {
+	ep, err := s.GetShortEpisode(ctx, id)
+	if err != nil {
+		return nil, err
+	}
+	ep.Transcript, _, err = s.getTranscriptForQuery(ctx, "SELECT * FROM dialog WHERE episode_id=$1 ORDER BY pos ASC", id)
+	if err != nil {
+		return nil, err
+	}
+	return ep, nil
+}
+
+func (s *Store) getTranscriptForQuery(ctx context.Context, query string, params ...interface{}) ([]models.Dialog, string, error) {
+
+	res, err := s.tx.QueryxContext(ctx, query, params...)
+	if err != nil {
+		return nil, "", err
+	}
+	defer res.Close()
+
+	var epID string
+
+	results := make([]models.Dialog, 0)
+	for res.Next() {
+
+		result := models.Dialog{
+			Meta: make(models.Metadata),
+		}
+		var meta string
+		var tags string
+
+		if err := res.Scan(&result.ID, &epID, &result.Position, &result.Type, &result.Actor, &result.Content, &meta, &tags); err != nil {
+			return nil, "", err
+		}
+		if meta != "" {
+			if err := json.Unmarshal([]byte(meta), &result.Meta); err != nil {
+				return nil, "", errors.Wrap(err, "failed to unmarshal meta")
+			}
+		}
+		if tags != "" {
+			if err := json.Unmarshal([]byte(tags), &result.ContentTags); err != nil {
+				return nil, "", errors.Wrap(err, "failed to unmarshal tags")
+			}
+		}
+		results = append(results, result)
+	}
+	return results, epID, nil
 }
 
 func limitStmnt(pageSize int32, page int32) string {
@@ -247,9 +286,31 @@ func metaToString(metadata models.Metadata) (string, error) {
 	if metadata == nil {
 		return "", nil
 	}
-	metaBytes, err := json.Marshal(metadata)
+	bs, err := json.Marshal(metadata)
 	if err != nil {
 		return "", err
 	}
-	return string(metaBytes), nil
+	return string(bs), nil
+}
+
+func tagListToString(tags []string) (string, error) {
+	if tags == nil {
+		return "", nil
+	}
+	bs, err := json.Marshal(tags)
+	if err != nil {
+		return "", err
+	}
+	return string(bs), nil
+}
+
+func tagMapToString(tags map[string]string) (string, error) {
+	if tags == nil {
+		return "", nil
+	}
+	bs, err := json.Marshal(tags)
+	if err != nil {
+		return "", err
+	}
+	return string(bs), nil
 }

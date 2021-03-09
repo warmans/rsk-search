@@ -5,16 +5,18 @@ CREATE TABLE "episode"
     series       INTEGER,
     episode      INTEGER,
     release_date TIMESTAMP,
-    metadata     JSON
+    metadata     JSON,
+    tags         JSON
 );
 
 CREATE TABLE "dialog"
 (
-    id         TEXT PRIMARY KEY,
-    episode_id TEXT REFERENCES episode (id),
-    pos        INTEGER NOT NULL,
-    type       TEXT    NOT NULL,
-    actor      TEXT,
-    content    TEXT,
-    metadata   JSON
+    id           TEXT PRIMARY KEY,
+    episode_id   TEXT REFERENCES episode (id),
+    pos          INTEGER NOT NULL,
+    type         TEXT    NOT NULL,
+    actor        TEXT,
+    content      TEXT,
+    metadata     JSON,
+    content_tags JSON
 );

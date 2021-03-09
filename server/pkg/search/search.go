@@ -6,10 +6,11 @@ import (
 	"github.com/warmans/rsk-search/gen/api"
 	"github.com/warmans/rsk-search/pkg/filter"
 	"github.com/warmans/rsk-search/pkg/filter/bleve_query"
+	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/store"
 )
 
-const SearchResultContextLines = 3
+const ResultContextLines = 3
 
 func NewSearch(index bleve.Index, db *store.Conn) *Search {
 	return &Search{index: index, db: db}
@@ -50,7 +51,7 @@ func (s *Search) Search(ctx context.Context, f filter.Filter) (*api.SearchResult
 				Dialogs: []*api.DialogResult{},
 			}
 			err := s.db.WithStore(func(s *store.Store) error {
-				dialogs, episodeID, err := s.GetDialog(ctx, searchResult.ID, SearchResultContextLines)
+				dialogs, episodeID, err := s.GetDialogWithContext(ctx, searchResult.ID, ResultContextLines)
 				if err != nil {
 					return err
 				}
@@ -60,7 +61,7 @@ func (s *Search) Search(ctx context.Context, f filter.Filter) (*api.SearchResult
 				}
 
 				// ep
-				result.Episode = episode.Proto()
+				result.Episode = episode.ShortProto()
 
 				// dialogs
 				lines := make([]*api.Dialog, len(dialogs))
@@ -78,4 +79,25 @@ func (s *Search) Search(ctx context.Context, f filter.Filter) (*api.SearchResult
 	}
 
 	return res, nil
+}
+
+func (s *Search) ListTerms(fieldName string, prefix string) (models.FieldValues, error) {
+	dct, err := s.index.FieldDictPrefix(fieldName, []byte(prefix))
+	if err != nil {
+		return nil, err
+	}
+	defer dct.Close()
+
+	terms := models.FieldValues{}
+	for {
+		entry, err := dct.Next()
+		if err != nil {
+			return nil, err
+		}
+		if entry == nil {
+			break
+		}
+		terms = append(terms, models.FieldValue{Value: entry.Term, Count: int32(entry.Count)})
+	}
+	return terms, nil
 }

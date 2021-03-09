@@ -44,7 +44,7 @@ func main() {
 			Episode:    -1,
 			Series:     -1,
 			Transcript: []models.Dialog{},
-			Meta:       *new(models.Metadata),
+			Meta:       models.Metadata{},
 		}
 
 		fmt.Println("Loaded page ", e.Request.URL)
@@ -79,14 +79,29 @@ func main() {
 
 		position := positionGap
 		e.ForEach("#mw-content-text > div[style], .mw-parser-output > div[style]", func(i int, element *colly.HTMLElement) {
-			dialog, err := ParseDialog(element)
-			if err != nil {
-				fmt.Printf("Failed to parse line: %s", err.Error())
-				return
+
+			parseLine := func(el *colly.HTMLElement) bool {
+				dialog, err := ParseDialog(el)
+				if dialog == nil {
+					fmt.Println("no dialog for: ", el.Text)
+					return false
+				}
+				if err != nil {
+					fmt.Printf("Failed to parse line: %s", err.Error())
+					return false
+				}
+				dialog.Position = position
+				position += positionGap
+				episode.Transcript = append(episode.Transcript, *dialog)
+				return true
 			}
-			dialog.Position = position
-			position += positionGap
-			episode.Transcript = append(episode.Transcript, *dialog)
+
+			parseLine(element)
+
+			// at least one transcript has an unclosed tag so it needs to go a level deeper
+			element.ForEach("div[style]", func(i int, unclosedDivTag *colly.HTMLElement) {
+				parseLine(unclosedDivTag)
+			})
 		})
 
 		if episode.Publication == "" || episode.ReleaseDate.IsZero() {
@@ -190,22 +205,26 @@ func parsePublication(line string) (string, int32) {
 
 func ParseDialog(el *colly.HTMLElement) (*models.Dialog, error) {
 
-	content, contentPrefix := cleanContent(el)
+	var dialog *models.Dialog
 
-	dialog := &models.Dialog{
-		ID:      shortuuid.New(),
-		Actor:   strings.ToLower(strings.TrimSuffix(strings.TrimSpace(el.ChildText("span")), ":")),
-		Type:    models.DialogTypeUnkown,
-		Content: content,
-	}
-	if contentPrefix == "song" {
-		dialog.Type = models.DialogTypeSong
-	} else {
-		if dialog.Actor != "" {
-			dialog.Type = models.DialogTypeChat
+	el.ForEach("p", func(i int, pTag *colly.HTMLElement) {
+
+		content, contentPrefix := cleanContent(pTag)
+
+		dialog = &models.Dialog{
+			ID:      shortuuid.New(),
+			Actor:   strings.ToLower(strings.TrimSuffix(strings.TrimSpace(pTag.ChildText("span")), ":")),
+			Type:    models.DialogTypeUnkown,
+			Content: content,
 		}
-	}
-
+		if contentPrefix == "song" {
+			dialog.Type = models.DialogTypeSong
+		} else {
+			if dialog.Actor != "" {
+				dialog.Type = models.DialogTypeChat
+			}
+		}
+	})
 	return dialog, nil
 }
 

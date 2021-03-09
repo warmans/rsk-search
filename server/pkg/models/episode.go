@@ -2,6 +2,7 @@ package models
 
 import (
 	"github.com/warmans/rsk-search/gen/api"
+	"github.com/warmans/rsk-search/pkg/meta"
 	"time"
 )
 
@@ -37,17 +38,20 @@ func (m Metadata) Proto() map[string]string {
 }
 
 type Dialog struct {
-	ID          string            `json:"id"`
-	Position    int64             `json:"pos"`
-	Type        DialogType        `json:"type"`
-	Actor       string            `json:"actor"`
-	Meta        Metadata          `json:"metadata"`
-	Content     string            `json:"content"`
-	ContentTags map[string]string `json:"content_tags"` // content tokens mapped to tags
+	ID       string     `json:"id"`
+	Position int64      `json:"pos"`
+	Type     DialogType `json:"type"`
+	Actor    string     `json:"actor"`
+	Meta     Metadata   `json:"metadata"`
+	Content  string     `json:"content"`
+
+	// content tokens mapped to tags
+	// e.g. Foo! (text) => foo (tag)
+	ContentTags map[string]string `json:"content_tags"`
 }
 
 func (d Dialog) Proto(bestMatch bool) *api.Dialog {
-	return &api.Dialog{
+	dialog := &api.Dialog{
 		Id:           d.ID,
 		Pos:          d.Position,
 		Type:         string(d.Type),
@@ -55,7 +59,15 @@ func (d Dialog) Proto(bestMatch bool) *api.Dialog {
 		Content:      d.Content,
 		Metadata:     d.Meta.Proto(),
 		IsMatchedRow: bestMatch,
+		ContentTags:  make(map[string]*api.Tag),
 	}
+	for text, tagName := range d.ContentTags {
+		tag := meta.GetTag(tagName)
+		if tag != nil {
+			dialog.ContentTags[text] = &api.Tag{Name: tagName, Kind: tag.Kind}
+		}
+	}
+	return dialog
 }
 
 type Episode struct {
@@ -70,19 +82,77 @@ type Episode struct {
 	Tags       []string `json:"tags"`
 }
 
-func (e *Episode) Proto() *api.Episode {
+func (e *Episode) ShortProto() *api.ShortEpisode {
 	if e == nil {
 		return nil
 	}
-	return &api.Episode{
+	ep := &api.ShortEpisode{
+		Id:          e.ID(),
 		Publication: e.Publication,
 		Series:      e.Series,
 		Episode:     e.Episode,
 		Metadata:    e.Meta.Proto(),
 	}
+	for _, tn := range e.Tags {
+		tag := meta.GetTag(tn)
+		if tag != nil {
+			ep.Tags = append(ep.Tags, &api.Tag{Name: tn, Kind: tag.Kind})
+		}
+	}
+	return ep
+}
+
+func (e *Episode) Proto() *api.Episode {
+	if e == nil {
+		return nil
+	}
+	ep := &api.Episode{
+		Id:          e.ID(),
+		Publication: e.Publication,
+		Series:      e.Series,
+		Episode:     e.Episode,
+		Metadata:    e.Meta.Proto(),
+	}
+	for _, tn := range e.Tags {
+		tag := meta.GetTag(tn)
+		if tag != nil {
+			ep.Tags = append(ep.Tags, &api.Tag{Name: tn, Kind: tag.Kind})
+		}
+	}
+	for _, d := range e.Transcript {
+		ep.Transcript = append(ep.Transcript, d.Proto(false))
+	}
+	return ep
+}
+
+func (e *Episode) ID() string {
+	return EpisodeID(e)
 }
 
 type DialogTags struct {
 	DialogID string            `json:"dialog_id"`
 	Tags     map[string]string `json:"tags"`
 }
+
+type FieldValues []FieldValue
+
+func (f FieldValues) Proto() []*api.FieldValue {
+	if f == nil {
+		return make([]*api.FieldValue, 0)
+	}
+	out := make([]*api.FieldValue, len(f))
+	for k, v := range f {
+		out[k] = v.Proto()
+	}
+	return out
+}
+
+type FieldValue struct {
+	Value string
+	Count int32
+}
+
+func (f FieldValue) Proto() *api.FieldValue {
+	return &api.FieldValue{Count: f.Count, Value: f.Value}
+}
+

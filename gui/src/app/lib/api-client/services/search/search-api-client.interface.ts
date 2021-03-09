@@ -19,6 +19,17 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  searchServiceListFieldValues(
+    args: {
+      field?: string,
+      prefix?: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchFieldValueList>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   searchServiceSearch(
     args: {
       query?: string,
