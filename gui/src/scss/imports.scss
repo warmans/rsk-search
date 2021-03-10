@@ -1,4 +1,6 @@
 @import "variables";
+
+// boostrap
 @import "~bootstrap/scss/mixins";
 @import "~bootstrap/scss/root";
 @import "~bootstrap/scss/reboot";
@@ -32,4 +34,8 @@
 @import "~bootstrap/scss/spinners";
 @import "~bootstrap/scss/utilities";
 
+// google fonts
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
+
+// ng-select
+@import "~@ng-select/ng-select/scss/ant.design.theme";

@@ -63,26 +63,16 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceListFieldValues(
-    args: {
-      field?: string,
-      prefix?: string,
-    },
+  searchServiceGetSearchMetadata(
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchFieldValueList> {
+  ): Observable<models.RskSearchMetadata> {
     const path = `/api/metadata`;
     const options: APIHttpOptions = {
       ...this.options,
       ...requestHttpOptions,
     };
 
-    if ('field' in args) {
-      options.params = options.params.set('field', String(args.field));
-    }
-    if ('prefix' in args) {
-      options.params = options.params.set('prefix', String(args.prefix));
-    }
-    return this.sendRequest<models.RsksearchFieldValueList>('GET', path, options);
+    return this.sendRequest<models.RskSearchMetadata>('GET', path, options);
   }
 
   /**
@@ -104,6 +94,28 @@ export class SearchAPIClient implements SearchAPIClientInterface {
       options.params = options.params.set('query', String(args.query));
     }
     return this.sendRequest<models.RskSearchResultList>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  searchServiceListFieldValues(
+    args: {
+      field: string,
+      prefix?: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchFieldValueList> {
+    const path = `/api/values/${args.field}`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    if ('prefix' in args) {
+      options.params = options.params.set('prefix', String(args.prefix));
+    }
+    return this.sendRequest<models.RsksearchFieldValueList>('GET', path, options);
   }
 
   private sendRequest<T>(method: string, path: string, options: HttpOptions, body?: any): Observable<T> {

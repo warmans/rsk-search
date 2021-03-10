@@ -32,15 +32,11 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
       .pipe(tap((res: any) => guards.isRsksearchEpisode(res) || console.error(`TypeGuard for response 'RsksearchEpisode' caught inconsistency.`, res)));
   }
 
-  searchServiceListFieldValues(
-    args: {
-      field?: string,
-      prefix?: string,
-    },
+  searchServiceGetSearchMetadata(
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchFieldValueList> {
-    return super.searchServiceListFieldValues(args, requestHttpOptions)
-      .pipe(tap((res: any) => guards.isRsksearchFieldValueList(res) || console.error(`TypeGuard for response 'RsksearchFieldValueList' caught inconsistency.`, res)));
+  ): Observable<models.RskSearchMetadata> {
+    return super.searchServiceGetSearchMetadata(requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRskSearchMetadata(res) || console.error(`TypeGuard for response 'RskSearchMetadata' caught inconsistency.`, res)));
   }
 
   searchServiceSearch(
@@ -51,6 +47,17 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
   ): Observable<models.RskSearchResultList> {
     return super.searchServiceSearch(args, requestHttpOptions)
       .pipe(tap((res: any) => guards.isRskSearchResultList(res) || console.error(`TypeGuard for response 'RskSearchResultList' caught inconsistency.`, res)));
+  }
+
+  searchServiceListFieldValues(
+    args: {
+      field: string,
+      prefix?: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchFieldValueList> {
+    return super.searchServiceListFieldValues(args, requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRsksearchFieldValueList(res) || console.error(`TypeGuard for response 'RsksearchFieldValueList' caught inconsistency.`, res)));
   }
 
 }

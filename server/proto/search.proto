@@ -54,10 +54,10 @@ service SearchService {
 
   rpc ListFieldValues(ListFieldValuesRequest) returns (FieldValueList) {
     option (google.api.http) = {
-      get: "/api/metadata"
+      get: "/api/values/{field}"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      summary: "Fetch search metadata e.g. searchable fields"
+      summary: "Get a list of values for the given keyword field"
       tags: "search"
     };
   }
@@ -122,7 +122,24 @@ message GetEpisodeRequest {
 }
 
 message SearchMetadata {
+  repeated FieldMeta fields = 1;
+}
 
+message FieldMeta {
+
+  enum Kind {
+    UNKNOWN = 0;
+    IDENTIFIER = 1;
+    KEYWORD = 2;
+    KEYWORD_LIST = 3;
+    TEXT = 4;
+    INT = 5;
+    FLOAT = 6;
+    DATE = 7;
+  }
+
+  string name = 1;
+  Kind kind = 2;
 }
 
 message ListFieldValuesRequest {

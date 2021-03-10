@@ -14,6 +14,19 @@ return arg != null && typeof arg.lastModified === 'number' && typeof arg.name ==
 
 /* generated type guards */
 
+export function isFieldMetaKind(arg: any): arg is models.FieldMetaKind {
+  return false
+   || arg === models.FieldMetaKind.UNKNOWN
+   || arg === models.FieldMetaKind.IDENTIFIER
+   || arg === models.FieldMetaKind.KEYWORD
+   || arg === models.FieldMetaKind.KEYWORD_LIST
+   || arg === models.FieldMetaKind.TEXT
+   || arg === models.FieldMetaKind.INT
+   || arg === models.FieldMetaKind.FLOAT
+   || arg === models.FieldMetaKind.DATE
+  ;
+  }
+
 export function isRsksearchDialog(arg: any): arg is models.RsksearchDialog {
   return (
   arg != null &&
@@ -75,6 +88,19 @@ export function isRsksearchEpisode(arg: any): arg is models.RsksearchEpisode {
   );
   }
 
+export function isRsksearchFieldMeta(arg: any): arg is models.RsksearchFieldMeta {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // kind?: FieldMetaKind
+    ( typeof arg.kind === 'undefined' || isFieldMetaKind(arg.kind) ) &&
+    // name?: string
+    ( typeof arg.name === 'undefined' || typeof arg.name === 'string' ) &&
+
+  true
+  );
+  }
+
 export function isRsksearchFieldValue(arg: any): arg is models.RsksearchFieldValue {
   return (
   arg != null &&
@@ -94,6 +120,17 @@ export function isRsksearchFieldValueList(arg: any): arg is models.RsksearchFiel
   typeof arg === 'object' &&
     // values?: RsksearchFieldValue[]
     ( typeof arg.values === 'undefined' || (Array.isArray(arg.values) && arg.values.every((item: unknown) => isRsksearchFieldValue(item))) ) &&
+
+  true
+  );
+  }
+
+export function isRskSearchMetadata(arg: any): arg is models.RskSearchMetadata {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // fields?: RsksearchFieldMeta[]
+    ( typeof arg.fields === 'undefined' || (Array.isArray(arg.fields) && arg.fields.every((item: unknown) => isRsksearchFieldMeta(item))) ) &&
 
   true
   );

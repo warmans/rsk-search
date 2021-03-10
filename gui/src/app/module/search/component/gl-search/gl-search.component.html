@@ -1,0 +1,21 @@
+<div class="search-wrapper d-flex">
+  <div class="d-flex inputs flex-grow-1">
+    <div class="filters-container flex-shrink-1 p-2">
+      <button class="btn btn-sm" (click)="addFilter('actor')">+</button>
+    </div>
+    <div class="filters flex-grow-1 d-flex align-items-center">
+
+      <div *ngFor="let f of activeFilters; let i = index" class="d-flex active-filter align-items-center mr-1" >
+        <div class="remove" (click)="removeFilter(i)">&times;</div>
+        <app-gl-search-filter [field]="f"></app-gl-search-filter>
+      </div>
+
+      <div class="freetext-container flex-grow-1 p-2" contenteditable="true">
+
+      </div>
+    </div>
+  </div>
+  <div class="d-flex buttons p-2">
+    buttons
+  </div>
+</div>

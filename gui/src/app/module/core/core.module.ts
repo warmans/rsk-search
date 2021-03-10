@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AlertService } from './service/alert/alert.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { APIErrorInterceptor } from './interceptor/api-error.interceptor';
+import { MetaService } from './service/meta/meta.service';
 
 @NgModule({
   declarations: [],
@@ -11,6 +12,7 @@ import { APIErrorInterceptor } from './interceptor/api-error.interceptor';
   ],
   providers: [
     AlertService,
+    MetaService,
     { provide: HTTP_INTERCEPTORS, useClass: APIErrorInterceptor, multi: true },
   ]
 })

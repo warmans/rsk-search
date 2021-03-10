@@ -53,12 +53,12 @@
     "/api/metadata": {
       "get": {
         "summary": "Fetch search metadata e.g. searchable fields",
-        "operationId": "SearchService_ListFieldValues",
+        "operationId": "SearchService_GetSearchMetadata",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/rsksearchFieldValueList"
+              "$ref": "#/definitions/rsksearchSearchMetadata"
             }
           },
           "default": {
@@ -68,20 +68,6 @@
             }
           }
         },
-        "parameters": [
-          {
-            "name": "field",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "prefix",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
         "tags": [
           "search"
         ]
@@ -117,9 +103,60 @@
           "search"
         ]
       }
+    },
+    "/api/values/{field}": {
+      "get": {
+        "summary": "Get a list of values for the given keyword field",
+        "operationId": "SearchService_ListFieldValues",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rsksearchFieldValueList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "field",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "prefix",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      }
     }
   },
   "definitions": {
+    "FieldMetaKind": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "IDENTIFIER",
+        "KEYWORD",
+        "KEYWORD_LIST",
+        "TEXT",
+        "INT",
+        "FLOAT",
+        "DATE"
+      ],
+      "default": "UNKNOWN"
+    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -238,6 +275,17 @@
         }
       }
     },
+    "rsksearchFieldMeta": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/definitions/FieldMetaKind"
+        }
+      }
+    },
     "rsksearchFieldValue": {
       "type": "object",
       "properties": {
@@ -262,7 +310,15 @@
       }
     },
     "rsksearchSearchMetadata": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "fields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rsksearchFieldMeta"
+          }
+        }
+      }
     },
     "rsksearchSearchResult": {
       "type": "object",

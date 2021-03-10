@@ -1,0 +1,22 @@
+<div class="d-flex filter align-items-center">
+  <div class="field mr-1">
+    {{ field.name }}
+  </div>
+  <div class="operator mr-1">
+    <ng-select [items]="possibleOperators" [(ngModel)]="operator" [clearable]="false"></ng-select>
+  </div>
+  <div class="value mr-1">
+    <ng-select [items]="possibleValues$ | async"
+               bindLabel="value"
+               [minTermLength]="2"
+               [loading]="valuesLoading"
+               [typeahead]="valueInput$"
+               [(ngModel)]="value"
+               [trackByFn]="trackByFn"
+               [clearable]="false">
+    </ng-select>
+  </div>
+  <!--div class="connector">
+    and
+  </div-->
+</div>

@@ -19,13 +19,9 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceListFieldValues(
-    args: {
-      field?: string,
-      prefix?: string,
-    },
+  searchServiceGetSearchMetadata(
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchFieldValueList>;
+  ): Observable<models.RskSearchMetadata>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
@@ -36,5 +32,16 @@ export interface SearchAPIClientInterface {
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskSearchResultList>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  searchServiceListFieldValues(
+    args: {
+      field: string,
+      prefix?: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchFieldValueList>;
 
 }

@@ -1,0 +1,23 @@
+.inputs {
+  width: 100%;
+  border: 1px solid #ccc;
+  height: 48px;
+  background-color: #fff;
+}
+
+.freetext-container:active, .freetext-container:focus {
+  border: none;
+  outline: none;
+}
+
+.active-filter {
+  background-color: #f6f6f6;
+
+  .remove {
+    cursor: pointer;
+    padding: 5px 10px 5px 10px;
+    font-size: 0.8rem;
+    vertical-align: middle;
+    justify-content: center;
+  }
+}
