@@ -7,6 +7,7 @@ import { CoreModule } from '../module/core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SearchAPIClientModule } from '../lib/api-client/services/search';
 import { SearchModule } from '../module/search/search.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [

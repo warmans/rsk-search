@@ -4,6 +4,7 @@ import { AlertService } from './service/alert/alert.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { APIErrorInterceptor } from './interceptor/api-error.interceptor';
 import { MetaService } from './service/meta/meta.service';
+import { SearchService } from './service/search/search.service';
 
 @NgModule({
   declarations: [],
@@ -13,6 +14,7 @@ import { MetaService } from './service/meta/meta.service';
   providers: [
     AlertService,
     MetaService,
+    SearchService,
     { provide: HTTP_INTERCEPTORS, useClass: APIErrorInterceptor, multi: true },
   ]
 })

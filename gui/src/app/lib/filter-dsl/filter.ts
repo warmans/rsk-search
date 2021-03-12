@@ -75,6 +75,10 @@ export class BoolFilter implements Filter {
   }
 }
 
+export function NewCompFilter(field: string, op: CompOp, value: Value): CompFilter {
+  return new CompFilter(field, op, value);
+}
+
 export function And(lhs: Filter, rhs: Filter, ...filters: Filter[]): Filter {
   let filter = new BoolFilter(lhs, BoolOp.And, rhs);
   filters.forEach((f: Filter) => {

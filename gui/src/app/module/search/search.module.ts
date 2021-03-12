@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { TranscriptComponent } from './component/transcript/transcript.component';
 import { SharedModule } from '../shared/shared.module';
 import { GlSearchComponent } from './component/gl-search/gl-search.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { GlSearchFilterComponent } from './component/gl-search-filter/gl-search-filter.component';
 
@@ -25,6 +25,7 @@ import { GlSearchFilterComponent } from './component/gl-search-filter/gl-search-
     RouterModule,
     SharedModule,
     FormsModule,
+    ReactiveFormsModule,
     NgSelectModule
   ],
   exports: [DslSearchComponent, GlSearchComponent]
