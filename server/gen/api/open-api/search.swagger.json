@@ -19,6 +19,29 @@
     "application/json"
   ],
   "paths": {
+    "/api/episode": {
+      "get": {
+        "summary": "Fetch list of available episodes",
+        "operationId": "SearchService_ListEpisodes",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rsksearchEpisodeList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "search"
+        ]
+      }
+    },
     "/api/episode/{id}": {
       "get": {
         "summary": "Fetch the full data for an episode including the transcript",
@@ -97,6 +120,13 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
           }
         ],
         "tags": [
@@ -271,6 +301,20 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/rsksearchDialog"
+          }
+        },
+        "releaseDate": {
+          "type": "string"
+        }
+      }
+    },
+    "rsksearchEpisodeList": {
+      "type": "object",
+      "properties": {
+        "episodes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rsksearchShortEpisode"
           }
         }
       }

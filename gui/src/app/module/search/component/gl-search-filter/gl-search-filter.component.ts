@@ -1,9 +1,24 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit } from '@angular/core';
 import { MetaService } from '../../../core/service/meta/meta.service';
-import { RsksearchFieldMeta, RsksearchFieldValue, RsksearchFieldValueList } from '../../../../lib/api-client/models';
+import {
+  FieldMetaKind,
+  RsksearchFieldMeta,
+  RsksearchFieldValue,
+  RsksearchFieldValueList
+} from '../../../../lib/api-client/models';
 import { Observable, of, Subject } from 'rxjs';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
-import { catchError, distinctUntilChanged, map, switchMap, takeUntil, tap } from 'rxjs/operators';
+import { catchError, distinctUntilChanged, filter, map, switchMap, takeUntil, tap } from 'rxjs/operators';
+import { CompOp } from '../../../../lib/filter-dsl/filter';
+
+export class SearchFilter {
+  constructor(
+    public meta: RsksearchFieldMeta,
+    public operator: CompOp = CompOp.Eq,
+    public value: string = '',
+  ) {
+  }
+}
 
 @Component({
   selector: 'app-gl-search-filter',
@@ -13,31 +28,27 @@ import { catchError, distinctUntilChanged, map, switchMap, takeUntil, tap } from
 export class GlSearchFilterComponent implements OnInit, OnDestroy {
 
   // field to search in
-  public _field: RsksearchFieldMeta;
+  public _field: SearchFilter;
 
   @Input()
-  set field(f: RsksearchFieldMeta) {
+  set field(f: SearchFilter) {
     this._field = f;
     this.updateOperators();
   }
 
-  get field(): RsksearchFieldMeta {
+  get field(): SearchFilter {
     return this._field;
   }
 
   // operator
   public possibleOperators: string[];
-  public operator: string = '=';
 
   // value with autocomplete
   public valueInput$: Subject<string> = new Subject<string>();
-  public possibleValues$: Observable<RsksearchFieldValue[]>;
-  public value: any = null;
+  public possibleValues$: Observable<string[]>;
   public valuesLoading: boolean = false;
-  public searchPrefix: string = '';
 
-  // e.g. and/or
-  public connector: string = 'and';
+  public kinds = FieldMetaKind;
 
   private destroy$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -55,12 +66,14 @@ export class GlSearchFilterComponent implements OnInit, OnDestroy {
       this.valueInput$.pipe(
         takeUntil(this.destroy$),
         distinctUntilChanged(),
+        filter((v) => v !== null),
         tap(() => this.valuesLoading = true),
         switchMap(term => this.apiClient.searchServiceListFieldValues({
-          field: this._field.name,
+          field: this._field.meta.name,
           prefix: term,
         }).pipe(
           map((v: RsksearchFieldValueList): RsksearchFieldValue[] => v.values),
+          map((v: RsksearchFieldValue[]): string[] => v.map((v: RsksearchFieldValue) => v.value)),
           catchError(() => of([])), // empty list on error
           tap(() => this.valuesLoading = false)
         ))
@@ -68,7 +81,7 @@ export class GlSearchFilterComponent implements OnInit, OnDestroy {
   }
 
   updateOperators() {
-    this.possibleOperators = this.meta.getOperatorsForType(this._field.kind);
+    this.possibleOperators = this.meta.getOperatorsForType(this._field.meta.kind);
   }
 
   trackByFn(item: RsksearchFieldValue) {

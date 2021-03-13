@@ -15,6 +15,7 @@ export class RootComponent {
   }
 
   executeSearch(query: string) {
+    console.log(query);
     this.router.navigate(['/search'], { queryParams: { q: query } });
   }
 

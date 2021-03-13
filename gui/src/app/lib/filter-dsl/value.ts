@@ -1,4 +1,5 @@
 import { Tok } from './scanner';
+import { FieldMetaKind, RsksearchFieldMeta } from '../api-client/models';
 
 export enum ValueKind {
   String,
@@ -31,4 +32,29 @@ export function Float(value: number, token: Tok = null): Value {
 
 export function Bool(value: boolean, token: Tok = null): Value {
   return new Value(ValueKind.Bool, value, token);
+}
+
+export function ValueFromFieldMeta(m: RsksearchFieldMeta, value: any): Value {
+  switch (m.kind) {
+    case FieldMetaKind.IDENTIFIER:
+      return Str(value);
+    case FieldMetaKind.KEYWORD:
+      return Str(value);
+    case FieldMetaKind.KEYWORD_LIST:
+      console.error('not implemented');
+      return Str(value);
+    case FieldMetaKind.INT:
+      return Int(value);
+    case FieldMetaKind.FLOAT:
+      return Float(value);
+    case FieldMetaKind.DATE:
+      return Str(value);
+    case FieldMetaKind.UNKNOWN:
+      console.error('unknown field kind, assuming text');
+    default:
+      console.error('unhandled field kind, assuming text');
+    case FieldMetaKind.TEXT:
+      return Str(value);
+  }
+
 }

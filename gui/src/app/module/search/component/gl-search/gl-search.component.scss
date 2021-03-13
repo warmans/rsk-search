@@ -21,3 +21,21 @@
     justify-content: center;
   }
 }
+
+.add-filter:active, .add-filter:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.filter-overlay {
+  position: absolute;
+  background-color: #fff;
+}
+
+.filter-overlay div {
+  cursor: pointer;
+}
+
+.filter-overlay div:hover {
+  background-color: #f6f6f6;
+}

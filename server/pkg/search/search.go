@@ -11,6 +11,7 @@ import (
 )
 
 const ResultContextLines = 3
+const PageSize = 10
 
 func NewSearch(index bleve.Index, db *store.Conn) *Search {
 	return &Search{index: index, db: db}
@@ -21,7 +22,7 @@ type Search struct {
 	db    *store.Conn
 }
 
-func (s *Search) Search(ctx context.Context, f filter.Filter) (*api.SearchResultList, error) {
+func (s *Search) Search(ctx context.Context, f filter.Filter, page int32) (*api.SearchResultList, error) {
 
 	query, err := bleve_query.FilterToQuery(f)
 	if err != nil {
@@ -29,6 +30,8 @@ func (s *Search) Search(ctx context.Context, f filter.Filter) (*api.SearchResult
 	}
 
 	req := bleve.NewSearchRequest(query)
+	req.Size = PageSize
+	req.From = PageSize * int(page)
 
 	result, err := s.index.Search(req)
 	if err != nil {

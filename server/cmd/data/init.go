@@ -4,9 +4,9 @@ import (
 	"fmt"
 	_ "github.com/blevesearch/bleve/v2/config"
 	"github.com/spf13/cobra"
+	"github.com/warmans/rsk-search/pkg/data"
 	"github.com/warmans/rsk-search/pkg/meta"
 	"github.com/warmans/rsk-search/pkg/models"
-	"github.com/warmans/rsk-search/pkg/util"
 	"go.uber.org/zap"
 	"time"
 )
@@ -34,7 +34,7 @@ func InitCmd() *cobra.Command {
 }
 
 func initEpisodeFile(outputDir string, dateStr string, name string) error {
-	date, err := time.Parse(time.RFC3339, dateStr)
+	d, err := time.Parse(time.RFC3339, dateStr)
 	if err != nil {
 		return err
 	}
@@ -48,7 +48,7 @@ func initEpisodeFile(outputDir string, dateStr string, name string) error {
 		Publication: meta.PublicationXFM,
 		Series:      series,
 		Episode:     episode,
-		ReleaseDate: date,
+		ReleaseDate: d,
 	}
-	return util.SaveEpisodeToFile(outputDir, ep)
+	return data.SaveEpisodeToFile(outputDir, ep)
 }

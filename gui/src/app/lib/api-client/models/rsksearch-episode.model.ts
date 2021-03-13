@@ -9,6 +9,7 @@ export interface RsksearchEpisode {
   id?: string;
   metadata?: { [key: string]: string };
   publication?: string;
+  releaseDate?: string;
   series?: number;
   tags?: RsksearchTag[];
   transcript?: RsksearchDialog[];

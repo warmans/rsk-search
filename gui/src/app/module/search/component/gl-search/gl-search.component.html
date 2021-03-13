@@ -2,14 +2,23 @@
   <div class="search-wrapper d-flex">
     <div class="d-flex inputs flex-grow-1">
       <div class="filters-container flex-shrink-1 p-2">
-        <button class="btn btn-sm" (click)="addFilter('actor')" type="button">+</button>
+        <button class="btn btn-sm add-filter" (click)="filterOverlayOpen = !filterOverlayOpen" type="button">+</button>
+        <div class="filter-overlay px-2 pt-2 pb-1" *ngIf="filterOverlayOpen">
+          <span *ngFor="let f of fieldMeta">
+            <div *ngIf="f.kind !== fieldKinds.TEXT && f.kind !== fieldKinds.IDENTIFIER && f.kind !== fieldKinds.KEYWORD_LIST" (click)="addFilter(f.name)" class="mb-1 p-1">{{f.name}}</div>
+          </span>
+        </div>
       </div>
       <div class="filters flex-grow-1 d-flex align-items-center">
-        <div *ngFor="let f of activeFilters; let i = index" class="d-flex active-filter align-items-center mr-1">
-          <app-gl-search-filter [field]="f"></app-gl-search-filter>
-          <div class="remove" (click)="removeFilter(i)">&times;</div>
+        <div *ngFor="let f of activeFilters; let i = index" class="d-flex align-items-center">
+          <strong *ngIf="i !== 0" class="connector px-2">and</strong>
+          <div class="d-flex active-filter align-items-center">
+            <app-gl-search-filter [field]="f"></app-gl-search-filter>
+            <div class="remove" (click)="removeFilter(i)">&times;</div>
+          </div>
+          <strong *ngIf="i === activeFilters.length-1" class="connector pl-2 pr-1">with content:</strong>
         </div>
-        <input class="freetext-container flex-grow-1 p-2 border-0" formControlName="term" />
+        <input class="freetext-container flex-grow-1 p-2 border-0" formControlName="term" placeholder="Enter search terms, double quote terms for more exact matches"/>
       </div>
     </div>
     <div class="d-flex buttons">

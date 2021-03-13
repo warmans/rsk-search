@@ -11,7 +11,6 @@ export enum CompOp {
   Ge = '>=',
 }
 
-
 function compOpPrecedence(op: CompOp): number {
   return 3;
 }

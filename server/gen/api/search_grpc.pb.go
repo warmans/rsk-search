@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion7
 type SearchServiceClient interface {
 	Search(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (*SearchResultList, error)
 	GetEpisode(ctx context.Context, in *GetEpisodeRequest, opts ...grpc.CallOption) (*Episode, error)
+	ListEpisodes(ctx context.Context, in *ListEpisodesRequest, opts ...grpc.CallOption) (*EpisodeList, error)
 	GetSearchMetadata(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SearchMetadata, error)
 	ListFieldValues(ctx context.Context, in *ListFieldValuesRequest, opts ...grpc.CallOption) (*FieldValueList, error)
 }
@@ -51,6 +52,15 @@ func (c *searchServiceClient) GetEpisode(ctx context.Context, in *GetEpisodeRequ
 	return out, nil
 }
 
+func (c *searchServiceClient) ListEpisodes(ctx context.Context, in *ListEpisodesRequest, opts ...grpc.CallOption) (*EpisodeList, error) {
+	out := new(EpisodeList)
+	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/ListEpisodes", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *searchServiceClient) GetSearchMetadata(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SearchMetadata, error) {
 	out := new(SearchMetadata)
 	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/GetSearchMetadata", in, out, opts...)
@@ -75,6 +85,7 @@ func (c *searchServiceClient) ListFieldValues(ctx context.Context, in *ListField
 type SearchServiceServer interface {
 	Search(context.Context, *SearchRequest) (*SearchResultList, error)
 	GetEpisode(context.Context, *GetEpisodeRequest) (*Episode, error)
+	ListEpisodes(context.Context, *ListEpisodesRequest) (*EpisodeList, error)
 	GetSearchMetadata(context.Context, *emptypb.Empty) (*SearchMetadata, error)
 	ListFieldValues(context.Context, *ListFieldValuesRequest) (*FieldValueList, error)
 }
@@ -88,6 +99,9 @@ func (UnimplementedSearchServiceServer) Search(context.Context, *SearchRequest) 
 }
 func (UnimplementedSearchServiceServer) GetEpisode(context.Context, *GetEpisodeRequest) (*Episode, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetEpisode not implemented")
+}
+func (UnimplementedSearchServiceServer) ListEpisodes(context.Context, *ListEpisodesRequest) (*EpisodeList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListEpisodes not implemented")
 }
 func (UnimplementedSearchServiceServer) GetSearchMetadata(context.Context, *emptypb.Empty) (*SearchMetadata, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSearchMetadata not implemented")
@@ -143,6 +157,24 @@ func _SearchService_GetEpisode_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SearchService_ListEpisodes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListEpisodesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SearchServiceServer).ListEpisodes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/rsksearch.SearchService/ListEpisodes",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SearchServiceServer).ListEpisodes(ctx, req.(*ListEpisodesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _SearchService_GetSearchMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
@@ -193,6 +225,10 @@ var SearchService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetEpisode",
 			Handler:    _SearchService_GetEpisode_Handler,
+		},
+		{
+			MethodName: "ListEpisodes",
+			Handler:    _SearchService_ListEpisodes_Handler,
 		},
 		{
 			MethodName: "GetSearchMetadata",

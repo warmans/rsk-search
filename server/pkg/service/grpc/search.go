@@ -40,7 +40,7 @@ func (s *SearchService) Search(ctx context.Context, request *api.SearchRequest) 
 	if err != nil {
 		return nil, ErrInvalidRequestField("query", err.Error()).Err()
 	}
-	return s.searchBackend.Search(ctx, f)
+	return s.searchBackend.Search(ctx, f, request.Page)
 }
 
 func (s *SearchService) GetEpisode(ctx context.Context, request *api.GetEpisodeRequest) (*api.Episode, error) {
@@ -57,6 +57,10 @@ func (s *SearchService) GetEpisode(ctx context.Context, request *api.GetEpisodeR
 		return nil, err
 	}
 	return ep.Proto(), nil
+}
+
+func (s *SearchService) ListEpisodes(ctx context.Context, request *api.ListEpisodesRequest) (*api.EpisodeList, error) {
+	panic("implement me")
 }
 
 func (s *SearchService) RegisterGRPC(server *grpc.Server) {

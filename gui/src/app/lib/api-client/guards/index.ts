@@ -77,12 +77,25 @@ export function isRsksearchEpisode(arg: any): arg is models.RsksearchEpisode {
     ( typeof arg.metadata === 'undefined' || typeof arg.metadata === 'string' ) &&
     // publication?: string
     ( typeof arg.publication === 'undefined' || typeof arg.publication === 'string' ) &&
+    // releaseDate?: string
+    ( typeof arg.releaseDate === 'undefined' || typeof arg.releaseDate === 'string' ) &&
     // series?: number
     ( typeof arg.series === 'undefined' || typeof arg.series === 'number' ) &&
     // tags?: RsksearchTag[]
     ( typeof arg.tags === 'undefined' || (Array.isArray(arg.tags) && arg.tags.every((item: unknown) => isRsksearchTag(item))) ) &&
     // transcript?: RsksearchDialog[]
     ( typeof arg.transcript === 'undefined' || (Array.isArray(arg.transcript) && arg.transcript.every((item: unknown) => isRsksearchDialog(item))) ) &&
+
+  true
+  );
+  }
+
+export function isRsksearchEpisodeList(arg: any): arg is models.RsksearchEpisodeList {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // episodes?: RsksearchShortEpisode[]
+    ( typeof arg.episodes === 'undefined' || (Array.isArray(arg.episodes) && arg.episodes.every((item: unknown) => isRsksearchShortEpisode(item))) ) &&
 
   true
   );

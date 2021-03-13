@@ -1,22 +1,26 @@
 <div class="d-flex filter align-items-center">
   <div class="field mr-2">
-    {{ field.name }}
+    {{ _field.meta.name }}
   </div>
   <div class="operator mr-1">
-    <ng-select [items]="possibleOperators" [(ngModel)]="operator" [clearable]="false"></ng-select>
+    <ng-select [items]="possibleOperators" [(ngModel)]="_field.operator" [clearable]="false"></ng-select>
   </div>
   <div class="value mr-1">
-    <ng-select [items]="possibleValues$ | async"
+    <ng-select *ngIf="_field.meta.kind === kinds.KEYWORD"
+               [items]="possibleValues$ | async"
                bindLabel="value"
-               [minTermLength]="2"
+               [minTermLength]="0"
                [loading]="valuesLoading"
                [typeahead]="valueInput$"
-               [(ngModel)]="value"
+               [(ngModel)]="_field.value"
                [trackByFn]="trackByFn"
-               [clearable]="false">
+               [clearable]="false"
+               (keydown.enter)="$event.stopImmediatePropagation(); valueInput$.next('')"
+                class="keyword-select">
     </ng-select>
+    <span *ngIf="_field.meta.kind !== kinds.KEYWORD">
+      <input *ngIf="_field.meta.kind === kinds.INT || _field.meta.kind === kinds.FLOAT" [(ngModel)]="_field.value" type="number" class="number-select"/>
+      <input *ngIf="_field.meta.kind !== kinds.INT && _field.meta.kind !== kinds.FLOAT" [(ngModel)]="_field.value" type="text" class="other-select"/>
+    </span>
   </div>
-  <!--div class="connector">
-    and
-  </div-->
 </div>

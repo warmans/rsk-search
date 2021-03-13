@@ -42,6 +42,16 @@ service SearchService {
     };
   }
 
+  rpc ListEpisodes(ListEpisodesRequest) returns (EpisodeList) {
+    option (google.api.http) = {
+      get: "/api/episode"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Fetch list of available episodes"
+      tags: "search"
+    };
+  }
+
   rpc GetSearchMetadata(google.protobuf.Empty) returns (SearchMetadata) {
     option (google.api.http) = {
       get: "/api/metadata"
@@ -65,6 +75,7 @@ service SearchService {
 
 message SearchRequest {
   string query = 1;
+  int32 page = 2;
 }
 
 message SearchResultList {
@@ -115,10 +126,19 @@ message Episode {
   map<string, string> metadata = 5;
   repeated Tag tags = 6;
   repeated Dialog transcript = 7;
+  string release_date = 8;
 }
 
 message GetEpisodeRequest {
   string id = 1;
+}
+
+message ListEpisodesRequest {
+
+}
+
+message EpisodeList {
+  repeated ShortEpisode episodes = 1;
 }
 
 message SearchMetadata {

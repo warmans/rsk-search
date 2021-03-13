@@ -4,6 +4,7 @@ export { FieldMetaKind } from './field-meta-kind.enum';
 export { RsksearchDialog } from './rsksearch-dialog.model';
 export { RsksearchDialogResult } from './rsksearch-dialog-result.model';
 export { RsksearchEpisode } from './rsksearch-episode.model';
+export { RsksearchEpisodeList } from './rsksearch-episode-list.model';
 export { RsksearchFieldMeta } from './rsksearch-field-meta.model';
 export { RsksearchFieldValue } from './rsksearch-field-value.model';
 export { RsksearchFieldValueList } from './rsksearch-field-value-list.model';

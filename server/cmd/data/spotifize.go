@@ -5,10 +5,10 @@ import (
 	"fmt"
 	_ "github.com/blevesearch/bleve/v2/config"
 	"github.com/spf13/cobra"
+	"github.com/warmans/rsk-search/pkg/data"
 	"github.com/warmans/rsk-search/pkg/meta"
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/spotify"
-	"github.com/warmans/rsk-search/pkg/util"
 	"go.uber.org/zap"
 	"os"
 	"strings"
@@ -47,7 +47,7 @@ func ImportSpotifyData() *cobra.Command {
 
 func addTinPotRadioLinks(tinPotRadioData string, logger *zap.Logger) error {
 
-	logger.Info("Importing tinpotradio data from...", zap.String("path", tinPotRadioData))
+	logger.Info("Importing tinpotradio episodes from...", zap.String("path", tinPotRadioData))
 
 	f, err := os.Open(tinPotRadioData)
 	if err != nil {
@@ -55,16 +55,16 @@ func addTinPotRadioLinks(tinPotRadioData string, logger *zap.Logger) error {
 	}
 	defer f.Close()
 
-	data := []spotify.Episode{}
-	if err := json.NewDecoder(f).Decode(&data); err != nil {
+	episodes := []spotify.Episode{}
+	if err := json.NewDecoder(f).Decode(&episodes); err != nil {
 		return err
 	}
 
-	for _, d := range data {
+	for _, d := range episodes {
 
 		lg := logger.With(zap.String("name", d.Name), zap.String("publication", meta.PublicationXFM), zap.String("date", d.ReleaseDate))
 
-		ep, err := util.LoadEpisode(cfg.dataDir, meta.PublicationXFM, d.Name)
+		ep, err := data.LoadEpisode(cfg.dataDir, meta.PublicationXFM, d.Name)
 		if err != nil {
 			return err
 		}
@@ -80,7 +80,7 @@ func addTinPotRadioLinks(tinPotRadioData string, logger *zap.Logger) error {
 		ep.Meta[models.MetadataTypeSpotifyURI] = d.URI
 		ep.Meta[models.MetadataTypeSpotifyPreviewURL] = d.AudioPreviewURL
 
-		if err := util.ReplaceEpisodeFile(cfg.dataDir, ep); err != nil {
+		if err := data.ReplaceEpisodeFile(cfg.dataDir, ep); err != nil {
 			return err
 		}
 		lg.Info("ok!")
@@ -96,7 +96,7 @@ func addSongMeta(logger *zap.Logger, token string) error {
 
 		lg := logger.With(zap.String("name", name))
 
-		ep, err := util.LoadEpisode(cfg.dataDir, meta.PublicationXFM, name)
+		ep, err := data.LoadEpisode(cfg.dataDir, meta.PublicationXFM, name)
 		if err != nil {
 			return err
 		}
@@ -131,7 +131,7 @@ func addSongMeta(logger *zap.Logger, token string) error {
 			}
 		}
 
-		if err := util.ReplaceEpisodeFile(cfg.dataDir, ep); err != nil {
+		if err := data.ReplaceEpisodeFile(cfg.dataDir, ep); err != nil {
 			return err
 		}
 	}

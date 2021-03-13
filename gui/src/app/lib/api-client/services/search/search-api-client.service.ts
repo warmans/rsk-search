@@ -45,6 +45,21 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  searchServiceListEpisodes(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchEpisodeList> {
+    const path = `/api/episode`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<models.RsksearchEpisodeList>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   searchServiceGetEpisode(
     args: {
       id: string,
@@ -81,6 +96,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   searchServiceSearch(
     args: {
       query?: string,
+      page?: number,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskSearchResultList> {
@@ -92,6 +108,9 @@ export class SearchAPIClient implements SearchAPIClientInterface {
 
     if ('query' in args) {
       options.params = options.params.set('query', String(args.query));
+    }
+    if ('page' in args) {
+      options.params = options.params.set('page', String(args.page));
     }
     return this.sendRequest<models.RskSearchResultList>('GET', path, options);
   }

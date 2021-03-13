@@ -3,6 +3,7 @@ package models
 import (
 	"github.com/warmans/rsk-search/gen/api"
 	"github.com/warmans/rsk-search/pkg/meta"
+	"github.com/warmans/rsk-search/pkg/util"
 	"time"
 )
 
@@ -112,6 +113,7 @@ func (e *Episode) Proto() *api.Episode {
 		Series:      e.Series,
 		Episode:     e.Episode,
 		Metadata:    e.Meta.Proto(),
+		ReleaseDate: e.ReleaseDate.Format(util.ShortDateFormat),
 	}
 	for _, tn := range e.Tags {
 		tag := meta.GetTag(tn)

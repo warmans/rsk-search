@@ -1,3 +1,4 @@
+@import "src/scss/variables";
 .filter {
   padding: 5px 0px 5px 10px;
 }
@@ -10,7 +11,21 @@
 }
 
 .value {
-  width: 100px;
+
+}
+
+.keyword-select, .other-select {
+  width: 150px;
+}
+
+.number-select {
+  width: 50px;
+}
+
+.number-select, .other-select {
+  background-color: $ng-select-bg;
+  border: none;
+  padding: 3px 5px;
 }
 
 .connector {

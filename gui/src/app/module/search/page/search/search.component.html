@@ -1,4 +1,4 @@
-<div class="container-fluid pt-3">
+<div class="container-fluid pt-3" *ngIf="result?.results.length">
   <div class="row">
     <div class="col">
       <div *ngFor="let res of result?.results" class="result card mb-3">
@@ -13,6 +13,21 @@
           </div>
         </div>
       </div>
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li *ngFor="let i of pages" class="page-item" [ngClass]="{'active': i === currentPage}">
+            <a class="page-link" [routerLink]="['/search']" [queryParams]="{'page': i}" [queryParamsHandling]="'merge'">{{i}}</a>
+          </li>
+          <li *ngIf="morePages" class="page-item"><span class="page-link">More...</span></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+<div *ngIf="!result?.results.length" class="d-flex flex-column justify-content-center align-items-center h-100">
+  <div class="card w-25 no-results">
+    <div class="card-body text-center">
+      Alright, there's nothing to show and that so enter a search term above. Or don't, I'm not bothered. Sick of ya...
     </div>
   </div>
 </div>

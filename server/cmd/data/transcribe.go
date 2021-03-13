@@ -5,6 +5,7 @@ import (
 	"fmt"
 	_ "github.com/blevesearch/bleve/v2/config"
 	"github.com/spf13/cobra"
+	"github.com/warmans/rsk-search/pkg/data"
 	"github.com/warmans/rsk-search/pkg/meta"
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/util"
@@ -45,7 +46,7 @@ func ImportTranscriptsCmd() *cobra.Command {
 					continue
 				}
 
-				ep, err := util.LoadEpisode(cfg.dataDir, meta.PublicationXFM, name)
+				ep, err := data.LoadEpisode(cfg.dataDir, meta.PublicationXFM, name)
 				if err != nil {
 					return err
 				}
@@ -65,7 +66,7 @@ func ImportTranscriptsCmd() *cobra.Command {
 					ep.Meta[k] = v
 				}
 
-				if err := util.ReplaceEpisodeFile(cfg.dataDir, ep); err != nil {
+				if err := data.ReplaceEpisodeFile(cfg.dataDir, ep); err != nil {
 					return err
 				}
 				lg.Info("ok!")
@@ -77,10 +78,6 @@ func ImportTranscriptsCmd() *cobra.Command {
 	cmd.Flags().StringVarP(&inputDir, "input-path", "i", "./script/pilkipedia-scraper/raw", "Path to raw scraped files")
 
 	return cmd
-}
-
-func updateEpisode(ep *models.Episode) error {
-	return nil
 }
 
 func loadTranscript(inputDir string, publication string, date time.Time) (*models.Episode, error) {

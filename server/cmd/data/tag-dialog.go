@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"github.com/jdkato/prose/v2"
 	"github.com/spf13/cobra"
+	"github.com/warmans/rsk-search/pkg/data"
 	"github.com/warmans/rsk-search/pkg/meta"
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/util"
@@ -82,7 +83,7 @@ func TagDialogCmd() *cobra.Command {
 						}
 					}
 				}
-				if err := util.ReplaceEpisodeFile(inputDir, episode); err != nil {
+				if err := data.ReplaceEpisodeFile(inputDir, episode); err != nil {
 					return err
 				}
 			}

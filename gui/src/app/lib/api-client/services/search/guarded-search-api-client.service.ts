@@ -22,6 +22,13 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
     super(httpClient, domain, options);
   }
 
+  searchServiceListEpisodes(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchEpisodeList> {
+    return super.searchServiceListEpisodes(requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRsksearchEpisodeList(res) || console.error(`TypeGuard for response 'RsksearchEpisodeList' caught inconsistency.`, res)));
+  }
+
   searchServiceGetEpisode(
     args: {
       id: string,
@@ -42,6 +49,7 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
   searchServiceSearch(
     args: {
       query?: string,
+      page?: number,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskSearchResultList> {

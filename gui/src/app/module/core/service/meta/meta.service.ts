@@ -29,9 +29,9 @@ export class MetaService {
       case FieldMetaKind.IDENTIFIER:
         return ['=', '!='];
       case FieldMetaKind.KEYWORD:
-        return ['=', '!='];
+        return ['=', '!=', '~='];
       case FieldMetaKind.KEYWORD_LIST:
-        return ['=', '!='];
+        return ['=', '!=', '~='];
       case FieldMetaKind.TEXT:
         return ['=', '!=', '~='];
       case FieldMetaKind.INT:

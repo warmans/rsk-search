@@ -3,7 +3,7 @@ import { And, Eq, Filter, Ge, Gt, isBoolOp, Le, Like, Lt, Neq, Or } from './filt
 import { trimChars } from '../util';
 import { Bool, Float, Int, Str, Value } from './value';
 
-export function ParseAST(str: string) {
+export function ParseAST(str: string): Filter {
   return (new ASTParser(new Scanner(str, false))).parse();
 }
 

@@ -1,21 +1,22 @@
-package util
+package data
 
 import (
 	"encoding/json"
 	"fmt"
 	"github.com/warmans/rsk-search/pkg/models"
+	"github.com/warmans/rsk-search/pkg/util"
 	"os"
 	"path"
 )
 
 func ReplaceEpisodeFile(dataDir string, ep *models.Episode) error {
-	return WithReplaceJSONFileEncoder(path.Join(dataDir, fmt.Sprintf("%s.json", models.EpisodeID(ep))), func(encoder *json.Encoder) error {
+	return util.WithReplaceJSONFileEncoder(path.Join(dataDir, fmt.Sprintf("%s.json", models.EpisodeID(ep))), func(encoder *json.Encoder) error {
 		return encoder.Encode(ep)
 	})
 }
 
 func SaveEpisodeToFile(dataDir string, ep *models.Episode) error {
-	return WithCreateJSONFileEncoder(path.Join(dataDir, fmt.Sprintf("%s.json", models.EpisodeID(ep))), func(encoder *json.Encoder) error {
+	return util.WithCreateJSONFileEncoder(path.Join(dataDir, fmt.Sprintf("%s.json", models.EpisodeID(ep))), func(encoder *json.Encoder) error {
 		return encoder.Encode(ep)
 	})
 }
