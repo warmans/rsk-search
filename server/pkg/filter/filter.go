@@ -135,3 +135,37 @@ func Le(field string, val Value) Filter {
 func Like(field string, val Value) Filter {
 	return &CompFilter{Field: field, Op: CompOpLike, Value: val}
 }
+
+func NewExtractFilterVisitor(f Filter) *ExtractFilterVisitor {
+	return &ExtractFilterVisitor{f: f}
+}
+
+type ExtractFilterVisitor struct {
+	f      Filter
+	fields []*CompFilter
+	field  string
+}
+
+func (e *ExtractFilterVisitor) VisitCompFilter(filter *CompFilter) (Visitor, error) {
+	if filter.Field == e.field {
+		e.fields = append(e.fields, filter)
+	}
+	return e, nil
+}
+
+func (e *ExtractFilterVisitor) VisitBoolFilter(filter *BoolFilter) (Visitor, error) {
+	err := filter.LHS.Accept(e)
+	if err != nil {
+		return e, err
+	}
+	return e, filter.RHS.Accept(e)
+}
+
+func (e *ExtractFilterVisitor) ExtractCompFilters(name string) ([]*CompFilter, error) {
+	e.field = name
+	e.fields = []*CompFilter{}
+	if err := e.f.Accept(e); err != nil {
+		return nil, err
+	}
+	return e.fields, nil
+}

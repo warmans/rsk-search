@@ -12,6 +12,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/store"
 	"google.golang.org/grpc"
 	"google.golang.org/protobuf/types/known/emptypb"
+	"strings"
 )
 
 func NewSearchService(searchBackend *search.Search, store *store.Conn) *SearchService {
@@ -39,6 +40,9 @@ func (s *SearchService) Search(ctx context.Context, request *api.SearchRequest) 
 	f, err := filter.Parse(request.Query)
 	if err != nil {
 		return nil, ErrInvalidRequestField("query", err.Error()).Err()
+	}
+	if err := checkWhy(f); err != nil {
+		return nil, err
 	}
 	return s.searchBackend.Search(ctx, f, request.Page)
 }
@@ -90,4 +94,18 @@ func (s *SearchService) RegisterHTTP(ctx context.Context, router *mux.Router, mu
 	if err := api.RegisterSearchServiceHandlerFromEndpoint(ctx, mux, endpoint, opts); err != nil {
 		panic(err)
 	}
+}
+
+func checkWhy(f filter.Filter) error {
+	visitor := filter.NewExtractFilterVisitor(f)
+	filters, err := visitor.ExtractCompFilters("content")
+	if err != nil {
+		return nil // don't fail because of this stupid feature
+	}
+	for _, v := range filters {
+		if strings.TrimSpace(strings.Trim(v.Value.String(), `"?`)) == "why" {
+			return ErrServerConfused().Err()
+		}
+	}
+	return nil
 }

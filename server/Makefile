@@ -77,3 +77,7 @@ docker.run:
 .PHONY: docker.publish
 docker.publish:
 	DOCKER_IMAGE_NAME=rsk-search-api ../deploy/script/docker-publish.sh
+
+.PHONY: release
+release:
+	$(MAKE) build docker.build docker.publish

@@ -53,6 +53,19 @@ func ErrNotFound(id string) *status.Status {
 	return s
 }
 
+func ErrServerConfused() *status.Status {
+	s, err := status.New(codes.InvalidArgument, http.StatusText(http.StatusBadRequest)).WithDetails(
+		&errdetails.DebugInfo{
+			Detail: fmt.Sprintf("Server was confused by request"),
+		},
+	)
+	if err != nil {
+		return status.New(codes.Internal, "failed to create error")
+	}
+	return s
+}
+
+
 func ErrNotImplemented() *status.Status {
 	return status.New(codes.Unimplemented, http.StatusText(http.StatusNotImplemented))
 }
