@@ -12,8 +12,8 @@ USER nobody
 
 WORKDIR /opt/rsk
 
-COPY --chown=nobody bin/rsk-search .
 COPY --chown=nobody var var
+COPY --chown=nobody bin/rsk-search .
 
 EXPOSE 8888
 

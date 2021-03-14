@@ -19,7 +19,7 @@ build:
 	go build -o ./bin/rsk-search .
 
 .PHONY: install.tools
-install.tools:
+install.tools: install.buf
 	for TOOL in `cat tools.go | grep _ | awk -F'"' '{print $$2}'`; do \
 		go install $${TOOL}; \
 	done;
@@ -61,10 +61,6 @@ init.db:
 .PHONY: init.index
 init.index:
 	rm -rf ./var/rsk.bleve; ./bin/rsk-search index load
-
-
-# Packaging
-#-----------------------------------------------------------------------
 
 .PHONY: docker.build
 docker.build:
