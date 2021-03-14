@@ -11,7 +11,8 @@
     "generate-api-client": "rm -rf ./src/app/lib/api-client && api-client-generator -s ../server/gen/api/open-api/search.swagger.json -o ./src/app/lib/api-client -t all",
     "docker-build": "DOCKER_IMAGE_NAME=rsk-search-gui ../deploy/script/docker-build.sh",
     "docker-run": "docker run -it -p 8080:80 warmans/rsk-search-gui:latest",
-    "docker-publish": "DOCKER_IMAGE_NAME=rsk-search-gui ../deploy/script/docker-publish.sh"
+    "docker-publish": "DOCKER_IMAGE_NAME=rsk-search-gui ../deploy/script/docker-publish.sh",
+    "release": "npm run build && npm run docker-build && npm run docker-publish"
   },
   "private": true,
   "dependencies": {
