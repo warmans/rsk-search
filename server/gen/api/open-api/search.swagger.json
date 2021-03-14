@@ -409,18 +409,6 @@
         "episode": {
           "type": "integer",
           "format": "int32"
-        },
-        "metadata": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          }
-        },
-        "tags": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/rsksearchTag"
-          }
         }
       }
     },

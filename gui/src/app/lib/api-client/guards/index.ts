@@ -183,14 +183,10 @@ export function isRsksearchShortEpisode(arg: any): arg is models.RsksearchShortE
     ( typeof arg.episode === 'undefined' || typeof arg.episode === 'number' ) &&
     // id?: string
     ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
-    // metadata?: { [key: string]: string }
-    ( typeof arg.metadata === 'undefined' || typeof arg.metadata === 'string' ) &&
     // publication?: string
     ( typeof arg.publication === 'undefined' || typeof arg.publication === 'string' ) &&
     // series?: number
     ( typeof arg.series === 'undefined' || typeof arg.series === 'number' ) &&
-    // tags?: RsksearchTag[]
-    ( typeof arg.tags === 'undefined' || (Array.isArray(arg.tags) && arg.tags.every((item: unknown) => isRsksearchTag(item))) ) &&
 
   true
   );

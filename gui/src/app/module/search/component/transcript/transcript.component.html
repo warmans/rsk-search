@@ -1,8 +1,8 @@
 <div *ngFor="let line of transcript"
-     class="line d-flex mb-2 p-2"
+     class="line d-flex mb-2 p-2 {{actorClass(line)}}"
      [ngClass]="{'matched': line.isMatchedRow}"
-     [style.background-color]="lineColor(line)" id="pos-{{line.pos}}">
-  <div class="actor mr-2">{{line.type === "chat" ? line.actor : line.type}}</div>
+     id="pos-{{line.pos}}">
+  <div class="actor mr-2">{{line.type === "chat" ? line.actor : (line.type === 'unknown' ? '' : line.type)}}</div>
   <div class="col">
     <span *ngIf="line.type === 'song'">
       {{line.content}} <a class="badge badge-success" [href]="line?.metadata['spotify_uri']" *ngIf="line?.metadata['spotify_uri']">spotify</a>

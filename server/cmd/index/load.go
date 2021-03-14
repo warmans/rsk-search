@@ -40,10 +40,8 @@ func LoadCmd() *cobra.Command {
 					logger.Fatal("failed to create index", zap.Error(err))
 				}
 			}
-
 			logger.Info("Populating index...")
 			return populateIndex(inputDir, rskIndex, logger)
-
 		},
 	}
 

@@ -71,13 +71,13 @@ func (j *BleveQuery) condition(field string, op filter.CompOp, value filter.Valu
 			q.SetField(field)
 			return q, nil
 		}
-		q := query.NewMatchQuery(stripQuotes(value.String()))
+		q := query.NewMatchPhraseQuery(stripQuotes(value.String()))
 		q.SetField(field)
 		return q, nil
 	case filter.CompOpLike:
 		q := query.NewMatchQuery(stripQuotes(value.String()))
 		q.SetField(field)
-		q.SetFuzziness(2)
+		q.SetFuzziness(0)
 		return q, nil
 	case filter.CompOpNeq:
 		q := query.NewMatchPhraseQuery(stripQuotes(value.String()))

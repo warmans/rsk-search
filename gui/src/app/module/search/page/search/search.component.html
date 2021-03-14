@@ -24,10 +24,54 @@
     </div>
   </div>
 </div>
-<div *ngIf="!result?.results.length" class="d-flex flex-column justify-content-center align-items-center h-100">
-  <div class="card w-25 no-results">
+<div *ngIf="result === undefined || !result?.results.length" class="d-flex flex-column justify-content-center align-items-center h-100 pt-4">
+  <div *ngIf="result !== undefined && result?.results.length === 0" class="card w-50 no-results mb-4">
     <div class="card-body text-center">
-      Alright, there's nothing to show and that so enter a search term above. Or don't, I'm not bothered. Sick of ya...
+      Alright, there weren't any results for that search and that.
+    </div>
+  </div>
+
+  <div class="card w-50 episode-list">
+    <div class="card-header">
+      Episodes
+    </div>
+    <div class="card-body text-center">
+      <div class="row">
+        <div class="col">
+          <strong>Xfm Series 1</strong>
+          <ng-container *ngFor="let ep of episodeList">
+            <div *ngIf="ep.series === 1" >
+              <a [routerLink]="['/ep', ep.id]">{{ep.id}}</a>
+            </div>
+          </ng-container>
+        </div>
+        <div class="col">
+          <strong>Xfm Series 2</strong>
+          <ng-container *ngFor="let ep of episodeList">
+            <div *ngIf="ep.series === 2" >
+              <a [routerLink]="['/ep', ep.id]">{{ep.id}}</a>
+            </div>
+          </ng-container>
+        </div>
+        <div class="col">
+          <strong>Xfm Series 3</strong>
+          <ng-container *ngFor="let ep of episodeList">
+            <div *ngIf="ep.series === 3" >
+              <a [routerLink]="['/ep', ep.id]">{{ep.id}}</a>
+            </div>
+          </ng-container>
+        </div>
+        <div class="col">
+          <strong>Xfm Series 4</strong>
+          <ng-container *ngFor="let ep of episodeList">
+            <div *ngIf="ep.series === 4" >
+              <a [routerLink]="['/ep', ep.id]">{{ep.id}}</a>
+            </div>
+          </ng-container>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+<app-loading-overlay [loading]="loading"></app-loading-overlay>
+

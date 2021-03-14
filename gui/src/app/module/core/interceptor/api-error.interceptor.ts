@@ -29,11 +29,11 @@ export class APIErrorInterceptor implements HttpInterceptor {
           }
           switch (err.status) {
             case 0:
-              this.alerts.danger('Network error');
+              this.alerts.danger('API: Network error');
               break;
             default:
               const errText = errorTextFromRPCError(err);
-              this.alerts.danger(errText.text, ...(errText.details || []));
+              this.alerts.danger(`API: ${errText.text}`, ...(errText.details || []));
           }
           return observableThrowError(err);
         },
@@ -60,6 +60,9 @@ function errorTextFromRPCError(err: HttpErrorResponse): ErrorDetails {
                 errDetails.push(`Bad request field '${f.field}' (${f.description})`);
               }
             }
+            break;
+          case 'type.googleapis.com/google.rpc.DebugInfo':
+            errDetails.push(v.detail);
             break;
         }
       }

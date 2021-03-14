@@ -92,13 +92,6 @@ func (e *Episode) ShortProto() *api.ShortEpisode {
 		Publication: e.Publication,
 		Series:      e.Series,
 		Episode:     e.Episode,
-		Metadata:    e.Meta.Proto(),
-	}
-	for _, tn := range e.Tags {
-		tag := meta.GetTag(tn)
-		if tag != nil {
-			ep.Tags = append(ep.Tags, &api.Tag{Name: tn, Kind: tag.Kind})
-		}
 	}
 	return ep
 }
@@ -125,6 +118,26 @@ func (e *Episode) Proto() *api.Episode {
 		ep.Transcript = append(ep.Transcript, d.Proto(false))
 	}
 	return ep
+}
+
+type ShortEpisode struct {
+	ID          string    `json:"id"`
+	Publication string    `json:"publication"`
+	Series      int32     `json:"series"`
+	Episode     int32     `json:"episode"`
+	ReleaseDate time.Time `json:"release_date"`
+}
+
+func (e *ShortEpisode) ShortProto() *api.ShortEpisode {
+	if e == nil {
+		return nil
+	}
+	return &api.ShortEpisode{
+		Id:          e.ID,
+		Publication: e.Publication,
+		Series:      e.Series,
+		Episode:     e.Episode,
+	}
 }
 
 func (e *Episode) ID() string {
@@ -157,4 +170,3 @@ type FieldValue struct {
 func (f FieldValue) Proto() *api.FieldValue {
 	return &api.FieldValue{Count: f.Count, Value: f.Value}
 }
-

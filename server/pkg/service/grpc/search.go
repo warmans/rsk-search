@@ -51,6 +51,9 @@ func (s *SearchService) GetEpisode(ctx context.Context, request *api.GetEpisodeR
 		if err != nil {
 			return err
 		}
+		if ep == nil {
+			return ErrNotFound(request.Id).Err()
+		}
 		return nil
 	})
 	if err != nil {
@@ -60,7 +63,23 @@ func (s *SearchService) GetEpisode(ctx context.Context, request *api.GetEpisodeR
 }
 
 func (s *SearchService) ListEpisodes(ctx context.Context, request *api.ListEpisodesRequest) (*api.EpisodeList, error) {
-	panic("implement me")
+	el := &api.EpisodeList{
+		Episodes: []*api.ShortEpisode{},
+	}
+	err := s.db.WithStore(func(s *store.Store) error {
+		eps, err := s.ListEpisodes(ctx)
+		if err != nil {
+			return err
+		}
+		for _, e := range eps {
+			el.Episodes = append(el.Episodes, e.ShortProto())
+		}
+		return nil
+	})
+	if err != nil {
+		return nil, err
+	}
+	return el, nil
 }
 
 func (s *SearchService) RegisterGRPC(server *grpc.Server) {

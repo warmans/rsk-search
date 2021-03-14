@@ -228,11 +228,33 @@ func (s *Store) GetEpisode(ctx context.Context, id string) (*models.Episode, err
 	if err != nil {
 		return nil, err
 	}
+	if ep == nil {
+		return nil, nil
+	}
 	ep.Transcript, _, err = s.getTranscriptForQuery(ctx, "SELECT * FROM dialog WHERE episode_id=$1 ORDER BY pos ASC", id)
 	if err != nil {
 		return nil, err
 	}
 	return ep, nil
+}
+
+func (s *Store) ListEpisodes(ctx context.Context) ([]*models.ShortEpisode, error) {
+
+	results, err := s.tx.QueryxContext(ctx, "SELECT id, publication, series, episode, release_date FROM episode ORDER BY series ASC, episode ASC")
+	if err != nil {
+		return nil, err
+	}
+	defer results.Close()
+
+	eps := []*models.ShortEpisode{}
+	for results.Next() {
+		ep := &models.ShortEpisode{}
+		if err := results.Scan(&ep.ID, &ep.Publication, &ep.Series, &ep.Episode, &ep.ReleaseDate); err != nil {
+			return nil, err
+		}
+		eps = append(eps, ep)
+	}
+	return eps, nil
 }
 
 func (s *Store) getTranscriptForQuery(ctx context.Context, query string, params ...interface{}) ([]models.Dialog, string, error) {

@@ -80,7 +80,7 @@ func GetSearchMeta() SearchMeta {
 			{Name: "publication", Kind: FieldKeyword},
 			{Name: "series", Kind: FieldInt},
 			{Name: "episode", Kind: FieldInt},
-			{Name: "date", Kind: FieldDate},
+			//{Name: "date", Kind: FieldDate}, // not sure how to do the blieve date matching
 			{Name: "actor", Kind: FieldKeyword},
 			{Name: "content", Kind: FieldText},
 			{Name: "type", Kind: FieldKeyword},

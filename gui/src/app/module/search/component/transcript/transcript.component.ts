@@ -15,10 +15,10 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
   @Input()
   scrollToID: string;
 
-  actorColorMap = {
-    'ricky': '#fffdec',
-    'steve': '#eeffec',
-    'karl': '#ecffff',
+  actorClassMap = {
+    'ricky': 'ricky',
+    'steve': 'steve',
+    'karl': 'karl',
   };
 
   constructor(private viewportScroller: ViewportScroller) {
@@ -27,12 +27,13 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
   }
 
-  lineColor(d: RsksearchDialog): string {
+  actorClass(d: RsksearchDialog): string {
     if (!d?.actor) {
-      return 'transparent';
+      return '';
     }
-    return this.actorColorMap[d.actor] || 'transparent';
+    return this.actorClassMap[d.actor] || '';
   }
+
 
   ngAfterViewInit(): void {
     this.viewportScroller.scrollToAnchor(this.scrollToID);

@@ -1,0 +1,10 @@
+version: "3"
+services:
+  gui:
+    image: "warmans/rsk-search-gui:latest"
+    ports:
+      - "8080:80"
+  server:
+    image: "warmans/rsk-search-api:latest"
+    ports:
+      - "8888:8888"

@@ -1,4 +1,6 @@
-<div *ngFor="let a of (alerts || [])" class="alert alert-{{a.level}}">
-  ALERT {{a.content}}
-  {{a.details}}
+<div class="alerts-container">
+  <div *ngFor="let a of (alerts || [])" class="alert alert-{{a.level}}">
+    <div><strong>{{a.content}}</strong></div>
+    {{a.details}}
+  </div>
 </div>

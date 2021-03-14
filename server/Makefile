@@ -2,6 +2,8 @@ ifndef MAKE_DEBUG
     MAKEFLAGS += -s
 endif
 
+GIT_TAG := $(shell git describe --tags --exact-match 2>/dev/null || echo "unknown")
+
 .PHONY: install.buf
 install.buf:
 	echo "=> Installing buff to local bin dir"
@@ -59,3 +61,15 @@ init.db:
 .PHONY: init.index
 init.index:
 	rm -rf ./var/rsk.bleve; ./bin/rsk-search index load
+
+
+# Packaging
+#-----------------------------------------------------------------------
+
+.PHONY: docker.build
+docker.build:
+	DOCKER_IMAGE_NAME=rsk-search-api ../deploy/script/docker-build.sh
+
+.PHONY: docker.run
+docker.run:
+	docker run -it -p 8888:8888 $(DOCKER_IMAGE_NAME):latest

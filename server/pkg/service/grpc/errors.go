@@ -1,6 +1,7 @@
 package grpc
 
 import (
+	"fmt"
 	"google.golang.org/genproto/googleapis/rpc/errdetails"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -32,6 +33,18 @@ func ErrInternal(err error) *status.Status {
 	s, err := status.New(codes.Internal, http.StatusText(http.StatusInternalServerError)).WithDetails(
 		&errdetails.DebugInfo{
 			Detail: err.Error(),
+		},
+	)
+	if err != nil {
+		return status.New(codes.Internal, "failed to create error")
+	}
+	return s
+}
+
+func ErrNotFound(id string) *status.Status {
+	s, err := status.New(codes.NotFound, http.StatusText(http.StatusNotFound)).WithDetails(
+		&errdetails.DebugInfo{
+			Detail: fmt.Sprintf("no record found with ID: %s", id),
 		},
 	)
 	if err != nil {

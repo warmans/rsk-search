@@ -7,17 +7,30 @@
           <div class="row">
             <div class="col">
               <table class="table m-0">
-                <tr><th style="width: 120px" class="border-top-0">Publication</th><td class="border-top-0">{{episode.publication}}</td></tr>
-                <tr><th>Series</th><td>{{episode.series}}</td></tr>
-                <tr><th>Episode</th><td>{{episode.episode}}</td></tr>
-                <tr><th>Broadcast</th><td>{{episode.releaseDate}}</td></tr>
+                <tr>
+                  <th style="width: 120px" class="border-top-0">Publication</th>
+                  <td class="border-top-0">{{episode.publication}}</td>
+                </tr>
+                <tr>
+                  <th>Series</th>
+                  <td>{{episode.series}}</td>
+                </tr>
+                <tr>
+                  <th>Episode</th>
+                  <td>{{episode.episode}}</td>
+                </tr>
+                <tr>
+                  <th>Broadcast</th>
+                  <td>{{episode.releaseDate}}</td>
+                </tr>
               </table>
             </div>
             <div class="col">
               <table class="table m-0">
                 <tr>
                   <th style="width: 120px" class="border-top-0">Pilkipedia</th>
-                  <td class="border-top-0"><a [href]="episode.metadata['pilkipedia_url']" target="_blank">Web archive</a></td>
+                  <td class="border-top-0"><a [href]="episode.metadata['pilkipedia_url']" target="_blank">Web
+                    archive</a></td>
                 </tr>
                 <tr>
                   <th>Spotify</th>
@@ -26,7 +39,8 @@
                 <tr>
                   <th>Tags</th>
                   <td>
-                    <a *ngFor="let tag of episode.tags" class="badge badge-info mr-2" [routerLink]="['/search']" [queryParams]='{q: query("content", tag.name)}'>{{tag.kind}}: {{tag.name}}</a>
+                    <a *ngFor="let tag of episode.tags" class="badge badge-info mr-2" [routerLink]="['/search']"
+                       [queryParams]='{q: query("content", tag.name)}'>{{tag.kind}}: {{tag.name}}</a>
                   </td>
                 </tr>
               </table>
@@ -36,7 +50,9 @@
         <div class="card-header transcript-header border-top sticky-top">
           <div class="d-flex">
             <div class="flex-grow-1 font-weight-bold">Transcript</div>
-            <div class=""><button class="btn btn-sm btn-secondary" (click)="scrollToTop()">Back to Top</button></div>
+            <div class="">
+              <button class="btn btn-sm btn-secondary" (click)="scrollToTop()">Back to Top</button>
+            </div>
           </div>
         </div>
         <div class="card-body p-3 bg-white">
@@ -46,4 +62,19 @@
     </div>
   </div>
 </div>
+<div class="container-fluid w-25" *ngIf="error && !episode">
+  <div class="row">
+    <div class="col">
+      <div >
+        <div class="card">
+          <div class="card-body text-center">
+            <div class="pb-2"><strong>{{error}}</strong></div>
+            Alright, lets see your little website. Sick of ya...
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
+<app-loading-overlay [loading]="loading"></app-loading-overlay>

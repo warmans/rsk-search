@@ -31,7 +31,6 @@ export class AlertService {
   private setAlert(l: string, c: string, d: string[]) {
     this.alerts.push({ level: l, content: c, details: d });
     this.alertsUpdated.next(this.alerts);
-    console.log(this.alerts);
     this.cleanup(c);
   }
 

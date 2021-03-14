@@ -93,8 +93,6 @@ message ShortEpisode {
   string publication = 2;
   int32 series = 3;
   int32 episode = 4;
-  map<string, string> metadata = 5;
-  repeated Tag tags = 6;
 }
 
 message DialogResult {
@@ -134,7 +132,6 @@ message GetEpisodeRequest {
 }
 
 message ListEpisodesRequest {
-
 }
 
 message EpisodeList {
