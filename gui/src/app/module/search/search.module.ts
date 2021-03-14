@@ -26,7 +26,7 @@ import { GlSearchFilterComponent } from './component/gl-search-filter/gl-search-
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    NgSelectModule
+    NgSelectModule,
   ],
   exports: [DslSearchComponent, GlSearchComponent]
 })

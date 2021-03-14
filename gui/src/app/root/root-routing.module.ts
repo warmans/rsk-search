@@ -13,6 +13,7 @@ const routes: Routes = [
     path: 'ep/:id',
     component: EpisodeComponent,
   },
+  { path: '', redirectTo: '/search', pathMatch: 'full' },
 ];
 
 @NgModule({

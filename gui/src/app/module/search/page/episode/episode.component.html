@@ -34,7 +34,7 @@
                 </tr>
                 <tr>
                   <th>Spotify</th>
-                  <td><a [href]="episode.metadata['spotify_uri']">Tinpotradio</a></td>
+                  <td><a [href]="episode.metadata['spotify_uri'] | safeUrl">Tinpotradio</a></td>
                 </tr>
                 <tr>
                   <th>Tags</th>

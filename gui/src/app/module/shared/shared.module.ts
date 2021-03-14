@@ -5,6 +5,7 @@ import { AlertComponent } from './component/alert/alert.component';
 import { DropdownComponent } from './component/dropdown/dropdown.component';
 import { FocusedDirective } from './directive/focused.directive';
 import { LoadingOverlayComponent } from './component/loading-overlay/loading-overlay.component';
+import { SafeUrlPipe } from './pipe/safe-url.pipe';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { LoadingOverlayComponent } from './component/loading-overlay/loading-ove
     DropdownComponent,
     FocusedDirective,
     LoadingOverlayComponent,
+    SafeUrlPipe
   ],
   imports: [
     CommonModule,
@@ -23,6 +25,7 @@ import { LoadingOverlayComponent } from './component/loading-overlay/loading-ove
     AlertComponent,
     DropdownComponent,
     LoadingOverlayComponent,
+    SafeUrlPipe
   ]
 })
 export class SharedModule {

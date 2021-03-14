@@ -73,3 +73,7 @@ docker.build:
 .PHONY: docker.run
 docker.run:
 	docker run -it -p 8888:8888 $(DOCKER_IMAGE_NAME):latest
+
+.PHONY: docker.publish
+docker.publish:
+	DOCKER_IMAGE_NAME=rsk-search-api ../deploy/script/docker-publish.sh
