@@ -1,7 +1,7 @@
-<nav class="navbar sticky-top navbar-light bg-light">
+<nav class="navbar navbar-light bg-light">
   <div class="d-flex w-100">
-    <div class="navbar-brand font-weight-bold pt-2">
-      <a [routerLink]="['/search']">Xfm DB</a>
+    <div class="mr-3">
+      <a [routerLink]="['/search']"><img src="/assets/android-chrome-192x192.png" style="height: 48px;"/></a>
     </div>
     <div class="flex-grow-1">
       <!--app-dsl-search (executeQuery)="executeSearch($event)"></app-dsl-search-->
@@ -13,3 +13,14 @@
 <app-alert></app-alert>
 
 <router-outlet></router-outlet>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="text-center text-muted mt-4 p-2">
+      <a href="https://github.com/warmans/rsk-search/issues" target="_blank">Report a Bug</a> or
+      <a href="https://github.com/warmans/rsk-search/pulls" target="_blank">Fix a Bug</a>
+    </div>
+  </div>
+</footer>
+

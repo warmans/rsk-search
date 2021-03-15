@@ -4,6 +4,7 @@ import { SearchAPIClient } from '../../../../lib/api-client/services/search';
 import { RsksearchEpisode } from '../../../../lib/api-client/models';
 import { ViewportScroller } from '@angular/common';
 import { takeUntil } from 'rxjs/operators';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-episode',
@@ -28,6 +29,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private apiClient: SearchAPIClient,
     private viewportScroller: ViewportScroller,
+    private titleService: Title
   ) {
     route.paramMap.subscribe((d: Data) => {
       this.id = d.params['id'];
@@ -43,9 +45,10 @@ export class EpisodeComponent implements OnInit, OnDestroy {
     this.apiClient.searchServiceGetEpisode({ id: this.id }).pipe(takeUntil(this.unsubscribe$)).subscribe(
       (ep: RsksearchEpisode) => {
         this.episode = ep;
+        this.titleService.setTitle(ep.id);
       },
       (err) => {
-        this.error = "Failed to fetch episode";
+        this.error = 'Failed to fetch episode';
       }).add(() => this.loading = false);
   }
 

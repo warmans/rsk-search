@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { RootRoutingModule } from './root-routing.module';
@@ -22,7 +22,7 @@ import { SharedModule } from '../module/shared/shared.module';
     SharedModule,
     SearchModule,
   ],
-  providers: [],
+  providers: [Title],
   bootstrap: [RootComponent]
 })
 export class RootModule {

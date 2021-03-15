@@ -15,6 +15,9 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
   @Input()
   scrollToID: string;
 
+  @Input()
+  enableLineLinks: boolean = false;
+
   actorClassMap = {
     'ricky': 'ricky',
     'steve': 'steve',
@@ -22,6 +25,7 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
   };
 
   constructor(private viewportScroller: ViewportScroller) {
+    viewportScroller.setOffset([0, 80]);
   }
 
   ngOnInit(): void {

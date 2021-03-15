@@ -1,5 +1,5 @@
 <form [formGroup]="searchForm" (submit)="emitQuery()">
-  <div class="search-wrapper d-flex">
+  <div class="d-flex search-wrapper ">
     <div class="d-flex inputs flex-grow-1">
       <div class="filters-container flex-shrink-1 p-2">
         <button class="btn btn-sm add-filter" (click)="filterOverlayOpen = !filterOverlayOpen" type="button">+</button>
@@ -18,11 +18,11 @@
           </div>
           <strong *ngIf="i === activeFilters.length-1" class="connector pl-2 pr-1">with content:</strong>
         </div>
-        <input class="freetext-container flex-grow-1 p-2 border-0" formControlName="term" placeholder="Enter search terms, double quote terms for more exact matches"/>
+        <input class="freetext-container flex-grow-1 p-2 border-0 form-control" formControlName="term" placeholder="Enter search terms, double quote terms for more exact matches"/>
       </div>
     </div>
-    <div class="d-flex buttons">
-      <button class="btn btn-lg btn-primary" type="submit">Search</button>
+    <div class="buttons">
+      <button class="btn btn-lg btn-primary" type="submit"><i class="bi-search"></i></button>
     </div>
   </div>
 </form>

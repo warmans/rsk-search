@@ -409,6 +409,9 @@
         "episode": {
           "type": "integer",
           "format": "int32"
+        },
+        "transcriptAvailable": {
+          "type": "boolean"
         }
       }
     },

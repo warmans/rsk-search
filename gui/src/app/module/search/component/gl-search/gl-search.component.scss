@@ -1,13 +1,14 @@
 .inputs {
-  width: 100%;
   border: 1px solid #ccc;
   height: 48px;
   background-color: #fff;
+  border-right: none;
 }
 
 .freetext-container:active, .freetext-container:focus {
   border: none;
   outline: none;
+  box-shadow: none;
 }
 
 .active-filter {

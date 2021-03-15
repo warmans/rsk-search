@@ -5,4 +5,5 @@ export interface RsksearchShortEpisode {
   id?: string;
   publication?: string;
   series?: number;
+  transcriptAvailable?: boolean;
 }

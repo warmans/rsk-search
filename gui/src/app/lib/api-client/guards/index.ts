@@ -187,6 +187,8 @@ export function isRsksearchShortEpisode(arg: any): arg is models.RsksearchShortE
     ( typeof arg.publication === 'undefined' || typeof arg.publication === 'string' ) &&
     // series?: number
     ( typeof arg.series === 'undefined' || typeof arg.series === 'number' ) &&
+    // transcriptAvailable?: boolean
+    ( typeof arg.transcriptAvailable === 'undefined' || typeof arg.transcriptAvailable === 'boolean' ) &&
 
   true
   );

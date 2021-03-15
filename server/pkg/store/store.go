@@ -240,7 +240,7 @@ func (s *Store) GetEpisode(ctx context.Context, id string) (*models.Episode, err
 
 func (s *Store) ListEpisodes(ctx context.Context) ([]*models.ShortEpisode, error) {
 
-	results, err := s.tx.QueryxContext(ctx, "SELECT id, publication, series, episode, release_date FROM episode ORDER BY series ASC, episode ASC")
+	results, err := s.tx.QueryxContext(ctx, "SELECT e.id, e.publication, e.series, e.episode, e.release_date, (SELECT COUNT(*) FROM dialog WHERE episode_id = e.id LIMIT 1) > 0 AS transcript_available FROM episode e ORDER BY e.series ASC, e.episode ASC")
 	if err != nil {
 		return nil, err
 	}
@@ -249,7 +249,7 @@ func (s *Store) ListEpisodes(ctx context.Context) ([]*models.ShortEpisode, error
 	eps := []*models.ShortEpisode{}
 	for results.Next() {
 		ep := &models.ShortEpisode{}
-		if err := results.Scan(&ep.ID, &ep.Publication, &ep.Series, &ep.Episode, &ep.ReleaseDate); err != nil {
+		if err := results.Scan(&ep.ID, &ep.Publication, &ep.Series, &ep.Episode, &ep.ReleaseDate, &ep.TranscriptAvailable); err != nil {
 			return nil, err
 		}
 		eps = append(eps, ep)

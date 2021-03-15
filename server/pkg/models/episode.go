@@ -121,11 +121,12 @@ func (e *Episode) Proto() *api.Episode {
 }
 
 type ShortEpisode struct {
-	ID          string    `json:"id"`
-	Publication string    `json:"publication"`
-	Series      int32     `json:"series"`
-	Episode     int32     `json:"episode"`
-	ReleaseDate time.Time `json:"release_date"`
+	ID                  string
+	Publication         string
+	Series              int32
+	Episode             int32
+	ReleaseDate         time.Time
+	TranscriptAvailable bool
 }
 
 func (e *ShortEpisode) ShortProto() *api.ShortEpisode {
@@ -133,10 +134,11 @@ func (e *ShortEpisode) ShortProto() *api.ShortEpisode {
 		return nil
 	}
 	return &api.ShortEpisode{
-		Id:          e.ID,
-		Publication: e.Publication,
-		Series:      e.Series,
-		Episode:     e.Episode,
+		Id:                  e.ID,
+		Publication:         e.Publication,
+		Series:              e.Series,
+		Episode:             e.Episode,
+		TranscriptAvailable: e.TranscriptAvailable,
 	}
 }
 

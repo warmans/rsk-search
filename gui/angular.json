@@ -25,6 +25,8 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
+              "src/apple-touch-icon.png",
+              "src/robots.txt",
               "src/assets"
             ],
             "styles": [
@@ -90,6 +92,8 @@
             "karmaConfig": "karma.conf.js",
             "assets": [
               "src/favicon.ico",
+              "src/apple-touch-icon.png",
+              "src/robots.txt",
               "src/assets"
             ],
             "styles": [

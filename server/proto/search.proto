@@ -93,6 +93,7 @@ message ShortEpisode {
   string publication = 2;
   int32 series = 3;
   int32 episode = 4;
+  bool transcript_available = 5;
 }
 
 message DialogResult {

@@ -25,13 +25,13 @@ From the server directory:
 1. Edit proto file in `proto/search.proto`.
 2. Run `make generate`.
 3. Update to reflect changes in proto file `pkg/service/grpc/search.go`.
+4. In `gui` directory run `npm run generate-api-client` 
 
 ### How to update transcripts
 
 1. Update data in `./var/data/episodes`
 2. Run `make update.transcriptions SPOTIFY_TOKEN=[my token]` (note, this can take several hours as it must re-tag all dialog)
 3. Re-generate DB/Search index with `make init.all`.
-
 
 Generating a spotify token. You can just generate one for the from here if you are logged in:
 https://developer.spotify.com/console/get-search-item/ (click GET TOKEN)

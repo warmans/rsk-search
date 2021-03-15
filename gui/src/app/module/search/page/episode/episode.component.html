@@ -3,12 +3,12 @@
     <div class="col">
       <div class="card" *ngIf="episode">
         <div class="card-header font-weight-bold">{{ episode.id }}</div>
-        <div class="card-body bg-white p-0">
+        <div class="card-body bg-white pb-2">
           <div class="row">
             <div class="col">
               <table class="table m-0">
                 <tr>
-                  <th style="width: 120px" class="border-top-0">Publication</th>
+                  <th style="width: 200px" class="border-top-0">Publication</th>
                   <td class="border-top-0">{{episode.publication}}</td>
                 </tr>
                 <tr>
@@ -28,19 +28,30 @@
             <div class="col">
               <table class="table m-0">
                 <tr>
-                  <th style="width: 120px" class="border-top-0">Pilkipedia</th>
-                  <td class="border-top-0"><a [href]="episode.metadata['pilkipedia_url']" target="_blank">Web
-                    archive</a></td>
+                  <th style="width: 200px" class="border-top-0">Transcript Source</th>
+                  <td class="border-top-0">
+                    <span *ngIf="!episode.metadata['pilkipedia_url']">NA</span>
+                    <a *ngIf="episode.metadata['pilkipedia_url']" [href]="episode.metadata['pilkipedia_url']"
+                       target="_blank">Pilkipedia (Archive)</a>
+                  </td>
                 </tr>
                 <tr>
-                  <th>Spotify</th>
-                  <td><a [href]="episode.metadata['spotify_uri'] | safeUrl">Tinpotradio</a></td>
+                  <th>Listen</th>
+                  <td>
+                    <a *ngIf="episode.metadata['spotify_uri']" [href]="episode.metadata['spotify_uri'] | safeUrl">
+                      Tinpotradio (spotify)
+                    </a>
+                  </td>
                 </tr>
                 <tr>
                   <th>Tags</th>
                   <td>
-                    <a *ngFor="let tag of episode.tags" class="badge badge-info mr-2" [routerLink]="['/search']"
-                       [queryParams]='{q: query("content", tag.name)}'>{{tag.kind}}: {{tag.name}}</a>
+                    <a
+                      *ngFor="let tag of episode.tags" class="badge badge-info mr-2"
+                      [routerLink]="['/search']"
+                      [queryParams]='{q: query("content", tag.name)}'>
+                      {{tag.kind}}: {{tag.name}}
+                    </a>
                   </td>
                 </tr>
               </table>
@@ -56,7 +67,8 @@
           </div>
         </div>
         <div class="card-body p-3 bg-white">
-          <app-transcript [transcript]="episode.transcript" [scrollToID]="scrollToID"></app-transcript>
+          <app-transcript [transcript]="episode.transcript" [scrollToID]="scrollToID" [enableLineLinks]="true"></app-transcript>
+          <div *ngIf="!episode?.transcript?.length" class="text-center p-4">No transcript available.</div>
         </div>
       </div>
     </div>
@@ -65,11 +77,11 @@
 <div class="container-fluid w-25" *ngIf="error && !episode">
   <div class="row">
     <div class="col">
-      <div >
+      <div>
         <div class="card">
           <div class="card-body text-center">
             <div class="pb-2"><strong>{{error}}</strong></div>
-            Alright, lets see your little website. Sick of ya...
+            Alright, lets see your little website then. Sick of ya...
           </div>
         </div>
       </div>
