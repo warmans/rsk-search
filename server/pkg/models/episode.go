@@ -39,12 +39,13 @@ func (m Metadata) Proto() map[string]string {
 }
 
 type Dialog struct {
-	ID       string     `json:"id"`
-	Position int64      `json:"pos"`
-	Type     DialogType `json:"type"`
-	Actor    string     `json:"actor"`
-	Meta     Metadata   `json:"metadata"`
-	Content  string     `json:"content"`
+	ID        string     `json:"id"`
+	Position  int64      `json:"pos"`
+	OffsetSec int64      `json:"offset_sec"` // second offset from start of episode
+	Type      DialogType `json:"type"`
+	Actor     string     `json:"actor"`
+	Meta      Metadata   `json:"metadata"`
+	Content   string     `json:"content"`
 
 	// content tokens mapped to tags
 	// e.g. Foo! (text) => foo (tag)

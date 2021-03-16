@@ -7,6 +7,7 @@ import (
 	"github.com/warmans/rsk-search/cmd/db"
 	"github.com/warmans/rsk-search/cmd/index"
 	"github.com/warmans/rsk-search/cmd/server"
+	"github.com/warmans/rsk-search/cmd/transcription"
 )
 
 func RootCmd() *cobra.Command {
@@ -20,6 +21,7 @@ func RootCmd() *cobra.Command {
 	root.AddCommand(data.RootCmd())
 	root.AddCommand(server.ServerCmd())
 	root.AddCommand(db.RootCmd())
+	root.AddCommand(transcription.RootCmd())
 
 	return root
 }

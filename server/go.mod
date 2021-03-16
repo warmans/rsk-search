@@ -3,6 +3,7 @@ module github.com/warmans/rsk-search
 go 1.16
 
 require (
+	cloud.google.com/go v0.65.0
 	github.com/blevesearch/bleve/v2 v2.0.2
 	github.com/blevesearch/bleve_index_api v1.0.0
 	github.com/gocolly/colly/v2 v2.1.0
@@ -19,6 +20,7 @@ require (
 	github.com/spf13/cobra v1.1.3
 	github.com/stretchr/testify v1.7.0
 	go.uber.org/zap v1.16.0
+	google.golang.org/api v0.30.0
 	google.golang.org/genproto v0.0.0-20210224155714-063164c882e6
 	google.golang.org/grpc v1.36.0
 	google.golang.org/grpc/cmd/protoc-gen-go-grpc v1.1.0
