@@ -42,6 +42,43 @@
         ]
       }
     },
+    "/api/episode/{episodeId}/dialog/{id}": {
+      "post": {
+        "summary": "Submit a transcript that has been completed.",
+        "operationId": "SearchService_SubmitDialogCorrection",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "episodeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      }
+    },
     "/api/episode/{id}": {
       "get": {
         "summary": "Fetch the full data for an episode including the transcript",
@@ -51,6 +88,60 @@
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/rsksearchEpisode"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      }
+    },
+    "/api/incomplete/random": {
+      "get": {
+        "summary": "Gets a random incomplete transcript to be completed.",
+        "operationId": "SearchService_GetIncompleteTranscription",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rsksearchIncompleteTranscription"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "search"
+        ]
+      }
+    },
+    "/api/incomplete/{id}": {
+      "patch": {
+        "summary": "Submit a transcript that has been completed.",
+        "operationId": "SearchService_SubmitIncompleteTranscription",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
             }
           },
           "default": {
@@ -353,6 +444,29 @@
         }
       }
     },
+    "rsksearchIncompleteTranscription": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "episode": {
+          "$ref": "#/definitions/rsksearchShortEpisode"
+        },
+        "startSecond": {
+          "type": "string"
+        },
+        "endSecond": {
+          "type": "string"
+        },
+        "audioClipUri": {
+          "type": "string"
+        },
+        "transcript": {
+          "type": "string"
+        }
+      }
+    },
     "rsksearchSearchMetadata": {
       "type": "object",
       "properties": {
@@ -431,7 +545,7 @@
     }
   },
   "externalDocs": {
-    "description": "RSK search service",
-    "url": "https://github.com/warmans/rsk-search"
+    "description": "Search Xfm transcriptions",
+    "url": "http://scrimpton.com"
   }
 }

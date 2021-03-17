@@ -24,6 +24,16 @@ type SearchService struct {
 	db            *store.Conn
 }
 
+func (s *SearchService) RegisterGRPC(server *grpc.Server) {
+	api.RegisterSearchServiceServer(server, s)
+}
+
+func (s *SearchService) RegisterHTTP(ctx context.Context, router *mux.Router, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) {
+	if err := api.RegisterSearchServiceHandlerFromEndpoint(ctx, mux, endpoint, opts); err != nil {
+		panic(err)
+	}
+}
+
 func (s *SearchService) GetSearchMetadata(ctx context.Context, empty *emptypb.Empty) (*api.SearchMetadata, error) {
 	return meta.GetSearchMeta().Proto(), nil
 }
@@ -45,6 +55,20 @@ func (s *SearchService) Search(ctx context.Context, request *api.SearchRequest) 
 		return nil, err
 	}
 	return s.searchBackend.Search(ctx, f, request.Page)
+}
+
+func checkWhy(f filter.Filter) error {
+	visitor := filter.NewExtractFilterVisitor(f)
+	filters, err := visitor.ExtractCompFilters("content")
+	if err != nil {
+		return nil // don't fail because of this stupid feature
+	}
+	for _, v := range filters {
+		if strings.TrimSpace(strings.Trim(v.Value.String(), `"?`)) == "why" {
+			return ErrServerConfused().Err()
+		}
+	}
+	return nil
 }
 
 func (s *SearchService) GetEpisode(ctx context.Context, request *api.GetEpisodeRequest) (*api.Episode, error) {
@@ -86,26 +110,14 @@ func (s *SearchService) ListEpisodes(ctx context.Context, request *api.ListEpiso
 	return el, nil
 }
 
-func (s *SearchService) RegisterGRPC(server *grpc.Server) {
-	api.RegisterSearchServiceServer(server, s)
+func (s *SearchService) GetIncompleteTranscription(ctx context.Context, empty *emptypb.Empty) (*api.IncompleteTranscription, error) {
+	panic("implement me")
 }
 
-func (s *SearchService) RegisterHTTP(ctx context.Context, router *mux.Router, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) {
-	if err := api.RegisterSearchServiceHandlerFromEndpoint(ctx, mux, endpoint, opts); err != nil {
-		panic(err)
-	}
+func (s *SearchService) SubmitIncompleteTranscription(ctx context.Context, request *api.SubmitIncompleteTranscriptionRequest) (*emptypb.Empty, error) {
+	panic("implement me")
 }
 
-func checkWhy(f filter.Filter) error {
-	visitor := filter.NewExtractFilterVisitor(f)
-	filters, err := visitor.ExtractCompFilters("content")
-	if err != nil {
-		return nil // don't fail because of this stupid feature
-	}
-	for _, v := range filters {
-		if strings.TrimSpace(strings.Trim(v.Value.String(), `"?`)) == "why" {
-			return ErrServerConfused().Err()
-		}
-	}
-	return nil
+func (s *SearchService) SubmitDialogCorrection(ctx context.Context, request *api.SubmitDialogCorrectionRequest) (*emptypb.Empty, error) {
+	panic("implement me")
 }

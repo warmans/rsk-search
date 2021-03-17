@@ -20,10 +20,13 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type SearchServiceClient interface {
 	Search(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (*SearchResultList, error)
-	GetEpisode(ctx context.Context, in *GetEpisodeRequest, opts ...grpc.CallOption) (*Episode, error)
-	ListEpisodes(ctx context.Context, in *ListEpisodesRequest, opts ...grpc.CallOption) (*EpisodeList, error)
 	GetSearchMetadata(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SearchMetadata, error)
 	ListFieldValues(ctx context.Context, in *ListFieldValuesRequest, opts ...grpc.CallOption) (*FieldValueList, error)
+	GetEpisode(ctx context.Context, in *GetEpisodeRequest, opts ...grpc.CallOption) (*Episode, error)
+	ListEpisodes(ctx context.Context, in *ListEpisodesRequest, opts ...grpc.CallOption) (*EpisodeList, error)
+	GetIncompleteTranscription(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*IncompleteTranscription, error)
+	SubmitIncompleteTranscription(ctx context.Context, in *SubmitIncompleteTranscriptionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SubmitDialogCorrection(ctx context.Context, in *SubmitDialogCorrectionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type searchServiceClient struct {
@@ -37,24 +40,6 @@ func NewSearchServiceClient(cc grpc.ClientConnInterface) SearchServiceClient {
 func (c *searchServiceClient) Search(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (*SearchResultList, error) {
 	out := new(SearchResultList)
 	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/Search", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *searchServiceClient) GetEpisode(ctx context.Context, in *GetEpisodeRequest, opts ...grpc.CallOption) (*Episode, error) {
-	out := new(Episode)
-	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/GetEpisode", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *searchServiceClient) ListEpisodes(ctx context.Context, in *ListEpisodesRequest, opts ...grpc.CallOption) (*EpisodeList, error) {
-	out := new(EpisodeList)
-	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/ListEpisodes", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -79,15 +64,63 @@ func (c *searchServiceClient) ListFieldValues(ctx context.Context, in *ListField
 	return out, nil
 }
 
+func (c *searchServiceClient) GetEpisode(ctx context.Context, in *GetEpisodeRequest, opts ...grpc.CallOption) (*Episode, error) {
+	out := new(Episode)
+	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/GetEpisode", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *searchServiceClient) ListEpisodes(ctx context.Context, in *ListEpisodesRequest, opts ...grpc.CallOption) (*EpisodeList, error) {
+	out := new(EpisodeList)
+	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/ListEpisodes", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *searchServiceClient) GetIncompleteTranscription(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*IncompleteTranscription, error) {
+	out := new(IncompleteTranscription)
+	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/GetIncompleteTranscription", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *searchServiceClient) SubmitIncompleteTranscription(ctx context.Context, in *SubmitIncompleteTranscriptionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/SubmitIncompleteTranscription", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *searchServiceClient) SubmitDialogCorrection(ctx context.Context, in *SubmitDialogCorrectionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/SubmitDialogCorrection", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SearchServiceServer is the server API for SearchService service.
 // All implementations should embed UnimplementedSearchServiceServer
 // for forward compatibility
 type SearchServiceServer interface {
 	Search(context.Context, *SearchRequest) (*SearchResultList, error)
-	GetEpisode(context.Context, *GetEpisodeRequest) (*Episode, error)
-	ListEpisodes(context.Context, *ListEpisodesRequest) (*EpisodeList, error)
 	GetSearchMetadata(context.Context, *emptypb.Empty) (*SearchMetadata, error)
 	ListFieldValues(context.Context, *ListFieldValuesRequest) (*FieldValueList, error)
+	GetEpisode(context.Context, *GetEpisodeRequest) (*Episode, error)
+	ListEpisodes(context.Context, *ListEpisodesRequest) (*EpisodeList, error)
+	GetIncompleteTranscription(context.Context, *emptypb.Empty) (*IncompleteTranscription, error)
+	SubmitIncompleteTranscription(context.Context, *SubmitIncompleteTranscriptionRequest) (*emptypb.Empty, error)
+	SubmitDialogCorrection(context.Context, *SubmitDialogCorrectionRequest) (*emptypb.Empty, error)
 }
 
 // UnimplementedSearchServiceServer should be embedded to have forward compatible implementations.
@@ -97,17 +130,26 @@ type UnimplementedSearchServiceServer struct {
 func (UnimplementedSearchServiceServer) Search(context.Context, *SearchRequest) (*SearchResultList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Search not implemented")
 }
+func (UnimplementedSearchServiceServer) GetSearchMetadata(context.Context, *emptypb.Empty) (*SearchMetadata, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSearchMetadata not implemented")
+}
+func (UnimplementedSearchServiceServer) ListFieldValues(context.Context, *ListFieldValuesRequest) (*FieldValueList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListFieldValues not implemented")
+}
 func (UnimplementedSearchServiceServer) GetEpisode(context.Context, *GetEpisodeRequest) (*Episode, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetEpisode not implemented")
 }
 func (UnimplementedSearchServiceServer) ListEpisodes(context.Context, *ListEpisodesRequest) (*EpisodeList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListEpisodes not implemented")
 }
-func (UnimplementedSearchServiceServer) GetSearchMetadata(context.Context, *emptypb.Empty) (*SearchMetadata, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetSearchMetadata not implemented")
+func (UnimplementedSearchServiceServer) GetIncompleteTranscription(context.Context, *emptypb.Empty) (*IncompleteTranscription, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetIncompleteTranscription not implemented")
 }
-func (UnimplementedSearchServiceServer) ListFieldValues(context.Context, *ListFieldValuesRequest) (*FieldValueList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListFieldValues not implemented")
+func (UnimplementedSearchServiceServer) SubmitIncompleteTranscription(context.Context, *SubmitIncompleteTranscriptionRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SubmitIncompleteTranscription not implemented")
+}
+func (UnimplementedSearchServiceServer) SubmitDialogCorrection(context.Context, *SubmitDialogCorrectionRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SubmitDialogCorrection not implemented")
 }
 
 // UnsafeSearchServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -135,42 +177,6 @@ func _SearchService_Search_Handler(srv interface{}, ctx context.Context, dec fun
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SearchServiceServer).Search(ctx, req.(*SearchRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _SearchService_GetEpisode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetEpisodeRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SearchServiceServer).GetEpisode(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/rsksearch.SearchService/GetEpisode",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SearchServiceServer).GetEpisode(ctx, req.(*GetEpisodeRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _SearchService_ListEpisodes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListEpisodesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SearchServiceServer).ListEpisodes(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/rsksearch.SearchService/ListEpisodes",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SearchServiceServer).ListEpisodes(ctx, req.(*ListEpisodesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -211,6 +217,96 @@ func _SearchService_ListFieldValues_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SearchService_GetEpisode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetEpisodeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SearchServiceServer).GetEpisode(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/rsksearch.SearchService/GetEpisode",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SearchServiceServer).GetEpisode(ctx, req.(*GetEpisodeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SearchService_ListEpisodes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListEpisodesRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SearchServiceServer).ListEpisodes(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/rsksearch.SearchService/ListEpisodes",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SearchServiceServer).ListEpisodes(ctx, req.(*ListEpisodesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SearchService_GetIncompleteTranscription_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SearchServiceServer).GetIncompleteTranscription(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/rsksearch.SearchService/GetIncompleteTranscription",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SearchServiceServer).GetIncompleteTranscription(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SearchService_SubmitIncompleteTranscription_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SubmitIncompleteTranscriptionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SearchServiceServer).SubmitIncompleteTranscription(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/rsksearch.SearchService/SubmitIncompleteTranscription",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SearchServiceServer).SubmitIncompleteTranscription(ctx, req.(*SubmitIncompleteTranscriptionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SearchService_SubmitDialogCorrection_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SubmitDialogCorrectionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SearchServiceServer).SubmitDialogCorrection(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/rsksearch.SearchService/SubmitDialogCorrection",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SearchServiceServer).SubmitDialogCorrection(ctx, req.(*SubmitDialogCorrectionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SearchService_ServiceDesc is the grpc.ServiceDesc for SearchService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -223,6 +319,14 @@ var SearchService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _SearchService_Search_Handler,
 		},
 		{
+			MethodName: "GetSearchMetadata",
+			Handler:    _SearchService_GetSearchMetadata_Handler,
+		},
+		{
+			MethodName: "ListFieldValues",
+			Handler:    _SearchService_ListFieldValues_Handler,
+		},
+		{
 			MethodName: "GetEpisode",
 			Handler:    _SearchService_GetEpisode_Handler,
 		},
@@ -231,12 +335,16 @@ var SearchService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _SearchService_ListEpisodes_Handler,
 		},
 		{
-			MethodName: "GetSearchMetadata",
-			Handler:    _SearchService_GetSearchMetadata_Handler,
+			MethodName: "GetIncompleteTranscription",
+			Handler:    _SearchService_GetIncompleteTranscription_Handler,
 		},
 		{
-			MethodName: "ListFieldValues",
-			Handler:    _SearchService_ListFieldValues_Handler,
+			MethodName: "SubmitIncompleteTranscription",
+			Handler:    _SearchService_SubmitIncompleteTranscription_Handler,
+		},
+		{
+			MethodName: "SubmitDialogCorrection",
+			Handler:    _SearchService_SubmitDialogCorrection_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

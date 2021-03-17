@@ -2,6 +2,7 @@ package tscript
 
 import (
 	"bufio"
+	"fmt"
 	"github.com/lithammer/shortuuid/v3"
 	"github.com/warmans/rsk-search/pkg/models"
 	"os"
@@ -10,11 +11,14 @@ import (
 )
 
 // Import imports plain text transcripts to JSON.
-func Import(f *os.File) ([]models.Dialog, error) {
+func Import(f *os.File) ([]models.Dialog, []models.Synopsis, error) {
 
 	output := make([]models.Dialog, 0)
 	position := int64(0)
 	lastOffset := int64(0)
+
+	synopsies := make([]models.Synopsis, 0)
+	var currentSynopsis *models.Synopsis
 
 	scanner := bufio.NewScanner(f)
 	for scanner.Scan() {
@@ -28,9 +32,20 @@ func Import(f *os.File) ([]models.Dialog, error) {
 		// OFFSET lines related to the next line of text so just store the offset
 		// and continue.
 		if strings.HasPrefix(line, "#OFFSET:") {
-			offset, ok := scanOffset(line)
-			if !ok {
+			if offset, ok := scanOffset(line); ok {
 				lastOffset = offset
+			}
+			continue
+		}
+
+		if strings.HasPrefix(line, "#SYN: ") || strings.HasPrefix(line, "#/SYN") {
+			if currentSynopsis != nil {
+				currentSynopsis.EndPos = position
+				synopsies = append(synopsies, *currentSynopsis)
+				currentSynopsis = nil
+			}
+			if strings.HasPrefix(line, "#SYN: ") {
+				currentSynopsis = &models.Synopsis{Description: strings.TrimSpace(strings.TrimPrefix(line, ":")), StartPos: position}
 			}
 			continue
 		}
@@ -46,7 +61,10 @@ func Import(f *os.File) ([]models.Dialog, error) {
 		}
 
 		// line should be in the format "actor: text..."
-		parts := strings.SplitN(line, ":", 1)
+		parts := strings.SplitN(line, ":", 2)
+		if len(parts) != 2 {
+			return nil, nil, fmt.Errorf("line did not start with actor name or tag: %s", line)
+		}
 
 		actor := strings.ToLower(strings.TrimSuffix(strings.TrimSpace(parts[0]), ":"))
 		if actor == "song" {
@@ -59,11 +77,17 @@ func Import(f *os.File) ([]models.Dialog, error) {
 
 		output = append(output, di)
 	}
+
 	if err := scanner.Err(); err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return output, nil
+	if currentSynopsis != nil {
+		currentSynopsis.EndPos = position
+		synopsies = append(synopsies, *currentSynopsis)
+	}
+
+	return output, synopsies, nil
 }
 
 func scanOffset(line string) (int64, bool) {
@@ -73,3 +97,5 @@ func scanOffset(line string) (int64, bool) {
 	}
 	return 0, false
 }
+
+

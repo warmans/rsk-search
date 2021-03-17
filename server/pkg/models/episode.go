@@ -79,9 +79,10 @@ type Episode struct {
 	ReleaseDate time.Time `json:"release_date"`
 
 	// additional optional data
-	Meta       Metadata `json:"metadata"`
-	Transcript []Dialog `json:"transcript"`
-	Tags       []string `json:"tags"`
+	Meta       Metadata   `json:"metadata"`
+	Transcript []Dialog   `json:"transcript"`
+	Tags       []string   `json:"tags"`
+	Synopsis   []Synopsis `json:"synopsis"`
 }
 
 func (e *Episode) ShortProto() *api.ShortEpisode {
@@ -172,4 +173,10 @@ type FieldValue struct {
 
 func (f FieldValue) Proto() *api.FieldValue {
 	return &api.FieldValue{Count: f.Count, Value: f.Value}
+}
+
+type Synopsis struct {
+	Description string `json:"description"`
+	StartPos    int64  `json:"start_pod"`
+	EndPos      int64  `json:"end_pos"`
 }
