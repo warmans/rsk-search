@@ -110,60 +110,6 @@
         ]
       }
     },
-    "/api/incomplete/random": {
-      "get": {
-        "summary": "Gets a random incomplete transcript to be completed.",
-        "operationId": "SearchService_GetIncompleteTranscription",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/rsksearchIncompleteTranscription"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "tags": [
-          "search"
-        ]
-      }
-    },
-    "/api/incomplete/{id}": {
-      "patch": {
-        "summary": "Submit a transcript that has been completed.",
-        "operationId": "SearchService_SubmitIncompleteTranscription",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "properties": {}
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "search"
-        ]
-      }
-    },
     "/api/metadata": {
       "get": {
         "summary": "Fetch search metadata e.g. searchable fields",
@@ -218,6 +164,122 @@
             "required": false,
             "type": "integer",
             "format": "int32"
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      }
+    },
+    "/api/tscript/chunk/pending": {
+      "get": {
+        "summary": "Gets a incomplete transcript chunk that is pending completion",
+        "operationId": "SearchService_GetPendingTscriptChunks",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rsksearchPendingTscriptChunks"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "search"
+        ]
+      }
+    },
+    "/api/tscript/chunk/{chunkId}": {
+      "patch": {
+        "summary": "Submit a transcript chunk that has been completed.",
+        "operationId": "SearchService_SubmitTscriptChunk",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "chunkId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      }
+    },
+    "/api/tscript/chunk/{chunkId}/submission": {
+      "get": {
+        "summary": "lists any existing submissions for a chunk",
+        "operationId": "SearchService_ListChunkSubmissions",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rsksearchChunkSubmissionList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "chunkId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      }
+    },
+    "/api/tscript/chunk/{id}": {
+      "get": {
+        "summary": "Gets a specific transcript chunk to be completed.",
+        "operationId": "SearchService_GetTscriptChunk",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rsksearchTscriptChunk"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
           }
         ],
         "tags": [
@@ -304,6 +366,28 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "rsksearchChunkSubmission": {
+      "type": "object",
+      "properties": {
+        "chunkId": {
+          "type": "string"
+        },
+        "transcript": {
+          "type": "string"
+        }
+      }
+    },
+    "rsksearchChunkSubmissionList": {
+      "type": "object",
+      "properties": {
+        "submissions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rsksearchChunkSubmission"
           }
         }
       }
@@ -444,25 +528,18 @@
         }
       }
     },
-    "rsksearchIncompleteTranscription": {
+    "rsksearchPendingTscriptChunks": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "string"
+        "numPending": {
+          "type": "integer",
+          "format": "int32"
         },
-        "episode": {
-          "$ref": "#/definitions/rsksearchShortEpisode"
+        "numSubmitted": {
+          "type": "integer",
+          "format": "int32"
         },
-        "startSecond": {
-          "type": "string"
-        },
-        "endSecond": {
-          "type": "string"
-        },
-        "audioClipUri": {
-          "type": "string"
-        },
-        "transcript": {
+        "suggestedNextChunkId": {
           "type": "string"
         }
       }
@@ -540,6 +617,23 @@
           "items": {
             "type": "string"
           }
+        }
+      }
+    },
+    "rsksearchTscriptChunk": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "tscriptId": {
+          "type": "string"
+        },
+        "raw": {
+          "type": "string"
+        },
+        "audioClipUri": {
+          "type": "string"
         }
       }
     }

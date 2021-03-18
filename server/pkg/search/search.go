@@ -7,19 +7,21 @@ import (
 	"github.com/warmans/rsk-search/pkg/filter"
 	"github.com/warmans/rsk-search/pkg/filter/bleve_query"
 	"github.com/warmans/rsk-search/pkg/models"
-	"github.com/warmans/rsk-search/pkg/store"
+	"github.com/warmans/rsk-search/pkg/store/ro"
+	"github.com/warmans/rsk-search/pkg/store/rw"
 )
 
 const ResultContextLines = 3
 const PageSize = 10
 
-func NewSearch(index bleve.Index, db *store.Conn) *Search {
-	return &Search{index: index, db: db}
+func NewSearch(index bleve.Index, readOnlyDB *ro.Conn, persistentDB *rw.Conn) *Search {
+	return &Search{index: index, readOnlyDB: readOnlyDB, persistentDB: persistentDB}
 }
 
 type Search struct {
-	index bleve.Index
-	db    *store.Conn
+	index        bleve.Index
+	readOnlyDB   *ro.Conn
+	persistentDB *rw.Conn
 }
 
 func (s *Search) Search(ctx context.Context, f filter.Filter, page int32) (*api.SearchResultList, error) {
@@ -53,7 +55,7 @@ func (s *Search) Search(ctx context.Context, f filter.Filter, page int32) (*api.
 			result := &api.SearchResult{
 				Dialogs: []*api.DialogResult{},
 			}
-			err := s.db.WithStore(func(s *store.Store) error {
+			err := s.readOnlyDB.WithStore(func(s *ro.Store) error {
 				dialogs, episodeID, err := s.GetDialogWithContext(ctx, searchResult.ID, ResultContextLines)
 				if err != nil {
 					return err

@@ -9,19 +9,19 @@ import (
 	"github.com/warmans/rsk-search/pkg/meta"
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/search"
-	"github.com/warmans/rsk-search/pkg/store"
+	"github.com/warmans/rsk-search/pkg/store/ro"
 	"google.golang.org/grpc"
 	"google.golang.org/protobuf/types/known/emptypb"
 	"strings"
 )
 
-func NewSearchService(searchBackend *search.Search, store *store.Conn) *SearchService {
+func NewSearchService(searchBackend *search.Search, store *ro.Conn) *SearchService {
 	return &SearchService{searchBackend: searchBackend, db: store}
 }
 
 type SearchService struct {
 	searchBackend *search.Search
-	db            *store.Conn
+	db            *ro.Conn
 }
 
 func (s *SearchService) RegisterGRPC(server *grpc.Server) {
@@ -73,7 +73,7 @@ func checkWhy(f filter.Filter) error {
 
 func (s *SearchService) GetEpisode(ctx context.Context, request *api.GetEpisodeRequest) (*api.Episode, error) {
 	var ep *models.Episode
-	err := s.db.WithStore(func(s *store.Store) error {
+	err := s.db.WithStore(func(s *ro.Store) error {
 		var err error
 		ep, err = s.GetEpisode(ctx, request.Id)
 		if err != nil {
@@ -94,7 +94,7 @@ func (s *SearchService) ListEpisodes(ctx context.Context, request *api.ListEpiso
 	el := &api.EpisodeList{
 		Episodes: []*api.ShortEpisode{},
 	}
-	err := s.db.WithStore(func(s *store.Store) error {
+	err := s.db.WithStore(func(s *ro.Store) error {
 		eps, err := s.ListEpisodes(ctx)
 		if err != nil {
 			return err
@@ -110,11 +110,19 @@ func (s *SearchService) ListEpisodes(ctx context.Context, request *api.ListEpiso
 	return el, nil
 }
 
-func (s *SearchService) GetIncompleteTranscription(ctx context.Context, empty *emptypb.Empty) (*api.IncompleteTranscription, error) {
+func (s *SearchService) GetPendingTscriptChunks(ctx context.Context, empty *emptypb.Empty) (*api.PendingTscriptChunks, error) {
 	panic("implement me")
 }
 
-func (s *SearchService) SubmitIncompleteTranscription(ctx context.Context, request *api.SubmitIncompleteTranscriptionRequest) (*emptypb.Empty, error) {
+func (s *SearchService) GetTscriptChunk(ctx context.Context, request *api.GetTscriptChunkRequest) (*api.TscriptChunk, error) {
+	return nil, nil
+}
+
+func (s *SearchService) ListChunkSubmissions(ctx context.Context, request *api.ListChunkSubmissionsRequest) (*api.ChunkSubmissionList, error) {
+	panic("implement me")
+}
+
+func (s *SearchService) SubmitTscriptChunk(ctx context.Context, submission *api.ChunkSubmission) (*emptypb.Empty, error) {
 	panic("implement me")
 }
 

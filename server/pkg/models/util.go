@@ -31,3 +31,7 @@ func FormatStandardEpisodeName(series, episode int32) string {
 func EpisodeID(ep *Episode) string {
 	return fmt.Sprintf("ep-%s-%s", ep.Publication, FormatStandardEpisodeName(ep.Series, ep.Episode))
 }
+
+func IncompleteTranscriptID(t Tscript) string {
+	return fmt.Sprintf("ts-%s-%s", t.Publication, FormatStandardEpisodeName(t.Series, t.Episode))
+}

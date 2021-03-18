@@ -5,7 +5,8 @@ import (
 	"encoding/json"
 	"github.com/spf13/cobra"
 	"github.com/warmans/rsk-search/pkg/models"
-	"github.com/warmans/rsk-search/pkg/store"
+	"github.com/warmans/rsk-search/pkg/store/common"
+	"github.com/warmans/rsk-search/pkg/store/ro"
 	"github.com/warmans/rsk-search/pkg/util"
 	"go.uber.org/zap"
 	"io/ioutil"
@@ -29,7 +30,7 @@ func LoadCmd() *cobra.Command {
 			if dbDSN == "" {
 				panic("dsn not set")
 			}
-			conn, err := store.NewConn(&store.Config{
+			conn, err := ro.NewConn(&common.Config{
 				DSN: dbDSN,
 			})
 			if err != nil {
@@ -43,12 +44,12 @@ func LoadCmd() *cobra.Command {
 	}
 
 	cmd.Flags().StringVarP(&inputDir, "input-path", "i", "./var/data/episodes", "Path to raw data files")
-	cmd.Flags().StringVarP(&dbDSN, "db-dsn", "d", "./var/rsk.sqlite3", "databsae DSN")
+	cmd.Flags().StringVarP(&dbDSN, "db-dsn", "d", "./var/ro.sqlite3", "databsae DSN")
 
 	return cmd
 }
 
-func populateDB(inputDataPath string, conn *store.Conn, logger *zap.Logger) error {
+func populateDB(inputDataPath string, conn *ro.Conn, logger *zap.Logger) error {
 
 	logger.Info("Populating DB...")
 
@@ -57,7 +58,9 @@ func populateDB(inputDataPath string, conn *store.Conn, logger *zap.Logger) erro
 		return err
 	}
 	for _, dirEntry := range dirEntries {
-
+		if dirEntry.IsDir() {
+			continue
+		}
 		logger.Info("Parsing file...", zap.String("path", dirEntry.Name()))
 
 		episode := &models.Episode{}
@@ -67,8 +70,32 @@ func populateDB(inputDataPath string, conn *store.Conn, logger *zap.Logger) erro
 			return err
 		}
 
-		if err := conn.WithStore(func(s *store.Store) error {
+		if err := conn.WithStore(func(s *ro.Store) error {
 			return s.InsertEpisodeWithTranscript(context.Background(), episode)
+		}); err != nil {
+			return err
+		}
+	}
+
+	incompleteDir := path.Join(inputDataPath, "incomplete", "chunked")
+	incompleteEntries, err := ioutil.ReadDir(incompleteDir)
+	if err != nil {
+		return err
+	}
+	for _, dirEntry := range incompleteEntries {
+		if dirEntry.IsDir() {
+			continue
+		}
+		logger.Info("Parsing file...", zap.String("path", dirEntry.Name()))
+
+		tscript := &models.Tscript{}
+		if err := util.WithReadJSONFileDecoder(path.Join(incompleteDir, dirEntry.Name()), func(dec *json.Decoder) error {
+			return dec.Decode(tscript)
+		}); err != nil {
+			return err
+		}
+		if err := conn.WithStore(func(s *ro.Store) error {
+			return s.InsertTscript(context.Background(), tscript)
 		}); err != nil {
 			return err
 		}

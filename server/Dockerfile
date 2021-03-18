@@ -5,7 +5,7 @@ RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/s
     apk add glibc-2.33-r0.apk
 
 
-RUN mkdir -p /opt/rsk
+RUN mkdir -p /opt/rsk/persistent && chown -R nobody /opt/rsk
 
 ARG USER=nobody
 USER nobody

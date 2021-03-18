@@ -1,10 +1,14 @@
-version: "3"
+version: "3.2"
 services:
   gui:
-    image: "warmans/rsk-search-gui:0.0.2"
+    image: "warmans/rsk-search-gui:latest"
     ports:
       - "8080:80"
   server:
-    image: "warmans/rsk-search-api:0.0.2"
+    image: "warmans/rsk-search-api:latest"
     ports:
       - "8888:8888"
+    environment:
+      RSK_SEARCH_RW_DB_DSN: "/opt/rsk/persistent/rw.sqlite3"
+    volumes:
+      - ./persistent:/opt/rsk/persistent:rw

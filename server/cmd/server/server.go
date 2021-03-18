@@ -8,7 +8,9 @@ import (
 	"github.com/warmans/rsk-search/pkg/server"
 	"github.com/warmans/rsk-search/pkg/service/config"
 	"github.com/warmans/rsk-search/pkg/service/grpc"
-	"github.com/warmans/rsk-search/pkg/store"
+	"github.com/warmans/rsk-search/pkg/store/common"
+	"github.com/warmans/rsk-search/pkg/store/ro"
+	"github.com/warmans/rsk-search/pkg/store/rw"
 	"go.uber.org/zap"
 )
 
@@ -32,21 +34,38 @@ func ServerCmd() *cobra.Command {
 			srvCfg := config.SearchServiceConfig{}
 			srvCfg.RegisterFlags(ServicePrefix)
 
-			dbCfg := &store.Config{}
-			dbCfg.RegisterFlags(ServicePrefix)
+			roDbCfg := &common.Config{}
+			roDbCfg.RegisterFlags(ServicePrefix, "ro")
+
+			rwDbCfg := &common.Config{}
+			rwDbCfg.RegisterFlags(ServicePrefix, "rw")
+
+			flag.Parse()
 
 			rskIndex, err := bleve.Open(srvCfg.BleveIndexPath)
 			if err != nil {
 				return err
 			}
 
-			rskDB, err := store.NewConn(dbCfg)
+			// DB is volatile and will be recreated with each deployment
+			readOnlyStoreConn, err := ro.NewConn(roDbCfg)
 			if err != nil {
 				return err
 			}
 
+			// DB is persistent and will retain data between deployments
+			logger.Info("Init persistent DB", zap.String("path", rwDbCfg.DSN))
+			persistentDBConn, err := rw.NewConn(rwDbCfg)
+			if err != nil {
+				return err
+			}
+			logger.Info("Running persistent DB migrations")
+			if err := persistentDBConn.Migrate(); err != nil {
+				return err
+			}
+
 			grpcServices := []server.GRPCService{
-				grpc.NewSearchService(search.NewSearch(rskIndex, rskDB), rskDB),
+				grpc.NewSearchService(search.NewSearch(rskIndex, readOnlyStoreConn, persistentDBConn), readOnlyStoreConn),
 			}
 
 			srv, err := server.NewServer(logger, grpcCfg, grpcServices, []server.HTTPService{})

@@ -37,6 +37,9 @@ func NERDumpTagsCmd() *cobra.Command {
 				return err
 			}
 			for _, dirEntry := range dirEntries {
+				if dirEntry.IsDir() {
+					continue
+				}
 
 				logger.Info("Parsing file...", zap.String("path", dirEntry.Name()))
 

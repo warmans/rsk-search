@@ -57,6 +57,9 @@ func populateIndex(inputDataPath string, idx bleve.Index, logger *zap.Logger) er
 		return err
 	}
 	for _, dirEntry := range dirEntries {
+		if dirEntry.IsDir() {
+			continue
+		}
 
 		logger.Info("Parsing file...", zap.String("path", dirEntry.Name()))
 

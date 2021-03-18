@@ -31,8 +31,8 @@ func Import(f *os.File) ([]models.Dialog, []models.Synopsis, error) {
 
 		// OFFSET lines related to the next line of text so just store the offset
 		// and continue.
-		if strings.HasPrefix(line, "#OFFSET:") {
-			if offset, ok := scanOffset(line); ok {
+		if IsOffsetTag(line) {
+			if offset, ok := ScanOffset(line); ok {
 				lastOffset = offset
 			}
 			continue
@@ -90,12 +90,14 @@ func Import(f *os.File) ([]models.Dialog, []models.Synopsis, error) {
 	return output, synopsies, nil
 }
 
-func scanOffset(line string) (int64, bool) {
+func IsOffsetTag(line string) bool {
+	return strings.HasPrefix(line, "#OFFSET:")
+}
+
+func ScanOffset(line string) (int64, bool) {
 	offsetStr := strings.TrimSpace(strings.TrimPrefix(line, "#OFFSET:"))
 	if off, err := strconv.Atoi(offsetStr); err == nil {
 		return int64(off), true
 	}
 	return 0, false
 }
-
-

@@ -75,24 +75,45 @@ service SearchService {
     };
   }
 
-  // incomplete transcriptions
+  // tscript is an incomplete transcription
+  // chunks are ~2 min sections of the transcription
 
-  rpc GetIncompleteTranscription(google.protobuf.Empty) returns (IncompleteTranscription) {
+  rpc GetPendingTscriptChunks(google.protobuf.Empty) returns (PendingTscriptChunks) {
     option (google.api.http) = {
-      get: "/api/incomplete/random"
+      get: "/api/tscript/chunk/pending"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      summary: "Gets a random incomplete transcript to be completed."
+      summary: "Gets a incomplete transcript chunk that is pending completion"
       tags: "search"
     };
   }
 
-  rpc SubmitIncompleteTranscription(SubmitIncompleteTranscriptionRequest) returns (google.protobuf.Empty) {
+  rpc GetTscriptChunk(GetTscriptChunkRequest) returns (TscriptChunk) {
     option (google.api.http) = {
-      patch: "/api/incomplete/{id}"
+      get: "/api/tscript/chunk/{id}"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      summary: "Submit a transcript that has been completed."
+      summary: "Gets a specific transcript chunk to be completed."
+      tags: "search"
+    };
+  }
+
+  rpc ListChunkSubmissions(ListChunkSubmissionsRequest) returns (ChunkSubmissionList) {
+    option (google.api.http) = {
+      get: "/api/tscript/chunk/{chunk_id}/submission"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "lists any existing submissions for a chunk"
+      tags: "search"
+    };
+  }
+
+  rpc SubmitTscriptChunk(ChunkSubmission) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      patch: "/api/tscript/chunk/{chunk_id}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Submit a transcript chunk that has been completed."
       tags: "search"
     };
   }
@@ -211,20 +232,41 @@ message FieldValue {
   int32 count = 2;
 }
 
-
-message IncompleteTranscription {
+message Tscript {
   string id = 1;
-  ShortEpisode episode = 2;
-  string start_second = 3;
-  string end_second = 4;
-  string audio_clip_uri = 5;
-  string transcript = 6;
+  string publication = 2;
+  int32 series = 3;
+  int32 episode = 4;
 }
 
-message SubmitIncompleteTranscriptionRequest {
+message PendingTscriptChunks {
+  int32 num_pending = 1;
+  int32 num_submitted = 2;
+  string suggested_next_chunk_id = 3;
+}
+
+message GetTscriptChunkRequest {
   string id = 1;
-  string author = 2;
-  string transcript = 3;
+}
+
+message TscriptChunk {
+  string id = 1;
+  string tscript_id = 2;
+  string raw = 3;
+  string audio_clip_uri = 4;
+}
+
+message ChunkSubmission {
+  string chunk_id = 1;
+  string transcript = 2;
+}
+
+message ListChunkSubmissionsRequest {
+  string chunk_id = 1;
+}
+
+message ChunkSubmissionList {
+  repeated ChunkSubmission submissions = 1;
 }
 
 message SubmitDialogCorrectionRequest {

@@ -12,6 +12,7 @@ func RootCmd() *cobra.Command {
 
 	index.AddCommand(GcloudCmd())
 	index.AddCommand(ImportRawCmd())
+	index.AddCommand(MapChunksCmd())
 
 	return index
 }
