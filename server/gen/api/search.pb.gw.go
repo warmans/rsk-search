@@ -226,20 +226,20 @@ func local_request_SearchService_ListEpisodes_0(ctx context.Context, marshaler r
 
 }
 
-func request_SearchService_GetPendingTscriptChunks_0(ctx context.Context, marshaler runtime.Marshaler, client SearchServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_SearchService_GetTscriptChunkStats_0(ctx context.Context, marshaler runtime.Marshaler, client SearchServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq emptypb.Empty
 	var metadata runtime.ServerMetadata
 
-	msg, err := client.GetPendingTscriptChunks(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetTscriptChunkStats(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_SearchService_GetPendingTscriptChunks_0(ctx context.Context, marshaler runtime.Marshaler, server SearchServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func local_request_SearchService_GetTscriptChunkStats_0(ctx context.Context, marshaler runtime.Marshaler, server SearchServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq emptypb.Empty
 	var metadata runtime.ServerMetadata
 
-	msg, err := server.GetPendingTscriptChunks(ctx, &protoReq)
+	msg, err := server.GetTscriptChunkStats(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -296,8 +296,8 @@ func local_request_SearchService_GetTscriptChunk_0(ctx context.Context, marshale
 
 }
 
-func request_SearchService_ListChunkSubmissions_0(ctx context.Context, marshaler runtime.Marshaler, client SearchServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListChunkSubmissionsRequest
+func request_SearchService_ListTscriptChunkSubmissions_0(ctx context.Context, marshaler runtime.Marshaler, client SearchServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ListTscriptChunkSubmissionsRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -317,13 +317,13 @@ func request_SearchService_ListChunkSubmissions_0(ctx context.Context, marshaler
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "chunk_id", err)
 	}
 
-	msg, err := client.ListChunkSubmissions(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.ListTscriptChunkSubmissions(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_SearchService_ListChunkSubmissions_0(ctx context.Context, marshaler runtime.Marshaler, server SearchServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListChunkSubmissionsRequest
+func local_request_SearchService_ListTscriptChunkSubmissions_0(ctx context.Context, marshaler runtime.Marshaler, server SearchServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ListTscriptChunkSubmissionsRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -343,7 +343,7 @@ func local_request_SearchService_ListChunkSubmissions_0(ctx context.Context, mar
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "chunk_id", err)
 	}
 
-	msg, err := server.ListChunkSubmissions(ctx, &protoReq)
+	msg, err := server.ListTscriptChunkSubmissions(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -353,7 +353,7 @@ var (
 )
 
 func request_SearchService_SubmitTscriptChunk_0(ctx context.Context, marshaler runtime.Marshaler, client SearchServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ChunkSubmission
+	var protoReq TscriptChunkSubmissionRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -386,7 +386,7 @@ func request_SearchService_SubmitTscriptChunk_0(ctx context.Context, marshaler r
 }
 
 func local_request_SearchService_SubmitTscriptChunk_0(ctx context.Context, marshaler runtime.Marshaler, server SearchServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ChunkSubmission
+	var protoReq TscriptChunkSubmissionRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -629,18 +629,18 @@ func RegisterSearchServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 
 	})
 
-	mux.Handle("GET", pattern_SearchService_GetPendingTscriptChunks_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_SearchService_GetTscriptChunkStats_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsksearch.SearchService/GetPendingTscriptChunks")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsksearch.SearchService/GetTscriptChunkStats")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_SearchService_GetPendingTscriptChunks_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_SearchService_GetTscriptChunkStats_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -648,7 +648,7 @@ func RegisterSearchServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 
-		forward_SearchService_GetPendingTscriptChunks_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_SearchService_GetTscriptChunkStats_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -675,18 +675,18 @@ func RegisterSearchServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 
 	})
 
-	mux.Handle("GET", pattern_SearchService_ListChunkSubmissions_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_SearchService_ListTscriptChunkSubmissions_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsksearch.SearchService/ListChunkSubmissions")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsksearch.SearchService/ListTscriptChunkSubmissions")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_SearchService_ListChunkSubmissions_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_SearchService_ListTscriptChunkSubmissions_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -694,7 +694,7 @@ func RegisterSearchServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 
-		forward_SearchService_ListChunkSubmissions_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_SearchService_ListTscriptChunkSubmissions_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -885,23 +885,23 @@ func RegisterSearchServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 
 	})
 
-	mux.Handle("GET", pattern_SearchService_GetPendingTscriptChunks_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_SearchService_GetTscriptChunkStats_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsksearch.SearchService/GetPendingTscriptChunks")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsksearch.SearchService/GetTscriptChunkStats")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_SearchService_GetPendingTscriptChunks_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_SearchService_GetTscriptChunkStats_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_SearchService_GetPendingTscriptChunks_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_SearchService_GetTscriptChunkStats_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -925,23 +925,23 @@ func RegisterSearchServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 
 	})
 
-	mux.Handle("GET", pattern_SearchService_ListChunkSubmissions_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_SearchService_ListTscriptChunkSubmissions_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsksearch.SearchService/ListChunkSubmissions")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsksearch.SearchService/ListTscriptChunkSubmissions")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_SearchService_ListChunkSubmissions_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_SearchService_ListTscriptChunkSubmissions_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_SearchService_ListChunkSubmissions_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_SearchService_ListTscriptChunkSubmissions_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -999,11 +999,11 @@ var (
 
 	pattern_SearchService_ListEpisodes_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"api", "episode"}, ""))
 
-	pattern_SearchService_GetPendingTscriptChunks_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3}, []string{"api", "tscript", "chunk", "pending"}, ""))
+	pattern_SearchService_GetTscriptChunkStats_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"api", "tscript", "stats"}, ""))
 
 	pattern_SearchService_GetTscriptChunk_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "tscript", "chunk", "id"}, ""))
 
-	pattern_SearchService_ListChunkSubmissions_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"api", "tscript", "chunk", "chunk_id", "submission"}, ""))
+	pattern_SearchService_ListTscriptChunkSubmissions_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"api", "tscript", "chunk", "chunk_id", "submission"}, ""))
 
 	pattern_SearchService_SubmitTscriptChunk_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "tscript", "chunk", "chunk_id"}, ""))
 
@@ -1021,11 +1021,11 @@ var (
 
 	forward_SearchService_ListEpisodes_0 = runtime.ForwardResponseMessage
 
-	forward_SearchService_GetPendingTscriptChunks_0 = runtime.ForwardResponseMessage
+	forward_SearchService_GetTscriptChunkStats_0 = runtime.ForwardResponseMessage
 
 	forward_SearchService_GetTscriptChunk_0 = runtime.ForwardResponseMessage
 
-	forward_SearchService_ListChunkSubmissions_0 = runtime.ForwardResponseMessage
+	forward_SearchService_ListTscriptChunkSubmissions_0 = runtime.ForwardResponseMessage
 
 	forward_SearchService_SubmitTscriptChunk_0 = runtime.ForwardResponseMessage
 

@@ -8,20 +8,18 @@ import (
 	"github.com/warmans/rsk-search/pkg/filter/bleve_query"
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/store/ro"
-	"github.com/warmans/rsk-search/pkg/store/rw"
 )
 
 const ResultContextLines = 3
 const PageSize = 10
 
-func NewSearch(index bleve.Index, readOnlyDB *ro.Conn, persistentDB *rw.Conn) *Search {
-	return &Search{index: index, readOnlyDB: readOnlyDB, persistentDB: persistentDB}
+func NewSearch(index bleve.Index, readOnlyDB *ro.Conn) *Search {
+	return &Search{index: index, readOnlyDB: readOnlyDB}
 }
 
 type Search struct {
-	index        bleve.Index
-	readOnlyDB   *ro.Conn
-	persistentDB *rw.Conn
+	index      bleve.Index
+	readOnlyDB *ro.Conn
 }
 
 func (s *Search) Search(ctx context.Context, f filter.Filter, page int32) (*api.SearchResultList, error) {

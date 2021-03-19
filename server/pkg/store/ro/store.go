@@ -17,7 +17,7 @@ import (
 var migrations embed.FS
 
 func NewConn(cfg *common.Config) (*Conn, error) {
-	innerConn, err := common.NewConn(cfg)
+	innerConn, err := common.NewConn("sqlite3", cfg)
 	if err != nil {
 		return nil, err
 	}
@@ -54,7 +54,7 @@ func (s *Store) InsertEpisodeWithTranscript(ctx context.Context, ep *models.Epis
 	}
 	_, err = s.tx.ExecContext(
 		ctx,
-		`INSERT INTO episode (id, publication, series, episode, release_date, metadata, tags) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+		`INSERT INTO episode (id, publication, series, episode, release_date, metadata, tags) VALUES ($1, $2, $3, $4, $5, $6, $7) ON CONFLICT DO NOTHING`,
 		ep.ID(),
 		ep.Publication,
 		ep.Series,
@@ -201,53 +201,6 @@ func (s *Store) getTranscriptForQuery(ctx context.Context, query string, params 
 		results = append(results, result)
 	}
 	return results, epID, nil
-}
-
-func (s *Store) InsertTscript(ctx context.Context, tscript *models.Tscript) error {
-
-	_, err := s.tx.ExecContext(
-		ctx,
-		`INSERT INTO tscript (id, publication, series, episode) VALUES ($1, $2, $3, $4)`,
-		tscript.ID(),
-		tscript.Publication,
-		tscript.Series,
-		tscript.Episode,
-	)
-
-	for _, v := range tscript.Chunks {
-		if err != nil {
-			return err
-		}
-		_, err = s.tx.ExecContext(ctx,
-			`INSERT INTO tscript_chunk (id, tscript_id, raw, start_second, end_second) VALUES ($1, $2, $3, $4, $5)`,
-			v.ID,
-			tscript.ID(),
-			v.Raw,
-			v.StartSecond,
-			v.EndSecond,
-		)
-		if err != nil {
-			return err
-		}
-	}
-	return err
-}
-
-func (s *Store) GetTscriptChunk(ctx context.Context, chunkId string) (*models.Chunk, string, error) {
-	ch := &models.Chunk{}
-	var tscriptID string
-
-	err := s.tx.
-		QueryRowxContext(ctx, "SELECT id, tscript_id, raw, start_second, end_second FROM tscript_chunk WHERE id = $1", chunkId).
-		Scan(&ch.ID, &tscriptID, &ch.Raw, &ch.StartSecond)
-
-	if err != nil {
-		if err == sql.ErrNoRows {
-			return nil, "", nil
-		}
-		return nil, "", err
-	}
-	return ch, tscriptID, nil
 }
 
 func metaToString(metadata models.Metadata) (string, error) {

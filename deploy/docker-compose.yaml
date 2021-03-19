@@ -1,5 +1,15 @@
 version: "3.2"
 services:
+  postgres:
+    image: postgres:13.2-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: scrimpton
+      POSTGRES_PASSWORD: insecure
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
   gui:
     image: "warmans/rsk-search-gui:latest"
     ports:
@@ -9,6 +19,4 @@ services:
     ports:
       - "8888:8888"
     environment:
-      RSK_SEARCH_RW_DB_DSN: "/opt/rsk/persistent/rw.sqlite3"
-    volumes:
-      - ./persistent:/opt/rsk/persistent:rw
+      RSK_SEARCH_RW_DB_DSN: "postgres://scrimpton:insecure@postgres:5432/scrimpton?sslmode=disable"

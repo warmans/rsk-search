@@ -1,6 +1,11 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
-import { RsksearchEpisodeList, RskSearchResultList, RsksearchShortEpisode } from '../../../../lib/api-client/models';
+import {
+  RsksearchChunkStats,
+  RsksearchEpisodeList,
+  RskSearchResultList,
+  RsksearchShortEpisode
+} from '../../../../lib/api-client/models';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
@@ -23,6 +28,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   currentPage: number;
   morePages: boolean = false;
 
+  chunkStats: RsksearchChunkStats;
+
   private unsubscribe$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private apiClient: SearchAPIClient, private route: ActivatedRoute, private titleService: Title) {
@@ -38,8 +45,9 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.titleService.setTitle("Scrimpton")
+    this.titleService.setTitle('Scrimpton');
     this.listEpisodes();
+    this.getChunkStats();
   }
 
   ngOnDestroy(): void {
@@ -53,7 +61,17 @@ export class SearchComponent implements OnInit, OnDestroy {
       takeUntil(this.unsubscribe$),
     ).subscribe((res: RsksearchEpisodeList) => {
       this.episodeList = res.episodes;
-      this.loading.pop();
+    }).add(() => {
+      this.loading.pop()
+    });
+  }
+
+  getChunkStats() {
+    this.loading.push(true);
+    this.apiClient.searchServiceGetTscriptChunkStats().subscribe((stats: RsksearchChunkStats) => {
+      this.chunkStats = stats;
+    }).add(() => {
+      this.loading.pop()
     });
   }
 

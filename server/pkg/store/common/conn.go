@@ -4,6 +4,8 @@ import (
 	"embed"
 	"fmt"
 	"github.com/jmoiron/sqlx"
+	_ "github.com/lib/pq"
+	"github.com/spf13/pflag"
 	"github.com/warmans/rsk-search/pkg/flag"
 	"github.com/warmans/rsk-search/pkg/util"
 	"io"
@@ -12,11 +14,12 @@ import (
 )
 
 type Config struct {
-	DSN string
+	DSN    string
 }
 
-func (c *Config) RegisterFlags(prefix string, dbName string) {
+func (c *Config) RegisterFlags(fs *pflag.FlagSet, prefix string, dbName string) {
 	flag.StringVarEnv(
+		fs,
 		&c.DSN,
 		prefix,
 		fmt.Sprintf("%s-db-dsn", dbName),
@@ -25,8 +28,8 @@ func (c *Config) RegisterFlags(prefix string, dbName string) {
 	)
 }
 
-func NewConn(cfg *Config) (*Conn, error) {
-	db, err := sqlx.Connect("sqlite3", cfg.DSN)
+func NewConn(driver string, cfg *Config) (*Conn, error) {
+	db, err := sqlx.Connect(driver, cfg.DSN)
 	if err != nil {
 		return nil, err
 	}
@@ -119,4 +122,9 @@ func (c *Conn) WithTx(f func(tx *sqlx.Tx) error) error {
 		return err
 	}
 	return tx.Commit()
+}
+
+
+func (c *Conn) Close() error {
+	return c.db.Close()
 }

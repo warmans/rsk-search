@@ -20,13 +20,12 @@ func LogMessageProducer() grpc_zap.MessageProducer {
 			zap.String("grpc.code", code.String()),
 			duration,
 		}
-
 		st := status.Convert(err)
 		for _, detail := range st.Details() {
 			switch t := detail.(type) {
 			case *errdetails.DebugInfo:
 				fields = append(fields, zap.String("err.debug.detail", t.Detail))
-				fields = append(fields, zap.Strings("err.debug.stack", t.StackEntries))
+				//fields = append(fields, zap.Strings("err.debug.stack", t.StackEntries))
 			case *errdetails.ErrorInfo:
 				fields = append(fields, zap.String("err.error.reason", t.Reason))
 			case *errdetails.BadRequest:

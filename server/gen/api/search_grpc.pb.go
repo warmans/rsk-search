@@ -24,10 +24,12 @@ type SearchServiceClient interface {
 	ListFieldValues(ctx context.Context, in *ListFieldValuesRequest, opts ...grpc.CallOption) (*FieldValueList, error)
 	GetEpisode(ctx context.Context, in *GetEpisodeRequest, opts ...grpc.CallOption) (*Episode, error)
 	ListEpisodes(ctx context.Context, in *ListEpisodesRequest, opts ...grpc.CallOption) (*EpisodeList, error)
-	GetPendingTscriptChunks(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PendingTscriptChunks, error)
+	// tscript is an incomplete transcription
+	// chunks are ~2 min sections of the transcription
+	GetTscriptChunkStats(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ChunkStats, error)
 	GetTscriptChunk(ctx context.Context, in *GetTscriptChunkRequest, opts ...grpc.CallOption) (*TscriptChunk, error)
-	ListChunkSubmissions(ctx context.Context, in *ListChunkSubmissionsRequest, opts ...grpc.CallOption) (*ChunkSubmissionList, error)
-	SubmitTscriptChunk(ctx context.Context, in *ChunkSubmission, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ListTscriptChunkSubmissions(ctx context.Context, in *ListTscriptChunkSubmissionsRequest, opts ...grpc.CallOption) (*ChunkSubmissionList, error)
+	SubmitTscriptChunk(ctx context.Context, in *TscriptChunkSubmissionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	SubmitDialogCorrection(ctx context.Context, in *SubmitDialogCorrectionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
@@ -84,9 +86,9 @@ func (c *searchServiceClient) ListEpisodes(ctx context.Context, in *ListEpisodes
 	return out, nil
 }
 
-func (c *searchServiceClient) GetPendingTscriptChunks(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PendingTscriptChunks, error) {
-	out := new(PendingTscriptChunks)
-	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/GetPendingTscriptChunks", in, out, opts...)
+func (c *searchServiceClient) GetTscriptChunkStats(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ChunkStats, error) {
+	out := new(ChunkStats)
+	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/GetTscriptChunkStats", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -102,16 +104,16 @@ func (c *searchServiceClient) GetTscriptChunk(ctx context.Context, in *GetTscrip
 	return out, nil
 }
 
-func (c *searchServiceClient) ListChunkSubmissions(ctx context.Context, in *ListChunkSubmissionsRequest, opts ...grpc.CallOption) (*ChunkSubmissionList, error) {
+func (c *searchServiceClient) ListTscriptChunkSubmissions(ctx context.Context, in *ListTscriptChunkSubmissionsRequest, opts ...grpc.CallOption) (*ChunkSubmissionList, error) {
 	out := new(ChunkSubmissionList)
-	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/ListChunkSubmissions", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/ListTscriptChunkSubmissions", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *searchServiceClient) SubmitTscriptChunk(ctx context.Context, in *ChunkSubmission, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *searchServiceClient) SubmitTscriptChunk(ctx context.Context, in *TscriptChunkSubmissionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/SubmitTscriptChunk", in, out, opts...)
 	if err != nil {
@@ -138,10 +140,12 @@ type SearchServiceServer interface {
 	ListFieldValues(context.Context, *ListFieldValuesRequest) (*FieldValueList, error)
 	GetEpisode(context.Context, *GetEpisodeRequest) (*Episode, error)
 	ListEpisodes(context.Context, *ListEpisodesRequest) (*EpisodeList, error)
-	GetPendingTscriptChunks(context.Context, *emptypb.Empty) (*PendingTscriptChunks, error)
+	// tscript is an incomplete transcription
+	// chunks are ~2 min sections of the transcription
+	GetTscriptChunkStats(context.Context, *emptypb.Empty) (*ChunkStats, error)
 	GetTscriptChunk(context.Context, *GetTscriptChunkRequest) (*TscriptChunk, error)
-	ListChunkSubmissions(context.Context, *ListChunkSubmissionsRequest) (*ChunkSubmissionList, error)
-	SubmitTscriptChunk(context.Context, *ChunkSubmission) (*emptypb.Empty, error)
+	ListTscriptChunkSubmissions(context.Context, *ListTscriptChunkSubmissionsRequest) (*ChunkSubmissionList, error)
+	SubmitTscriptChunk(context.Context, *TscriptChunkSubmissionRequest) (*emptypb.Empty, error)
 	SubmitDialogCorrection(context.Context, *SubmitDialogCorrectionRequest) (*emptypb.Empty, error)
 }
 
@@ -164,16 +168,16 @@ func (UnimplementedSearchServiceServer) GetEpisode(context.Context, *GetEpisodeR
 func (UnimplementedSearchServiceServer) ListEpisodes(context.Context, *ListEpisodesRequest) (*EpisodeList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListEpisodes not implemented")
 }
-func (UnimplementedSearchServiceServer) GetPendingTscriptChunks(context.Context, *emptypb.Empty) (*PendingTscriptChunks, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetPendingTscriptChunks not implemented")
+func (UnimplementedSearchServiceServer) GetTscriptChunkStats(context.Context, *emptypb.Empty) (*ChunkStats, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTscriptChunkStats not implemented")
 }
 func (UnimplementedSearchServiceServer) GetTscriptChunk(context.Context, *GetTscriptChunkRequest) (*TscriptChunk, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTscriptChunk not implemented")
 }
-func (UnimplementedSearchServiceServer) ListChunkSubmissions(context.Context, *ListChunkSubmissionsRequest) (*ChunkSubmissionList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListChunkSubmissions not implemented")
+func (UnimplementedSearchServiceServer) ListTscriptChunkSubmissions(context.Context, *ListTscriptChunkSubmissionsRequest) (*ChunkSubmissionList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListTscriptChunkSubmissions not implemented")
 }
-func (UnimplementedSearchServiceServer) SubmitTscriptChunk(context.Context, *ChunkSubmission) (*emptypb.Empty, error) {
+func (UnimplementedSearchServiceServer) SubmitTscriptChunk(context.Context, *TscriptChunkSubmissionRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SubmitTscriptChunk not implemented")
 }
 func (UnimplementedSearchServiceServer) SubmitDialogCorrection(context.Context, *SubmitDialogCorrectionRequest) (*emptypb.Empty, error) {
@@ -281,20 +285,20 @@ func _SearchService_ListEpisodes_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SearchService_GetPendingTscriptChunks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _SearchService_GetTscriptChunkStats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SearchServiceServer).GetPendingTscriptChunks(ctx, in)
+		return srv.(SearchServiceServer).GetTscriptChunkStats(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/rsksearch.SearchService/GetPendingTscriptChunks",
+		FullMethod: "/rsksearch.SearchService/GetTscriptChunkStats",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SearchServiceServer).GetPendingTscriptChunks(ctx, req.(*emptypb.Empty))
+		return srv.(SearchServiceServer).GetTscriptChunkStats(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -317,26 +321,26 @@ func _SearchService_GetTscriptChunk_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SearchService_ListChunkSubmissions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListChunkSubmissionsRequest)
+func _SearchService_ListTscriptChunkSubmissions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListTscriptChunkSubmissionsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SearchServiceServer).ListChunkSubmissions(ctx, in)
+		return srv.(SearchServiceServer).ListTscriptChunkSubmissions(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/rsksearch.SearchService/ListChunkSubmissions",
+		FullMethod: "/rsksearch.SearchService/ListTscriptChunkSubmissions",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SearchServiceServer).ListChunkSubmissions(ctx, req.(*ListChunkSubmissionsRequest))
+		return srv.(SearchServiceServer).ListTscriptChunkSubmissions(ctx, req.(*ListTscriptChunkSubmissionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _SearchService_SubmitTscriptChunk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ChunkSubmission)
+	in := new(TscriptChunkSubmissionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -348,7 +352,7 @@ func _SearchService_SubmitTscriptChunk_Handler(srv interface{}, ctx context.Cont
 		FullMethod: "/rsksearch.SearchService/SubmitTscriptChunk",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SearchServiceServer).SubmitTscriptChunk(ctx, req.(*ChunkSubmission))
+		return srv.(SearchServiceServer).SubmitTscriptChunk(ctx, req.(*TscriptChunkSubmissionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -399,16 +403,16 @@ var SearchService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _SearchService_ListEpisodes_Handler,
 		},
 		{
-			MethodName: "GetPendingTscriptChunks",
-			Handler:    _SearchService_GetPendingTscriptChunks_Handler,
+			MethodName: "GetTscriptChunkStats",
+			Handler:    _SearchService_GetTscriptChunkStats_Handler,
 		},
 		{
 			MethodName: "GetTscriptChunk",
 			Handler:    _SearchService_GetTscriptChunk_Handler,
 		},
 		{
-			MethodName: "ListChunkSubmissions",
-			Handler:    _SearchService_ListChunkSubmissions_Handler,
+			MethodName: "ListTscriptChunkSubmissions",
+			Handler:    _SearchService_ListTscriptChunkSubmissions_Handler,
 		},
 		{
 			MethodName: "SubmitTscriptChunk",

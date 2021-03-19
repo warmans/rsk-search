@@ -4,6 +4,11 @@ endif
 
 GIT_TAG := $(shell git describe --tags --exact-match 2>/dev/null || echo "unknown")
 
+DEV_DB_USER ?= scrimpton
+DEV_DB_PASS ?= insecure
+DEV_DB_HOST ?= localhost
+DEV_DB_DSN ?= "postgres://$(DEV_DB_USER):$(DEV_DB_PASS)@$(DEV_DB_HOST):5432/$(DEV_DB_USER)?sslmode=disable"
+
 .PHONY: install.buf
 install.buf:
 	echo "=> Installing buff to local bin dir"
@@ -37,7 +42,19 @@ generate.proto:
 
 .PHONY: run
 run: build
-	./bin/rsk-search server
+	./bin/rsk-search server --rw-db-dsn=${DEV_DB_DSN}
+
+.PHONY: dev.services.start
+dev.services.start:
+	docker-compose -f dev/docker-compose.yaml up
+
+.PHONY: dev.services.clean
+dev.services.clean:
+	docker-compose -f dev/docker-compose.yaml down -v
+
+.PHONY: dev.populate.chunks
+dev.populate.chunks: build
+	./bin/rsk-search db load-tscript --rw-db-dsn=${DEV_DB_DSN}
 
 .PHONY: update.transcriptions
 update.transcriptions:
@@ -56,7 +73,7 @@ init.all:
 
 .PHONY: init.db
 init.db:
-	rm ./var/ro.sqlite3; ./bin/rsk-search db load
+	rm ./var/ro.sqlite3; ./bin/rsk-search db load-ro
 
 .PHONY: init.index
 init.index:

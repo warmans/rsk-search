@@ -11,6 +11,7 @@ import (
 	grpc_validator "github.com/grpc-ecosystem/go-grpc-middleware/validator"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/pkg/errors"
+	"github.com/spf13/pflag"
 	"github.com/warmans/rsk-search/pkg/flag"
 	"github.com/warmans/rsk-search/pkg/server/middleware"
 	"go.uber.org/zap"
@@ -34,14 +35,14 @@ type GrpcServerConfig struct {
 	HTTPAddr string
 }
 
-func (c *GrpcServerConfig) RegisterFlags(prefix string) {
-	flag.StringVarEnv(&c.GRPCAddr, prefix, "grpc-addr", "0.0.0.0:9090", "GRPC bind address")
-	flag.StringVarEnv(&c.HTTPAddr, prefix, "http-addr", ":8888", "HTTP bind address")
+func (c *GrpcServerConfig) RegisterFlags(fs *pflag.FlagSet, prefix string) {
+	flag.StringVarEnv(fs, &c.GRPCAddr, prefix, "grpc-addr", "0.0.0.0:9090", "GRPC bind address")
+	flag.StringVarEnv(fs, &c.HTTPAddr, prefix, "http-addr", ":8888", "HTTP bind address")
 }
 
 func NewServer(logger *zap.Logger, cfg GrpcServerConfig, grpcServices []GRPCService, httpServices []HTTPService) (*Server, error) {
 
-	grpc := grpc.NewServer(
+	grpcServer := grpc.NewServer(
 		grpc.StreamInterceptor(grpc_middleware.ChainStreamServer(
 			grpc_ctxtags.StreamServerInterceptor(),
 			grpc_zap.StreamServerInterceptor(logger, grpc_zap.WithMessageProducer(middleware.LogMessageProducer())),
@@ -59,7 +60,7 @@ func NewServer(logger *zap.Logger, cfg GrpcServerConfig, grpcServices []GRPCServ
 	s := &Server{
 		cfg:          cfg,
 		logger:       logger,
-		grpc:         grpc,
+		grpc:         grpcServer,
 		grpcServices: grpcServices,
 		httpServices: httpServices,
 	}

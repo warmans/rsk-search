@@ -11,7 +11,6 @@ import (
 	"go.uber.org/zap"
 	"io/ioutil"
 	"path"
-	"strconv"
 )
 
 func LoadCmd() *cobra.Command {
@@ -20,7 +19,7 @@ func LoadCmd() *cobra.Command {
 	var dbDSN string
 
 	cmd := &cobra.Command{
-		Use:   "load",
+		Use:   "load-ro",
 		Short: "refresh the search index from the given directory",
 		RunE: func(cmd *cobra.Command, args []string) error {
 
@@ -77,34 +76,5 @@ func populateDB(inputDataPath string, conn *ro.Conn, logger *zap.Logger) error {
 		}
 	}
 
-	incompleteDir := path.Join(inputDataPath, "incomplete", "chunked")
-	incompleteEntries, err := ioutil.ReadDir(incompleteDir)
-	if err != nil {
-		return err
-	}
-	for _, dirEntry := range incompleteEntries {
-		if dirEntry.IsDir() {
-			continue
-		}
-		logger.Info("Parsing file...", zap.String("path", dirEntry.Name()))
-
-		tscript := &models.Tscript{}
-		if err := util.WithReadJSONFileDecoder(path.Join(incompleteDir, dirEntry.Name()), func(dec *json.Decoder) error {
-			return dec.Decode(tscript)
-		}); err != nil {
-			return err
-		}
-		if err := conn.WithStore(func(s *ro.Store) error {
-			return s.InsertTscript(context.Background(), tscript)
-		}); err != nil {
-			return err
-		}
-	}
-
 	return nil
-}
-
-func stringToIntOrZero(str string) int32 {
-	i, _ := strconv.Atoi(str)
-	return int32(i)
 }

@@ -59,7 +59,7 @@ func MapChunksCmd() *cobra.Command {
 		},
 	}
 
-	cmd.Flags().StringVarP(&incompleteFilesDir, "incomplete-dir", "d", "./var/data/incomplete", "Path to incomplete transcripts output by gcloud")
+	cmd.Flags().StringVarP(&incompleteFilesDir, "incomplete-dir", "d", "./var/data/episodes/incomplete", "Path to incomplete transcripts output by gcloud")
 
 	return cmd
 }
@@ -88,9 +88,10 @@ func getChunks(scanner *bufio.Scanner) ([]models.Chunk, error) {
 			if curentChunk == nil {
 				return nil, fmt.Errorf("file seems to be missing initial offset")
 			}
-			curentChunk.Raw += line + "\n"
 		}
+		curentChunk.Raw += line + "\n"
 	}
+
 	if curentChunk != nil && len(curentChunk.Raw) > 0 {
 		curentChunk.EndSecond = models.EndSecondEOF
 		chs = append(chs, *curentChunk)

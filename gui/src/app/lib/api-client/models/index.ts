@@ -1,6 +1,8 @@
 /* tslint:disable */
 
 export { FieldMetaKind } from './field-meta-kind.enum';
+export { RsksearchChunkStats } from './rsksearch-chunk-stats.model';
+export { RsksearchChunkSubmissionList } from './rsksearch-chunk-submission-list.model';
 export { RsksearchDialog } from './rsksearch-dialog.model';
 export { RsksearchDialogResult } from './rsksearch-dialog-result.model';
 export { RsksearchEpisode } from './rsksearch-episode.model';
@@ -13,3 +15,5 @@ export { RskSearchResult } from './rsk-search-result.model';
 export { RskSearchResultList } from './rsk-search-result-list.model';
 export { RsksearchShortEpisode } from './rsksearch-short-episode.model';
 export { RsksearchTag } from './rsksearch-tag.model';
+export { RsksearchTscriptChunk } from './rsksearch-tscript-chunk.model';
+export { RsksearchTscriptChunkSubmission } from './rsksearch-tscript-chunk-submission.model';

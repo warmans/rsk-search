@@ -3,12 +3,13 @@ package flag
 import (
 	goflag "flag"
 	"fmt"
+	"github.com/spf13/pflag"
 	"os"
 	"strings"
 )
 
-func StringVarEnv(s *string, prefix string, name string, value string, usage string) {
-	goflag.StringVar(s, name, value, usage)
+func StringVarEnv(flagsSet *pflag.FlagSet, s *string, prefix string, name string, value string, usage string) {
+	flagsSet.StringVar(s, name, value, usage)
 	stringFromEnv(s, prefix, name)
 }
 

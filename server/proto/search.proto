@@ -77,13 +77,12 @@ service SearchService {
 
   // tscript is an incomplete transcription
   // chunks are ~2 min sections of the transcription
-
-  rpc GetPendingTscriptChunks(google.protobuf.Empty) returns (PendingTscriptChunks) {
+  rpc GetTscriptChunkStats(google.protobuf.Empty) returns (ChunkStats) {
     option (google.api.http) = {
-      get: "/api/tscript/chunk/pending"
+      get: "/api/tscript/stats"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      summary: "Gets a incomplete transcript chunk that is pending completion"
+      summary: "Get details about the current chunk backlog"
       tags: "search"
     };
   }
@@ -98,7 +97,7 @@ service SearchService {
     };
   }
 
-  rpc ListChunkSubmissions(ListChunkSubmissionsRequest) returns (ChunkSubmissionList) {
+  rpc ListTscriptChunkSubmissions(ListTscriptChunkSubmissionsRequest) returns (ChunkSubmissionList) {
     option (google.api.http) = {
       get: "/api/tscript/chunk/{chunk_id}/submission"
     };
@@ -108,7 +107,7 @@ service SearchService {
     };
   }
 
-  rpc SubmitTscriptChunk(ChunkSubmission) returns (google.protobuf.Empty) {
+  rpc SubmitTscriptChunk(TscriptChunkSubmissionRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       patch: "/api/tscript/chunk/{chunk_id}"
     };
@@ -239,7 +238,7 @@ message Tscript {
   int32 episode = 4;
 }
 
-message PendingTscriptChunks {
+message ChunkStats {
   int32 num_pending = 1;
   int32 num_submitted = 2;
   string suggested_next_chunk_id = 3;
@@ -256,17 +255,24 @@ message TscriptChunk {
   string audio_clip_uri = 4;
 }
 
-message ChunkSubmission {
+message TscriptChunkSubmissionRequest {
   string chunk_id = 1;
   string transcript = 2;
 }
 
-message ListChunkSubmissionsRequest {
+message ListTscriptChunkSubmissionsRequest {
   string chunk_id = 1;
 }
 
+
+message TscriptChunkSubmission {
+  string chunk_id = 1;
+  string transcript = 2;
+  string author_id = 3;
+}
+
 message ChunkSubmissionList {
-  repeated ChunkSubmission submissions = 1;
+  repeated TscriptChunkSubmission submissions = 1;
 }
 
 message SubmitDialogCorrectionRequest {

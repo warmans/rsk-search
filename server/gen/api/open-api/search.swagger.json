@@ -171,29 +171,6 @@
         ]
       }
     },
-    "/api/tscript/chunk/pending": {
-      "get": {
-        "summary": "Gets a incomplete transcript chunk that is pending completion",
-        "operationId": "SearchService_GetPendingTscriptChunks",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/rsksearchPendingTscriptChunks"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "tags": [
-          "search"
-        ]
-      }
-    },
     "/api/tscript/chunk/{chunkId}": {
       "patch": {
         "summary": "Submit a transcript chunk that has been completed.",
@@ -228,7 +205,7 @@
     "/api/tscript/chunk/{chunkId}/submission": {
       "get": {
         "summary": "lists any existing submissions for a chunk",
-        "operationId": "SearchService_ListChunkSubmissions",
+        "operationId": "SearchService_ListTscriptChunkSubmissions",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -282,6 +259,29 @@
             "type": "string"
           }
         ],
+        "tags": [
+          "search"
+        ]
+      }
+    },
+    "/api/tscript/stats": {
+      "get": {
+        "summary": "Get details about the current chunk backlog",
+        "operationId": "SearchService_GetTscriptChunkStats",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rsksearchChunkStats"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
         "tags": [
           "search"
         ]
@@ -370,13 +370,18 @@
         }
       }
     },
-    "rsksearchChunkSubmission": {
+    "rsksearchChunkStats": {
       "type": "object",
       "properties": {
-        "chunkId": {
-          "type": "string"
+        "numPending": {
+          "type": "integer",
+          "format": "int32"
         },
-        "transcript": {
+        "numSubmitted": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "suggestedNextChunkId": {
           "type": "string"
         }
       }
@@ -387,7 +392,7 @@
         "submissions": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/rsksearchChunkSubmission"
+            "$ref": "#/definitions/rsksearchTscriptChunkSubmission"
           }
         }
       }
@@ -528,22 +533,6 @@
         }
       }
     },
-    "rsksearchPendingTscriptChunks": {
-      "type": "object",
-      "properties": {
-        "numPending": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "numSubmitted": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "suggestedNextChunkId": {
-          "type": "string"
-        }
-      }
-    },
     "rsksearchSearchMetadata": {
       "type": "object",
       "properties": {
@@ -633,6 +622,20 @@
           "type": "string"
         },
         "audioClipUri": {
+          "type": "string"
+        }
+      }
+    },
+    "rsksearchTscriptChunkSubmission": {
+      "type": "object",
+      "properties": {
+        "chunkId": {
+          "type": "string"
+        },
+        "transcript": {
+          "type": "string"
+        },
+        "authorId": {
           "type": "string"
         }
       }

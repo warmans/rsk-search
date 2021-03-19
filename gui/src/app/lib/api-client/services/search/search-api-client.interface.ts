@@ -16,6 +16,17 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  searchServiceSubmitDialogCorrection(
+    args: {
+      episodeId: string,
+      id: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<object>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   searchServiceGetEpisode(
     args: {
       id: string,
@@ -40,6 +51,43 @@ export interface SearchAPIClientInterface {
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskSearchResultList>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  searchServiceSubmitTscriptChunk(
+    args: {
+      chunkId: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<object>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  searchServiceListTscriptChunkSubmissions(
+    args: {
+      chunkId: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchChunkSubmissionList>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  searchServiceGetTscriptChunk(
+    args: {
+      id: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchTscriptChunk>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  searchServiceGetTscriptChunkStats(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchChunkStats>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.

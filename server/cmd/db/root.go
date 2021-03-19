@@ -19,6 +19,7 @@ func RootCmd() *cobra.Command {
 	index.PersistentFlags().StringVarP(&cfg.path, "db-path", "p", "./var/rsk.sqlite", "Path to sqlite DB")
 
 	index.AddCommand(LoadCmd())
+	index.AddCommand(LoadTscriptCmd())
 
 	return index
 }

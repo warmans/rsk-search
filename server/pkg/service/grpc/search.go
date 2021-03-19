@@ -10,18 +10,24 @@ import (
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/search"
 	"github.com/warmans/rsk-search/pkg/store/ro"
+	"github.com/warmans/rsk-search/pkg/store/rw"
 	"google.golang.org/grpc"
 	"google.golang.org/protobuf/types/known/emptypb"
 	"strings"
 )
 
-func NewSearchService(searchBackend *search.Search, store *ro.Conn) *SearchService {
-	return &SearchService{searchBackend: searchBackend, db: store}
+func NewSearchService(searchBackend *search.Search, store *ro.Conn, persistentDB *rw.Conn) *SearchService {
+	return &SearchService{
+		searchBackend: searchBackend,
+		staticDB:      store,
+		persistentDB:  persistentDB,
+	}
 }
 
 type SearchService struct {
 	searchBackend *search.Search
-	db            *ro.Conn
+	staticDB      *ro.Conn
+	persistentDB  *rw.Conn
 }
 
 func (s *SearchService) RegisterGRPC(server *grpc.Server) {
@@ -73,7 +79,7 @@ func checkWhy(f filter.Filter) error {
 
 func (s *SearchService) GetEpisode(ctx context.Context, request *api.GetEpisodeRequest) (*api.Episode, error) {
 	var ep *models.Episode
-	err := s.db.WithStore(func(s *ro.Store) error {
+	err := s.staticDB.WithStore(func(s *ro.Store) error {
 		var err error
 		ep, err = s.GetEpisode(ctx, request.Id)
 		if err != nil {
@@ -94,7 +100,7 @@ func (s *SearchService) ListEpisodes(ctx context.Context, request *api.ListEpiso
 	el := &api.EpisodeList{
 		Episodes: []*api.ShortEpisode{},
 	}
-	err := s.db.WithStore(func(s *ro.Store) error {
+	err := s.staticDB.WithStore(func(s *ro.Store) error {
 		eps, err := s.ListEpisodes(ctx)
 		if err != nil {
 			return err
@@ -110,19 +116,48 @@ func (s *SearchService) ListEpisodes(ctx context.Context, request *api.ListEpiso
 	return el, nil
 }
 
-func (s *SearchService) GetPendingTscriptChunks(ctx context.Context, empty *emptypb.Empty) (*api.PendingTscriptChunks, error) {
-	panic("implement me")
+func (s *SearchService) GetTscriptChunkStats(ctx context.Context, empty *emptypb.Empty) (*api.ChunkStats, error) {
+	var stats *models.ChunkStats
+	err := s.persistentDB.WithStore(func(s *rw.Store) error {
+		var err error
+		stats, err = s.GetChunkStats(ctx)
+		if stats == nil {
+			// empty result
+			stats = &models.ChunkStats{}
+		}
+		return err
+	})
+	if err != nil {
+		return nil, err
+	}
+	return stats.Proto(), nil
 }
 
 func (s *SearchService) GetTscriptChunk(ctx context.Context, request *api.GetTscriptChunkRequest) (*api.TscriptChunk, error) {
-	return nil, nil
+	var chunk *models.Chunk
+	var tscriptID string
+	err := s.persistentDB.WithStore(func(s *rw.Store) error {
+		var err error
+		chunk, tscriptID, err = s.GetChunk(ctx, request.Id)
+		if err != nil {
+			return err
+		}
+		if chunk == nil {
+			return ErrNotFound(request.Id).Err()
+		}
+		return err
+	})
+	if err != nil {
+		return nil, err
+	}
+	return chunk.Proto(tscriptID), nil
 }
 
-func (s *SearchService) ListChunkSubmissions(ctx context.Context, request *api.ListChunkSubmissionsRequest) (*api.ChunkSubmissionList, error) {
+func (s *SearchService) ListTscriptChunkSubmissions(ctx context.Context, request *api.ListTscriptChunkSubmissionsRequest) (*api.ChunkSubmissionList, error) {
 	panic("implement me")
 }
 
-func (s *SearchService) SubmitTscriptChunk(ctx context.Context, submission *api.ChunkSubmission) (*emptypb.Empty, error) {
+func (s *SearchService) SubmitTscriptChunk(ctx context.Context, request *api.TscriptChunkSubmissionRequest) (*emptypb.Empty, error) {
 	panic("implement me")
 }
 

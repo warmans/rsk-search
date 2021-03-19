@@ -27,6 +27,32 @@ export function isFieldMetaKind(arg: any): arg is models.FieldMetaKind {
   ;
   }
 
+export function isRsksearchChunkStats(arg: any): arg is models.RsksearchChunkStats {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // numPending?: number
+    ( typeof arg.numPending === 'undefined' || typeof arg.numPending === 'number' ) &&
+    // numSubmitted?: number
+    ( typeof arg.numSubmitted === 'undefined' || typeof arg.numSubmitted === 'number' ) &&
+    // suggestedNextChunkId?: string
+    ( typeof arg.suggestedNextChunkId === 'undefined' || typeof arg.suggestedNextChunkId === 'string' ) &&
+
+  true
+  );
+  }
+
+export function isRsksearchChunkSubmissionList(arg: any): arg is models.RsksearchChunkSubmissionList {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // submissions?: RsksearchTscriptChunkSubmission[]
+    ( typeof arg.submissions === 'undefined' || (Array.isArray(arg.submissions) && arg.submissions.every((item: unknown) => isRsksearchTscriptChunkSubmission(item))) ) &&
+
+  true
+  );
+  }
+
 export function isRsksearchDialog(arg: any): arg is models.RsksearchDialog {
   return (
   arg != null &&
@@ -202,6 +228,38 @@ export function isRsksearchTag(arg: any): arg is models.RsksearchTag {
     ( typeof arg.kind === 'undefined' || (Array.isArray(arg.kind) && arg.kind.every((item: unknown) => typeof item === 'string')) ) &&
     // name?: string
     ( typeof arg.name === 'undefined' || typeof arg.name === 'string' ) &&
+
+  true
+  );
+  }
+
+export function isRsksearchTscriptChunk(arg: any): arg is models.RsksearchTscriptChunk {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // audioClipUri?: string
+    ( typeof arg.audioClipUri === 'undefined' || typeof arg.audioClipUri === 'string' ) &&
+    // id?: string
+    ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
+    // raw?: string
+    ( typeof arg.raw === 'undefined' || typeof arg.raw === 'string' ) &&
+    // tscriptId?: string
+    ( typeof arg.tscriptId === 'undefined' || typeof arg.tscriptId === 'string' ) &&
+
+  true
+  );
+  }
+
+export function isRsksearchTscriptChunkSubmission(arg: any): arg is models.RsksearchTscriptChunkSubmission {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // authorId?: string
+    ( typeof arg.authorId === 'undefined' || typeof arg.authorId === 'string' ) &&
+    // chunkId?: string
+    ( typeof arg.chunkId === 'undefined' || typeof arg.chunkId === 'string' ) &&
+    // transcript?: string
+    ( typeof arg.transcript === 'undefined' || typeof arg.transcript === 'string' ) &&
 
   true
   );

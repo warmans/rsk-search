@@ -18,29 +18,20 @@ const ServicePrefix = "RSK_SEARCH"
 
 func ServerCmd() *cobra.Command {
 
-	flag.Parse()
+	grpcCfg := server.GrpcServerConfig{}
+	srvCfg := config.SearchServiceConfig{}
+	roDbCfg := &common.Config{}
+	rwDbCfg := &common.Config{}
 
 	cmd := &cobra.Command{
 		Use:   "server",
 		Short: "Run the grpc/http server",
 		RunE: func(cmd *cobra.Command, args []string) error {
 
+			flag.Parse()
+
 			logger, _ := zap.NewProduction()
 			defer logger.Sync() // flushes buffer, if any
-
-			grpcCfg := server.GrpcServerConfig{}
-			grpcCfg.RegisterFlags(ServicePrefix)
-
-			srvCfg := config.SearchServiceConfig{}
-			srvCfg.RegisterFlags(ServicePrefix)
-
-			roDbCfg := &common.Config{}
-			roDbCfg.RegisterFlags(ServicePrefix, "ro")
-
-			rwDbCfg := &common.Config{}
-			rwDbCfg.RegisterFlags(ServicePrefix, "rw")
-
-			flag.Parse()
 
 			rskIndex, err := bleve.Open(srvCfg.BleveIndexPath)
 			if err != nil {
@@ -48,24 +39,35 @@ func ServerCmd() *cobra.Command {
 			}
 
 			// DB is volatile and will be recreated with each deployment
+			logger.Info("Init read-only DB...", zap.String("path", rwDbCfg.DSN))
 			readOnlyStoreConn, err := ro.NewConn(roDbCfg)
 			if err != nil {
 				return err
 			}
+			defer func() {
+				if err := readOnlyStoreConn.Close(); err != nil {
+					logger.Error("failed to close RO db", zap.Error(err))
+				}
+			}()
 
 			// DB is persistent and will retain data between deployments
-			logger.Info("Init persistent DB", zap.String("path", rwDbCfg.DSN))
+			logger.Info("Init persistent DB...")
 			persistentDBConn, err := rw.NewConn(rwDbCfg)
 			if err != nil {
 				return err
 			}
+			defer func() {
+				if err := persistentDBConn.Close(); err != nil {
+					logger.Error("failed to close persistent db", zap.Error(err))
+				}
+			}()
 			logger.Info("Running persistent DB migrations")
 			if err := persistentDBConn.Migrate(); err != nil {
 				return err
 			}
 
 			grpcServices := []server.GRPCService{
-				grpc.NewSearchService(search.NewSearch(rskIndex, readOnlyStoreConn, persistentDBConn), readOnlyStoreConn),
+				grpc.NewSearchService(search.NewSearch(rskIndex, readOnlyStoreConn), readOnlyStoreConn, persistentDBConn),
 			}
 
 			srv, err := server.NewServer(logger, grpcCfg, grpcServices, []server.HTTPService{})
@@ -84,5 +86,11 @@ func ServerCmd() *cobra.Command {
 		},
 	}
 
+	grpcCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
+	srvCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
+	roDbCfg.RegisterFlags(cmd.Flags(), ServicePrefix, "ro")
+	rwDbCfg.RegisterFlags(cmd.Flags(), ServicePrefix, "rw")
+
 	return cmd
 }
+

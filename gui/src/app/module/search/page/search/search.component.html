@@ -36,6 +36,17 @@
   </div>
   <div class="row">
     <div class="col">
+      <div class="card mb-4">
+        <div class="card-header">Contribute</div>
+        <div class="card-body">
+          <p>There are currently {{ chunkStats?.numPending }} pending transcription chunks.</p>
+          <button class="btn btn-primary" [routerLink]="['/chunk', chunkStats?.suggestedNextChunkId]">Contribute</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
       <div class="card episode-list">
         <div class="card-header">Xfm Episodes</div>
         <div class="card-body text-center">
