@@ -2,25 +2,29 @@ package grpc
 
 import (
 	"context"
+	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/warmans/rsk-search/gen/api"
 	"github.com/warmans/rsk-search/pkg/filter"
 	"github.com/warmans/rsk-search/pkg/meta"
 	"github.com/warmans/rsk-search/pkg/models"
+	"github.com/warmans/rsk-search/pkg/oauth"
 	"github.com/warmans/rsk-search/pkg/search"
 	"github.com/warmans/rsk-search/pkg/store/ro"
 	"github.com/warmans/rsk-search/pkg/store/rw"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/metadata"
 	"google.golang.org/protobuf/types/known/emptypb"
 	"strings"
 )
 
-func NewSearchService(searchBackend *search.Search, store *ro.Conn, persistentDB *rw.Conn) *SearchService {
+func NewSearchService(searchBackend *search.Search, store *ro.Conn, persistentDB *rw.Conn, csrfCache *oauth.CSRFTokenCache) *SearchService {
 	return &SearchService{
 		searchBackend: searchBackend,
 		staticDB:      store,
 		persistentDB:  persistentDB,
+		csrfCache:     csrfCache,
 	}
 }
 
@@ -28,6 +32,7 @@ type SearchService struct {
 	searchBackend *search.Search
 	staticDB      *ro.Conn
 	persistentDB  *rw.Conn
+	csrfCache     *oauth.CSRFTokenCache
 }
 
 func (s *SearchService) RegisterGRPC(server *grpc.Server) {
@@ -163,4 +168,31 @@ func (s *SearchService) SubmitTscriptChunk(ctx context.Context, request *api.Tsc
 
 func (s *SearchService) SubmitDialogCorrection(ctx context.Context, request *api.SubmitDialogCorrectionRequest) (*emptypb.Empty, error) {
 	panic("implement me")
+}
+
+func (s *SearchService) GetRedditAuthURL(ctx context.Context, empty *emptypb.Empty) (*api.RedditAuthURL, error) {
+
+	returnURL := ""
+	md, ok := metadata.FromIncomingContext(ctx)
+	if ok && len(md["grpcgateway-referer"]) > 0 {
+		returnURL = md["grpcgateway-referer"][0]
+	}
+
+	return &api.RedditAuthURL{
+		Url: fmt.Sprintf(
+			"https://www.reddit.com/api/v1/authorize?client_id=%s&response_type=code&state=%s&redirect_uri=%s&duration=temporary&scope=identity",
+			oauth.RedditApplicationID,
+			s.csrfCache.NewToken(returnURL),
+			oauth.RedditReturnURI,
+		),
+	}, nil
+}
+
+func (s *SearchService) AuthorizeRedditToken(ctx context.Context, request *api.AuthorizeRedditTokenRequest) (*api.Token, error) {
+	_, ok := s.csrfCache.VerifyToken(request.State)
+	if !ok {
+		return nil, ErrAuthFailed().Err()
+	}
+	//toto: return redirect to payload URL
+	return &api.Token{Token: "todo"}, nil
 }

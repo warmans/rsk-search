@@ -128,6 +128,26 @@ service SearchService {
       tags: "search"
     };
   }
+
+  rpc GetRedditAuthURL(google.protobuf.Empty) returns (RedditAuthURL) {
+    option (google.api.http) = {
+      get: "/api/auth/reddit-url"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Redirects user to reddit oauth confirmation page"
+      tags: "search"
+    };
+  }
+
+  rpc AuthorizeRedditToken(AuthorizeRedditTokenRequest) returns (Token) {
+    option (google.api.http) = {
+      post: "/api/auth/reddit/token"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Request a token based on the response of a reddit Oauth request"
+      tags: "search"
+    };
+  }
 }
 
 message SearchRequest {
@@ -279,4 +299,17 @@ message SubmitDialogCorrectionRequest {
   string episode_id = 1;
   string id = 2;
   string correction = 3;
+}
+
+message RedditAuthURL {
+  string url = 1;
+}
+
+message Token {
+  string token = 1;
+}
+
+message AuthorizeRedditTokenRequest {
+  string state = 1;
+  string token = 2;
 }

@@ -31,6 +31,8 @@ type SearchServiceClient interface {
 	ListTscriptChunkSubmissions(ctx context.Context, in *ListTscriptChunkSubmissionsRequest, opts ...grpc.CallOption) (*ChunkSubmissionList, error)
 	SubmitTscriptChunk(ctx context.Context, in *TscriptChunkSubmissionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	SubmitDialogCorrection(ctx context.Context, in *SubmitDialogCorrectionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	GetRedditAuthURL(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*RedditAuthURL, error)
+	AuthorizeRedditToken(ctx context.Context, in *AuthorizeRedditTokenRequest, opts ...grpc.CallOption) (*Token, error)
 }
 
 type searchServiceClient struct {
@@ -131,6 +133,24 @@ func (c *searchServiceClient) SubmitDialogCorrection(ctx context.Context, in *Su
 	return out, nil
 }
 
+func (c *searchServiceClient) GetRedditAuthURL(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*RedditAuthURL, error) {
+	out := new(RedditAuthURL)
+	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/GetRedditAuthURL", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *searchServiceClient) AuthorizeRedditToken(ctx context.Context, in *AuthorizeRedditTokenRequest, opts ...grpc.CallOption) (*Token, error) {
+	out := new(Token)
+	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/AuthorizeRedditToken", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SearchServiceServer is the server API for SearchService service.
 // All implementations should embed UnimplementedSearchServiceServer
 // for forward compatibility
@@ -147,6 +167,8 @@ type SearchServiceServer interface {
 	ListTscriptChunkSubmissions(context.Context, *ListTscriptChunkSubmissionsRequest) (*ChunkSubmissionList, error)
 	SubmitTscriptChunk(context.Context, *TscriptChunkSubmissionRequest) (*emptypb.Empty, error)
 	SubmitDialogCorrection(context.Context, *SubmitDialogCorrectionRequest) (*emptypb.Empty, error)
+	GetRedditAuthURL(context.Context, *emptypb.Empty) (*RedditAuthURL, error)
+	AuthorizeRedditToken(context.Context, *AuthorizeRedditTokenRequest) (*Token, error)
 }
 
 // UnimplementedSearchServiceServer should be embedded to have forward compatible implementations.
@@ -182,6 +204,12 @@ func (UnimplementedSearchServiceServer) SubmitTscriptChunk(context.Context, *Tsc
 }
 func (UnimplementedSearchServiceServer) SubmitDialogCorrection(context.Context, *SubmitDialogCorrectionRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SubmitDialogCorrection not implemented")
+}
+func (UnimplementedSearchServiceServer) GetRedditAuthURL(context.Context, *emptypb.Empty) (*RedditAuthURL, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRedditAuthURL not implemented")
+}
+func (UnimplementedSearchServiceServer) AuthorizeRedditToken(context.Context, *AuthorizeRedditTokenRequest) (*Token, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AuthorizeRedditToken not implemented")
 }
 
 // UnsafeSearchServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -375,6 +403,42 @@ func _SearchService_SubmitDialogCorrection_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SearchService_GetRedditAuthURL_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SearchServiceServer).GetRedditAuthURL(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/rsksearch.SearchService/GetRedditAuthURL",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SearchServiceServer).GetRedditAuthURL(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SearchService_AuthorizeRedditToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AuthorizeRedditTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SearchServiceServer).AuthorizeRedditToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/rsksearch.SearchService/AuthorizeRedditToken",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SearchServiceServer).AuthorizeRedditToken(ctx, req.(*AuthorizeRedditTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SearchService_ServiceDesc is the grpc.ServiceDesc for SearchService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -421,6 +485,14 @@ var SearchService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SubmitDialogCorrection",
 			Handler:    _SearchService_SubmitDialogCorrection_Handler,
+		},
+		{
+			MethodName: "GetRedditAuthURL",
+			Handler:    _SearchService_GetRedditAuthURL_Handler,
+		},
+		{
+			MethodName: "AuthorizeRedditToken",
+			Handler:    _SearchService_AuthorizeRedditToken_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

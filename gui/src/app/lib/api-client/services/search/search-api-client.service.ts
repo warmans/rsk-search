@@ -45,6 +45,36 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  searchServiceGetRedditAuthURL(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchRedditAuthURL> {
+    const path = `/api/auth/reddit-url`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<models.RsksearchRedditAuthURL>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  searchServiceAuthorizeRedditToken(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchToken> {
+    const path = `/api/auth/reddit/token`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<models.RsksearchToken>('POST', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   searchServiceListEpisodes(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RsksearchEpisodeList> {

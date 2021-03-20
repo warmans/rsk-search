@@ -9,6 +9,20 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  searchServiceGetRedditAuthURL(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchRedditAuthURL>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  searchServiceAuthorizeRedditToken(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchToken>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   searchServiceListEpisodes(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RsksearchEpisodeList>;

@@ -1,19 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { RsksearchDialog, RsksearchTscriptChunk } from '../../../../lib/api-client/models';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
-import { ActivatedRoute, Data } from '@angular/router';
+import { ActivatedRoute, Data, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-submit',
   templateUrl: './submit.component.html',
   styleUrls: ['./submit.component.scss']
 })
-export class SubmitComponent implements OnInit {
+export class SubmitComponent implements OnInit, OnDestroy {
 
   chunk: RsksearchTscriptChunk;
+
+  audioPlayerURL: string = '';
 
   transcriptEdit: string = '';
 
@@ -23,16 +25,23 @@ export class SubmitComponent implements OnInit {
 
   showHelp: boolean = false;
 
+  $destroy: EventEmitter<boolean> = new EventEmitter<boolean>();
+
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private apiClient: SearchAPIClient,
     private titleService: Title
   ) {
     titleService.setTitle('contribute');
-    route.paramMap.subscribe((d: Data) => {
-      this.apiClient.searchServiceGetTscriptChunk({ id: d.params['id'] }).subscribe(
+    route.paramMap.pipe(takeUntil(this.$destroy)).subscribe((d: Data) => {
+      this.apiClient.searchServiceGetTscriptChunk({ id: d.params['id'] }).pipe(takeUntil(this.$destroy)).subscribe(
         (v) => {
+          if (!v) {
+            return;
+          }
           this.chunk = v;
+          this.audioPlayerURL = `https://storage.googleapis.com/warmans-transcription-audio/${v.id}.mp3`;
           this.transcriptEdit = this.getBackup() ? this.getBackup() : this.chunk.raw;
           titleService.setTitle(`contribute :: ${v.id}`);
           this.contentUpdated.next(this.transcriptEdit);
@@ -41,8 +50,13 @@ export class SubmitComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+    this.$destroy.next();
+    this.$destroy.complete();
+  }
+
   ngOnInit(): void {
-    this.contentUpdated.pipe(distinctUntilChanged(), debounceTime(100)).subscribe((v) => {
+    this.contentUpdated.pipe(takeUntil(this.$destroy), distinctUntilChanged(), debounceTime(100)).subscribe((v) => {
 
       // if the window is closed or something, try and prevent anythign being lost
       this.backupContent(v);
@@ -88,10 +102,16 @@ export class SubmitComponent implements OnInit {
   }
 
   resetToRaw() {
-    if (confirm("Really reset editor to raw raw transcript?")) {
+    if (confirm('Really reset editor to raw raw transcript?')) {
       this.transcriptEdit = this.chunk.raw;
       this.updatePreview(this.transcriptEdit);
     }
+  }
+
+  requestAuth() {
+    this.apiClient.searchServiceGetRedditAuthURL().pipe(takeUntil(this.$destroy)).subscribe((res) => {
+      document.location.href = res.url;
+    });
   }
 
   submit() {

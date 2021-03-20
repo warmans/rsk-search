@@ -2,5 +2,9 @@
   "/api": {
     "target": "http://scrimpton.com",
     "secure": false
+  },
+  "/oauth": {
+    "target": "http://scrimpton.com",
+    "secure": false
   }
 }

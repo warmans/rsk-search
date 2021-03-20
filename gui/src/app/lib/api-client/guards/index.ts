@@ -175,6 +175,17 @@ export function isRskSearchMetadata(arg: any): arg is models.RskSearchMetadata {
   );
   }
 
+export function isRsksearchRedditAuthURL(arg: any): arg is models.RsksearchRedditAuthURL {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // url?: string
+    ( typeof arg.url === 'undefined' || typeof arg.url === 'string' ) &&
+
+  true
+  );
+  }
+
 export function isRskSearchResult(arg: any): arg is models.RskSearchResult {
   return (
   arg != null &&
@@ -228,6 +239,17 @@ export function isRsksearchTag(arg: any): arg is models.RsksearchTag {
     ( typeof arg.kind === 'undefined' || (Array.isArray(arg.kind) && arg.kind.every((item: unknown) => typeof item === 'string')) ) &&
     // name?: string
     ( typeof arg.name === 'undefined' || typeof arg.name === 'string' ) &&
+
+  true
+  );
+  }
+
+export function isRsksearchToken(arg: any): arg is models.RsksearchToken {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // token?: string
+    ( typeof arg.token === 'undefined' || typeof arg.token === 'string' ) &&
 
   true
   );

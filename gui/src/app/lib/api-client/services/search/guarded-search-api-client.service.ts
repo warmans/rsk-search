@@ -22,6 +22,20 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
     super(httpClient, domain, options);
   }
 
+  searchServiceGetRedditAuthURL(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchRedditAuthURL> {
+    return super.searchServiceGetRedditAuthURL(requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRsksearchRedditAuthURL(res) || console.error(`TypeGuard for response 'RsksearchRedditAuthURL' caught inconsistency.`, res)));
+  }
+
+  searchServiceAuthorizeRedditToken(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchToken> {
+    return super.searchServiceAuthorizeRedditToken(requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRsksearchToken(res) || console.error(`TypeGuard for response 'RsksearchToken' caught inconsistency.`, res)));
+  }
+
   searchServiceListEpisodes(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RsksearchEpisodeList> {

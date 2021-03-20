@@ -42,7 +42,7 @@ generate.proto:
 
 .PHONY: run
 run: build
-	./bin/rsk-search server --rw-db-dsn=${DEV_DB_DSN}
+	./bin/rsk-search server --rw-db-dsn=${DEV_DB_DSN} --oauth-secret=${REDDIT_SECRET}
 
 .PHONY: dev.services.start
 dev.services.start:

@@ -4,10 +4,12 @@ import (
 	"github.com/blevesearch/bleve/v2"
 	"github.com/spf13/cobra"
 	"github.com/warmans/rsk-search/pkg/flag"
+	"github.com/warmans/rsk-search/pkg/oauth"
 	"github.com/warmans/rsk-search/pkg/search"
 	"github.com/warmans/rsk-search/pkg/server"
 	"github.com/warmans/rsk-search/pkg/service/config"
 	"github.com/warmans/rsk-search/pkg/service/grpc"
+	"github.com/warmans/rsk-search/pkg/service/http"
 	"github.com/warmans/rsk-search/pkg/store/common"
 	"github.com/warmans/rsk-search/pkg/store/ro"
 	"github.com/warmans/rsk-search/pkg/store/rw"
@@ -22,6 +24,7 @@ func ServerCmd() *cobra.Command {
 	srvCfg := config.SearchServiceConfig{}
 	roDbCfg := &common.Config{}
 	rwDbCfg := &common.Config{}
+	oauthCfg := &oauth.Cfg{}
 
 	cmd := &cobra.Command{
 		Use:   "server",
@@ -66,11 +69,21 @@ func ServerCmd() *cobra.Command {
 				return err
 			}
 
+			tokenCache := oauth.NewCSRFCache()
+
 			grpcServices := []server.GRPCService{
-				grpc.NewSearchService(search.NewSearch(rskIndex, readOnlyStoreConn), readOnlyStoreConn, persistentDBConn),
+				grpc.NewSearchService(search.NewSearch(rskIndex, readOnlyStoreConn), readOnlyStoreConn, persistentDBConn, tokenCache),
 			}
 
-			srv, err := server.NewServer(logger, grpcCfg, grpcServices, []server.HTTPService{})
+			httpServices := []server.HTTPService{}
+			if oauthCfg.Secret != "" {
+				httpServices = append(httpServices, http.NewOauthService(logger, tokenCache, oauthCfg.Secret))
+			} else {
+				logger.Info("OAUTH SECRET WAS MISSING - OAUTH ENDPOINTS WILL NOT BE REGISTERED!")
+			}
+
+			srv, err := server.NewServer(logger, grpcCfg, grpcServices, httpServices)
+
 			if err != nil {
 				logger.Fatal("failed to create server", zap.Error(err))
 			}
@@ -90,7 +103,7 @@ func ServerCmd() *cobra.Command {
 	srvCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
 	roDbCfg.RegisterFlags(cmd.Flags(), ServicePrefix, "ro")
 	rwDbCfg.RegisterFlags(cmd.Flags(), ServicePrefix, "rw")
+	oauthCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
 
 	return cmd
 }
-

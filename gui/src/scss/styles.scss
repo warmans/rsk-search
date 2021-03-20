@@ -25,10 +25,14 @@ body {
   background-color: #f5f5f5;
 }
 
-
 span.code {
   font-family: monospace;
   white-space: pre;
   background-color: $code;
   padding: 2px 5px;
+}
+
+.modal.open {
+  display: block;
+  background-color: rgba(0,0,0,0.4);
 }

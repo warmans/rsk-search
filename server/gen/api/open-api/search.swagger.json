@@ -19,6 +19,52 @@
     "application/json"
   ],
   "paths": {
+    "/api/auth/reddit-url": {
+      "get": {
+        "summary": "Redirects user to reddit oauth confirmation page",
+        "operationId": "SearchService_GetRedditAuthURL",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rsksearchRedditAuthURL"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "search"
+        ]
+      }
+    },
+    "/api/auth/reddit/token": {
+      "post": {
+        "summary": "Request a token based on the response of a reddit Oauth request",
+        "operationId": "SearchService_AuthorizeRedditToken",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rsksearchToken"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "search"
+        ]
+      }
+    },
     "/api/episode": {
       "get": {
         "summary": "Fetch list of available episodes",
@@ -533,6 +579,14 @@
         }
       }
     },
+    "rsksearchRedditAuthURL": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        }
+      }
+    },
     "rsksearchSearchMetadata": {
       "type": "object",
       "properties": {
@@ -606,6 +660,14 @@
           "items": {
             "type": "string"
           }
+        }
+      }
+    },
+    "rsksearchToken": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
         }
       }
     },

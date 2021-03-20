@@ -65,6 +65,19 @@ func ErrServerConfused() *status.Status {
 	return s
 }
 
+func ErrAuthFailed() *status.Status {
+	s, err := status.New(codes.Unauthenticated, http.StatusText(http.StatusUnauthorized)).WithDetails(
+		&errdetails.DebugInfo{
+			Detail: fmt.Sprintf("Authorization request failed as the verification code did not match. It may have already expired."),
+		},
+	)
+	if err != nil {
+		return status.New(codes.Internal, "failed to create error")
+	}
+	return s
+}
+
+
 
 func ErrNotImplemented() *status.Status {
 	return status.New(codes.Unimplemented, http.StatusText(http.StatusNotImplemented))
