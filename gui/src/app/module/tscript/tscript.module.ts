@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SubmitComponent } from './page/submit/submit.component';
+import { EditorComponent } from './component/editor/editor.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
-  declarations: [SubmitComponent],
+  declarations: [SubmitComponent, EditorComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    SharedModule
   ],
   exports: [SubmitComponent]
 })

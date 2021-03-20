@@ -1,16 +1,104 @@
-<div class="container-fluid pt-2">
+<div class="container-fluid pt-3">
   <div class="row">
     <div class="col-8">
-      <div class="audio-player">
-
+      <div class="card mb-3">
+        <div class="card-body">
+          <div class="audio-player">
+            <app-audio-player [src]="'https://storage.googleapis.com/warmans-transcription-audio/'+chunk.id+'.mp3'"></app-audio-player>
+          </div>
+        </div>
       </div>
-      <div contenteditable="true" class="editor p-3 mb-3">{{chunk.raw}}</div>
-      <div class="help">
-        <h3>Editing Help</h3>
-        <p>The idea here is you should take the raw transcript and fix it. </p>
-        <p><strong>Important:</strong> Try and keep the #OFFSET tags as close to the following word as possible. These represent second offsets and will be used to map the audio sections back to the episode audio.</p>
+      <div class="card">
+        <div class="card-header">
+
+          <span class="float-right">
+            <button class="btn btn-sm" (click)="showHelp = !showHelp"
+                    [ngClass]="{'btn-outline-primary': !showHelp, 'btn-primary': showHelp}">
+              <span *ngIf="!showHelp">I am confused</span>
+              <span *ngIf="showHelp">I am satisfied</span>
+            </button>
+          </span>
+          <span class="float-right"><button class="btn btn-danger btn-sm mr-3" (click)="resetToRaw()">Reset</button></span>
+          Transcript chunk
+        </div>
+        <div [hidden]="showHelp">
+          <div class="card-body pr-0 pb-0" >
+            <app-editor [textContent]="transcriptEdit" (contentUpdated)="handleTranscriptUpdated($event)"></app-editor>
+          </div>
+          <div class="card-footer text-right">
+            <button class="btn btn-success" (click)="submit()">Submit</button>
+          </div>
+        </div>
+        <div class="card-body" [hidden]="!showHelp">
+          <h4 class="mb-2">What do I do?</h4>
+          <p>What you are looking at is a auto-transcription of about 3 minutes of audio. Some parts may be correct but
+            others will be wrong. Mixed in with the audio
+            are <span class="code">#OFFSET</span> markers. These indicate the number of seconds elapsed since the start
+            of the episode, and should not be
+            edited or added.</p>
+          <p>The objective is to:</p>
+          <ol>
+            <li>Split each line so that it accurately reflects the audio (including a prefix to indicate who is speaking
+              e.g. <span class="code">karl:</span>)
+            </li>
+            <li>Correct the text of any line was not transcribed accurately.</li>
+            <li>Add additional non-speeech information e.g. <span class="code">ricky laughs</span></li>
+          </ol>
+
+          <p>IMPORTANT: Try and keep the <span class="code">#OFFSET</span> tags as close to the
+            following word as possible. If the offsets are accurate it would allow the specific audio
+            to be available for each ~30 second segment.</p>
+
+          <h4 class="mb-2 mt-4">Songs</h4>
+          <p>To indicate a song was played you can use the speaker prefix <span class="code">song:</span> for example
+            <span class="code">song: Feeder - Come Back Around</span></p>
+
+          <h4 class="mb-2 mt-4">Summarising multiple-lines</h4>
+          <p>There is another special <span class="code">#SYN:</span> tag, similar to <span class="code">#OFFSET</span>
+            you can use to summarise several lines. For example</p>
+          <pre>
+karl: (twaddle)\n
+...\n
+#SYN: ricky gets a real bow and arrow!
+ricky: Crazy bait blur. All right on Xfm. 104.9 really? Yeah, so I also got a Jane got me a few nice presents including my favorite of all of them a real bow and arrow a real bow and arrow!
+steve: Yeah, right and what you, you're going to rob from the rich and give to the poor.
+ricky: yeah
+...
+#/SYN
+karl: I used to have a rifle as a kid...
+...
+          </pre>
+          <p>These will not be shown in the text currently, but they are useful to have.</p>
+
+          <h4 class="mb-2 mt-4">What will happen next?</h4>
+          <p>Once a chunk has been submitted it will be reviewed and if it is valid and mostly correct it will be merged into
+          the raw data file for the episode. This will then become visible in the corresponding episode page after the
+          next release.</p>
+
+          <h4 class="mb-2 mt-4">Who owns my work?</h4>
+          <p>Once the content has been merged and becomes available in the github repository I consider it fair game
+          for anyone that wishes to copy, modify or share it. I do not claim any kind of ownership over this content and am
+          providing services to maintain it for my own enjoyment, not as a way to benefit financially or otherwise from
+          the content.</p>
+
+          <h4 class="mb-2 mt-4">Will I be attributed for my contribution?</h4>
+          <p>Yes I will try and maintain an accurate list of contributors.</p>
+
+          <h4 class="mb-2 mt-4">I have another question or complaint!</h4>
+          <p>OK open an issue here: <a href="https://github.com/warmans/rsk-search/issues" target="_blank">https://github.com/warmans/rsk-search/issues</a></p>
+
+        </div>
       </div>
     </div>
-    <div class="col-4">right</div>
+    <div class="col-4">
+      <div class="card">
+        <div class="card-header">
+          Preview
+        </div>
+        <div class="card-body">
+          <app-transcript [transcript]="dialogPreview"></app-transcript>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

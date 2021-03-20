@@ -1,0 +1,12 @@
+<div *ngIf="src">
+  <audio #audioElement src="{{src}}">
+    <p>Your browser does not support HTML5 audio. Here is a <a [href]="src">link</a> instead.</p>
+  </audio>
+  <span (click)="paused ? play() : pause()">
+      <span *ngIf="paused">PLAY</span>
+      <span *ngIf="!paused">PAUSE</span>
+  </span>
+</div>
+<div *ngIf="!src">
+  No audio file was specified.
+</div>

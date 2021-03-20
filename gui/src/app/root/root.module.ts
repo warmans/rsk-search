@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SearchAPIClientModule } from '../lib/api-client/services/search';
 import { SearchModule } from '../module/search/search.module';
 import { SharedModule } from '../module/shared/shared.module';
+import { TscriptModule } from '../module/tscript/tscript.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { SharedModule } from '../module/shared/shared.module';
     SearchAPIClientModule.forRoot(),
     SharedModule,
     SearchModule,
+    TscriptModule,
   ],
   providers: [Title],
   bootstrap: [RootComponent]

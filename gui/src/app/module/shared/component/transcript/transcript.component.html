@@ -5,7 +5,7 @@
   <div class="actor mr-2">{{line.type === "chat" ? line.actor : (line.type === 'unknown' ? '' : line.type)}}</div>
   <div class="col">
     <span *ngIf="line.type === 'song'">
-      {{line.content}} <a class="badge badge-success" [href]="line?.metadata['spotify_uri'] | safeUrl" *ngIf="line?.metadata['spotify_uri']">spotify</a>
+      {{line.content}} <a class="badge badge-success" [href]="line?.metadata['spotify_uri'] | safeUrl" *ngIf="line?.metadata && line?.metadata['spotify_uri']">spotify</a>
     </span>
     <span *ngIf="line.type !== 'song'">{{line.content}}</span>
     <span class="float-right" *ngIf="enableLineLinks"><a [routerLink]="" [fragment]="'pos-'+line.pos" class="text-black-50"><i class="bi-link"></i></a></span>

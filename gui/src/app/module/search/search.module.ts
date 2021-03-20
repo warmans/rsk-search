@@ -4,7 +4,6 @@ import { SearchComponent } from './page/search/search.component';
 import { DslSearchComponent } from './component/dsl-search/dsl-search.component';
 import { EpisodeComponent } from './page/episode/episode.component';
 import { RouterModule } from '@angular/router';
-import { TranscriptComponent } from './component/transcript/transcript.component';
 import { SharedModule } from '../shared/shared.module';
 import { GlSearchComponent } from './component/gl-search/gl-search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -16,7 +15,6 @@ import { GlSearchFilterComponent } from './component/gl-search-filter/gl-search-
     SearchComponent,
     DslSearchComponent,
     EpisodeComponent,
-    TranscriptComponent,
     GlSearchComponent,
     GlSearchFilterComponent,
   ],

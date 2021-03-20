@@ -6,6 +6,9 @@ import { DropdownComponent } from './component/dropdown/dropdown.component';
 import { FocusedDirective } from './directive/focused.directive';
 import { LoadingOverlayComponent } from './component/loading-overlay/loading-overlay.component';
 import { SafeUrlPipe } from './pipe/safe-url.pipe';
+import { TranscriptComponent } from './component/transcript/transcript.component';
+import { RouterModule } from '@angular/router';
+import { AudioPlayerComponent } from './component/audio-player/audio-player.component';
 
 @NgModule({
   declarations: [
@@ -14,10 +17,13 @@ import { SafeUrlPipe } from './pipe/safe-url.pipe';
     DropdownComponent,
     FocusedDirective,
     LoadingOverlayComponent,
-    SafeUrlPipe
+    SafeUrlPipe,
+    TranscriptComponent,
+    AudioPlayerComponent
   ],
   imports: [
     CommonModule,
+    RouterModule,
   ],
   providers: [],
   exports: [
@@ -25,7 +31,9 @@ import { SafeUrlPipe } from './pipe/safe-url.pipe';
     AlertComponent,
     DropdownComponent,
     LoadingOverlayComponent,
-    SafeUrlPipe
+    SafeUrlPipe,
+    TranscriptComponent,
+    AudioPlayerComponent
   ]
 })
 export class SharedModule {
