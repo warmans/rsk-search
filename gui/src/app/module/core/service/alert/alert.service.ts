@@ -20,18 +20,18 @@ export class AlertService {
   constructor() {
   }
 
-  danger(c: string, ...d: string[]) {
-    this.setAlert('danger', c, d);
+  danger(content: string, ...details: string[]) {
+    this.setAlert('danger', content, details);
   }
 
-  success(c: string, ...d: string[]) {
-    this.setAlert('success', c, d);
+  success(content: string, ...details: string[]) {
+    this.setAlert('success', content, details);
   }
 
-  private setAlert(l: string, c: string, d: string[]) {
-    this.alerts.push({ level: l, content: c, details: d });
+  private setAlert(level: string, content: string, details: string[]) {
+    this.alerts.push({ level: level, content: content, details: details });
     this.alertsUpdated.next(this.alerts);
-    this.cleanup(c);
+    this.cleanup(content);
   }
 
   cleanup(c: string) {

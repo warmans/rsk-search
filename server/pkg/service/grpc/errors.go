@@ -1,7 +1,9 @@
 package grpc
 
 import (
+	"database/sql"
 	"fmt"
+	"github.com/warmans/rsk-search/pkg/store/rw"
 	"google.golang.org/genproto/googleapis/rpc/errdetails"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -20,6 +22,19 @@ func ErrInvalidRequestField(field string, reason string) *status.Status {
 		return status.New(codes.Internal, "failed to create error")
 	}
 	return s
+}
+
+func ErrFromStore(err error, id string) *status.Status {
+	if staErr, ok := status.FromError(err); ok {
+		return staErr
+	}
+	if err == sql.ErrNoRows {
+		return ErrNotFound(id)
+	}
+	if err == rw.ErrNotPermitted {
+		return ErrPermissionDenied()
+	}
+	return ErrInternal(err)
 }
 
 func ErrInternal(err error) *status.Status {
@@ -77,8 +92,54 @@ func ErrAuthFailed() *status.Status {
 	return s
 }
 
+func ErrUnauthorized(reason string) *status.Status {
+	s, err := status.New(codes.Unauthenticated, http.StatusText(http.StatusUnauthorized)).WithDetails(
+		&errdetails.DebugInfo{
+			Detail: fmt.Sprintf("Authorization failed with reason: %s", reason),
+		},
+	)
+	if err != nil {
+		return status.New(codes.Internal, "failed to create error")
+	}
+	return s
+}
 
+func ErrPermissionDenied() *status.Status {
+	s, err := status.New(codes.PermissionDenied, http.StatusText(http.StatusForbidden)).WithDetails(
+		&errdetails.DebugInfo{
+			Detail: fmt.Sprintf("Permission was denied for action."),
+		},
+	)
+	if err != nil {
+		return status.New(codes.Internal, "failed to create error")
+	}
+	return s
+}
+
+func ErrFailedPrecondition(reason string) *status.Status {
+	s, err := status.New(codes.FailedPrecondition, http.StatusText(http.StatusBadRequest)).WithDetails(
+		&errdetails.DebugInfo{
+			Detail: fmt.Sprintf("Precondition failed: %s", reason),
+		},
+	)
+	if err != nil {
+		return status.New(codes.Internal, "failed to create error")
+	}
+	return s
+}
 
 func ErrNotImplemented() *status.Status {
 	return status.New(codes.Unimplemented, http.StatusText(http.StatusNotImplemented))
+}
+
+func ErrRateLimited() *status.Status {
+	s, err := status.New(codes.Unavailable, http.StatusText(http.StatusServiceUnavailable)).WithDetails(
+		&errdetails.DebugInfo{
+			Detail: fmt.Sprintf("Too many requests"),
+		},
+	)
+	if err != nil {
+		return status.New(codes.Internal, "failed to create error")
+	}
+	return s
 }

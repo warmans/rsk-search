@@ -1,30 +1,42 @@
 package grpc
 
 import (
+	"bufio"
+	"bytes"
 	"context"
 	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/warmans/rsk-search/gen/api"
 	"github.com/warmans/rsk-search/pkg/filter"
+	"github.com/warmans/rsk-search/pkg/jwt"
 	"github.com/warmans/rsk-search/pkg/meta"
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/oauth"
 	"github.com/warmans/rsk-search/pkg/search"
 	"github.com/warmans/rsk-search/pkg/store/ro"
 	"github.com/warmans/rsk-search/pkg/store/rw"
+	"github.com/warmans/rsk-search/pkg/tscript"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/metadata"
 	"google.golang.org/protobuf/types/known/emptypb"
+	"net/url"
 	"strings"
 )
 
-func NewSearchService(searchBackend *search.Search, store *ro.Conn, persistentDB *rw.Conn, csrfCache *oauth.CSRFTokenCache) *SearchService {
+func NewSearchService(
+	searchBackend *search.Search,
+	store *ro.Conn,
+	persistentDB *rw.Conn,
+	csrfCache *oauth.CSRFTokenCache,
+	auth *jwt.Auth,
+) *SearchService {
 	return &SearchService{
 		searchBackend: searchBackend,
 		staticDB:      store,
 		persistentDB:  persistentDB,
 		csrfCache:     csrfCache,
+		auth:          auth,
 	}
 }
 
@@ -33,6 +45,7 @@ type SearchService struct {
 	staticDB      *ro.Conn
 	persistentDB  *rw.Conn
 	csrfCache     *oauth.CSRFTokenCache
+	auth          *jwt.Auth
 }
 
 func (s *SearchService) RegisterGRPC(server *grpc.Server) {
@@ -96,7 +109,7 @@ func (s *SearchService) GetEpisode(ctx context.Context, request *api.GetEpisodeR
 		return nil
 	})
 	if err != nil {
-		return nil, err
+		return nil, ErrFromStore(err, request.Id).Err()
 	}
 	return ep.Proto(), nil
 }
@@ -116,7 +129,7 @@ func (s *SearchService) ListEpisodes(ctx context.Context, request *api.ListEpiso
 		return nil
 	})
 	if err != nil {
-		return nil, err
+		return nil, ErrFromStore(err, "").Err()
 	}
 	return el, nil
 }
@@ -127,13 +140,12 @@ func (s *SearchService) GetTscriptChunkStats(ctx context.Context, empty *emptypb
 		var err error
 		stats, err = s.GetChunkStats(ctx)
 		if stats == nil {
-			// empty result
 			stats = &models.ChunkStats{}
 		}
 		return err
 	})
 	if err != nil {
-		return nil, err
+		return nil, ErrFromStore(err, "").Err()
 	}
 	return stats.Proto(), nil
 }
@@ -141,6 +153,8 @@ func (s *SearchService) GetTscriptChunkStats(ctx context.Context, empty *emptypb
 func (s *SearchService) GetTscriptChunk(ctx context.Context, request *api.GetTscriptChunkRequest) (*api.TscriptChunk, error) {
 	var chunk *models.Chunk
 	var tscriptID string
+	var contributionCount int32
+
 	err := s.persistentDB.WithStore(func(s *rw.Store) error {
 		var err error
 		chunk, tscriptID, err = s.GetChunk(ctx, request.Id)
@@ -150,24 +164,153 @@ func (s *SearchService) GetTscriptChunk(ctx context.Context, request *api.GetTsc
 		if chunk == nil {
 			return ErrNotFound(request.Id).Err()
 		}
+		contributionCount, err = s.GetChunkContributionCount(ctx, request.Id)
+		if err != nil {
+			return err
+		}
 		return err
 	})
 	if err != nil {
+		return nil, ErrFromStore(err, request.Id).Err()
+	}
+	return chunk.Proto(tscriptID, contributionCount), nil
+}
+
+func (s *SearchService) CreateChunkContribution(ctx context.Context, request *api.CreateChunkContributionRequest) (*api.ChunkContribution, error) {
+
+	claims, err := s.getClaims(ctx)
+	if err != nil {
 		return nil, err
 	}
-	return chunk.Proto(tscriptID), nil
+	err = s.persistentDB.WithStore(func(s *rw.Store) error {
+		stats, err := s.GetAuthorStats(ctx, claims.AuthorID)
+		if err != nil {
+			return err
+		}
+		if stats.ContributionsInLastHour > 5 {
+			return ErrRateLimited().Err()
+		}
+		return nil
+	})
+	if err != nil {
+		return nil, ErrFromStore(err, "").Err()
+	}
+
+	lines, _, err := tscript.Import(bufio.NewScanner(bytes.NewBufferString(request.Transcript)))
+	if err != nil {
+		return nil, ErrInvalidRequestField("transcript", err.Error()).Err()
+	}
+	if len(lines) == 0 {
+		return nil, ErrInvalidRequestField("transcript", "no valid lines parsed from transcript").Err()
+	}
+
+	contribution := &models.Contribution{
+		AuthorID:      claims.AuthorID,
+		ChunkID:       request.ChunkId,
+		Transcription: request.Transcript,
+		State:         models.ContributionStatePending,
+	}
+	err = s.persistentDB.WithStore(func(s *rw.Store) error {
+		return s.CreateContribution(ctx, contribution)
+	})
+	if err != nil {
+		return nil, ErrFromStore(err, "").Err()
+	}
+
+	return contribution.Proto(), nil
 }
 
-func (s *SearchService) ListTscriptChunkSubmissions(ctx context.Context, request *api.ListTscriptChunkSubmissionsRequest) (*api.ChunkSubmissionList, error) {
+func (s *SearchService) UpdateChunkContribution(ctx context.Context, request *api.UpdateChunkContributionRequest) (*api.ChunkContribution, error) {
+
+	claims, err := s.getClaims(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	var contrib *models.Contribution
+	err = s.persistentDB.WithStore(func(s *rw.Store) error {
+		var err error
+		contrib, err = s.GetContribution(ctx, request.ContributionId)
+		return err
+	})
+	if err != nil {
+		return nil, ErrFromStore(err, request.ContributionId).Err()
+	}
+	if contrib.AuthorID != claims.AuthorID {
+		return nil, ErrPermissionDenied().Err()
+	}
+	if contrib.State != models.ContributionStatePending {
+		return nil, ErrFailedPrecondition(fmt.Sprintf("Only pending contributions can be edited. Actual state was: %s", contrib.State)).Err()
+	}
+
+	lines, _, err := tscript.Import(bufio.NewScanner(bytes.NewBufferString(request.Transcript)))
+	if err != nil {
+		return nil, ErrInvalidRequestField("transcript", err.Error()).Err()
+	}
+	if len(lines) == 0 {
+		return nil, ErrInvalidRequestField("transcript", "no valid lines parsed from transcript").Err()
+	}
+
+	err = s.persistentDB.WithStore(func(s *rw.Store) error {
+		return s.UpdateContribution(ctx, &models.Contribution{
+			ID:            contrib.ID,
+			AuthorID:      contrib.AuthorID,
+			Transcription: request.Transcript,
+		})
+	})
+	if err != nil {
+		return nil, ErrFromStore(err, contrib.ID).Err()
+	}
+
+	fmt.Print("TRANSCRIPT", request.Transcript)
+
+	contrib.Transcription = request.Transcript
+	return contrib.Proto(), nil
+}
+
+func (s *SearchService) ListAuthorContributions(ctx context.Context, request *api.ListAuthorContributionsRequest) (*api.ChunkContributionList, error) {
+
+	var list []*models.Contribution
+	err := s.persistentDB.WithStore(func(s *rw.Store) error {
+		var err error
+		list, err = s.ListAuthorContributions(ctx, request.AuthorId, request.Page)
+		return err
+	})
+	if err != nil {
+		return nil, ErrFromStore(err, request.AuthorId).Err()
+	}
+	out := &api.ChunkContributionList{
+		Contributions: make([]*api.ShortChunkContribution, len(list)),
+	}
+	for k, v := range list {
+		out.Contributions[k] = v.ShortProto()
+	}
+	return out, nil
+}
+
+func (s *SearchService) ListChunkContributions(ctx context.Context, request *api.ListChunkContributionsRequest) (*api.ChunkContributionList, error) {
 	panic("implement me")
 }
 
-func (s *SearchService) SubmitTscriptChunk(ctx context.Context, request *api.TscriptChunkSubmissionRequest) (*emptypb.Empty, error) {
-	panic("implement me")
+func (s *SearchService) GetChunkContribution(ctx context.Context, request *api.GetChunkContributionRequest) (*api.ChunkContribution, error) {
+	var contrib *models.Contribution
+	err := s.persistentDB.WithStore(func(s *rw.Store) error {
+		var err error
+		contrib, err = s.GetContribution(ctx, request.ContributionId)
+		if err != nil {
+			return err
+		}
+		return nil
+	})
+	if err != nil {
+		return nil, ErrFromStore(err, request.ContributionId).Err()
+	}
+	return contrib.Proto(), nil
 }
 
 func (s *SearchService) SubmitDialogCorrection(ctx context.Context, request *api.SubmitDialogCorrectionRequest) (*emptypb.Empty, error) {
 	panic("implement me")
+
 }
 
 func (s *SearchService) GetRedditAuthURL(ctx context.Context, empty *emptypb.Empty) (*api.RedditAuthURL, error) {
@@ -175,24 +318,34 @@ func (s *SearchService) GetRedditAuthURL(ctx context.Context, empty *emptypb.Emp
 	returnURL := ""
 	md, ok := metadata.FromIncomingContext(ctx)
 	if ok && len(md["grpcgateway-referer"]) > 0 {
-		returnURL = md["grpcgateway-referer"][0]
+		// we don't want to keep the query or fragment
+		if parsed, err := url.Parse(md["grpcgateway-referer"][0]); err == nil {
+			parsed.RawQuery = ""
+			parsed.RawFragment = ""
+			returnURL = parsed.String()
+		}
 	}
+	fmt.Println("RAW", md["grpcgateway-referer"])
+	fmt.Println("RETURN", returnURL)
 
 	return &api.RedditAuthURL{
 		Url: fmt.Sprintf(
 			"https://www.reddit.com/api/v1/authorize?client_id=%s&response_type=code&state=%s&redirect_uri=%s&duration=temporary&scope=identity",
 			oauth.RedditApplicationID,
-			s.csrfCache.NewToken(returnURL),
+			s.csrfCache.NewCSRFToken(returnURL),
 			oauth.RedditReturnURI,
 		),
 	}, nil
 }
 
-func (s *SearchService) AuthorizeRedditToken(ctx context.Context, request *api.AuthorizeRedditTokenRequest) (*api.Token, error) {
-	_, ok := s.csrfCache.VerifyToken(request.State)
-	if !ok {
-		return nil, ErrAuthFailed().Err()
+func (s *SearchService) getClaims(ctx context.Context) (*jwt.Claims, error) {
+	token := jwt.ExtractTokenFromRequestContext(ctx)
+	if token == "" {
+		return nil, ErrUnauthorized("no token provided").Err()
 	}
-	//toto: return redirect to payload URL
-	return &api.Token{Token: "todo"}, nil
+	claims, err := s.auth.VerifyToken(token)
+	if err != nil {
+		return nil, ErrUnauthorized(err.Error()).Err()
+	}
+	return claims, nil
 }

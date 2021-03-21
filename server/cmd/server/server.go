@@ -4,6 +4,7 @@ import (
 	"github.com/blevesearch/bleve/v2"
 	"github.com/spf13/cobra"
 	"github.com/warmans/rsk-search/pkg/flag"
+	"github.com/warmans/rsk-search/pkg/jwt"
 	"github.com/warmans/rsk-search/pkg/oauth"
 	"github.com/warmans/rsk-search/pkg/search"
 	"github.com/warmans/rsk-search/pkg/server"
@@ -25,6 +26,7 @@ func ServerCmd() *cobra.Command {
 	roDbCfg := &common.Config{}
 	rwDbCfg := &common.Config{}
 	oauthCfg := &oauth.Cfg{}
+	jwtConfig := &jwt.Cfg{}
 
 	cmd := &cobra.Command{
 		Use:   "server",
@@ -71,13 +73,15 @@ func ServerCmd() *cobra.Command {
 
 			tokenCache := oauth.NewCSRFCache()
 
+			auth := jwt.NewAuth(jwtConfig)
+
 			grpcServices := []server.GRPCService{
-				grpc.NewSearchService(search.NewSearch(rskIndex, readOnlyStoreConn), readOnlyStoreConn, persistentDBConn, tokenCache),
+				grpc.NewSearchService(search.NewSearch(rskIndex, readOnlyStoreConn), readOnlyStoreConn, persistentDBConn, tokenCache, auth),
 			}
 
 			httpServices := []server.HTTPService{}
 			if oauthCfg.Secret != "" {
-				httpServices = append(httpServices, http.NewOauthService(logger, tokenCache, oauthCfg.Secret))
+				httpServices = append(httpServices, http.NewOauthService(logger, tokenCache, oauthCfg, persistentDBConn, auth))
 			} else {
 				logger.Info("OAUTH SECRET WAS MISSING - OAUTH ENDPOINTS WILL NOT BE REGISTERED!")
 			}
@@ -104,6 +108,7 @@ func ServerCmd() *cobra.Command {
 	roDbCfg.RegisterFlags(cmd.Flags(), ServicePrefix, "ro")
 	rwDbCfg.RegisterFlags(cmd.Flags(), ServicePrefix, "rw")
 	oauthCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
+	jwtConfig.RegisterFlags(cmd.Flags(), ServicePrefix)
 
 	return cmd
 }

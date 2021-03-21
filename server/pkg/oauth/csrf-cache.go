@@ -16,13 +16,13 @@ type CSRFTokenCache struct {
 	tokens *ccache.Cache
 }
 
-func (c *CSRFTokenCache) NewToken(payload string) string {
+func (c *CSRFTokenCache) NewCSRFToken(payload string) string {
 	token := shortuuid.New()
 	c.tokens.Set(token, payload, time.Minute*5)
 	return token
 }
 
-func (c *CSRFTokenCache) VerifyToken(token string) (string, bool) {
+func (c *CSRFTokenCache) VerifyCSRFToken(token string) (string, bool) {
 	item := c.tokens.Get(token)
 	if item == nil {
 		return "", false

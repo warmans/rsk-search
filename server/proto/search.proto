@@ -97,31 +97,66 @@ service SearchService {
     };
   }
 
-  rpc ListTscriptChunkSubmissions(ListTscriptChunkSubmissionsRequest) returns (ChunkSubmissionList) {
+  // dialog chunk contributions
+
+  rpc ListChunkContributions(ListChunkContributionsRequest) returns (ChunkContributionList) {
     option (google.api.http) = {
-      get: "/api/tscript/chunk/{chunk_id}/submission"
+      get: "/api/tscript/chunk/{chunk_id}/contrib"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      summary: "lists any existing submissions for a chunk"
+      summary: "lists any existing contributions for a chunk"
       tags: "search"
     };
   }
 
-  rpc SubmitTscriptChunk(TscriptChunkSubmissionRequest) returns (google.protobuf.Empty) {
+  rpc ListAuthorContributions(ListAuthorContributionsRequest) returns (ChunkContributionList) {
     option (google.api.http) = {
-      patch: "/api/tscript/chunk/{chunk_id}"
+      get: "/api/tscript/author/{author_id}/contrib"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      summary: "Submit a transcript chunk that has been completed."
+      summary: "lists contributions form the given author_id"
       tags: "search"
     };
   }
 
-  // corrections
+  rpc GetChunkContribution(GetChunkContributionRequest) returns (ChunkContribution) {
+    option (google.api.http) = {
+      get: "/api/tscript/chunk/{chunk_id}/contrib/{contribution_id}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "lists any existing contributions for a chunk"
+      tags: "search"
+    };
+  }
+
+  rpc CreateChunkContribution(CreateChunkContributionRequest) returns (ChunkContribution) {
+    option (google.api.http) = {
+      patch: "/api/tscript/chunk/{chunk_id}/contrib",
+      body: "*",
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Submit a transcript new chunk that has been completed."
+      tags: "search"
+    };
+  }
+
+  rpc UpdateChunkContribution(UpdateChunkContributionRequest) returns (ChunkContribution) {
+    option (google.api.http) = {
+      patch: "/api/tscript/chunk/{chunk_id}/contrib/{contribution_id}",
+      body: "*",
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Update one of your existing contributions."
+      tags: "search"
+    };
+  }
+
+  // single line corrections
 
   rpc SubmitDialogCorrection(SubmitDialogCorrectionRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      post: "/api/episode/{episode_id}/dialog/{id}"
+      post: "/api/episode/{episode_id}/dialog/{id}",
+      body: "*",
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       summary: "Submit a transcript that has been completed."
@@ -129,22 +164,14 @@ service SearchService {
     };
   }
 
+  // OAUTH
+
   rpc GetRedditAuthURL(google.protobuf.Empty) returns (RedditAuthURL) {
     option (google.api.http) = {
       get: "/api/auth/reddit-url"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       summary: "Redirects user to reddit oauth confirmation page"
-      tags: "search"
-    };
-  }
-
-  rpc AuthorizeRedditToken(AuthorizeRedditTokenRequest) returns (Token) {
-    option (google.api.http) = {
-      post: "/api/auth/reddit/token"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      summary: "Request a token based on the response of a reddit Oauth request"
       tags: "search"
     };
   }
@@ -273,26 +300,41 @@ message TscriptChunk {
   string tscript_id = 2;
   string raw = 3;
   string audio_clip_uri = 4;
+  int32 num_contributions = 5;
 }
 
-message TscriptChunkSubmissionRequest {
+message CreateChunkContributionRequest {
   string chunk_id = 1;
   string transcript = 2;
 }
 
-message ListTscriptChunkSubmissionsRequest {
+message ListChunkContributionsRequest {
   string chunk_id = 1;
+  int32 page = 2;
 }
 
-
-message TscriptChunkSubmission {
-  string chunk_id = 1;
-  string transcript = 2;
-  string author_id = 3;
+message ListAuthorContributionsRequest {
+  string author_id = 1;
+  int32 page = 2;
 }
 
-message ChunkSubmissionList {
-  repeated TscriptChunkSubmission submissions = 1;
+message ChunkContribution {
+  string id = 1;
+  string chunk_id = 2;
+  string transcript = 3;
+  string author_id = 4;
+  string state = 5;
+}
+
+message ShortChunkContribution {
+  string id = 1;
+  string chunk_id = 2;
+  string author_id = 4;
+  string state = 5;
+}
+
+message ChunkContributionList {
+  repeated ShortChunkContribution contributions = 1;
 }
 
 message SubmitDialogCorrectionRequest {
@@ -309,7 +351,14 @@ message Token {
   string token = 1;
 }
 
-message AuthorizeRedditTokenRequest {
-  string state = 1;
-  string token = 2;
+message UpdateChunkContributionRequest {
+  string chunk_id = 1;
+  string contribution_id = 2;
+  string transcript = 3;
 }
+
+message GetChunkContributionRequest{
+  string chunk_id = 1;
+  string contribution_id = 2;
+}
+

@@ -18,6 +18,7 @@ import (
 	"google.golang.org/grpc"
 	"net"
 	"net/http"
+	"github.com/gorilla/handlers"
 )
 
 // GRPCService describes a gRPC GRPCService.
@@ -112,5 +113,5 @@ func (s *Server) StartHTTP() error {
 	router.PathPrefix("/").Handler(gwmux)
 
 	s.logger.Info("Starting HTTP server", zap.String("addr", s.cfg.HTTPAddr))
-	return http.ListenAndServe(s.cfg.HTTPAddr, router)
+	return http.ListenAndServe(s.cfg.HTTPAddr, handlers.CompressHandler(router))
 }

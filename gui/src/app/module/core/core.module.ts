@@ -4,6 +4,7 @@ import { AlertService } from './service/alert/alert.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { APIErrorInterceptor } from './interceptor/api-error.interceptor';
 import { MetaService } from './service/meta/meta.service';
+import { OutgoingTokenInterceptor } from './interceptor/outgoing-token.interceptor';
 
 @NgModule({
   declarations: [],
@@ -14,6 +15,7 @@ import { MetaService } from './service/meta/meta.service';
     AlertService,
     MetaService,
     { provide: HTTP_INTERCEPTORS, useClass: APIErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: OutgoingTokenInterceptor, multi: true },
   ]
 })
 export class CoreModule {

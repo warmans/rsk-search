@@ -1,7 +1,11 @@
 CREATE TABLE "author"
 (
-    id   TEXT PRIMARY KEY,
-    name TEXT
+    id         TEXT PRIMARY KEY,
+    name       TEXT UNIQUE NOT NULL,
+    identity   JSON,
+    created_at TIMESTAMP   NOT NULL DEFAULT NOW(),
+    banned     BOOLEAN     NOT NULL DEFAULT false,
+    approver   BOOLEAN     NOT NULL DEFAULT false
 );
 
 -- tscript is an incomplete transcription
@@ -31,7 +35,9 @@ CREATE TABLE "tscript_contribution"
     id               TEXT PRIMARY KEY,
     author_id        TEXT,
     tscript_chunk_id TEXT,
-    transcription    TEXT
+    transcription    TEXT,
+    state            TEXT,
+    created_at       TIMESTAMP
 );
 
 CREATE TABLE "tscript_chunk_activity"
@@ -39,5 +45,6 @@ CREATE TABLE "tscript_chunk_activity"
     tscript_chunk_id TEXT PRIMARY KEY REFERENCES tscript_chunk (id) ON DELETE CASCADE,
     accessed_at      TIMESTAMP NULL,
     submitted_at     TIMESTAMP NULL,
-    approved_at      TIMESTAMP NULL
+    approved_at      TIMESTAMP NULL,
+    rejected_at      TIMESTAMP NULL
 );

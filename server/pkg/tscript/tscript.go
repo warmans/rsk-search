@@ -5,22 +5,21 @@ import (
 	"fmt"
 	"github.com/lithammer/shortuuid/v3"
 	"github.com/warmans/rsk-search/pkg/models"
-	"os"
 	"strconv"
 	"strings"
 )
 
 // Import imports plain text transcripts to JSON.
-func Import(f *os.File) ([]models.Dialog, []models.Synopsis, error) {
+func Import(scanner *bufio.Scanner) ([]models.Dialog, []models.Synopsis, error) {
 
 	output := make([]models.Dialog, 0)
 	position := int64(0)
 	lastOffset := int64(0)
+	numOffsets := 0
 
 	synopsies := make([]models.Synopsis, 0)
 	var currentSynopsis *models.Synopsis
 
-	scanner := bufio.NewScanner(f)
 	for scanner.Scan() {
 		position += 100
 
@@ -33,7 +32,11 @@ func Import(f *os.File) ([]models.Dialog, []models.Synopsis, error) {
 		// and continue.
 		if IsOffsetTag(line) {
 			if offset, ok := ScanOffset(line); ok {
+				if offset <= lastOffset {
+					return nil, nil, fmt.Errorf("offsets are invalid")
+				}
 				lastOffset = offset
+				numOffsets++
 			}
 			continue
 		}
@@ -80,6 +83,9 @@ func Import(f *os.File) ([]models.Dialog, []models.Synopsis, error) {
 
 	if err := scanner.Err(); err != nil {
 		return nil, nil, err
+	}
+	if numOffsets == 0 {
+		return nil, nil, fmt.Errorf("document appears to be missing offsets")
 	}
 
 	if currentSynopsis != nil {

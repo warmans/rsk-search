@@ -56,7 +56,7 @@ export class EditorComponent implements OnInit {
     });
   }
 
-  onKeydown(event: KeyboardEvent) {
+  onKeyup(event: KeyboardEvent) {
     this.contentUpdated.next(this.editableContent.nativeElement.innerText);
   }
 

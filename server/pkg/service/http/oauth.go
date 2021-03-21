@@ -5,68 +5,132 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
+	"github.com/warmans/rsk-search/pkg/jwt"
+	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/oauth"
+	"github.com/warmans/rsk-search/pkg/store/rw"
 	"go.uber.org/zap"
 	"net/http"
+	"net/url"
 	"time"
 )
 
-func NewOauthService(logger *zap.Logger, oauthCache *oauth.CSRFTokenCache, redditOauthSecret string) *DownloadService {
+func NewOauthService(
+	logger *zap.Logger,
+	oauthCache *oauth.CSRFTokenCache,
+	cfg *oauth.Cfg,
+	rwStore *rw.Conn,
+	auth *jwt.Auth,
+) *DownloadService {
 	return &DownloadService{
-		oauthCache:        oauthCache,
-		redditOauthSecret: redditOauthSecret,
-		logger:            logger.With(zap.String("component", "oauth")),
+		oauthCache: oauthCache,
+		cfg:        cfg,
+		logger:     logger.With(zap.String("component", "oauth")),
+		rwStore:    rwStore,
+		auth:       auth,
 	}
 }
 
 type DownloadService struct {
-	oauthCache        *oauth.CSRFTokenCache
-	redditOauthSecret string
-	logger            *zap.Logger
+	oauthCache *oauth.CSRFTokenCache
+	cfg        *oauth.Cfg
+	logger     *zap.Logger
+	rwStore    *rw.Conn
+	auth       *jwt.Auth
 }
 
 func (c *DownloadService) RegisterHTTP(ctx context.Context, router *mux.Router) {
-	router.Path("/oauth/reddit/return").Handler(http.HandlerFunc(c.RedditReturnHandler))
+	router.Path("/oauth/reddit/return").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.RedditReturnHandler)))
 }
 
-func (c *DownloadService) RedditReturnHandler(rw http.ResponseWriter, req *http.Request) {
+func (c *DownloadService) RedditReturnHandler(resp http.ResponseWriter, req *http.Request) {
+
+	returnURL := "http://scrimpton.com/search"
+	returnParams := url.Values{}
 
 	errMessage := req.URL.Query().Get("error")
 	code := req.URL.Query().Get("code")
 	state := req.URL.Query().Get("state")
 
 	if errMessage != "" {
-		http.Error(rw, fmt.Sprintf("Auth failed with reason: %s", errMessage), http.StatusBadRequest)
+		returnParams.Add("error", fmt.Sprintf("Auth failed with reason: %s", errMessage))
+		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
 		return
 	}
-	returnURL, ok := c.oauthCache.VerifyToken(state)
+
+	var ok bool
+	returnURL, ok = c.oauthCache.VerifyCSRFToken(state)
 	if !ok {
-		http.Error(rw, "Request has invalid state, the request may have expired", http.StatusBadRequest)
+		returnParams.Add("error", "Request has invalid state, the request may have expired")
+		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
 		return
 	}
 
 	bearerToken, err := c.getRedditBearerToken(code)
 	if err != nil {
-		http.Error(rw, err.Error(), http.StatusInternalServerError)
+		returnParams.Add("error", err.Error())
+		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
 		return
 	}
 
 	// reddit is surprisingly strict about how many requests you can send per second.
 	time.Sleep(time.Second * 2)
 
-	ident, err := c.getRedditIdentity(bearerToken)
+	ident, rawIdentityJSON, err := c.getRedditIdentity(bearerToken)
 	if err != nil {
-		http.Error(rw, err.Error(), http.StatusInternalServerError)
+		returnParams.Add("error", err.Error())
+		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
 		return
 	}
 
-	fmt.Print(ident)
+	// verify identity is in good standing
+	if c.cfg.KarmaLimit > 0 && ident.TotalKarma < c.cfg.KarmaLimit {
+		returnParams.Add("error", "Account did not meet minimum karma requirements.")
+		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
+		return
+	}
+	if c.cfg.MinAccountAgeDays > 0 && time.Unix(int64(ident.CreatedUTC), 0).Add(0-(time.Hour*24*time.Duration(c.cfg.MinAccountAgeDays))).Before(time.Now().UTC()) {
+		returnParams.Add("error", "Account did not meet minimum age requirements.")
+		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
+		return
+	}
+	if !ident.HasVerifiedEmail || ident.IsSuspended {
+		returnParams.Add("error", "Account is unverified or suspended.")
+		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
+		return
+	}
 
-	//todo: store author in rw DB
-	//todo: create JWT and attach to return URL
+	author := &models.Author{
+		Name:     ident.Name,
+		Identity: rawIdentityJSON,
+	}
+	err = c.rwStore.WithStore(func(s *rw.Store) error {
+		return s.UpsertAuthor(req.Context(), author)
+	})
+	if err != nil {
+		c.logger.Error("failed to create local user", zap.Error(err))
+		returnParams.Add("error", fmt.Sprintf("failed to create local user"))
+		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
+		return
+	}
 
-	http.Redirect(rw, req, returnURL, http.StatusFound)
+	if author.Banned == true {
+		returnParams.Add("error", "Account is not allowed.")
+		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
+	}
+
+	token, err := c.auth.NewJWTForIdentity(author, ident)
+	if err != nil {
+		c.logger.Error("failed to create token", zap.Error(err))
+		returnParams.Add("error", fmt.Sprintf("failed to create token"))
+		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
+		return
+	}
+
+	returnParams.Add("token", token)
+	http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
 }
 
 func (c *DownloadService) getRedditBearerToken(code string) (string, error) {
@@ -80,7 +144,7 @@ func (c *DownloadService) getRedditBearerToken(code string) (string, error) {
 		return "", fmt.Errorf("unknown error")
 	}
 	req.Header.Set("User-Agent", fmt.Sprintf("scrimpton-bot (by /u/warmans)"))
-	req.SetBasicAuth(oauth.RedditApplicationID, c.redditOauthSecret)
+	req.SetBasicAuth(oauth.RedditApplicationID, c.cfg.Secret)
 
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
@@ -105,17 +169,17 @@ func (c *DownloadService) getRedditBearerToken(code string) (string, error) {
 	return response.AccessToken, nil
 }
 
-func (c *DownloadService) getRedditIdentity(bearerToken string) (*oauth.Identity, error) {
+func (c *DownloadService) getRedditIdentity(bearerToken string) (*oauth.Identity, string, error) {
 
 	if bearerToken == "" {
 		c.logger.Error("blank bearer token, authorize must have failed")
-		return nil, fmt.Errorf("authorization failed")
+		return nil, "", fmt.Errorf("authorization failed")
 	}
 
 	req, err := http.NewRequest(http.MethodGet, "https://oauth.reddit.com/api/v1/me", bytes.NewBufferString(""))
 	if err != nil {
 		c.logger.Error("failed to create identity request", zap.Error(err))
-		return nil, fmt.Errorf("failed to request identity")
+		return nil, "", fmt.Errorf("failed to request identity")
 	}
 
 	req.Header.Set("User-Agent", fmt.Sprintf("scrimpton-bot (by /u/warmans)"))
@@ -124,15 +188,22 @@ func (c *DownloadService) getRedditIdentity(bearerToken string) (*oauth.Identity
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
 		c.logger.Error("failed to execute identity request", zap.Error(err))
-		return nil, fmt.Errorf("failed to request identity")
+		return nil, "", fmt.Errorf("failed to request identity")
 	}
 	defer resp.Body.Close()
 
+	buff := &bytes.Buffer{}
+	if _, err := buff.ReadFrom(resp.Body); err != nil {
+		c.logger.Error("failed to copy response body", zap.Error(err))
+		return nil, "", fmt.Errorf("failed to parse identity")
+	}
+	responseBytes := buff.Bytes()
+
 	ident := &oauth.Identity{}
-	if err := json.NewDecoder(resp.Body).Decode(&ident); err != nil {
+	if err := json.Unmarshal(responseBytes, ident); err != nil {
 		c.logger.Error("failed to decode identity", zap.Error(err))
-		return nil, fmt.Errorf("failed to decode identity")
+		return nil, "", fmt.Errorf("failed to parse identity")
 	}
 
-	return ident, nil
+	return ident, string(responseBytes), nil
 }

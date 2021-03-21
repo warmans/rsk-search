@@ -1,7 +1,13 @@
 <div class="container-fluid pt-3">
   <div class="row">
     <div class="col-8">
-
+      <div class="alert alert-warning" *ngIf="!userCanEdit">This contribution is not editable, either because you are
+        not the owner or because is has already been accepted or rejected
+      </div>
+      <div class="alert alert-warning" *ngIf="!contribution && chunk?.numContributions > 0">
+        There are already {{chunk.numContributions}} contributions for this section of audio.
+        You can trying getting a new one, but clicking <a [routerLink]="['/chunk', 'next']">here</a>.
+      </div>
       <div class="card mb-3">
         <div class="card-body">
           <div class="audio-player">
@@ -9,9 +15,32 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="col-4">
+      <div class="card" *ngIf="contribution">
+        <div class="card-body">
+          <div *ngIf="contribution.state == 'pending'">
+            <div class="mb-3">State: <span class="text-info">{{contribution.state}}</span></div>
+            This means that the contribution has not yet been reviewed and can still be edited if you are the
+            owner.
+          </div>
+          <div *ngIf="contribution.state == 'approved'">
+            <div class="mb-3">State: <span class="text-success">{{contribution.state}}</span></div>
+            This means your contributions was approved and will be merged into the canonical dataset.
+          </div>
+          <div *ngIf="contribution.state == 'rejected'">
+            <div class="mb-3">State: <span class="text-danger">{{contribution.state}}</span></div>
+            This means it was not possible to merge your contribution either because it was a duplicate,
+            or because it did not appear to be correct.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
       <div class="card">
         <div class="card-header">
-
           <span class="float-right">
             <button class="btn btn-sm" (click)="showHelp = !showHelp"
                     [ngClass]="{'btn-outline-primary': !showHelp, 'btn-primary': showHelp}">
@@ -19,16 +48,22 @@
               <span *ngIf="showHelp">I am satisfied</span>
             </button>
           </span>
-          <span class="float-right"><button class="btn btn-danger btn-sm mr-3"
-                                            (click)="resetToRaw()">Reset</button></span>
-          Transcript chunk
+          <span class="float-right">
+            <button class="btn btn-danger btn-sm mr-3" *ngIf="userCanEdit" (click)="resetToRaw()">Reset</button>
+          </span>
+          <span *ngIf="!contribution">Create </span>
+          <span *ngIf="contribution">Update </span>
+          Transcript Chunk
         </div>
         <div [hidden]="showHelp">
           <div class="card-body pr-0 pb-0">
             <app-editor [textContent]="transcriptEdit" (contentUpdated)="handleTranscriptUpdated($event)"></app-editor>
           </div>
-          <div class="card-footer text-right">
-            <button class="btn btn-success" (click)="submit()">Submit</button>
+          <div class="card-footer text-right" *ngIf="authenticated && userCanEdit">
+            <button class="btn btn-success" (click)="submit()">
+              <span *ngIf="!contribution">Create</span>
+              <span *ngIf="contribution">Update</span>
+            </button>
           </div>
         </div>
         <div class="card-body" [hidden]="!showHelp">
@@ -107,28 +142,7 @@ karl: I used to have a rifle as a kid...
       </div>
     </div>
   </div>
-
-  <div class="modal open" tabindex="-1" role="dialog">
-    <div class="modal-dialog  modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Authorization is Required</h5>
-          <button type="button" class="close" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>To submit a transcript you must authenticate with a valid Reddit account.</p>
-          <p>The app will request only only your basic identity and it will be stored against your submission.</p>
-          <p>If you reddit account has negative karma or is very new your request will fail.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" (click)="requestAuth()">Authorize</button>
-          <a [routerLink]="['/']" class="btn btn-secondary">No Thanks</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  <app-reddit-login [open]="!this.authenticated"></app-reddit-login>
 </div>
 
+<app-loading-overlay [loading]="loading.length > 0"></app-loading-overlay>

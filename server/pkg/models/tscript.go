@@ -1,6 +1,15 @@
 package models
 
-import "github.com/warmans/rsk-search/gen/api"
+import (
+	"github.com/warmans/rsk-search/gen/api"
+	"time"
+)
+
+const (
+	ContributionStatePending  = "pending"
+	ContributionStateApproved = "approved"
+	ContributionStateRejected = "rejected"
+)
 
 const EndSecondEOF = -1
 
@@ -22,15 +31,15 @@ type Chunk struct {
 	EndSecond   int64  `json:"end_second"`
 }
 
-func (c *Chunk) Proto(tscriptID string) *api.TscriptChunk {
+func (c *Chunk) Proto(tscriptID string, contribCount int32) *api.TscriptChunk {
 	if c == nil {
 		return nil
 	}
 	return &api.TscriptChunk{
-		Id:           c.ID,
-		TscriptId:    tscriptID,
-		Raw:          c.Raw,
-		AudioClipUri: "", //todo
+		Id:               c.ID,
+		TscriptId:        tscriptID,
+		Raw:              c.Raw,
+		NumContributions: contribCount,
 	}
 }
 
@@ -57,4 +66,38 @@ type Contribution struct {
 	AuthorID      string
 	ChunkID       string
 	Transcription string
+	State         string
 }
+
+func (c *Contribution) Proto() *api.ChunkContribution {
+	if c == nil {
+		return nil
+	}
+	return &api.ChunkContribution{
+		Id:         c.ID,
+		ChunkId:    c.ChunkID,
+		Transcript: c.Transcription,
+		AuthorId:   c.AuthorID,
+		State:      c.State,
+	}
+}
+func (c *Contribution) ShortProto() *api.ShortChunkContribution {
+	if c == nil {
+		return nil
+	}
+	return &api.ShortChunkContribution{
+		Id:       c.ID,
+		ChunkId:  c.ChunkID,
+		AuthorId: c.AuthorID,
+		State:    c.State,
+	}
+}
+
+type ContributionActivity struct {
+	ChunkID     string
+	AccessedAt  *time.Time
+	SubmittedAt *time.Time
+	ApprovedAt  *time.Time
+	RejectedAt  *time.Time
+}
+

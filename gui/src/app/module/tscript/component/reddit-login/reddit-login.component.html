@@ -1,0 +1,53 @@
+
+
+<div class="modal" [ngClass]="{'open': !authenticated}" tabindex="-1" role="dialog">
+  <div class="modal-dialog  modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Authorization is Required</h5>
+        <button type="button" class="close" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-danger" *ngIf="!authenticated && authError">
+          <div><strong>Authorization failed - please try again</strong></div>
+          <div>Server responded with: {{authError}}</div>
+        </div>
+        <p>To submit a transcript you must authenticate with a valid Reddit account (Oauth2).</p>
+        <p>This app will never see your secret data (password etc.) will only be allowed to see only your public identity.
+          This will be stored against your submission.</p>
+        <p>If you reddit account is not in good standing (e.g. suspended, negative karma) or very new your request
+          will fail.</p>
+        <p><a class="text-primary" (click)="showMoreAuthInformation = !showMoreAuthInformation">I'm not convinced, can
+          you explain like I'm karl pilkington?</a></p>
+        <div *ngIf="showMoreAuthInformation">
+          <strong>Oauth</strong><br/>
+          <p>Oauth is a common mechanism you have probably seen many times in the form of "Login with
+            facebook/google/etc".
+            Imagine you have a library membership and you want a friend to be able to borrow a specific book on your
+            account. How could it work?</p>
+          <p>It doesn't make sense to give your friend your library card as they would then know your secret card
+            number and
+            could check out multiple books without you knowing. But what if you could tell the library to allow a
+            specific person to
+            borrow a specific book for a specific amount of time? That way your friend would be limited to only
+            accessing the information
+            you have agreed to and you wouldn't need to share your secret card number.</p>
+          <p>That is effectively how oauth works. The reddit authorization screen is you telling the reddit to allow
+            this website to read
+            some very specific information (in this case your public identity). Since you never provide any of your
+            reddit credentials directly
+            to this website, it is limited to accessing only what you have allowed.</p>
+          <p>Here is an example of the sort of data reddit considers your <a
+            href="https://github.com/reddit-archive/reddit/wiki/OAuth2-Quick-Start-Example"
+            target="_blank">identity</a>.</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="requestAuth()">Authorize</button>
+        <a [routerLink]="['/search']" class="btn btn-secondary">No Thanks</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -100,7 +100,6 @@ export class DropdownComponent implements OnInit, OnDestroy {
     }
     this.toggleSelected(value);
     if (!this.enableMultiselect) {
-      console.log("select", value);
       this.onValue.next([value]);
     }
   }

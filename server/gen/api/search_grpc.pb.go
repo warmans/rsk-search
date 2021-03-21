@@ -28,11 +28,13 @@ type SearchServiceClient interface {
 	// chunks are ~2 min sections of the transcription
 	GetTscriptChunkStats(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ChunkStats, error)
 	GetTscriptChunk(ctx context.Context, in *GetTscriptChunkRequest, opts ...grpc.CallOption) (*TscriptChunk, error)
-	ListTscriptChunkSubmissions(ctx context.Context, in *ListTscriptChunkSubmissionsRequest, opts ...grpc.CallOption) (*ChunkSubmissionList, error)
-	SubmitTscriptChunk(ctx context.Context, in *TscriptChunkSubmissionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ListChunkContributions(ctx context.Context, in *ListChunkContributionsRequest, opts ...grpc.CallOption) (*ChunkContributionList, error)
+	ListAuthorContributions(ctx context.Context, in *ListAuthorContributionsRequest, opts ...grpc.CallOption) (*ChunkContributionList, error)
+	GetChunkContribution(ctx context.Context, in *GetChunkContributionRequest, opts ...grpc.CallOption) (*ChunkContribution, error)
+	CreateChunkContribution(ctx context.Context, in *CreateChunkContributionRequest, opts ...grpc.CallOption) (*ChunkContribution, error)
+	UpdateChunkContribution(ctx context.Context, in *UpdateChunkContributionRequest, opts ...grpc.CallOption) (*ChunkContribution, error)
 	SubmitDialogCorrection(ctx context.Context, in *SubmitDialogCorrectionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	GetRedditAuthURL(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*RedditAuthURL, error)
-	AuthorizeRedditToken(ctx context.Context, in *AuthorizeRedditTokenRequest, opts ...grpc.CallOption) (*Token, error)
 }
 
 type searchServiceClient struct {
@@ -106,18 +108,45 @@ func (c *searchServiceClient) GetTscriptChunk(ctx context.Context, in *GetTscrip
 	return out, nil
 }
 
-func (c *searchServiceClient) ListTscriptChunkSubmissions(ctx context.Context, in *ListTscriptChunkSubmissionsRequest, opts ...grpc.CallOption) (*ChunkSubmissionList, error) {
-	out := new(ChunkSubmissionList)
-	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/ListTscriptChunkSubmissions", in, out, opts...)
+func (c *searchServiceClient) ListChunkContributions(ctx context.Context, in *ListChunkContributionsRequest, opts ...grpc.CallOption) (*ChunkContributionList, error) {
+	out := new(ChunkContributionList)
+	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/ListChunkContributions", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *searchServiceClient) SubmitTscriptChunk(ctx context.Context, in *TscriptChunkSubmissionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/SubmitTscriptChunk", in, out, opts...)
+func (c *searchServiceClient) ListAuthorContributions(ctx context.Context, in *ListAuthorContributionsRequest, opts ...grpc.CallOption) (*ChunkContributionList, error) {
+	out := new(ChunkContributionList)
+	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/ListAuthorContributions", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *searchServiceClient) GetChunkContribution(ctx context.Context, in *GetChunkContributionRequest, opts ...grpc.CallOption) (*ChunkContribution, error) {
+	out := new(ChunkContribution)
+	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/GetChunkContribution", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *searchServiceClient) CreateChunkContribution(ctx context.Context, in *CreateChunkContributionRequest, opts ...grpc.CallOption) (*ChunkContribution, error) {
+	out := new(ChunkContribution)
+	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/CreateChunkContribution", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *searchServiceClient) UpdateChunkContribution(ctx context.Context, in *UpdateChunkContributionRequest, opts ...grpc.CallOption) (*ChunkContribution, error) {
+	out := new(ChunkContribution)
+	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/UpdateChunkContribution", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -142,15 +171,6 @@ func (c *searchServiceClient) GetRedditAuthURL(ctx context.Context, in *emptypb.
 	return out, nil
 }
 
-func (c *searchServiceClient) AuthorizeRedditToken(ctx context.Context, in *AuthorizeRedditTokenRequest, opts ...grpc.CallOption) (*Token, error) {
-	out := new(Token)
-	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/AuthorizeRedditToken", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // SearchServiceServer is the server API for SearchService service.
 // All implementations should embed UnimplementedSearchServiceServer
 // for forward compatibility
@@ -164,11 +184,13 @@ type SearchServiceServer interface {
 	// chunks are ~2 min sections of the transcription
 	GetTscriptChunkStats(context.Context, *emptypb.Empty) (*ChunkStats, error)
 	GetTscriptChunk(context.Context, *GetTscriptChunkRequest) (*TscriptChunk, error)
-	ListTscriptChunkSubmissions(context.Context, *ListTscriptChunkSubmissionsRequest) (*ChunkSubmissionList, error)
-	SubmitTscriptChunk(context.Context, *TscriptChunkSubmissionRequest) (*emptypb.Empty, error)
+	ListChunkContributions(context.Context, *ListChunkContributionsRequest) (*ChunkContributionList, error)
+	ListAuthorContributions(context.Context, *ListAuthorContributionsRequest) (*ChunkContributionList, error)
+	GetChunkContribution(context.Context, *GetChunkContributionRequest) (*ChunkContribution, error)
+	CreateChunkContribution(context.Context, *CreateChunkContributionRequest) (*ChunkContribution, error)
+	UpdateChunkContribution(context.Context, *UpdateChunkContributionRequest) (*ChunkContribution, error)
 	SubmitDialogCorrection(context.Context, *SubmitDialogCorrectionRequest) (*emptypb.Empty, error)
 	GetRedditAuthURL(context.Context, *emptypb.Empty) (*RedditAuthURL, error)
-	AuthorizeRedditToken(context.Context, *AuthorizeRedditTokenRequest) (*Token, error)
 }
 
 // UnimplementedSearchServiceServer should be embedded to have forward compatible implementations.
@@ -196,20 +218,26 @@ func (UnimplementedSearchServiceServer) GetTscriptChunkStats(context.Context, *e
 func (UnimplementedSearchServiceServer) GetTscriptChunk(context.Context, *GetTscriptChunkRequest) (*TscriptChunk, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTscriptChunk not implemented")
 }
-func (UnimplementedSearchServiceServer) ListTscriptChunkSubmissions(context.Context, *ListTscriptChunkSubmissionsRequest) (*ChunkSubmissionList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListTscriptChunkSubmissions not implemented")
+func (UnimplementedSearchServiceServer) ListChunkContributions(context.Context, *ListChunkContributionsRequest) (*ChunkContributionList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListChunkContributions not implemented")
 }
-func (UnimplementedSearchServiceServer) SubmitTscriptChunk(context.Context, *TscriptChunkSubmissionRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SubmitTscriptChunk not implemented")
+func (UnimplementedSearchServiceServer) ListAuthorContributions(context.Context, *ListAuthorContributionsRequest) (*ChunkContributionList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAuthorContributions not implemented")
+}
+func (UnimplementedSearchServiceServer) GetChunkContribution(context.Context, *GetChunkContributionRequest) (*ChunkContribution, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetChunkContribution not implemented")
+}
+func (UnimplementedSearchServiceServer) CreateChunkContribution(context.Context, *CreateChunkContributionRequest) (*ChunkContribution, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateChunkContribution not implemented")
+}
+func (UnimplementedSearchServiceServer) UpdateChunkContribution(context.Context, *UpdateChunkContributionRequest) (*ChunkContribution, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateChunkContribution not implemented")
 }
 func (UnimplementedSearchServiceServer) SubmitDialogCorrection(context.Context, *SubmitDialogCorrectionRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SubmitDialogCorrection not implemented")
 }
 func (UnimplementedSearchServiceServer) GetRedditAuthURL(context.Context, *emptypb.Empty) (*RedditAuthURL, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRedditAuthURL not implemented")
-}
-func (UnimplementedSearchServiceServer) AuthorizeRedditToken(context.Context, *AuthorizeRedditTokenRequest) (*Token, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AuthorizeRedditToken not implemented")
 }
 
 // UnsafeSearchServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -349,38 +377,92 @@ func _SearchService_GetTscriptChunk_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SearchService_ListTscriptChunkSubmissions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListTscriptChunkSubmissionsRequest)
+func _SearchService_ListChunkContributions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListChunkContributionsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SearchServiceServer).ListTscriptChunkSubmissions(ctx, in)
+		return srv.(SearchServiceServer).ListChunkContributions(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/rsksearch.SearchService/ListTscriptChunkSubmissions",
+		FullMethod: "/rsksearch.SearchService/ListChunkContributions",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SearchServiceServer).ListTscriptChunkSubmissions(ctx, req.(*ListTscriptChunkSubmissionsRequest))
+		return srv.(SearchServiceServer).ListChunkContributions(ctx, req.(*ListChunkContributionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SearchService_SubmitTscriptChunk_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TscriptChunkSubmissionRequest)
+func _SearchService_ListAuthorContributions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAuthorContributionsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SearchServiceServer).SubmitTscriptChunk(ctx, in)
+		return srv.(SearchServiceServer).ListAuthorContributions(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/rsksearch.SearchService/SubmitTscriptChunk",
+		FullMethod: "/rsksearch.SearchService/ListAuthorContributions",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SearchServiceServer).SubmitTscriptChunk(ctx, req.(*TscriptChunkSubmissionRequest))
+		return srv.(SearchServiceServer).ListAuthorContributions(ctx, req.(*ListAuthorContributionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SearchService_GetChunkContribution_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetChunkContributionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SearchServiceServer).GetChunkContribution(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/rsksearch.SearchService/GetChunkContribution",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SearchServiceServer).GetChunkContribution(ctx, req.(*GetChunkContributionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SearchService_CreateChunkContribution_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateChunkContributionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SearchServiceServer).CreateChunkContribution(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/rsksearch.SearchService/CreateChunkContribution",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SearchServiceServer).CreateChunkContribution(ctx, req.(*CreateChunkContributionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SearchService_UpdateChunkContribution_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateChunkContributionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SearchServiceServer).UpdateChunkContribution(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/rsksearch.SearchService/UpdateChunkContribution",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SearchServiceServer).UpdateChunkContribution(ctx, req.(*UpdateChunkContributionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -421,24 +503,6 @@ func _SearchService_GetRedditAuthURL_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SearchService_AuthorizeRedditToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AuthorizeRedditTokenRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SearchServiceServer).AuthorizeRedditToken(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/rsksearch.SearchService/AuthorizeRedditToken",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SearchServiceServer).AuthorizeRedditToken(ctx, req.(*AuthorizeRedditTokenRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // SearchService_ServiceDesc is the grpc.ServiceDesc for SearchService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -475,12 +539,24 @@ var SearchService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _SearchService_GetTscriptChunk_Handler,
 		},
 		{
-			MethodName: "ListTscriptChunkSubmissions",
-			Handler:    _SearchService_ListTscriptChunkSubmissions_Handler,
+			MethodName: "ListChunkContributions",
+			Handler:    _SearchService_ListChunkContributions_Handler,
 		},
 		{
-			MethodName: "SubmitTscriptChunk",
-			Handler:    _SearchService_SubmitTscriptChunk_Handler,
+			MethodName: "ListAuthorContributions",
+			Handler:    _SearchService_ListAuthorContributions_Handler,
+		},
+		{
+			MethodName: "GetChunkContribution",
+			Handler:    _SearchService_GetChunkContribution_Handler,
+		},
+		{
+			MethodName: "CreateChunkContribution",
+			Handler:    _SearchService_CreateChunkContribution_Handler,
+		},
+		{
+			MethodName: "UpdateChunkContribution",
+			Handler:    _SearchService_UpdateChunkContribution_Handler,
 		},
 		{
 			MethodName: "SubmitDialogCorrection",
@@ -489,10 +565,6 @@ var SearchService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetRedditAuthURL",
 			Handler:    _SearchService_GetRedditAuthURL_Handler,
-		},
-		{
-			MethodName: "AuthorizeRedditToken",
-			Handler:    _SearchService_AuthorizeRedditToken_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

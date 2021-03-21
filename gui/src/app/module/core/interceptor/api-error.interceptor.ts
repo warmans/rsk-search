@@ -55,8 +55,8 @@ function errorTextFromRPCError(err: HttpErrorResponse): ErrorDetails {
       for (const v of err.error.details) {
         switch (v['@type']) {
           case 'type.googleapis.com/google.rpc.BadRequest':
-            if (v?.field_violations?.length > 0) {
-              for (const f of v.field_violations) {
+            if (v?.fieldViolations?.length > 0) {
+              for (const f of v.fieldViolations) {
                 errDetails.push(`Bad request field '${f.field}' (${f.description})`);
               }
             }

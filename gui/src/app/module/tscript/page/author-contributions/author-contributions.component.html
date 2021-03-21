@@ -1,0 +1,48 @@
+<div class="container-fluid pt-3">
+  <div class="row mb-3">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          <button class="btn btn-danger btn-sm float-right" (click)="logout()">Logout</button>
+          Linked Account
+        </div>
+
+        <div class="d-flex">
+          <div class="flex-shrink-1">
+            <img class="img-thumbnail" [src]="claims.identity.icon_img" style="max-width: 100px"/>
+          </div>
+          <div class="flex-grow-1">
+            <table class="table mb-0">
+              <tr>
+                <th style="width: 100px;">ID</th>
+                <td>{{claims.identity.id}}</td>
+              </tr>
+              <tr>
+                <th style="width: 100px;">Name</th>
+                <td>{{claims.identity.name}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">My Contributions</div>
+        <table class="table mb-0">
+          <tr *ngFor="let row of contributions">
+            <td style="width: 300px;">
+              <a *ngIf="row.state === 'pending'"
+                 [routerLink]="['/chunk', row.chunkId, 'contrib', row.id]">{{row.id}}</a>
+              <span *ngIf="row.state !== 'pending'">{{row.id}}</span>
+            </td>
+            <td>{{row.state}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<app-loading-overlay [loading]="loading"></app-loading-overlay>

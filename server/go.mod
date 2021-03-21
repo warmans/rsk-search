@@ -6,8 +6,10 @@ require (
 	cloud.google.com/go v0.65.0
 	github.com/blevesearch/bleve/v2 v2.0.2
 	github.com/blevesearch/bleve_index_api v1.0.0
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gocolly/colly/v2 v2.1.0
 	github.com/gogo/protobuf v1.3.1 // indirect
+	github.com/gorilla/handlers v1.5.1
 	github.com/gorilla/mux v1.8.0
 	github.com/grpc-ecosystem/go-grpc-middleware v1.2.2
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.3.0

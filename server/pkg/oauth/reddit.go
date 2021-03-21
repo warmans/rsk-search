@@ -10,11 +10,15 @@ const RedditReturnURI = "http://localhost:4200/oauth/reddit/return"
 const RedditApplicationID = "PytL99OIbkuUKw"
 
 type Cfg struct {
-	Secret string
+	Secret            string
+	KarmaLimit        int64
+	MinAccountAgeDays int64
 }
 
 func (c *Cfg) RegisterFlags(fs *pflag.FlagSet, prefix string) {
 	flag.StringVarEnv(fs, &c.Secret, prefix, "oauth-secret", "", "Reddit oauth secret")
+	flag.Int64VarEnv(fs, &c.KarmaLimit, prefix, "oath-karma-limit", 0, "Reddit oauth secret")
+	flag.Int64VarEnv(fs, &c.MinAccountAgeDays, prefix, "oath-account-minage", 0, "")
 }
 
 type Identity struct {
@@ -27,10 +31,7 @@ type Identity struct {
 	Created    float64 `json:"created"`
 	CreatedUTC float64 `json:"created_utc"`
 
-	CommentKarma int64 `json:"comment_karma"`
-	LinkKarma    int64 `json:"link_karma"`
 	TotalKarma   int64 `json:"total_karma"`
 
 	Over18          bool `json:"over_18"`
-	PreferNightmode bool `json:"pref_nightmode"`
 }

@@ -7,13 +7,18 @@
       <!--app-dsl-search (executeQuery)="executeSearch($event)"></app-dsl-search-->
       <app-gl-search (queryUpdated)="executeSearch($event)"></app-gl-search>
     </div>
+    <div class="ml-3" *ngIf="loggedInUser">
+      <a class="btn btn-info btn-lg" [routerLink]="['/me']">
+        <i *ngIf="!loggedInUser?.identity?.image_src" class="bi-person"></i>
+        <i *ngIf="loggedInUser?.identity?.image_src" class="bi-person"></i>
+      </a>
+    </div>
   </div>
 </nav>
 
 <app-alert></app-alert>
 
 <router-outlet></router-outlet>
-
 
 <footer class="footer">
   <div class="container">

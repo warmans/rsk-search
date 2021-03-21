@@ -26,7 +26,6 @@ export class AudioPlayerComponent implements AfterViewInit {
   }
 
   public ngAfterViewInit() {
-    console.log(this.audioPlayerEl);
     if (!this.audioPlayerEl?.nativeElement) {
       return
     }
@@ -53,7 +52,6 @@ export class AudioPlayerComponent implements AfterViewInit {
   }
 
   public play(): void {
-    console.log(this.audio);
     if (this.audio) {
       if (this.audio.readyState >= 2) {
         this.audio.play();

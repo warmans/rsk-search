@@ -16,13 +16,6 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceAuthorizeRedditToken(
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchToken>;
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
   searchServiceListEpisodes(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RsksearchEpisodeList>;
@@ -34,6 +27,7 @@ export interface SearchAPIClientInterface {
     args: {
       episodeId: string,
       id: string,
+      body: models.RsksearchSubmitDialogCorrectionRequest,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<object>;
@@ -69,22 +63,58 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceSubmitTscriptChunk(
+  searchServiceListAuthorContributions(
     args: {
-      chunkId: string,
+      authorId: string,
+      page?: number,
     },
     requestHttpOptions?: HttpOptions
-  ): Observable<object>;
+  ): Observable<models.RsksearchChunkContributionList>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceListTscriptChunkSubmissions(
+  searchServiceListChunkContributions(
     args: {
       chunkId: string,
+      page?: number,
     },
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchChunkSubmissionList>;
+  ): Observable<models.RsksearchChunkContributionList>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  searchServiceCreateChunkContribution(
+    args: {
+      chunkId: string,
+      body: models.RsksearchCreateChunkContributionRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchChunkContribution>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  searchServiceGetChunkContribution(
+    args: {
+      chunkId: string,
+      contributionId: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchChunkContribution>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  searchServiceUpdateChunkContribution(
+    args: {
+      chunkId: string,
+      contributionId: string,
+      body: models.RsksearchUpdateChunkContributionRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchChunkContribution>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
