@@ -1,11 +1,18 @@
-import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
-import { RsksearchChunkContribution, RsksearchDialog, RsksearchTscriptChunk } from '../../../../lib/api-client/models';
+import { Component, EventEmitter, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  RequestChunkContributionStateRequestState,
+  RsksearchChunkContribution,
+  RsksearchTscriptChunk,
+} from '../../../../lib/api-client/models';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { SessionService } from '../../../core/service/session/session.service';
+import { getFirstOffset, parseTranscript, Tscript } from '../../../shared/lib/tscript';
+import { AudioPlayerComponent } from '../../../shared/component/audio-player/audio-player.component';
+import { AlertService } from '../../../core/service/alert/alert.service';
 
 @Component({
   selector: 'app-submit',
@@ -14,26 +21,49 @@ import { SessionService } from '../../../core/service/session/session.service';
 })
 export class SubmitComponent implements OnInit, OnDestroy {
 
+  authenticated: boolean = false;
+  authError: string;
   chunk: RsksearchTscriptChunk;
   contribution: RsksearchChunkContribution;
   userCanEdit: boolean = true;
 
-  audioPlayerURL: string = '';
-
-  transcriptEdit: string = '';
+  // to stop the caret from getting messed up by updates we need to separate the input
+  // data from the output.
+  initialTranscript: string = '';
+  updatedTranscript: string = '';
+  firstOffset: number = -1;
 
   contentUpdated: Subject<string> = new Subject<string>();
 
-  dialogPreview: RsksearchDialog[] = [];
-
+  audioPlayerURL: string = '';
+  parsedTscript: Tscript;
   showHelp: boolean = false;
-
-  $destroy: EventEmitter<boolean> = new EventEmitter<boolean>();
-
-  authenticated: boolean = false;
-  authError: string;
+  autoSeek: boolean = localStorage.getItem('pref-autoseek') === 'true';
 
   loading: boolean[] = [];
+  $destroy: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  @ViewChild('audioPlayer')
+  audioPlayer: AudioPlayerComponent;
+
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent): boolean {
+    if (this.autoSeek) {
+      if (event.key === 'Insert') {
+        this.audioPlayer.toggle(-3);
+        return false;
+      }
+      if (event.key === 'ScrollLock') {
+        this.audioPlayer.play(-3);
+        return false;
+      }
+      if (event.key === 'Pause') {
+        this.audioPlayer.play(3);
+        return false;
+      }
+      return true;
+    }
+  }
 
   constructor(
     private route: ActivatedRoute,
@@ -41,6 +71,7 @@ export class SubmitComponent implements OnInit, OnDestroy {
     private apiClient: SearchAPIClient,
     private titleService: Title,
     private sessionService: SessionService,
+    private alertService: AlertService,
   ) {
     titleService.setTitle('contribute');
 
@@ -55,18 +86,7 @@ export class SubmitComponent implements OnInit, OnDestroy {
           chunkId: d.params['id'],
           contributionId: d.params['contribution_id']
         }).pipe(takeUntil(this.$destroy)).subscribe((res: RsksearchChunkContribution) => {
-          this.contribution = res;
-
-          this.transcriptEdit = this.getBackup() ? this.getBackup() : res.transcript;
-          titleService.setTitle(`contribute :: ${res.chunkId} :: ${res.id}`);
-          this.contentUpdated.next(this.transcriptEdit);
-
-          if (sessionService.getClaims()?.author_id !== res.authorId) {
-            this.userCanEdit = false;
-          }
-          if (res.state !== 'pending') {
-            this.userCanEdit = false;
-          }
+          this.setContribution(res);
         }).add(() => this.loading.shift());
 
         this.loading.push(true);
@@ -90,11 +110,12 @@ export class SubmitComponent implements OnInit, OnDestroy {
             if (!v) {
               return;
             }
+            titleService.setTitle(`contribute :: ${v.id}`);
+
             this.chunk = v;
             this.audioPlayerURL = `https://storage.googleapis.com/warmans-transcription-audio/${v.id}.mp3`;
-            this.transcriptEdit = this.getBackup() ? this.getBackup() : this.chunk.raw;
-            titleService.setTitle(`contribute :: ${v.id}`);
-            this.contentUpdated.next(this.transcriptEdit);
+
+            this.setInitialTranscript(this.chunk.raw);
           }
         ).add(() => this.loading.shift());
       }
@@ -116,39 +137,44 @@ export class SubmitComponent implements OnInit, OnDestroy {
     this.contentUpdated.pipe(takeUntil(this.$destroy), distinctUntilChanged(), debounceTime(100)).subscribe((v) => {
       this.backupContent(v);
       this.updatePreview(v);
-      this.transcriptEdit = v;
+      this.updatedTranscript = v;
     });
+  }
+
+  setContribution(res: RsksearchChunkContribution) {
+    this.titleService.setTitle(`contribute :: ${res.chunkId} :: ${res.id}`);
+
+    this.contribution = res;
+    this.setInitialTranscript(res.transcript);
+
+    this.userCanEdit = true;
+    if (this.sessionService.getClaims()?.author_id !== res.authorId) {
+      this.userCanEdit = false;
+    }
+    if (res.state !== 'pending') {
+      this.userCanEdit = false;
+    }
+  }
+
+  setInitialTranscript(text: string) {
+    this.initialTranscript = this.getBackup() ? this.getBackup() : text;
+    this.contentUpdated.next(this.initialTranscript);
+    this.firstOffset = getFirstOffset(this.initialTranscript);
+  }
+
+  setUpdatedTranscript(text: string) {
+    this.contentUpdated.next(text);
   }
 
   updatePreview(content: string) {
-    this.dialogPreview = [];
-    content.split('\n').forEach((line) => {
-
-      if (line.match(/^#OFFSET:.*/g)) {
-        return;
-      }
-      if (line.match(/^#[/]?SYN.*/g)) {
-        return;
-      }
-
-      const parts = line.split(':');
-      if (parts.length < 2) {
-        this.dialogPreview.push({ type: 'unknown', content: parts.join(':') });
-      } else {
-        const actor = parts.shift();
-        this.dialogPreview.push({ type: actor == 'song' ? 'song' : 'chat', actor: actor, content: parts.join(':') });
-      }
-    });
-  }
-
-  handleTranscriptUpdated(newContent: string) {
-    this.contentUpdated.next(newContent);
+    this.parsedTscript = parseTranscript(content);
   }
 
   backupContent(text: string) {
     if (!this.chunk) {
       return;
     }
+    console.log('backup');
     localStorage.setItem(`chunk-backup-${(this.contribution) ? this.contribution.id : this.chunk.id}`, text);
   }
 
@@ -158,8 +184,21 @@ export class SubmitComponent implements OnInit, OnDestroy {
 
   resetToRaw() {
     if (confirm('Really reset editor to raw raw transcript?')) {
-      this.transcriptEdit = this.contribution ? this.contribution.transcript : this.chunk.raw;
-      this.updatePreview(this.transcriptEdit);
+      this.initialTranscript = this.contribution ? this.contribution.transcript : this.chunk.raw;
+      this.updatePreview(this.initialTranscript);
+    }
+  }
+
+  toggleAutoseek() {
+    this.autoSeek = !this.autoSeek;
+    localStorage.setItem('pref-autoseek', this.autoSeek ? 'true' : 'false');
+  }
+
+  handleOffsetNavigate(offset: number) {
+    if (this.autoSeek) {
+      if (offset - this.firstOffset >= 0) {
+        this.audioPlayer.seek(offset - this.firstOffset);
+      }
     }
   }
 
@@ -168,9 +207,10 @@ export class SubmitComponent implements OnInit, OnDestroy {
       this.loading.push(true);
       this.apiClient.searchServiceCreateChunkContribution({
         chunkId: this.chunk.id,
-        body: { chunkId: this.chunk.id, transcript: this.transcriptEdit }
+        body: { chunkId: this.chunk.id, transcript: this.updatedTranscript }
       }).pipe(takeUntil(this.$destroy)).subscribe((res: RsksearchChunkContribution) => {
         this.backupContent(''); // clear backup so that the content always matches what was submitted.
+        this.alertService.success("SAVED");
         this.router.navigate(['/chunk', this.chunk.id, 'contrib', res.id]);
       }).add(() => this.loading.shift());
     } else {
@@ -178,10 +218,35 @@ export class SubmitComponent implements OnInit, OnDestroy {
       this.apiClient.searchServiceUpdateChunkContribution({
         chunkId: this.chunk.id,
         contributionId: this.contribution.id,
-        body: { chunkId: this.chunk.id, contributionId: this.contribution.id, transcript: this.transcriptEdit }
+        body: { chunkId: this.chunk.id, contributionId: this.contribution.id, transcript: this.updatedTranscript }
       }).pipe(takeUntil(this.$destroy)).subscribe((res) => {
-        this.handleTranscriptUpdated(res.transcript);
+        this.setContribution(res);
+        this.alertService.success("UPDATED");
       }).add(() => this.loading.shift());
     }
+  }
+
+  markComplete() {
+    this.loading.push(true);
+    this.apiClient.searchServiceRequestChunkContributionState({
+      chunkId: this.chunk.id,
+      contributionId: this.contribution.id,
+      body: { chunkId: this.chunk.id, contributionId: this.contribution.id, requestState: RequestChunkContributionStateRequestState.STATE_REQUEST_APPROVAL }
+    }).pipe(takeUntil(this.$destroy)).subscribe((res) => {
+      this.setContribution(res);
+      this.alertService.success("UPDATED");
+    }).add(() => this.loading.shift());
+  }
+
+  markIncomplete() {
+    this.loading.push(true);
+    this.apiClient.searchServiceRequestChunkContributionState({
+      chunkId: this.chunk.id,
+      contributionId: this.contribution.id,
+      body: { chunkId: this.chunk.id, contributionId: this.contribution.id, requestState: RequestChunkContributionStateRequestState.STATE_REQUEST_PENDING }
+    }).pipe(takeUntil(this.$destroy)).subscribe((res) => {
+      this.setContribution(res);
+      this.alertService.success("UPDATED");
+    }).add(() => this.loading.shift());
   }
 }

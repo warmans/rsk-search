@@ -175,9 +175,20 @@ func (s *Store) UpdateContribution(ctx context.Context, c *models.Contribution) 
 	}
 	_, err := s.tx.ExecContext(
 		ctx,
-		`UPDATE tscript_contribution SET transcription=$1 WHERE id=$2`,
-		c.ID,
+		`UPDATE tscript_contribution SET transcription=$1, state=$2 WHERE id=$3`,
 		c.Transcription,
+		c.State,
+		c.ID,
+	)
+	return err
+}
+
+func (s *Store) UpdateContributionState(ctx context.Context, id string, state models.ContributionState) error {
+	_, err := s.tx.ExecContext(
+		ctx,
+		`UPDATE tscript_contribution SET state=$1 WHERE id=$2`,
+		state,
+		id,
 	)
 	return err
 }

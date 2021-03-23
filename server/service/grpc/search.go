@@ -239,10 +239,9 @@ func (s *SearchService) UpdateChunkContribution(ctx context.Context, request *ap
 	if contrib.AuthorID != claims.AuthorID {
 		return nil, ErrPermissionDenied().Err()
 	}
-	if contrib.State != models.ContributionStatePending {
+	if contrib.State != models.ContributionStatePending && contrib.State != models.ContributionStateApprovalRequested {
 		return nil, ErrFailedPrecondition(fmt.Sprintf("Only pending contributions can be edited. Actual state was: %s", contrib.State)).Err()
 	}
-
 	lines, _, err := tscript.Import(bufio.NewScanner(bytes.NewBufferString(request.Transcript)))
 	if err != nil {
 		return nil, ErrInvalidRequestField("transcript", err.Error()).Err()
@@ -250,13 +249,14 @@ func (s *SearchService) UpdateChunkContribution(ctx context.Context, request *ap
 	if len(lines) == 0 {
 		return nil, ErrInvalidRequestField("transcript", "no valid lines parsed from transcript").Err()
 	}
-
 	err = s.persistentDB.WithStore(func(s *rw.Store) error {
-		return s.UpdateContribution(ctx, &models.Contribution{
+		mod := &models.Contribution{
 			ID:            contrib.ID,
 			AuthorID:      contrib.AuthorID,
 			Transcription: request.Transcript,
-		})
+			State:         contrib.State,
+		}
+		return s.UpdateContribution(ctx, mod)
 	})
 	if err != nil {
 		return nil, ErrFromStore(err, contrib.ID).Err()
@@ -265,6 +265,44 @@ func (s *SearchService) UpdateChunkContribution(ctx context.Context, request *ap
 	fmt.Print("TRANSCRIPT", request.Transcript)
 
 	contrib.Transcription = request.Transcript
+	return contrib.Proto(), nil
+}
+
+func (s *SearchService) RequestChunkContributionState(ctx context.Context, request *api.RequestChunkContributionStateRequest) (*api.ChunkContribution, error) {
+
+	claims, err := s.getClaims(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	var contrib *models.Contribution
+	err = s.persistentDB.WithStore(func(s *rw.Store) error {
+		var err error
+		contrib, err = s.GetContribution(ctx, request.ContributionId)
+		return err
+	})
+	if err != nil {
+		return nil, ErrFromStore(err, request.ContributionId).Err()
+	}
+	if contrib.AuthorID != claims.AuthorID {
+		return nil, ErrPermissionDenied().Err()
+	}
+	if contrib.State != models.ContributionStatePending && contrib.State != models.ContributionStateApprovalRequested {
+		return nil, ErrFailedPrecondition(fmt.Sprintf("Only pending contributions can be edited. Actual state was: %s", contrib.State)).Err()
+	}
+	// ensure state is updated in response & db
+	if request.RequestState == api.RequestChunkContributionStateRequest_STATE_REQUEST_APPROVAL {
+		contrib.State = models.ContributionStateApprovalRequested
+	}
+	if request.RequestState == api.RequestChunkContributionStateRequest_STATE_REQUEST_PENDING {
+		contrib.State = models.ContributionStatePending
+	}
+	err = s.persistentDB.WithStore(func(s *rw.Store) error {
+		return s.UpdateContributionState(ctx, contrib.ID, contrib.State)
+	})
+	if err != nil {
+		return nil, ErrFromStore(err, request.ContributionId).Err()
+	}
 	return contrib.Proto(), nil
 }
 

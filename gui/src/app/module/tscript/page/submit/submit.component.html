@@ -1,7 +1,8 @@
 <div class="container-fluid pt-3">
-  <div class="row">
+  <div class="row mb-3">
     <div class="col-8">
-      <div class="alert alert-warning" *ngIf="!userCanEdit">This contribution is not editable, either because you are
+      <div class="alert alert-warning" *ngIf="!userCanEdit && contribution.state !== 'request_approval'">
+        This contribution is not editable, either because you are
         not the owner or because is has already been accepted or rejected
       </div>
       <div class="alert alert-warning" *ngIf="!contribution && chunk?.numContributions > 0">
@@ -11,7 +12,7 @@
       <div class="card mb-3">
         <div class="card-body">
           <div class="audio-player">
-            <app-audio-player [src]="audioPlayerURL"></app-audio-player>
+            <app-audio-player [src]="audioPlayerURL" #audioPlayer></app-audio-player>
           </div>
         </div>
       </div>
@@ -21,8 +22,14 @@
         <div class="card-body">
           <div *ngIf="contribution.state == 'pending'">
             <div class="mb-3">State: <span class="text-info">{{contribution.state}}</span></div>
-            This means that the contribution has not yet been reviewed and can still be edited if you are the
-            owner.
+            <p>This means that the contribution has not yet been reviewed and can still be edited if you are the
+            owner. Clicking the button below will mark it as being ready to be merged.</p>
+            <button class="btn btn-success mt-2" (click)="markComplete()">Mark as complete <i class="bi-check"></i></button>
+          </div>
+          <div *ngIf="contribution.state == 'request_approval'">
+            <div class="mb-3">State: <span class="text-info">{{contribution.state}}</span></div>
+            <p>This means your contribution will now be reviewed and merged (hopefully!).</p>
+            <button class="btn btn-warning mt-2" (click)="markIncomplete()">Revert to incomplete <i class="bi-pen"></i></button>
           </div>
           <div *ngIf="contribution.state == 'approved'">
             <div class="mb-3">State: <span class="text-success">{{contribution.state}}</span></div>
@@ -43,23 +50,30 @@
         <div class="card-header">
           <span class="float-right">
             <button class="btn btn-sm" (click)="showHelp = !showHelp"
-                    [ngClass]="{'btn-outline-primary': !showHelp, 'btn-primary': showHelp}">
+                    [ngClass]="{'btn-outline-primary': !showHelp, 'btn-primary': showHelp}" title="Toggle help text">
               <span *ngIf="!showHelp">I am confused</span>
               <span *ngIf="showHelp">I am satisfied</span>
             </button>
           </span>
           <span class="float-right">
-            <button class="btn btn-danger btn-sm mr-3" *ngIf="userCanEdit" (click)="resetToRaw()">Reset</button>
+            <button class="btn btn-danger btn-sm mr-3" *ngIf="userCanEdit" (click)="resetToRaw()" title="revert text to chunk original">Reset</button>
           </span>
+          <span class="float-right">
+            <button class="btn btn-sm mr-3" *ngIf="userCanEdit" (click)="toggleAutoseek()" [ngClass]="{'btn-outline-success': !autoSeek, 'btn-success': autoSeek}" title="Skip audio to offset when caret moves over line">Autoseek</button>
+          </span>
+
           <span *ngIf="!contribution">Create </span>
           <span *ngIf="contribution">Update </span>
           Transcript Chunk
         </div>
         <div [hidden]="showHelp">
           <div class="card-body pr-0 pb-0">
-            <app-editor [textContent]="transcriptEdit" (contentUpdated)="handleTranscriptUpdated($event)"></app-editor>
+            <app-editor [textContent]="initialTranscript" (textContentChange)="setUpdatedTranscript($event)" (atOffsetMarker)="handleOffsetNavigate($event)"></app-editor>
           </div>
           <div class="card-footer text-right" *ngIf="authenticated && userCanEdit">
+            <div class="float-left">
+              <i class="bi-keyboard-fill"></i> Press <span class="badge">INSERT</span> key to toggle audio playback. <span class="badge">SCROLL LOCK</span>/<span class="badge">PAUSE</span> keys fast-forward/rewind.
+            </div>
             <button class="btn btn-success" (click)="submit()">
               <span *ngIf="!contribution">Create</span>
               <span *ngIf="contribution">Update</span>
@@ -71,24 +85,28 @@
           <p>What you are looking at is a auto-transcription of about 3 minutes of audio. Some parts may be correct but
             others will be wrong. Mixed in with the audio
             are <span class="code">#OFFSET</span> markers. These indicate the number of seconds elapsed since the start
-            of the episode, and should not be
-            edited or added.</p>
+            of the episode, and <strong>should not be edited or added</strong>.</p>
           <p>The objective is to:</p>
           <ol>
             <li>Split each line so that it accurately reflects the audio (including a prefix to indicate who is speaking
               e.g. <span class="code">karl:</span>)
             </li>
             <li>Correct the text of any line was not transcribed accurately.</li>
-            <li>Add additional non-speeech information e.g. <span class="code">ricky laughs</span></li>
+            <li>Add additional non-speech information e.g. <span class="code">ricky laughs</span> (use actor <span class="code">none:</span> for these lines)</li>
           </ol>
 
           <p>IMPORTANT: Try and keep the <span class="code">#OFFSET</span> tags as close to the
             following word as possible. If the offsets are accurate it would allow the specific audio
             to be available for each ~30 second segment.</p>
 
+          <h4 class="mb-2 mt-4">Audio Navigation</h4>
+          <p>If the Autoseek button is enabled the audio will skip to an <span class="code">#OFFSET</span> if your caret moves over it.</p>
+          <p>Additionally pressing the <span class="badge">INSERT</span> key will toggle the audio (play/pause),  <span class="badge">SCROLL LOCK</span> will rewind 3 seconds and the <span class="badge">PAUSE</span> key will fast forward 3 seconds.</p>
+
           <h4 class="mb-2 mt-4">Songs</h4>
           <p>To indicate a song was played you can use the speaker prefix <span class="code">song:</span> for example
             <span class="code">song: Feeder - Come Back Around</span></p>
+          <p>The format should be <span class="code">ARTIST - SONG</span></p>
 
           <h4 class="mb-2 mt-4">Summarising multiple-lines</h4>
           <p>There is another special <span class="code">#SYN:</span> tag, similar to <span class="code">#OFFSET</span>
@@ -111,15 +129,14 @@ karl: I used to have a rifle as a kid...
           <p>Once a chunk has been submitted it will be reviewed and if it is valid and mostly correct it will be merged
             into
             the raw data file for the episode. This will then become visible in the corresponding episode page after the
-            next release.</p>
+            next release. I will attempt to propagate the transcripts back to Pilikipedia.</p>
 
           <h4 class="mb-2 mt-4">Who owns my work?</h4>
           <p>Once the content has been merged and becomes available in the github repository I consider it fair game
             for anyone that wishes to copy, modify or share it. I do not claim any kind of ownership over this content
             and am
             providing services to maintain it for my own enjoyment, not as a way to benefit financially or otherwise
-            from
-            the content.</p>
+            from the content.</p>
 
           <h4 class="mb-2 mt-4">Will I be attributed for my contribution?</h4>
           <p>Yes I will try and maintain an accurate list of contributors.</p>
@@ -137,7 +154,14 @@ karl: I used to have a rifle as a kid...
           Preview
         </div>
         <div class="card-body">
-          <app-transcript [transcript]="dialogPreview"></app-transcript>
+          <div *ngIf="parsedTscript?.synopses" class="mb-3">
+            <div class="font-weight-bold mb-2">Summary</div>
+            <ul>
+              <li *ngFor="let sy of parsedTscript?.synopses">{{sy.description}}</li>
+            </ul>
+            <hr>
+          </div>
+          <app-transcript [transcript]="parsedTscript?.dialog"></app-transcript>
         </div>
       </div>
     </div>

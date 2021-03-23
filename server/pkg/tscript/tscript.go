@@ -74,7 +74,9 @@ func Import(scanner *bufio.Scanner) ([]models.Dialog, []models.Synopsis, error) 
 			di.Type = models.DialogTypeSong
 		} else {
 			di.Type = models.DialogTypeChat
-			di.Actor = actor
+			if actor != "none" {
+				di.Actor = actor
+			}
 		}
 		di.Content = strings.TrimSpace(parts[1])
 

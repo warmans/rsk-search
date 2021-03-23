@@ -1,8 +1,8 @@
 /* tslint:disable */
 import {
-  RsksearchChunkContribution,
+  RsksearchShortChunkContribution,
 } from '.';
 
 export interface RsksearchChunkContributionList {
-  contributions?: RsksearchChunkContribution[];
+  contributions?: RsksearchShortChunkContribution[];
 }

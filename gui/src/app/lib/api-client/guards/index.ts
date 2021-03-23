@@ -27,6 +27,14 @@ export function isFieldMetaKind(arg: any): arg is models.FieldMetaKind {
   ;
   }
 
+export function isRequestChunkContributionStateRequestState(arg: any): arg is models.RequestChunkContributionStateRequestState {
+  return false
+   || arg === models.RequestChunkContributionStateRequestState.STATE_UNDEFINED
+   || arg === models.RequestChunkContributionStateRequestState.STATE_REQUEST_APPROVAL
+   || arg === models.RequestChunkContributionStateRequestState.STATE_REQUEST_PENDING
+  ;
+  }
+
 export function isRsksearchChunkContribution(arg: any): arg is models.RsksearchChunkContribution {
   return (
   arg != null &&
@@ -50,8 +58,8 @@ export function isRsksearchChunkContributionList(arg: any): arg is models.Rsksea
   return (
   arg != null &&
   typeof arg === 'object' &&
-    // contributions?: RsksearchChunkContribution[]
-    ( typeof arg.contributions === 'undefined' || (Array.isArray(arg.contributions) && arg.contributions.every((item: unknown) => isRsksearchChunkContribution(item))) ) &&
+    // contributions?: RsksearchShortChunkContribution[]
+    ( typeof arg.contributions === 'undefined' || (Array.isArray(arg.contributions) && arg.contributions.every((item: unknown) => isRsksearchShortChunkContribution(item))) ) &&
 
   true
   );
@@ -139,6 +147,8 @@ export function isRsksearchEpisode(arg: any): arg is models.RsksearchEpisode {
     ( typeof arg.releaseDate === 'undefined' || typeof arg.releaseDate === 'string' ) &&
     // series?: number
     ( typeof arg.series === 'undefined' || typeof arg.series === 'number' ) &&
+    // synopses?: RsksearchSynopsis[]
+    ( typeof arg.synopses === 'undefined' || (Array.isArray(arg.synopses) && arg.synopses.every((item: unknown) => isRsksearchSynopsis(item))) ) &&
     // tags?: RsksearchTag[]
     ( typeof arg.tags === 'undefined' || (Array.isArray(arg.tags) && arg.tags.every((item: unknown) => isRsksearchTag(item))) ) &&
     // transcript?: RsksearchDialog[]
@@ -218,6 +228,21 @@ export function isRsksearchRedditAuthURL(arg: any): arg is models.RsksearchReddi
   );
   }
 
+export function isRsksearchRequestChunkContributionStateRequest(arg: any): arg is models.RsksearchRequestChunkContributionStateRequest {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // chunkId?: string
+    ( typeof arg.chunkId === 'undefined' || typeof arg.chunkId === 'string' ) &&
+    // contributionId?: string
+    ( typeof arg.contributionId === 'undefined' || typeof arg.contributionId === 'string' ) &&
+    // requestState?: RequestChunkContributionStateRequestState
+    ( typeof arg.requestState === 'undefined' || isRequestChunkContributionStateRequestState(arg.requestState) ) &&
+
+  true
+  );
+  }
+
 export function isRskSearchResult(arg: any): arg is models.RskSearchResult {
   return (
   arg != null &&
@@ -239,6 +264,23 @@ export function isRskSearchResultList(arg: any): arg is models.RskSearchResultLi
     ( typeof arg.resultCount === 'undefined' || typeof arg.resultCount === 'number' ) &&
     // results?: RskSearchResult[]
     ( typeof arg.results === 'undefined' || (Array.isArray(arg.results) && arg.results.every((item: unknown) => isRskSearchResult(item))) ) &&
+
+  true
+  );
+  }
+
+export function isRsksearchShortChunkContribution(arg: any): arg is models.RsksearchShortChunkContribution {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // authorId?: string
+    ( typeof arg.authorId === 'undefined' || typeof arg.authorId === 'string' ) &&
+    // chunkId?: string
+    ( typeof arg.chunkId === 'undefined' || typeof arg.chunkId === 'string' ) &&
+    // id?: string
+    ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
+    // state?: string
+    ( typeof arg.state === 'undefined' || typeof arg.state === 'string' ) &&
 
   true
   );
@@ -273,6 +315,21 @@ export function isRsksearchSubmitDialogCorrectionRequest(arg: any): arg is model
     ( typeof arg.episodeId === 'undefined' || typeof arg.episodeId === 'string' ) &&
     // id?: string
     ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
+
+  true
+  );
+  }
+
+export function isRsksearchSynopsis(arg: any): arg is models.RsksearchSynopsis {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // description?: string
+    ( typeof arg.description === 'undefined' || typeof arg.description === 'string' ) &&
+    // endPos?: string
+    ( typeof arg.endPos === 'undefined' || typeof arg.endPos === 'string' ) &&
+    // startPos?: string
+    ( typeof arg.startPos === 'undefined' || typeof arg.startPos === 'string' ) &&
 
   true
   );

@@ -7,6 +7,8 @@ import { RouterModule } from '@angular/router';
 import { RandomComponent } from './page/random/random.component';
 import { AuthorContributionsComponent } from './page/author-contributions/author-contributions.component';
 import { RedditLoginComponent } from './component/reddit-login/reddit-login.component';
+import { ContenteditableModule } from '@ng-stack/contenteditable';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -14,7 +16,9 @@ import { RedditLoginComponent } from './component/reddit-login/reddit-login.comp
   imports: [
     CommonModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    ContenteditableModule,
+    ReactiveFormsModule,
   ],
   exports: [SubmitComponent]
 })

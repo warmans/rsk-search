@@ -5,10 +5,13 @@ import (
 	"time"
 )
 
+type ContributionState string
+
 const (
-	ContributionStatePending  = "pending"
-	ContributionStateApproved = "approved"
-	ContributionStateRejected = "rejected"
+	ContributionStatePending           ContributionState = "pending"
+	ContributionStateApprovalRequested ContributionState = "request_approval"
+	ContributionStateApproved          ContributionState = "approved"
+	ContributionStateRejected          ContributionState = "rejected"
 )
 
 const EndSecondEOF = -1
@@ -66,7 +69,7 @@ type Contribution struct {
 	AuthorID      string
 	ChunkID       string
 	Transcription string
-	State         string
+	State         ContributionState
 }
 
 func (c *Contribution) Proto() *api.ChunkContribution {
@@ -78,7 +81,7 @@ func (c *Contribution) Proto() *api.ChunkContribution {
 		ChunkId:    c.ChunkID,
 		Transcript: c.Transcription,
 		AuthorId:   c.AuthorID,
-		State:      c.State,
+		State:      string(c.State),
 	}
 }
 func (c *Contribution) ShortProto() *api.ShortChunkContribution {
@@ -89,7 +92,7 @@ func (c *Contribution) ShortProto() *api.ShortChunkContribution {
 		Id:       c.ID,
 		ChunkId:  c.ChunkID,
 		AuthorId: c.AuthorID,
-		State:    c.State,
+		State:    string(c.State),
 	}
 }
 
@@ -100,4 +103,3 @@ type ContributionActivity struct {
 	ApprovedAt  *time.Time
 	RejectedAt  *time.Time
 }
-

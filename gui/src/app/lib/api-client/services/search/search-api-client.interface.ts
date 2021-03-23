@@ -119,6 +119,18 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  searchServiceRequestChunkContributionState(
+    args: {
+      chunkId: string,
+      contributionId: string,
+      body: models.RsksearchRequestChunkContributionStateRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchChunkContribution>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   searchServiceGetTscriptChunk(
     args: {
       id: string,

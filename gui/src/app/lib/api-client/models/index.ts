@@ -1,6 +1,7 @@
 /* tslint:disable */
 
 export { FieldMetaKind } from './field-meta-kind.enum';
+export { RequestChunkContributionStateRequestState } from './request-chunk-contribution-state-request-state.enum';
 export { RsksearchChunkContribution } from './rsksearch-chunk-contribution.model';
 export { RsksearchChunkContributionList } from './rsksearch-chunk-contribution-list.model';
 export { RsksearchChunkStats } from './rsksearch-chunk-stats.model';
@@ -14,10 +15,13 @@ export { RsksearchFieldValue } from './rsksearch-field-value.model';
 export { RsksearchFieldValueList } from './rsksearch-field-value-list.model';
 export { RskSearchMetadata } from './rsk-search-metadata.model';
 export { RsksearchRedditAuthURL } from './rsksearch-reddit-auth-url.model';
+export { RsksearchRequestChunkContributionStateRequest } from './rsksearch-request-chunk-contribution-state-request.model';
 export { RskSearchResult } from './rsk-search-result.model';
 export { RskSearchResultList } from './rsk-search-result-list.model';
+export { RsksearchShortChunkContribution } from './rsksearch-short-chunk-contribution.model';
 export { RsksearchShortEpisode } from './rsksearch-short-episode.model';
 export { RsksearchSubmitDialogCorrectionRequest } from './rsksearch-submit-dialog-correction-request.model';
+export { RsksearchSynopsis } from './rsksearch-synopsis.model';
 export { RsksearchTag } from './rsksearch-tag.model';
 export { RsksearchTscriptChunk } from './rsksearch-tscript-chunk.model';
 export { RsksearchUpdateChunkContributionRequest } from './rsksearch-update-chunk-contribution-request.model';

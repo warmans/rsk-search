@@ -1,30 +1,43 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  Renderer2,
+  ViewChild
+} from '@angular/core';
+import { getOffsetValueFromLine, isOffsetLine } from '../../../shared/lib/tscript';
 
 @Component({
   selector: 'app-editor',
   templateUrl: './editor.component.html',
   styleUrls: ['./editor.component.scss']
 })
-export class EditorComponent implements OnInit {
+export class EditorComponent implements OnInit, OnDestroy {
 
-  _textContent: string = '';
 
   @Input()
   set textContent(f: string) {
-    this._textContent = f;
-    this.updateInnerHtml();
+    this.updateInnerHtml(f);
   }
 
   get textContent(): string {
-    return this._textContent;
+    return this.editableContent.nativeElement.innerText;
   }
+
+  @Output()
+  textContentChange: EventEmitter<string> = new EventEmitter<string>();
+
+  @Output()
+  atOffsetMarker: EventEmitter<number> = new EventEmitter<number>();
 
   @ViewChild('textContainer')
   editableContent: ElementRef;
 
-  @Output()
-  contentUpdated: EventEmitter<string> = new EventEmitter<string>();
+  destory$: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private renderer: Renderer2) {
   }
@@ -32,32 +45,54 @@ export class EditorComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  updateInnerHtml() {
-    if (!this._textContent) {
+  onKeypress() {
+    this.textContentChange.next(this.editableContent.nativeElement.innerText);
+    this.getOffsetOrNull();
+  }
+
+  ngOnDestroy(): void {
+    this.destory$.next(true);
+    this.destory$.complete();
+  }
+
+  updateInnerHtml(value: string) {
+    if (!value) {
       return;
     }
+    this.editableContent.nativeElement.innerText = '';
 
-    this.editableContent.nativeElement.innerText = "";
-
-    const lines = this._textContent.split('\n');
+    const lines = value.split('\n');
 
     lines.forEach((line) => {
-      if (line.match(/^#OFFSET:.*/g)){
-        const el = this.renderer.createElement("span");
+      if (line.match(/^#OFFSET:.*/g)) {
+        const el = this.renderer.createElement('span');
         el.innerText = `${line}\n`;
         el.className = 'do-not-edit';
-
         this.renderer.appendChild(this.editableContent.nativeElement, el);
       } else {
-        const el = this.renderer.createElement("span");
+        const el = this.renderer.createElement('span');
         el.innerText = `${line}\n`;
         this.renderer.appendChild(this.editableContent.nativeElement, el);
       }
     });
   }
 
-  onKeyup(event: KeyboardEvent) {
-    this.contentUpdated.next(this.editableContent.nativeElement.innerText);
+  private getOffsetOrNull() {
+    const caretFocus = this.getCaretFocus();
+    if (isOffsetLine(caretFocus.line)) {
+      this.atOffsetMarker.next(getOffsetValueFromLine(caretFocus.line));
+    }
   }
 
+
+  getCaretFocus(): CaretFocus {
+    let sel = document.getSelection();
+    let nd = sel.anchorNode;
+    return new CaretFocus(nd.textContent, sel.focusOffset);
+  }
+}
+
+class CaretFocus {
+  constructor(public line: string, public offset: number) {
+  }
 }

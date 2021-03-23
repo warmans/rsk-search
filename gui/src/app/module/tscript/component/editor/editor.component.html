@@ -1,1 +1,7 @@
-<div contenteditable="true" class="editor" #textContainer (keyup)="onKeyup($event)"></div>
+<div
+  contenteditable="true"
+  unformattedPaste
+  class="editor"
+  (keyup)="onKeypress()"
+  #textContainer>
+</div>

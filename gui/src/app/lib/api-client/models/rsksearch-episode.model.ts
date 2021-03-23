@@ -1,6 +1,7 @@
 /* tslint:disable */
 import {
   RsksearchDialog,
+  RsksearchSynopsis,
   RsksearchTag,
 } from '.';
 
@@ -11,6 +12,7 @@ export interface RsksearchEpisode {
   publication?: string;
   releaseDate?: string;
   series?: number;
+  synopses?: RsksearchSynopsis[];
   tags?: RsksearchTag[];
   transcript?: RsksearchDialog[];
 }

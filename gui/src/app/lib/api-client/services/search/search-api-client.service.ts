@@ -255,6 +255,26 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  searchServiceRequestChunkContributionState(
+    args: {
+      chunkId: string,
+      contributionId: string,
+      body: models.RsksearchRequestChunkContributionStateRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchChunkContribution> {
+    const path = `/api/tscript/chunk/${args.chunkId}/contrib/${args.contributionId}/state`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<models.RsksearchChunkContribution>('PATCH', path, options, JSON.stringify(args.body));
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   searchServiceGetTscriptChunk(
     args: {
       id: string,

@@ -33,6 +33,7 @@ type SearchServiceClient interface {
 	GetChunkContribution(ctx context.Context, in *GetChunkContributionRequest, opts ...grpc.CallOption) (*ChunkContribution, error)
 	CreateChunkContribution(ctx context.Context, in *CreateChunkContributionRequest, opts ...grpc.CallOption) (*ChunkContribution, error)
 	UpdateChunkContribution(ctx context.Context, in *UpdateChunkContributionRequest, opts ...grpc.CallOption) (*ChunkContribution, error)
+	RequestChunkContributionState(ctx context.Context, in *RequestChunkContributionStateRequest, opts ...grpc.CallOption) (*ChunkContribution, error)
 	SubmitDialogCorrection(ctx context.Context, in *SubmitDialogCorrectionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	GetRedditAuthURL(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*RedditAuthURL, error)
 }
@@ -153,6 +154,15 @@ func (c *searchServiceClient) UpdateChunkContribution(ctx context.Context, in *U
 	return out, nil
 }
 
+func (c *searchServiceClient) RequestChunkContributionState(ctx context.Context, in *RequestChunkContributionStateRequest, opts ...grpc.CallOption) (*ChunkContribution, error) {
+	out := new(ChunkContribution)
+	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/RequestChunkContributionState", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *searchServiceClient) SubmitDialogCorrection(ctx context.Context, in *SubmitDialogCorrectionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/SubmitDialogCorrection", in, out, opts...)
@@ -189,6 +199,7 @@ type SearchServiceServer interface {
 	GetChunkContribution(context.Context, *GetChunkContributionRequest) (*ChunkContribution, error)
 	CreateChunkContribution(context.Context, *CreateChunkContributionRequest) (*ChunkContribution, error)
 	UpdateChunkContribution(context.Context, *UpdateChunkContributionRequest) (*ChunkContribution, error)
+	RequestChunkContributionState(context.Context, *RequestChunkContributionStateRequest) (*ChunkContribution, error)
 	SubmitDialogCorrection(context.Context, *SubmitDialogCorrectionRequest) (*emptypb.Empty, error)
 	GetRedditAuthURL(context.Context, *emptypb.Empty) (*RedditAuthURL, error)
 }
@@ -232,6 +243,9 @@ func (UnimplementedSearchServiceServer) CreateChunkContribution(context.Context,
 }
 func (UnimplementedSearchServiceServer) UpdateChunkContribution(context.Context, *UpdateChunkContributionRequest) (*ChunkContribution, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateChunkContribution not implemented")
+}
+func (UnimplementedSearchServiceServer) RequestChunkContributionState(context.Context, *RequestChunkContributionStateRequest) (*ChunkContribution, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RequestChunkContributionState not implemented")
 }
 func (UnimplementedSearchServiceServer) SubmitDialogCorrection(context.Context, *SubmitDialogCorrectionRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SubmitDialogCorrection not implemented")
@@ -467,6 +481,24 @@ func _SearchService_UpdateChunkContribution_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SearchService_RequestChunkContributionState_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RequestChunkContributionStateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SearchServiceServer).RequestChunkContributionState(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/rsksearch.SearchService/RequestChunkContributionState",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SearchServiceServer).RequestChunkContributionState(ctx, req.(*RequestChunkContributionStateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _SearchService_SubmitDialogCorrection_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SubmitDialogCorrectionRequest)
 	if err := dec(in); err != nil {
@@ -557,6 +589,10 @@ var SearchService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateChunkContribution",
 			Handler:    _SearchService_UpdateChunkContribution_Handler,
+		},
+		{
+			MethodName: "RequestChunkContributionState",
+			Handler:    _SearchService_RequestChunkContributionState_Handler,
 		},
 		{
 			MethodName: "SubmitDialogCorrection",

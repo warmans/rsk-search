@@ -8,12 +8,12 @@ import (
 	"github.com/warmans/rsk-search/pkg/oauth"
 	"github.com/warmans/rsk-search/pkg/search"
 	"github.com/warmans/rsk-search/pkg/server"
-	"github.com/warmans/rsk-search/pkg/service/config"
-	"github.com/warmans/rsk-search/pkg/service/grpc"
-	"github.com/warmans/rsk-search/pkg/service/http"
 	"github.com/warmans/rsk-search/pkg/store/common"
 	"github.com/warmans/rsk-search/pkg/store/ro"
 	"github.com/warmans/rsk-search/pkg/store/rw"
+	"github.com/warmans/rsk-search/service/config"
+	"github.com/warmans/rsk-search/service/grpc"
+	"github.com/warmans/rsk-search/service/http"
 	"go.uber.org/zap"
 )
 

@@ -15,7 +15,10 @@
   background-color: #fff;
 
   .do-not-edit {
-    background-color: $code;
+    background-color: lighten($pink, 40%);
+    border-top: 1px dashed $pink;
+    border-bottom: 1px dashed $pink;
+
   }
 
   span {

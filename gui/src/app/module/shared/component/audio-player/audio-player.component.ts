@@ -27,7 +27,7 @@ export class AudioPlayerComponent implements AfterViewInit {
 
   public ngAfterViewInit() {
     if (!this.audioPlayerEl?.nativeElement) {
-      return
+      return;
     }
     this.audio = this.audioPlayerEl.nativeElement;
     if (this.audio) {
@@ -36,29 +36,40 @@ export class AudioPlayerComponent implements AfterViewInit {
     }
   }
 
-  public pause(): void {
+  public pause(withOffset?: number): void {
     if (this.audio) {
-      this.audio.pause();
-      this.audioStateLabel = 'Paused';
-    }
-  }
-
-  public get paused(): boolean {
-    if (this.audio) {
-      return this.audio.paused;
-    } else {
-      return true;
-    }
-  }
-
-  public play(): void {
-    if (this.audio) {
-      if (this.audio.readyState >= 2) {
-        this.audio.play();
-        this.audioStateLabel = 'Playing...';
+      if (withOffset !== undefined) {
+        this.audio.currentTime = this.audio.currentTime + withOffset > 0 ? this.audio.currentTime + withOffset : 0;
       }
+      this.audio.pause();
     }
   }
 
+  public play(withOffset?: number): void {
+    if (this.audio && this.audio.readyState >= 2) {
+        if (withOffset !== undefined) {
+            this.audio.currentTime = this.audio.currentTime + withOffset > 0 ? this.audio.currentTime + withOffset : 0;
+        }
+        this.audio.play();
+    }
+  }
+
+  public toggle(withOffset?: number) {
+    if (this.playing()) {
+      this.pause();
+      return
+    }
+    this.play(withOffset);
+  }
+
+  public seek(time: number) {
+    if (this.audio) {
+      this.audio.currentTime = time;
+    }
+  }
+
+  public playing(): boolean {
+    return !!(this.audio.currentTime > 0 && !this.audio.paused && !this.audio.ended && this.audio.readyState > 2)
+  }
 
 }

@@ -395,6 +395,51 @@
         ]
       }
     },
+    "/api/tscript/chunk/{chunkId}/contrib/{contributionId}/state": {
+      "patch": {
+        "summary": "request the contribution state be changed.",
+        "operationId": "SearchService_RequestChunkContributionState",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rsksearchChunkContribution"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "chunkId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "contributionId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/rsksearchRequestChunkContributionStateRequest"
+            }
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      }
+    },
     "/api/tscript/chunk/{id}": {
       "get": {
         "summary": "Gets a specific transcript chunk to be completed.",
@@ -501,6 +546,15 @@
         "DATE"
       ],
       "default": "UNKNOWN"
+    },
+    "RequestChunkContributionStateRequestState": {
+      "type": "string",
+      "enum": [
+        "STATE_UNDEFINED",
+        "STATE_REQUEST_APPROVAL",
+        "STATE_REQUEST_PENDING"
+      ],
+      "default": "STATE_UNDEFINED"
     },
     "protobufAny": {
       "type": "object",
@@ -678,6 +732,12 @@
         },
         "releaseDate": {
           "type": "string"
+        },
+        "synopses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rsksearchSynopsis"
+          }
         }
       }
     },
@@ -731,6 +791,20 @@
       "properties": {
         "url": {
           "type": "string"
+        }
+      }
+    },
+    "rsksearchRequestChunkContributionStateRequest": {
+      "type": "object",
+      "properties": {
+        "chunkId": {
+          "type": "string"
+        },
+        "contributionId": {
+          "type": "string"
+        },
+        "requestState": {
+          "$ref": "#/definitions/RequestChunkContributionStateRequestState"
         }
       }
     },
@@ -824,6 +898,22 @@
         },
         "correction": {
           "type": "string"
+        }
+      }
+    },
+    "rsksearchSynopsis": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "startPos": {
+          "type": "string",
+          "format": "int64"
+        },
+        "endPos": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },
