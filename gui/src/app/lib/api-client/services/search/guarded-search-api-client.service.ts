@@ -87,17 +87,6 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
       .pipe(tap((res: any) => guards.isRsksearchChunkContributionList(res) || console.error(`TypeGuard for response 'RsksearchChunkContributionList' caught inconsistency.`, res)));
   }
 
-  searchServiceListChunkContributions(
-    args: {
-      chunkId: string,
-      page?: number,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchChunkContributionList> {
-    return super.searchServiceListChunkContributions(args, requestHttpOptions)
-      .pipe(tap((res: any) => guards.isRsksearchChunkContributionList(res) || console.error(`TypeGuard for response 'RsksearchChunkContributionList' caught inconsistency.`, res)));
-  }
-
   searchServiceCreateChunkContribution(
     args: {
       chunkId: string,
@@ -159,6 +148,17 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
   ): Observable<models.RsksearchChunkStats> {
     return super.searchServiceGetTscriptChunkStats(requestHttpOptions)
       .pipe(tap((res: any) => guards.isRsksearchChunkStats(res) || console.error(`TypeGuard for response 'RsksearchChunkStats' caught inconsistency.`, res)));
+  }
+
+  searchServiceListTscriptChunkContributions(
+    args: {
+      tscriptId: string,
+      page?: number,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchTscriptChunkContributionList> {
+    return super.searchServiceListTscriptChunkContributions(args, requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRsksearchTscriptChunkContributionList(res) || console.error(`TypeGuard for response 'RsksearchTscriptChunkContributionList' caught inconsistency.`, res)));
   }
 
   searchServiceListFieldValues(

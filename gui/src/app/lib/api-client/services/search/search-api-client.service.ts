@@ -175,28 +175,6 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceListChunkContributions(
-    args: {
-      chunkId: string,
-      page?: number,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchChunkContributionList> {
-    const path = `/api/tscript/chunk/${args.chunkId}/contrib`;
-    const options: APIHttpOptions = {
-      ...this.options,
-      ...requestHttpOptions,
-    };
-
-    if ('page' in args) {
-      options.params = options.params.set('page', String(args.page));
-    }
-    return this.sendRequest<models.RsksearchChunkContributionList>('GET', path, options);
-  }
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
   searchServiceCreateChunkContribution(
     args: {
       chunkId: string,
@@ -303,6 +281,28 @@ export class SearchAPIClient implements SearchAPIClientInterface {
     };
 
     return this.sendRequest<models.RsksearchChunkStats>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  searchServiceListTscriptChunkContributions(
+    args: {
+      tscriptId: string,
+      page?: number,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchTscriptChunkContributionList> {
+    const path = `/api/tscript/${args.tscriptId}/contrib`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    if ('page' in args) {
+      options.params = options.params.set('page', String(args.page));
+    }
+    return this.sendRequest<models.RsksearchTscriptChunkContributionList>('GET', path, options);
   }
 
   /**

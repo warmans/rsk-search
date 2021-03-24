@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   Component,
   ElementRef,
   EventEmitter,
@@ -16,17 +17,27 @@ import { getOffsetValueFromLine, isOffsetLine } from '../../../shared/lib/tscrip
   templateUrl: './editor.component.html',
   styleUrls: ['./editor.component.scss']
 })
-export class EditorComponent implements OnInit, OnDestroy {
+export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
 
+  _textContent = '';
 
   @Input()
   set textContent(f: string) {
-    this.updateInnerHtml(f);
+    this._textContent = f;
+    if (this.editableContent) {
+      this.updateInnerHtml(this._textContent);
+    }
   }
 
   get textContent(): string {
-    return this.editableContent.nativeElement.innerText;
+    if (this.editableContent) {
+      return this.editableContent.nativeElement.innerText;
+    }
+    return this._textContent;
   }
+
+  @Input()
+  readonly: boolean = false;
 
   @Output()
   textContentChange: EventEmitter<string> = new EventEmitter<string>();
@@ -47,7 +58,7 @@ export class EditorComponent implements OnInit, OnDestroy {
 
   onKeypress() {
     this.textContentChange.next(this.editableContent.nativeElement.innerText);
-    this.getOffsetOrNull();
+    this.tryEmitOffset();
   }
 
   ngOnDestroy(): void {
@@ -56,7 +67,7 @@ export class EditorComponent implements OnInit, OnDestroy {
   }
 
   updateInnerHtml(value: string) {
-    if (!value) {
+    if (!value || !this.editableContent) {
       return;
     }
     this.editableContent.nativeElement.innerText = '';
@@ -77,7 +88,7 @@ export class EditorComponent implements OnInit, OnDestroy {
     });
   }
 
-  private getOffsetOrNull() {
+  private tryEmitOffset() {
     const caretFocus = this.getCaretFocus();
     if (isOffsetLine(caretFocus.line)) {
       this.atOffsetMarker.next(getOffsetValueFromLine(caretFocus.line));
@@ -89,6 +100,10 @@ export class EditorComponent implements OnInit, OnDestroy {
     let sel = document.getSelection();
     let nd = sel.anchorNode;
     return new CaretFocus(nd.textContent, sel.focusOffset);
+  }
+
+  ngAfterViewInit(): void {
+    this.updateInnerHtml(this._textContent);
   }
 }
 

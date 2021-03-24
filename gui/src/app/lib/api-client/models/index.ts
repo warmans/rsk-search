@@ -1,10 +1,10 @@
 /* tslint:disable */
 
 export { FieldMetaKind } from './field-meta-kind.enum';
-export { RequestChunkContributionStateRequestState } from './request-chunk-contribution-state-request-state.enum';
 export { RsksearchChunkContribution } from './rsksearch-chunk-contribution.model';
 export { RsksearchChunkContributionList } from './rsksearch-chunk-contribution-list.model';
 export { RsksearchChunkStats } from './rsksearch-chunk-stats.model';
+export { RsksearchContributionState } from './rsksearch-contribution-state.enum';
 export { RsksearchCreateChunkContributionRequest } from './rsksearch-create-chunk-contribution-request.model';
 export { RsksearchDialog } from './rsksearch-dialog.model';
 export { RsksearchDialogResult } from './rsksearch-dialog-result.model';
@@ -24,4 +24,5 @@ export { RsksearchSubmitDialogCorrectionRequest } from './rsksearch-submit-dialo
 export { RsksearchSynopsis } from './rsksearch-synopsis.model';
 export { RsksearchTag } from './rsksearch-tag.model';
 export { RsksearchTscriptChunk } from './rsksearch-tscript-chunk.model';
+export { RsksearchTscriptChunkContributionList } from './rsksearch-tscript-chunk-contribution-list.model';
 export { RsksearchUpdateChunkContributionRequest } from './rsksearch-update-chunk-contribution-request.model';

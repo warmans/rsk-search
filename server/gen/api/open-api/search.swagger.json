@@ -241,42 +241,6 @@
       }
     },
     "/api/tscript/chunk/{chunkId}/contrib": {
-      "get": {
-        "summary": "lists any existing contributions for a chunk",
-        "operationId": "SearchService_ListChunkContributions",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/rsksearchChunkContributionList"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "chunkId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          }
-        ],
-        "tags": [
-          "search"
-        ]
-      },
       "patch": {
         "summary": "Submit a transcript new chunk that has been completed.",
         "operationId": "SearchService_CreateChunkContribution",
@@ -494,6 +458,44 @@
         ]
       }
     },
+    "/api/tscript/{tscriptId}/contrib": {
+      "get": {
+        "summary": "lists contributions for a single episode",
+        "operationId": "SearchService_ListTscriptChunkContributions",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rsksearchTscriptChunkContributionList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "tscriptId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      }
+    },
     "/api/values/{field}": {
       "get": {
         "summary": "Get a list of values for the given keyword field",
@@ -547,15 +549,6 @@
       ],
       "default": "UNKNOWN"
     },
-    "RequestChunkContributionStateRequestState": {
-      "type": "string",
-      "enum": [
-        "STATE_UNDEFINED",
-        "STATE_REQUEST_APPROVAL",
-        "STATE_REQUEST_PENDING"
-      ],
-      "default": "STATE_UNDEFINED"
-    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -602,7 +595,7 @@
           "type": "string"
         },
         "state": {
-          "type": "string"
+          "$ref": "#/definitions/rsksearchContributionState"
         }
       }
     },
@@ -632,6 +625,17 @@
           "type": "string"
         }
       }
+    },
+    "rsksearchContributionState": {
+      "type": "string",
+      "enum": [
+        "STATE_UNDEFINED",
+        "STATE_REQUEST_APPROVAL",
+        "STATE_PENDING",
+        "STATE_APPROVED",
+        "STATE_REJECTED"
+      ],
+      "default": "STATE_UNDEFINED"
     },
     "rsksearchCreateChunkContributionRequest": {
       "type": "object",
@@ -804,7 +808,7 @@
           "type": "string"
         },
         "requestState": {
-          "$ref": "#/definitions/RequestChunkContributionStateRequestState"
+          "$ref": "#/definitions/rsksearchContributionState"
         }
       }
     },
@@ -861,7 +865,7 @@
           "type": "string"
         },
         "state": {
-          "type": "string"
+          "$ref": "#/definitions/rsksearchContributionState"
         }
       }
     },
@@ -949,6 +953,17 @@
         "numContributions": {
           "type": "integer",
           "format": "int32"
+        }
+      }
+    },
+    "rsksearchTscriptChunkContributionList": {
+      "type": "object",
+      "properties": {
+        "contributions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rsksearchChunkContribution"
+          }
         }
       }
     },

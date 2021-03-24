@@ -1,7 +1,7 @@
 <div
-  contenteditable="true"
-  unformattedPaste
   class="editor"
+  [attr.contenteditable]="!readonly"
+  unformattedPaste
   (keyup)="onKeypress()"
   #textContainer>
 </div>

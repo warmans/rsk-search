@@ -1,0 +1,7 @@
+<div *ngIf="synopses && synopses.length > 0" class="mb-3">
+  <div class="font-weight-bold mb-2">Summary</div>
+  <ul>
+    <li *ngFor="let sy of synopses">{{sy.description}}</li>
+  </ul>
+  <hr>
+</div>

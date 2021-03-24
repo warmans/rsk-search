@@ -74,17 +74,6 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceListChunkContributions(
-    args: {
-      chunkId: string,
-      page?: number,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchChunkContributionList>;
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
   searchServiceCreateChunkContribution(
     args: {
       chunkId: string,
@@ -144,6 +133,17 @@ export interface SearchAPIClientInterface {
   searchServiceGetTscriptChunkStats(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RsksearchChunkStats>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  searchServiceListTscriptChunkContributions(
+    args: {
+      tscriptId: string,
+      page?: number,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchTscriptChunkContributionList>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.

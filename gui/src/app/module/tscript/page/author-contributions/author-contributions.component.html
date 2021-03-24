@@ -1,4 +1,4 @@
-<div class="container-fluid pt-3">
+<div class="container-fluid pt-3" *ngIf="claims">
   <div class="row mb-3">
     <div class="col">
       <div class="card">
@@ -34,9 +34,9 @@
         <table class="table mb-0">
           <tr *ngFor="let row of contributions">
             <td style="width: 300px;">
-              <a *ngIf="row.state === 'pending'"
+              <a *ngIf="row.state === 'pending' || row.state === 'request_approval'"
                  [routerLink]="['/chunk', row.chunkId, 'contrib', row.id]">{{row.id}}</a>
-              <span *ngIf="row.state !== 'pending'">{{row.id}}</span>
+              <span *ngIf="row.state !== 'pending' && row.state !== 'request_approval'">{{row.id}}</span>
             </td>
             <td>{{row.state}}</td>
           </tr>
@@ -45,4 +45,6 @@
     </div>
   </div>
 </div>
+<app-reddit-login [open]="!claims"></app-reddit-login>
+
 <app-loading-overlay [loading]="loading"></app-loading-overlay>

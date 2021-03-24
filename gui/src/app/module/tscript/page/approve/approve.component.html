@@ -1,0 +1,53 @@
+<div class="container-fluid pt-3">
+  <div class="row mb-3">
+    <div class="col">
+      <div class="card mb-3" *ngFor="let co of approvalList">
+        <div class="card-header" *ngIf="!co.id">
+          {{co.chunkId}}
+        </div>
+        <div class="card-header" *ngIf="co.id">
+          <div class="d-flex mb-3">
+            <div class="flex-grow-1">
+              <span class="float-left mr-2 pt-1">{{co.chunkId}} :: </span>
+              <select class="form-control form-control-sm" style="max-width: 250px" *ngIf="co.id" (change)="selectChunkContribution(co.id, $event)">
+                <option *ngFor="let contrib of groupedContributions[co.chunkId]" [value]="contrib.id" [selected]="co.id === contrib.id">{{contrib.id}}</option>
+              </select>
+            </div>
+            <div class="flex-grow-1 text-right" *ngIf="co.id">
+              <div>{{co.state}}</div>
+            </div>
+          </div>
+          <div>
+            <ul class="nav nav-tabs card-header-tabs ml-1">
+              <li class="nav-item mr-2">
+                <a class="nav-link active" [ngClass]="{'active': !co.show_preview}" (click)="co.show_preview = false">Raw</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" [ngClass]="{'active': co.show_preview}" (click)="co.show_preview = true">Preview</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="card-body pb-0">
+          <div *ngIf="co.id">
+            <div *ngIf="!co.show_preview">
+              <app-editor [readonly]="true" [textContent]="co.transcript"></app-editor>
+            </div>
+            <div *ngIf="co.show_preview">
+              <app-synopses [synopses]="parseTscript(co.transcript).synopses"></app-synopses>
+              <app-transcript [transcript]="parseTscript(co.transcript).dialog"></app-transcript>
+            </div>
+          </div>
+          <div *ngIf="!co.id" class=" pb-4">
+            <i class="bi-exclamation-octagon mr-2"></i> No contributions for this chunk. <a
+            [routerLink]="['/chunk', co.chunkId]">Add one!</a>
+          </div>
+        </div>
+        <div class="card-footer" *ngIf="co.id && co.state === states.STATE_REQUEST_APPROVAL">
+          <a class="btn btn-success mr-3" (click)="updateState(co, states.STATE_APPROVED)">Approve</a>
+          <a class="btn btn-danger" (click)="updateState(co, states.STATE_REJECTED)">Reject</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

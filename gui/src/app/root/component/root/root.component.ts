@@ -10,7 +10,6 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class RootComponent implements OnDestroy {
 
-  title = 'RSK DB';
   loggedInUser: Claims;
 
   destory$: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -19,6 +18,8 @@ export class RootComponent implements OnDestroy {
     session.onTokenChange.pipe(takeUntil(this.destory$)).subscribe((token) => {
       if (token) {
         this.loggedInUser = this.session.getClaims();
+      } else {
+        this.loggedInUser = undefined;
       }
     });
   }
@@ -29,7 +30,7 @@ export class RootComponent implements OnDestroy {
 
   logout() {
     this.session.destroySession();
-    this.loggedInUser = null;
+    this.loggedInUser = undefined;
     this.router.navigate(['/search']);
   }
 

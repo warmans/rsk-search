@@ -9,10 +9,11 @@ import { AuthorContributionsComponent } from './page/author-contributions/author
 import { RedditLoginComponent } from './component/reddit-login/reddit-login.component';
 import { ContenteditableModule } from '@ng-stack/contenteditable';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ApproveComponent } from './page/approve/approve.component';
 
 
 @NgModule({
-  declarations: [SubmitComponent, EditorComponent, RandomComponent, AuthorContributionsComponent, RedditLoginComponent],
+  declarations: [SubmitComponent, EditorComponent, RandomComponent, AuthorContributionsComponent, RedditLoginComponent, ApproveComponent],
   imports: [
     CommonModule,
     SharedModule,

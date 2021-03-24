@@ -28,7 +28,7 @@ type SearchServiceClient interface {
 	// chunks are ~2 min sections of the transcription
 	GetTscriptChunkStats(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ChunkStats, error)
 	GetTscriptChunk(ctx context.Context, in *GetTscriptChunkRequest, opts ...grpc.CallOption) (*TscriptChunk, error)
-	ListChunkContributions(ctx context.Context, in *ListChunkContributionsRequest, opts ...grpc.CallOption) (*ChunkContributionList, error)
+	ListTscriptChunkContributions(ctx context.Context, in *ListTscriptChunkContributionsRequest, opts ...grpc.CallOption) (*TscriptChunkContributionList, error)
 	ListAuthorContributions(ctx context.Context, in *ListAuthorContributionsRequest, opts ...grpc.CallOption) (*ChunkContributionList, error)
 	GetChunkContribution(ctx context.Context, in *GetChunkContributionRequest, opts ...grpc.CallOption) (*ChunkContribution, error)
 	CreateChunkContribution(ctx context.Context, in *CreateChunkContributionRequest, opts ...grpc.CallOption) (*ChunkContribution, error)
@@ -109,9 +109,9 @@ func (c *searchServiceClient) GetTscriptChunk(ctx context.Context, in *GetTscrip
 	return out, nil
 }
 
-func (c *searchServiceClient) ListChunkContributions(ctx context.Context, in *ListChunkContributionsRequest, opts ...grpc.CallOption) (*ChunkContributionList, error) {
-	out := new(ChunkContributionList)
-	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/ListChunkContributions", in, out, opts...)
+func (c *searchServiceClient) ListTscriptChunkContributions(ctx context.Context, in *ListTscriptChunkContributionsRequest, opts ...grpc.CallOption) (*TscriptChunkContributionList, error) {
+	out := new(TscriptChunkContributionList)
+	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/ListTscriptChunkContributions", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -194,7 +194,7 @@ type SearchServiceServer interface {
 	// chunks are ~2 min sections of the transcription
 	GetTscriptChunkStats(context.Context, *emptypb.Empty) (*ChunkStats, error)
 	GetTscriptChunk(context.Context, *GetTscriptChunkRequest) (*TscriptChunk, error)
-	ListChunkContributions(context.Context, *ListChunkContributionsRequest) (*ChunkContributionList, error)
+	ListTscriptChunkContributions(context.Context, *ListTscriptChunkContributionsRequest) (*TscriptChunkContributionList, error)
 	ListAuthorContributions(context.Context, *ListAuthorContributionsRequest) (*ChunkContributionList, error)
 	GetChunkContribution(context.Context, *GetChunkContributionRequest) (*ChunkContribution, error)
 	CreateChunkContribution(context.Context, *CreateChunkContributionRequest) (*ChunkContribution, error)
@@ -229,8 +229,8 @@ func (UnimplementedSearchServiceServer) GetTscriptChunkStats(context.Context, *e
 func (UnimplementedSearchServiceServer) GetTscriptChunk(context.Context, *GetTscriptChunkRequest) (*TscriptChunk, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTscriptChunk not implemented")
 }
-func (UnimplementedSearchServiceServer) ListChunkContributions(context.Context, *ListChunkContributionsRequest) (*ChunkContributionList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListChunkContributions not implemented")
+func (UnimplementedSearchServiceServer) ListTscriptChunkContributions(context.Context, *ListTscriptChunkContributionsRequest) (*TscriptChunkContributionList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListTscriptChunkContributions not implemented")
 }
 func (UnimplementedSearchServiceServer) ListAuthorContributions(context.Context, *ListAuthorContributionsRequest) (*ChunkContributionList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListAuthorContributions not implemented")
@@ -391,20 +391,20 @@ func _SearchService_GetTscriptChunk_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SearchService_ListChunkContributions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListChunkContributionsRequest)
+func _SearchService_ListTscriptChunkContributions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListTscriptChunkContributionsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SearchServiceServer).ListChunkContributions(ctx, in)
+		return srv.(SearchServiceServer).ListTscriptChunkContributions(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/rsksearch.SearchService/ListChunkContributions",
+		FullMethod: "/rsksearch.SearchService/ListTscriptChunkContributions",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SearchServiceServer).ListChunkContributions(ctx, req.(*ListChunkContributionsRequest))
+		return srv.(SearchServiceServer).ListTscriptChunkContributions(ctx, req.(*ListTscriptChunkContributionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -571,8 +571,8 @@ var SearchService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _SearchService_GetTscriptChunk_Handler,
 		},
 		{
-			MethodName: "ListChunkContributions",
-			Handler:    _SearchService_ListChunkContributions_Handler,
+			MethodName: "ListTscriptChunkContributions",
+			Handler:    _SearchService_ListTscriptChunkContributions_Handler,
 		},
 		{
 			MethodName: "ListAuthorContributions",

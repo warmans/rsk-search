@@ -14,6 +14,9 @@ body {
 .navbar {
   z-index: 100;
   border-bottom: 1px solid #ccc;
+  box-shadow: -1px 1px 5px 1px rgba(0,0,0,0.05);
+  -webkit-box-shadow: -1px 1px 5px 1px rgba(0,0,0,0.05);
+  -moz-box-shadow: -1px 1px 5px 1px rgba(0,0,0,0.05);
 }
 
 .footer {
@@ -35,4 +38,11 @@ span.code {
 .modal.open {
   display: block;
   background-color: rgba(0,0,0,0.4);
+}
+
+
+.card {
+  box-shadow: -1px 1px 5px 1px rgba(0,0,0,0.05);
+  -webkit-box-shadow: -1px 1px 5px 1px rgba(0,0,0,0.05);
+  -moz-box-shadow: -1px 1px 5px 1px rgba(0,0,0,0.05);
 }

@@ -7,6 +7,20 @@ import (
 
 type ContributionState string
 
+func (s ContributionState) Proto() api.ContributionState {
+	switch s {
+	case ContributionStatePending:
+		return api.ContributionState_STATE_PENDING
+	case ContributionStateApprovalRequested:
+		return api.ContributionState_STATE_REQUEST_APPROVAL
+	case ContributionStateApproved:
+		return api.ContributionState_STATE_APPROVED
+	case ContributionStateRejected:
+		return api.ContributionState_STATE_REJECTED
+	}
+	return api.ContributionState_STATE_UNDEFINED
+}
+
 const (
 	ContributionStatePending           ContributionState = "pending"
 	ContributionStateApprovalRequested ContributionState = "request_approval"
@@ -81,7 +95,7 @@ func (c *Contribution) Proto() *api.ChunkContribution {
 		ChunkId:    c.ChunkID,
 		Transcript: c.Transcription,
 		AuthorId:   c.AuthorID,
-		State:      string(c.State),
+		State:      c.State.Proto(),
 	}
 }
 func (c *Contribution) ShortProto() *api.ShortChunkContribution {
@@ -92,7 +106,7 @@ func (c *Contribution) ShortProto() *api.ShortChunkContribution {
 		Id:       c.ID,
 		ChunkId:  c.ChunkID,
 		AuthorId: c.AuthorID,
-		State:    string(c.State),
+		State:    c.State.Proto(),
 	}
 }
 

@@ -32,7 +32,7 @@ func ErrFromStore(err error, id string) *status.Status {
 		return ErrNotFound(id)
 	}
 	if err == rw.ErrNotPermitted {
-		return ErrPermissionDenied()
+		return ErrPermissionDenied(err.Error())
 	}
 	return ErrInternal(err)
 }
@@ -104,10 +104,10 @@ func ErrUnauthorized(reason string) *status.Status {
 	return s
 }
 
-func ErrPermissionDenied() *status.Status {
+func ErrPermissionDenied(reason string) *status.Status {
 	s, err := status.New(codes.PermissionDenied, http.StatusText(http.StatusForbidden)).WithDetails(
 		&errdetails.DebugInfo{
-			Detail: fmt.Sprintf("Permission was denied for action."),
+			Detail: fmt.Sprintf("Permission was denied for action: %s", reason),
 		},
 	)
 	if err != nil {

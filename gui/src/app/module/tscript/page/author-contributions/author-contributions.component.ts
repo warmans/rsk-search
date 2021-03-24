@@ -34,6 +34,8 @@ export class AuthorContributionsComponent implements OnInit, OnDestroy {
         }).pipe(takeUntil(this.destroy$)).subscribe((list: RsksearchChunkContributionList) => {
           this.contributions = list.contributions;
         }).add(() => this.loading = false);
+      } else {
+        this.claims = undefined;
       }
     });
   }

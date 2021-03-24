@@ -237,7 +237,7 @@ func (s *SearchService) UpdateChunkContribution(ctx context.Context, request *ap
 		return nil, ErrFromStore(err, request.ContributionId).Err()
 	}
 	if contrib.AuthorID != claims.AuthorID {
-		return nil, ErrPermissionDenied().Err()
+		return nil, ErrPermissionDenied("you are not the author of this contribution").Err()
 	}
 	if contrib.State != models.ContributionStatePending && contrib.State != models.ContributionStateApprovalRequested {
 		return nil, ErrFailedPrecondition(fmt.Sprintf("Only pending contributions can be edited. Actual state was: %s", contrib.State)).Err()
@@ -285,18 +285,30 @@ func (s *SearchService) RequestChunkContributionState(ctx context.Context, reque
 		return nil, ErrFromStore(err, request.ContributionId).Err()
 	}
 	if contrib.AuthorID != claims.AuthorID {
-		return nil, ErrPermissionDenied().Err()
+		return nil, ErrPermissionDenied("you are not the author of this contribution").Err()
 	}
 	if contrib.State != models.ContributionStatePending && contrib.State != models.ContributionStateApprovalRequested {
 		return nil, ErrFailedPrecondition(fmt.Sprintf("Only pending contributions can be edited. Actual state was: %s", contrib.State)).Err()
 	}
-	// ensure state is updated in response & db
-	if request.RequestState == api.RequestChunkContributionStateRequest_STATE_REQUEST_APPROVAL {
+	// ensure state is updated in response and db
+	if request.RequestState == api.ContributionState_STATE_REQUEST_APPROVAL {
 		contrib.State = models.ContributionStateApprovalRequested
 	}
-	if request.RequestState == api.RequestChunkContributionStateRequest_STATE_REQUEST_PENDING {
+	if request.RequestState == api.ContributionState_STATE_PENDING {
 		contrib.State = models.ContributionStatePending
 	}
+	if request.RequestState == api.ContributionState_STATE_APPROVED || request.RequestState == api.ContributionState_STATE_REJECTED {
+		if claims.Approver == false {
+			return nil, ErrPermissionDenied("you are not an approver").Err()
+		}
+		if request.RequestState == api.ContributionState_STATE_APPROVED {
+			contrib.State = models.ContributionStateApproved
+		}
+		if request.RequestState == api.ContributionState_STATE_REJECTED {
+			contrib.State = models.ContributionStateRejected
+		}
+	}
+
 	err = s.persistentDB.WithStore(func(s *rw.Store) error {
 		return s.UpdateContributionState(ctx, contrib.ID, contrib.State)
 	})
@@ -304,6 +316,25 @@ func (s *SearchService) RequestChunkContributionState(ctx context.Context, reque
 		return nil, ErrFromStore(err, request.ContributionId).Err()
 	}
 	return contrib.Proto(), nil
+}
+
+func (s *SearchService) ListTscriptChunkContributions(ctx context.Context, request *api.ListTscriptChunkContributionsRequest) (*api.TscriptChunkContributionList, error) {
+	var list []*models.Contribution
+	err := s.persistentDB.WithStore(func(s *rw.Store) error {
+		var err error
+		list, err = s.ListApprovableTscriptContributions(ctx, request.TscriptId, request.Page)
+		return err
+	})
+	if err != nil {
+		return nil, ErrFromStore(err, request.TscriptId).Err()
+	}
+	out := &api.TscriptChunkContributionList{
+		Contributions: make([]*api.ChunkContribution, len(list)),
+	}
+	for k, v := range list {
+		out.Contributions[k] = v.Proto()
+	}
+	return out, nil
 }
 
 func (s *SearchService) ListAuthorContributions(ctx context.Context, request *api.ListAuthorContributionsRequest) (*api.ChunkContributionList, error) {
@@ -324,10 +355,6 @@ func (s *SearchService) ListAuthorContributions(ctx context.Context, request *ap
 		out.Contributions[k] = v.ShortProto()
 	}
 	return out, nil
-}
-
-func (s *SearchService) ListChunkContributions(ctx context.Context, request *api.ListChunkContributionsRequest) (*api.ChunkContributionList, error) {
-	panic("implement me")
 }
 
 func (s *SearchService) GetChunkContribution(ctx context.Context, request *api.GetChunkContributionRequest) (*api.ChunkContribution, error) {

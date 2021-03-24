@@ -97,17 +97,19 @@ service SearchService {
     };
   }
 
-  // dialog chunk contributions
+  // get all contributions for a single episode so they may be approved
 
-  rpc ListChunkContributions(ListChunkContributionsRequest) returns (ChunkContributionList) {
+  rpc ListTscriptChunkContributions(ListTscriptChunkContributionsRequest) returns (TscriptChunkContributionList) {
     option (google.api.http) = {
-      get: "/api/tscript/chunk/{chunk_id}/contrib"
+      get: "/api/tscript/{tscript_id}/contrib"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      summary: "lists any existing contributions for a chunk"
+      summary: "lists contributions for a single episode"
       tags: "search"
     };
   }
+
+  // get all contributions from a single author
 
   rpc ListAuthorContributions(ListAuthorContributionsRequest) returns (ChunkContributionList) {
     option (google.api.http) = {
@@ -326,14 +328,17 @@ message CreateChunkContributionRequest {
   string transcript = 2;
 }
 
-message ListChunkContributionsRequest {
-  string chunk_id = 1;
-  int32 page = 2;
-}
-
 message ListAuthorContributionsRequest {
   string author_id = 1;
   int32 page = 2;
+}
+
+enum ContributionState {
+  STATE_UNDEFINED = 0;
+  STATE_REQUEST_APPROVAL = 1;
+  STATE_PENDING = 2;
+  STATE_APPROVED = 3;
+  STATE_REJECTED = 4;
 }
 
 message ChunkContribution {
@@ -341,14 +346,14 @@ message ChunkContribution {
   string chunk_id = 2;
   string transcript = 3;
   string author_id = 4;
-  string state = 5;
+  ContributionState state = 5;
 }
 
 message ShortChunkContribution {
   string id = 1;
   string chunk_id = 2;
   string author_id = 4;
-  string state = 5;
+  ContributionState state = 5;
 }
 
 message ChunkContributionList {
@@ -369,6 +374,7 @@ message Token {
   string token = 1;
 }
 
+
 message UpdateChunkContributionRequest {
   string chunk_id = 1;
   string contribution_id = 2;
@@ -376,14 +382,10 @@ message UpdateChunkContributionRequest {
 }
 
 message RequestChunkContributionStateRequest {
-  enum State {
-    STATE_UNDEFINED = 0;
-    STATE_REQUEST_APPROVAL = 1;
-    STATE_REQUEST_PENDING = 2;
-  }
+
   string chunk_id = 1;
   string contribution_id = 2;
-  State request_state = 3;
+  ContributionState request_state = 3;
 }
 
 message GetChunkContributionRequest{
@@ -391,3 +393,11 @@ message GetChunkContributionRequest{
   string contribution_id = 2;
 }
 
+message ListTscriptChunkContributionsRequest {
+  string tscript_id = 1;
+  int32 page = 2;
+}
+
+message TscriptChunkContributionList {
+  repeated ChunkContribution contributions = 1;
+}

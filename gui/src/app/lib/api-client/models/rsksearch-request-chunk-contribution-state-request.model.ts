@@ -1,10 +1,10 @@
 /* tslint:disable */
 import {
-  RequestChunkContributionStateRequestState,
+  RsksearchContributionState,
 } from '.';
 
 export interface RsksearchRequestChunkContributionStateRequest {
   chunkId?: string;
   contributionId?: string;
-  requestState?: RequestChunkContributionStateRequestState;
+  requestState?: RsksearchContributionState;
 }

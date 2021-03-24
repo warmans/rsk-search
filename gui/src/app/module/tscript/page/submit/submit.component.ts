@@ -1,7 +1,7 @@
 import { Component, EventEmitter, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import {
-  RequestChunkContributionStateRequestState,
   RsksearchChunkContribution,
+  RsksearchContributionState,
   RsksearchTscriptChunk,
 } from '../../../../lib/api-client/models';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
@@ -39,6 +39,8 @@ export class SubmitComponent implements OnInit, OnDestroy {
   parsedTscript: Tscript;
   showHelp: boolean = false;
   autoSeek: boolean = localStorage.getItem('pref-autoseek') === 'true';
+
+  cStates = RsksearchContributionState;
 
   loading: boolean[] = [];
   $destroy: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -148,10 +150,7 @@ export class SubmitComponent implements OnInit, OnDestroy {
     this.setInitialTranscript(res.transcript);
 
     this.userCanEdit = true;
-    if (this.sessionService.getClaims()?.author_id !== res.authorId) {
-      this.userCanEdit = false;
-    }
-    if (res.state !== 'pending') {
+    if (this.sessionService.getClaims()?.author_id !== res.authorId || res.state !== RsksearchContributionState.STATE_PENDING) {
       this.userCanEdit = false;
     }
   }
@@ -210,7 +209,7 @@ export class SubmitComponent implements OnInit, OnDestroy {
         body: { chunkId: this.chunk.id, transcript: this.updatedTranscript }
       }).pipe(takeUntil(this.$destroy)).subscribe((res: RsksearchChunkContribution) => {
         this.backupContent(''); // clear backup so that the content always matches what was submitted.
-        this.alertService.success("SAVED");
+        this.alertService.success('SAVED');
         this.router.navigate(['/chunk', this.chunk.id, 'contrib', res.id]);
       }).add(() => this.loading.shift());
     } else {
@@ -221,7 +220,7 @@ export class SubmitComponent implements OnInit, OnDestroy {
         body: { chunkId: this.chunk.id, contributionId: this.contribution.id, transcript: this.updatedTranscript }
       }).pipe(takeUntil(this.$destroy)).subscribe((res) => {
         this.setContribution(res);
-        this.alertService.success("UPDATED");
+        this.alertService.success('UPDATED');
       }).add(() => this.loading.shift());
     }
   }
@@ -231,10 +230,14 @@ export class SubmitComponent implements OnInit, OnDestroy {
     this.apiClient.searchServiceRequestChunkContributionState({
       chunkId: this.chunk.id,
       contributionId: this.contribution.id,
-      body: { chunkId: this.chunk.id, contributionId: this.contribution.id, requestState: RequestChunkContributionStateRequestState.STATE_REQUEST_APPROVAL }
+      body: {
+        chunkId: this.chunk.id,
+        contributionId: this.contribution.id,
+        requestState: RsksearchContributionState.STATE_REQUEST_APPROVAL
+      }
     }).pipe(takeUntil(this.$destroy)).subscribe((res) => {
       this.setContribution(res);
-      this.alertService.success("UPDATED");
+      this.alertService.success('UPDATED');
     }).add(() => this.loading.shift());
   }
 
@@ -243,10 +246,14 @@ export class SubmitComponent implements OnInit, OnDestroy {
     this.apiClient.searchServiceRequestChunkContributionState({
       chunkId: this.chunk.id,
       contributionId: this.contribution.id,
-      body: { chunkId: this.chunk.id, contributionId: this.contribution.id, requestState: RequestChunkContributionStateRequestState.STATE_REQUEST_PENDING }
+      body: {
+        chunkId: this.chunk.id,
+        contributionId: this.contribution.id,
+        requestState: RsksearchContributionState.STATE_PENDING
+      }
     }).pipe(takeUntil(this.$destroy)).subscribe((res) => {
       this.setContribution(res);
-      this.alertService.success("UPDATED");
+      this.alertService.success('UPDATED');
     }).add(() => this.loading.shift());
   }
 }

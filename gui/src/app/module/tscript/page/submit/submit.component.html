@@ -1,7 +1,7 @@
 <div class="container-fluid pt-3">
   <div class="row mb-3">
     <div class="col-8">
-      <div class="alert alert-warning" *ngIf="!userCanEdit && contribution.state !== 'request_approval'">
+      <div class="alert alert-warning" *ngIf="!userCanEdit && contribution.state !== cStates.STATE_REQUEST_APPROVAL">
         This contribution is not editable, either because you are
         not the owner or because is has already been accepted or rejected
       </div>
@@ -20,22 +20,22 @@
     <div class="col-4">
       <div class="card" *ngIf="contribution">
         <div class="card-body">
-          <div *ngIf="contribution.state == 'pending'">
+          <div *ngIf="contribution.state === cStates.STATE_PENDING">
             <div class="mb-3">State: <span class="text-info">{{contribution.state}}</span></div>
             <p>This means that the contribution has not yet been reviewed and can still be edited if you are the
             owner. Clicking the button below will mark it as being ready to be merged.</p>
             <button class="btn btn-success mt-2" (click)="markComplete()">Mark as complete <i class="bi-check"></i></button>
           </div>
-          <div *ngIf="contribution.state == 'request_approval'">
+          <div *ngIf="contribution.state === cStates.STATE_REQUEST_APPROVAL">
             <div class="mb-3">State: <span class="text-info">{{contribution.state}}</span></div>
             <p>This means your contribution will now be reviewed and merged (hopefully!).</p>
             <button class="btn btn-warning mt-2" (click)="markIncomplete()">Revert to incomplete <i class="bi-pen"></i></button>
           </div>
-          <div *ngIf="contribution.state == 'approved'">
+          <div *ngIf="contribution.state === cStates.STATE_APPROVED">
             <div class="mb-3">State: <span class="text-success">{{contribution.state}}</span></div>
             This means your contributions was approved and will be merged into the canonical dataset.
           </div>
-          <div *ngIf="contribution.state == 'rejected'">
+          <div *ngIf="contribution.state === cStates.STATE_REJECTED">
             <div class="mb-3">State: <span class="text-danger">{{contribution.state}}</span></div>
             This means it was not possible to merge your contribution either because it was a duplicate,
             or because it did not appear to be correct.
@@ -68,7 +68,7 @@
         </div>
         <div [hidden]="showHelp">
           <div class="card-body pr-0 pb-0">
-            <app-editor [textContent]="initialTranscript" (textContentChange)="setUpdatedTranscript($event)" (atOffsetMarker)="handleOffsetNavigate($event)"></app-editor>
+            <app-editor [readonly]="!userCanEdit" [textContent]="initialTranscript" (textContentChange)="setUpdatedTranscript($event)" (atOffsetMarker)="handleOffsetNavigate($event)"></app-editor>
           </div>
           <div class="card-footer text-right" *ngIf="authenticated && userCanEdit">
             <div class="float-left">
@@ -154,19 +154,13 @@ karl: I used to have a rifle as a kid...
           Preview
         </div>
         <div class="card-body">
-          <div *ngIf="parsedTscript?.synopses" class="mb-3">
-            <div class="font-weight-bold mb-2">Summary</div>
-            <ul>
-              <li *ngFor="let sy of parsedTscript?.synopses">{{sy.description}}</li>
-            </ul>
-            <hr>
-          </div>
+          <app-synopses [synopses]="parsedTscript?.synopses"></app-synopses>
           <app-transcript [transcript]="parsedTscript?.dialog"></app-transcript>
         </div>
       </div>
     </div>
   </div>
-  <app-reddit-login [open]="!this.authenticated"></app-reddit-login>
+  <app-reddit-login [open]="!authenticated"></app-reddit-login>
 </div>
 
 <app-loading-overlay [loading]="loading.length > 0"></app-loading-overlay>

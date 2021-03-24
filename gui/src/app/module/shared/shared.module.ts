@@ -9,6 +9,7 @@ import { SafeUrlPipe } from './pipe/safe-url.pipe';
 import { TranscriptComponent } from './component/transcript/transcript.component';
 import { RouterModule } from '@angular/router';
 import { AudioPlayerComponent } from './component/audio-player/audio-player.component';
+import { SynopsesComponent } from './component/synopses/synopses.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AudioPlayerComponent } from './component/audio-player/audio-player.comp
     LoadingOverlayComponent,
     SafeUrlPipe,
     TranscriptComponent,
-    AudioPlayerComponent
+    AudioPlayerComponent,
+    SynopsesComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +35,8 @@ import { AudioPlayerComponent } from './component/audio-player/audio-player.comp
     LoadingOverlayComponent,
     SafeUrlPipe,
     TranscriptComponent,
-    AudioPlayerComponent
+    AudioPlayerComponent,
+    SynopsesComponent
   ]
 })
 export class SharedModule {

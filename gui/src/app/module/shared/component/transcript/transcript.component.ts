@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
-import { RsksearchDialog } from '../../../../lib/api-client/models';
+import { RsksearchDialog, RsksearchSynopsis } from '../../../../lib/api-client/models';
 import { ViewportScroller } from '@angular/common';
 
 @Component({
