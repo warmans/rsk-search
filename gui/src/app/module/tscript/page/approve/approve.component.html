@@ -9,8 +9,8 @@
           <div class="d-flex mb-3">
             <div class="flex-grow-1">
               <span class="float-left mr-2 pt-1">{{co.chunkId}} :: </span>
-              <select class="form-control form-control-sm" style="max-width: 250px" *ngIf="co.id" (change)="selectChunkContribution(co.id, $event)">
-                <option *ngFor="let contrib of groupedContributions[co.chunkId]" [value]="contrib.id" [selected]="co.id === contrib.id">{{contrib.id}}</option>
+              <select class="form-control form-control-sm" style="max-width: 400px" *ngIf="co.id" (change)="selectChunkContribution(co.id, $event)">
+                <option *ngFor="let contrib of groupedContributions[co.chunkId]" [value]="contrib.id" [selected]="co.id === contrib.id">{{contrib.id}} ({{contrib.state}})</option>
               </select>
             </div>
             <div class="flex-grow-1 text-right" *ngIf="co.id">
