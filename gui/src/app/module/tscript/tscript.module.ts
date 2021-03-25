@@ -7,7 +7,6 @@ import { RouterModule } from '@angular/router';
 import { RandomComponent } from './page/random/random.component';
 import { AuthorContributionsComponent } from './page/author-contributions/author-contributions.component';
 import { RedditLoginComponent } from './component/reddit-login/reddit-login.component';
-import { ContenteditableModule } from '@ng-stack/contenteditable';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApproveComponent } from './page/approve/approve.component';
 
@@ -18,7 +17,6 @@ import { ApproveComponent } from './page/approve/approve.component';
     CommonModule,
     SharedModule,
     RouterModule,
-    ContenteditableModule,
     ReactiveFormsModule,
   ],
   exports: [SubmitComponent]

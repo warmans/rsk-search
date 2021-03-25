@@ -34,9 +34,9 @@
         <table class="table mb-0">
           <tr *ngFor="let row of contributions">
             <td style="width: 300px;">
-              <a *ngIf="row.state === 'pending' || row.state === 'request_approval'"
+              <a *ngIf="row.state === states.STATE_PENDING || row.state === states.STATE_REQUEST_APPROVAL"
                  [routerLink]="['/chunk', row.chunkId, 'contrib', row.id]">{{row.id}}</a>
-              <span *ngIf="row.state !== 'pending' && row.state !== 'request_approval'">{{row.id}}</span>
+              <span *ngIf="row.state !== states.STATE_PENDING && row.state !== states.STATE_REQUEST_APPROVAL">{{row.id}}</span>
             </td>
             <td>{{row.state}}</td>
           </tr>

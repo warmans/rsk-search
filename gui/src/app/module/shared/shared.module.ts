@@ -10,6 +10,8 @@ import { TranscriptComponent } from './component/transcript/transcript.component
 import { RouterModule } from '@angular/router';
 import { AudioPlayerComponent } from './component/audio-player/audio-player.component';
 import { SynopsesComponent } from './component/synopses/synopses.component';
+import { WebhidDeviceComponent } from './component/webhid-device/webhid-device.component';
+import { WebusbDeviceComponent } from './component/webusb-device/webusb-device.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { SynopsesComponent } from './component/synopses/synopses.component';
     SafeUrlPipe,
     TranscriptComponent,
     AudioPlayerComponent,
-    SynopsesComponent
+    SynopsesComponent,
+    WebhidDeviceComponent,
+    WebusbDeviceComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +40,9 @@ import { SynopsesComponent } from './component/synopses/synopses.component';
     SafeUrlPipe,
     TranscriptComponent,
     AudioPlayerComponent,
-    SynopsesComponent
+    SynopsesComponent,
+    WebhidDeviceComponent,
+    WebusbDeviceComponent,
   ]
 })
 export class SharedModule {

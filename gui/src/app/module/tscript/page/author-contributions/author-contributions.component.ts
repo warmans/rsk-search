@@ -2,7 +2,11 @@ import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
 import { Claims, SessionService } from '../../../core/service/session/session.service';
 import { takeUntil } from 'rxjs/operators';
-import { RsksearchChunkContribution, RsksearchChunkContributionList } from '../../../../lib/api-client/models';
+import {
+  RsksearchChunkContribution,
+  RsksearchChunkContributionList,
+  RsksearchContributionState
+} from '../../../../lib/api-client/models';
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,6 +21,8 @@ export class AuthorContributionsComponent implements OnInit, OnDestroy {
   contributions: RsksearchChunkContribution[];
 
   loading: boolean = false;
+
+  states = RsksearchContributionState;
 
   private destroy$: EventEmitter<any> = new EventEmitter<any>();
 

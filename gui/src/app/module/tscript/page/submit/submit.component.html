@@ -61,6 +61,9 @@
           <span class="float-right">
             <button class="btn btn-sm mr-3" *ngIf="userCanEdit" (click)="toggleAutoseek()" [ngClass]="{'btn-outline-success': !autoSeek, 'btn-success': autoSeek}" title="Skip audio to offset when caret moves over line">Autoseek</button>
           </span>
+          <!--span class="float-right">
+            <app-webusb-device class="mr-3"></app-webusb-device>
+          </span-->
 
           <span *ngIf="!contribution">Create </span>
           <span *ngIf="contribution">Update </span>
