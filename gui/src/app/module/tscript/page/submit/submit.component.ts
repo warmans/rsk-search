@@ -38,7 +38,7 @@ export class SubmitComponent implements OnInit, OnDestroy {
   audioPlayerURL: string = '';
   parsedTscript: Tscript;
   showHelp: boolean = false;
-  autoSeek: boolean = localStorage.getItem('pref-autoseek') === 'true';
+  autoSeek: boolean = localStorage.getItem('pref-autoseek') === null ? true : localStorage.getItem('pref-autoseek') === 'true';
 
   cStates = RsksearchContributionState;
 
