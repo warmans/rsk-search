@@ -120,10 +120,10 @@ func (s *Store) GetAuthorStats(ctx context.Context, authorID string) (*models.Au
 
 	query := `
 		SELECT 
-			SUM(CASE WHEN c.state = 'pending' THEN 1 ELSE 0 END) as num_pending,
-			SUM(CASE WHEN c.state = 'approved' THEN 1 ELSE 0 END) as num_approved,
-			SUM(CASE WHEN c.state = 'rejected' THEN 1 ELSE 0 END) as num_rejected,
-			SUM(CASE WHEN c.created_at > NOW() - INTERVAL '1 HOUR' THEN 1 ELSE 0 END) as total_in_last_hour
+			COALESCE(SUM(CASE WHEN c.state = 'pending' THEN 1 ELSE 0 END), 0) as num_pending,
+			COALESCE(SUM(CASE WHEN c.state = 'approved' THEN 1 ELSE 0 END), 0) as num_approved,
+			COALESCE(SUM(CASE WHEN c.state = 'rejected' THEN 1 ELSE 0 END), 0) as num_rejected,
+			COALESCE(SUM(CASE WHEN c.created_at > NOW() - INTERVAL '1 HOUR' THEN 1 ELSE 0 END), 0) as total_in_last_hour
 		FROM tscript_contribution c
 		WHERE author_id = $1
 	`
@@ -288,8 +288,8 @@ func (s *Store) GetChunkStats(ctx context.Context) (*models.ChunkStats, error) {
 		JOIN (
 			SELECT 
 				SUM(1) as total_chunks, 
-				SUM(CASE WHEN aa.approved_at IS NOT NULL then 1 ELSE 0 END) as approved_chunks,
-				SUM(CASE WHEN aa.submitted_at IS NOT NULL then 1 ELSE 0 END) as submitted_chunks
+				COALESCE(SUM(CASE WHEN aa.approved_at IS NOT NULL then 1 ELSE 0 END), 0) as approved_chunks,
+				COALESCE(SUM(CASE WHEN aa.submitted_at IS NOT NULL then 1 ELSE 0 END), 0) as submitted_chunks
 			FROM tscript_chunk cc 
 			LEFT JOIN tscript_chunk_activity aa ON cc.id = aa.tscript_chunk_id
 		) agg ON true

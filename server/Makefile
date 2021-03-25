@@ -94,3 +94,4 @@ docker.publish:
 .PHONY: release
 release:
 	$(MAKE) build docker.build docker.publish
+
