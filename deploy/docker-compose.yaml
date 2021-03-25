@@ -20,3 +20,7 @@ services:
       - "8888:8888"
     environment:
       RSK_SEARCH_RW_DB_DSN: "postgres://scrimpton:insecure@postgres:5432/scrimpton?sslmode=disable"
+      RSK_SEARCH_JWT_KEY: ""
+      RSK_SEARCH_OAUTH_SECRET: ""
+      RSK_SEARCH_OAUTH_APP_ID: ""
+      RSK_SEARCH_OAUTH_RETURN_URL: ""
