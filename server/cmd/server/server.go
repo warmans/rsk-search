@@ -76,12 +76,12 @@ func ServerCmd() *cobra.Command {
 			auth := jwt.NewAuth(jwtConfig)
 
 			grpcServices := []server.GRPCService{
-				grpc.NewSearchService(search.NewSearch(rskIndex, readOnlyStoreConn), readOnlyStoreConn, persistentDBConn, tokenCache, auth),
+				grpc.NewSearchService(search.NewSearch(rskIndex, readOnlyStoreConn), readOnlyStoreConn, persistentDBConn, tokenCache, auth, oauthCfg),
 			}
 
 			httpServices := []server.HTTPService{}
 			if oauthCfg.Secret != "" {
-				httpServices = append(httpServices, http.NewOauthService(logger, tokenCache, oauthCfg, persistentDBConn, auth))
+				httpServices = append(httpServices, http.NewOauthService(logger, tokenCache, persistentDBConn, auth, oauthCfg, srvCfg))
 			} else {
 				logger.Info("OAUTH SECRET WAS MISSING - OAUTH ENDPOINTS WILL NOT BE REGISTERED!")
 			}

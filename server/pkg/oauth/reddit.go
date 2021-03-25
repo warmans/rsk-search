@@ -5,20 +5,20 @@ import (
 	"github.com/warmans/rsk-search/pkg/flag"
 )
 
-//const RedditReturnURI = "http://scrimpton.com/oauth/reddit/return"
-const RedditReturnURI = "http://localhost:4200/oauth/reddit/return"
-const RedditApplicationID = "PytL99OIbkuUKw"
-
 type Cfg struct {
+	AppID             string
 	Secret            string
+	ReturnURL         string
 	KarmaLimit        int64
 	MinAccountAgeDays int64
 }
 
 func (c *Cfg) RegisterFlags(fs *pflag.FlagSet, prefix string) {
-	flag.StringVarEnv(fs, &c.Secret, prefix, "oauth-secret", "", "Reddit oauth secret")
-	flag.Int64VarEnv(fs, &c.KarmaLimit, prefix, "oath-karma-limit", 0, "Reddit oauth secret")
-	flag.Int64VarEnv(fs, &c.MinAccountAgeDays, prefix, "oath-account-minage", 0, "")
+	flag.StringVarEnv(fs, &c.Secret, prefix, "oauth-secret", "", "reddit oauth secret")
+	flag.StringVarEnv(fs, &c.AppID, prefix, "oauth-app-id", "PytL99OIbkuUKw", "reddit application id")
+	flag.StringVarEnv(fs, &c.ReturnURL, prefix, "oauth-return-url", "http://localhost:4200/oauth/reddit/return", "return url must match reddit config")
+	flag.Int64VarEnv(fs, &c.KarmaLimit, prefix, "oath-karma-limit", 0, "only allow accounts with at least this much karma")
+	flag.Int64VarEnv(fs, &c.MinAccountAgeDays, prefix, "oath-account-minage", 0, "only allow accounts at least this many days old")
 }
 
 type Identity struct {
@@ -31,7 +31,7 @@ type Identity struct {
 	Created    float64 `json:"created"`
 	CreatedUTC float64 `json:"created_utc"`
 
-	TotalKarma   int64 `json:"total_karma"`
+	TotalKarma int64 `json:"total_karma"`
 
-	Over18          bool `json:"over_18"`
+	Over18 bool `json:"over_18"`
 }

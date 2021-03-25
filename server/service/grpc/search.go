@@ -30,6 +30,7 @@ func NewSearchService(
 	persistentDB *rw.Conn,
 	csrfCache *oauth.CSRFTokenCache,
 	auth *jwt.Auth,
+	oauthCfg *oauth.Cfg,
 ) *SearchService {
 	return &SearchService{
 		searchBackend: searchBackend,
@@ -37,6 +38,7 @@ func NewSearchService(
 		persistentDB:  persistentDB,
 		csrfCache:     csrfCache,
 		auth:          auth,
+		oauthCfg:      oauthCfg,
 	}
 }
 
@@ -46,6 +48,7 @@ type SearchService struct {
 	persistentDB  *rw.Conn
 	csrfCache     *oauth.CSRFTokenCache
 	auth          *jwt.Auth
+	oauthCfg      *oauth.Cfg
 }
 
 func (s *SearchService) RegisterGRPC(server *grpc.Server) {
@@ -396,9 +399,9 @@ func (s *SearchService) GetRedditAuthURL(ctx context.Context, empty *emptypb.Emp
 	return &api.RedditAuthURL{
 		Url: fmt.Sprintf(
 			"https://www.reddit.com/api/v1/authorize?client_id=%s&response_type=code&state=%s&redirect_uri=%s&duration=temporary&scope=identity",
-			oauth.RedditApplicationID,
+			s.oauthCfg.AppID,
 			s.csrfCache.NewCSRFToken(returnURL),
-			oauth.RedditReturnURI,
+			s.oauthCfg.ReturnURL,
 		),
 	}, nil
 }

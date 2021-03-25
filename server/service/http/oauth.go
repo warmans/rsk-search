@@ -11,6 +11,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/oauth"
 	"github.com/warmans/rsk-search/pkg/store/rw"
+	"github.com/warmans/rsk-search/service/config"
 	"go.uber.org/zap"
 	"net/http"
 	"net/url"
@@ -20,25 +21,28 @@ import (
 func NewOauthService(
 	logger *zap.Logger,
 	oauthCache *oauth.CSRFTokenCache,
-	cfg *oauth.Cfg,
 	rwStore *rw.Conn,
 	auth *jwt.Auth,
+	oauthCfg *oauth.Cfg,
+	serviceConfig config.SearchServiceConfig,
 ) *DownloadService {
 	return &DownloadService{
-		oauthCache: oauthCache,
-		cfg:        cfg,
-		logger:     logger.With(zap.String("component", "oauth")),
-		rwStore:    rwStore,
-		auth:       auth,
+		oauthCache:    oauthCache,
+		logger:        logger.With(zap.String("component", "oauth-http-server")),
+		rwStore:       rwStore,
+		auth:          auth,
+		oauthCfg:      oauthCfg,
+		serviceConfig: serviceConfig,
 	}
 }
 
 type DownloadService struct {
-	oauthCache *oauth.CSRFTokenCache
-	cfg        *oauth.Cfg
-	logger     *zap.Logger
-	rwStore    *rw.Conn
-	auth       *jwt.Auth
+	oauthCache    *oauth.CSRFTokenCache
+	logger        *zap.Logger
+	rwStore       *rw.Conn
+	auth          *jwt.Auth
+	oauthCfg      *oauth.Cfg
+	serviceConfig config.SearchServiceConfig
 }
 
 func (c *DownloadService) RegisterHTTP(ctx context.Context, router *mux.Router) {
@@ -47,7 +51,7 @@ func (c *DownloadService) RegisterHTTP(ctx context.Context, router *mux.Router) 
 
 func (c *DownloadService) RedditReturnHandler(resp http.ResponseWriter, req *http.Request) {
 
-	returnURL := "http://scrimpton.com/search"
+	returnURL := fmt.Sprintf("%s%s/search", c.serviceConfig.Scheme, c.serviceConfig.Hostname)
 	returnParams := url.Values{}
 
 	errMessage := req.URL.Query().Get("error")
@@ -86,12 +90,12 @@ func (c *DownloadService) RedditReturnHandler(resp http.ResponseWriter, req *htt
 	}
 
 	// verify identity is in good standing
-	if c.cfg.KarmaLimit > 0 && ident.TotalKarma < c.cfg.KarmaLimit {
+	if c.oauthCfg.KarmaLimit > 0 && ident.TotalKarma < c.oauthCfg.KarmaLimit {
 		returnParams.Add("error", "Account did not meet minimum karma requirements.")
 		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
 		return
 	}
-	if c.cfg.MinAccountAgeDays > 0 && time.Unix(int64(ident.CreatedUTC), 0).Add(0-(time.Hour*24*time.Duration(c.cfg.MinAccountAgeDays))).Before(time.Now().UTC()) {
+	if c.oauthCfg.MinAccountAgeDays > 0 && time.Unix(int64(ident.CreatedUTC), 0).Add(0-(time.Hour*24*time.Duration(c.oauthCfg.MinAccountAgeDays))).Before(time.Now().UTC()) {
 		returnParams.Add("error", "Account did not meet minimum age requirements.")
 		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
 		return
@@ -135,7 +139,7 @@ func (c *DownloadService) RedditReturnHandler(resp http.ResponseWriter, req *htt
 
 func (c *DownloadService) getRedditBearerToken(code string) (string, error) {
 	requestBody := bytes.NewBufferString(
-		fmt.Sprintf("grant_type=authorization_code&code=%s&redirect_uri=%s", code, oauth.RedditReturnURI),
+		fmt.Sprintf("grant_type=authorization_code&code=%s&redirect_uri=%s", code, c.oauthCfg.ReturnURL),
 	)
 
 	req, err := http.NewRequest(http.MethodPost, "https://www.reddit.com/api/v1/access_token", requestBody)
@@ -144,7 +148,7 @@ func (c *DownloadService) getRedditBearerToken(code string) (string, error) {
 		return "", fmt.Errorf("unknown error")
 	}
 	req.Header.Set("User-Agent", fmt.Sprintf("scrimpton-bot (by /u/warmans)"))
-	req.SetBasicAuth(oauth.RedditApplicationID, c.cfg.Secret)
+	req.SetBasicAuth(c.oauthCfg.AppID, c.oauthCfg.Secret)
 
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
