@@ -41,6 +41,49 @@ func (i Tscript) ID() string {
 	return IncompleteTranscriptID(i)
 }
 
+type TscriptStats struct {
+	ID                              string
+	Publication                     string
+	Series                          int32
+	Episode                         int32
+	ChunkContributionStates         map[string][]ContributionState
+	NumChunks                       int32
+	NumContributions                int32
+	NumPendingContributions         int32
+	NumRequestApprovalContributions int32
+	NumApprovedContributions        int32
+	NumRejectedContributions        int32
+}
+
+func (c *TscriptStats) Proto() *api.TscriptStats {
+	if c == nil {
+		return nil
+	}
+	res := &api.TscriptStats{
+		Id:                              c.ID,
+		Publication:                     c.Publication,
+		Series:                          c.Series,
+		Episode:                         c.Episode,
+		ChunkContributions:              map[string]*api.ChunkStates{},
+		NumChunks:                       c.NumChunks,
+		NumContributions:                c.NumContributions,
+		NumPendingContributions:         c.NumPendingContributions,
+		NumRequestApprovalContributions: c.NumRequestApprovalContributions,
+		NumApprovedContributions:        c.NumApprovedContributions,
+		NumRejectedContributions:        c.NumRejectedContributions,
+	}
+
+	for k, v := range c.ChunkContributionStates {
+		res.ChunkContributions[k] = &api.ChunkStates{
+			States: make([]api.ContributionState, len(v)),
+		}
+		for staK, staV := range v {
+			res.ChunkContributions[k].States[staK] = staV.Proto()
+		}
+	}
+	return res
+}
+
 type Chunk struct {
 	ID          string `json:"id"`
 	Raw         string `json:"raw"`

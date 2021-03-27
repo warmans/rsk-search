@@ -67,7 +67,7 @@ func populatePersistentDB(inputDataPath string, conn *rw.Conn, logger *zap.Logge
 			return err
 		}
 		if err := conn.WithStore(func(s *rw.Store) error {
-			return s.InsertTscript(context.Background(), tscript)
+			return s.InsertOrIgnoreTscript(context.Background(), tscript)
 		}); err != nil {
 			return err
 		}

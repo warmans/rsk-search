@@ -12,8 +12,9 @@ type Author struct {
 }
 
 type AuthorStats struct {
-	ContributionsInLastHour int32
-	PendingContributions    int32
-	ApprovedContributions   int32
-	RejectedContributions   int32
+	ContributionsInLastHour      int32
+	PendingContributions         int32
+	RequestApprovalContributions int32
+	ApprovedContributions        int32
+	RejectedContributions        int32
 }

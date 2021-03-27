@@ -24,6 +24,7 @@ type SearchServiceClient interface {
 	ListFieldValues(ctx context.Context, in *ListFieldValuesRequest, opts ...grpc.CallOption) (*FieldValueList, error)
 	GetEpisode(ctx context.Context, in *GetEpisodeRequest, opts ...grpc.CallOption) (*Episode, error)
 	ListEpisodes(ctx context.Context, in *ListEpisodesRequest, opts ...grpc.CallOption) (*EpisodeList, error)
+	ListTscripts(ctx context.Context, in *ListTscriptsRequest, opts ...grpc.CallOption) (*TscriptList, error)
 	// tscript is an incomplete transcription
 	// chunks are ~2 min sections of the transcription
 	GetTscriptChunkStats(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ChunkStats, error)
@@ -85,6 +86,15 @@ func (c *searchServiceClient) GetEpisode(ctx context.Context, in *GetEpisodeRequ
 func (c *searchServiceClient) ListEpisodes(ctx context.Context, in *ListEpisodesRequest, opts ...grpc.CallOption) (*EpisodeList, error) {
 	out := new(EpisodeList)
 	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/ListEpisodes", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *searchServiceClient) ListTscripts(ctx context.Context, in *ListTscriptsRequest, opts ...grpc.CallOption) (*TscriptList, error) {
+	out := new(TscriptList)
+	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/ListTscripts", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -190,6 +200,7 @@ type SearchServiceServer interface {
 	ListFieldValues(context.Context, *ListFieldValuesRequest) (*FieldValueList, error)
 	GetEpisode(context.Context, *GetEpisodeRequest) (*Episode, error)
 	ListEpisodes(context.Context, *ListEpisodesRequest) (*EpisodeList, error)
+	ListTscripts(context.Context, *ListTscriptsRequest) (*TscriptList, error)
 	// tscript is an incomplete transcription
 	// chunks are ~2 min sections of the transcription
 	GetTscriptChunkStats(context.Context, *emptypb.Empty) (*ChunkStats, error)
@@ -222,6 +233,9 @@ func (UnimplementedSearchServiceServer) GetEpisode(context.Context, *GetEpisodeR
 }
 func (UnimplementedSearchServiceServer) ListEpisodes(context.Context, *ListEpisodesRequest) (*EpisodeList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListEpisodes not implemented")
+}
+func (UnimplementedSearchServiceServer) ListTscripts(context.Context, *ListTscriptsRequest) (*TscriptList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListTscripts not implemented")
 }
 func (UnimplementedSearchServiceServer) GetTscriptChunkStats(context.Context, *emptypb.Empty) (*ChunkStats, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTscriptChunkStats not implemented")
@@ -351,6 +365,24 @@ func _SearchService_ListEpisodes_Handler(srv interface{}, ctx context.Context, d
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SearchServiceServer).ListEpisodes(ctx, req.(*ListEpisodesRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SearchService_ListTscripts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListTscriptsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SearchServiceServer).ListTscripts(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/rsksearch.SearchService/ListTscripts",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SearchServiceServer).ListTscripts(ctx, req.(*ListTscriptsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -561,6 +593,10 @@ var SearchService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListEpisodes",
 			Handler:    _SearchService_ListEpisodes_Handler,
+		},
+		{
+			MethodName: "ListTscripts",
+			Handler:    _SearchService_ListTscripts_Handler,
 		},
 		{
 			MethodName: "GetTscriptChunkStats",

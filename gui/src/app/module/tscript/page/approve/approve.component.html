@@ -43,7 +43,7 @@
             [routerLink]="['/chunk', co.chunkId]">Add one!</a>
           </div>
         </div>
-        <div class="card-footer" *ngIf="co.id && co.state === states.STATE_REQUEST_APPROVAL">
+        <div class="card-footer" *ngIf="approver && co.id && co.state === states.STATE_REQUEST_APPROVAL">
           <a class="btn btn-success mr-3" (click)="updateState(co, states.STATE_APPROVED)">Approve</a>
           <a class="btn btn-danger" (click)="updateState(co, states.STATE_REJECTED)">Reject</a>
         </div>

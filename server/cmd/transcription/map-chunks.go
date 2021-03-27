@@ -46,14 +46,23 @@ func MapChunksCmd() *cobra.Command {
 				if err != nil {
 					return err
 				}
-				if err := util.WithCreateJSONFileEncoder(path.Join(incompleteFilesDir, "chunked", dirEntry.Name()), func(enc *json.Encoder) error {
+
+				outFile := path.Join(incompleteFilesDir, "chunked", dirEntry.Name())
+
+				exists, err := util.FileExists(outFile)
+				if err != nil {
+					return err
+				}
+				if exists {
+					fmt.Printf("skipping already mapped file: %s", outFile)
+					continue
+				}
+				if err := util.WithCreateJSONFileEncoder(outFile, func(enc *json.Encoder) error {
 					return enc.Encode(ts)
 
 				}); err != nil {
 					return err
 				}
-
-				break // don't do one for now
 			}
 			return nil
 		},

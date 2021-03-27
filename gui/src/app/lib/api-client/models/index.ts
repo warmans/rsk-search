@@ -3,6 +3,7 @@
 export { FieldMetaKind } from './field-meta-kind.enum';
 export { RsksearchChunkContribution } from './rsksearch-chunk-contribution.model';
 export { RsksearchChunkContributionList } from './rsksearch-chunk-contribution-list.model';
+export { RsksearchChunkStates } from './rsksearch-chunk-states.model';
 export { RsksearchChunkStats } from './rsksearch-chunk-stats.model';
 export { RsksearchContributionState } from './rsksearch-contribution-state.enum';
 export { RsksearchCreateChunkContributionRequest } from './rsksearch-create-chunk-contribution-request.model';
@@ -25,4 +26,6 @@ export { RsksearchSynopsis } from './rsksearch-synopsis.model';
 export { RsksearchTag } from './rsksearch-tag.model';
 export { RsksearchTscriptChunk } from './rsksearch-tscript-chunk.model';
 export { RsksearchTscriptChunkContributionList } from './rsksearch-tscript-chunk-contribution-list.model';
+export { RsksearchTscriptList } from './rsksearch-tscript-list.model';
+export { RsksearchTscriptStats } from './rsksearch-tscript-stats.model';
 export { RsksearchUpdateChunkContributionRequest } from './rsksearch-update-chunk-contribution-request.model';

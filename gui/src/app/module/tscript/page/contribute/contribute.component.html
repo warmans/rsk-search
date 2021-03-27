@@ -1,0 +1,49 @@
+<div class="container pt-3">
+  <div class="row">
+    <div class="col">
+      <div class="card mb-4">
+        <div class="card-header">Get Started</div>
+        <div class="card-body">
+          <p>There are currently {{tscipts?.length || 0}} episodes that require transcriptions. Episodes are transcribed in 3 minute chunks. Only a reddit identity
+          is required to start transcribing.</p>
+          <p>Click the button below to go to the suggested next chunk for transcription.</p>
+
+          <button class="btn btn-primary" [routerLink]="['/chunk', 'next']">Start Now</button>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-header">Transcription Progress</div>
+        <div class="card-body p-0">
+          <table class="table">
+            <tr>
+              <th>ID</th>
+              <th colspan="2" title="Once transcriptions for all chunks have been approved the episode is complete">Progress</th>
+            </tr>
+            <tr *ngFor="let ep of tscipts">
+              <td style="width: 150px"><a [routerLink]="['/tscript', ep.id]">{{ep.id}}</a></td>
+              <td style="width: 100px"><span title="sections approved to the total">{{ progressMap[ep.id]['complete'] }} / {{ep.numChunks}}</span></td>
+              <td>
+                <div class="progress">
+                  <div
+                    class="progress-bar bg-success"
+                    role="progressbar"
+                    title="{{progressMap[ep.id]['complete']}} completed"
+                    [style.width]="((progressMap[ep.id]['complete'] || 0) / (progressMap[ep.id]['total'] || 1)  * 100)+'%'">
+                    approved
+                  </div>
+                  <div
+                    class="progress-bar bg-info"
+                    role="progressbar"
+                    title="{{progressMap[ep.id]['pending_approval']}} awaiting approval"
+                    [style.width]="((progressMap[ep.id]['pending_approval'] || 0) / (progressMap[ep.id]['total'] || 1)  * 100)+'%'">
+                    pending
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

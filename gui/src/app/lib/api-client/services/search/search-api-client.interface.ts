@@ -63,6 +63,13 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  searchServiceListTscripts(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchTscriptList>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   searchServiceListAuthorContributions(
     args: {
       authorId: string,

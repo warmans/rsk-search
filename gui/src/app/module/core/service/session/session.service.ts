@@ -47,7 +47,7 @@ export class SessionService {
     if (!claims) {
       return null;
     }
-    this.claims = new Claims(claims.author_id, claims.identity as Identity);
+    this.claims = new Claims(claims.author_id, claims.approver || false, claims.identity as Identity);
     return this.claims;
   }
 
@@ -58,7 +58,7 @@ export class SessionService {
 }
 
 export class Claims {
-  constructor(readonly author_id: string, readonly identity: Identity) {
+  constructor(readonly author_id: string, readonly approver: boolean, readonly identity: Identity) {
   }
 }
 

@@ -24,6 +24,14 @@ export class RootComponent implements OnDestroy {
     });
   }
 
+  // @HostListener('document:click', ['$event.path'])
+  // public onGlobalClick(targetElementPath: Array<any>) {
+  //   let elementRefInPath = targetElementPath.find(e => e === this.sideNav.nativeElement);
+  //   if (!elementRefInPath) {
+  //     this.showSideNav = false;
+  //   }
+  // }
+
   executeSearch(query: string) {
     this.router.navigate(['/search'], { queryParams: { q: query } });
   }

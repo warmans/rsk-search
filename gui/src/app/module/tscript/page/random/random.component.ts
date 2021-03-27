@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class RandomComponent implements OnInit {
 
   loading = false;
+
   chunkStats: RsksearchChunkStats;
 
   constructor(private apiClient: SearchAPIClient, private router: Router) {

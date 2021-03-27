@@ -4,6 +4,7 @@ import (
 	"context"
 	"database/sql"
 	"embed"
+	"encoding/json"
 	"fmt"
 	"github.com/jmoiron/sqlx"
 	"github.com/lithammer/shortuuid/v3"
@@ -52,11 +53,75 @@ type Store struct {
 	tx *sqlx.Tx
 }
 
-func (s *Store) InsertTscript(ctx context.Context, tscript *models.Tscript) error {
+func (s *Store) ListTscripts(ctx context.Context) ([]*models.TscriptStats, error) {
+	out := make([]*models.TscriptStats, 0)
+
+	rows, err := s.tx.QueryxContext(
+		ctx,
+		fmt.Sprintf(`
+			SELECT 
+				ts.id,
+				ts.publication, 
+				ts.series,
+				ts.episode,
+				json_object_agg(ch.id, contribution_states.states) AS contribution_states,
+ 				COUNT(DISTINCT ch.id) num_chunks,
+ 				COUNT(DISTINCT co.id) num_contributions,
+ 				SUM(CASE WHEN a.banned = false AND co.state = 'approved' THEN 1 ELSE 0 END) num_approved_contributions,
+ 				SUM(CASE WHEN a.banned = false AND co.state = 'pending' THEN 1 ELSE 0 END) num_pending_contributions,
+ 				SUM(CASE WHEN a.banned = false AND co.state = 'request_approval' THEN 1 ELSE 0 END) num_request_approval_contributions
+			FROM tscript ts
+			LEFT JOIN tscript_chunk ch ON ts.id = ch.tscript_id
+			LEFT JOIN tscript_contribution co ON ch.id = co.tscript_chunk_id
+			LEFT JOIN author a ON co.author_id = a.id
+			LEFT JOIN (
+                SELECT tscript_chunk_id, json_agg(DISTINCT state) AS states 
+                FROM tscript_contribution 
+                LEFT JOIN tscript_chunk ON tscript_contribution.tscript_chunk_id = tscript_chunk.id 
+                GROUP BY tscript_chunk_id) as contribution_states ON ch.id = contribution_states.tscript_chunk_id
+			GROUP BY ts.id
+			ORDER BY ts.publication, ts.series, ts.episode DESC
+		`),
+	)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		cur := &models.TscriptStats{
+			ChunkContributionStates: map[string][]models.ContributionState{},
+		}
+		var contribStates string
+
+		if err := rows.Scan(
+			&cur.ID,
+			&cur.Publication,
+			&cur.Series,
+			&cur.Episode,
+			&contribStates,
+			&cur.NumChunks,
+			&cur.NumContributions,
+			&cur.NumApprovedContributions,
+			&cur.NumPendingContributions,
+			&cur.NumRequestApprovalContributions,
+
+		); err != nil {
+			return nil, err
+		}
+		if err := json.Unmarshal([]byte(contribStates), &cur.ChunkContributionStates); err != nil {
+			return nil, err
+		}
+		out = append(out, cur)
+	}
+	return out, nil
+}
+
+func (s *Store) InsertOrIgnoreTscript(ctx context.Context, tscript *models.Tscript) error {
 
 	_, err := s.tx.ExecContext(
 		ctx,
-		`INSERT INTO tscript (id, publication, series, episode) VALUES ($1, $2, $3, $4)`,
+		`INSERT INTO tscript (id, publication, series, episode) VALUES ($1, $2, $3, $4) ON CONFLICT (id) DO NOTHING`,
 		tscript.ID(),
 		tscript.Publication,
 		tscript.Series,
@@ -70,7 +135,7 @@ func (s *Store) InsertTscript(ctx context.Context, tscript *models.Tscript) erro
 			return err
 		}
 		_, err = s.tx.ExecContext(ctx,
-			`INSERT INTO tscript_chunk (id, tscript_id, raw, start_second, end_second) VALUES ($1, $2, $3, $4, $5)`,
+			`INSERT INTO tscript_chunk (id, tscript_id, raw, start_second, end_second) VALUES ($1, $2, $3, $4, $5) ON CONFLICT (id) DO NOTHING`,
 			v.ID,
 			tscript.ID(),
 			v.Raw,
@@ -121,6 +186,7 @@ func (s *Store) GetAuthorStats(ctx context.Context, authorID string) (*models.Au
 	query := `
 		SELECT 
 			COALESCE(SUM(CASE WHEN c.state = 'pending' THEN 1 ELSE 0 END), 0) as num_pending,
+			COALESCE(SUM(CASE WHEN c.state = 'request_approval' THEN 1 ELSE 0 END), 0) as num_request_approval,
 			COALESCE(SUM(CASE WHEN c.state = 'approved' THEN 1 ELSE 0 END), 0) as num_approved,
 			COALESCE(SUM(CASE WHEN c.state = 'rejected' THEN 1 ELSE 0 END), 0) as num_rejected,
 			COALESCE(SUM(CASE WHEN c.created_at > NOW() - INTERVAL '1 HOUR' THEN 1 ELSE 0 END), 0) as total_in_last_hour
@@ -130,7 +196,13 @@ func (s *Store) GetAuthorStats(ctx context.Context, authorID string) (*models.Au
 	stats := &models.AuthorStats{}
 	err := s.tx.
 		QueryRowxContext(ctx, query, authorID).
-		Scan(&stats.PendingContributions, &stats.ApprovedContributions, &stats.RejectedContributions, &stats.ContributionsInLastHour)
+		Scan(
+			&stats.PendingContributions,
+			&stats.RequestApprovalContributions,
+			&stats.ApprovedContributions,
+			&stats.RejectedContributions,
+			&stats.ContributionsInLastHour,
+		)
 
 	if err != nil {
 		return nil, err

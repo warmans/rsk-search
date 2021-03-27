@@ -75,6 +75,16 @@ service SearchService {
     };
   }
 
+  rpc ListTscripts(ListTscriptsRequest) returns (TscriptList) {
+    option (google.api.http) = {
+      get: "/api/tscript"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "List incomplete transcriptions"
+      tags: "search"
+    };
+  }
+
   // tscript is an incomplete transcription
   // chunks are ~2 min sections of the transcription
   rpc GetTscriptChunkStats(google.protobuf.Empty) returns (ChunkStats) {
@@ -400,4 +410,28 @@ message ListTscriptChunkContributionsRequest {
 
 message TscriptChunkContributionList {
   repeated ChunkContribution contributions = 1;
+}
+message ListTscriptsRequest {
+}
+
+message TscriptList {
+  repeated TscriptStats tscripts = 1;
+}
+
+message TscriptStats {
+  string id = 1;
+  string publication = 2;
+  int32 series = 3;
+  int32 episode = 4;
+  map<string, ChunkStates> chunk_contributions = 5;
+  int32 num_chunks = 6;
+  int32 num_contributions = 7;
+  int32 num_pending_contributions = 8;
+  int32 num_request_approval_contributions = 9;
+  int32 num_approved_contributions = 10;
+  int32 num_rejected_contributions = 11;
+}
+
+message ChunkStates {
+  repeated ContributionState states = 1;
 }

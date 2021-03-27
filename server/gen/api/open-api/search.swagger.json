@@ -202,6 +202,29 @@
         ]
       }
     },
+    "/api/tscript": {
+      "get": {
+        "summary": "List incomplete transcriptions",
+        "operationId": "SearchService_ListTscripts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rsksearchTscriptList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "search"
+        ]
+      }
+    },
     "/api/tscript/author/{authorId}/contrib": {
       "get": {
         "summary": "lists contributions form the given author_id",
@@ -610,6 +633,17 @@
         }
       }
     },
+    "rsksearchChunkStates": {
+      "type": "object",
+      "properties": {
+        "states": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rsksearchContributionState"
+          }
+        }
+      }
+    },
     "rsksearchChunkStats": {
       "type": "object",
       "properties": {
@@ -964,6 +998,66 @@
           "items": {
             "$ref": "#/definitions/rsksearchChunkContribution"
           }
+        }
+      }
+    },
+    "rsksearchTscriptList": {
+      "type": "object",
+      "properties": {
+        "tscripts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rsksearchTscriptStats"
+          }
+        }
+      }
+    },
+    "rsksearchTscriptStats": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "publication": {
+          "type": "string"
+        },
+        "series": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "episode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "chunkContributions": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/rsksearchChunkStates"
+          }
+        },
+        "numChunks": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numContributions": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numPendingContributions": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numRequestApprovalContributions": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numApprovedContributions": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numRejectedContributions": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },

@@ -6,6 +6,7 @@ import { SubmitComponent } from '../module/tscript/page/submit/submit.component'
 import { RandomComponent } from '../module/tscript/page/random/random.component';
 import { AuthorContributionsComponent } from '../module/tscript/page/author-contributions/author-contributions.component';
 import { ApproveComponent } from '../module/tscript/page/approve/approve.component';
+import { ContributeComponent } from '../module/tscript/page/contribute/contribute.component';
 
 
 const routes: Routes = [
@@ -34,8 +35,12 @@ const routes: Routes = [
     component: AuthorContributionsComponent,
   },
   {
-    path: 'approve/:tscript_id',
+    path: 'tscript/:tscript_id',
     component: ApproveComponent,
+  },
+  {
+    path: 'contribute',
+    component: ContributeComponent,
   },
   { path: '', redirectTo: '/search', pathMatch: 'full' },
 ];

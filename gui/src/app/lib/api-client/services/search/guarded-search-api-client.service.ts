@@ -76,6 +76,13 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
       .pipe(tap((res: any) => guards.isRskSearchResultList(res) || console.error(`TypeGuard for response 'RskSearchResultList' caught inconsistency.`, res)));
   }
 
+  searchServiceListTscripts(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchTscriptList> {
+    return super.searchServiceListTscripts(requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRsksearchTscriptList(res) || console.error(`TypeGuard for response 'RsksearchTscriptList' caught inconsistency.`, res)));
+  }
+
   searchServiceListAuthorContributions(
     args: {
       authorId: string,

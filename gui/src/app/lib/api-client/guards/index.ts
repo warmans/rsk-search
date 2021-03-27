@@ -57,6 +57,17 @@ export function isRsksearchChunkContributionList(arg: any): arg is models.Rsksea
   );
   }
 
+export function isRsksearchChunkStates(arg: any): arg is models.RsksearchChunkStates {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // states?: RsksearchContributionState[]
+    ( typeof arg.states === 'undefined' || (Array.isArray(arg.states) && arg.states.every((item: unknown) => isRsksearchContributionState(item))) ) &&
+
+  true
+  );
+  }
+
 export function isRsksearchChunkStats(arg: any): arg is models.RsksearchChunkStats {
   return (
   arg != null &&
@@ -375,6 +386,48 @@ export function isRsksearchTscriptChunkContributionList(arg: any): arg is models
   typeof arg === 'object' &&
     // contributions?: RsksearchChunkContribution[]
     ( typeof arg.contributions === 'undefined' || (Array.isArray(arg.contributions) && arg.contributions.every((item: unknown) => isRsksearchChunkContribution(item))) ) &&
+
+  true
+  );
+  }
+
+export function isRsksearchTscriptList(arg: any): arg is models.RsksearchTscriptList {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // tscripts?: RsksearchTscriptStats[]
+    ( typeof arg.tscripts === 'undefined' || (Array.isArray(arg.tscripts) && arg.tscripts.every((item: unknown) => isRsksearchTscriptStats(item))) ) &&
+
+  true
+  );
+  }
+
+export function isRsksearchTscriptStats(arg: any): arg is models.RsksearchTscriptStats {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // chunkContributions?: { [key: string]: RsksearchChunkStates }
+    ( typeof arg.chunkContributions === 'undefined' || isRsksearchChunkStates(arg.chunkContributions) ) &&
+    // episode?: number
+    ( typeof arg.episode === 'undefined' || typeof arg.episode === 'number' ) &&
+    // id?: string
+    ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
+    // numApprovedContributions?: number
+    ( typeof arg.numApprovedContributions === 'undefined' || typeof arg.numApprovedContributions === 'number' ) &&
+    // numChunks?: number
+    ( typeof arg.numChunks === 'undefined' || typeof arg.numChunks === 'number' ) &&
+    // numContributions?: number
+    ( typeof arg.numContributions === 'undefined' || typeof arg.numContributions === 'number' ) &&
+    // numPendingContributions?: number
+    ( typeof arg.numPendingContributions === 'undefined' || typeof arg.numPendingContributions === 'number' ) &&
+    // numRejectedContributions?: number
+    ( typeof arg.numRejectedContributions === 'undefined' || typeof arg.numRejectedContributions === 'number' ) &&
+    // numRequestApprovalContributions?: number
+    ( typeof arg.numRequestApprovalContributions === 'undefined' || typeof arg.numRequestApprovalContributions === 'number' ) &&
+    // publication?: string
+    ( typeof arg.publication === 'undefined' || typeof arg.publication === 'string' ) &&
+    // series?: number
+    ( typeof arg.series === 'undefined' || typeof arg.series === 'number' ) &&
 
   true
   );

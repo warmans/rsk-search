@@ -137,6 +137,26 @@ func (s *SearchService) ListEpisodes(ctx context.Context, request *api.ListEpiso
 	return el, nil
 }
 
+func (s *SearchService) ListTscripts(ctx context.Context, request *api.ListTscriptsRequest) (*api.TscriptList, error) {
+	el := &api.TscriptList{
+		Tscripts: []*api.TscriptStats{},
+	}
+	err := s.persistentDB.WithStore(func(s *rw.Store) error {
+		eps, err := s.ListTscripts(ctx)
+		if err != nil {
+			return err
+		}
+		for _, e := range eps {
+			el.Tscripts = append(el.Tscripts, e.Proto())
+		}
+		return nil
+	})
+	if err != nil {
+		return nil, ErrFromStore(err, "").Err()
+	}
+	return el, nil
+}
+
 func (s *SearchService) GetTscriptChunkStats(ctx context.Context, empty *emptypb.Empty) (*api.ChunkStats, error) {
 	var stats *models.ChunkStats
 	err := s.persistentDB.WithStore(func(s *rw.Store) error {

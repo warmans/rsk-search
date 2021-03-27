@@ -9,6 +9,7 @@ import { takeUntil } from 'rxjs/operators';
 import { ActivatedRoute, Data } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { parseTranscript, Tscript } from '../../../shared/lib/tscript';
+import { SessionService } from '../../../core/service/session/session.service';
 
 @Component({
   selector: 'app-approve',
@@ -25,10 +26,16 @@ export class ApproveComponent implements OnInit {
 
   states = RsksearchContributionState;
 
+  approver: boolean = false;
+
   private destroy$ = new EventEmitter<any>();
 
-  constructor(private apiClient: SearchAPIClient, private route: ActivatedRoute, private titleService: Title) {
+  constructor(private apiClient: SearchAPIClient, private route: ActivatedRoute, private titleService: Title, private session: SessionService) {
     titleService.setTitle('contribute');
+
+    session.onTokenChange.pipe(takeUntil(this.destroy$)).subscribe((token) => {
+      this.approver = session.getClaims().approver;
+    });
 
     route.paramMap.pipe(takeUntil(this.destroy$)).subscribe((d: Data) => {
       this.tscriptID = d.params['tscript_id'];
