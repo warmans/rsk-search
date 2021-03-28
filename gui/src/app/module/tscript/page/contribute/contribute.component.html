@@ -13,6 +13,24 @@
       </div>
       <div class="card mb-4">
         <div class="card-header">Transcription Progress</div>
+        <div class="card-body">
+          <div class="progress">
+            <div
+              class="progress-bar bg-success"
+              role="progressbar"
+              title=""
+              [style.width]="(this.overallComplete / (this.overallTotal || 1) * 100)+'%'">
+              approved
+            </div>
+            <div
+              class="progress-bar bg-info"
+              role="progressbar"
+              title=""
+              [style.width]="(this.overallPending / (this.overallTotal || 1) * 100)+'%'">
+              approved
+            </div>
+          </div>
+        </div>
         <div class="card-body p-0">
           <table class="table">
             <tr>

@@ -285,8 +285,6 @@ func (s *SearchService) UpdateChunkContribution(ctx context.Context, request *ap
 		return nil, ErrFromStore(err, contrib.ID).Err()
 	}
 
-	fmt.Print("TRANSCRIPT", request.Transcript)
-
 	contrib.Transcription = request.Transcript
 	return contrib.Proto(), nil
 }
@@ -413,9 +411,6 @@ func (s *SearchService) GetRedditAuthURL(ctx context.Context, empty *emptypb.Emp
 			returnURL = parsed.String()
 		}
 	}
-	fmt.Println("RAW", md["grpcgateway-referer"])
-	fmt.Println("RETURN", returnURL)
-
 	return &api.RedditAuthURL{
 		Url: fmt.Sprintf(
 			"https://www.reddit.com/api/v1/authorize?client_id=%s&response_type=code&state=%s&redirect_uri=%s&duration=temporary&scope=identity",

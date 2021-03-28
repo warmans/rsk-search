@@ -80,7 +80,7 @@ func (s *Store) ListTscripts(ctx context.Context) ([]*models.TscriptStats, error
                 LEFT JOIN tscript_chunk ON tscript_contribution.tscript_chunk_id = tscript_chunk.id 
                 GROUP BY tscript_chunk_id) as contribution_states ON ch.id = contribution_states.tscript_chunk_id
 			GROUP BY ts.id
-			ORDER BY ts.publication, ts.series, ts.episode DESC
+			ORDER BY ts.publication, ts.series, ts.episode ASC
 		`),
 	)
 	if err != nil {

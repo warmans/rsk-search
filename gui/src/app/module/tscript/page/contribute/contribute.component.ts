@@ -21,6 +21,10 @@ export class ContributeComponent implements OnInit, OnDestroy {
   // map of tscript_id => { 'approved' => 1, 'pending_approval' => 2 ...}
   progressMap: { [index: string]: { [index: string]: number } } = {};
 
+  overallTotal: number = 0;
+  overallComplete: number = 0;
+  overallPending: number = 0;
+
   private unsubscribe$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private apiClient: SearchAPIClient) {
@@ -30,25 +34,34 @@ export class ContributeComponent implements OnInit, OnDestroy {
     this.loading.push(true);
     this.apiClient.searchServiceListTscripts().pipe(takeUntil(this.unsubscribe$)).subscribe((res: RsksearchTscriptList) => {
       this.tscipts = res.tscripts;
+
       this.progressMap = {};
+
+      this.overallTotal = 0;
+      this.overallComplete = 0;
+      this.overallPending = 0;
+
       this.tscipts.forEach((ts) => {
         if (this.progressMap[ts.id] === undefined) {
           this.progressMap[ts.id] = { 'total': 0, 'complete': 0, 'pending_approval': 0 };
         }
         for (let chunkID in ts.chunkContributions) {
           this.progressMap[ts.id]['total']++;
+          this.overallTotal++;
+
           ts.chunkContributions[chunkID].states.forEach((sta) => {
             switch (sta) {
               case RsksearchContributionState.STATE_APPROVED:
                 this.progressMap[ts.id]['complete']++;
+                this.overallComplete++;
                 break;
               case RsksearchContributionState.STATE_REQUEST_APPROVAL:
                 this.progressMap[ts.id]['pending_approval']++;
+                this.overallPending++;
                 break;
             }
           });
         }
-        console.log(this.progressMap);
       });
     }).add(() => {
       this.loading.pop();
