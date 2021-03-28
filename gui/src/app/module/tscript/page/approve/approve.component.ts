@@ -33,8 +33,8 @@ export class ApproveComponent implements OnInit {
   constructor(private apiClient: SearchAPIClient, private route: ActivatedRoute, private titleService: Title, private session: SessionService) {
     titleService.setTitle('contribute');
 
-    session.onTokenChange.pipe(takeUntil(this.destroy$)).subscribe((token) => {
-      this.approver = session.getClaims().approver;
+    session.onTokenChange.pipe(takeUntil(this.destroy$)).subscribe((token: string) => {
+      this.approver = session.getClaims()?.approver || false;
     });
 
     route.paramMap.pipe(takeUntil(this.destroy$)).subscribe((d: Data) => {
@@ -69,7 +69,6 @@ export class ApproveComponent implements OnInit {
   updateApprovalList() {
     let approvalMap: { [index: string]: RsksearchChunkContribution } = {};
     for (let chunkId in this.groupedContributions) {
-
       this.groupedContributions[chunkId].forEach((co: RsksearchChunkContribution) => {
         if (!approvalMap[chunkId]) {
           approvalMap[chunkId] = co;
@@ -78,7 +77,10 @@ export class ApproveComponent implements OnInit {
         if (approvalMap[chunkId] === RsksearchContributionState.STATE_REJECTED) {
           return;
         }
-        if (approvalMap[chunkId] === RsksearchContributionState.STATE_REJECTED && co.state === RsksearchContributionState.STATE_REQUEST_APPROVAL) {
+        if (approvalMap[chunkId] === RsksearchContributionState.STATE_REJECTED && co.state !== RsksearchContributionState.STATE_REJECTED) {
+          approvalMap[chunkId] = co;
+        }
+        if (co.state === RsksearchContributionState.STATE_APPROVED) {
           approvalMap[chunkId] = co;
         }
       });

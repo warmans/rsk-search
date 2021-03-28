@@ -384,7 +384,6 @@ message Token {
   string token = 1;
 }
 
-
 message UpdateChunkContributionRequest {
   string chunk_id = 1;
   string contribution_id = 2;

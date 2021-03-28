@@ -1,6 +1,15 @@
 <div class="container-fluid pt-3">
   <div class="row mb-3">
     <div class="col">
+
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a [routerLink]="['/search']">Home</a></li>
+          <li class="breadcrumb-item"><a [routerLink]="['/contribute']">Contribute</a></li>
+          <li class="breadcrumb-item active" aria-current="page">{{tscriptID}}</li>
+        </ol>
+      </nav>
+
       <div class="card mb-3" *ngFor="let co of approvalList">
         <div class="card-header" *ngIf="!co.id">
           {{co.chunkId}}
@@ -10,7 +19,10 @@
             <div class="flex-grow-1">
               <span class="float-left mr-2 pt-1">{{co.chunkId}} :: </span>
               <select class="form-control form-control-sm" style="max-width: 400px" *ngIf="co.id" (change)="selectChunkContribution(co.id, $event)">
-                <option *ngFor="let contrib of groupedContributions[co.chunkId]" [value]="contrib.id" [selected]="co.id === contrib.id">{{contrib.id}} ({{contrib.state}})</option>
+                <option
+                  *ngFor="let contrib of groupedContributions[co.chunkId]"
+                  [value]="contrib.id"
+                  [selected]="co.id === contrib.id">{{contrib.id}} ({{contrib.state}})</option>
               </select>
             </div>
             <div class="flex-grow-1 text-right" *ngIf="co.id">

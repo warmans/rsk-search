@@ -1,4 +1,13 @@
 <div class="container-fluid pt-3">
+
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a [routerLink]="['/search']">Home</a></li>
+      <li class="breadcrumb-item"><a [routerLink]="['/contribute']">Contribute</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Create</li>
+    </ol>
+  </nav>
+
   <div class="row mb-3">
     <div class="col-8">
       <div class="alert alert-warning" *ngIf="!userCanEdit && contribution.state !== cStates.STATE_REQUEST_APPROVAL">

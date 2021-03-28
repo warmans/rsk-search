@@ -275,13 +275,39 @@ func (s *Store) GetContribution(ctx context.Context, id string) (*models.Contrib
 }
 
 func (s *Store) ListApprovableTscriptContributions(ctx context.Context, tscriptID string, page int32) ([]*models.Contribution, error) {
-	return s.listContributions(
+
+	out := make([]*models.Contribution, 0)
+
+	rows, err := s.tx.QueryxContext(
 		ctx,
-		page,
-		"ch.tscript_id = $1 AND (co.state != $2 OR co.id IS NULL)",
-		[]interface{}{tscriptID, models.ContributionStatePending},
-		"ch.start_second ASC",
+		fmt.Sprintf(`
+			SELECT 
+				COALESCE(co.id, ''), 
+				COALESCE(co.author_id, ''), 
+				ch.id, 
+				COALESCE(co.transcription, ''), 
+				COALESCE(co.state, 'unknown') 
+			FROM tscript_chunk ch 
+			LEFT JOIN tscript_contribution co ON ch.id = co.tscript_chunk_id AND co.state != $1
+			WHERE ch.tscript_id = $2
+			ORDER BY ch.start_second ASC
+			LIMIT 25 OFFSET %d`, page),
+		models.ContributionStatePending,
+		tscriptID,
 	)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		cur := &models.Contribution{}
+		if err := rows.Scan(&cur.ID, &cur.AuthorID, &cur.ChunkID, &cur.Transcription, &cur.State); err != nil {
+			return nil, err
+		}
+		out = append(out, cur)
+	}
+	return out, nil
 }
 
 func (s *Store) ListAuthorContributions(ctx context.Context, authorName string, page int32) ([]*models.Contribution, error) {
@@ -310,7 +336,8 @@ func (s *Store) listContributions(ctx context.Context, page int32, where string,
 				ch.id, 
 				COALESCE(co.transcription, ''), 
 				COALESCE(co.state, 'unknown') 
-			FROM tscript_chunk ch LEFT JOIN tscript_contribution co ON ch.id = co.tscript_chunk_id
+			FROM tscript_chunk ch 
+			LEFT JOIN tscript_contribution co ON ch.id = co.tscript_chunk_id
 			%s 
 			ORDER BY %s
 			LIMIT 25 OFFSET %d`, where, order, page),

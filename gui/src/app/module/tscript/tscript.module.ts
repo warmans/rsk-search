@@ -18,7 +18,7 @@ import { ContributeComponent } from './page/contribute/contribute.component';
     CommonModule,
     SharedModule,
     RouterModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   exports: [SubmitComponent]
 })
