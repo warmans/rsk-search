@@ -74,7 +74,8 @@ export class ApproveComponent implements OnInit {
           approvalMap[chunkId] = co;
           return;
         }
-        if (approvalMap[chunkId] === RsksearchContributionState.STATE_REJECTED) {
+        // do not replace the current value if it is already approved.
+        if (approvalMap[chunkId] === RsksearchContributionState.STATE_APPROVED) {
           return;
         }
         if (approvalMap[chunkId] === RsksearchContributionState.STATE_REJECTED && co.state !== RsksearchContributionState.STATE_REJECTED) {

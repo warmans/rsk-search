@@ -15,8 +15,8 @@
         not the owner or because is has already been accepted or rejected
       </div>
       <div class="alert alert-warning" *ngIf="!contribution && chunk?.numContributions > 0">
-        There are already {{chunk.numContributions}} contributions for this section of audio.
-        You can trying getting a new one, but clicking <a [routerLink]="['/chunk', 'next']">here</a>.
+        There are already {{chunk.numContributions}} approved or proposed contributions for this section of audio.
+        You can start a different one by clicking <a [routerLink]="['/chunk', 'next']">here</a>.
       </div>
       <div class="card mb-3">
         <div class="card-body">
@@ -33,7 +33,8 @@
             <div class="mb-3">State: <span class="text-info">{{contribution.state}}</span></div>
             <p>This means that the contribution has not yet been reviewed and can still be edited if you are the
             owner. Clicking the button below will mark it as being ready to be merged.</p>
-            <button class="btn btn-success mt-2" (click)="markComplete()">Mark as complete <i class="bi-check"></i></button>
+            <button class="btn btn-success mt-2" (click)="markComplete()" [disabled]="dirty">Mark as complete <i class="bi-check"></i></button>
+            <div *ngIf="dirty" class="text-muted"> (save changes to enable)</div>
           </div>
           <div *ngIf="contribution.state === cStates.STATE_REQUEST_APPROVAL">
             <div class="mb-3">State: <span class="text-info">{{contribution.state}}</span></div>

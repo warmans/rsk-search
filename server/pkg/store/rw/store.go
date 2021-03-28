@@ -169,7 +169,7 @@ func (s *Store) GetChunk(ctx context.Context, chunkId string) (*models.Chunk, st
 func (s *Store) GetChunkContributionCount(ctx context.Context, chunkId string) (int32, error) {
 	var count int32
 	err := s.tx.
-		QueryRowxContext(ctx, "SELECT COUNT(*) FROM tscript_contribution c LEFT JOIN author a ON c.author_id = a.id WHERE a.banned = false AND tscript_chunk_id = $1", chunkId).
+		QueryRowxContext(ctx, "SELECT COUNT(*) FROM tscript_contribution c LEFT JOIN author a ON c.author_id = a.id WHERE a.banned = false AND tscript_chunk_id = $1 AND c.state NOT IN ('pending', 'rejected')", chunkId).
 		Scan(&count)
 
 	if err != nil {
