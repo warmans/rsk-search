@@ -27,6 +27,11 @@
       </div>
     </div>
     <div class="col-4">
+      <div class="card" *ngIf="!contribution">
+        <div class="card-body">
+          <i class="bi-asterisk mr-2"></i> You can save you partial contribution and continue to edit it before submitting it for approval.
+        </div>
+      </div>
       <div class="card" *ngIf="contribution">
         <div class="card-body">
           <div *ngIf="contribution.state === cStates.STATE_PENDING">

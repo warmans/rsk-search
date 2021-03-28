@@ -226,7 +226,7 @@ export class SubmitComponent implements OnInit, OnDestroy {
       }).add(() => this.loading.shift());
     }
   }
-  
+
   markComplete() {
     this.loading.push(true);
     this.apiClient.searchServiceRequestChunkContributionState({

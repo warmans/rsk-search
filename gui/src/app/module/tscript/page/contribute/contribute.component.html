@@ -17,6 +17,8 @@
           <p>Click the button below to go to the suggested next chunk for transcription.</p>
 
           <button class="btn btn-primary" [routerLink]="['/chunk', 'next']">Start Now</button>
+
+          <div class="text-muted mt-3">If you have already started a transcription find it <a [routerLink]="['/me']">here</a>.</div>
         </div>
       </div>
       <div class="card mb-4">
