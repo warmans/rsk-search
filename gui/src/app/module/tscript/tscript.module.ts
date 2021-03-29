@@ -10,10 +10,11 @@ import { RedditLoginComponent } from './component/reddit-login/reddit-login.comp
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApproveComponent } from './page/approve/approve.component';
 import { ContributeComponent } from './page/contribute/contribute.component';
+import { LeaderboardComponent } from './component/leaderboard/leaderboard.component';
 
 
 @NgModule({
-  declarations: [SubmitComponent, EditorComponent, RandomComponent, AuthorContributionsComponent, RedditLoginComponent, ApproveComponent, ContributeComponent],
+  declarations: [SubmitComponent, EditorComponent, RandomComponent, AuthorContributionsComponent, RedditLoginComponent, ApproveComponent, ContributeComponent, LeaderboardComponent],
   imports: [
     CommonModule,
     SharedModule,

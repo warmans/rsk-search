@@ -70,6 +70,13 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  searchServiceGetAuthorLeaderboard(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchAuthorLeaderboard>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   searchServiceListAuthorContributions(
     args: {
       authorId: string,

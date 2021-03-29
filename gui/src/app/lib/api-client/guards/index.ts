@@ -27,6 +27,32 @@ export function isFieldMetaKind(arg: any): arg is models.FieldMetaKind {
   ;
   }
 
+export function isRsksearchAuthorLeaderboard(arg: any): arg is models.RsksearchAuthorLeaderboard {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // authors?: RsksearchAuthorRanking[]
+    ( typeof arg.authors === 'undefined' || (Array.isArray(arg.authors) && arg.authors.every((item: unknown) => isRsksearchAuthorRanking(item))) ) &&
+
+  true
+  );
+  }
+
+export function isRsksearchAuthorRanking(arg: any): arg is models.RsksearchAuthorRanking {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // acceptedContributions?: number
+    ( typeof arg.acceptedContributions === 'undefined' || typeof arg.acceptedContributions === 'number' ) &&
+    // approver?: boolean
+    ( typeof arg.approver === 'undefined' || typeof arg.approver === 'boolean' ) &&
+    // authorName?: string
+    ( typeof arg.authorName === 'undefined' || typeof arg.authorName === 'string' ) &&
+
+  true
+  );
+  }
+
 export function isRsksearchChunkContribution(arg: any): arg is models.RsksearchChunkContribution {
   return (
   arg != null &&

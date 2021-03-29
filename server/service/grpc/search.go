@@ -305,9 +305,12 @@ func (s *SearchService) RequestChunkContributionState(ctx context.Context, reque
 	if err != nil {
 		return nil, ErrFromStore(err, request.ContributionId).Err()
 	}
-	if contrib.AuthorID != claims.AuthorID {
-		return nil, ErrPermissionDenied("you are not the author of this contribution").Err()
+	if !claims.Approver {
+		if contrib.AuthorID != claims.AuthorID {
+			return nil, ErrPermissionDenied("you are not the author of this contribution").Err()
+		}
 	}
+
 	if contrib.State != models.ContributionStatePending && contrib.State != models.ContributionStateApprovalRequested {
 		return nil, ErrFailedPrecondition(fmt.Sprintf("Only pending contributions can be edited. Actual state was: %s", contrib.State)).Err()
 	}
@@ -378,9 +381,31 @@ func (s *SearchService) ListAuthorContributions(ctx context.Context, request *ap
 	return out, nil
 }
 
-func (s *SearchService) GetChunkContribution(ctx context.Context, request *api.GetChunkContributionRequest) (*api.ChunkContribution, error) {
-	var contrib *models.Contribution
+func (s *SearchService) GetAuthorLeaderboard(ctx context.Context, empty *emptypb.Empty) (*api.AuthorLeaderboard, error) {
+	var out *api.AuthorLeaderboard
 	err := s.persistentDB.WithStore(func(s *rw.Store) error {
+		lb, err := s.AuthorLeaderboard(ctx)
+		if err != nil {
+			return err
+		}
+		out = lb.Proto()
+		return nil
+	})
+	if err != nil {
+		return nil, ErrFromStore(err, "").Err()
+	}
+	return out, err
+}
+
+func (s *SearchService) GetChunkContribution(ctx context.Context, request *api.GetChunkContributionRequest) (*api.ChunkContribution, error) {
+
+	claims, err := s.getClaims(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	var contrib *models.Contribution
+	err = s.persistentDB.WithStore(func(s *rw.Store) error {
 		var err error
 		contrib, err = s.GetContribution(ctx, request.ContributionId)
 		if err != nil {
@@ -390,6 +415,11 @@ func (s *SearchService) GetChunkContribution(ctx context.Context, request *api.G
 	})
 	if err != nil {
 		return nil, ErrFromStore(err, request.ContributionId).Err()
+	}
+	if claims.Approver == false {
+		if contrib.State == models.ContributionStatePending && contrib.AuthorID != claims.AuthorID {
+			return nil, ErrPermissionDenied("you cannot view another author's contribution when it is in the pending state").Err()
+		}
 	}
 	return contrib.Proto(), nil
 }

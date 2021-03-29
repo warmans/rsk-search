@@ -56,6 +56,10 @@ dev.services.clean:
 dev.populate.chunks: build
 	./bin/rsk-search db load-tscript --rw-db-dsn=${DEV_DB_DSN}
 
+.PHONY: dev.populate.test-data
+dev.populate.test-data: build
+	./bin/rsk-search db create-rw-testdata --rw-db-dsn=${DEV_DB_DSN}
+
 .PHONY: update.transcriptions
 update.transcriptions:
 ifndef SPOTIFY_TOKEN

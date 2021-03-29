@@ -166,6 +166,23 @@ func (s *Store) GetChunk(ctx context.Context, chunkId string) (*models.Chunk, st
 	return ch, tscriptID, s.UpdateChunkActivity(ctx, ch.ID, ChunkActivityAccessed)
 }
 
+func (s *Store) ListChunks(ctx context.Context, limit int32) ([]*models.Chunk, error) {
+
+	rows, err := s.tx.QueryxContext(ctx, fmt.Sprintf(`SELECT id, raw, start_second, end_second FROM tscript_chunk LIMIT %d`, limit))
+	if err != nil {
+		return nil, err
+	}
+	chunks := []*models.Chunk{}
+	for rows.Next() {
+		ch := &models.Chunk{}
+		if err := rows.Scan(&ch.ID, &ch.Raw, &ch.StartSecond, &ch.EndSecond); err != nil {
+			return nil, err
+		}
+		chunks = append(chunks, ch)
+	}
+	return chunks, nil
+}
+
 func (s *Store) GetChunkContributionCount(ctx context.Context, chunkId string) (int32, error) {
 	var count int32
 	err := s.tx.
@@ -214,6 +231,9 @@ func (s *Store) CreateContribution(ctx context.Context, c *models.Contribution) 
 	if c.ID == "" {
 		c.ID = shortuuid.New()
 	}
+	if c.State == "" {
+		c.State = models.ContributionStatePending
+	}
 	if banned, err := s.AuthorIsBanned(ctx, c.AuthorID); err != nil || banned {
 		if err != nil {
 			return err
@@ -227,7 +247,7 @@ func (s *Store) CreateContribution(ctx context.Context, c *models.Contribution) 
 		c.AuthorID,
 		c.ChunkID,
 		c.Transcription,
-		models.ContributionStatePending,
+		c.State,
 	)
 	if err != nil {
 		return err
@@ -318,6 +338,44 @@ func (s *Store) ListAuthorContributions(ctx context.Context, authorName string, 
 		[]interface{}{authorName},
 		"co.created_at ASC",
 	)
+}
+
+func (s *Store) AuthorLeaderboard(ctx context.Context) (*models.AuthorLeaderboard, error) {
+
+	query := `
+        SELECT * FROM (
+            SELECT 
+                a.name,
+                a.approver,
+                COALESCE(SUM(CASE WHEN c.state = 'approved' THEN 1 ELSE 0 END), 0) as num_approved
+            FROM author a
+            LEFT JOIN tscript_contribution c ON c.author_id = a.id
+            GROUP BY a.name, a.approver) ranks
+		WHERE ranks.num_approved > 0
+		ORDER BY ranks.num_approved DESC
+		LIMIT 25
+	`
+	rows, err := s.tx.QueryxContext(ctx, query)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	authors := []*models.AuthorRanking{}
+	for rows.Next() {
+		author := &models.AuthorRanking{}
+		err := rows.Scan(
+			&author.Name,
+			&author.Approver,
+			&author.AcceptedContributions,
+		)
+		if err != nil {
+			return nil, err
+		}
+		authors = append(authors, author)
+	}
+
+	return &models.AuthorLeaderboard{Authors: authors}, nil
 }
 
 func (s *Store) listContributions(ctx context.Context, page int32, where string, params []interface{}, order string) ([]*models.Contribution, error) {

@@ -131,6 +131,16 @@ service SearchService {
     };
   }
 
+  rpc GetAuthorLeaderboard(google.protobuf.Empty) returns (AuthorLeaderboard) {
+    option (google.api.http) = {
+      get: "/api/tscript/author/leaderboard"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "lists any existing contributions for a chunk"
+      tags: "search"
+    };
+  }
+
   rpc GetChunkContribution(GetChunkContributionRequest) returns (ChunkContribution) {
     option (google.api.http) = {
       get: "/api/tscript/chunk/{chunk_id}/contrib/{contribution_id}"
@@ -433,4 +443,15 @@ message TscriptStats {
 
 message ChunkStates {
   repeated ContributionState states = 1;
+}
+
+
+message AuthorLeaderboard {
+  repeated AuthorRanking authors = 1;
+}
+
+message AuthorRanking {
+  string author_name = 1;
+  int32 accepted_contributions = 2;
+  bool approver = 3;
 }

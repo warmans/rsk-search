@@ -31,6 +31,7 @@ type SearchServiceClient interface {
 	GetTscriptChunk(ctx context.Context, in *GetTscriptChunkRequest, opts ...grpc.CallOption) (*TscriptChunk, error)
 	ListTscriptChunkContributions(ctx context.Context, in *ListTscriptChunkContributionsRequest, opts ...grpc.CallOption) (*TscriptChunkContributionList, error)
 	ListAuthorContributions(ctx context.Context, in *ListAuthorContributionsRequest, opts ...grpc.CallOption) (*ChunkContributionList, error)
+	GetAuthorLeaderboard(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*AuthorLeaderboard, error)
 	GetChunkContribution(ctx context.Context, in *GetChunkContributionRequest, opts ...grpc.CallOption) (*ChunkContribution, error)
 	CreateChunkContribution(ctx context.Context, in *CreateChunkContributionRequest, opts ...grpc.CallOption) (*ChunkContribution, error)
 	UpdateChunkContribution(ctx context.Context, in *UpdateChunkContributionRequest, opts ...grpc.CallOption) (*ChunkContribution, error)
@@ -137,6 +138,15 @@ func (c *searchServiceClient) ListAuthorContributions(ctx context.Context, in *L
 	return out, nil
 }
 
+func (c *searchServiceClient) GetAuthorLeaderboard(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*AuthorLeaderboard, error) {
+	out := new(AuthorLeaderboard)
+	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/GetAuthorLeaderboard", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *searchServiceClient) GetChunkContribution(ctx context.Context, in *GetChunkContributionRequest, opts ...grpc.CallOption) (*ChunkContribution, error) {
 	out := new(ChunkContribution)
 	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/GetChunkContribution", in, out, opts...)
@@ -207,6 +217,7 @@ type SearchServiceServer interface {
 	GetTscriptChunk(context.Context, *GetTscriptChunkRequest) (*TscriptChunk, error)
 	ListTscriptChunkContributions(context.Context, *ListTscriptChunkContributionsRequest) (*TscriptChunkContributionList, error)
 	ListAuthorContributions(context.Context, *ListAuthorContributionsRequest) (*ChunkContributionList, error)
+	GetAuthorLeaderboard(context.Context, *emptypb.Empty) (*AuthorLeaderboard, error)
 	GetChunkContribution(context.Context, *GetChunkContributionRequest) (*ChunkContribution, error)
 	CreateChunkContribution(context.Context, *CreateChunkContributionRequest) (*ChunkContribution, error)
 	UpdateChunkContribution(context.Context, *UpdateChunkContributionRequest) (*ChunkContribution, error)
@@ -248,6 +259,9 @@ func (UnimplementedSearchServiceServer) ListTscriptChunkContributions(context.Co
 }
 func (UnimplementedSearchServiceServer) ListAuthorContributions(context.Context, *ListAuthorContributionsRequest) (*ChunkContributionList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListAuthorContributions not implemented")
+}
+func (UnimplementedSearchServiceServer) GetAuthorLeaderboard(context.Context, *emptypb.Empty) (*AuthorLeaderboard, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAuthorLeaderboard not implemented")
 }
 func (UnimplementedSearchServiceServer) GetChunkContribution(context.Context, *GetChunkContributionRequest) (*ChunkContribution, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetChunkContribution not implemented")
@@ -459,6 +473,24 @@ func _SearchService_ListAuthorContributions_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SearchService_GetAuthorLeaderboard_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SearchServiceServer).GetAuthorLeaderboard(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/rsksearch.SearchService/GetAuthorLeaderboard",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SearchServiceServer).GetAuthorLeaderboard(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _SearchService_GetChunkContribution_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetChunkContributionRequest)
 	if err := dec(in); err != nil {
@@ -613,6 +645,10 @@ var SearchService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListAuthorContributions",
 			Handler:    _SearchService_ListAuthorContributions_Handler,
+		},
+		{
+			MethodName: "GetAuthorLeaderboard",
+			Handler:    _SearchService_GetAuthorLeaderboard_Handler,
 		},
 		{
 			MethodName: "GetChunkContribution",

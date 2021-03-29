@@ -1,0 +1,24 @@
+<div class="card">
+  <div class="card-header"><i class="bi-trophy mr-2"></i> Top Contributors</div>
+  <div class="card-body p-0">
+    <table class="table mb-0">
+      <tr *ngFor="let a of authors; let i = index">
+        <td style="width: 50px">{{i+1}}</td>
+        <td style="width: 150px">
+
+          <span *ngIf="a.approver" class="text-muted">
+            <i class="bi-cpu mr-1"></i> {{a.authorName}}
+          </span>
+          <span *ngIf="!a.approver">
+            {{a.authorName}}
+          </span>
+        </td>
+        <td>
+          <div *ngIf="a.acceptedContributions > 0" class="text-success">
+            <i class="bi-file-earmark-check" *ngFor="let c of counter(a.acceptedContributions)"></i>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

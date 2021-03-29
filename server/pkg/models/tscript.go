@@ -160,3 +160,4 @@ type ContributionActivity struct {
 	ApprovedAt  *time.Time
 	RejectedAt  *time.Time
 }
+

@@ -83,6 +83,13 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
       .pipe(tap((res: any) => guards.isRsksearchTscriptList(res) || console.error(`TypeGuard for response 'RsksearchTscriptList' caught inconsistency.`, res)));
   }
 
+  searchServiceGetAuthorLeaderboard(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchAuthorLeaderboard> {
+    return super.searchServiceGetAuthorLeaderboard(requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRsksearchAuthorLeaderboard(res) || console.error(`TypeGuard for response 'RsksearchAuthorLeaderboard' caught inconsistency.`, res)));
+  }
+
   searchServiceListAuthorContributions(
     args: {
       authorId: string,

@@ -1,6 +1,8 @@
 /* tslint:disable */
 
 export { FieldMetaKind } from './field-meta-kind.enum';
+export { RsksearchAuthorLeaderboard } from './rsksearch-author-leaderboard.model';
+export { RsksearchAuthorRanking } from './rsksearch-author-ranking.model';
 export { RsksearchChunkContribution } from './rsksearch-chunk-contribution.model';
 export { RsksearchChunkContributionList } from './rsksearch-chunk-contribution-list.model';
 export { RsksearchChunkStates } from './rsksearch-chunk-states.model';

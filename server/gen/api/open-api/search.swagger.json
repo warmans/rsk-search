@@ -225,6 +225,29 @@
         ]
       }
     },
+    "/api/tscript/author/leaderboard": {
+      "get": {
+        "summary": "lists any existing contributions for a chunk",
+        "operationId": "SearchService_GetAuthorLeaderboard",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rsksearchAuthorLeaderboard"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "search"
+        ]
+      }
+    },
     "/api/tscript/author/{authorId}/contrib": {
       "get": {
         "summary": "lists contributions form the given author_id",
@@ -599,6 +622,32 @@
           "items": {
             "$ref": "#/definitions/protobufAny"
           }
+        }
+      }
+    },
+    "rsksearchAuthorLeaderboard": {
+      "type": "object",
+      "properties": {
+        "authors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rsksearchAuthorRanking"
+          }
+        }
+      }
+    },
+    "rsksearchAuthorRanking": {
+      "type": "object",
+      "properties": {
+        "authorName": {
+          "type": "string"
+        },
+        "acceptedContributions": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "approver": {
+          "type": "boolean"
         }
       }
     },
