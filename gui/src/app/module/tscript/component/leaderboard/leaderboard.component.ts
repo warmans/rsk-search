@@ -20,7 +20,6 @@ export class LeaderboardComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.apiClient.searchServiceGetAuthorLeaderboard().pipe(takeUntil(this.destroy$)).subscribe((res) => {
       this.authors = res.authors;
-      console.log(this.authors);
     });
   }
 
