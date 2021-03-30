@@ -41,3 +41,13 @@ func LoadEpisode(dataDir string, publication string, name string) (*models.Episo
 	dec := json.NewDecoder(f)
 	return e, dec.Decode(e)
 }
+
+func LoadEpisodePath(path string) (*models.Episode, error) {
+	episode := &models.Episode{}
+	if err := util.WithReadJSONFileDecoder(path, func(dec *json.Decoder) error {
+		return dec.Decode(episode)
+	}); err != nil {
+		return nil, err
+	}
+	return episode, nil
+}

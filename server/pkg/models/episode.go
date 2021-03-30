@@ -13,6 +13,8 @@ const (
 	DialogTypeUnkown = DialogType("unknown")
 	DialogTypeSong   = DialogType("song")
 	DialogTypeChat   = DialogType("chat")
+	DialogTypeNone   = DialogType("none")
+	DialogTypeGap   = DialogType("gap")
 )
 
 type MetadataType string

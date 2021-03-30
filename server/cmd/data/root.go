@@ -23,6 +23,9 @@ func RootCmd() *cobra.Command {
 	index.AddCommand(ImportSpotifyData())
 	index.AddCommand(TagDialogCmd())
 
+	// exports
+	index.AddCommand(GenerateHTMLCmd())
+
 	// various Named Entity Recognition stuff
 	index.AddCommand(NERTrainGenerateCmd())
 	index.AddCommand(NERTrainCmd())
