@@ -55,6 +55,14 @@ type TscriptStats struct {
 	NumRejectedContributions        int32
 }
 
+func (c *TscriptStats) AsEpisode() *Episode {
+	return &Episode{
+		Publication: c.Publication,
+		Series:      c.Series,
+		Episode:     c.Episode,
+	}
+}
+
 func (c *TscriptStats) Proto() *api.TscriptStats {
 	if c == nil {
 		return nil
@@ -160,4 +168,3 @@ type ContributionActivity struct {
 	ApprovedAt  *time.Time
 	RejectedAt  *time.Time
 }
-

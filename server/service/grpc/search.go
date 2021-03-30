@@ -219,7 +219,7 @@ func (s *SearchService) CreateChunkContribution(ctx context.Context, request *ap
 		return nil, ErrFromStore(err, "").Err()
 	}
 
-	lines, _, err := tscript.Import(bufio.NewScanner(bytes.NewBufferString(request.Transcript)))
+	lines, _, err := tscript.Import(bufio.NewScanner(bytes.NewBufferString(request.Transcript)), 0)
 	if err != nil {
 		return nil, ErrInvalidRequestField("transcript", err.Error()).Err()
 	}
@@ -265,7 +265,7 @@ func (s *SearchService) UpdateChunkContribution(ctx context.Context, request *ap
 	if contrib.State != models.ContributionStatePending && contrib.State != models.ContributionStateApprovalRequested {
 		return nil, ErrFailedPrecondition(fmt.Sprintf("Only pending contributions can be edited. Actual state was: %s", contrib.State)).Err()
 	}
-	lines, _, err := tscript.Import(bufio.NewScanner(bytes.NewBufferString(request.Transcript)))
+	lines, _, err := tscript.Import(bufio.NewScanner(bytes.NewBufferString(request.Transcript)), 0)
 	if err != nil {
 		return nil, ErrInvalidRequestField("transcript", err.Error()).Err()
 	}
@@ -346,7 +346,7 @@ func (s *SearchService) ListTscriptChunkContributions(ctx context.Context, reque
 	var list []*models.Contribution
 	err := s.persistentDB.WithStore(func(s *rw.Store) error {
 		var err error
-		list, err = s.ListApprovableTscriptContributions(ctx, request.TscriptId, request.Page)
+		list, err = s.ListNonPendingTscriptContributions(ctx, request.TscriptId, request.Page)
 		return err
 	})
 	if err != nil {

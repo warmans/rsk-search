@@ -7,13 +7,16 @@ import (
 	"github.com/warmans/rsk-search/pkg/models"
 	"strconv"
 	"strings"
+	"unicode"
 )
 
+const PosSpacing = 100
+
 // Import imports plain text transcripts to JSON.
-func Import(scanner *bufio.Scanner) ([]models.Dialog, []models.Synopsis, error) {
+func Import(scanner *bufio.Scanner, startPos int64) ([]models.Dialog, []models.Synopsis, error) {
 
 	output := make([]models.Dialog, 0)
-	position := int64(0)
+	position := startPos
 	lastOffset := int64(0)
 	numOffsets := 0
 
@@ -21,7 +24,7 @@ func Import(scanner *bufio.Scanner) ([]models.Dialog, []models.Synopsis, error) 
 	var currentSynopsis *models.Synopsis
 
 	for scanner.Scan() {
-		position += 100
+		position += PosSpacing
 
 		line := strings.TrimSpace(scanner.Text())
 		if line == "" {
@@ -43,12 +46,12 @@ func Import(scanner *bufio.Scanner) ([]models.Dialog, []models.Synopsis, error) 
 
 		if strings.HasPrefix(line, "#SYN: ") || strings.HasPrefix(line, "#/SYN") {
 			if currentSynopsis != nil {
-				currentSynopsis.EndPos = position
+				currentSynopsis.EndPos = position-PosSpacing
 				synopsies = append(synopsies, *currentSynopsis)
 				currentSynopsis = nil
 			}
 			if strings.HasPrefix(line, "#SYN: ") {
-				currentSynopsis = &models.Synopsis{Description: strings.TrimSpace(strings.TrimPrefix(line, ":")), StartPos: position}
+				currentSynopsis = &models.Synopsis{Description: CorrectContent(strings.TrimSpace(strings.TrimPrefix(line, "#SYN:"))), StartPos: position}
 			}
 			continue
 		}
@@ -78,7 +81,7 @@ func Import(scanner *bufio.Scanner) ([]models.Dialog, []models.Synopsis, error) 
 				di.Actor = actor
 			}
 		}
-		di.Content = strings.TrimSpace(parts[1])
+		di.Content = CorrectContent(strings.TrimSpace(parts[1]))
 
 		output = append(output, di)
 	}
@@ -96,6 +99,14 @@ func Import(scanner *bufio.Scanner) ([]models.Dialog, []models.Synopsis, error) 
 	}
 
 	return output, synopsies, nil
+}
+
+func CorrectContent(c string) string {
+	runes := []rune(c)
+	if len(runes) > 0 {
+		runes[0] = unicode.ToUpper(runes[0])
+	}
+	return string(runes)
 }
 
 func IsOffsetTag(line string) bool {

@@ -77,12 +77,17 @@ type Episode struct {
 	Series      int32     `json:"series"`
 	Episode     int32     `json:"episode"`
 	ReleaseDate time.Time `json:"release_date"`
+	Incomplete  bool      `json:"incomplete"`
 
 	// additional optional data
 	Meta       Metadata   `json:"metadata"`
 	Transcript []Dialog   `json:"transcript"`
 	Tags       []string   `json:"tags"`
 	Synopsis   []Synopsis `json:"synopsis"`
+}
+
+func (e *Episode) ID() string {
+	return EpisodeID(e)
 }
 
 func (e *Episode) ShortProto() *api.ShortEpisode {
@@ -144,10 +149,6 @@ func (e *ShortEpisode) ShortProto() *api.ShortEpisode {
 	}
 }
 
-func (e *Episode) ID() string {
-	return EpisodeID(e)
-}
-
 type DialogTags struct {
 	DialogID string            `json:"dialog_id"`
 	Tags     map[string]string `json:"tags"`
@@ -177,6 +178,6 @@ func (f FieldValue) Proto() *api.FieldValue {
 
 type Synopsis struct {
 	Description string `json:"description"`
-	StartPos    int64  `json:"start_pod"`
+	StartPos    int64  `json:"start_pos"`
 	EndPos      int64  `json:"end_pos"`
 }

@@ -60,6 +60,10 @@ dev.populate.chunks: build
 dev.populate.test-data: build
 	./bin/rsk-search db create-rw-testdata --rw-db-dsn=${DEV_DB_DSN}
 
+.PHONY: dev.extract.test-data
+dev.extract.test-data: build
+	./bin/rsk-search db extract-tscript --rw-db-dsn=${DEV_DB_DSN} --dry-run=true
+
 .PHONY: update.transcriptions
 update.transcriptions:
 ifndef SPOTIFY_TOKEN

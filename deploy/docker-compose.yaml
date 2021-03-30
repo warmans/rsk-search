@@ -10,14 +10,39 @@ services:
       - ./postgres-data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+  pgbackups:
+    image: prodrigestivill/postgres-backup-local:9.5
+    restart: always
+    user: postgres:postgres
+    volumes:
+      - ./postgres-backups:/backups
+    links:
+      - postgres
+    depends_on:
+      - postgres
+    environment:
+      - POSTGRES_HOST=postgres
+      - POSTGRES_DB=scrimpton
+      - POSTGRES_USER=scrimpton
+      - POSTGRES_PASSWORD=insecure
+      - POSTGRES_EXTRA_OPTS=-Z6 --schema=public --blobs
+      - SCHEDULE=@daily
+      - BACKUP_KEEP_DAYS=5
+      - BACKUP_KEEP_WEEKS=3
+      - BACKUP_KEEP_MONTHS=2
+      - HEALTHCHECK_PORT=8080
   gui:
     image: "warmans/rsk-search-gui:latest"
     ports:
       - "8080:80"
+    depends_on:
+      - server
   server:
     image: "warmans/rsk-search-api:latest"
     ports:
       - "8888:8888"
+    depends_on:
+      - postgres
     environment:
       RSK_SEARCH_RW_DB_DSN: "postgres://scrimpton:insecure@postgres:5432/scrimpton?sslmode=disable"
       RSK_SEARCH_JWT_KEY: ""

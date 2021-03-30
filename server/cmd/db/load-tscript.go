@@ -33,6 +33,8 @@ func LoadTscriptCmd() *cobra.Command {
 			if err != nil {
 				return err
 			}
+			defer conn.Close()
+
 			if err := conn.Migrate(); err != nil {
 				return err
 			}

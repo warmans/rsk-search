@@ -183,6 +183,22 @@ func (s *Store) ListChunks(ctx context.Context, limit int32) ([]*models.Chunk, e
 	return chunks, nil
 }
 
+func (s *Store) ListTscriptChunks(ctx context.Context, tscriptID string) ([]*models.Chunk, error) {
+	rows, err := s.tx.QueryxContext(ctx, fmt.Sprintf(`SELECT id, raw, start_second, end_second FROM tscript_chunk WHERE tscript_id=$1`), tscriptID)
+	if err != nil {
+		return nil, err
+	}
+	chunks := []*models.Chunk{}
+	for rows.Next() {
+		ch := &models.Chunk{}
+		if err := rows.Scan(&ch.ID, &ch.Raw, &ch.StartSecond, &ch.EndSecond); err != nil {
+			return nil, err
+		}
+		chunks = append(chunks, ch)
+	}
+	return chunks, nil
+}
+
 func (s *Store) GetChunkContributionCount(ctx context.Context, chunkId string) (int32, error) {
 	var count int32
 	err := s.tx.
@@ -294,7 +310,7 @@ func (s *Store) GetContribution(ctx context.Context, id string) (*models.Contrib
 	return out, nil
 }
 
-func (s *Store) ListApprovableTscriptContributions(ctx context.Context, tscriptID string, page int32) ([]*models.Contribution, error) {
+func (s *Store) ListNonPendingTscriptContributions(ctx context.Context, tscriptID string, page int32) ([]*models.Contribution, error) {
 
 	out := make([]*models.Contribution, 0)
 
@@ -328,16 +344,6 @@ func (s *Store) ListApprovableTscriptContributions(ctx context.Context, tscriptI
 		out = append(out, cur)
 	}
 	return out, nil
-}
-
-func (s *Store) ListAuthorContributions(ctx context.Context, authorName string, page int32) ([]*models.Contribution, error) {
-	return s.listContributions(
-		ctx,
-		page,
-		"co.author_id = $1",
-		[]interface{}{authorName},
-		"co.created_at ASC",
-	)
 }
 
 func (s *Store) AuthorLeaderboard(ctx context.Context) (*models.AuthorLeaderboard, error) {
@@ -378,7 +384,29 @@ func (s *Store) AuthorLeaderboard(ctx context.Context) (*models.AuthorLeaderboar
 	return &models.AuthorLeaderboard{Authors: authors}, nil
 }
 
-func (s *Store) listContributions(ctx context.Context, page int32, where string, params []interface{}, order string) ([]*models.Contribution, error) {
+func (s *Store) ListAuthorContributions(ctx context.Context, authorName string, page int32) ([]*models.Contribution, error) {
+	return s.listContributions(
+		ctx,
+		50,
+		page,
+		"co.author_id = $1",
+		[]interface{}{authorName},
+		"co.created_at ASC",
+	)
+}
+
+func (s *Store) ListApprovedTscriptContributions(ctx context.Context, tscriptID string, numPerPage int32, page int32) ([]*models.Contribution, error) {
+	return s.listContributions(
+		ctx,
+		numPerPage,
+		page,
+		"co.state = $1 and ch.tscript_id = $2",
+		[]interface{}{models.ContributionStateApproved, tscriptID},
+		"ch.start_second ASC",
+	)
+}
+
+func (s *Store) listContributions(ctx context.Context, numPerPage int32, page int32, where string, params []interface{}, order string) ([]*models.Contribution, error) {
 	out := make([]*models.Contribution, 0)
 
 	if where != "" {
@@ -398,7 +426,7 @@ func (s *Store) listContributions(ctx context.Context, page int32, where string,
 			LEFT JOIN tscript_contribution co ON ch.id = co.tscript_chunk_id
 			%s 
 			ORDER BY %s
-			LIMIT 25 OFFSET %d`, where, order, page),
+			LIMIT %d OFFSET %d`, where, order, numPerPage, page),
 		params...,
 	)
 	if err != nil {

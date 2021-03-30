@@ -28,7 +28,7 @@ func ImportRawCmd() *cobra.Command {
 			var synopsies []models.Synopsis
 			err := util.WithExistingFile(args[0], func(f *os.File) error {
 				var err error
-				dialog, synopsies, err = tscript.Import(bufio.NewScanner(f))
+				dialog, synopsies, err = tscript.Import(bufio.NewScanner(f), 0)
 				return err
 			})
 			if err != nil {

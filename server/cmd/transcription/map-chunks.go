@@ -68,7 +68,7 @@ func MapChunksCmd() *cobra.Command {
 		},
 	}
 
-	cmd.Flags().StringVarP(&incompleteFilesDir, "incomplete-dir", "d", "./var/data/episodes/incomplete", "Path to incomplete transcripts output by gcloud")
+	cmd.Flags().StringVarP(&incompleteFilesDir, "incomplete-dir", "d", "./var/data/episodes/incomplete/raw", "Path to incomplete transcripts created by gcloud")
 
 	return cmd
 }
