@@ -13,6 +13,7 @@ import { SessionService } from '../../../core/service/session/session.service';
 import { getFirstOffset, parseTranscript, Tscript } from '../../../shared/lib/tscript';
 import { AudioPlayerComponent } from '../../../shared/component/audio-player/audio-player.component';
 import { AlertService } from '../../../core/service/alert/alert.service';
+import { EditorConfig, EditorConfigComponent } from '../../component/editor-config/editor-config.component';
 
 @Component({
   selector: 'app-submit',
@@ -35,10 +36,11 @@ export class SubmitComponent implements OnInit, OnDestroy {
 
   contentUpdated: Subject<string> = new Subject<string>();
 
+  editorConfig: EditorConfig = localStorage.getItem('editor-config') ? JSON.parse(localStorage.getItem('editor-config')) as EditorConfig : new EditorConfig();
+
   audioPlayerURL: string = '';
   parsedTscript: Tscript;
   showHelp: boolean = false;
-  autoSeek: boolean = localStorage.getItem('pref-autoseek') === null ? true : localStorage.getItem('pref-autoseek') === 'true';
 
   cStates = RsksearchContributionState;
 
@@ -49,18 +51,21 @@ export class SubmitComponent implements OnInit, OnDestroy {
   @ViewChild('audioPlayer')
   audioPlayer: AudioPlayerComponent;
 
+  @ViewChild('editorConfigModal')
+  editorConfigModal: EditorConfigComponent;
+
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent): boolean {
-    if (this.autoSeek) {
-      if (event.key === 'Insert') {
-        this.audioPlayer.toggle(-3);
+    if (this.editorConfig.autoSeek === undefined ? true : this.editorConfig.autoSeek) {
+      if (event.key === (this.editorConfig?.playPauseKey || 'Insert')) {
+        this.audioPlayer.toggle(0 - (this.editorConfig?.backtrack || 3));
         return false;
       }
-      if (event.key === 'ScrollLock') {
+      if (event.key === (this.editorConfig?.rewindKey || 'ScrollLock')) {
         this.audioPlayer.play(-3);
         return false;
       }
-      if (event.key === 'Pause') {
+      if (event.key === (this.editorConfig?.fastForwardKey || 'Pause')) {
         this.audioPlayer.play(3);
         return false;
       }
@@ -189,17 +194,25 @@ export class SubmitComponent implements OnInit, OnDestroy {
     }
   }
 
-  toggleAutoseek() {
-    this.autoSeek = !this.autoSeek;
-    localStorage.setItem('pref-autoseek', this.autoSeek ? 'true' : 'false');
-  }
-
   handleOffsetNavigate(offset: number) {
-    if (this.autoSeek) {
+    if (this.editorConfig?.autoSeek === undefined ? true : this.editorConfig.autoSeek) {
       if (offset - this.firstOffset >= 0) {
         this.audioPlayer.seek(offset - this.firstOffset);
       }
     }
+  }
+
+  openEditorConfig() {
+    if (!this.editorConfigModal) {
+      return;
+    }
+    this.editorConfigModal.open = true;
+  }
+
+  handleEditorConfigUpdated(cfg: EditorConfig) {
+    console.log(cfg);
+    this.editorConfig = cfg;
+    localStorage.setItem('editor-config', JSON.stringify(cfg));
   }
 
   submit() {

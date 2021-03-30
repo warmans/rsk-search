@@ -11,10 +11,21 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ApproveComponent } from './page/approve/approve.component';
 import { ContributeComponent } from './page/contribute/contribute.component';
 import { LeaderboardComponent } from './component/leaderboard/leaderboard.component';
+import { EditorConfigComponent } from './component/editor-config/editor-config.component';
 
 
 @NgModule({
-  declarations: [SubmitComponent, EditorComponent, RandomComponent, AuthorContributionsComponent, RedditLoginComponent, ApproveComponent, ContributeComponent, LeaderboardComponent],
+  declarations: [
+    SubmitComponent,
+    EditorComponent,
+    RandomComponent,
+    AuthorContributionsComponent,
+    RedditLoginComponent,
+    ApproveComponent,
+    ContributeComponent,
+    LeaderboardComponent,
+    EditorConfigComponent,
+  ],
   imports: [
     CommonModule,
     SharedModule,

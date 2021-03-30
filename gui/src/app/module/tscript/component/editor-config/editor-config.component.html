@@ -1,0 +1,62 @@
+<div class="modal" [ngClass]="{'open': open}" tabindex="-1" role="dialog">
+  <div class="modal-dialog  modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Editor Config</h5>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="configForm">
+
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-8">
+                <label for="play-pause-key"
+                       title="This key will cause the audio to be paused, and rewound by a couple of seconds.">
+                  Play/Pause Key <i class="bi-question-circle ml-2"></i>
+                </label>
+                <select id="play-pause-key"  class="form-control form-control-sm" formControlName="playPauseKey">
+                  <option *ngFor="let c of keyCodes" [ngValue]="c">{{ c }}</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="rewindAmount" title="Number of seconds to backtrack each time audio is paused.">
+                  Backtrack <i class="bi-question-circle ml-2"></i>
+                </label>
+                <input type="number" class="form-control form-control-sm" id="rewindAmount" placeholder="3" formControlName="backtrack">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="ff-key" title="This key will cause the audio to skip forward a few seconds.">
+            Skip Forward Key <i class="bi-question-circle ml-2"></i>
+            </label>
+            <select id="ff-key"  class="form-control form-control-sm" formControlName="fastForwardKey">
+              <option *ngFor="let c of keyCodes" [ngValue]="c">{{ c }}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="rw-key" title="This key will cause the audio to skip backwards a few seconds.">
+              Skip Backwards Key <i class="bi-question-circle ml-2"></i>
+            </label>
+            <select id="rw-key"  class="form-control form-control-sm" formControlName="rewindKey">
+              <option *ngFor="let c of keyCodes" [ngValue]="c">{{ c }}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="autoSeek" title="If auto seek is enabled the auto will seek to each #OFFSET as you click or caret over the text.">
+              Autoseek <i class="bi-question-circle ml-2"></i>
+            </label>
+            <select id="autoSeek" class="form-control form-control-sm" formControlName="autoSeek">
+              <option [ngValue]="true">ENABLED</option>
+              <option [ngValue]="false">DISABLED</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="emitUpdatedconfig()" [disabled]="!configForm.dirty">Save</button>
+        <button class="btn btn-secondary" (click)="open = false">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -22,7 +22,7 @@ export class RedditLoginComponent implements OnInit, OnDestroy {
 
   authenticated: boolean = false;
 
-  $destroy: EventEmitter<boolean> = new EventEmitter<boolean>();
+  destroy$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(
     private apiClient: SearchAPIClient,
@@ -30,7 +30,7 @@ export class RedditLoginComponent implements OnInit, OnDestroy {
     private router: Router,
     private sessionService: SessionService,
   ) {
-    route.queryParamMap.pipe(takeUntil(this.$destroy)).subscribe((d: Data) => {
+    route.queryParamMap.pipe(takeUntil(this.destroy$)).subscribe((d: Data) => {
       this.authError = d.params['error'];
 
       if (d.params['token']) {
@@ -44,7 +44,7 @@ export class RedditLoginComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.sessionService.onTokenChange.pipe(takeUntil(this.$destroy)).subscribe((token: string): void => {
+    this.sessionService.onTokenChange.pipe(takeUntil(this.destroy$)).subscribe((token: string): void => {
       if (token != null) {
         this.authenticated = true;
       }
@@ -57,14 +57,14 @@ export class RedditLoginComponent implements OnInit, OnDestroy {
 
   requestAuth() {
     this.loading = true;
-    this.apiClient.searchServiceGetRedditAuthURL().pipe(takeUntil(this.$destroy)).subscribe((res) => {
+    this.apiClient.searchServiceGetRedditAuthURL().pipe(takeUntil(this.destroy$)).subscribe((res) => {
       document.location.href = res.url;
     }).add(() => this.loading = false);
   }
 
   ngOnDestroy(): void {
-    this.$destroy.next(true);
-    this.$destroy.complete();
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 
 }

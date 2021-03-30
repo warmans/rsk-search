@@ -8,7 +8,7 @@
     </ol>
   </nav>
 
-  <div class="row mb-3">
+  <div class="row mb-2">
     <div class="col-8">
       <div class="alert alert-warning" *ngIf="!userCanEdit && contribution.state !== cStates.STATE_REQUEST_APPROVAL">
         This contribution is not editable, either because you are
@@ -74,7 +74,8 @@
             <button class="btn btn-danger btn-sm mr-3" *ngIf="userCanEdit" (click)="resetToRaw()" title="revert text to chunk original">Reset</button>
           </span>
           <span class="float-right">
-            <button class="btn btn-sm mr-3" *ngIf="userCanEdit" (click)="toggleAutoseek()" [ngClass]="{'btn-outline-success': !autoSeek, 'btn-success': autoSeek}" title="Skip audio to offset when caret moves over line">Autoseek</button>
+            <app-editor-config #editorConfigModal [initialConfig]="editorConfig" (configUpdated)="handleEditorConfigUpdated($event)"></app-editor-config>
+            <button class="btn btn-sm btn-info mr-3" *ngIf="userCanEdit" (click)="openEditorConfig()" title="Change editor config">Editor Config</button>
           </span>
           <!--span class="float-right">
             <app-webusb-device class="mr-3"></app-webusb-device>
@@ -89,8 +90,11 @@
             <app-editor [readonly]="!userCanEdit" [textContent]="initialTranscript" (textContentChange)="setUpdatedTranscript($event)" (atOffsetMarker)="handleOffsetNavigate($event)"></app-editor>
           </div>
           <div class="card-footer text-right" *ngIf="authenticated && userCanEdit">
-            <div class="float-left">
-              <i class="bi-keyboard-fill"></i> Press <span class="badge">INSERT</span> key to toggle audio playback. <span class="badge">SCROLL LOCK</span>/<span class="badge">PAUSE</span> keys fast-forward/rewind.
+            <div class="float-left mt-2">
+              <i class="bi-keyboard-fill"></i> Press <span class="badge">{{editorConfig?.playPauseKey || 'Insert'}}</span> key to toggle audio playback.
+              <span class="badge">{{editorConfig?.rewindKey || 'ScrollLock'}}</span>/<span class="badge">{{editorConfig?.fastForwardKey || 'Pause'}}</span> keys to skip backwards/forwards.
+              Autoseek is {{editorConfig?.autoSeek ? 'ON' : 'OFF'}}.
+              These can be changed using the Editor Config <i class="bi-arrow-up"></i>.
             </div>
             <button class="btn btn-success" (click)="submit()">
               <span *ngIf="!contribution">Create</span>
@@ -171,7 +175,7 @@ karl: I used to have a rifle as a kid...
         <div class="card-header">
           Preview
         </div>
-        <div class="card-body">
+        <div class="card-body preview-window">
           <app-synopses [synopses]="parsedTscript?.synopses"></app-synopses>
           <app-transcript [transcript]="parsedTscript?.dialog"></app-transcript>
         </div>

@@ -17,8 +17,10 @@ From the server directory:
 
 1. Install build tools with `make install.tools`
 2. Build CLI with `make vendor build`.
-3. Create the DB and index with `make init.all` (only needs to be done once, or after the raw data is changed).
-4. Run local server with `make run`.
+3. Create the DB and index with `make init.all` (only needs to be done once, or after the raw data is changed)
+4. Start a local postgres instance `make dev.services.start`
+5. Setup some test data `make dev.populate.chunks` 
+6. Run local server with `make run`.
 
 ### How to change the API 
 
