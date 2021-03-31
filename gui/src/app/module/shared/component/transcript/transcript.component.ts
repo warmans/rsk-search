@@ -35,7 +35,7 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
     if (!d?.actor) {
       return '';
     }
-    return this.actorClassMap[d.actor] || '';
+    return this.actorClassMap[d.actor.toLowerCase().trim()] || '';
   }
 
 
