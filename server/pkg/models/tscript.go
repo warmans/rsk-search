@@ -5,6 +5,20 @@ import (
 	"time"
 )
 
+func ContributionStateFromProto(state api.ContributionState) ContributionState {
+	switch state {
+	case api.ContributionState_STATE_PENDING:
+		return ContributionStatePending
+	case api.ContributionState_STATE_REQUEST_APPROVAL:
+		return ContributionStateApprovalRequested
+	case api.ContributionState_STATE_APPROVED:
+		return ContributionStateApproved
+	case api.ContributionState_STATE_REJECTED:
+		return ContributionStateRejected
+	}
+	return ContributionStateUnknown
+}
+
 type ContributionState string
 
 func (s ContributionState) Proto() api.ContributionState {
@@ -26,6 +40,7 @@ const (
 	ContributionStateApprovalRequested ContributionState = "request_approval"
 	ContributionStateApproved          ContributionState = "approved"
 	ContributionStateRejected          ContributionState = "rejected"
+	ContributionStateUnknown           ContributionState = "unknown"
 )
 
 const EndSecondEOF = -1
@@ -135,6 +150,7 @@ type Contribution struct {
 	ChunkID       string
 	Transcription string
 	State         ContributionState
+	StateComment  string
 }
 
 func (c *Contribution) Proto() *api.ChunkContribution {
@@ -167,4 +183,10 @@ type ContributionActivity struct {
 	SubmittedAt *time.Time
 	ApprovedAt  *time.Time
 	RejectedAt  *time.Time
+}
+
+type TimelineEvent struct {
+	Who  string
+	What string
+	When *time.Time
 }

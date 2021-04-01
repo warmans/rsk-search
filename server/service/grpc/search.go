@@ -173,6 +173,10 @@ func (s *SearchService) GetTscriptChunkStats(ctx context.Context, empty *emptypb
 	return stats.Proto(), nil
 }
 
+func (s *SearchService) GetTscriptTimeline(ctx context.Context, request *api.GetTscriptTimelineRequest) (*api.TscriptTimeline, error) {
+	panic("implement me")
+}
+
 func (s *SearchService) GetTscriptChunk(ctx context.Context, request *api.GetTscriptChunkRequest) (*api.TscriptChunk, error) {
 	var chunk *models.Chunk
 	var tscriptID string
@@ -259,12 +263,13 @@ func (s *SearchService) UpdateChunkContribution(ctx context.Context, request *ap
 	if err != nil {
 		return nil, ErrFromStore(err, request.ContributionId).Err()
 	}
-	if contrib.AuthorID != claims.AuthorID {
-		return nil, ErrPermissionDenied("you are not the author of this contribution").Err()
+
+	// validate change is allowed
+	if err := s.validateContributionUpdate(claims, contrib, request.State); err != nil {
+		return nil, err
 	}
-	if contrib.State != models.ContributionStatePending && contrib.State != models.ContributionStateApprovalRequested {
-		return nil, ErrFailedPrecondition(fmt.Sprintf("Only pending contributions can be edited. Actual state was: %s", contrib.State)).Err()
-	}
+
+	// validate transcript is valid.
 	lines, _, err := tscript.Import(bufio.NewScanner(bytes.NewBufferString(request.Transcript)), 0)
 	if err != nil {
 		return nil, ErrInvalidRequestField("transcript", err.Error()).Err()
@@ -272,20 +277,21 @@ func (s *SearchService) UpdateChunkContribution(ctx context.Context, request *ap
 	if len(lines) == 0 {
 		return nil, ErrInvalidRequestField("transcript", "no valid lines parsed from transcript").Err()
 	}
-	err = s.persistentDB.WithStore(func(s *rw.Store) error {
-		mod := &models.Contribution{
-			ID:            contrib.ID,
-			AuthorID:      contrib.AuthorID,
-			Transcription: request.Transcript,
-			State:         contrib.State,
+
+	err = s.persistentDB.WithStore(func(tx *rw.Store) error {
+
+		contrib.Transcription = request.Transcript
+		contrib.State = models.ContributionStateFromProto(request.State)
+
+		if err := s.createContributionActivity(tx, ctx, claims, contrib, ""); err != nil {
+			return err
 		}
-		return s.UpdateContribution(ctx, mod)
+		return tx.UpdateContribution(ctx, contrib)
 	})
 	if err != nil {
 		return nil, ErrFromStore(err, contrib.ID).Err()
 	}
 
-	contrib.Transcription = request.Transcript
 	return contrib.Proto(), nil
 }
 
@@ -305,41 +311,71 @@ func (s *SearchService) RequestChunkContributionState(ctx context.Context, reque
 	if err != nil {
 		return nil, ErrFromStore(err, request.ContributionId).Err()
 	}
-	if !claims.Approver {
-		if contrib.AuthorID != claims.AuthorID {
-			return nil, ErrPermissionDenied("you are not the author of this contribution").Err()
-		}
+	if err := s.validateContributionUpdate(claims, contrib, request.RequestState); err != nil {
+		return nil, err
 	}
+	if request.Comment != "" && claims.Approver {
+		return nil, ErrPermissionDenied("Only an approver can set a state comment.").Err()
+	}
+	err = s.persistentDB.WithStore(func(tx *rw.Store) error {
 
-	if contrib.State != models.ContributionStatePending && contrib.State != models.ContributionStateApprovalRequested {
-		return nil, ErrFailedPrecondition(fmt.Sprintf("Only pending contributions can be edited. Actual state was: %s", contrib.State)).Err()
-	}
-	// ensure state is updated in response and db
-	if request.RequestState == api.ContributionState_STATE_REQUEST_APPROVAL {
-		contrib.State = models.ContributionStateApprovalRequested
-	}
-	if request.RequestState == api.ContributionState_STATE_PENDING {
-		contrib.State = models.ContributionStatePending
-	}
-	if request.RequestState == api.ContributionState_STATE_APPROVED || request.RequestState == api.ContributionState_STATE_REJECTED {
-		if claims.Approver == false {
-			return nil, ErrPermissionDenied("you are not an approver").Err()
-		}
-		if request.RequestState == api.ContributionState_STATE_APPROVED {
-			contrib.State = models.ContributionStateApproved
-		}
-		if request.RequestState == api.ContributionState_STATE_REJECTED {
-			contrib.State = models.ContributionStateRejected
-		}
-	}
+		contrib.State = models.ContributionStateFromProto(request.RequestState)
+		contrib.StateComment = request.Comment
 
-	err = s.persistentDB.WithStore(func(s *rw.Store) error {
-		return s.UpdateContributionState(ctx, contrib.ID, contrib.State)
+		if err := s.createContributionActivity(tx, ctx, claims, contrib, contrib.StateComment); err != nil {
+			return err
+		}
+		return tx.UpdateContributionState(ctx, contrib.ID, contrib.State, contrib.StateComment)
 	})
 	if err != nil {
 		return nil, ErrFromStore(err, request.ContributionId).Err()
 	}
 	return contrib.Proto(), nil
+}
+
+func (s *SearchService) validateContributionUpdate(claims *jwt.Claims, currentState *models.Contribution, requestedState api.ContributionState) error {
+	if !claims.Approver {
+		if currentState.AuthorID != claims.AuthorID {
+			return ErrPermissionDenied("you are not the author of this contribution").Err()
+		}
+		if requestedState == api.ContributionState_STATE_APPROVED || requestedState == api.ContributionState_STATE_REJECTED {
+			return ErrPermissionDenied("you are not an approver").Err()
+		}
+	}
+	// if the contribution has been rejected allow the author to return it to pending.
+	if currentState.State == models.ContributionStateRejected {
+		if requestedState != api.ContributionState_STATE_PENDING {
+			return ErrFailedPrecondition(fmt.Sprintf("Only rejected contributions can be reverted to pending. Actual state was: %s (requested: %s)", currentState.State, requestedState)).Err()
+		}
+	} else {
+		/// otherwise only allow it to be updated if it's in the pending or approval requested state.
+		if currentState.State != models.ContributionStatePending && currentState.State != models.ContributionStateApprovalRequested {
+			return ErrFailedPrecondition(fmt.Sprintf("Only pending contributions can be edited. Actual state was: %s", currentState.State)).Err()
+		}
+	}
+	return nil
+}
+
+func (s *SearchService) createContributionActivity(tx *rw.Store, ctx context.Context, claims *jwt.Claims, contrib *models.Contribution, comment string) error {
+	suffix := "."
+	if comment != "" {
+		suffix = fmt.Sprintf(" with comment '%s'.", comment)
+	}
+	switch contrib.State {
+	case models.ContributionStateApprovalRequested:
+		if err := tx.CreateTscriptTimelineEvent(ctx, contrib.ChunkID, claims.Identity.Name, fmt.Sprintf("Submitted contribution %s for approval%s", contrib.ID, suffix)); err != nil {
+			return err
+		}
+	case models.ContributionStateApproved:
+		if err := tx.CreateTscriptTimelineEvent(ctx, contrib.ChunkID, claims.Identity.Name, fmt.Sprintf("Approved contribution %s%s", contrib.ID, suffix)); err != nil {
+			return err
+		}
+	case models.ContributionStateRejected:
+		if err := tx.CreateTscriptTimelineEvent(ctx, contrib.ChunkID, claims.Identity.Name, fmt.Sprintf("Rejected contribution %s%s", contrib.ID, suffix)); err != nil {
+			return err
+		}
+	}
+	return nil
 }
 
 func (s *SearchService) ListTscriptChunkContributions(ctx context.Context, request *api.ListTscriptChunkContributionsRequest) (*api.TscriptChunkContributionList, error) {

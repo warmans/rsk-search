@@ -31,6 +31,24 @@ services:
       - BACKUP_KEEP_WEEKS=3
       - BACKUP_KEEP_MONTHS=2
       - HEALTHCHECK_PORT=8080
+  swag:
+    image: ghcr.io/linuxserver/swag
+    container_name: swag
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+      - URL=scrimpton.com
+      - SUBDOMAINS=www,staging
+      - VALIDATION=http
+    volumes:
+      - ./swag-config:/config
+    ports:
+      - 443:443
+      #- 80:80
+    restart: unless-stopped
   gui:
     image: "warmans/rsk-search-gui:latest"
     ports:

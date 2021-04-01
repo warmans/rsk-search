@@ -542,6 +542,37 @@
         ]
       }
     },
+    "/api/tscript/{tscriptId}/timeline": {
+      "get": {
+        "summary": "Gets a specific transcript chunk to be completed.",
+        "operationId": "SearchService_GetTscriptTimeline",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rsksearchTscriptTimeline"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "tscriptId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      }
+    },
     "/api/values/{field}": {
       "get": {
         "summary": "Get a list of values for the given keyword field",
@@ -892,6 +923,9 @@
         },
         "requestState": {
           "$ref": "#/definitions/rsksearchContributionState"
+        },
+        "comment": {
+          "type": "string"
         }
       }
     },
@@ -1110,6 +1144,31 @@
         }
       }
     },
+    "rsksearchTscriptTimeline": {
+      "type": "object",
+      "properties": {
+        "events": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rsksearchTscriptTimelineEvent"
+          }
+        }
+      }
+    },
+    "rsksearchTscriptTimelineEvent": {
+      "type": "object",
+      "properties": {
+        "who": {
+          "type": "string"
+        },
+        "what": {
+          "type": "string"
+        },
+        "when": {
+          "type": "string"
+        }
+      }
+    },
     "rsksearchUpdateChunkContributionRequest": {
       "type": "object",
       "properties": {
@@ -1121,6 +1180,9 @@
         },
         "transcript": {
           "type": "string"
+        },
+        "state": {
+          "$ref": "#/definitions/rsksearchContributionState"
         }
       }
     }

@@ -29,7 +29,9 @@
     <div class="col-4">
       <div class="card" *ngIf="!contribution">
         <div class="card-body">
-          <i class="bi-asterisk mr-2"></i> You can save you partial contribution and continue to edit it before submitting it for approval.
+          <p>Currently your contribution is only saved locally, you can create a draft to allow you to submit it for
+            approval.</p>
+          <button class="btn btn-success mt-2" (click)="create()">Create draft</button>
         </div>
       </div>
       <div class="card" *ngIf="contribution">
@@ -37,14 +39,15 @@
           <div *ngIf="contribution.state === cStates.STATE_PENDING">
             <div class="mb-3">State: <span class="text-info">{{contribution.state}}</span></div>
             <p>This means that the contribution has not yet been reviewed and can still be edited if you are the
-            owner. Clicking the button below will mark it as being ready to be merged.</p>
-            <button class="btn btn-success mt-2" (click)="markComplete()" [disabled]="dirty">Mark as complete <i class="bi-check"></i></button>
-            <div *ngIf="dirty" class="text-muted"> (save changes to enable)</div>
+              owner. Clicking the button below will mark it as being ready to be merged.</p>
+            <button class="btn btn-success mt-2" (click)="markComplete()">Mark as complete <i
+              class="bi-check"></i></button>
           </div>
           <div *ngIf="contribution.state === cStates.STATE_REQUEST_APPROVAL">
             <div class="mb-3">State: <span class="text-info">{{contribution.state}}</span></div>
             <p>This means your contribution will now be reviewed and merged (hopefully!).</p>
-            <button class="btn btn-warning mt-2" (click)="markIncomplete()">Revert to incomplete <i class="bi-pen"></i></button>
+            <button class="btn btn-warning mt-2" (click)="markIncomplete()">Revert to incomplete <i class="bi-pen"></i>
+            </button>
           </div>
           <div *ngIf="contribution.state === cStates.STATE_APPROVED">
             <div class="mb-3">State: <span class="text-success">{{contribution.state}}</span></div>
@@ -71,35 +74,42 @@
             </button>
           </span>
           <span class="float-right">
-            <button class="btn btn-danger btn-sm mr-3" *ngIf="userCanEdit" (click)="resetToRaw()" title="revert text to chunk original">Reset</button>
+            <button class="btn btn-danger btn-sm mr-3" *ngIf="userCanEdit" (click)="resetToRaw()"
+                    title="revert text to chunk original">Reset</button>
           </span>
           <span class="float-right">
-            <app-editor-config #editorConfigModal [initialConfig]="editorConfig" (configUpdated)="handleEditorConfigUpdated($event)"></app-editor-config>
-            <button class="btn btn-sm btn-info mr-3" *ngIf="userCanEdit" (click)="openEditorConfig()" title="Change editor config">Editor Config</button>
+            <app-editor-config #editorConfigModal [initialConfig]="editorConfig"
+                               (configUpdated)="handleEditorConfigUpdated($event)"></app-editor-config>
+            <button class="btn btn-sm btn-info mr-3" *ngIf="userCanEdit" (click)="openEditorConfig()"
+                    title="Change editor config">Editor Config</button>
           </span>
-          <!--span class="float-right">
-            <app-webusb-device class="mr-3"></app-webusb-device>
-          </span-->
-
-          <span *ngIf="!contribution">Create </span>
-          <span *ngIf="contribution">Update </span>
-          Transcript Chunk
+          <span>
+            <span *ngIf="!contribution">Create </span>
+            <span *ngIf="contribution">Update </span>
+            Draft Transcript
+          </span>
         </div>
         <div [hidden]="showHelp">
           <div class="card-body pr-0 pb-0">
-            <app-editor [readonly]="!userCanEdit" [textContent]="initialTranscript" (textContentChange)="setUpdatedTranscript($event)" (atOffsetMarker)="handleOffsetNavigate($event)"></app-editor>
+            <app-editor [readonly]="!userCanEdit" [wrap]="editorConfig.wrapText" [textContent]="initialTranscript"
+                        (textContentChange)="setUpdatedTranscript($event)"
+                        (atOffsetMarker)="handleOffsetNavigate($event)"></app-editor>
           </div>
-          <div class="card-footer text-right" *ngIf="authenticated && userCanEdit">
-            <div class="float-left mt-2">
-              <i class="bi-keyboard-fill"></i> Press <span class="badge">{{editorConfig?.playPauseKey || 'Insert'}}</span> key to toggle audio playback.
-              <span class="badge">{{editorConfig?.rewindKey || 'ScrollLock'}}</span>/<span class="badge">{{editorConfig?.fastForwardKey || 'Pause'}}</span> keys to skip backwards/forwards.
+          <div class="card-footer pt-3 pb-3" *ngIf="authenticated && userCanEdit">
+            <div class="float-right">
+              <span *ngIf="lastUpdateTimestamp" class="text-muted">
+                Autosaved {{timeSinceSave()}} ago.
+              </span>
+              <button *ngIf="contribution" class="btn btn-sm btn-secondary ml-3" (click)="update()">Save</button>
+            </div>
+            <div>
+              <i class="bi-keyboard-fill"></i> Press <span
+              class="badge">{{editorConfig?.playPauseKey || 'Insert'}}</span> key to toggle audio playback.
+              <span class="badge">{{editorConfig?.rewindKey || 'ScrollLock'}}</span>/<span class="badge">{{editorConfig?.fastForwardKey || 'Pause'}}</span>
+              keys to skip backwards/forwards.
               Autoseek is {{editorConfig?.autoSeek ? 'ON' : 'OFF'}}.
               These can be changed using the Editor Config <i class="bi-arrow-up"></i>.
             </div>
-            <button class="btn btn-success" (click)="submit()">
-              <span *ngIf="!contribution">Create</span>
-              <span *ngIf="contribution">Update</span>
-            </button>
           </div>
         </div>
         <div class="card-body" [hidden]="!showHelp">
@@ -114,7 +124,9 @@
               e.g. <span class="code">karl:</span>)
             </li>
             <li>Correct the text of any line was not transcribed accurately.</li>
-            <li>Add additional non-speech information e.g. <span class="code">ricky laughs</span> (use actor <span class="code">none:</span> for these lines)</li>
+            <li>Add additional non-speech information e.g. <span class="code">ricky laughs</span> (use actor <span
+              class="code">none:</span> for these lines)
+            </li>
           </ol>
 
           <p>IMPORTANT: Try and keep the <span class="code">#OFFSET</span> tags as close to the
@@ -122,8 +134,11 @@
             to be available for each ~30 second segment.</p>
 
           <h4 class="mb-2 mt-4">Audio Navigation</h4>
-          <p>If the Autoseek button is enabled the audio will skip to an <span class="code">#OFFSET</span> if your caret (flashing line that shows where text will be inserted) moves over it.</p>
-          <p>Additionally pressing the <span class="badge">INSERT</span> key will toggle the audio (play/pause),  <span class="badge">SCROLL LOCK</span> will rewind 3 seconds and the <span class="badge">PAUSE</span> key will fast forward 3 seconds.</p>
+          <p>If the Autoseek button is enabled the audio will skip to an <span class="code">#OFFSET</span> if your caret
+            (flashing line that shows where text will be inserted) moves over it.</p>
+          <p>Additionally pressing the <span class="badge">INSERT</span> key will toggle the audio (play/pause), <span
+            class="badge">SCROLL LOCK</span> will rewind 3 seconds and the <span class="badge">PAUSE</span> key will
+            fast forward 3 seconds.</p>
 
           <h4 class="mb-2 mt-4">Songs</h4>
           <p>To indicate a song was played you can use the speaker prefix <span class="code">song:</span> for example

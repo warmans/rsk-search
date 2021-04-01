@@ -7,13 +7,14 @@ import {
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { SessionService } from '../../../core/service/session/session.service';
 import { getFirstOffset, parseTranscript, Tscript } from '../../../shared/lib/tscript';
 import { AudioPlayerComponent } from '../../../shared/component/audio-player/audio-player.component';
 import { AlertService } from '../../../core/service/alert/alert.service';
 import { EditorConfig, EditorConfigComponent } from '../../component/editor-config/editor-config.component';
+import { formatDistance } from 'date-fns';
 
 @Component({
   selector: 'app-submit',
@@ -44,8 +45,9 @@ export class SubmitComponent implements OnInit, OnDestroy {
 
   cStates = RsksearchContributionState;
 
-  dirty: boolean = false;
   loading: boolean[] = [];
+  lastUpdateTimestamp: Date;
+
   $destroy: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   @ViewChild('audioPlayer')
@@ -142,10 +144,13 @@ export class SubmitComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.contentUpdated.pipe(takeUntil(this.$destroy), distinctUntilChanged(), debounceTime(100)).subscribe((v) => {
+    this.contentUpdated.pipe(takeUntil(this.$destroy), distinctUntilChanged(), debounceTime(1000)).subscribe((v) => {
       this.backupContent(v);
       this.updatePreview(v);
       this.updatedTranscript = v;
+      if (this.contribution) {
+        this.update();
+      }
     });
   }
 
@@ -168,7 +173,6 @@ export class SubmitComponent implements OnInit, OnDestroy {
   }
 
   setUpdatedTranscript(text: string) {
-    this.dirty = true;
     this.contentUpdated.next(text);
   }
 
@@ -180,6 +184,7 @@ export class SubmitComponent implements OnInit, OnDestroy {
     if (!this.chunk) {
       return;
     }
+    console.log('backup');
     localStorage.setItem(`chunk-backup-${(this.contribution) ? this.contribution.id : this.chunk.id}`, text);
   }
 
@@ -210,12 +215,15 @@ export class SubmitComponent implements OnInit, OnDestroy {
   }
 
   handleEditorConfigUpdated(cfg: EditorConfig) {
-    console.log(cfg);
     this.editorConfig = cfg;
     localStorage.setItem('editor-config', JSON.stringify(cfg));
   }
 
-  submit() {
+  timeSinceSave(): string {
+    return formatDistance(this.lastUpdateTimestamp, new Date());
+  }
+
+  create() {
     if (!this.contribution) {
       this.loading.push(true);
       this.apiClient.searchServiceCreateChunkContribution({
@@ -226,32 +234,34 @@ export class SubmitComponent implements OnInit, OnDestroy {
         this.alertService.success('Created OK');
         this.router.navigate(['/chunk', this.chunk.id, 'contrib', res.id]);
       }).add(() => this.loading.shift());
-    } else {
-      this.loading.push(true);
-      this.apiClient.searchServiceUpdateChunkContribution({
-        chunkId: this.chunk.id,
-        contributionId: this.contribution.id,
-        body: { chunkId: this.chunk.id, contributionId: this.contribution.id, transcript: this.updatedTranscript }
-      }).pipe(takeUntil(this.$destroy)).subscribe((res) => {
-        this.setContribution(res);
-        this.dirty = false;
-        this.alertService.success('Update OK');
-      }).add(() => this.loading.shift());
     }
   }
 
-  markComplete() {
+  update() {
     this.loading.push(true);
-    this.apiClient.searchServiceRequestChunkContributionState({
+    this._update(this.contribution.state).subscribe((res: RsksearchChunkContribution) => {
+      this.lastUpdateTimestamp = new Date();
+    }).add(() => this.loading.shift());
+  }
+
+  private _update(state: RsksearchContributionState): Observable<RsksearchChunkContribution> {
+    return this.apiClient.searchServiceUpdateChunkContribution({
       chunkId: this.chunk.id,
       contributionId: this.contribution.id,
       body: {
         chunkId: this.chunk.id,
         contributionId: this.contribution.id,
-        requestState: RsksearchContributionState.STATE_REQUEST_APPROVAL
+        transcript: this.updatedTranscript,
+        state: state
       }
-    }).pipe(takeUntil(this.$destroy)).subscribe((res) => {
+    }).pipe(takeUntil(this.$destroy));
+  }
+
+  markComplete() {
+    this.loading.push(true);
+    this._update(RsksearchContributionState.STATE_REQUEST_APPROVAL).subscribe((res: RsksearchChunkContribution) => {
       this.setContribution(res);
+      this.lastUpdateTimestamp = new Date();
       this.alertService.success('Submission is now awaiting manual approval.');
     }).add(() => this.loading.shift());
   }

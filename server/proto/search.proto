@@ -107,6 +107,16 @@ service SearchService {
     };
   }
 
+  rpc GetTscriptTimeline(GetTscriptTimelineRequest) returns (TscriptTimeline) {
+    option (google.api.http) = {
+      get: "/api/tscript/{tscript_id}/timeline"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Gets a specific transcript chunk to be completed."
+      tags: "search"
+    };
+  }
+
   // get all contributions for a single episode so they may be approved
 
   rpc ListTscriptChunkContributions(ListTscriptChunkContributionsRequest) returns (TscriptChunkContributionList) {
@@ -398,13 +408,14 @@ message UpdateChunkContributionRequest {
   string chunk_id = 1;
   string contribution_id = 2;
   string transcript = 3;
+  ContributionState state = 4;
 }
 
 message RequestChunkContributionStateRequest {
-
   string chunk_id = 1;
   string contribution_id = 2;
   ContributionState request_state = 3;
+  string comment = 4;
 }
 
 message GetChunkContributionRequest{
@@ -445,7 +456,6 @@ message ChunkStates {
   repeated ContributionState states = 1;
 }
 
-
 message AuthorLeaderboard {
   repeated AuthorRanking authors = 1;
 }
@@ -454,4 +464,19 @@ message AuthorRanking {
   string author_name = 1;
   int32 accepted_contributions = 2;
   bool approver = 3;
+}
+
+
+message GetTscriptTimelineRequest {
+  string tscript_id = 1;
+}
+
+message TscriptTimeline {
+  repeated TscriptTimelineEvent events = 1;
+}
+
+message TscriptTimelineEvent {
+  string who = 1;
+  string what = 2;
+  string when = 3;
 }

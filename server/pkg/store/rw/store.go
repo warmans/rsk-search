@@ -291,11 +291,12 @@ func (s *Store) UpdateContribution(ctx context.Context, c *models.Contribution) 
 	return err
 }
 
-func (s *Store) UpdateContributionState(ctx context.Context, id string, state models.ContributionState) error {
+func (s *Store) UpdateContributionState(ctx context.Context, id string, state models.ContributionState, comment string) error {
 	_, err := s.tx.ExecContext(
 		ctx,
-		`UPDATE tscript_contribution SET state=$1 WHERE id=$2`,
+		`UPDATE tscript_contribution SET state=$1, state_comment=NULLIF($2, '') WHERE id=$3`,
 		state,
+		comment,
 		id,
 	)
 	return err
@@ -460,6 +461,29 @@ func (s *Store) UpdateChunkActivity(ctx context.Context, id string, activity Chu
 	}
 	_, err := s.tx.ExecContext(ctx, fmt.Sprintf("INSERT INTO tscript_chunk_activity (tscript_chunk_id, %s) VALUES ($1, NOW()) ON CONFLICT(tscript_chunk_id) DO UPDATE SET %s=NOW() ", col, col), id)
 	return err
+}
+
+func (s *Store) CreateTscriptTimelineEvent(ctx context.Context, chunkID string, who string, what string) error {
+	// rate-limit duplicate activity to 1 per 10 mins
+	var duplicate bool
+	if err := s.tx.QueryRowx(`SELECT true FROM "tscript_chunk_timeline" WHERE chunk_id = $1 AND who=$2 AND what=$3 AND activity_at > NOW()- interval '10 minute'`, chunkID, who, what).Scan(&duplicate); err != nil || duplicate {
+		if err != sql.ErrNoRows {
+			return err
+		}
+	}
+	_, err := s.tx.ExecContext(
+		ctx,
+		"INSERT INTO tscript_chunk_timeline (id, chunk_id, who, what, activity_at) VALUES ($1, $2, $3, $4, NOW())",
+		shortuuid.New(),
+		chunkID,
+		who,
+		what,
+	)
+	return err
+}
+
+func (s *Store) ListTscriptTimelineEvents(ctx context.Context, tscriptID string) ([]*models.TimelineEvent, error) {
+	return nil, nil
 }
 
 func (s *Store) GetChunkStats(ctx context.Context) (*models.ChunkStats, error) {

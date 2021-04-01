@@ -39,6 +39,9 @@ export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input()
   readonly: boolean = false;
 
+  @Input()
+  wrap: boolean = false;
+
   @Output()
   textContentChange: EventEmitter<string> = new EventEmitter<string>();
 

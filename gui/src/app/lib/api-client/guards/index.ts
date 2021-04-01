@@ -273,6 +273,8 @@ export function isRsksearchRequestChunkContributionStateRequest(arg: any): arg i
   typeof arg === 'object' &&
     // chunkId?: string
     ( typeof arg.chunkId === 'undefined' || typeof arg.chunkId === 'string' ) &&
+    // comment?: string
+    ( typeof arg.comment === 'undefined' || typeof arg.comment === 'string' ) &&
     // contributionId?: string
     ( typeof arg.contributionId === 'undefined' || typeof arg.contributionId === 'string' ) &&
     // requestState?: RsksearchContributionState
@@ -467,6 +469,8 @@ export function isRsksearchUpdateChunkContributionRequest(arg: any): arg is mode
     ( typeof arg.chunkId === 'undefined' || typeof arg.chunkId === 'string' ) &&
     // contributionId?: string
     ( typeof arg.contributionId === 'undefined' || typeof arg.contributionId === 'string' ) &&
+    // state?: RsksearchContributionState
+    ( typeof arg.state === 'undefined' || isRsksearchContributionState(arg.state) ) &&
     // transcript?: string
     ( typeof arg.transcript === 'undefined' || typeof arg.transcript === 'string' ) &&
 

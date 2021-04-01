@@ -2,8 +2,8 @@
 
 .editor {
   font-family: monospace;
-  white-space: pre;
   overflow: scroll;
+  white-space: pre;
 
   border: none;
   outline: none;
@@ -24,4 +24,8 @@
   span {
     font-size: 1rem !important;
   }
+}
+
+.editor.wrap {
+  white-space: pre-line;
 }

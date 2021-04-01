@@ -23,6 +23,7 @@ export class EditorConfigComponent implements OnInit {
     'fastForwardKey': new FormControl(),
     'rewindKey': new FormControl(),
     'autoSeek': new FormControl(),
+    'wrapText': new FormControl(),
   });
 
   keyCodes = KeyPressEventCodes;
@@ -36,6 +37,7 @@ export class EditorConfigComponent implements OnInit {
     this.configForm.get('fastForwardKey').setValue(this.initialConfig.fastForwardKey);
     this.configForm.get('rewindKey').setValue(this.initialConfig.rewindKey);
     this.configForm.get('autoSeek').setValue(this.initialConfig.autoSeek);
+    this.configForm.get('wrapText').setValue(this.initialConfig.wrapText === undefined ? true : this.initialConfig.wrapText);
   }
 
   emitUpdatedconfig() {
@@ -46,6 +48,7 @@ export class EditorConfigComponent implements OnInit {
       this.configForm.get('fastForwardKey').value,
       this.configForm.get('rewindKey').value,
       this.configForm.get('autoSeek').value,
+      this.configForm.get('wrapText').value,
     );
     this.configUpdated.next(this.initialConfig);
   }
@@ -57,6 +60,7 @@ export class EditorConfig {
     public backtrack: number = 3,
     public fastForwardKey: string = 'Pause',
     public rewindKey: string = 'ScrollLock',
-    public autoSeek: boolean = true) {
+    public autoSeek: boolean = true,
+    public wrapText: boolean = true) {
   }
 }

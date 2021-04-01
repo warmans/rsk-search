@@ -51,6 +51,15 @@
               <option [ngValue]="false">DISABLED</option>
             </select>
           </div>
+          <div class="form-group">
+            <label for="wrapText" title="Causes text to be wrapped inside the editor, instead of using scroll behavior.">
+              Wrap Text <i class="bi-question-circle ml-2"></i>
+            </label>
+            <select id="wrapText" class="form-control form-control-sm" formControlName="wrapText">
+              <option [ngValue]="true">ENABLED</option>
+              <option [ngValue]="false">DISABLED</option>
+            </select>
+          </div>
         </form>
       </div>
       <div class="modal-footer">

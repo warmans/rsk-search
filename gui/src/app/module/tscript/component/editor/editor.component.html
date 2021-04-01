@@ -1,5 +1,6 @@
 <div
   class="editor"
+  [ngClass]="{'wrap': wrap}"
   [attr.contenteditable]="!readonly"
   unformattedPaste
   (keyup)="onKeypress()"

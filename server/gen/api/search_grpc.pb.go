@@ -29,6 +29,7 @@ type SearchServiceClient interface {
 	// chunks are ~2 min sections of the transcription
 	GetTscriptChunkStats(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ChunkStats, error)
 	GetTscriptChunk(ctx context.Context, in *GetTscriptChunkRequest, opts ...grpc.CallOption) (*TscriptChunk, error)
+	GetTscriptTimeline(ctx context.Context, in *GetTscriptTimelineRequest, opts ...grpc.CallOption) (*TscriptTimeline, error)
 	ListTscriptChunkContributions(ctx context.Context, in *ListTscriptChunkContributionsRequest, opts ...grpc.CallOption) (*TscriptChunkContributionList, error)
 	ListAuthorContributions(ctx context.Context, in *ListAuthorContributionsRequest, opts ...grpc.CallOption) (*ChunkContributionList, error)
 	GetAuthorLeaderboard(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*AuthorLeaderboard, error)
@@ -114,6 +115,15 @@ func (c *searchServiceClient) GetTscriptChunkStats(ctx context.Context, in *empt
 func (c *searchServiceClient) GetTscriptChunk(ctx context.Context, in *GetTscriptChunkRequest, opts ...grpc.CallOption) (*TscriptChunk, error) {
 	out := new(TscriptChunk)
 	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/GetTscriptChunk", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *searchServiceClient) GetTscriptTimeline(ctx context.Context, in *GetTscriptTimelineRequest, opts ...grpc.CallOption) (*TscriptTimeline, error) {
+	out := new(TscriptTimeline)
+	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/GetTscriptTimeline", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -215,6 +225,7 @@ type SearchServiceServer interface {
 	// chunks are ~2 min sections of the transcription
 	GetTscriptChunkStats(context.Context, *emptypb.Empty) (*ChunkStats, error)
 	GetTscriptChunk(context.Context, *GetTscriptChunkRequest) (*TscriptChunk, error)
+	GetTscriptTimeline(context.Context, *GetTscriptTimelineRequest) (*TscriptTimeline, error)
 	ListTscriptChunkContributions(context.Context, *ListTscriptChunkContributionsRequest) (*TscriptChunkContributionList, error)
 	ListAuthorContributions(context.Context, *ListAuthorContributionsRequest) (*ChunkContributionList, error)
 	GetAuthorLeaderboard(context.Context, *emptypb.Empty) (*AuthorLeaderboard, error)
@@ -253,6 +264,9 @@ func (UnimplementedSearchServiceServer) GetTscriptChunkStats(context.Context, *e
 }
 func (UnimplementedSearchServiceServer) GetTscriptChunk(context.Context, *GetTscriptChunkRequest) (*TscriptChunk, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTscriptChunk not implemented")
+}
+func (UnimplementedSearchServiceServer) GetTscriptTimeline(context.Context, *GetTscriptTimelineRequest) (*TscriptTimeline, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTscriptTimeline not implemented")
 }
 func (UnimplementedSearchServiceServer) ListTscriptChunkContributions(context.Context, *ListTscriptChunkContributionsRequest) (*TscriptChunkContributionList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTscriptChunkContributions not implemented")
@@ -433,6 +447,24 @@ func _SearchService_GetTscriptChunk_Handler(srv interface{}, ctx context.Context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SearchServiceServer).GetTscriptChunk(ctx, req.(*GetTscriptChunkRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SearchService_GetTscriptTimeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTscriptTimelineRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SearchServiceServer).GetTscriptTimeline(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/rsksearch.SearchService/GetTscriptTimeline",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SearchServiceServer).GetTscriptTimeline(ctx, req.(*GetTscriptTimelineRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -637,6 +669,10 @@ var SearchService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetTscriptChunk",
 			Handler:    _SearchService_GetTscriptChunk_Handler,
+		},
+		{
+			MethodName: "GetTscriptTimeline",
+			Handler:    _SearchService_GetTscriptTimeline_Handler,
 		},
 		{
 			MethodName: "ListTscriptChunkContributions",
