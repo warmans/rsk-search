@@ -11,7 +11,7 @@ services:
     ports:
       - "5432:5432"
   pgbackups:
-    image: prodrigestivill/postgres-backup-local:9.5
+    image: prodrigestivill/postgres-backup-local:13
     restart: always
     user: postgres:postgres
     volumes:

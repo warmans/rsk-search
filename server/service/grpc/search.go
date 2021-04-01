@@ -269,13 +269,15 @@ func (s *SearchService) UpdateChunkContribution(ctx context.Context, request *ap
 		return nil, err
 	}
 
-	// validate transcript is valid.
-	lines, _, err := tscript.Import(bufio.NewScanner(bytes.NewBufferString(request.Transcript)), 0)
-	if err != nil {
-		return nil, ErrInvalidRequestField("transcript", err.Error()).Err()
-	}
-	if len(lines) == 0 {
-		return nil, ErrInvalidRequestField("transcript", "no valid lines parsed from transcript").Err()
+	// allow invalid transcript while the contribution is still pending.
+	if request.State != api.ContributionState_STATE_PENDING {
+		lines, _, err := tscript.Import(bufio.NewScanner(bytes.NewBufferString(request.Transcript)), 0)
+		if err != nil {
+			return nil, ErrInvalidRequestField("transcript", err.Error()).Err()
+		}
+		if len(lines) == 0 {
+			return nil, ErrInvalidRequestField("transcript", "no valid lines parsed from transcript").Err()
+		}
 	}
 
 	err = s.persistentDB.WithStore(func(tx *rw.Store) error {

@@ -238,10 +238,9 @@ export class SubmitComponent implements OnInit, OnDestroy {
   }
 
   update() {
-    this.loading.push(true);
     this._update(this.contribution.state).subscribe((res: RsksearchChunkContribution) => {
       this.lastUpdateTimestamp = new Date();
-    }).add(() => this.loading.shift());
+    });
   }
 
   private _update(state: RsksearchContributionState): Observable<RsksearchChunkContribution> {
