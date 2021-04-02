@@ -10,6 +10,7 @@ export interface RsksearchDialog {
   id?: string;
   isMatchedRow?: boolean;
   metadata?: { [key: string]: string };
+  notable?: boolean;
   pos?: string;
   type?: string;
 }

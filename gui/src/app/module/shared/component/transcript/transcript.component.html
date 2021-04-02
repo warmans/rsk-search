@@ -1,6 +1,6 @@
 <div *ngFor="let line of transcript"
      class="line d-flex mb-2 p-2 {{actorClass(line)}}"
-     [ngClass]="{'matched': line.isMatchedRow}"
+     [ngClass]="{'matched': line.isMatchedRow, 'font-italic': line.notable }"
      id="pos-{{line.pos}}">
   <div class="actor mr-2">{{line.type === "chat" ? line.actor : (line.type === 'unknown' ? '' : line.type)}}</div>
   <div class="col">

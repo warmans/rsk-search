@@ -175,6 +175,16 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
       .pipe(tap((res: any) => guards.isRsksearchTscriptChunkContributionList(res) || console.error(`TypeGuard for response 'RsksearchTscriptChunkContributionList' caught inconsistency.`, res)));
   }
 
+  searchServiceGetTscriptTimeline(
+    args: {
+      tscriptId: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchTscriptTimeline> {
+    return super.searchServiceGetTscriptTimeline(args, requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRsksearchTscriptTimeline(res) || console.error(`TypeGuard for response 'RsksearchTscriptTimeline' caught inconsistency.`, res)));
+  }
+
   searchServiceListFieldValues(
     args: {
       field: string,

@@ -30,4 +30,6 @@ export { RsksearchTscriptChunk } from './rsksearch-tscript-chunk.model';
 export { RsksearchTscriptChunkContributionList } from './rsksearch-tscript-chunk-contribution-list.model';
 export { RsksearchTscriptList } from './rsksearch-tscript-list.model';
 export { RsksearchTscriptStats } from './rsksearch-tscript-stats.model';
+export { RsksearchTscriptTimeline } from './rsksearch-tscript-timeline.model';
+export { RsksearchTscriptTimelineEvent } from './rsksearch-tscript-timeline-event.model';
 export { RsksearchUpdateChunkContributionRequest } from './rsksearch-update-chunk-contribution-request.model';

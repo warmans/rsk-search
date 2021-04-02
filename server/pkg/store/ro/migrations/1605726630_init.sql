@@ -18,5 +18,6 @@ CREATE TABLE "dialog"
     actor        TEXT,
     content      TEXT,
     metadata     JSON,
-    content_tags JSON
+    content_tags JSON,
+    notable      BOOLEAN
 );

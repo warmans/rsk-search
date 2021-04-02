@@ -795,6 +795,9 @@
         },
         "isMatchedRow": {
           "type": "boolean"
+        },
+        "notable": {
+          "type": "boolean"
         }
       }
     },

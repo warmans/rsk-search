@@ -338,6 +338,24 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  searchServiceGetTscriptTimeline(
+    args: {
+      tscriptId: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchTscriptTimeline> {
+    const path = `/api/tscript/${args.tscriptId}/timeline`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<models.RsksearchTscriptTimeline>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   searchServiceListFieldValues(
     args: {
       field: string,

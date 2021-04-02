@@ -25,10 +25,17 @@ func Import(scanner *bufio.Scanner, startPos int64) ([]models.Dialog, []models.S
 
 	for scanner.Scan() {
 		position += PosSpacing
+		notable := false
 
 		line := strings.TrimSpace(scanner.Text())
 		if line == "" {
 			continue
+		}
+
+		// if the line starts with an exclamation, consider it a noteworthy quote.
+		if strings.HasPrefix(line, "!") {
+			notable = true
+			line = strings.TrimPrefix(line, "!")
 		}
 
 		// OFFSET lines related to the next line of text so just store the offset
@@ -46,7 +53,7 @@ func Import(scanner *bufio.Scanner, startPos int64) ([]models.Dialog, []models.S
 
 		if strings.HasPrefix(line, "#SYN: ") || strings.HasPrefix(line, "#/SYN") {
 			if currentSynopsis != nil {
-				currentSynopsis.EndPos = position-PosSpacing
+				currentSynopsis.EndPos = position - PosSpacing
 				synopsies = append(synopsies, *currentSynopsis)
 				currentSynopsis = nil
 			}
@@ -60,6 +67,7 @@ func Import(scanner *bufio.Scanner, startPos int64) ([]models.Dialog, []models.S
 			ID:       shortuuid.New(),
 			Type:     models.DialogTypeUnkown,
 			Position: position,
+			Notable:  notable,
 		}
 		if lastOffset > 0 {
 			di.OffsetSec = lastOffset
@@ -92,7 +100,6 @@ func Import(scanner *bufio.Scanner, startPos int64) ([]models.Dialog, []models.S
 	if numOffsets == 0 {
 		return nil, nil, fmt.Errorf("document appears to be missing offsets")
 	}
-
 	if currentSynopsis != nil {
 		currentSynopsis.EndPos = position
 		synopsies = append(synopsies, *currentSynopsis)

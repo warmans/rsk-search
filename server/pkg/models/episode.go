@@ -14,7 +14,7 @@ const (
 	DialogTypeSong   = DialogType("song")
 	DialogTypeChat   = DialogType("chat")
 	DialogTypeNone   = DialogType("none")
-	DialogTypeGap   = DialogType("gap")
+	DialogTypeGap    = DialogType("gap")
 )
 
 type MetadataType string
@@ -48,6 +48,7 @@ type Dialog struct {
 	Actor     string     `json:"actor"`
 	Meta      Metadata   `json:"metadata"`
 	Content   string     `json:"content"`
+	Notable   bool       `json:"notable"` // note-worthy line of dialog.
 
 	// content tokens mapped to tags
 	// e.g. Foo! (text) => foo (tag)

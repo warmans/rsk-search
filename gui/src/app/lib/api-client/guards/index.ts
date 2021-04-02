@@ -148,6 +148,8 @@ export function isRsksearchDialog(arg: any): arg is models.RsksearchDialog {
     ( typeof arg.isMatchedRow === 'undefined' || typeof arg.isMatchedRow === 'boolean' ) &&
     // metadata?: { [key: string]: string }
     ( typeof arg.metadata === 'undefined' || typeof arg.metadata === 'string' ) &&
+    // notable?: boolean
+    ( typeof arg.notable === 'undefined' || typeof arg.notable === 'boolean' ) &&
     // pos?: string
     ( typeof arg.pos === 'undefined' || typeof arg.pos === 'string' ) &&
     // type?: string
@@ -456,6 +458,32 @@ export function isRsksearchTscriptStats(arg: any): arg is models.RsksearchTscrip
     ( typeof arg.publication === 'undefined' || typeof arg.publication === 'string' ) &&
     // series?: number
     ( typeof arg.series === 'undefined' || typeof arg.series === 'number' ) &&
+
+  true
+  );
+  }
+
+export function isRsksearchTscriptTimeline(arg: any): arg is models.RsksearchTscriptTimeline {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // events?: RsksearchTscriptTimelineEvent[]
+    ( typeof arg.events === 'undefined' || (Array.isArray(arg.events) && arg.events.every((item: unknown) => isRsksearchTscriptTimelineEvent(item))) ) &&
+
+  true
+  );
+  }
+
+export function isRsksearchTscriptTimelineEvent(arg: any): arg is models.RsksearchTscriptTimelineEvent {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // what?: string
+    ( typeof arg.what === 'undefined' || typeof arg.what === 'string' ) &&
+    // when?: string
+    ( typeof arg.when === 'undefined' || typeof arg.when === 'string' ) &&
+    // who?: string
+    ( typeof arg.who === 'undefined' || typeof arg.who === 'string' ) &&
 
   true
   );

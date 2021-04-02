@@ -256,7 +256,8 @@ message Dialog {
   string content = 5;
   map<string, string> metadata = 6;
   map<string, Tag> content_tags = 7;
-  bool isMatchedRow = 8;
+  bool is_matched_row = 8;
+  bool notable = 9;
 }
 
 message Synopsis {

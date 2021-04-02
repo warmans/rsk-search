@@ -162,6 +162,16 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  searchServiceGetTscriptTimeline(
+    args: {
+      tscriptId: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchTscriptTimeline>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   searchServiceListFieldValues(
     args: {
       field: string,

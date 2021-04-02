@@ -134,11 +134,15 @@
             to be available for each ~30 second segment.</p>
 
           <h4 class="mb-2 mt-4">Audio Navigation</h4>
-          <p>If the Autoseek button is enabled the audio will skip to an <span class="code">#OFFSET</span> if your caret
+          <p>If Autoseek is enabled the audio will skip to an <span class="code">#OFFSET</span> if your caret
             (flashing line that shows where text will be inserted) moves over it.</p>
-          <p>Additionally pressing the <span class="badge">INSERT</span> key will toggle the audio (play/pause), <span
-            class="badge">SCROLL LOCK</span> will rewind 3 seconds and the <span class="badge">PAUSE</span> key will
-            fast forward 3 seconds.</p>
+          <p>Additionally pressing the <span class="badge">{{editorConfig?.playPauseKey || 'Insert'}}</span> key will toggle the audio (play/pause),
+            <span class="badge">{{editorConfig?.rewindKey || 'ScrollLock'}}</span>/<span class="badge">{{editorConfig?.fastForwardKey || 'Pause'}}</span>
+            key will fast forward {{editorConfig?.backtrack || '3'}} seconds.</p>
+
+          <h4 class="mb-2 mt-4">Indicating a line is a notable quote</h4>
+          <p>If a line is particularly noteworthy, you can prefix it with <span class="code">!</span>. E.g.</p>
+          <pre>!steve: Man alive.</pre>
 
           <h4 class="mb-2 mt-4">Songs</h4>
           <p>To indicate a song was played you can use the speaker prefix <span class="code">song:</span> for example
@@ -148,6 +152,7 @@
           <h4 class="mb-2 mt-4">Summarising multiple-lines</h4>
           <p>There is another special <span class="code">#SYN:</span> tag, similar to <span class="code">#OFFSET</span>
             you can use to summarise several lines. For example</p>
+
           <pre>
 karl: (twaddle)\n
 ...\n

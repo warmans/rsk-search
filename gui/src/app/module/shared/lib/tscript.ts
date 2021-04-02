@@ -26,7 +26,6 @@ export function getOffsetValueFromLine(line: string): number {
   return match?.length == 2 ? parseInt(match[1], 10) : -1;
 }
 
-
 export function getFirstOffset(transcript: string): number {
   for (let line of transcript.split('\n')) {
     let offset = getOffsetValueFromLine(line);
@@ -42,8 +41,13 @@ export function parseTranscript(transcript: string): Tscript {
 
   transcript.split('\n').forEach((line) => {
     line = line.trim();
+    let notable: boolean = false;
     if (line === '') {
       return;
+    }
+    if (line[0] === '!') {
+      line = line.slice(1);
+      notable = true;
     }
     if (isOffsetLine(line) || isEndSynopsisLine(line)) {
       return;
@@ -55,13 +59,18 @@ export function parseTranscript(transcript: string): Tscript {
     }
     const parts = line.split(':');
     if (parts.length < 2) {
-      tscript.dialog.push({ type: 'unknown', content: parts.join(':') });
+      tscript.dialog.push({
+        type: 'unknown',
+        content: parts.join(':'),
+        notable: notable
+      });
     } else {
       const actor = parts.shift();
       tscript.dialog.push({
         type: actor == 'song' ? 'song' : 'chat',
         actor: actor === 'none' ? '' : actor,
-        content: parts.join(':')
+        content: parts.join(':'),
+        notable: notable
       });
     }
   });
