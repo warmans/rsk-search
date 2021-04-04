@@ -28,6 +28,8 @@ export class ApproveComponent implements OnInit {
 
   approver: boolean = false;
 
+  loading: boolean[] = [];
+
   private destroy$ = new EventEmitter<any>();
 
   constructor(private apiClient: SearchAPIClient, private route: ActivatedRoute, private titleService: Title, private session: SessionService) {
@@ -51,6 +53,7 @@ export class ApproveComponent implements OnInit {
   }
 
   loadData() {
+    this.loading.push(true);
     this.apiClient.searchServiceListTscriptChunkContributions({
       tscriptId: this.tscriptID,
       page: 0
@@ -63,7 +66,7 @@ export class ApproveComponent implements OnInit {
         }
       });
       this.updateApprovalList();
-    });
+    }).add(() => this.loading.pop());
   }
 
   updateApprovalList() {
@@ -97,6 +100,7 @@ export class ApproveComponent implements OnInit {
   }
 
   updateState(co: RsksearchChunkContribution, state: RsksearchContributionState) {
+    this.loading.push(true);
     this.apiClient.searchServiceRequestChunkContributionState({
       chunkId: co.chunkId,
       contributionId: co.id,
@@ -108,7 +112,7 @@ export class ApproveComponent implements OnInit {
     }).subscribe((result) => {
       co.state = result.state;
       this.loadData();
-    });
+    }).add(() => this.loading.pop() );
   }
 
   selectChunkContribution(oldID: string, ev: any) {
