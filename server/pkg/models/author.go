@@ -1,7 +1,9 @@
 package models
 
 import (
+	"encoding/json"
 	"github.com/warmans/rsk-search/gen/api"
+	"github.com/warmans/rsk-search/pkg/oauth"
 	"time"
 )
 
@@ -12,6 +14,14 @@ type Author struct {
 	CreatedAt time.Time `db:"created_at"`
 	Banned    bool      `db:"banned"`
 	Approver  bool      `db:"approver"`
+}
+
+func (a *Author) DecodeIdentity() (*oauth.Identity, error) {
+	ident := &oauth.Identity{}
+	if err := json.Unmarshal([]byte(a.Identity), ident); err != nil {
+		return nil, err
+	}
+	return ident, nil
 }
 
 type AuthorStats struct {

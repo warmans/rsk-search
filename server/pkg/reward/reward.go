@@ -3,6 +3,7 @@ package reward
 import (
 	"context"
 	"fmt"
+	"github.com/pkg/errors"
 	"github.com/spf13/pflag"
 	"github.com/warmans/rsk-search/pkg/flag"
 	"github.com/warmans/rsk-search/pkg/models"
@@ -156,7 +157,13 @@ func (w *Worker) giveRewards() error {
 			if err != nil {
 				return err
 			}
-			rewardErr := w.rewarder.Reward(author.Name)
+
+			ident, err := author.DecodeIdentity()
+			if err != nil {
+				return errors.Wrap(err, "failed to decode identity")
+			}
+
+			rewardErr := w.rewarder.Reward(ident.ID)
 
 			// at this point we're fucked if the DB becomes unreachable so try it a few times
 
