@@ -3,6 +3,7 @@ package server
 import (
 	"context"
 	"fmt"
+	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	"github.com/grpc-ecosystem/go-grpc-middleware"
 	grpc_zap "github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"
@@ -18,7 +19,6 @@ import (
 	"google.golang.org/grpc"
 	"net"
 	"net/http"
-	"github.com/gorilla/handlers"
 )
 
 // GRPCService describes a gRPC GRPCService.
@@ -114,4 +114,8 @@ func (s *Server) StartHTTP() error {
 
 	s.logger.Info("Starting HTTP server", zap.String("addr", s.cfg.HTTPAddr))
 	return http.ListenAndServe(s.cfg.HTTPAddr, handlers.CompressHandler(router))
+}
+
+func (s *Server) Stop() {
+	s.grpc.Stop()
 }

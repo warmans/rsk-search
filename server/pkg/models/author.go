@@ -6,12 +6,12 @@ import (
 )
 
 type Author struct {
-	ID        string
-	Name      string
-	Identity  string
-	CreatedAt time.Time
-	Banned    bool
-	Approver  bool
+	ID        string    `db:"id"`
+	Name      string    `db:"name"`
+	Identity  string    `db:"identity"`
+	CreatedAt time.Time `db:"created_at"`
+	Banned    bool      `db:"banned"`
+	Approver  bool      `db:"approver"`
 }
 
 type AuthorStats struct {
@@ -54,4 +54,13 @@ func (l *AuthorRanking) Proto() *api.AuthorRanking {
 		AcceptedContributions: l.AcceptedContributions,
 		Approver:              l.Approver,
 	}
+}
+
+type AuthorReward struct {
+	ID        string    `db:"id"`
+	AuthorID  string    `db:"author_id"`
+	Threshold int32     `db:"threshold"`
+	CreatedAt time.Time `db:"created_at"`
+	Confirmed bool      `db:"confirmed"`
+	Error     *string   `db:"error"`
 }

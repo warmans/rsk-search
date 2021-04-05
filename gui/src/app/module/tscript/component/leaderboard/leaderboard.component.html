@@ -17,8 +17,25 @@
           <div *ngIf="a.acceptedContributions > 0" class="text-success">
             <i class="bi-file-earmark-check" *ngFor="let c of counter(a.acceptedContributions)"></i>
           </div>
+          <span class="text-muted">{{ nextRewardAt(a.acceptedContributions) }} until next <a (click)="showAwardHelp = true">award <i class="bi-question-circle"></i></a></span>
         </td>
       </tr>
     </table>
+  </div>
+</div>
+<div class="modal" [ngClass]="{'open': showAwardHelp}" tabindex="-1" role="dialog">
+  <div class="modal-dialog  modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Awards</h5>
+        <button type="button" class="close" (click)="showAwardHelp = false" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body help-text">
+        <p>For each 10 approved contributions your account will be awarded Reddit gold.</p>
+        <a href="https://www.reddit.com/coins" target="_blank">Learn more about gold.</a>
+      </div>
+    </div>
   </div>
 </div>

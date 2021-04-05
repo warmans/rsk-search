@@ -11,6 +11,7 @@ import (
 	"github.com/pkg/errors"
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/store/common"
+	"strings"
 )
 
 type ChunkActivity string
@@ -545,4 +546,131 @@ func (s *Store) AuthorIsBanned(ctx context.Context, id string) (bool, error) {
 	var banned bool
 	row := s.tx.QueryRowxContext(ctx, "SELECT banned FROM author WHERE id=$1 ", id)
 	return banned, row.Scan(&banned)
+}
+
+func (s *Store) ListRequiredAuthorRewards(ctx context.Context, thresholdSize int64) ([]*models.AuthorReward, error) {
+
+	// this should return 1 row per author per threshold level e.g.
+	// if the threshold is 1 and an author has 3 contributions three rows will be returned.
+	query := `
+		SELECT generate_series(1, c.contributions / %d) AS threshold, a.id
+		FROM (
+			SELECT author_id, COUNT(*) AS contributions 
+			FROM tscript_contribution
+			wHERE state = 'approved'
+			GROUP BY author_id
+		) c
+		LEFT JOIN author a ON a.id = c.author_id
+		WHERE c.author_id IS NOT NULL
+		AND a.banned = false
+		AND a.approver = false
+		AND c.contributions > 0
+		AND c.contributions / %d > 0
+		AND (
+			SELECT COUNT(*) 
+			FROM author_reward r 
+			WHERE r.author_id = a.id 
+			AND r.threshold = c.contributions / %d) = 0
+		ORDER BY threshold ASC
+	`
+	rows, err := s.tx.QueryxContext(ctx, fmt.Sprintf(query, thresholdSize, thresholdSize, thresholdSize))
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	rewards := []*models.AuthorReward{}
+	for rows.Next() {
+		reward := &models.AuthorReward{}
+		err := rows.Scan(&reward.Threshold, &reward.AuthorID)
+		if err != nil {
+			return nil, err
+		}
+		rewards = append(rewards, reward)
+	}
+	return rewards, nil
+}
+
+func (s *Store) ListPendingRewards(ctx context.Context) ([]*models.AuthorReward, error) {
+	rows, err := s.tx.QueryxContext(ctx, `SELECT * from author_reward WHERE confirmed = FALSE AND "error" IS NULL`)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	rewards := []*models.AuthorReward{}
+	for rows.Next() {
+		reward := &models.AuthorReward{}
+		err := rows.StructScan(reward)
+		if err != nil {
+			return nil, err
+		}
+		rewards = append(rewards, reward)
+	}
+	return rewards, nil
+}
+
+func (s *Store) CreatePendingReward(ctx context.Context, authorID string, threshold int32) (string, error) {
+	id := shortuuid.New()
+	if _, err := s.tx.ExecContext(
+		ctx,
+		`INSERT INTO author_reward (id, author_id, threshold, created_at) VALUES ($1, $2, $3, NOW())`,
+		id,
+		authorID,
+		threshold); err != nil {
+		return "", err
+	}
+	return id, nil
+}
+
+func (s *Store) ConfirmReward(ctx context.Context, logID string) error {
+	if _, err := s.tx.ExecContext(ctx, `UPDATE author_reward SET confirmed=true WHERE id=$1`, logID); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *Store) FailReward(ctx context.Context, logID string, reason string) error {
+	if _, err := s.tx.ExecContext(ctx, `UPDATE author_reward SET error=$1 WHERE id=$2`, reason, logID); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *Store) BatchGetAuthor(ctx context.Context, authorIDs ...string) ([]*models.Author, error) {
+
+	placeholders := make([]string, len(authorIDs))
+	params := make([]interface{}, len(authorIDs))
+
+	for k, id := range authorIDs {
+		placeholders[k] = fmt.Sprintf("$%d", k+1)
+		params[k] = id
+	}
+
+	rows, err := s.tx.QueryxContext(ctx, fmt.Sprintf(`SELECT * from author WHERE id IN (%s)`, strings.Join(placeholders, ", ")), params...)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	authors := []*models.Author{}
+	for rows.Next() {
+		author := &models.Author{}
+		if err := rows.StructScan(author); err != nil {
+			return nil, err
+		}
+		authors = append(authors, author)
+	}
+	return authors, nil
+}
+
+func (s *Store) GetAuthor(ctx context.Context, id string) (*models.Author, error) {
+	authors, err := s.BatchGetAuthor(ctx, id)
+	if err != nil {
+		return nil, err
+	}
+	if len(authors) == 0 {
+		return nil, sql.ErrNoRows
+	}
+	return authors[0], nil
 }

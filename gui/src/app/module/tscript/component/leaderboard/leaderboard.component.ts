@@ -12,6 +12,8 @@ export class LeaderboardComponent implements OnInit, OnDestroy {
 
   authors: RsksearchAuthorRanking[] = [];
 
+  showAwardHelp: boolean = false;
+
   private destroy$ = new EventEmitter<boolean>();
 
   constructor(private apiClient: SearchAPIClient) {
@@ -30,6 +32,10 @@ export class LeaderboardComponent implements OnInit, OnDestroy {
 
   counter(i: number) {
     return new Array(i);
+  }
+
+  nextRewardAt(i: number): string {
+    return `${10 - ( i % 10)}`
   }
 
 }

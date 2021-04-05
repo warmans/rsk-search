@@ -1,11 +1,13 @@
 package server
 
 import (
+	"context"
 	"github.com/blevesearch/bleve/v2"
 	"github.com/spf13/cobra"
 	"github.com/warmans/rsk-search/pkg/flag"
 	"github.com/warmans/rsk-search/pkg/jwt"
 	"github.com/warmans/rsk-search/pkg/oauth"
+	"github.com/warmans/rsk-search/pkg/reward"
 	"github.com/warmans/rsk-search/pkg/search"
 	"github.com/warmans/rsk-search/pkg/server"
 	"github.com/warmans/rsk-search/pkg/store/common"
@@ -15,6 +17,10 @@ import (
 	"github.com/warmans/rsk-search/service/grpc"
 	"github.com/warmans/rsk-search/service/http"
 	"go.uber.org/zap"
+	"os"
+	"os/signal"
+	"syscall"
+	"time"
 )
 
 const ServicePrefix = "RSK_SEARCH"
@@ -27,6 +33,8 @@ func ServerCmd() *cobra.Command {
 	rwDbCfg := &common.Config{}
 	oauthCfg := &oauth.Cfg{}
 	jwtConfig := &jwt.Cfg{}
+	rewardCfg := reward.Cfg{}
+	redditGoldCfg := reward.RedditGoldCfg{}
 
 	cmd := &cobra.Command{
 		Use:   "server",
@@ -35,7 +43,12 @@ func ServerCmd() *cobra.Command {
 
 			flag.Parse()
 
-			logger, _ := zap.NewProduction()
+			var logger *zap.Logger
+			if os.Getenv("DEBUG") == "true" {
+				logger, _ = zap.NewDevelopment()
+			} else {
+				logger, _ = zap.NewProduction()
+			}
 			defer logger.Sync() // flushes buffer, if any
 
 			rskIndex, err := bleve.Open(srvCfg.BleveIndexPath)
@@ -71,8 +84,34 @@ func ServerCmd() *cobra.Command {
 				return err
 			}
 
-			tokenCache := oauth.NewCSRFCache()
+			/// setup rewards
 
+			var rewarder reward.Rewarder
+			switch rewardCfg.Rewarder {
+			case "noop":
+				logger.Info("Using noop reward strategy.")
+				rewarder = reward.NewNoopRewarder(logger)
+			case "reddit-gold":
+				logger.Info("Using reddit gold reward strategy.")
+				rewarder = reward.NewRedditGoldRewarder(logger, redditGoldCfg)
+			}
+			worker := reward.NewWorker(persistentDBConn, logger, rewardCfg, rewarder)
+			go func() {
+				if err := worker.Start(); err != nil {
+					logger.Fatal("worker failed", zap.Error(err))
+				}
+			}()
+			defer func() {
+				ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
+				defer cancel()
+				if err := worker.Stop(ctx); err != nil {
+					logger.Error("worker stop failed", zap.Error(err))
+				}
+			}()
+
+			// setup oauth
+
+			tokenCache := oauth.NewCSRFCache()
 			auth := jwt.NewAuth(jwtConfig)
 
 			grpcServices := []server.GRPCService{
@@ -87,17 +126,23 @@ func ServerCmd() *cobra.Command {
 			}
 
 			srv, err := server.NewServer(logger, grpcCfg, grpcServices, httpServices)
-
 			if err != nil {
 				logger.Fatal("failed to create server", zap.Error(err))
 			}
+
+			c := make(chan os.Signal)
+			signal.Notify(c, os.Interrupt, syscall.SIGTERM)
 			go func() {
-				if err := srv.StartGRPC(); err != nil {
-					logger.Fatal("GRPC Failed", zap.Error(err))
+				<-c
+				srv.Stop()
+			}()
+			go func() {
+				if err := srv.StartHTTP(); err != nil {
+					logger.Fatal("HTTP Failed", zap.Error(err))
 				}
 			}()
-			if err := srv.StartHTTP(); err != nil {
-				logger.Fatal("HTTP Failed", zap.Error(err))
+			if err := srv.StartGRPC(); err != nil {
+				logger.Fatal("GRPC Failed", zap.Error(err))
 			}
 			return nil
 		},
@@ -109,6 +154,8 @@ func ServerCmd() *cobra.Command {
 	rwDbCfg.RegisterFlags(cmd.Flags(), ServicePrefix, "rw")
 	oauthCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
 	jwtConfig.RegisterFlags(cmd.Flags(), ServicePrefix)
+	rewardCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
+	redditGoldCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
 
 	return cmd
 }

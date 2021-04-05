@@ -42,7 +42,10 @@ generate.proto:
 
 .PHONY: run
 run: build
-	./bin/rsk-search server --rw-db-dsn=${DEV_DB_DSN} --oauth-secret=${REDDIT_SECRET}
+	DEBUG=true ./bin/rsk-search server --rw-db-dsn=${DEV_DB_DSN} \
+		--oauth-secret=${REDDIT_SECRET} \
+		--reddit-gold-app-secret=${GOLD_SECRET} \
+		--reddit-gold-password=${GOLD_PASSWORD}
 
 .PHONY: dev.services.start
 dev.services.start:
