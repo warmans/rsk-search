@@ -563,7 +563,6 @@ func (s *Store) ListRequiredAuthorRewards(ctx context.Context, thresholdSize int
 		LEFT JOIN author a ON a.id = c.author_id
 		WHERE c.author_id IS NOT NULL
 		AND a.banned = false
-		AND a.approver = false
 		AND c.contributions > 0
 		AND c.contributions / %d > 0
 		AND (
