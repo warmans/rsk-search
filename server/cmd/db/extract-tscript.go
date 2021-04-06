@@ -30,7 +30,7 @@ func ExtractTscriptCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "extract-tscript",
-		Short: "Extract the completed/partial transcripts.",
+		Short: "Extract the completed/partial transcripts and store them as regular transcripts.",
 		RunE: func(cmd *cobra.Command, args []string) error {
 
 			logger, _ := zap.NewProduction()

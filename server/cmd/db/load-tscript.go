@@ -35,9 +35,6 @@ func LoadTscriptCmd() *cobra.Command {
 			}
 			defer conn.Close()
 
-			if err := conn.Migrate(); err != nil {
-				return err
-			}
 			return populatePersistentDB(inputDir, conn, logger)
 		},
 	}

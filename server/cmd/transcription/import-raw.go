@@ -18,7 +18,7 @@ func ImportRawCmd() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "import-raw",
-		Short: "use google cloud transcription service",
+		Short: "???",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if args[0] == "" {
 				return nil

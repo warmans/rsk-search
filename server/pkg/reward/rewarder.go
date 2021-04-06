@@ -73,7 +73,7 @@ func (r *RedditGold) giveGold(redditID string) error {
 	body.Add("fullname", thingID)
 	body.Add("is_anonymous", "false")
 	body.Add("message", "Oh chimpancy that, you were given an award.")
-	body.Add("gild_type", RedditAwardSilver) //TODO: Should be gold.
+	body.Add("gild_type", RedditAwardGold)
 
 	req, err := http.NewRequest(
 		http.MethodPost,

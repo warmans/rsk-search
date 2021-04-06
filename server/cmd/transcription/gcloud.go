@@ -16,9 +16,12 @@ func GcloudCmd() *cobra.Command {
 		Short: "use google cloud transcription service",
 		RunE: func(cmd *cobra.Command, args []string) error {
 
+			// Argument should be a google cloud storage gs:// URI to a .wav file.
 			if len(args) != 1 {
 				return fmt.Errorf("gs URI was missing")
 			}
+
+			// GOOGLE_APPLICATION_CREDENTIALS should be a path to a credentials file e.g. /home/foo/credentials.json
 			if os.Getenv("GOOGLE_APPLICATION_CREDENTIALS") == "" {
 				return fmt.Errorf("no google application credentials")
 			}
