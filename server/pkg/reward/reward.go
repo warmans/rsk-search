@@ -13,7 +13,7 @@ import (
 )
 
 // it's a bit tricky to make this configurable as adjusting it could cause weird unexpected reward behavior.
-const rewardThreshold = 10
+const rewardThreshold = 5
 
 const RewarderNoop = "noop"
 const RewarderRedditGold = "reddit-gold"
@@ -65,10 +65,7 @@ func (w *Worker) Start() error {
 			if err := w.calculateRewards(); err != nil {
 				w.logger.Error("Failed to run rewards", zap.Error(err))
 			}
-			w.logger.Debug("Giving rewards")
-			if err := w.giveRewards(); err != nil {
-				w.logger.Error("Failed to run rewards", zap.Error(err))
-			}
+
 		case <-w.stop:
 			return nil
 		}
@@ -127,6 +124,8 @@ func (w *Worker) calculateRewards() error {
 	return nil
 }
 
+
+// deprecated: make user claim reward instead.
 func (w *Worker) giveRewards() error {
 
 	var pendingRewards []*models.AuthorReward
@@ -179,7 +178,7 @@ func (w *Worker) giveRewards() error {
 					}
 					return nil
 				}
-				if err := s.ConfirmReward(ctx, r.ID); err != nil {
+				if err := s.ClaimReward(ctx, r.ID); err != nil {
 					w.logger.Error("failed to confirm reward!", zap.Error(err), zap.String("id", r.ID))
 					time.Sleep(time.Second * 5)
 					continue

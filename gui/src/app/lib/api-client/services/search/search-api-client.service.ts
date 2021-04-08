@@ -243,6 +243,25 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  searchServiceDiscardDraftContribution(
+    args: {
+      chunkId: string,
+      contributionId: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<object> {
+    const path = `/api/tscript/chunk/${args.chunkId}/contrib/${args.contributionId}`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<object>('DELETE', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   searchServiceUpdateChunkContribution(
     args: {
       chunkId: string,
@@ -341,6 +360,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   searchServiceGetTscriptTimeline(
     args: {
       tscriptId: string,
+      page?: number,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RsksearchTscriptTimeline> {
@@ -350,6 +370,9 @@ export class SearchAPIClient implements SearchAPIClientInterface {
       ...requestHttpOptions,
     };
 
+    if ('page' in args) {
+      options.params = options.params.set('page', String(args.page));
+    }
     return this.sendRequest<models.RsksearchTscriptTimeline>('GET', path, options);
   }
 

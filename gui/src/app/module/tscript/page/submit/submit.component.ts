@@ -145,9 +145,9 @@ export class SubmitComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.contentUpdated.pipe(takeUntil(this.$destroy), distinctUntilChanged(), debounceTime(1000)).subscribe((v) => {
+      this.updatedTranscript = v;
       this.backupContent(v);
       this.updatePreview(v);
-      this.updatedTranscript = v;
       if (this.contribution) {
         this.update();
       }

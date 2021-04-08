@@ -86,7 +86,7 @@ service SearchService {
   }
 
   // tscript is an incomplete transcription
-  // chunks are ~2 min sections of the transcription
+  // chunks are ~3 min sections of the transcription
   rpc GetTscriptChunkStats(google.protobuf.Empty) returns (ChunkStats) {
     option (google.api.http) = {
       get: "/api/tscript/stats"
@@ -183,6 +183,16 @@ service SearchService {
     };
   }
 
+  rpc DiscardDraftContribution(DiscardDraftContributionRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/api/tscript/chunk/{chunk_id}/contrib/{contribution_id}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Update one of your existing contributions."
+      tags: "search"
+    };
+  }
+
   rpc RequestChunkContributionState(RequestChunkContributionStateRequest) returns (ChunkContribution) {
     option (google.api.http) = {
       patch: "/api/tscript/chunk/{chunk_id}/contrib/{contribution_id}/state",
@@ -203,6 +213,29 @@ service SearchService {
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       summary: "Submit a transcript that has been completed."
+      tags: "search"
+    };
+  }
+
+  // Rewards
+
+  rpc ListPendingRewards(google.protobuf.Empty) returns (PendingRewardList){
+    option (google.api.http) = {
+      get: "/api/rewards"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Lists arewards that the logged in user is able to claim."
+      tags: "search"
+    };
+  }
+
+  rpc ClaimReward(ClaimRewardRequest) returns (google.protobuf.Empty){
+    option (google.api.http) = {
+      patch: "/api/rewards/{id}/claim",
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Claims a reward."
       tags: "search"
     };
   }
@@ -412,6 +445,11 @@ message UpdateChunkContributionRequest {
   ContributionState state = 4;
 }
 
+message DiscardDraftContributionRequest{
+  string chunk_id = 1;
+  string contribution_id = 2;
+}
+
 message RequestChunkContributionStateRequest {
   string chunk_id = 1;
   string contribution_id = 2;
@@ -470,6 +508,7 @@ message AuthorRanking {
 
 message GetTscriptTimelineRequest {
   string tscript_id = 1;
+  int32 page = 2;
 }
 
 message TscriptTimeline {
@@ -480,4 +519,34 @@ message TscriptTimelineEvent {
   string who = 1;
   string what = 2;
   string when = 3;
+}
+
+message PendingRewardList {
+  repeated Reward rewards = 1;
+}
+
+message Reward {
+
+  enum RewardKind {
+    UNKNOWN = 0;
+    DONATION = 1;
+  }
+
+  string id = 1;
+  RewardKind kind = 2;
+  string name = 3;
+  string criteria = 4;
+  float value = 5;
+  string value_currency = 6;
+}
+
+message ClaimRewardRequest {
+  string id = 1;
+  oneof args {
+    DonationArgs donation_args = 2;
+  }
+}
+
+message DonationArgs {
+  string recipient = 1;
 }

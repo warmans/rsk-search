@@ -7,10 +7,15 @@
       <!--app-dsl-search (executeQuery)="executeSearch($event)"></app-dsl-search-->
       <app-gl-search (queryUpdated)="executeSearch($event)"></app-gl-search>
     </div>
-    <div class="ml-3" *ngIf="loggedInUser">
-      <a class="btn btn-info btn-lg" [routerLink]="['/me']">
-        <i *ngIf="!loggedInUser?.identity?.image_src" class="bi-person"></i>
-        <i *ngIf="loggedInUser?.identity?.image_src" class="bi-person"></i>
+    <div class="ml-3">
+      <a class="btn btn-info btn-lg" [routerLink]="['/me']" *ngIf="!loggedInUser?.identity?.icon_img">
+        <i class="bi-person"></i>
+      </a>
+      <a [routerLink]="['/me']" *ngIf="loggedInUser?.identity?.icon_img" >
+        <div
+          class="user-icon"
+          style=" width: 48px; height: 48px; background-image: url({{ loggedInUser?.identity?.icon_img }})">
+        </div>
       </a>
     </div>
   </div>

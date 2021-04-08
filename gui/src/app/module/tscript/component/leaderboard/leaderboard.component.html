@@ -15,7 +15,10 @@
         </td>
         <td>
           <div *ngIf="a.acceptedContributions > 0" class="text-success">
-            <i class="bi-file-earmark-check" *ngFor="let c of counter(a.acceptedContributions)"></i>
+            <span *ngFor="let c of counter(a.acceptedContributions); let idx = index;">
+              <i *ngIf="idx === 0 || idx % 9 !== 0" class="bi-file-earmark-check"></i>
+              <i *ngIf="idx > 0 && idx % 9 === 0" class="bi-trophy"></i>
+            </span>
           </div>
           <span class="text-muted">{{ nextRewardAt(a.acceptedContributions) }} until next <a (click)="showAwardHelp = true">award <i class="bi-question-circle"></i></a></span>
         </td>

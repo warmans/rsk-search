@@ -110,6 +110,17 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  searchServiceDiscardDraftContribution(
+    args: {
+      chunkId: string,
+      contributionId: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<object>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   searchServiceUpdateChunkContribution(
     args: {
       chunkId: string,
@@ -165,6 +176,7 @@ export interface SearchAPIClientInterface {
   searchServiceGetTscriptTimeline(
     args: {
       tscriptId: string,
+      page?: number,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RsksearchTscriptTimeline>;

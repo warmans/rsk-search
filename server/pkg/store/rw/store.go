@@ -312,6 +312,15 @@ func (s *Store) GetContribution(ctx context.Context, id string) (*models.Contrib
 	return out, nil
 }
 
+func (s *Store) DeleteContribution(ctx context.Context, id string) error {
+	_, err := s.tx.ExecContext(
+		ctx,
+		`DELETE FROM tscript_contribution WHERE id=$1`,
+		id,
+	)
+	return err
+}
+
 func (s *Store) ListNonPendingTscriptContributions(ctx context.Context, tscriptID string, page int32) ([]*models.Contribution, error) {
 
 	out := make([]*models.Contribution, 0)
@@ -483,7 +492,35 @@ func (s *Store) CreateTscriptTimelineEvent(ctx context.Context, chunkID string, 
 	return err
 }
 
-func (s *Store) ListTscriptTimelineEvents(ctx context.Context, tscriptID string) ([]*models.TimelineEvent, error) {
+func (s *Store) ListTscriptTimelineEvents(ctx context.Context, tscriptID string, page int) ([]*models.TimelineEvent, error) {
+	out := make([]*models.TimelineEvent, 0)
+
+	rows, err := s.tx.QueryxContext(
+		ctx,
+		fmt.Sprintf(`
+			SELECT 
+				tl.who, 
+				tl.what,
+				tl.activity_at AS when,
+			FROM tscript_chunk_timeline tl
+			LEFT JOIN tscript_chunk ch ON tl.chunk_id = ch.id
+			WHERE ch.tscript_id = $1
+			ORDER BY activity_at DESC
+			LIMIT 25 OFFSET %d`, page*25),
+		tscriptID,
+	)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		cur := &models.TimelineEvent{}
+		if err := rows.StructScan(cur); err != nil {
+			return nil, err
+		}
+		out = append(out, cur)
+	}
 	return nil, nil
 }
 
@@ -591,7 +628,7 @@ func (s *Store) ListRequiredAuthorRewards(ctx context.Context, thresholdSize int
 }
 
 func (s *Store) ListPendingRewards(ctx context.Context) ([]*models.AuthorReward, error) {
-	rows, err := s.tx.QueryxContext(ctx, `SELECT * from author_reward WHERE confirmed = FALSE AND "error" IS NULL`)
+	rows, err := s.tx.QueryxContext(ctx, `SELECT * from author_reward WHERE claimed = FALSE AND "error" IS NULL`)
 	if err != nil {
 		return nil, err
 	}
@@ -622,8 +659,17 @@ func (s *Store) CreatePendingReward(ctx context.Context, authorID string, thresh
 	return id, nil
 }
 
-func (s *Store) ConfirmReward(ctx context.Context, logID string) error {
-	if _, err := s.tx.ExecContext(ctx, `UPDATE author_reward SET confirmed=true WHERE id=$1`, logID); err != nil {
+func (s *Store) GetRewardForUpdate(ctx context.Context, id string) (*models.AuthorReward, error) {
+	reward := &models.AuthorReward{}
+	err := s.tx.QueryRowxContext(ctx, `SELECT * from author_reward WHERE claimed = FALSE AND error = NULL AND id = $1 FOR UPDATE`, id).StructScan(reward)
+	if err != nil {
+		return nil, err
+	}
+	return reward, nil
+}
+
+func (s *Store) ClaimReward(ctx context.Context, id string) error {
+	if _, err := s.tx.ExecContext(ctx, `UPDATE author_reward SET claimed=true WHERE id=$1`, id); err != nil {
 		return err
 	}
 	return nil

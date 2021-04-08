@@ -164,6 +164,68 @@
         ]
       }
     },
+    "/api/rewards": {
+      "get": {
+        "summary": "Lists arewards that the logged in user is able to claim.",
+        "operationId": "SearchService_ListPendingRewards",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rsksearchPendingRewardList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "search"
+        ]
+      }
+    },
+    "/api/rewards/{id}/claim": {
+      "patch": {
+        "summary": "Claims a reward.",
+        "operationId": "SearchService_ClaimReward",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/rsksearchClaimRewardRequest"
+            }
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      }
+    },
     "/api/search": {
       "get": {
         "summary": "Perform a search",
@@ -334,6 +396,41 @@
             "description": "A successful response.",
             "schema": {
               "$ref": "#/definitions/rsksearchChunkContribution"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "chunkId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "contributionId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      },
+      "delete": {
+        "summary": "Update one of your existing contributions.",
+        "operationId": "SearchService_DiscardDraftContribution",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
             }
           },
           "default": {
@@ -566,6 +663,13 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
           }
         ],
         "tags": [
@@ -623,6 +727,14 @@
         "INT",
         "FLOAT",
         "DATE"
+      ],
+      "default": "UNKNOWN"
+    },
+    "RewardRewardKind": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "DONATION"
       ],
       "default": "UNKNOWN"
     },
@@ -740,6 +852,17 @@
         }
       }
     },
+    "rsksearchClaimRewardRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "donationArgs": {
+          "$ref": "#/definitions/rsksearchDonationArgs"
+        }
+      }
+    },
     "rsksearchContributionState": {
       "type": "string",
       "enum": [
@@ -813,6 +936,14 @@
         "score": {
           "type": "number",
           "format": "float"
+        }
+      }
+    },
+    "rsksearchDonationArgs": {
+      "type": "object",
+      "properties": {
+        "recipient": {
+          "type": "string"
         }
       }
     },
@@ -907,6 +1038,17 @@
         }
       }
     },
+    "rsksearchPendingRewardList": {
+      "type": "object",
+      "properties": {
+        "rewards": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rsksearchReward"
+          }
+        }
+      }
+    },
     "rsksearchRedditAuthURL": {
       "type": "object",
       "properties": {
@@ -928,6 +1070,30 @@
           "$ref": "#/definitions/rsksearchContributionState"
         },
         "comment": {
+          "type": "string"
+        }
+      }
+    },
+    "rsksearchReward": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/definitions/RewardRewardKind"
+        },
+        "name": {
+          "type": "string"
+        },
+        "criteria": {
+          "type": "string"
+        },
+        "value": {
+          "type": "number",
+          "format": "float"
+        },
+        "valueCurrency": {
           "type": "string"
         }
       }

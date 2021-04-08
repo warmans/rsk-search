@@ -4,6 +4,7 @@
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a [routerLink]="['/search']">Home</a></li>
       <li class="breadcrumb-item"><a [routerLink]="['/contribute']">Contribute</a></li>
+      <li class="breadcrumb-item"><a [routerLink]="['/tscript', chunk.tscriptId]">{{chunk.tscriptId}}</a></li>
       <li class="breadcrumb-item active" aria-current="page">Create</li>
     </ol>
   </nav>
@@ -31,7 +32,7 @@
         <div class="card-body">
           <p>Currently your contribution is only saved locally, you can create a draft to allow you to submit it for
             approval.</p>
-          <button class="btn btn-success mt-2" (click)="create()">Create draft</button>
+          <button class="btn btn-success mt-2" (click)="create()" [disabled]="!updatedTranscript">Create draft</button>
         </div>
       </div>
       <div class="card" *ngIf="contribution">

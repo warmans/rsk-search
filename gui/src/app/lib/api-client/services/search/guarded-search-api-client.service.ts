@@ -123,6 +123,17 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
       .pipe(tap((res: any) => guards.isRsksearchChunkContribution(res) || console.error(`TypeGuard for response 'RsksearchChunkContribution' caught inconsistency.`, res)));
   }
 
+  searchServiceDiscardDraftContribution(
+    args: {
+      chunkId: string,
+      contributionId: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<object> {
+    return super.searchServiceDiscardDraftContribution(args, requestHttpOptions)
+      .pipe(tap((res: any) => typeof res === 'object' || console.error(`TypeGuard for response 'object' caught inconsistency.`, res)));
+  }
+
   searchServiceUpdateChunkContribution(
     args: {
       chunkId: string,
@@ -178,6 +189,7 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
   searchServiceGetTscriptTimeline(
     args: {
       tscriptId: string,
+      page?: number,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RsksearchTscriptTimeline> {

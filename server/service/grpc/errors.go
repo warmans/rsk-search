@@ -143,3 +143,15 @@ func ErrRateLimited() *status.Status {
 	}
 	return s
 }
+
+func ErrThirdParty(reason string) *status.Status {
+	s, err := status.New(codes.Unavailable, http.StatusText(http.StatusServiceUnavailable)).WithDetails(
+		&errdetails.DebugInfo{
+			Detail: fmt.Sprintf("External service was unable to process request: %s", reason),
+		},
+	)
+	if err != nil {
+		return status.New(codes.Internal, "failed to create error")
+	}
+	return s
+}

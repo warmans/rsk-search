@@ -33,13 +33,7 @@ export class AuthorContributionsComponent implements OnInit, OnDestroy {
     this.session.onTokenChange.pipe(takeUntil(this.destroy$)).subscribe((v) => {
       if (v) {
         this.claims = this.session.getClaims();
-        this.loading = true;
-        this.apiClient.searchServiceListAuthorContributions({
-          authorId: this.session.getClaims().author_id,
-          page: 0
-        }).pipe(takeUntil(this.destroy$)).subscribe((list: RsksearchChunkContributionList) => {
-          this.contributions = list.contributions;
-        }).add(() => this.loading = false);
+        this.loadContributions();
       } else {
         this.claims = undefined;
       }
@@ -49,6 +43,27 @@ export class AuthorContributionsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroy$.next(null);
     this.destroy$.complete();
+  }
+
+  discardDraft(chunkId: string, contributionId: string): void {
+    if (confirm('Really discard draft?')) {
+      this.apiClient.searchServiceDiscardDraftContribution({
+        chunkId: chunkId,
+        contributionId: contributionId
+      }).pipe(takeUntil(this.destroy$)).subscribe(() => {
+        this.loadContributions();
+      });
+    }
+  }
+
+  loadContributions() {
+    this.loading = true;
+    this.apiClient.searchServiceListAuthorContributions({
+      authorId: this.session.getClaims().author_id,
+      page: 0
+    }).pipe(takeUntil(this.destroy$)).subscribe((list: RsksearchChunkContributionList) => {
+      this.contributions = list.contributions;
+    }).add(() => this.loading = false);
   }
 
   logout() {

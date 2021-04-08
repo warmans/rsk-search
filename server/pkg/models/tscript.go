@@ -186,7 +186,21 @@ type ContributionActivity struct {
 }
 
 type TimelineEvent struct {
-	Who  string
-	What string
-	When *time.Time
+	Who  string     `db:"who"`
+	What string     `db:"what"`
+	When *time.Time `db:"when"`
+}
+
+func (t *TimelineEvent) Proto() *api.TscriptTimelineEvent {
+	if t == nil {
+		return nil
+	}
+	res := &api.TscriptTimelineEvent{
+		Who:  t.Who,
+		What: t.What,
+	}
+	if t.When != nil {
+		res.When = t.When.Format(time.RFC3339)
+	}
+	return res
 }

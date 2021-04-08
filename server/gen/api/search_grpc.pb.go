@@ -26,7 +26,7 @@ type SearchServiceClient interface {
 	ListEpisodes(ctx context.Context, in *ListEpisodesRequest, opts ...grpc.CallOption) (*EpisodeList, error)
 	ListTscripts(ctx context.Context, in *ListTscriptsRequest, opts ...grpc.CallOption) (*TscriptList, error)
 	// tscript is an incomplete transcription
-	// chunks are ~2 min sections of the transcription
+	// chunks are ~3 min sections of the transcription
 	GetTscriptChunkStats(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ChunkStats, error)
 	GetTscriptChunk(ctx context.Context, in *GetTscriptChunkRequest, opts ...grpc.CallOption) (*TscriptChunk, error)
 	GetTscriptTimeline(ctx context.Context, in *GetTscriptTimelineRequest, opts ...grpc.CallOption) (*TscriptTimeline, error)
@@ -36,8 +36,11 @@ type SearchServiceClient interface {
 	GetChunkContribution(ctx context.Context, in *GetChunkContributionRequest, opts ...grpc.CallOption) (*ChunkContribution, error)
 	CreateChunkContribution(ctx context.Context, in *CreateChunkContributionRequest, opts ...grpc.CallOption) (*ChunkContribution, error)
 	UpdateChunkContribution(ctx context.Context, in *UpdateChunkContributionRequest, opts ...grpc.CallOption) (*ChunkContribution, error)
+	DiscardDraftContribution(ctx context.Context, in *DiscardDraftContributionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	RequestChunkContributionState(ctx context.Context, in *RequestChunkContributionStateRequest, opts ...grpc.CallOption) (*ChunkContribution, error)
 	SubmitDialogCorrection(ctx context.Context, in *SubmitDialogCorrectionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ListPendingRewards(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PendingRewardList, error)
+	ClaimReward(ctx context.Context, in *ClaimRewardRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	GetRedditAuthURL(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*RedditAuthURL, error)
 }
 
@@ -184,6 +187,15 @@ func (c *searchServiceClient) UpdateChunkContribution(ctx context.Context, in *U
 	return out, nil
 }
 
+func (c *searchServiceClient) DiscardDraftContribution(ctx context.Context, in *DiscardDraftContributionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/DiscardDraftContribution", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *searchServiceClient) RequestChunkContributionState(ctx context.Context, in *RequestChunkContributionStateRequest, opts ...grpc.CallOption) (*ChunkContribution, error) {
 	out := new(ChunkContribution)
 	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/RequestChunkContributionState", in, out, opts...)
@@ -196,6 +208,24 @@ func (c *searchServiceClient) RequestChunkContributionState(ctx context.Context,
 func (c *searchServiceClient) SubmitDialogCorrection(ctx context.Context, in *SubmitDialogCorrectionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/SubmitDialogCorrection", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *searchServiceClient) ListPendingRewards(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PendingRewardList, error) {
+	out := new(PendingRewardList)
+	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/ListPendingRewards", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *searchServiceClient) ClaimReward(ctx context.Context, in *ClaimRewardRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/ClaimReward", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -222,7 +252,7 @@ type SearchServiceServer interface {
 	ListEpisodes(context.Context, *ListEpisodesRequest) (*EpisodeList, error)
 	ListTscripts(context.Context, *ListTscriptsRequest) (*TscriptList, error)
 	// tscript is an incomplete transcription
-	// chunks are ~2 min sections of the transcription
+	// chunks are ~3 min sections of the transcription
 	GetTscriptChunkStats(context.Context, *emptypb.Empty) (*ChunkStats, error)
 	GetTscriptChunk(context.Context, *GetTscriptChunkRequest) (*TscriptChunk, error)
 	GetTscriptTimeline(context.Context, *GetTscriptTimelineRequest) (*TscriptTimeline, error)
@@ -232,8 +262,11 @@ type SearchServiceServer interface {
 	GetChunkContribution(context.Context, *GetChunkContributionRequest) (*ChunkContribution, error)
 	CreateChunkContribution(context.Context, *CreateChunkContributionRequest) (*ChunkContribution, error)
 	UpdateChunkContribution(context.Context, *UpdateChunkContributionRequest) (*ChunkContribution, error)
+	DiscardDraftContribution(context.Context, *DiscardDraftContributionRequest) (*emptypb.Empty, error)
 	RequestChunkContributionState(context.Context, *RequestChunkContributionStateRequest) (*ChunkContribution, error)
 	SubmitDialogCorrection(context.Context, *SubmitDialogCorrectionRequest) (*emptypb.Empty, error)
+	ListPendingRewards(context.Context, *emptypb.Empty) (*PendingRewardList, error)
+	ClaimReward(context.Context, *ClaimRewardRequest) (*emptypb.Empty, error)
 	GetRedditAuthURL(context.Context, *emptypb.Empty) (*RedditAuthURL, error)
 }
 
@@ -286,11 +319,20 @@ func (UnimplementedSearchServiceServer) CreateChunkContribution(context.Context,
 func (UnimplementedSearchServiceServer) UpdateChunkContribution(context.Context, *UpdateChunkContributionRequest) (*ChunkContribution, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateChunkContribution not implemented")
 }
+func (UnimplementedSearchServiceServer) DiscardDraftContribution(context.Context, *DiscardDraftContributionRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DiscardDraftContribution not implemented")
+}
 func (UnimplementedSearchServiceServer) RequestChunkContributionState(context.Context, *RequestChunkContributionStateRequest) (*ChunkContribution, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RequestChunkContributionState not implemented")
 }
 func (UnimplementedSearchServiceServer) SubmitDialogCorrection(context.Context, *SubmitDialogCorrectionRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SubmitDialogCorrection not implemented")
+}
+func (UnimplementedSearchServiceServer) ListPendingRewards(context.Context, *emptypb.Empty) (*PendingRewardList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListPendingRewards not implemented")
+}
+func (UnimplementedSearchServiceServer) ClaimReward(context.Context, *ClaimRewardRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ClaimReward not implemented")
 }
 func (UnimplementedSearchServiceServer) GetRedditAuthURL(context.Context, *emptypb.Empty) (*RedditAuthURL, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRedditAuthURL not implemented")
@@ -577,6 +619,24 @@ func _SearchService_UpdateChunkContribution_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SearchService_DiscardDraftContribution_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DiscardDraftContributionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SearchServiceServer).DiscardDraftContribution(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/rsksearch.SearchService/DiscardDraftContribution",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SearchServiceServer).DiscardDraftContribution(ctx, req.(*DiscardDraftContributionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _SearchService_RequestChunkContributionState_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RequestChunkContributionStateRequest)
 	if err := dec(in); err != nil {
@@ -609,6 +669,42 @@ func _SearchService_SubmitDialogCorrection_Handler(srv interface{}, ctx context.
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SearchServiceServer).SubmitDialogCorrection(ctx, req.(*SubmitDialogCorrectionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SearchService_ListPendingRewards_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SearchServiceServer).ListPendingRewards(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/rsksearch.SearchService/ListPendingRewards",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SearchServiceServer).ListPendingRewards(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _SearchService_ClaimReward_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ClaimRewardRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SearchServiceServer).ClaimReward(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/rsksearch.SearchService/ClaimReward",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SearchServiceServer).ClaimReward(ctx, req.(*ClaimRewardRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -699,12 +795,24 @@ var SearchService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _SearchService_UpdateChunkContribution_Handler,
 		},
 		{
+			MethodName: "DiscardDraftContribution",
+			Handler:    _SearchService_DiscardDraftContribution_Handler,
+		},
+		{
 			MethodName: "RequestChunkContributionState",
 			Handler:    _SearchService_RequestChunkContributionState_Handler,
 		},
 		{
 			MethodName: "SubmitDialogCorrection",
 			Handler:    _SearchService_SubmitDialogCorrection_Handler,
+		},
+		{
+			MethodName: "ListPendingRewards",
+			Handler:    _SearchService_ListPendingRewards_Handler,
+		},
+		{
+			MethodName: "ClaimReward",
+			Handler:    _SearchService_ClaimReward_Handler,
 		},
 		{
 			MethodName: "GetRedditAuthURL",
