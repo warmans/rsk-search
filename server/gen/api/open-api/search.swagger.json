@@ -226,6 +226,37 @@
         ]
       }
     },
+    "/api/rewards/{rewardId}/recipients": {
+      "get": {
+        "summary": "Lists available recipients for reward.",
+        "operationId": "SearchService_ListDonationRecipients",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rsksearchDonationRecipientList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "rewardId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      }
+    },
     "/api/search": {
       "get": {
         "summary": "Perform a search",
@@ -944,6 +975,40 @@
       "properties": {
         "recipient": {
           "type": "string"
+        }
+      }
+    },
+    "rsksearchDonationRecipient": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "mission": {
+          "type": "string"
+        },
+        "logoUrl": {
+          "type": "string"
+        },
+        "ngoId": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "rsksearchDonationRecipientList": {
+      "type": "object",
+      "properties": {
+        "organizations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rsksearchDonationRecipient"
+          }
         }
       }
     },

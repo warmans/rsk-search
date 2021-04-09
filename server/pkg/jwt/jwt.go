@@ -43,22 +43,22 @@ func (c *Claims) FromMap(claims jwt.MapClaims) {
 	}
 }
 
-type Cfg struct {
+type Config struct {
 	SigningKey string
 	ExpireTime int64
 }
 
-func (c *Cfg) RegisterFlags(fs *pflag.FlagSet, prefix string) {
+func (c *Config) RegisterFlags(fs *pflag.FlagSet, prefix string) {
 	flag.StringVarEnv(fs, &c.SigningKey, prefix, "jwt-key", "insecure", "Key used to sign JWTs")
 	flag.Int64VarEnv(fs, &c.ExpireTime, prefix, "jwt-expire-time", 60*60*24*365, "Number of seconds token is valid for")
 }
 
-func NewAuth(cfg *Cfg) *Auth {
+func NewAuth(cfg *Config) *Auth {
 	return &Auth{cfg: cfg}
 }
 
 type Auth struct {
-	cfg *Cfg
+	cfg *Config
 }
 
 func (a *Auth) NewJWTForIdentity(author *models.Author, ident *oauth.Identity) (string, error) {

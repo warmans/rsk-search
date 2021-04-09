@@ -1,0 +1,19 @@
+.rewards-container {
+  position: fixed;
+  right: 30px;
+  bottom: 0;
+  max-width: 400px;
+  padding-bottom: 30px;
+  padding-right: 30px;
+  z-index: 1000;
+}
+
+
+.reward {
+  background-color: #fff;
+  width: 400px;
+
+  .reward-icon {
+    font-size: 2rem;
+  }
+}

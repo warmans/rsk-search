@@ -8,20 +8,27 @@ import (
 	"github.com/spf13/pflag"
 	"github.com/warmans/rsk-search/pkg/flag"
 	"net/http"
+	"net/url"
 )
 
 type Config struct {
-	APIKey            string
-	DonationEmail     string
-	DonationFirstName string
-	DonationLastName  string
+	APIKey           string
+	DefaultEmail     string
+	DefaultFirstName string
+	DefaultLastName  string
 }
 
 func (c *Config) RegisterFlags(fs *pflag.FlagSet, prefix string) {
-	flag.StringVarEnv(fs, &c.APIKey, prefix, "pledge-api-key", "", "API key")
-	flag.StringVarEnv(fs, &c.DonationEmail, prefix, "default-donation-email", "", "Email to use for anonymous donation request")
-	flag.StringVarEnv(fs, &c.DonationFirstName, prefix, "default-donation-first-name", "", "First name to use for anonymous donation request")
-	flag.StringVarEnv(fs, &c.DonationLastName, prefix, "default-donation-last-name", "", "Last name to use for anonymous donation request")
+	flag.StringVarEnv(fs, &c.APIKey, prefix, "pledge-secret", "", "API key")
+	flag.StringVarEnv(fs, &c.DefaultEmail, prefix, "pledge-def-email", "", "Email to use for anonymous donation request")
+	flag.StringVarEnv(fs, &c.DefaultFirstName, prefix, "pledge-def-firstname", "", "First name to use for anonymous donation request")
+	flag.StringVarEnv(fs, &c.DefaultLastName, prefix, "pledge-def-lastname", "", "Last name to use for anonymous donation request")
+}
+
+func NewClient(cfg Config) *Client {
+	return &Client{
+		cfg: cfg,
+	}
 }
 
 type Client struct {
@@ -30,9 +37,9 @@ type Client struct {
 
 func (c *Client) CreateAnonymousDonation(donationDetails AnonymousDonationRequest) (*Donation, error) {
 	return c.CreateDonation(DonationRequest{
-		Email:          c.cfg.DonationEmail,
-		FirstName:      c.cfg.DonationFirstName,
-		LastName:       c.cfg.DonationFirstName,
+		Email:          c.cfg.DefaultEmail,
+		FirstName:      c.cfg.DefaultFirstName,
+		LastName:       c.cfg.DefaultFirstName,
 		OrganizationID: donationDetails.OrganizationID,
 		Amount:         donationDetails.Amount,
 		Metadata:       donationDetails.Metadata,
@@ -40,11 +47,16 @@ func (c *Client) CreateAnonymousDonation(donationDetails AnonymousDonationReques
 }
 
 func (c *Client) CreateDonation(donationDetails DonationRequest) (*Donation, error) {
-	b, err := json.Marshal(donationDetails)
-	if err != nil {
-		return nil, errors.Wrap(err, "failed to encode request")
-	}
-	req, err := http.NewRequest(http.MethodPost, "https://api.pledge.to/v1/donations", bytes.NewBuffer(b))
+
+	body := url.Values{}
+	body.Set("email", donationDetails.Email)
+	body.Set("first_name", donationDetails.FirstName)
+	body.Set("last_name", donationDetails.LastName)
+	body.Set("organization_id", donationDetails.OrganizationID)
+	body.Set("amount", donationDetails.Amount)
+	body.Set("metadata", donationDetails.Metadata)
+
+	req, err := http.NewRequest(http.MethodPost, "https://api.pledge.to/v1/donations", bytes.NewBufferString(body.Encode()))
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to create request")
 	}
@@ -52,12 +64,12 @@ func (c *Client) CreateDonation(donationDetails DonationRequest) (*Donation, err
 
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
-		return nil, err
+		return nil, errors.Wrapf(err, "with body: %s", getResponseError(resp))
 	}
 	defer resp.Body.Close()
 
 	if err := checkResponse(resp); err != nil {
-		return nil, err
+		return nil, errors.Wrapf(err, "with body: %s", getResponseError(resp))
 	}
 
 	result := &Donation{}
@@ -76,12 +88,12 @@ func (c *Client) ListOrganizations() (*OrganizationList, error) {
 
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
-		return nil, err
+		return nil, errors.Wrapf(err, "with body: %s", getResponseError(resp))
 	}
 	defer resp.Body.Close()
 
 	if err := checkResponse(resp); err != nil {
-		return nil, err
+		return nil, errors.Wrapf(err, "with body: %s", getResponseError(resp))
 	}
 
 	list := &OrganizationList{}
@@ -105,6 +117,20 @@ func checkResponse(resp *http.Response) error {
 		return fmt.Errorf("internal error")
 	}
 	return nil
+}
+
+func getResponseError(resp *http.Response) string {
+	if resp.Body == nil {
+		return "none"
+	}
+	response := struct {
+		Message string `json:"message"`
+	}{}
+	err := json.NewDecoder(resp.Body).Decode(&response)
+	if err != nil {
+		return "none"
+	}
+	return response.Message
 }
 
 type OrganizationList struct {

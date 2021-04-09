@@ -22,7 +22,7 @@ func NewSearchService(
 	persistentDB *rw.Conn,
 	csrfCache *oauth.CSRFTokenCache,
 	auth *jwt.Auth,
-	oauthCfg *oauth.Cfg,
+	oauthCfg *oauth.Config,
 	pledgeClient *pledge.Client,
 ) *SearchService {
 	return &SearchService{
@@ -44,7 +44,7 @@ type SearchService struct {
 	persistentDB  *rw.Conn
 	csrfCache     *oauth.CSRFTokenCache
 	auth          *jwt.Auth
-	oauthCfg      *oauth.Cfg
+	oauthCfg      *oauth.Config
 	pledgeClient  *pledge.Client
 }
 

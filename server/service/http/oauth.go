@@ -23,7 +23,7 @@ func NewOauthService(
 	oauthCache *oauth.CSRFTokenCache,
 	rwStore *rw.Conn,
 	auth *jwt.Auth,
-	oauthCfg *oauth.Cfg,
+	oauthCfg *oauth.Config,
 	serviceConfig config.SearchServiceConfig,
 ) *DownloadService {
 	return &DownloadService{
@@ -41,7 +41,7 @@ type DownloadService struct {
 	logger        *zap.Logger
 	rwStore       *rw.Conn
 	auth          *jwt.Auth
-	oauthCfg      *oauth.Cfg
+	oauthCfg      *oauth.Config
 	serviceConfig config.SearchServiceConfig
 }
 

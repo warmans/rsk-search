@@ -52,6 +52,34 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  searchServiceListPendingRewards(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchPendingRewardList>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  searchServiceClaimReward(
+    args: {
+      id: string,
+      body: models.RsksearchClaimRewardRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<object>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  searchServiceListDonationRecipients(
+    args: {
+      rewardId: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchDonationRecipientList>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   searchServiceSearch(
     args: {
       query?: string,

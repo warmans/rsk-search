@@ -41,6 +41,7 @@ type SearchServiceClient interface {
 	SubmitDialogCorrection(ctx context.Context, in *SubmitDialogCorrectionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ListPendingRewards(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PendingRewardList, error)
 	ClaimReward(ctx context.Context, in *ClaimRewardRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ListDonationRecipients(ctx context.Context, in *ListDonationRecipientsRequest, opts ...grpc.CallOption) (*DonationRecipientList, error)
 	GetRedditAuthURL(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*RedditAuthURL, error)
 }
 
@@ -232,6 +233,15 @@ func (c *searchServiceClient) ClaimReward(ctx context.Context, in *ClaimRewardRe
 	return out, nil
 }
 
+func (c *searchServiceClient) ListDonationRecipients(ctx context.Context, in *ListDonationRecipientsRequest, opts ...grpc.CallOption) (*DonationRecipientList, error) {
+	out := new(DonationRecipientList)
+	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/ListDonationRecipients", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *searchServiceClient) GetRedditAuthURL(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*RedditAuthURL, error) {
 	out := new(RedditAuthURL)
 	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/GetRedditAuthURL", in, out, opts...)
@@ -267,6 +277,7 @@ type SearchServiceServer interface {
 	SubmitDialogCorrection(context.Context, *SubmitDialogCorrectionRequest) (*emptypb.Empty, error)
 	ListPendingRewards(context.Context, *emptypb.Empty) (*PendingRewardList, error)
 	ClaimReward(context.Context, *ClaimRewardRequest) (*emptypb.Empty, error)
+	ListDonationRecipients(context.Context, *ListDonationRecipientsRequest) (*DonationRecipientList, error)
 	GetRedditAuthURL(context.Context, *emptypb.Empty) (*RedditAuthURL, error)
 }
 
@@ -333,6 +344,9 @@ func (UnimplementedSearchServiceServer) ListPendingRewards(context.Context, *emp
 }
 func (UnimplementedSearchServiceServer) ClaimReward(context.Context, *ClaimRewardRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ClaimReward not implemented")
+}
+func (UnimplementedSearchServiceServer) ListDonationRecipients(context.Context, *ListDonationRecipientsRequest) (*DonationRecipientList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListDonationRecipients not implemented")
 }
 func (UnimplementedSearchServiceServer) GetRedditAuthURL(context.Context, *emptypb.Empty) (*RedditAuthURL, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRedditAuthURL not implemented")
@@ -709,6 +723,24 @@ func _SearchService_ClaimReward_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SearchService_ListDonationRecipients_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListDonationRecipientsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SearchServiceServer).ListDonationRecipients(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/rsksearch.SearchService/ListDonationRecipients",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SearchServiceServer).ListDonationRecipients(ctx, req.(*ListDonationRecipientsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _SearchService_GetRedditAuthURL_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
@@ -813,6 +845,10 @@ var SearchService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ClaimReward",
 			Handler:    _SearchService_ClaimReward_Handler,
+		},
+		{
+			MethodName: "ListDonationRecipients",
+			Handler:    _SearchService_ListDonationRecipients_Handler,
 		},
 		{
 			MethodName: "GetRedditAuthURL",

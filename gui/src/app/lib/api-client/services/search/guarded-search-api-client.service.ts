@@ -65,6 +65,34 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
       .pipe(tap((res: any) => guards.isRskSearchMetadata(res) || console.error(`TypeGuard for response 'RskSearchMetadata' caught inconsistency.`, res)));
   }
 
+  searchServiceListPendingRewards(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchPendingRewardList> {
+    return super.searchServiceListPendingRewards(requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRsksearchPendingRewardList(res) || console.error(`TypeGuard for response 'RsksearchPendingRewardList' caught inconsistency.`, res)));
+  }
+
+  searchServiceClaimReward(
+    args: {
+      id: string,
+      body: models.RsksearchClaimRewardRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<object> {
+    return super.searchServiceClaimReward(args, requestHttpOptions)
+      .pipe(tap((res: any) => typeof res === 'object' || console.error(`TypeGuard for response 'object' caught inconsistency.`, res)));
+  }
+
+  searchServiceListDonationRecipients(
+    args: {
+      rewardId: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchDonationRecipientList> {
+    return super.searchServiceListDonationRecipients(args, requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRsksearchDonationRecipientList(res) || console.error(`TypeGuard for response 'RsksearchDonationRecipientList' caught inconsistency.`, res)));
+  }
+
   searchServiceSearch(
     args: {
       query?: string,

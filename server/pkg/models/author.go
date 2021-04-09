@@ -67,10 +67,16 @@ func (l *AuthorRanking) Proto() *api.AuthorRanking {
 }
 
 type AuthorReward struct {
-	ID        string    `db:"id"`
-	AuthorID  string    `db:"author_id"`
-	Threshold int32     `db:"threshold"`
-	CreatedAt time.Time `db:"created_at"`
-	Confirmed bool      `db:"confirmed"`
-	Error     *string   `db:"error"`
+	ID                    string     `db:"id"`
+	AuthorID              string     `db:"author_id"`
+	Threshold             int32      `db:"threshold"`
+	CreatedAt             time.Time  `db:"created_at"`
+	Claimed               bool       `db:"claimed"`
+	ClaimKind             *string    `db:"claim_kind"`
+	ClaimValue            *float32   `db:"claim_value"`
+	ClaimValueCurrency    *string    `db:"claim_value_currency"`
+	ClaimDescription      *string    `db:"claim_description"`
+	ClaimAt               *time.Time `db:"claim_at"`
+	ClaimConfirmationCode *string    `db:"claim_confirmation_code"`
+	Error                 *string    `db:"error"`
 }

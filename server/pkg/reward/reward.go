@@ -3,7 +3,6 @@ package reward
 import (
 	"context"
 	"fmt"
-	"github.com/pkg/errors"
 	"github.com/spf13/pflag"
 	"github.com/warmans/rsk-search/pkg/flag"
 	"github.com/warmans/rsk-search/pkg/models"
@@ -15,26 +14,20 @@ import (
 // it's a bit tricky to make this configurable as adjusting it could cause weird unexpected reward behavior.
 const rewardThreshold = 5
 
-const RewarderNoop = "noop"
-const RewarderRedditGold = "reddit-gold"
-
-type Cfg struct {
+type Config struct {
 	CheckInterval int64
-	Rewarder      string
 }
 
-func (c *Cfg) RegisterFlags(fs *pflag.FlagSet, prefix string) {
+func (c *Config) RegisterFlags(fs *pflag.FlagSet, prefix string) {
 	flag.Int64VarEnv(fs, &c.CheckInterval, prefix, "reward-check-interval-seconds", 60, "check for pending rewards every N seconds")
-	flag.StringVarEnv(fs, &c.Rewarder, prefix, "reward-strategy", RewarderNoop, "implementation of rewarder (noop, reddit-gold)")
 }
 
-func NewWorker(db *rw.Conn, logger *zap.Logger, cfg Cfg, rewarder Rewarder) *Worker {
+func NewWorker(db *rw.Conn, logger *zap.Logger, cfg Config) *Worker {
 	return &Worker{
-		db:       db,
-		stop:     make(chan struct{}, 0),
-		logger:   logger.With(zap.String("component", "reward worker")),
-		cfg:      cfg,
-		rewarder: rewarder,
+		db:     db,
+		stop:   make(chan struct{}, 0),
+		logger: logger.With(zap.String("component", "reward worker")),
+		cfg:    cfg,
 	}
 }
 
@@ -44,8 +37,7 @@ type Worker struct {
 	stop     chan struct{}
 	stopping bool
 	logger   *zap.Logger
-	cfg      Cfg
-	rewarder Rewarder
+	cfg      Config
 }
 
 func (w *Worker) Start() error {
@@ -120,76 +112,6 @@ func (w *Worker) calculateRewards() error {
 			zap.String("author_id", a.AuthorID),
 			zap.Int32("threshold", a.Threshold),
 		)
-	}
-	return nil
-}
-
-
-// deprecated: make user claim reward instead.
-func (w *Worker) giveRewards() error {
-
-	var pendingRewards []*models.AuthorReward
-	err := w.db.WithStore(func(s *rw.Store) error {
-		ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
-		defer cancel()
-
-		var err error
-		if pendingRewards, err = s.ListPendingRewards(ctx); err != nil {
-			return err
-		}
-		return nil
-	})
-	if err != nil {
-		return err
-	}
-	w.logger.Debug("Have pending rewards", zap.Int("num", len(pendingRewards)))
-	for _, r := range pendingRewards {
-		if w.stopping {
-			return nil
-		}
-		err := w.db.WithStore(func(s *rw.Store) error {
-
-			ctx, cancel := context.WithTimeout(context.Background(), time.Minute*5)
-			defer cancel()
-
-			author, err := s.GetAuthor(ctx, r.AuthorID)
-			if err != nil {
-				return err
-			}
-
-			ident, err := author.DecodeIdentity()
-			if err != nil {
-				return errors.Wrap(err, "failed to decode identity")
-			}
-
-			rewardErr := w.rewarder.Reward(ident.ID)
-
-			// at this point we're fucked if the DB becomes unreachable so try it a few times
-
-			retry := 10
-			for retry > 0 {
-				retry--
-				if rewardErr != nil {
-					w.logger.Error("failed to issue reward", zap.Error(rewardErr))
-					if err := s.FailReward(ctx, r.ID, rewardErr.Error()); err != nil {
-						w.logger.Error("failed to fail reward!", zap.Error(err), zap.String("original_error", rewardErr.Error()), zap.String("id", r.ID))
-						time.Sleep(time.Second * 5)
-						continue
-					}
-					return nil
-				}
-				if err := s.ClaimReward(ctx, r.ID); err != nil {
-					w.logger.Error("failed to confirm reward!", zap.Error(err), zap.String("id", r.ID))
-					time.Sleep(time.Second * 5)
-					continue
-				}
-				return nil
-			}
-			return fmt.Errorf("exhausted retries attempting to confirm or fail reward: %s", r.ID)
-		})
-		if err != nil {
-			return err
-		}
 	}
 	return nil
 }

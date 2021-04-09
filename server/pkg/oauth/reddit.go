@@ -5,7 +5,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/flag"
 )
 
-type Cfg struct {
+type Config struct {
 	AppID             string
 	Secret            string
 	ReturnURL         string
@@ -13,7 +13,7 @@ type Cfg struct {
 	MinAccountAgeDays int64
 }
 
-func (c *Cfg) RegisterFlags(fs *pflag.FlagSet, prefix string) {
+func (c *Config) RegisterFlags(fs *pflag.FlagSet, prefix string) {
 	flag.StringVarEnv(fs, &c.Secret, prefix, "oauth-secret", "", "reddit oauth secret")
 	flag.StringVarEnv(fs, &c.AppID, prefix, "oauth-app-id", "PytL99OIbkuUKw", "reddit application id")
 	flag.StringVarEnv(fs, &c.ReturnURL, prefix, "oauth-return-url", "http://localhost:4200/oauth/reddit/return", "return url must match reddit config")

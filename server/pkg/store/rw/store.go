@@ -661,22 +661,30 @@ func (s *Store) CreatePendingReward(ctx context.Context, authorID string, thresh
 
 func (s *Store) GetRewardForUpdate(ctx context.Context, id string) (*models.AuthorReward, error) {
 	reward := &models.AuthorReward{}
-	err := s.tx.QueryRowxContext(ctx, `SELECT * from author_reward WHERE claimed = FALSE AND error = NULL AND id = $1 FOR UPDATE`, id).StructScan(reward)
+	err := s.tx.QueryRowxContext(ctx, `SELECT * from author_reward WHERE claimed = FALSE AND error IS NULL AND id = $1 FOR UPDATE`, id).StructScan(reward)
 	if err != nil {
 		return nil, err
 	}
 	return reward, nil
 }
 
-func (s *Store) ClaimReward(ctx context.Context, id string) error {
-	if _, err := s.tx.ExecContext(ctx, `UPDATE author_reward SET claimed=true WHERE id=$1`, id); err != nil {
+func (s *Store) ClaimReward(ctx context.Context, id string, kind string, value float32, currency string, confirmationCode string, description string) error {
+	if _, err := s.tx.ExecContext(
+		ctx,
+		`UPDATE author_reward SET claimed=true, claim_kind=$1, claim_value=$2, claim_value_currency=$3, claim_confirmation_code=$4, claim_description=$5, claim_at=NOW() WHERE id=$6`,
+		kind,
+		value,
+		currency,
+		confirmationCode,
+		description,
+		id); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (s *Store) FailReward(ctx context.Context, logID string, reason string) error {
-	if _, err := s.tx.ExecContext(ctx, `UPDATE author_reward SET error=$1 WHERE id=$2`, reason, logID); err != nil {
+func (s *Store) FailReward(ctx context.Context, id string, reason string) error {
+	if _, err := s.tx.ExecContext(ctx, `UPDATE author_reward SET error=$1 WHERE id=$2`, reason, id); err != nil {
 		return err
 	}
 	return nil

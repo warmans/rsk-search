@@ -27,6 +27,13 @@ export function isFieldMetaKind(arg: any): arg is models.FieldMetaKind {
   ;
   }
 
+export function isRewardKind(arg: any): arg is models.RewardKind {
+  return false
+   || arg === models.RewardKind.UNKNOWN
+   || arg === models.RewardKind.DONATION
+  ;
+  }
+
 export function isRsksearchAuthorLeaderboard(arg: any): arg is models.RsksearchAuthorLeaderboard {
   return (
   arg != null &&
@@ -109,6 +116,19 @@ export function isRsksearchChunkStats(arg: any): arg is models.RsksearchChunkSta
   );
   }
 
+export function isRsksearchClaimRewardRequest(arg: any): arg is models.RsksearchClaimRewardRequest {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // donationArgs?: RsksearchDonationArgs
+    ( typeof arg.donationArgs === 'undefined' || isRsksearchDonationArgs(arg.donationArgs) ) &&
+    // id?: string
+    ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
+
+  true
+  );
+  }
+
 export function isRsksearchContributionState(arg: any): arg is models.RsksearchContributionState {
   return false
    || arg === models.RsksearchContributionState.STATE_UNDEFINED
@@ -167,6 +187,49 @@ export function isRsksearchDialogResult(arg: any): arg is models.RsksearchDialog
     ( typeof arg.lines === 'undefined' || (Array.isArray(arg.lines) && arg.lines.every((item: unknown) => isRsksearchDialog(item))) ) &&
     // score?: number
     ( typeof arg.score === 'undefined' || typeof arg.score === 'number' ) &&
+
+  true
+  );
+  }
+
+export function isRsksearchDonationArgs(arg: any): arg is models.RsksearchDonationArgs {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // recipient?: string
+    ( typeof arg.recipient === 'undefined' || typeof arg.recipient === 'string' ) &&
+
+  true
+  );
+  }
+
+export function isRsksearchDonationRecipient(arg: any): arg is models.RsksearchDonationRecipient {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // id?: string
+    ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
+    // logoUrl?: string
+    ( typeof arg.logoUrl === 'undefined' || typeof arg.logoUrl === 'string' ) &&
+    // mission?: string
+    ( typeof arg.mission === 'undefined' || typeof arg.mission === 'string' ) &&
+    // name?: string
+    ( typeof arg.name === 'undefined' || typeof arg.name === 'string' ) &&
+    // ngoId?: string
+    ( typeof arg.ngoId === 'undefined' || typeof arg.ngoId === 'string' ) &&
+    // url?: string
+    ( typeof arg.url === 'undefined' || typeof arg.url === 'string' ) &&
+
+  true
+  );
+  }
+
+export function isRsksearchDonationRecipientList(arg: any): arg is models.RsksearchDonationRecipientList {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // organizations?: RsksearchDonationRecipient[]
+    ( typeof arg.organizations === 'undefined' || (Array.isArray(arg.organizations) && arg.organizations.every((item: unknown) => isRsksearchDonationRecipient(item))) ) &&
 
   true
   );
@@ -258,6 +321,17 @@ export function isRskSearchMetadata(arg: any): arg is models.RskSearchMetadata {
   );
   }
 
+export function isRsksearchPendingRewardList(arg: any): arg is models.RsksearchPendingRewardList {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // rewards?: RsksearchReward[]
+    ( typeof arg.rewards === 'undefined' || (Array.isArray(arg.rewards) && arg.rewards.every((item: unknown) => isRsksearchReward(item))) ) &&
+
+  true
+  );
+  }
+
 export function isRsksearchRedditAuthURL(arg: any): arg is models.RsksearchRedditAuthURL {
   return (
   arg != null &&
@@ -307,6 +381,27 @@ export function isRskSearchResultList(arg: any): arg is models.RskSearchResultLi
     ( typeof arg.resultCount === 'undefined' || typeof arg.resultCount === 'number' ) &&
     // results?: RskSearchResult[]
     ( typeof arg.results === 'undefined' || (Array.isArray(arg.results) && arg.results.every((item: unknown) => isRskSearchResult(item))) ) &&
+
+  true
+  );
+  }
+
+export function isRsksearchReward(arg: any): arg is models.RsksearchReward {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // criteria?: string
+    ( typeof arg.criteria === 'undefined' || typeof arg.criteria === 'string' ) &&
+    // id?: string
+    ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
+    // kind?: RewardKind
+    ( typeof arg.kind === 'undefined' || isRewardKind(arg.kind) ) &&
+    // name?: string
+    ( typeof arg.name === 'undefined' || typeof arg.name === 'string' ) &&
+    // value?: number
+    ( typeof arg.value === 'undefined' || typeof arg.value === 'number' ) &&
+    // valueCurrency?: string
+    ( typeof arg.valueCurrency === 'undefined' || typeof arg.valueCurrency === 'string' ) &&
 
   true
   );

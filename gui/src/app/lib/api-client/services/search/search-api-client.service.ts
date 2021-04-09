@@ -128,6 +128,58 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  searchServiceListPendingRewards(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchPendingRewardList> {
+    const path = `/api/rewards`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<models.RsksearchPendingRewardList>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  searchServiceClaimReward(
+    args: {
+      id: string,
+      body: models.RsksearchClaimRewardRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<object> {
+    const path = `/api/rewards/${args.id}/claim`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<object>('PATCH', path, options, JSON.stringify(args.body));
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  searchServiceListDonationRecipients(
+    args: {
+      rewardId: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchDonationRecipientList> {
+    const path = `/api/rewards/${args.rewardId}/recipients`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<models.RsksearchDonationRecipientList>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   searchServiceSearch(
     args: {
       query?: string,

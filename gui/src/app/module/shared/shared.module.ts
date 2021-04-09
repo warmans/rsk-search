@@ -25,7 +25,7 @@ import { WebusbDeviceComponent } from './component/webusb-device/webusb-device.c
     AudioPlayerComponent,
     SynopsesComponent,
     WebhidDeviceComponent,
-    WebusbDeviceComponent
+    WebusbDeviceComponent,
   ],
   imports: [
     CommonModule,

@@ -240,6 +240,16 @@ service SearchService {
     };
   }
 
+  rpc ListDonationRecipients(ListDonationRecipientsRequest) returns (DonationRecipientList){
+    option (google.api.http) = {
+      get: "/api/rewards/{reward_id}/recipients"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Lists available recipients for reward."
+      tags: "search"
+    };
+  }
+
   // OAUTH
 
   rpc GetRedditAuthURL(google.protobuf.Empty) returns (RedditAuthURL) {
@@ -549,4 +559,21 @@ message ClaimRewardRequest {
 
 message DonationArgs {
   string recipient = 1;
+}
+
+message ListDonationRecipientsRequest {
+  string reward_id = 1;
+}
+
+message DonationRecipientList {
+  repeated DonationRecipient organizations = 1;
+}
+
+message DonationRecipient {
+  string id = 1;
+  string name = 2;
+  string mission = 3;
+  string logo_url = 4;
+  string ngo_id = 5;
+  string url = 6;
 }

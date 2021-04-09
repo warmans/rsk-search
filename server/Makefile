@@ -42,12 +42,13 @@ generate.proto:
 
 .PHONY: run
 run: build
-	DEBUG=true ./bin/rsk-search server --rw-db-dsn=${DEV_DB_DSN} \
+	DEBUG=true ./bin/rsk-search server \
+		--rw-db-dsn=${DEV_DB_DSN} \
 		--oauth-secret=${REDDIT_SECRET} \
-		--reddit-gold-app-secret=${GOLD_SECRET} \
-		--reddit-gold-password=${GOLD_PASSWORD} \
-		--reddit-gold-username=${GOLD_USERNAME} \
-		--reward-strategy=reddit-gold
+		--pledge-secret=${PLEDGE_SECRET} \
+		--pledge-def-email=${PLEDGE_EMAIL} \
+		--pledge-def-firstname=${PLEDGE_FNAME} \
+		--pledge-def-lastname=${PLEDGE_LNAME}
 
 .PHONY: dev.services.start
 dev.services.start:

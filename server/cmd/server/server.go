@@ -2,11 +2,13 @@ package server
 
 import (
 	"context"
+	"fmt"
 	"github.com/blevesearch/bleve/v2"
 	"github.com/spf13/cobra"
 	"github.com/warmans/rsk-search/pkg/flag"
 	"github.com/warmans/rsk-search/pkg/jwt"
 	"github.com/warmans/rsk-search/pkg/oauth"
+	"github.com/warmans/rsk-search/pkg/pledge"
 	"github.com/warmans/rsk-search/pkg/reward"
 	"github.com/warmans/rsk-search/pkg/search"
 	"github.com/warmans/rsk-search/pkg/server"
@@ -31,10 +33,10 @@ func ServerCmd() *cobra.Command {
 	srvCfg := config.SearchServiceConfig{}
 	roDbCfg := &common.Config{}
 	rwDbCfg := &common.Config{}
-	oauthCfg := &oauth.Cfg{}
-	jwtConfig := &jwt.Cfg{}
-	rewardCfg := reward.Cfg{}
-	redditGoldCfg := reward.RedditGoldCfg{}
+	oauthCfg := &oauth.Config{}
+	jwtConfig := &jwt.Config{}
+	rewardCfg := reward.Config{}
+	pledgeCfg := pledge.Config{}
 
 	cmd := &cobra.Command{
 		Use:   "server",
@@ -84,18 +86,8 @@ func ServerCmd() *cobra.Command {
 				return err
 			}
 
-			/// setup rewards
-
-			var rewarder reward.Rewarder
-			switch rewardCfg.Rewarder {
-			case "noop":
-				logger.Info("Using noop reward strategy.")
-				rewarder = reward.NewNoopRewarder(logger)
-			case "reddit-gold":
-				logger.Info("Using reddit gold reward strategy.")
-				rewarder = reward.NewRedditGoldRewarder(logger, redditGoldCfg)
-			}
-			worker := reward.NewWorker(persistentDBConn, logger, rewardCfg, rewarder)
+			/// setup rewards worker
+			worker := reward.NewWorker(persistentDBConn, logger, rewardCfg)
 			go func() {
 				if err := worker.Start(); err != nil {
 					logger.Fatal("worker failed", zap.Error(err))
@@ -114,8 +106,23 @@ func ServerCmd() *cobra.Command {
 			tokenCache := oauth.NewCSRFCache()
 			auth := jwt.NewAuth(jwtConfig)
 
+			// validate pledge config
+
+			if pledgeCfg.APIKey == "" {
+				return fmt.Errorf("pledge API key was missing")
+			}
+
 			grpcServices := []server.GRPCService{
-				grpc.NewSearchService(search.NewSearch(rskIndex, readOnlyStoreConn), readOnlyStoreConn, persistentDBConn, tokenCache, auth, oauthCfg),
+				grpc.NewSearchService(
+					logger,
+					search.NewSearch(rskIndex, readOnlyStoreConn),
+					readOnlyStoreConn,
+					persistentDBConn,
+					tokenCache,
+					auth,
+					oauthCfg,
+					pledge.NewClient(pledgeCfg),
+				),
 			}
 
 			httpServices := []server.HTTPService{}
@@ -155,7 +162,7 @@ func ServerCmd() *cobra.Command {
 	oauthCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
 	jwtConfig.RegisterFlags(cmd.Flags(), ServicePrefix)
 	rewardCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
-	redditGoldCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
+	pledgeCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
 
 	return cmd
 }
