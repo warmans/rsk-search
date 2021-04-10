@@ -18,11 +18,11 @@ func (s *SearchService) ListPendingRewards(ctx context.Context, empty *emptypb.E
 	if err != nil {
 		return nil, err
 	}
-	//
-	//// disable for not until pending awards are verified
-	//return &api.PendingRewardList{
-	//	Rewards: make([]*api.Reward, 0),
-	//}, nil
+	if s.srvCfg.RewardsDisabled {
+		return &api.PendingRewardList{
+			Rewards: make([]*api.Reward, 0),
+		}, nil
+	}
 
 	var rewards []*models.AuthorReward
 
@@ -72,6 +72,11 @@ func (s *SearchService) ListClaimedRewards(ctx context.Context, empty *emptypb.E
 }
 
 func (s *SearchService) ClaimReward(ctx context.Context, request *api.ClaimRewardRequest) (*emptypb.Empty, error) {
+
+	if s.srvCfg.RewardsDisabled {
+		return nil, ErrFailedPrecondition("rewards are disabled temporarily").Err()
+	}
+
 	err := s.persistentDB.WithStore(func(store *rw.Store) error {
 		reward, err := store.GetRewardForUpdate(ctx, request.Id)
 		if err != nil {
@@ -139,7 +144,7 @@ func (s *SearchService) ClaimReward(ctx context.Context, request *api.ClaimRewar
 
 func (s *SearchService) ListDonationRecipients(ctx context.Context, request *api.ListDonationRecipientsRequest) (*api.DonationRecipientList, error) {
 
-	//todo: vary results based on reward ID
+	//todo: vary results based on threshold
 
 	res := &api.DonationRecipientList{
 		Organizations: getDonationRecipients(),

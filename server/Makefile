@@ -48,7 +48,8 @@ run: build
 		--pledge-secret=${PLEDGE_SECRET} \
 		--pledge-def-email=${PLEDGE_EMAIL} \
 		--pledge-def-firstname=${PLEDGE_FNAME} \
-		--pledge-def-lastname=${PLEDGE_LNAME}
+		--pledge-def-lastname=${PLEDGE_LNAME} \
+		--rewards-disabled=false
 
 .PHONY: dev.services.start
 dev.services.start:

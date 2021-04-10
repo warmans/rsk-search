@@ -115,6 +115,7 @@ func ServerCmd() *cobra.Command {
 			grpcServices := []server.GRPCService{
 				grpc.NewSearchService(
 					logger,
+					srvCfg,
 					search.NewSearch(rskIndex, readOnlyStoreConn),
 					readOnlyStoreConn,
 					persistentDBConn,

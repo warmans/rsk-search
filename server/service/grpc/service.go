@@ -11,12 +11,14 @@ import (
 	"github.com/warmans/rsk-search/pkg/search"
 	"github.com/warmans/rsk-search/pkg/store/ro"
 	"github.com/warmans/rsk-search/pkg/store/rw"
+	"github.com/warmans/rsk-search/service/config"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 )
 
 func NewSearchService(
 	logger *zap.Logger,
+	srvCfg config.SearchServiceConfig,
 	searchBackend *search.Search,
 	store *ro.Conn,
 	persistentDB *rw.Conn,
@@ -27,6 +29,7 @@ func NewSearchService(
 ) *SearchService {
 	return &SearchService{
 		logger:        logger,
+		srvCfg:        srvCfg,
 		searchBackend: searchBackend,
 		staticDB:      store,
 		persistentDB:  persistentDB,
@@ -39,6 +42,7 @@ func NewSearchService(
 
 type SearchService struct {
 	logger        *zap.Logger
+	srvCfg        config.SearchServiceConfig
 	searchBackend *search.Search
 	staticDB      *ro.Conn
 	persistentDB  *rw.Conn
