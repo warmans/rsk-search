@@ -68,9 +68,13 @@ func (l *AuthorRanking) Proto() *api.AuthorRanking {
 }
 
 type AuthorReward struct {
-	ID                    string     `db:"id"`
-	AuthorID              string     `db:"author_id"`
-	Threshold             int32      `db:"threshold"`
+	ID       string `db:"id"`
+	AuthorID string `db:"author_id"`
+
+	// Threshold is not the number of contributions - it's the number of multiples of RewardSpacing
+	// i.e. reward is issued at 5/10/15 which will be thresholds 1/2/3.
+	Threshold int32 `db:"threshold"`
+
 	CreatedAt             time.Time  `db:"created_at"`
 	Claimed               bool       `db:"claimed"`
 	ClaimKind             *string    `db:"claim_kind"`

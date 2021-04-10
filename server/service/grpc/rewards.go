@@ -6,6 +6,7 @@ import (
 	"github.com/warmans/rsk-search/gen/api"
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/pledge"
+	"github.com/warmans/rsk-search/pkg/reward"
 	"github.com/warmans/rsk-search/pkg/store/rw"
 	"go.uber.org/zap"
 	"google.golang.org/protobuf/types/known/emptypb"
@@ -13,35 +14,35 @@ import (
 
 func (s *SearchService) ListPendingRewards(ctx context.Context, empty *emptypb.Empty) (*api.PendingRewardList, error) {
 
-	_, err := s.getClaims(ctx)
+	claims, err := s.getClaims(ctx)
 	if err != nil {
 		return nil, err
 	}
+	//
+	//// disable for not until pending awards are verified
+	//return &api.PendingRewardList{
+	//	Rewards: make([]*api.Reward, 0),
+	//}, nil
 
-	// disable for not until pending awards are verified
-	return &api.PendingRewardList{
-		Rewards: make([]*api.Reward, 0),
-	}, nil
-	//
-	//var rewards []*models.AuthorReward
-	//
-	//err := s.persistentDB.WithStore(func(s *rw.Store) error {
-	//	var err error
-	//	rewards, err = s.ListPendingRewards(ctx, claims.AuthorID)
-	//	return err
-	//})
-	//if err != nil {
-	//	return nil, ErrFromStore(err, "").Err()
-	//}
-	//
-	//result := &api.PendingRewardList{
-	//	Rewards: []*api.Reward{},
-	//}
-	//for _, v := range rewards {
-	//	result.Rewards = append(result.Rewards, getRewardForThreshold(v))
-	//}
-	//
-	//return result, nil
+	var rewards []*models.AuthorReward
+
+	err = s.persistentDB.WithStore(func(s *rw.Store) error {
+		var err error
+		rewards, err = s.ListPendingRewards(ctx, claims.AuthorID)
+		return err
+	})
+	if err != nil {
+		return nil, ErrFromStore(err, "").Err()
+	}
+
+	result := &api.PendingRewardList{
+		Rewards: []*api.Reward{},
+	}
+	for _, v := range rewards {
+		result.Rewards = append(result.Rewards, getRewardForThreshold(v))
+	}
+
+	return result, nil
 }
 
 func (s *SearchService) ListClaimedRewards(ctx context.Context, empty *emptypb.Empty) (*api.ClaimedRewardList, error) {
@@ -177,57 +178,57 @@ func getDonationRecipients() []*api.DonationRecipient {
 
 func getRewardForThreshold(mod *models.AuthorReward) *api.Reward {
 	switch mod.Threshold {
-	case 5:
+	case 1:
 		return &api.Reward{
 			Id:            mod.ID,
 			Kind:          api.Reward_DONATION,
 			Name:          fmt.Sprintf("Man alive!"),
-			Criteria:      fmt.Sprintf("Contribute %d transcription chunks.", mod.Threshold),
+			Criteria:      fmt.Sprintf("Contribute %d transcription chunks.", mod.Threshold*reward.RewardSpacing),
 			Value:         1,
 			ValueCurrency: "USD",
 		}
-	case 10:
+	case 2:
 		return &api.Reward{
 			Id:            mod.ID,
 			Kind:          api.Reward_DONATION,
 			Name:          fmt.Sprintf("Are you trying to turn my children into Communist revolutionaries?"),
-			Criteria:      fmt.Sprintf("Contribute %d transcription chunks.", mod.Threshold),
+			Criteria:      fmt.Sprintf("Contribute %d transcription chunks.", mod.Threshold*reward.RewardSpacing),
 			Value:         1,
 			ValueCurrency: "USD",
 		}
-	case 15:
+	case 3:
 		return &api.Reward{
 			Id:            mod.ID,
 			Kind:          api.Reward_DONATION,
 			Name:          fmt.Sprintf("In my opinion bronze is slightly better than gold."),
-			Criteria:      fmt.Sprintf("Contribute %d transcription chunks.", mod.Threshold),
+			Criteria:      fmt.Sprintf("Contribute %d transcription chunks.", mod.Threshold*reward.RewardSpacing),
 			Value:         2,
 			ValueCurrency: "USD",
 		}
-	case 20:
+	case 4:
 		return &api.Reward{
 			Id:            mod.ID,
 			Kind:          api.Reward_DONATION,
 			Name:          fmt.Sprintf("I can't even begin to explain it."),
-			Criteria:      fmt.Sprintf("Contribute %d transcription chunks.", mod.Threshold),
+			Criteria:      fmt.Sprintf("Contribute %d transcription chunks.", mod.Threshold*reward.RewardSpacing),
 			Value:         2,
 			ValueCurrency: "USD",
 		}
-	case 25:
+	case 5:
 		return &api.Reward{
 			Id:            mod.ID,
 			Kind:          api.Reward_DONATION,
 			Name:          fmt.Sprintf("There is a machine that can give you a tattoo."),
-			Criteria:      fmt.Sprintf("Contribute %d transcription chunks.", mod.Threshold),
+			Criteria:      fmt.Sprintf("Contribute %d transcription chunks.", mod.Threshold*reward.RewardSpacing),
 			Value:         3,
 			ValueCurrency: "USD",
 		}
-	case 30:
+	case 6:
 		return &api.Reward{
 			Id:            mod.ID,
 			Kind:          api.Reward_DONATION,
 			Name:          fmt.Sprintf("Kate Bush is on the phone!"),
-			Criteria:      fmt.Sprintf("Contribute %d transcription chunks.", mod.Threshold),
+			Criteria:      fmt.Sprintf("Contribute %d transcription chunks.", mod.Threshold*reward.RewardSpacing),
 			Value:         3,
 			ValueCurrency: "USD",
 		}
@@ -236,7 +237,7 @@ func getRewardForThreshold(mod *models.AuthorReward) *api.Reward {
 			Id:            mod.ID,
 			Kind:          api.Reward_DONATION,
 			Name:          fmt.Sprintf("Infinity sorty of, sorts it out for you."),
-			Criteria:      fmt.Sprintf("Contribute %d transcription chunks.", mod.Threshold),
+			Criteria:      fmt.Sprintf("Contribute %d transcription chunks.", mod.Threshold*reward.RewardSpacing),
 			Value:         1,
 			ValueCurrency: "USD",
 		}

@@ -3,6 +3,7 @@ package reward
 import (
 	"context"
 	"fmt"
+	"github.com/pkg/errors"
 	"github.com/spf13/pflag"
 	"github.com/warmans/rsk-search/pkg/flag"
 	"github.com/warmans/rsk-search/pkg/models"
@@ -11,8 +12,8 @@ import (
 	"time"
 )
 
-// it's a bit tricky to make this configurable as adjusting it could cause weird unexpected reward behavior.
-const rewardThreshold = 5
+// RewardSpacing - every N approved contributions a reward will be triggered
+const RewardSpacing = 5
 
 type Config struct {
 	CheckInterval int64
@@ -90,14 +91,14 @@ func (w *Worker) calculateRewards() error {
 
 	err := w.db.WithStore(func(s *rw.Store) error {
 		var err error
-		awardsRequired, err = s.ListRequiredAuthorRewards(ctx, rewardThreshold)
+		awardsRequired, err = s.ListRequiredAuthorRewards(ctx, RewardSpacing)
 		if err != nil {
-			return err
+			return errors.Wrap(err, "failed to list required rewards")
 		}
 		w.logger.Debug("Num rewards required", zap.Int("num", len(awardsRequired)))
 		for k, a := range awardsRequired {
 			if awardsRequired[k].ID, err = s.CreatePendingReward(ctx, a.AuthorID, a.Threshold); err != nil {
-				return err
+				return errors.Wrap(err, "failed to create pending reward")
 			}
 		}
 		return nil

@@ -585,31 +585,37 @@ func (s *Store) AuthorIsBanned(ctx context.Context, id string) (bool, error) {
 	return banned, row.Scan(&banned)
 }
 
-func (s *Store) ListRequiredAuthorRewards(ctx context.Context, thresholdSize int64) ([]*models.AuthorReward, error) {
+func (s *Store) ListRequiredAuthorRewards(ctx context.Context, rewardSpacing int64) ([]*models.AuthorReward, error) {
 
 	// this should return 1 row per author per threshold level e.g.
 	// if the threshold is 1 and an author has 3 contributions three rows will be returned.
 	query := `
-		SELECT generate_series(1, c.contributions / %d) AS threshold, a.id
-		FROM (
-			SELECT author_id, COUNT(*) AS contributions 
-			FROM tscript_contribution
-			wHERE state = 'approved'
-			GROUP BY author_id
-		) c
-		LEFT JOIN author a ON a.id = c.author_id
-		WHERE c.author_id IS NOT NULL
-		AND a.banned = false
-		AND c.contributions > 0
-		AND c.contributions / %d > 0
-		AND (
-			SELECT COUNT(*) 
-			FROM author_reward r 
-			WHERE r.author_id = a.id 
-			AND r.threshold = c.contributions / %d) = 0
-		ORDER BY threshold ASC
+	SELECT 
+        c.author_id,
+        c.threshold_reached
+    fROM (
+        SELECT author_id, generate_series (1, COUNT(*) / %d) AS threshold_reached 
+        FROM tscript_contribution
+        WHERE state = 'approved'
+        GROUP BY author_id
+    ) c
+    LEFT JOIN author a ON a.id = c.author_id
+    LEFT JOIN (
+        SELECT r.author_id, r.threshold, r.claimed
+        FROM author_reward r 
+        where r.threshold = threshold
+    ) cl ON cl.author_id = c.author_id AND cl.threshold = c.threshold_reached
+    WHERE c.author_id IS NOT NULL
+    AND a.banned = false
+    AND  COALESCE(cl.claimed, FALSE) = FALSE
+	AND (
+		SELECT COUNT(*) 
+		FROM author_reward r 
+		WHERE r.author_id = a.id 
+		AND r.threshold = c.threshold_reached) = 0
+    ORDER BY c.threshold_reached ASC
 	`
-	rows, err := s.tx.QueryxContext(ctx, fmt.Sprintf(query, thresholdSize, thresholdSize, thresholdSize))
+	rows, err := s.tx.QueryxContext(ctx, fmt.Sprintf(query, rewardSpacing))
 	if err != nil {
 		return nil, err
 	}
@@ -618,7 +624,7 @@ func (s *Store) ListRequiredAuthorRewards(ctx context.Context, thresholdSize int
 	rewards := []*models.AuthorReward{}
 	for rows.Next() {
 		reward := &models.AuthorReward{}
-		err := rows.Scan(&reward.Threshold, &reward.AuthorID)
+		err := rows.Scan(&reward.AuthorID, &reward.Threshold)
 		if err != nil {
 			return nil, err
 		}
