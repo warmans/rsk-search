@@ -13,29 +13,60 @@ import (
 
 func (s *SearchService) ListPendingRewards(ctx context.Context, empty *emptypb.Empty) (*api.PendingRewardList, error) {
 
+	_, err := s.getClaims(ctx)
+	if err != nil {
+		return nil, err
+	}
+
 	// disable for not until pending awards are verified
 	return &api.PendingRewardList{
 		Rewards: make([]*api.Reward, 0),
 	}, nil
+	//
+	//var rewards []*models.AuthorReward
+	//
+	//err := s.persistentDB.WithStore(func(s *rw.Store) error {
+	//	var err error
+	//	rewards, err = s.ListPendingRewards(ctx, claims.AuthorID)
+	//	return err
+	//})
+	//if err != nil {
+	//	return nil, ErrFromStore(err, "").Err()
+	//}
+	//
+	//result := &api.PendingRewardList{
+	//	Rewards: []*api.Reward{},
+	//}
+	//for _, v := range rewards {
+	//	result.Rewards = append(result.Rewards, getRewardForThreshold(v))
+	//}
+	//
+	//return result, nil
+}
+
+func (s *SearchService) ListClaimedRewards(ctx context.Context, empty *emptypb.Empty) (*api.ClaimedRewardList, error) {
+
+	claims, err := s.getClaims(ctx)
+	if err != nil {
+		return nil, err
+	}
 
 	var rewards []*models.AuthorReward
-
-	err := s.persistentDB.WithStore(func(s *rw.Store) error {
+	err = s.persistentDB.WithStore(func(s *rw.Store) error {
 		var err error
-		rewards, err = s.ListPendingRewards(ctx)
+		rewards, err = s.ListClaimedRewards(ctx, claims.AuthorID)
 		return err
 	})
 	if err != nil {
 		return nil, ErrFromStore(err, "").Err()
 	}
 
-	result := &api.PendingRewardList{
-		Rewards: []*api.Reward{},
+	result := &api.ClaimedRewardList{
+		Rewards: []*api.ClaimedReward{},
 	}
 	for _, v := range rewards {
-		result.Rewards = append(result.Rewards, getRewardForThreshold(v))
+		result.Rewards = append(result.Rewards, v.ClaimedProto())
 	}
-
 	return result, nil
 }
 

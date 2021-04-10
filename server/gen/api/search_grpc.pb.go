@@ -40,6 +40,7 @@ type SearchServiceClient interface {
 	RequestChunkContributionState(ctx context.Context, in *RequestChunkContributionStateRequest, opts ...grpc.CallOption) (*ChunkContribution, error)
 	SubmitDialogCorrection(ctx context.Context, in *SubmitDialogCorrectionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ListPendingRewards(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PendingRewardList, error)
+	ListClaimedRewards(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ClaimedRewardList, error)
 	ClaimReward(ctx context.Context, in *ClaimRewardRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ListDonationRecipients(ctx context.Context, in *ListDonationRecipientsRequest, opts ...grpc.CallOption) (*DonationRecipientList, error)
 	GetRedditAuthURL(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*RedditAuthURL, error)
@@ -224,6 +225,15 @@ func (c *searchServiceClient) ListPendingRewards(ctx context.Context, in *emptyp
 	return out, nil
 }
 
+func (c *searchServiceClient) ListClaimedRewards(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ClaimedRewardList, error) {
+	out := new(ClaimedRewardList)
+	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/ListClaimedRewards", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *searchServiceClient) ClaimReward(ctx context.Context, in *ClaimRewardRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, "/rsksearch.SearchService/ClaimReward", in, out, opts...)
@@ -276,6 +286,7 @@ type SearchServiceServer interface {
 	RequestChunkContributionState(context.Context, *RequestChunkContributionStateRequest) (*ChunkContribution, error)
 	SubmitDialogCorrection(context.Context, *SubmitDialogCorrectionRequest) (*emptypb.Empty, error)
 	ListPendingRewards(context.Context, *emptypb.Empty) (*PendingRewardList, error)
+	ListClaimedRewards(context.Context, *emptypb.Empty) (*ClaimedRewardList, error)
 	ClaimReward(context.Context, *ClaimRewardRequest) (*emptypb.Empty, error)
 	ListDonationRecipients(context.Context, *ListDonationRecipientsRequest) (*DonationRecipientList, error)
 	GetRedditAuthURL(context.Context, *emptypb.Empty) (*RedditAuthURL, error)
@@ -341,6 +352,9 @@ func (UnimplementedSearchServiceServer) SubmitDialogCorrection(context.Context, 
 }
 func (UnimplementedSearchServiceServer) ListPendingRewards(context.Context, *emptypb.Empty) (*PendingRewardList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPendingRewards not implemented")
+}
+func (UnimplementedSearchServiceServer) ListClaimedRewards(context.Context, *emptypb.Empty) (*ClaimedRewardList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListClaimedRewards not implemented")
 }
 func (UnimplementedSearchServiceServer) ClaimReward(context.Context, *ClaimRewardRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ClaimReward not implemented")
@@ -705,6 +719,24 @@ func _SearchService_ListPendingRewards_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SearchService_ListClaimedRewards_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SearchServiceServer).ListClaimedRewards(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/rsksearch.SearchService/ListClaimedRewards",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SearchServiceServer).ListClaimedRewards(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _SearchService_ClaimReward_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ClaimRewardRequest)
 	if err := dec(in); err != nil {
@@ -841,6 +873,10 @@ var SearchService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListPendingRewards",
 			Handler:    _SearchService_ListPendingRewards_Handler,
+		},
+		{
+			MethodName: "ListClaimedRewards",
+			Handler:    _SearchService_ListClaimedRewards_Handler,
 		},
 		{
 			MethodName: "ClaimReward",

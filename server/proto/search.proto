@@ -229,6 +229,16 @@ service SearchService {
     };
   }
 
+  rpc ListClaimedRewards(google.protobuf.Empty) returns (ClaimedRewardList){
+    option (google.api.http) = {
+      get: "/api/rewards/claimed"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Lists rewards that have been claimed."
+      tags: "search"
+    };
+  }
+
   rpc ClaimReward(ClaimRewardRequest) returns (google.protobuf.Empty){
     option (google.api.http) = {
       patch: "/api/rewards/{id}/claim",
@@ -576,4 +586,17 @@ message DonationRecipient {
   string logo_url = 4;
   string ngo_id = 5;
   string url = 6;
+}
+
+message ClaimedRewardList{
+  repeated ClaimedReward rewards = 1;
+}
+
+message ClaimedReward {
+  string id = 1;
+  string claim_kind = 2;
+  float claim_value = 3;
+  string claim_currency = 4;
+  string claim_description = 5;
+  string claim_at = 6;
 }

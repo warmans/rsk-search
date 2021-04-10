@@ -143,6 +143,21 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  searchServiceListClaimedRewards(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchClaimedRewardList> {
+    const path = `/api/rewards/claimed`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<models.RsksearchClaimedRewardList>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   searchServiceClaimReward(
     args: {
       id: string,

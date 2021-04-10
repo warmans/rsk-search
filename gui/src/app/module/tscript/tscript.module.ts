@@ -12,6 +12,7 @@ import { ApproveComponent } from './page/approve/approve.component';
 import { ContributeComponent } from './page/contribute/contribute.component';
 import { LeaderboardComponent } from './component/leaderboard/leaderboard.component';
 import { EditorConfigComponent } from './component/editor-config/editor-config.component';
+import { RewardModule } from '../reward/reward.module';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { EditorConfigComponent } from './component/editor-config/editor-config.c
     CommonModule,
     SharedModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RewardModule,
   ],
   exports: [SubmitComponent]
 })

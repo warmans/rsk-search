@@ -16,8 +16,8 @@
         <td>
           <div *ngIf="a.acceptedContributions > 0" class="text-success">
             <span *ngFor="let c of counter(a.acceptedContributions); let idx = index;">
-              <i *ngIf="idx === 0 || idx % 9 !== 0" class="bi-file-earmark-check"></i>
-              <i *ngIf="idx > 0 && idx % 9 === 0" class="bi-trophy"></i>
+              <i *ngIf="idx === 0 || idx % (awardThreshold-1) !== 0" class="bi-file-earmark-check"></i>
+              <i *ngIf="idx > 0 && idx % (awardThreshold-1) === 0" class="bi-trophy"></i>
             </span>
           </div>
           <span class="text-muted">{{ nextRewardAt(a.acceptedContributions) }} until next <a (click)="showAwardHelp = true">award <i class="bi-question-circle"></i></a></span>
@@ -36,12 +36,16 @@
         </button>
       </div>
       <div class="modal-body help-text">
-        <div class="alert alert-warning">
-          <strong>BAUHAUS IS NOT WORKING</strong>
-          <div>The reddit API is stupid and awards are currently not working per account. The system will keep track of who is entitled to an award and I'll figure something out.</div>
+        <div class="text-center">
+          <img src="/assets/pixeltrue-special-deals.svg" style="width: 300px; height: 300px;"/>
         </div>
-        <p>For each 10 approved contributions your account will be awarded Reddit gold.</p>
-        <a href="https://www.reddit.com/coins" target="_blank">Learn more about gold.</a>
+        <div>
+          <p class="text-center"><strong>Help a little monkey fella' by listening to twaddle.</strong></p>
+          <p>For each <strong>{{awardThreshold}}</strong> contributions you will be given a reward. Rewards are
+          donations to a charity of your choice (from a list).</p>
+          <p class="font-italic">Note: rewards are currently being processed but not awarded to verify the system works correctly..</p>
+          <a [routerLink]="['/me']" >More details on your profile (requires registration).</a>
+        </div>
       </div>
     </div>
   </div>

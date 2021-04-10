@@ -29,11 +29,11 @@ export class APIErrorInterceptor implements HttpInterceptor {
           }
           switch (err.status) {
             case 0:
-              this.alerts.danger('API: Network error');
+              this.alerts.danger('API Call Failed', "Unknown network error");
               break;
             default:
               const errText = errorTextFromRPCError(err);
-              this.alerts.danger(`API: ${errText.text}`, ...(errText.details || []));
+              this.alerts.danger('API Call Failed', `${errText.text}`, ...(errText.details || []));
           }
           return observableThrowError(err);
         },

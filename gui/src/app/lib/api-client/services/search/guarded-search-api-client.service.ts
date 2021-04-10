@@ -72,6 +72,13 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
       .pipe(tap((res: any) => guards.isRsksearchPendingRewardList(res) || console.error(`TypeGuard for response 'RsksearchPendingRewardList' caught inconsistency.`, res)));
   }
 
+  searchServiceListClaimedRewards(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchClaimedRewardList> {
+    return super.searchServiceListClaimedRewards(requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRsksearchClaimedRewardList(res) || console.error(`TypeGuard for response 'RsksearchClaimedRewardList' caught inconsistency.`, res)));
+  }
+
   searchServiceClaimReward(
     args: {
       id: string,

@@ -231,7 +231,7 @@ export class SubmitComponent implements OnInit, OnDestroy {
         body: { chunkId: this.chunk.id, transcript: this.updatedTranscript }
       }).pipe(takeUntil(this.$destroy)).subscribe((res: RsksearchChunkContribution) => {
         this.backupContent(''); // clear backup so that the content always matches what was submitted.
-        this.alertService.success('Created OK');
+        this.alertService.success('Created', "Draft was created. It will now be auto-saved on change.");
         this.router.navigate(['/chunk', this.chunk.id, 'contrib', res.id]);
       }).add(() => this.loading.shift());
     }
@@ -261,7 +261,7 @@ export class SubmitComponent implements OnInit, OnDestroy {
     this._update(RsksearchContributionState.STATE_REQUEST_APPROVAL).subscribe((res: RsksearchChunkContribution) => {
       this.setContribution(res);
       this.lastUpdateTimestamp = new Date();
-      this.alertService.success('Submission is now awaiting manual approval.');
+      this.alertService.success('Submitted', 'Submission is now awaiting manual approval by an approver. This usually takes around 24 hours.');
     }).add(() => this.loading.shift());
   }
 
@@ -277,7 +277,7 @@ export class SubmitComponent implements OnInit, OnDestroy {
       }
     }).pipe(takeUntil(this.$destroy)).subscribe((res) => {
       this.setContribution(res);
-      this.alertService.success('Submission is now back in the pending state.');
+      this.alertService.success('Retracted', 'Submission is now back in the pending state. It will not be reviewed until is is re-submitted.');
     }).add(() => this.loading.shift());
   }
 }

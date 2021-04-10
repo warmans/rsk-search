@@ -627,8 +627,16 @@ func (s *Store) ListRequiredAuthorRewards(ctx context.Context, thresholdSize int
 	return rewards, nil
 }
 
-func (s *Store) ListPendingRewards(ctx context.Context) ([]*models.AuthorReward, error) {
-	rows, err := s.tx.QueryxContext(ctx, `SELECT * from author_reward WHERE claimed = FALSE AND "error" IS NULL`)
+func (s *Store) ListPendingRewards(ctx context.Context, authorID string) ([]*models.AuthorReward, error) {
+	return s.listRewards(ctx, authorID, false)
+}
+
+func (s *Store) ListClaimedRewards(ctx context.Context, authorID string) ([]*models.AuthorReward, error) {
+	return s.listRewards(ctx, authorID, true)
+}
+
+func (s *Store) listRewards(ctx context.Context, authorID string, claimed bool) ([]*models.AuthorReward, error) {
+	rows, err := s.tx.QueryxContext(ctx, `SELECT * from author_reward WHERE author_id = $1 AND claimed = $2 AND "error" IS NULL`, authorID, claimed)
 	if err != nil {
 		return nil, err
 	}

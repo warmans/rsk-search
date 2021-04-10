@@ -187,6 +187,29 @@
         ]
       }
     },
+    "/api/rewards/claimed": {
+      "get": {
+        "summary": "Lists rewards that have been claimed.",
+        "operationId": "SearchService_ListClaimedRewards",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rsksearchClaimedRewardList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "search"
+        ]
+      }
+    },
     "/api/rewards/{id}/claim": {
       "patch": {
         "summary": "Claims a reward.",
@@ -891,6 +914,41 @@
         },
         "donationArgs": {
           "$ref": "#/definitions/rsksearchDonationArgs"
+        }
+      }
+    },
+    "rsksearchClaimedReward": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "claimKind": {
+          "type": "string"
+        },
+        "claimValue": {
+          "type": "number",
+          "format": "float"
+        },
+        "claimCurrency": {
+          "type": "string"
+        },
+        "claimDescription": {
+          "type": "string"
+        },
+        "claimAt": {
+          "type": "string"
+        }
+      }
+    },
+    "rsksearchClaimedRewardList": {
+      "type": "object",
+      "properties": {
+        "rewards": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rsksearchClaimedReward"
+          }
         }
       }
     },

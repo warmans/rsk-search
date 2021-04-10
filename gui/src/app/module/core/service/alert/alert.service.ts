@@ -28,20 +28,24 @@ export class AlertService {
     this.setAlert('success', content, details);
   }
 
+  remove(c: string) {
+    for (const k of this.alerts.keys()) {
+      if (this.alerts[k].content === c) {
+        this.alerts.splice(k, 1);
+      }
+    }
+    this.alertsUpdated.next(this.alerts);
+  }
+
   private setAlert(level: string, content: string, details: string[]) {
     this.alerts.push({ level: level, content: content, details: details });
     this.alertsUpdated.next(this.alerts);
     this.cleanup(content);
   }
 
-  cleanup(c: string) {
+  private cleanup(c: string) {
     setTimeout(() => {
-      for (const k of this.alerts.keys()) {
-        if (this.alerts[k].content === c) {
-          this.alerts.splice(k, 1);
-        }
-      }
-      this.alertsUpdated.next(this.alerts);
+      this.remove(c);
     }, AUTO_REMOVE_AFTER_MS);
   }
 }

@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"github.com/warmans/rsk-search/gen/api"
 	"github.com/warmans/rsk-search/pkg/oauth"
+	"github.com/warmans/rsk-search/pkg/util"
 	"time"
 )
 
@@ -79,4 +80,15 @@ type AuthorReward struct {
 	ClaimAt               *time.Time `db:"claim_at"`
 	ClaimConfirmationCode *string    `db:"claim_confirmation_code"`
 	Error                 *string    `db:"error"`
+}
+
+func (a *AuthorReward) ClaimedProto() *api.ClaimedReward {
+	return &api.ClaimedReward{
+		Id:               a.ID,
+		ClaimKind:        util.PString(a.ClaimKind),
+		ClaimValue:       util.PFloat32(a.ClaimValue),
+		ClaimCurrency:    util.PString(a.ClaimValueCurrency),
+		ClaimDescription: util.PString(a.ClaimDescription),
+		ClaimAt:          util.PTime(a.ClaimAt).Format(time.RFC3339),
+	}
 }

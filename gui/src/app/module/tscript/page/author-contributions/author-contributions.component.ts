@@ -5,6 +5,7 @@ import { takeUntil } from 'rxjs/operators';
 import {
   RsksearchChunkContribution,
   RsksearchChunkContributionList,
+  RsksearchClaimedReward,
   RsksearchContributionState
 } from '../../../../lib/api-client/models';
 import { Router } from '@angular/router';
@@ -20,7 +21,9 @@ export class AuthorContributionsComponent implements OnInit, OnDestroy {
 
   contributions: RsksearchChunkContribution[];
 
-  loading: boolean = false;
+  rewards: RsksearchClaimedReward[];
+
+  loading: boolean[] = [];
 
   states = RsksearchContributionState;
 
@@ -34,6 +37,7 @@ export class AuthorContributionsComponent implements OnInit, OnDestroy {
       if (v) {
         this.claims = this.session.getClaims();
         this.loadContributions();
+        this.loadClaimedRewards();
       } else {
         this.claims = undefined;
       }
@@ -57,13 +61,20 @@ export class AuthorContributionsComponent implements OnInit, OnDestroy {
   }
 
   loadContributions() {
-    this.loading = true;
+    this.loading.push(true);
     this.apiClient.searchServiceListAuthorContributions({
       authorId: this.session.getClaims().author_id,
       page: 0
     }).pipe(takeUntil(this.destroy$)).subscribe((list: RsksearchChunkContributionList) => {
       this.contributions = list.contributions;
-    }).add(() => this.loading = false);
+    }).add(() => this.loading.pop());
+  }
+
+  loadClaimedRewards() {
+    this.loading.push(true);
+    this.apiClient.searchServiceListClaimedRewards({}).pipe(takeUntil(this.destroy$)).subscribe((list) => {
+      this.rewards = list.rewards;
+    }).add(() => this.loading.pop());
   }
 
   logout() {

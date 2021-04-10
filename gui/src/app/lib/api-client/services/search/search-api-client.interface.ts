@@ -59,6 +59,13 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  searchServiceListClaimedRewards(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchClaimedRewardList>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   searchServiceClaimReward(
     args: {
       id: string,

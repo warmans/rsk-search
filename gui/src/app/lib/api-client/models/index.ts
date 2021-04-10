@@ -8,6 +8,8 @@ export { RsksearchChunkContribution } from './rsksearch-chunk-contribution.model
 export { RsksearchChunkContributionList } from './rsksearch-chunk-contribution-list.model';
 export { RsksearchChunkStates } from './rsksearch-chunk-states.model';
 export { RsksearchChunkStats } from './rsksearch-chunk-stats.model';
+export { RsksearchClaimedReward } from './rsksearch-claimed-reward.model';
+export { RsksearchClaimedRewardList } from './rsksearch-claimed-reward-list.model';
 export { RsksearchClaimRewardRequest } from './rsksearch-claim-reward-request.model';
 export { RsksearchContributionState } from './rsksearch-contribution-state.enum';
 export { RsksearchCreateChunkContributionRequest } from './rsksearch-create-chunk-contribution-request.model';

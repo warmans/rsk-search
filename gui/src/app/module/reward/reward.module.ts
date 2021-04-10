@@ -5,16 +5,17 @@ import { PendingRewardsComponent } from './component/pending-rewards/pending-rew
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { ClaimedRewardsComponent } from './component/claimed-rewards/claimed-rewards.component';
 
 @NgModule({
-  declarations: [RedeemComponent, PendingRewardsComponent],
+  declarations: [RedeemComponent, PendingRewardsComponent, ClaimedRewardsComponent],
   imports: [
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
     SharedModule,
   ],
-  exports: [RedeemComponent, PendingRewardsComponent]
+  exports: [RedeemComponent, PendingRewardsComponent, ClaimedRewardsComponent]
 })
 export class RewardModule {
 }

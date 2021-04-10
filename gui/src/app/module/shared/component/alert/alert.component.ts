@@ -26,4 +26,14 @@ export class AlertComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
   }
+
+  remove(c: string): void {
+    this.alertService.remove(c);
+  }
+
+  createTestData() {
+    this.alerts.push({level:"success", content: "Update success", details: ["detail 1", "detail 2"]});
+    this.alerts.push({level:"danger", content: "Update danger", details: ["detail 1", "detail 2"]});
+    this.alerts.push({level:"warning", content: "Update warning", details: ["detail 1", "detail 2"]});
+  }
 }

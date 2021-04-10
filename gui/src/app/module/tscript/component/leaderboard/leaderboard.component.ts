@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
 import { RsksearchAuthorRanking } from '../../../../lib/api-client/models';
 import { takeUntil } from 'rxjs/operators';
+import { environment } from '../../../../../environments/environment.prod';
 
 @Component({
   selector: 'app-leaderboard',
@@ -13,6 +14,8 @@ export class LeaderboardComponent implements OnInit, OnDestroy {
   authors: RsksearchAuthorRanking[] = [];
 
   showAwardHelp: boolean = false;
+
+  awardThreshold = environment.contributionAwardThreshold;
 
   private destroy$ = new EventEmitter<boolean>();
 
@@ -35,7 +38,7 @@ export class LeaderboardComponent implements OnInit, OnDestroy {
   }
 
   nextRewardAt(i: number): string {
-    return `${10 - ( i % 10)}`
+    return `${environment.contributionAwardThreshold - ( i % environment.contributionAwardThreshold)}`
   }
 
 }

@@ -4,7 +4,7 @@
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a [routerLink]="['/search']">Home</a></li>
       <li class="breadcrumb-item"><a [routerLink]="['/contribute']">Contribute</a></li>
-      <li class="breadcrumb-item"><a [routerLink]="['/tscript', chunk.tscriptId]">{{chunk.tscriptId}}</a></li>
+      <li class="breadcrumb-item" *ngIf="chunk"><a [routerLink]="['/tscript', chunk.tscriptId ]">{{chunk?.tscriptId || "loading..."}}</a></li>
       <li class="breadcrumb-item active" aria-current="page">Create</li>
     </ol>
   </nav>
@@ -41,8 +41,9 @@
             <div class="mb-3">State: <span class="text-info">{{contribution.state}}</span></div>
             <p>This means that the contribution has not yet been reviewed and can still be edited if you are the
               owner. Clicking the button below will mark it as being ready to be merged.</p>
-            <button class="btn btn-success mt-2" (click)="markComplete()">Mark as complete <i
-              class="bi-check"></i></button>
+            <button class="btn btn-success mt-2" (click)="markComplete()" [disabled]="!updatedTranscript">
+              Mark as complete <i class="bi-check"></i>
+            </button>
           </div>
           <div *ngIf="contribution.state === cStates.STATE_REQUEST_APPROVAL">
             <div class="mb-3">State: <span class="text-info">{{contribution.state}}</span></div>

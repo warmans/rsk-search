@@ -116,6 +116,38 @@ export function isRsksearchChunkStats(arg: any): arg is models.RsksearchChunkSta
   );
   }
 
+export function isRsksearchClaimedReward(arg: any): arg is models.RsksearchClaimedReward {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // claimAt?: string
+    ( typeof arg.claimAt === 'undefined' || typeof arg.claimAt === 'string' ) &&
+    // claimCurrency?: string
+    ( typeof arg.claimCurrency === 'undefined' || typeof arg.claimCurrency === 'string' ) &&
+    // claimDescription?: string
+    ( typeof arg.claimDescription === 'undefined' || typeof arg.claimDescription === 'string' ) &&
+    // claimKind?: string
+    ( typeof arg.claimKind === 'undefined' || typeof arg.claimKind === 'string' ) &&
+    // claimValue?: number
+    ( typeof arg.claimValue === 'undefined' || typeof arg.claimValue === 'number' ) &&
+    // id?: string
+    ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
+
+  true
+  );
+  }
+
+export function isRsksearchClaimedRewardList(arg: any): arg is models.RsksearchClaimedRewardList {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // rewards?: RsksearchClaimedReward[]
+    ( typeof arg.rewards === 'undefined' || (Array.isArray(arg.rewards) && arg.rewards.every((item: unknown) => isRsksearchClaimedReward(item))) ) &&
+
+  true
+  );
+  }
+
 export function isRsksearchClaimRewardRequest(arg: any): arg is models.RsksearchClaimRewardRequest {
   return (
   arg != null &&

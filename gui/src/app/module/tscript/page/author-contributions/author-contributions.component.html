@@ -29,7 +29,10 @@
   </div>
   <div class="row">
     <div class="col">
-      <div class="card">
+
+      <app-claimed-rewards [rewards]="rewards"></app-claimed-rewards>
+
+      <div class="card mb-3">
         <div class="card-header">My Contributions</div>
         <table class="table mb-0">
           <tr *ngFor="let row of contributions">
@@ -48,4 +51,4 @@
 </div>
 <app-reddit-login [open]="!claims"></app-reddit-login>
 
-<app-loading-overlay [loading]="loading"></app-loading-overlay>
+<app-loading-overlay [loading]="loading.length > 0"></app-loading-overlay>
