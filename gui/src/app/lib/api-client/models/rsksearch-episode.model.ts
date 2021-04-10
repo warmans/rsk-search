@@ -6,6 +6,7 @@ import {
 } from '.';
 
 export interface RsksearchEpisode {
+  contributors?: string[];
   episode?: number;
   id?: string;
   metadata?: { [key: string]: string };

@@ -194,6 +194,8 @@ export function isRsksearchDialog(arg: any): arg is models.RsksearchDialog {
     ( typeof arg.content === 'undefined' || typeof arg.content === 'string' ) &&
     // contentTags?: { [key: string]: RsksearchTag }
     ( typeof arg.contentTags === 'undefined' || isRsksearchTag(arg.contentTags) ) &&
+    // contributor?: string
+    ( typeof arg.contributor === 'undefined' || typeof arg.contributor === 'string' ) &&
     // id?: string
     ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
     // isMatchedRow?: boolean
@@ -271,6 +273,8 @@ export function isRsksearchEpisode(arg: any): arg is models.RsksearchEpisode {
   return (
   arg != null &&
   typeof arg === 'object' &&
+    // contributors?: string[]
+    ( typeof arg.contributors === 'undefined' || (Array.isArray(arg.contributors) && arg.contributors.every((item: unknown) => typeof item === 'string')) ) &&
     // episode?: number
     ( typeof arg.episode === 'undefined' || typeof arg.episode === 'number' ) &&
     // id?: string
