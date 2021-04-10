@@ -1,5 +1,5 @@
 <div class="card">
-  <div class="card-header"><i class="bi-trophy mr-2"></i> Top Contributors</div>
+  <div class="card-header">Top Contributors</div>
   <div class="card-body p-0">
     <table class="table mb-0">
       <tr *ngFor="let a of authors; let i = index">
@@ -15,7 +15,7 @@
         </td>
         <td>
           <div *ngIf="a.acceptedContributions > 0" class="text-success">
-            <span *ngFor="let c of counter(a.acceptedContributions); let idx = index;">
+            <span class="mr-1" *ngFor="let c of counter(a.acceptedContributions); let idx = index;">
               <i *ngIf="idx === 0 || idx % (awardThreshold-1) !== 0" class="bi-file-earmark-check"></i>
               <i *ngIf="idx > 0 && idx % (awardThreshold-1) === 0" class="bi-trophy"></i>
             </span>

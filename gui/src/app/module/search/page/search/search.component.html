@@ -39,8 +39,10 @@
       <div class="card mb-4">
         <div class="card-header">Contribute</div>
         <div class="card-body">
-          <p>There are currently {{ chunkStats?.numPending }} transcription chunks that require contributions.</p>
-          <button class="btn btn-primary" [routerLink]="['/contribute']">Contribute</button>
+          <p>There are currently <strong>{{ chunkStats?.numPending }}</strong> transcription chunks that require transcription.</p>
+          <p>It's easy and only requires a Reddit account. Each chunk is 3 minutes of audio. Tools and audio are provided.</p>
+          <p>There are also rewards for multiple contributions.</p>
+          <button class="btn btn-primary" [routerLink]="['/contribute']">Start Contributing</button>
         </div>
       </div>
     </div>

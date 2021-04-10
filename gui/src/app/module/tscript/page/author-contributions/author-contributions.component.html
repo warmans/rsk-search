@@ -37,11 +37,11 @@
         <table class="table mb-0">
           <tr *ngFor="let row of contributions">
             <td style="width: 300px;">
-              <a *ngIf="row.state === states.STATE_PENDING || row.state === states.STATE_REQUEST_APPROVAL"
+              <a *ngIf="row.state === states.STATE_PENDING || row.state === states.STATE_REQUEST_APPROVAL || row.state === states.STATE_REJECTED"
                  [routerLink]="['/chunk', row.chunkId, 'contrib', row.id]">{{row.id}}</a>
-              <span *ngIf="row.state !== states.STATE_PENDING && row.state !== states.STATE_REQUEST_APPROVAL">{{row.id}}</span>
+              <span *ngIf="row.state !== states.STATE_PENDING && row.state !== states.STATE_REQUEST_APPROVAL && row.state !== states.STATE_REJECTED ">{{row.id}}</span>
             </td>
-            <td>{{row.state}}</td>
+            <td><app-contribution-state [state]="row.state"></app-contribution-state></td>
             <td style="width: 50px"><button class="btn btn-danger btn-sm" (click)="discardDraft(row.chunk_id, row.id)" [disabled]="row.state != states.STATE_PENDING">Discard</button></td>
           </tr>
         </table>

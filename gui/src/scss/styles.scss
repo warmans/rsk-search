@@ -46,3 +46,8 @@ span.code {
   -webkit-box-shadow: -1px 1px 5px 1px rgba(0,0,0,0.05);
   -moz-box-shadow: -1px 1px 5px 1px rgba(0,0,0,0.05);
 }
+
+.card-header {
+  font-weight: bold;;
+  color: $primary;
+}

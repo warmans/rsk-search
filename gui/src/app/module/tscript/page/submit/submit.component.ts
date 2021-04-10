@@ -148,7 +148,7 @@ export class SubmitComponent implements OnInit, OnDestroy {
       this.updatedTranscript = v;
       this.backupContent(v);
       this.updatePreview(v);
-      if (this.contribution) {
+      if (this.contribution && this.userCanEdit) {
         this.update();
       }
     });
@@ -184,7 +184,6 @@ export class SubmitComponent implements OnInit, OnDestroy {
     if (!this.chunk) {
       return;
     }
-    console.log('backup');
     localStorage.setItem(`chunk-backup-${(this.contribution) ? this.contribution.id : this.chunk.id}`, text);
   }
 

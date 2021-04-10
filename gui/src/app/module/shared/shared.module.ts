@@ -12,6 +12,7 @@ import { AudioPlayerComponent } from './component/audio-player/audio-player.comp
 import { SynopsesComponent } from './component/synopses/synopses.component';
 import { WebhidDeviceComponent } from './component/webhid-device/webhid-device.component';
 import { WebusbDeviceComponent } from './component/webusb-device/webusb-device.component';
+import { ContributionStateComponent } from './component/contribution-state/contribution-state.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { WebusbDeviceComponent } from './component/webusb-device/webusb-device.c
     SynopsesComponent,
     WebhidDeviceComponent,
     WebusbDeviceComponent,
+    ContributionStateComponent,
   ],
   imports: [
     CommonModule,
@@ -43,6 +45,7 @@ import { WebusbDeviceComponent } from './component/webusb-device/webusb-device.c
     SynopsesComponent,
     WebhidDeviceComponent,
     WebusbDeviceComponent,
+    ContributionStateComponent,
   ]
 })
 export class SharedModule {
