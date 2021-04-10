@@ -15,6 +15,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/tscript"
 	"go.uber.org/zap"
 	"os"
+	"sort"
 )
 
 var stdoutPrinter = json.NewEncoder(os.Stdout)
@@ -110,12 +111,12 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 
 				// if the transcript is missing insert a placeholder
 				if chContribution == nil {
-					lastPos = lastPos+tscript.PosSpacing
+					lastPos = lastPos + tscript.PosSpacing
 					episodeOnDisk.Transcript = append(
 						episodeOnDisk.Transcript,
 						models.Dialog{
 							ID:          shortuuid.New(),
-							Position:    lastPos+tscript.PosSpacing,
+							Position:    lastPos + tscript.PosSpacing,
 							OffsetSec:   0,
 							Type:        "gap",
 							Actor:       "",
@@ -132,9 +133,34 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 				if err != nil {
 					return err
 				}
+
+				// process contributors for this chunk of audio
+				author, err := s.GetAuthor(context.Background(), chContribution.AuthorID)
+				if err != nil {
+					logger.Error(fmt.Sprintf("Failed to get author with ID %s", chContribution.AuthorID))
+					continue
+				} else {
+					for k := range dialog {
+						dialog[k].Contributor = author.Name
+					}
+				}
 				episodeOnDisk.Transcript = append(episodeOnDisk.Transcript, dialog...)
 				episodeOnDisk.Synopsis = append(episodeOnDisk.Synopsis, synopsis...)
 			}
+
+			// process contributors for whole episdoe
+			uniqueContributors := map[string]struct{}{}
+			for _, v := range episodeOnDisk.Transcript {
+				if v.Contributor != "" {
+					uniqueContributors[v.Contributor] = struct{}{}
+				}
+			}
+			contributors := []string{}
+			for c := range uniqueContributors {
+				contributors  = append(contributors, c)
+			}
+			sort.Strings(contributors)
+			episodeOnDisk.Contributors = contributors
 
 			if dryRun {
 				if err := stdoutPrinter.Encode(episodeOnDisk); err != nil {

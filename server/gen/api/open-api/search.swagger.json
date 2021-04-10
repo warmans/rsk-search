@@ -1010,6 +1010,9 @@
         },
         "notable": {
           "type": "boolean"
+        },
+        "contributor": {
+          "type": "string"
         }
       }
     },
@@ -1112,6 +1115,12 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/rsksearchSynopsis"
+          }
+        },
+        "contributors": {
+          "type": "array",
+          "items": {
+            "type": "string"
           }
         }
       }

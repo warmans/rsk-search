@@ -52,9 +52,13 @@ func (s *Store) InsertEpisodeWithTranscript(ctx context.Context, ep *models.Epis
 	if err != nil {
 		return err
 	}
+	epContributors, err := contributorsToString(ep.Contributors)
+	if err != nil {
+		return err
+	}
 	_, err = s.tx.ExecContext(
 		ctx,
-		`INSERT INTO episode (id, publication, series, episode, release_date, metadata, tags) VALUES ($1, $2, $3, $4, $5, $6, $7) ON CONFLICT DO NOTHING`,
+		`INSERT INTO episode (id, publication, series, episode, release_date, metadata, tags, contributors) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) ON CONFLICT DO NOTHING`,
 		ep.ID(),
 		ep.Publication,
 		ep.Series,
@@ -62,6 +66,7 @@ func (s *Store) InsertEpisodeWithTranscript(ctx context.Context, ep *models.Epis
 		util.SqlDate(ep.ReleaseDate),
 		epMeta,
 		epTags,
+		epContributors,
 	)
 
 	for _, v := range ep.Transcript {
@@ -74,7 +79,7 @@ func (s *Store) InsertEpisodeWithTranscript(ctx context.Context, ep *models.Epis
 			return err
 		}
 		_, err = s.tx.ExecContext(ctx,
-			`INSERT INTO dialog (id, episode_id, pos, type, actor, content, metadata, content_tags, notable) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
+			`INSERT INTO dialog (id, episode_id, pos, type, actor, content, metadata, content_tags, notable, contributor) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
 			v.ID,
 			ep.ID(),
 			v.Position,
@@ -84,6 +89,7 @@ func (s *Store) InsertEpisodeWithTranscript(ctx context.Context, ep *models.Epis
 			diaMeta,
 			diaTags,
 			v.Notable,
+			v.Contributor,
 		)
 		if err != nil {
 			return err
@@ -109,10 +115,11 @@ func (s *Store) GetShortEpisode(ctx context.Context, id string) (*models.Episode
 	ep := &models.Episode{}
 	var metadata string
 	var tags string
+	var contributors string
 
 	err := s.tx.
-		QueryRowxContext(ctx, "SELECT publication, series, episode, release_date, metadata, tags FROM episode WHERE id = $1", id).
-		Scan(&ep.Publication, &ep.Series, &ep.Episode, &ep.ReleaseDate, &metadata, &tags)
+		QueryRowxContext(ctx, "SELECT publication, series, episode, release_date, metadata, tags, contributors FROM episode WHERE id = $1", id).
+		Scan(&ep.Publication, &ep.Series, &ep.Episode, &ep.ReleaseDate, &metadata, &tags, &contributors)
 
 	if err != nil {
 		if err == sql.ErrNoRows {
@@ -128,6 +135,11 @@ func (s *Store) GetShortEpisode(ctx context.Context, id string) (*models.Episode
 	if tags != "" {
 		if err := json.Unmarshal([]byte(tags), &ep.Tags); err != nil {
 			return nil, errors.Wrap(err, "failed to decode tags")
+		}
+	}
+	if contributors != "" {
+		if err := json.Unmarshal([]byte(contributors), &ep.Contributors); err != nil {
+			return nil, errors.Wrap(err, "failed to decode contributors")
 		}
 	}
 	return ep, nil
@@ -186,7 +198,7 @@ func (s *Store) getTranscriptForQuery(ctx context.Context, query string, params 
 		var meta string
 		var tags string
 
-		if err := res.Scan(&result.ID, &epID, &result.Position, &result.Type, &result.Actor, &result.Content, &meta, &tags, &result.Notable); err != nil {
+		if err := res.Scan(&result.ID, &epID, &result.Position, &result.Type, &result.Actor, &result.Content, &meta, &tags, &result.Notable, &result.Contributor); err != nil {
 			return nil, "", err
 		}
 		if meta != "" {
@@ -220,6 +232,17 @@ func tagListToString(tags []string) (string, error) {
 		return "", nil
 	}
 	bs, err := json.Marshal(tags)
+	if err != nil {
+		return "", err
+	}
+	return string(bs), nil
+}
+
+func contributorsToString(contributors []string) (string, error) {
+	if contributors == nil {
+		return "", nil
+	}
+	bs, err := json.Marshal(contributors)
 	if err != nil {
 		return "", err
 	}

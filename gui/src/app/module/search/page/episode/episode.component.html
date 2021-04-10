@@ -54,6 +54,13 @@
                     </a>
                   </td>
                 </tr>
+                <tr>
+                  <th>Transcribers</th>
+                  <td>
+                    <div *ngIf="episode.metadata['pilkipedia_url'] && !episode?.contributors?.length">pilikpedia</div>
+                    <div>{{episode.contributors}}</div>
+                  </td>
+                </tr>
               </table>
             </div>
           </div>
@@ -67,7 +74,8 @@
           </div>
         </div>
         <div class="card-body p-3 bg-white">
-          <app-transcript [transcript]="episode.transcript" [scrollToID]="scrollToID" [enableLineLinks]="true"></app-transcript>
+          <app-transcript [transcript]="episode.transcript" [scrollToID]="scrollToID"
+                          [enableLineLinks]="true"></app-transcript>
           <div *ngIf="!episode?.transcript?.length" class="text-center p-4">No transcript available.</div>
         </div>
       </div>
@@ -80,8 +88,11 @@
       <div>
         <div class="card">
           <div class="card-body text-center">
+            <div>
+              <img src="/assets/pixeltrue-error-1.svg" style="width: 300px"/>
+            </div>
             <div class="pb-2"><strong>{{error}}</strong></div>
-            Alright, lets see your little website then. Sick of ya...
+            <div>Alright, lets see your little website then. Sick of ya...</div>
           </div>
         </div>
       </div>

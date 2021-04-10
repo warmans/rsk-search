@@ -311,6 +311,7 @@ message Dialog {
   map<string, Tag> content_tags = 7;
   bool is_matched_row = 8;
   bool notable = 9;
+  string contributor = 10;
 }
 
 message Synopsis {
@@ -334,6 +335,7 @@ message Episode {
   repeated Dialog transcript = 7;
   string release_date = 8;
   repeated Synopsis synopses = 9;
+  repeated string contributors = 10;
 }
 
 message GetEpisodeRequest {

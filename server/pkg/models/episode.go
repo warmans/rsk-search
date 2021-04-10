@@ -53,6 +53,7 @@ type Dialog struct {
 	// content tokens mapped to tags
 	// e.g. Foo! (text) => foo (tag)
 	ContentTags map[string]string `json:"content_tags"`
+	Contributor string            `json:"contributor"`
 }
 
 func (d Dialog) Proto(bestMatch bool) *api.Dialog {
@@ -65,6 +66,7 @@ func (d Dialog) Proto(bestMatch bool) *api.Dialog {
 		Metadata:     d.Meta.Proto(),
 		IsMatchedRow: bestMatch,
 		ContentTags:  make(map[string]*api.Tag),
+		Contributor:  d.Contributor,
 	}
 	for text, tagName := range d.ContentTags {
 		tag := meta.GetTag(tagName)
@@ -83,10 +85,11 @@ type Episode struct {
 	Incomplete  bool      `json:"incomplete"`
 
 	// additional optional data
-	Meta       Metadata   `json:"metadata"`
-	Transcript []Dialog   `json:"transcript"`
-	Tags       []string   `json:"tags"`
-	Synopsis   []Synopsis `json:"synopsis"`
+	Meta         Metadata   `json:"metadata"`
+	Transcript   []Dialog   `json:"transcript"`
+	Tags         []string   `json:"tags"`
+	Synopsis     []Synopsis `json:"synopsis"`
+	Contributors []string   `json:"contributors"`
 }
 
 func (e *Episode) ID() string {
@@ -111,12 +114,13 @@ func (e *Episode) Proto() *api.Episode {
 		return nil
 	}
 	ep := &api.Episode{
-		Id:          e.ID(),
-		Publication: e.Publication,
-		Series:      e.Series,
-		Episode:     e.Episode,
-		Metadata:    e.Meta.Proto(),
-		ReleaseDate: e.ReleaseDate.Format(util.ShortDateFormat),
+		Id:           e.ID(),
+		Publication:  e.Publication,
+		Series:       e.Series,
+		Episode:      e.Episode,
+		Metadata:     e.Meta.Proto(),
+		ReleaseDate:  e.ReleaseDate.Format(util.ShortDateFormat),
+		Contributors: e.Contributors,
 	}
 	for _, tn := range e.Tags {
 		tag := meta.GetTag(tn)
