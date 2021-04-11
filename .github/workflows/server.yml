@@ -1,0 +1,42 @@
+name: Server
+
+on:
+  push:
+    branches: [ main, develop ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      working-directory: ./server
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.16
+
+      - name: Build
+        working-directory: ${{env.working-directory}}
+        run: make build
+
+      - name: Test
+        working-directory: ${{env.working-directory}}
+        run: go test -v ./...
+
+      - name: Generate static databases
+        working-directory: ${{env.working-directory}}
+        run: make init.all
+
+      - name: Store binaries
+        uses: actions/upload-artifact@v2
+        with:
+          name: binaries
+          path: ${{env.working-directory}}/bin
+
+      - name: Store databases
+        uses: actions/upload-artifact@v2
+        with:
+          name: static-dcs
+          path: ${{env.working-directory}}/var
