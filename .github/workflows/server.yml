@@ -2,7 +2,7 @@ name: Server
 
 on:
   push:
-    branches: [ $default-branch, develop ]
+    branches: [ main, develop ]
 
   pull_request:
     branches: [ develop ]
