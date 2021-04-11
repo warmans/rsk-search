@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/spotify"
 	"github.com/warmans/rsk-search/pkg/util"
 	"net/http"
@@ -62,10 +63,10 @@ func main() {
 			itm.Series, itm.Episode = mustParseName(itm.Name)
 
 			// ensure consistent naming
-			itm.Name = util.FormatStandardEpisodeName(itm.Series, itm.Episode)
+			itm.Name = models.FormatStandardEpisodeName(itm.Series, itm.Episode)
 
 			allItems = append(allItems, itm)
-			episodeDateNameMap[itm.ReleaseDateT.Format(time.RFC3339)] = util.FormatStandardEpisodeName(itm.Series, itm.Episode)
+			episodeDateNameMap[itm.ReleaseDateT.Format(time.RFC3339)] = models.FormatStandardEpisodeName(itm.Series, itm.Episode)
 		}
 		if err := resp.Body.Close(); err != nil {
 			panic(err)
@@ -108,7 +109,7 @@ func stringP(str string) *string {
 
 // S1E02
 func mustParseName(name string) (int32, int32) {
-	series, episode, err := util.ParseStandardEpisodeName(name)
+	series, episode, err := models.ParseStandardEpisodeName(name)
 	if err != nil {
 		panic(err)
 	}
