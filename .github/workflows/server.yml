@@ -60,7 +60,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: server-binaries
-          path: ${{env.working-directory}}/server/bin
+          path: ${{env.working-directory}}/bin
 
       - name: Download server data
         uses: actions/download-artifact@v2
