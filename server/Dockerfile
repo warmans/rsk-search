@@ -15,6 +15,8 @@ WORKDIR /opt/rsk
 COPY --chown=nobody var var
 COPY --chown=nobody bin/rsk-search .
 
+RUN chmod +x bin/rsk-search
+
 EXPOSE 8888
 
 CMD ["/opt/rsk/rsk-search", "server"]
