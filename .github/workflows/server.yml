@@ -2,7 +2,10 @@ name: Server
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ $default-branch, develop ]
+
+  pull_request:
+    branches: [ develop ]
 
 jobs:
   build:
@@ -32,11 +35,11 @@ jobs:
       - name: Store binaries
         uses: actions/upload-artifact@v2
         with:
-          name: binaries
+          name: server-binaries
           path: ${{env.working-directory}}/bin
 
       - name: Store databases
         uses: actions/upload-artifact@v2
         with:
-          name: static-dcs
+          name: server-data
           path: ${{env.working-directory}}/var

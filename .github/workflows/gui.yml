@@ -1,17 +1,20 @@
-name: Server
+name: GUI
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ $default-branch, develop ]
+
+  pull_request:
+    branches: [ develop ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [ 10.x, 12.x, 14.x, 15.x ]
+        node-version: [ 12.x ]
     env:
-      working-directory: ./server
+      working-directory: ./gui
     steps:
       - uses: actions/checkout@v2
 
@@ -31,5 +34,5 @@ jobs:
       - name: Store output
         uses: actions/upload-artifact@v2
         with:
-          name: dist
+          name: gui-dist
           path: ${{env.working-directory}}/dist
