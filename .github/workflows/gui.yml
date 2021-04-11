@@ -36,3 +36,35 @@ jobs:
         with:
           name: gui-dist
           path: ${{env.working-directory}}/dist
+  publish:
+    runs-on: ubuntu-latest
+    needs: build
+    if: ${{ github.ref == 'refs/heads/main' }}
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Download GUI dist data
+        uses: actions/download-artifact@v2
+        with:
+          name: gui-dist
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push GUI
+        uses: docker/build-push-action@v2
+        with:
+          context: ./gui
+          push: true
+          tags: warmans/rsk-search-gui:latest
