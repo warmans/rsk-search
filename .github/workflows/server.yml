@@ -42,4 +42,6 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: server-data
-          path: ${{env.working-directory}}/var
+          path: |
+            ${{env.working-directory}}/var
+            !${{env.working-directory}}/var/data
