@@ -51,7 +51,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: gui-dist
-          path: ${{env.working-directory}}/gui/dist
+          path: ${{env.working-directory}}/dist
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
