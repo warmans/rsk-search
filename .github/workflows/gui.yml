@@ -40,6 +40,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     if: ${{ github.ref == 'refs/heads/main' }}
+    env:
+      working-directory: ./gui
     steps:
 
       - name: Checkout
@@ -49,6 +51,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: gui-dist
+          path: ${{env.working-directory}}/gui/dist
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1

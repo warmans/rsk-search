@@ -49,6 +49,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     if: ${{ github.ref == 'refs/heads/main' }}
+    env:
+      working-directory: ./server
     steps:
 
       - name: Checkout
@@ -58,11 +60,13 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: server-binaries
+          path: ${{env.working-directory}}/server/bin
 
       - name: Download server data
         uses: actions/download-artifact@v2
         with:
           name: server-data
+          path: ${{env.working-directory}}/server/var
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
