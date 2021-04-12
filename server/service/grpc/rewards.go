@@ -78,6 +78,7 @@ func (s *SearchService) ClaimReward(ctx context.Context, request *api.ClaimRewar
 	}
 
 	err := s.persistentDB.WithStore(func(store *rw.Store) error {
+
 		reward, err := store.GetRewardForUpdate(ctx, request.Id)
 		if err != nil {
 			return err
@@ -89,7 +90,7 @@ func (s *SearchService) ClaimReward(ctx context.Context, request *api.ClaimRewar
 		}
 
 		var recipient *api.DonationRecipient
-		for _, v := range getDonationRecipients() {
+		for _, v := range getDonationRecipients(reward.Threshold) {
 			if v.Id == request.GetDonationArgs().Recipient {
 				recipient = v
 			}
@@ -144,40 +145,85 @@ func (s *SearchService) ClaimReward(ctx context.Context, request *api.ClaimRewar
 
 func (s *SearchService) ListDonationRecipients(ctx context.Context, request *api.ListDonationRecipientsRequest) (*api.DonationRecipientList, error) {
 
+	var reward *models.AuthorReward
+	err := s.persistentDB.WithStore(func(store *rw.Store) error {
+		var err error
+		reward, err = store.GetRewardForUpdate(ctx, request.RewardId)
+		if err != nil {
+			return err
+		}
+		return nil
+	})
+	if err != nil {
+		return nil, ErrFromStore(err, request.RewardId).Err()
+	}
+
 	//todo: vary results based on threshold
 
 	res := &api.DonationRecipientList{
-		Organizations: getDonationRecipients(),
+		Organizations: getDonationRecipients(reward.Threshold),
 	}
 	return res, nil
 }
 
-func getDonationRecipients() []*api.DonationRecipient {
-	return []*api.DonationRecipient{
-		{
-			Id:      "e349c52c-73aa-4123-83b2-6466d1aa2d54",
-			Name:    "International Primate Protection League",
-			Mission: "PPL is a grassroots nonprofit organization dedicated to protecting the world’s remaining primates, great and small. Since 1973 we have worked to expose primate abuse and battled international traffickers.",
-			LogoUrl: "/assets/logo/51-0194013.png",
-			NgoId:   "51-0194013",
-			Url:     "https://www.pledge.to/organizations/51-0194013/international-primate-protection-league",
-		},
-		{
-			Id:      "700f6e06-a00d-46fe-a76a-e8271585c2bb",
-			Name:    "World Wildlife Fund",
-			Mission: "As the world’s leading conservation organization, WWF works in nearly 100 countries. At every level, we collaborate with people around the world to develop and deliver innovative solutions that protect communities, wildlife, and the places in which they live.",
-			LogoUrl: "/assets/logo/52-1693387.png",
-			NgoId:   "52-1693387",
-			Url:     "https://www.pledge.to/organizations/52-1693387/world-wildlife-fund",
-		},
-		{
-			Id:      "27547c25-7b00-4cb1-9c21-2834acb37da3",
-			Name:    "Rainforest Rescue",
-			Mission: "Rainforest Rescue is a not-for-profit organisation that has been protecting and restoring rainforests in Australia and internationally since 1998 by providing opportunities for individuals and businesses to Protect Rainforests Forever.",
-			LogoUrl: "/assets/logo/30-0108263-675.svg",
-			NgoId:   "30-0108263-675",
-			Url:     "https://www.pledge.to/organizations/30-0108263-675/rainforest-rescue",
-		},
+func getDonationRecipients(thresold int32) []*api.DonationRecipient {
+
+	switch thresold {
+	case 2:
+		return []*api.DonationRecipient{
+			{
+				Id:      "5957dbb1-b979-4b33-b068-ad56aadbe3f8",
+				Name:    "St. John's Ambulance",
+				Mission: "We are the charity that steps forward in the moments that matter, to save lives and keep communities safe.",
+				LogoUrl: "/assets/logo/43-1634280-0504257.png",
+				NgoId:   "43-1634280-0504257",
+				Url:     "https://www.sja.org.uk/",
+				Quote:   "But seriously, All joking aside. I genuinely wanted to give some massive props - give some big-ups - to the St. John's people, because I genuinely, without any joking, and I  genuinely think they they do a brilliant job.",
+			},
+			{
+				Id:      "11034875-b8d5-4653-8558-214ae12a81b7",
+				Name:    "Dogs Trust",
+				Mission: "Our mission is to bring about the day when all dogs can enjoy a happy life, free from the threat of unnecessary destruction.",
+				LogoUrl: "/assets/logo/43-1634280-0279288.jpg",
+				NgoId:   "43-1634280-0279288",
+				Url:     "https://www.dogstrust.org.uk",
+			},
+			{
+				Id:      "40ebb87d-62f4-4297-a808-c5f35ef3719f",
+				Name:    "Rainforest Alliance",
+				Mission: "The Rainforest Alliance works to conserve biodiversity and ensure sustainable livelihoods by transforming land-use practices, business practices and consumer behavior.\n\nWe envision a world where people can thrive and prosper in harmony with the land",
+				LogoUrl: "/assets/logo/13-3377893.png",
+				NgoId:   "13-3377893",
+				Url:     "https://www.pledge.to/organizations/13-3377893/rainforest-alliance",
+			},
+		}
+	default:
+		return []*api.DonationRecipient{
+			{
+				Id:      "e349c52c-73aa-4123-83b2-6466d1aa2d54",
+				Name:    "International Primate Protection League",
+				Mission: "PPL is a grassroots nonprofit organization dedicated to protecting the world’s remaining primates, great and small. Since 1973 we have worked to expose primate abuse and battled international traffickers.",
+				LogoUrl: "/assets/logo/51-0194013.png",
+				NgoId:   "51-0194013",
+				Url:     "https://www.pledge.to/organizations/51-0194013/international-primate-protection-league",
+			},
+			{
+				Id:      "700f6e06-a00d-46fe-a76a-e8271585c2bb",
+				Name:    "World Wildlife Fund",
+				Mission: "As the world’s leading conservation organization, WWF works in nearly 100 countries. At every level, we collaborate with people around the world to develop and deliver innovative solutions that protect communities, wildlife, and the places in which they live.",
+				LogoUrl: "/assets/logo/52-1693387.png",
+				NgoId:   "52-1693387",
+				Url:     "https://www.pledge.to/organizations/52-1693387/world-wildlife-fund",
+			},
+			{
+				Id:      "27547c25-7b00-4cb1-9c21-2834acb37da3",
+				Name:    "Rainforest Rescue",
+				Mission: "Rainforest Rescue is a not-for-profit organisation that has been protecting and restoring rainforests in Australia and internationally since 1998 by providing opportunities for individuals and businesses to Protect Rainforests Forever.",
+				LogoUrl: "/assets/logo/30-0108263-675.svg",
+				NgoId:   "30-0108263-675",
+				Url:     "https://www.pledge.to/organizations/30-0108263-675/rainforest-rescue",
+			},
+		}
 	}
 }
 

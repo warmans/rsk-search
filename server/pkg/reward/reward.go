@@ -20,7 +20,7 @@ type Config struct {
 }
 
 func (c *Config) RegisterFlags(fs *pflag.FlagSet, prefix string) {
-	flag.Int64VarEnv(fs, &c.CheckInterval, prefix, "reward-check-interval-seconds", 60, "check for pending rewards every N seconds")
+	flag.Int64VarEnv(fs, &c.CheckInterval, prefix, "reward-check-interval-seconds", 10, "check for pending rewards every N seconds")
 }
 
 func NewWorker(db *rw.Conn, logger *zap.Logger, cfg Config) *Worker {

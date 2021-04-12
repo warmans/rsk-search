@@ -251,6 +251,8 @@ export function isRsksearchDonationRecipient(arg: any): arg is models.RsksearchD
     ( typeof arg.name === 'undefined' || typeof arg.name === 'string' ) &&
     // ngoId?: string
     ( typeof arg.ngoId === 'undefined' || typeof arg.ngoId === 'string' ) &&
+    // quote?: string
+    ( typeof arg.quote === 'undefined' || typeof arg.quote === 'string' ) &&
     // url?: string
     ( typeof arg.url === 'undefined' || typeof arg.url === 'string' ) &&
 

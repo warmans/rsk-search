@@ -18,17 +18,16 @@
               </div>
               <div class="flex-grow-1">
                 <strong class="mb-1">{{org.name}}</strong>
-                <div>{{org.mission}}</div>
-                <div class="text-muted">{{org.ngoId}}</div>
-                <div>
-                  <div class="form-check mt-2 font-weight-bold text-success">
-                    <label class="form-check-label">
-                      <input
-                        type="radio"
-                        class="form-check-input"
-                        formControlName="cause"
-                        value='{{org.id}}'> Give {{reward.value | currency: reward.valueCurrency}}</label>
-                  </div>
+                <div class="text-muted text-sm">{{org.ngoId}}</div>
+                <div class="my-2">{{org.mission}}</div>
+                <div class="quote my-3 ml-3 font-italic text-muted" *ngIf="org.quote">{{org.quote}}</div>
+                <div class="form-check font-weight-bold text-success">
+                  <label class="form-check-label">
+                    <input
+                      type="radio"
+                      class="form-check-input"
+                      formControlName="cause"
+                      value='{{org.id}}'> Give {{reward.value | currency: reward.valueCurrency}}</label>
                 </div>
               </div>
             </div>

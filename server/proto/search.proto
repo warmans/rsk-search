@@ -588,6 +588,7 @@ message DonationRecipient {
   string logo_url = 4;
   string ngo_id = 5;
   string url = 6;
+  string quote = 7;
 }
 
 message ClaimedRewardList{

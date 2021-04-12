@@ -6,5 +6,6 @@ export interface RsksearchDonationRecipient {
   mission?: string;
   name?: string;
   ngoId?: string;
+  quote?: string;
   url?: string;
 }

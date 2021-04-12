@@ -673,6 +673,16 @@ func (s *Store) CreatePendingReward(ctx context.Context, authorID string, thresh
 	return id, nil
 }
 
+// GetReward gets a reward without any locking. If the reward is going to be updated, use GetRewardForUpdate.
+func (s *Store) GetReward(ctx context.Context, id string) (*models.AuthorReward, error) {
+	reward := &models.AuthorReward{}
+	err := s.tx.QueryRowxContext(ctx, `SELECT * from author_reward WHERE claimed = FALSE AND error IS NULL AND id = $1`, id).StructScan(reward)
+	if err != nil {
+		return nil, err
+	}
+	return reward, nil
+}
+
 func (s *Store) GetRewardForUpdate(ctx context.Context, id string) (*models.AuthorReward, error) {
 	reward := &models.AuthorReward{}
 	err := s.tx.QueryRowxContext(ctx, `SELECT * from author_reward WHERE claimed = FALSE AND error IS NULL AND id = $1 FOR UPDATE`, id).StructScan(reward)
