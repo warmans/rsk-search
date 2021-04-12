@@ -10,7 +10,7 @@ $navbar-padding-y: 1rem;
 $font-family-base: 'Roboto Slab', serif;
 
 /* cards */
-$card-cap-bg: lighten(#f6f6f6, 0.3);
+//$card-cap-bg: darken();
 
 /* colors */
 $primary: #E15132;
@@ -25,9 +25,6 @@ $code: #d9d9d9;
 /* custom */
 $dark-border: #333;
 $light-border: #ccc;
-
-$background-color: #f6f6f6;
-$font-color: #333;
 
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";

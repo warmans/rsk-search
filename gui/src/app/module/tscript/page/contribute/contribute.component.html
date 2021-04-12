@@ -29,16 +29,14 @@
             <div
               class="progress-bar bg-success"
               role="progressbar"
-              title=""
+              title="Approved."
               [style.width]="(this.overallComplete / (this.overallTotal || 1) * 100)+'%'">
-              approved
             </div>
             <div
               class="progress-bar bg-info"
               role="progressbar"
-              title=""
+              title="Awaiting approval."
               [style.width]="(this.overallPending / (this.overallTotal || 1) * 100)+'%'">
-              pending
             </div>
           </div>
           <div class="pl-4 font-weight-bold">{{ (this.overallComplete / (this.overallTotal || 1) * 100) | number:'1.0-0' }}%</div>
@@ -59,14 +57,12 @@
                     role="progressbar"
                     title="{{progressMap[ep.id]['complete']}} completed"
                     [style.width]="((progressMap[ep.id]['complete'] || 0) / (progressMap[ep.id]['total'] || 1)  * 100)+'%'">
-                    approved
                   </div>
                   <div
                     class="progress-bar bg-info"
                     role="progressbar"
                     title="{{progressMap[ep.id]['pending_approval']}} awaiting approval"
                     [style.width]="((progressMap[ep.id]['pending_approval'] || 0) / (progressMap[ep.id]['total'] || 1)  * 100)+'%'">
-                    pending
                   </div>
                 </div>
               </td>

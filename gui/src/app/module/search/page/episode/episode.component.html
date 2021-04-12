@@ -3,7 +3,7 @@
     <div class="col">
       <div class="card" *ngIf="episode">
         <div class="card-header font-weight-bold">{{ episode.id }}</div>
-        <div class="card-body bg-white pb-2">
+        <div class="card-body pb-2">
           <div class="row">
             <div class="col">
               <table class="table m-0">
@@ -65,7 +65,7 @@
             </div>
           </div>
         </div>
-        <div class="card-header transcript-header border-top sticky-top">
+        <div class="card-header sticky-top">
           <div class="d-flex">
             <div class="flex-grow-1 font-weight-bold">Transcript</div>
             <div class="">
@@ -73,7 +73,7 @@
             </div>
           </div>
         </div>
-        <div class="card-body p-3 bg-white">
+        <div class="card-body p-3">
           <app-transcript [transcript]="episode.transcript" [scrollToID]="scrollToID"
                           [enableLineLinks]="true"></app-transcript>
           <div *ngIf="!episode?.transcript?.length" class="text-center p-4">No transcript available.</div>

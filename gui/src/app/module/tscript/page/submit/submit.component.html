@@ -19,53 +19,14 @@
         There are already {{chunk.numContributions}} approved or proposed contributions for this section of audio.
         You can start a different one by clicking <a [routerLink]="['/chunk', 'next']">here</a>.
       </div>
-      <div class="card mb-3">
+      <div class="card mb-4">
         <div class="card-body">
           <div class="audio-player">
             <app-audio-player [src]="audioPlayerURL" #audioPlayer></app-audio-player>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-4">
-      <div class="card" *ngIf="!contribution">
-        <div class="card-body">
-          <p>Currently your contribution is only saved locally, you can create a draft to allow you to submit it for
-            approval.</p>
-          <button class="btn btn-success mt-2" (click)="create()" [disabled]="!updatedTranscript">Create draft</button>
-        </div>
-      </div>
-      <div class="card" *ngIf="contribution">
-        <div class="card-body">
-          <div class="mb-3"><app-contribution-state [state]="contribution.state"></app-contribution-state></div>
-          <div *ngIf="contribution.state === cStates.STATE_PENDING">
-            <p>This means that the contribution has not yet been reviewed and can still be edited if you are the
-              owner. Clicking the button below will mark it as being ready to be merged.</p>
-            <button class="btn btn-success mt-2" (click)="markComplete()" [disabled]="!updatedTranscript">
-              Mark as complete <i class="bi-check"></i>
-            </button>
-          </div>
-          <div *ngIf="contribution.state === cStates.STATE_REQUEST_APPROVAL">
-            <p>This means your contribution will now be reviewed and merged (hopefully!).</p>
-            <button class="btn btn-warning mt-2" (click)="markIncomplete()">Revert to incomplete <i class="bi-pen"></i>
-            </button>
-          </div>
-          <div *ngIf="contribution.state === cStates.STATE_APPROVED">
-            This means your contributions was approved and will be merged into the canonical dataset.
-          </div>
-          <div *ngIf="contribution.state === cStates.STATE_REJECTED">
-            <p>This means it was not possible to merge your contribution either because it was a duplicate,
-            or because it did not appear to be correct.</p>
-            <button class="btn btn-success mt-2" (click)="markIncomplete()" [disabled]="!updatedTranscript">
-              Revert to incomplete <i class="bi-pen"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-8">
+
       <div class="card">
         <div class="card-header">
           <span class="float-right">
@@ -92,7 +53,7 @@
           </span>
         </div>
         <div [hidden]="showHelp">
-          <div class="card-body pr-0 pb-0">
+          <div class="card-body">
             <app-editor [readonly]="!userCanEdit" [wrap]="editorConfig.wrapText" [textContent]="initialTranscript"
                         (textContentChange)="setUpdatedTranscript($event)"
                         (atOffsetMarker)="handleOffsetNavigate($event)"></app-editor>
@@ -191,9 +152,44 @@ karl: I used to have a rifle as a kid...
 
         </div>
       </div>
+
     </div>
     <div class="col-4">
-      <div class="card">
+      <div class="card" *ngIf="!contribution">
+        <div class="card-body">
+          <p>Currently your contribution is only saved locally, you can create a draft to allow you to submit it for
+            approval.</p>
+          <button class="btn btn-success mt-2" (click)="create()" [disabled]="!updatedTranscript">Create draft</button>
+        </div>
+      </div>
+      <div class="card" *ngIf="contribution">
+        <div class="card-body">
+          <div class="mb-3"><app-contribution-state [state]="contribution.state"></app-contribution-state></div>
+          <div *ngIf="contribution.state === cStates.STATE_PENDING">
+            <p>This means that the contribution has not yet been reviewed and can still be edited if you are the
+              owner. Clicking the button below will mark it as being ready to be merged.</p>
+            <button class="btn btn-success mt-2" (click)="markComplete()" [disabled]="!updatedTranscript">
+              Mark as complete <i class="bi-check"></i>
+            </button>
+          </div>
+          <div *ngIf="contribution.state === cStates.STATE_REQUEST_APPROVAL">
+            <p>This means your contribution will now be reviewed and merged (hopefully!).</p>
+            <button class="btn btn-warning mt-2" (click)="markIncomplete()">Revert to incomplete <i class="bi-pen"></i>
+            </button>
+          </div>
+          <div *ngIf="contribution.state === cStates.STATE_APPROVED">
+            This means your contributions was approved and will be merged into the canonical dataset.
+          </div>
+          <div *ngIf="contribution.state === cStates.STATE_REJECTED">
+            <p>This means it was not possible to merge your contribution either because it was a duplicate,
+            or because it did not appear to be correct.</p>
+            <button class="btn btn-success mt-2" (click)="markIncomplete()" [disabled]="!updatedTranscript">
+              Revert to incomplete <i class="bi-pen"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="card mt-4">
         <div class="card-header">
           Preview
         </div>
@@ -202,9 +198,11 @@ karl: I used to have a rifle as a kid...
           <app-transcript [transcript]="parsedTscript?.dialog"></app-transcript>
         </div>
       </div>
+
     </div>
   </div>
-  <app-reddit-login [open]="!authenticated"></app-reddit-login>
 </div>
+
+<app-reddit-login [open]="!authenticated"></app-reddit-login>
 
 <app-loading-overlay [loading]="loading.length > 0"></app-loading-overlay>

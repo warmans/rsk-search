@@ -12,10 +12,10 @@
   min-height: 300px;
   font-size: 1rem;
 
-  background-color: #fff;
+  background-color: transparent;
 
   .do-not-edit {
-    background-color: lighten($pink, 40%);
+    background-color: transparentize($pink, 0.7);
     border-top: 1px dashed $pink;
     border-bottom: 1px dashed $pink;
     cursor: pointer;

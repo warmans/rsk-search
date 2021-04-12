@@ -7,14 +7,18 @@
       <!--app-dsl-search (executeQuery)="executeSearch($event)"></app-dsl-search-->
       <app-gl-search (queryUpdated)="executeSearch($event)"></app-gl-search>
     </div>
-    <div class="ml-3">
+    <div class="ml-3 d-flex">
+      <button class="btn btn-primary btn-lg mr-3" (click)="toggleDarkmode()" title="Toggle dark theme.">
+        <i class="bi-sun" *ngIf="darkTheme"></i>
+        <i class="bi-sun-fill" *ngIf="!darkTheme"></i>
+      </button>
       <a class="btn btn-info btn-lg" [routerLink]="['/me']" *ngIf="!loggedInUser?.identity?.icon_img">
         <i class="bi-person"></i>
       </a>
       <a [routerLink]="['/me']" *ngIf="loggedInUser?.identity?.icon_img" >
         <div
           class="user-icon"
-          style=" width: 48px; height: 48px; background-image: url({{ loggedInUser?.identity?.icon_img }})">
+          style=" width: 48px; height: 47px; background-image: url({{ loggedInUser?.identity?.icon_img }})">
         </div>
       </a>
     </div>

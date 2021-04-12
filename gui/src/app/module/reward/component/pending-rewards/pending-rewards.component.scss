@@ -1,3 +1,5 @@
+@import "src/scss/variables";
+
 .rewards-container {
   position: fixed;
   right: 30px;
@@ -8,11 +10,10 @@
   z-index: 1000;
 }
 
-
 .reward {
   background-color: #fff;
   width: 400px;
-
+  color: #333;
   .reward-icon {
     font-size: 2rem;
   }

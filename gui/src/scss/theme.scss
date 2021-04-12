@@ -1,0 +1,48 @@
+$themes: (
+  dark-theme: (
+    'text-color': #f7f7ff,
+    'bg-color': #17191F,
+    'fg-body': #343A40,
+    'fg-body-darker': #2A2E33,
+    'fg-border': darken(#343A40, 5%),
+    'progress-bg': #17191F,
+    'navbar-bg': #343A40,
+    'code-bg': #17191F,
+  ),
+  light-theme: (
+    'text-color': #333333,
+    'bg-color': #f6f6f6,
+    'fg-body': #fff,
+    'fg-body-darker': #F7F7F7,
+    'fg-border': #dee2e6,
+    'progress-bg': #e9ecef,
+    'navbar-bg': #f8f9fa,
+    'code-bg': #d9d9d9,
+  )
+);
+
+@mixin theme() {
+  @each $theme, $map in $themes {
+
+    $theme-map: $map !global;
+
+    .#{$theme} & {
+      @content;    // the content inside @include theme() {...}
+    }
+  }
+  // no use of the variable $theme-map now
+  $theme-map: null !global;
+}
+
+@function theme-get($key) {
+  @return map-get($theme-map, $key);
+}
+
+
+body.dark-theme {
+  background-color: #17191F;
+}
+
+body.light-theme {
+  background-color: #f6f6f6;
+}

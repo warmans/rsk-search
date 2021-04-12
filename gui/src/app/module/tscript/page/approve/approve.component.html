@@ -28,7 +28,7 @@
               </select>
             </div>
             <div class="flex-grow-1 text-right" *ngIf="co.id">
-              <div>{{co.state}}</div>
+              <div><app-contribution-state [state]="co.state"></app-contribution-state></div>
             </div>
           </div>
           <div>
