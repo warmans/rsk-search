@@ -26,7 +26,6 @@ export class PendingRewardsComponent implements OnInit, OnDestroy {
       if (data instanceof RoutesRecognized) {
         this.displayOnPage = !data?.state?.root?.firstChild?.data?.disableRewardPopup;
         if (this.displayOnPage && this.session.getToken()) {
-          console.log(this.session.getToken());
           this.apiClient.searchServiceListPendingRewards().pipe(takeUntil(this.destroy$)).subscribe((res) => {
             this.rewards = res.rewards;
           });

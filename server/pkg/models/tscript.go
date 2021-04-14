@@ -144,13 +144,28 @@ func (c *ChunkStats) Proto() *api.ChunkStats {
 	}
 }
 
-type Contribution struct {
-	ID            string
+type ContributionCreate struct {
 	AuthorID      string
 	ChunkID       string
 	Transcription string
 	State         ContributionState
+}
+
+type ContributionUpdate struct {
+	ID            string
+	AuthorID      string
+	Transcription string
+	State         ContributionState
+}
+
+type Contribution struct {
+	ID            string
+	ChunkID       string
+	Author        *ShortAuthor
+	Transcription string
+	State         ContributionState
 	StateComment  string
+	CreatedAt     time.Time
 }
 
 func (c *Contribution) Proto() *api.ChunkContribution {
@@ -161,8 +176,8 @@ func (c *Contribution) Proto() *api.ChunkContribution {
 		Id:         c.ID,
 		ChunkId:    c.ChunkID,
 		Transcript: c.Transcription,
-		AuthorId:   c.AuthorID,
 		State:      c.State.Proto(),
+		Author:     c.Author.Proto(),
 	}
 }
 func (c *Contribution) ShortProto() *api.ShortChunkContribution {
@@ -172,7 +187,7 @@ func (c *Contribution) ShortProto() *api.ShortChunkContribution {
 	return &api.ShortChunkContribution{
 		Id:       c.ID,
 		ChunkId:  c.ChunkID,
-		AuthorId: c.AuthorID,
+		AuthorId: c.Author.ID,
 		State:    c.State.Proto(),
 	}
 }

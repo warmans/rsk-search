@@ -34,6 +34,19 @@ export function isRewardKind(arg: any): arg is models.RewardKind {
   ;
   }
 
+export function isRsksearchAuthor(arg: any): arg is models.RsksearchAuthor {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // id?: string
+    ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
+    // name?: string
+    ( typeof arg.name === 'undefined' || typeof arg.name === 'string' ) &&
+
+  true
+  );
+  }
+
 export function isRsksearchAuthorLeaderboard(arg: any): arg is models.RsksearchAuthorLeaderboard {
   return (
   arg != null &&
@@ -64,8 +77,8 @@ export function isRsksearchChunkContribution(arg: any): arg is models.RsksearchC
   return (
   arg != null &&
   typeof arg === 'object' &&
-    // authorId?: string
-    ( typeof arg.authorId === 'undefined' || typeof arg.authorId === 'string' ) &&
+    // author?: RsksearchAuthor
+    ( typeof arg.author === 'undefined' || isRsksearchAuthor(arg.author) ) &&
     // chunkId?: string
     ( typeof arg.chunkId === 'undefined' || typeof arg.chunkId === 'string' ) &&
     // id?: string

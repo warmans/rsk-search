@@ -391,6 +391,11 @@ message Tscript {
   int32 episode = 4;
 }
 
+message Author {
+  string id = 1;
+  string name = 2;
+}
+
 message ChunkStats {
   int32 num_pending = 1;
   int32 num_submitted = 2;
@@ -428,11 +433,13 @@ enum ContributionState {
 }
 
 message ChunkContribution {
+  reserved 4;
+
   string id = 1;
   string chunk_id = 2;
   string transcript = 3;
-  string author_id = 4;
   ContributionState state = 5;
+  Author author = 6;
 }
 
 message ShortChunkContribution {

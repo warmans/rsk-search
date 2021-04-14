@@ -160,8 +160,8 @@ export class SubmitComponent implements OnInit, OnDestroy {
     this.contribution = res;
     this.setInitialTranscript(res.transcript);
 
-    this.userCanEdit = true;
-    if (this.sessionService.getClaims()?.author_id !== res.authorId || res.state !== RsksearchContributionState.STATE_PENDING) {
+    this.userCanEdit = res.state === RsksearchContributionState.STATE_PENDING;
+    if (!this.sessionService.getClaims().approver || this.sessionService.getClaims()?.author_id !== res.author.id) {
       this.userCanEdit = false;
     }
   }
@@ -230,7 +230,7 @@ export class SubmitComponent implements OnInit, OnDestroy {
         body: { chunkId: this.chunk.id, transcript: this.updatedTranscript }
       }).pipe(takeUntil(this.$destroy)).subscribe((res: RsksearchChunkContribution) => {
         this.backupContent(''); // clear backup so that the content always matches what was submitted.
-        this.alertService.success('Created', "Draft was created. It will now be auto-saved on change.");
+        this.alertService.success('Created', 'Draft was created. It will now be auto-saved on change.');
         this.router.navigate(['/chunk', this.chunk.id, 'contrib', res.id]);
       }).add(() => this.loading.shift());
     }

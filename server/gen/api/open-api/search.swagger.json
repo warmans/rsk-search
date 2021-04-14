@@ -822,6 +822,17 @@
         }
       }
     },
+    "rsksearchAuthor": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
     "rsksearchAuthorLeaderboard": {
       "type": "object",
       "properties": {
@@ -860,11 +871,11 @@
         "transcript": {
           "type": "string"
         },
-        "authorId": {
-          "type": "string"
-        },
         "state": {
           "$ref": "#/definitions/rsksearchContributionState"
+        },
+        "author": {
+          "$ref": "#/definitions/rsksearchAuthor"
         }
       }
     },

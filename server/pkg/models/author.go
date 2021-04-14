@@ -25,6 +25,21 @@ func (a *Author) DecodeIdentity() (*oauth.Identity, error) {
 	return ident, nil
 }
 
+type ShortAuthor struct {
+	ID   string `db:"id"`
+	Name string `db:"name"`
+}
+
+func (a *ShortAuthor) Proto() *api.Author {
+	if a == nil {
+		return nil
+	}
+	return &api.Author{
+		Id:   a.ID,
+		Name: a.Name,
+	}
+}
+
 type AuthorStats struct {
 	ContributionsInLastHour      int32
 	PendingContributions         int32

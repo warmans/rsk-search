@@ -244,35 +244,45 @@ func (s *Store) GetAuthorStats(ctx context.Context, authorID string) (*models.Au
 	return stats, nil
 }
 
-func (s *Store) CreateContribution(ctx context.Context, c *models.Contribution) error {
-	if c.ID == "" {
-		c.ID = shortuuid.New()
-	}
+func (s *Store) CreateContribution(ctx context.Context, c *models.ContributionCreate) (*models.Contribution, error) {
 	if c.State == "" {
 		c.State = models.ContributionStatePending
 	}
 	if banned, err := s.AuthorIsBanned(ctx, c.AuthorID); err != nil || banned {
 		if err != nil {
-			return err
+			return nil, err
 		}
-		return ErrNotPermitted
+		return nil, ErrNotPermitted
 	}
-	_, err := s.tx.ExecContext(
+	contribution := &models.Contribution{
+		ID: shortuuid.New(),
+		Author: &models.ShortAuthor{
+			ID: c.AuthorID,
+		},
+		ChunkID:       c.ChunkID,
+		Transcription: c.Transcription,
+		State:         c.State,
+	}
+	row := s.tx.QueryRowxContext(
 		ctx,
-		`INSERT INTO tscript_contribution (id, author_id, tscript_chunk_id, transcription, state, created_at) VALUES ($1, $2, $3, $4, $5, NOW())`,
-		c.ID,
-		c.AuthorID,
-		c.ChunkID,
-		c.Transcription,
-		c.State,
+		`
+		WITH author AS (SELECT "name" FROM author WHERE id = $2)
+		INSERT INTO tscript_contribution (id, author_id, tscript_chunk_id, transcription, state, created_at) VALUES ($1, $2, $3, $4, $5, NOW())
+	 	RETURNING author.name, created_at
+		`,
+		contribution.ID,
+		contribution.Author.ID,
+		contribution.ChunkID,
+		contribution.Transcription,
+		contribution.State,
 	)
-	if err != nil {
-		return err
+	if err := row.Scan(&contribution.Author.Name, contribution.CreatedAt); err != nil {
+		return nil, err
 	}
-	return s.UpdateChunkActivity(ctx, c.ChunkID, ChunkActivitySubmitted)
+	return contribution, s.UpdateChunkActivity(ctx, c.ChunkID, ChunkActivitySubmitted)
 }
 
-func (s *Store) UpdateContribution(ctx context.Context, c *models.Contribution) error {
+func (s *Store) UpdateContribution(ctx context.Context, c *models.ContributionUpdate) error {
 	if c.ID == "" {
 		return fmt.Errorf("no identifier was provided")
 	}
@@ -304,10 +314,18 @@ func (s *Store) UpdateContributionState(ctx context.Context, id string, state mo
 }
 
 func (s *Store) GetContribution(ctx context.Context, id string) (*models.Contribution, error) {
-	out := &models.Contribution{}
-	row := s.tx.QueryRowxContext(ctx, `SELECT id, author_id, tscript_chunk_id, transcription, COALESCE(state, 'unknown') FROM tscript_contribution WHERE id=$1`, id)
-	if err := row.Scan(&out.ID, &out.AuthorID, &out.ChunkID, &out.Transcription, &out.State); err != nil {
-		return nil, err
+	out := &models.Contribution{Author: &models.ShortAuthor{}}
+	row := s.tx.QueryRowxContext(
+		ctx,
+		`
+		SELECT c.id, c.author_id, a.name, c.tscript_chunk_id, c.transcription, COALESCE(c.state, 'unknown'), c.created_at 
+		FROM tscript_contribution c 
+		LEFT JOIN author a ON c.author_id = a.id 
+		WHERE c.id=$1`,
+		id,
+	)
+	if err := row.Scan(&out.ID, &out.Author.ID, &out.Author.Name, &out.ChunkID, &out.Transcription, &out.State, &out.CreatedAt); err != nil {
+		return nil, errors.Wrap(err, "scan failed")
 	}
 	return out, nil
 }
@@ -331,11 +349,13 @@ func (s *Store) ListNonPendingTscriptContributions(ctx context.Context, tscriptI
 			SELECT 
 				COALESCE(co.id, ''), 
 				COALESCE(co.author_id, ''), 
+				COALESCE(a.name, ''),
 				ch.id, 
 				COALESCE(co.transcription, ''), 
 				COALESCE(co.state, 'unknown') 
 			FROM tscript_chunk ch 
 			LEFT JOIN tscript_contribution co ON ch.id = co.tscript_chunk_id AND co.state != $1
+			LEFT JOIN author a ON co.author_id = a.id
 			WHERE ch.tscript_id = $2
 			ORDER BY ch.start_second ASC
 			LIMIT 25 OFFSET %d`, page),
@@ -348,8 +368,8 @@ func (s *Store) ListNonPendingTscriptContributions(ctx context.Context, tscriptI
 	defer rows.Close()
 
 	for rows.Next() {
-		cur := &models.Contribution{}
-		if err := rows.Scan(&cur.ID, &cur.AuthorID, &cur.ChunkID, &cur.Transcription, &cur.State); err != nil {
+		cur := &models.Contribution{Author: &models.ShortAuthor{}}
+		if err := rows.Scan(&cur.ID, &cur.Author.ID, &cur.Author.Name, &cur.ChunkID, &cur.Transcription, &cur.State); err != nil {
 			return nil, err
 		}
 		out = append(out, cur)
@@ -429,12 +449,14 @@ func (s *Store) listContributions(ctx context.Context, numPerPage int32, page in
 		fmt.Sprintf(`
 			SELECT 
 				COALESCE(co.id, ''), 
-				COALESCE(co.author_id, ''), 
+				COALESCE(co.author_id, ''),
+				COALESCE(a.name, ''),
 				ch.id, 
 				COALESCE(co.transcription, ''), 
 				COALESCE(co.state, 'unknown') 
 			FROM tscript_chunk ch 
 			LEFT JOIN tscript_contribution co ON ch.id = co.tscript_chunk_id
+			LEFT JOIN author a ON co.author_id = a.id
 			%s 
 			ORDER BY %s
 			LIMIT %d OFFSET %d`, where, order, numPerPage, page),
@@ -446,8 +468,8 @@ func (s *Store) listContributions(ctx context.Context, numPerPage int32, page in
 	defer rows.Close()
 
 	for rows.Next() {
-		cur := &models.Contribution{}
-		if err := rows.Scan(&cur.ID, &cur.AuthorID, &cur.ChunkID, &cur.Transcription, &cur.State); err != nil {
+		cur := &models.Contribution{Author: &models.ShortAuthor{}}
+		if err := rows.Scan(&cur.ID, &cur.Author.ID, &cur.Author.Name, &cur.ChunkID, &cur.Transcription, &cur.State); err != nil {
 			return nil, err
 		}
 		out = append(out, cur)

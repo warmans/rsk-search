@@ -46,13 +46,21 @@ func ServerCmd() *cobra.Command {
 			flag.Parse()
 
 			var logger *zap.Logger
-			if os.Getenv("DEBUG") == "true" {
-				logger, _ = zap.NewDevelopment()
+			var loggerErr error
+			if os.Getenv("DEBUG") == "false" {
+				conf := zap.NewDevelopmentConfig()
+				conf.DisableStacktrace = true
+				logger, loggerErr = conf.Build()
 			} else {
-				logger, _ = zap.NewProduction()
+				conf := zap.NewProductionConfig()
+				logger, loggerErr = conf.Build()
+			}
+			if loggerErr != nil {
+				panic(loggerErr)
 			}
 			defer logger.Sync() // flushes buffer, if any
 
+			logger.Info("Init index...")
 			rskIndex, err := bleve.Open(srvCfg.BleveIndexPath)
 			if err != nil {
 				return err

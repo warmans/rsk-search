@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"github.com/warmans/rsk-search/pkg/store/rw"
+	"github.com/warmans/rsk-search/pkg/util"
 	"google.golang.org/genproto/googleapis/rpc/errdetails"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -45,12 +46,14 @@ func ErrInternal(err error) *status.Status {
 	if sta, ok := status.FromError(err); ok {
 		return sta
 	}
-	s, err := status.New(codes.Internal, http.StatusText(http.StatusInternalServerError)).WithDetails(
+	s, errErr := status.New(codes.Internal, http.StatusText(http.StatusInternalServerError)).WithDetails(
 		&errdetails.DebugInfo{
-			Detail: err.Error(),
+			Detail: "Unknown Error",
+			StackEntries: util.ErrTrace(err),
 		},
+		&errdetails.ErrorInfo{Reason: err.Error()},
 	)
-	if err != nil {
+	if errErr != nil {
 		return status.New(codes.Internal, "failed to create error")
 	}
 	return s

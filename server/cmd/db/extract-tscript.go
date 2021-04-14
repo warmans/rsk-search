@@ -135,9 +135,9 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 				}
 
 				// process contributors for this chunk of audio
-				author, err := s.GetAuthor(context.Background(), chContribution.AuthorID)
+				author, err := s.GetAuthor(context.Background(), chContribution.Author.ID)
 				if err != nil {
-					logger.Error(fmt.Sprintf("Failed to get author with ID %s", chContribution.AuthorID))
+					logger.Error(fmt.Sprintf("Failed to get author with ID %s", chContribution.Author.ID))
 					continue
 				} else {
 					for k := range dialog {

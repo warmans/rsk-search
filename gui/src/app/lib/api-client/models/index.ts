@@ -2,6 +2,7 @@
 
 export { FieldMetaKind } from './field-meta-kind.enum';
 export { RewardKind } from './reward-kind.enum';
+export { RsksearchAuthor } from './rsksearch-author.model';
 export { RsksearchAuthorLeaderboard } from './rsksearch-author-leaderboard.model';
 export { RsksearchAuthorRanking } from './rsksearch-author-ranking.model';
 export { RsksearchChunkContribution } from './rsksearch-chunk-contribution.model';

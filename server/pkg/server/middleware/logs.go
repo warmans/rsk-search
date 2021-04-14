@@ -14,18 +14,19 @@ import (
 
 func LogMessageProducer() grpc_zap.MessageProducer {
 	return func(ctx context.Context, msg string, level zapcore.Level, code codes.Code, err error, duration zapcore.Field) {
-
 		fields := []zap.Field{
-			zap.Error(err),
 			zap.String("grpc.code", code.String()),
 			duration,
+		}
+		if err != nil {
+			fields = append(fields, zap.String("error", err.Error()))
 		}
 		st := status.Convert(err)
 		for _, detail := range st.Details() {
 			switch t := detail.(type) {
 			case *errdetails.DebugInfo:
 				fields = append(fields, zap.String("err.debug.detail", t.Detail))
-				//fields = append(fields, zap.Strings("err.debug.stack", t.StackEntries))
+				fields = append(fields, zap.Strings("err.debug.stack", t.StackEntries))
 			case *errdetails.ErrorInfo:
 				fields = append(fields, zap.String("err.error.reason", t.Reason))
 			case *errdetails.BadRequest:

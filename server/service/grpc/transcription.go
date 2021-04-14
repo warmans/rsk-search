@@ -123,20 +123,20 @@ func (s *SearchService) CreateChunkContribution(ctx context.Context, request *ap
 		return nil, ErrInvalidRequestField("transcript", "no valid lines parsed from transcript").Err()
 	}
 
-	contribution := &models.Contribution{
-		AuthorID:      claims.AuthorID,
-		ChunkID:       request.ChunkId,
-		Transcription: request.Transcript,
-		State:         models.ContributionStatePending,
-	}
+	var contrib *models.Contribution
 	err = s.persistentDB.WithStore(func(s *rw.Store) error {
-		return s.CreateContribution(ctx, contribution)
+		contrib, err = s.CreateContribution(ctx, &models.ContributionCreate{
+			AuthorID:      claims.AuthorID,
+			ChunkID:       request.ChunkId,
+			Transcription: request.Transcript,
+			State:         models.ContributionStatePending,
+		})
+		return err
 	})
 	if err != nil {
 		return nil, ErrFromStore(err, "").Err()
 	}
-
-	return contribution.Proto(), nil
+	return contrib.Proto(), nil
 }
 
 func (s *SearchService) UpdateChunkContribution(ctx context.Context, request *api.UpdateChunkContributionRequest) (*api.ChunkContribution, error) {
@@ -180,7 +180,12 @@ func (s *SearchService) UpdateChunkContribution(ctx context.Context, request *ap
 		if err := s.createContributionActivity(tx, ctx, claims, contrib, ""); err != nil {
 			return err
 		}
-		return tx.UpdateContribution(ctx, contrib)
+		return tx.UpdateContribution(ctx, &models.ContributionUpdate{
+			ID:            contrib.ID,
+			AuthorID:      contrib.Author.ID,
+			Transcription: contrib.Transcription,
+			State:         contrib.State,
+		})
 	})
 	if err != nil {
 		return nil, ErrFromStore(err, contrib.ID).Err()
@@ -242,7 +247,7 @@ func (s *SearchService) DiscardDraftContribution(ctx context.Context, request *a
 	if err != nil {
 		return nil, ErrFromStore(err, request.ContributionId).Err()
 	}
-	if claims.AuthorID != contrib.AuthorID {
+	if claims.AuthorID != contrib.Author.ID {
 		return nil, ErrPermissionDenied("you are not the author of this contribution").Err()
 	}
 	if contrib.State != models.ContributionStatePending {
@@ -259,7 +264,7 @@ func (s *SearchService) DiscardDraftContribution(ctx context.Context, request *a
 
 func (s *SearchService) validateContributionStateUpdate(claims *jwt.Claims, currentState *models.Contribution, requestedState api.ContributionState) error {
 	if !claims.Approver {
-		if currentState.AuthorID != claims.AuthorID {
+		if currentState.Author.ID != claims.AuthorID {
 			return ErrPermissionDenied("you are not the author of this contribution").Err()
 		}
 		if requestedState == api.ContributionState_STATE_APPROVED || requestedState == api.ContributionState_STATE_REJECTED {
@@ -303,7 +308,9 @@ func (s *SearchService) createContributionActivity(tx *rw.Store, ctx context.Con
 }
 
 func (s *SearchService) ListTscriptChunkContributions(ctx context.Context, request *api.ListTscriptChunkContributionsRequest) (*api.TscriptChunkContributionList, error) {
+
 	var list []*models.Contribution
+
 	err := s.persistentDB.WithStore(func(s *rw.Store) error {
 		var err error
 		list, err = s.ListNonPendingTscriptContributions(ctx, request.TscriptId, request.Page)
@@ -377,7 +384,7 @@ func (s *SearchService) GetChunkContribution(ctx context.Context, request *api.G
 		return nil, ErrFromStore(err, request.ContributionId).Err()
 	}
 	if claims.Approver == false {
-		if contrib.State == models.ContributionStatePending && contrib.AuthorID != claims.AuthorID {
+		if contrib.State == models.ContributionStatePending && contrib.Author.ID != claims.AuthorID {
 			return nil, ErrPermissionDenied("you cannot view another author's contribution when it is in the pending state").Err()
 		}
 	}
