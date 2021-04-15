@@ -6,11 +6,14 @@ import (
 	"context"
 	"fmt"
 	"github.com/warmans/rsk-search/gen/api"
+	"github.com/warmans/rsk-search/pkg/filter"
 	"github.com/warmans/rsk-search/pkg/jwt"
 	"github.com/warmans/rsk-search/pkg/models"
+	"github.com/warmans/rsk-search/pkg/store/common"
 	"github.com/warmans/rsk-search/pkg/store/rw"
 	"github.com/warmans/rsk-search/pkg/tscript"
 	"google.golang.org/protobuf/types/known/emptypb"
+	"strings"
 )
 
 func (s *SearchService) ListTscripts(ctx context.Context, request *api.ListTscriptsRequest) (*api.TscriptList, error) {
@@ -307,6 +310,43 @@ func (s *SearchService) createContributionActivity(tx *rw.Store, ctx context.Con
 	return nil
 }
 
+func (s *SearchService) ListTscriptContributions(ctx context.Context, request *api.ListTscriptContributionsRequest) (*api.TscriptContributionList, error) {
+
+	var fil filter.Filter
+	if strings.TrimSpace(request.Filter) != "" {
+		var err error
+		fil, err = filter.Parse(request.Filter)
+		if err != nil {
+			return nil, ErrInvalidRequestField("filter", err.Error()).Err()
+		}
+	}
+	out := &api.TscriptContributionList{
+		Contributions: make([]*api.TscriptContribution, 0),
+	}
+	if err := s.persistentDB.WithStore(func(store *rw.Store) error {
+		contributions, err := store.ListContribution(
+			ctx,
+			fil,
+			&common.Sorting{
+				Field:     request.SortField,
+				Direction: common.SortDirection(request.SortDirection),
+			},
+			&common.Paging{
+				Page:     request.Page,
+				PageSize: request.PageSize,
+			},
+		)
+		for _, v := range contributions {
+			out.Contributions = append(out.Contributions, v.TscriptContributionProto())
+		}
+		return err
+	}); err != nil {
+		return nil, ErrFromStore(err, "").Err()
+	}
+	return out, nil
+}
+
+//ListTscriptChunkContributions deprecated  use ListTscriptContributions
 func (s *SearchService) ListTscriptChunkContributions(ctx context.Context, request *api.ListTscriptChunkContributionsRequest) (*api.TscriptChunkContributionList, error) {
 
 	var list []*models.Contribution

@@ -1,7 +1,6 @@
 package bleve_query
 
 import (
-	"fmt"
 	"github.com/blevesearch/bleve/v2/mapping"
 	"github.com/blevesearch/bleve/v2/search/query"
 	"github.com/stretchr/testify/require"
@@ -17,6 +16,5 @@ func TestFilterToQuery(t *testing.T) {
 
 	str, err := query.DumpQuery(mapping.NewIndexMapping(), q)
 	require.NoError(t, err)
-
-	fmt.Println(str)
+	require.NotEmpty(t, str)
 }

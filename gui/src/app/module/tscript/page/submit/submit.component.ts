@@ -168,7 +168,7 @@ export class SubmitComponent implements OnInit, OnDestroy {
 
   setInitialTranscript(text: string) {
     this.initialTranscript = this.getBackup() ? this.getBackup() : text;
-    this.contentUpdated.next(this.initialTranscript);
+    this.contentUpdated.next(this.initialTranscript);]
     this.firstOffset = getFirstOffset(this.initialTranscript);
   }
 

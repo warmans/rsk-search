@@ -9,6 +9,8 @@ import (
 	"github.com/jmoiron/sqlx"
 	"github.com/lithammer/shortuuid/v3"
 	"github.com/pkg/errors"
+	"github.com/warmans/rsk-search/pkg/filter"
+	"github.com/warmans/rsk-search/pkg/filter/psql"
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/store/common"
 	"strings"
@@ -311,6 +313,80 @@ func (s *Store) UpdateContributionState(ctx context.Context, id string, state mo
 		id,
 	)
 	return err
+}
+
+func (s *Store) ListContribution(ctx context.Context, fil filter.Filter, sort *common.Sorting, page *common.Paging) ([]*models.Contribution, error) {
+
+	fieldMap := map[string]string{
+		"id":               "c.id",
+		"tscript_id":       "ch.tscript_id",
+		"tscript_chunk_id": "c.tscript_chunk_id",
+		"author_id":        "c.author_id",
+		"author_name":      "a.name",
+		"transcription":    "c.transcription",
+		"state":            "c.state",
+		"created_at":       "c.created_at",
+	}
+
+	var where string
+	var params []interface{}
+	if fil != nil {
+		var err error
+		where, params, err = psql.FilterToQuery(fil, fieldMap)
+		if err != nil {
+			return nil, err
+		}
+		where = fmt.Sprintf("WHERE %s", where)
+	}
+	order, err := sort.Stmnt(fieldMap)
+	if err != nil {
+		return nil, err
+	}
+
+	rows, err := s.tx.QueryxContext(
+		ctx,
+		fmt.Sprintf(`
+		SELECT 
+			c.id,
+			ch.tscript_id,
+			c.tscript_chunk_id,
+       		c.author_id, 
+       		COALESCE(a.name, 'unknown'), 
+       		c.transcription, 
+       		COALESCE(c.state, 'unknown'),
+       		c.created_at
+		FROM tscript_contribution c
+		LEFT JOIN tscript_chunk ch ON c.tscript_chunk_id = ch.id 
+		LEFT JOIN author a ON c.author_id = a.id
+		%s
+		%s
+		%s
+		`, where, order, page.Stmnt()),
+		params...,
+	)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	out := make([]*models.Contribution, 0)
+	for rows.Next() {
+		cur := &models.Contribution{Author: &models.ShortAuthor{}}
+		if err := rows.Scan(
+			&cur.ID,
+			&cur.TscriptID,
+			&cur.ChunkID,
+			&cur.Author.ID,
+			&cur.Author.Name,
+			&cur.Transcription,
+			&cur.State,
+			&cur.CreatedAt); err != nil {
+			return nil, err
+		}
+		out = append(out, cur)
+	}
+	return out, nil
+
 }
 
 func (s *Store) GetContribution(ctx context.Context, id string) (*models.Contribution, error) {

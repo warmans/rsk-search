@@ -160,12 +160,28 @@ type ContributionUpdate struct {
 
 type Contribution struct {
 	ID            string
+	TscriptID     string
 	ChunkID       string
 	Author        *ShortAuthor
 	Transcription string
 	State         ContributionState
 	StateComment  string
 	CreatedAt     time.Time
+}
+
+func (c *Contribution) TscriptContributionProto() *api.TscriptContribution {
+	if c == nil {
+		return nil
+	}
+	return &api.TscriptContribution{
+		Id:         c.ID,
+		TscriptId:  c.TscriptID,
+		ChunkId:    c.ChunkID,
+		Transcript: c.Transcription,
+		State:      c.State.Proto(),
+		Author:     c.Author.Proto(),
+		CreatedAt:  c.CreatedAt.Format(time.RFC3339),
+	}
 }
 
 func (c *Contribution) Proto() *api.ChunkContribution {
@@ -180,6 +196,7 @@ func (c *Contribution) Proto() *api.ChunkContribution {
 		Author:     c.Author.Proto(),
 	}
 }
+
 func (c *Contribution) ShortProto() *api.ShortChunkContribution {
 	if c == nil {
 		return nil

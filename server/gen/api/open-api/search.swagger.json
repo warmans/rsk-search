@@ -632,6 +632,63 @@
         ]
       }
     },
+    "/api/tscript/contrib": {
+      "get": {
+        "summary": "lists all contributions.",
+        "operationId": "SearchService_ListTscriptContributions",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rsksearchTscriptContributionList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortDirection",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      }
+    },
     "/api/tscript/stats": {
       "get": {
         "summary": "Get details about the current chunk backlog",
@@ -1395,6 +1452,43 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/rsksearchChunkContribution"
+          }
+        }
+      }
+    },
+    "rsksearchTscriptContribution": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "tscriptId": {
+          "type": "string"
+        },
+        "chunkId": {
+          "type": "string"
+        },
+        "transcript": {
+          "type": "string"
+        },
+        "state": {
+          "$ref": "#/definitions/rsksearchContributionState"
+        },
+        "author": {
+          "$ref": "#/definitions/rsksearchAuthor"
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      }
+    },
+    "rsksearchTscriptContributionList": {
+      "type": "object",
+      "properties": {
+        "contributions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rsksearchTscriptContribution"
           }
         }
       }

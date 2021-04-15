@@ -129,6 +129,17 @@ service SearchService {
     };
   }
 
+  rpc ListTscriptContributions(ListTscriptContributionsRequest) returns (TscriptContributionList) {
+    option (google.api.http) = {
+      get: "/api/tscript/contrib"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "lists all contributions."
+      tags: "search"
+    };
+  }
+
+
   // get all contributions from a single author
 
   rpc ListAuthorContributions(ListAuthorContributionsRequest) returns (ChunkContributionList) {
@@ -609,4 +620,26 @@ message ClaimedReward {
   string claim_currency = 4;
   string claim_description = 5;
   string claim_at = 6;
+}
+
+message ListTscriptContributionsRequest {
+  string filter = 1;
+  string sort_field = 2;
+  string sort_direction = 3;
+  int32 page = 4;
+  int32 page_size = 5;
+}
+
+message TscriptContributionList {
+  repeated TscriptContribution contributions = 1;
+}
+
+message TscriptContribution {
+  string id = 1;
+  string tscript_id = 2;
+  string chunk_id = 3;
+  string transcript = 4;
+  ContributionState state = 5;
+  Author author = 6;
+  string created_at = 7;
 }
