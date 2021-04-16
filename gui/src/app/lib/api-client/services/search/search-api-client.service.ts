@@ -250,28 +250,6 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceListAuthorContributions(
-    args: {
-      authorId: string,
-      page?: number,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchChunkContributionList> {
-    const path = `/api/tscript/author/${args.authorId}/contrib`;
-    const options: APIHttpOptions = {
-      ...this.options,
-      ...requestHttpOptions,
-    };
-
-    if ('page' in args) {
-      options.params = options.params.set('page', String(args.page));
-    }
-    return this.sendRequest<models.RsksearchChunkContributionList>('GET', path, options);
-  }
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
   searchServiceCreateChunkContribution(
     args: {
       chunkId: string,
@@ -387,6 +365,43 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  searchServiceListTscriptContributions(
+    args: {
+      filter?: string,
+      sortField?: string,
+      sortDirection?: string,
+      page?: number,
+      pageSize?: number,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RsksearchTscriptContributionList> {
+    const path = `/api/tscript/contrib`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    if ('filter' in args) {
+      options.params = options.params.set('filter', String(args.filter));
+    }
+    if ('sortField' in args) {
+      options.params = options.params.set('sortField', String(args.sortField));
+    }
+    if ('sortDirection' in args) {
+      options.params = options.params.set('sortDirection', String(args.sortDirection));
+    }
+    if ('page' in args) {
+      options.params = options.params.set('page', String(args.page));
+    }
+    if ('pageSize' in args) {
+      options.params = options.params.set('pageSize', String(args.pageSize));
+    }
+    return this.sendRequest<models.RsksearchTscriptContributionList>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   searchServiceGetTscriptChunkStats(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RsksearchChunkStats> {
@@ -397,28 +412,6 @@ export class SearchAPIClient implements SearchAPIClientInterface {
     };
 
     return this.sendRequest<models.RsksearchChunkStats>('GET', path, options);
-  }
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  searchServiceListTscriptChunkContributions(
-    args: {
-      tscriptId: string,
-      page?: number,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchTscriptChunkContributionList> {
-    const path = `/api/tscript/${args.tscriptId}/contrib`;
-    const options: APIHttpOptions = {
-      ...this.options,
-      ...requestHttpOptions,
-    };
-
-    if ('page' in args) {
-      options.params = options.params.set('page', String(args.page));
-    }
-    return this.sendRequest<models.RsksearchTscriptChunkContributionList>('GET', path, options);
   }
 
   /**

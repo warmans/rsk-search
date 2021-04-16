@@ -9,6 +9,7 @@ import (
 	"github.com/lithammer/shortuuid/v3"
 	"github.com/spf13/cobra"
 	"github.com/warmans/rsk-search/pkg/data"
+	"github.com/warmans/rsk-search/pkg/filter"
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/store/common"
 	"github.com/warmans/rsk-search/pkg/store/rw"
@@ -83,11 +84,19 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 			episodeOnDisk.Synopsis = nil
 			episodeOnDisk.Transcript = nil
 
-			allChunks, err := s.ListTscriptChunks(ctx, v.ID)
+			allChunks, err := s.ListChunks(ctx, &common.QueryModifier{Filter: filter.Eq("tscript_id", filter.String(v.ID))})
 			if err != nil {
 				return err
 			}
-			approved, err := s.ListApprovedTscriptContributions(ctx, v.ID, 100, 0)
+			approved, err := s.ListContributions(
+				ctx,
+				&common.QueryModifier{
+					Filter: filter.And(
+						filter.Eq("tscript_id", filter.String(v.ID)),
+						filter.Eq("state", filter.String("approved")),
+					),
+				},
+			)
 			if err != nil {
 				return err
 			}
@@ -157,7 +166,7 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 			}
 			contributors := []string{}
 			for c := range uniqueContributors {
-				contributors  = append(contributors, c)
+				contributors = append(contributors, c)
 			}
 			sort.Strings(contributors)
 			episodeOnDisk.Contributors = contributors

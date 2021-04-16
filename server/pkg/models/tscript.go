@@ -108,19 +108,20 @@ func (c *TscriptStats) Proto() *api.TscriptStats {
 }
 
 type Chunk struct {
-	ID          string `json:"id"`
-	Raw         string `json:"raw"`
-	StartSecond int64  `json:"start_second"`
-	EndSecond   int64  `json:"end_second"`
+	ID          string `json:"id" db:"id"`
+	TscriptID   string `json:"tscript_id" db:"tscript_id"`
+	Raw         string `json:"raw" db:"raw"`
+	StartSecond int64  `json:"start_second" db:"start_second"`
+	EndSecond   int64  `json:"end_second" db:"end_second"`
 }
 
-func (c *Chunk) Proto(tscriptID string, contribCount int32) *api.TscriptChunk {
+func (c *Chunk) Proto(contribCount int32) *api.TscriptChunk {
 	if c == nil {
 		return nil
 	}
 	return &api.TscriptChunk{
 		Id:               c.ID,
-		TscriptId:        tscriptID,
+		TscriptId:        c.TscriptID,
 		Raw:              c.Raw,
 		NumContributions: contribCount,
 	}

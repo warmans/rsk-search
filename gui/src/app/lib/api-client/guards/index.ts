@@ -92,17 +92,6 @@ export function isRsksearchChunkContribution(arg: any): arg is models.RsksearchC
   );
   }
 
-export function isRsksearchChunkContributionList(arg: any): arg is models.RsksearchChunkContributionList {
-  return (
-  arg != null &&
-  typeof arg === 'object' &&
-    // contributions?: RsksearchShortChunkContribution[]
-    ( typeof arg.contributions === 'undefined' || (Array.isArray(arg.contributions) && arg.contributions.every((item: unknown) => isRsksearchShortChunkContribution(item))) ) &&
-
-  true
-  );
-  }
-
 export function isRsksearchChunkStates(arg: any): arg is models.RsksearchChunkStates {
   return (
   arg != null &&
@@ -458,23 +447,6 @@ export function isRsksearchReward(arg: any): arg is models.RsksearchReward {
   );
   }
 
-export function isRsksearchShortChunkContribution(arg: any): arg is models.RsksearchShortChunkContribution {
-  return (
-  arg != null &&
-  typeof arg === 'object' &&
-    // authorId?: string
-    ( typeof arg.authorId === 'undefined' || typeof arg.authorId === 'string' ) &&
-    // chunkId?: string
-    ( typeof arg.chunkId === 'undefined' || typeof arg.chunkId === 'string' ) &&
-    // id?: string
-    ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
-    // state?: RsksearchContributionState
-    ( typeof arg.state === 'undefined' || isRsksearchContributionState(arg.state) ) &&
-
-  true
-  );
-  }
-
 export function isRsksearchShortEpisode(arg: any): arg is models.RsksearchShortEpisode {
   return (
   arg != null &&
@@ -556,12 +528,35 @@ export function isRsksearchTscriptChunk(arg: any): arg is models.RsksearchTscrip
   );
   }
 
-export function isRsksearchTscriptChunkContributionList(arg: any): arg is models.RsksearchTscriptChunkContributionList {
+export function isRsksearchTscriptContribution(arg: any): arg is models.RsksearchTscriptContribution {
   return (
   arg != null &&
   typeof arg === 'object' &&
-    // contributions?: RsksearchChunkContribution[]
-    ( typeof arg.contributions === 'undefined' || (Array.isArray(arg.contributions) && arg.contributions.every((item: unknown) => isRsksearchChunkContribution(item))) ) &&
+    // author?: RsksearchAuthor
+    ( typeof arg.author === 'undefined' || isRsksearchAuthor(arg.author) ) &&
+    // chunkId?: string
+    ( typeof arg.chunkId === 'undefined' || typeof arg.chunkId === 'string' ) &&
+    // createdAt?: string
+    ( typeof arg.createdAt === 'undefined' || typeof arg.createdAt === 'string' ) &&
+    // id?: string
+    ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
+    // state?: RsksearchContributionState
+    ( typeof arg.state === 'undefined' || isRsksearchContributionState(arg.state) ) &&
+    // transcript?: string
+    ( typeof arg.transcript === 'undefined' || typeof arg.transcript === 'string' ) &&
+    // tscriptId?: string
+    ( typeof arg.tscriptId === 'undefined' || typeof arg.tscriptId === 'string' ) &&
+
+  true
+  );
+  }
+
+export function isRsksearchTscriptContributionList(arg: any): arg is models.RsksearchTscriptContributionList {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // contributions?: RsksearchTscriptContribution[]
+    ( typeof arg.contributions === 'undefined' || (Array.isArray(arg.contributions) && arg.contributions.every((item: unknown) => isRsksearchTscriptContribution(item))) ) &&
 
   true
   );

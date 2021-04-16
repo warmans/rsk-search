@@ -6,14 +6,11 @@ import (
 	"context"
 	"fmt"
 	"github.com/warmans/rsk-search/gen/api"
-	"github.com/warmans/rsk-search/pkg/filter"
 	"github.com/warmans/rsk-search/pkg/jwt"
 	"github.com/warmans/rsk-search/pkg/models"
-	"github.com/warmans/rsk-search/pkg/store/common"
 	"github.com/warmans/rsk-search/pkg/store/rw"
 	"github.com/warmans/rsk-search/pkg/tscript"
 	"google.golang.org/protobuf/types/known/emptypb"
-	"strings"
 )
 
 func (s *SearchService) ListTscripts(ctx context.Context, request *api.ListTscriptsRequest) (*api.TscriptList, error) {
@@ -74,12 +71,11 @@ func (s *SearchService) GetTscriptTimeline(ctx context.Context, request *api.Get
 
 func (s *SearchService) GetTscriptChunk(ctx context.Context, request *api.GetTscriptChunkRequest) (*api.TscriptChunk, error) {
 	var chunk *models.Chunk
-	var tscriptID string
 	var contributionCount int32
 
 	err := s.persistentDB.WithStore(func(s *rw.Store) error {
 		var err error
-		chunk, tscriptID, err = s.GetChunk(ctx, request.Id)
+		chunk, err = s.GetChunk(ctx, request.Id)
 		if err != nil {
 			return err
 		}
@@ -95,7 +91,7 @@ func (s *SearchService) GetTscriptChunk(ctx context.Context, request *api.GetTsc
 	if err != nil {
 		return nil, ErrFromStore(err, request.Id).Err()
 	}
-	return chunk.Proto(tscriptID, contributionCount), nil
+	return chunk.Proto(contributionCount), nil
 }
 
 func (s *SearchService) CreateChunkContribution(ctx context.Context, request *api.CreateChunkContributionRequest) (*api.ChunkContribution, error) {
@@ -265,125 +261,22 @@ func (s *SearchService) DiscardDraftContribution(ctx context.Context, request *a
 	return &emptypb.Empty{}, nil
 }
 
-func (s *SearchService) validateContributionStateUpdate(claims *jwt.Claims, currentState *models.Contribution, requestedState api.ContributionState) error {
-	if !claims.Approver {
-		if currentState.Author.ID != claims.AuthorID {
-			return ErrPermissionDenied("you are not the author of this contribution").Err()
-		}
-		if requestedState == api.ContributionState_STATE_APPROVED || requestedState == api.ContributionState_STATE_REJECTED {
-			return ErrPermissionDenied("you are not an approver").Err()
-		}
-	}
-	// if the contribution has been rejected allow the author to return it to pending.
-	if currentState.State == models.ContributionStateRejected {
-		if requestedState != api.ContributionState_STATE_PENDING {
-			return ErrFailedPrecondition(fmt.Sprintf("Only rejected contributions can be reverted to pending. Actual state was: %s (requested: %s)", currentState.State, requestedState)).Err()
-		}
-	} else {
-		/// otherwise only allow it to be updated if it's in the pending or approval requested state.
-		if currentState.State != models.ContributionStatePending && currentState.State != models.ContributionStateApprovalRequested {
-			return ErrFailedPrecondition(fmt.Sprintf("Only pending contributions can be edited. Actual state was: %s", currentState.State)).Err()
-		}
-	}
-	return nil
-}
-
-func (s *SearchService) createContributionActivity(tx *rw.Store, ctx context.Context, claims *jwt.Claims, contrib *models.Contribution, comment string) error {
-	suffix := "."
-	if comment != "" {
-		suffix = fmt.Sprintf(" with comment '%s'.", comment)
-	}
-	switch contrib.State {
-	case models.ContributionStateApprovalRequested:
-		if err := tx.CreateTscriptTimelineEvent(ctx, contrib.ChunkID, claims.Identity.Name, fmt.Sprintf("Submitted contribution %s for approval%s", contrib.ID, suffix)); err != nil {
-			return err
-		}
-	case models.ContributionStateApproved:
-		if err := tx.CreateTscriptTimelineEvent(ctx, contrib.ChunkID, claims.Identity.Name, fmt.Sprintf("Approved contribution %s%s", contrib.ID, suffix)); err != nil {
-			return err
-		}
-	case models.ContributionStateRejected:
-		if err := tx.CreateTscriptTimelineEvent(ctx, contrib.ChunkID, claims.Identity.Name, fmt.Sprintf("Rejected contribution %s%s", contrib.ID, suffix)); err != nil {
-			return err
-		}
-	}
-	return nil
-}
-
 func (s *SearchService) ListTscriptContributions(ctx context.Context, request *api.ListTscriptContributionsRequest) (*api.TscriptContributionList, error) {
-
-	var fil filter.Filter
-	if strings.TrimSpace(request.Filter) != "" {
-		var err error
-		fil, err = filter.Parse(request.Filter)
-		if err != nil {
-			return nil, ErrInvalidRequestField("filter", err.Error()).Err()
-		}
+	qm, err := NewQueryModifiers(request)
+	if err != nil {
+		return nil, err
 	}
 	out := &api.TscriptContributionList{
 		Contributions: make([]*api.TscriptContribution, 0),
 	}
 	if err := s.persistentDB.WithStore(func(store *rw.Store) error {
-		contributions, err := store.ListContribution(
-			ctx,
-			fil,
-			&common.Sorting{
-				Field:     request.SortField,
-				Direction: common.SortDirection(request.SortDirection),
-			},
-			&common.Paging{
-				Page:     request.Page,
-				PageSize: request.PageSize,
-			},
-		)
+		contributions, err := store.ListContributions(ctx, qm)
 		for _, v := range contributions {
 			out.Contributions = append(out.Contributions, v.TscriptContributionProto())
 		}
 		return err
 	}); err != nil {
 		return nil, ErrFromStore(err, "").Err()
-	}
-	return out, nil
-}
-
-//ListTscriptChunkContributions deprecated  use ListTscriptContributions
-func (s *SearchService) ListTscriptChunkContributions(ctx context.Context, request *api.ListTscriptChunkContributionsRequest) (*api.TscriptChunkContributionList, error) {
-
-	var list []*models.Contribution
-
-	err := s.persistentDB.WithStore(func(s *rw.Store) error {
-		var err error
-		list, err = s.ListNonPendingTscriptContributions(ctx, request.TscriptId, request.Page)
-		return err
-	})
-	if err != nil {
-		return nil, ErrFromStore(err, request.TscriptId).Err()
-	}
-	out := &api.TscriptChunkContributionList{
-		Contributions: make([]*api.ChunkContribution, len(list)),
-	}
-	for k, v := range list {
-		out.Contributions[k] = v.Proto()
-	}
-	return out, nil
-}
-
-func (s *SearchService) ListAuthorContributions(ctx context.Context, request *api.ListAuthorContributionsRequest) (*api.ChunkContributionList, error) {
-
-	var list []*models.Contribution
-	err := s.persistentDB.WithStore(func(s *rw.Store) error {
-		var err error
-		list, err = s.ListAuthorContributions(ctx, request.AuthorId, request.Page)
-		return err
-	})
-	if err != nil {
-		return nil, ErrFromStore(err, request.AuthorId).Err()
-	}
-	out := &api.ChunkContributionList{
-		Contributions: make([]*api.ShortChunkContribution, len(list)),
-	}
-	for k, v := range list {
-		out.Contributions[k] = v.ShortProto()
 	}
 	return out, nil
 }
@@ -431,7 +324,47 @@ func (s *SearchService) GetChunkContribution(ctx context.Context, request *api.G
 	return contrib.Proto(), nil
 }
 
-func (s *SearchService) SubmitDialogCorrection(ctx context.Context, request *api.SubmitDialogCorrectionRequest) (*emptypb.Empty, error) {
-	panic("implement me")
+func (s *SearchService) validateContributionStateUpdate(claims *jwt.Claims, currentState *models.Contribution, requestedState api.ContributionState) error {
+	if !claims.Approver {
+		if currentState.Author.ID != claims.AuthorID {
+			return ErrPermissionDenied("you are not the author of this contribution").Err()
+		}
+		if requestedState == api.ContributionState_STATE_APPROVED || requestedState == api.ContributionState_STATE_REJECTED {
+			return ErrPermissionDenied("you are not an approver").Err()
+		}
+	}
+	// if the contribution has been rejected allow the author to return it to pending.
+	if currentState.State == models.ContributionStateRejected {
+		if requestedState != api.ContributionState_STATE_PENDING {
+			return ErrFailedPrecondition(fmt.Sprintf("Only rejected contributions can be reverted to pending. Actual state was: %s (requested: %s)", currentState.State, requestedState)).Err()
+		}
+	} else {
+		/// otherwise only allow it to be updated if it's in the pending or approval requested state.
+		if currentState.State != models.ContributionStatePending && currentState.State != models.ContributionStateApprovalRequested {
+			return ErrFailedPrecondition(fmt.Sprintf("Only pending contributions can be edited. Actual state was: %s", currentState.State)).Err()
+		}
+	}
+	return nil
+}
 
+func (s *SearchService) createContributionActivity(tx *rw.Store, ctx context.Context, claims *jwt.Claims, contrib *models.Contribution, comment string) error {
+	suffix := "."
+	if comment != "" {
+		suffix = fmt.Sprintf(" with comment '%s'.", comment)
+	}
+	switch contrib.State {
+	case models.ContributionStateApprovalRequested:
+		if err := tx.CreateTscriptTimelineEvent(ctx, contrib.ChunkID, claims.Identity.Name, fmt.Sprintf("Submitted contribution %s for approval%s", contrib.ID, suffix)); err != nil {
+			return err
+		}
+	case models.ContributionStateApproved:
+		if err := tx.CreateTscriptTimelineEvent(ctx, contrib.ChunkID, claims.Identity.Name, fmt.Sprintf("Approved contribution %s%s", contrib.ID, suffix)); err != nil {
+			return err
+		}
+	case models.ContributionStateRejected:
+		if err := tx.CreateTscriptTimelineEvent(ctx, contrib.ChunkID, claims.Identity.Name, fmt.Sprintf("Rejected contribution %s%s", contrib.ID, suffix)); err != nil {
+			return err
+		}
+	}
+	return nil
 }

@@ -75,6 +75,8 @@ service SearchService {
     };
   }
 
+  // tscript is an incomplete transcription
+
   rpc ListTscripts(ListTscriptsRequest) returns (TscriptList) {
     option (google.api.http) = {
       get: "/api/tscript"
@@ -85,7 +87,16 @@ service SearchService {
     };
   }
 
-  // tscript is an incomplete transcription
+  rpc ListTscriptContributions(ListTscriptContributionsRequest) returns (TscriptContributionList) {
+    option (google.api.http) = {
+      get: "/api/tscript/contrib"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "lists contributions"
+      tags: "search"
+    };
+  }
+
   // chunks are ~3 min sections of the transcription
   rpc GetTscriptChunkStats(google.protobuf.Empty) returns (ChunkStats) {
     option (google.api.http) = {
@@ -93,16 +104,6 @@ service SearchService {
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       summary: "Get details about the current chunk backlog"
-      tags: "search"
-    };
-  }
-
-  rpc GetTscriptChunk(GetTscriptChunkRequest) returns (TscriptChunk) {
-    option (google.api.http) = {
-      get: "/api/tscript/chunk/{id}"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      summary: "Gets a specific transcript chunk to be completed."
       tags: "search"
     };
   }
@@ -117,37 +118,12 @@ service SearchService {
     };
   }
 
-  // get all contributions for a single episode so they may be approved
-
-  rpc ListTscriptChunkContributions(ListTscriptChunkContributionsRequest) returns (TscriptChunkContributionList) {
+  rpc GetTscriptChunk(GetTscriptChunkRequest) returns (TscriptChunk) {
     option (google.api.http) = {
-      get: "/api/tscript/{tscript_id}/contrib"
+      get: "/api/tscript/chunk/{id}"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      summary: "lists contributions for a single episode"
-      tags: "search"
-    };
-  }
-
-  rpc ListTscriptContributions(ListTscriptContributionsRequest) returns (TscriptContributionList) {
-    option (google.api.http) = {
-      get: "/api/tscript/contrib"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      summary: "lists all contributions."
-      tags: "search"
-    };
-  }
-
-
-  // get all contributions from a single author
-
-  rpc ListAuthorContributions(ListAuthorContributionsRequest) returns (ChunkContributionList) {
-    option (google.api.http) = {
-      get: "/api/tscript/author/{author_id}/contrib"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      summary: "lists contributions form the given author_id"
+      summary: "Gets a specific transcript chunk to be completed."
       tags: "search"
     };
   }
@@ -211,19 +187,6 @@ service SearchService {
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       summary: "request the contribution state be changed."
-      tags: "search"
-    };
-  }
-
-  // single line corrections
-
-  rpc SubmitDialogCorrection(SubmitDialogCorrectionRequest) returns (google.protobuf.Empty) {
-    option (google.api.http) = {
-      post: "/api/episode/{episode_id}/dialog/{id}",
-      body: "*",
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      summary: "Submit a transcript that has been completed."
       tags: "search"
     };
   }
@@ -430,11 +393,6 @@ message CreateChunkContributionRequest {
   string transcript = 2;
 }
 
-message ListAuthorContributionsRequest {
-  string author_id = 1;
-  int32 page = 2;
-}
-
 enum ContributionState {
   STATE_UNDEFINED = 0;
   STATE_REQUEST_APPROVAL = 1;
@@ -503,13 +461,9 @@ message GetChunkContributionRequest{
 }
 
 message ListTscriptChunkContributionsRequest {
-  string tscript_id = 1;
   int32 page = 2;
 }
 
-message TscriptChunkContributionList {
-  repeated ChunkContribution contributions = 1;
-}
 message ListTscriptsRequest {
 }
 

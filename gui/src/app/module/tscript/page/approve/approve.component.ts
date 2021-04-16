@@ -1,15 +1,17 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
 import {
-  RsksearchChunkContribution,
   RsksearchContributionState,
-  RsksearchTscriptChunkContributionList
+  RsksearchTscriptContribution,
+  RsksearchTscriptContributionList,
 } from '../../../../lib/api-client/models';
 import { takeUntil } from 'rxjs/operators';
 import { ActivatedRoute, Data } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { parseTranscript, Tscript } from '../../../shared/lib/tscript';
 import { SessionService } from '../../../core/service/session/session.service';
+import { Eq } from '../../../../lib/filter-dsl/filter';
+import { Str } from '../../../../lib/filter-dsl/value';
 
 @Component({
   selector: 'app-approve',
@@ -20,9 +22,9 @@ export class ApproveComponent implements OnInit {
 
   tscriptID: string;
 
-  groupedContributions: { [index: string]: RsksearchChunkContribution[] } = {};
+  groupedContributions: { [index: string]: RsksearchTscriptContribution[] } = {};
 
-  approvalList: RsksearchChunkContribution[] = [];
+  approvalList: RsksearchTscriptContribution[] = [];
 
   states = RsksearchContributionState;
 
@@ -54,10 +56,9 @@ export class ApproveComponent implements OnInit {
 
   loadData() {
     this.loading.push(true);
-    this.apiClient.searchServiceListTscriptChunkContributions({
-      tscriptId: this.tscriptID,
-      page: 0
-    }).pipe(takeUntil(this.destroy$)).subscribe((val: RsksearchTscriptChunkContributionList) => {
+    this.apiClient.searchServiceListTscriptContributions({
+      filter: Eq('tscript_id', Str(this.tscriptID)).print(),
+    }).pipe(takeUntil(this.destroy$)).subscribe((val: RsksearchTscriptContributionList) => {
       val.contributions.forEach((c) => {
         if (this.groupedContributions[c.chunkId]) {
           this.groupedContributions[c.chunkId].push(c);
@@ -70,9 +71,9 @@ export class ApproveComponent implements OnInit {
   }
 
   updateApprovalList() {
-    let approvalMap: { [index: string]: RsksearchChunkContribution } = {};
+    let approvalMap: { [index: string]: RsksearchTscriptContribution } = {};
     for (let chunkId in this.groupedContributions) {
-      this.groupedContributions[chunkId].forEach((co: RsksearchChunkContribution) => {
+      this.groupedContributions[chunkId].forEach((co: RsksearchTscriptContribution) => {
         if (!approvalMap[chunkId]) {
           approvalMap[chunkId] = co;
           return;
@@ -99,7 +100,7 @@ export class ApproveComponent implements OnInit {
     return parseTranscript(raw);
   }
 
-  updateState(co: RsksearchChunkContribution, state: RsksearchContributionState) {
+  updateState(co: RsksearchTscriptContribution, state: RsksearchContributionState) {
     this.loading.push(true);
     this.apiClient.searchServiceRequestChunkContributionState({
       chunkId: co.chunkId,
@@ -112,7 +113,7 @@ export class ApproveComponent implements OnInit {
     }).subscribe((result) => {
       co.state = result.state;
       this.loadData();
-    }).add(() => this.loading.pop() );
+    }).add(() => this.loading.pop());
   }
 
   selectChunkContribution(oldID: string, ev: any) {

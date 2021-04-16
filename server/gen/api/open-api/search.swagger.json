@@ -65,51 +65,6 @@
         ]
       }
     },
-    "/api/episode/{episodeId}/dialog/{id}": {
-      "post": {
-        "summary": "Submit a transcript that has been completed.",
-        "operationId": "SearchService_SubmitDialogCorrection",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "properties": {}
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "episodeId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/rsksearchSubmitDialogCorrectionRequest"
-            }
-          }
-        ],
-        "tags": [
-          "search"
-        ]
-      }
-    },
     "/api/episode/{id}": {
       "get": {
         "summary": "Fetch the full data for an episode including the transcript",
@@ -364,44 +319,6 @@
         ]
       }
     },
-    "/api/tscript/author/{authorId}/contrib": {
-      "get": {
-        "summary": "lists contributions form the given author_id",
-        "operationId": "SearchService_ListAuthorContributions",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/rsksearchChunkContributionList"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "authorId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          }
-        ],
-        "tags": [
-          "search"
-        ]
-      }
-    },
     "/api/tscript/chunk/{chunkId}/contrib": {
       "patch": {
         "summary": "Submit a transcript new chunk that has been completed.",
@@ -634,7 +551,7 @@
     },
     "/api/tscript/contrib": {
       "get": {
-        "summary": "lists all contributions.",
+        "summary": "lists contributions",
         "operationId": "SearchService_ListTscriptContributions",
         "responses": {
           "200": {
@@ -707,44 +624,6 @@
             }
           }
         },
-        "tags": [
-          "search"
-        ]
-      }
-    },
-    "/api/tscript/{tscriptId}/contrib": {
-      "get": {
-        "summary": "lists contributions for a single episode",
-        "operationId": "SearchService_ListTscriptChunkContributions",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/rsksearchTscriptChunkContributionList"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "tscriptId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          }
-        ],
         "tags": [
           "search"
         ]
@@ -933,17 +812,6 @@
         },
         "author": {
           "$ref": "#/definitions/rsksearchAuthor"
-        }
-      }
-    },
-    "rsksearchChunkContributionList": {
-      "type": "object",
-      "properties": {
-        "contributions": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/rsksearchShortChunkContribution"
-          }
         }
       }
     },
@@ -1341,23 +1209,6 @@
         }
       }
     },
-    "rsksearchShortChunkContribution": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "chunkId": {
-          "type": "string"
-        },
-        "authorId": {
-          "type": "string"
-        },
-        "state": {
-          "$ref": "#/definitions/rsksearchContributionState"
-        }
-      }
-    },
     "rsksearchShortEpisode": {
       "type": "object",
       "properties": {
@@ -1377,20 +1228,6 @@
         },
         "transcriptAvailable": {
           "type": "boolean"
-        }
-      }
-    },
-    "rsksearchSubmitDialogCorrectionRequest": {
-      "type": "object",
-      "properties": {
-        "episodeId": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
-        },
-        "correction": {
-          "type": "string"
         }
       }
     },
@@ -1442,17 +1279,6 @@
         "numContributions": {
           "type": "integer",
           "format": "int32"
-        }
-      }
-    },
-    "rsksearchTscriptChunkContributionList": {
-      "type": "object",
-      "properties": {
-        "contributions": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/rsksearchChunkContribution"
-          }
         }
       }
     },

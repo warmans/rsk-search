@@ -10,7 +10,6 @@ import (
 	"github.com/lithammer/shortuuid/v3"
 	"github.com/pkg/errors"
 	"github.com/warmans/rsk-search/pkg/filter"
-	"github.com/warmans/rsk-search/pkg/filter/psql"
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/store/common"
 	"strings"
@@ -152,49 +151,43 @@ func (s *Store) InsertOrIgnoreTscript(ctx context.Context, tscript *models.Tscri
 	return err
 }
 
-func (s *Store) GetChunk(ctx context.Context, chunkId string) (*models.Chunk, string, error) {
-	ch := &models.Chunk{}
-	var tscriptID string
-
-	err := s.tx.
-		QueryRowxContext(ctx, "SELECT id, tscript_id, raw, start_second, end_second FROM tscript_chunk WHERE id = $1", chunkId).
-		Scan(&ch.ID, &tscriptID, &ch.Raw, &ch.StartSecond, &ch.EndSecond)
-
-	if err != nil {
-		if err == sql.ErrNoRows {
-			return nil, "", nil
-		}
-		return nil, "", err
-	}
-	return ch, tscriptID, s.UpdateChunkActivity(ctx, ch.ID, ChunkActivityAccessed)
-}
-
-func (s *Store) ListChunks(ctx context.Context, limit int32) ([]*models.Chunk, error) {
-
-	rows, err := s.tx.QueryxContext(ctx, fmt.Sprintf(`SELECT id, raw, start_second, end_second FROM tscript_chunk LIMIT %d`, limit))
+func (s *Store) GetChunk(ctx context.Context, chunkId string) (*models.Chunk, error) {
+	ch, err := s.ListChunks(ctx, &common.QueryModifier{
+		Filter: filter.Eq("id", filter.String(chunkId)),
+	})
 	if err != nil {
 		return nil, err
 	}
-	chunks := []*models.Chunk{}
-	for rows.Next() {
-		ch := &models.Chunk{}
-		if err := rows.Scan(&ch.ID, &ch.Raw, &ch.StartSecond, &ch.EndSecond); err != nil {
-			return nil, err
-		}
-		chunks = append(chunks, ch)
+	if len(ch) == 0 {
+		return nil, sql.ErrNoRows
 	}
-	return chunks, nil
+	return ch[0], s.UpdateChunkActivity(ctx, ch[0].ID, ChunkActivityAccessed)
 }
 
-func (s *Store) ListTscriptChunks(ctx context.Context, tscriptID string) ([]*models.Chunk, error) {
-	rows, err := s.tx.QueryxContext(ctx, fmt.Sprintf(`SELECT id, raw, start_second, end_second FROM tscript_chunk WHERE tscript_id=$1`), tscriptID)
+func (s *Store) ListChunks(ctx context.Context, q *common.QueryModifier) ([]*models.Chunk, error) {
+
+	fieldMap := map[string]string{
+		"id":           "id",
+		"tscript_id":   "tscript_id",
+		"start_second": "start_second",
+		"end_second":   "end_second",
+	}
+
+	where, params, order, paging, err := q.ToSQL(fieldMap)
 	if err != nil {
 		return nil, err
 	}
-	chunks := []*models.Chunk{}
+	rows, err := s.tx.QueryxContext(
+		ctx,
+		fmt.Sprintf(`SELECT id, tscript_id, raw, start_second, end_second FROM tscript_chunk %s %s %s`, where, order, paging),
+		params...)
+	if err != nil {
+		return nil, err
+	}
+	chunks := make([]*models.Chunk, 0)
 	for rows.Next() {
 		ch := &models.Chunk{}
-		if err := rows.Scan(&ch.ID, &ch.Raw, &ch.StartSecond, &ch.EndSecond); err != nil {
+		if err := rows.StructScan(ch); err != nil {
 			return nil, err
 		}
 		chunks = append(chunks, ch)
@@ -315,7 +308,7 @@ func (s *Store) UpdateContributionState(ctx context.Context, id string, state mo
 	return err
 }
 
-func (s *Store) ListContribution(ctx context.Context, fil filter.Filter, sort *common.Sorting, page *common.Paging) ([]*models.Contribution, error) {
+func (s *Store) ListContributions(ctx context.Context, q *common.QueryModifier) ([]*models.Contribution, error) {
 
 	fieldMap := map[string]string{
 		"id":               "c.id",
@@ -328,17 +321,7 @@ func (s *Store) ListContribution(ctx context.Context, fil filter.Filter, sort *c
 		"created_at":       "c.created_at",
 	}
 
-	var where string
-	var params []interface{}
-	if fil != nil {
-		var err error
-		where, params, err = psql.FilterToQuery(fil, fieldMap)
-		if err != nil {
-			return nil, err
-		}
-		where = fmt.Sprintf("WHERE %s", where)
-	}
-	order, err := sort.Stmnt(fieldMap)
+	where, params, order, paging, err := q.ToSQL(fieldMap)
 	if err != nil {
 		return nil, err
 	}
@@ -361,7 +344,7 @@ func (s *Store) ListContribution(ctx context.Context, fil filter.Filter, sort *c
 		%s
 		%s
 		%s
-		`, where, order, page.Stmnt()),
+		`, where, order, paging),
 		params...,
 	)
 	if err != nil {
@@ -489,68 +472,6 @@ func (s *Store) AuthorLeaderboard(ctx context.Context) (*models.AuthorLeaderboar
 	}
 
 	return &models.AuthorLeaderboard{Authors: authors}, nil
-}
-
-func (s *Store) ListAuthorContributions(ctx context.Context, authorName string, page int32) ([]*models.Contribution, error) {
-	return s.listContributions(
-		ctx,
-		50,
-		page,
-		"co.author_id = $1",
-		[]interface{}{authorName},
-		"co.created_at ASC",
-	)
-}
-
-func (s *Store) ListApprovedTscriptContributions(ctx context.Context, tscriptID string, numPerPage int32, page int32) ([]*models.Contribution, error) {
-	return s.listContributions(
-		ctx,
-		numPerPage,
-		page,
-		"co.state = $1 and ch.tscript_id = $2",
-		[]interface{}{models.ContributionStateApproved, tscriptID},
-		"ch.start_second ASC",
-	)
-}
-
-func (s *Store) listContributions(ctx context.Context, numPerPage int32, page int32, where string, params []interface{}, order string) ([]*models.Contribution, error) {
-	out := make([]*models.Contribution, 0)
-
-	if where != "" {
-		where = fmt.Sprintf("WHERE %s", where)
-	}
-
-	rows, err := s.tx.QueryxContext(
-		ctx,
-		fmt.Sprintf(`
-			SELECT 
-				COALESCE(co.id, ''), 
-				COALESCE(co.author_id, ''),
-				COALESCE(a.name, ''),
-				ch.id, 
-				COALESCE(co.transcription, ''), 
-				COALESCE(co.state, 'unknown') 
-			FROM tscript_chunk ch 
-			LEFT JOIN tscript_contribution co ON ch.id = co.tscript_chunk_id
-			LEFT JOIN author a ON co.author_id = a.id
-			%s 
-			ORDER BY %s
-			LIMIT %d OFFSET %d`, where, order, numPerPage, page),
-		params...,
-	)
-	if err != nil {
-		return nil, err
-	}
-	defer rows.Close()
-
-	for rows.Next() {
-		cur := &models.Contribution{Author: &models.ShortAuthor{}}
-		if err := rows.Scan(&cur.ID, &cur.Author.ID, &cur.Author.Name, &cur.ChunkID, &cur.Transcription, &cur.State); err != nil {
-			return nil, err
-		}
-		out = append(out, cur)
-	}
-	return out, nil
 }
 
 func (s *Store) UpdateChunkActivity(ctx context.Context, id string, activity ChunkActivity) error {

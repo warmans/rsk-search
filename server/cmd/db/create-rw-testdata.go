@@ -100,7 +100,7 @@ var chunks []*models.Chunk
 
 func randomChunk(s *rw.Store) *models.Chunk {
 	if chunks == nil {
-		ch, err := s.ListChunks(context.Background(), 30)
+		ch, err := s.ListChunks(context.Background(), common.Q(common.WithPaging(25, 0)))
 		if err != nil {
 			panic(err)
 		}

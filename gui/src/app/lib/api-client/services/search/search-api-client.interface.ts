@@ -112,17 +112,6 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceListAuthorContributions(
-    args: {
-      authorId: string,
-      page?: number,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchChunkContributionList>;
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
   searchServiceCreateChunkContribution(
     args: {
       chunkId: string,
@@ -190,20 +179,23 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceGetTscriptChunkStats(
+  searchServiceListTscriptContributions(
+    args: {
+      filter?: string,
+      sortField?: string,
+      sortDirection?: string,
+      page?: number,
+      pageSize?: number,
+    },
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchChunkStats>;
+  ): Observable<models.RsksearchTscriptContributionList>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceListTscriptChunkContributions(
-    args: {
-      tscriptId: string,
-      page?: number,
-    },
+  searchServiceGetTscriptChunkStats(
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchTscriptChunkContributionList>;
+  ): Observable<models.RsksearchChunkStats>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.

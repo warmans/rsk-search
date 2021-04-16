@@ -3,12 +3,14 @@ import { SearchAPIClient } from '../../../../lib/api-client/services/search';
 import { Claims, SessionService } from '../../../core/service/session/session.service';
 import { takeUntil } from 'rxjs/operators';
 import {
-  RsksearchChunkContribution,
-  RsksearchChunkContributionList,
   RsksearchClaimedReward,
-  RsksearchContributionState
+  RsksearchContributionState,
+  RsksearchTscriptContribution,
+  RsksearchTscriptContributionList
 } from '../../../../lib/api-client/models';
 import { Router } from '@angular/router';
+import { Eq } from '../../../../lib/filter-dsl/filter';
+import { Str } from '../../../../lib/filter-dsl/value';
 
 @Component({
   selector: 'app-author-contributions',
@@ -19,7 +21,7 @@ export class AuthorContributionsComponent implements OnInit, OnDestroy {
 
   claims: Claims;
 
-  contributions: RsksearchChunkContribution[];
+  contributions: RsksearchTscriptContribution[];
 
   rewards: RsksearchClaimedReward[];
 
@@ -62,10 +64,11 @@ export class AuthorContributionsComponent implements OnInit, OnDestroy {
 
   loadContributions() {
     this.loading.push(true);
-    this.apiClient.searchServiceListAuthorContributions({
-      authorId: this.session.getClaims().author_id,
-      page: 0
-    }).pipe(takeUntil(this.destroy$)).subscribe((list: RsksearchChunkContributionList) => {
+    this.apiClient.searchServiceListTscriptContributions({
+      filter: Eq(`author_id`, Str(this.session.getClaims().author_id)).print(),
+      sortField: `created_at`,
+      sortDirection: 'desc',
+    }).pipe(takeUntil(this.destroy$)).subscribe((list: RsksearchTscriptContributionList) => {
       this.contributions = list.contributions;
     }).add(() => this.loading.pop());
   }

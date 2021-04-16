@@ -1,5 +1,6 @@
 import { Tag, Tok } from './scanner';
 import { Value } from './value';
+import { PrintPlainText } from './printer';
 
 export enum CompOp {
   Eq = '=',
@@ -44,6 +45,8 @@ export interface Filter {
   accept(v: Visitor): void
 
   precedence(): number
+
+  print(): string
 }
 
 export class CompFilter implements Filter {
@@ -58,6 +61,10 @@ export class CompFilter implements Filter {
   precedence(): number {
     return compOpPrecedence(this.op);
   }
+
+  print(): string {
+    return PrintPlainText(this);
+  }
 }
 
 export class BoolFilter implements Filter {
@@ -71,6 +78,10 @@ export class BoolFilter implements Filter {
 
   precedence(): number {
     return boolOpPrecedence(this.op);
+  }
+
+  print(): string {
+    return PrintPlainText(this);
   }
 }
 
