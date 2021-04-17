@@ -1,11 +1,6 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit } from '@angular/core';
 import { MetaService } from '../../../core/service/meta/meta.service';
-import {
-  FieldMetaKind,
-  RsksearchFieldMeta,
-  RsksearchFieldValue,
-  RsksearchFieldValueList
-} from '../../../../lib/api-client/models';
+import { FieldMetaKind, RskFieldMeta, RskFieldValue, RskFieldValueList } from '../../../../lib/api-client/models';
 import { Observable, of, Subject } from 'rxjs';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
 import { catchError, distinctUntilChanged, filter, map, switchMap, takeUntil, tap } from 'rxjs/operators';
@@ -13,7 +8,7 @@ import { CompOp } from '../../../../lib/filter-dsl/filter';
 
 export class SearchFilter {
   constructor(
-    public meta: RsksearchFieldMeta,
+    public meta: RskFieldMeta,
     public operator: CompOp = CompOp.Eq,
     public value: string = '',
   ) {
@@ -68,12 +63,12 @@ export class GlSearchFilterComponent implements OnInit, OnDestroy {
         distinctUntilChanged(),
         filter((v) => v !== null),
         tap(() => this.valuesLoading = true),
-        switchMap(term => this.apiClient.searchServiceListFieldValues({
+        switchMap(term => this.apiClient.listFieldValues({
           field: this._field.meta.name,
           prefix: term,
         }).pipe(
-          map((v: RsksearchFieldValueList): RsksearchFieldValue[] => v.values),
-          map((v: RsksearchFieldValue[]): string[] => v.map((v: RsksearchFieldValue) => v.value)),
+          map((v: RskFieldValueList): RskFieldValue[] => v.values),
+          map((v: RskFieldValue[]): string[] => v.map((v: RskFieldValue) => v.value)),
           catchError(() => of([])), // empty list on error
           tap(() => this.valuesLoading = false)
         ))
@@ -84,7 +79,7 @@ export class GlSearchFilterComponent implements OnInit, OnDestroy {
     this.possibleOperators = this.meta.getOperatorsForType(this._field.meta.kind);
   }
 
-  trackByFn(item: RsksearchFieldValue) {
+  trackByFn(item: RskFieldValue) {
     return item.value;
   }
 

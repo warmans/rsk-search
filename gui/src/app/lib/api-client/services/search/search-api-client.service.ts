@@ -45,75 +45,55 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceGetRedditAuthURL(
+  getRedditAuthURL(
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchRedditAuthURL> {
+  ): Observable<models.RskRedditAuthURL> {
     const path = `/api/auth/reddit-url`;
     const options: APIHttpOptions = {
       ...this.options,
       ...requestHttpOptions,
     };
 
-    return this.sendRequest<models.RsksearchRedditAuthURL>('GET', path, options);
+    return this.sendRequest<models.RskRedditAuthURL>('GET', path, options);
   }
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceListEpisodes(
+  listEpisodes(
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchEpisodeList> {
+  ): Observable<models.RskEpisodeList> {
     const path = `/api/episode`;
     const options: APIHttpOptions = {
       ...this.options,
       ...requestHttpOptions,
     };
 
-    return this.sendRequest<models.RsksearchEpisodeList>('GET', path, options);
+    return this.sendRequest<models.RskEpisodeList>('GET', path, options);
   }
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceSubmitDialogCorrection(
-    args: {
-      episodeId: string,
-      id: string,
-      body: models.RsksearchSubmitDialogCorrectionRequest,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<object> {
-    const path = `/api/episode/${args.episodeId}/dialog/${args.id}`;
-    const options: APIHttpOptions = {
-      ...this.options,
-      ...requestHttpOptions,
-    };
-
-    return this.sendRequest<object>('POST', path, options, JSON.stringify(args.body));
-  }
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  searchServiceGetEpisode(
+  getEpisode(
     args: {
       id: string,
     },
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchEpisode> {
+  ): Observable<models.RskEpisode> {
     const path = `/api/episode/${args.id}`;
     const options: APIHttpOptions = {
       ...this.options,
       ...requestHttpOptions,
     };
 
-    return this.sendRequest<models.RsksearchEpisode>('GET', path, options);
+    return this.sendRequest<models.RskEpisode>('GET', path, options);
   }
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceGetSearchMetadata(
+  getSearchMetadata(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskSearchMetadata> {
     const path = `/api/metadata`;
@@ -128,40 +108,40 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceListPendingRewards(
+  listPendingRewards(
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchPendingRewardList> {
+  ): Observable<models.RskPendingRewardList> {
     const path = `/api/rewards`;
     const options: APIHttpOptions = {
       ...this.options,
       ...requestHttpOptions,
     };
 
-    return this.sendRequest<models.RsksearchPendingRewardList>('GET', path, options);
+    return this.sendRequest<models.RskPendingRewardList>('GET', path, options);
   }
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceListClaimedRewards(
+  listClaimedRewards(
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchClaimedRewardList> {
+  ): Observable<models.RskClaimedRewardList> {
     const path = `/api/rewards/claimed`;
     const options: APIHttpOptions = {
       ...this.options,
       ...requestHttpOptions,
     };
 
-    return this.sendRequest<models.RsksearchClaimedRewardList>('GET', path, options);
+    return this.sendRequest<models.RskClaimedRewardList>('GET', path, options);
   }
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceClaimReward(
+  claimReward(
     args: {
       id: string,
-      body: models.RsksearchClaimRewardRequest,
+      body: models.RskClaimRewardRequest,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<object> {
@@ -177,25 +157,25 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceListDonationRecipients(
+  listDonationRecipients(
     args: {
       rewardId: string,
     },
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchDonationRecipientList> {
+  ): Observable<models.RskDonationRecipientList> {
     const path = `/api/rewards/${args.rewardId}/recipients`;
     const options: APIHttpOptions = {
       ...this.options,
       ...requestHttpOptions,
     };
 
-    return this.sendRequest<models.RsksearchDonationRecipientList>('GET', path, options);
+    return this.sendRequest<models.RskDonationRecipientList>('GET', path, options);
   }
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceSearch(
+  search(
     args: {
       query?: string,
       page?: number,
@@ -220,75 +200,75 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceListTscripts(
+  listTscripts(
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchTscriptList> {
+  ): Observable<models.RskTscriptList> {
     const path = `/api/tscript`;
     const options: APIHttpOptions = {
       ...this.options,
       ...requestHttpOptions,
     };
 
-    return this.sendRequest<models.RsksearchTscriptList>('GET', path, options);
+    return this.sendRequest<models.RskTscriptList>('GET', path, options);
   }
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceGetAuthorLeaderboard(
+  getAuthorLeaderboard(
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchAuthorLeaderboard> {
+  ): Observable<models.RskAuthorLeaderboard> {
     const path = `/api/tscript/author/leaderboard`;
     const options: APIHttpOptions = {
       ...this.options,
       ...requestHttpOptions,
     };
 
-    return this.sendRequest<models.RsksearchAuthorLeaderboard>('GET', path, options);
+    return this.sendRequest<models.RskAuthorLeaderboard>('GET', path, options);
   }
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceCreateChunkContribution(
+  createChunkContribution(
     args: {
       chunkId: string,
-      body: models.RsksearchCreateChunkContributionRequest,
+      body: models.RskCreateChunkContributionRequest,
     },
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchChunkContribution> {
+  ): Observable<models.RskChunkContribution> {
     const path = `/api/tscript/chunk/${args.chunkId}/contrib`;
     const options: APIHttpOptions = {
       ...this.options,
       ...requestHttpOptions,
     };
 
-    return this.sendRequest<models.RsksearchChunkContribution>('PATCH', path, options, JSON.stringify(args.body));
+    return this.sendRequest<models.RskChunkContribution>('PATCH', path, options, JSON.stringify(args.body));
   }
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceGetChunkContribution(
+  getChunkContribution(
     args: {
       chunkId: string,
       contributionId: string,
     },
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchChunkContribution> {
+  ): Observable<models.RskChunkContribution> {
     const path = `/api/tscript/chunk/${args.chunkId}/contrib/${args.contributionId}`;
     const options: APIHttpOptions = {
       ...this.options,
       ...requestHttpOptions,
     };
 
-    return this.sendRequest<models.RsksearchChunkContribution>('GET', path, options);
+    return this.sendRequest<models.RskChunkContribution>('GET', path, options);
   }
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceDiscardDraftContribution(
+  discardDraftContribution(
     args: {
       chunkId: string,
       contributionId: string,
@@ -307,65 +287,65 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceUpdateChunkContribution(
+  updateChunkContribution(
     args: {
       chunkId: string,
       contributionId: string,
-      body: models.RsksearchUpdateChunkContributionRequest,
+      body: models.RskUpdateChunkContributionRequest,
     },
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchChunkContribution> {
+  ): Observable<models.RskChunkContribution> {
     const path = `/api/tscript/chunk/${args.chunkId}/contrib/${args.contributionId}`;
     const options: APIHttpOptions = {
       ...this.options,
       ...requestHttpOptions,
     };
 
-    return this.sendRequest<models.RsksearchChunkContribution>('PATCH', path, options, JSON.stringify(args.body));
+    return this.sendRequest<models.RskChunkContribution>('PATCH', path, options, JSON.stringify(args.body));
   }
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceRequestChunkContributionState(
+  requestChunkContributionState(
     args: {
       chunkId: string,
       contributionId: string,
-      body: models.RsksearchRequestChunkContributionStateRequest,
+      body: models.RskRequestChunkContributionStateRequest,
     },
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchChunkContribution> {
+  ): Observable<models.RskChunkContribution> {
     const path = `/api/tscript/chunk/${args.chunkId}/contrib/${args.contributionId}/state`;
     const options: APIHttpOptions = {
       ...this.options,
       ...requestHttpOptions,
     };
 
-    return this.sendRequest<models.RsksearchChunkContribution>('PATCH', path, options, JSON.stringify(args.body));
+    return this.sendRequest<models.RskChunkContribution>('PATCH', path, options, JSON.stringify(args.body));
   }
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceGetTscriptChunk(
+  getChunk(
     args: {
       id: string,
     },
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchTscriptChunk> {
+  ): Observable<models.RskChunk> {
     const path = `/api/tscript/chunk/${args.id}`;
     const options: APIHttpOptions = {
       ...this.options,
       ...requestHttpOptions,
     };
 
-    return this.sendRequest<models.RsksearchTscriptChunk>('GET', path, options);
+    return this.sendRequest<models.RskChunk>('GET', path, options);
   }
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceListTscriptContributions(
+  listContributions(
     args: {
       filter?: string,
       sortField?: string,
@@ -374,7 +354,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
       pageSize?: number,
     },
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchTscriptContributionList> {
+  ): Observable<models.RskContributionList> {
     const path = `/api/tscript/contrib`;
     const options: APIHttpOptions = {
       ...this.options,
@@ -396,34 +376,34 @@ export class SearchAPIClient implements SearchAPIClientInterface {
     if ('pageSize' in args) {
       options.params = options.params.set('pageSize', String(args.pageSize));
     }
-    return this.sendRequest<models.RsksearchTscriptContributionList>('GET', path, options);
+    return this.sendRequest<models.RskContributionList>('GET', path, options);
   }
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceGetTscriptChunkStats(
+  getChunkStats(
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchChunkStats> {
+  ): Observable<models.RskChunkStats> {
     const path = `/api/tscript/stats`;
     const options: APIHttpOptions = {
       ...this.options,
       ...requestHttpOptions,
     };
 
-    return this.sendRequest<models.RsksearchChunkStats>('GET', path, options);
+    return this.sendRequest<models.RskChunkStats>('GET', path, options);
   }
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceGetTscriptTimeline(
+  getTscriptTimeline(
     args: {
       tscriptId: string,
       page?: number,
     },
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchTscriptTimeline> {
+  ): Observable<models.RskTscriptTimeline> {
     const path = `/api/tscript/${args.tscriptId}/timeline`;
     const options: APIHttpOptions = {
       ...this.options,
@@ -433,19 +413,19 @@ export class SearchAPIClient implements SearchAPIClientInterface {
     if ('page' in args) {
       options.params = options.params.set('page', String(args.page));
     }
-    return this.sendRequest<models.RsksearchTscriptTimeline>('GET', path, options);
+    return this.sendRequest<models.RskTscriptTimeline>('GET', path, options);
   }
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceListFieldValues(
+  listFieldValues(
     args: {
       field: string,
       prefix?: string,
     },
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchFieldValueList> {
+  ): Observable<models.RskFieldValueList> {
     const path = `/api/values/${args.field}`;
     const options: APIHttpOptions = {
       ...this.options,
@@ -455,7 +435,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
     if ('prefix' in args) {
       options.params = options.params.set('prefix', String(args.prefix));
     }
-    return this.sendRequest<models.RsksearchFieldValueList>('GET', path, options);
+    return this.sendRequest<models.RskFieldValueList>('GET', path, options);
   }
 
   private sendRequest<T>(method: string, path: string, options: HttpOptions, body?: any): Observable<T> {

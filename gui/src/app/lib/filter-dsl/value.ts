@@ -1,5 +1,5 @@
 import { Tok } from './scanner';
-import { FieldMetaKind, RsksearchFieldMeta } from '../api-client/models';
+import { FieldMetaKind, RskFieldMeta } from '../api-client/models';
 
 export enum ValueKind {
   String,
@@ -34,7 +34,7 @@ export function Bool(value: boolean, token: Tok = null): Value {
   return new Value(ValueKind.Bool, value, token);
 }
 
-export function ValueFromFieldMeta(m: RsksearchFieldMeta, value: any): Value {
+export function ValueFromFieldMeta(m: RskFieldMeta, value: any): Value {
   switch (m.kind) {
     case FieldMetaKind.IDENTIFIER:
       return Str(value);

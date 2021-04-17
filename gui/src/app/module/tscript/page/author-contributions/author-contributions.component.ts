@@ -2,15 +2,15 @@ import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
 import { Claims, SessionService } from '../../../core/service/session/session.service';
 import { takeUntil } from 'rxjs/operators';
-import {
-  RsksearchClaimedReward,
-  RsksearchContributionState,
-  RsksearchTscriptContribution,
-  RsksearchTscriptContributionList
-} from '../../../../lib/api-client/models';
 import { Router } from '@angular/router';
 import { Eq } from '../../../../lib/filter-dsl/filter';
 import { Str } from '../../../../lib/filter-dsl/value';
+import {
+  RskClaimedReward,
+  RskContribution,
+  RskContributionList,
+  RskContributionState
+} from '../../../../lib/api-client/models';
 
 @Component({
   selector: 'app-author-contributions',
@@ -21,13 +21,13 @@ export class AuthorContributionsComponent implements OnInit, OnDestroy {
 
   claims: Claims;
 
-  contributions: RsksearchTscriptContribution[];
+  contributions: RskContribution[];
 
-  rewards: RsksearchClaimedReward[];
+  rewards: RskClaimedReward[];
 
   loading: boolean[] = [];
 
-  states = RsksearchContributionState;
+  states = RskContributionState;
 
   private destroy$: EventEmitter<any> = new EventEmitter<any>();
 
@@ -53,7 +53,7 @@ export class AuthorContributionsComponent implements OnInit, OnDestroy {
 
   discardDraft(chunkId: string, contributionId: string): void {
     if (confirm('Really discard draft?')) {
-      this.apiClient.searchServiceDiscardDraftContribution({
+      this.apiClient.discardDraftContribution({
         chunkId: chunkId,
         contributionId: contributionId
       }).pipe(takeUntil(this.destroy$)).subscribe(() => {
@@ -64,18 +64,18 @@ export class AuthorContributionsComponent implements OnInit, OnDestroy {
 
   loadContributions() {
     this.loading.push(true);
-    this.apiClient.searchServiceListTscriptContributions({
+    this.apiClient.listContributions({
       filter: Eq(`author_id`, Str(this.session.getClaims().author_id)).print(),
       sortField: `created_at`,
       sortDirection: 'desc',
-    }).pipe(takeUntil(this.destroy$)).subscribe((list: RsksearchTscriptContributionList) => {
+    }).pipe(takeUntil(this.destroy$)).subscribe((list: RskContributionList) => {
       this.contributions = list.contributions;
     }).add(() => this.loading.pop());
   }
 
   loadClaimedRewards() {
     this.loading.push(true);
-    this.apiClient.searchServiceListClaimedRewards({}).pipe(takeUntil(this.destroy$)).subscribe((list) => {
+    this.apiClient.listClaimedRewards({}).pipe(takeUntil(this.destroy$)).subscribe((list) => {
       this.rewards = list.rewards;
     }).add(() => this.loading.pop());
   }

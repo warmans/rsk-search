@@ -1,4 +1,4 @@
-import { RsksearchDialog, RsksearchSynopsis } from '../../../lib/api-client/models';
+import { RskDialog, RskSynopsis } from '../../../lib/api-client/models';
 
 export function isOffsetLine(line: string): boolean {
   return getOffsetValueFromLine(line) > -1;
@@ -79,6 +79,6 @@ export function parseTranscript(transcript: string): Tscript {
 }
 
 export class Tscript {
-  constructor(public dialog: RsksearchDialog[], public synopses: RsksearchSynopsis[]) {
+  constructor(public dialog: RskDialog[], public synopses: RskSynopsis[]) {
   }
 }

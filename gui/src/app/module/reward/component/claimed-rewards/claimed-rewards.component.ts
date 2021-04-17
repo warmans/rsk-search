@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { RsksearchClaimedReward } from '../../../../lib/api-client/models';
+import { RskClaimedReward } from '../../../../lib/api-client/models';
 import { environment } from '../../../../../environments/environment.prod';
 
 @Component({
@@ -10,7 +10,7 @@ import { environment } from '../../../../../environments/environment.prod';
 export class ClaimedRewardsComponent implements OnInit {
 
   @Input()
-  set rewards(value: RsksearchClaimedReward[]) {
+  set rewards(value: RskClaimedReward[]) {
     if (!value) {
       return;
     }
@@ -20,11 +20,11 @@ export class ClaimedRewardsComponent implements OnInit {
     });
   }
 
-  get rewards(): RsksearchClaimedReward[] {
+  get rewards(): RskClaimedReward[] {
     return this._rewards;
   }
 
-  private _rewards: RsksearchClaimedReward[] = [];
+  private _rewards: RskClaimedReward[] = [];
 
   totalValue: number = 0;
 

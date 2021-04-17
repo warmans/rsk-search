@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { RsksearchSynopsis } from '../../../../lib/api-client/models';
+import { RskSynopsis } from '../../../../lib/api-client/models';
 
 @Component({
   selector: 'app-synopses',
@@ -9,7 +9,7 @@ import { RsksearchSynopsis } from '../../../../lib/api-client/models';
 export class SynopsesComponent implements OnInit {
 
   @Input()
-  synopses: RsksearchSynopsis[];
+  synopses: RskSynopsis[];
 
   constructor() {
   }

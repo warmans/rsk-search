@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
-import { RsksearchAuthorRanking } from '../../../../lib/api-client/models';
+import { RskAuthorLeaderboard, RskAuthorRanking } from '../../../../lib/api-client/models';
 import { takeUntil } from 'rxjs/operators';
 import { environment } from '../../../../../environments/environment.prod';
 
@@ -11,7 +11,7 @@ import { environment } from '../../../../../environments/environment.prod';
 })
 export class LeaderboardComponent implements OnInit, OnDestroy {
 
-  authors: RsksearchAuthorRanking[] = [];
+  authors: RskAuthorRanking[] = [];
 
   showAwardHelp: boolean = false;
 
@@ -23,7 +23,7 @@ export class LeaderboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.apiClient.searchServiceGetAuthorLeaderboard().pipe(takeUntil(this.destroy$)).subscribe((res) => {
+    this.apiClient.getAuthorLeaderboard().pipe(takeUntil(this.destroy$)).subscribe((res: RskAuthorLeaderboard) => {
       this.authors = res.authors;
     });
   }
@@ -38,7 +38,7 @@ export class LeaderboardComponent implements OnInit, OnDestroy {
   }
 
   nextRewardAt(i: number): string {
-    return `${environment.contributionAwardThreshold - ( i % environment.contributionAwardThreshold)}`
+    return `${environment.contributionAwardThreshold - (i % environment.contributionAwardThreshold)}`;
   }
 
 }

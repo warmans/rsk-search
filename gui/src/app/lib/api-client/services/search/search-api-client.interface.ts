@@ -9,67 +9,55 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceGetRedditAuthURL(
+  getRedditAuthURL(
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchRedditAuthURL>;
+  ): Observable<models.RskRedditAuthURL>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceListEpisodes(
+  listEpisodes(
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchEpisodeList>;
+  ): Observable<models.RskEpisodeList>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceSubmitDialogCorrection(
-    args: {
-      episodeId: string,
-      id: string,
-      body: models.RsksearchSubmitDialogCorrectionRequest,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<object>;
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  searchServiceGetEpisode(
+  getEpisode(
     args: {
       id: string,
     },
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchEpisode>;
+  ): Observable<models.RskEpisode>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceGetSearchMetadata(
+  getSearchMetadata(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskSearchMetadata>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceListPendingRewards(
+  listPendingRewards(
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchPendingRewardList>;
+  ): Observable<models.RskPendingRewardList>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceListClaimedRewards(
+  listClaimedRewards(
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchClaimedRewardList>;
+  ): Observable<models.RskClaimedRewardList>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceClaimReward(
+  claimReward(
     args: {
       id: string,
-      body: models.RsksearchClaimRewardRequest,
+      body: models.RskClaimRewardRequest,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<object>;
@@ -77,17 +65,17 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceListDonationRecipients(
+  listDonationRecipients(
     args: {
       rewardId: string,
     },
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchDonationRecipientList>;
+  ): Observable<models.RskDonationRecipientList>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceSearch(
+  search(
     args: {
       query?: string,
       page?: number,
@@ -98,43 +86,43 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceListTscripts(
+  listTscripts(
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchTscriptList>;
+  ): Observable<models.RskTscriptList>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceGetAuthorLeaderboard(
+  getAuthorLeaderboard(
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchAuthorLeaderboard>;
+  ): Observable<models.RskAuthorLeaderboard>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceCreateChunkContribution(
+  createChunkContribution(
     args: {
       chunkId: string,
-      body: models.RsksearchCreateChunkContributionRequest,
+      body: models.RskCreateChunkContributionRequest,
     },
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchChunkContribution>;
+  ): Observable<models.RskChunkContribution>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceGetChunkContribution(
+  getChunkContribution(
     args: {
       chunkId: string,
       contributionId: string,
     },
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchChunkContribution>;
+  ): Observable<models.RskChunkContribution>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceDiscardDraftContribution(
+  discardDraftContribution(
     args: {
       chunkId: string,
       contributionId: string,
@@ -145,41 +133,41 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceUpdateChunkContribution(
+  updateChunkContribution(
     args: {
       chunkId: string,
       contributionId: string,
-      body: models.RsksearchUpdateChunkContributionRequest,
+      body: models.RskUpdateChunkContributionRequest,
     },
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchChunkContribution>;
+  ): Observable<models.RskChunkContribution>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceRequestChunkContributionState(
+  requestChunkContributionState(
     args: {
       chunkId: string,
       contributionId: string,
-      body: models.RsksearchRequestChunkContributionStateRequest,
+      body: models.RskRequestChunkContributionStateRequest,
     },
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchChunkContribution>;
+  ): Observable<models.RskChunkContribution>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceGetTscriptChunk(
+  getChunk(
     args: {
       id: string,
     },
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchTscriptChunk>;
+  ): Observable<models.RskChunk>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceListTscriptContributions(
+  listContributions(
     args: {
       filter?: string,
       sortField?: string,
@@ -188,35 +176,35 @@ export interface SearchAPIClientInterface {
       pageSize?: number,
     },
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchTscriptContributionList>;
+  ): Observable<models.RskContributionList>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceGetTscriptChunkStats(
+  getChunkStats(
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchChunkStats>;
+  ): Observable<models.RskChunkStats>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceGetTscriptTimeline(
+  getTscriptTimeline(
     args: {
       tscriptId: string,
       page?: number,
     },
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchTscriptTimeline>;
+  ): Observable<models.RskTscriptTimeline>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  searchServiceListFieldValues(
+  listFieldValues(
     args: {
       field: string,
       prefix?: string,
     },
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RsksearchFieldValueList>;
+  ): Observable<models.RskFieldValueList>;
 
 }

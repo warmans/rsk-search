@@ -1,10 +1,6 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
-import {
-  RsksearchContributionState,
-  RsksearchTscriptContribution,
-  RsksearchTscriptContributionList,
-} from '../../../../lib/api-client/models';
+import { RskContribution, RskContributionList, RskContributionState } from '../../../../lib/api-client/models';
 import { takeUntil } from 'rxjs/operators';
 import { ActivatedRoute, Data } from '@angular/router';
 import { Title } from '@angular/platform-browser';
@@ -22,11 +18,11 @@ export class ApproveComponent implements OnInit {
 
   tscriptID: string;
 
-  groupedContributions: { [index: string]: RsksearchTscriptContribution[] } = {};
+  groupedContributions: { [index: string]: RskContribution[] } = {};
 
-  approvalList: RsksearchTscriptContribution[] = [];
+  approvalList: RskContribution[] = [];
 
-  states = RsksearchContributionState;
+  states = RskContributionState;
 
   approver: boolean = false;
 
@@ -56,9 +52,9 @@ export class ApproveComponent implements OnInit {
 
   loadData() {
     this.loading.push(true);
-    this.apiClient.searchServiceListTscriptContributions({
+    this.apiClient.listContributions({
       filter: Eq('tscript_id', Str(this.tscriptID)).print(),
-    }).pipe(takeUntil(this.destroy$)).subscribe((val: RsksearchTscriptContributionList) => {
+    }).pipe(takeUntil(this.destroy$)).subscribe((val: RskContributionList) => {
       val.contributions.forEach((c) => {
         if (this.groupedContributions[c.chunkId]) {
           this.groupedContributions[c.chunkId].push(c);
@@ -71,21 +67,21 @@ export class ApproveComponent implements OnInit {
   }
 
   updateApprovalList() {
-    let approvalMap: { [index: string]: RsksearchTscriptContribution } = {};
+    let approvalMap: { [index: string]: RskContribution } = {};
     for (let chunkId in this.groupedContributions) {
-      this.groupedContributions[chunkId].forEach((co: RsksearchTscriptContribution) => {
+      this.groupedContributions[chunkId].forEach((co: RskContribution) => {
         if (!approvalMap[chunkId]) {
           approvalMap[chunkId] = co;
           return;
         }
         // do not replace the current value if it is already approved.
-        if (approvalMap[chunkId] === RsksearchContributionState.STATE_APPROVED) {
+        if (approvalMap[chunkId] === RskContributionState.STATE_APPROVED) {
           return;
         }
-        if (approvalMap[chunkId] === RsksearchContributionState.STATE_REJECTED && co.state !== RsksearchContributionState.STATE_REJECTED) {
+        if (approvalMap[chunkId] === RskContributionState.STATE_REJECTED && co.state !== RskContributionState.STATE_REJECTED) {
           approvalMap[chunkId] = co;
         }
-        if (co.state === RsksearchContributionState.STATE_APPROVED) {
+        if (co.state === RskContributionState.STATE_APPROVED) {
           approvalMap[chunkId] = co;
         }
       });
@@ -100,9 +96,9 @@ export class ApproveComponent implements OnInit {
     return parseTranscript(raw);
   }
 
-  updateState(co: RsksearchTscriptContribution, state: RsksearchContributionState) {
+  updateState(co: RskContribution, state: RskContributionState) {
     this.loading.push(true);
-    this.apiClient.searchServiceRequestChunkContributionState({
+    this.apiClient.requestChunkContributionState({
       chunkId: co.chunkId,
       contributionId: co.id,
       body: {

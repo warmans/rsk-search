@@ -115,11 +115,11 @@ type Chunk struct {
 	EndSecond   int64  `json:"end_second" db:"end_second"`
 }
 
-func (c *Chunk) Proto(contribCount int32) *api.TscriptChunk {
+func (c *Chunk) Proto(contribCount int32) *api.Chunk {
 	if c == nil {
 		return nil
 	}
-	return &api.TscriptChunk{
+	return &api.Chunk{
 		Id:               c.ID,
 		TscriptId:        c.TscriptID,
 		Raw:              c.Raw,
@@ -170,11 +170,11 @@ type Contribution struct {
 	CreatedAt     time.Time
 }
 
-func (c *Contribution) TscriptContributionProto() *api.TscriptContribution {
+func (c *Contribution) TscriptContributionProto() *api.Contribution {
 	if c == nil {
 		return nil
 	}
-	return &api.TscriptContribution{
+	return &api.Contribution{
 		Id:         c.ID,
 		TscriptId:  c.TscriptID,
 		ChunkId:    c.ChunkID,

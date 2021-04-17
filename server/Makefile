@@ -36,9 +36,19 @@ vendor:
 	echo "=> Installing proto deps..."
 	./bin/buf beta mod update
 
+.PHONY: generate
+generate: generate.proto generate.swagger-bundle
+
 .PHONY: generate.proto
 generate.proto:
 	rm -rf gen_temp && ./bin/buf generate && rm -rf gen && mv gen_temp gen
+
+.PHONY: generate.swagger-bundle
+generate.swagger-bundle:
+	go run ./script/swagger-merge/main.go \
+		-out ../gui/src/assets/swagger.json \
+		-base ./script/swagger-merge/base.swagger.json \
+		-merge ./gen/api/open-api/oauth.swagger.json,./gen/api/open-api/search.swagger.json,./gen/api/open-api/tscript.swagger.json
 
 .PHONY: run
 run: build

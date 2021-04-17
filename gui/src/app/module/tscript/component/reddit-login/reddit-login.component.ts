@@ -57,7 +57,7 @@ export class RedditLoginComponent implements OnInit, OnDestroy {
 
   requestAuth() {
     this.loading = true;
-    this.apiClient.searchServiceGetRedditAuthURL().pipe(takeUntil(this.destroy$)).subscribe((res) => {
+    this.apiClient.getRedditAuthURL().pipe(takeUntil(this.destroy$)).subscribe((res) => {
       document.location.href = res.url;
     }).add(() => this.loading = false);
   }

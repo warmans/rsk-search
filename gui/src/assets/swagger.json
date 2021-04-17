@@ -1,0 +1,1429 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "ScrimptonAPI",
+      "version": "1.0"
+    },
+    "tags": [
+      {
+        "name": "ScrimptonAPI"
+      }
+    ],
+    "schemes": [
+      "https"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "externalDocs": {
+      "description": "Search Xfm transcriptions",
+      "url": "http://scrimpton.com"
+    },
+    "paths": {
+      "/api/auth/reddit-url": {
+        "get": {
+          "summary": "Redirects user to reddit oauth confirmation page",
+          "operationId": "getRedditAuthURL",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskRedditAuthURL"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "tags": [
+            "search"
+          ]
+        }
+      },
+      "/api/episode": {
+        "get": {
+          "summary": "Fetch list of available episodes",
+          "operationId": "listEpisodes",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskEpisodeList"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "tags": [
+            "search"
+          ]
+        }
+      },
+      "/api/episode/{id}": {
+        "get": {
+          "summary": "Fetch the full data for an episode including the transcript",
+          "operationId": "getEpisode",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskEpisode"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "tags": [
+            "search"
+          ]
+        }
+      },
+      "/api/metadata": {
+        "get": {
+          "summary": "Fetch search metadata e.g. searchable fields",
+          "operationId": "getSearchMetadata",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskSearchMetadata"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "tags": [
+            "search"
+          ]
+        }
+      },
+      "/api/rewards": {
+        "get": {
+          "summary": "Lists arewards that the logged in user is able to claim.",
+          "operationId": "listPendingRewards",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskPendingRewardList"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "tags": [
+            "search"
+          ]
+        }
+      },
+      "/api/rewards/claimed": {
+        "get": {
+          "summary": "Lists rewards that have been claimed.",
+          "operationId": "listClaimedRewards",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskClaimedRewardList"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "tags": [
+            "search"
+          ]
+        }
+      },
+      "/api/rewards/{id}/claim": {
+        "patch": {
+          "summary": "Claims a reward.",
+          "operationId": "claimReward",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "properties": {}
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "body",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/rskClaimRewardRequest"
+              }
+            }
+          ],
+          "tags": [
+            "search"
+          ]
+        }
+      },
+      "/api/rewards/{rewardId}/recipients": {
+        "get": {
+          "summary": "Lists available recipients for reward.",
+          "operationId": "listDonationRecipients",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskDonationRecipientList"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "rewardId",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "tags": [
+            "search"
+          ]
+        }
+      },
+      "/api/search": {
+        "get": {
+          "summary": "Perform a search",
+          "operationId": "search",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskSearchResultList"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "query",
+              "in": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            }
+          ],
+          "tags": [
+            "search"
+          ]
+        }
+      },
+      "/api/tscript": {
+        "get": {
+          "summary": "List incomplete transcriptions",
+          "operationId": "listTscripts",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskTscriptList"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "tags": [
+            "search"
+          ]
+        }
+      },
+      "/api/tscript/author/leaderboard": {
+        "get": {
+          "summary": "lists any existing contributions for a chunk",
+          "operationId": "getAuthorLeaderboard",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskAuthorLeaderboard"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "tags": [
+            "search"
+          ]
+        }
+      },
+      "/api/tscript/chunk/{chunkId}/contrib": {
+        "patch": {
+          "summary": "Submit a transcript new chunk that has been completed.",
+          "operationId": "createChunkContribution",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskChunkContribution"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "chunkId",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "body",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/rskCreateChunkContributionRequest"
+              }
+            }
+          ],
+          "tags": [
+            "search"
+          ]
+        }
+      },
+      "/api/tscript/chunk/{chunkId}/contrib/{contributionId}": {
+        "get": {
+          "summary": "lists any existing contributions for a chunk",
+          "operationId": "getChunkContribution",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskChunkContribution"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "chunkId",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "contributionId",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "tags": [
+            "search"
+          ]
+        },
+        "delete": {
+          "summary": "Discard unapproved contribution.",
+          "operationId": "discardDraftContribution",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "properties": {}
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "chunkId",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "contributionId",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "tags": [
+            "search"
+          ]
+        },
+        "patch": {
+          "summary": "Update one of your existing contributions.",
+          "operationId": "updateChunkContribution",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskChunkContribution"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "chunkId",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "contributionId",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "body",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/rskUpdateChunkContributionRequest"
+              }
+            }
+          ],
+          "tags": [
+            "search"
+          ]
+        }
+      },
+      "/api/tscript/chunk/{chunkId}/contrib/{contributionId}/state": {
+        "patch": {
+          "summary": "request the contribution state be changed.",
+          "operationId": "requestChunkContributionState",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskChunkContribution"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "chunkId",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "contributionId",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "body",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/rskRequestChunkContributionStateRequest"
+              }
+            }
+          ],
+          "tags": [
+            "search"
+          ]
+        }
+      },
+      "/api/tscript/chunk/{id}": {
+        "get": {
+          "summary": "Gets a specific transcript chunk to be completed.",
+          "operationId": "getChunk",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskChunk"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "tags": [
+            "search"
+          ]
+        }
+      },
+      "/api/tscript/contrib": {
+        "get": {
+          "summary": "lists contributions",
+          "operationId": "listContributions",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskContributionList"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "filter",
+              "in": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "sortField",
+              "in": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "sortDirection",
+              "in": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "pageSize",
+              "in": "query",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            }
+          ],
+          "tags": [
+            "search"
+          ]
+        }
+      },
+      "/api/tscript/stats": {
+        "get": {
+          "summary": "Get details about the current chunk backlog",
+          "operationId": "getChunkStats",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskChunkStats"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "tags": [
+            "search"
+          ]
+        }
+      },
+      "/api/tscript/{tscriptId}/timeline": {
+        "get": {
+          "summary": "Gets a specific transcript chunk to be completed.",
+          "operationId": "getTscriptTimeline",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskTscriptTimeline"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "tscriptId",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            }
+          ],
+          "tags": [
+            "search"
+          ]
+        }
+      },
+      "/api/values/{field}": {
+        "get": {
+          "summary": "Get a list of values for the given keyword field",
+          "operationId": "listFieldValues",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskFieldValueList"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "field",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "prefix",
+              "in": "query",
+              "required": false,
+              "type": "string"
+            }
+          ],
+          "tags": [
+            "search"
+          ]
+        }
+      }
+    },
+    "definitions": {
+      "FieldMetaKind": {
+        "type": "string",
+        "enum": [
+          "UNKNOWN",
+          "IDENTIFIER",
+          "KEYWORD",
+          "KEYWORD_LIST",
+          "TEXT",
+          "INT",
+          "FLOAT",
+          "DATE"
+        ],
+        "default": "UNKNOWN"
+      },
+      "RewardRewardKind": {
+        "type": "string",
+        "enum": [
+          "UNKNOWN",
+          "DONATION"
+        ],
+        "default": "UNKNOWN"
+      },
+      "protobufAny": {
+        "type": "object",
+        "properties": {
+          "typeUrl": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string",
+            "format": "byte"
+          }
+        }
+      },
+      "rpcStatus": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/protobufAny"
+            }
+          }
+        }
+      },
+      "rskAuthor": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "rskAuthorLeaderboard": {
+        "type": "object",
+        "properties": {
+          "authors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/rskAuthorRanking"
+            }
+          }
+        }
+      },
+      "rskAuthorRanking": {
+        "type": "object",
+        "properties": {
+          "authorName": {
+            "type": "string"
+          },
+          "acceptedContributions": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "approver": {
+            "type": "boolean"
+          }
+        }
+      },
+      "rskChunk": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "tscriptId": {
+            "type": "string"
+          },
+          "raw": {
+            "type": "string"
+          },
+          "audioClipUri": {
+            "type": "string"
+          },
+          "numContributions": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "rskChunkContribution": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "chunkId": {
+            "type": "string"
+          },
+          "transcript": {
+            "type": "string"
+          },
+          "state": {
+            "$ref": "#/definitions/rskContributionState"
+          },
+          "author": {
+            "$ref": "#/definitions/rskAuthor"
+          }
+        }
+      },
+      "rskChunkStates": {
+        "type": "object",
+        "properties": {
+          "states": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/rskContributionState"
+            }
+          }
+        }
+      },
+      "rskChunkStats": {
+        "type": "object",
+        "properties": {
+          "numPending": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numSubmitted": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "suggestedNextChunkId": {
+            "type": "string"
+          }
+        }
+      },
+      "rskClaimRewardRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "donationArgs": {
+            "$ref": "#/definitions/rskDonationArgs"
+          }
+        }
+      },
+      "rskClaimedReward": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "claimKind": {
+            "type": "string"
+          },
+          "claimValue": {
+            "type": "number",
+            "format": "float"
+          },
+          "claimCurrency": {
+            "type": "string"
+          },
+          "claimDescription": {
+            "type": "string"
+          },
+          "claimAt": {
+            "type": "string"
+          }
+        }
+      },
+      "rskClaimedRewardList": {
+        "type": "object",
+        "properties": {
+          "rewards": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/rskClaimedReward"
+            }
+          }
+        }
+      },
+      "rskContribution": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "tscriptId": {
+            "type": "string"
+          },
+          "chunkId": {
+            "type": "string"
+          },
+          "transcript": {
+            "type": "string"
+          },
+          "state": {
+            "$ref": "#/definitions/rskContributionState"
+          },
+          "author": {
+            "$ref": "#/definitions/rskAuthor"
+          },
+          "createdAt": {
+            "type": "string"
+          }
+        }
+      },
+      "rskContributionList": {
+        "type": "object",
+        "properties": {
+          "contributions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/rskContribution"
+            }
+          }
+        }
+      },
+      "rskContributionState": {
+        "type": "string",
+        "enum": [
+          "STATE_UNDEFINED",
+          "STATE_REQUEST_APPROVAL",
+          "STATE_PENDING",
+          "STATE_APPROVED",
+          "STATE_REJECTED"
+        ],
+        "default": "STATE_UNDEFINED"
+      },
+      "rskCreateChunkContributionRequest": {
+        "type": "object",
+        "properties": {
+          "chunkId": {
+            "type": "string"
+          },
+          "transcript": {
+            "type": "string"
+          }
+        }
+      },
+      "rskDialog": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "pos": {
+            "type": "string",
+            "format": "int64"
+          },
+          "type": {
+            "type": "string"
+          },
+          "actor": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "contentTags": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/definitions/rskTag"
+            }
+          },
+          "isMatchedRow": {
+            "type": "boolean"
+          },
+          "notable": {
+            "type": "boolean"
+          },
+          "contributor": {
+            "type": "string"
+          }
+        }
+      },
+      "rskDialogResult": {
+        "type": "object",
+        "properties": {
+          "lines": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/rskDialog"
+            }
+          },
+          "score": {
+            "type": "number",
+            "format": "float"
+          }
+        }
+      },
+      "rskDonationArgs": {
+        "type": "object",
+        "properties": {
+          "recipient": {
+            "type": "string"
+          }
+        }
+      },
+      "rskDonationRecipient": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "mission": {
+            "type": "string"
+          },
+          "logoUrl": {
+            "type": "string"
+          },
+          "ngoId": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "quote": {
+            "type": "string"
+          }
+        }
+      },
+      "rskDonationRecipientList": {
+        "type": "object",
+        "properties": {
+          "organizations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/rskDonationRecipient"
+            }
+          }
+        }
+      },
+      "rskEpisode": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "publication": {
+            "type": "string"
+          },
+          "series": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "episode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/rskTag"
+            }
+          },
+          "transcript": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/rskDialog"
+            }
+          },
+          "releaseDate": {
+            "type": "string"
+          },
+          "synopses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/rskSynopsis"
+            }
+          },
+          "contributors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "rskEpisodeList": {
+        "type": "object",
+        "properties": {
+          "episodes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/rskShortEpisode"
+            }
+          }
+        }
+      },
+      "rskFieldMeta": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "kind": {
+            "$ref": "#/definitions/FieldMetaKind"
+          }
+        }
+      },
+      "rskFieldValue": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "rskFieldValueList": {
+        "type": "object",
+        "properties": {
+          "values": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/rskFieldValue"
+            }
+          }
+        }
+      },
+      "rskPendingRewardList": {
+        "type": "object",
+        "properties": {
+          "rewards": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/rskReward"
+            }
+          }
+        }
+      },
+      "rskRedditAuthURL": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string"
+          }
+        }
+      },
+      "rskRequestChunkContributionStateRequest": {
+        "type": "object",
+        "properties": {
+          "chunkId": {
+            "type": "string"
+          },
+          "contributionId": {
+            "type": "string"
+          },
+          "requestState": {
+            "$ref": "#/definitions/rskContributionState"
+          },
+          "comment": {
+            "type": "string"
+          }
+        }
+      },
+      "rskReward": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "kind": {
+            "$ref": "#/definitions/RewardRewardKind"
+          },
+          "name": {
+            "type": "string"
+          },
+          "criteria": {
+            "type": "string"
+          },
+          "value": {
+            "type": "number",
+            "format": "float"
+          },
+          "valueCurrency": {
+            "type": "string"
+          }
+        }
+      },
+      "rskSearchMetadata": {
+        "type": "object",
+        "properties": {
+          "fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/rskFieldMeta"
+            }
+          }
+        }
+      },
+      "rskSearchResult": {
+        "type": "object",
+        "properties": {
+          "episode": {
+            "$ref": "#/definitions/rskShortEpisode"
+          },
+          "dialogs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/rskDialogResult"
+            }
+          }
+        }
+      },
+      "rskSearchResultList": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/rskSearchResult"
+            }
+          },
+          "resultCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "rskShortEpisode": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "publication": {
+            "type": "string"
+          },
+          "series": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "episode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "transcriptAvailable": {
+            "type": "boolean"
+          }
+        }
+      },
+      "rskSynopsis": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "startPos": {
+            "type": "string",
+            "format": "int64"
+          },
+          "endPos": {
+            "type": "string",
+            "format": "int64"
+          }
+        }
+      },
+      "rskTag": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "rskTscriptList": {
+        "type": "object",
+        "properties": {
+          "tscripts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/rskTscriptStats"
+            }
+          }
+        }
+      },
+      "rskTscriptStats": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "publication": {
+            "type": "string"
+          },
+          "series": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "episode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "chunkContributions": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/definitions/rskChunkStates"
+            }
+          },
+          "numChunks": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numContributions": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numPendingContributions": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numRequestApprovalContributions": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numApprovedContributions": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numRejectedContributions": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "rskTscriptTimeline": {
+        "type": "object",
+        "properties": {
+          "events": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/rskTscriptTimelineEvent"
+            }
+          }
+        }
+      },
+      "rskTscriptTimelineEvent": {
+        "type": "object",
+        "properties": {
+          "who": {
+            "type": "string"
+          },
+          "what": {
+            "type": "string"
+          },
+          "when": {
+            "type": "string"
+          }
+        }
+      },
+      "rskUpdateChunkContributionRequest": {
+        "type": "object",
+        "properties": {
+          "chunkId": {
+            "type": "string"
+          },
+          "contributionId": {
+            "type": "string"
+          },
+          "transcript": {
+            "type": "string"
+          },
+          "state": {
+            "$ref": "#/definitions/rskContributionState"
+          }
+        }
+      }
+    }
+  }

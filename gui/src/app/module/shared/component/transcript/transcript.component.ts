@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
-import { RsksearchDialog, RsksearchSynopsis } from '../../../../lib/api-client/models';
+import { RskDialog, RskSynopsis } from '../../../../lib/api-client/models';
 import { ViewportScroller } from '@angular/common';
 
 @Component({
@@ -10,7 +10,7 @@ import { ViewportScroller } from '@angular/common';
 export class TranscriptComponent implements OnInit, AfterViewInit {
 
   @Input()
-  transcript: RsksearchDialog[];
+  transcript: RskDialog[];
 
   @Input()
   scrollToID: string;
@@ -31,7 +31,7 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
   }
 
-  actorClass(d: RsksearchDialog): string {
+  actorClass(d: RskDialog): string {
     if (!d?.actor) {
       return '';
     }

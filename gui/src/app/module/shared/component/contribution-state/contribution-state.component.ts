@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { RsksearchContributionState } from '../../../../lib/api-client/models';
+import { RskContributionState } from '../../../../lib/api-client/models';
 
 @Component({
   selector: 'app-contribution-state',
@@ -9,9 +9,9 @@ import { RsksearchContributionState } from '../../../../lib/api-client/models';
 export class ContributionStateComponent implements OnInit {
 
   @Input()
-  state: RsksearchContributionState;
+  state: RskContributionState;
 
-  states = RsksearchContributionState;
+  states = RskContributionState;
 
   constructor() {
   }

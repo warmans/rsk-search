@@ -1,10 +1,6 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
-import {
-  RsksearchContributionState,
-  RsksearchTscriptList,
-  RsksearchTscriptStats
-} from '../../../../lib/api-client/models';
+import { RskContributionState, RskTscriptList, RskTscriptStats } from '../../../../lib/api-client/models';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
@@ -16,7 +12,7 @@ export class ContributeComponent implements OnInit, OnDestroy {
 
   loading: boolean[] = [];
 
-  tscipts: RsksearchTscriptStats[] = [];
+  tscipts: RskTscriptStats[] = [];
 
   // map of tscript_id => { 'approved' => 1, 'pending_approval' => 2 ...}
   progressMap: { [index: string]: { [index: string]: number } } = {};
@@ -32,7 +28,7 @@ export class ContributeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loading.push(true);
-    this.apiClient.searchServiceListTscripts().pipe(takeUntil(this.unsubscribe$)).subscribe((res: RsksearchTscriptList) => {
+    this.apiClient.listTscripts().pipe(takeUntil(this.unsubscribe$)).subscribe((res: RskTscriptList) => {
       this.tscipts = res.tscripts;
 
       this.progressMap = {};
@@ -51,11 +47,11 @@ export class ContributeComponent implements OnInit, OnDestroy {
 
           ts.chunkContributions[chunkID].states.forEach((sta) => {
             switch (sta) {
-              case RsksearchContributionState.STATE_APPROVED:
+              case RskContributionState.STATE_APPROVED:
                 this.progressMap[ts.id]['complete']++;
                 this.overallComplete++;
                 break;
-              case RsksearchContributionState.STATE_REQUEST_APPROVAL:
+              case RskContributionState.STATE_REQUEST_APPROVAL:
                 this.progressMap[ts.id]['pending_approval']++;
                 this.overallPending++;
                 break;

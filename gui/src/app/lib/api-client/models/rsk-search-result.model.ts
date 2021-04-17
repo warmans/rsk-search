@@ -1,10 +1,10 @@
 /* tslint:disable */
 import {
-  RsksearchDialogResult,
-  RsksearchShortEpisode,
+  RskDialogResult,
+  RskShortEpisode,
 } from '.';
 
 export interface RskSearchResult {
-  dialogs?: RsksearchDialogResult[];
-  episode?: RsksearchShortEpisode;
+  dialogs?: RskDialogResult[];
+  episode?: RskShortEpisode;
 }

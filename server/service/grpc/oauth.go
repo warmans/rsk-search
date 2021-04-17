@@ -3,13 +3,42 @@ package grpc
 import (
 	"context"
 	"fmt"
+	"github.com/gorilla/mux"
+	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/warmans/rsk-search/gen/api"
+	"github.com/warmans/rsk-search/pkg/oauth"
+	"go.uber.org/zap"
+	"google.golang.org/grpc"
 	"google.golang.org/grpc/metadata"
 	"google.golang.org/protobuf/types/known/emptypb"
 	"net/url"
 )
 
-func (s *SearchService) GetRedditAuthURL(ctx context.Context, empty *emptypb.Empty) (*api.RedditAuthURL, error) {
+func NewOauthService(logger *zap.Logger, csrfCache *oauth.CSRFTokenCache, oauthCfg *oauth.Config) *OauthService {
+	return &OauthService{
+		logger:    logger,
+		csrfCache: csrfCache,
+		oauthCfg:  oauthCfg,
+	}
+}
+
+type OauthService struct {
+	logger    *zap.Logger
+	csrfCache *oauth.CSRFTokenCache
+	oauthCfg  *oauth.Config
+}
+
+func (s *OauthService) RegisterGRPC(server *grpc.Server) {
+	api.RegisterOauthServiceServer(server, s)
+}
+
+func (s *OauthService) RegisterHTTP(ctx context.Context, router *mux.Router, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) {
+	if err := api.RegisterOauthServiceHandlerFromEndpoint(ctx, mux, endpoint, opts); err != nil {
+		panic(err)
+	}
+}
+
+func (s *OauthService) GetRedditAuthURL(ctx context.Context, empty *emptypb.Empty) (*api.RedditAuthURL, error) {
 
 	returnURL := ""
 	md, ok := metadata.FromIncomingContext(ctx)
@@ -30,4 +59,3 @@ func (s *SearchService) GetRedditAuthURL(ctx context.Context, empty *emptypb.Emp
 		),
 	}, nil
 }
-

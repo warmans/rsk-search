@@ -1,14 +1,9 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
-import {
-  RsksearchChunkStats,
-  RsksearchEpisodeList,
-  RskSearchResultList,
-  RsksearchShortEpisode
-} from '../../../../lib/api-client/models';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
+import { RskChunkStats, RskEpisodeList, RskSearchResultList, RskShortEpisode } from '../../../../lib/api-client/models';
 
 @Component({
   selector: 'app-search',
@@ -21,14 +16,14 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   showSeries: number[] = [1, 2, 3, 4];
 
-  episodeList: RsksearchShortEpisode[] = [];
+  episodeList: RskShortEpisode[] = [];
 
   result: RskSearchResultList;
   pages: number[] = [];
   currentPage: number;
   morePages: boolean = false;
 
-  chunkStats: RsksearchChunkStats;
+  chunkStats: RskChunkStats;
 
   private unsubscribe$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -57,28 +52,28 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   listEpisodes() {
     this.loading.push(true);
-    this.apiClient.searchServiceListEpisodes().pipe(
+    this.apiClient.listEpisodes().pipe(
       takeUntil(this.unsubscribe$),
-    ).subscribe((res: RsksearchEpisodeList) => {
+    ).subscribe((res: RskEpisodeList) => {
       this.episodeList = res.episodes;
     }).add(() => {
-      this.loading.pop()
+      this.loading.pop();
     });
   }
 
   getChunkStats() {
     this.loading.push(true);
-    this.apiClient.searchServiceGetTscriptChunkStats().subscribe((stats: RsksearchChunkStats) => {
+    this.apiClient.getChunkStats().subscribe((stats: RskChunkStats) => {
       this.chunkStats = stats;
     }).add(() => {
-      this.loading.pop()
+      this.loading.pop();
     });
   }
 
   executeQuery(value: string, page: number) {
     this.result = undefined;
     this.loading.push(true);
-    this.apiClient.searchServiceSearch({
+    this.apiClient.search({
       query: value,
       page: page
     }).pipe(

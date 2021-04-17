@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MetaService } from '../../../core/service/meta/meta.service';
-import { FieldMetaKind, RsksearchFieldMeta } from '../../../../lib/api-client/models';
+import { FieldMetaKind, RskFieldMeta } from '../../../../lib/api-client/models';
 import { distinctUntilChanged, first } from 'rxjs/operators';
 import { And, BoolFilter, CompFilter, CompOp, Filter, NewCompFilter, Visitor } from '../../../../lib/filter-dsl/filter';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -24,7 +24,7 @@ export class GlSearchComponent implements OnInit {
     term: new FormControl(null, [Validators.maxLength(1024)]),
   });
 
-  fieldMeta: RsksearchFieldMeta[] = [];
+  fieldMeta: RskFieldMeta[] = [];
 
   activeFilters: SearchFilter[] = [];
 
@@ -63,7 +63,7 @@ export class GlSearchComponent implements OnInit {
     this.activeFilters.unshift(new SearchFilter(meta));
   }
 
-  getMetaForField(field: string): RsksearchFieldMeta {
+  getMetaForField(field: string): RskFieldMeta {
     return this.fieldMeta.find((v) => v.name === field);
   }
 
@@ -95,7 +95,7 @@ export class GlSearchComponent implements OnInit {
     if (query !== null) {
       this.queryUpdated.emit(PrintPlainText(query));
     } else {
-      this.queryUpdated.emit("");
+      this.queryUpdated.emit('');
     }
   }
 
@@ -196,6 +196,6 @@ class FilterExtractor implements Visitor {
 }
 
 class searchTerm {
-  constructor(public value: string, public  exact: boolean) {
+  constructor(public value: string, public exact: boolean) {
   }
 }

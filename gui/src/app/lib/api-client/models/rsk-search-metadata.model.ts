@@ -1,8 +1,8 @@
 /* tslint:disable */
 import {
-  RsksearchFieldMeta,
+  RskFieldMeta,
 } from '.';
 
 export interface RskSearchMetadata {
-  fields?: RsksearchFieldMeta[];
+  fields?: RskFieldMeta[];
 }

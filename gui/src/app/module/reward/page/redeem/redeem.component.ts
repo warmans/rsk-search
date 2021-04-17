@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
-import { RsksearchDonationRecipient, RsksearchReward } from '../../../../lib/api-client/models';
+import { RskDonationRecipient, RskReward } from '../../../../lib/api-client/models';
 import { takeUntil } from 'rxjs/operators';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
 import { ActivatedRoute, Data, Router } from '@angular/router';
@@ -14,9 +14,9 @@ import { AlertService } from '../../../core/service/alert/alert.service';
 })
 export class RedeemComponent implements OnInit {
 
-  organizations: RsksearchDonationRecipient[] = [];
+  organizations: RskDonationRecipient[] = [];
 
-  reward: RsksearchReward;
+  reward: RskReward;
 
   form: FormGroup = new FormGroup({
     cause: new FormControl('', [Validators.required]),
@@ -39,12 +39,12 @@ export class RedeemComponent implements OnInit {
       if (d.params['id']) {
 
         this.loading.push(true);
-        this.apiClient.searchServiceListPendingRewards().pipe(takeUntil(this.destroy$)).subscribe((res) => {
+        this.apiClient.listPendingRewards().pipe(takeUntil(this.destroy$)).subscribe((res) => {
           this.reward = res.rewards.find((r) => r.id === d.params['id']);
         }).add(() => this.loading.pop());
 
         this.loading.push(true);
-        this.apiClient.searchServiceListDonationRecipients({ rewardId: d.params['id'] }).pipe(takeUntil(this.destroy$)).subscribe((res) => {
+        this.apiClient.listDonationRecipients({ rewardId: d.params['id'] }).pipe(takeUntil(this.destroy$)).subscribe((res) => {
           this.organizations = res.organizations;
         }).add(() => this.loading.pop());
       }
@@ -62,7 +62,7 @@ export class RedeemComponent implements OnInit {
 
   submit() {
     this.loading.push(true);
-    this.apiClient.searchServiceClaimReward({
+    this.apiClient.claimReward({
       id: this.reward.id,
       body: { id: this.reward.id, donationArgs: { recipient: this.form.get('cause').value } }
     }).pipe(takeUntil(this.destroy$)).subscribe((res) => {

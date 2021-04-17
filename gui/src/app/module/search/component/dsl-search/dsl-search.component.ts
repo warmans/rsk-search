@@ -279,7 +279,7 @@ export class DslSearchComponent implements OnInit, AfterViewInit {
     this.dropdownFieldName = field;
     this.dropdownFilter = el.v.v;
     this.dropdownValueSource = (fieldName: string, prefix: string): Observable<string[]> => {
-      return this.apiClient.searchServiceListFieldValues({
+      return this.apiClient.listFieldValues({
         field: fieldName,
         prefix: prefix
       }).pipe(map((res => res.values.map(val => val.value))));

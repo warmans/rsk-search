@@ -261,9 +261,8 @@ func (s *Store) CreateContribution(ctx context.Context, c *models.ContributionCr
 	row := s.tx.QueryRowxContext(
 		ctx,
 		`
-		WITH author AS (SELECT "name" FROM author WHERE id = $2)
 		INSERT INTO tscript_contribution (id, author_id, tscript_chunk_id, transcription, state, created_at) VALUES ($1, $2, $3, $4, $5, NOW())
-	 	RETURNING author.name, created_at
+	 	RETURNING (SELECT name FROM author WHERE id=$2) AS author_name, created_at
 		`,
 		contribution.ID,
 		contribution.Author.ID,
@@ -271,7 +270,7 @@ func (s *Store) CreateContribution(ctx context.Context, c *models.ContributionCr
 		contribution.Transcription,
 		contribution.State,
 	)
-	if err := row.Scan(&contribution.Author.Name, contribution.CreatedAt); err != nil {
+	if err := row.Scan(&contribution.Author.Name, &contribution.CreatedAt); err != nil {
 		return nil, err
 	}
 	return contribution, s.UpdateChunkActivity(ctx, c.ChunkID, ChunkActivitySubmitted)
@@ -369,7 +368,6 @@ func (s *Store) ListContributions(ctx context.Context, q *common.QueryModifier) 
 		out = append(out, cur)
 	}
 	return out, nil
-
 }
 
 func (s *Store) GetContribution(ctx context.Context, id string) (*models.Contribution, error) {

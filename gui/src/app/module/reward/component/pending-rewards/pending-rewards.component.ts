@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
 import { takeUntil } from 'rxjs/operators';
-import { RsksearchReward } from '../../../../lib/api-client/models';
+import { RskReward } from '../../../../lib/api-client/models';
 import { Router, RoutesRecognized } from '@angular/router';
 import { SessionService } from '../../../core/service/session/session.service';
 
@@ -14,7 +14,7 @@ export class PendingRewardsComponent implements OnInit, OnDestroy {
 
   displayOnPage: boolean = true;
 
-  rewards: RsksearchReward[];
+  rewards: RskReward[];
 
   private destroy$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -26,7 +26,7 @@ export class PendingRewardsComponent implements OnInit, OnDestroy {
       if (data instanceof RoutesRecognized) {
         this.displayOnPage = !data?.state?.root?.firstChild?.data?.disableRewardPopup;
         if (this.displayOnPage && this.session.getToken()) {
-          this.apiClient.searchServiceListPendingRewards().pipe(takeUntil(this.destroy$)).subscribe((res) => {
+          this.apiClient.listPendingRewards().pipe(takeUntil(this.destroy$)).subscribe((res) => {
             this.rewards = res.rewards;
           });
         }

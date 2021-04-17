@@ -110,12 +110,10 @@ func ServerCmd() *cobra.Command {
 			}()
 
 			// setup oauth
-
 			tokenCache := oauth.NewCSRFCache()
 			auth := jwt.NewAuth(jwtConfig)
 
 			// validate pledge config
-
 			if pledgeCfg.APIKey == "" {
 				return fmt.Errorf("pledge API key was missing")
 			}
@@ -126,11 +124,19 @@ func ServerCmd() *cobra.Command {
 					srvCfg,
 					search.NewSearch(rskIndex, readOnlyStoreConn),
 					readOnlyStoreConn,
-					persistentDBConn,
-					tokenCache,
 					auth,
-					oauthCfg,
+				),
+				grpc.NewTscriptService(
+					logger,
+					srvCfg,
+					persistentDBConn,
+					auth,
 					pledge.NewClient(pledgeCfg),
+				),
+				grpc.NewOauthService(
+					logger,
+					tokenCache,
+					oauthCfg,
 				),
 			}
 

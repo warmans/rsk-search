@@ -1,0 +1,27 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "ScrimptonAPI",
+    "version": "1.0"
+  },
+  "tags": [
+    {
+      "name": "ScrimptonAPI"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "externalDocs": {
+    "description": "Search Xfm transcriptions",
+    "url": "http://scrimpton.com"
+  },
+  "paths": {},
+  "definitions": {}
+}
