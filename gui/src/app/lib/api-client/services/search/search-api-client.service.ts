@@ -249,84 +249,6 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  getChunkContribution(
-    args: {
-      chunkId: string,
-      contributionId: string,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskChunkContribution> {
-    const path = `/api/tscript/chunk/${args.chunkId}/contrib/${args.contributionId}`;
-    const options: APIHttpOptions = {
-      ...this.options,
-      ...requestHttpOptions,
-    };
-
-    return this.sendRequest<models.RskChunkContribution>('GET', path, options);
-  }
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  discardDraftContribution(
-    args: {
-      chunkId: string,
-      contributionId: string,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<object> {
-    const path = `/api/tscript/chunk/${args.chunkId}/contrib/${args.contributionId}`;
-    const options: APIHttpOptions = {
-      ...this.options,
-      ...requestHttpOptions,
-    };
-
-    return this.sendRequest<object>('DELETE', path, options);
-  }
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  updateChunkContribution(
-    args: {
-      chunkId: string,
-      contributionId: string,
-      body: models.RskUpdateChunkContributionRequest,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskChunkContribution> {
-    const path = `/api/tscript/chunk/${args.chunkId}/contrib/${args.contributionId}`;
-    const options: APIHttpOptions = {
-      ...this.options,
-      ...requestHttpOptions,
-    };
-
-    return this.sendRequest<models.RskChunkContribution>('PATCH', path, options, JSON.stringify(args.body));
-  }
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  requestChunkContributionState(
-    args: {
-      chunkId: string,
-      contributionId: string,
-      body: models.RskRequestChunkContributionStateRequest,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskChunkContribution> {
-    const path = `/api/tscript/chunk/${args.chunkId}/contrib/${args.contributionId}/state`;
-    const options: APIHttpOptions = {
-      ...this.options,
-      ...requestHttpOptions,
-    };
-
-    return this.sendRequest<models.RskChunkContribution>('PATCH', path, options, JSON.stringify(args.body));
-  }
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
   getChunk(
     args: {
       id: string,
@@ -377,6 +299,80 @@ export class SearchAPIClient implements SearchAPIClientInterface {
       options.params = options.params.set('pageSize', String(args.pageSize));
     }
     return this.sendRequest<models.RskContributionList>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  getContribution(
+    args: {
+      contributionId: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskChunkContribution> {
+    const path = `/api/tscript/contrib/${args.contributionId}`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<models.RskChunkContribution>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  deleteContribution(
+    args: {
+      contributionId: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<object> {
+    const path = `/api/tscript/contrib/${args.contributionId}`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<object>('DELETE', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  updateContribution(
+    args: {
+      contributionId: string,
+      body: models.RskUpdateContributionRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskChunkContribution> {
+    const path = `/api/tscript/contrib/${args.contributionId}`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<models.RskChunkContribution>('PATCH', path, options, JSON.stringify(args.body));
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  requestContributionState(
+    args: {
+      contributionId: string,
+      body: models.RskRequestContributionStateRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskChunkContribution> {
+    const path = `/api/tscript/contrib/${args.contributionId}/state`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<models.RskChunkContribution>('PATCH', path, options, JSON.stringify(args.body));
   }
 
   /**

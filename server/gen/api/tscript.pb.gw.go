@@ -244,78 +244,6 @@ func local_request_TscriptService_GetChunk_0(ctx context.Context, marshaler runt
 
 }
 
-func request_TscriptService_GetChunkContribution_0(ctx context.Context, marshaler runtime.Marshaler, client TscriptServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetChunkContributionRequest
-	var metadata runtime.ServerMetadata
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["chunk_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "chunk_id")
-	}
-
-	protoReq.ChunkId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "chunk_id", err)
-	}
-
-	val, ok = pathParams["contribution_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "contribution_id")
-	}
-
-	protoReq.ContributionId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "contribution_id", err)
-	}
-
-	msg, err := client.GetChunkContribution(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
-	return msg, metadata, err
-
-}
-
-func local_request_TscriptService_GetChunkContribution_0(ctx context.Context, marshaler runtime.Marshaler, server TscriptServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetChunkContributionRequest
-	var metadata runtime.ServerMetadata
-
-	var (
-		val string
-		ok  bool
-		err error
-		_   = err
-	)
-
-	val, ok = pathParams["chunk_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "chunk_id")
-	}
-
-	protoReq.ChunkId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "chunk_id", err)
-	}
-
-	val, ok = pathParams["contribution_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "contribution_id")
-	}
-
-	protoReq.ContributionId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "contribution_id", err)
-	}
-
-	msg, err := server.GetChunkContribution(ctx, &protoReq)
-	return msg, metadata, err
-
-}
-
 func request_TscriptService_CreateChunkContribution_0(ctx context.Context, marshaler runtime.Marshaler, client TscriptServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq CreateChunkContributionRequest
 	var metadata runtime.ServerMetadata
@@ -384,8 +312,60 @@ func local_request_TscriptService_CreateChunkContribution_0(ctx context.Context,
 
 }
 
-func request_TscriptService_UpdateChunkContribution_0(ctx context.Context, marshaler runtime.Marshaler, client TscriptServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpdateChunkContributionRequest
+func request_TscriptService_GetContribution_0(ctx context.Context, marshaler runtime.Marshaler, client TscriptServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetContributionRequest
+	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["contribution_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "contribution_id")
+	}
+
+	protoReq.ContributionId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "contribution_id", err)
+	}
+
+	msg, err := client.GetContribution(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_TscriptService_GetContribution_0(ctx context.Context, marshaler runtime.Marshaler, server TscriptServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetContributionRequest
+	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["contribution_id"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "contribution_id")
+	}
+
+	protoReq.ContributionId, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "contribution_id", err)
+	}
+
+	msg, err := server.GetContribution(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+func request_TscriptService_UpdateContribution_0(ctx context.Context, marshaler runtime.Marshaler, client TscriptServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq UpdateContributionRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -403,16 +383,6 @@ func request_TscriptService_UpdateChunkContribution_0(ctx context.Context, marsh
 		_   = err
 	)
 
-	val, ok = pathParams["chunk_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "chunk_id")
-	}
-
-	protoReq.ChunkId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "chunk_id", err)
-	}
-
 	val, ok = pathParams["contribution_id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "contribution_id")
@@ -423,13 +393,13 @@ func request_TscriptService_UpdateChunkContribution_0(ctx context.Context, marsh
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "contribution_id", err)
 	}
 
-	msg, err := client.UpdateChunkContribution(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.UpdateContribution(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_TscriptService_UpdateChunkContribution_0(ctx context.Context, marshaler runtime.Marshaler, server TscriptServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpdateChunkContributionRequest
+func local_request_TscriptService_UpdateContribution_0(ctx context.Context, marshaler runtime.Marshaler, server TscriptServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq UpdateContributionRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -447,16 +417,6 @@ func local_request_TscriptService_UpdateChunkContribution_0(ctx context.Context,
 		_   = err
 	)
 
-	val, ok = pathParams["chunk_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "chunk_id")
-	}
-
-	protoReq.ChunkId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "chunk_id", err)
-	}
-
 	val, ok = pathParams["contribution_id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "contribution_id")
@@ -467,13 +427,13 @@ func local_request_TscriptService_UpdateChunkContribution_0(ctx context.Context,
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "contribution_id", err)
 	}
 
-	msg, err := server.UpdateChunkContribution(ctx, &protoReq)
+	msg, err := server.UpdateContribution(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_TscriptService_DiscardDraftContribution_0(ctx context.Context, marshaler runtime.Marshaler, client TscriptServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DiscardDraftContributionRequest
+func request_TscriptService_DeleteContribution_0(ctx context.Context, marshaler runtime.Marshaler, client TscriptServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq DeleteContributionRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -483,16 +443,6 @@ func request_TscriptService_DiscardDraftContribution_0(ctx context.Context, mars
 		_   = err
 	)
 
-	val, ok = pathParams["chunk_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "chunk_id")
-	}
-
-	protoReq.ChunkId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "chunk_id", err)
-	}
-
 	val, ok = pathParams["contribution_id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "contribution_id")
@@ -503,13 +453,13 @@ func request_TscriptService_DiscardDraftContribution_0(ctx context.Context, mars
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "contribution_id", err)
 	}
 
-	msg, err := client.DiscardDraftContribution(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.DeleteContribution(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_TscriptService_DiscardDraftContribution_0(ctx context.Context, marshaler runtime.Marshaler, server TscriptServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DiscardDraftContributionRequest
+func local_request_TscriptService_DeleteContribution_0(ctx context.Context, marshaler runtime.Marshaler, server TscriptServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq DeleteContributionRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -519,16 +469,6 @@ func local_request_TscriptService_DiscardDraftContribution_0(ctx context.Context
 		_   = err
 	)
 
-	val, ok = pathParams["chunk_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "chunk_id")
-	}
-
-	protoReq.ChunkId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "chunk_id", err)
-	}
-
 	val, ok = pathParams["contribution_id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "contribution_id")
@@ -539,13 +479,13 @@ func local_request_TscriptService_DiscardDraftContribution_0(ctx context.Context
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "contribution_id", err)
 	}
 
-	msg, err := server.DiscardDraftContribution(ctx, &protoReq)
+	msg, err := server.DeleteContribution(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_TscriptService_RequestChunkContributionState_0(ctx context.Context, marshaler runtime.Marshaler, client TscriptServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq RequestChunkContributionStateRequest
+func request_TscriptService_RequestContributionState_0(ctx context.Context, marshaler runtime.Marshaler, client TscriptServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq RequestContributionStateRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -563,16 +503,6 @@ func request_TscriptService_RequestChunkContributionState_0(ctx context.Context,
 		_   = err
 	)
 
-	val, ok = pathParams["chunk_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "chunk_id")
-	}
-
-	protoReq.ChunkId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "chunk_id", err)
-	}
-
 	val, ok = pathParams["contribution_id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "contribution_id")
@@ -583,13 +513,13 @@ func request_TscriptService_RequestChunkContributionState_0(ctx context.Context,
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "contribution_id", err)
 	}
 
-	msg, err := client.RequestChunkContributionState(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.RequestContributionState(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_TscriptService_RequestChunkContributionState_0(ctx context.Context, marshaler runtime.Marshaler, server TscriptServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq RequestChunkContributionStateRequest
+func local_request_TscriptService_RequestContributionState_0(ctx context.Context, marshaler runtime.Marshaler, server TscriptServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq RequestContributionStateRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -607,16 +537,6 @@ func local_request_TscriptService_RequestChunkContributionState_0(ctx context.Co
 		_   = err
 	)
 
-	val, ok = pathParams["chunk_id"]
-	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "chunk_id")
-	}
-
-	protoReq.ChunkId, err = runtime.String(val)
-	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "chunk_id", err)
-	}
-
 	val, ok = pathParams["contribution_id"]
 	if !ok {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "contribution_id")
@@ -627,7 +547,7 @@ func local_request_TscriptService_RequestChunkContributionState_0(ctx context.Co
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "contribution_id", err)
 	}
 
-	msg, err := server.RequestChunkContributionState(ctx, &protoReq)
+	msg, err := server.RequestContributionState(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -932,29 +852,6 @@ func RegisterTscriptServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 
 	})
 
-	mux.Handle("GET", pattern_TscriptService_GetChunkContribution_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		var stream runtime.ServerTransportStream
-		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.TscriptService/GetChunkContribution")
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := local_request_TscriptService_GetChunkContribution_0(rctx, inboundMarshaler, server, req, pathParams)
-		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
-		ctx = runtime.NewServerMetadataContext(ctx, md)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_TscriptService_GetChunkContribution_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
 	mux.Handle("PATCH", pattern_TscriptService_CreateChunkContribution_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -978,18 +875,18 @@ func RegisterTscriptServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 
 	})
 
-	mux.Handle("PATCH", pattern_TscriptService_UpdateChunkContribution_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_TscriptService_GetContribution_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.TscriptService/UpdateChunkContribution")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.TscriptService/GetContribution")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TscriptService_UpdateChunkContribution_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_TscriptService_GetContribution_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -997,22 +894,22 @@ func RegisterTscriptServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_TscriptService_UpdateChunkContribution_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TscriptService_GetContribution_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("DELETE", pattern_TscriptService_DiscardDraftContribution_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PATCH", pattern_TscriptService_UpdateContribution_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.TscriptService/DiscardDraftContribution")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.TscriptService/UpdateContribution")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TscriptService_DiscardDraftContribution_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_TscriptService_UpdateContribution_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1020,22 +917,22 @@ func RegisterTscriptServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_TscriptService_DiscardDraftContribution_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TscriptService_UpdateContribution_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("PATCH", pattern_TscriptService_RequestChunkContributionState_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_TscriptService_DeleteContribution_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.TscriptService/RequestChunkContributionState")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.TscriptService/DeleteContribution")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_TscriptService_RequestChunkContributionState_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_TscriptService_DeleteContribution_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1043,7 +940,30 @@ func RegisterTscriptServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 			return
 		}
 
-		forward_TscriptService_RequestChunkContributionState_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TscriptService_DeleteContribution_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("PATCH", pattern_TscriptService_RequestContributionState_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.TscriptService/RequestContributionState")
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_TscriptService_RequestContributionState_0(rctx, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_TscriptService_RequestContributionState_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1300,26 +1220,6 @@ func RegisterTscriptServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 
 	})
 
-	mux.Handle("GET", pattern_TscriptService_GetChunkContribution_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
-		ctx, cancel := context.WithCancel(req.Context())
-		defer cancel()
-		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.TscriptService/GetChunkContribution")
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-		resp, md, err := request_TscriptService_GetChunkContribution_0(rctx, inboundMarshaler, client, req, pathParams)
-		ctx = runtime.NewServerMetadataContext(ctx, md)
-		if err != nil {
-			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
-			return
-		}
-
-		forward_TscriptService_GetChunkContribution_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
-
-	})
-
 	mux.Handle("PATCH", pattern_TscriptService_CreateChunkContribution_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -1340,63 +1240,83 @@ func RegisterTscriptServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 
 	})
 
-	mux.Handle("PATCH", pattern_TscriptService_UpdateChunkContribution_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_TscriptService_GetContribution_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.TscriptService/UpdateChunkContribution")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.TscriptService/GetContribution")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TscriptService_UpdateChunkContribution_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_TscriptService_GetContribution_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TscriptService_UpdateChunkContribution_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TscriptService_GetContribution_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("DELETE", pattern_TscriptService_DiscardDraftContribution_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PATCH", pattern_TscriptService_UpdateContribution_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.TscriptService/DiscardDraftContribution")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.TscriptService/UpdateContribution")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TscriptService_DiscardDraftContribution_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_TscriptService_UpdateContribution_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TscriptService_DiscardDraftContribution_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TscriptService_UpdateContribution_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("PATCH", pattern_TscriptService_RequestChunkContributionState_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_TscriptService_DeleteContribution_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.TscriptService/RequestChunkContributionState")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.TscriptService/DeleteContribution")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_TscriptService_RequestChunkContributionState_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_TscriptService_DeleteContribution_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_TscriptService_RequestChunkContributionState_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_TscriptService_DeleteContribution_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("PATCH", pattern_TscriptService_RequestContributionState_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.TscriptService/RequestContributionState")
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_TscriptService_RequestContributionState_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_TscriptService_RequestContributionState_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1496,15 +1416,15 @@ var (
 
 	pattern_TscriptService_GetChunk_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "tscript", "chunk", "id"}, ""))
 
-	pattern_TscriptService_GetChunkContribution_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"api", "tscript", "chunk", "chunk_id", "contrib", "contribution_id"}, ""))
-
 	pattern_TscriptService_CreateChunkContribution_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"api", "tscript", "chunk", "chunk_id", "contrib"}, ""))
 
-	pattern_TscriptService_UpdateChunkContribution_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"api", "tscript", "chunk", "chunk_id", "contrib", "contribution_id"}, ""))
+	pattern_TscriptService_GetContribution_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "tscript", "contrib", "contribution_id"}, ""))
 
-	pattern_TscriptService_DiscardDraftContribution_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"api", "tscript", "chunk", "chunk_id", "contrib", "contribution_id"}, ""))
+	pattern_TscriptService_UpdateContribution_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "tscript", "contrib", "contribution_id"}, ""))
 
-	pattern_TscriptService_RequestChunkContributionState_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4, 1, 0, 4, 1, 5, 5, 2, 6}, []string{"api", "tscript", "chunk", "chunk_id", "contrib", "contribution_id", "state"}, ""))
+	pattern_TscriptService_DeleteContribution_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "tscript", "contrib", "contribution_id"}, ""))
+
+	pattern_TscriptService_RequestContributionState_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"api", "tscript", "contrib", "contribution_id", "state"}, ""))
 
 	pattern_TscriptService_ListPendingRewards_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"api", "rewards"}, ""))
 
@@ -1528,15 +1448,15 @@ var (
 
 	forward_TscriptService_GetChunk_0 = runtime.ForwardResponseMessage
 
-	forward_TscriptService_GetChunkContribution_0 = runtime.ForwardResponseMessage
-
 	forward_TscriptService_CreateChunkContribution_0 = runtime.ForwardResponseMessage
 
-	forward_TscriptService_UpdateChunkContribution_0 = runtime.ForwardResponseMessage
+	forward_TscriptService_GetContribution_0 = runtime.ForwardResponseMessage
 
-	forward_TscriptService_DiscardDraftContribution_0 = runtime.ForwardResponseMessage
+	forward_TscriptService_UpdateContribution_0 = runtime.ForwardResponseMessage
 
-	forward_TscriptService_RequestChunkContributionState_0 = runtime.ForwardResponseMessage
+	forward_TscriptService_DeleteContribution_0 = runtime.ForwardResponseMessage
+
+	forward_TscriptService_RequestContributionState_0 = runtime.ForwardResponseMessage
 
 	forward_TscriptService_ListPendingRewards_0 = runtime.ForwardResponseMessage
 

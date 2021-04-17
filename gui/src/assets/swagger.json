@@ -362,166 +362,6 @@
           ]
         }
       },
-      "/api/tscript/chunk/{chunkId}/contrib/{contributionId}": {
-        "get": {
-          "summary": "lists any existing contributions for a chunk",
-          "operationId": "getChunkContribution",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskChunkContribution"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "chunkId",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "name": "contributionId",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        },
-        "delete": {
-          "summary": "Discard unapproved contribution.",
-          "operationId": "discardDraftContribution",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "properties": {}
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "chunkId",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "name": "contributionId",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        },
-        "patch": {
-          "summary": "Update one of your existing contributions.",
-          "operationId": "updateChunkContribution",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskChunkContribution"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "chunkId",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "name": "contributionId",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "name": "body",
-              "in": "body",
-              "required": true,
-              "schema": {
-                "$ref": "#/definitions/rskUpdateChunkContributionRequest"
-              }
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/tscript/chunk/{chunkId}/contrib/{contributionId}/state": {
-        "patch": {
-          "summary": "request the contribution state be changed.",
-          "operationId": "requestChunkContributionState",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskChunkContribution"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "chunkId",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "name": "contributionId",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "name": "body",
-              "in": "body",
-              "required": true,
-              "schema": {
-                "$ref": "#/definitions/rskRequestChunkContributionStateRequest"
-              }
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      },
       "/api/tscript/chunk/{id}": {
         "get": {
           "summary": "Gets a specific transcript chunk to be completed.",
@@ -603,6 +443,142 @@
               "required": false,
               "type": "integer",
               "format": "int32"
+            }
+          ],
+          "tags": [
+            "search"
+          ]
+        }
+      },
+      "/api/tscript/contrib/{contributionId}": {
+        "get": {
+          "summary": "lists any existing contributions for a chunk",
+          "operationId": "getContribution",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskChunkContribution"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "contributionId",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "tags": [
+            "search"
+          ]
+        },
+        "delete": {
+          "summary": "Discard unapproved contribution.",
+          "operationId": "deleteContribution",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "properties": {}
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "contributionId",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "tags": [
+            "search"
+          ]
+        },
+        "patch": {
+          "summary": "Update one of your existing contributions.",
+          "operationId": "updateContribution",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskChunkContribution"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "contributionId",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "body",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/rskUpdateContributionRequest"
+              }
+            }
+          ],
+          "tags": [
+            "search"
+          ]
+        }
+      },
+      "/api/tscript/contrib/{contributionId}/state": {
+        "patch": {
+          "summary": "request the contribution state be changed.",
+          "operationId": "requestContributionState",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskChunkContribution"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "contributionId",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "body",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/rskRequestContributionStateRequest"
+              }
             }
           ],
           "tags": [
@@ -1190,12 +1166,9 @@
           }
         }
       },
-      "rskRequestChunkContributionStateRequest": {
+      "rskRequestContributionStateRequest": {
         "type": "object",
         "properties": {
-          "chunkId": {
-            "type": "string"
-          },
           "contributionId": {
             "type": "string"
           },
@@ -1408,12 +1381,9 @@
           }
         }
       },
-      "rskUpdateChunkContributionRequest": {
+      "rskUpdateContributionRequest": {
         "type": "object",
         "properties": {
-          "chunkId": {
-            "type": "string"
-          },
           "contributionId": {
             "type": "string"
           },

@@ -124,52 +124,6 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
       .pipe(tap((res: any) => guards.isRskChunkContribution(res) || console.error(`TypeGuard for response 'RskChunkContribution' caught inconsistency.`, res)));
   }
 
-  getChunkContribution(
-    args: {
-      chunkId: string,
-      contributionId: string,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskChunkContribution> {
-    return super.getChunkContribution(args, requestHttpOptions)
-      .pipe(tap((res: any) => guards.isRskChunkContribution(res) || console.error(`TypeGuard for response 'RskChunkContribution' caught inconsistency.`, res)));
-  }
-
-  discardDraftContribution(
-    args: {
-      chunkId: string,
-      contributionId: string,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<object> {
-    return super.discardDraftContribution(args, requestHttpOptions)
-      .pipe(tap((res: any) => typeof res === 'object' || console.error(`TypeGuard for response 'object' caught inconsistency.`, res)));
-  }
-
-  updateChunkContribution(
-    args: {
-      chunkId: string,
-      contributionId: string,
-      body: models.RskUpdateChunkContributionRequest,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskChunkContribution> {
-    return super.updateChunkContribution(args, requestHttpOptions)
-      .pipe(tap((res: any) => guards.isRskChunkContribution(res) || console.error(`TypeGuard for response 'RskChunkContribution' caught inconsistency.`, res)));
-  }
-
-  requestChunkContributionState(
-    args: {
-      chunkId: string,
-      contributionId: string,
-      body: models.RskRequestChunkContributionStateRequest,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskChunkContribution> {
-    return super.requestChunkContributionState(args, requestHttpOptions)
-      .pipe(tap((res: any) => guards.isRskChunkContribution(res) || console.error(`TypeGuard for response 'RskChunkContribution' caught inconsistency.`, res)));
-  }
-
   getChunk(
     args: {
       id: string,
@@ -192,6 +146,48 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
   ): Observable<models.RskContributionList> {
     return super.listContributions(args, requestHttpOptions)
       .pipe(tap((res: any) => guards.isRskContributionList(res) || console.error(`TypeGuard for response 'RskContributionList' caught inconsistency.`, res)));
+  }
+
+  getContribution(
+    args: {
+      contributionId: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskChunkContribution> {
+    return super.getContribution(args, requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRskChunkContribution(res) || console.error(`TypeGuard for response 'RskChunkContribution' caught inconsistency.`, res)));
+  }
+
+  deleteContribution(
+    args: {
+      contributionId: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<object> {
+    return super.deleteContribution(args, requestHttpOptions)
+      .pipe(tap((res: any) => typeof res === 'object' || console.error(`TypeGuard for response 'object' caught inconsistency.`, res)));
+  }
+
+  updateContribution(
+    args: {
+      contributionId: string,
+      body: models.RskUpdateContributionRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskChunkContribution> {
+    return super.updateContribution(args, requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRskChunkContribution(res) || console.error(`TypeGuard for response 'RskChunkContribution' caught inconsistency.`, res)));
+  }
+
+  requestContributionState(
+    args: {
+      contributionId: string,
+      body: models.RskRequestContributionStateRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskChunkContribution> {
+    return super.requestContributionState(args, requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRskChunkContribution(res) || console.error(`TypeGuard for response 'RskChunkContribution' caught inconsistency.`, res)));
   }
 
   getChunkStats(

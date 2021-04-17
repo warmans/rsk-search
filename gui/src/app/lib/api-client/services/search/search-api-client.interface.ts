@@ -111,52 +111,6 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  getChunkContribution(
-    args: {
-      chunkId: string,
-      contributionId: string,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskChunkContribution>;
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  discardDraftContribution(
-    args: {
-      chunkId: string,
-      contributionId: string,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<object>;
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  updateChunkContribution(
-    args: {
-      chunkId: string,
-      contributionId: string,
-      body: models.RskUpdateChunkContributionRequest,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskChunkContribution>;
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  requestChunkContributionState(
-    args: {
-      chunkId: string,
-      contributionId: string,
-      body: models.RskRequestChunkContributionStateRequest,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskChunkContribution>;
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
   getChunk(
     args: {
       id: string,
@@ -177,6 +131,48 @@ export interface SearchAPIClientInterface {
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskContributionList>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  getContribution(
+    args: {
+      contributionId: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskChunkContribution>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  deleteContribution(
+    args: {
+      contributionId: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<object>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  updateContribution(
+    args: {
+      contributionId: string,
+      body: models.RskUpdateContributionRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskChunkContribution>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  requestContributionState(
+    args: {
+      contributionId: string,
+      body: models.RskRequestContributionStateRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskChunkContribution>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.

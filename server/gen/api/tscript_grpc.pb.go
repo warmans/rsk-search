@@ -26,14 +26,12 @@ type TscriptServiceClient interface {
 	GetChunkStats(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ChunkStats, error)
 	GetAuthorLeaderboard(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*AuthorLeaderboard, error)
 	GetChunk(ctx context.Context, in *GetChunkRequest, opts ...grpc.CallOption) (*Chunk, error)
-	GetChunkContribution(ctx context.Context, in *GetChunkContributionRequest, opts ...grpc.CallOption) (*ChunkContribution, error)
 	CreateChunkContribution(ctx context.Context, in *CreateChunkContributionRequest, opts ...grpc.CallOption) (*ChunkContribution, error)
-	// todo: remove chunk_id from path - make it UpdateContribution
-	UpdateChunkContribution(ctx context.Context, in *UpdateChunkContributionRequest, opts ...grpc.CallOption) (*ChunkContribution, error)
-	// todo: remove chunk_id from path - DiscardContribution
-	DiscardDraftContribution(ctx context.Context, in *DiscardDraftContributionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	GetContribution(ctx context.Context, in *GetContributionRequest, opts ...grpc.CallOption) (*ChunkContribution, error)
+	UpdateContribution(ctx context.Context, in *UpdateContributionRequest, opts ...grpc.CallOption) (*ChunkContribution, error)
+	DeleteContribution(ctx context.Context, in *DeleteContributionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// todo: remove chunk_id from path - RequestContributionState
-	RequestChunkContributionState(ctx context.Context, in *RequestChunkContributionStateRequest, opts ...grpc.CallOption) (*ChunkContribution, error)
+	RequestContributionState(ctx context.Context, in *RequestContributionStateRequest, opts ...grpc.CallOption) (*ChunkContribution, error)
 	ListPendingRewards(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*PendingRewardList, error)
 	ListClaimedRewards(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ClaimedRewardList, error)
 	ClaimReward(ctx context.Context, in *ClaimRewardRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -102,15 +100,6 @@ func (c *tscriptServiceClient) GetChunk(ctx context.Context, in *GetChunkRequest
 	return out, nil
 }
 
-func (c *tscriptServiceClient) GetChunkContribution(ctx context.Context, in *GetChunkContributionRequest, opts ...grpc.CallOption) (*ChunkContribution, error) {
-	out := new(ChunkContribution)
-	err := c.cc.Invoke(ctx, "/rsk.TscriptService/GetChunkContribution", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *tscriptServiceClient) CreateChunkContribution(ctx context.Context, in *CreateChunkContributionRequest, opts ...grpc.CallOption) (*ChunkContribution, error) {
 	out := new(ChunkContribution)
 	err := c.cc.Invoke(ctx, "/rsk.TscriptService/CreateChunkContribution", in, out, opts...)
@@ -120,27 +109,36 @@ func (c *tscriptServiceClient) CreateChunkContribution(ctx context.Context, in *
 	return out, nil
 }
 
-func (c *tscriptServiceClient) UpdateChunkContribution(ctx context.Context, in *UpdateChunkContributionRequest, opts ...grpc.CallOption) (*ChunkContribution, error) {
+func (c *tscriptServiceClient) GetContribution(ctx context.Context, in *GetContributionRequest, opts ...grpc.CallOption) (*ChunkContribution, error) {
 	out := new(ChunkContribution)
-	err := c.cc.Invoke(ctx, "/rsk.TscriptService/UpdateChunkContribution", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/rsk.TscriptService/GetContribution", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *tscriptServiceClient) DiscardDraftContribution(ctx context.Context, in *DiscardDraftContributionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *tscriptServiceClient) UpdateContribution(ctx context.Context, in *UpdateContributionRequest, opts ...grpc.CallOption) (*ChunkContribution, error) {
+	out := new(ChunkContribution)
+	err := c.cc.Invoke(ctx, "/rsk.TscriptService/UpdateContribution", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tscriptServiceClient) DeleteContribution(ctx context.Context, in *DeleteContributionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, "/rsk.TscriptService/DiscardDraftContribution", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/rsk.TscriptService/DeleteContribution", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *tscriptServiceClient) RequestChunkContributionState(ctx context.Context, in *RequestChunkContributionStateRequest, opts ...grpc.CallOption) (*ChunkContribution, error) {
+func (c *tscriptServiceClient) RequestContributionState(ctx context.Context, in *RequestContributionStateRequest, opts ...grpc.CallOption) (*ChunkContribution, error) {
 	out := new(ChunkContribution)
-	err := c.cc.Invoke(ctx, "/rsk.TscriptService/RequestChunkContributionState", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/rsk.TscriptService/RequestContributionState", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -194,14 +192,12 @@ type TscriptServiceServer interface {
 	GetChunkStats(context.Context, *emptypb.Empty) (*ChunkStats, error)
 	GetAuthorLeaderboard(context.Context, *emptypb.Empty) (*AuthorLeaderboard, error)
 	GetChunk(context.Context, *GetChunkRequest) (*Chunk, error)
-	GetChunkContribution(context.Context, *GetChunkContributionRequest) (*ChunkContribution, error)
 	CreateChunkContribution(context.Context, *CreateChunkContributionRequest) (*ChunkContribution, error)
-	// todo: remove chunk_id from path - make it UpdateContribution
-	UpdateChunkContribution(context.Context, *UpdateChunkContributionRequest) (*ChunkContribution, error)
-	// todo: remove chunk_id from path - DiscardContribution
-	DiscardDraftContribution(context.Context, *DiscardDraftContributionRequest) (*emptypb.Empty, error)
+	GetContribution(context.Context, *GetContributionRequest) (*ChunkContribution, error)
+	UpdateContribution(context.Context, *UpdateContributionRequest) (*ChunkContribution, error)
+	DeleteContribution(context.Context, *DeleteContributionRequest) (*emptypb.Empty, error)
 	// todo: remove chunk_id from path - RequestContributionState
-	RequestChunkContributionState(context.Context, *RequestChunkContributionStateRequest) (*ChunkContribution, error)
+	RequestContributionState(context.Context, *RequestContributionStateRequest) (*ChunkContribution, error)
 	ListPendingRewards(context.Context, *emptypb.Empty) (*PendingRewardList, error)
 	ListClaimedRewards(context.Context, *emptypb.Empty) (*ClaimedRewardList, error)
 	ClaimReward(context.Context, *ClaimRewardRequest) (*emptypb.Empty, error)
@@ -230,20 +226,20 @@ func (UnimplementedTscriptServiceServer) GetAuthorLeaderboard(context.Context, *
 func (UnimplementedTscriptServiceServer) GetChunk(context.Context, *GetChunkRequest) (*Chunk, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetChunk not implemented")
 }
-func (UnimplementedTscriptServiceServer) GetChunkContribution(context.Context, *GetChunkContributionRequest) (*ChunkContribution, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetChunkContribution not implemented")
-}
 func (UnimplementedTscriptServiceServer) CreateChunkContribution(context.Context, *CreateChunkContributionRequest) (*ChunkContribution, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateChunkContribution not implemented")
 }
-func (UnimplementedTscriptServiceServer) UpdateChunkContribution(context.Context, *UpdateChunkContributionRequest) (*ChunkContribution, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateChunkContribution not implemented")
+func (UnimplementedTscriptServiceServer) GetContribution(context.Context, *GetContributionRequest) (*ChunkContribution, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetContribution not implemented")
 }
-func (UnimplementedTscriptServiceServer) DiscardDraftContribution(context.Context, *DiscardDraftContributionRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DiscardDraftContribution not implemented")
+func (UnimplementedTscriptServiceServer) UpdateContribution(context.Context, *UpdateContributionRequest) (*ChunkContribution, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateContribution not implemented")
 }
-func (UnimplementedTscriptServiceServer) RequestChunkContributionState(context.Context, *RequestChunkContributionStateRequest) (*ChunkContribution, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RequestChunkContributionState not implemented")
+func (UnimplementedTscriptServiceServer) DeleteContribution(context.Context, *DeleteContributionRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteContribution not implemented")
+}
+func (UnimplementedTscriptServiceServer) RequestContributionState(context.Context, *RequestContributionStateRequest) (*ChunkContribution, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RequestContributionState not implemented")
 }
 func (UnimplementedTscriptServiceServer) ListPendingRewards(context.Context, *emptypb.Empty) (*PendingRewardList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListPendingRewards not implemented")
@@ -377,24 +373,6 @@ func _TscriptService_GetChunk_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TscriptService_GetChunkContribution_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetChunkContributionRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TscriptServiceServer).GetChunkContribution(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/rsk.TscriptService/GetChunkContribution",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TscriptServiceServer).GetChunkContribution(ctx, req.(*GetChunkContributionRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _TscriptService_CreateChunkContribution_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateChunkContributionRequest)
 	if err := dec(in); err != nil {
@@ -413,56 +391,74 @@ func _TscriptService_CreateChunkContribution_Handler(srv interface{}, ctx contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TscriptService_UpdateChunkContribution_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateChunkContributionRequest)
+func _TscriptService_GetContribution_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetContributionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TscriptServiceServer).UpdateChunkContribution(ctx, in)
+		return srv.(TscriptServiceServer).GetContribution(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/rsk.TscriptService/UpdateChunkContribution",
+		FullMethod: "/rsk.TscriptService/GetContribution",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TscriptServiceServer).UpdateChunkContribution(ctx, req.(*UpdateChunkContributionRequest))
+		return srv.(TscriptServiceServer).GetContribution(ctx, req.(*GetContributionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TscriptService_DiscardDraftContribution_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DiscardDraftContributionRequest)
+func _TscriptService_UpdateContribution_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateContributionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TscriptServiceServer).DiscardDraftContribution(ctx, in)
+		return srv.(TscriptServiceServer).UpdateContribution(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/rsk.TscriptService/DiscardDraftContribution",
+		FullMethod: "/rsk.TscriptService/UpdateContribution",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TscriptServiceServer).DiscardDraftContribution(ctx, req.(*DiscardDraftContributionRequest))
+		return srv.(TscriptServiceServer).UpdateContribution(ctx, req.(*UpdateContributionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TscriptService_RequestChunkContributionState_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RequestChunkContributionStateRequest)
+func _TscriptService_DeleteContribution_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteContributionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TscriptServiceServer).RequestChunkContributionState(ctx, in)
+		return srv.(TscriptServiceServer).DeleteContribution(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/rsk.TscriptService/RequestChunkContributionState",
+		FullMethod: "/rsk.TscriptService/DeleteContribution",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TscriptServiceServer).RequestChunkContributionState(ctx, req.(*RequestChunkContributionStateRequest))
+		return srv.(TscriptServiceServer).DeleteContribution(ctx, req.(*DeleteContributionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TscriptService_RequestContributionState_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RequestContributionStateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TscriptServiceServer).RequestContributionState(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/rsk.TscriptService/RequestContributionState",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TscriptServiceServer).RequestContributionState(ctx, req.(*RequestContributionStateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -571,24 +567,24 @@ var TscriptService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _TscriptService_GetChunk_Handler,
 		},
 		{
-			MethodName: "GetChunkContribution",
-			Handler:    _TscriptService_GetChunkContribution_Handler,
-		},
-		{
 			MethodName: "CreateChunkContribution",
 			Handler:    _TscriptService_CreateChunkContribution_Handler,
 		},
 		{
-			MethodName: "UpdateChunkContribution",
-			Handler:    _TscriptService_UpdateChunkContribution_Handler,
+			MethodName: "GetContribution",
+			Handler:    _TscriptService_GetContribution_Handler,
 		},
 		{
-			MethodName: "DiscardDraftContribution",
-			Handler:    _TscriptService_DiscardDraftContribution_Handler,
+			MethodName: "UpdateContribution",
+			Handler:    _TscriptService_UpdateContribution_Handler,
 		},
 		{
-			MethodName: "RequestChunkContributionState",
-			Handler:    _TscriptService_RequestChunkContributionState_Handler,
+			MethodName: "DeleteContribution",
+			Handler:    _TscriptService_DeleteContribution_Handler,
+		},
+		{
+			MethodName: "RequestContributionState",
+			Handler:    _TscriptService_RequestContributionState_Handler,
 		},
 		{
 			MethodName: "ListPendingRewards",

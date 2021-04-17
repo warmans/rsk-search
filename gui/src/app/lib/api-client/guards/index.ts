@@ -425,12 +425,10 @@ export function isRskRedditAuthURL(arg: any): arg is models.RskRedditAuthURL {
   );
   }
 
-export function isRskRequestChunkContributionStateRequest(arg: any): arg is models.RskRequestChunkContributionStateRequest {
+export function isRskRequestContributionStateRequest(arg: any): arg is models.RskRequestContributionStateRequest {
   return (
   arg != null &&
   typeof arg === 'object' &&
-    // chunkId?: string
-    ( typeof arg.chunkId === 'undefined' || typeof arg.chunkId === 'string' ) &&
     // comment?: string
     ( typeof arg.comment === 'undefined' || typeof arg.comment === 'string' ) &&
     // contributionId?: string
@@ -615,12 +613,10 @@ export function isRskTscriptTimelineEvent(arg: any): arg is models.RskTscriptTim
   );
   }
 
-export function isRskUpdateChunkContributionRequest(arg: any): arg is models.RskUpdateChunkContributionRequest {
+export function isRskUpdateContributionRequest(arg: any): arg is models.RskUpdateContributionRequest {
   return (
   arg != null &&
   typeof arg === 'object' &&
-    // chunkId?: string
-    ( typeof arg.chunkId === 'undefined' || typeof arg.chunkId === 'string' ) &&
     // contributionId?: string
     ( typeof arg.contributionId === 'undefined' || typeof arg.contributionId === 'string' ) &&
     // state?: RskContributionState

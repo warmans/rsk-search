@@ -88,8 +88,7 @@ export class SubmitComponent implements OnInit, OnDestroy {
 
         // load content from existing contribution
         this.loading.push(true);
-        this.apiClient.getChunkContribution({
-          chunkId: d.params['id'],
+        this.apiClient.getContribution({
           contributionId: d.params['contribution_id']
         }).pipe(takeUntil(this.$destroy)).subscribe((res: RskChunkContribution) => {
           this.setContribution(res);
@@ -239,11 +238,9 @@ export class SubmitComponent implements OnInit, OnDestroy {
   }
 
   private _update(state: RskContributionState): Observable<RskChunkContribution> {
-    return this.apiClient.updateChunkContribution({
-      chunkId: this.chunk.id,
+    return this.apiClient.updateContribution({
       contributionId: this.contribution.id,
       body: {
-        chunkId: this.chunk.id,
         contributionId: this.contribution.id,
         transcript: this.updatedTranscript,
         state: state
@@ -262,11 +259,9 @@ export class SubmitComponent implements OnInit, OnDestroy {
 
   markIncomplete() {
     this.loading.push(true);
-    this.apiClient.requestChunkContributionState({
-      chunkId: this.chunk.id,
+    this.apiClient.requestContributionState({
       contributionId: this.contribution.id,
       body: {
-        chunkId: this.chunk.id,
         contributionId: this.contribution.id,
         requestState: RskContributionState.STATE_PENDING
       }

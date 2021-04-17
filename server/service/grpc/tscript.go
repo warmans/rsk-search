@@ -179,7 +179,7 @@ func (s *TscriptService) CreateChunkContribution(ctx context.Context, request *a
 	return contrib.Proto(), nil
 }
 
-func (s *TscriptService) UpdateChunkContribution(ctx context.Context, request *api.UpdateChunkContributionRequest) (*api.ChunkContribution, error) {
+func (s *TscriptService) UpdateContribution(ctx context.Context, request *api.UpdateContributionRequest) (*api.ChunkContribution, error) {
 
 	claims, err := s.getClaims(ctx)
 	if err != nil {
@@ -234,7 +234,7 @@ func (s *TscriptService) UpdateChunkContribution(ctx context.Context, request *a
 	return contrib.Proto(), nil
 }
 
-func (s *TscriptService) RequestChunkContributionState(ctx context.Context, request *api.RequestChunkContributionStateRequest) (*api.ChunkContribution, error) {
+func (s *TscriptService) RequestContributionState(ctx context.Context, request *api.RequestContributionStateRequest) (*api.ChunkContribution, error) {
 
 	claims, err := s.getClaims(ctx)
 	if err != nil {
@@ -272,7 +272,7 @@ func (s *TscriptService) RequestChunkContributionState(ctx context.Context, requ
 	return contrib.Proto(), nil
 }
 
-func (s *TscriptService) DiscardDraftContribution(ctx context.Context, request *api.DiscardDraftContributionRequest) (*emptypb.Empty, error) {
+func (s *TscriptService) DeleteContribution(ctx context.Context, request *api.DeleteContributionRequest) (*emptypb.Empty, error) {
 	claims, err := s.getClaims(ctx)
 	if err != nil {
 		return nil, err
@@ -338,7 +338,7 @@ func (s *TscriptService) GetAuthorLeaderboard(ctx context.Context, empty *emptyp
 	return out, err
 }
 
-func (s *TscriptService) GetChunkContribution(ctx context.Context, request *api.GetChunkContributionRequest) (*api.ChunkContribution, error) {
+func (s *TscriptService) GetContribution(ctx context.Context, request *api.GetContributionRequest) (*api.ChunkContribution, error) {
 
 	claims, err := s.getClaims(ctx)
 	if err != nil {

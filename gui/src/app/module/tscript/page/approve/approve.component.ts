@@ -98,11 +98,9 @@ export class ApproveComponent implements OnInit {
 
   updateState(co: RskContribution, state: RskContributionState) {
     this.loading.push(true);
-    this.apiClient.requestChunkContributionState({
-      chunkId: co.chunkId,
+    this.apiClient.requestContributionState({
       contributionId: co.id,
       body: {
-        chunkId: co.chunkId,
         contributionId: co.id,
         requestState: state,
       }

@@ -53,8 +53,7 @@ export class AuthorContributionsComponent implements OnInit, OnDestroy {
 
   discardDraft(chunkId: string, contributionId: string): void {
     if (confirm('Really discard draft?')) {
-      this.apiClient.discardDraftContribution({
-        chunkId: chunkId,
+      this.apiClient.deleteContribution({
         contributionId: contributionId
       }).pipe(takeUntil(this.destroy$)).subscribe(() => {
         this.loadContributions();

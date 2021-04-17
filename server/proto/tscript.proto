@@ -87,17 +87,6 @@ service TscriptService {
     };
   }
 
-  rpc GetChunkContribution(GetChunkContributionRequest) returns (ChunkContribution) {
-    option (google.api.http) = {
-      get: "/api/tscript/chunk/{chunk_id}/contrib/{contribution_id}"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      operation_id: "getChunkContribution",
-      summary: "lists any existing contributions for a chunk"
-      tags: "search"
-    };
-  }
-
   rpc CreateChunkContribution(CreateChunkContributionRequest) returns (ChunkContribution) {
     option (google.api.http) = {
       patch: "/api/tscript/chunk/{chunk_id}/contrib",
@@ -110,39 +99,48 @@ service TscriptService {
     };
   }
 
-  // todo: remove chunk_id from path - make it UpdateContribution
-  rpc UpdateChunkContribution(UpdateChunkContributionRequest) returns (ChunkContribution) {
+  rpc GetContribution(GetContributionRequest) returns (ChunkContribution) {
     option (google.api.http) = {
-      patch: "/api/tscript/chunk/{chunk_id}/contrib/{contribution_id}",
+      get: "/api/tscript/contrib/{contribution_id}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "getContribution",
+      summary: "lists any existing contributions for a chunk"
+      tags: "search"
+    };
+  }
+
+  rpc UpdateContribution(UpdateContributionRequest) returns (ChunkContribution) {
+    option (google.api.http) = {
+      patch: "/api/tscript/contrib/{contribution_id}",
       body: "*",
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      operation_id: "updateChunkContribution",
+      operation_id: "updateContribution",
       summary: "Update one of your existing contributions."
       tags: "search"
     };
   }
 
-  // todo: remove chunk_id from path - DiscardContribution
-  rpc DiscardDraftContribution(DiscardDraftContributionRequest) returns (google.protobuf.Empty) {
+  rpc DeleteContribution(DeleteContributionRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      delete: "/api/tscript/chunk/{chunk_id}/contrib/{contribution_id}"
+      delete: "/api/tscript/contrib/{contribution_id}"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      operation_id: "discardDraftContribution",
+      operation_id: "deleteContribution",
       summary: "Discard unapproved contribution."
       tags: "search"
     };
   }
 
   // todo: remove chunk_id from path - RequestContributionState
-  rpc RequestChunkContributionState(RequestChunkContributionStateRequest) returns (ChunkContribution) {
+  rpc RequestContributionState(RequestContributionStateRequest) returns (ChunkContribution) {
     option (google.api.http) = {
-      patch: "/api/tscript/chunk/{chunk_id}/contrib/{contribution_id}/state",
+      patch: "/api/tscript/contrib/{contribution_id}/state",
       body: "*",
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      operation_id: "requestChunkContributionState",
+      operation_id: "requestContributionState",
       summary: "request the contribution state be changed."
       tags: "search"
     };
@@ -267,28 +265,24 @@ message SubmitDialogCorrectionRequest {
 }
 
 
-message UpdateChunkContributionRequest {
-  string chunk_id = 1;
-  string contribution_id = 2;
-  string transcript = 3;
-  ContributionState state = 4;
+message UpdateContributionRequest {
+  string contribution_id = 1;
+  string transcript = 2;
+  ContributionState state = 3;
 }
 
-message DiscardDraftContributionRequest{
-  string chunk_id = 1;
-  string contribution_id = 2;
+message DeleteContributionRequest{
+  string contribution_id = 1;
 }
 
-message RequestChunkContributionStateRequest {
-  string chunk_id = 1;
-  string contribution_id = 2;
-  ContributionState request_state = 3;
-  string comment = 4;
+message RequestContributionStateRequest {
+  string contribution_id = 1;
+  ContributionState request_state = 2;
+  string comment = 3;
 }
 
-message GetChunkContributionRequest{
-  string chunk_id = 1;
-  string contribution_id = 2;
+message GetContributionRequest{
+  string contribution_id = 1;
 }
 
 message ListTscriptChunkContributionsRequest {
