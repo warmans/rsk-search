@@ -319,11 +319,11 @@ message AuthorLeaderboard {
 }
 
 message AuthorRanking {
-  string author_name = 1;
-  int32 accepted_contributions = 2;
-  bool approver = 3;
+  Author author = 1;
+  bool approver = 2;
+  int32 accepted_contributions = 3;
+  float award_value = 4;
 }
-
 
 message GetTscriptTimelineRequest {
   string tscript_id = 1;

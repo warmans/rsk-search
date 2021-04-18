@@ -437,14 +437,20 @@ func (s *Store) ListNonPendingTscriptContributions(ctx context.Context, tscriptI
 func (s *Store) AuthorLeaderboard(ctx context.Context) (*models.AuthorLeaderboard, error) {
 
 	query := `
-        SELECT * FROM (
+        SELECT
+		   ranks.name,
+           ranks.approver,
+           ranks.num_approved,
+		   (SELECT COALESCE(SUM(r.claim_value), 0) FROM author_reward r WHERE r.author_id = ranks.id AND r.claimed = TRUE)
+        FROM (
             SELECT 
+            	a.id,
                 a.name,
                 a.approver,
                 COALESCE(SUM(CASE WHEN c.state = 'approved' THEN 1 ELSE 0 END), 0) as num_approved
             FROM author a
             LEFT JOIN tscript_contribution c ON c.author_id = a.id
-            GROUP BY a.name, a.approver) ranks
+            GROUP BY a.id, a.name, a.approver) ranks
 		WHERE ranks.num_approved > 0
 		ORDER BY ranks.num_approved DESC
 		LIMIT 25
@@ -457,16 +463,17 @@ func (s *Store) AuthorLeaderboard(ctx context.Context) (*models.AuthorLeaderboar
 
 	authors := []*models.AuthorRanking{}
 	for rows.Next() {
-		author := &models.AuthorRanking{}
+		ranking := &models.AuthorRanking{Author: &models.ShortAuthor{}}
 		err := rows.Scan(
-			&author.Name,
-			&author.Approver,
-			&author.AcceptedContributions,
+			&ranking.Author.Name,
+			&ranking.Approver,
+			&ranking.AcceptedContributions,
+			&ranking.AwardValue,
 		)
 		if err != nil {
 			return nil, err
 		}
-		authors = append(authors, author)
+		authors = append(authors, ranking)
 	}
 
 	return &models.AuthorLeaderboard{Authors: authors}, nil

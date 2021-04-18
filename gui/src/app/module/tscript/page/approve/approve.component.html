@@ -17,7 +17,7 @@
         <div class="card-header" *ngIf="co.id">
           <div class="d-flex mb-3">
             <div class="flex-grow-1">
-              <span class="float-left mr-2 pt-1">{{co.chunkId}} :: </span>
+              <span class="float-left mr-2 pt-1">{{co.chunkId}} :: {{co.author.name}} :: </span>
               <select class="form-control form-control-sm" style="max-width: 400px" *ngIf="co.id"
                       (change)="selectChunkContribution(co.id, $event)">
                 <option
@@ -59,7 +59,8 @@
         </div>
         <div class="card-footer" *ngIf="approver && co.id && co.state === states.STATE_REQUEST_APPROVAL">
           <a class="btn btn-success mr-3" (click)="updateState(co, states.STATE_APPROVED)">Approve</a>
-          <a class="btn btn-danger" (click)="updateState(co, states.STATE_REJECTED)">Reject</a>
+          <a class="btn btn-danger mr-3" (click)="updateState(co, states.STATE_REJECTED)">Reject</a>
+          <a class="btn btn-info" [routerLink]="['/chunk', co.chunkId, 'contrib', co.id]">Edit</a>
         </div>
       </div>
     </div>

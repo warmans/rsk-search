@@ -8,9 +8,9 @@
       <app-gl-search (queryUpdated)="executeSearch($event)"></app-gl-search>
     </div>
     <div class="ml-3 d-flex">
-      <button class="btn btn-primary btn-lg mr-3" (click)="toggleDarkmode()" title="Toggle dark theme.">
-        <i class="bi-sun" *ngIf="darkTheme"></i>
-        <i class="bi-sun-fill" *ngIf="!darkTheme"></i>
+      <button class="btn btn-transparent btn-lg mr-3" (click)="toggleDarkmode()" title="Toggle dark theme.">
+        <i class="bi-lightbulb-off" *ngIf="!darkTheme"></i>
+        <i class="bi-lightbulb" *ngIf="darkTheme"></i>
       </button>
       <a class="btn btn-info btn-lg" [routerLink]="['/me']" *ngIf="!loggedInUser?.identity?.icon_img">
         <i class="bi-person"></i>

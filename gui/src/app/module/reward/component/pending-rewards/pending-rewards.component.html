@@ -1,7 +1,7 @@
 <div class="rewards-container" *ngIf="displayOnPage">
-  <div class="reward d-flex p-3 mb-3 animate__animated animate__tada shadow" *ngFor="let reward of rewards">
+  <div class="reward d-flex p-3 mb-3 animate__animated animate__tada shadow" *ngFor="let reward of rewards; let i = index;">
     <div class="mr-3 reward-icon flex-column d-flex justify-content-center">
-      <img style="width: 80px; height: 80px;" src="/assets/illustration/pixeltrue-icons-discount-1.svg" />
+      <img style="width: 80px; height: 80px;" [src]="rewardIcons[i]" />
     </div>
     <div class="flex-grow-1">
       <div class="mb-1"><strong>{{reward.name}}</strong></div>

@@ -3,15 +3,9 @@
   <div class="card-body p-0">
     <table class="table mb-0">
       <tr *ngFor="let a of authors; let i = index">
-        <td style="width: 50px">{{i+1}}</td>
-        <td style="width: 150px">
-
-          <span *ngIf="a.approver" class="text-muted">
-            <i class="bi-cpu mr-1"></i> {{a.authorName}}
-          </span>
-          <span *ngIf="!a.approver">
-            {{a.authorName}}
-          </span>
+        <td style="width: 50px" class="text-muted">#{{i+1}}</td>
+        <td style="width: 150px" class="font-weight-bold">
+            {{a.author.name}}
         </td>
         <td>
           <div *ngIf="a.acceptedContributions > 0" class="text-success">
@@ -20,7 +14,11 @@
               <i *ngIf="(idx+1) % awardThreshold === 0" class="bi-trophy"></i>
             </span>
           </div>
-          <span class="text-muted">{{ nextRewardAt(a.acceptedContributions) }} until next <a (click)="showAwardHelp = true">award <i class="bi-question-circle"></i></a></span>
+          <span class="text-sm clickable" (click)="showAwardHelp = true"><strong>{{ nextRewardAt(a.acceptedContributions) }}</strong> until next award.</span>
+        </td>
+        <td style="width: 200px" class="text-sm">
+          <strong>{{a.awardValue | currency}}</strong> Awarded.
+          <div class="text-muted">or {{(a.awardValue / 60000) * 100 | number:"1.0-6"}}% of 1 chimp</div>
         </td>
       </tr>
     </table>
@@ -40,11 +38,13 @@
           <img src="/assets/illustration/pixeltrue-special-deals.svg" style="width: 300px; height: 300px;"/>
 
         </div>
-        <div>
-          <p class="text-center"><strong>Help a little monkey fella' by listening to twaddle.</strong></p>
+        <div class="text-center">
+          <p><strong>Help a little monkey fella' by listening to twaddle.</strong></p>
           <p>For each <strong>{{awardThreshold}}</strong> contributions you will be given a reward. Rewards are
-          donations to a charity of your choice (from a list).</p>
-          <a [routerLink]="['/me']" >More details on your profile (requires registration).</a>
+            donations to a charity of your choice (from a list).</p>
+          <p>
+            <a [routerLink]="['/me']">More details on your profile (requires registration).</a>
+          </p>
         </div>
       </div>
     </div>

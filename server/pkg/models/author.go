@@ -66,9 +66,10 @@ func (l *AuthorLeaderboard) Proto() *api.AuthorLeaderboard {
 }
 
 type AuthorRanking struct {
-	Name                  string
-	AcceptedContributions int32
+	Author                *ShortAuthor
 	Approver              bool
+	AcceptedContributions int32
+	AwardValue            float32
 }
 
 func (l *AuthorRanking) Proto() *api.AuthorRanking {
@@ -76,9 +77,10 @@ func (l *AuthorRanking) Proto() *api.AuthorRanking {
 		return nil
 	}
 	return &api.AuthorRanking{
-		AuthorName:            l.Name,
-		AcceptedContributions: l.AcceptedContributions,
+		Author:                l.Author.Proto(),
 		Approver:              l.Approver,
+		AcceptedContributions: l.AcceptedContributions,
+		AwardValue:            l.AwardValue,
 	}
 }
 

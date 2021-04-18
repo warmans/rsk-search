@@ -763,15 +763,19 @@
       "rskAuthorRanking": {
         "type": "object",
         "properties": {
-          "authorName": {
-            "type": "string"
+          "author": {
+            "$ref": "#/definitions/rskAuthor"
+          },
+          "approver": {
+            "type": "boolean"
           },
           "acceptedContributions": {
             "type": "integer",
             "format": "int32"
           },
-          "approver": {
-            "type": "boolean"
+          "awardValue": {
+            "type": "number",
+            "format": "float"
           }
         }
       },
