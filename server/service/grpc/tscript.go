@@ -8,6 +8,7 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/warmans/rsk-search/gen/api"
+	"github.com/warmans/rsk-search/pkg/filter"
 	"github.com/warmans/rsk-search/pkg/jwt"
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/pledge"
@@ -112,8 +113,6 @@ func (s *TscriptService) GetTscriptTimeline(ctx context.Context, request *api.Ge
 
 func (s *TscriptService) GetChunk(ctx context.Context, request *api.GetChunkRequest) (*api.Chunk, error) {
 	var chunk *models.Chunk
-	var contributionCount int32
-
 	err := s.persistentDB.WithStore(func(s *rw.Store) error {
 		var err error
 		chunk, err = s.GetChunk(ctx, request.Id)
@@ -123,16 +122,38 @@ func (s *TscriptService) GetChunk(ctx context.Context, request *api.GetChunkRequ
 		if chunk == nil {
 			return ErrNotFound(request.Id).Err()
 		}
-		contributionCount, err = s.GetChunkContributionCount(ctx, request.Id)
-		if err != nil {
-			return err
-		}
 		return err
 	})
 	if err != nil {
 		return nil, ErrFromStore(err, request.Id).Err()
 	}
-	return chunk.Proto(contributionCount), nil
+	return chunk.Proto(), nil
+}
+
+func (s *TscriptService) ListChunks(ctx context.Context, request *api.ListChunksRequest) (*api.ChunkList, error) {
+	qm, err := NewQueryModifiers(request)
+	if err != nil {
+		return nil, err
+	}
+	if qm.Filter != nil {
+		qm.Filter = filter.And(filter.Eq("tscript_id", filter.String(request.TscriptId)), qm.Filter)
+	} else {
+		qm.Filter = filter.Eq("tscript_id", filter.String(request.TscriptId))
+	}
+
+	out := &api.ChunkList{
+		Chunks: make([]*api.Chunk, 0),
+	}
+	if err := s.persistentDB.WithStore(func(store *rw.Store) error {
+		chunks, err := store.ListChunks(ctx, qm)
+		for _, v := range chunks {
+			out.Chunks = append(out.Chunks, v.Proto())
+		}
+		return err
+	}); err != nil {
+		return nil, ErrFromStore(err, "").Err()
+	}
+	return out, nil
 }
 
 func (s *TscriptService) CreateChunkContribution(ctx context.Context, request *api.CreateChunkContributionRequest) (*api.ChunkContribution, error) {
@@ -307,6 +328,13 @@ func (s *TscriptService) ListContributions(ctx context.Context, request *api.Lis
 	if err != nil {
 		return nil, err
 	}
+
+	if qm.Filter != nil {
+		qm.Filter = filter.And(filter.Neq("state", filter.String("pending")), qm.Filter)
+	} else {
+		qm.Filter = filter.Neq("state", filter.String("pending"))
+	}
+
 	out := &api.ContributionList{
 		Contributions: make([]*api.Contribution, 0),
 	}

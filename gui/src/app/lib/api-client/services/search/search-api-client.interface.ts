@@ -184,6 +184,21 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  listChunks(
+    args: {
+      tscriptId: string,
+      filter?: string,
+      sortField?: string,
+      sortDirection?: string,
+      page?: number,
+      pageSize?: number,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskChunkList>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   getTscriptTimeline(
     args: {
       tscriptId: string,

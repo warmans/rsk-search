@@ -7,6 +7,7 @@ export { RskAuthorLeaderboard } from './rsk-author-leaderboard.model';
 export { RskAuthorRanking } from './rsk-author-ranking.model';
 export { RskChunk } from './rsk-chunk.model';
 export { RskChunkContribution } from './rsk-chunk-contribution.model';
+export { RskChunkList } from './rsk-chunk-list.model';
 export { RskChunkStates } from './rsk-chunk-states.model';
 export { RskChunkStats } from './rsk-chunk-stats.model';
 export { RskClaimedReward } from './rsk-claimed-reward.model';

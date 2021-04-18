@@ -103,7 +103,7 @@ func (q *QueryModifier) Apply(opt QueryOpt) *QueryModifier {
 	return q
 }
 
-func (q *QueryModifier) ToSQL(fieldMap map[string]string) (where string, params []interface{}, order string, paging string, err error) {
+func (q *QueryModifier) ToSQL(fieldMap map[string]string, withWHERE bool) (where string, params []interface{}, order string, paging string, err error) {
 	if q == nil {
 		return "", []interface{}{}, "", "", nil
 	}
@@ -112,7 +112,9 @@ func (q *QueryModifier) ToSQL(fieldMap map[string]string) (where string, params 
 		if err != nil {
 			return
 		}
-		where = fmt.Sprintf("WHERE %s", where)
+		if withWHERE {
+			where = fmt.Sprintf("WHERE %s", where)
+		}
 	}
 	if q.Sorting != nil {
 		order, err = q.Sorting.Stmnt(fieldMap)

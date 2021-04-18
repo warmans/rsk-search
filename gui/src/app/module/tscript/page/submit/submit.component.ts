@@ -24,6 +24,7 @@ export class SubmitComponent implements OnInit, OnDestroy {
   chunk: RskChunk;
   contribution: RskChunkContribution;
   userCanEdit: boolean = true;
+  userIsOwner: boolean = true;
 
   // to stop the caret from getting messed up by updates we need to separate the input
   // data from the output.
@@ -156,9 +157,11 @@ export class SubmitComponent implements OnInit, OnDestroy {
     this.setInitialTranscript(res.transcript);
 
     this.userCanEdit = res.state === RskContributionState.STATE_PENDING;
-    if (!this.sessionService.getClaims().approver || this.sessionService.getClaims()?.author_id !== res.author.id) {
-      this.userCanEdit = false;
+    if (!this.sessionService.getClaims().approver) {
+      this.userCanEdit = this.sessionService.getClaims()?.author_id === res.author.id;
     }
+
+    this.userIsOwner = this.sessionService.getClaims()?.author_id === res.author.id || this.sessionService.getClaims().approver;
   }
 
   setInitialTranscript(text: string) {

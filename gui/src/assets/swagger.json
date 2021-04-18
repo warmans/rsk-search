@@ -609,6 +609,69 @@
           ]
         }
       },
+      "/api/tscript/{tscriptId}/chunk": {
+        "get": {
+          "summary": "Lists all chunks for the given tscript ID.",
+          "operationId": "listChunks",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskChunkList"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "tscriptId",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "filter",
+              "in": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "sortField",
+              "in": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "sortDirection",
+              "in": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "pageSize",
+              "in": "query",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            }
+          ],
+          "tags": [
+            "search"
+          ]
+        }
+      },
       "/api/tscript/{tscriptId}/timeline": {
         "get": {
           "summary": "Gets a specific transcript chunk to be completed.",
@@ -817,6 +880,17 @@
           },
           "author": {
             "$ref": "#/definitions/rskAuthor"
+          }
+        }
+      },
+      "rskChunkList": {
+        "type": "object",
+        "properties": {
+          "chunks": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/rskChunk"
+            }
           }
         }
       },

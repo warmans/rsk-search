@@ -1,6 +1,12 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
-import { RskContribution, RskContributionList, RskContributionState } from '../../../../lib/api-client/models';
+import {
+  RskChunk,
+  RskChunkList,
+  RskContribution,
+  RskContributionList,
+  RskContributionState
+} from '../../../../lib/api-client/models';
 import { takeUntil } from 'rxjs/operators';
 import { ActivatedRoute, Data } from '@angular/router';
 import { Title } from '@angular/platform-browser';
@@ -17,6 +23,8 @@ import { Str } from '../../../../lib/filter-dsl/value';
 export class ApproveComponent implements OnInit {
 
   tscriptID: string;
+
+  chunks: RskChunk[] = [];
 
   groupedContributions: { [index: string]: RskContribution[] } = {};
 
@@ -52,20 +60,29 @@ export class ApproveComponent implements OnInit {
 
   loadData() {
     this.loading.push(true);
+    this.apiClient.listChunks({ tscriptId: this.tscriptID }).pipe(takeUntil(this.destroy$)).subscribe((resp: RskChunkList) => {
+      this.chunks = resp.chunks;
+    }).add(() => this.loading.pop());
+
+    this.loading.push(true);
     this.apiClient.listContributions({
       filter: Eq('tscript_id', Str(this.tscriptID)).print(),
+      pageSize: 200,
     }).pipe(takeUntil(this.destroy$)).subscribe((val: RskContributionList) => {
       val.contributions.forEach((c) => {
+        if (c.state === RskContributionState.STATE_PENDING) {
+          return;
+        }
         if (this.groupedContributions[c.chunkId]) {
           this.groupedContributions[c.chunkId].push(c);
         } else {
           this.groupedContributions[c.chunkId] = [c];
         }
       });
-      this.updateApprovalList();
     }).add(() => this.loading.pop());
   }
 
+  // unused - but might need to be re-implemented at some point
   updateApprovalList() {
     let approvalMap: { [index: string]: RskContribution } = {};
     for (let chunkId in this.groupedContributions) {

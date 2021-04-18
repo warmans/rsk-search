@@ -167,20 +167,36 @@ func (s *Store) GetChunk(ctx context.Context, chunkId string) (*models.Chunk, er
 func (s *Store) ListChunks(ctx context.Context, q *common.QueryModifier) ([]*models.Chunk, error) {
 
 	fieldMap := map[string]string{
-		"id":           "id",
-		"tscript_id":   "tscript_id",
-		"start_second": "start_second",
-		"end_second":   "end_second",
+		"id":           "ch.id",
+		"tscript_id":   "ch.tscript_id",
+		"start_second": "ch.start_second",
+		"end_second":   "ch.end_second",
 	}
 
-	where, params, order, paging, err := q.ToSQL(fieldMap)
+	where, params, order, paging, err := q.ToSQL(fieldMap, true)
 	if err != nil {
 		return nil, err
 	}
 	rows, err := s.tx.QueryxContext(
 		ctx,
-		fmt.Sprintf(`SELECT id, tscript_id, raw, start_second, end_second FROM tscript_chunk %s %s %s`, where, order, paging),
-		params...)
+		fmt.Sprintf(`
+			SELECT 
+				ch.id, 
+				ch.tscript_id,
+				ch.raw,
+				ch.start_second,
+				ch.end_second,
+				(SELECT COUNT(*) FROM tscript_contribution WHERE tscript_chunk_id  = ch.id AND state != 'pending' AND state != 'rejected') AS num_contributions
+			FROM tscript_chunk ch
+			%s 
+			%s 
+			%s`,
+			where,
+			order,
+			paging,
+		),
+		params...,
+	)
 	if err != nil {
 		return nil, err
 	}
@@ -310,17 +326,17 @@ func (s *Store) UpdateContributionState(ctx context.Context, id string, state mo
 func (s *Store) ListContributions(ctx context.Context, q *common.QueryModifier) ([]*models.Contribution, error) {
 
 	fieldMap := map[string]string{
-		"id":               "c.id",
-		"tscript_id":       "ch.tscript_id",
-		"tscript_chunk_id": "c.tscript_chunk_id",
-		"author_id":        "c.author_id",
-		"author_name":      "a.name",
-		"transcription":    "c.transcription",
-		"state":            "c.state",
-		"created_at":       "c.created_at",
+		"id":            "c.id",
+		"tscript_id":    "ch.tscript_id",
+		"chunk_id":      "ch.id",
+		"author_id":     "c.author_id",
+		"author_name":   "a.name",
+		"transcription": "c.transcription",
+		"state":         "c.state",
+		"created_at":    "c.created_at",
 	}
 
-	where, params, order, paging, err := q.ToSQL(fieldMap)
+	where, params, order, paging, err := q.ToSQL(fieldMap, false)
 	if err != nil {
 		return nil, err
 	}
@@ -340,7 +356,8 @@ func (s *Store) ListContributions(ctx context.Context, q *common.QueryModifier) 
 		FROM tscript_contribution c
 		LEFT JOIN tscript_chunk ch ON c.tscript_chunk_id = ch.id 
 		LEFT JOIN author a ON c.author_id = a.id
-		%s
+		WHERE a.banned = false 
+		AND %s
 		%s
 		%s
 		`, where, order, paging),

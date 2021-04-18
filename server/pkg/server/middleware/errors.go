@@ -26,7 +26,7 @@ func handleError(err error) error {
 	}
 	staErr, ok := status.FromError(err)
 	if !ok || ok &&  staErr.Code() == codes.Internal {
-		s := status.New(codes.Internal, "Demicky response.")
+		s := status.New(codes.Internal, "Server response was a bit demicky. Like, not properly.")
 		return s.Err()
 	}
 	return err

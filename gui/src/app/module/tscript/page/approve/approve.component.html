@@ -10,7 +10,46 @@
         </ol>
       </nav>
 
-      <div class="card mb-3" *ngFor="let co of approvalList">
+      <div class="card mb-3">
+        <div *ngFor="let ch of chunks">
+          <div class="card-header">
+            {{ch.id}} ::
+            <app-contribution-state *ngIf="(groupedContributions[ch.id] || []).length > 0" [state]="groupedContributions[ch.id][(ch.selectedContribution || 0)].state"></app-contribution-state>
+            <span *ngIf="(groupedContributions[ch.id] || []).length === 0">
+              No contributions (<a [routerLink]="['/chunk', ch.id]">Create one now</a>)
+            </span>
+
+            <div class="float-right" *ngIf="(groupedContributions[ch.id] || []).length > 1">
+              <select
+                class="form-control form-control-sm" style="max-width: 400px"
+                (change)="ch.selectedContribution = $event.target.value">
+                <option
+                  *ngFor="let contrib of groupedContributions[ch.id]; let i = index;"
+                  [value]="i"
+                  [selected]="ch.selectedContribution === i">{{contrib.id}} ({{contrib.state}})
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="card-body">
+            <div *ngIf="(groupedContributions[ch.id] || []).length === 0" class="text-muted">
+              <app-transcript [transcript]="parseTscript(ch.raw).dialog"></app-transcript>
+            </div>
+            <div *ngIf="(groupedContributions[ch.id] || []).length > 0">
+              <app-transcript [transcript]="parseTscript(groupedContributions[ch.id][(ch.selectedContribution || 0)].transcript).dialog"></app-transcript>
+            </div>
+          </div>
+          <div *ngIf="(groupedContributions[ch.id] || []).length > 0">
+            <div class="card-footer" *ngIf="approver && groupedContributions[ch.id][(ch.selectedContribution || 0)].state === states.STATE_REQUEST_APPROVAL">
+              <a class="btn btn-success mr-3" (click)="updateState(ch, states.STATE_APPROVED)">Approve</a>
+              <a class="btn btn-danger mr-3" (click)="updateState(ch, states.STATE_REJECTED)">Reject</a>
+              <a class="btn btn-info" [routerLink]="['/chunk', ch.id, 'contrib', groupedContributions[ch.id][(ch.selectedContribution || 0)].id]">Edit</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--div class="card mb-3" *ngFor="let co of approvalList">
         <div class="card-header" *ngIf="!co.id">
           {{co.chunkId}}
         </div>
@@ -62,7 +101,7 @@
           <a class="btn btn-danger mr-3" (click)="updateState(co, states.STATE_REJECTED)">Reject</a>
           <a class="btn btn-info" [routerLink]="['/chunk', co.chunkId, 'contrib', co.id]">Edit</a>
         </div>
-      </div>
+      </div-->
     </div>
   </div>
 </div>

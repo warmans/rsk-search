@@ -26,6 +26,7 @@ type TscriptServiceClient interface {
 	GetChunkStats(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ChunkStats, error)
 	GetAuthorLeaderboard(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*AuthorLeaderboard, error)
 	GetChunk(ctx context.Context, in *GetChunkRequest, opts ...grpc.CallOption) (*Chunk, error)
+	ListChunks(ctx context.Context, in *ListChunksRequest, opts ...grpc.CallOption) (*ChunkList, error)
 	CreateChunkContribution(ctx context.Context, in *CreateChunkContributionRequest, opts ...grpc.CallOption) (*ChunkContribution, error)
 	GetContribution(ctx context.Context, in *GetContributionRequest, opts ...grpc.CallOption) (*ChunkContribution, error)
 	UpdateContribution(ctx context.Context, in *UpdateContributionRequest, opts ...grpc.CallOption) (*ChunkContribution, error)
@@ -94,6 +95,15 @@ func (c *tscriptServiceClient) GetAuthorLeaderboard(ctx context.Context, in *emp
 func (c *tscriptServiceClient) GetChunk(ctx context.Context, in *GetChunkRequest, opts ...grpc.CallOption) (*Chunk, error) {
 	out := new(Chunk)
 	err := c.cc.Invoke(ctx, "/rsk.TscriptService/GetChunk", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tscriptServiceClient) ListChunks(ctx context.Context, in *ListChunksRequest, opts ...grpc.CallOption) (*ChunkList, error) {
+	out := new(ChunkList)
+	err := c.cc.Invoke(ctx, "/rsk.TscriptService/ListChunks", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -192,6 +202,7 @@ type TscriptServiceServer interface {
 	GetChunkStats(context.Context, *emptypb.Empty) (*ChunkStats, error)
 	GetAuthorLeaderboard(context.Context, *emptypb.Empty) (*AuthorLeaderboard, error)
 	GetChunk(context.Context, *GetChunkRequest) (*Chunk, error)
+	ListChunks(context.Context, *ListChunksRequest) (*ChunkList, error)
 	CreateChunkContribution(context.Context, *CreateChunkContributionRequest) (*ChunkContribution, error)
 	GetContribution(context.Context, *GetContributionRequest) (*ChunkContribution, error)
 	UpdateContribution(context.Context, *UpdateContributionRequest) (*ChunkContribution, error)
@@ -225,6 +236,9 @@ func (UnimplementedTscriptServiceServer) GetAuthorLeaderboard(context.Context, *
 }
 func (UnimplementedTscriptServiceServer) GetChunk(context.Context, *GetChunkRequest) (*Chunk, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetChunk not implemented")
+}
+func (UnimplementedTscriptServiceServer) ListChunks(context.Context, *ListChunksRequest) (*ChunkList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListChunks not implemented")
 }
 func (UnimplementedTscriptServiceServer) CreateChunkContribution(context.Context, *CreateChunkContributionRequest) (*ChunkContribution, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateChunkContribution not implemented")
@@ -369,6 +383,24 @@ func _TscriptService_GetChunk_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TscriptServiceServer).GetChunk(ctx, req.(*GetChunkRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TscriptService_ListChunks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListChunksRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TscriptServiceServer).ListChunks(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/rsk.TscriptService/ListChunks",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TscriptServiceServer).ListChunks(ctx, req.(*ListChunksRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -565,6 +597,10 @@ var TscriptService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetChunk",
 			Handler:    _TscriptService_GetChunk_Handler,
+		},
+		{
+			MethodName: "ListChunks",
+			Handler:    _TscriptService_ListChunks_Handler,
 		},
 		{
 			MethodName: "CreateChunkContribution",

@@ -66,8 +66,10 @@ export function isRskAuthorRanking(arg: any): arg is models.RskAuthorRanking {
     ( typeof arg.acceptedContributions === 'undefined' || typeof arg.acceptedContributions === 'number' ) &&
     // approver?: boolean
     ( typeof arg.approver === 'undefined' || typeof arg.approver === 'boolean' ) &&
-    // authorName?: string
-    ( typeof arg.authorName === 'undefined' || typeof arg.authorName === 'string' ) &&
+    // author?: RskAuthor
+    ( typeof arg.author === 'undefined' || isRskAuthor(arg.author) ) &&
+    // awardValue?: number
+    ( typeof arg.awardValue === 'undefined' || typeof arg.awardValue === 'number' ) &&
 
   true
   );
@@ -106,6 +108,17 @@ export function isRskChunkContribution(arg: any): arg is models.RskChunkContribu
     ( typeof arg.state === 'undefined' || isRskContributionState(arg.state) ) &&
     // transcript?: string
     ( typeof arg.transcript === 'undefined' || typeof arg.transcript === 'string' ) &&
+
+  true
+  );
+  }
+
+export function isRskChunkList(arg: any): arg is models.RskChunkList {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // chunks?: RskChunk[]
+    ( typeof arg.chunks === 'undefined' || (Array.isArray(arg.chunks) && arg.chunks.every((item: unknown) => isRskChunk(item))) ) &&
 
   true
   );

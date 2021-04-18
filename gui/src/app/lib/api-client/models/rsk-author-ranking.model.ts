@@ -1,7 +1,11 @@
 /* tslint:disable */
+import {
+  RskAuthor,
+} from '.';
 
 export interface RskAuthorRanking {
   acceptedContributions?: number;
   approver?: boolean;
-  authorName?: string;
+  author?: RskAuthor;
+  awardValue?: number;
 }

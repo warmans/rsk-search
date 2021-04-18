@@ -87,6 +87,17 @@ service TscriptService {
     };
   }
 
+  rpc ListChunks(ListChunksRequest) returns (ChunkList) {
+    option (google.api.http) = {
+      get: "/api/tscript/{tscript_id}/chunk"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "listChunks",
+      summary: "Lists all chunks for the given tscript ID."
+      tags: "search"
+    };
+  }
+
   rpc CreateChunkContribution(CreateChunkContributionRequest) returns (ChunkContribution) {
     option (google.api.http) = {
       patch: "/api/tscript/chunk/{chunk_id}/contrib",
@@ -421,4 +432,17 @@ message Contribution {
   ContributionState state = 5;
   Author author = 6;
   string created_at = 7;
+}
+
+message ListChunksRequest{
+  string tscript_id = 1;
+  string filter = 2;
+  string sort_field = 3;
+  string sort_direction = 4;
+  int32 page = 5;
+  int32 page_size = 6;
+}
+
+message ChunkList {
+  repeated Chunk chunks = 1;
 }
