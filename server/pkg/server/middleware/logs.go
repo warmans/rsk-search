@@ -5,6 +5,7 @@ import (
 	"fmt"
 	grpc_zap "github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"
 	"github.com/grpc-ecosystem/go-grpc-middleware/logging/zap/ctxzap"
+	"github.com/pkg/errors"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"google.golang.org/genproto/googleapis/rpc/errdetails"
@@ -20,6 +21,7 @@ func LogMessageProducer() grpc_zap.MessageProducer {
 		}
 		if err != nil {
 			fields = append(fields, zap.String("error", err.Error()))
+			fields = append(fields, zap.String("error.cause", errors.Cause(err).Error()))
 		}
 		st := status.Convert(err)
 		for _, detail := range st.Details() {

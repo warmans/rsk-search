@@ -4,6 +4,8 @@
       <span aria-hidden="true">&times;</span>
     </button>
     <div class="mb-2"><strong>{{a.content}}</strong></div>
-    {{a.details}}
+    <ul>
+      <li *ngFor="let deet of a.details">{{ deet }}</li>
+    </ul>
   </div>
 </div>

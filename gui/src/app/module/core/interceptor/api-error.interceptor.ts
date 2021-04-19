@@ -33,7 +33,7 @@ export class APIErrorInterceptor implements HttpInterceptor {
               break;
             default:
               const errText = errorTextFromRPCError(err);
-              this.alerts.danger('API Call Failed', `${errText.text}`, ...(errText.details || []));
+              this.alerts.danger(`API Call Failed: ${errText.text}`, ...(errText.details || []));
           }
           return observableThrowError(err);
         },

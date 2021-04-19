@@ -399,6 +399,9 @@ func (s *Store) GetContribution(ctx context.Context, id string) (*models.Contrib
 		id,
 	)
 	if err := row.Scan(&out.ID, &out.Author.ID, &out.Author.Name, &out.ChunkID, &out.Transcription, &out.State, &out.CreatedAt); err != nil {
+		if err == sql.ErrNoRows {
+			return nil, err
+		}
 		return nil, errors.Wrap(err, "scan failed")
 	}
 	return out, nil

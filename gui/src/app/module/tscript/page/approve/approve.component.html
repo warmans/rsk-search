@@ -13,10 +13,13 @@
       <div class="card mb-3">
         <div *ngFor="let ch of chunks">
           <div class="card-header">
-            {{ch.id}} ::
-            <app-contribution-state *ngIf="(groupedContributions[ch.id] || []).length > 0" [state]="groupedContributions[ch.id][(ch.selectedContribution || 0)].state"></app-contribution-state>
+            {{ch.id}}
             <span *ngIf="(groupedContributions[ch.id] || []).length === 0">
               No contributions (<a [routerLink]="['/chunk', ch.id]">Create one now</a>)
+            </span>
+            <span *ngIf="(groupedContributions[ch.id] || []).length > 0">
+              by {{groupedContributions[ch.id][(ch.selectedContribution || 0)].author.name}} :: 
+              <app-contribution-state [state]="groupedContributions[ch.id][(ch.selectedContribution || 0)].state"></app-contribution-state>
             </span>
 
             <div class="float-right" *ngIf="(groupedContributions[ch.id] || []).length > 1">
@@ -41,8 +44,8 @@
           </div>
           <div *ngIf="(groupedContributions[ch.id] || []).length > 0">
             <div class="card-footer" *ngIf="approver && groupedContributions[ch.id][(ch.selectedContribution || 0)].state === states.STATE_REQUEST_APPROVAL">
-              <a class="btn btn-success mr-3" (click)="updateState(ch, states.STATE_APPROVED)">Approve</a>
-              <a class="btn btn-danger mr-3" (click)="updateState(ch, states.STATE_REJECTED)">Reject</a>
+              <a class="btn btn-success mr-3" (click)="updateState(groupedContributions[ch.id][(ch.selectedContribution || 0)], states.STATE_APPROVED)">Approve</a>
+              <a class="btn btn-danger mr-3" (click)="updateState(groupedContributions[ch.id][(ch.selectedContribution || 0)], states.STATE_REJECTED)">Reject</a>
               <a class="btn btn-info" [routerLink]="['/chunk', ch.id, 'contrib', groupedContributions[ch.id][(ch.selectedContribution || 0)].id]">Edit</a>
             </div>
           </div>

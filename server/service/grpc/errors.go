@@ -48,7 +48,7 @@ func ErrInternal(err error) *status.Status {
 	}
 	s, errErr := status.New(codes.Internal, http.StatusText(http.StatusInternalServerError)).WithDetails(
 		&errdetails.DebugInfo{
-			Detail: "Unknown Error",
+			Detail: err.Error(),
 			StackEntries: util.ErrTrace(err),
 		},
 		&errdetails.ErrorInfo{Reason: err.Error()},
