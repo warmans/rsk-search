@@ -9,6 +9,12 @@ body {
   margin-bottom: 60px; /* Margin bottom by footer height */
 }
 
+pre  {
+  @include theme() {
+    color: theme-get('text-color');
+  }
+}
+
 .navbar {
   z-index: 100;
 

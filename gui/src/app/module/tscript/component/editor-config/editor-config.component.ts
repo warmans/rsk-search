@@ -19,6 +19,7 @@ export class EditorConfigComponent implements OnInit {
 
   configForm: FormGroup = new FormGroup({
     'playPauseKey': new FormControl(),
+    'playbackRate': new FormControl(),
     'backtrack': new FormControl(),
     'fastForwardKey': new FormControl(),
     'rewindKey': new FormControl(),
@@ -33,6 +34,7 @@ export class EditorConfigComponent implements OnInit {
 
   ngOnInit(): void {
     this.configForm.get('playPauseKey').setValue(this.initialConfig.playPauseKey);
+    this.configForm.get('playbackRate').setValue(this.initialConfig.playbackRate || 1.0);
     this.configForm.get('backtrack').setValue(this.initialConfig.backtrack);
     this.configForm.get('fastForwardKey').setValue(this.initialConfig.fastForwardKey);
     this.configForm.get('rewindKey').setValue(this.initialConfig.rewindKey);
@@ -44,6 +46,7 @@ export class EditorConfigComponent implements OnInit {
     this.open = false;
     this.initialConfig = new EditorConfig(
       this.configForm.get('playPauseKey').value,
+      this.configForm.get('playbackRate').value,
       this.configForm.get('backtrack').value,
       this.configForm.get('fastForwardKey').value,
       this.configForm.get('rewindKey').value,
@@ -57,6 +60,7 @@ export class EditorConfigComponent implements OnInit {
 export class EditorConfig {
   constructor(
     public playPauseKey: string = 'Insert',
+    public playbackRate: number = 1.0,
     public backtrack: number = 3,
     public fastForwardKey: string = 'Pause',
     public rewindKey: string = 'ScrollLock',

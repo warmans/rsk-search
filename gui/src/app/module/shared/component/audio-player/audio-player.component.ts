@@ -7,15 +7,28 @@ import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular
 })
 export class AudioPlayerComponent implements AfterViewInit {
 
-  @Input() public src: string;
 
-  @Input() public autoplay: boolean = false;
+  @Input()
+  public src: string;
 
-  @Input() public showStateLabel: boolean = false;
+  @Input()
+  public autoplay: boolean = false;
 
-  public audioStateLabel = 'Audio sample';
+  @Input()
+  public showStateLabel: boolean = false;
 
-  @Input() public volume: number = 1.0; /* 1.0 is loudest */
+  @Input()
+  public volume: number = 1.0; /* 1.0 is loudest */
+
+  @Input()
+  set playbackRate(value: number) {
+    this._playbackRate = value;
+    this.updatePlayer();
+  }
+  get playbackRate(): number {
+    return this._playbackRate;
+  }
+  private _playbackRate: number = 1.0;
 
   @ViewChild('audioElement', { static: false })
   public audioPlayerEl: ElementRef;
@@ -30,9 +43,15 @@ export class AudioPlayerComponent implements AfterViewInit {
       return;
     }
     this.audio = this.audioPlayerEl.nativeElement;
+    this.updatePlayer();
+  }
+
+  public updatePlayer() {
     if (this.audio) {
       this.audio.volume = this.volume;
       this.audio.autoplay = this.autoplay;
+      this.audio.defaultPlaybackRate = this._playbackRate;
+      this.audio.playbackRate = this._playbackRate;
     }
   }
 

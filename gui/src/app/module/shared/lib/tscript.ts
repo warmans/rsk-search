@@ -67,8 +67,8 @@ export function parseTranscript(transcript: string): Tscript {
     } else {
       const actor = parts.shift();
       tscript.dialog.push({
-        type: actor == 'song' ? 'song' : 'chat',
-        actor: actor === 'none' ? '' : actor,
+        type: actor.toLowerCase() == 'song' ? 'song' : 'chat',
+        actor: actor.toLowerCase() === 'none' ? '' : actor,
         content: parts.join(':'),
         notable: notable
       });

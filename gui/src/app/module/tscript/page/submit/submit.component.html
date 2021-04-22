@@ -22,7 +22,16 @@
       <div class="card mb-4">
         <div class="card-body">
           <div class="audio-player">
-            <app-audio-player [src]="audioPlayerURL" #audioPlayer></app-audio-player>
+            <app-audio-player [src]="audioPlayerURL" [playbackRate]="editorConfig.playbackRate || 1.0" #audioPlayer></app-audio-player>
+            <div class="mt-3 text-sm text-right">
+              <i class="bi-keyboard-fill"></i> Press <span
+              class="badge">{{editorConfig?.playPauseKey || 'Insert'}}</span> key to toggle audio playback.
+              <span class="badge">{{editorConfig?.rewindKey || 'ScrollLock'}}</span>/<span class="badge">{{editorConfig?.fastForwardKey || 'Pause'}}</span>
+              keys to skip backwards/forwards.
+              Autoseek is <span class="badge">{{editorConfig?.autoSeek ? 'ON' : 'OFF'}}</span>.
+              Audio speed is <span class="badge">{{editorConfig?.playbackRate | number}}</span>.
+              Change using the Editor/Audio Config below.
+            </div>
           </div>
         </div>
       </div>
@@ -44,7 +53,7 @@
             <app-editor-config #editorConfigModal [initialConfig]="editorConfig"
                                (configUpdated)="handleEditorConfigUpdated($event)"></app-editor-config>
             <button class="btn btn-sm btn-info mr-3" *ngIf="userCanEdit" (click)="openEditorConfig()"
-                    title="Change editor config">Editor Config</button>
+                    title="Change editor config">Editor/Audio Config</button>
           </span>
           <span>
             <span *ngIf="!contribution">Create </span>
@@ -64,14 +73,6 @@
                 Autosaved {{timeSinceSave()}} ago.
               </span>
               <button *ngIf="contribution" class="btn btn-sm btn-secondary ml-3" (click)="update()">Save</button>
-            </div>
-            <div>
-              <i class="bi-keyboard-fill"></i> Press <span
-              class="badge">{{editorConfig?.playPauseKey || 'Insert'}}</span> key to toggle audio playback.
-              <span class="badge">{{editorConfig?.rewindKey || 'ScrollLock'}}</span>/<span class="badge">{{editorConfig?.fastForwardKey || 'Pause'}}</span>
-              keys to skip backwards/forwards.
-              Autoseek is {{editorConfig?.autoSeek ? 'ON' : 'OFF'}}.
-              These can be changed using the Editor Config <i class="bi-arrow-up"></i>.
             </div>
           </div>
         </div>
@@ -105,7 +106,7 @@
 
           <h4 class="mb-2 mt-4">Indicating a line is a notable quote</h4>
           <p>If a line is particularly noteworthy, you can prefix it with <span class="code">!</span>. E.g.</p>
-          <pre>!steve: Man alive.</pre>
+          <pre class="pt-3">!steve: Man alive.</pre>
 
           <h4 class="mb-2 mt-4">Songs</h4>
           <p>To indicate a song was played you can use the speaker prefix <span class="code">song:</span> for example
@@ -116,7 +117,7 @@
           <p>There is another special <span class="code">#SYN:</span> tag, similar to <span class="code">#OFFSET</span>
             you can use to summarise several lines. For example</p>
 
-          <pre>
+          <pre class="pt-3">
 karl: (twaddle)\n
 ...\n
 #SYN: ricky gets a real bow and arrow!

@@ -18,7 +18,7 @@
               No contributions (<a [routerLink]="['/chunk', ch.id]">Create one now</a>)
             </span>
             <span *ngIf="(groupedContributions[ch.id] || []).length > 0">
-              by {{groupedContributions[ch.id][(ch.selectedContribution || 0)].author.name}} :: 
+              by {{groupedContributions[ch.id][(ch.selectedContribution || 0)].author.name}} ::
               <app-contribution-state [state]="groupedContributions[ch.id][(ch.selectedContribution || 0)].state"></app-contribution-state>
             </span>
 
