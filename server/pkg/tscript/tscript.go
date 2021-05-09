@@ -42,7 +42,7 @@ func Import(scanner *bufio.Scanner, startPos int64) ([]models.Dialog, []models.S
 		// and continue.
 		if IsOffsetTag(line) {
 			if offset, ok := ScanOffset(line); ok {
-				if offset <= lastOffset {
+				if offset > 0 && offset <= lastOffset {
 					return nil, nil, fmt.Errorf("offsets are invalid")
 				}
 				lastOffset = offset
