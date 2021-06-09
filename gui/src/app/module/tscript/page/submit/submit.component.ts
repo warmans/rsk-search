@@ -80,7 +80,7 @@ export class SubmitComponent implements OnInit, OnDestroy {
     private sessionService: SessionService,
     private alertService: AlertService,
   ) {
-    titleService.setTitle('contribute');
+    titleService.setTitle('Contribute');
 
     route.paramMap.pipe(takeUntil(this.$destroy)).subscribe((d: Data) => {
 
@@ -116,7 +116,7 @@ export class SubmitComponent implements OnInit, OnDestroy {
             if (!v) {
               return;
             }
-            titleService.setTitle(`contribute :: ${v.id}`);
+            titleService.setTitle(`Contribute :: ${v.id}`);
 
             this.chunk = v;
             this.audioPlayerURL = `https://storage.googleapis.com/warmans-transcription-audio/${v.id}.mp3`;
