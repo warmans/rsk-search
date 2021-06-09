@@ -11,6 +11,7 @@ import {
   RskContributionList,
   RskContributionState
 } from '../../../../lib/api-client/models';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-author-contributions',
@@ -31,7 +32,8 @@ export class AuthorContributionsComponent implements OnInit, OnDestroy {
 
   private destroy$: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private apiClient: SearchAPIClient, private session: SessionService, private router: Router) {
+  constructor(private apiClient: SearchAPIClient, private session: SessionService, private router: Router, private titleService: Title) {
+    titleService.setTitle('Author Contributions');
   }
 
   ngOnInit(): void {

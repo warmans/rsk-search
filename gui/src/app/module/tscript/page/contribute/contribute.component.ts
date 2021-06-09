@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
 import { RskContributionState, RskTscriptList, RskTscriptStats } from '../../../../lib/api-client/models';
 import { takeUntil } from 'rxjs/operators';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-contribute',
@@ -23,7 +24,8 @@ export class ContributeComponent implements OnInit, OnDestroy {
 
   private unsubscribe$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(private apiClient: SearchAPIClient) {
+  constructor(private apiClient: SearchAPIClient, private titleService: Title) {
+    titleService.setTitle('Contribute');
   }
 
   ngOnInit(): void {

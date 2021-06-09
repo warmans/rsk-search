@@ -39,7 +39,6 @@ export class ApproveComponent implements OnInit {
   private destroy$ = new EventEmitter<any>();
 
   constructor(private apiClient: SearchAPIClient, private route: ActivatedRoute, private titleService: Title, private session: SessionService) {
-    titleService.setTitle('contribute');
 
     session.onTokenChange.pipe(takeUntil(this.destroy$)).subscribe((token: string) => {
       this.approver = session.getClaims()?.approver || false;
@@ -47,6 +46,8 @@ export class ApproveComponent implements OnInit {
 
     route.paramMap.pipe(takeUntil(this.destroy$)).subscribe((d: Data) => {
       this.tscriptID = d.params['tscript_id'];
+      titleService.setTitle(`Contributions for ${this.tscriptID}`);
+
       if (d.params['tscript_id']) {
         this.tscriptID = d.params['tscript_id'];
         this.loadData();

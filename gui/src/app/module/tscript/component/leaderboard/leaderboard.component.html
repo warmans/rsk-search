@@ -15,7 +15,7 @@
             </span>
           </div>
           <span class="text-sm"><strong>~{{ a.acceptedContributions * 3 }}</strong> minutes of twaddle</span> |
-          <span class="text-sm clickable" (click)="showAwardHelp = true"><strong>{{ nextRewardAt(a.acceptedContributions) }}</strong> until next award.</span>
+          <span class="text-sm clickable" (click)="showAwardHelp = true"><strong>{{ nextRewardAt(a.acceptedContributions) }}</strong> contributions until next award.</span>
         </td>
         <td style="width: 200px" class="text-sm">
           <strong>{{a.awardValue | currency}}</strong> Awarded.
