@@ -12,7 +12,7 @@ import { ActivatedRoute, Data } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { parseTranscript, Tscript } from '../../../shared/lib/tscript';
 import { SessionService } from '../../../core/service/session/session.service';
-import { Eq } from '../../../../lib/filter-dsl/filter';
+import { And, Eq } from '../../../../lib/filter-dsl/filter';
 import { Str } from '../../../../lib/filter-dsl/value';
 
 @Component({
@@ -35,6 +35,8 @@ export class ApproveComponent implements OnInit {
   approver: boolean = false;
 
   loading: boolean[] = [];
+
+  pendingApprovalOnly: boolean = false;
 
   private destroy$ = new EventEmitter<any>();
 
@@ -60,6 +62,12 @@ export class ApproveComponent implements OnInit {
   }
 
   loadData() {
+
+    let filter = Eq('tscript_id', Str(this.tscriptID));
+    if (this.pendingApprovalOnly) {
+      filter = And(filter, Eq('state', Str('request_approval')));
+    }
+
     this.loading.push(true);
     this.apiClient.listChunks({ tscriptId: this.tscriptID }).pipe(takeUntil(this.destroy$)).subscribe((resp: RskChunkList) => {
       this.chunks = resp.chunks;
@@ -67,9 +75,10 @@ export class ApproveComponent implements OnInit {
 
     this.loading.push(true);
     this.apiClient.listContributions({
-      filter: Eq('tscript_id', Str(this.tscriptID)).print(),
+      filter: filter.print(),
       pageSize: 200,
     }).pipe(takeUntil(this.destroy$)).subscribe((val: RskContributionList) => {
+      this.groupedContributions = {};
       val.contributions.forEach((c) => {
         if (c.state === RskContributionState.STATE_PENDING) {
           return;
@@ -134,4 +143,10 @@ export class ApproveComponent implements OnInit {
 
     this.approvalList[approvalListIndex] = this.groupedContributions[oldVal.chunkId].find((v) => v.id === ev.target.value);
   }
+
+  toggleFilterPendingApproval() {
+    this.pendingApprovalOnly = !this.pendingApprovalOnly;
+    this.loadData();
+  }
+
 }

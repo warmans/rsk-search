@@ -4,7 +4,8 @@
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a [routerLink]="['/search']">Home</a></li>
       <li class="breadcrumb-item"><a [routerLink]="['/contribute']">Contribute</a></li>
-      <li class="breadcrumb-item" *ngIf="chunk"><a [routerLink]="['/tscript', chunk.tscriptId ]">{{chunk?.tscriptId || "loading..."}}</a></li>
+      <li class="breadcrumb-item" *ngIf="chunk"><a [routerLink]="['/tscript', chunk.tscriptId ]">{{chunk?.tscriptId ||
+        "loading..."}}</a></li>
       <li class="breadcrumb-item active" aria-current="page">Create</li>
     </ol>
   </nav>
@@ -22,7 +23,8 @@
       <div class="card mb-4">
         <div class="card-body">
           <div class="audio-player">
-            <app-audio-player [src]="audioPlayerURL" [playbackRate]="editorConfig.playbackRate || 1.0" #audioPlayer></app-audio-player>
+            <app-audio-player [src]="audioPlayerURL" [playbackRate]="editorConfig.playbackRate || 1.0"
+                              #audioPlayer></app-audio-player>
             <div class="mt-3 text-sm text-right">
               <i class="bi-keyboard-fill"></i> Press <span
               class="badge">{{editorConfig?.playPauseKey || 'Insert'}}</span> key to toggle audio playback.
@@ -100,7 +102,8 @@
           <h4 class="mb-2 mt-4">Audio Navigation</h4>
           <p>If Autoseek is enabled the audio will skip to an <span class="code">#OFFSET</span> if your caret
             (flashing line that shows where text will be inserted) moves over it.</p>
-          <p>Additionally pressing the <span class="badge">{{editorConfig?.playPauseKey || 'Insert'}}</span> key will toggle the audio (play/pause),
+          <p>Additionally pressing the <span class="badge">{{editorConfig?.playPauseKey || 'Insert'}}</span> key will
+            toggle the audio (play/pause),
             <span class="badge">{{editorConfig?.rewindKey || 'ScrollLock'}}</span>/<span class="badge">{{editorConfig?.fastForwardKey || 'Pause'}}</span>
             key will fast forward {{editorConfig?.backtrack || '3'}} seconds.</p>
 
@@ -165,7 +168,9 @@ karl: I used to have a rifle as a kid...
       </div>
       <div class="card" *ngIf="contribution">
         <div class="card-body">
-          <div class="mb-3"><app-contribution-state [state]="contribution.state"></app-contribution-state></div>
+          <div class="mb-3 d-flex flex-row">
+            <app-contribution-state [state]="contribution.state"></app-contribution-state>
+          </div>
           <div *ngIf="userIsOwner">
             <div *ngIf="contribution.state === cStates.STATE_PENDING">
               <p>This means that the contribution has not yet been reviewed and can still be edited if you are the
@@ -176,15 +181,21 @@ karl: I used to have a rifle as a kid...
             </div>
             <div *ngIf="contribution.state === cStates.STATE_REQUEST_APPROVAL">
               <p>This means your contribution will now be reviewed and merged (hopefully!).</p>
-              <button class="btn btn-warning mt-2" (click)="markIncomplete()">Revert to incomplete <i class="bi-pen"></i>
-              </button>
+              <div class="d-flex">
+                <button class="btn btn-warning mt-2" (click)="markIncomplete()">Revert to incomplete <i
+                  class="bi-pen"></i></button>
+                <div *ngIf="userIsApprover">
+                  <button class="btn btn-success mt-2 ml-3" (click)="markApproved()">Approve</button>
+                  <button class="btn btn-danger mt-2 ml-3" (click)="markRejected()">Reject</button>
+                </div>
+              </div>
             </div>
             <div *ngIf="contribution.state === cStates.STATE_APPROVED">
               This means your contributions was approved and will be merged into the canonical dataset.
             </div>
             <div *ngIf="contribution.state === cStates.STATE_REJECTED">
               <p>This means it was not possible to merge your contribution either because it was a duplicate,
-              or because it did not appear to be correct.</p>
+                or because it did not appear to be correct.</p>
               <button class="btn btn-success mt-2" (click)="markIncomplete()" [disabled]="!updatedTranscript">
                 Revert to incomplete <i class="bi-pen"></i>
               </button>

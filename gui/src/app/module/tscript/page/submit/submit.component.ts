@@ -25,6 +25,7 @@ export class SubmitComponent implements OnInit, OnDestroy {
   contribution: RskChunkContribution;
   userCanEdit: boolean = true;
   userIsOwner: boolean = true;
+  userIsApprover: boolean = false;
 
   // to stop the caret from getting messed up by updates we need to separate the input
   // data from the output.
@@ -162,6 +163,7 @@ export class SubmitComponent implements OnInit, OnDestroy {
     }
 
     this.userIsOwner = this.sessionService.getClaims()?.author_id === res.author.id || this.sessionService.getClaims().approver;
+    this.userIsApprover = this.sessionService.getClaims().approver;
   }
 
   setInitialTranscript(text: string) {
@@ -251,6 +253,33 @@ export class SubmitComponent implements OnInit, OnDestroy {
     }).pipe(takeUntil(this.$destroy));
   }
 
+  private _updateState(state: RskContributionState) {
+    this.loading.push(true);
+    this.apiClient.requestContributionState({
+      contributionId: this.contribution.id,
+      body: {
+        contributionId: this.contribution.id,
+        requestState: state,
+      }
+    }).pipe(takeUntil(this.$destroy)).subscribe((res) => {
+      this.setContribution(res);
+      switch (state) {
+        case RskContributionState.STATE_PENDING:
+          this.alertService.success('Retracted', 'Submission is now back in the pending state. It will not be reviewed until is is re-submitted.');
+          return;
+        case RskContributionState.STATE_APPROVED:
+          this.alertService.success('Approved', 'Submission was approved.');
+          return;
+        case RskContributionState.STATE_REQUEST_APPROVAL:
+          this.alertService.success('Submitted', 'Submission is now awaiting manual approval by an approver. This usually takes around 24 hours.');
+          return;
+        case RskContributionState.STATE_REJECTED:
+          this.alertService.success('Rejected', 'Submission was rejected.');
+          return;
+      }
+    }).add(() => this.loading.shift());
+  }
+
   markComplete() {
     this.loading.push(true);
     this._update(RskContributionState.STATE_REQUEST_APPROVAL).subscribe((res: RskChunkContribution) => {
@@ -261,16 +290,14 @@ export class SubmitComponent implements OnInit, OnDestroy {
   }
 
   markIncomplete() {
-    this.loading.push(true);
-    this.apiClient.requestContributionState({
-      contributionId: this.contribution.id,
-      body: {
-        contributionId: this.contribution.id,
-        requestState: RskContributionState.STATE_PENDING
-      }
-    }).pipe(takeUntil(this.$destroy)).subscribe((res) => {
-      this.setContribution(res);
-      this.alertService.success('Retracted', 'Submission is now back in the pending state. It will not be reviewed until is is re-submitted.');
-    }).add(() => this.loading.shift());
+    this._updateState(RskContributionState.STATE_PENDING);
+  }
+
+  markApproved() {
+    this._updateState(RskContributionState.STATE_APPROVED);
+  }
+
+  markRejected() {
+    this._updateState(RskContributionState.STATE_REJECTED);
   }
 }

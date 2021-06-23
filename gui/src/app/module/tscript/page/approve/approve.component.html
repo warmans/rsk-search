@@ -2,53 +2,66 @@
   <div class="row mb-3">
     <div class="col">
 
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a [routerLink]="['/search']">Home</a></li>
-          <li class="breadcrumb-item"><a [routerLink]="['/contribute']">Contribute</a></li>
-          <li class="breadcrumb-item active" aria-current="page">{{tscriptID}}</li>
-        </ol>
-      </nav>
+      <div class="d-flex">
+        <div class="flex-grow-1">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a [routerLink]="['/search']">Home</a></li>
+              <li class="breadcrumb-item"><a [routerLink]="['/contribute']">Contribute</a></li>
+              <li class="breadcrumb-item active" aria-current="page">{{tscriptID}}</li>
+            </ol>
+          </nav>
+        </div>
+        <div class="text-right pt-2">
+          <button class="btn btn-sm btn-info" (click)="toggleFilterPendingApproval()">
+            Pending Approval Only
+            <i class="bs bi-filter-circle-fill" *ngIf="pendingApprovalOnly"></i>
+            <i class="bs bi-filter-circle" *ngIf="!pendingApprovalOnly"></i>
+          </button>
+        </div>
+      </div>
 
       <div class="card mb-3">
         <div *ngFor="let ch of chunks">
-          <div class="card-header">
-            {{ch.id}}
-            <span *ngIf="(groupedContributions[ch.id] || []).length === 0">
-              No contributions (<a [routerLink]="['/chunk', ch.id]">Create one now</a>)
-            </span>
-            <span *ngIf="(groupedContributions[ch.id] || []).length > 0">
-              by {{groupedContributions[ch.id][(ch.selectedContribution || 0)].author.name}} ::
-              <app-contribution-state [state]="groupedContributions[ch.id][(ch.selectedContribution || 0)].state"></app-contribution-state>
-            </span>
+          <ng-container *ngIf="!pendingApprovalOnly || (pendingApprovalOnly && (groupedContributions[ch.id] || []).length > 0)">
+            <div class="card-header">
+              {{ch.id}}
+              <span *ngIf="(groupedContributions[ch.id] || []).length === 0">
+                No contributions (<a [routerLink]="['/chunk', ch.id]">Create one now</a>)
+              </span>
+              <span *ngIf="(groupedContributions[ch.id] || []).length > 0">
+                by {{groupedContributions[ch.id][(ch.selectedContribution || 0)].author.name}} ::
+                <app-contribution-state [state]="groupedContributions[ch.id][(ch.selectedContribution || 0)].state"></app-contribution-state>
+              </span>
 
-            <div class="float-right" *ngIf="(groupedContributions[ch.id] || []).length > 1">
-              <select
-                class="form-control form-control-sm" style="max-width: 400px"
-                (change)="ch.selectedContribution = $event.target.value">
-                <option
-                  *ngFor="let contrib of groupedContributions[ch.id]; let i = index;"
-                  [value]="i"
-                  [selected]="ch.selectedContribution === i">{{contrib.id}} ({{contrib.state}})
-                </option>
-              </select>
+              <div class="float-right" *ngIf="(groupedContributions[ch.id] || []).length > 1">
+                <select
+                  class="form-control form-control-sm" style="max-width: 400px"
+                  (change)="ch.selectedContribution = $event.target.value">
+                  <option
+                    *ngFor="let contrib of groupedContributions[ch.id]; let i = index;"
+                    [value]="i"
+                    [selected]="ch.selectedContribution === i">{{contrib.id}} ({{contrib.state}})
+                  </option>
+                </select>
+              </div>
             </div>
-          </div>
-          <div class="card-body">
-            <div *ngIf="(groupedContributions[ch.id] || []).length === 0" class="text-muted">
-              <app-transcript [transcript]="parseTscript(ch.raw).dialog"></app-transcript>
+            <div class="card-body">
+              <div *ngIf="(groupedContributions[ch.id] || []).length === 0" class="text-muted">
+                <app-transcript [transcript]="parseTscript(ch.raw).dialog"></app-transcript>
+              </div>
+              <div *ngIf="(groupedContributions[ch.id] || []).length > 0">
+                <app-transcript [transcript]="parseTscript(groupedContributions[ch.id][(ch.selectedContribution || 0)].transcript).dialog"></app-transcript>
+              </div>
             </div>
             <div *ngIf="(groupedContributions[ch.id] || []).length > 0">
-              <app-transcript [transcript]="parseTscript(groupedContributions[ch.id][(ch.selectedContribution || 0)].transcript).dialog"></app-transcript>
+              <div class="card-footer" *ngIf="approver && groupedContributions[ch.id][(ch.selectedContribution || 0)].state === states.STATE_REQUEST_APPROVAL">
+                <a class="btn btn-success mr-3" (click)="updateState(groupedContributions[ch.id][(ch.selectedContribution || 0)], states.STATE_APPROVED)">Approve</a>
+                <a class="btn btn-danger mr-3" (click)="updateState(groupedContributions[ch.id][(ch.selectedContribution || 0)], states.STATE_REJECTED)">Reject</a>
+                <a class="btn btn-info" [routerLink]="['/chunk', ch.id, 'contrib', groupedContributions[ch.id][(ch.selectedContribution || 0)].id]">Edit</a>
+              </div>
             </div>
-          </div>
-          <div *ngIf="(groupedContributions[ch.id] || []).length > 0">
-            <div class="card-footer" *ngIf="approver && groupedContributions[ch.id][(ch.selectedContribution || 0)].state === states.STATE_REQUEST_APPROVAL">
-              <a class="btn btn-success mr-3" (click)="updateState(groupedContributions[ch.id][(ch.selectedContribution || 0)], states.STATE_APPROVED)">Approve</a>
-              <a class="btn btn-danger mr-3" (click)="updateState(groupedContributions[ch.id][(ch.selectedContribution || 0)], states.STATE_REJECTED)">Reject</a>
-              <a class="btn btn-info" [routerLink]="['/chunk', ch.id, 'contrib', groupedContributions[ch.id][(ch.selectedContribution || 0)].id]">Edit</a>
-            </div>
-          </div>
+          </ng-container>
         </div>
       </div>
 
