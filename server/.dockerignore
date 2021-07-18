@@ -1,2 +1,4 @@
 var/rw.sqlite3
-var/data
+var/data/episodes/incomplete
+var/data/pending
+var/data/export
