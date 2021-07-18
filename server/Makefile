@@ -50,6 +50,10 @@ generate.swagger-bundle:
 		-base ./script/swagger-merge/base.swagger.json \
 		-merge ./gen/api/open-api/oauth.swagger.json,./gen/api/open-api/search.swagger.json,./gen/api/open-api/tscript.swagger.json
 
+.PHONY: generate.zip
+generate.zip:
+	cd var/data/episodes; zip -r ../episodes-json.zip *.json
+
 .PHONY: run
 run: build
 	DEBUG=true ./bin/rsk-search server \
@@ -119,4 +123,3 @@ docker.publish:
 .PHONY: release
 release:
 	$(MAKE) build docker.build docker.publish
-

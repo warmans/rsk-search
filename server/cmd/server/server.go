@@ -140,7 +140,7 @@ func ServerCmd() *cobra.Command {
 				),
 			}
 
-			httpServices := []server.HTTPService{}
+			httpServices := []server.HTTPService{http.NewDownloadService(logger, srvCfg)}
 			if oauthCfg.Secret != "" {
 				httpServices = append(httpServices, http.NewOauthService(logger, tokenCache, persistentDBConn, auth, oauthCfg, srvCfg))
 			} else {

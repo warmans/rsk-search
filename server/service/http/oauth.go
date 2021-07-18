@@ -25,8 +25,8 @@ func NewOauthService(
 	auth *jwt.Auth,
 	oauthCfg *oauth.Config,
 	serviceConfig config.SearchServiceConfig,
-) *DownloadService {
-	return &DownloadService{
+) *OauthService {
+	return &OauthService{
 		oauthCache:    oauthCache,
 		logger:        logger.With(zap.String("component", "oauth-http-server")),
 		rwStore:       rwStore,
@@ -36,7 +36,7 @@ func NewOauthService(
 	}
 }
 
-type DownloadService struct {
+type OauthService struct {
 	oauthCache    *oauth.CSRFTokenCache
 	logger        *zap.Logger
 	rwStore       *rw.Conn
@@ -45,11 +45,11 @@ type DownloadService struct {
 	serviceConfig config.SearchServiceConfig
 }
 
-func (c *DownloadService) RegisterHTTP(ctx context.Context, router *mux.Router) {
+func (c *OauthService) RegisterHTTP(ctx context.Context, router *mux.Router) {
 	router.Path("/oauth/reddit/return").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.RedditReturnHandler)))
 }
 
-func (c *DownloadService) RedditReturnHandler(resp http.ResponseWriter, req *http.Request) {
+func (c *OauthService) RedditReturnHandler(resp http.ResponseWriter, req *http.Request) {
 
 	returnURL := fmt.Sprintf("%s%s/search", c.serviceConfig.Scheme, c.serviceConfig.Hostname)
 	returnParams := url.Values{}
@@ -137,7 +137,7 @@ func (c *DownloadService) RedditReturnHandler(resp http.ResponseWriter, req *htt
 	http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
 }
 
-func (c *DownloadService) getRedditBearerToken(code string) (string, error) {
+func (c *OauthService) getRedditBearerToken(code string) (string, error) {
 	requestBody := bytes.NewBufferString(
 		fmt.Sprintf("grant_type=authorization_code&code=%s&redirect_uri=%s", code, c.oauthCfg.ReturnURL),
 	)
@@ -173,7 +173,7 @@ func (c *DownloadService) getRedditBearerToken(code string) (string, error) {
 	return response.AccessToken, nil
 }
 
-func (c *DownloadService) getRedditIdentity(bearerToken string) (*oauth.Identity, string, error) {
+func (c *OauthService) getRedditIdentity(bearerToken string) (*oauth.Identity, string, error) {
 
 	if bearerToken == "" {
 		c.logger.Error("blank bearer token, authorize must have failed")

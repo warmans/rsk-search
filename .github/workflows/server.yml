@@ -28,9 +28,9 @@ jobs:
         working-directory: ${{env.working-directory}}
         run: go test -v ./...
 
-      - name: Generate static databases
+      - name: Generate files
         working-directory: ${{env.working-directory}}
-        run: make init.all
+        run: make init.all generate.zip
 
       - name: Store binaries
         uses: actions/upload-artifact@v2
@@ -38,7 +38,7 @@ jobs:
           name: server-binaries
           path: ${{env.working-directory}}/bin
 
-      - name: Store databases
+      - name: Store data files
         uses: actions/upload-artifact@v2
         with:
           name: server-data

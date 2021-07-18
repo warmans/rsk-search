@@ -39,15 +39,17 @@
       <div class="card mb-4">
         <div class="card-header">Contribute</div>
         <div class="card-body">
-          <p>There are currently <strong>{{ chunkStats?.numPending }}</strong> transcription chunks that require transcription.</p>
-          <p>It's easy and only requires a Reddit account. Each chunk is 3 minutes of audio. Tools and audio are provided.</p>
+          <p>There are currently <strong>{{ chunkStats?.numPending }}</strong> transcription chunks that require
+            transcription.</p>
+          <p>It's easy and only requires a Reddit account. Each chunk is 3 minutes of audio. Tools and audio are
+            provided.</p>
           <p>There are also rewards for multiple contributions.</p>
           <button class="btn btn-primary" [routerLink]="['/contribute']">Start Contributing</button>
         </div>
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row mb-4">
     <div class="col">
       <div class="card episode-list">
         <div class="card-header">Xfm Episodes</div>
@@ -66,6 +68,19 @@
                 </ng-container>
               </div>
             </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="card episode-list">
+        <div class="card-header">Transcript Archive</div>
+        <div class="card-body">
+          <div>The archive of machine-readable (JSON) transcripts can be downloaded here:</div>
+          <div class="mt-4">
+            <a href="/dl/archive/episodes-json.zip" target="_blank" class="btn btn-primary">episodes-json.zip</a>
           </div>
         </div>
       </div>

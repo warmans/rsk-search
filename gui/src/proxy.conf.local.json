@@ -6,5 +6,9 @@
   "/oauth": {
     "target": "http://localhost:8888",
     "secure": false
+  },
+  "/dl": {
+    "target": "http://localhost:8888",
+    "secure": false
   }
 }

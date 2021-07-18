@@ -11,6 +11,7 @@ import (
 var xfmEpisodeIndex embed.FS
 
 var parsedIndex = map[string]string{}
+var episodeIDMap = map[string]struct{}{}
 
 func init() {
 	f, err := xfmEpisodeIndex.Open("data/xfm-episode-map.json")
@@ -22,6 +23,9 @@ func init() {
 	if err := dec.Decode(&parsedIndex); err != nil {
 		panic("failed to decode metadata: " + err.Error())
 	}
+	for _, v := range parsedIndex {
+		episodeIDMap[fmt.Sprintf("ep-%s-%s", PublicationXFM, v)] = struct{}{}
+	}
 }
 
 func XfmEpisodeNames() map[string]string {
@@ -30,6 +34,13 @@ func XfmEpisodeNames() map[string]string {
 		cpy[k] = v
 	}
 	return cpy
+}
+
+// IsValidEpisodeID returns true if the value is a known episode ID according to the episode-map.json
+// The id is in the format ep-[publication]-S[season]E[episode]
+func IsValidEpisodeID(id string) bool {
+	_, ok := episodeIDMap[id]
+	return ok
 }
 
 func XfmEpisodeDateToName(date time.Time) (string, error) {

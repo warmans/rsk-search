@@ -5,7 +5,7 @@
       <tr *ngFor="let a of authors; let i = index">
         <td style="width: 50px" class="text-muted">#{{i+1}}</td>
         <td style="width: 150px" class="font-weight-bold">
-            {{a.author.name}}
+           {{a.author.name}}
         </td>
         <td>
           <div *ngIf="a.acceptedContributions > 0" class="text-success">
@@ -15,7 +15,9 @@
             </span>
           </div>
           <span class="text-sm"><strong>~{{ a.acceptedContributions * 3 }}</strong> minutes of twaddle</span> |
-          <span class="text-sm clickable" (click)="showAwardHelp = true"><strong>{{ nextRewardAt(a.acceptedContributions) }}</strong> contributions until next award.</span>
+          <span class="text-sm clickable" (click)="showAwardHelp = true">
+            <strong>{{ nextRewardAt(a.acceptedContributions) }}</strong> contributions until next award. <i class="bi-question"></i>
+          </span>
         </td>
         <td style="width: 200px" class="text-sm">
           <strong>{{a.awardValue | currency}}</strong> Awarded.
