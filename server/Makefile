@@ -52,7 +52,7 @@ generate.swagger-bundle:
 
 .PHONY: generate.zip
 generate.zip:
-	cd var/data/episodes; zip -r ../episodes-json.zip *.json
+	cd var/data/episodes; zip -r ../../episodes-json.zip *.json
 
 .PHONY: run
 run: build

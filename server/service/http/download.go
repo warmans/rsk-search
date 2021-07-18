@@ -52,5 +52,5 @@ func (c *DownloadService) DownloadEpisodeJSON(resp http.ResponseWriter, req *htt
 	fileName := fmt.Sprintf("%s.json", episode)
 	resp.Header().Set("Content-Disposition", fmt.Sprintf("attachment; filename=%s", fileName))
 	resp.Header().Set("Content-Type", "application/json")
-	http.ServeFile(resp, req, path.Join(c.serviceConfig.FilesBasePath, "episodes", fileName))
+	http.ServeFile(resp, req, path.Join(c.serviceConfig.FilesBasePath, "data", "episodes", fileName))
 }
