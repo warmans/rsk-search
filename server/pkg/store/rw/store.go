@@ -24,6 +24,18 @@ const (
 	ChunkActivityRejected  = "rejected"  // contribution rejected
 )
 
+func ActivityFromState(state models.ContributionState) ChunkActivity {
+	switch state {
+	case models.ContributionStateApproved:
+		return ChunkActivityApproved
+	case models.ContributionStateRejected:
+		return ChunkActivityRejected
+	case models.ContributionStateApprovalRequested:
+		return ChunkActivitySubmitted
+	}
+	return ChunkActivityAccessed
+}
+
 var ErrNotPermitted = errors.New("user not allowed to perform action")
 
 //go:embed migrations

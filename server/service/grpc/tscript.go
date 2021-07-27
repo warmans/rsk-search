@@ -238,15 +238,18 @@ func (s *TscriptService) UpdateContribution(ctx context.Context, request *api.Up
 		contrib.Transcription = request.Transcript
 		contrib.State = models.ContributionStateFromProto(request.State)
 
-		if err := s.createContributionActivity(tx, ctx, claims, contrib, ""); err != nil {
+		if err := s.createTimelineEvent(tx, ctx, claims, contrib, ""); err != nil {
 			return err
 		}
-		return tx.UpdateContribution(ctx, &models.ContributionUpdate{
+		if err := tx.UpdateContribution(ctx, &models.ContributionUpdate{
 			ID:            contrib.ID,
 			AuthorID:      contrib.Author.ID,
 			Transcription: contrib.Transcription,
 			State:         contrib.State,
-		})
+		}); err != nil {
+			return err
+		}
+		return tx.UpdateChunkActivity(ctx, contrib.ChunkID, rw.ActivityFromState(contrib.State))
 	})
 	if err != nil {
 		return nil, ErrFromStore(err, contrib.ID).Err()
@@ -282,10 +285,13 @@ func (s *TscriptService) RequestContributionState(ctx context.Context, request *
 		contrib.State = models.ContributionStateFromProto(request.RequestState)
 		contrib.StateComment = request.Comment
 
-		if err := s.createContributionActivity(tx, ctx, claims, contrib, contrib.StateComment); err != nil {
+		if err := s.createTimelineEvent(tx, ctx, claims, contrib, contrib.StateComment); err != nil {
 			return err
 		}
-		return tx.UpdateContributionState(ctx, contrib.ID, contrib.State, contrib.StateComment)
+		if err := tx.UpdateContributionState(ctx, contrib.ID, contrib.State, contrib.StateComment); err != nil {
+			return err
+		}
+		return tx.UpdateChunkActivity(ctx, contrib.ChunkID, rw.ActivityFromState(contrib.State))
 	})
 	if err != nil {
 		return nil, ErrFromStore(err, request.ContributionId).Err()
@@ -582,7 +588,7 @@ func (s *TscriptService) validateContributionStateUpdate(claims *jwt.Claims, cur
 	return nil
 }
 
-func (s *TscriptService) createContributionActivity(tx *rw.Store, ctx context.Context, claims *jwt.Claims, contrib *models.Contribution, comment string) error {
+func (s *TscriptService) createTimelineEvent(tx *rw.Store, ctx context.Context, claims *jwt.Claims, contrib *models.Contribution, comment string) error {
 	suffix := "."
 	if comment != "" {
 		suffix = fmt.Sprintf(" with comment '%s'.", comment)
