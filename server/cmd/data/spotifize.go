@@ -108,11 +108,11 @@ func addSongMeta(logger *zap.Logger, token string) error {
 		for k, v := range ep.Transcript {
 			if v.Type == models.DialogTypeSong {
 				searchTerm := strings.TrimSpace(v.Content)
-				lg.Info("Locating song", zap.String("term", searchTerm))
+				lg.Info("Locating track", zap.String("term", searchTerm))
 
 				track, err := search.FindTrack(searchTerm)
 				if err != nil || track == nil {
-					lg.Warn("failed to find track", zap.Error(err))
+					lg.Warn("failed to find track", zap.Error(err), zap.String("term", searchTerm))
 					continue
 				}
 

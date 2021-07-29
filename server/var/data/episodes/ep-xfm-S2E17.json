@@ -3,6 +3,7 @@
     "series": 2,
     "episode": 17,
     "release_date": "2002-12-14T00:00:00Z",
+    "incomplete": false,
     "metadata": {
       "duration_ms": "2903353",
       "pilkipedia_url": "https://web.archive.org/web/20200704135748/http://www.pilkipedia.co.uk/wiki/index.php?title=14_December_2002/Transcript",
@@ -13,6 +14,7 @@
       {
         "id": "WFzqpwRbL2y8VUyCqfmZMS",
         "pos": 100,
+        "offset_sec": 0,
         "type": "song",
         "actor": "",
         "metadata": {
@@ -22,1893 +24,2490 @@
           "spotify_uri": "spotify:track:1v7L65Lzy0j0vdpRjJewt1"
         },
         "content": "Eminem - Lose Yourself",
+        "notable": false,
         "content_tags": {
           "Eminem": "Eminem"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "KuKKrEHKC7w6L9kvpRm8u4",
         "pos": 200,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Eminem, Lose Yourself on Xfm 104.9. I'm Ricky Gervais, with me Steve Merchant.",
+        "notable": false,
         "content_tags": {
           "Eminem": "Eminem",
           "Lose Yourself": "Lose Yourself",
           "Steve Merchant": "Steve Merchant"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "XRTS5fKNiNSZ6vbzsptayh",
         "pos": 300,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Hello there.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "akvaKezJ6TyxcXCTRSTWtM",
         "pos": 400,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "But not Karl Pilkington.",
+        "notable": false,
         "content_tags": {
           "Karl Pilkington": "Karl Pilkington"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "7FxosnekdkuJH5Y75MsyNd",
         "pos": 500,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "No Karl. No. No.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "f7KYBw6qhJwWNFM63jJov3",
         "pos": 600,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "He's gone back to Manchester innit?",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "TixvY5hiW5w76GbeiDgFxY",
         "pos": 700,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Steve laughs",
+        "notable": false,
         "content_tags": {
           "Steve": "Steve Merchant"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "Edn47DFTE8kSfgoZnVmysG",
         "pos": 800,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "It's better than London.",
+        "notable": false,
         "content_tags": {
           "London": "London"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "cdHbMjbRcvWqnzshp5swe8",
         "pos": 900,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Yeah.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "YTGRhwaheotydfv5UwEUFT",
         "pos": 1000,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "You don't know it. You don't know it. Manchester's better than London. Instead, Claire Sturgess.",
+        "notable": false,
         "content_tags": {
           "Claire Sturgess": "Claire Sturgess",
           "London": "London",
           "Manchester": "Manchester"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "XfvWE7KUufpA9qRhEHKwGP",
         "pos": 1100,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "claire",
         "metadata": null,
         "content": "Yeah.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "q5dagsPwL8Fr5UGdJ3NHkJ",
         "pos": 1200,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Claire Sturgess, a round of applause for Claire.",
+        "notable": false,
         "content_tags": {
           "Claire Sturgess": "Claire Sturgess"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "XM5wxKXaG5krWPJ5KY9QBb",
         "pos": 1300,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "claire",
         "metadata": null,
         "content": "Yeah.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "kUZbZsufrMK9tT2gmwMSEE",
         "pos": 1400,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Yeah.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "ioY99RLb6E7659HJFr2vcZ",
         "pos": 1500,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "claire",
         "metadata": null,
         "content": "Yeah, thanks.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "rWbJtttpK3Z7QEiR88KYJD",
         "pos": 1600,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Yeah.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "fuTgyhgEj2gyt3LuXjxUk9",
         "pos": 1700,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "claire",
         "metadata": null,
         "content": "Thanks, yeah, thanks.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "mQJSBxvTNEuZVFfFKMRQuQ",
         "pos": 1800,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "claire",
         "metadata": null,
         "content": "I will-",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "3f6EAh3kWvQUTFQPcj8wtU",
         "pos": 1900,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Come down in sort of the camouflage gear I notice. Is that quite trendy? Is that what the kids are wearing?",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "jLHi7JgMikEhTaRiC4kQ3",
         "pos": 2000,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "claire",
         "metadata": null,
         "content": "Yeah, do you know, it's funny",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "yKHNRbnmnwEVNfXguFCL2X",
         "pos": 2100,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Claire laughs",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "5JHcS2Kk47HzqWvemsqkxm",
         "pos": 2200,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "claire",
         "metadata": null,
         "content": "Someone actually mentioned that this morning-",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "ppMGGBouKHoECBSuTx9EG3",
         "pos": 2300,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Or are you on maneuvers?",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "DRwXF3nu8wZBpr9Evtab8b",
         "pos": 2400,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Steve laughs",
+        "notable": false,
         "content_tags": {
           "Steve": "Steve Merchant"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "TbcFqwu4wxpnchJfhA2rhk",
         "pos": 2500,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Yeah.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "tzDd9BKJ7yaxQ3A7LkphW9",
         "pos": 2600,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "claire",
         "metadata": null,
         "content": "I am.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "ZL47y4KWEhZ5o3NmiZoQaf",
         "pos": 2700,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Exactly.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "pcKKpGNS34HrEjf34voDBo",
         "pos": 2800,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "claire",
         "metadata": null,
         "content": "I am actually.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "6kT6KRuLLxgAUHAW8KwNHJ",
         "pos": 2900,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Yeah.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "qD4tAjDKaFtDvwYa4vnB55",
         "pos": 3000,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "claire",
         "metadata": null,
         "content": "Taking time out.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "SYa9zgTsARRqX4p2Snsgk4",
         "pos": 3100,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Yeah.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "ZpLGbPiGTZMMYrPnMvPiiL",
         "pos": 3200,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "claire",
         "metadata": null,
         "content": "This morning. From what I normally do.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "Yxsr8r5FdAuMKq35cMT4aV",
         "pos": 3300,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Sure.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "eR8MiQBkbeaeaBu6BtGLbC",
         "pos": 3400,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "I missed the, er, second half - talking about that - of Celebrity, erm, Bootcamp.",
+        "notable": false,
         "content_tags": {
           "Celebrity": "Celebrity"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "TEDFpXeYoCUnMWKG75JBTj",
         "pos": 3500,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "I don't know what that is.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "mgGmWBxHM9yU4i43VwfaoB",
         "pos": 3600,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Coolio.",
+        "notable": false,
         "content_tags": {
           "Coolio": "Coolio"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "tTTohz7c5f9d7USD6oM2e3",
         "pos": 3700,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Is it?",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "tFdtWAku8a4y8w92Y7SDPT",
         "pos": 3800,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "The fella from, um, Milli Vanilli",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "ndQQE3RcwaQfHC8pEqgnEc",
         "pos": 3900,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "What, the one that's not dead?",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "4982WCmtRmjAGAvae3B7R9",
         "pos": 4000,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "claire",
         "metadata": null,
         "content": "Eh?",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "nWRdGAwr94dXhr8Vy2KJc8",
         "pos": 4100,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Uh no, the one that killed himself, Steve.",
+        "notable": false,
         "content_tags": {
           "Steve": "Steve Merchant"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "7xivQ2cga3MAKRLqPLRogX",
         "pos": 4200,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Sure.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "njRF5HULv3VXVvLTJ3iBn9",
         "pos": 4300,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Claire laughs",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "6L8zS5oAofHTnRiNhvK5Mh",
         "pos": 4400,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Um...",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "MpUgJN25EF8T3yzxVRpiAN",
         "pos": 4500,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "No, I just wanted to clarify for people. A lot of people don't realise that one of them is dead.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "V4afH8zXmBoKpjXv2HNnzQ",
         "pos": 4600,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Right.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "Keg3zKq98hTskfYEx6qisT",
         "pos": 4700,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Steve laughs",
+        "notable": false,
         "content_tags": {
           "Steve": "Steve Merchant"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "LzDKG6htY4kgdhQQQP9sAR",
         "pos": 4800,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "I thought it was important to mention it.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "kKK2WwcB7tdAk8txmge89b",
         "pos": 4900,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "claire",
         "metadata": null,
         "content": "Actually, d'you know, I didn't know",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "GEkidRAX3CnVvpMtihdTjg",
         "pos": 5000,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "I'll be honest with you, I hadn't thought it through.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "4pSM4xX2FAfK3UQSLvZLt7",
         "pos": 5100,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "No.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "Z8M3W5bCKt74iHEKwuHKrX",
         "pos": 5200,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "It was a piece of interesting Milli Vanilli trivia that I had, and I wanted to slip it in.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "A4KaxTbDqTsAFgSPfwbVy9",
         "pos": 5300,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "But what wasn't really trivia-",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "dyJV3PmDVPjyEHpn9AFMMj",
         "pos": 5400,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "But I tell you-",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "DJxEKqNewgeUGaUG8XeABA",
         "pos": 5500,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "It was a question. You could've went \"what\", the one who's not dead.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "iEayLh4fLCZToAyxj6J7hB",
         "pos": 5600,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "What I'm trying to say Rick is, I could've found a more tactful way of bringing up the death of one of Milli Vanilli.",
-        "content_tags": {}
+        "notable": false,
+        "content_tags": {},
+        "contributor": ""
       },
       {
         "id": "oM34ZLyxtyax2broHN9CPD",
         "pos": 5700,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Yeah.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "CgGwwEsL7AtVqHdqMX8UxF",
         "pos": 5800,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "'Cause I think there are a lot of people out there now upset. Maybe, didn't realise.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "6FuXbq79v2v2T273AMUXCP",
         "pos": 5900,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Actually, yeah. People who didn't know...",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "eztpNjkVhkS4sVt4fRxt64",
         "pos": 6000,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "It's quite a shock. I didn't...I mean I should've sat people down-",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "p7NZKpGWuYtTorh8ygejUj",
         "pos": 6100,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Who did...who died? Vanilli or Milli?",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "99hCWUXLqbMEdxGwXCh5aD",
         "pos": 6200,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "I think it was...I think it was Milli",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "36BWXiPoxAJnKeoR8d5Zmh",
         "pos": 6300,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Oh right, okay.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "QV9twct8G8oRY2KfuML94c",
         "pos": 6400,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "claire",
         "metadata": null,
         "content": "No it was Vanilli, wasn't it?",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "4HEFLPVGWAMa7w8WPYcSBT",
         "pos": 6500,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "I don't know, erm...",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "MRh5b67ALCT7qCvxUsDUwj",
         "pos": 6600,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "claire",
         "metadata": null,
         "content": "No but I don't know, I didn't actually...",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "FYSJVFGrk5waYf9ZQCHZMR",
         "pos": 6700,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Oh that is-",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "hLt4xVdy2MEHw7TZYPb3oF",
         "pos": 6800,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "claire",
         "metadata": null,
         "content": "I'm guessing.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "LEterG4UmcrQhAwaumxa8W",
         "pos": 6900,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "But wait a minute I've always confused Milli Vanilli with Scritti Politti, I-",
+        "notable": false,
         "content_tags": {
           "Scritti Politti": "Scritti Politti"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "U32Z2iJU7wSFh8JSJLrFQ8",
         "pos": 7000,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Ricky laughs",
-        "content_tags": {}
+        "notable": false,
+        "content_tags": {},
+        "contributor": ""
       },
       {
         "id": "XEQxao3NzemSdCo3TQVf9d",
         "pos": 7100,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "'Cause I mean, that is a danger.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "HQxqjwb4DLb48dcNSgFuRK",
         "pos": 7200,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Oh, no, you're thinking of the fella out of Grumple Palumple.",
+        "notable": false,
         "content_tags": {
           "Grumple Palumple": "Grumple Palumple"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "TyNodWAWETgJ64QfNgW4i8",
         "pos": 7300,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Steve and Claire laugh",
+        "notable": false,
         "content_tags": {
           "Steve": "Steve Merchant"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "V2PktYdpPNz3yTqJPosiHY",
         "pos": 7400,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Because he was amazing.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "UBHXEog9Hc3bqjSmAtRdV8",
         "pos": 7500,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "He was amazing, it's-it's a great shame that he-",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "UiycecdUZvmUSmck4tVgN8",
         "pos": 7600,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Topped himself, before, not around-",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "oEA9d33QBxFTA94EHSa9DH",
         "pos": 7700,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Steve laughs",
+        "notable": false,
         "content_tags": {
           "Steve": "Steve Merchant"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "j7kjoyRq4BDePMEnEJu3yU",
         "pos": 7800,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Anyway, um, cor we've got some great tunes lined up. We're gonna play, today, erm, th- our favourite singles-",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "2Dz7QyzZYPtcVC7TadeZa6",
         "pos": 7900,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Well it's-",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "cs79ciK8pMRqwXpqy46KFC",
         "pos": 8000,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "-Of the year.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "aKPsNF4UUUXpJQSAPm436g",
         "pos": 8100,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "-Favourite tunes. Things that didn't quite make it as tunes maybe. But tunes of the year, 'cause obviously Christmas very soon and, uh, we'll be away for a short time.",
+        "notable": false,
         "content_tags": {
           "Christmas": "Christmas"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "aqRG3GX26oKTpzJFfeJdak",
         "pos": 8200,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "I think next week we're doing our favourite Christmas songs of all time.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "Ff3uGWW3GVwcPsyF2pZhrR",
         "pos": 8300,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Yeah, I'm worried we're not going to fill two hours with that. I mean how many times can you play Shakin' Stevens before uh-",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "vVs27HTncU89y4K3ULULVK",
         "pos": 8400,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Ricky laughs",
-        "content_tags": {}
+        "notable": false,
+        "content_tags": {},
+        "contributor": ""
       },
       {
         "id": "3ffZyM3qBqe6HPqkkAsgmG",
         "pos": 8500,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Fairytale of New York.",
+        "notable": false,
         "content_tags": {
           "New York": "New York"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "RbHCxXm4d64DHmC6uETg4c",
         "pos": 8600,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Yeah, exactly.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "rGBV9kj7zZTui97zbPiihc",
         "pos": 8700,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "There it is again.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "XAoyfmUAwYgwBon34kDQBM",
         "pos": 8800,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "I mean that's really the only one isn't it?",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "qQAuancf4DQDZp5xxCRpS",
         "pos": 8900,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "That's the best one. That's the best Christmas song ever.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "NUS2zmnpdQLLRmQPZKf9mU",
         "pos": 9000,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "That one's good, obviously there's Joni Mitchell's The River, that starts with a kind of Christmassy feel.",
+        "notable": false,
         "content_tags": {
           "Christmassy": "Christmas",
           "Joni Mitchell": "Joni Mitchell"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "9fo4f3pH86sGUeext9ioNA",
         "pos": 9100,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Beautiful. Beautiful.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "Pp8x5UGNf6Bj3TavQBrSKX",
         "pos": 9200,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "I'm trying to think if there's anything else. Not a great deal...",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "MfYYpT5eSc8wguoGYrmubk",
         "pos": 9300,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Um.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "DLd4ynceM7e7KveahryJek",
         "pos": 9400,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "claire",
         "metadata": null,
         "content": "The Waitresses, Christmas Wrapping.",
+        "notable": false,
         "content_tags": {
           "Christmas Wrapping": "Christmas"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "2Sa2PMRusnzNKMSivN3ia9",
         "pos": 9500,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Is that a good one?",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "Kk6vBMuLmgNivLpKrAnjFE",
         "pos": 9600,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "claire",
         "metadata": null,
         "content": "A favourite of mine.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "4qoWfMXo4kPawbrQj6px7d",
         "pos": 9700,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Is that good?",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "2k58qUiixwkZjUxffxjt2S",
         "pos": 9800,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "claire",
         "metadata": null,
         "content": "Yeah, yeah.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "tFpoXMkb6qnYdbPXYCeMQS",
         "pos": 9900,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "So This is Christmas, John Lennon. Paul McCartney came out with Simply Having a Wonderful Christmas Time.",
+        "notable": false,
         "content_tags": {
           "Christmas": "Christmas",
           "John Lennon": "John Lennon",
           "Paul McCartney": "Paul McCartney"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "dsGCfmX35vWqZraJRCQttd",
         "pos": 10000,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Steve laughs",
+        "notable": false,
         "content_tags": {
           "Steve": "Steve Merchant"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "qY7D4Nf7o2nqhp5H8zHpcQ",
         "pos": 10100,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Christmas Time.",
+        "notable": false,
         "content_tags": {
           "Christmas Time": "Christmas"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "PDNWJMxSp7djqKHWRCNzjg",
         "pos": 10200,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Yeah.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "tKrYgzqzzBaYQ8YGJrpddP",
         "pos": 10300,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Yeah, exactly.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "pDZJksiMta4hX6hbcWnhjT",
         "pos": 10400,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Yeah, yeah.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "9Ef2wSqScRcrNW5Wekuk5F",
         "pos": 10500,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "But John's was Happy Christmas, War is Over. Of course it wasn't, but uh, obviously-",
+        "notable": false,
         "content_tags": {
           "John": "John"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "gbznVqnrxXFBQpmzRx6org",
         "pos": 10600,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "But I mean, at least he wanted it to be.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "cewUaXwTrutrk9d63i3Nu",
         "pos": 10700,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "No at least he was dreaming of it, He was dreaming of it.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "YvMHUThqGB7nQfdP2kNNzF",
         "pos": 10800,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Yeah.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "TwdRKFZtMVkLUmhJoCNdxH",
         "pos": 10900,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "I mean, god bless him.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "fkEfVmNVe3D85pSFakoaqW",
         "pos": 11000,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Yeah, and to show how much he hates war-",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "vJ4rhqDtmuwbSJD82eT7H9",
         "pos": 11100,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "I- John Lennon's dead as well, I don't know if anyone's...",
+        "notable": false,
         "content_tags": {
           "John Lennon": "John Lennon"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "jpGQWWhtEVyVkN8j4f8Zym",
         "pos": 11200,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Yeah, no, they're aware of that.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "JjiDvwvjKsNza79NbYfMf6",
         "pos": 11300,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "That's just another bit of rock and roll trivia.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "fS5yhHrNCcixaW2de2Cu3U",
         "pos": 11400,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "I like John's protest against war, he stayed in bed for a week.",
+        "notable": false,
         "content_tags": {
           "John": "John"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "7Wod7ei7KZ3mKfrCX8uruj",
         "pos": 11500,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Steve laughs",
+        "notable": false,
         "content_tags": {
           "Steve": "Steve Merchant"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "MKPiMaNoQpBtEANp8wYK9o",
         "pos": 11600,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Yeah.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "x6BMy4e8udTwRfjhq2Fuq7",
         "pos": 11700,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "I'd have done that. If they'd been protesting against war I'd have been in bed for ages.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "oyxAkbTcJrDUztCHeyxEGa",
         "pos": 11800,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Steve laughs",
+        "notable": false,
         "content_tags": {
           "Steve": "Steve Merchant"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "abvVeyqw82NsqSR39Vz8Kd",
         "pos": 11900,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "I'm eating hamburgers, if there's war.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "YovWSczVC3zJN8x5rTcmsj",
         "pos": 12000,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Absolutely.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "TimETxhA6wZmn8xEwRCw65",
         "pos": 12100,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Steve laughs",
+        "notable": false,
         "content_tags": {
           "Steve": "Steve Merchant"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "qYP4q6NjzzWPcVXbNeeCcc",
         "pos": 12200,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Wh- I jus- I just came into Burger King, on the way here, I went into th-",
+        "notable": false,
         "content_tags": {
           "Burger King": "Burger King"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "kKN4PRU6Y2hHThnEvVbSrm",
         "pos": 12300,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "I mean, of cours- let's not, not product placement there. There's a number of other burgers joint which people may wish to go to instead-",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "9ZMTCPcx7nD9Uvawi5785K",
         "pos": 12400,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "I would go to McDonalds. I would go to McDonalds.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "hwCohgi3PeB2TMrXnJcbAL",
         "pos": 12500,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Exactly.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "BY58dzdH7YWHXnLeLnUqmn",
         "pos": 12600,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "But I went into Burger King, 'cause it's close.",
+        "notable": false,
         "content_tags": {
           "Burger King": "Burger King"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "MW2kuAWBgFAZ4kYNLxWcMh",
         "pos": 12700,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "It's convenient.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "gQVoZqygrCEe3iogmyrfsT",
         "pos": 12800,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "And-",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "CHrPwUsh7eKaXVQ2mWTRu7",
         "pos": 12900,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "But then often McDonalds is more convenient.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "Z8iQtFkneaj7mhK5KvES9H",
         "pos": 13000,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "It was convenient but McDonalds can be just as convenient-",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "HsiAYY4jBfNN3LNbfgY2zb",
         "pos": 13100,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Steve laughs",
+        "notable": false,
         "content_tags": {
           "Steve": "Steve Merchant"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "uTvx5FkydgrPBRf3Pz6rzY",
         "pos": 13200,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Yeah.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "DoXYfe6oTanuH5yNxJyuDK",
         "pos": 13300,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "-Depends where you are.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "exeXjAbE6zXzZagVBD4Ljh",
         "pos": 13400,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Just as convenient, depends where you are.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "hVmPaUA4s9eBAD9AMdqnNQ",
         "pos": 13500,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Yeah, erm, and I said, er, what did I say, I said, um, \"can I have...a...cheeseburger and small fries, takeaway please.\" And he recognised me, he went \"oh I've seen you on telly.\" And I went \"yeah.\" And he went \"uh there's your milkshake\", and I went \"thanks.\" He wen- he winked and went \"I've put large fries in.\"",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "YJ8jy6MjR4wapC8B6NrrrW",
         "pos": 13600,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Steve and Claire laugh",
+        "notable": false,
         "content_tags": {
           "Steve": "Steve Merchant"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "MiWZWyAdWrVgfMdJcr3LgR",
         "pos": 13700,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Brilliant.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "356QabTzRUp2y7M5v6c95C",
         "pos": 13800,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Steve laughs",
+        "notable": false,
         "content_tags": {
           "Steve": "Steve Merchant"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "6rWFV399HJeZWrP8CkSdt5",
         "pos": 13900,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "So that...",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "yepZVAj7tmmBWZkfLBAVfB",
         "pos": 14000,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "So, but I love that-",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "dyDAcKWXvF52FgdVNLk4tK",
         "pos": 14100,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "So it's paying off at last, true genius is being rewarded-",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "8Tgk4E9eEGBre944hCPVti",
         "pos": 14200,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "But I'm just intrigued to know-",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "yCMWXL2qdcc8SCW8FUCUfk",
         "pos": 14300,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "-By these burger joints.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "hb5YUPMFSZCjrxPfoqTCnT",
         "pos": 14400,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "-'Cause, I mean, there's been a couple of times where I've been with you and, you know, we've gone in a restaurant and someone's given you a free meal or whatever.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "qUfgfFdfV9weXhB5gwJJFQ",
         "pos": 14500,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "I know.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "t8quL4NuJpAFBJ9GEQvHDU",
         "pos": 14600,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "And it's the way it's like, you don't ask for it.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "rixdnevMpkrceRwi8H5CQD",
         "pos": 14700,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "No.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "Tv9LSyAAGMKdMmYGjhfrr3",
         "pos": 14800,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "It's just kind of offered. But I don't know what they're expecting in return.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "MihpzHCsD4xRt96NbynDSn",
         "pos": 14900,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Nothing.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "wQzLxXacCs3eisM7jFnvPg",
         "pos": 15000,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "I mean, do think that you'll go away and you'll always think fondly of you know-",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "Q3RkCPmw8dSKSSxTKWsryg",
         "pos": 15100,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "No.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "s6shu5b2HAGAFSaKBWH859",
         "pos": 15200,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "-Chad, who works in Burger King.",
+        "notable": false,
         "content_tags": {
           "Burger King": "Burger King"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "6RF9LuqVMgFTwd99JWhVzY",
         "pos": 15300,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "No I just thi- I just think they think, ooh, I don't know.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "m622i93QBUSZphSznC8cw6",
         "pos": 15400,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "I'm gonna give him a little treat.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "KPmsY7oZ4867hMREZ7njrJ",
         "pos": 15500,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Yeah. I know, I don't like it, but I'm always grateful and I never-",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "nW3Qkx7QTiv86zeHRMpX9U",
         "pos": 15600,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Yeah.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "fnGezTrEx4HwdETPkBpjJF",
         "pos": 15700,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "-But the things is I- yeah, I'm slightly embarrassed but...",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "GSCbLUtxCwGexSq7pM5dfC",
         "pos": 15800,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Did anyone run around you hear what had happened?",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "7dJk6TvEwCQCPwNAJZ7m99",
         "pos": 15900,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "No.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "GRw3mjcNyEEyPmpZdHqn3Y",
         "pos": 16000,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "'Cause I imagine their resentment- just the whole room turned on you.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "ke8fNYjxnGi6sHKsij5Kii",
         "pos": 16100,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "No they didn't, I had to go around telling them.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "vMpDQGfuaE3Ebf9GAkZR23",
         "pos": 16200,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Steve laughs",
+        "notable": false,
         "content_tags": {
           "Steve": "Steve Merchant"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "nUU6eGyV3mWSjFMD27qL36",
         "pos": 16300,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "I mean, yeah...yeah...",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "Jv9MdcYxv5pYsj25kGcGoZ",
         "pos": 16400,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "I- I went up to someone and I said \"excuse me, did you hear that? He just gave me the free thing, 'cause I'm on the telly.\"",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "Z8USJdg8smzmRzvBG87S44",
         "pos": 16500,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Steve laughs",
+        "notable": false,
         "content_tags": {
           "Steve": "Steve Merchant"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "rnfyjvkBVUkv4SGu5CDenk",
         "pos": 16600,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "And they went \"oh, I don't recognise you.\" And I went, \"you don't recognise me?\"",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "UBCET6ng3DwiFuYwvCGvtk",
         "pos": 16700,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "I'm terrified now that uh-",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "HDA4J5fG8sfhSJhrztUomc",
         "pos": 16800,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Claire laughs",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "DkmnqCTdtUJahqK75QaaSn",
         "pos": 16900,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "-That someone could be listening at Burger King HQ, you know I'm assuming this is an unorthodox procedure.",
+        "notable": false,
         "content_tags": {
           "Burger King HQ": "Burger King"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "nPeVCYNoTpUWP9i8yMiz66",
         "pos": 17000,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "And that little fella's got fired.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "evRpmsEzsCLbpuGU65o3DC",
         "pos": 17100,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "We kn- They know it's Leicester Square now 'cause...I've just mentioned it. So they know which Burger King it is.",
+        "notable": false,
         "content_tags": {
           "Burger": "Burger",
           "Leicester Square": "Leicester Square"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "B2UWw66BZtSctQtNWpwj4V",
         "pos": 17200,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Claire laughs",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "TEb8Xgf2ScXPAn9iMcydZ4",
         "pos": 17300,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Oh my god. I don't know...",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "rsoFMdhwNd74VFC5d8VYWi",
         "pos": 17400,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "What was his name?",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "p6m2gzWsspCjvhVruSmbhX",
         "pos": 17500,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Ralph Littleton.",
+        "notable": false,
         "content_tags": {
           "Ralph Littleton": "Ralph Littleton"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "CabjBD4GKzCEamtJhqFTWB",
         "pos": 17600,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Steve and Claire laugh",
+        "notable": false,
         "content_tags": {
           "Steve": "Steve Merchant"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "NSNJLB9YBwnSVM4d3vZwea",
         "pos": 17700,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Yeah.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "eQ4DwgoD3WEDKrCJopNbCT",
         "pos": 17800,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "He- he had a name badge, number 342.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "aBptD3cnUTd6PUja5quBkm",
         "pos": 17900,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Well I just hope Littleton doesn't get in trouble.",
+        "notable": false,
         "content_tags": {
           "Littleton": "Littleton"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "7AB9htm37XnGJqszTJBqME",
         "pos": 18000,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "So, uh, what are we gonna play first?",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "aBpRU3SUKyxmh8A2b7fYxf",
         "pos": 18100,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "That's gonna be a sad Christmas for him.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "Br9eiwtdnXHFMaNszcRbxc",
         "pos": 18200,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Ricky laughs",
-        "content_tags": {}
+        "notable": false,
+        "content_tags": {},
+        "contributor": ""
       },
       {
         "id": "jUeKvvnfT8HmNjzLRsZDqD",
         "pos": 18300,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Yeah.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "zg3khyLCdpVLjyZLa767qY",
         "pos": 18400,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Probably keeping his whole family afloat.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "yPmWztRQEAUjrydUouE6nn",
         "pos": 18500,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Um, bit of Springsteen.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "RasjpzXBoNmAjRWS39vsDT",
         "pos": 18600,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Well, tunes of the year. Now I know a lot of people dismiss Springsteen, but, uh, as I say, the gig went to see earlier in the year, I mean it-",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "MyBoqAkGZk7Ah5Hxq2P88C",
         "pos": 18700,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Sturgess couldn't believe we were going to play Springsteen.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "SkEKAsXTooZcmmcpk7mM8m",
         "pos": 18800,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "-Was quite brilliant. I just think, you know, leave aside what you think is cool and trendy, and the fact that he's older now-",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "EmwhKrEHaaudXdcAKDfFSH",
         "pos": 18900,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "claire",
         "metadata": null,
         "content": "Really?",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "Z8CManUpLBwvzxmH6hryn4",
         "pos": 19000,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Yeah.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "8gNZKmSyu7GthahbwKBuPg",
         "pos": 19100,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "claire",
         "metadata": null,
         "content": "Really?",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "sKdsb4NzSWQWdozqeWznx4",
         "pos": 19200,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Just leave all that behind-",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "gR9LteywjzXRhP48nPidEG",
         "pos": 19300,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "claire",
         "metadata": null,
         "content": "Yeah?",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "WSK5BxN3u8WxEBvtR8wUZ9",
         "pos": 19400,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "-And just listen to the tunes, because, you know, he remains a great musician.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "hHjed4ggk7nvxDgwbQNsUP",
         "pos": 19500,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Lonesome Day?",
+        "notable": false,
         "content_tags": {
           "Lonesome Day": "Lonesome Day"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "zhrCXwy8nKaRr8br7vKQ7h",
         "pos": 19600,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Lonesome Day, the current single, the first track on the album.",
+        "notable": false,
         "content_tags": {
           "Lonesome Day": "Lonesome Day"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "ZbxuqCPfVsiVDrvK3nioDT",
         "pos": 19700,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Free, free chips.",
+        "notable": false,
         "content_tags": {
           "Free": "Free"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "HuneWRSLh4wRYTm7xk7ERg",
         "pos": 19800,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Steve laughs",
+        "notable": false,
         "content_tags": {
           "Steve": "Steve Merchant"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "xPTteV43AsyunJSD6WSkiG",
         "pos": 19900,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Absolutely.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "ohjLcR7LXyjAmw4DZyJLLA",
         "pos": 20000,
+        "offset_sec": 0,
         "type": "song",
         "actor": "",
         "metadata": {
@@ -1918,9 +2517,11 @@
           "spotify_uri": "spotify:track:0R9q3imnid244T1ty47MGs"
         },
         "content": "Bruce Springsteen - Lonesome Day",
+        "notable": false,
         "content_tags": {
           "Bruce Springsteen": "Bruce Springsteen"
-        }
+        },
+        "contributor": ""
       }
     ],
     "tags": [
@@ -1949,5 +2550,7 @@
       "Lonesome Day",
       "Free",
       "Bruce Springsteen"
-    ]
+    ],
+    "synopsis": null,
+    "contributors": null
   }

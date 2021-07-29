@@ -3,6 +3,7 @@
     "series": 2,
     "episode": 19,
     "release_date": "2002-12-28T00:00:00Z",
+    "incomplete": false,
     "metadata": {
       "duration_ms": "3491500",
       "pilkipedia_url": "https://web.archive.org/web/20200704135748/http://www.pilkipedia.co.uk/wiki/index.php?title=28_December_2002/Transcript",
@@ -13,93 +14,121 @@
       {
         "id": "d54duhG9CsLKHf6QRxBayE",
         "pos": 100,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "104.9, I'm Ricky Gervais, with me Stephen Merchant.",
+        "notable": false,
         "content_tags": {
           "Stephen Merchant": "Stephen Merchant"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "paiRzJtCRPRg43FVbK2GvJ",
         "pos": 200,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Hello there.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "BSEDKinD23i7TrFe58oC5Q",
         "pos": 300,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "It's the 'best of', you've been voting in all week, sending in your emails, so here's the clips that you wanted.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "tY3dTrJSHy2SQjkxRxvnRP",
         "pos": 400,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "classic link",
         "metadata": null,
         "content": "I've Just Nicked Five of Your DVDs",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "gExJqh9bDVfFfawgzUh4Nb",
         "pos": 500,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Xfm 104.9, Ricky and I are on holiday obviously, it's Christmas time, but Karl is here in the studio, he's pressing buttons, alright Karl?",
+        "notable": false,
         "content_tags": {
           "Karl": "Karl Pilkington"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "r2QF56PY2rJckzWXiF3g6W",
         "pos": 600,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
         "content": "Alright?",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "fG8Cz2PkyiFBQYDT3bEwPc",
         "pos": 700,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Ricky laughs like a horse.",
-        "content_tags": {}
+        "notable": false,
+        "content_tags": {},
+        "contributor": ""
       },
       {
         "id": "6xdVZnoQxaQvdeEBitTbo4",
         "pos": 800,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Sound effect of a tape loading",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "QFrwDu3hS3hZBm8MNgdRWj",
         "pos": 900,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "classic link",
         "metadata": null,
         "content": "The Horse in the House - part 1",
+        "notable": false,
         "content_tags": {
           "House": "House"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "ecN45ZiwS6RiUETAY8QP3g",
         "pos": 1000,
+        "offset_sec": 0,
         "type": "song",
         "actor": "",
         "metadata": {
@@ -108,44 +137,56 @@
           "spotify_uri": "spotify:track:3fElupNRLRJ0tbUDahPrAb"
         },
         "content": "The Velvet Underground - Waiting for the Man",
+        "notable": false,
         "content_tags": {
           "Velvet Underground": "Velvet Underground"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "C7xARQHgYcJKyFCskBd2CV",
         "pos": 1100,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "classic link",
         "metadata": null,
         "content": "The Horse in the House - part 2",
+        "notable": false,
         "content_tags": {
           "House": "House"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "xWpmk9WBhkCuiyVJVLwv6F",
         "pos": 1200,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "classic link",
         "metadata": null,
         "content": "Karl's Removal Man",
+        "notable": false,
         "content_tags": {
           "Karl": "Karl Pilkington"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "7n9KzgRdEYSBU5GWPpvMmF",
         "pos": 1300,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "classic link",
         "metadata": null,
         "content": "I Was Watchin All This Life Goin On",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "ZaBmMYFNQ85ZG5mKoWwDQC",
         "pos": 1400,
+        "offset_sec": 0,
         "type": "song",
         "actor": "",
         "metadata": {
@@ -155,71 +196,92 @@
           "spotify_uri": "spotify:track:2sEbU7Z4Re2n4t1pzPbbUk"
         },
         "content": "Alpinestars - Carbon Kid",
+        "notable": false,
         "content_tags": {
           "Alpinestars": "Alpinestars"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "xQFq2dQbjM9cU4cxTXzHhc",
         "pos": 1500,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Hello, you're listening to the best of, basically, Karl Pilkington.",
+        "notable": false,
         "content_tags": {
           "Karl Pilkington": "Karl Pilkington"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "ri6Hh4ijcYrH7qRN2mH3qc",
         "pos": 1600,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Sound effect of a tape loading",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "DFZBqxmkaCuDhQNZ9sBLmT",
         "pos": 1700,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "classic link",
         "metadata": null,
         "content": "Wet-Knee Houston",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "ktXFhiHVL7cWzFwws2pzgC",
         "pos": 1800,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "104.9, Ricky Gervais, Steve Merchant, we're not actually here, it's the 'best of'.",
+        "notable": false,
         "content_tags": {
           "Steve Merchant": "Steve Merchant"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "endS36VhFkj3CyGvznNA5R",
         "pos": 1900,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Sound effect of a tape loading",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "jCXVsMfjSJ2d5FXhTfm3jC",
         "pos": 2000,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "classic link",
         "metadata": null,
         "content": "The Old Man And The Twix",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "mwSebdxw3gRAKACUPCzcTi",
         "pos": 2100,
+        "offset_sec": 0,
         "type": "song",
         "actor": "",
         "metadata": {
@@ -229,70 +291,91 @@
           "spotify_uri": "spotify:track:4J4LjEe33yN6gLmPib0nqz"
         },
         "content": "The Libertines - Time for Heroes",
+        "notable": false,
         "content_tags": {
           "Libertines": "Libertines"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "KyjGZs2nKCSToudTJiKRfX",
         "pos": 2200,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "...you've been voting in all week, sending in your emails, so here's the clips that you wanted.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "qptZUrhuanX9zPdN3aB4Wi",
         "pos": 2300,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Sound effect of a tape loading",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "4775EhrHDhCx9gmFW4o3GZ",
         "pos": 2400,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "classic link",
         "metadata": null,
         "content": "It Was the Cakes Again",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "7hKP4E7jTqGeteizgNT8HS",
         "pos": 2500,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Alright, Xfm 104.9, Ricky Gervais, Steve Merchant, Karl Pilkington, not here, it's the 'best of', you've been voting in all week, sending in your emails, so here's the clips that you wanted.",
+        "notable": false,
         "content_tags": {
           "Karl Pilkington": "Karl Pilkington",
           "Steve Merchant": "Steve Merchant"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "CLRQSzP2WN7UZSth93H2Um",
         "pos": 2600,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Sound effect of a tape loading",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "VnePXzTEc9rQyUAXdG95pm",
         "pos": 2700,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "classic link",
         "metadata": null,
         "content": "Off With His Head",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "guHUkzUmhyhbPZDNBogNCh",
         "pos": 2800,
+        "offset_sec": 0,
         "type": "song",
         "actor": "",
         "metadata": {
@@ -302,58 +385,75 @@
           "spotify_uri": "spotify:track:27lBtZlEualAWVi6Ilttla"
         },
         "content": "Richard Ashcroft - Check the Meaning",
+        "notable": false,
         "content_tags": {
           "Richard Ashcroft": "Richard Ashcroft"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "WjYxTXrLTAxE3Rr8K55vmd",
         "pos": 2900,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "This is Xfm 104.9 I'm Ricky Gervais, with me Stephen Merchant.",
+        "notable": false,
         "content_tags": {
           "Stephen Merchant": "Stephen Merchant"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "v43yaqeXtFJSVubxrJa5aS",
         "pos": 3000,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Hello.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "vn8fR4rye8aLzEzvWh9AvX",
         "pos": 3100,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "You're listening to the best of, basically, Karl Pilkington.",
+        "notable": false,
         "content_tags": {
           "Karl Pilkington": "Karl Pilkington"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "R5CaWpUdXriTkVokDoenXH",
         "pos": 3200,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Sound effect of a tape loading",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "hyETxx2hZSuyBmZDDfxcmn",
         "pos": 3300,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "classic link",
         "metadata": null,
         "content": "Money For Old Rope",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       }
     ],
     "tags": [
@@ -365,5 +465,7 @@
       "Steve Merchant",
       "Libertines",
       "Richard Ashcroft"
-    ]
+    ],
+    "synopsis": null,
+    "contributors": null
   }

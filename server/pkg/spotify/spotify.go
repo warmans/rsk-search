@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"strings"
 	"time"
 )
 
@@ -68,6 +69,23 @@ func (s *Search) FindTrack(term string) (*Track, error) {
 		return nil, err
 	}
 	defer resp.Body.Close()
+
+	var errorCode, errorDesc string
+
+	authDetails := resp.Header.Get("Www-Authenticate")
+	parts := strings.Split(authDetails, ",")
+	for _, pair := range parts {
+		keyval := strings.Split(strings.TrimSpace(pair), "=")
+		if len(keyval) == 2 && strings.TrimSpace(keyval[0]) == "error" && strings.TrimSpace(keyval[1]) != "" {
+			errorCode = strings.Trim(strings.TrimSpace(keyval[1]), `"\`)
+		}
+		if len(keyval) == 2 && strings.TrimSpace(keyval[0]) == "error_description" && strings.TrimSpace(keyval[1]) != "" {
+			errorDesc = strings.Trim(strings.TrimSpace(keyval[1]), `"\`)
+		}
+	}
+	if errorCode != "" {
+		return nil, fmt.Errorf("request failed: %s (%s)", errorDesc, errorCode)
+	}
 
 	result := &searchResult{}
 

@@ -3,6 +3,7 @@
     "series": 2,
     "episode": 27,
     "release_date": "2003-02-22T00:00:00Z",
+    "incomplete": false,
     "metadata": {
       "duration_ms": "2939193",
       "pilkipedia_url": "https://web.archive.org/web/20200704135748/http://www.pilkipedia.co.uk/wiki/index.php?title=22_February_2003/Transcript",
@@ -13,6 +14,7 @@
       {
         "id": "GZ5Nuifqy4yytembomc29",
         "pos": 100,
+        "offset_sec": 0,
         "type": "song",
         "actor": "",
         "metadata": {
@@ -22,177 +24,231 @@
           "spotify_uri": "spotify:track:3CpoeW0cZSDzIRv5z34F87"
         },
         "content": "Eminem – Sing for the Moment",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "NMBecHYbHGnbknUgWKhTgV",
         "pos": 200,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "104.9 Xfm, Ricky Gervais, Steve Merchant, Karl Pilkington's pressing the buttons.",
+        "notable": false,
         "content_tags": {
           "Karl Pilkington": "Karl Pilkington",
           "Steve Merchant": "Steve Merchant"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "4qST52WdieV2dvcxxp2Kfh",
         "pos": 300,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
         "content": "Alright?",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "L9HTwzqXzC2XYN5sReBFNd",
         "pos": 400,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Ricky laughs.",
-        "content_tags": {}
+        "notable": false,
+        "content_tags": {},
+        "contributor": ""
       },
       {
         "id": "z3U3ezLPtiLvK6zpzQHQeA",
         "pos": 500,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "We're playing some err, some great moments from the last three weeks...",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "5jZhgXcDDGb4ChYGQJnebB",
         "pos": 600,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "...and some great records, Steve, from the last two weeks.",
+        "notable": false,
         "content_tags": {
           "Steve": "Steve Merchant"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "cbdW6M59rmrTVPWzhFo66D",
         "pos": 700,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "That's true enough.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "Gfyr8XU5W3UtDvgcMHLN94",
         "pos": 800,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Yeah.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "ZSBwWkn9MtaPXLDFPmuNtV",
         "pos": 900,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "We're not actually here today, what are you up to today Rick?",
-        "content_tags": {}
+        "notable": false,
+        "content_tags": {},
+        "contributor": ""
       },
       {
         "id": "i3k3qnwAvwM3AHPVUDKcT",
         "pos": 1000,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Erm, it's eight hours earlier, so this is about two o'clock, probably, so it's about six o'clock in the morning, I'm still in bed mate, I'm asleep, in me hotel room.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "QRaiKhYvoz6rhXGH7hfrXc",
         "pos": 1100,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Now, where are you?",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "DR76pSLZGwMjBEdHpLTDzm",
         "pos": 1200,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "We're in L.A.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "JhC2AkPGFfScFjbLfugC6j",
         "pos": 1300,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Los Angeles.",
+        "notable": false,
         "content_tags": {
           "Los Angeles": "Los Angeles"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "zqA2Skg5GUfAXWU7qYqsfY",
         "pos": 1400,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Yeah.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "eGm5ssyzY8cSfcZDKD7tSi",
         "pos": 1500,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "City of Angels, Rick.",
+        "notable": false,
         "content_tags": {
           "Angels": "Angels",
           "City": "City"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "kTSNgfnV7fYjohVBu2ipaa",
         "pos": 1600,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Yeah, yeah, yeah.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "Z6FE5pNQ7aGXRJRLtcSuq6",
         "pos": 1700,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "City of Angels.",
+        "notable": false,
         "content_tags": {
           "Angels": "Angels",
           "City": "City"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "rPrRMQQAH6fkdZFzFZ99JT",
         "pos": 1800,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Yeah, and that's what we're doing, that's why we're not here, we're not here next week either, so next week is the best of this week.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "jLDBukZQ9cDoUktkMzd5Qm",
         "pos": 1900,
+        "offset_sec": 0,
         "type": "song",
         "actor": "",
         "metadata": {
@@ -202,33 +258,42 @@
           "spotify_uri": "spotify:track:0WQiDwKJclirSYG9v5tayI"
         },
         "content": "The Smiths - There Is A Light That Never Goes Out",
+        "notable": false,
         "content_tags": {
           "Smiths": "Smiths"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "jgWntUiqGBWLKsVokKLCKc",
         "pos": 2000,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "classic link",
         "metadata": null,
         "content": "Have You Ever Seen A Bald Pet?",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "vo9ddfaKr7QddKUFiJjhBm",
         "pos": 2100,
+        "offset_sec": 0,
         "type": "song",
         "actor": "",
         "metadata": null,
         "content": "Goldrush - \"I Let You Down\"",
+        "notable": false,
         "content_tags": {
           "Goldrush": "Goldrush"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "QLXDCEqcTJu7b3RUAbn8V8",
         "pos": 2200,
+        "offset_sec": 0,
         "type": "song",
         "actor": "",
         "metadata": {
@@ -238,150 +303,198 @@
           "spotify_uri": "spotify:track:5BLpDreKOvVKJvBuowlkxE"
         },
         "content": "The Coral - \"Don't Think You're The First\"",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "dqWsnZRifvFz9ZknDHF7KP",
         "pos": 2300,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Well, here we are again. Xfm on a Saturday, just gone 1 o'clock Steve, if I'm very much mistaken, but we're not here, as such, we're away again, gallivanting around, erm, we've gotta do a special sort of 'Best of' again.",
+        "notable": false,
         "content_tags": {
           "Steve": "Steve Merchant"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "jGr3iGMKF6CJdQmGcRgAyT",
         "pos": 2400,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Okay.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "rUsKbjt86tUAnPYpYDTm3H",
         "pos": 2500,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Which we did a few weeks ago, so this is the best of the last three weeks...",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "nVdaAfuzM3C9rCkoirG5JG",
         "pos": 2600,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Steve laughs.",
+        "notable": false,
         "content_tags": {
           "Steve": "Steve Merchant"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "u7Y77f5BMMEN7tgVxb2ufe",
         "pos": 2700,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Which I think is, I mean I think it's the best three weeks we've ever had. But I'd like it condensed into two hours.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "actgF8Gs5K8LcxQzk6ey8Z",
         "pos": 2800,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Yeah, some great music as well in there?",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "FCrBAtAHoWfNV45huFhNJf",
         "pos": 2900,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Yeah, there'll be some great music, interspersed with fine chat, that you've already heard.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "oQzxwEiLRbLw6SmoofNzYn",
         "pos": 3000,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Yeah.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "XC9ryLikeQ85n8e5E8BXdZ",
         "pos": 3100,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Except this bit, this bit's new. We've actually, out of the kindness of our heart, we've come in, erm, we've come in last week.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "q66g7ntehMBXE3FSPF8s5W",
         "pos": 3200,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Yep... yep.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "t2muuPtj4GWW3PAQMsxyt5",
         "pos": 3300,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "...and we've done a few clips. Just cos we felt a bit guilty about shooting off and leaving...",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "WjJB6vJcBjXTzejrX4zvYZ",
         "pos": 3400,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "I mean even now, having heard this link, I'm beginning to wonder if it was worth our time.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "KrNKSrAUzppUPBEwGC5uaN",
         "pos": 3500,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Erm, yeah, well, shall we play a classic link?",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "5gUXPgePoE2nB7rTHHnGmD",
         "pos": 3600,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Let's, I'd love, what from the last three weeks?",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "Ru6esfNJPUBexHFrbCiX3b",
         "pos": 3700,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "After this, this is Feeder.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "ZGWqWZKNHEas7tQa8ZdSMW",
         "pos": 3800,
+        "offset_sec": 0,
         "type": "song",
         "actor": "",
         "metadata": {
@@ -391,76 +504,97 @@
           "spotify_uri": "spotify:track:1zg4NCQ3vHLn3MeaDBPm3s"
         },
         "content": "Feeder - Just The Way I'm Feeling",
+        "notable": false,
         "content_tags": {
           "Feeder": "Feeder"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "GDyBC4cnpMKLKzLBHKYi3V",
         "pos": 3900,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "If you've just tuned in, it's Xfm 104.9, you've got that bit right, it's the Ricky Gervais Show, with me Stephen Merchant.",
+        "notable": false,
         "content_tags": {
           "Stephen Merchant": "Stephen Merchant"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "oqmDRLvVDkcJUgzJfwvwgm",
         "pos": 4000,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Hello there.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "qQhdVp5HfMJyGPFq8DzpEj",
         "pos": 4100,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Karl is actually in a little booth, we're not in the studio you see, this is pre-recorded, we recorded this last week, cos we're away, and this is sort of like the 'best of', best of the last three weeks, since last time we were away when we put out the 'best of'...",
+        "notable": false,
         "content_tags": {
           "Karl": "Karl Pilkington"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "ZQkGg4DBUcNrhUno4LZvZi",
         "pos": 4200,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "classic link",
         "metadata": null,
         "content": "Talkin Of Ghosts An' That",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "g3sQK4keZfCD7xvo88CB4g",
         "pos": 4300,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "classic link",
         "metadata": null,
         "content": "White Van Karl",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "BwbGuffqNNTAdXZBo5ihs5",
         "pos": 4400,
+        "offset_sec": 0,
         "type": "song",
         "actor": "",
         "metadata": {
-          "song_album": "Kennst du das ?!",
-          "song_artist": "Samra",
-          "song_track": "Kennst du das ?!",
-          "spotify_uri": "spotify:track:6ReuhBWXeOzgOQIXiPqW0y"
+          "song_album": "?",
+          "song_artist": "XXXTENTACION",
+          "song_track": "Hope",
+          "spotify_uri": "spotify:track:2ZRo7axmMPeSVUvDbGkJah"
         },
         "content": "?",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "2uThytASuzdivCT6SdGf5L",
         "pos": 4500,
+        "offset_sec": 0,
         "type": "song",
         "actor": "",
         "metadata": {
@@ -470,278 +604,368 @@
           "spotify_uri": "spotify:track:3WBPiogtVDBSXK7uOpxJ6m"
         },
         "content": "Placebo – Bitter End",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "SE5Popoze8FTmaKqUWGxRK",
         "pos": 4600,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "That's a wonderful, wonderful clip.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "GezCPFVsdzqQmWdLurmStf",
         "pos": 4700,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Yeah.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "ceWHUFDitvV6L2WGLx6rZJ",
         "pos": 4800,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "...and the record that preceded or followed it, I'm not sure.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "p28qrcrWsqey3r5qFfy49K",
         "pos": 4900,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Ricky cackles.",
-        "content_tags": {}
+        "notable": false,
+        "content_tags": {},
+        "contributor": ""
       },
       {
         "id": "kjCnzJpEB9AJrd52Fcyi8c",
         "pos": 5000,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "But, er...",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "SLvvzwR3fkerXNGLPjSEcZ",
         "pos": 5100,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Oh dear.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "Tju2n2D57GJjZg3tfb8Zcj",
         "pos": 5200,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Could I, could I make some dedications Rick?",
-        "content_tags": {}
+        "notable": false,
+        "content_tags": {},
+        "contributor": ""
       },
       {
         "id": "ChyLXQL4ecNveNko3QpgQa",
         "pos": 5300,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Yeah.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "HmuwJXmDaqWX38e6uoThA",
         "pos": 5400,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Cos I, last week, just before we had to come in to record this, popped out trying to get on the tube, had a nightmare, cos there were loads, millions of protesters...",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "AH4a4yS6yENPWaAieFyAUK",
         "pos": 5500,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Yeah.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "2ZLYXnWUBGhUpu5Uc9ACwA",
         "pos": 5600,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "...so-called protesters, a lot of them obviously doing good work, there was one fella, I think you would have appreciated it, cos I know you are very politically active and I think this guy has really studied hard and has realised the best way to make his voice heard on the international political stage, is to ride around on a tricycle wearing a jester's hat.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "SkmfAygBkXwGPMKNREEKLe",
         "pos": 5700,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Ricky laughs.",
-        "content_tags": {}
+        "notable": false,
+        "content_tags": {},
+        "contributor": ""
       },
       {
         "id": "dZrJdHrrPYvfmne9RktW6K",
         "pos": 5800,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "He was really shaking up the bloody government.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "K2PphxrfsfButwszBnEevW",
         "pos": 5900,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "I wouldn't wanna be George W. Bush about now!",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "3jn4TTJsDBDh46ZQquL3Xe",
         "pos": 6000,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Not indeed.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "GrdYtwYCJoZaSevhYaRjRj",
         "pos": 6100,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Once he sees that...",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "RuRBFb9qAwzhomaL2Z5qNS",
         "pos": 6200,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "When he sees that guy.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "dSCwR43ZkbGjzLMw7WYxWY",
         "pos": 6300,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Imagine his aides rushing in and going “err George W, hmm, look at this guy” 'where's that?' “that's in London, England” 'okay call off the forces.'",
+        "notable": false,
         "content_tags": {
           "London": "London"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "cNoS7WNKNku6NXBsRaezeW",
         "pos": 6400,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "“Is that a large tricycle?”",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "tX6yVQBTmVoQYEiVAwnBG9",
         "pos": 6500,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Yeah.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "bKduuWtJEhDbFwPPigHHbd",
         "pos": 6600,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "'Is he wearing a nappy?'",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "XrzqEJsWYsJzTp4LjcAQcB",
         "pos": 6700,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Ricky laughs.",
-        "content_tags": {}
+        "notable": false,
+        "content_tags": {},
+        "contributor": ""
       },
       {
         "id": "2szw3P5UxWuZeYLuEjhXxf",
         "pos": 6800,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "“Get me Colin Powell.” 'Why do you call him Colin (co-lin) not Colin (col-in)?', “it's the way he likes it, don't f*ck about, just call off the troops, there's a c*nt in a jester's hat, f*cking call the troops off.”",
+        "notable": false,
         "content_tags": {
           "Colin Powell": "Colin Powell"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "MkH42EoFQWQs3HVCKZzK6b",
         "pos": 6900,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Just bleep some of those bits.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "XNbwbYFrANxwa5jwGUvBjD",
         "pos": 7000,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "Ricky laughs.",
-        "content_tags": {}
+        "notable": false,
+        "content_tags": {},
+        "contributor": ""
       },
       {
         "id": "5WEYby2dYgraaPVHtf4umE",
         "pos": 7100,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Xfm 104.9, of a Saturday, Ricky Gervais, with me, Steve Merchant.",
+        "notable": false,
         "content_tags": {
           "Steve Merchant": "Steve Merchant"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "b4fWSu6U7pUZhKBwiBhG4V",
         "pos": 7200,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Hello.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "BPBZpy73ofmDLaouAWxUGT",
         "pos": 7300,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "But, we're not here, no we're away, so this is the best of and I hope you're enjoying it, erm, we certainly are.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "oJ85uAUdNihtUTcRg8bTd3",
         "pos": 7400,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "classic link",
         "metadata": null,
         "content": "All I'm Gonna Win is a Moped",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "X4W5gMxsJynKrpetqoEZqN",
         "pos": 7500,
+        "offset_sec": 0,
         "type": "song",
         "actor": "",
         "metadata": {
@@ -751,22 +975,28 @@
           "spotify_uri": "spotify:track:2SiXAy7TuUkycRVbbWDEpo"
         },
         "content": "AC/DC - You Shook Me All Night Long",
+        "notable": false,
         "content_tags": {
           "AC/DC": "AC/DC"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "SspBMbfw4XZZ5TPNcLPjqX",
         "pos": 7600,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "classic link",
         "metadata": null,
         "content": "Chuckin' a Stone in the Air",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "bK8aCM9DrTK3CCBLK48tgj",
         "pos": 7700,
+        "offset_sec": 0,
         "type": "song",
         "actor": "",
         "metadata": {
@@ -776,13 +1006,16 @@
           "spotify_uri": "spotify:track:37CRPk0L5ZpfPeePEPwE0t"
         },
         "content": "David Bowie - Ashes To Ashes",
+        "notable": false,
         "content_tags": {
           "David Bowie": "David Bowie"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "62aLikeo9WHQyyS3oMGanj",
         "pos": 7800,
+        "offset_sec": 0,
         "type": "song",
         "actor": "",
         "metadata": {
@@ -792,31 +1025,40 @@
           "spotify_uri": "spotify:track:0BCPKOYdS2jbQ8iyB56Zns"
         },
         "content": "Coldplay - Clocks",
+        "notable": false,
         "content_tags": {
           "Coldplay": "Coldplay"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "7p8QqAoKimYycUCMnunpTD",
         "pos": 7900,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Xfm 104.9, we're not here. Erm this next clip is one of my favourite clips, look, it needs no introduction, here it is.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "nFskCxrzFq78TXwGKZJAT4",
         "pos": 8000,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "classic link",
         "metadata": null,
         "content": "This week, Snails",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "mRzRNAtq2CHXP5WnHU7zk6",
         "pos": 8100,
+        "offset_sec": 0,
         "type": "song",
         "actor": "",
         "metadata": {
@@ -826,109 +1068,142 @@
           "spotify_uri": "spotify:track:1naopXybcYSD220AP2v9jN"
         },
         "content": "Aimee Mann - Red Vines",
+        "notable": false,
         "content_tags": {
           "Aimee Mann": "Aimee Mann"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "xxhfumuyd4N9kFNcKcqF2c",
         "pos": 8200,
+        "offset_sec": 0,
         "type": "song",
         "actor": "",
         "metadata": null,
         "content": "The Doves – There Goes the Fear",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "tWUSormAKbdgYh7RzguzkH",
         "pos": 8300,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Xfm 104.9, Ricky Gervais show with Steve Merchant, hello there, and we're not here this week, we're off jetting around the world, so we've pre-recorded these links, the time is currently somewhere between 1 and 3 o'clock.",
+        "notable": false,
         "content_tags": {
           "Steve Merchant": "Steve Merchant"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "DPnx4nvSxwKLiyctryLYN8",
         "pos": 8400,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "So, a timecheck there from Steve Merchant.",
+        "notable": false,
         "content_tags": {
           "Steve Merchant": "Steve Merchant"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "PjHMNmnZ9xM6NCRj6eigQd",
         "pos": 8500,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "No problem.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "2AQ5Q9tw4Sz9jWVcb9qES4",
         "pos": 8600,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Yeah and oh, what- what about this weather, isn't it warm – stroke – edit that Karl – cold, okay, whichever one.",
+        "notable": false,
         "content_tags": {
           "Karl –": "Karl Pilkington"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "Lxr3W2SFw7KfaguByUiuRM",
         "pos": 8700,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "I'm pleased to see that the congestion charge has had some considerable effect/had no effect.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "KLjcuGrTx9Pzv9nDU7cGhG",
         "pos": 8800,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Yeah so just you know, erm, oh wasn't that great on the telly last night, the film...",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "HSFFd3qXuN7vZo69ZxKzGZ",
         "pos": 8900,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "I particularly enjoyed last night's Eastenders/Coronation Street/Brookside.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "P4bgneUhJHa975gWWH5jT7",
         "pos": 9000,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Okay...",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "LCtTeqmNaWTe4ChRh3fW3c",
         "pos": 9100,
+        "offset_sec": 0,
         "type": "unknown",
         "actor": "",
         "metadata": null,
         "content": "They giggle.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "yUnr2KHNDGwqnWbNKtKKNW",
         "pos": 9200,
+        "offset_sec": 0,
         "type": "song",
         "actor": "",
         "metadata": {
@@ -938,24 +1213,30 @@
           "spotify_uri": "spotify:track:0ccCwNzXvr1Yoz91vKz31Z"
         },
         "content": "Flaming Lips - Yoshimi Battles The Pink Robots",
+        "notable": false,
         "content_tags": {
           "Lips": "Lips"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "5ryZpvUkYCq7XYvsoYCt3Q",
         "pos": 9300,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "classic link",
         "metadata": null,
         "content": "Tell Us About This Monkey, Karl",
+        "notable": false,
         "content_tags": {
           "Monkey": "Monkeys"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "ogbHKNGp5jnSTkwK7VyhsK",
         "pos": 9400,
+        "offset_sec": 0,
         "type": "song",
         "actor": "",
         "metadata": {
@@ -965,89 +1246,113 @@
           "spotify_uri": "spotify:track:2tBxJ43XiwEzhf7Xalc5UG"
         },
         "content": "Oasis - Songbird",
+        "notable": false,
         "content_tags": {
           "Oasis": "Oasis"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "e4qKBqGMVVweFoP9dpwFqg",
         "pos": 9500,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "classic link",
         "metadata": null,
         "content": "Michael Jackson's Hands",
+        "notable": false,
         "content_tags": {
           "Michael Jackson": "Michael Jackson"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "za9xDpVXuzCkBHAHsmimDV",
         "pos": 9600,
+        "offset_sec": 0,
         "type": "song",
         "actor": "",
         "metadata": {
-          "song_album": "80's US Hits",
+          "song_album": "70er Jahre Pop",
           "song_artist": "Pretenders",
           "song_track": "Brass In Pocket",
-          "spotify_uri": "spotify:track:2RHcEbXXQIftSim5qjtM21"
+          "spotify_uri": "spotify:track:4c3as0dzbmwkNpTgPcpZTy"
         },
         "content": "Pretenders - Brass In Pocket",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "AaTmJ4duAnA7ahVnqXrTfn",
         "pos": 9700,
+        "offset_sec": 0,
         "type": "song",
         "actor": "",
         "metadata": null,
         "content": "Turin Brakes - Painkiller (Summer Rain)",
+        "notable": false,
         "content_tags": {
           "Turin Brakes": "Turin Brakes"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "7igyPnd8NEPzCtPUfEJ6Gh",
         "pos": 9800,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "If you've just tuned in, it's Xfm 104.9, you've got that bit right, it's the Ricky Gervais Show, with me Stephen Merchant.",
+        "notable": false,
         "content_tags": {
           "Stephen Merchant": "Stephen Merchant"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "LpspQWYDP7WFpbbL86GXy7",
         "pos": 9900,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Hello there.",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "U4atkXvVJBvnEAqCMVwzGc",
         "pos": 10000,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Karl is actually in a little booth, we're not in the studio you see, this is pre-recorded, we recorded this last week, cos we're away, and this is sort of like the 'best of', best of the last three weeks, since last time we were away when we put out the 'best of'...",
+        "notable": false,
         "content_tags": {
           "Karl": "Karl Pilkington"
-        }
+        },
+        "contributor": ""
       },
       {
         "id": "hSJq8L6xawqW8reoAiULzZ",
         "pos": 10100,
+        "offset_sec": 0,
         "type": "chat",
         "actor": "classic link",
         "metadata": null,
         "content": "I've Just Nicked Five Of Your DVDs",
-        "content_tags": null
+        "notable": false,
+        "content_tags": null,
+        "contributor": ""
       },
       {
         "id": "7jtL9R5YymyC6ubiXjLQNd",
         "pos": 10200,
+        "offset_sec": 0,
         "type": "song",
         "actor": "",
         "metadata": {
@@ -1057,9 +1362,11 @@
           "spotify_uri": "spotify:track:20j7B6mL9gnNvG3ic6Vwh5"
         },
         "content": "The Hives - Hate To Say I Told You So",
+        "notable": false,
         "content_tags": {
           "Hives": "Hives"
-        }
+        },
+        "contributor": ""
       }
     ],
     "tags": [
@@ -1084,5 +1391,7 @@
       "Michael Jackson",
       "Turin Brakes",
       "Hives"
-    ]
+    ],
+    "synopsis": null,
+    "contributors": null
   }
