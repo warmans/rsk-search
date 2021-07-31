@@ -1063,8 +1063,9 @@
           "notable": {
             "type": "boolean"
           },
-          "contributor": {
-            "type": "string"
+          "offsetSec": {
+            "type": "string",
+            "format": "int64"
           }
         }
       },
@@ -1177,6 +1178,9 @@
             "items": {
               "type": "string"
             }
+          },
+          "incomplete": {
+            "type": "boolean"
           }
         }
       },

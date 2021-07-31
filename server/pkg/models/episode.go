@@ -60,13 +60,14 @@ func (d Dialog) Proto(bestMatch bool) *api.Dialog {
 	dialog := &api.Dialog{
 		Id:           d.ID,
 		Pos:          d.Position,
+		OffsetSec:    d.OffsetSec,
 		Type:         string(d.Type),
 		Actor:        d.Actor,
 		Content:      d.Content,
 		Metadata:     d.Meta.Proto(),
 		IsMatchedRow: bestMatch,
 		ContentTags:  make(map[string]*api.Tag),
-		Contributor:  d.Contributor,
+		Notable:      d.Notable,
 	}
 	for text, tagName := range d.ContentTags {
 		tag := meta.GetTag(tagName)
@@ -121,6 +122,7 @@ func (e *Episode) Proto() *api.Episode {
 		Metadata:     e.Meta.Proto(),
 		ReleaseDate:  e.ReleaseDate.Format(util.ShortDateFormat),
 		Contributors: e.Contributors,
+		Incomplete:   e.Incomplete,
 	}
 	for _, tn := range e.Tags {
 		tag := meta.GetTag(tn)
@@ -130,6 +132,9 @@ func (e *Episode) Proto() *api.Episode {
 	}
 	for _, d := range e.Transcript {
 		ep.Transcript = append(ep.Transcript, d.Proto(false))
+	}
+	for _, s := range e.Synopsis {
+		ep.Synopses = append(ep.Synopses, s.Proto())
 	}
 	return ep
 }
@@ -187,4 +192,12 @@ type Synopsis struct {
 	Description string `json:"description"`
 	StartPos    int64  `json:"start_pos"`
 	EndPos      int64  `json:"end_pos"`
+}
+
+func (f Synopsis) Proto() *api.Synopsis {
+	return &api.Synopsis{
+		Description: f.Description,
+		StartPos:    f.StartPos,
+		EndPos:      f.EndPos,
+	}
 }

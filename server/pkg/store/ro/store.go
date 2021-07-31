@@ -2,7 +2,6 @@ package ro
 
 import (
 	"context"
-	"database/sql"
 	"embed"
 	"encoding/json"
 	"fmt"
@@ -79,17 +78,17 @@ func (s *Store) InsertEpisodeWithTranscript(ctx context.Context, ep *models.Epis
 			return err
 		}
 		_, err = s.tx.ExecContext(ctx,
-			`INSERT INTO dialog (id, episode_id, pos, type, actor, content, metadata, content_tags, notable, contributor) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
+			`INSERT INTO dialog (id, episode_id, pos, offset, type, actor, content, metadata, content_tags, notable) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
 			v.ID,
 			ep.ID(),
 			v.Position,
+			v.OffsetSec,
 			string(v.Type),
 			v.Actor,
 			v.Content,
 			diaMeta,
 			diaTags,
 			v.Notable,
-			v.Contributor,
 		)
 		if err != nil {
 			return err
@@ -111,55 +110,7 @@ func (s *Store) GetDialogWithContext(ctx context.Context, dialogID string, withC
 	return s.getTranscriptForQuery(ctx, query, dialogID)
 }
 
-func (s *Store) GetShortEpisode(ctx context.Context, id string) (*models.Episode, error) {
-	ep := &models.Episode{}
-	var metadata string
-	var tags string
-	var contributors string
-
-	err := s.tx.
-		QueryRowxContext(ctx, "SELECT publication, series, episode, release_date, metadata, tags, contributors FROM episode WHERE id = $1", id).
-		Scan(&ep.Publication, &ep.Series, &ep.Episode, &ep.ReleaseDate, &metadata, &tags, &contributors)
-
-	if err != nil {
-		if err == sql.ErrNoRows {
-			return nil, nil
-		}
-		return nil, err
-	}
-	if metadata != "" {
-		if err := json.Unmarshal([]byte(metadata), &ep.Meta); err != nil {
-			return nil, errors.Wrap(err, "failed to decode metadata")
-		}
-	}
-	if tags != "" {
-		if err := json.Unmarshal([]byte(tags), &ep.Tags); err != nil {
-			return nil, errors.Wrap(err, "failed to decode tags")
-		}
-	}
-	if contributors != "" {
-		if err := json.Unmarshal([]byte(contributors), &ep.Contributors); err != nil {
-			return nil, errors.Wrap(err, "failed to decode contributors")
-		}
-	}
-	return ep, nil
-}
-
-func (s *Store) GetEpisode(ctx context.Context, id string) (*models.Episode, error) {
-	ep, err := s.GetShortEpisode(ctx, id)
-	if err != nil {
-		return nil, err
-	}
-	if ep == nil {
-		return nil, nil
-	}
-	ep.Transcript, _, err = s.getTranscriptForQuery(ctx, "SELECT * FROM dialog WHERE episode_id=$1 ORDER BY pos ASC", id)
-	if err != nil {
-		return nil, err
-	}
-	return ep, nil
-}
-
+// should support filtering
 func (s *Store) ListEpisodes(ctx context.Context) ([]*models.ShortEpisode, error) {
 
 	results, err := s.tx.QueryxContext(ctx, "SELECT e.id, e.publication, e.series, e.episode, e.release_date, (SELECT COUNT(*) FROM dialog WHERE episode_id = e.id LIMIT 1) > 0 AS transcript_available FROM episode e ORDER BY e.series ASC, e.episode ASC")
@@ -198,7 +149,7 @@ func (s *Store) getTranscriptForQuery(ctx context.Context, query string, params 
 		var meta string
 		var tags string
 
-		if err := res.Scan(&result.ID, &epID, &result.Position, &result.Type, &result.Actor, &result.Content, &meta, &tags, &result.Notable, &result.Contributor); err != nil {
+		if err := res.Scan(&result.ID, &epID, &result.Position, &result.OffsetSec, &result.Type, &result.Actor, &result.Content, &meta, &tags, &result.Notable); err != nil {
 			return nil, "", err
 		}
 		if meta != "" {

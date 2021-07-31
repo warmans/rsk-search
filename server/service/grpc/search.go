@@ -5,10 +5,10 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/warmans/rsk-search/gen/api"
+	"github.com/warmans/rsk-search/pkg/data"
 	"github.com/warmans/rsk-search/pkg/filter"
 	"github.com/warmans/rsk-search/pkg/jwt"
 	"github.com/warmans/rsk-search/pkg/meta"
-	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/search"
 	"github.com/warmans/rsk-search/pkg/store/common"
 	"github.com/warmans/rsk-search/pkg/store/ro"
@@ -25,6 +25,7 @@ func NewSearchService(
 	searchBackend *search.Search,
 	store *ro.Conn,
 	auth *jwt.Auth,
+	episodeCache *data.EpisodeCache,
 ) *SearchService {
 	return &SearchService{
 		logger:        logger,
@@ -32,6 +33,7 @@ func NewSearchService(
 		searchBackend: searchBackend,
 		staticDB:      store,
 		auth:          auth,
+		episodeCache:  episodeCache,
 	}
 }
 
@@ -41,6 +43,7 @@ type SearchService struct {
 	searchBackend *search.Search
 	staticDB      *ro.Conn
 	auth          *jwt.Auth
+	episodeCache  *data.EpisodeCache
 }
 
 func (s *SearchService) RegisterGRPC(server *grpc.Server) {
@@ -115,20 +118,9 @@ func (s *SearchService) Search(ctx context.Context, request *api.SearchRequest) 
 }
 
 func (s *SearchService) GetEpisode(ctx context.Context, request *api.GetEpisodeRequest) (*api.Episode, error) {
-	var ep *models.Episode
-	err := s.staticDB.WithStore(func(s *ro.Store) error {
-		var err error
-		ep, err = s.GetEpisode(ctx, request.Id)
-		if err != nil {
-			return err
-		}
-		if ep == nil {
-			return ErrNotFound(request.Id).Err()
-		}
-		return nil
-	})
-	if err != nil {
-		return nil, ErrFromStore(err, request.Id).Err()
+	ep, err := s.episodeCache.GetEpisode(request.Id)
+	if err == data.ErrNotFound || ep == nil {
+		return nil, ErrNotFound(request.Id).Err()
 	}
 	return ep.Proto(), nil
 }

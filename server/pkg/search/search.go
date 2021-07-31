@@ -4,6 +4,7 @@ import (
 	"context"
 	"github.com/blevesearch/bleve/v2"
 	"github.com/warmans/rsk-search/gen/api"
+	"github.com/warmans/rsk-search/pkg/data"
 	"github.com/warmans/rsk-search/pkg/filter"
 	"github.com/warmans/rsk-search/pkg/filter/bleve_query"
 	"github.com/warmans/rsk-search/pkg/models"
@@ -13,13 +14,14 @@ import (
 const ResultContextLines = 3
 const PageSize = 10
 
-func NewSearch(index bleve.Index, readOnlyDB *ro.Conn) *Search {
-	return &Search{index: index, readOnlyDB: readOnlyDB}
+func NewSearch(index bleve.Index, readOnlyDB *ro.Conn, episodeCache *data.EpisodeCache) *Search {
+	return &Search{index: index, readOnlyDB: readOnlyDB, episodeCache: episodeCache}
 }
 
 type Search struct {
-	index      bleve.Index
-	readOnlyDB *ro.Conn
+	index        bleve.Index
+	readOnlyDB   *ro.Conn
+	episodeCache *data.EpisodeCache
 }
 
 func (s *Search) Search(ctx context.Context, f filter.Filter, page int32) (*api.SearchResultList, error) {
@@ -53,18 +55,17 @@ func (s *Search) Search(ctx context.Context, f filter.Filter, page int32) (*api.
 			result := &api.SearchResult{
 				Dialogs: []*api.DialogResult{},
 			}
-			err := s.readOnlyDB.WithStore(func(s *ro.Store) error {
-				dialogs, episodeID, err := s.GetDialogWithContext(ctx, searchResult.ID, ResultContextLines)
-				if err != nil {
-					return err
-				}
-				episode, err := s.GetShortEpisode(ctx, episodeID)
+			err := s.readOnlyDB.WithStore(func(store *ro.Store) error {
+				dialogs, episodeID, err := store.GetDialogWithContext(ctx, searchResult.ID, ResultContextLines)
 				if err != nil {
 					return err
 				}
 
-				// ep
-				result.Episode = episode.ShortProto()
+				ep, err := s.episodeCache.GetEpisode(episodeID)
+				if err != nil {
+					return err
+				}
+				result.Episode = ep.ShortProto()
 
 				// dialogs
 				lines := make([]*api.Dialog, len(dialogs))

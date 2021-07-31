@@ -119,7 +119,7 @@ message Dialog {
   map<string, Tag> content_tags = 7;
   bool is_matched_row = 8;
   bool notable = 9;
-  string contributor = 10;
+  int64 offset_sec = 10;
 }
 
 message Synopsis {
@@ -144,6 +144,7 @@ message Episode {
   string release_date = 8;
   repeated Synopsis synopses = 9;
   repeated string contributors = 10;
+  bool incomplete = 11;
 }
 
 message GetEpisodeRequest {

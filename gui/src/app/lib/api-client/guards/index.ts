@@ -262,8 +262,6 @@ export function isRskDialog(arg: any): arg is models.RskDialog {
     ( typeof arg.content === 'undefined' || typeof arg.content === 'string' ) &&
     // contentTags?: { [key: string]: RskTag }
     ( typeof arg.contentTags === 'undefined' || isRskTag(arg.contentTags) ) &&
-    // contributor?: string
-    ( typeof arg.contributor === 'undefined' || typeof arg.contributor === 'string' ) &&
     // id?: string
     ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
     // isMatchedRow?: boolean
@@ -272,6 +270,8 @@ export function isRskDialog(arg: any): arg is models.RskDialog {
     ( typeof arg.metadata === 'undefined' || typeof arg.metadata === 'string' ) &&
     // notable?: boolean
     ( typeof arg.notable === 'undefined' || typeof arg.notable === 'boolean' ) &&
+    // offsetSec?: string
+    ( typeof arg.offsetSec === 'undefined' || typeof arg.offsetSec === 'string' ) &&
     // pos?: string
     ( typeof arg.pos === 'undefined' || typeof arg.pos === 'string' ) &&
     // type?: string
@@ -349,6 +349,8 @@ export function isRskEpisode(arg: any): arg is models.RskEpisode {
     ( typeof arg.episode === 'undefined' || typeof arg.episode === 'number' ) &&
     // id?: string
     ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
+    // incomplete?: boolean
+    ( typeof arg.incomplete === 'undefined' || typeof arg.incomplete === 'boolean' ) &&
     // metadata?: { [key: string]: string }
     ( typeof arg.metadata === 'undefined' || typeof arg.metadata === 'string' ) &&
     // publication?: string

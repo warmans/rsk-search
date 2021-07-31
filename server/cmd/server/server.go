@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/blevesearch/bleve/v2"
 	"github.com/spf13/cobra"
+	"github.com/warmans/rsk-search/pkg/data"
 	"github.com/warmans/rsk-search/pkg/flag"
 	"github.com/warmans/rsk-search/pkg/jwt"
 	"github.com/warmans/rsk-search/pkg/oauth"
@@ -21,6 +22,7 @@ import (
 	"go.uber.org/zap"
 	"os"
 	"os/signal"
+	"path"
 	"syscall"
 	"time"
 )
@@ -109,6 +111,11 @@ func ServerCmd() *cobra.Command {
 				}
 			}()
 
+			episodeCache, err := data.NewEpisodeStore(path.Join(srvCfg.FilesBasePath, "data", "episodes"))
+			if err != nil {
+				logger.Fatal("failed to create episode cache", zap.Error(err))
+			}
+
 			// setup oauth
 			tokenCache := oauth.NewCSRFCache()
 			auth := jwt.NewAuth(jwtConfig)
@@ -122,9 +129,10 @@ func ServerCmd() *cobra.Command {
 				grpc.NewSearchService(
 					logger,
 					srvCfg,
-					search.NewSearch(rskIndex, readOnlyStoreConn),
+					search.NewSearch(rskIndex, readOnlyStoreConn, episodeCache),
 					readOnlyStoreConn,
 					auth,
+					episodeCache,
 				),
 				grpc.NewTscriptService(
 					logger,
