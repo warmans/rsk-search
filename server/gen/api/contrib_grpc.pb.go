@@ -36,6 +36,7 @@ type ContribServiceClient interface {
 	ListClaimedRewards(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ClaimedRewardList, error)
 	ClaimReward(ctx context.Context, in *ClaimRewardRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ListDonationRecipients(ctx context.Context, in *ListDonationRecipientsRequest, opts ...grpc.CallOption) (*DonationRecipientList, error)
+	GetEditableTranscript(ctx context.Context, in *GetEditableTranscriptRequest, opts ...grpc.CallOption) (*EditableTranscript, error)
 	ListTranscriptChanges(ctx context.Context, in *ListTranscriptChangesRequest, opts ...grpc.CallOption) (*TranscriptChangeList, error)
 	CreateTranscriptChange(ctx context.Context, in *CreateTranscriptChangeRequest, opts ...grpc.CallOption) (*TranscriptChange, error)
 	UpdateTranscriptChange(ctx context.Context, in *UpdateTranscriptChangeRequest, opts ...grpc.CallOption) (*TranscriptChange, error)
@@ -195,6 +196,15 @@ func (c *contribServiceClient) ListDonationRecipients(ctx context.Context, in *L
 	return out, nil
 }
 
+func (c *contribServiceClient) GetEditableTranscript(ctx context.Context, in *GetEditableTranscriptRequest, opts ...grpc.CallOption) (*EditableTranscript, error) {
+	out := new(EditableTranscript)
+	err := c.cc.Invoke(ctx, "/rsk.ContribService/GetEditableTranscript", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *contribServiceClient) ListTranscriptChanges(ctx context.Context, in *ListTranscriptChangesRequest, opts ...grpc.CallOption) (*TranscriptChangeList, error) {
 	out := new(TranscriptChangeList)
 	err := c.cc.Invoke(ctx, "/rsk.ContribService/ListTranscriptChanges", in, out, opts...)
@@ -261,6 +271,7 @@ type ContribServiceServer interface {
 	ListClaimedRewards(context.Context, *emptypb.Empty) (*ClaimedRewardList, error)
 	ClaimReward(context.Context, *ClaimRewardRequest) (*emptypb.Empty, error)
 	ListDonationRecipients(context.Context, *ListDonationRecipientsRequest) (*DonationRecipientList, error)
+	GetEditableTranscript(context.Context, *GetEditableTranscriptRequest) (*EditableTranscript, error)
 	ListTranscriptChanges(context.Context, *ListTranscriptChangesRequest) (*TranscriptChangeList, error)
 	CreateTranscriptChange(context.Context, *CreateTranscriptChangeRequest) (*TranscriptChange, error)
 	UpdateTranscriptChange(context.Context, *UpdateTranscriptChangeRequest) (*TranscriptChange, error)
@@ -319,6 +330,9 @@ func (UnimplementedContribServiceServer) ClaimReward(context.Context, *ClaimRewa
 }
 func (UnimplementedContribServiceServer) ListDonationRecipients(context.Context, *ListDonationRecipientsRequest) (*DonationRecipientList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListDonationRecipients not implemented")
+}
+func (UnimplementedContribServiceServer) GetEditableTranscript(context.Context, *GetEditableTranscriptRequest) (*EditableTranscript, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetEditableTranscript not implemented")
 }
 func (UnimplementedContribServiceServer) ListTranscriptChanges(context.Context, *ListTranscriptChangesRequest) (*TranscriptChangeList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTranscriptChanges not implemented")
@@ -635,6 +649,24 @@ func _ContribService_ListDonationRecipients_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ContribService_GetEditableTranscript_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetEditableTranscriptRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContribServiceServer).GetEditableTranscript(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/rsk.ContribService/GetEditableTranscript",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContribServiceServer).GetEditableTranscript(ctx, req.(*GetEditableTranscriptRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ContribService_ListTranscriptChanges_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListTranscriptChangesRequest)
 	if err := dec(in); err != nil {
@@ -795,6 +827,10 @@ var ContribService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListDonationRecipients",
 			Handler:    _ContribService_ListDonationRecipients_Handler,
+		},
+		{
+			MethodName: "GetEditableTranscript",
+			Handler:    _ContribService_GetEditableTranscript_Handler,
 		},
 		{
 			MethodName: "ListTranscriptChanges",

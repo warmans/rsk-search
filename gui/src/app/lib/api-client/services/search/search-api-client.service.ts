@@ -246,9 +246,27 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  getEditableTranscript(
+    args: {
+      epid: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskEditableTranscript> {
+    const path = `/api/contrib/transcript/${args.epid}`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<models.RskEditableTranscript>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   listTranscriptChanges(
     args: {
-      transcriptId: string,
+      epid: string,
       filter?: string,
       sortField?: string,
       sortDirection?: string,
@@ -257,7 +275,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscriptChangeList> {
-    const path = `/api/contrib/transcript/${args.transcriptId}/change`;
+    const path = `/api/contrib/transcript/${args.epid}/change`;
     const options: APIHttpOptions = {
       ...this.options,
       ...requestHttpOptions,
@@ -286,12 +304,12 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   createTranscriptChange(
     args: {
-      transcriptId: string,
+      epid: string,
       body: models.RskCreateTranscriptChangeRequest,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscriptChange> {
-    const path = `/api/contrib/transcript/${args.transcriptId}/change`;
+    const path = `/api/contrib/transcript/${args.epid}/change`;
     const options: APIHttpOptions = {
       ...this.options,
       ...requestHttpOptions,
@@ -427,11 +445,11 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   getTranscript(
     args: {
-      id: string,
+      epid: string,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscript> {
-    const path = `/api/transcript/${args.id}`;
+    const path = `/api/transcript/${args.epid}`;
     const options: APIHttpOptions = {
       ...this.options,
       ...requestHttpOptions,

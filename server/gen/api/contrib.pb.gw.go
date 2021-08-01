@@ -778,8 +778,60 @@ func local_request_ContribService_ListDonationRecipients_0(ctx context.Context, 
 
 }
 
+func request_ContribService_GetEditableTranscript_0(ctx context.Context, marshaler runtime.Marshaler, client ContribServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetEditableTranscriptRequest
+	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["epid"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "epid")
+	}
+
+	protoReq.Epid, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "epid", err)
+	}
+
+	msg, err := client.GetEditableTranscript(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_ContribService_GetEditableTranscript_0(ctx context.Context, marshaler runtime.Marshaler, server ContribServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetEditableTranscriptRequest
+	var metadata runtime.ServerMetadata
+
+	var (
+		val string
+		ok  bool
+		err error
+		_   = err
+	)
+
+	val, ok = pathParams["epid"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "epid")
+	}
+
+	protoReq.Epid, err = runtime.String(val)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "epid", err)
+	}
+
+	msg, err := server.GetEditableTranscript(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
 var (
-	filter_ContribService_ListTranscriptChanges_0 = &utilities.DoubleArray{Encoding: map[string]int{"transcript_id": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
+	filter_ContribService_ListTranscriptChanges_0 = &utilities.DoubleArray{Encoding: map[string]int{"epid": 0}, Base: []int{1, 1, 0}, Check: []int{0, 1, 2}}
 )
 
 func request_ContribService_ListTranscriptChanges_0(ctx context.Context, marshaler runtime.Marshaler, client ContribServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
@@ -793,14 +845,14 @@ func request_ContribService_ListTranscriptChanges_0(ctx context.Context, marshal
 		_   = err
 	)
 
-	val, ok = pathParams["transcript_id"]
+	val, ok = pathParams["epid"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "transcript_id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "epid")
 	}
 
-	protoReq.TranscriptId, err = runtime.String(val)
+	protoReq.Epid, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "transcript_id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "epid", err)
 	}
 
 	if err := req.ParseForm(); err != nil {
@@ -826,14 +878,14 @@ func local_request_ContribService_ListTranscriptChanges_0(ctx context.Context, m
 		_   = err
 	)
 
-	val, ok = pathParams["transcript_id"]
+	val, ok = pathParams["epid"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "transcript_id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "epid")
 	}
 
-	protoReq.TranscriptId, err = runtime.String(val)
+	protoReq.Epid, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "transcript_id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "epid", err)
 	}
 
 	if err := req.ParseForm(); err != nil {
@@ -867,14 +919,14 @@ func request_ContribService_CreateTranscriptChange_0(ctx context.Context, marsha
 		_   = err
 	)
 
-	val, ok = pathParams["transcript_id"]
+	val, ok = pathParams["epid"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "transcript_id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "epid")
 	}
 
-	protoReq.TranscriptId, err = runtime.String(val)
+	protoReq.Epid, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "transcript_id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "epid", err)
 	}
 
 	msg, err := client.CreateTranscriptChange(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -901,14 +953,14 @@ func local_request_ContribService_CreateTranscriptChange_0(ctx context.Context, 
 		_   = err
 	)
 
-	val, ok = pathParams["transcript_id"]
+	val, ok = pathParams["epid"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "transcript_id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "epid")
 	}
 
-	protoReq.TranscriptId, err = runtime.String(val)
+	protoReq.Epid, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "transcript_id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "epid", err)
 	}
 
 	msg, err := server.CreateTranscriptChange(ctx, &protoReq)
@@ -1478,6 +1530,29 @@ func RegisterContribServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 
 	})
 
+	mux.Handle("GET", pattern_ContribService_GetEditableTranscript_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/GetEditableTranscript")
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ContribService_GetEditableTranscript_0(rctx, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_ContribService_GetEditableTranscript_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	mux.Handle("GET", pattern_ContribService_ListTranscriptChanges_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -1954,6 +2029,26 @@ func RegisterContribServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 
 	})
 
+	mux.Handle("GET", pattern_ContribService_GetEditableTranscript_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/GetEditableTranscript")
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ContribService_GetEditableTranscript_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_ContribService_GetEditableTranscript_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	mux.Handle("GET", pattern_ContribService_ListTranscriptChanges_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -2090,9 +2185,11 @@ var (
 
 	pattern_ContribService_ListDonationRecipients_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"api", "rewards", "reward_id", "recipients"}, ""))
 
-	pattern_ContribService_ListTranscriptChanges_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"api", "contrib", "transcript", "transcript_id", "change"}, ""))
+	pattern_ContribService_GetEditableTranscript_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"api", "contrib", "transcript", "epid"}, ""))
 
-	pattern_ContribService_CreateTranscriptChange_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"api", "contrib", "transcript", "transcript_id", "change"}, ""))
+	pattern_ContribService_ListTranscriptChanges_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"api", "contrib", "transcript", "epid", "change"}, ""))
+
+	pattern_ContribService_CreateTranscriptChange_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3, 2, 4}, []string{"api", "contrib", "transcript", "epid", "change"}, ""))
 
 	pattern_ContribService_UpdateTranscriptChange_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4}, []string{"api", "contrib", "transcript", "change", "id"}, ""))
 
@@ -2133,6 +2230,8 @@ var (
 	forward_ContribService_ClaimReward_0 = runtime.ForwardResponseMessage
 
 	forward_ContribService_ListDonationRecipients_0 = runtime.ForwardResponseMessage
+
+	forward_ContribService_GetEditableTranscript_0 = runtime.ForwardResponseMessage
 
 	forward_ContribService_ListTranscriptChanges_0 = runtime.ForwardResponseMessage
 

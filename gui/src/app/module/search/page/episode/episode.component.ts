@@ -52,7 +52,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.loading = true;
     this.error = undefined;
-    this.apiClient.getTranscript({ id: this.id }).pipe(takeUntil(this.unsubscribe$)).subscribe(
+    this.apiClient.getTranscript({ epid: this.id }).pipe(takeUntil(this.unsubscribe$)).subscribe(
       (ep: RskTranscript) => {
         this.episode = ep;
         this.titleService.setTitle(ep.id);

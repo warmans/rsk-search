@@ -21,7 +21,7 @@ const routes: Routes = [
     component: EpisodeComponent,
   },
   {
-    path: 'ep/:id/change',
+    path: 'ep/:episode_id/change',
     component: TranscriptChangeComponent,
   },
   {

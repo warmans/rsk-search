@@ -115,9 +115,19 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  getEditableTranscript(
+    args: {
+      epid: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskEditableTranscript>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   listTranscriptChanges(
     args: {
-      transcriptId: string,
+      epid: string,
       filter?: string,
       sortField?: string,
       sortDirection?: string,
@@ -132,7 +142,7 @@ export interface SearchAPIClientInterface {
    */
   createTranscriptChange(
     args: {
-      transcriptId: string,
+      epid: string,
       body: models.RskCreateTranscriptChangeRequest,
     },
     requestHttpOptions?: HttpOptions
@@ -203,7 +213,7 @@ export interface SearchAPIClientInterface {
    */
   getTranscript(
     args: {
-      id: string,
+      epid: string,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscript>;

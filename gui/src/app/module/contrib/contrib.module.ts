@@ -10,8 +10,8 @@ import { RouterModule } from '@angular/router';
   ],
   imports: [
     CommonModule,
-    SharedModule,
     RouterModule,
+    SharedModule,
   ]
 })
 export class ContribModule {

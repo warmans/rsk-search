@@ -60,7 +60,7 @@ service SearchService {
 
   rpc GetTranscript(GetTranscriptRequest) returns (Transcript) {
     option (google.api.http) = {
-      get: "/api/transcript/{id}"
+      get: "/api/transcript/{epid}"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       operation_id: "getTranscript",
@@ -148,7 +148,7 @@ message Transcript {
 }
 
 message GetTranscriptRequest {
-  string id = 1;
+  string epid = 1;
 }
 
 message ListTranscriptsRequest {

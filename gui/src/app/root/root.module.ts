@@ -10,6 +10,7 @@ import { SearchModule } from '../module/search/search.module';
 import { SharedModule } from '../module/shared/shared.module';
 import { TscriptModule } from '../module/tscript/tscript.module';
 import { RewardModule } from '../module/reward/reward.module';
+import { ContribModule } from '../module/contrib/contrib.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { RewardModule } from '../module/reward/reward.module';
     SearchModule,
     TscriptModule,
     RewardModule,
+    ContribModule,
   ],
   providers: [Title],
   bootstrap: [RootComponent]

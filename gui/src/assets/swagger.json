@@ -385,7 +385,38 @@
           ]
         }
       },
-      "/api/contrib/transcript/{transcriptId}/change": {
+      "/api/contrib/transcript/{epid}": {
+        "get": {
+          "summary": "Gets a transcript in the editable format.",
+          "operationId": "getEditableTranscript",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskEditableTranscript"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "epid",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "tags": [
+            "search"
+          ]
+        }
+      },
+      "/api/contrib/transcript/{epid}/change": {
         "get": {
           "summary": "Submits a new version of a transcript.",
           "operationId": "listTranscriptChanges",
@@ -405,7 +436,7 @@
           },
           "parameters": [
             {
-              "name": "transcriptId",
+              "name": "epid",
               "in": "path",
               "required": true,
               "type": "string"
@@ -466,7 +497,7 @@
           },
           "parameters": [
             {
-              "name": "transcriptId",
+              "name": "epid",
               "in": "path",
               "required": true,
               "type": "string"
@@ -685,7 +716,7 @@
           ]
         }
       },
-      "/api/transcript/{id}": {
+      "/api/transcript/{epid}": {
         "get": {
           "summary": "Fetch a transcript and associated metadata.",
           "operationId": "getTranscript",
@@ -705,7 +736,7 @@
           },
           "parameters": [
             {
-              "name": "id",
+              "name": "epid",
               "in": "path",
               "required": true,
               "type": "string"
@@ -1213,7 +1244,7 @@
       "rskCreateTranscriptChangeRequest": {
         "type": "object",
         "properties": {
-          "transcriptId": {
+          "epid": {
             "type": "string"
           },
           "transcript": {
@@ -1321,6 +1352,14 @@
             "items": {
               "$ref": "#/definitions/rskDonationRecipient"
             }
+          }
+        }
+      },
+      "rskEditableTranscript": {
+        "type": "object",
+        "properties": {
+          "transcript": {
+            "type": "string"
           }
         }
       },

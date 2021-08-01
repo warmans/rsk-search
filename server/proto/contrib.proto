@@ -206,9 +206,20 @@ service ContribService {
 
   // Transcript Corrections
 
+  rpc GetEditableTranscript(GetEditableTranscriptRequest) returns (EditableTranscript) {
+    option (google.api.http) = {
+      get: "/api/contrib/transcript/{epid}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "getEditableTranscript",
+      summary: "Gets a transcript in the editable format."
+      tags: "search"
+    };
+  }
+
   rpc ListTranscriptChanges(ListTranscriptChangesRequest) returns (TranscriptChangeList) {
     option (google.api.http) = {
-      get: "/api/contrib/transcript/{transcript_id}/change"
+      get: "/api/contrib/transcript/{epid}/change"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       operation_id: "listTranscriptChanges",
@@ -219,7 +230,7 @@ service ContribService {
 
   rpc CreateTranscriptChange(CreateTranscriptChangeRequest) returns (TranscriptChange) {
     option (google.api.http) = {
-      post: "/api/contrib/transcript/{transcript_id}/change",
+      post: "/api/contrib/transcript/{epid}/change",
       body: "*",
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
@@ -499,11 +510,12 @@ message ChunkList {
 }
 
 message CreateTranscriptChangeRequest {
-  string transcript_id = 1;
+  string epid = 1;
   string transcript = 2;
 }
+
 message ListTranscriptChangesRequest {
-  string transcript_id = 1;
+  string epid = 1;
   string filter = 2;
   string sort_field = 3;
   string sort_direction = 4;
@@ -538,4 +550,13 @@ message TranscriptChange {
 message RequestTranscriptChangeStateRequest {
   string id = 1;
   ContributionState state = 2;
+}
+
+
+message GetEditableTranscriptRequest {
+  string epid = 1;
+}
+
+message EditableTranscript {
+  string transcript = 1;
 }

@@ -235,10 +235,10 @@ export function isRskCreateTranscriptChangeRequest(arg: any): arg is models.RskC
   return (
   arg != null &&
   typeof arg === 'object' &&
+    // epid?: string
+    ( typeof arg.epid === 'undefined' || typeof arg.epid === 'string' ) &&
     // transcript?: string
     ( typeof arg.transcript === 'undefined' || typeof arg.transcript === 'string' ) &&
-    // transcriptId?: string
-    ( typeof arg.transcriptId === 'undefined' || typeof arg.transcriptId === 'string' ) &&
 
   true
   );
@@ -326,6 +326,17 @@ export function isRskDonationRecipientList(arg: any): arg is models.RskDonationR
   typeof arg === 'object' &&
     // organizations?: RskDonationRecipient[]
     ( typeof arg.organizations === 'undefined' || (Array.isArray(arg.organizations) && arg.organizations.every((item: unknown) => isRskDonationRecipient(item))) ) &&
+
+  true
+  );
+  }
+
+export function isRskEditableTranscript(arg: any): arg is models.RskEditableTranscript {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // transcript?: string
+    ( typeof arg.transcript === 'undefined' || typeof arg.transcript === 'string' ) &&
 
   true
   );

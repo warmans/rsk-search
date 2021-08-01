@@ -118,9 +118,9 @@ func (s *SearchService) Search(ctx context.Context, request *api.SearchRequest) 
 }
 
 func (s *SearchService) GetTranscript(ctx context.Context, request *api.GetTranscriptRequest) (*api.Transcript, error) {
-	ep, err := s.episodeCache.GetEpisode(request.Id)
+	ep, err := s.episodeCache.GetEpisode(request.Epid)
 	if err == data.ErrNotFound || ep == nil {
-		return nil, ErrNotFound(request.Id).Err()
+		return nil, ErrNotFound(request.Epid).Err()
 	}
 	return ep.Proto(), nil
 }
