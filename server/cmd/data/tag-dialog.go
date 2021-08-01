@@ -41,7 +41,7 @@ func TagDialogCmd() *cobra.Command {
 
 				logger.Info("Parsing file...", zap.String("path", dirEntry.Name()))
 
-				episode := &models.Episode{}
+				episode := &models.Transcript{}
 				if err := util.WithReadJSONFileDecoder(path.Join(inputDir, dirEntry.Name()), func(dec *json.Decoder) error {
 					return dec.Decode(episode)
 				}); err != nil {

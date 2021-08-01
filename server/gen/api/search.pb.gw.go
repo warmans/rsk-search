@@ -156,8 +156,8 @@ func local_request_SearchService_ListFieldValues_0(ctx context.Context, marshale
 
 }
 
-func request_SearchService_GetEpisode_0(ctx context.Context, marshaler runtime.Marshaler, client SearchServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetEpisodeRequest
+func request_SearchService_GetTranscript_0(ctx context.Context, marshaler runtime.Marshaler, client SearchServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetTranscriptRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -177,13 +177,13 @@ func request_SearchService_GetEpisode_0(ctx context.Context, marshaler runtime.M
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
 
-	msg, err := client.GetEpisode(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetTranscript(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_SearchService_GetEpisode_0(ctx context.Context, marshaler runtime.Marshaler, server SearchServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetEpisodeRequest
+func local_request_SearchService_GetTranscript_0(ctx context.Context, marshaler runtime.Marshaler, server SearchServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetTranscriptRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -203,25 +203,25 @@ func local_request_SearchService_GetEpisode_0(ctx context.Context, marshaler run
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
 
-	msg, err := server.GetEpisode(ctx, &protoReq)
+	msg, err := server.GetTranscript(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_SearchService_ListEpisodes_0(ctx context.Context, marshaler runtime.Marshaler, client SearchServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListEpisodesRequest
+func request_SearchService_ListTranscripts_0(ctx context.Context, marshaler runtime.Marshaler, client SearchServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ListTranscriptsRequest
 	var metadata runtime.ServerMetadata
 
-	msg, err := client.ListEpisodes(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.ListTranscripts(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_SearchService_ListEpisodes_0(ctx context.Context, marshaler runtime.Marshaler, server SearchServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq ListEpisodesRequest
+func local_request_SearchService_ListTranscripts_0(ctx context.Context, marshaler runtime.Marshaler, server SearchServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq ListTranscriptsRequest
 	var metadata runtime.ServerMetadata
 
-	msg, err := server.ListEpisodes(ctx, &protoReq)
+	msg, err := server.ListTranscripts(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -301,18 +301,18 @@ func RegisterSearchServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 
 	})
 
-	mux.Handle("GET", pattern_SearchService_GetEpisode_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_SearchService_GetTranscript_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.SearchService/GetEpisode")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.SearchService/GetTranscript")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_SearchService_GetEpisode_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_SearchService_GetTranscript_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -320,22 +320,22 @@ func RegisterSearchServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 
-		forward_SearchService_GetEpisode_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_SearchService_GetTranscript_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_SearchService_ListEpisodes_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_SearchService_ListTranscripts_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.SearchService/ListEpisodes")
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.SearchService/ListTranscripts")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_SearchService_ListEpisodes_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_SearchService_ListTranscripts_0(rctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -343,7 +343,7 @@ func RegisterSearchServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 			return
 		}
 
-		forward_SearchService_ListEpisodes_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_SearchService_ListTranscripts_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -448,43 +448,43 @@ func RegisterSearchServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 
 	})
 
-	mux.Handle("GET", pattern_SearchService_GetEpisode_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_SearchService_GetTranscript_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.SearchService/GetEpisode")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.SearchService/GetTranscript")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_SearchService_GetEpisode_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_SearchService_GetTranscript_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_SearchService_GetEpisode_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_SearchService_GetTranscript_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_SearchService_ListEpisodes_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_SearchService_ListTranscripts_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.SearchService/ListEpisodes")
+		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.SearchService/ListTranscripts")
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_SearchService_ListEpisodes_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_SearchService_ListTranscripts_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_SearchService_ListEpisodes_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_SearchService_ListTranscripts_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -498,9 +498,9 @@ var (
 
 	pattern_SearchService_ListFieldValues_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "values", "field"}, ""))
 
-	pattern_SearchService_GetEpisode_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "episode", "id"}, ""))
+	pattern_SearchService_GetTranscript_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"api", "transcript", "id"}, ""))
 
-	pattern_SearchService_ListEpisodes_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"api", "episode"}, ""))
+	pattern_SearchService_ListTranscripts_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"api", "transcript"}, ""))
 )
 
 var (
@@ -510,7 +510,7 @@ var (
 
 	forward_SearchService_ListFieldValues_0 = runtime.ForwardResponseMessage
 
-	forward_SearchService_GetEpisode_0 = runtime.ForwardResponseMessage
+	forward_SearchService_GetTranscript_0 = runtime.ForwardResponseMessage
 
-	forward_SearchService_ListEpisodes_0 = runtime.ForwardResponseMessage
+	forward_SearchService_ListTranscripts_0 = runtime.ForwardResponseMessage
 )

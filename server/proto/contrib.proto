@@ -14,11 +14,11 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   };
   external_docs: {
     url: "http://scrimpton.com";
-    description: "Search Xfm transcriptions";
+    description: "Contribute transcriptions or changes.";
   }
   schemes: HTTP;
 };
-service TscriptService {
+service ContribService {
 
   rpc ListTscripts(ListTscriptsRequest) returns (TscriptList) {
     option (google.api.http) = {
@@ -42,16 +42,6 @@ service TscriptService {
     };
   }
 
-  rpc ListContributions(ListContributionsRequest) returns (ContributionList) {
-    option (google.api.http) = {
-      get: "/api/tscript/contrib"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      operation_id: "listContributions",
-      summary: "lists contributions"
-      tags: "search"
-    };
-  }
 
   // chunks are ~3 min sections of the transcription
   rpc GetChunkStats(google.protobuf.Empty) returns (ChunkStats) {
@@ -98,9 +88,31 @@ service TscriptService {
     };
   }
 
+  rpc ListChunkContributions(ListChunkContributionsRequest) returns (ChunkContributionList) {
+    option (google.api.http) = {
+      get: "/api/contrib/chunk"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "listChunkContributions",
+      summary: "lists contributed transcript chunks"
+      tags: "search"
+    };
+  }
+
+  rpc GetChunkContribution(GetChunkContributionRequest) returns (ChunkContribution) {
+    option (google.api.http) = {
+      get: "/api/contrib/chunk/{contribution_id}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "getChunkContribution",
+      summary: "lists any existing contributions for a chunk"
+      tags: "search"
+    };
+  }
+
   rpc CreateChunkContribution(CreateChunkContributionRequest) returns (ChunkContribution) {
     option (google.api.http) = {
-      patch: "/api/tscript/chunk/{chunk_id}/contrib",
+      post: "/api/contrib/chunk/{chunk_id}",
       body: "*",
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
@@ -110,48 +122,36 @@ service TscriptService {
     };
   }
 
-  rpc GetContribution(GetContributionRequest) returns (ChunkContribution) {
+  rpc UpdateChunkContribution(UpdateChunkContributionRequest) returns (ChunkContribution) {
     option (google.api.http) = {
-      get: "/api/tscript/contrib/{contribution_id}"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      operation_id: "getContribution",
-      summary: "lists any existing contributions for a chunk"
-      tags: "search"
-    };
-  }
-
-  rpc UpdateContribution(UpdateContributionRequest) returns (ChunkContribution) {
-    option (google.api.http) = {
-      patch: "/api/tscript/contrib/{contribution_id}",
+      patch: "/api/contrib/chunk/{contribution_id}",
       body: "*",
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      operation_id: "updateContribution",
+      operation_id: "updateChunkContribution",
       summary: "Update one of your existing contributions."
       tags: "search"
     };
   }
 
-  rpc DeleteContribution(DeleteContributionRequest) returns (google.protobuf.Empty) {
+  rpc DeleteChunkContribution(DeleteChunkContributionRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
-      delete: "/api/tscript/contrib/{contribution_id}"
+      delete: "/api/contrib/chunk/{contribution_id}"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      operation_id: "deleteContribution",
+      operation_id: "deleteChunkContribution",
       summary: "Discard unapproved contribution."
       tags: "search"
     };
   }
 
-  // todo: remove chunk_id from path - RequestContributionState
-  rpc RequestContributionState(RequestContributionStateRequest) returns (ChunkContribution) {
+  rpc RequesChunktContributionState(RequestChunkContributionStateRequest) returns (ChunkContribution) {
     option (google.api.http) = {
-      patch: "/api/tscript/contrib/{contribution_id}/state",
+      patch: "/api/contrib/chunk/{contribution_id}/state",
       body: "*",
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      operation_id: "requestContributionState",
+      operation_id: "requestChunkContributionState",
       summary: "request the contribution state be changed."
       tags: "search"
     };
@@ -200,6 +200,66 @@ service TscriptService {
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       operation_id: "listDonationRecipients",
       summary: "Lists available recipients for reward."
+      tags: "search"
+    };
+  }
+
+  // Transcript Corrections
+
+  rpc ListTranscriptChanges(ListTranscriptChangesRequest) returns (TranscriptChangeList) {
+    option (google.api.http) = {
+      get: "/api/contrib/transcript/{transcript_id}/change"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "listTranscriptChanges",
+      summary: "Submits a new version of a transcript."
+      tags: "search"
+    };
+  }
+
+  rpc CreateTranscriptChange(CreateTranscriptChangeRequest) returns (TranscriptChange) {
+    option (google.api.http) = {
+      post: "/api/contrib/transcript/{transcript_id}/change",
+      body: "*",
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "createTranscriptChange",
+      summary: "Submits a new version of a transcript."
+      tags: "search"
+    };
+  }
+
+  rpc UpdateTranscriptChange(UpdateTranscriptChangeRequest) returns (TranscriptChange) {
+    option (google.api.http) = {
+      patch: "/api/contrib/transcript/change/{id}",
+      body: "*",
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "updateTranscriptChange",
+      summary: "Updates an existing change."
+      tags: "search"
+    };
+  }
+
+  rpc DeleteTranscriptChange(DeleteTranscriptChangeRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/api/contrib/transcript/change/{id}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "deleteTranscriptChange",
+      summary: "Deletes a change."
+      tags: "search"
+    };
+  }
+
+  rpc RequestTranscriptChangeState(RequestTranscriptChangeStateRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      patch: "/api/contrib/transcript/change/{id}/state",
+      body: "*",
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "requestTranscriptChangeState",
+      summary: "request the change's state be changed."
       tags: "search"
     };
   }
@@ -256,6 +316,7 @@ message ChunkContribution {
   string transcript = 3;
   ContributionState state = 5;
   Author author = 6;
+  string created_at = 7;
 }
 
 message ShortChunkContribution {
@@ -265,7 +326,7 @@ message ShortChunkContribution {
   ContributionState state = 5;
 }
 
-message ChunkContributionList {
+message ChunkChunkContributionList {
   repeated ShortChunkContribution contributions = 1;
 }
 
@@ -276,23 +337,23 @@ message SubmitDialogCorrectionRequest {
 }
 
 
-message UpdateContributionRequest {
+message UpdateChunkContributionRequest {
   string contribution_id = 1;
   string transcript = 2;
   ContributionState state = 3;
 }
 
-message DeleteContributionRequest{
+message DeleteChunkContributionRequest{
   string contribution_id = 1;
 }
 
-message RequestContributionStateRequest {
+message RequestChunkContributionStateRequest {
   string contribution_id = 1;
   ContributionState request_state = 2;
   string comment = 3;
 }
 
-message GetContributionRequest{
+message GetChunkContributionRequest{
   string contribution_id = 1;
 }
 
@@ -412,7 +473,7 @@ message ClaimedReward {
   string claim_at = 6;
 }
 
-message ListContributionsRequest {
+message ListChunkContributionsRequest {
   string filter = 1;
   string sort_field = 2;
   string sort_direction = 3;
@@ -420,18 +481,8 @@ message ListContributionsRequest {
   int32 page_size = 5;
 }
 
-message ContributionList {
-  repeated Contribution contributions = 1;
-}
-
-message Contribution {
-  string id = 1;
-  string tscript_id = 2;
-  string chunk_id = 3;
-  string transcript = 4;
-  ContributionState state = 5;
-  Author author = 6;
-  string created_at = 7;
+message ChunkContributionList {
+  repeated ChunkContribution contributions = 1;
 }
 
 message ListChunksRequest{
@@ -445,4 +496,46 @@ message ListChunksRequest{
 
 message ChunkList {
   repeated Chunk chunks = 1;
+}
+
+message CreateTranscriptChangeRequest {
+  string transcript_id = 1;
+  string transcript = 2;
+}
+message ListTranscriptChangesRequest {
+  string transcript_id = 1;
+  string filter = 2;
+  string sort_field = 3;
+  string sort_direction = 4;
+  int32 page = 5;
+  int32 page_size = 6;
+}
+
+message UpdateTranscriptChangeRequest {
+  string id = 1;
+  string transcript = 2;
+}
+
+message DeleteTranscriptChangeRequest {
+  string id = 1;
+}
+
+
+message TranscriptChangeList {
+  repeated TranscriptChange changes = 1;
+}
+
+message TranscriptChange {
+  string id = 1;
+  string episode_id = 2;
+  string transcript = 3;
+  string diff = 4;
+  ContributionState state = 5;
+  Author author = 6;
+  string created_at = 7;
+}
+
+message RequestTranscriptChangeStateRequest {
+  string id = 1;
+  ContributionState state = 2;
 }

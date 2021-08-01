@@ -21,14 +21,14 @@ import (
 	"google.golang.org/protobuf/types/known/emptypb"
 )
 
-func NewTscriptService(
+func NewContribService(
 	logger *zap.Logger,
 	srvCfg config.SearchServiceConfig,
 	persistentDB *rw.Conn,
 	auth *jwt.Auth,
 	pledgeClient *pledge.Client,
-) *TscriptService {
-	return &TscriptService{
+) *ContribService {
+	return &ContribService{
 		logger:       logger,
 		srvCfg:       srvCfg,
 		persistentDB: persistentDB,
@@ -37,7 +37,7 @@ func NewTscriptService(
 	}
 }
 
-type TscriptService struct {
+type ContribService struct {
 	logger       *zap.Logger
 	srvCfg       config.SearchServiceConfig
 	persistentDB *rw.Conn
@@ -45,17 +45,17 @@ type TscriptService struct {
 	pledgeClient *pledge.Client
 }
 
-func (s *TscriptService) RegisterGRPC(server *grpc.Server) {
-	api.RegisterTscriptServiceServer(server, s)
+func (s *ContribService) RegisterGRPC(server *grpc.Server) {
+	api.RegisterContribServiceServer(server, s)
 }
 
-func (s *TscriptService) RegisterHTTP(ctx context.Context, router *mux.Router, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) {
-	if err := api.RegisterTscriptServiceHandlerFromEndpoint(ctx, mux, endpoint, opts); err != nil {
+func (s *ContribService) RegisterHTTP(ctx context.Context, router *mux.Router, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) {
+	if err := api.RegisterContribServiceHandlerFromEndpoint(ctx, mux, endpoint, opts); err != nil {
 		panic(err)
 	}
 }
 
-func (s *TscriptService) ListTscripts(ctx context.Context, request *api.ListTscriptsRequest) (*api.TscriptList, error) {
+func (s *ContribService) ListTscripts(ctx context.Context, request *api.ListTscriptsRequest) (*api.TscriptList, error) {
 	el := &api.TscriptList{
 		Tscripts: []*api.TscriptStats{},
 	}
@@ -75,7 +75,7 @@ func (s *TscriptService) ListTscripts(ctx context.Context, request *api.ListTscr
 	return el, nil
 }
 
-func (s *TscriptService) GetChunkStats(ctx context.Context, empty *emptypb.Empty) (*api.ChunkStats, error) {
+func (s *ContribService) GetChunkStats(ctx context.Context, _ *emptypb.Empty) (*api.ChunkStats, error) {
 	var stats *models.ChunkStats
 	err := s.persistentDB.WithStore(func(s *rw.Store) error {
 		var err error
@@ -91,7 +91,7 @@ func (s *TscriptService) GetChunkStats(ctx context.Context, empty *emptypb.Empty
 	return stats.Proto(), nil
 }
 
-func (s *TscriptService) GetTscriptTimeline(ctx context.Context, request *api.GetTscriptTimelineRequest) (*api.TscriptTimeline, error) {
+func (s *ContribService) GetTscriptTimeline(ctx context.Context, request *api.GetTscriptTimelineRequest) (*api.TscriptTimeline, error) {
 	result := &api.TscriptTimeline{
 		Events: make([]*api.TscriptTimelineEvent, 0),
 	}
@@ -111,7 +111,7 @@ func (s *TscriptService) GetTscriptTimeline(ctx context.Context, request *api.Ge
 	return result, nil
 }
 
-func (s *TscriptService) GetChunk(ctx context.Context, request *api.GetChunkRequest) (*api.Chunk, error) {
+func (s *ContribService) GetChunk(ctx context.Context, request *api.GetChunkRequest) (*api.Chunk, error) {
 	var chunk *models.Chunk
 	err := s.persistentDB.WithStore(func(s *rw.Store) error {
 		var err error
@@ -130,7 +130,7 @@ func (s *TscriptService) GetChunk(ctx context.Context, request *api.GetChunkRequ
 	return chunk.Proto(), nil
 }
 
-func (s *TscriptService) ListChunks(ctx context.Context, request *api.ListChunksRequest) (*api.ChunkList, error) {
+func (s *ContribService) ListChunks(ctx context.Context, request *api.ListChunksRequest) (*api.ChunkList, error) {
 	qm, err := NewQueryModifiers(request)
 	if err != nil {
 		return nil, err
@@ -156,7 +156,7 @@ func (s *TscriptService) ListChunks(ctx context.Context, request *api.ListChunks
 	return out, nil
 }
 
-func (s *TscriptService) CreateChunkContribution(ctx context.Context, request *api.CreateChunkContributionRequest) (*api.ChunkContribution, error) {
+func (s *ContribService) CreateChunkContribution(ctx context.Context, request *api.CreateChunkContributionRequest) (*api.ChunkContribution, error) {
 
 	claims, err := s.getClaims(ctx)
 	if err != nil {
@@ -184,9 +184,9 @@ func (s *TscriptService) CreateChunkContribution(ctx context.Context, request *a
 		return nil, ErrInvalidRequestField("transcript", "no valid lines parsed from transcript").Err()
 	}
 
-	var contrib *models.Contribution
+	var contrib *models.ChunkContribution
 	err = s.persistentDB.WithStore(func(s *rw.Store) error {
-		contrib, err = s.CreateContribution(ctx, &models.ContributionCreate{
+		contrib, err = s.CreateChunkContribution(ctx, &models.ContributionCreate{
 			AuthorID:      claims.AuthorID,
 			ChunkID:       request.ChunkId,
 			Transcription: request.Transcript,
@@ -200,14 +200,14 @@ func (s *TscriptService) CreateChunkContribution(ctx context.Context, request *a
 	return contrib.Proto(), nil
 }
 
-func (s *TscriptService) UpdateContribution(ctx context.Context, request *api.UpdateContributionRequest) (*api.ChunkContribution, error) {
+func (s *ContribService) UpdateChunkContribution(ctx context.Context, request *api.UpdateChunkContributionRequest) (*api.ChunkContribution, error) {
 
 	claims, err := s.getClaims(ctx)
 	if err != nil {
 		return nil, err
 	}
 
-	var contrib *models.Contribution
+	var contrib *models.ChunkContribution
 	err = s.persistentDB.WithStore(func(s *rw.Store) error {
 		var err error
 		contrib, err = s.GetContribution(ctx, request.ContributionId)
@@ -241,7 +241,7 @@ func (s *TscriptService) UpdateContribution(ctx context.Context, request *api.Up
 		if err := s.createTimelineEvent(tx, ctx, claims, contrib, ""); err != nil {
 			return err
 		}
-		if err := tx.UpdateContribution(ctx, &models.ContributionUpdate{
+		if err := tx.UpdateChunkContribution(ctx, &models.ContributionUpdate{
 			ID:            contrib.ID,
 			AuthorID:      contrib.Author.ID,
 			Transcription: contrib.Transcription,
@@ -258,14 +258,14 @@ func (s *TscriptService) UpdateContribution(ctx context.Context, request *api.Up
 	return contrib.Proto(), nil
 }
 
-func (s *TscriptService) RequestContributionState(ctx context.Context, request *api.RequestContributionStateRequest) (*api.ChunkContribution, error) {
+func (s *ContribService) RequesChunktContributionState(ctx context.Context, request *api.RequestChunkContributionStateRequest) (*api.ChunkContribution, error) {
 
 	claims, err := s.getClaims(ctx)
 	if err != nil {
 		return nil, err
 	}
 
-	var contrib *models.Contribution
+	var contrib *models.ChunkContribution
 	err = s.persistentDB.WithStore(func(s *rw.Store) error {
 		var err error
 		contrib, err = s.GetContribution(ctx, request.ContributionId)
@@ -288,7 +288,7 @@ func (s *TscriptService) RequestContributionState(ctx context.Context, request *
 		if err := s.createTimelineEvent(tx, ctx, claims, contrib, contrib.StateComment); err != nil {
 			return err
 		}
-		if err := tx.UpdateContributionState(ctx, contrib.ID, contrib.State, contrib.StateComment); err != nil {
+		if err := tx.UpdateChunkContributionState(ctx, contrib.ID, contrib.State, contrib.StateComment); err != nil {
 			return err
 		}
 		return tx.UpdateChunkActivity(ctx, contrib.ChunkID, rw.ActivityFromState(contrib.State))
@@ -299,13 +299,13 @@ func (s *TscriptService) RequestContributionState(ctx context.Context, request *
 	return contrib.Proto(), nil
 }
 
-func (s *TscriptService) DeleteContribution(ctx context.Context, request *api.DeleteContributionRequest) (*emptypb.Empty, error) {
+func (s *ContribService) DeleteChunkContribution(ctx context.Context, request *api.DeleteChunkContributionRequest) (*emptypb.Empty, error) {
 	claims, err := s.getClaims(ctx)
 	if err != nil {
 		return nil, err
 	}
 
-	var contrib *models.Contribution
+	var contrib *models.ChunkContribution
 	err = s.persistentDB.WithStore(func(s *rw.Store) error {
 		var err error
 		contrib, err = s.GetContribution(ctx, request.ContributionId)
@@ -329,7 +329,7 @@ func (s *TscriptService) DeleteContribution(ctx context.Context, request *api.De
 	return &emptypb.Empty{}, nil
 }
 
-func (s *TscriptService) ListContributions(ctx context.Context, request *api.ListContributionsRequest) (*api.ContributionList, error) {
+func (s *ContribService) ListChunkContributions(ctx context.Context, request *api.ListChunkContributionsRequest) (*api.ChunkContributionList, error) {
 	qm, err := NewQueryModifiers(request)
 	if err != nil {
 		return nil, err
@@ -341,13 +341,13 @@ func (s *TscriptService) ListContributions(ctx context.Context, request *api.Lis
 		qm.Filter = filter.Neq("state", filter.String("pending"))
 	}
 
-	out := &api.ContributionList{
-		Contributions: make([]*api.Contribution, 0),
+	out := &api.ChunkContributionList{
+		Contributions: make([]*api.ChunkContribution, 0),
 	}
 	if err := s.persistentDB.WithStore(func(store *rw.Store) error {
-		contributions, err := store.ListContributions(ctx, qm)
+		contributions, err := store.ListChunkContributions(ctx, qm)
 		for _, v := range contributions {
-			out.Contributions = append(out.Contributions, v.TscriptContributionProto())
+			out.Contributions = append(out.Contributions, v.Proto())
 		}
 		return err
 	}); err != nil {
@@ -356,7 +356,7 @@ func (s *TscriptService) ListContributions(ctx context.Context, request *api.Lis
 	return out, nil
 }
 
-func (s *TscriptService) GetAuthorLeaderboard(ctx context.Context, empty *emptypb.Empty) (*api.AuthorLeaderboard, error) {
+func (s *ContribService) GetAuthorLeaderboard(ctx context.Context, empty *emptypb.Empty) (*api.AuthorLeaderboard, error) {
 	var out *api.AuthorLeaderboard
 	err := s.persistentDB.WithStore(func(s *rw.Store) error {
 		lb, err := s.AuthorLeaderboard(ctx)
@@ -372,14 +372,14 @@ func (s *TscriptService) GetAuthorLeaderboard(ctx context.Context, empty *emptyp
 	return out, err
 }
 
-func (s *TscriptService) GetContribution(ctx context.Context, request *api.GetContributionRequest) (*api.ChunkContribution, error) {
+func (s *ContribService) GetChunkContribution(ctx context.Context, request *api.GetChunkContributionRequest) (*api.ChunkContribution, error) {
 
 	claims, err := s.getClaims(ctx)
 	if err != nil {
 		return nil, err
 	}
 
-	var contrib *models.Contribution
+	var contrib *models.ChunkContribution
 	err = s.persistentDB.WithStore(func(s *rw.Store) error {
 		var err error
 		contrib, err = s.GetContribution(ctx, request.ContributionId)
@@ -399,7 +399,7 @@ func (s *TscriptService) GetContribution(ctx context.Context, request *api.GetCo
 	return contrib.Proto(), nil
 }
 
-func (s *TscriptService) ListPendingRewards(ctx context.Context, empty *emptypb.Empty) (*api.PendingRewardList, error) {
+func (s *ContribService) ListPendingRewards(ctx context.Context, empty *emptypb.Empty) (*api.PendingRewardList, error) {
 
 	claims, err := s.getClaims(ctx)
 	if err != nil {
@@ -432,7 +432,7 @@ func (s *TscriptService) ListPendingRewards(ctx context.Context, empty *emptypb.
 	return result, nil
 }
 
-func (s *TscriptService) ListClaimedRewards(ctx context.Context, empty *emptypb.Empty) (*api.ClaimedRewardList, error) {
+func (s *ContribService) ListClaimedRewards(ctx context.Context, empty *emptypb.Empty) (*api.ClaimedRewardList, error) {
 
 	claims, err := s.getClaims(ctx)
 	if err != nil {
@@ -458,7 +458,7 @@ func (s *TscriptService) ListClaimedRewards(ctx context.Context, empty *emptypb.
 	return result, nil
 }
 
-func (s *TscriptService) ClaimReward(ctx context.Context, request *api.ClaimRewardRequest) (*emptypb.Empty, error) {
+func (s *ContribService) ClaimReward(ctx context.Context, request *api.ClaimRewardRequest) (*emptypb.Empty, error) {
 
 	if s.srvCfg.RewardsDisabled {
 		return nil, ErrFailedPrecondition("rewards are disabled temporarily").Err()
@@ -530,7 +530,7 @@ func (s *TscriptService) ClaimReward(ctx context.Context, request *api.ClaimRewa
 	return &emptypb.Empty{}, nil
 }
 
-func (s *TscriptService) ListDonationRecipients(ctx context.Context, request *api.ListDonationRecipientsRequest) (*api.DonationRecipientList, error) {
+func (s *ContribService) ListDonationRecipients(ctx context.Context, request *api.ListDonationRecipientsRequest) (*api.DonationRecipientList, error) {
 
 	var reward *models.AuthorReward
 	err := s.persistentDB.WithStore(func(store *rw.Store) error {
@@ -553,7 +553,27 @@ func (s *TscriptService) ListDonationRecipients(ctx context.Context, request *ap
 	return res, nil
 }
 
-func (s *TscriptService) getClaims(ctx context.Context) (*jwt.Claims, error) {
+func (s *ContribService) ListTranscriptChanges(ctx context.Context, request *api.ListTranscriptChangesRequest) (*api.TranscriptChangeList, error) {
+	panic("implement me")
+}
+
+func (s *ContribService) CreateTranscriptChange(ctx context.Context, request *api.CreateTranscriptChangeRequest) (*api.TranscriptChange, error) {
+	panic("implement me")
+}
+
+func (s *ContribService) UpdateTranscriptChange(ctx context.Context, request *api.UpdateTranscriptChangeRequest) (*api.TranscriptChange, error) {
+	panic("implement me")
+}
+
+func (s *ContribService) DeleteTranscriptChange(ctx context.Context, request *api.DeleteTranscriptChangeRequest) (*emptypb.Empty, error) {
+	panic("implement me")
+}
+
+func (s *ContribService) RequestTranscriptChangeState(ctx context.Context, request *api.RequestTranscriptChangeStateRequest) (*emptypb.Empty, error) {
+	panic("implement me")
+}
+
+func (s *ContribService) getClaims(ctx context.Context) (*jwt.Claims, error) {
 	token := jwt.ExtractTokenFromRequestContext(ctx)
 	if token == "" {
 		return nil, ErrUnauthorized("no token provided").Err()
@@ -565,7 +585,7 @@ func (s *TscriptService) getClaims(ctx context.Context) (*jwt.Claims, error) {
 	return claims, nil
 }
 
-func (s *TscriptService) validateContributionStateUpdate(claims *jwt.Claims, currentState *models.Contribution, requestedState api.ContributionState) error {
+func (s *ContribService) validateContributionStateUpdate(claims *jwt.Claims, currentState *models.ChunkContribution, requestedState api.ContributionState) error {
 	if !claims.Approver {
 		if currentState.Author.ID != claims.AuthorID {
 			return ErrPermissionDenied("you are not the author of this contribution").Err()
@@ -588,7 +608,7 @@ func (s *TscriptService) validateContributionStateUpdate(claims *jwt.Claims, cur
 	return nil
 }
 
-func (s *TscriptService) createTimelineEvent(tx *rw.Store, ctx context.Context, claims *jwt.Claims, contrib *models.Contribution, comment string) error {
+func (s *ContribService) createTimelineEvent(tx *rw.Store, ctx context.Context, claims *jwt.Claims, contrib *models.ChunkContribution, comment string) error {
 	suffix := "."
 	if comment != "" {
 		suffix = fmt.Sprintf(" with comment '%s'.", comment)

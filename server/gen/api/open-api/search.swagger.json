@@ -19,60 +19,6 @@
     "application/json"
   ],
   "paths": {
-    "/api/episode": {
-      "get": {
-        "summary": "Fetch list of available episodes",
-        "operationId": "listEpisodes",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/rskEpisodeList"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "tags": [
-          "search"
-        ]
-      }
-    },
-    "/api/episode/{id}": {
-      "get": {
-        "summary": "Fetch the full data for an episode including the transcript",
-        "operationId": "getEpisode",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/rskEpisode"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "search"
-        ]
-      }
-    },
     "/api/metadata": {
       "get": {
         "summary": "Fetch search metadata e.g. searchable fields",
@@ -127,6 +73,60 @@
             "required": false,
             "type": "integer",
             "format": "int32"
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      }
+    },
+    "/api/transcript": {
+      "get": {
+        "summary": "Fetch list of available episodes",
+        "operationId": "listTranscripts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskTranscriptList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "search"
+        ]
+      }
+    },
+    "/api/transcript/{id}": {
+      "get": {
+        "summary": "Fetch a transcript and associated metadata.",
+        "operationId": "getTranscript",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskTranscript"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
           }
         ],
         "tags": [
@@ -275,7 +275,133 @@
         }
       }
     },
-    "rskEpisode": {
+    "rskFieldMeta": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/definitions/FieldMetaKind"
+        }
+      }
+    },
+    "rskFieldValue": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "rskFieldValueList": {
+      "type": "object",
+      "properties": {
+        "values": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rskFieldValue"
+          }
+        }
+      }
+    },
+    "rskSearchMetadata": {
+      "type": "object",
+      "properties": {
+        "fields": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rskFieldMeta"
+          }
+        }
+      }
+    },
+    "rskSearchResult": {
+      "type": "object",
+      "properties": {
+        "episode": {
+          "$ref": "#/definitions/rskShortTranscript"
+        },
+        "dialogs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rskDialogResult"
+          }
+        }
+      }
+    },
+    "rskSearchResultList": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rskSearchResult"
+          }
+        },
+        "resultCount": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "rskShortTranscript": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "publication": {
+          "type": "string"
+        },
+        "series": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "episode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "transcriptAvailable": {
+          "type": "boolean"
+        }
+      }
+    },
+    "rskSynopsis": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "startPos": {
+          "type": "string",
+          "format": "int64"
+        },
+        "endPos": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
+    "rskTag": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "rskTranscript": {
       "type": "object",
       "properties": {
         "id": {
@@ -330,139 +456,13 @@
         }
       }
     },
-    "rskEpisodeList": {
+    "rskTranscriptList": {
       "type": "object",
       "properties": {
         "episodes": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/rskShortEpisode"
-          }
-        }
-      }
-    },
-    "rskFieldMeta": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "kind": {
-          "$ref": "#/definitions/FieldMetaKind"
-        }
-      }
-    },
-    "rskFieldValue": {
-      "type": "object",
-      "properties": {
-        "value": {
-          "type": "string"
-        },
-        "count": {
-          "type": "integer",
-          "format": "int32"
-        }
-      }
-    },
-    "rskFieldValueList": {
-      "type": "object",
-      "properties": {
-        "values": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/rskFieldValue"
-          }
-        }
-      }
-    },
-    "rskSearchMetadata": {
-      "type": "object",
-      "properties": {
-        "fields": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/rskFieldMeta"
-          }
-        }
-      }
-    },
-    "rskSearchResult": {
-      "type": "object",
-      "properties": {
-        "episode": {
-          "$ref": "#/definitions/rskShortEpisode"
-        },
-        "dialogs": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/rskDialogResult"
-          }
-        }
-      }
-    },
-    "rskSearchResultList": {
-      "type": "object",
-      "properties": {
-        "results": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/rskSearchResult"
-          }
-        },
-        "resultCount": {
-          "type": "integer",
-          "format": "int32"
-        }
-      }
-    },
-    "rskShortEpisode": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "publication": {
-          "type": "string"
-        },
-        "series": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "episode": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "transcriptAvailable": {
-          "type": "boolean"
-        }
-      }
-    },
-    "rskSynopsis": {
-      "type": "object",
-      "properties": {
-        "description": {
-          "type": "string"
-        },
-        "startPos": {
-          "type": "string",
-          "format": "int64"
-        },
-        "endPos": {
-          "type": "string",
-          "format": "int64"
-        }
-      }
-    },
-    "rskTag": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "kind": {
-          "type": "array",
-          "items": {
-            "type": "string"
+            "$ref": "#/definitions/rskShortTranscript"
           }
         }
       }

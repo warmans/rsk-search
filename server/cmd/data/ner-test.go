@@ -24,7 +24,7 @@ func NERTestCmd() *cobra.Command {
 			logger, _ := zap.NewProduction()
 			defer logger.Sync() // flushes buffer, if any
 
-			episode := &models.Episode{}
+			episode := &models.Transcript{}
 			if err := util.WithReadJSONFileDecoder(inputFile, func(dec *json.Decoder) error {
 				return dec.Decode(episode)
 			}); err != nil {

@@ -8,6 +8,7 @@ import { AuthorContributionsComponent } from '../module/tscript/page/author-cont
 import { ApproveComponent } from '../module/tscript/page/approve/approve.component';
 import { ContributeComponent } from '../module/tscript/page/contribute/contribute.component';
 import { RedeemComponent } from '../module/reward/page/redeem/redeem.component';
+import { TranscriptChangeComponent } from '../module/contrib/page/transcript-change/transcript-change.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'ep/:id',
     component: EpisodeComponent,
+  },
+  {
+    path: 'ep/:id/change',
+    component: TranscriptChangeComponent,
   },
   {
     path: 'chunk/next',

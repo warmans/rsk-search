@@ -102,12 +102,25 @@ export function isRskChunkContribution(arg: any): arg is models.RskChunkContribu
     ( typeof arg.author === 'undefined' || isRskAuthor(arg.author) ) &&
     // chunkId?: string
     ( typeof arg.chunkId === 'undefined' || typeof arg.chunkId === 'string' ) &&
+    // createdAt?: string
+    ( typeof arg.createdAt === 'undefined' || typeof arg.createdAt === 'string' ) &&
     // id?: string
     ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
     // state?: RskContributionState
     ( typeof arg.state === 'undefined' || isRskContributionState(arg.state) ) &&
     // transcript?: string
     ( typeof arg.transcript === 'undefined' || typeof arg.transcript === 'string' ) &&
+
+  true
+  );
+  }
+
+export function isRskChunkContributionList(arg: any): arg is models.RskChunkContributionList {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // contributions?: RskChunkContribution[]
+    ( typeof arg.contributions === 'undefined' || (Array.isArray(arg.contributions) && arg.contributions.every((item: unknown) => isRskChunkContribution(item))) ) &&
 
   true
   );
@@ -195,40 +208,6 @@ export function isRskClaimRewardRequest(arg: any): arg is models.RskClaimRewardR
   );
   }
 
-export function isRskContribution(arg: any): arg is models.RskContribution {
-  return (
-  arg != null &&
-  typeof arg === 'object' &&
-    // author?: RskAuthor
-    ( typeof arg.author === 'undefined' || isRskAuthor(arg.author) ) &&
-    // chunkId?: string
-    ( typeof arg.chunkId === 'undefined' || typeof arg.chunkId === 'string' ) &&
-    // createdAt?: string
-    ( typeof arg.createdAt === 'undefined' || typeof arg.createdAt === 'string' ) &&
-    // id?: string
-    ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
-    // state?: RskContributionState
-    ( typeof arg.state === 'undefined' || isRskContributionState(arg.state) ) &&
-    // transcript?: string
-    ( typeof arg.transcript === 'undefined' || typeof arg.transcript === 'string' ) &&
-    // tscriptId?: string
-    ( typeof arg.tscriptId === 'undefined' || typeof arg.tscriptId === 'string' ) &&
-
-  true
-  );
-  }
-
-export function isRskContributionList(arg: any): arg is models.RskContributionList {
-  return (
-  arg != null &&
-  typeof arg === 'object' &&
-    // contributions?: RskContribution[]
-    ( typeof arg.contributions === 'undefined' || (Array.isArray(arg.contributions) && arg.contributions.every((item: unknown) => isRskContribution(item))) ) &&
-
-  true
-  );
-  }
-
 export function isRskContributionState(arg: any): arg is models.RskContributionState {
   return false
    || arg === models.RskContributionState.STATE_UNDEFINED
@@ -247,6 +226,19 @@ export function isRskCreateChunkContributionRequest(arg: any): arg is models.Rsk
     ( typeof arg.chunkId === 'undefined' || typeof arg.chunkId === 'string' ) &&
     // transcript?: string
     ( typeof arg.transcript === 'undefined' || typeof arg.transcript === 'string' ) &&
+
+  true
+  );
+  }
+
+export function isRskCreateTranscriptChangeRequest(arg: any): arg is models.RskCreateTranscriptChangeRequest {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // transcript?: string
+    ( typeof arg.transcript === 'undefined' || typeof arg.transcript === 'string' ) &&
+    // transcriptId?: string
+    ( typeof arg.transcriptId === 'undefined' || typeof arg.transcriptId === 'string' ) &&
 
   true
   );
@@ -339,48 +331,6 @@ export function isRskDonationRecipientList(arg: any): arg is models.RskDonationR
   );
   }
 
-export function isRskEpisode(arg: any): arg is models.RskEpisode {
-  return (
-  arg != null &&
-  typeof arg === 'object' &&
-    // contributors?: string[]
-    ( typeof arg.contributors === 'undefined' || (Array.isArray(arg.contributors) && arg.contributors.every((item: unknown) => typeof item === 'string')) ) &&
-    // episode?: number
-    ( typeof arg.episode === 'undefined' || typeof arg.episode === 'number' ) &&
-    // id?: string
-    ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
-    // incomplete?: boolean
-    ( typeof arg.incomplete === 'undefined' || typeof arg.incomplete === 'boolean' ) &&
-    // metadata?: { [key: string]: string }
-    ( typeof arg.metadata === 'undefined' || typeof arg.metadata === 'string' ) &&
-    // publication?: string
-    ( typeof arg.publication === 'undefined' || typeof arg.publication === 'string' ) &&
-    // releaseDate?: string
-    ( typeof arg.releaseDate === 'undefined' || typeof arg.releaseDate === 'string' ) &&
-    // series?: number
-    ( typeof arg.series === 'undefined' || typeof arg.series === 'number' ) &&
-    // synopses?: RskSynopsis[]
-    ( typeof arg.synopses === 'undefined' || (Array.isArray(arg.synopses) && arg.synopses.every((item: unknown) => isRskSynopsis(item))) ) &&
-    // tags?: RskTag[]
-    ( typeof arg.tags === 'undefined' || (Array.isArray(arg.tags) && arg.tags.every((item: unknown) => isRskTag(item))) ) &&
-    // transcript?: RskDialog[]
-    ( typeof arg.transcript === 'undefined' || (Array.isArray(arg.transcript) && arg.transcript.every((item: unknown) => isRskDialog(item))) ) &&
-
-  true
-  );
-  }
-
-export function isRskEpisodeList(arg: any): arg is models.RskEpisodeList {
-  return (
-  arg != null &&
-  typeof arg === 'object' &&
-    // episodes?: RskShortEpisode[]
-    ( typeof arg.episodes === 'undefined' || (Array.isArray(arg.episodes) && arg.episodes.every((item: unknown) => isRskShortEpisode(item))) ) &&
-
-  true
-  );
-  }
-
 export function isRskFieldMeta(arg: any): arg is models.RskFieldMeta {
   return (
   arg != null &&
@@ -440,7 +390,7 @@ export function isRskRedditAuthURL(arg: any): arg is models.RskRedditAuthURL {
   );
   }
 
-export function isRskRequestContributionStateRequest(arg: any): arg is models.RskRequestContributionStateRequest {
+export function isRskRequestChunkContributionStateRequest(arg: any): arg is models.RskRequestChunkContributionStateRequest {
   return (
   arg != null &&
   typeof arg === 'object' &&
@@ -450,6 +400,19 @@ export function isRskRequestContributionStateRequest(arg: any): arg is models.Rs
     ( typeof arg.contributionId === 'undefined' || typeof arg.contributionId === 'string' ) &&
     // requestState?: RskContributionState
     ( typeof arg.requestState === 'undefined' || isRskContributionState(arg.requestState) ) &&
+
+  true
+  );
+  }
+
+export function isRskRequestTranscriptChangeStateRequest(arg: any): arg is models.RskRequestTranscriptChangeStateRequest {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // id?: string
+    ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
+    // state?: RskContributionState
+    ( typeof arg.state === 'undefined' || isRskContributionState(arg.state) ) &&
 
   true
   );
@@ -493,8 +456,8 @@ export function isRskSearchResult(arg: any): arg is models.RskSearchResult {
   typeof arg === 'object' &&
     // dialogs?: RskDialogResult[]
     ( typeof arg.dialogs === 'undefined' || (Array.isArray(arg.dialogs) && arg.dialogs.every((item: unknown) => isRskDialogResult(item))) ) &&
-    // episode?: RskShortEpisode
-    ( typeof arg.episode === 'undefined' || isRskShortEpisode(arg.episode) ) &&
+    // episode?: RskShortTranscript
+    ( typeof arg.episode === 'undefined' || isRskShortTranscript(arg.episode) ) &&
 
   true
   );
@@ -513,7 +476,7 @@ export function isRskSearchResultList(arg: any): arg is models.RskSearchResultLi
   );
   }
 
-export function isRskShortEpisode(arg: any): arg is models.RskShortEpisode {
+export function isRskShortTranscript(arg: any): arg is models.RskShortTranscript {
   return (
   arg != null &&
   typeof arg === 'object' &&
@@ -555,6 +518,82 @@ export function isRskTag(arg: any): arg is models.RskTag {
     ( typeof arg.kind === 'undefined' || (Array.isArray(arg.kind) && arg.kind.every((item: unknown) => typeof item === 'string')) ) &&
     // name?: string
     ( typeof arg.name === 'undefined' || typeof arg.name === 'string' ) &&
+
+  true
+  );
+  }
+
+export function isRskTranscript(arg: any): arg is models.RskTranscript {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // contributors?: string[]
+    ( typeof arg.contributors === 'undefined' || (Array.isArray(arg.contributors) && arg.contributors.every((item: unknown) => typeof item === 'string')) ) &&
+    // episode?: number
+    ( typeof arg.episode === 'undefined' || typeof arg.episode === 'number' ) &&
+    // id?: string
+    ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
+    // incomplete?: boolean
+    ( typeof arg.incomplete === 'undefined' || typeof arg.incomplete === 'boolean' ) &&
+    // metadata?: { [key: string]: string }
+    ( typeof arg.metadata === 'undefined' || typeof arg.metadata === 'string' ) &&
+    // publication?: string
+    ( typeof arg.publication === 'undefined' || typeof arg.publication === 'string' ) &&
+    // releaseDate?: string
+    ( typeof arg.releaseDate === 'undefined' || typeof arg.releaseDate === 'string' ) &&
+    // series?: number
+    ( typeof arg.series === 'undefined' || typeof arg.series === 'number' ) &&
+    // synopses?: RskSynopsis[]
+    ( typeof arg.synopses === 'undefined' || (Array.isArray(arg.synopses) && arg.synopses.every((item: unknown) => isRskSynopsis(item))) ) &&
+    // tags?: RskTag[]
+    ( typeof arg.tags === 'undefined' || (Array.isArray(arg.tags) && arg.tags.every((item: unknown) => isRskTag(item))) ) &&
+    // transcript?: RskDialog[]
+    ( typeof arg.transcript === 'undefined' || (Array.isArray(arg.transcript) && arg.transcript.every((item: unknown) => isRskDialog(item))) ) &&
+
+  true
+  );
+  }
+
+export function isRskTranscriptChange(arg: any): arg is models.RskTranscriptChange {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // author?: RskAuthor
+    ( typeof arg.author === 'undefined' || isRskAuthor(arg.author) ) &&
+    // createdAt?: string
+    ( typeof arg.createdAt === 'undefined' || typeof arg.createdAt === 'string' ) &&
+    // diff?: string
+    ( typeof arg.diff === 'undefined' || typeof arg.diff === 'string' ) &&
+    // episodeId?: string
+    ( typeof arg.episodeId === 'undefined' || typeof arg.episodeId === 'string' ) &&
+    // id?: string
+    ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
+    // state?: RskContributionState
+    ( typeof arg.state === 'undefined' || isRskContributionState(arg.state) ) &&
+    // transcript?: string
+    ( typeof arg.transcript === 'undefined' || typeof arg.transcript === 'string' ) &&
+
+  true
+  );
+  }
+
+export function isRskTranscriptChangeList(arg: any): arg is models.RskTranscriptChangeList {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // changes?: RskTranscriptChange[]
+    ( typeof arg.changes === 'undefined' || (Array.isArray(arg.changes) && arg.changes.every((item: unknown) => isRskTranscriptChange(item))) ) &&
+
+  true
+  );
+  }
+
+export function isRskTranscriptList(arg: any): arg is models.RskTranscriptList {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // episodes?: RskShortTranscript[]
+    ( typeof arg.episodes === 'undefined' || (Array.isArray(arg.episodes) && arg.episodes.every((item: unknown) => isRskShortTranscript(item))) ) &&
 
   true
   );
@@ -628,7 +667,7 @@ export function isRskTscriptTimelineEvent(arg: any): arg is models.RskTscriptTim
   );
   }
 
-export function isRskUpdateContributionRequest(arg: any): arg is models.RskUpdateContributionRequest {
+export function isRskUpdateChunkContributionRequest(arg: any): arg is models.RskUpdateChunkContributionRequest {
   return (
   arg != null &&
   typeof arg === 'object' &&
@@ -636,6 +675,19 @@ export function isRskUpdateContributionRequest(arg: any): arg is models.RskUpdat
     ( typeof arg.contributionId === 'undefined' || typeof arg.contributionId === 'string' ) &&
     // state?: RskContributionState
     ( typeof arg.state === 'undefined' || isRskContributionState(arg.state) ) &&
+    // transcript?: string
+    ( typeof arg.transcript === 'undefined' || typeof arg.transcript === 'string' ) &&
+
+  true
+  );
+  }
+
+export function isRskUpdateTranscriptChangeRequest(arg: any): arg is models.RskUpdateTranscriptChangeRequest {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // id?: string
+    ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
     // transcript?: string
     ( typeof arg.transcript === 'undefined' || typeof arg.transcript === 'string' ) &&
 

@@ -12,13 +12,13 @@ import (
 	"sync"
 )
 
-func ReplaceEpisodeFile(dataDir string, ep *models.Episode) error {
+func ReplaceEpisodeFile(dataDir string, ep *models.Transcript) error {
 	return util.WithReplaceJSONFileEncoder(path.Join(dataDir, fmt.Sprintf("%s.json", models.EpisodeID(ep))), func(encoder *json.Encoder) error {
 		return encoder.Encode(ep)
 	})
 }
 
-func SaveEpisodeToFile(dataDir string, ep *models.Episode) error {
+func SaveEpisodeToFile(dataDir string, ep *models.Transcript) error {
 	return util.WithCreateJSONFileEncoder(path.Join(dataDir, fmt.Sprintf("%s.json", models.EpisodeID(ep))), func(encoder *json.Encoder) error {
 		return encoder.Encode(ep)
 	})
@@ -28,7 +28,7 @@ func LoadEpisodeFile(dataDir string, publication string, name string) (*os.File,
 	return os.Open(path.Join(dataDir, fmt.Sprintf("ep-%s-%s.json", publication, name)))
 }
 
-func LoadEpisode(dataDir string, publication string, name string) (*models.Episode, error) {
+func LoadEpisode(dataDir string, publication string, name string) (*models.Transcript, error) {
 
 	f, err := LoadEpisodeFile(dataDir, publication, name)
 	if err != nil {
@@ -39,14 +39,14 @@ func LoadEpisode(dataDir string, publication string, name string) (*models.Episo
 	}
 	defer f.Close()
 
-	e := &models.Episode{}
+	e := &models.Transcript{}
 
 	dec := json.NewDecoder(f)
 	return e, dec.Decode(e)
 }
 
-func LoadEpisodePath(path string) (*models.Episode, error) {
-	episode := &models.Episode{}
+func LoadEpisodePath(path string) (*models.Transcript, error) {
+	episode := &models.Transcript{}
 	if err := util.WithReadJSONFileDecoder(path, func(dec *json.Decoder) error {
 		return dec.Decode(episode)
 	}); err != nil {
@@ -55,12 +55,12 @@ func LoadEpisodePath(path string) (*models.Episode, error) {
 	return episode, nil
 }
 
-func LoadAllEpisodes(dataDir string) ([]*models.Episode, error) {
+func LoadAllEpisodes(dataDir string) ([]*models.Transcript, error) {
 	entries, err := os.ReadDir(dataDir)
 	if err != nil {
 		return nil, err
 	}
-	episodes := []*models.Episode{}
+	episodes := []*models.Transcript{}
 	for _, entry := range entries {
 		if entry.IsDir() || !strings.HasSuffix(entry.Name(), ".json") {
 			continue
@@ -78,7 +78,7 @@ func LoadAllEpisodes(dataDir string) ([]*models.Episode, error) {
 func NewEpisodeStore(dataDir string) (*EpisodeCache, error) {
 
 	store := &EpisodeCache{
-		cache: map[string]models.Episode{},
+		cache: map[string]models.Transcript{},
 		lock:  sync.RWMutex{},
 	}
 	episodes, err := LoadAllEpisodes(dataDir)
@@ -98,11 +98,11 @@ func NewEpisodeStore(dataDir string) (*EpisodeCache, error) {
 var ErrNotFound = errors.New("not found")
 
 type EpisodeCache struct {
-	cache map[string]models.Episode
+	cache map[string]models.Transcript
 	lock  sync.RWMutex
 }
 
-func (s *EpisodeCache) GetEpisode(id string) (*models.Episode, error) {
+func (s *EpisodeCache) GetEpisode(id string) (*models.Transcript, error) {
 	s.lock.RLock()
 	defer s.lock.RUnlock()
 	ep, ok := s.cache[id]

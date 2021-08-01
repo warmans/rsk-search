@@ -3,7 +3,12 @@ import { SearchAPIClient } from '../../../../lib/api-client/services/search';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
-import { RskChunkStats, RskEpisodeList, RskSearchResultList, RskShortEpisode } from '../../../../lib/api-client/models';
+import {
+  RskChunkStats,
+  RskSearchResultList,
+  RskShortTranscript,
+  RskTranscriptList
+} from '../../../../lib/api-client/models';
 
 @Component({
   selector: 'app-search',
@@ -16,7 +21,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   showSeries: number[] = [1, 2, 3, 4];
 
-  episodeList: RskShortEpisode[] = [];
+  transcriptList: RskShortTranscript[] = [];
 
   result: RskSearchResultList;
   pages: number[] = [];
@@ -52,10 +57,10 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   listEpisodes() {
     this.loading.push(true);
-    this.apiClient.listEpisodes().pipe(
+    this.apiClient.listTranscripts().pipe(
       takeUntil(this.unsubscribe$),
-    ).subscribe((res: RskEpisodeList) => {
-      this.episodeList = res.episodes;
+    ).subscribe((res: RskTranscriptList) => {
+      this.transcriptList = res.episodes;
     }).add(() => {
       this.loading.pop();
     });

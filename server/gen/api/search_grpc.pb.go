@@ -22,8 +22,8 @@ type SearchServiceClient interface {
 	Search(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (*SearchResultList, error)
 	GetSearchMetadata(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SearchMetadata, error)
 	ListFieldValues(ctx context.Context, in *ListFieldValuesRequest, opts ...grpc.CallOption) (*FieldValueList, error)
-	GetEpisode(ctx context.Context, in *GetEpisodeRequest, opts ...grpc.CallOption) (*Episode, error)
-	ListEpisodes(ctx context.Context, in *ListEpisodesRequest, opts ...grpc.CallOption) (*EpisodeList, error)
+	GetTranscript(ctx context.Context, in *GetTranscriptRequest, opts ...grpc.CallOption) (*Transcript, error)
+	ListTranscripts(ctx context.Context, in *ListTranscriptsRequest, opts ...grpc.CallOption) (*TranscriptList, error)
 }
 
 type searchServiceClient struct {
@@ -61,18 +61,18 @@ func (c *searchServiceClient) ListFieldValues(ctx context.Context, in *ListField
 	return out, nil
 }
 
-func (c *searchServiceClient) GetEpisode(ctx context.Context, in *GetEpisodeRequest, opts ...grpc.CallOption) (*Episode, error) {
-	out := new(Episode)
-	err := c.cc.Invoke(ctx, "/rsk.SearchService/GetEpisode", in, out, opts...)
+func (c *searchServiceClient) GetTranscript(ctx context.Context, in *GetTranscriptRequest, opts ...grpc.CallOption) (*Transcript, error) {
+	out := new(Transcript)
+	err := c.cc.Invoke(ctx, "/rsk.SearchService/GetTranscript", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *searchServiceClient) ListEpisodes(ctx context.Context, in *ListEpisodesRequest, opts ...grpc.CallOption) (*EpisodeList, error) {
-	out := new(EpisodeList)
-	err := c.cc.Invoke(ctx, "/rsk.SearchService/ListEpisodes", in, out, opts...)
+func (c *searchServiceClient) ListTranscripts(ctx context.Context, in *ListTranscriptsRequest, opts ...grpc.CallOption) (*TranscriptList, error) {
+	out := new(TranscriptList)
+	err := c.cc.Invoke(ctx, "/rsk.SearchService/ListTranscripts", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -86,8 +86,8 @@ type SearchServiceServer interface {
 	Search(context.Context, *SearchRequest) (*SearchResultList, error)
 	GetSearchMetadata(context.Context, *emptypb.Empty) (*SearchMetadata, error)
 	ListFieldValues(context.Context, *ListFieldValuesRequest) (*FieldValueList, error)
-	GetEpisode(context.Context, *GetEpisodeRequest) (*Episode, error)
-	ListEpisodes(context.Context, *ListEpisodesRequest) (*EpisodeList, error)
+	GetTranscript(context.Context, *GetTranscriptRequest) (*Transcript, error)
+	ListTranscripts(context.Context, *ListTranscriptsRequest) (*TranscriptList, error)
 }
 
 // UnimplementedSearchServiceServer should be embedded to have forward compatible implementations.
@@ -103,11 +103,11 @@ func (UnimplementedSearchServiceServer) GetSearchMetadata(context.Context, *empt
 func (UnimplementedSearchServiceServer) ListFieldValues(context.Context, *ListFieldValuesRequest) (*FieldValueList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListFieldValues not implemented")
 }
-func (UnimplementedSearchServiceServer) GetEpisode(context.Context, *GetEpisodeRequest) (*Episode, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetEpisode not implemented")
+func (UnimplementedSearchServiceServer) GetTranscript(context.Context, *GetTranscriptRequest) (*Transcript, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTranscript not implemented")
 }
-func (UnimplementedSearchServiceServer) ListEpisodes(context.Context, *ListEpisodesRequest) (*EpisodeList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListEpisodes not implemented")
+func (UnimplementedSearchServiceServer) ListTranscripts(context.Context, *ListTranscriptsRequest) (*TranscriptList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListTranscripts not implemented")
 }
 
 // UnsafeSearchServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -175,38 +175,38 @@ func _SearchService_ListFieldValues_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SearchService_GetEpisode_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetEpisodeRequest)
+func _SearchService_GetTranscript_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTranscriptRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SearchServiceServer).GetEpisode(ctx, in)
+		return srv.(SearchServiceServer).GetTranscript(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/rsk.SearchService/GetEpisode",
+		FullMethod: "/rsk.SearchService/GetTranscript",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SearchServiceServer).GetEpisode(ctx, req.(*GetEpisodeRequest))
+		return srv.(SearchServiceServer).GetTranscript(ctx, req.(*GetTranscriptRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SearchService_ListEpisodes_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListEpisodesRequest)
+func _SearchService_ListTranscripts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListTranscriptsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SearchServiceServer).ListEpisodes(ctx, in)
+		return srv.(SearchServiceServer).ListTranscripts(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/rsk.SearchService/ListEpisodes",
+		FullMethod: "/rsk.SearchService/ListTranscripts",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SearchServiceServer).ListEpisodes(ctx, req.(*ListEpisodesRequest))
+		return srv.(SearchServiceServer).ListTranscripts(ctx, req.(*ListTranscriptsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -231,12 +231,12 @@ var SearchService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _SearchService_ListFieldValues_Handler,
 		},
 		{
-			MethodName: "GetEpisode",
-			Handler:    _SearchService_GetEpisode_Handler,
+			MethodName: "GetTranscript",
+			Handler:    _SearchService_GetTranscript_Handler,
 		},
 		{
-			MethodName: "ListEpisodes",
-			Handler:    _SearchService_ListEpisodes_Handler,
+			MethodName: "ListTranscripts",
+			Handler:    _SearchService_ListTranscripts_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

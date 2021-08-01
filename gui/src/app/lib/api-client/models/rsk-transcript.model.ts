@@ -5,7 +5,7 @@ import {
   RskTag,
 } from '.';
 
-export interface RskEpisode {
+export interface RskTranscript {
   contributors?: string[];
   episode?: number;
   id?: string;

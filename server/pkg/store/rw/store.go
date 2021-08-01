@@ -267,7 +267,7 @@ func (s *Store) GetAuthorStats(ctx context.Context, authorID string) (*models.Au
 	return stats, nil
 }
 
-func (s *Store) CreateContribution(ctx context.Context, c *models.ContributionCreate) (*models.Contribution, error) {
+func (s *Store) CreateChunkContribution(ctx context.Context, c *models.ContributionCreate) (*models.ChunkContribution, error) {
 	if c.State == "" {
 		c.State = models.ContributionStatePending
 	}
@@ -277,7 +277,7 @@ func (s *Store) CreateContribution(ctx context.Context, c *models.ContributionCr
 		}
 		return nil, ErrNotPermitted
 	}
-	contribution := &models.Contribution{
+	contribution := &models.ChunkContribution{
 		ID: shortuuid.New(),
 		Author: &models.ShortAuthor{
 			ID: c.AuthorID,
@@ -304,7 +304,7 @@ func (s *Store) CreateContribution(ctx context.Context, c *models.ContributionCr
 	return contribution, s.UpdateChunkActivity(ctx, c.ChunkID, ChunkActivitySubmitted)
 }
 
-func (s *Store) UpdateContribution(ctx context.Context, c *models.ContributionUpdate) error {
+func (s *Store) UpdateChunkContribution(ctx context.Context, c *models.ContributionUpdate) error {
 	if c.ID == "" {
 		return fmt.Errorf("no identifier was provided")
 	}
@@ -324,7 +324,7 @@ func (s *Store) UpdateContribution(ctx context.Context, c *models.ContributionUp
 	return err
 }
 
-func (s *Store) UpdateContributionState(ctx context.Context, id string, state models.ContributionState, comment string) error {
+func (s *Store) UpdateChunkContributionState(ctx context.Context, id string, state models.ContributionState, comment string) error {
 	_, err := s.tx.ExecContext(
 		ctx,
 		`UPDATE tscript_contribution SET state=$1, state_comment=NULLIF($2, '') WHERE id=$3`,
@@ -335,7 +335,7 @@ func (s *Store) UpdateContributionState(ctx context.Context, id string, state mo
 	return err
 }
 
-func (s *Store) ListContributions(ctx context.Context, q *common.QueryModifier) ([]*models.Contribution, error) {
+func (s *Store) ListChunkContributions(ctx context.Context, q *common.QueryModifier) ([]*models.ChunkContribution, error) {
 
 	fieldMap := map[string]string{
 		"id":            "c.id",
@@ -380,9 +380,9 @@ func (s *Store) ListContributions(ctx context.Context, q *common.QueryModifier) 
 	}
 	defer rows.Close()
 
-	out := make([]*models.Contribution, 0)
+	out := make([]*models.ChunkContribution, 0)
 	for rows.Next() {
-		cur := &models.Contribution{Author: &models.ShortAuthor{}}
+		cur := &models.ChunkContribution{Author: &models.ShortAuthor{}}
 		if err := rows.Scan(
 			&cur.ID,
 			&cur.TscriptID,
@@ -399,8 +399,8 @@ func (s *Store) ListContributions(ctx context.Context, q *common.QueryModifier) 
 	return out, nil
 }
 
-func (s *Store) GetContribution(ctx context.Context, id string) (*models.Contribution, error) {
-	out := &models.Contribution{Author: &models.ShortAuthor{}}
+func (s *Store) GetContribution(ctx context.Context, id string) (*models.ChunkContribution, error) {
+	out := &models.ChunkContribution{Author: &models.ShortAuthor{}}
 	row := s.tx.QueryRowxContext(
 		ctx,
 		`
@@ -428,9 +428,9 @@ func (s *Store) DeleteContribution(ctx context.Context, id string) error {
 	return err
 }
 
-func (s *Store) ListNonPendingTscriptContributions(ctx context.Context, tscriptID string, page int32) ([]*models.Contribution, error) {
+func (s *Store) ListNonPendingTscriptContributions(ctx context.Context, tscriptID string, page int32) ([]*models.ChunkContribution, error) {
 
-	out := make([]*models.Contribution, 0)
+	out := make([]*models.ChunkContribution, 0)
 
 	rows, err := s.tx.QueryxContext(
 		ctx,
@@ -457,7 +457,7 @@ func (s *Store) ListNonPendingTscriptContributions(ctx context.Context, tscriptI
 	defer rows.Close()
 
 	for rows.Next() {
-		cur := &models.Contribution{Author: &models.ShortAuthor{}}
+		cur := &models.ChunkContribution{Author: &models.ShortAuthor{}}
 		if err := rows.Scan(&cur.ID, &cur.Author.ID, &cur.Author.Name, &cur.ChunkID, &cur.Transcription, &cur.State); err != nil {
 			return nil, err
 		}

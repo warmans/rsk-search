@@ -44,7 +44,7 @@ func initEpisodeFile(outputDir string, dateStr string, name string) error {
 		return err
 	}
 
-	ep := &models.Episode{
+	ep := &models.Transcript{
 		Publication: meta.PublicationXFM,
 		Series:      series,
 		Episode:     episode,

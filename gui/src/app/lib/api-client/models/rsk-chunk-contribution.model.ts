@@ -7,6 +7,7 @@ import {
 export interface RskChunkContribution {
   author?: RskAuthor;
   chunkId?: string;
+  createdAt?: string;
   id?: string;
   state?: RskContributionState;
   transcript?: string;

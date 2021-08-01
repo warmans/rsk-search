@@ -58,23 +58,23 @@ service SearchService {
 
   // episodes
 
-  rpc GetEpisode(GetEpisodeRequest) returns (Episode) {
+  rpc GetTranscript(GetTranscriptRequest) returns (Transcript) {
     option (google.api.http) = {
-      get: "/api/episode/{id}"
+      get: "/api/transcript/{id}"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      operation_id: "getEpisode",
-      summary: "Fetch the full data for an episode including the transcript"
+      operation_id: "getTranscript",
+      summary: "Fetch a transcript and associated metadata."
       tags: "search"
     };
   }
 
-  rpc ListEpisodes(ListEpisodesRequest) returns (EpisodeList) {
+  rpc ListTranscripts(ListTranscriptsRequest) returns (TranscriptList) {
     option (google.api.http) = {
-      get: "/api/episode"
+      get: "/api/transcript"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      operation_id: "listEpisodes",
+      operation_id: "listTranscripts",
       summary: "Fetch list of available episodes"
       tags: "search"
     };
@@ -92,11 +92,11 @@ message SearchResultList {
 }
 
 message SearchResult {
-  ShortEpisode episode = 1;
+  ShortTranscript episode = 1;
   repeated DialogResult dialogs = 2;
 }
 
-message ShortEpisode {
+message ShortTranscript {
   string id = 1;
   string publication = 2;
   int32 series = 3;
@@ -133,7 +133,7 @@ message Tag {
   repeated string kind = 2;
 }
 
-message Episode {
+message Transcript {
   string id = 1;
   string publication = 2;
   int32 series = 3;
@@ -147,15 +147,15 @@ message Episode {
   bool incomplete = 11;
 }
 
-message GetEpisodeRequest {
+message GetTranscriptRequest {
   string id = 1;
 }
 
-message ListEpisodesRequest {
+message ListTranscriptsRequest {
 }
 
-message EpisodeList {
-  repeated ShortEpisode episodes = 1;
+message TranscriptList {
+  repeated ShortTranscript episodes = 1;
 }
 
 message SearchMetadata {

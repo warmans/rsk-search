@@ -134,7 +134,7 @@ func ServerCmd() *cobra.Command {
 					auth,
 					episodeCache,
 				),
-				grpc.NewTscriptService(
+				grpc.NewContribService(
 					logger,
 					srvCfg,
 					persistentDBConn,

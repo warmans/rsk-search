@@ -4,12 +4,12 @@ import {
   RskContributionState,
 } from '.';
 
-export interface RskContribution {
+export interface RskTranscriptChange {
   author?: RskAuthor;
-  chunkId?: string;
   createdAt?: string;
+  diff?: string;
+  episodeId?: string;
   id?: string;
   state?: RskContributionState;
   transcript?: string;
-  tscriptId?: string;
 }

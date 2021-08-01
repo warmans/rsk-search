@@ -65,7 +65,7 @@ func addTestData(conn *rw.Conn, logger *zap.Logger) error {
 
 			for ii := 0; ii < rand.Intn(10); ii++ {
 				ch := randomChunk(s)
-				_, err := s.CreateContribution(context.Background(), &models.ContributionCreate{
+				_, err := s.CreateChunkContribution(context.Background(), &models.ContributionCreate{
 					AuthorID:      ath.ID,
 					ChunkID:       ch.ID,
 					Transcription: ch.Raw,

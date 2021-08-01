@@ -79,84 +79,9 @@
           </div>
         </div>
         <div class="card-body" [hidden]="!showHelp">
-          <h4 class="mb-2">What do I do?</h4>
-          <p>What you are looking at is a auto-transcription of about 3 minutes of audio. Some parts may be correct but
-            others will be wrong. Mixed in with the audio
-            are <span class="code">#OFFSET</span> markers. These indicate the number of seconds elapsed since the start
-            of the episode, and <strong>should not be edited or added</strong>.</p>
-          <p>The objective is to:</p>
-          <ol>
-            <li>Split each line so that it accurately reflects the audio (including a prefix to indicate who is speaking
-              e.g. <span class="code">karl:</span>)
-            </li>
-            <li>Correct the text of any line was not transcribed accurately.</li>
-            <li>Add additional non-speech information e.g. <span class="code">ricky laughs</span> (use actor <span
-              class="code">none:</span> for these lines)
-            </li>
-          </ol>
-
-          <p>IMPORTANT: Try and keep the <span class="code">#OFFSET</span> tags as close to the
-            following word as possible. If the offsets are accurate it would allow the specific audio
-            to be available for each ~30 second segment.</p>
-
-          <h4 class="mb-2 mt-4">Audio Navigation</h4>
-          <p>If Autoseek is enabled the audio will skip to an <span class="code">#OFFSET</span> if your caret
-            (flashing line that shows where text will be inserted) moves over it.</p>
-          <p>Additionally pressing the <span class="badge">{{editorConfig?.playPauseKey || 'Insert'}}</span> key will
-            toggle the audio (play/pause),
-            <span class="badge">{{editorConfig?.rewindKey || 'ScrollLock'}}</span>/<span class="badge">{{editorConfig?.fastForwardKey || 'Pause'}}</span>
-            key will fast forward {{editorConfig?.backtrack || '3'}} seconds.</p>
-
-          <h4 class="mb-2 mt-4">Indicating a line is a notable quote</h4>
-          <p>If a line is particularly noteworthy, you can prefix it with <span class="code">!</span>. E.g.</p>
-          <pre class="pt-3">!steve: Man alive.</pre>
-
-          <h4 class="mb-2 mt-4">Songs</h4>
-          <p>To indicate a song was played you can use the speaker prefix <span class="code">song:</span> for example
-            <span class="code">song: Feeder - Come Back Around</span></p>
-          <p>The format should be <span class="code">ARTIST - SONG</span></p>
-
-          <h4 class="mb-2 mt-4">Summarising multiple-lines</h4>
-          <p>There is another special <span class="code">#SYN:</span> tag, similar to <span class="code">#OFFSET</span>
-            you can use to summarise several lines. For example</p>
-
-          <pre class="pt-3">
-karl: (twaddle)\n
-...\n
-#SYN: ricky gets a real bow and arrow!
-ricky: Crazy bait blur. All right on Xfm. 104.9 really? Yeah, so I also got a Jane got me a few nice presents including my favorite of all of them a real bow and arrow a real bow and arrow!
-steve: Yeah, right and what you, you're going to rob from the rich and give to the poor.
-ricky: yeah
-...
-#/SYN
-karl: I used to have a rifle as a kid...
-...
-          </pre>
-          <p>These will not be shown in the text currently, but they are useful to have.</p>
-
-          <h4 class="mb-2 mt-4">What will happen next?</h4>
-          <p>Once a chunk has been submitted it will be reviewed and if it is valid and mostly correct it will be merged
-            into
-            the raw data file for the episode. This will then become visible in the corresponding episode page after the
-            next release. I will attempt to propagate the transcripts back to Pilikipedia.</p>
-
-          <h4 class="mb-2 mt-4">Who owns my work?</h4>
-          <p>Once the content has been merged and becomes available in the github repository I consider it fair game
-            for anyone that wishes to copy, modify or share it. I do not claim any kind of ownership over this content
-            and am
-            providing services to maintain it for my own enjoyment, not as a way to benefit financially or otherwise
-            from the content.</p>
-
-          <h4 class="mb-2 mt-4">Will I be attributed for my contribution?</h4>
-          <p>Yes I will try and maintain an accurate list of contributors.</p>
-
-          <h4 class="mb-2 mt-4">I have another question or complaint!</h4>
-          <p>OK open an issue here: <a href="https://github.com/warmans/rsk-search/issues" target="_blank">https://github.com/warmans/rsk-search/issues</a>
-          </p>
-
+          <app-editor-help [editorConfig]="editorConfig"></app-editor-help>
         </div>
       </div>
-
     </div>
     <div class="col-4">
       <div class="card" *ngIf="!contribution">

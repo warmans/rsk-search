@@ -1,6 +1,6 @@
 /* tslint:disable */
 
-export interface RskShortEpisode {
+export interface RskShortTranscript {
   episode?: number;
   id?: string;
   publication?: string;

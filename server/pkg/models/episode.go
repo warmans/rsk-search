@@ -78,7 +78,7 @@ func (d Dialog) Proto(bestMatch bool) *api.Dialog {
 	return dialog
 }
 
-type Episode struct {
+type Transcript struct {
 	Publication string    `json:"publication"`
 	Series      int32     `json:"series"`
 	Episode     int32     `json:"episode"`
@@ -93,15 +93,15 @@ type Episode struct {
 	Contributors []string   `json:"contributors"`
 }
 
-func (e *Episode) ID() string {
+func (e *Transcript) ID() string {
 	return EpisodeID(e)
 }
 
-func (e *Episode) ShortProto() *api.ShortEpisode {
+func (e *Transcript) ShortProto() *api.ShortTranscript {
 	if e == nil {
 		return nil
 	}
-	ep := &api.ShortEpisode{
+	ep := &api.ShortTranscript{
 		Id:          e.ID(),
 		Publication: e.Publication,
 		Series:      e.Series,
@@ -110,11 +110,11 @@ func (e *Episode) ShortProto() *api.ShortEpisode {
 	return ep
 }
 
-func (e *Episode) Proto() *api.Episode {
+func (e *Transcript) Proto() *api.Transcript {
 	if e == nil {
 		return nil
 	}
-	ep := &api.Episode{
+	ep := &api.Transcript{
 		Id:           e.ID(),
 		Publication:  e.Publication,
 		Series:       e.Series,
@@ -148,11 +148,11 @@ type ShortEpisode struct {
 	TranscriptAvailable bool
 }
 
-func (e *ShortEpisode) ShortProto() *api.ShortEpisode {
+func (e *ShortEpisode) ShortProto() *api.ShortTranscript {
 	if e == nil {
 		return nil
 	}
-	return &api.ShortEpisode{
+	return &api.ShortTranscript{
 		Id:                  e.ID,
 		Publication:         e.Publication,
 		Series:              e.Series,

@@ -29,21 +29,129 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
       .pipe(tap((res: any) => guards.isRskRedditAuthURL(res) || console.error(`TypeGuard for response 'RskRedditAuthURL' caught inconsistency.`, res)));
   }
 
-  listEpisodes(
+  listChunkContributions(
+    args: {
+      filter?: string,
+      sortField?: string,
+      sortDirection?: string,
+      page?: number,
+      pageSize?: number,
+    },
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RskEpisodeList> {
-    return super.listEpisodes(requestHttpOptions)
-      .pipe(tap((res: any) => guards.isRskEpisodeList(res) || console.error(`TypeGuard for response 'RskEpisodeList' caught inconsistency.`, res)));
+  ): Observable<models.RskChunkContributionList> {
+    return super.listChunkContributions(args, requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRskChunkContributionList(res) || console.error(`TypeGuard for response 'RskChunkContributionList' caught inconsistency.`, res)));
   }
 
-  getEpisode(
+  createChunkContribution(
+    args: {
+      chunkId: string,
+      body: models.RskCreateChunkContributionRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskChunkContribution> {
+    return super.createChunkContribution(args, requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRskChunkContribution(res) || console.error(`TypeGuard for response 'RskChunkContribution' caught inconsistency.`, res)));
+  }
+
+  getChunkContribution(
+    args: {
+      contributionId: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskChunkContribution> {
+    return super.getChunkContribution(args, requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRskChunkContribution(res) || console.error(`TypeGuard for response 'RskChunkContribution' caught inconsistency.`, res)));
+  }
+
+  deleteChunkContribution(
+    args: {
+      contributionId: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<object> {
+    return super.deleteChunkContribution(args, requestHttpOptions)
+      .pipe(tap((res: any) => typeof res === 'object' || console.error(`TypeGuard for response 'object' caught inconsistency.`, res)));
+  }
+
+  updateChunkContribution(
+    args: {
+      contributionId: string,
+      body: models.RskUpdateChunkContributionRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskChunkContribution> {
+    return super.updateChunkContribution(args, requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRskChunkContribution(res) || console.error(`TypeGuard for response 'RskChunkContribution' caught inconsistency.`, res)));
+  }
+
+  requestChunkContributionState(
+    args: {
+      contributionId: string,
+      body: models.RskRequestChunkContributionStateRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskChunkContribution> {
+    return super.requestChunkContributionState(args, requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRskChunkContribution(res) || console.error(`TypeGuard for response 'RskChunkContribution' caught inconsistency.`, res)));
+  }
+
+  deleteTranscriptChange(
     args: {
       id: string,
     },
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RskEpisode> {
-    return super.getEpisode(args, requestHttpOptions)
-      .pipe(tap((res: any) => guards.isRskEpisode(res) || console.error(`TypeGuard for response 'RskEpisode' caught inconsistency.`, res)));
+  ): Observable<object> {
+    return super.deleteTranscriptChange(args, requestHttpOptions)
+      .pipe(tap((res: any) => typeof res === 'object' || console.error(`TypeGuard for response 'object' caught inconsistency.`, res)));
+  }
+
+  updateTranscriptChange(
+    args: {
+      id: string,
+      body: models.RskUpdateTranscriptChangeRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskTranscriptChange> {
+    return super.updateTranscriptChange(args, requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRskTranscriptChange(res) || console.error(`TypeGuard for response 'RskTranscriptChange' caught inconsistency.`, res)));
+  }
+
+  requestTranscriptChangeState(
+    args: {
+      id: string,
+      body: models.RskRequestTranscriptChangeStateRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<object> {
+    return super.requestTranscriptChangeState(args, requestHttpOptions)
+      .pipe(tap((res: any) => typeof res === 'object' || console.error(`TypeGuard for response 'object' caught inconsistency.`, res)));
+  }
+
+  listTranscriptChanges(
+    args: {
+      transcriptId: string,
+      filter?: string,
+      sortField?: string,
+      sortDirection?: string,
+      page?: number,
+      pageSize?: number,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskTranscriptChangeList> {
+    return super.listTranscriptChanges(args, requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRskTranscriptChangeList(res) || console.error(`TypeGuard for response 'RskTranscriptChangeList' caught inconsistency.`, res)));
+  }
+
+  createTranscriptChange(
+    args: {
+      transcriptId: string,
+      body: models.RskCreateTranscriptChangeRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskTranscriptChange> {
+    return super.createTranscriptChange(args, requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRskTranscriptChange(res) || console.error(`TypeGuard for response 'RskTranscriptChange' caught inconsistency.`, res)));
   }
 
   getSearchMetadata(
@@ -99,6 +207,23 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
       .pipe(tap((res: any) => guards.isRskSearchResultList(res) || console.error(`TypeGuard for response 'RskSearchResultList' caught inconsistency.`, res)));
   }
 
+  listTranscripts(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskTranscriptList> {
+    return super.listTranscripts(requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRskTranscriptList(res) || console.error(`TypeGuard for response 'RskTranscriptList' caught inconsistency.`, res)));
+  }
+
+  getTranscript(
+    args: {
+      id: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskTranscript> {
+    return super.getTranscript(args, requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRskTranscript(res) || console.error(`TypeGuard for response 'RskTranscript' caught inconsistency.`, res)));
+  }
+
   listTscripts(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskTscriptList> {
@@ -113,17 +238,6 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
       .pipe(tap((res: any) => guards.isRskAuthorLeaderboard(res) || console.error(`TypeGuard for response 'RskAuthorLeaderboard' caught inconsistency.`, res)));
   }
 
-  createChunkContribution(
-    args: {
-      chunkId: string,
-      body: models.RskCreateChunkContributionRequest,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskChunkContribution> {
-    return super.createChunkContribution(args, requestHttpOptions)
-      .pipe(tap((res: any) => guards.isRskChunkContribution(res) || console.error(`TypeGuard for response 'RskChunkContribution' caught inconsistency.`, res)));
-  }
-
   getChunk(
     args: {
       id: string,
@@ -132,62 +246,6 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
   ): Observable<models.RskChunk> {
     return super.getChunk(args, requestHttpOptions)
       .pipe(tap((res: any) => guards.isRskChunk(res) || console.error(`TypeGuard for response 'RskChunk' caught inconsistency.`, res)));
-  }
-
-  listContributions(
-    args: {
-      filter?: string,
-      sortField?: string,
-      sortDirection?: string,
-      page?: number,
-      pageSize?: number,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskContributionList> {
-    return super.listContributions(args, requestHttpOptions)
-      .pipe(tap((res: any) => guards.isRskContributionList(res) || console.error(`TypeGuard for response 'RskContributionList' caught inconsistency.`, res)));
-  }
-
-  getContribution(
-    args: {
-      contributionId: string,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskChunkContribution> {
-    return super.getContribution(args, requestHttpOptions)
-      .pipe(tap((res: any) => guards.isRskChunkContribution(res) || console.error(`TypeGuard for response 'RskChunkContribution' caught inconsistency.`, res)));
-  }
-
-  deleteContribution(
-    args: {
-      contributionId: string,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<object> {
-    return super.deleteContribution(args, requestHttpOptions)
-      .pipe(tap((res: any) => typeof res === 'object' || console.error(`TypeGuard for response 'object' caught inconsistency.`, res)));
-  }
-
-  updateContribution(
-    args: {
-      contributionId: string,
-      body: models.RskUpdateContributionRequest,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskChunkContribution> {
-    return super.updateContribution(args, requestHttpOptions)
-      .pipe(tap((res: any) => guards.isRskChunkContribution(res) || console.error(`TypeGuard for response 'RskChunkContribution' caught inconsistency.`, res)));
-  }
-
-  requestContributionState(
-    args: {
-      contributionId: string,
-      body: models.RskRequestContributionStateRequest,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskChunkContribution> {
-    return super.requestContributionState(args, requestHttpOptions)
-      .pipe(tap((res: any) => guards.isRskChunkContribution(res) || console.error(`TypeGuard for response 'RskChunkContribution' caught inconsistency.`, res)));
   }
 
   getChunkStats(

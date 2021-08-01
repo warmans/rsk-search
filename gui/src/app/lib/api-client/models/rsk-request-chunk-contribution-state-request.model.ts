@@ -3,7 +3,7 @@ import {
   RskContributionState,
 } from '.';
 
-export interface RskRequestContributionStateRequest {
+export interface RskRequestChunkContributionStateRequest {
   comment?: string;
   contributionId?: string;
   requestState?: RskContributionState;

@@ -103,7 +103,13 @@
         </div>
         <div class="card-header">
           <div class="d-flex">
-            <div class="flex-grow-1 font-weight-bold">Transcript <span *ngIf="episode.incomplete" class="badge badge-warning ml-3">Incomplete</span></div>
+            <div class="flex-grow-1 font-weight-bold">
+              Transcript
+              <span *ngIf="episode.incomplete" class="badge badge-warning ml-3">Incomplete</span>
+            </div>
+            <div>
+              <a class="btn btn-sm btn-info" [routerLink]="['/ep', id, 'change']">Submit Correction</a>
+            </div>
           </div>
         </div>
         <div class="card-body p-3">

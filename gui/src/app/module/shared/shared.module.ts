@@ -13,6 +13,11 @@ import { SynopsesComponent } from './component/synopses/synopses.component';
 import { WebhidDeviceComponent } from './component/webhid-device/webhid-device.component';
 import { WebusbDeviceComponent } from './component/webusb-device/webusb-device.component';
 import { ContributionStateComponent } from './component/contribution-state/contribution-state.component';
+import { RedditLoginComponent } from './component/reddit-login/reddit-login.component';
+import { EditorComponent } from './component/editor/editor.component';
+import { EditorConfigComponent } from './component/editor-config/editor-config.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { EditorHelpComponent } from './component/editor-help/editor-help.component';
 
 @NgModule({
   declarations: [
@@ -28,10 +33,15 @@ import { ContributionStateComponent } from './component/contribution-state/contr
     WebhidDeviceComponent,
     WebusbDeviceComponent,
     ContributionStateComponent,
+    RedditLoginComponent,
+    EditorComponent,
+    EditorConfigComponent,
+    EditorHelpComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   exports: [
@@ -46,6 +56,10 @@ import { ContributionStateComponent } from './component/contribution-state/contr
     WebhidDeviceComponent,
     WebusbDeviceComponent,
     ContributionStateComponent,
+    RedditLoginComponent,
+    EditorComponent,
+    EditorConfigComponent,
+    EditorHelpComponent,
   ]
 })
 export class SharedModule {

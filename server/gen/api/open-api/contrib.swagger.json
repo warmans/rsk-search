@@ -1,12 +1,12 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "tscript.proto",
+    "title": "contrib.proto",
     "version": "1.0"
   },
   "tags": [
     {
-      "name": "TscriptService"
+      "name": "ContribService"
     }
   ],
   "schemes": [
@@ -19,6 +19,445 @@
     "application/json"
   ],
   "paths": {
+    "/api/contrib/chunk": {
+      "get": {
+        "summary": "lists contributed transcript chunks",
+        "operationId": "listChunkContributions",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskChunkContributionList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortDirection",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      }
+    },
+    "/api/contrib/chunk/{chunkId}": {
+      "post": {
+        "summary": "Submit a transcript new chunk that has been completed.",
+        "operationId": "createChunkContribution",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskChunkContribution"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "chunkId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/rskCreateChunkContributionRequest"
+            }
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      }
+    },
+    "/api/contrib/chunk/{contributionId}": {
+      "get": {
+        "summary": "lists any existing contributions for a chunk",
+        "operationId": "getChunkContribution",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskChunkContribution"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "contributionId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      },
+      "delete": {
+        "summary": "Discard unapproved contribution.",
+        "operationId": "deleteChunkContribution",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "contributionId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      },
+      "patch": {
+        "summary": "Update one of your existing contributions.",
+        "operationId": "updateChunkContribution",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskChunkContribution"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "contributionId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/rskUpdateChunkContributionRequest"
+            }
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      }
+    },
+    "/api/contrib/chunk/{contributionId}/state": {
+      "patch": {
+        "summary": "request the contribution state be changed.",
+        "operationId": "requestChunkContributionState",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskChunkContribution"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "contributionId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/rskRequestChunkContributionStateRequest"
+            }
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      }
+    },
+    "/api/contrib/transcript/change/{id}": {
+      "delete": {
+        "summary": "Deletes a change.",
+        "operationId": "deleteTranscriptChange",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      },
+      "patch": {
+        "summary": "Updates an existing change.",
+        "operationId": "updateTranscriptChange",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskTranscriptChange"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/rskUpdateTranscriptChangeRequest"
+            }
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      }
+    },
+    "/api/contrib/transcript/change/{id}/state": {
+      "patch": {
+        "summary": "request the change's state be changed.",
+        "operationId": "requestTranscriptChangeState",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/rskRequestTranscriptChangeStateRequest"
+            }
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      }
+    },
+    "/api/contrib/transcript/{transcriptId}/change": {
+      "get": {
+        "summary": "Submits a new version of a transcript.",
+        "operationId": "listTranscriptChanges",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskTranscriptChangeList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "transcriptId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortDirection",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      },
+      "post": {
+        "summary": "Submits a new version of a transcript.",
+        "operationId": "createTranscriptChange",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskTranscriptChange"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "transcriptId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/rskCreateTranscriptChangeRequest"
+            }
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      }
+    },
     "/api/rewards": {
       "get": {
         "summary": "Lists arewards that the logged in user is able to claim.",
@@ -181,45 +620,6 @@
         ]
       }
     },
-    "/api/tscript/chunk/{chunkId}/contrib": {
-      "patch": {
-        "summary": "Submit a transcript new chunk that has been completed.",
-        "operationId": "createChunkContribution",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/rskChunkContribution"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "chunkId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/rskCreateChunkContributionRequest"
-            }
-          }
-        ],
-        "tags": [
-          "search"
-        ]
-      }
-    },
     "/api/tscript/chunk/{id}": {
       "get": {
         "summary": "Gets a specific transcript chunk to be completed.",
@@ -244,199 +644,6 @@
             "in": "path",
             "required": true,
             "type": "string"
-          }
-        ],
-        "tags": [
-          "search"
-        ]
-      }
-    },
-    "/api/tscript/contrib": {
-      "get": {
-        "summary": "lists contributions",
-        "operationId": "listContributions",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/rskContributionList"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "filter",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "sortField",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "sortDirection",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "pageSize",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          }
-        ],
-        "tags": [
-          "search"
-        ]
-      }
-    },
-    "/api/tscript/contrib/{contributionId}": {
-      "get": {
-        "summary": "lists any existing contributions for a chunk",
-        "operationId": "getContribution",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/rskChunkContribution"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "contributionId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "search"
-        ]
-      },
-      "delete": {
-        "summary": "Discard unapproved contribution.",
-        "operationId": "deleteContribution",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "properties": {}
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "contributionId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "search"
-        ]
-      },
-      "patch": {
-        "summary": "Update one of your existing contributions.",
-        "operationId": "updateContribution",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/rskChunkContribution"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "contributionId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/rskUpdateContributionRequest"
-            }
-          }
-        ],
-        "tags": [
-          "search"
-        ]
-      }
-    },
-    "/api/tscript/contrib/{contributionId}/state": {
-      "patch": {
-        "summary": "request the contribution state be changed.",
-        "operationId": "requestContributionState",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/rskChunkContribution"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "contributionId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/rskRequestContributionStateRequest"
-            }
           }
         ],
         "tags": [
@@ -687,6 +894,20 @@
         },
         "author": {
           "$ref": "#/definitions/rskAuthor"
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      }
+    },
+    "rskChunkContributionList": {
+      "type": "object",
+      "properties": {
+        "contributions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rskChunkContribution"
+          }
         }
       }
     },
@@ -774,43 +995,6 @@
         }
       }
     },
-    "rskContribution": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "tscriptId": {
-          "type": "string"
-        },
-        "chunkId": {
-          "type": "string"
-        },
-        "transcript": {
-          "type": "string"
-        },
-        "state": {
-          "$ref": "#/definitions/rskContributionState"
-        },
-        "author": {
-          "$ref": "#/definitions/rskAuthor"
-        },
-        "createdAt": {
-          "type": "string"
-        }
-      }
-    },
-    "rskContributionList": {
-      "type": "object",
-      "properties": {
-        "contributions": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/rskContribution"
-          }
-        }
-      }
-    },
     "rskContributionState": {
       "type": "string",
       "enum": [
@@ -826,6 +1010,17 @@
       "type": "object",
       "properties": {
         "chunkId": {
+          "type": "string"
+        },
+        "transcript": {
+          "type": "string"
+        }
+      }
+    },
+    "rskCreateTranscriptChangeRequest": {
+      "type": "object",
+      "properties": {
+        "transcriptId": {
           "type": "string"
         },
         "transcript": {
@@ -889,7 +1084,7 @@
         }
       }
     },
-    "rskRequestContributionStateRequest": {
+    "rskRequestChunkContributionStateRequest": {
       "type": "object",
       "properties": {
         "contributionId": {
@@ -900,6 +1095,17 @@
         },
         "comment": {
           "type": "string"
+        }
+      }
+    },
+    "rskRequestTranscriptChangeStateRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "state": {
+          "$ref": "#/definitions/rskContributionState"
         }
       }
     },
@@ -924,6 +1130,43 @@
         },
         "valueCurrency": {
           "type": "string"
+        }
+      }
+    },
+    "rskTranscriptChange": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "episodeId": {
+          "type": "string"
+        },
+        "transcript": {
+          "type": "string"
+        },
+        "diff": {
+          "type": "string"
+        },
+        "state": {
+          "$ref": "#/definitions/rskContributionState"
+        },
+        "author": {
+          "$ref": "#/definitions/rskAuthor"
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      }
+    },
+    "rskTranscriptChangeList": {
+      "type": "object",
+      "properties": {
+        "changes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rskTranscriptChange"
+          }
         }
       }
     },
@@ -1012,7 +1255,7 @@
         }
       }
     },
-    "rskUpdateContributionRequest": {
+    "rskUpdateChunkContributionRequest": {
       "type": "object",
       "properties": {
         "contributionId": {
@@ -1025,10 +1268,21 @@
           "$ref": "#/definitions/rskContributionState"
         }
       }
+    },
+    "rskUpdateTranscriptChangeRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "transcript": {
+          "type": "string"
+        }
+      }
     }
   },
   "externalDocs": {
-    "description": "Search Xfm transcriptions",
+    "description": "Contribute transcriptions or changes.",
     "url": "http://scrimpton.com"
   }
 }

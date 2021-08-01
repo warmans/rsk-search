@@ -58,7 +58,7 @@
             <ng-container *ngFor="let series of showSeries">
               <div class="col-lg-3 mb-2">
                 <strong>Xfm Series {{series}}</strong>
-                <ng-container *ngFor="let ep of episodeList">
+                <ng-container *ngFor="let ep of transcriptList">
                   <div *ngIf="ep.series === series">
                     <i class="bi-archive-fill text-primary" *ngIf="ep.transcriptAvailable"
                        title="transcript available"></i>

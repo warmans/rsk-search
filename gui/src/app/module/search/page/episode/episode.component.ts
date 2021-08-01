@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Data } from '@angular/router';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
-import { RskDialog, RskEpisode } from '../../../../lib/api-client/models';
+import { RskDialog, RskTranscript } from '../../../../lib/api-client/models';
 import { ViewportScroller } from '@angular/common';
 import { takeUntil } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
@@ -21,7 +21,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
 
   scrollToID: string;
 
-  episode: RskEpisode;
+  episode: RskTranscript;
 
   error: string;
 
@@ -52,8 +52,8 @@ export class EpisodeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.loading = true;
     this.error = undefined;
-    this.apiClient.getEpisode({ id: this.id }).pipe(takeUntil(this.unsubscribe$)).subscribe(
-      (ep: RskEpisode) => {
+    this.apiClient.getTranscript({ id: this.id }).pipe(takeUntil(this.unsubscribe$)).subscribe(
+      (ep: RskTranscript) => {
         this.episode = ep;
         this.titleService.setTitle(ep.id);
         this.transcribers = ep.contributors.join(', ');

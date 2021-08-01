@@ -80,7 +80,7 @@ func ImportTranscriptsCmd() *cobra.Command {
 	return cmd
 }
 
-func loadTranscript(inputDir string, publication string, date time.Time) (*models.Episode, error) {
+func loadTranscript(inputDir string, publication string, date time.Time) (*models.Transcript, error) {
 
 	f, err := os.Open(path.Join(inputDir, fmt.Sprintf("transcript-%s-%s.json", publication, util.ShortDate(date))))
 	if err != nil {
@@ -91,7 +91,7 @@ func loadTranscript(inputDir string, publication string, date time.Time) (*model
 	}
 	defer f.Close()
 
-	e := &models.Episode{}
+	e := &models.Transcript{}
 
 	dec := json.NewDecoder(f)
 	return e, dec.Decode(e)

@@ -41,7 +41,7 @@ type Store struct {
 	tx *sqlx.Tx
 }
 
-func (s *Store) InsertEpisodeWithTranscript(ctx context.Context, ep *models.Episode) error {
+func (s *Store) InsertEpisodeWithTranscript(ctx context.Context, ep *models.Transcript) error {
 
 	epMeta, err := metaToString(ep.Meta)
 	if err != nil {

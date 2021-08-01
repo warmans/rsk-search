@@ -88,7 +88,7 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 			if err != nil {
 				return err
 			}
-			approved, err := s.ListContributions(
+			approved, err := s.ListChunkContributions(
 				ctx,
 				&common.QueryModifier{
 					Filter: filter.And(
@@ -106,7 +106,7 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 			}
 			for _, ch := range allChunks {
 
-				var chContribution *models.Contribution
+				var chContribution *models.ChunkContribution
 				for _, co := range approved {
 					if co.ChunkID == ch.ID {
 						chContribution = co

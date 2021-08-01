@@ -28,7 +28,7 @@ func FormatStandardEpisodeName(series, episode int32) string {
 	return fmt.Sprintf("S%dE%02d", series, episode)
 }
 
-func EpisodeID(ep *Episode) string {
+func EpisodeID(ep *Transcript) string {
 	return fmt.Sprintf("ep-%s-%s", ep.Publication, FormatStandardEpisodeName(ep.Series, ep.Episode))
 }
 

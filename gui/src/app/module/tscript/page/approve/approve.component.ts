@@ -2,9 +2,9 @@ import { Component, EventEmitter, OnInit } from '@angular/core';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
 import {
   RskChunk,
+  RskChunkContribution,
+  RskChunkContributionList,
   RskChunkList,
-  RskContribution,
-  RskContributionList,
   RskContributionState
 } from '../../../../lib/api-client/models';
 import { takeUntil } from 'rxjs/operators';
@@ -26,9 +26,9 @@ export class ApproveComponent implements OnInit {
 
   chunks: RskChunk[] = [];
 
-  groupedContributions: { [index: string]: RskContribution[] } = {};
+  groupedContributions: { [index: string]: RskChunkContribution[] } = {};
 
-  approvalList: RskContribution[] = [];
+  approvalList: RskChunkContribution[] = [];
 
   states = RskContributionState;
 
@@ -74,10 +74,10 @@ export class ApproveComponent implements OnInit {
     }).add(() => this.loading.pop());
 
     this.loading.push(true);
-    this.apiClient.listContributions({
+    this.apiClient.listChunkContributions({
       filter: filter.print(),
       pageSize: 200,
-    }).pipe(takeUntil(this.destroy$)).subscribe((val: RskContributionList) => {
+    }).pipe(takeUntil(this.destroy$)).subscribe((val: RskChunkContributionList) => {
       this.groupedContributions = {};
       val.contributions.forEach((c) => {
         if (c.state === RskContributionState.STATE_PENDING) {
@@ -94,9 +94,9 @@ export class ApproveComponent implements OnInit {
 
   // unused - but might need to be re-implemented at some point
   updateApprovalList() {
-    let approvalMap: { [index: string]: RskContribution } = {};
+    let approvalMap: { [index: string]: RskChunkContribution } = {};
     for (let chunkId in this.groupedContributions) {
-      this.groupedContributions[chunkId].forEach((co: RskContribution) => {
+      this.groupedContributions[chunkId].forEach((co: RskChunkContribution) => {
         if (!approvalMap[chunkId]) {
           approvalMap[chunkId] = co;
           return;
@@ -123,9 +123,9 @@ export class ApproveComponent implements OnInit {
     return parseTranscript(raw);
   }
 
-  updateState(co: RskContribution, state: RskContributionState) {
+  updateState(co: RskChunkContribution, state: RskContributionState) {
     this.loading.push(true);
-    this.apiClient.requestContributionState({
+    this.apiClient.requestChunkContributionState({
       contributionId: co.id,
       body: {
         contributionId: co.id,

@@ -16,19 +16,127 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  listEpisodes(
+  listChunkContributions(
+    args: {
+      filter?: string,
+      sortField?: string,
+      sortDirection?: string,
+      page?: number,
+      pageSize?: number,
+    },
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RskEpisodeList>;
+  ): Observable<models.RskChunkContributionList>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  getEpisode(
+  createChunkContribution(
+    args: {
+      chunkId: string,
+      body: models.RskCreateChunkContributionRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskChunkContribution>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  getChunkContribution(
+    args: {
+      contributionId: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskChunkContribution>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  deleteChunkContribution(
+    args: {
+      contributionId: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<object>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  updateChunkContribution(
+    args: {
+      contributionId: string,
+      body: models.RskUpdateChunkContributionRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskChunkContribution>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  requestChunkContributionState(
+    args: {
+      contributionId: string,
+      body: models.RskRequestChunkContributionStateRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskChunkContribution>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  deleteTranscriptChange(
     args: {
       id: string,
     },
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RskEpisode>;
+  ): Observable<object>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  updateTranscriptChange(
+    args: {
+      id: string,
+      body: models.RskUpdateTranscriptChangeRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskTranscriptChange>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  requestTranscriptChangeState(
+    args: {
+      id: string,
+      body: models.RskRequestTranscriptChangeStateRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<object>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  listTranscriptChanges(
+    args: {
+      transcriptId: string,
+      filter?: string,
+      sortField?: string,
+      sortDirection?: string,
+      page?: number,
+      pageSize?: number,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskTranscriptChangeList>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  createTranscriptChange(
+    args: {
+      transcriptId: string,
+      body: models.RskCreateTranscriptChangeRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskTranscriptChange>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
@@ -86,6 +194,23 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  listTranscripts(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskTranscriptList>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  getTranscript(
+    args: {
+      id: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskTranscript>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   listTscripts(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskTscriptList>;
@@ -100,79 +225,12 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  createChunkContribution(
-    args: {
-      chunkId: string,
-      body: models.RskCreateChunkContributionRequest,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskChunkContribution>;
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
   getChunk(
     args: {
       id: string,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskChunk>;
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  listContributions(
-    args: {
-      filter?: string,
-      sortField?: string,
-      sortDirection?: string,
-      page?: number,
-      pageSize?: number,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskContributionList>;
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  getContribution(
-    args: {
-      contributionId: string,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskChunkContribution>;
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  deleteContribution(
-    args: {
-      contributionId: string,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<object>;
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  updateContribution(
-    args: {
-      contributionId: string,
-      body: models.RskUpdateContributionRequest,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskChunkContribution>;
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  requestContributionState(
-    args: {
-      contributionId: string,
-      body: models.RskRequestContributionStateRequest,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskChunkContribution>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.

@@ -6,9 +6,9 @@ import { Router } from '@angular/router';
 import { Eq } from '../../../../lib/filter-dsl/filter';
 import { Str } from '../../../../lib/filter-dsl/value';
 import {
+  RskChunkContribution,
+  RskChunkContributionList,
   RskClaimedReward,
-  RskContribution,
-  RskContributionList,
   RskContributionState
 } from '../../../../lib/api-client/models';
 import { Title } from '@angular/platform-browser';
@@ -22,7 +22,7 @@ export class AuthorContributionsComponent implements OnInit, OnDestroy {
 
   claims: Claims;
 
-  contributions: RskContribution[];
+  contributions: RskChunkContribution[];
 
   rewards: RskClaimedReward[];
 
@@ -55,7 +55,7 @@ export class AuthorContributionsComponent implements OnInit, OnDestroy {
 
   discardDraft(chunkId: string, contributionId: string): void {
     if (confirm('Really discard draft?')) {
-      this.apiClient.deleteContribution({
+      this.apiClient.deleteChunkContribution({
         contributionId: contributionId
       }).pipe(takeUntil(this.destroy$)).subscribe(() => {
         this.loadContributions();
@@ -65,11 +65,11 @@ export class AuthorContributionsComponent implements OnInit, OnDestroy {
 
   loadContributions() {
     this.loading.push(true);
-    this.apiClient.listContributions({
+    this.apiClient.listChunkContributions({
       filter: Eq(`author_id`, Str(this.session.getClaims().author_id)).print(),
       sortField: `created_at`,
       sortDirection: 'desc',
-    }).pipe(takeUntil(this.destroy$)).subscribe((list: RskContributionList) => {
+    }).pipe(takeUntil(this.destroy$)).subscribe((list: RskChunkContributionList) => {
       this.contributions = list.contributions;
     }).add(() => this.loading.pop());
   }

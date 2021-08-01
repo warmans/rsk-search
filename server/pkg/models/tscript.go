@@ -70,8 +70,8 @@ type TscriptStats struct {
 	NumRejectedContributions        int32
 }
 
-func (c *TscriptStats) AsEpisode() *Episode {
-	return &Episode{
+func (c *TscriptStats) AsEpisode() *Transcript {
+	return &Transcript{
 		Publication: c.Publication,
 		Series:      c.Series,
 		Episode:     c.Episode,
@@ -160,7 +160,7 @@ type ContributionUpdate struct {
 	State         ContributionState
 }
 
-type Contribution struct {
+type ChunkContribution struct {
 	ID            string
 	TscriptID     string
 	ChunkID       string
@@ -171,22 +171,7 @@ type Contribution struct {
 	CreatedAt     time.Time
 }
 
-func (c *Contribution) TscriptContributionProto() *api.Contribution {
-	if c == nil {
-		return nil
-	}
-	return &api.Contribution{
-		Id:         c.ID,
-		TscriptId:  c.TscriptID,
-		ChunkId:    c.ChunkID,
-		Transcript: c.Transcription,
-		State:      c.State.Proto(),
-		Author:     c.Author.Proto(),
-		CreatedAt:  c.CreatedAt.Format(time.RFC3339),
-	}
-}
-
-func (c *Contribution) Proto() *api.ChunkContribution {
+func (c *ChunkContribution) Proto() *api.ChunkContribution {
 	if c == nil {
 		return nil
 	}
@@ -196,10 +181,11 @@ func (c *Contribution) Proto() *api.ChunkContribution {
 		Transcript: c.Transcription,
 		State:      c.State.Proto(),
 		Author:     c.Author.Proto(),
+		CreatedAt:  c.CreatedAt.Format(time.RFC3339),
 	}
 }
 
-func (c *Contribution) ShortProto() *api.ShortChunkContribution {
+func (c *ChunkContribution) ShortProto() *api.ShortChunkContribution {
 	if c == nil {
 		return nil
 	}

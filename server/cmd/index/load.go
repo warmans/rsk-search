@@ -90,7 +90,7 @@ func documentsFromPath(filePath string) ([]index.DialogDocument, error) {
 	}
 	defer f.Close()
 
-	episode := &models.Episode{}
+	episode := &models.Transcript{}
 
 	decoder := json.NewDecoder(f)
 	if err := decoder.Decode(episode); err != nil {

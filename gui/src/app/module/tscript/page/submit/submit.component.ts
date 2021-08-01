@@ -8,9 +8,9 @@ import { SessionService } from '../../../core/service/session/session.service';
 import { getFirstOffset, parseTranscript, Tscript } from '../../../shared/lib/tscript';
 import { AudioPlayerComponent } from '../../../shared/component/audio-player/audio-player.component';
 import { AlertService } from '../../../core/service/alert/alert.service';
-import { EditorConfig, EditorConfigComponent } from '../../component/editor-config/editor-config.component';
 import { formatDistance } from 'date-fns';
 import { RskChunk, RskChunkContribution, RskContributionState } from '../../../../lib/api-client/models';
+import { EditorConfig, EditorConfigComponent } from '../../../shared/component/editor-config/editor-config.component';
 
 @Component({
   selector: 'app-submit',
@@ -90,7 +90,7 @@ export class SubmitComponent implements OnInit, OnDestroy {
 
         // load content from existing contribution
         this.loading.push(true);
-        this.apiClient.getContribution({
+        this.apiClient.getChunkContribution({
           contributionId: d.params['contribution_id']
         }).pipe(takeUntil(this.$destroy)).subscribe((res: RskChunkContribution) => {
           this.setContribution(res);
@@ -243,7 +243,7 @@ export class SubmitComponent implements OnInit, OnDestroy {
   }
 
   private _update(state: RskContributionState): Observable<RskChunkContribution> {
-    return this.apiClient.updateContribution({
+    return this.apiClient.updateChunkContribution({
       contributionId: this.contribution.id,
       body: {
         contributionId: this.contribution.id,
@@ -255,7 +255,7 @@ export class SubmitComponent implements OnInit, OnDestroy {
 
   private _updateState(state: RskContributionState) {
     this.loading.push(true);
-    this.apiClient.requestContributionState({
+    this.apiClient.requestChunkContributionState({
       contributionId: this.contribution.id,
       body: {
         contributionId: this.contribution.id,

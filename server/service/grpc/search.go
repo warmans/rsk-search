@@ -117,7 +117,7 @@ func (s *SearchService) Search(ctx context.Context, request *api.SearchRequest) 
 	return s.searchBackend.Search(ctx, f, request.Page)
 }
 
-func (s *SearchService) GetEpisode(ctx context.Context, request *api.GetEpisodeRequest) (*api.Episode, error) {
+func (s *SearchService) GetTranscript(ctx context.Context, request *api.GetTranscriptRequest) (*api.Transcript, error) {
 	ep, err := s.episodeCache.GetEpisode(request.Id)
 	if err == data.ErrNotFound || ep == nil {
 		return nil, ErrNotFound(request.Id).Err()
@@ -125,9 +125,9 @@ func (s *SearchService) GetEpisode(ctx context.Context, request *api.GetEpisodeR
 	return ep.Proto(), nil
 }
 
-func (s *SearchService) ListEpisodes(ctx context.Context, request *api.ListEpisodesRequest) (*api.EpisodeList, error) {
-	el := &api.EpisodeList{
-		Episodes: []*api.ShortEpisode{},
+func (s *SearchService) ListTranscripts(ctx context.Context, request *api.ListTranscriptsRequest) (*api.TranscriptList, error) {
+	el := &api.TranscriptList{
+		Episodes: []*api.ShortTranscript{},
 	}
 	err := s.staticDB.WithStore(func(s *ro.Store) error {
 		eps, err := s.ListEpisodes(ctx)

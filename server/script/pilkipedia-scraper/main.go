@@ -40,7 +40,7 @@ func main() {
 	// per page scraper
 	episodeDetailsCollector.OnHTML("div[id=content]", func(e *colly.HTMLElement) {
 
-		episode := models.Episode{
+		episode := models.Transcript{
 			Episode:    -1,
 			Series:     -1,
 			Transcript: []models.Dialog{},
