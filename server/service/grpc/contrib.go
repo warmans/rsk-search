@@ -14,7 +14,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/pledge"
 	"github.com/warmans/rsk-search/pkg/reward"
 	"github.com/warmans/rsk-search/pkg/store/rw"
-	"github.com/warmans/rsk-search/pkg/tscript"
+	"github.com/warmans/rsk-search/pkg/transcript"
 	"github.com/warmans/rsk-search/service/config"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
@@ -176,7 +176,7 @@ func (s *ContribService) CreateChunkContribution(ctx context.Context, request *a
 		return nil, ErrFromStore(err, "").Err()
 	}
 
-	lines, _, err := tscript.Import(bufio.NewScanner(bytes.NewBufferString(request.Transcript)), 0)
+	lines, _, err := transcript.Import(bufio.NewScanner(bytes.NewBufferString(request.Transcript)), 0)
 	if err != nil {
 		return nil, ErrInvalidRequestField("transcript", err.Error()).Err()
 	}
@@ -224,7 +224,7 @@ func (s *ContribService) UpdateChunkContribution(ctx context.Context, request *a
 
 	// allow invalid transcript while the contribution is still pending.
 	if request.State != api.ContributionState_STATE_PENDING {
-		lines, _, err := tscript.Import(bufio.NewScanner(bytes.NewBufferString(request.Transcript)), 0)
+		lines, _, err := transcript.Import(bufio.NewScanner(bytes.NewBufferString(request.Transcript)), 0)
 		if err != nil {
 			return nil, ErrInvalidRequestField("transcript", err.Error()).Err()
 		}

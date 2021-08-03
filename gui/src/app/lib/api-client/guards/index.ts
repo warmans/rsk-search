@@ -550,6 +550,8 @@ export function isRskTranscript(arg: any): arg is models.RskTranscript {
     ( typeof arg.metadata === 'undefined' || typeof arg.metadata === 'string' ) &&
     // publication?: string
     ( typeof arg.publication === 'undefined' || typeof arg.publication === 'string' ) &&
+    // rawTranscript?: string
+    ( typeof arg.rawTranscript === 'undefined' || typeof arg.rawTranscript === 'string' ) &&
     // releaseDate?: string
     ( typeof arg.releaseDate === 'undefined' || typeof arg.releaseDate === 'string' ) &&
     // series?: number

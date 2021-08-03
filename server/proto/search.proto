@@ -145,10 +145,12 @@ message Transcript {
   repeated Synopsis synopses = 9;
   repeated string contributors = 10;
   bool incomplete = 11;
+  string raw_transcript = 12;
 }
 
 message GetTranscriptRequest {
   string epid = 1;
+  bool with_raw = 2;
 }
 
 message ListTranscriptsRequest {

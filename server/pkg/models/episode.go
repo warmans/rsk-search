@@ -110,7 +110,7 @@ func (e *Transcript) ShortProto() *api.ShortTranscript {
 	return ep
 }
 
-func (e *Transcript) Proto() *api.Transcript {
+func (e *Transcript) Proto(withRawTranscript string) *api.Transcript {
 	if e == nil {
 		return nil
 	}
@@ -123,6 +123,7 @@ func (e *Transcript) Proto() *api.Transcript {
 		ReleaseDate:  e.ReleaseDate.Format(util.ShortDateFormat),
 		Contributors: e.Contributors,
 		Incomplete:   e.Incomplete,
+		RawTranscript: withRawTranscript,
 	}
 	for _, tn := range e.Tags {
 		tag := meta.GetTag(tn)

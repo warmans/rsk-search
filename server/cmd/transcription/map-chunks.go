@@ -7,7 +7,7 @@ import (
 	"github.com/lithammer/shortuuid/v3"
 	"github.com/spf13/cobra"
 	"github.com/warmans/rsk-search/pkg/models"
-	"github.com/warmans/rsk-search/pkg/tscript"
+	"github.com/warmans/rsk-search/pkg/transcript"
 	"github.com/warmans/rsk-search/pkg/util"
 	"io/ioutil"
 	"os"
@@ -80,8 +80,8 @@ func getChunks(scanner *bufio.Scanner) ([]models.Chunk, error) {
 	for scanner.Scan() {
 		line := scanner.Text()
 
-		if tscript.IsOffsetTag(line) {
-			offsetSeconds, ok := tscript.ScanOffset(line)
+		if transcript.IsOffsetTag(line) {
+			offsetSeconds, ok := transcript.ScanOffset(line)
 			if !ok {
 				return nil, fmt.Errorf("failed to get valid offset from line: %s", line)
 			}

@@ -12,6 +12,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/search"
 	"github.com/warmans/rsk-search/pkg/store/common"
 	"github.com/warmans/rsk-search/pkg/store/ro"
+	"github.com/warmans/rsk-search/pkg/transcript"
 	"github.com/warmans/rsk-search/service/config"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
@@ -122,7 +123,15 @@ func (s *SearchService) GetTranscript(ctx context.Context, request *api.GetTrans
 	if err == data.ErrNotFound || ep == nil {
 		return nil, ErrNotFound(request.Epid).Err()
 	}
-	return ep.Proto(), nil
+	var rawTranscript string
+	if request.WithRaw {
+		var err error
+		rawTranscript, err = transcript.Export(ep.Transcript, ep.Synopsis)
+		if err != nil {
+			return nil, ErrInternal(err).Err()
+		}
+	}
+	return ep.Proto(rawTranscript), nil
 }
 
 func (s *SearchService) ListTranscripts(ctx context.Context, request *api.ListTranscriptsRequest) (*api.TranscriptList, error) {

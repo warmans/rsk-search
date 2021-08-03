@@ -3,10 +3,24 @@
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a [routerLink]="['/search']">Home</a></li>
-      <li class="breadcrumb-item"><a [routerLink]="['/ep', episodeID]">{{episodeID}}</a></li>
+      <li class="breadcrumb-item"><a [routerLink]="['/ep', epID]">{{epID}}</a></li>
       <li class="breadcrumb-item active" aria-current="page">Change</li>
     </ol>
   </nav>
 
-</div>
+  <div class="row mb-2">
+    <div class="col-8">
+      <app-transcriber
+        [contentID]="change ? change.id : transcript?.id"
+        [rawTranscript]="transcript?.rawTranscript || ''"
+        [lastUpdateDate]=""
+        [audioPlayerURL]=""
+        [allowEdit]="true"
+        [isSaved]="false"
+        (handleSave)="handleSave($event)"
+      >
+      </app-transcriber>
+    </div>
+  </div>
 
+</div>

@@ -1,4 +1,4 @@
-package tscript
+package transcript
 
 import "testing"
 

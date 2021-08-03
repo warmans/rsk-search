@@ -12,6 +12,7 @@ export interface RskTranscript {
   incomplete?: boolean;
   metadata?: { [key: string]: string };
   publication?: string;
+  rawTranscript?: string;
   releaseDate?: string;
   series?: number;
   synopses?: RskSynopsis[];

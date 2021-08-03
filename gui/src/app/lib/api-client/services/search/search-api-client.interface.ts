@@ -214,6 +214,7 @@ export interface SearchAPIClientInterface {
   getTranscript(
     args: {
       epid: string,
+      withRaw?: boolean,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscript>;

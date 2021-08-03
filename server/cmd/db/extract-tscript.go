@@ -13,7 +13,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/store/common"
 	"github.com/warmans/rsk-search/pkg/store/rw"
-	"github.com/warmans/rsk-search/pkg/tscript"
+	"github.com/warmans/rsk-search/pkg/transcript"
 	"go.uber.org/zap"
 	"os"
 	"sort"
@@ -120,12 +120,12 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 
 				// if the transcript is missing insert a placeholder
 				if chContribution == nil {
-					lastPos = lastPos + tscript.PosSpacing
+					lastPos = lastPos + transcript.PosSpacing
 					episodeOnDisk.Transcript = append(
 						episodeOnDisk.Transcript,
 						models.Dialog{
 							ID:          shortuuid.New(),
-							Position:    lastPos + tscript.PosSpacing,
+							Position:    lastPos + transcript.PosSpacing,
 							OffsetSec:   0,
 							Type:        "gap",
 							Actor:       "",
@@ -138,7 +138,7 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 					continue
 				}
 
-				dialog, synopsis, err := tscript.Import(bufio.NewScanner(bytes.NewBufferString(chContribution.Transcription)), lastPos)
+				dialog, synopsis, err := transcript.Import(bufio.NewScanner(bytes.NewBufferString(chContribution.Transcription)), lastPos)
 				if err != nil {
 					return err
 				}

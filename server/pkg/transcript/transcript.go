@@ -1,4 +1,4 @@
-package tscript
+package transcript
 
 import (
 	"bufio"
@@ -106,6 +106,43 @@ func Import(scanner *bufio.Scanner, startPos int64) ([]models.Dialog, []models.S
 	}
 
 	return output, synopsies, nil
+}
+
+// Export dumps dialog back to the raw format.
+// the problem is this loses most of the metadata and it's not at all easy to
+func Export(dialog []models.Dialog, synopsis []models.Synopsis) (string, error) {
+
+	output := strings.Builder{}
+	for _, d := range dialog {
+		if d.OffsetSec > 0 {
+			output.WriteString(fmt.Sprintf("#OFFSET: %d\n", d.OffsetSec))
+		}
+		for _, syn := range synopsis {
+			if d.Position == syn.StartPos {
+				output.WriteString(fmt.Sprintf("#SYN: %s\n", syn.Description))
+			}
+			if d.Position == syn.EndPos {
+				output.WriteString("#/SYN\n")
+			}
+		}
+
+		noteable := ""
+		if d.Notable {
+			noteable = "!"
+		}
+		actor := "none"
+		switch d.Type {
+		case models.DialogTypeChat:
+			// if the actor isn't set just use none as it seems most "none" sections are marked as chat.
+			if strings.TrimSpace(d.Actor) != "" {
+				actor = d.Actor
+			}
+		case models.DialogTypeSong:
+			actor = "song"
+		}
+		output.WriteString(fmt.Sprintf("%s%s: %s\n", noteable, actor, d.Content))
+	}
+	return output.String(), nil
 }
 
 func CorrectContent(c string) string {

@@ -446,6 +446,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   getTranscript(
     args: {
       epid: string,
+      withRaw?: boolean,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscript> {
@@ -455,6 +456,9 @@ export class SearchAPIClient implements SearchAPIClientInterface {
       ...requestHttpOptions,
     };
 
+    if ('withRaw' in args) {
+      options.params = options.params.set('withRaw', String(args.withRaw));
+    }
     return this.sendRequest<models.RskTranscript>('GET', path, options);
   }
 

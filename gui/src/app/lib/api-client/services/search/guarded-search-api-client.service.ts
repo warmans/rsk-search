@@ -227,6 +227,7 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
   getTranscript(
     args: {
       epid: string,
+      withRaw?: boolean,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscript> {

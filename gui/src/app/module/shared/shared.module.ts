@@ -18,6 +18,7 @@ import { EditorComponent } from './component/editor/editor.component';
 import { EditorConfigComponent } from './component/editor-config/editor-config.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditorHelpComponent } from './component/editor-help/editor-help.component';
+import { TranscriberComponent } from './component/transcriber/transcriber.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { EditorHelpComponent } from './component/editor-help/editor-help.compone
     EditorComponent,
     EditorConfigComponent,
     EditorHelpComponent,
+    TranscriberComponent,
   ],
   imports: [
     CommonModule,
@@ -60,6 +62,7 @@ import { EditorHelpComponent } from './component/editor-help/editor-help.compone
     EditorComponent,
     EditorConfigComponent,
     EditorHelpComponent,
+    TranscriberComponent,
   ]
 })
 export class SharedModule {

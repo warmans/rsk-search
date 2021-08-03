@@ -740,6 +740,12 @@
               "in": "path",
               "required": true,
               "type": "string"
+            },
+            {
+              "name": "withRaw",
+              "in": "query",
+              "required": false,
+              "type": "boolean"
             }
           ],
           "tags": [
@@ -1609,6 +1615,9 @@
           },
           "incomplete": {
             "type": "boolean"
+          },
+          "rawTranscript": {
+            "type": "string"
           }
         }
       },

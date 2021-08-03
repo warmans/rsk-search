@@ -5,6 +5,7 @@ import { SearchAPIClient } from '../../../../lib/api-client/services/search';
 import { Title } from '@angular/platform-browser';
 import { SessionService } from '../../../core/service/session/session.service';
 import { AlertService } from '../../../core/service/alert/alert.service';
+import { RskTranscript, RskTranscriptChange } from '../../../../lib/api-client/models';
 
 @Component({
   selector: 'app-transcript-change',
@@ -13,7 +14,11 @@ import { AlertService } from '../../../core/service/alert/alert.service';
 })
 export class TranscriptChangeComponent implements OnInit, OnDestroy {
 
-  episodeID: string;
+  epID: string;
+
+  transcript: RskTranscript;
+
+  change: RskTranscriptChange;
 
   $destroy: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -29,10 +34,12 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
 
     route.paramMap.pipe(takeUntil(this.$destroy)).subscribe((d: Data) => {
 
-      this.episodeID = d.params['episode_id'];
+      this.epID = d.params['epid'];
 
+      this.apiClient.getTranscript({ epid: this.epID, withRaw: true }).pipe(takeUntil(this.$destroy)).subscribe((res: RskTranscript) => {
+        this.transcript = res;
+      });
     });
-
   }
 
   ngOnDestroy(): void {
@@ -41,6 +48,11 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+
+
+  }
+
+  handleSave(transcript: string): void {
 
   }
 

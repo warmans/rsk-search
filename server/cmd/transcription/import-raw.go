@@ -5,7 +5,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/warmans/rsk-search/pkg/data"
 	"github.com/warmans/rsk-search/pkg/models"
-	"github.com/warmans/rsk-search/pkg/tscript"
+	"github.com/warmans/rsk-search/pkg/transcript"
 	"github.com/warmans/rsk-search/pkg/util"
 	"os"
 )
@@ -28,7 +28,7 @@ func ImportRawCmd() *cobra.Command {
 			var synopsies []models.Synopsis
 			err := util.WithExistingFile(args[0], func(f *os.File) error {
 				var err error
-				dialog, synopsies, err = tscript.Import(bufio.NewScanner(f), 0)
+				dialog, synopsies, err = transcript.Import(bufio.NewScanner(f), 0)
 				return err
 			})
 			if err != nil {
