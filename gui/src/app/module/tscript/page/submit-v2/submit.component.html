@@ -1,4 +1,3 @@
-
 <div class="container-fluid pt-3">
 
   <nav aria-label="breadcrumb">
@@ -12,6 +11,7 @@
   </nav>
 
   <!-- alerts -->
+
   <div class="row mb-3">
     <div class="col-12">
 
@@ -27,6 +27,7 @@
   </div>
 
   <!-- state -->
+
   <div class="row mb-3">
     <div class="col-12">
 
@@ -78,6 +79,9 @@
       </div>
     </div>
   </div>
+
+  <!-- transcript editor -->
+
   <div class="row mb-2">
     <div class="col-12">
       <app-transcriber
@@ -93,133 +97,6 @@
     </div>
   </div>
 </div>
-
-<!--div class="container-fluid pt-3">
-
-
-  <div class="row mb-2">
-    <div class="col-8">
-
-      <div class="card mb-4">
-        <div class="card-body">
-          <div class="audio-player">
-            <app-audio-player [src]="audioPlayerURL" [playbackRate]="editorConfig.playbackRate || 1.0"
-                              #audioPlayer></app-audio-player>
-            <div class="mt-3 text-sm text-right">
-              <i class="bi-keyboard-fill"></i> Press <span
-              class="badge">{{editorConfig?.playPauseKey || 'Insert'}}</span> key to toggle audio playback.
-              <span class="badge">{{editorConfig?.rewindKey || 'ScrollLock'}}</span>/<span class="badge">{{editorConfig?.fastForwardKey || 'Pause'}}</span>
-              keys to skip backwards/forwards.
-              Autoseek is <span class="badge">{{editorConfig?.autoSeek ? 'ON' : 'OFF'}}</span>.
-              Audio speed is <span class="badge">{{editorConfig?.playbackRate | number}}</span>.
-              Change using the Editor/Audio Config below.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-header">
-          <span class="float-right">
-            <button class="btn btn-sm" (click)="showHelp = !showHelp"
-                    [ngClass]="{'btn-outline-primary': !showHelp, 'btn-primary': showHelp}" title="Toggle help text">
-              <span *ngIf="!showHelp">I am confused</span>
-              <span *ngIf="showHelp">I am satisfied</span>
-            </button>
-          </span>
-          <span class="float-right">
-            <button class="btn btn-danger btn-sm mr-3" *ngIf="userCanEdit" (click)="resetToRaw()"
-                    title="revert text to chunk original">Reset</button>
-          </span>
-          <span class="float-right">
-            <app-editor-config #editorConfigModal [initialConfig]="editorConfig"
-                               (configUpdated)="handleEditorConfigUpdated($event)"></app-editor-config>
-            <button class="btn btn-sm btn-info mr-3" *ngIf="userCanEdit" (click)="openEditorConfig()"
-                    title="Change editor config">Editor/Audio Config</button>
-          </span>
-          <span>
-            <span *ngIf="!contribution">Create </span>
-            <span *ngIf="contribution">Update </span>
-            Draft Transcript
-          </span>
-        </div>
-        <div [hidden]="showHelp">
-          <div class="card-body">
-            <app-editor [readonly]="!userCanEdit" [wrap]="editorConfig.wrapText" [textContent]="initialTranscript"
-                        (textContentChange)="setUpdatedTranscript($event)"
-                        (atOffsetMarker)="handleOffsetNavigate($event)"></app-editor>
-          </div>
-          <div class="card-footer pt-3 pb-3" *ngIf="authenticated && userCanEdit">
-            <div class="float-right">
-              <span *ngIf="lastUpdateTimestamp" class="text-muted">
-                Autosaved {{timeSinceSave()}} ago.
-              </span>
-              <button *ngIf="contribution" class="btn btn-sm btn-secondary ml-3" (click)="update()">Save</button>
-            </div>
-          </div>
-        </div>
-        <div class="card-body" [hidden]="!showHelp">
-          <app-editor-help [editorConfig]="editorConfig"></app-editor-help>
-        </div>
-      </div>
-    </div>
-    <div class="col-4">
-      <div class="card" *ngIf="!contribution">
-        <div class="card-body">
-          <p>Currently your contribution is only saved locally, you can create a draft to allow you to submit it for
-            approval.</p>
-          <button class="btn btn-success mt-2" (click)="create()" [disabled]="!updatedTranscript">Create draft</button>
-        </div>
-      </div>
-      <div class="card" *ngIf="contribution">
-        <div class="card-body">
-          <div class="mb-3 d-flex flex-row">
-            <app-contribution-state [state]="contribution.state"></app-contribution-state>
-          </div>
-          <div *ngIf="userIsOwner">
-            <div *ngIf="contribution.state === cStates.STATE_PENDING">
-              <p>This means that the contribution has not yet been reviewed and can still be edited if you are the
-                owner. Clicking the button below will mark it as being ready to be merged.</p>
-              <button class="btn btn-success mt-2" (click)="markComplete()" [disabled]="!updatedTranscript">
-                Mark as complete <i class="bi-check"></i>
-              </button>
-            </div>
-            <div *ngIf="contribution.state === cStates.STATE_REQUEST_APPROVAL">
-              <p>This means your contribution will now be reviewed and merged (hopefully!).</p>
-              <div class="d-flex">
-                <button class="btn btn-warning mt-2" (click)="markIncomplete()">Revert to incomplete <i
-                  class="bi-pen"></i></button>
-                <div *ngIf="userIsApprover">
-                  <button class="btn btn-success mt-2 ml-3" (click)="markApproved()">Approve</button>
-                  <button class="btn btn-danger mt-2 ml-3" (click)="markRejected()">Reject</button>
-                </div>
-              </div>
-            </div>
-            <div *ngIf="contribution.state === cStates.STATE_APPROVED">
-              This means your contributions was approved and will be merged into the canonical dataset.
-            </div>
-            <div *ngIf="contribution.state === cStates.STATE_REJECTED">
-              <p>This means it was not possible to merge your contribution either because it was a duplicate,
-                or because it did not appear to be correct.</p>
-              <button class="btn btn-success mt-2" (click)="markIncomplete()" [disabled]="!updatedTranscript">
-                Revert to incomplete <i class="bi-pen"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card mt-4">
-        <div class="card-header">
-          Preview
-        </div>
-        <div class="card-body preview-window">
-          <app-synopses [synopses]="parsedTscript?.synopses"></app-synopses>
-          <app-transcript [transcript]="parsedTscript?.dialog"></app-transcript>
-        </div>
-      </div>
-    </div>
-  </div>
-</div -->
 
 <app-reddit-login [open]="!authenticated"></app-reddit-login>
 
