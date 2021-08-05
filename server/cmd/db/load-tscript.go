@@ -41,7 +41,7 @@ func LoadTscriptCmd() *cobra.Command {
 	}
 
 	dbCfg.RegisterFlags(cmd.Flags(), "", "rw")
-	cmd.Flags().StringVarP(&inputDir, "input-path", "i", "var/data/episodes/incomplete/chunked", "Path to chunks transcripts")
+	cmd.Flags().StringVarP(&inputDir, "input-path", "i", "var/data/incomplete/chunked", "Path to chunks transcripts")
 
 	return cmd
 }
