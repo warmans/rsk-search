@@ -7,7 +7,7 @@ parser = argparse.ArgumentParser(description='Split audio file into chunks accor
 parser.add_argument('--meta', type=str,
                     help='the chunked transcript')
 parser.add_argument('--audio', type=str,
-                    help='the corrisponding audio file')
+                    help='the corresponding audio file')
 parser.add_argument('--outpath', type=str,
                     help='dir to save output files')
 

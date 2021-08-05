@@ -9,10 +9,12 @@ import { ApproveComponent } from './page/approve/approve.component';
 import { ContributeComponent } from './page/contribute/contribute.component';
 import { LeaderboardComponent } from './component/leaderboard/leaderboard.component';
 import { RewardModule } from '../reward/reward.module';
+import { SubmitV2Component } from './page/submit-v2/submit.component';
 
 @NgModule({
   declarations: [
     SubmitComponent,
+    SubmitV2Component,
     RandomComponent,
     AuthorContributionsComponent,
     ApproveComponent,
@@ -25,7 +27,7 @@ import { RewardModule } from '../reward/reward.module';
     RouterModule,
     RewardModule,
   ],
-  exports: [SubmitComponent]
+  exports: []
 })
 export class TscriptModule {
 }

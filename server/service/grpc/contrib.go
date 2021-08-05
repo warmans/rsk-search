@@ -553,12 +553,11 @@ func (s *ContribService) ListDonationRecipients(ctx context.Context, request *ap
 	return res, nil
 }
 
-// GetEditableTranscript returns a transcript in the flat "chunk" format.
-func (s *ContribService) GetEditableTranscript(ctx context.Context, request *api.GetEditableTranscriptRequest) (*api.EditableTranscript, error) {
+func (s *ContribService) ListTranscriptChanges(ctx context.Context, request *api.ListTranscriptChangesRequest) (*api.TranscriptChangeList, error) {
 	panic("implement me")
 }
 
-func (s *ContribService) ListTranscriptChanges(ctx context.Context, request *api.ListTranscriptChangesRequest) (*api.TranscriptChangeList, error) {
+func (s *ContribService) GetTranscriptChange(ctx context.Context, request *api.GetTranscriptChangeRequest) (*api.TranscriptChange, error) {
 	panic("implement me")
 }
 

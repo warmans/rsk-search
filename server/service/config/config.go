@@ -11,6 +11,7 @@ type SearchServiceConfig struct {
 	Hostname        string
 	RewardsDisabled bool
 	FilesBasePath   string
+	AudioUriPattern string
 }
 
 func (c *SearchServiceConfig) RegisterFlags(fs *pflag.FlagSet, prefix string) {
@@ -19,4 +20,5 @@ func (c *SearchServiceConfig) RegisterFlags(fs *pflag.FlagSet, prefix string) {
 	flag.StringVarEnv(fs, &c.BleveIndexPath, prefix, "bleve-index-path", "./var/rsk.bleve", "location of bleve search index")
 	flag.StringVarEnv(fs, &c.FilesBasePath, prefix, "files-base-path", "./var", "location files that can be downloaded")
 	flag.BoolVarEnv(fs, &c.RewardsDisabled, prefix, "rewards-disabled", false, "Disable claiming rewards (but sill calculate them)")
+	flag.StringVarEnv(fs, &c.AudioUriPattern, prefix, "audio-uri-pattern", "https://storage.googleapis.com/scrimpton-raw-audio/%s.mp3", "episode ID e.g. xfm-S1E01 will be interpolated into this string")
 }

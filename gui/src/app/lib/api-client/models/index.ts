@@ -22,7 +22,6 @@ export { RskDialogResult } from './rsk-dialog-result.model';
 export { RskDonationArgs } from './rsk-donation-args.model';
 export { RskDonationRecipient } from './rsk-donation-recipient.model';
 export { RskDonationRecipientList } from './rsk-donation-recipient-list.model';
-export { RskEditableTranscript } from './rsk-editable-transcript.model';
 export { RskFieldMeta } from './rsk-field-meta.model';
 export { RskFieldValue } from './rsk-field-value.model';
 export { RskFieldValueList } from './rsk-field-value-list.model';

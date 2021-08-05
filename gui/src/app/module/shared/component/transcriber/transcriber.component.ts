@@ -1,7 +1,7 @@
 import { Component, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { EditorConfig, EditorConfigComponent } from '../editor-config/editor-config.component';
 import { Subject } from 'rxjs';
-import { getFirstOffset } from '../../lib/tscript';
+import { getFirstOffset, parseTranscript, Tscript } from '../../lib/tscript';
 import { AudioPlayerComponent } from '../audio-player/audio-player.component';
 import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { formatDistance } from 'date-fns';
@@ -35,7 +35,16 @@ export class TranscriberComponent implements OnInit, OnDestroy {
   audioPlayerURL: string = '';
 
   @Input()
-  allowEdit: boolean = false;
+  set allowEdit(value: boolean) {
+    this._allowEdit = value;
+    if (!value) {
+      this.activeTab = 'preview';
+    }
+  }
+  get allowEdit(): boolean {
+    return this._allowEdit;
+  }
+  private _allowEdit: boolean = false;
 
   @Input()
   isSaved: boolean = false;
@@ -55,13 +64,26 @@ export class TranscriberComponent implements OnInit, OnDestroy {
 
   showHelp: boolean = false;
 
-  $destroy: EventEmitter<boolean> = new EventEmitter<boolean>();
+  set activeTab(value: "edit" | "preview") {
+    this._activeTab = value;
+    if (value === "preview") {
+      this.updatePreview(this.updatedTranscript || this.initialTranscript);
+    }
+  }
+  get activeTab(): "edit" | "preview" {
+    return this._activeTab;
+  }
+  private _activeTab: 'edit' | 'preview' = 'edit';
+
+  parsedTscript: Tscript;
 
   @ViewChild('audioPlayer')
   audioPlayer: AudioPlayerComponent;
 
   @ViewChild('editorConfigModal')
   editorConfigModal: EditorConfigComponent;
+
+  $destroy: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent): boolean {
@@ -92,10 +114,11 @@ export class TranscriberComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.contentUpdated.pipe(takeUntil(this.$destroy), distinctUntilChanged(), debounceTime(1000)).subscribe((v) => {
+      const isFirstUpdate: boolean = this.updatedTranscript === "";
       this.updatedTranscript = v;
-      this.backupContent(v);
-      console.log("updated raw")
-      //this.updatePreview(v);
+      if (!isFirstUpdate) {
+        this.backupContent(v);
+      }
       this.save();
     });
   }
@@ -105,14 +128,13 @@ export class TranscriberComponent implements OnInit, OnDestroy {
     this.initialTranscript = backup ? backup : text;
     if (backup) {
       this.fromBackup = true;
-      console.log(backup);
     }
     this.contentUpdated.next(this.initialTranscript);
     this.firstOffset = getFirstOffset(this.initialTranscript);
   }
 
   backupContent(text: string) {
-    if (!this.updatedTranscript || !this.contentID) {
+    if (!text || !this.contentID) {
       return;
     }
     localStorage.setItem(`content-backup-${this.contentID}`, text);
@@ -134,7 +156,7 @@ export class TranscriberComponent implements OnInit, OnDestroy {
     if (confirm('Really reset editor to raw raw transcript?')) {
       this.clearBackup();
       this.setInitialTranscript(this._rawTranscript);
-      //this.updatePreview(this.initialTranscript);
+      this.updatePreview(this._rawTranscript);
     }
   }
 
@@ -171,4 +193,9 @@ export class TranscriberComponent implements OnInit, OnDestroy {
       this.handleSave.next(this.updatedTranscript);
     }
   }
+
+  updatePreview(content: string) {
+    this.parsedTscript = parseTranscript(content);
+  }
+
 }

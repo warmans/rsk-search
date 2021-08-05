@@ -1,23 +1,23 @@
-import { Component, EventEmitter, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { SessionService } from '../../../core/service/session/session.service';
-import { getFirstOffset, parseTranscript, Tscript } from '../../../shared/lib/tscript';
-import { AudioPlayerComponent } from '../../../shared/component/audio-player/audio-player.component';
+import { getFirstOffset, Tscript } from '../../../shared/lib/tscript';
 import { AlertService } from '../../../core/service/alert/alert.service';
 import { formatDistance } from 'date-fns';
 import { RskChunk, RskChunkContribution, RskContributionState } from '../../../../lib/api-client/models';
-import { EditorConfig, EditorConfigComponent } from '../../../shared/component/editor-config/editor-config.component';
+import { EditorConfig } from '../../../shared/component/editor-config/editor-config.component';
+import { TranscriberComponent } from '../../../shared/component/transcriber/transcriber.component';
 
 @Component({
-  selector: 'app-submit',
+  selector: 'app-submit-v2',
   templateUrl: './submit.component.html',
   styleUrls: ['./submit.component.scss']
 })
-export class SubmitComponent implements OnInit, OnDestroy {
+export class SubmitV2Component implements OnInit, OnDestroy {
 
   authenticated: boolean = false;
   authError: string;
@@ -48,30 +48,8 @@ export class SubmitComponent implements OnInit, OnDestroy {
 
   $destroy: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  @ViewChild('audioPlayer')
-  audioPlayer: AudioPlayerComponent;
-
-  @ViewChild('editorConfigModal')
-  editorConfigModal: EditorConfigComponent;
-
-  @HostListener('document:keydown', ['$event'])
-  handleKeyboardEvent(event: KeyboardEvent): boolean {
-    if (this.editorConfig.autoSeek === undefined ? true : this.editorConfig.autoSeek) {
-      if (event.key === (this.editorConfig?.playPauseKey || 'Insert')) {
-        this.audioPlayer.toggle(0 - (this.editorConfig?.backtrack || 3));
-        return false;
-      }
-      if (event.key === (this.editorConfig?.rewindKey || 'ScrollLock')) {
-        this.audioPlayer.play(-3);
-        return false;
-      }
-      if (event.key === (this.editorConfig?.fastForwardKey || 'Pause')) {
-        this.audioPlayer.play(3);
-        return false;
-      }
-      return true;
-    }
-  }
+  @ViewChild('transcriber')
+  transcriber: TranscriberComponent;
 
   constructor(
     private route: ActivatedRoute,
@@ -120,18 +98,18 @@ export class SubmitComponent implements OnInit, OnDestroy {
             titleService.setTitle(`Contribute :: ${v.id}`);
 
             this.chunk = v;
-            this.audioPlayerURL = `https://storage.googleapis.com/warmans-transcription-audio/${v.id}.mp3`;
+            this.audioPlayerURL = `https://storage.googleapis.com/scrimpton-chunked-audio/${v.id}.mp3`;
 
             this.setInitialTranscript(this.chunk.raw);
           }
         ).add(() => this.loading.shift());
       }
+    });
 
-      sessionService.onTokenChange.pipe(takeUntil(this.$destroy)).subscribe((token: string): void => {
-        if (token != null) {
-          this.authenticated = true;
-        }
-      });
+    sessionService.onTokenChange.pipe(takeUntil(this.$destroy)).subscribe((token: string): void => {
+      if (token != null) {
+        this.authenticated = true;
+      }
     });
   }
 
@@ -143,8 +121,6 @@ export class SubmitComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.contentUpdated.pipe(takeUntil(this.$destroy), distinctUntilChanged(), debounceTime(1000)).subscribe((v) => {
       this.updatedTranscript = v;
-      this.backupContent(v);
-      this.updatePreview(v);
       if (this.contribution && this.userCanEdit) {
         this.update();
       }
@@ -155,6 +131,11 @@ export class SubmitComponent implements OnInit, OnDestroy {
     this.titleService.setTitle(`contribute :: ${res.chunkId} :: ${res.id}`);
 
     this.contribution = res;
+
+    // each time the contribution is saved the backup needs to be cleared to ensure the editor is in sync with the
+    // server-side version of the transcript.
+    this.transcriber.clearBackup();
+
     this.setInitialTranscript(res.transcript);
 
     this.userCanEdit = res.state === RskContributionState.STATE_PENDING;
@@ -167,7 +148,7 @@ export class SubmitComponent implements OnInit, OnDestroy {
   }
 
   setInitialTranscript(text: string) {
-    this.initialTranscript = this.getBackup() ? this.getBackup() : text;
+    this.initialTranscript = text;
     this.contentUpdated.next(this.initialTranscript);
     this.firstOffset = getFirstOffset(this.initialTranscript);
   }
@@ -176,50 +157,13 @@ export class SubmitComponent implements OnInit, OnDestroy {
     this.contentUpdated.next(text);
   }
 
-  updatePreview(content: string) {
-    this.parsedTscript = parseTranscript(content);
-  }
-
-  backupContent(text: string) {
-    if (!this.chunk) {
-      return;
-    }
-    localStorage.setItem(`chunk-backup-${(this.contribution) ? this.contribution.id : this.chunk.id}`, text);
-  }
-
-  getBackup(): string {
-    return localStorage.getItem(`chunk-backup-${(this.contribution) ? this.contribution.id : this.chunk.id}`);
-  }
-
-  resetToRaw() {
-    if (confirm('Really reset editor to raw raw transcript?')) {
-      this.initialTranscript = this.contribution ? this.contribution.transcript : this.chunk.raw;
-      this.updatePreview(this.initialTranscript);
-    }
-  }
-
-  handleOffsetNavigate(offset: number) {
-    if (this.editorConfig?.autoSeek === undefined ? true : this.editorConfig.autoSeek) {
-      if (offset - this.firstOffset >= 0) {
-        this.audioPlayer.seek(offset - this.firstOffset);
-      }
-    }
-  }
-
-  openEditorConfig() {
-    if (!this.editorConfigModal) {
-      return;
-    }
-    this.editorConfigModal.open = true;
-  }
-
-  handleEditorConfigUpdated(cfg: EditorConfig) {
-    this.editorConfig = cfg;
-    localStorage.setItem('editor-config', JSON.stringify(cfg));
-  }
 
   timeSinceSave(): string {
     return formatDistance(this.lastUpdateTimestamp, new Date());
+  }
+
+  handleSave(text: string) {
+    this.updatedTranscript = text;
   }
 
   create() {
@@ -229,7 +173,7 @@ export class SubmitComponent implements OnInit, OnDestroy {
         chunkId: this.chunk.id,
         body: { chunkId: this.chunk.id, transcript: this.updatedTranscript }
       }).pipe(takeUntil(this.$destroy)).subscribe((res: RskChunkContribution) => {
-        this.backupContent(''); // clear backup so that the content always matches what was submitted.
+        this.transcriber.clearBackup();
         this.alertService.success('Created', 'Draft was created. It will now be auto-saved on change.');
         this.router.navigate(['/chunk', this.chunk.id, 'contrib', res.id]);
       }).add(() => this.loading.shift());
@@ -239,6 +183,7 @@ export class SubmitComponent implements OnInit, OnDestroy {
   update() {
     this._update(this.contribution.state).subscribe((res: RskChunkContribution) => {
       this.lastUpdateTimestamp = new Date();
+      this.transcriber.clearBackup();
     });
   }
 

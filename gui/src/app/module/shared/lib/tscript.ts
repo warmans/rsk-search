@@ -39,6 +39,10 @@ export function getFirstOffset(transcript: string): number {
 export function parseTranscript(transcript: string): Tscript {
   let tscript = new Tscript([], []);
 
+  if (!transcript) {
+    return tscript;
+  }
+
   transcript.split('\n').forEach((line) => {
     line = line.trim();
     let notable: boolean = false;

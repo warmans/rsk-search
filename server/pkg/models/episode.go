@@ -4,6 +4,7 @@ import (
 	"github.com/warmans/rsk-search/gen/api"
 	"github.com/warmans/rsk-search/pkg/meta"
 	"github.com/warmans/rsk-search/pkg/util"
+	"strings"
 	"time"
 )
 
@@ -53,7 +54,6 @@ type Dialog struct {
 	// content tokens mapped to tags
 	// e.g. Foo! (text) => foo (tag)
 	ContentTags map[string]string `json:"content_tags"`
-	Contributor string            `json:"contributor"`
 }
 
 func (d Dialog) Proto(bestMatch bool) *api.Dialog {
@@ -97,6 +97,10 @@ func (e *Transcript) ID() string {
 	return EpisodeID(e)
 }
 
+func (e *Transcript) ShortID() string {
+	return strings.TrimPrefix(EpisodeID(e), "ep-")
+}
+
 func (e *Transcript) ShortProto() *api.ShortTranscript {
 	if e == nil {
 		return nil
@@ -110,20 +114,22 @@ func (e *Transcript) ShortProto() *api.ShortTranscript {
 	return ep
 }
 
-func (e *Transcript) Proto(withRawTranscript string) *api.Transcript {
+func (e *Transcript) Proto(withRawTranscript string, audioURI string) *api.Transcript {
 	if e == nil {
 		return nil
 	}
 	ep := &api.Transcript{
-		Id:           e.ID(),
-		Publication:  e.Publication,
-		Series:       e.Series,
-		Episode:      e.Episode,
-		Metadata:     e.Meta.Proto(),
-		ReleaseDate:  e.ReleaseDate.Format(util.ShortDateFormat),
-		Contributors: e.Contributors,
-		Incomplete:   e.Incomplete,
+		Id:            e.ID(),
+		ShortId:       e.ShortID(),
+		Publication:   e.Publication,
+		Series:        e.Series,
+		Episode:       e.Episode,
+		Metadata:      e.Meta.Proto(),
+		ReleaseDate:   e.ReleaseDate.Format(util.ShortDateFormat),
+		Contributors:  e.Contributors,
+		Incomplete:    e.Incomplete,
 		RawTranscript: withRawTranscript,
+		AudioUri:      audioURI,
 	}
 	for _, tn := range e.Tags {
 		tag := meta.GetTag(tn)
@@ -140,7 +146,7 @@ func (e *Transcript) Proto(withRawTranscript string) *api.Transcript {
 	return ep
 }
 
-type ShortEpisode struct {
+type ShortTranscript struct {
 	ID                  string
 	Publication         string
 	Series              int32
@@ -149,7 +155,7 @@ type ShortEpisode struct {
 	TranscriptAvailable bool
 }
 
-func (e *ShortEpisode) ShortProto() *api.ShortTranscript {
+func (e *ShortTranscript) ShortProto() *api.ShortTranscript {
 	if e == nil {
 		return nil
 	}

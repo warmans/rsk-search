@@ -11,6 +11,7 @@ import (
 	"go.uber.org/zap"
 	"io/ioutil"
 	"path"
+	"strings"
 )
 
 func LoadTscriptCmd() *cobra.Command {
@@ -54,7 +55,7 @@ func populatePersistentDB(inputDataPath string, conn *rw.Conn, logger *zap.Logge
 		return err
 	}
 	for _, dirEntry := range incompleteEntries {
-		if dirEntry.IsDir() {
+		if dirEntry.IsDir() || strings.HasPrefix(dirEntry.Name(), ".") {
 			continue
 		}
 		logger.Info("Parsing file...", zap.String("path", dirEntry.Name()))

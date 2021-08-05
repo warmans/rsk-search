@@ -146,6 +146,8 @@ message Transcript {
   repeated string contributors = 10;
   bool incomplete = 11;
   string raw_transcript = 12;
+  string audio_uri = 13;
+  string short_id = 14;
 }
 
 message GetTranscriptRequest {

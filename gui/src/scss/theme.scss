@@ -4,6 +4,7 @@ $themes: (
     'bg-color': #17191F,
     'fg-body': #343A40,
     'fg-body-darker': #2A2E33,
+    'fg-body-lighter': lighten(#343A40, 10%),
     'fg-border': darken(#343A40, 5%),
     'progress-bg': #17191F,
     'navbar-bg': #343A40,

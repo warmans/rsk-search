@@ -190,6 +190,24 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  getTranscriptChange(
+    args: {
+      id: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskTranscriptChange> {
+    const path = `/api/contrib/transcript/change/${args.id}`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<models.RskTranscriptChange>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   deleteTranscriptChange(
     args: {
       id: string,
@@ -241,24 +259,6 @@ export class SearchAPIClient implements SearchAPIClientInterface {
     };
 
     return this.sendRequest<object>('PATCH', path, options, JSON.stringify(args.body));
-  }
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  getEditableTranscript(
-    args: {
-      epid: string,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskEditableTranscript> {
-    const path = `/api/contrib/transcript/${args.epid}`;
-    const options: APIHttpOptions = {
-      ...this.options,
-      ...requestHttpOptions,
-    };
-
-    return this.sendRequest<models.RskEditableTranscript>('GET', path, options);
   }
 
   /**

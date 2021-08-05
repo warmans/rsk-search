@@ -2,6 +2,7 @@ package grpc
 
 import (
 	"context"
+	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/warmans/rsk-search/gen/api"
@@ -131,7 +132,7 @@ func (s *SearchService) GetTranscript(ctx context.Context, request *api.GetTrans
 			return nil, ErrInternal(err).Err()
 		}
 	}
-	return ep.Proto(rawTranscript), nil
+	return ep.Proto(rawTranscript, fmt.Sprintf(s.srvCfg.AudioUriPattern, ep.ShortID())), nil
 }
 
 func (s *SearchService) ListTranscripts(ctx context.Context, request *api.ListTranscriptsRequest) (*api.TranscriptList, error) {

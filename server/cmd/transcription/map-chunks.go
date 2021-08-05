@@ -34,6 +34,9 @@ func MapChunksCmd() *cobra.Command {
 				if dirEntry.IsDir() {
 					continue
 				}
+				if strings.HasPrefix(dirEntry.Name(), ".") {
+					continue
+				}
 				f, err := os.Open(path.Join(incompleteFilesDir, dirEntry.Name()))
 				if err != nil {
 					return err
@@ -68,7 +71,7 @@ func MapChunksCmd() *cobra.Command {
 		},
 	}
 
-	cmd.Flags().StringVarP(&incompleteFilesDir, "incomplete-dir", "d", "./var/data/episodes/incomplete/raw", "Path to incomplete transcripts created by gcloud")
+	cmd.Flags().StringVarP(&incompleteFilesDir, "incomplete-dir", "d", "./var/data/incomplete/raw", "Path to incomplete transcripts created by gcloud")
 
 	return cmd
 }

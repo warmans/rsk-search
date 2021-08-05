@@ -84,7 +84,22 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 			episodeOnDisk.Synopsis = nil
 			episodeOnDisk.Transcript = nil
 
-			allChunks, err := s.ListChunks(ctx, &common.QueryModifier{Filter: filter.Eq("tscript_id", filter.String(v.ID))})
+			// contributors should be merged with whatever is on disk
+			uniqueContributors := map[string]struct{}{}
+			for _, v := range episodeOnDisk.Contributors {
+				uniqueContributors[v] = struct{}{}
+			}
+
+			allChunks, err := s.ListChunks(
+				ctx,
+				&common.QueryModifier{
+					Filter: filter.Eq("tscript_id", filter.String(v.ID)),
+					Sorting: &common.Sorting{
+						Field:     "start_second",
+						Direction: common.SortAsc,
+					},
+				},
+			)
 			if err != nil {
 				return err
 			}
@@ -149,21 +164,12 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 					logger.Error(fmt.Sprintf("Failed to get author with ID %s", chContribution.Author.ID))
 					continue
 				} else {
-					for k := range dialog {
-						dialog[k].Contributor = author.Name
-					}
+					uniqueContributors[author.Name] = struct{}{}
 				}
 				episodeOnDisk.Transcript = append(episodeOnDisk.Transcript, dialog...)
 				episodeOnDisk.Synopsis = append(episodeOnDisk.Synopsis, synopsis...)
 			}
 
-			// process contributors for whole episdoe
-			uniqueContributors := map[string]struct{}{}
-			for _, v := range episodeOnDisk.Transcript {
-				if v.Contributor != "" {
-					uniqueContributors[v.Contributor] = struct{}{}
-				}
-			}
 			contributors := []string{}
 			for c := range uniqueContributors {
 				contributors = append(contributors, c)

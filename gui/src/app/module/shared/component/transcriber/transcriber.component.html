@@ -1,4 +1,4 @@
-<div class="card mb-4">
+<div class="card mb-3">
   <div class="card-body">
     <div class="audio-player">
       <app-audio-player [src]="audioPlayerURL" [playbackRate]="editorConfig.playbackRate || 1.0"
@@ -16,9 +16,16 @@
   </div>
 </div>
 
-<div class="alert alert-dark mb-3" *ngIf="fromBackup">Recovered from local backup (you can <a class="btn btn-sm btn-primary" (click)="resetToRaw()">discard</a> the backup to view latest transcript)</div>
+<ul class="nav nav-tabs font-weight-bold">
+  <li class="nav-item mr-2">
+    <a class="nav-link" (click)="activeTab='edit'" [ngClass]="{'active': activeTab==='edit'}">Editor</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" (click)="activeTab='preview'" [ngClass]="{'active': activeTab==='preview'}">Preview</a>
+  </li>
+</ul>
 
-<div class="card">
+<div class="card" *ngIf="activeTab==='edit'">
   <div class="card-header">
       <span class="float-right">
         <button class="btn btn-sm" (click)="showHelp = !showHelp"
@@ -37,13 +44,15 @@
         <button class="btn btn-sm btn-info mr-3" *ngIf="allowEdit" (click)="openEditorConfig()"
                 title="Change editor config">Editor/Audio Config</button>
       </span>
-    <span>
-        <span *ngIf="!isSaved">Create </span>
-        <span *ngIf="isSaved">Update </span>
-        Draft Transcript
-      <span *ngIf="fromBackup">(recovered from local backup)</span>
-      </span>
   </div>
+
+  <div class="card-notification px-4 py-2" *ngIf="fromBackup">
+    Transcript was recovered from a local backup (you can <a class="btn btn-sm btn-primary" (click)="resetToRaw()">discard</a> the backup to view latest transcript).
+    <button type="button" class="close" aria-label="Close" (click)="fromBackup = false">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
   <div [hidden]="showHelp">
     <div class="card-body">
       <app-editor [readonly]="!allowEdit" [wrap]="editorConfig.wrapText" [textContent]="initialTranscript"
@@ -61,5 +70,15 @@
   </div>
   <div class="card-body" [hidden]="!showHelp">
     <app-editor-help [editorConfig]="editorConfig"></app-editor-help>
+  </div>
+</div>
+
+
+<div class="card" *ngIf="activeTab==='preview'">
+  <div class="card-header">
+  </div>
+  <div class="card-body preview-window">
+    <app-synopses [synopses]="parsedTscript?.synopses"></app-synopses>
+    <app-transcript [transcript]="parsedTscript?.dialog"></app-transcript>
   </div>
 </div>

@@ -68,6 +68,13 @@ span.code {
     }
   }
 
+  .card-notification {
+    @include theme() {
+      background-color: theme-get('fg-body-lighter');
+      color: theme-get('text-color');
+    }
+  }
+
   .card-header {
     font-weight: bold;;
     color: $primary;
@@ -128,13 +135,32 @@ span.code {
   }
 }
 
-.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-  @include theme() {
-    color: theme-get('text-color');
-    background-color: theme-get('fg-body');
-    border-color: theme-get('fg-body');
+
+.nav-tabs {
+
+  border-bottom: none;
+  z-index: 1000;
+  top: 1px;
+  position: relative;
+
+  .nav-link.active, .nav-item.show .nav-link {
+    border-bottom: none;
+    @include theme() {
+      color: theme-get('text-color');
+      background-color: theme-get('fg-body-darker') !important;
+      border-color: theme-get('fg-border');
+    }
+  }
+
+  .nav-link:hover {
+    border: 1px solid;
+    outline: none;
+    box-shadow: none;
+    cursor: pointer;
   }
 }
+
+
 
 .text-sm {
   font-size: 0.8rem;

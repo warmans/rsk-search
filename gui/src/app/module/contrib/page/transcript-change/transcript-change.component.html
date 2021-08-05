@@ -8,19 +8,37 @@
     </ol>
   </nav>
 
+  <div class="row mb-3">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">Submit Transcript Change</div>
+        <div class="card" *ngIf="!change">
+          <div class="card-body">
+            <p>Currently your contribution is only saved locally, you can create a draft to allow you to submit it for
+              approval.</p>
+            <button class="btn btn-success mt-2" (click)="create()" [disabled]="!updatedTranscript">Create draft</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="row mb-2">
-    <div class="col-8">
+    <div class="col-12">
       <app-transcriber
+        #transcriber
         [contentID]="change ? change.id : transcript?.id"
-        [rawTranscript]="transcript?.rawTranscript || ''"
+        [rawTranscript]="change ? change.transcript : (transcript?.rawTranscript || '')"
         [lastUpdateDate]=""
-        [audioPlayerURL]=""
-        [allowEdit]="true"
-        [isSaved]="false"
-        (handleSave)="handleSave($event)"
-      >
+        [audioPlayerURL]="transcript?.audioUri"
+        [allowEdit]="userCanEdit"
+        [isSaved]="change?.id"
+        (handleSave)="handleSave($event)">
       </app-transcriber>
     </div>
   </div>
 
 </div>
+
+<app-reddit-login [open]="!authenticated"></app-reddit-login>
+
+<app-loading-overlay [loading]="loading.length > 0"></app-loading-overlay>

@@ -9,6 +9,7 @@ import { ApproveComponent } from '../module/tscript/page/approve/approve.compone
 import { ContributeComponent } from '../module/tscript/page/contribute/contribute.component';
 import { RedeemComponent } from '../module/reward/page/redeem/redeem.component';
 import { TranscriptChangeComponent } from '../module/contrib/page/transcript-change/transcript-change.component';
+import { SubmitV2Component } from '../module/tscript/page/submit-v2/submit.component';
 
 
 const routes: Routes = [
@@ -25,16 +26,20 @@ const routes: Routes = [
     component: TranscriptChangeComponent,
   },
   {
+    path: 'ep/:epid/change/:change_id',
+    component: TranscriptChangeComponent,
+  },
+  {
     path: 'chunk/next',
     component: RandomComponent,
   },
   {
     path: 'chunk/:id',
-    component: SubmitComponent,
+    component: SubmitV2Component,
   },
   {
     path: 'chunk/:id/contrib/:contribution_id',
-    component: SubmitComponent,
+    component: SubmitV2Component,
   },
   {
     path: 'me',

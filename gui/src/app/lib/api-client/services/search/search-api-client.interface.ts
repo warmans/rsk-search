@@ -83,6 +83,16 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  getTranscriptChange(
+    args: {
+      id: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskTranscriptChange>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   deleteTranscriptChange(
     args: {
       id: string,
@@ -111,16 +121,6 @@ export interface SearchAPIClientInterface {
     },
     requestHttpOptions?: HttpOptions
   ): Observable<object>;
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  getEditableTranscript(
-    args: {
-      epid: string,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskEditableTranscript>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.

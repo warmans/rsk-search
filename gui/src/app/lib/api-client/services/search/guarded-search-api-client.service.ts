@@ -96,6 +96,16 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
       .pipe(tap((res: any) => guards.isRskChunkContribution(res) || console.error(`TypeGuard for response 'RskChunkContribution' caught inconsistency.`, res)));
   }
 
+  getTranscriptChange(
+    args: {
+      id: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskTranscriptChange> {
+    return super.getTranscriptChange(args, requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRskTranscriptChange(res) || console.error(`TypeGuard for response 'RskTranscriptChange' caught inconsistency.`, res)));
+  }
+
   deleteTranscriptChange(
     args: {
       id: string,
@@ -126,16 +136,6 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
   ): Observable<object> {
     return super.requestTranscriptChangeState(args, requestHttpOptions)
       .pipe(tap((res: any) => typeof res === 'object' || console.error(`TypeGuard for response 'object' caught inconsistency.`, res)));
-  }
-
-  getEditableTranscript(
-    args: {
-      epid: string,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskEditableTranscript> {
-    return super.getEditableTranscript(args, requestHttpOptions)
-      .pipe(tap((res: any) => guards.isRskEditableTranscript(res) || console.error(`TypeGuard for response 'RskEditableTranscript' caught inconsistency.`, res)));
   }
 
   listTranscriptChanges(

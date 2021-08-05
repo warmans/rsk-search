@@ -279,6 +279,35 @@
         }
       },
       "/api/contrib/transcript/change/{id}": {
+        "get": {
+          "summary": "Get a single existing change.",
+          "operationId": "getTranscriptChange",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskTranscriptChange"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "tags": [
+            "search"
+          ]
+        },
         "delete": {
           "summary": "Deletes a change.",
           "operationId": "deleteTranscriptChange",
@@ -378,37 +407,6 @@
               "schema": {
                 "$ref": "#/definitions/rskRequestTranscriptChangeStateRequest"
               }
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/contrib/transcript/{epid}": {
-        "get": {
-          "summary": "Gets a transcript in the editable format.",
-          "operationId": "getEditableTranscript",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskEditableTranscript"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "epid",
-              "in": "path",
-              "required": true,
-              "type": "string"
             }
           ],
           "tags": [
@@ -1361,14 +1359,6 @@
           }
         }
       },
-      "rskEditableTranscript": {
-        "type": "object",
-        "properties": {
-          "transcript": {
-            "type": "string"
-          }
-        }
-      },
       "rskFieldMeta": {
         "type": "object",
         "properties": {
@@ -1618,6 +1608,12 @@
           },
           "rawTranscript": {
             "type": "string"
+          },
+          "audioUri": {
+            "type": "string"
+          },
+          "shortId": {
+            "type": "string"
           }
         }
       },
@@ -1776,6 +1772,9 @@
           },
           "transcript": {
             "type": "string"
+          },
+          "state": {
+            "$ref": "#/definitions/rskContributionState"
           }
         }
       }

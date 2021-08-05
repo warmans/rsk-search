@@ -6,6 +6,7 @@ import {
 } from '.';
 
 export interface RskTranscript {
+  audioUri?: string;
   contributors?: string[];
   episode?: number;
   id?: string;
@@ -15,6 +16,7 @@ export interface RskTranscript {
   rawTranscript?: string;
   releaseDate?: string;
   series?: number;
+  shortId?: string;
   synopses?: RskSynopsis[];
   tags?: RskTag[];
   transcript?: RskDialog[];
