@@ -119,7 +119,7 @@ export class SubmitV2Component implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.contentUpdated.pipe(takeUntil(this.$destroy), distinctUntilChanged(), debounceTime(1000)).subscribe((v) => {
+    this.contentUpdated.pipe(takeUntil(this.$destroy), debounceTime(1000)).subscribe((v) => {
       this.executeUpdate(v);
     });
   }
@@ -166,7 +166,7 @@ export class SubmitV2Component implements OnInit, OnDestroy {
   }
 
   handleSave(text: string) {
-    this.setUpdatedTranscript(text);
+    this.contentUpdated.next(text);
   }
 
   create() {
