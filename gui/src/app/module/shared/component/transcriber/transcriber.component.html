@@ -59,13 +59,11 @@
                   (textContentChange)="setUpdatedTranscript($event)"
                   (atOffsetMarker)="handleOffsetNavigate($event)"></app-editor>
     </div>
-    <div class="card-footer pt-3 pb-3" *ngIf="allowEdit">
-      <div class="float-right">
+    <div class="card-footer pt-3 pb-3 text-right" *ngIf="allowEdit">
           <span *ngIf="lastUpdateDate" class="text-muted">
             Autosaved {{timeSinceSave()}} ago.
           </span>
         <button *ngIf="isSaved" class="btn btn-sm btn-secondary ml-3" (click)="save()">Save</button>
-      </div>
     </div>
   </div>
   <div class="card-body" [hidden]="!showHelp">

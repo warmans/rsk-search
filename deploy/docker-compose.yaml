@@ -9,7 +9,7 @@ services:
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "127.0.0.1:5432:5432"
   pgbackups:
     image: prodrigestivill/postgres-backup-local:13
     restart: always
@@ -47,18 +47,16 @@ services:
       - ./swag-config:/config
     ports:
       - 443:443
-      #- 80:80
     restart: unless-stopped
   gui:
     image: "warmans/rsk-search-gui:latest"
-    ports:
-      - "8080:80"
     depends_on:
       - server
+    restart: unless-stopped
   server:
     image: "warmans/rsk-search-api:latest"
     ports:
-      - "8888:8888"
+      - "127.0.0.1:8888:8888"
     depends_on:
       - postgres
     environment:
@@ -72,3 +70,4 @@ services:
       RSK_SEARCH_PLEDGE_DEF_EMAIL: ""
       RSK_SEARCH_PLEDGE_DEF_FIRSTNAME: ""
       RSK_SEARCH_PLEDGE_DEF_LASTNAME: ""
+    restart: unless-stopped

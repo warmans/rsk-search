@@ -120,11 +120,15 @@ export class SubmitV2Component implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.contentUpdated.pipe(takeUntil(this.$destroy), distinctUntilChanged(), debounceTime(1000)).subscribe((v) => {
-      this.updatedTranscript = v;
-      if (this.contribution && this.userCanEdit) {
-        this.update();
-      }
+      this.executeUpdate(v);
     });
+  }
+
+  executeUpdate(text: string): void {
+    this.updatedTranscript = text;
+    if (this.contribution && this.userCanEdit) {
+      this.update();
+    }
   }
 
   setContribution(res: RskChunkContribution) {
@@ -154,16 +158,15 @@ export class SubmitV2Component implements OnInit, OnDestroy {
   }
 
   setUpdatedTranscript(text: string) {
-    this.contentUpdated.next(text);
+    this.executeUpdate(text);
   }
-
 
   timeSinceSave(): string {
     return formatDistance(this.lastUpdateTimestamp, new Date());
   }
 
   handleSave(text: string) {
-    this.updatedTranscript = text;
+    this.setUpdatedTranscript(text);
   }
 
   create() {
