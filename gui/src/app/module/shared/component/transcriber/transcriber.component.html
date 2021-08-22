@@ -25,7 +25,7 @@
   </li>
 </ul>
 
-<div class="card" *ngIf="activeTab==='edit'">
+<div class="card" [hidden]="!(activeTab==='edit')">
   <div class="card-header">
       <span class="float-right">
         <button class="btn btn-sm" (click)="showHelp = !showHelp"
@@ -55,6 +55,7 @@
 
   <div [hidden]="showHelp">
     <div class="card-body">
+      <!-- watch out for ngIfs here - if the editor is removed from the dom it will cause the text to be reset to the initial transcript -->
       <app-editor [readonly]="!allowEdit" [wrap]="editorConfig.wrapText" [textContent]="initialTranscript"
                   (textContentChange)="setUpdatedTranscript($event)"
                   (atOffsetMarker)="handleOffsetNavigate($event)"></app-editor>
@@ -72,7 +73,7 @@
 </div>
 
 
-<div class="card" *ngIf="activeTab==='preview'">
+<div class="card" [hidden]="!(activeTab==='preview')">
   <div class="card-header">
   </div>
   <div class="card-body preview-window">
