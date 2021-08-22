@@ -1,10 +1,11 @@
-import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Data } from '@angular/router';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
 import { RskDialog, RskTranscript } from '../../../../lib/api-client/models';
 import { ViewportScroller } from '@angular/common';
 import { takeUntil } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
+import { AudioPlayerComponent } from '../../../shared/component/audio-player/audio-player.component';
 
 @Component({
   selector: 'app-episode',
@@ -32,6 +33,9 @@ export class EpisodeComponent implements OnInit, OnDestroy {
   quotes: RskDialog[] = [];
 
   unsubscribe$: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  @ViewChild('audioPlayer')
+  audioPlayer: AudioPlayerComponent;
 
   constructor(
     private route: ActivatedRoute,
@@ -79,5 +83,9 @@ export class EpisodeComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.unsubscribe$.next(true);
     this.unsubscribe$.complete();
+  }
+
+  onAudioTimestamp(ts: number) {
+    this.audioPlayer.seek(ts, true);
   }
 }

@@ -47,7 +47,7 @@
   </div>
 
   <div class="card-notification px-4 py-2" *ngIf="fromBackup">
-    Transcript was recovered from a local backup (you can <a class="btn btn-sm btn-primary" (click)="resetToRaw()">discard</a> the backup to view latest transcript).
+    Transcript was recovered from a local backup (you can <a class="btn btn-sm btn-primary" (click)="resetToRaw()">discard</a> the backup to view the <span *ngIf="isSaved">saved</span><span *ngIf="!isSaved">unedited</span> transcript).
     <button type="button" class="close" aria-label="Close" (click)="fromBackup = false">
       <span aria-hidden="true">&times;</span>
     </button>

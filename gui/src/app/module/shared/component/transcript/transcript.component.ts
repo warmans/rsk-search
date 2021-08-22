@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
-import { RskDialog, RskSynopsis } from '../../../../lib/api-client/models';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { RskDialog } from '../../../../lib/api-client/models';
 import { ViewportScroller } from '@angular/common';
 
 @Component({
@@ -10,13 +10,31 @@ import { ViewportScroller } from '@angular/common';
 export class TranscriptComponent implements OnInit, AfterViewInit {
 
   @Input()
-  transcript: RskDialog[];
+  set transcript(value: RskDialog[]) {
+    this._transcript = value;
+    for (let i = 0; i < value.length; i++) {
+      if (parseInt(value[i].offsetSec) > 0) {
+        this.withAudioOffsets = true;
+        break;
+      }
+    }
+  }
+  get transcript(): RskDialog[] {
+    return this._transcript;
+  }
+
+  private _transcript: RskDialog[];
 
   @Input()
   scrollToID: string;
 
   @Input()
   enableLineLinks: boolean = false;
+
+  @Output()
+  emitAudioTimestamp: EventEmitter<number> = new EventEmitter();
+
+  withAudioOffsets: boolean = false;
 
   actorClassMap = {
     'ricky': 'ricky',
@@ -38,8 +56,14 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
     return this.actorClassMap[d.actor.toLowerCase().trim()] || '';
   }
 
-
   ngAfterViewInit(): void {
     this.viewportScroller.scrollToAnchor(this.scrollToID);
+  }
+
+  emitTimestamp(ts: number) {
+    if (ts == 0) {
+      return;
+    }
+    this.emitAudioTimestamp.next(ts);
   }
 }

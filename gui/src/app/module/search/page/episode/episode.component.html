@@ -108,13 +108,17 @@
               <span *ngIf="episode.incomplete" class="badge badge-warning ml-3">Incomplete</span>
             </div>
             <div>
-              <a class="btn btn-sm btn-info" [routerLink]="['/ep', id, 'change']">Submit Correction</a>
+              <!-- not fully implemented -->
+              <!-- a class="btn btn-sm btn-info" [routerLink]="['/ep', id, 'change']">Submit Correction</a-->
             </div>
           </div>
         </div>
         <div class="card-body p-3">
-          <app-transcript [transcript]="episode.transcript" [scrollToID]="scrollToID"
-                          [enableLineLinks]="true"></app-transcript>
+          <app-transcript
+            [transcript]="episode.transcript"
+            [scrollToID]="scrollToID"
+            [enableLineLinks]="true"
+            (emitAudioTimestamp)="onAudioTimestamp($event)"></app-transcript>
           <div *ngIf="!episode?.transcript?.length" class="text-center p-4">No transcript available.</div>
         </div>
       </div>

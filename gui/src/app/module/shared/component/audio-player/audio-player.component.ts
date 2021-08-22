@@ -65,7 +65,8 @@ export class AudioPlayerComponent implements AfterViewInit {
   }
 
   public play(withOffset?: number): void {
-    if (this.audio && this.audio.readyState >= 2) {
+    console.log(this.audio, this.audio.readyState);
+    if (this.audio && this.audio.readyState >= 1) {
         if (withOffset !== undefined) {
             this.audio.currentTime = this.audio.currentTime + withOffset > 0 ? this.audio.currentTime + withOffset : 0;
         }
@@ -81,9 +82,12 @@ export class AudioPlayerComponent implements AfterViewInit {
     this.play(withOffset);
   }
 
-  public seek(time: number) {
+  public seek(time: number, andPlay?: boolean) {
     if (this.audio) {
       this.audio.currentTime = time;
+    }
+    if (andPlay) {
+      this.play();
     }
   }
 

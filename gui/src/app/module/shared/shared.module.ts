@@ -19,6 +19,7 @@ import { EditorConfigComponent } from './component/editor-config/editor-config.c
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditorHelpComponent } from './component/editor-help/editor-help.component';
 import { TranscriberComponent } from './component/transcriber/transcriber.component';
+import { FormatSecondsPipe } from './pipe/format-seconds.pipe';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { TranscriberComponent } from './component/transcriber/transcriber.compon
     FocusedDirective,
     LoadingOverlayComponent,
     SafeUrlPipe,
+    FormatSecondsPipe,
     TranscriptComponent,
     AudioPlayerComponent,
     SynopsesComponent,
@@ -52,6 +54,7 @@ import { TranscriberComponent } from './component/transcriber/transcriber.compon
     DropdownComponent,
     LoadingOverlayComponent,
     SafeUrlPipe,
+    FormatSecondsPipe,
     TranscriptComponent,
     AudioPlayerComponent,
     SynopsesComponent,
