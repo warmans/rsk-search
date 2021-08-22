@@ -13,6 +13,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/pledge"
 	"github.com/warmans/rsk-search/pkg/reward"
+	"github.com/warmans/rsk-search/pkg/store/common"
 	"github.com/warmans/rsk-search/pkg/store/rw"
 	"github.com/warmans/rsk-search/pkg/transcript"
 	"github.com/warmans/rsk-search/service/config"
@@ -139,6 +140,9 @@ func (s *ContribService) ListChunks(ctx context.Context, request *api.ListChunks
 		qm.Filter = filter.And(filter.Eq("tscript_id", filter.String(request.TscriptId)), qm.Filter)
 	} else {
 		qm.Filter = filter.Eq("tscript_id", filter.String(request.TscriptId))
+	}
+	if qm.Sorting == nil {
+		qm.Sorting = &common.Sorting{Field: "start_second", Direction: common.SortAsc}
 	}
 
 	out := &api.ChunkList{
