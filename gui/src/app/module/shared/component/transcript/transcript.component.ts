@@ -14,11 +14,12 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
     this._transcript = value;
     for (let i = 0; i < value.length; i++) {
       if (parseInt(value[i].offsetSec) > 0) {
-        this.withAudioOffsets = true;
+        this.audioOffsetsAvailable = true;
         break;
       }
     }
   }
+
   get transcript(): RskDialog[] {
     return this._transcript;
   }
@@ -29,12 +30,15 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
   scrollToID: string;
 
   @Input()
+  enableAudioOffsets: boolean = false;
+
+  @Input()
   enableLineLinks: boolean = false;
 
   @Output()
   emitAudioTimestamp: EventEmitter<number> = new EventEmitter();
 
-  withAudioOffsets: boolean = false;
+  audioOffsetsAvailable: boolean = false;
 
   actorClassMap = {
     'ricky': 'ricky',

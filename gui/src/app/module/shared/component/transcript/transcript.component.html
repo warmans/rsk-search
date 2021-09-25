@@ -1,6 +1,6 @@
 <div class="d-flex" *ngFor="let line of transcript">
 
-  <div *ngIf="withAudioOffsets"  class="text-sm timestamp mb-2 p-2 flex-shrink-0 d-flex flex-column justify-content-center" style="width: 5rem">
+  <div *ngIf="audioOffsetsAvailable && enableAudioOffsets"  class="text-sm timestamp mb-2 p-2 flex-shrink-0 d-flex flex-column justify-content-center" style="width: 5rem">
     <div *ngIf="line.offsetSec > 0" (click)="emitTimestamp(line.offsetSec)" class="clickable"><i class="bi-caret-right"></i> {{line.offsetSec | formatSeconds}}</div>
   </div>
 

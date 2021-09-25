@@ -82,7 +82,8 @@
             <ul class="m-0">
               <li *ngFor="let quote of quotes">
 
-                <span class="font-italic">"{{quote.content}}" -{{quote.actor}} (<a [routerLink]="['/ep', episode?.id]" [fragment]="'pos-'+(quote?.pos)">context</a>)</span>
+                <span class="font-italic">"{{quote.content}}" -{{quote.actor}} (<a [routerLink]="['/ep', episode?.id]"
+                                                                                   [fragment]="'pos-'+(quote?.pos)">context</a>)</span>
               </li>
             </ul>
           </div>
@@ -118,6 +119,7 @@
             [transcript]="episode.transcript"
             [scrollToID]="scrollToID"
             [enableLineLinks]="true"
+            [enableAudioOffsets]="true"
             (emitAudioTimestamp)="onAudioTimestamp($event)"></app-transcript>
           <div *ngIf="!episode?.transcript?.length" class="text-center p-4">No transcript available.</div>
         </div>
