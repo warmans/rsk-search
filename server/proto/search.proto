@@ -120,6 +120,7 @@ message Dialog {
   bool is_matched_row = 8;
   bool notable = 9;
   int64 offset_sec = 10;
+  bool offset_inferred = 11;
 }
 
 message Synopsis {

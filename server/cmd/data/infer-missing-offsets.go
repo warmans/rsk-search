@@ -16,6 +16,7 @@ import (
 func InferMissingOffsetsCmd() *cobra.Command {
 
 	var inputDir string
+	var singleEpisode string
 
 	cmd := &cobra.Command{
 		Use:   "infer-missing-offsets",
@@ -37,14 +38,20 @@ func InferMissingOffsetsCmd() *cobra.Command {
 					continue
 				}
 
-				logger.Info("Parsing file...", zap.String("path", dirEntry.Name()))
-
 				episode := &models.Transcript{}
 				if err := util.WithReadJSONFileDecoder(path.Join(inputDir, dirEntry.Name()), func(dec *json.Decoder) error {
 					return dec.Decode(episode)
 				}); err != nil {
 					return err
 				}
+
+				if singleEpisode != "" {
+					if episode.ShortID() != singleEpisode {
+						continue
+					}
+				}
+
+				logger.Info("Processing file...", zap.String("path", dirEntry.Name()))
 
 				episodeDuration := getEpisodeDuration(episode)
 				if episodeDuration == 0 {
@@ -54,8 +61,7 @@ func InferMissingOffsetsCmd() *cobra.Command {
 				wpm := calculateWordsPerSecond(episodeDuration, episode.Transcript)
 
 				for lineNum := range episode.Transcript {
-					episode.Transcript[lineNum].OffsetSec = int64(math.Floor(wpm.getSecondOffset(int64(lineNum))))
-
+					episode.Transcript[lineNum].OffsetSec, episode.Transcript[lineNum].OffsetInferred = wpm.getSecondOffset(int64(lineNum))
 				}
 				if err := data.ReplaceEpisodeFile(inputDir, episode); err != nil {
 					return err
@@ -66,6 +72,7 @@ func InferMissingOffsetsCmd() *cobra.Command {
 	}
 
 	cmd.Flags().StringVarP(&inputDir, "input-path", "i", "./var/data/episodes", "Path to raw scraped files")
+	cmd.Flags().StringVarP(&singleEpisode, "single-episode", "s", "", "Only process the given episode e.g. xfm-S2E04")
 
 	return cmd
 }
@@ -74,7 +81,8 @@ type speechVelocity struct {
 	ranges []offsetRange
 }
 
-func (w speechVelocity) getSecondOffset(lineNum int64) float64 {
+// returns the offset + true if it was inferred (false if it is an real/accurate offset)
+func (w speechVelocity) getSecondOffset(lineNum int64) (int64, bool) {
 	if r, ok := w.rangeIndex(lineNum); ok {
 		totalOffset := float64(w.ranges[r].startSecond)
 		relativeLineNum := lineNum - w.ranges[r].firstLineNum
@@ -83,10 +91,12 @@ func (w speechVelocity) getSecondOffset(lineNum int64) float64 {
 				totalOffset += v
 			}
 		}
-
-		return totalOffset
+		if totalOffset == float64(w.ranges[r].startSecond) {
+			return int64(math.Round(totalOffset)), false
+		}
+		return int64(math.Ceil(totalOffset)), true
 	}
-	return -1
+	return -1, true
 }
 
 func (w speechVelocity) rangeIndex(lineNum int64) (int, bool) {
@@ -145,7 +155,7 @@ func calculateWordsPerSecond(totalLengthSeconds int64, dialog []models.Dialog) s
 		},
 	}
 	for lineNum, line := range dialog {
-		if line.OffsetSec != 0 && line.OffsetSec != vel.currentStartSecond() {
+		if line.OffsetSec != 0 && line.OffsetSec != vel.currentStartSecond() && line.OffsetInferred == false {
 
 			// finalize current range
 			vel.ranges[len(vel.ranges)-1].lastLineNum = int64(lineNum) - 1

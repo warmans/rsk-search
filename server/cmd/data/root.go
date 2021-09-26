@@ -34,6 +34,7 @@ func RootCmd() *cobra.Command {
 	index.AddCommand(NERCleanTagsCmd())
 
 	index.AddCommand(InferMissingOffsetsCmd())
+	index.AddCommand(FixIncompleteFlagsCmd())
 
 	return index
 }

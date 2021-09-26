@@ -1,7 +1,7 @@
 <div class="d-flex" *ngFor="let line of transcript">
 
   <div *ngIf="audioOffsetsAvailable && enableAudioOffsets"  class="text-sm timestamp mb-2 p-2 flex-shrink-0 d-flex flex-column justify-content-center" style="width: 5rem">
-    <div *ngIf="line.offsetSec > 0" (click)="emitTimestamp(line.offsetSec)" class="clickable"><i class="bi-caret-right"></i> {{line.offsetSec | formatSeconds}}</div>
+    <div title="Some timestamps are inferred and may not be accurate" [ngClass]="{'text-muted': line.offsetInferred}" *ngIf="line.offsetSec > 0" (click)="emitTimestamp(line.offsetSec)" class="clickable"><i class="bi-caret-right"></i>{{line.offsetSec | formatSeconds}}</div>
   </div>
 
   <div class="line d-flex mb-2 p-2 {{actorClass(line)}}"

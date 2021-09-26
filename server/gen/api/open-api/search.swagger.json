@@ -263,6 +263,9 @@
         "offsetSec": {
           "type": "string",
           "format": "int64"
+        },
+        "offsetInferred": {
+          "type": "boolean"
         }
       }
     },

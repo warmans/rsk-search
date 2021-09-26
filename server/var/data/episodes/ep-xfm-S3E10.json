@@ -15,6 +15,7 @@
         "id": "2fxnCNc5i6M3QENRLH3sLf",
         "pos": 100,
         "offset_sec": 0,
+        "offset_inferred": false,
         "type": "song",
         "actor": "",
         "metadata": {
@@ -33,6 +34,7 @@
         "id": "xjnSFw3zSA6Xnmtut5LYxS",
         "pos": 200,
         "offset_sec": 0,
+        "offset_inferred": false,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -45,7 +47,8 @@
       {
         "id": "DRmEmqRJM3XsyEMtqgmwAH",
         "pos": 300,
-        "offset_sec": 0,
+        "offset_sec": 10,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -56,7 +59,8 @@
       {
         "id": "Vwthaes5uag8hUqoofJwki",
         "pos": 400,
-        "offset_sec": 0,
+        "offset_sec": 13,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -67,7 +71,8 @@
       {
         "id": "FyvB3KrRY6FPkL8DmCQVWR",
         "pos": 500,
-        "offset_sec": 0,
+        "offset_sec": 14,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -78,7 +83,8 @@
       {
         "id": "DSn54o9JYCD5y3yHrpWZHm",
         "pos": 600,
-        "offset_sec": 0,
+        "offset_sec": 14,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -89,7 +95,8 @@
       {
         "id": "aGR949nzaxhm9vn2rWV7F3",
         "pos": 700,
-        "offset_sec": 0,
+        "offset_sec": 17,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -100,7 +107,8 @@
       {
         "id": "P4ZtXbZo9qD97e4NrQriHY",
         "pos": 800,
-        "offset_sec": 0,
+        "offset_sec": 17,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -111,7 +119,8 @@
       {
         "id": "8NitrwPN4zauLcLNwVbKgZ",
         "pos": 900,
-        "offset_sec": 0,
+        "offset_sec": 19,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -122,7 +131,8 @@
       {
         "id": "z7y6k9J5hRwWWPEawVZS3X",
         "pos": 1000,
-        "offset_sec": 0,
+        "offset_sec": 21,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -137,7 +147,8 @@
       {
         "id": "Pamt3aV2CNPTGVuPF96pTA",
         "pos": 1100,
-        "offset_sec": 0,
+        "offset_sec": 48,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -148,7 +159,8 @@
       {
         "id": "ixggCDepZ2kgUMXr9iCqyU",
         "pos": 1200,
-        "offset_sec": 0,
+        "offset_sec": 48,
+        "offset_inferred": true,
         "type": "unknown",
         "actor": "",
         "metadata": null,
@@ -159,7 +171,8 @@
       {
         "id": "MQQANFT3uWvDa8yC5grJtZ",
         "pos": 1300,
-        "offset_sec": 0,
+        "offset_sec": 50,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -170,7 +183,8 @@
       {
         "id": "iZkoPL8Qdnf5Xp5Z2anGK3",
         "pos": 1400,
-        "offset_sec": 0,
+        "offset_sec": 51,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -181,7 +195,8 @@
       {
         "id": "8j6zLWsMsXKX55QvJxvwe3",
         "pos": 1500,
-        "offset_sec": 0,
+        "offset_sec": 57,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -194,7 +209,8 @@
       {
         "id": "FzK5qzcADfJQkAAQ4agwbS",
         "pos": 1600,
-        "offset_sec": 0,
+        "offset_sec": 65,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -205,7 +221,8 @@
       {
         "id": "269FdGujVAm2jobUt67oc3",
         "pos": 1700,
-        "offset_sec": 0,
+        "offset_sec": 67,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -216,7 +233,8 @@
       {
         "id": "uUztcB7YXj6iX4A9VLVawX",
         "pos": 1800,
-        "offset_sec": 0,
+        "offset_sec": 72,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -227,7 +245,8 @@
       {
         "id": "RcQaiZzCRMrYGcNfMKQbR3",
         "pos": 1900,
-        "offset_sec": 0,
+        "offset_sec": 73,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -238,7 +257,8 @@
       {
         "id": "wuqZySNoAGsLidQbgzYdu8",
         "pos": 2000,
-        "offset_sec": 0,
+        "offset_sec": 86,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -249,7 +269,8 @@
       {
         "id": "XfwzKAYdiGWhsKgtLj4V8A",
         "pos": 2100,
-        "offset_sec": 0,
+        "offset_sec": 86,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -260,7 +281,8 @@
       {
         "id": "5gck8bztqnWPEgvWHh2fMC",
         "pos": 2200,
-        "offset_sec": 0,
+        "offset_sec": 95,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -271,7 +293,8 @@
       {
         "id": "8Wytgjf93kX9Rw7h3WFrfA",
         "pos": 2300,
-        "offset_sec": 0,
+        "offset_sec": 98,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -284,7 +307,8 @@
       {
         "id": "H26mQbyVKi3vzLiKaqBW8C",
         "pos": 2400,
-        "offset_sec": 0,
+        "offset_sec": 107,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -295,7 +319,8 @@
       {
         "id": "8RJCSJUdPC9L2eiudN9PRZ",
         "pos": 2500,
-        "offset_sec": 0,
+        "offset_sec": 110,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -308,7 +333,8 @@
       {
         "id": "SVy9qDRCZiyQcjzgVxqLUo",
         "pos": 2600,
-        "offset_sec": 0,
+        "offset_sec": 142,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -319,7 +345,8 @@
       {
         "id": "viivGKKqds765UChY9CtgY",
         "pos": 2700,
-        "offset_sec": 0,
+        "offset_sec": 146,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -330,7 +357,8 @@
       {
         "id": "TdUTAADudPeNk5Vzc6zfcJ",
         "pos": 2800,
-        "offset_sec": 0,
+        "offset_sec": 169,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -341,7 +369,8 @@
       {
         "id": "zHyk4NQjBphnQBicznAEWF",
         "pos": 2900,
-        "offset_sec": 0,
+        "offset_sec": 171,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -352,7 +381,8 @@
       {
         "id": "EdqgvbrZFTNSiDKXHp3rsC",
         "pos": 3000,
-        "offset_sec": 0,
+        "offset_sec": 182,
+        "offset_inferred": true,
         "type": "unknown",
         "actor": "",
         "metadata": null,
@@ -363,7 +393,8 @@
       {
         "id": "qnToFZFKmonyRAofArtdKn",
         "pos": 3100,
-        "offset_sec": 0,
+        "offset_sec": 184,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -374,7 +405,8 @@
       {
         "id": "NBodUXTQiKfiCTKLFEfiJi",
         "pos": 3200,
-        "offset_sec": 0,
+        "offset_sec": 192,
+        "offset_inferred": true,
         "type": "unknown",
         "actor": "",
         "metadata": null,
@@ -385,7 +417,8 @@
       {
         "id": "NPwfLDhkNLgYVXi8o8oceg",
         "pos": 3300,
-        "offset_sec": 0,
+        "offset_sec": 193,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -396,7 +429,8 @@
       {
         "id": "WNvtwt5twKajiGjqaevUui",
         "pos": 3400,
-        "offset_sec": 0,
+        "offset_sec": 195,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -407,7 +441,8 @@
       {
         "id": "eaZmGy7zY6g8eqrw2BUvfL",
         "pos": 3500,
-        "offset_sec": 0,
+        "offset_sec": 206,
+        "offset_inferred": true,
         "type": "unknown",
         "actor": "",
         "metadata": null,
@@ -418,7 +453,8 @@
       {
         "id": "tV5gC5VDuSjgnwFQ34WpUX",
         "pos": 3600,
-        "offset_sec": 0,
+        "offset_sec": 207,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -431,7 +467,8 @@
       {
         "id": "qSYojgZni5Hab99jQcEDD4",
         "pos": 3700,
-        "offset_sec": 0,
+        "offset_sec": 213,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -442,7 +479,8 @@
       {
         "id": "kXH7drWe5nDbSe6kf2SgUi",
         "pos": 3800,
-        "offset_sec": 0,
+        "offset_sec": 216,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -453,7 +491,8 @@
       {
         "id": "jRF6FnTdLzTZ3KKepDZLJ3",
         "pos": 3900,
-        "offset_sec": 0,
+        "offset_sec": 218,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -464,7 +503,8 @@
       {
         "id": "fNATKz47HtmnXBG93p7Tg4",
         "pos": 4000,
-        "offset_sec": 0,
+        "offset_sec": 230,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -475,7 +515,8 @@
       {
         "id": "ZKwigiNGpVfU8pb8dgWcaW",
         "pos": 4100,
-        "offset_sec": 0,
+        "offset_sec": 232,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -486,7 +527,8 @@
       {
         "id": "ddsZSExaev8u8p2xvdDJ35",
         "pos": 4200,
-        "offset_sec": 0,
+        "offset_sec": 239,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -497,7 +539,8 @@
       {
         "id": "CJ7Gdmhyrj2fjpn2ybadVb",
         "pos": 4300,
-        "offset_sec": 0,
+        "offset_sec": 251,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -508,7 +551,8 @@
       {
         "id": "zwkYtaJudzDFrX77KCGVed",
         "pos": 4400,
-        "offset_sec": 0,
+        "offset_sec": 254,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -519,7 +563,8 @@
       {
         "id": "MZ3Sic6bg8NZkzMFNKnvY9",
         "pos": 4500,
-        "offset_sec": 0,
+        "offset_sec": 256,
+        "offset_inferred": true,
         "type": "song",
         "actor": "",
         "metadata": {
@@ -537,7 +582,8 @@
       {
         "id": "cKFYNs2gGJHAxoFyrthdwK",
         "pos": 4600,
-        "offset_sec": 0,
+        "offset_sec": 256,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -550,7 +596,8 @@
       {
         "id": "vsL5WWG9vBF3uMAWEiBxPY",
         "pos": 4700,
-        "offset_sec": 0,
+        "offset_sec": 292,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -561,7 +608,8 @@
       {
         "id": "QnNQcLCeNZXCgTQZ6QuCZ",
         "pos": 4800,
-        "offset_sec": 0,
+        "offset_sec": 307,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -572,7 +620,8 @@
       {
         "id": "2UYSvBg34W9aKCyXYhVyuP",
         "pos": 4900,
-        "offset_sec": 0,
+        "offset_sec": 309,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -583,7 +632,8 @@
       {
         "id": "k8cggRCRN9UtmSCnBerDpm",
         "pos": 5000,
-        "offset_sec": 0,
+        "offset_sec": 313,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -594,7 +644,8 @@
       {
         "id": "y4qA2KGk3zgHMAMerPrdWb",
         "pos": 5100,
-        "offset_sec": 0,
+        "offset_sec": 317,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -605,7 +656,8 @@
       {
         "id": "DEPLz9JLZzhVAvsDcgqXAM",
         "pos": 5200,
-        "offset_sec": 0,
+        "offset_sec": 318,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -616,7 +668,8 @@
       {
         "id": "bYqDowBKPC9kwRV6P5P2bE",
         "pos": 5300,
-        "offset_sec": 0,
+        "offset_sec": 318,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -627,7 +680,8 @@
       {
         "id": "3Lw3YxeCNDSeecLfgMXjUk",
         "pos": 5400,
-        "offset_sec": 0,
+        "offset_sec": 319,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -642,7 +696,8 @@
       {
         "id": "tmbLY4ReJfu7579EhzDWme",
         "pos": 5500,
-        "offset_sec": 0,
+        "offset_sec": 349,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -653,7 +708,8 @@
       {
         "id": "AobRVZLBUTqExVvet9huxU",
         "pos": 5600,
-        "offset_sec": 0,
+        "offset_sec": 352,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -664,7 +720,8 @@
       {
         "id": "eKpNFoJAaseiyTyMyuaEsE",
         "pos": 5700,
-        "offset_sec": 0,
+        "offset_sec": 353,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -675,7 +732,8 @@
       {
         "id": "rur8MzGD6GzEBGmd7ptXXM",
         "pos": 5800,
-        "offset_sec": 0,
+        "offset_sec": 356,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -686,7 +744,8 @@
       {
         "id": "hnN7noGud2Nn3SaL7RpV8a",
         "pos": 5900,
-        "offset_sec": 0,
+        "offset_sec": 357,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -697,7 +756,8 @@
       {
         "id": "AiUvTqvMwMkBPhTBnYUYP4",
         "pos": 6000,
-        "offset_sec": 0,
+        "offset_sec": 367,
+        "offset_inferred": true,
         "type": "unknown",
         "actor": "",
         "metadata": null,
@@ -708,7 +768,8 @@
       {
         "id": "mhTa9EAEKxzkvCNhQf4sk",
         "pos": 6100,
-        "offset_sec": 0,
+        "offset_sec": 369,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -719,7 +780,8 @@
       {
         "id": "zcsywLgFbGTknFNd5tUdmA",
         "pos": 6200,
-        "offset_sec": 0,
+        "offset_sec": 374,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -730,7 +792,8 @@
       {
         "id": "V7nTf69ALykNCaQZVn9Wf9",
         "pos": 6300,
-        "offset_sec": 0,
+        "offset_sec": 381,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -741,7 +804,8 @@
       {
         "id": "5mxUmPZZQWpXt9YrUZz9fk",
         "pos": 6400,
-        "offset_sec": 0,
+        "offset_sec": 393,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -752,7 +816,8 @@
       {
         "id": "wiwpafdnoXBZtGXfUp7vtb",
         "pos": 6500,
-        "offset_sec": 0,
+        "offset_sec": 404,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -763,7 +828,8 @@
       {
         "id": "J34FYwqoYCC9vsgbaVinVU",
         "pos": 6600,
-        "offset_sec": 0,
+        "offset_sec": 404,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -774,7 +840,8 @@
       {
         "id": "6y5N2eh9m3f9sZmmaTH87N",
         "pos": 6700,
-        "offset_sec": 0,
+        "offset_sec": 416,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -785,7 +852,8 @@
       {
         "id": "hSowWtqNRp58Ep5sVTRqBN",
         "pos": 6800,
-        "offset_sec": 0,
+        "offset_sec": 416,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -798,7 +866,8 @@
       {
         "id": "bKHW8cvtRoxbbvwiqawX9L",
         "pos": 6900,
-        "offset_sec": 0,
+        "offset_sec": 423,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -809,7 +878,8 @@
       {
         "id": "3neBgbYghHSjxAH5Fk4cAN",
         "pos": 7000,
-        "offset_sec": 0,
+        "offset_sec": 437,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -820,7 +890,8 @@
       {
         "id": "gw4aefMzN3A2dXy5AQnmLG",
         "pos": 7100,
-        "offset_sec": 0,
+        "offset_sec": 437,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -831,7 +902,8 @@
       {
         "id": "5CiQJ2Tw9jzD9g6ZJ8L7j",
         "pos": 7200,
-        "offset_sec": 0,
+        "offset_sec": 441,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -842,7 +914,8 @@
       {
         "id": "gHt25vjFpvJYwtGQvm6mP8",
         "pos": 7300,
-        "offset_sec": 0,
+        "offset_sec": 442,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -853,7 +926,8 @@
       {
         "id": "Q5GfQVUHY2zvvSmHbZSXtj",
         "pos": 7400,
-        "offset_sec": 0,
+        "offset_sec": 444,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -864,7 +938,8 @@
       {
         "id": "wbERxWVAiFaXyL5Yf3K8zZ",
         "pos": 7500,
-        "offset_sec": 0,
+        "offset_sec": 445,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -875,7 +950,8 @@
       {
         "id": "QRKxpvZKoE6f4YSJDiEApP",
         "pos": 7600,
-        "offset_sec": 0,
+        "offset_sec": 447,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -886,7 +962,8 @@
       {
         "id": "3dzm5QopfcLCbpqTTdnzT9",
         "pos": 7700,
-        "offset_sec": 0,
+        "offset_sec": 450,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -897,7 +974,8 @@
       {
         "id": "9soHgQB7Gcx5oAjJ2fazMW",
         "pos": 7800,
-        "offset_sec": 0,
+        "offset_sec": 454,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -908,7 +986,8 @@
       {
         "id": "2FEcwH4ttRUW8TWuCuYXVQ",
         "pos": 7900,
-        "offset_sec": 0,
+        "offset_sec": 454,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -919,7 +998,8 @@
       {
         "id": "EGXDrbUphKC48Ssu2att5Z",
         "pos": 8000,
-        "offset_sec": 0,
+        "offset_sec": 465,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -930,7 +1010,8 @@
       {
         "id": "65piyUiUfraZTeydfh9HRC",
         "pos": 8100,
-        "offset_sec": 0,
+        "offset_sec": 479,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -941,7 +1022,8 @@
       {
         "id": "KP56PpcEEpriwZSfp5thnB",
         "pos": 8200,
-        "offset_sec": 0,
+        "offset_sec": 482,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -954,7 +1036,8 @@
       {
         "id": "XspwnXfAqRgFWGs47v22xC",
         "pos": 8300,
-        "offset_sec": 0,
+        "offset_sec": 501,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -965,7 +1048,8 @@
       {
         "id": "RzoKkxUmCfKLvsEBCzRXkb",
         "pos": 8400,
-        "offset_sec": 0,
+        "offset_sec": 501,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -976,7 +1060,8 @@
       {
         "id": "KaiNme5NtPdwkqChzcfZ37",
         "pos": 8500,
-        "offset_sec": 0,
+        "offset_sec": 502,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -987,7 +1072,8 @@
       {
         "id": "7yhphjP6eNzix9R5HaoMtj",
         "pos": 8600,
-        "offset_sec": 0,
+        "offset_sec": 512,
+        "offset_inferred": true,
         "type": "unknown",
         "actor": "",
         "metadata": null,
@@ -998,7 +1084,8 @@
       {
         "id": "85Fc8pbe8UXSS8MECWRCDA",
         "pos": 8700,
-        "offset_sec": 0,
+        "offset_sec": 514,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -1009,7 +1096,8 @@
       {
         "id": "9UDFQE9wHXiUdz7STB8Xu8",
         "pos": 8800,
-        "offset_sec": 0,
+        "offset_sec": 516,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -1020,7 +1108,8 @@
       {
         "id": "nKACjNa8bcBvM6uiofe9Hm",
         "pos": 8900,
-        "offset_sec": 0,
+        "offset_sec": 518,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -1031,7 +1120,8 @@
       {
         "id": "3qaXQXHo7zKA9xekZiCjfh",
         "pos": 9000,
-        "offset_sec": 0,
+        "offset_sec": 521,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1042,7 +1132,8 @@
       {
         "id": "DGdf8jGqMDKzgZGWdxLctC",
         "pos": 9100,
-        "offset_sec": 0,
+        "offset_sec": 523,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -1053,7 +1144,8 @@
       {
         "id": "7cH7up74LDfexyAF8mWMu4",
         "pos": 9200,
-        "offset_sec": 0,
+        "offset_sec": 529,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -1064,7 +1156,8 @@
       {
         "id": "iX5rnCLodzdvAdtwQjMi3Q",
         "pos": 9300,
-        "offset_sec": 0,
+        "offset_sec": 533,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -1075,7 +1168,8 @@
       {
         "id": "du8rtVUHE9jw6r7HZiJgvC",
         "pos": 9400,
-        "offset_sec": 0,
+        "offset_sec": 542,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1086,7 +1180,8 @@
       {
         "id": "U37gn9XZxtWZDnPE3dUphX",
         "pos": 9500,
-        "offset_sec": 0,
+        "offset_sec": 546,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -1097,7 +1192,8 @@
       {
         "id": "BJFQoy3kCrDuEsxTpuVmA3",
         "pos": 9600,
-        "offset_sec": 0,
+        "offset_sec": 555,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1108,7 +1204,8 @@
       {
         "id": "Mq5pe7ymMKcMY55pbMKm9i",
         "pos": 9700,
-        "offset_sec": 0,
+        "offset_sec": 563,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -1119,7 +1216,8 @@
       {
         "id": "fTiTJLz8sjMJDyWvFzQpT6",
         "pos": 9800,
-        "offset_sec": 0,
+        "offset_sec": 571,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1130,7 +1228,8 @@
       {
         "id": "YpUXq7kDw6rUMJ2ezJFS54",
         "pos": 9900,
-        "offset_sec": 0,
+        "offset_sec": 572,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -1141,7 +1240,8 @@
       {
         "id": "LafPhTanZbdgpN68Fkkb7a",
         "pos": 10000,
-        "offset_sec": 0,
+        "offset_sec": 573,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1152,7 +1252,8 @@
       {
         "id": "jNVe4wGhK8TyoCJbKsECb8",
         "pos": 10100,
-        "offset_sec": 0,
+        "offset_sec": 577,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -1163,7 +1264,8 @@
       {
         "id": "ftZa9TjPtAiLi4eB5XG8yd",
         "pos": 10200,
-        "offset_sec": 0,
+        "offset_sec": 578,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1174,7 +1276,8 @@
       {
         "id": "7cjtWJMrb8cqf2qtGsHFjK",
         "pos": 10300,
-        "offset_sec": 0,
+        "offset_sec": 579,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -1185,7 +1288,8 @@
       {
         "id": "iTrgs6wgpqNQBuqXEM3CKM",
         "pos": 10400,
-        "offset_sec": 0,
+        "offset_sec": 588,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1196,7 +1300,8 @@
       {
         "id": "WKYymWQr8d3jBMtiyMKUeX",
         "pos": 10500,
-        "offset_sec": 0,
+        "offset_sec": 592,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -1209,7 +1314,8 @@
       {
         "id": "2cPNs72NicR8uQBKAGw87g",
         "pos": 10600,
-        "offset_sec": 0,
+        "offset_sec": 599,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1220,7 +1326,8 @@
       {
         "id": "BkwttCaXWGRvtPgXqwsWFk",
         "pos": 10700,
-        "offset_sec": 0,
+        "offset_sec": 625,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -1231,7 +1338,8 @@
       {
         "id": "msy3b3jWPoUceCq4tKHoXU",
         "pos": 10800,
-        "offset_sec": 0,
+        "offset_sec": 636,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1242,7 +1350,8 @@
       {
         "id": "MGnfqATLcdTowFPrXSE8YD",
         "pos": 10900,
-        "offset_sec": 0,
+        "offset_sec": 652,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -1253,7 +1362,8 @@
       {
         "id": "B8cXL9eiEEA2BekUusos8H",
         "pos": 11000,
-        "offset_sec": 0,
+        "offset_sec": 661,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1264,7 +1374,8 @@
       {
         "id": "faG3a3cjjavgY4oMDFMxZV",
         "pos": 11100,
-        "offset_sec": 0,
+        "offset_sec": 669,
+        "offset_inferred": true,
         "type": "unknown",
         "actor": "",
         "metadata": null,
@@ -1275,7 +1386,8 @@
       {
         "id": "p3zejqydUYfykBXrzCwXwK",
         "pos": 11200,
-        "offset_sec": 0,
+        "offset_sec": 670,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1286,7 +1398,8 @@
       {
         "id": "m5nzraGPKEte74TjGkw4j4",
         "pos": 11300,
-        "offset_sec": 0,
+        "offset_sec": 673,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -1297,7 +1410,8 @@
       {
         "id": "Lxb8dHYRQ4Z68pPgsx5JxB",
         "pos": 11400,
-        "offset_sec": 0,
+        "offset_sec": 686,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1310,7 +1424,8 @@
       {
         "id": "dxA9yF9ABH7ZDZGsYvSCUD",
         "pos": 11500,
-        "offset_sec": 0,
+        "offset_sec": 694,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -1321,7 +1436,8 @@
       {
         "id": "ATdRrVJgGLucj2whFMgjz4",
         "pos": 11600,
-        "offset_sec": 0,
+        "offset_sec": 695,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1332,7 +1448,8 @@
       {
         "id": "aSaRbUCXAm9JNx4mjYZbhG",
         "pos": 11700,
-        "offset_sec": 0,
+        "offset_sec": 700,
+        "offset_inferred": true,
         "type": "unknown",
         "actor": "",
         "metadata": null,
@@ -1343,7 +1460,8 @@
       {
         "id": "CCFQYLE5xjgGebLnDyZQ7X",
         "pos": 11800,
-        "offset_sec": 0,
+        "offset_sec": 702,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1356,7 +1474,8 @@
       {
         "id": "rrL39Kz7kJietmvf6Ycvs8",
         "pos": 11900,
-        "offset_sec": 0,
+        "offset_sec": 722,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -1367,7 +1486,8 @@
       {
         "id": "NVyC8fnWSvt7TTR9toKNZB",
         "pos": 12000,
-        "offset_sec": 0,
+        "offset_sec": 722,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1378,7 +1498,8 @@
       {
         "id": "bKYGBQFqaKBGmXKYKR8Qz4",
         "pos": 12100,
-        "offset_sec": 0,
+        "offset_sec": 726,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -1389,7 +1510,8 @@
       {
         "id": "2BDtFnrf5h3kTYipXzmxK5",
         "pos": 12200,
-        "offset_sec": 0,
+        "offset_sec": 731,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -1400,7 +1522,8 @@
       {
         "id": "UtfjCMXPYYxMSkAYc6adfh",
         "pos": 12300,
-        "offset_sec": 0,
+        "offset_sec": 732,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -1413,7 +1536,8 @@
       {
         "id": "MRamdgJx6x2Lbv8JDrvLmF",
         "pos": 12400,
-        "offset_sec": 0,
+        "offset_sec": 744,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1424,7 +1548,8 @@
       {
         "id": "K8tq3KC7tw7mhDe2wmjhwD",
         "pos": 12500,
-        "offset_sec": 0,
+        "offset_sec": 754,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -1435,7 +1560,8 @@
       {
         "id": "5xEs9b3EUKfLMzxGxQhxqG",
         "pos": 12600,
-        "offset_sec": 0,
+        "offset_sec": 755,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1446,7 +1572,8 @@
       {
         "id": "zgLbe6zPEKEVLMxxKWbhDE",
         "pos": 12700,
-        "offset_sec": 0,
+        "offset_sec": 757,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -1457,7 +1584,8 @@
       {
         "id": "ASzc9r8ftHgxRXZp8dswR",
         "pos": 12800,
-        "offset_sec": 0,
+        "offset_sec": 758,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1468,7 +1596,8 @@
       {
         "id": "xxgPhgufaUw3QNcWvPengP",
         "pos": 12900,
-        "offset_sec": 0,
+        "offset_sec": 760,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -1479,7 +1608,8 @@
       {
         "id": "thgETcymBBsow6KRHNEb5P",
         "pos": 13000,
-        "offset_sec": 0,
+        "offset_sec": 762,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1490,7 +1620,8 @@
       {
         "id": "Zg77DrZdBugF8THd5HZgK4",
         "pos": 13100,
-        "offset_sec": 0,
+        "offset_sec": 769,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -1503,7 +1634,8 @@
       {
         "id": "ybVBm3VnVCUKM7L85rgSuV",
         "pos": 13200,
-        "offset_sec": 0,
+        "offset_sec": 792,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1514,7 +1646,8 @@
       {
         "id": "m25a65z64C6L8BDRWwyBUF",
         "pos": 13300,
-        "offset_sec": 0,
+        "offset_sec": 797,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -1525,7 +1658,8 @@
       {
         "id": "3u3iR5DtJWeSsMZpJUKCaX",
         "pos": 13400,
-        "offset_sec": 0,
+        "offset_sec": 797,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1536,7 +1670,8 @@
       {
         "id": "KSPLKQMEYavmndYfWFvLah",
         "pos": 13500,
-        "offset_sec": 0,
+        "offset_sec": 807,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -1547,7 +1682,8 @@
       {
         "id": "8chgkEjQFFPKh3hk6ULV7G",
         "pos": 13600,
-        "offset_sec": 0,
+        "offset_sec": 807,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1558,7 +1694,8 @@
       {
         "id": "UWiHCuap9tvuBDvKQUwXaU",
         "pos": 13700,
-        "offset_sec": 0,
+        "offset_sec": 808,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -1569,7 +1706,8 @@
       {
         "id": "doD9LxMahCDHxU5mzjvwEP",
         "pos": 13800,
-        "offset_sec": 0,
+        "offset_sec": 809,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1580,7 +1718,8 @@
       {
         "id": "76bMTw4YuPnizFAdA4sdgk",
         "pos": 13900,
-        "offset_sec": 0,
+        "offset_sec": 812,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -1591,7 +1730,8 @@
       {
         "id": "S7sn5eywMCyQXzhnsWVf4i",
         "pos": 14000,
-        "offset_sec": 0,
+        "offset_sec": 813,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1602,7 +1742,8 @@
       {
         "id": "PcxZ7Dco6hSJUmBqFFzZki",
         "pos": 14100,
-        "offset_sec": 0,
+        "offset_sec": 820,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -1613,7 +1754,8 @@
       {
         "id": "4fFuC6iikBV84TgjYz69Bk",
         "pos": 14200,
-        "offset_sec": 0,
+        "offset_sec": 821,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1624,7 +1766,8 @@
       {
         "id": "fTy6mXVWziAd4SBej6emoi",
         "pos": 14300,
-        "offset_sec": 0,
+        "offset_sec": 827,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -1635,7 +1778,8 @@
       {
         "id": "BQebB7WHX3HA6EUFQJX5f4",
         "pos": 14400,
-        "offset_sec": 0,
+        "offset_sec": 827,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1648,7 +1792,8 @@
       {
         "id": "r3wkwNzRAQVYrYbG6Uw8JZ",
         "pos": 14500,
-        "offset_sec": 0,
+        "offset_sec": 846,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -1659,7 +1804,8 @@
       {
         "id": "nCz3JxRnkwvRXGmz54WYvH",
         "pos": 14600,
-        "offset_sec": 0,
+        "offset_sec": 847,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -1670,7 +1816,8 @@
       {
         "id": "wXaHEtgvvVrf2jWQvPywxV",
         "pos": 14700,
-        "offset_sec": 0,
+        "offset_sec": 847,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1683,7 +1830,8 @@
       {
         "id": "6KMrjFwF2UqaioHMjDDiZm",
         "pos": 14800,
-        "offset_sec": 0,
+        "offset_sec": 856,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -1694,7 +1842,8 @@
       {
         "id": "D2BG6zJSCsrxC4KB9geCsn",
         "pos": 14900,
-        "offset_sec": 0,
+        "offset_sec": 857,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1705,7 +1854,8 @@
       {
         "id": "mEHKiJg7QN8iq7bLdYcRwj",
         "pos": 15000,
-        "offset_sec": 0,
+        "offset_sec": 859,
+        "offset_inferred": true,
         "type": "unknown",
         "actor": "",
         "metadata": null,
@@ -1716,7 +1866,8 @@
       {
         "id": "JyAFCzfh7mEQ35oESADrub",
         "pos": 15100,
-        "offset_sec": 0,
+        "offset_sec": 862,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -1727,7 +1878,8 @@
       {
         "id": "LV9e6BWCB74S4arv7RJMzV",
         "pos": 15200,
-        "offset_sec": 0,
+        "offset_sec": 871,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -1738,7 +1890,8 @@
       {
         "id": "TAYRjk7ywcaW4Ftw4tuycg",
         "pos": 15300,
-        "offset_sec": 0,
+        "offset_sec": 872,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -1749,7 +1902,8 @@
       {
         "id": "gL4M5JBV8PBvmzRgSdbLnQ",
         "pos": 15400,
-        "offset_sec": 0,
+        "offset_sec": 884,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1760,7 +1914,8 @@
       {
         "id": "qJX6j3LZDNrcZ4Evd6X9BF",
         "pos": 15500,
-        "offset_sec": 0,
+        "offset_sec": 886,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -1771,7 +1926,8 @@
       {
         "id": "XmuL24Psh7C8ub6RM7kA2X",
         "pos": 15600,
-        "offset_sec": 0,
+        "offset_sec": 891,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -1784,7 +1940,8 @@
       {
         "id": "aCzVqSztWkDW4k97UmpKQe",
         "pos": 15700,
-        "offset_sec": 0,
+        "offset_sec": 898,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1795,7 +1952,8 @@
       {
         "id": "seHnbbnSHyk46te5F2JbyP",
         "pos": 15800,
-        "offset_sec": 0,
+        "offset_sec": 899,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -1806,7 +1964,8 @@
       {
         "id": "5oFgwVDjhKFzSFLaCkkHg5",
         "pos": 15900,
-        "offset_sec": 0,
+        "offset_sec": 906,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1817,7 +1976,8 @@
       {
         "id": "ZXzTSe8uxL8pgurHxyT3KD",
         "pos": 16000,
-        "offset_sec": 0,
+        "offset_sec": 962,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -1828,7 +1988,8 @@
       {
         "id": "K5UUPZrbNbXUXcxLTWa8jd",
         "pos": 16100,
-        "offset_sec": 0,
+        "offset_sec": 962,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1839,7 +2000,8 @@
       {
         "id": "T4y8X4dVxgjUNammbRQuxn",
         "pos": 16200,
-        "offset_sec": 0,
+        "offset_sec": 965,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -1850,7 +2012,8 @@
       {
         "id": "o4hA5tQgP2Br37eXGC3n2g",
         "pos": 16300,
-        "offset_sec": 0,
+        "offset_sec": 965,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1861,7 +2024,8 @@
       {
         "id": "QpuqbGhCbVDnFgiFK27CcJ",
         "pos": 16400,
-        "offset_sec": 0,
+        "offset_sec": 971,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -1872,7 +2036,8 @@
       {
         "id": "DAGUxW6TiA6YqzEpgZyvzX",
         "pos": 16500,
-        "offset_sec": 0,
+        "offset_sec": 1017,
+        "offset_inferred": true,
         "type": "unknown",
         "actor": "",
         "metadata": null,
@@ -1883,7 +2048,8 @@
       {
         "id": "AtLWKzDQj5ozNsZghwtbSX",
         "pos": 16600,
-        "offset_sec": 0,
+        "offset_sec": 1019,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -1894,7 +2060,8 @@
       {
         "id": "SWEyWbjkHNjKcBb62esYxe",
         "pos": 16700,
-        "offset_sec": 0,
+        "offset_sec": 1024,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -1905,7 +2072,8 @@
       {
         "id": "bGBGp9JgBxefkQfoQxbDHm",
         "pos": 16800,
-        "offset_sec": 0,
+        "offset_sec": 1025,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -1916,7 +2084,8 @@
       {
         "id": "XuLXWk3LyLWM43RVnh6gPD",
         "pos": 16900,
-        "offset_sec": 0,
+        "offset_sec": 1030,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1927,7 +2096,8 @@
       {
         "id": "As8Y63FYJEbw9bVkrnCzWJ",
         "pos": 17000,
-        "offset_sec": 0,
+        "offset_sec": 1030,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -1938,7 +2108,8 @@
       {
         "id": "r94AMWCehRpG9QjqCCRVqk",
         "pos": 17100,
-        "offset_sec": 0,
+        "offset_sec": 1034,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1949,7 +2120,8 @@
       {
         "id": "ZHszL7HQQK7TYFNNeWguu",
         "pos": 17200,
-        "offset_sec": 0,
+        "offset_sec": 1043,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -1962,7 +2134,8 @@
       {
         "id": "SJo5H3BXVS3DmFNuniy8JN",
         "pos": 17300,
-        "offset_sec": 0,
+        "offset_sec": 1067,
+        "offset_inferred": true,
         "type": "unknown",
         "actor": "",
         "metadata": null,
@@ -1973,7 +2146,8 @@
       {
         "id": "YZdMwPECeSfZGX72WDtxai",
         "pos": 17400,
-        "offset_sec": 0,
+        "offset_sec": 1069,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -1986,7 +2160,8 @@
       {
         "id": "RJFAQKPfd2utn9CWxmhDN3",
         "pos": 17500,
-        "offset_sec": 0,
+        "offset_sec": 1073,
+        "offset_inferred": true,
         "type": "unknown",
         "actor": "",
         "metadata": null,
@@ -1997,7 +2172,8 @@
       {
         "id": "yGsvMLiYGBEs9YPuZxPqw",
         "pos": 17600,
-        "offset_sec": 0,
+        "offset_sec": 1074,
+        "offset_inferred": true,
         "type": "song",
         "actor": "",
         "metadata": {
@@ -2015,7 +2191,8 @@
       {
         "id": "ZmRofuVpzFtGZZy7F2VCb7",
         "pos": 17700,
-        "offset_sec": 0,
+        "offset_sec": 1074,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -2028,7 +2205,8 @@
       {
         "id": "WaX36sniRNPbnLnQkhmfMG",
         "pos": 17800,
-        "offset_sec": 0,
+        "offset_sec": 1083,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -2039,7 +2217,8 @@
       {
         "id": "u7V2KkxiL6r3M3qUb9ByvJ",
         "pos": 17900,
-        "offset_sec": 0,
+        "offset_sec": 1083,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -2053,7 +2232,8 @@
       {
         "id": "bKM9qLuENMeV9hYJ6gd7FP",
         "pos": 18000,
-        "offset_sec": 0,
+        "offset_sec": 1095,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -2064,7 +2244,8 @@
       {
         "id": "anHYRNTY4Vs49Z8HhXQfXA",
         "pos": 18100,
-        "offset_sec": 0,
+        "offset_sec": 1102,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -2075,7 +2256,8 @@
       {
         "id": "9oDzFJFLeFBXvaWePckQME",
         "pos": 18200,
-        "offset_sec": 0,
+        "offset_sec": 1103,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -2086,7 +2268,8 @@
       {
         "id": "k5FpXkQosbAWFhH8nMWgv9",
         "pos": 18300,
-        "offset_sec": 0,
+        "offset_sec": 1113,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -2097,7 +2280,8 @@
       {
         "id": "ZtUEogA6kaappHEtt9eknd",
         "pos": 18400,
-        "offset_sec": 0,
+        "offset_sec": 1117,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -2108,7 +2292,8 @@
       {
         "id": "EYzXiEnzi3YVFHNDhwn3Aj",
         "pos": 18500,
-        "offset_sec": 0,
+        "offset_sec": 1118,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -2121,7 +2306,8 @@
       {
         "id": "nqytKvErzQcixiPJrer8T",
         "pos": 18600,
-        "offset_sec": 0,
+        "offset_sec": 1121,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -2132,7 +2318,8 @@
       {
         "id": "U22LuZ5KmM96sWkJZkGkBd",
         "pos": 18700,
-        "offset_sec": 0,
+        "offset_sec": 1125,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -2145,7 +2332,8 @@
       {
         "id": "dcyKGkRvLhJJNPi9tX7fWF",
         "pos": 18800,
-        "offset_sec": 0,
+        "offset_sec": 1131,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -2156,7 +2344,8 @@
       {
         "id": "rVxGbEryqyayGsnuWnUHth",
         "pos": 18900,
-        "offset_sec": 0,
+        "offset_sec": 1152,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -2167,7 +2356,8 @@
       {
         "id": "LpBrNvjAAfk4AZARY3NTnA",
         "pos": 19000,
-        "offset_sec": 0,
+        "offset_sec": 1152,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -2178,7 +2368,8 @@
       {
         "id": "PoWb7tdZKWjNBjt6Vpi2NM",
         "pos": 19100,
-        "offset_sec": 0,
+        "offset_sec": 1158,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -2189,7 +2380,8 @@
       {
         "id": "pxpPb8eKg5qoBbQi8XbFgb",
         "pos": 19200,
-        "offset_sec": 0,
+        "offset_sec": 1164,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -2202,7 +2394,8 @@
       {
         "id": "rgqjQu94BjABgcPHxCvP4E",
         "pos": 19300,
-        "offset_sec": 0,
+        "offset_sec": 1199,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -2213,7 +2406,8 @@
       {
         "id": "mwksXu4y3Uh5E4yBS4nV4L",
         "pos": 19400,
-        "offset_sec": 0,
+        "offset_sec": 1200,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -2224,7 +2418,8 @@
       {
         "id": "xaaoVvAnDYQNWtMap7CUU4",
         "pos": 19500,
-        "offset_sec": 0,
+        "offset_sec": 1218,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -2235,7 +2430,8 @@
       {
         "id": "mn5c9xzkRWW3G4rMHWDU2i",
         "pos": 19600,
-        "offset_sec": 0,
+        "offset_sec": 1223,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -2246,7 +2442,8 @@
       {
         "id": "QiahTejG3Bivy2pymTyA2J",
         "pos": 19700,
-        "offset_sec": 0,
+        "offset_sec": 1224,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -2257,7 +2454,8 @@
       {
         "id": "AKFXJv7m8m6N3WcB3qtHD3",
         "pos": 19800,
-        "offset_sec": 0,
+        "offset_sec": 1225,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -2268,7 +2466,8 @@
       {
         "id": "skRipGnpXWrgV4MZ3ZVFwM",
         "pos": 19900,
-        "offset_sec": 0,
+        "offset_sec": 1227,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -2279,7 +2478,8 @@
       {
         "id": "ZMk5atQwt72giLsAvwFLZ5",
         "pos": 20000,
-        "offset_sec": 0,
+        "offset_sec": 1232,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -2290,7 +2490,8 @@
       {
         "id": "8CJp6Zj6ctzZwJW5cVHtg5",
         "pos": 20100,
-        "offset_sec": 0,
+        "offset_sec": 1233,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -2301,7 +2502,8 @@
       {
         "id": "oEoefqBcskiUhmFVQcdB8d",
         "pos": 20200,
-        "offset_sec": 0,
+        "offset_sec": 1235,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -2312,7 +2514,8 @@
       {
         "id": "2ytVZVjyyZXyMwf3rwdopS",
         "pos": 20300,
-        "offset_sec": 0,
+        "offset_sec": 1248,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -2323,7 +2526,8 @@
       {
         "id": "LNQLqAeMbjHrtuFmm5ahe9",
         "pos": 20400,
-        "offset_sec": 0,
+        "offset_sec": 1249,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -2334,7 +2538,8 @@
       {
         "id": "rAAxTUrp72b5atasfDbbnY",
         "pos": 20500,
-        "offset_sec": 0,
+        "offset_sec": 1253,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -2345,7 +2550,8 @@
       {
         "id": "F29s3STjqHtwHTPsD6nLU9",
         "pos": 20600,
-        "offset_sec": 0,
+        "offset_sec": 1254,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -2358,7 +2564,8 @@
       {
         "id": "N86ra8amZShzsRxvX59KJh",
         "pos": 20700,
-        "offset_sec": 0,
+        "offset_sec": 1305,
+        "offset_inferred": true,
         "type": "unknown",
         "actor": "",
         "metadata": null,
@@ -2369,7 +2576,8 @@
       {
         "id": "FUMqs7EnKtQSfHByrbAeW7",
         "pos": 20800,
-        "offset_sec": 0,
+        "offset_sec": 1306,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -2380,7 +2588,8 @@
       {
         "id": "meyaZnuqwiEtxX43zLpkgi",
         "pos": 20900,
-        "offset_sec": 0,
+        "offset_sec": 1314,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -2391,7 +2600,8 @@
       {
         "id": "yCGPFDmNBXKtqhp7VcHezF",
         "pos": 21000,
-        "offset_sec": 0,
+        "offset_sec": 1318,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -2402,7 +2612,8 @@
       {
         "id": "2dGtMcdrgwN2zTa43VSZyZ",
         "pos": 21100,
-        "offset_sec": 0,
+        "offset_sec": 1321,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -2413,7 +2624,8 @@
       {
         "id": "2MfdgeobhbDCrmB9BaZD24",
         "pos": 21200,
-        "offset_sec": 0,
+        "offset_sec": 1322,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -2424,7 +2636,8 @@
       {
         "id": "DpVEyQDXsnxBhZMut8nDNi",
         "pos": 21300,
-        "offset_sec": 0,
+        "offset_sec": 1323,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -2435,7 +2648,8 @@
       {
         "id": "eeERez5ukY7jLfYvmJnZcM",
         "pos": 21400,
-        "offset_sec": 0,
+        "offset_sec": 1345,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -2446,7 +2660,8 @@
       {
         "id": "AaeSAx4ta94kjXhKgnNJ5b",
         "pos": 21500,
-        "offset_sec": 0,
+        "offset_sec": 1347,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -2457,7 +2672,8 @@
       {
         "id": "nkSHkmFykcagJToXTpWVi8",
         "pos": 21600,
-        "offset_sec": 0,
+        "offset_sec": 1353,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -2468,7 +2684,8 @@
       {
         "id": "MzoA4eEecx8zVMkG9KRcMN",
         "pos": 21700,
-        "offset_sec": 0,
+        "offset_sec": 1363,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -2479,7 +2696,8 @@
       {
         "id": "GnJwfua6uDkaindubffi8J",
         "pos": 21800,
-        "offset_sec": 0,
+        "offset_sec": 1365,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -2490,7 +2708,8 @@
       {
         "id": "Mxjos6uQpUQAjLd4MGZbDd",
         "pos": 21900,
-        "offset_sec": 0,
+        "offset_sec": 1373,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -2508,7 +2727,8 @@
       {
         "id": "kDEBstCCTKkhYFp3PUhUpY",
         "pos": 22000,
-        "offset_sec": 0,
+        "offset_sec": 1539,
+        "offset_inferred": true,
         "type": "unknown",
         "actor": "",
         "metadata": null,
@@ -2519,7 +2739,8 @@
       {
         "id": "tdRqWqTyfDemhZe7kJv7an",
         "pos": 22100,
-        "offset_sec": 0,
+        "offset_sec": 1540,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -2530,7 +2751,8 @@
       {
         "id": "auDWPaCbtvNAsoscJv43aE",
         "pos": 22200,
-        "offset_sec": 0,
+        "offset_sec": 1554,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -2541,7 +2763,8 @@
       {
         "id": "dBdMcQHoVsbaqz82as424L",
         "pos": 22300,
-        "offset_sec": 0,
+        "offset_sec": 1558,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -2552,7 +2775,8 @@
       {
         "id": "eNCa9P5rRH92FqkYxHDCKL",
         "pos": 22400,
-        "offset_sec": 0,
+        "offset_sec": 1569,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -2563,7 +2787,8 @@
       {
         "id": "fhi9dyapXHkBBfBx5hDevV",
         "pos": 22500,
-        "offset_sec": 0,
+        "offset_sec": 1569,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -2574,7 +2799,8 @@
       {
         "id": "LYrCuaubd9mXgBgGS9vtfe",
         "pos": 22600,
-        "offset_sec": 0,
+        "offset_sec": 1573,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -2585,7 +2811,8 @@
       {
         "id": "vB3rrfuzfhhoFibKtwMWZk",
         "pos": 22700,
-        "offset_sec": 0,
+        "offset_sec": 1573,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -2600,7 +2827,8 @@
       {
         "id": "ESCCAFRoQaT98LsfAR9cRY",
         "pos": 22800,
-        "offset_sec": 0,
+        "offset_sec": 1624,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -2611,7 +2839,8 @@
       {
         "id": "GoSSRo5TK3PrvdDH68K3n3",
         "pos": 22900,
-        "offset_sec": 0,
+        "offset_sec": 1627,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -2622,7 +2851,8 @@
       {
         "id": "zZc8kWjXvGpZhTM6xNULZD",
         "pos": 23000,
-        "offset_sec": 0,
+        "offset_sec": 1632,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -2633,7 +2863,8 @@
       {
         "id": "VmnaEHmPk7Xza7eMugczWh",
         "pos": 23100,
-        "offset_sec": 0,
+        "offset_sec": 1634,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -2647,7 +2878,8 @@
       {
         "id": "FNBEQrqteqWVAsigq5fXWF",
         "pos": 23200,
-        "offset_sec": 0,
+        "offset_sec": 1637,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -2658,7 +2890,8 @@
       {
         "id": "rkB5CZJH96N72bPRZJSeoV",
         "pos": 23300,
-        "offset_sec": 0,
+        "offset_sec": 1640,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -2669,7 +2902,8 @@
       {
         "id": "HjT4TVWNUvvASseNcMZc8Z",
         "pos": 23400,
-        "offset_sec": 0,
+        "offset_sec": 1640,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -2680,7 +2914,8 @@
       {
         "id": "nGQPrmJSYM3Xw8naDT4Vva",
         "pos": 23500,
-        "offset_sec": 0,
+        "offset_sec": 1673,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -2691,7 +2926,8 @@
       {
         "id": "UFiu4BiG978ELt8SQZueiN",
         "pos": 23600,
-        "offset_sec": 0,
+        "offset_sec": 1688,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -2705,7 +2941,8 @@
       {
         "id": "mPz36Bwgxfq9VdoHe26TwB",
         "pos": 23700,
-        "offset_sec": 0,
+        "offset_sec": 1751,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -2716,7 +2953,8 @@
       {
         "id": "cA9H5zD3gi9vmQ3pLGtQEM",
         "pos": 23800,
-        "offset_sec": 0,
+        "offset_sec": 1760,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -2727,7 +2965,8 @@
       {
         "id": "A97nfb8fbNKCb69kR5o9ab",
         "pos": 23900,
-        "offset_sec": 0,
+        "offset_sec": 1760,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -2738,7 +2977,8 @@
       {
         "id": "SLPxmH4Kzh5cTGghj8XN9S",
         "pos": 24000,
-        "offset_sec": 0,
+        "offset_sec": 1770,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -2749,7 +2989,8 @@
       {
         "id": "82o7wLCU7gGxJY3ZKbrZvE",
         "pos": 24100,
-        "offset_sec": 0,
+        "offset_sec": 1777,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -2760,7 +3001,8 @@
       {
         "id": "7z4fZemwU74g52SCJjZmEi",
         "pos": 24200,
-        "offset_sec": 0,
+        "offset_sec": 1778,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -2773,7 +3015,8 @@
       {
         "id": "2mHHGoLicuEhUvS5DL8AVG",
         "pos": 24300,
-        "offset_sec": 0,
+        "offset_sec": 1793,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -2784,7 +3027,8 @@
       {
         "id": "TgZ5pQBGcDFteDBQ6gmdjc",
         "pos": 24400,
-        "offset_sec": 0,
+        "offset_sec": 1805,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -2795,7 +3039,8 @@
       {
         "id": "jhzthd8opcoUDQMLEsUPzE",
         "pos": 24500,
-        "offset_sec": 0,
+        "offset_sec": 1805,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -2806,7 +3051,8 @@
       {
         "id": "STMGqpYRow3D7MQ522s4ZB",
         "pos": 24600,
-        "offset_sec": 0,
+        "offset_sec": 1812,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -2817,7 +3063,8 @@
       {
         "id": "L4frUEskusA9UxmbZtA8mi",
         "pos": 24700,
-        "offset_sec": 0,
+        "offset_sec": 1818,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -2828,7 +3075,8 @@
       {
         "id": "2ii4QqMeX4tsF68ossg6gT",
         "pos": 24800,
-        "offset_sec": 0,
+        "offset_sec": 1823,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -2839,7 +3087,8 @@
       {
         "id": "Qz4KpWMPHuFbajEMQN8ApR",
         "pos": 24900,
-        "offset_sec": 0,
+        "offset_sec": 1824,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -2850,7 +3099,8 @@
       {
         "id": "iZ8zL5gwRAsV6WVaCkRBie",
         "pos": 25000,
-        "offset_sec": 0,
+        "offset_sec": 1834,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -2861,7 +3111,8 @@
       {
         "id": "QRLDvyEZdAXssqpVZ5wDtQ",
         "pos": 25100,
-        "offset_sec": 0,
+        "offset_sec": 1837,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -2872,7 +3123,8 @@
       {
         "id": "kvDBVN6tzwCBPN65RzryhA",
         "pos": 25200,
-        "offset_sec": 0,
+        "offset_sec": 1854,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -2883,7 +3135,8 @@
       {
         "id": "9bvk84mBZjKBksrrMBpVBk",
         "pos": 25300,
-        "offset_sec": 0,
+        "offset_sec": 1862,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -2894,7 +3147,8 @@
       {
         "id": "XcExsRofyRwjwPCibJN6Eo",
         "pos": 25400,
-        "offset_sec": 0,
+        "offset_sec": 1863,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -2905,7 +3159,8 @@
       {
         "id": "eLNa8nffBcjwEnhYTM9UrZ",
         "pos": 25500,
-        "offset_sec": 0,
+        "offset_sec": 1865,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -2916,7 +3171,8 @@
       {
         "id": "N5xkQBbfn3YgACYKA2C5v7",
         "pos": 25600,
-        "offset_sec": 0,
+        "offset_sec": 1867,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -2927,7 +3183,8 @@
       {
         "id": "b5KFaGGd8DAxbq9cMQhPrc",
         "pos": 25700,
-        "offset_sec": 0,
+        "offset_sec": 1870,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -2938,7 +3195,8 @@
       {
         "id": "BMf2FJwhV62qoyYtsZ8Ysd",
         "pos": 25800,
-        "offset_sec": 0,
+        "offset_sec": 1870,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -2953,7 +3211,8 @@
       {
         "id": "UrDHqAAd75hYmVgCryiWYm",
         "pos": 25900,
-        "offset_sec": 0,
+        "offset_sec": 1888,
+        "offset_inferred": true,
         "type": "unknown",
         "actor": "",
         "metadata": null,
@@ -2964,7 +3223,8 @@
       {
         "id": "3jDfeLq8uNQP3DNdAs8vPR",
         "pos": 26000,
-        "offset_sec": 0,
+        "offset_sec": 1889,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -2975,7 +3235,8 @@
       {
         "id": "SPmvRjVvf2ktjmNQSjwUZi",
         "pos": 26100,
-        "offset_sec": 0,
+        "offset_sec": 1893,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -2986,7 +3247,8 @@
       {
         "id": "NNbbR4WRCBnsGgYhFPuuRK",
         "pos": 26200,
-        "offset_sec": 0,
+        "offset_sec": 1893,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -2997,7 +3259,8 @@
       {
         "id": "PSv4Y24oeH9M4quzoMdANk",
         "pos": 26300,
-        "offset_sec": 0,
+        "offset_sec": 1894,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3008,7 +3271,8 @@
       {
         "id": "P5wxBxcv6uNjNZZ9e2YhQH",
         "pos": 26400,
-        "offset_sec": 0,
+        "offset_sec": 1901,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -3019,7 +3283,8 @@
       {
         "id": "MU4A9aiBbaodfNWL2bfDnc",
         "pos": 26500,
-        "offset_sec": 0,
+        "offset_sec": 1908,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3030,7 +3295,8 @@
       {
         "id": "Y638dbXhiRuyUWkDuNfRw8",
         "pos": 26600,
-        "offset_sec": 0,
+        "offset_sec": 1908,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -3041,7 +3307,8 @@
       {
         "id": "9ERVCT5ZJsVZNNEsH7KySi",
         "pos": 26700,
-        "offset_sec": 0,
+        "offset_sec": 1911,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3052,7 +3319,8 @@
       {
         "id": "HFdydcC4ZdtcBrHszXLkE7",
         "pos": 26800,
-        "offset_sec": 0,
+        "offset_sec": 1926,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -3063,7 +3331,8 @@
       {
         "id": "eWVgQ4qBaLKz7AWs5VYj4R",
         "pos": 26900,
-        "offset_sec": 0,
+        "offset_sec": 1929,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3074,7 +3343,8 @@
       {
         "id": "y4H4c7xeJGmuaXMjAf8UsL",
         "pos": 27000,
-        "offset_sec": 0,
+        "offset_sec": 1931,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -3085,7 +3355,8 @@
       {
         "id": "gGDTnDViUbB9nEqsW4DrFe",
         "pos": 27100,
-        "offset_sec": 0,
+        "offset_sec": 1932,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3096,7 +3367,8 @@
       {
         "id": "W2QYSPW9H8f58HbTX64uZ6",
         "pos": 27200,
-        "offset_sec": 0,
+        "offset_sec": 1941,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -3109,7 +3381,8 @@
       {
         "id": "Qzbug4cRyAGm4fxFQxdyfN",
         "pos": 27300,
-        "offset_sec": 0,
+        "offset_sec": 1947,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3120,7 +3393,8 @@
       {
         "id": "eV8ezp9DEEXgbCM4wrTRkE",
         "pos": 27400,
-        "offset_sec": 0,
+        "offset_sec": 1949,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -3131,7 +3405,8 @@
       {
         "id": "yKjV2iufqjsMevcHQJB8tD",
         "pos": 27500,
-        "offset_sec": 0,
+        "offset_sec": 1951,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3142,7 +3417,8 @@
       {
         "id": "wu9HRu7Wyr7czYDCiDkGWR",
         "pos": 27600,
-        "offset_sec": 0,
+        "offset_sec": 1963,
+        "offset_inferred": true,
         "type": "song",
         "actor": "",
         "metadata": {
@@ -3160,7 +3436,8 @@
       {
         "id": "xaFfinXuEBLSQSirUmUdia",
         "pos": 27700,
-        "offset_sec": 0,
+        "offset_sec": 1963,
+        "offset_inferred": true,
         "type": "song",
         "actor": "",
         "metadata": {
@@ -3178,7 +3455,8 @@
       {
         "id": "pSGRguR87WC3jeQsJfxxMW",
         "pos": 27800,
-        "offset_sec": 0,
+        "offset_sec": 1963,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3193,7 +3471,8 @@
       {
         "id": "QB8d2b5inxrDzaHMtru6Sh",
         "pos": 27900,
-        "offset_sec": 0,
+        "offset_sec": 1974,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3204,7 +3483,8 @@
       {
         "id": "dkY6xwK94RddTqUieFU94S",
         "pos": 28000,
-        "offset_sec": 0,
+        "offset_sec": 1984,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3215,7 +3495,8 @@
       {
         "id": "tNqSxbATuihea5cNVREHYX",
         "pos": 28100,
-        "offset_sec": 0,
+        "offset_sec": 1985,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3229,7 +3510,8 @@
       {
         "id": "X4rLB54cpM8JrewCLwwFdL",
         "pos": 28200,
-        "offset_sec": 0,
+        "offset_sec": 2002,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3240,7 +3522,8 @@
       {
         "id": "29Ws2sL97GX6yvox8MpRuN",
         "pos": 28300,
-        "offset_sec": 0,
+        "offset_sec": 2003,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3251,7 +3534,8 @@
       {
         "id": "7bpmVJu5ipRJUj3XrXSdHc",
         "pos": 28400,
-        "offset_sec": 0,
+        "offset_sec": 2011,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3262,7 +3546,8 @@
       {
         "id": "7P7cAKga5x3qi6gYSdTT5F",
         "pos": 28500,
-        "offset_sec": 0,
+        "offset_sec": 2020,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3273,7 +3558,8 @@
       {
         "id": "AZY7jt79nD3JwEdxghuifc",
         "pos": 28600,
-        "offset_sec": 0,
+        "offset_sec": 2022,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3284,7 +3570,8 @@
       {
         "id": "fYis38S55jqTGXq73yEo6b",
         "pos": 28700,
-        "offset_sec": 0,
+        "offset_sec": 2028,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3295,7 +3582,8 @@
       {
         "id": "E4KApJNFqFyHY3myrsJRe6",
         "pos": 28800,
-        "offset_sec": 0,
+        "offset_sec": 2029,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3306,7 +3594,8 @@
       {
         "id": "MSRmXpsLtnVfrcweCzc4dn",
         "pos": 28900,
-        "offset_sec": 0,
+        "offset_sec": 2035,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3317,7 +3606,8 @@
       {
         "id": "tQxUAkEdbF32tnociea5Ma",
         "pos": 29000,
-        "offset_sec": 0,
+        "offset_sec": 2046,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3328,7 +3618,8 @@
       {
         "id": "e5YP95XbxnfCkTyZDG4qYP",
         "pos": 29100,
-        "offset_sec": 0,
+        "offset_sec": 2050,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3339,7 +3630,8 @@
       {
         "id": "4qTffAZiJSeHN2ZXqo5C6Z",
         "pos": 29200,
-        "offset_sec": 0,
+        "offset_sec": 2051,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3350,7 +3642,8 @@
       {
         "id": "ouvQuWGbobQoGK6HEtdDz",
         "pos": 29300,
-        "offset_sec": 0,
+        "offset_sec": 2064,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3361,7 +3654,8 @@
       {
         "id": "SAqJFQs4F5AbkKfmWuEfwG",
         "pos": 29400,
-        "offset_sec": 0,
+        "offset_sec": 2070,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3372,7 +3666,8 @@
       {
         "id": "WVV7eSC7BxAw72AXDffzQd",
         "pos": 29500,
-        "offset_sec": 0,
+        "offset_sec": 2072,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3385,7 +3680,8 @@
       {
         "id": "srBsFBLMeKYmqph4zmFnfa",
         "pos": 29600,
-        "offset_sec": 0,
+        "offset_sec": 2075,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3398,7 +3694,8 @@
       {
         "id": "yL4zr6PmhYvuvabMBCqaKj",
         "pos": 29700,
-        "offset_sec": 0,
+        "offset_sec": 2077,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3409,7 +3706,8 @@
       {
         "id": "5iTCJ4ynCZ832UHTmpDQoe",
         "pos": 29800,
-        "offset_sec": 0,
+        "offset_sec": 2088,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3420,7 +3718,8 @@
       {
         "id": "VZXR4MUFPvEfcUDQ7o5Ekh",
         "pos": 29900,
-        "offset_sec": 0,
+        "offset_sec": 2093,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3431,7 +3730,8 @@
       {
         "id": "yoKeKCHzB2nsC9AMHTHLLQ",
         "pos": 30000,
-        "offset_sec": 0,
+        "offset_sec": 2096,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3442,7 +3742,8 @@
       {
         "id": "JgxBDaLYtEbtaPrMkbDtKa",
         "pos": 30100,
-        "offset_sec": 0,
+        "offset_sec": 2096,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3453,7 +3754,8 @@
       {
         "id": "j8yHJXNgVCUQC3hpmNQwT6",
         "pos": 30200,
-        "offset_sec": 0,
+        "offset_sec": 2099,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3464,7 +3766,8 @@
       {
         "id": "KmavW42mKNCddaP9eMsSr5",
         "pos": 30300,
-        "offset_sec": 0,
+        "offset_sec": 2114,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3475,7 +3778,8 @@
       {
         "id": "h68RYbaRZsguE57pACQcE7",
         "pos": 30400,
-        "offset_sec": 0,
+        "offset_sec": 2115,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3486,7 +3790,8 @@
       {
         "id": "9BeEb7x7msTQ4nKMtJFfK6",
         "pos": 30500,
-        "offset_sec": 0,
+        "offset_sec": 2121,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3497,7 +3802,8 @@
       {
         "id": "GskpMSuu4bhLBxEhbTD5mN",
         "pos": 30600,
-        "offset_sec": 0,
+        "offset_sec": 2133,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3508,7 +3814,8 @@
       {
         "id": "CHTNTT6zczaNAS9BNoWhmn",
         "pos": 30700,
-        "offset_sec": 0,
+        "offset_sec": 2134,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3519,7 +3826,8 @@
       {
         "id": "sGcSrfmpYWQ8EEsvdxKw8h",
         "pos": 30800,
-        "offset_sec": 0,
+        "offset_sec": 2135,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3530,7 +3838,8 @@
       {
         "id": "Uv8QuNfYiYsVWP7noxUTJN",
         "pos": 30900,
-        "offset_sec": 0,
+        "offset_sec": 2141,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3541,7 +3850,8 @@
       {
         "id": "DL88o3S5WX9yHCz3AnepU6",
         "pos": 31000,
-        "offset_sec": 0,
+        "offset_sec": 2142,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3552,7 +3862,8 @@
       {
         "id": "ER4oGQLAwYtNHiNe454BmP",
         "pos": 31100,
-        "offset_sec": 0,
+        "offset_sec": 2159,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3563,7 +3874,8 @@
       {
         "id": "yKmgna9EhiMivt6nQZAm8Q",
         "pos": 31200,
-        "offset_sec": 0,
+        "offset_sec": 2159,
+        "offset_inferred": true,
         "type": "unknown",
         "actor": "",
         "metadata": null,
@@ -3574,7 +3886,8 @@
       {
         "id": "vTNRL2ZvGYo5TcQNWGnC5G",
         "pos": 31300,
-        "offset_sec": 0,
+        "offset_sec": 2161,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3585,7 +3898,8 @@
       {
         "id": "diBLXy4moWPuV7hUDWinaM",
         "pos": 31400,
-        "offset_sec": 0,
+        "offset_sec": 2170,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3596,7 +3910,8 @@
       {
         "id": "9JLrTZDiS4XNtqRfHz639h",
         "pos": 31500,
-        "offset_sec": 0,
+        "offset_sec": 2170,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3607,7 +3922,8 @@
       {
         "id": "AJnSbuPwk6CjkF32SNwrm",
         "pos": 31600,
-        "offset_sec": 0,
+        "offset_sec": 2172,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3618,7 +3934,8 @@
       {
         "id": "QwfQ6VcFoH6vjnPGfB3E4F",
         "pos": 31700,
-        "offset_sec": 0,
+        "offset_sec": 2174,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3629,7 +3946,8 @@
       {
         "id": "ouVQfjxsnLHQX7njNULRg9",
         "pos": 31800,
-        "offset_sec": 0,
+        "offset_sec": 2185,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3642,7 +3960,8 @@
       {
         "id": "dvLqCfGQdBdzay8vszLgDE",
         "pos": 31900,
-        "offset_sec": 0,
+        "offset_sec": 2197,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3653,7 +3972,8 @@
       {
         "id": "CYk9inJzphCgZy4naqsbse",
         "pos": 32000,
-        "offset_sec": 0,
+        "offset_sec": 2198,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3664,7 +3984,8 @@
       {
         "id": "G7gsHyR77U5MLEmRSq2e89",
         "pos": 32100,
-        "offset_sec": 0,
+        "offset_sec": 2203,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3675,7 +3996,8 @@
       {
         "id": "y9wTC737MDdtc4dydodxrF",
         "pos": 32200,
-        "offset_sec": 0,
+        "offset_sec": 2209,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3686,7 +4008,8 @@
       {
         "id": "tfg2r4zk4EBFiXhCP33PeG",
         "pos": 32300,
-        "offset_sec": 0,
+        "offset_sec": 2210,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3697,7 +4020,8 @@
       {
         "id": "q8EX8bQPRFtXMfVsLLtSgQ",
         "pos": 32400,
-        "offset_sec": 0,
+        "offset_sec": 2212,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3708,7 +4032,8 @@
       {
         "id": "gLf74hQUPRLMUyTLJM2pFa",
         "pos": 32500,
-        "offset_sec": 0,
+        "offset_sec": 2219,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3719,7 +4044,8 @@
       {
         "id": "SHRfSB88Di9JTSAFtQcMaK",
         "pos": 32600,
-        "offset_sec": 0,
+        "offset_sec": 2223,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3730,7 +4056,8 @@
       {
         "id": "Ufnx5Urx825AGdfxCGjtGa",
         "pos": 32700,
-        "offset_sec": 0,
+        "offset_sec": 2225,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3741,7 +4068,8 @@
       {
         "id": "Bg5odVXPMBV7rKXY4kUeDR",
         "pos": 32800,
-        "offset_sec": 0,
+        "offset_sec": 2237,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3752,7 +4080,8 @@
       {
         "id": "rxtKyRKVFdAWkmBBL87T9J",
         "pos": 32900,
-        "offset_sec": 0,
+        "offset_sec": 2243,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3765,7 +4094,8 @@
       {
         "id": "YXmPmUhqFw9QqFMztTZ3S3",
         "pos": 33000,
-        "offset_sec": 0,
+        "offset_sec": 2248,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3776,7 +4106,8 @@
       {
         "id": "zqzRdkEcSAMZmsLWJVudM9",
         "pos": 33100,
-        "offset_sec": 0,
+        "offset_sec": 2265,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3787,7 +4118,8 @@
       {
         "id": "xpFAyrMBFrX8ihAhemBsTL",
         "pos": 33200,
-        "offset_sec": 0,
+        "offset_sec": 2265,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3798,7 +4130,8 @@
       {
         "id": "q2PF4YURrzf9g4rcyiK7pQ",
         "pos": 33300,
-        "offset_sec": 0,
+        "offset_sec": 2275,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3811,7 +4144,8 @@
       {
         "id": "HCDa34TYjNDPY3cCwfPVEL",
         "pos": 33400,
-        "offset_sec": 0,
+        "offset_sec": 2292,
+        "offset_inferred": true,
         "type": "unknown",
         "actor": "",
         "metadata": null,
@@ -3822,7 +4156,8 @@
       {
         "id": "G8RWmotiS4n2i66q3Bw3vU",
         "pos": 33500,
-        "offset_sec": 0,
+        "offset_sec": 2293,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3835,7 +4170,8 @@
       {
         "id": "SHVQQCupqNvzU3aZUfa9aY",
         "pos": 33600,
-        "offset_sec": 0,
+        "offset_sec": 2295,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3848,7 +4184,8 @@
       {
         "id": "SikHR4nmTfBFfQpdqwXphE",
         "pos": 33700,
-        "offset_sec": 0,
+        "offset_sec": 2308,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3859,7 +4196,8 @@
       {
         "id": "uu55Gcy9V5MXLQpCBVYipU",
         "pos": 33800,
-        "offset_sec": 0,
+        "offset_sec": 2309,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3870,7 +4208,8 @@
       {
         "id": "NZNReouPfUeCr3UvKf6p9n",
         "pos": 33900,
-        "offset_sec": 0,
+        "offset_sec": 2312,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3883,7 +4222,8 @@
       {
         "id": "LdPYeKsD2GLstFtzdWawLR",
         "pos": 34000,
-        "offset_sec": 0,
+        "offset_sec": 2336,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3896,7 +4236,8 @@
       {
         "id": "Z3VEsdumwEE3txzTmJ4ygY",
         "pos": 34100,
-        "offset_sec": 0,
+        "offset_sec": 2343,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3907,7 +4248,8 @@
       {
         "id": "KncPqj94rUqWnS6pKeB9Df",
         "pos": 34200,
-        "offset_sec": 0,
+        "offset_sec": 2367,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3918,7 +4260,8 @@
       {
         "id": "VTD3mZpeVLdhjcQ56nRTFo",
         "pos": 34300,
-        "offset_sec": 0,
+        "offset_sec": 2369,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3929,7 +4272,8 @@
       {
         "id": "6WkT5rZLNK7JbVPBy9RoAP",
         "pos": 34400,
-        "offset_sec": 0,
+        "offset_sec": 2372,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3940,7 +4284,8 @@
       {
         "id": "AktPkzCpHo7J7FNc6T7h7X",
         "pos": 34500,
-        "offset_sec": 0,
+        "offset_sec": 2373,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3953,7 +4298,8 @@
       {
         "id": "sXy7dt8aefVtB28XUrnofm",
         "pos": 34600,
-        "offset_sec": 0,
+        "offset_sec": 2379,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3964,7 +4310,8 @@
       {
         "id": "4zP3Sinn5QyXE7u2pZSGbF",
         "pos": 34700,
-        "offset_sec": 0,
+        "offset_sec": 2381,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3977,7 +4324,8 @@
       {
         "id": "cEzvyjVWRgAPqx5jyVfsvN",
         "pos": 34800,
-        "offset_sec": 0,
+        "offset_sec": 2383,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3990,7 +4338,8 @@
       {
         "id": "aASL6nJPjH76wKFxvnCn6R",
         "pos": 34900,
-        "offset_sec": 0,
+        "offset_sec": 2393,
+        "offset_inferred": true,
         "type": "unknown",
         "actor": "",
         "metadata": null,
@@ -4001,7 +4350,8 @@
       {
         "id": "cFg5LjhhLsvn2WWPmyeRnU",
         "pos": 35000,
-        "offset_sec": 0,
+        "offset_sec": 2394,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4012,7 +4362,8 @@
       {
         "id": "HoAQKNSUEvTXBwkB3DtApH",
         "pos": 35100,
-        "offset_sec": 0,
+        "offset_sec": 2395,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4025,7 +4376,8 @@
       {
         "id": "dgdC8vz676ybE8YPFobNGh",
         "pos": 35200,
-        "offset_sec": 0,
+        "offset_sec": 2401,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4038,7 +4390,8 @@
       {
         "id": "feEQhgiXnMwTfr4XSLjXZA",
         "pos": 35300,
-        "offset_sec": 0,
+        "offset_sec": 2422,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4049,7 +4402,8 @@
       {
         "id": "beixtCpsopr2qw8R3sP823",
         "pos": 35400,
-        "offset_sec": 0,
+        "offset_sec": 2437,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4060,7 +4414,8 @@
       {
         "id": "4GxK68KmDpkjemCW7X4mkR",
         "pos": 35500,
-        "offset_sec": 0,
+        "offset_sec": 2440,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4073,7 +4428,8 @@
       {
         "id": "LCeuQBmrDm37jxPa3APkii",
         "pos": 35600,
-        "offset_sec": 0,
+        "offset_sec": 2478,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4084,7 +4440,8 @@
       {
         "id": "kZnSeNLEqkZULUjSe9rFvC",
         "pos": 35700,
-        "offset_sec": 0,
+        "offset_sec": 2479,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4095,7 +4452,8 @@
       {
         "id": "3AdwDEUVbFS7w6rdaL3HG5",
         "pos": 35800,
-        "offset_sec": 0,
+        "offset_sec": 2484,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4106,7 +4464,8 @@
       {
         "id": "rXSRGCFDXFC8N2RYMLkhBL",
         "pos": 35900,
-        "offset_sec": 0,
+        "offset_sec": 2484,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4117,7 +4476,8 @@
       {
         "id": "vpZ5WeyyKCCZniWiEG2V4M",
         "pos": 36000,
-        "offset_sec": 0,
+        "offset_sec": 2487,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4128,7 +4488,8 @@
       {
         "id": "TgvbBkDgXTDnCtcDxxaVMF",
         "pos": 36100,
-        "offset_sec": 0,
+        "offset_sec": 2489,
+        "offset_inferred": true,
         "type": "unknown",
         "actor": "",
         "metadata": null,
@@ -4139,7 +4500,8 @@
       {
         "id": "qdVuZ5njRaxZDnDaEq9EGm",
         "pos": 36200,
-        "offset_sec": 0,
+        "offset_sec": 2490,
+        "offset_inferred": true,
         "type": "song",
         "actor": "",
         "metadata": {
@@ -4157,7 +4519,8 @@
       {
         "id": "DVFjqRiBkyRLPVeLBj5A34",
         "pos": 36300,
-        "offset_sec": 0,
+        "offset_sec": 2490,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4172,7 +4535,8 @@
       {
         "id": "jje6NAQW6zwNFcn9f7D6QX",
         "pos": 36400,
-        "offset_sec": 0,
+        "offset_sec": 2497,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4185,7 +4549,8 @@
       {
         "id": "tYweiu6nY4cRYai5yowYhE",
         "pos": 36500,
-        "offset_sec": 0,
+        "offset_sec": 2505,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4196,7 +4561,8 @@
       {
         "id": "4brRqGgswnBmYmQiLAXGf3",
         "pos": 36600,
-        "offset_sec": 0,
+        "offset_sec": 2509,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4209,7 +4575,8 @@
       {
         "id": "7acLhZYvFT8wn3bQuTSVz3",
         "pos": 36700,
-        "offset_sec": 0,
+        "offset_sec": 2523,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4220,7 +4587,8 @@
       {
         "id": "7kJmGoi5M24sUiVdrWp6cV",
         "pos": 36800,
-        "offset_sec": 0,
+        "offset_sec": 2525,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4231,7 +4599,8 @@
       {
         "id": "MLSoHewq7dFE3QLaMZQHyb",
         "pos": 36900,
-        "offset_sec": 0,
+        "offset_sec": 2526,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4242,7 +4611,8 @@
       {
         "id": "L9QNmvsuqw63V6wGqci3K5",
         "pos": 37000,
-        "offset_sec": 0,
+        "offset_sec": 2529,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4253,7 +4623,8 @@
       {
         "id": "QWw9YknL6JfjkLS6f2dqRC",
         "pos": 37100,
-        "offset_sec": 0,
+        "offset_sec": 2531,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4264,7 +4635,8 @@
       {
         "id": "xSybnDqoXJeyisyDWarY3b",
         "pos": 37200,
-        "offset_sec": 0,
+        "offset_sec": 2532,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4275,7 +4647,8 @@
       {
         "id": "vmZeAuHCnYNJqjJTLxxYrQ",
         "pos": 37300,
-        "offset_sec": 0,
+        "offset_sec": 2536,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4286,7 +4659,8 @@
       {
         "id": "ZGVqbnX25Ue3dACjdbsFg8",
         "pos": 37400,
-        "offset_sec": 0,
+        "offset_sec": 2538,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4297,7 +4671,8 @@
       {
         "id": "nZEAWzWHRKGe2jgQZdHVWB",
         "pos": 37500,
-        "offset_sec": 0,
+        "offset_sec": 2540,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4308,7 +4683,8 @@
       {
         "id": "X8UVRSPowdyMMW9FPDpCA8",
         "pos": 37600,
-        "offset_sec": 0,
+        "offset_sec": 2543,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4321,7 +4697,8 @@
       {
         "id": "wZYxovjmHkSqrnAYFrbdfV",
         "pos": 37700,
-        "offset_sec": 0,
+        "offset_sec": 2549,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4332,7 +4709,8 @@
       {
         "id": "XKyNufYMMRFWuneXjLk8Q8",
         "pos": 37800,
-        "offset_sec": 0,
+        "offset_sec": 2556,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4343,7 +4721,8 @@
       {
         "id": "bF7ARWsKE7mPkqTrTTDWYU",
         "pos": 37900,
-        "offset_sec": 0,
+        "offset_sec": 2557,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4356,7 +4735,8 @@
       {
         "id": "rc3w2n2eiBd4Fn2qYhJLha",
         "pos": 38000,
-        "offset_sec": 0,
+        "offset_sec": 2588,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -4367,7 +4747,8 @@
       {
         "id": "uQb54swUeUY9vPDNxTyZ5W",
         "pos": 38100,
-        "offset_sec": 0,
+        "offset_sec": 2590,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4378,7 +4759,8 @@
       {
         "id": "uV6CcQRsueKfEBF2cZMHg4",
         "pos": 38200,
-        "offset_sec": 0,
+        "offset_sec": 2603,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4389,7 +4771,8 @@
       {
         "id": "w9QYezu3o8mGMpaHBaEww4",
         "pos": 38300,
-        "offset_sec": 0,
+        "offset_sec": 2607,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4400,7 +4783,8 @@
       {
         "id": "hLiERek6f8gPYRmBkyfP8i",
         "pos": 38400,
-        "offset_sec": 0,
+        "offset_sec": 2608,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -4411,7 +4795,8 @@
       {
         "id": "DUsdjuTDJEwmL9zG8exyBW",
         "pos": 38500,
-        "offset_sec": 0,
+        "offset_sec": 2608,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4422,7 +4807,8 @@
       {
         "id": "ndjeJxq6NqwxjwFjQhmx3Z",
         "pos": 38600,
-        "offset_sec": 0,
+        "offset_sec": 2613,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4433,7 +4819,8 @@
       {
         "id": "yGAWDBmuXnD97qiXDLvJTE",
         "pos": 38700,
-        "offset_sec": 0,
+        "offset_sec": 2619,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4444,7 +4831,8 @@
       {
         "id": "dQQBK7FA76qsN4mA69VzrY",
         "pos": 38800,
-        "offset_sec": 0,
+        "offset_sec": 2622,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4455,7 +4843,8 @@
       {
         "id": "ptCTJdB9B8oXaAnAJqDNXa",
         "pos": 38900,
-        "offset_sec": 0,
+        "offset_sec": 2623,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4466,7 +4855,8 @@
       {
         "id": "NqwAZrdQ2kc49nV5CLLEbN",
         "pos": 39000,
-        "offset_sec": 0,
+        "offset_sec": 2630,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -4477,7 +4867,8 @@
       {
         "id": "caJgJtaoxTAW2j5ucs2ik7",
         "pos": 39100,
-        "offset_sec": 0,
+        "offset_sec": 2652,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4488,7 +4879,8 @@
       {
         "id": "uvTRQV9YvAarDPu8z36byJ",
         "pos": 39200,
-        "offset_sec": 0,
+        "offset_sec": 2653,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4499,7 +4891,8 @@
       {
         "id": "5BJErv4Mktu5t9HiU32abb",
         "pos": 39300,
-        "offset_sec": 0,
+        "offset_sec": 2653,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -4510,7 +4903,8 @@
       {
         "id": "V743AYpiJ65R5H8UeLQn7A",
         "pos": 39400,
-        "offset_sec": 0,
+        "offset_sec": 2658,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4521,7 +4915,8 @@
       {
         "id": "vY3QWupqnNrJ6sUjr3VuNj",
         "pos": 39500,
-        "offset_sec": 0,
+        "offset_sec": 2663,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -4532,7 +4927,8 @@
       {
         "id": "oEXEQEjwCiquWMpyzwC4U8",
         "pos": 39600,
-        "offset_sec": 0,
+        "offset_sec": 2664,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4543,7 +4939,8 @@
       {
         "id": "QxT8bPAJ79hnm9Gq2RDcRj",
         "pos": 39700,
-        "offset_sec": 0,
+        "offset_sec": 2667,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4554,7 +4951,8 @@
       {
         "id": "5AzWddNt6a5SPMVB6faWh7",
         "pos": 39800,
-        "offset_sec": 0,
+        "offset_sec": 2667,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4565,7 +4963,8 @@
       {
         "id": "wTRCobPFLUmRB6DUMFCQEP",
         "pos": 39900,
-        "offset_sec": 0,
+        "offset_sec": 2676,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4576,7 +4975,8 @@
       {
         "id": "kVujHLgcb6yMgyRfsANfag",
         "pos": 40000,
-        "offset_sec": 0,
+        "offset_sec": 2676,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4587,7 +4987,8 @@
       {
         "id": "57DTf68QvPp4DD5B4VjtTV",
         "pos": 40100,
-        "offset_sec": 0,
+        "offset_sec": 2695,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4598,7 +4999,8 @@
       {
         "id": "32waBd9TViyo3RNaU84k3C",
         "pos": 40200,
-        "offset_sec": 0,
+        "offset_sec": 2696,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4609,7 +5011,8 @@
       {
         "id": "JEMRmH4keuaqD6ySSMejnN",
         "pos": 40300,
-        "offset_sec": 0,
+        "offset_sec": 2706,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4620,7 +5023,8 @@
       {
         "id": "LG5tyvhvCLNic6AZny22GM",
         "pos": 40400,
-        "offset_sec": 0,
+        "offset_sec": 2707,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4631,7 +5035,8 @@
       {
         "id": "yMokDzgEq4LExjfjdgdk83",
         "pos": 40500,
-        "offset_sec": 0,
+        "offset_sec": 2711,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4642,7 +5047,8 @@
       {
         "id": "7Dq3Yo4vHsuEiVEQsVNbHD",
         "pos": 40600,
-        "offset_sec": 0,
+        "offset_sec": 2712,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4653,7 +5059,8 @@
       {
         "id": "65JH44ZEVTizeGNsu5EdbF",
         "pos": 40700,
-        "offset_sec": 0,
+        "offset_sec": 2725,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -4664,7 +5071,8 @@
       {
         "id": "vHuoYdkcDdosmjrrqQSy6H",
         "pos": 40800,
-        "offset_sec": 0,
+        "offset_sec": 2735,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4675,7 +5083,8 @@
       {
         "id": "fBRrnPPXgCVTtBNzqrmSFS",
         "pos": 40900,
-        "offset_sec": 0,
+        "offset_sec": 2752,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4686,7 +5095,8 @@
       {
         "id": "M8sywDXfGY2ByygaNVnMZ3",
         "pos": 41000,
-        "offset_sec": 0,
+        "offset_sec": 2753,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4697,7 +5107,8 @@
       {
         "id": "CYHnc3PFvMDcJeHtRuVxtL",
         "pos": 41100,
-        "offset_sec": 0,
+        "offset_sec": 2758,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4708,7 +5119,8 @@
       {
         "id": "ABtcvLWSg6VsuZmdDXhNWM",
         "pos": 41200,
-        "offset_sec": 0,
+        "offset_sec": 2758,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4719,7 +5131,8 @@
       {
         "id": "ioprK2RkqPEaLunhZJ6bp9",
         "pos": 41300,
-        "offset_sec": 0,
+        "offset_sec": 2779,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4730,7 +5143,8 @@
       {
         "id": "vDytMeg94nkWVNPoy58eNU",
         "pos": 41400,
-        "offset_sec": 0,
+        "offset_sec": 2784,
+        "offset_inferred": true,
         "type": "unknown",
         "actor": "",
         "metadata": null,
@@ -4741,7 +5155,8 @@
       {
         "id": "n4xmhwUYN5jaSMrhsFn3Xc",
         "pos": 41500,
-        "offset_sec": 0,
+        "offset_sec": 2786,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4752,7 +5167,8 @@
       {
         "id": "xCS26txEA8n8LKT8Kj2vik",
         "pos": 41600,
-        "offset_sec": 0,
+        "offset_sec": 2797,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4763,7 +5179,8 @@
       {
         "id": "WfsNeY5zDRTeiFJbjD7g28",
         "pos": 41700,
-        "offset_sec": 0,
+        "offset_sec": 2798,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4774,7 +5191,8 @@
       {
         "id": "94gZtzW7WSH6n2q9ydDxAH",
         "pos": 41800,
-        "offset_sec": 0,
+        "offset_sec": 2804,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4785,7 +5203,8 @@
       {
         "id": "uFo3J6hdDSyRwR2XijL2aG",
         "pos": 41900,
-        "offset_sec": 0,
+        "offset_sec": 2809,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4798,7 +5217,8 @@
       {
         "id": "SeX7WadgJHJwFuyjynW4BG",
         "pos": 42000,
-        "offset_sec": 0,
+        "offset_sec": 2818,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4809,7 +5229,8 @@
       {
         "id": "uVVKNzX3Ym46zbAiSjgXyA",
         "pos": 42100,
-        "offset_sec": 0,
+        "offset_sec": 2818,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4820,7 +5241,8 @@
       {
         "id": "2bSkAYGnvMLLFadkjwJ6Z7",
         "pos": 42200,
-        "offset_sec": 0,
+        "offset_sec": 2828,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4833,7 +5255,8 @@
       {
         "id": "AyZKGh4Jp7E6oLr2hNiQTX",
         "pos": 42300,
-        "offset_sec": 0,
+        "offset_sec": 2841,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4844,7 +5267,8 @@
       {
         "id": "KbafVSzvBgRgLZFVzCApDK",
         "pos": 42400,
-        "offset_sec": 0,
+        "offset_sec": 2842,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4857,7 +5281,8 @@
       {
         "id": "Chid77iXtehCrF9fAT84cm",
         "pos": 42500,
-        "offset_sec": 0,
+        "offset_sec": 2847,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4868,7 +5293,8 @@
       {
         "id": "wKLzKpa3xYwGwpSevHdMKb",
         "pos": 42600,
-        "offset_sec": 0,
+        "offset_sec": 2862,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4879,7 +5305,8 @@
       {
         "id": "GxNWywfAFcuDXwXbZE64SS",
         "pos": 42700,
-        "offset_sec": 0,
+        "offset_sec": 2863,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -4890,7 +5317,8 @@
       {
         "id": "GFmjVZYZf5jXDuCzqcwPJW",
         "pos": 42800,
-        "offset_sec": 0,
+        "offset_sec": 2864,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4901,7 +5329,8 @@
       {
         "id": "8tXA2nAkzxKWqdqXTNBE3j",
         "pos": 42900,
-        "offset_sec": 0,
+        "offset_sec": 2866,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -4912,7 +5341,8 @@
       {
         "id": "7YiLDKCsHyXNmgdsAUaVxZ",
         "pos": 43000,
-        "offset_sec": 0,
+        "offset_sec": 2881,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4923,7 +5353,8 @@
       {
         "id": "yhARcwJ9LGgkjZ3yyTBa2Z",
         "pos": 43100,
-        "offset_sec": 0,
+        "offset_sec": 2882,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4934,7 +5365,8 @@
       {
         "id": "jmyenc2opWtqksTEaE8ZSK",
         "pos": 43200,
-        "offset_sec": 0,
+        "offset_sec": 2887,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4945,7 +5377,8 @@
       {
         "id": "C2k9JCenaVNBKFPgdxH6eA",
         "pos": 43300,
-        "offset_sec": 0,
+        "offset_sec": 2888,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -4956,7 +5389,8 @@
       {
         "id": "bT6RscR39fzgEUwcVwWW4C",
         "pos": 43400,
-        "offset_sec": 0,
+        "offset_sec": 2888,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4967,7 +5401,8 @@
       {
         "id": "osenwNpEMPHtBfGgQZG3uk",
         "pos": 43500,
-        "offset_sec": 0,
+        "offset_sec": 2891,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4978,7 +5413,8 @@
       {
         "id": "oKRFow7GRcCKykdmfTDdPS",
         "pos": 43600,
-        "offset_sec": 0,
+        "offset_sec": 2892,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4989,7 +5425,8 @@
       {
         "id": "yUNo74kyixb7mhJMq9TBVM",
         "pos": 43700,
-        "offset_sec": 0,
+        "offset_sec": 2896,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -5000,7 +5437,8 @@
       {
         "id": "BHmLKs3JcYzexGbHQstbRW",
         "pos": 43800,
-        "offset_sec": 0,
+        "offset_sec": 2898,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -5011,7 +5449,8 @@
       {
         "id": "eUvsQknAkZK8hc8QgEesNS",
         "pos": 43900,
-        "offset_sec": 0,
+        "offset_sec": 2900,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -5025,7 +5464,8 @@
       {
         "id": "iRhnJEobRN9899anjThFd4",
         "pos": 44000,
-        "offset_sec": 0,
+        "offset_sec": 2904,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -5036,7 +5476,8 @@
       {
         "id": "jMqBTz6wf5WWdg5fvn4TvY",
         "pos": 44100,
-        "offset_sec": 0,
+        "offset_sec": 2905,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -5047,7 +5488,8 @@
       {
         "id": "YJLKr7PouWPbdzDWvCcdo4",
         "pos": 44200,
-        "offset_sec": 0,
+        "offset_sec": 2905,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -5058,7 +5500,8 @@
       {
         "id": "7bf4j66ezw3etepGzsD4sU",
         "pos": 44300,
-        "offset_sec": 0,
+        "offset_sec": 2908,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -5069,7 +5512,8 @@
       {
         "id": "iBNhgsMBiq62A2kNEhuwKE",
         "pos": 44400,
-        "offset_sec": 0,
+        "offset_sec": 2914,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -5080,7 +5524,8 @@
       {
         "id": "i2j2BuLoqYDuzq3K7ugbkW",
         "pos": 44500,
-        "offset_sec": 0,
+        "offset_sec": 2915,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -5091,7 +5536,8 @@
       {
         "id": "LBKw8FNhyVRTwNGDGQLnyK",
         "pos": 44600,
-        "offset_sec": 0,
+        "offset_sec": 2920,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -5102,7 +5548,8 @@
       {
         "id": "dTMAD6a2xPqm5XK7cFmh85",
         "pos": 44700,
-        "offset_sec": 0,
+        "offset_sec": 2926,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -5115,7 +5562,8 @@
       {
         "id": "ZxP6JvcVDqXr3ivkrphkAg",
         "pos": 44800,
-        "offset_sec": 0,
+        "offset_sec": 2938,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -5126,7 +5574,8 @@
       {
         "id": "yvLj76fnMuiXZwkW5tYgNC",
         "pos": 44900,
-        "offset_sec": 0,
+        "offset_sec": 2944,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -5137,7 +5586,8 @@
       {
         "id": "fSF52d4Qu4xjaTK3ojtkfL",
         "pos": 45000,
-        "offset_sec": 0,
+        "offset_sec": 2948,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -5148,7 +5598,8 @@
       {
         "id": "5wVcTWXCpKyUDRSGvK7ogb",
         "pos": 45100,
-        "offset_sec": 0,
+        "offset_sec": 2950,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -5159,7 +5610,8 @@
       {
         "id": "XrXmCUeGpcDoabBCeMjR6d",
         "pos": 45200,
-        "offset_sec": 0,
+        "offset_sec": 2950,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -5170,7 +5622,8 @@
       {
         "id": "pNWyN6WgtrkyE6scThcoFL",
         "pos": 45300,
-        "offset_sec": 0,
+        "offset_sec": 2951,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -5181,7 +5634,8 @@
       {
         "id": "Sphenpv9XKEkXxNhtztvJF",
         "pos": 45400,
-        "offset_sec": 0,
+        "offset_sec": 2964,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -5192,7 +5646,8 @@
       {
         "id": "nNAtLfVT5ty24D3eikns7B",
         "pos": 45500,
-        "offset_sec": 0,
+        "offset_sec": 2966,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -5203,7 +5658,8 @@
       {
         "id": "2tV5njiAnvtgQQZkuiJnbU",
         "pos": 45600,
-        "offset_sec": 0,
+        "offset_sec": 2973,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -5214,7 +5670,8 @@
       {
         "id": "2pb38RittgSpmEawSk7c3X",
         "pos": 45700,
-        "offset_sec": 0,
+        "offset_sec": 2982,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -5225,7 +5682,8 @@
       {
         "id": "2JLf5bFdyZyVYF4Lvx6iQg",
         "pos": 45800,
-        "offset_sec": 0,
+        "offset_sec": 2992,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -5236,7 +5694,8 @@
       {
         "id": "FJ5KGtxXiJpThcdjWoG4QE",
         "pos": 45900,
-        "offset_sec": 0,
+        "offset_sec": 2992,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -5247,7 +5706,8 @@
       {
         "id": "rMkkRagdyyZaZ5iCv8uXKK",
         "pos": 46000,
-        "offset_sec": 0,
+        "offset_sec": 2993,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -5258,7 +5718,8 @@
       {
         "id": "Y9HjyFT5YJvUtsa4A6nXFU",
         "pos": 46100,
-        "offset_sec": 0,
+        "offset_sec": 2993,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -5269,7 +5730,8 @@
       {
         "id": "fDgRqZ8oFwydMbZCdiaysg",
         "pos": 46200,
-        "offset_sec": 0,
+        "offset_sec": 2995,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -5280,7 +5742,8 @@
       {
         "id": "VuTGWaWA46KWUVpBoYUSpa",
         "pos": 46300,
-        "offset_sec": 0,
+        "offset_sec": 2996,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -5291,7 +5754,8 @@
       {
         "id": "JF2emir2J4HLPUBqHjBNNJ",
         "pos": 46400,
-        "offset_sec": 0,
+        "offset_sec": 2997,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -5302,7 +5766,8 @@
       {
         "id": "Cv65NRDstcn4QW3BHWk9V7",
         "pos": 46500,
-        "offset_sec": 0,
+        "offset_sec": 3005,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -5313,7 +5778,8 @@
       {
         "id": "q9duDHBed2gd23Yo89nKpX",
         "pos": 46600,
-        "offset_sec": 0,
+        "offset_sec": 3006,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -5324,7 +5790,8 @@
       {
         "id": "sNCRPvoQ7MNVNjMyDWP8WS",
         "pos": 46700,
-        "offset_sec": 0,
+        "offset_sec": 3017,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -5335,7 +5802,8 @@
       {
         "id": "93bkVSGh72mc25H3tBwmy",
         "pos": 46800,
-        "offset_sec": 0,
+        "offset_sec": 3021,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -5346,7 +5814,8 @@
       {
         "id": "KcQr6SoHAcLWzmcZaRXYv8",
         "pos": 46900,
-        "offset_sec": 0,
+        "offset_sec": 3023,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -5357,7 +5826,8 @@
       {
         "id": "nbrJKijQod4eh3Kk3ycGJf",
         "pos": 47000,
-        "offset_sec": 0,
+        "offset_sec": 3027,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -5368,7 +5838,8 @@
       {
         "id": "MGFYtpEr4amnSHWtheZHUR",
         "pos": 47100,
-        "offset_sec": 0,
+        "offset_sec": 3032,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -5379,7 +5850,8 @@
       {
         "id": "sHdTCPdyJeZRDuw6DdNfEA",
         "pos": 47200,
-        "offset_sec": 0,
+        "offset_sec": 3032,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -5390,7 +5862,8 @@
       {
         "id": "bGhec4UTPi56nsHMaNyjvm",
         "pos": 47300,
-        "offset_sec": 0,
+        "offset_sec": 3043,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -5401,7 +5874,8 @@
       {
         "id": "QDqnrc4wpG92UrKFwBjzUF",
         "pos": 47400,
-        "offset_sec": 0,
+        "offset_sec": 3043,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -5412,7 +5886,8 @@
       {
         "id": "EPhEwrVKA7bMF5BNiP4b6B",
         "pos": 47500,
-        "offset_sec": 0,
+        "offset_sec": 3077,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -5423,7 +5898,8 @@
       {
         "id": "3TpNp7mHMXNj8JUcxuCPpk",
         "pos": 47600,
-        "offset_sec": 0,
+        "offset_sec": 3083,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -5434,7 +5910,8 @@
       {
         "id": "5E6kabn4sD3AvhBemhs2kR",
         "pos": 47700,
-        "offset_sec": 0,
+        "offset_sec": 3086,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -5445,7 +5922,8 @@
       {
         "id": "hT8BwRM7ipUzwzDEqofKo9",
         "pos": 47800,
-        "offset_sec": 0,
+        "offset_sec": 3089,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -5456,7 +5934,8 @@
       {
         "id": "WcXSaBm43ENwaUUCJxssFN",
         "pos": 47900,
-        "offset_sec": 0,
+        "offset_sec": 3092,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -5467,7 +5946,8 @@
       {
         "id": "C4JNVn8uiboZGeFaHq4dxL",
         "pos": 48000,
-        "offset_sec": 0,
+        "offset_sec": 3097,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -5478,7 +5958,8 @@
       {
         "id": "tuYLenqCuKT8N6RSbeujRD",
         "pos": 48100,
-        "offset_sec": 0,
+        "offset_sec": 3097,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -5489,7 +5970,8 @@
       {
         "id": "drrrGb2TejxVsjrnxvBSJZ",
         "pos": 48200,
-        "offset_sec": 0,
+        "offset_sec": 3098,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -5500,7 +5982,8 @@
       {
         "id": "r9QiXczCeR6754J4CDEoej",
         "pos": 48300,
-        "offset_sec": 0,
+        "offset_sec": 3109,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -5511,7 +5994,8 @@
       {
         "id": "fYSPect9WJYzLP6SG7JfGB",
         "pos": 48400,
-        "offset_sec": 0,
+        "offset_sec": 3116,
+        "offset_inferred": true,
         "type": "unknown",
         "actor": "",
         "metadata": null,
@@ -5522,7 +6006,8 @@
       {
         "id": "PwTAYF933wGyqjVh74TKrP",
         "pos": 48500,
-        "offset_sec": 0,
+        "offset_sec": 3117,
+        "offset_inferred": true,
         "type": "song",
         "actor": "",
         "metadata": {
@@ -5538,7 +6023,8 @@
       {
         "id": "HUedP52SxTzXxj86br5nFX",
         "pos": 48600,
-        "offset_sec": 0,
+        "offset_sec": 3117,
+        "offset_inferred": true,
         "type": "song",
         "actor": "",
         "metadata": {
@@ -5556,7 +6042,8 @@
       {
         "id": "STmrMkKKEK9hnsyhuqqEMT",
         "pos": 48700,
-        "offset_sec": 0,
+        "offset_sec": 3117,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -5569,7 +6056,8 @@
       {
         "id": "DXqPwsYeTgwReB6sVyPen5",
         "pos": 48800,
-        "offset_sec": 0,
+        "offset_sec": 3127,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -5580,7 +6068,8 @@
       {
         "id": "qNtti2TnAorGiSfGBmGz5V",
         "pos": 48900,
-        "offset_sec": 0,
+        "offset_sec": 3128,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -5591,7 +6080,8 @@
       {
         "id": "iNvHaUYK6AaEf3JnvuPjWK",
         "pos": 49000,
-        "offset_sec": 0,
+        "offset_sec": 3129,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -5604,7 +6094,8 @@
       {
         "id": "qjoEHEpjqGjsHmEBJubR26",
         "pos": 49100,
-        "offset_sec": 0,
+        "offset_sec": 3169,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -5615,7 +6106,8 @@
       {
         "id": "cRKLWW54tnVquDD4SWQNV8",
         "pos": 49200,
-        "offset_sec": 0,
+        "offset_sec": 3179,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -5626,7 +6118,8 @@
       {
         "id": "5MPdeioNAHFPjFUmEjZPdX",
         "pos": 49300,
-        "offset_sec": 0,
+        "offset_sec": 3179,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -5637,7 +6130,8 @@
       {
         "id": "tZSYG5iSoz4NXmRHcRTJqb",
         "pos": 49400,
-        "offset_sec": 0,
+        "offset_sec": 3181,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -5648,7 +6142,8 @@
       {
         "id": "UsmGHmdYPCggevU7WsSWv3",
         "pos": 49500,
-        "offset_sec": 0,
+        "offset_sec": 3183,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -5662,7 +6157,8 @@
       {
         "id": "2HWdyj6NSidspxHHqGmfbc",
         "pos": 49600,
-        "offset_sec": 0,
+        "offset_sec": 3195,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -5673,7 +6169,8 @@
       {
         "id": "RxgzSdpWPHcbkPasSsu9zM",
         "pos": 49700,
-        "offset_sec": 0,
+        "offset_sec": 3198,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -5684,7 +6181,8 @@
       {
         "id": "SzDAvQNigGS7G4iFz5tcuf",
         "pos": 49800,
-        "offset_sec": 0,
+        "offset_sec": 3201,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -5695,7 +6193,8 @@
       {
         "id": "cyKA67dZf9Vap54MtAPAdk",
         "pos": 49900,
-        "offset_sec": 0,
+        "offset_sec": 3202,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -5706,7 +6205,8 @@
       {
         "id": "6U6qAsfvUaZsrB8GtsWapR",
         "pos": 50000,
-        "offset_sec": 0,
+        "offset_sec": 3214,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -5717,7 +6217,8 @@
       {
         "id": "HLMCUvGNptFAhPXwnXWnu6",
         "pos": 50100,
-        "offset_sec": 0,
+        "offset_sec": 3225,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -5728,7 +6229,8 @@
       {
         "id": "HZVKKo6v3PyHaiBXc4uGdL",
         "pos": 50200,
-        "offset_sec": 0,
+        "offset_sec": 3228,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -5739,7 +6241,8 @@
       {
         "id": "ZXDGqhtGGzKogc96dn8FUV",
         "pos": 50300,
-        "offset_sec": 0,
+        "offset_sec": 3236,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -5752,7 +6255,8 @@
       {
         "id": "7gp5zxdYsEwyCNrivkRRNZ",
         "pos": 50400,
-        "offset_sec": 0,
+        "offset_sec": 3248,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -5763,7 +6267,8 @@
       {
         "id": "4XPS8F7LMase5FtVfUbaMU",
         "pos": 50500,
-        "offset_sec": 0,
+        "offset_sec": 3251,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -5774,7 +6279,8 @@
       {
         "id": "KQXAWmACA8mJdSN5Dk3wAF",
         "pos": 50600,
-        "offset_sec": 0,
+        "offset_sec": 3257,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -5785,7 +6291,8 @@
       {
         "id": "mVkUKM7tNJtQUaFgc4SLyd",
         "pos": 50700,
-        "offset_sec": 0,
+        "offset_sec": 3257,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -5798,7 +6305,8 @@
       {
         "id": "R8qMS7UzuMAsZMHomubF96",
         "pos": 50800,
-        "offset_sec": 0,
+        "offset_sec": 3266,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -5811,7 +6319,8 @@
       {
         "id": "F9igNapSmicd7yrGyMZQfP",
         "pos": 50900,
-        "offset_sec": 0,
+        "offset_sec": 3274,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -5822,7 +6331,8 @@
       {
         "id": "JuXVnmizYdGagRCFRtq3iY",
         "pos": 51000,
-        "offset_sec": 0,
+        "offset_sec": 3276,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -5835,7 +6345,8 @@
       {
         "id": "aLWpEZW9MLZ4PxZee3Jfbi",
         "pos": 51100,
-        "offset_sec": 0,
+        "offset_sec": 3278,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -5846,7 +6357,8 @@
       {
         "id": "Hd8iiUdEAiHBCySvPJfkHD",
         "pos": 51200,
-        "offset_sec": 0,
+        "offset_sec": 3286,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -5857,7 +6369,8 @@
       {
         "id": "WeUbPqqMyFHHsjrJnRK4gZ",
         "pos": 51300,
-        "offset_sec": 0,
+        "offset_sec": 3286,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -5868,7 +6381,8 @@
       {
         "id": "KSgzdJhAVyCnuHQmWVDGiX",
         "pos": 51400,
-        "offset_sec": 0,
+        "offset_sec": 3294,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -5879,7 +6393,8 @@
       {
         "id": "5gPnwchGhmkxKC62kRWzhS",
         "pos": 51500,
-        "offset_sec": 0,
+        "offset_sec": 3295,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -5890,7 +6405,8 @@
       {
         "id": "gZB2d79eWNRrdWJ7ZaBcYZ",
         "pos": 51600,
-        "offset_sec": 0,
+        "offset_sec": 3296,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -5901,7 +6417,8 @@
       {
         "id": "VQWbt8Mxv6kthHrNnigRXM",
         "pos": 51700,
-        "offset_sec": 0,
+        "offset_sec": 3302,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -5912,7 +6429,8 @@
       {
         "id": "2PFCoP6bks5KBz6oMvBWbV",
         "pos": 51800,
-        "offset_sec": 0,
+        "offset_sec": 3306,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -5923,7 +6441,8 @@
       {
         "id": "GrdREDch7LZmDdNikrFDWm",
         "pos": 51900,
-        "offset_sec": 0,
+        "offset_sec": 3308,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -5934,7 +6453,8 @@
       {
         "id": "2WinVVfjE3FNPbwtwyHQ9i",
         "pos": 52000,
-        "offset_sec": 0,
+        "offset_sec": 3308,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -5945,7 +6465,8 @@
       {
         "id": "29nK2mkNyxC2i9ezpEMZSA",
         "pos": 52100,
-        "offset_sec": 0,
+        "offset_sec": 3310,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -5956,7 +6477,8 @@
       {
         "id": "pExPFenDXyJ4Xcw9jryz3e",
         "pos": 52200,
-        "offset_sec": 0,
+        "offset_sec": 3320,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -5967,7 +6489,8 @@
       {
         "id": "4DfwYxJsoxkSVpqkXsYbB4",
         "pos": 52300,
-        "offset_sec": 0,
+        "offset_sec": 3322,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -5978,7 +6501,8 @@
       {
         "id": "ymfKR22L8QzEEpcRDJVERP",
         "pos": 52400,
-        "offset_sec": 0,
+        "offset_sec": 3323,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -5989,7 +6513,8 @@
       {
         "id": "hp4Eb9jxankrFmTrdnttiK",
         "pos": 52500,
-        "offset_sec": 0,
+        "offset_sec": 3324,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -6000,7 +6525,8 @@
       {
         "id": "LsKE2bSuiBcnYWn9bRsPmJ",
         "pos": 52600,
-        "offset_sec": 0,
+        "offset_sec": 3324,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -6011,7 +6537,8 @@
       {
         "id": "UTHGq4L2wE8taXSB5MuFxa",
         "pos": 52700,
-        "offset_sec": 0,
+        "offset_sec": 3328,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -6022,7 +6549,8 @@
       {
         "id": "5z8e9SxWfaHiuYBJ7vtyvJ",
         "pos": 52800,
-        "offset_sec": 0,
+        "offset_sec": 3328,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -6035,7 +6563,8 @@
       {
         "id": "Z5mxe2qM8YfLuyUtEMWH3Y",
         "pos": 52900,
-        "offset_sec": 0,
+        "offset_sec": 3359,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -6046,7 +6575,8 @@
       {
         "id": "vSPby8zCzgFVCMwAPQd9M8",
         "pos": 53000,
-        "offset_sec": 0,
+        "offset_sec": 3369,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -6057,7 +6587,8 @@
       {
         "id": "47BiNQV6fdmbKYYsUUQCxj",
         "pos": 53100,
-        "offset_sec": 0,
+        "offset_sec": 3379,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -6068,7 +6599,8 @@
       {
         "id": "8NzSJKsiSBJhRCdDucXcs6",
         "pos": 53200,
-        "offset_sec": 0,
+        "offset_sec": 3380,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -6079,7 +6611,8 @@
       {
         "id": "44cAQARRsxHvm9TACXkwUZ",
         "pos": 53300,
-        "offset_sec": 0,
+        "offset_sec": 3383,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -6090,7 +6623,8 @@
       {
         "id": "yKJSTJ26uMaeCdVSTtBeHR",
         "pos": 53400,
-        "offset_sec": 0,
+        "offset_sec": 3385,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -6101,7 +6635,8 @@
       {
         "id": "WZFo2iEp7ejFZKRpqbu3Jd",
         "pos": 53500,
-        "offset_sec": 0,
+        "offset_sec": 3392,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -6112,7 +6647,8 @@
       {
         "id": "G5hB5W5XcPPU6rmZDfnQok",
         "pos": 53600,
-        "offset_sec": 0,
+        "offset_sec": 3393,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -6123,7 +6659,8 @@
       {
         "id": "h6gEyYBeahGHYRoqp3aoCB",
         "pos": 53700,
-        "offset_sec": 0,
+        "offset_sec": 3397,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -6134,7 +6671,8 @@
       {
         "id": "BdBTSiTAyuvk3fA42cmbXc",
         "pos": 53800,
-        "offset_sec": 0,
+        "offset_sec": 3401,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -6145,7 +6683,8 @@
       {
         "id": "FZWu2DGAqow5L5w69adj7L",
         "pos": 53900,
-        "offset_sec": 0,
+        "offset_sec": 3414,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -6156,7 +6695,8 @@
       {
         "id": "FMA9JpPsBhBopysxUQbqsN",
         "pos": 54000,
-        "offset_sec": 0,
+        "offset_sec": 3424,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -6167,7 +6707,8 @@
       {
         "id": "2uPzBLqzFdGn5A2Ed7cSEe",
         "pos": 54100,
-        "offset_sec": 0,
+        "offset_sec": 3425,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -6178,7 +6719,8 @@
       {
         "id": "kxvFWRhnyC78geYzE8D4vd",
         "pos": 54200,
-        "offset_sec": 0,
+        "offset_sec": 3444,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -6189,7 +6731,8 @@
       {
         "id": "mR6KyVaLjwZNHhD64vqtzb",
         "pos": 54300,
-        "offset_sec": 0,
+        "offset_sec": 3448,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -6200,7 +6743,8 @@
       {
         "id": "2gsRpJhcNRroyU2NUxLk2e",
         "pos": 54400,
-        "offset_sec": 0,
+        "offset_sec": 3456,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -6211,7 +6755,8 @@
       {
         "id": "ZKQ2Qf5T48GKAHBaFqHGR",
         "pos": 54500,
-        "offset_sec": 0,
+        "offset_sec": 3460,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -6224,7 +6769,8 @@
       {
         "id": "U5R6RV4wYhnog3uN4E5cuC",
         "pos": 54600,
-        "offset_sec": 0,
+        "offset_sec": 3473,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -6235,7 +6781,8 @@
       {
         "id": "UJSdwF5PyEMbCETC7gfGKD",
         "pos": 54700,
-        "offset_sec": 0,
+        "offset_sec": 3475,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -6246,7 +6793,8 @@
       {
         "id": "gTfZanZ5E8vbQzPRuge3GT",
         "pos": 54800,
-        "offset_sec": 0,
+        "offset_sec": 3497,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -6257,7 +6805,8 @@
       {
         "id": "XLMrDfQ3tJ4d2N9ZMMmPqS",
         "pos": 54900,
-        "offset_sec": 0,
+        "offset_sec": 3498,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -6268,7 +6817,8 @@
       {
         "id": "YPAaSjeX3E9YrkkxTuaKW4",
         "pos": 55000,
-        "offset_sec": 0,
+        "offset_sec": 3512,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -6279,7 +6829,8 @@
       {
         "id": "RN7waJtmWdUG7zTL3J8VpJ",
         "pos": 55100,
-        "offset_sec": 0,
+        "offset_sec": 3528,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -6290,7 +6841,8 @@
       {
         "id": "8XXgHrMrjhgKY96EknWWCL",
         "pos": 55200,
-        "offset_sec": 0,
+        "offset_sec": 3533,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -6301,7 +6853,8 @@
       {
         "id": "4swRT3ocMvWpUwhSWXmRvX",
         "pos": 55300,
-        "offset_sec": 0,
+        "offset_sec": 3535,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -6312,7 +6865,8 @@
       {
         "id": "uPcHCFEHBoGXufJCyBK4BP",
         "pos": 55400,
-        "offset_sec": 0,
+        "offset_sec": 3539,
+        "offset_inferred": true,
         "type": "unknown",
         "actor": "",
         "metadata": null,
@@ -6323,7 +6877,8 @@
       {
         "id": "aGXDvTBm7FtzDMTpZ6UY9R",
         "pos": 55500,
-        "offset_sec": 0,
+        "offset_sec": 3540,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -6334,7 +6889,8 @@
       {
         "id": "o92hYNyFDvLXgBL9sETCkG",
         "pos": 55600,
-        "offset_sec": 0,
+        "offset_sec": 3548,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -6345,7 +6901,8 @@
       {
         "id": "QywHkdEzyLj2DdbdZV2iJe",
         "pos": 55700,
-        "offset_sec": 0,
+        "offset_sec": 3549,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -6356,7 +6913,8 @@
       {
         "id": "wqaGX5B9VJPADGHkGUdAZJ",
         "pos": 55800,
-        "offset_sec": 0,
+        "offset_sec": 3553,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -6369,7 +6927,8 @@
       {
         "id": "EthZ7WDxzaTLpUCBifBS8g",
         "pos": 55900,
-        "offset_sec": 0,
+        "offset_sec": 3561,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -6380,7 +6939,8 @@
       {
         "id": "vEuhoG9hM6bA5u4E4UPL8E",
         "pos": 56000,
-        "offset_sec": 0,
+        "offset_sec": 3561,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -6393,7 +6953,8 @@
       {
         "id": "oM76LTGy5Kke6uE8Sx9oXL",
         "pos": 56100,
-        "offset_sec": 0,
+        "offset_sec": 3582,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -6404,7 +6965,8 @@
       {
         "id": "d3kHYsUjBEPhg8mAYYXjNh",
         "pos": 56200,
-        "offset_sec": 0,
+        "offset_sec": 3589,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -6415,7 +6977,8 @@
       {
         "id": "gsojAKdvFTbdJ9mDAFgAwn",
         "pos": 56300,
-        "offset_sec": 0,
+        "offset_sec": 3607,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -6426,7 +6989,8 @@
       {
         "id": "EpNKPPqtyz5F8C7jiHXxDG",
         "pos": 56400,
-        "offset_sec": 0,
+        "offset_sec": 3608,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -6437,7 +7001,8 @@
       {
         "id": "WJ4WVFduHBktdEdawiKdqn",
         "pos": 56500,
-        "offset_sec": 0,
+        "offset_sec": 3623,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -6448,7 +7013,8 @@
       {
         "id": "GReTPpFimVLhLZ4FjmLgAM",
         "pos": 56600,
-        "offset_sec": 0,
+        "offset_sec": 3625,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -6459,7 +7025,8 @@
       {
         "id": "wirKfuuQqFYCsUf3d3dtra",
         "pos": 56700,
-        "offset_sec": 0,
+        "offset_sec": 3631,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -6470,7 +7037,8 @@
       {
         "id": "G4KaPtwDoscMXYxdTstcCn",
         "pos": 56800,
-        "offset_sec": 0,
+        "offset_sec": 3632,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -6481,7 +7049,8 @@
       {
         "id": "8YrKz3V64sQUcZHSsnZCwf",
         "pos": 56900,
-        "offset_sec": 0,
+        "offset_sec": 3633,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -6494,7 +7063,8 @@
       {
         "id": "ZKdsXKwRfRKYcn7KbooM6a",
         "pos": 57000,
-        "offset_sec": 0,
+        "offset_sec": 3657,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -6505,7 +7075,8 @@
       {
         "id": "MGPyiCFvtaq3d2urFYWFeU",
         "pos": 57100,
-        "offset_sec": 0,
+        "offset_sec": 3660,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -6516,7 +7087,8 @@
       {
         "id": "uaZvDkFPMrD76JfYjwhcXY",
         "pos": 57200,
-        "offset_sec": 0,
+        "offset_sec": 3662,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -6529,7 +7101,8 @@
       {
         "id": "HYfFTzog99oSTeeHfYkMsK",
         "pos": 57300,
-        "offset_sec": 0,
+        "offset_sec": 3665,
+        "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,

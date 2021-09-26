@@ -42,14 +42,15 @@ func (m Metadata) Proto() map[string]string {
 }
 
 type Dialog struct {
-	ID        string     `json:"id"`
-	Position  int64      `json:"pos"`
-	OffsetSec int64      `json:"offset_sec"` // second offset from start of episode
-	Type      DialogType `json:"type"`
-	Actor     string     `json:"actor"`
-	Meta      Metadata   `json:"metadata"`
-	Content   string     `json:"content"`
-	Notable   bool       `json:"notable"` // note-worthy line of dialog.
+	ID             string     `json:"id"`
+	Position       int64      `json:"pos"`
+	OffsetSec      int64      `json:"offset_sec"` // second offset from start of episode
+	OffsetInferred bool       `json:"offset_inferred"`
+	Type           DialogType `json:"type"`
+	Actor          string     `json:"actor"`
+	Meta           Metadata   `json:"metadata"`
+	Content        string     `json:"content"`
+	Notable        bool       `json:"notable"` // note-worthy line of dialog.
 
 	// content tokens mapped to tags
 	// e.g. Foo! (text) => foo (tag)
@@ -58,16 +59,17 @@ type Dialog struct {
 
 func (d Dialog) Proto(bestMatch bool) *api.Dialog {
 	dialog := &api.Dialog{
-		Id:           d.ID,
-		Pos:          d.Position,
-		OffsetSec:    d.OffsetSec,
-		Type:         string(d.Type),
-		Actor:        d.Actor,
-		Content:      d.Content,
-		Metadata:     d.Meta.Proto(),
-		IsMatchedRow: bestMatch,
-		ContentTags:  make(map[string]*api.Tag),
-		Notable:      d.Notable,
+		Id:             d.ID,
+		Pos:            d.Position,
+		OffsetSec:      d.OffsetSec,
+		OffsetInferred: d.OffsetInferred,
+		Type:           string(d.Type),
+		Actor:          d.Actor,
+		Content:        d.Content,
+		Metadata:       d.Meta.Proto(),
+		IsMatchedRow:   bestMatch,
+		ContentTags:    make(map[string]*api.Tag),
+		Notable:        d.Notable,
 	}
 	for text, tagName := range d.ContentTags {
 		tag := meta.GetTag(tagName)
