@@ -111,7 +111,7 @@ func Export(dialog []models.Dialog, synopsis []models.Synopsis) (string, error) 
 
 	output := strings.Builder{}
 	for _, d := range dialog {
-		if d.OffsetSec > 0 {
+		if d.OffsetSec > 0 && d.OffsetInferred == false {
 			output.WriteString(fmt.Sprintf("#OFFSET: %d\n", d.OffsetSec))
 		}
 		for _, syn := range synopsis {
