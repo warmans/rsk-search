@@ -1,11 +1,19 @@
 import { Component, EventEmitter, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Data } from '@angular/router';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
-import { RskDialog, RskTranscript } from '../../../../lib/api-client/models';
+import {
+  RskDialog,
+  RskTranscript,
+  RskTranscriptChange,
+  RskTranscriptChangeList
+} from '../../../../lib/api-client/models';
 import { ViewportScroller } from '@angular/common';
 import { takeUntil } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
 import { AudioPlayerComponent } from '../../../shared/component/audio-player/audio-player.component';
+import { SessionService } from '../../../core/service/session/session.service';
+import { And, Eq } from '../../../../lib/filter-dsl/filter';
+import { Bool, Str } from '../../../../lib/filter-dsl/value';
 
 @Component({
   selector: 'app-episode',
@@ -24,6 +32,8 @@ export class EpisodeComponent implements OnInit, OnDestroy {
 
   episode: RskTranscript;
 
+  pendingChanges: RskTranscriptChange[];
+
   error: string;
 
   audioLink: string;
@@ -31,6 +41,8 @@ export class EpisodeComponent implements OnInit, OnDestroy {
   transcribers: string;
 
   quotes: RskDialog[] = [];
+
+  authenticated: boolean = false;
 
   unsubscribe$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -41,7 +53,8 @@ export class EpisodeComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private apiClient: SearchAPIClient,
     private viewportScroller: ViewportScroller,
-    private titleService: Title
+    private titleService: Title,
+    private sessionService: SessionService,
   ) {
     route.paramMap.subscribe((d: Data) => {
       this.id = d.params['id'];
@@ -50,6 +63,11 @@ export class EpisodeComponent implements OnInit, OnDestroy {
     });
     route.fragment.subscribe((f) => {
       this.scrollToID = f;
+    });
+    sessionService.onTokenChange.pipe(takeUntil(this.unsubscribe$)).subscribe((token: string): void => {
+      if (token != null) {
+        this.authenticated = true;
+      }
     });
   }
 
@@ -70,6 +88,12 @@ export class EpisodeComponent implements OnInit, OnDestroy {
       (err) => {
         this.error = 'Failed to fetch episode';
       }).add(() => this.loading = false);
+
+    this.apiClient.listTranscriptChanges({
+      filter: And(Eq('epid', Str(this.id)), Eq('merged', Bool(false))).print()
+    }).pipe(takeUntil(this.unsubscribe$)).subscribe((ep: RskTranscriptChangeList) => {
+      this.pendingChanges = ep.changes;
+    });
   }
 
   query(field: string, value: string): string {

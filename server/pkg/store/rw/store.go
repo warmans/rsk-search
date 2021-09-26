@@ -12,7 +12,9 @@ import (
 	"github.com/warmans/rsk-search/pkg/filter"
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/store/common"
+	"github.com/warmans/rsk-search/pkg/util"
 	"strings"
+	"time"
 )
 
 type ChunkActivity string
@@ -529,57 +531,6 @@ func (s *Store) UpdateChunkActivity(ctx context.Context, id string, activity Chu
 	return err
 }
 
-func (s *Store) CreateTscriptTimelineEvent(ctx context.Context, chunkID string, who string, what string) error {
-	// rate-limit duplicate activity to 1 per 10 mins
-	var duplicate bool
-	if err := s.tx.QueryRowx(`SELECT true FROM "tscript_chunk_timeline" WHERE chunk_id = $1 AND who=$2 AND what=$3 AND activity_at > NOW()- interval '10 minute'`, chunkID, who, what).Scan(&duplicate); err != nil || duplicate {
-		if err != sql.ErrNoRows {
-			return err
-		}
-	}
-	_, err := s.tx.ExecContext(
-		ctx,
-		"INSERT INTO tscript_chunk_timeline (id, chunk_id, who, what, activity_at) VALUES ($1, $2, $3, $4, NOW())",
-		shortuuid.New(),
-		chunkID,
-		who,
-		what,
-	)
-	return err
-}
-
-func (s *Store) ListTscriptTimelineEvents(ctx context.Context, tscriptID string, page int) ([]*models.TimelineEvent, error) {
-	out := make([]*models.TimelineEvent, 0)
-
-	rows, err := s.tx.QueryxContext(
-		ctx,
-		fmt.Sprintf(`
-			SELECT 
-				tl.who, 
-				tl.what,
-				tl.activity_at AS when,
-			FROM tscript_chunk_timeline tl
-			LEFT JOIN tscript_chunk ch ON tl.chunk_id = ch.id
-			WHERE ch.tscript_id = $1
-			ORDER BY activity_at DESC
-			LIMIT 25 OFFSET %d`, page*25),
-		tscriptID,
-	)
-	if err != nil {
-		return nil, err
-	}
-	defer rows.Close()
-
-	for rows.Next() {
-		cur := &models.TimelineEvent{}
-		if err := rows.StructScan(cur); err != nil {
-			return nil, err
-		}
-		out = append(out, cur)
-	}
-	return nil, nil
-}
-
 func (s *Store) GetChunkStats(ctx context.Context) (*models.ChunkStats, error) {
 	ch := &models.ChunkStats{}
 
@@ -797,6 +748,18 @@ func (s *Store) BatchGetAuthor(ctx context.Context, authorIDs ...string) ([]*mod
 	return authors, nil
 }
 
+func (s *Store) BatchGetAuthorMap(ctx context.Context, authorIDs ...string) (map[string]*models.Author, error) {
+	authors, err := s.BatchGetAuthor(ctx, authorIDs...)
+	if err != nil {
+		return nil, err
+	}
+	authorMap := make(map[string]*models.Author, 0)
+	for _, v := range authors {
+		authorMap[v.ID] = v
+	}
+	return authorMap, nil
+}
+
 func (s *Store) GetAuthor(ctx context.Context, id string) (*models.Author, error) {
 	authors, err := s.BatchGetAuthor(ctx, id)
 	if err != nil {
@@ -806,4 +769,155 @@ func (s *Store) GetAuthor(ctx context.Context, id string) (*models.Author, error
 		return nil, sql.ErrNoRows
 	}
 	return authors[0], nil
+}
+
+func (s *Store) GetTranscriptChange(ctx context.Context, id string) (*models.TranscriptChange, error) {
+
+	change := &models.TranscriptChange{}
+	var authorID string
+
+	err := s.tx.
+		QueryRowxContext(ctx, `SELECT id, author_id, epid, summary, transcription, state, created_at, merged FROM transcript_change WHERE id=$1`, id).
+		Scan(&change.ID, &authorID, &change.EpID, &change.Summary, &change.Transcription, &change.State, &change.CreatedAt, &change.Merged)
+	if err != nil {
+		return nil, err
+	}
+	author, err := s.GetAuthor(ctx, authorID)
+	if err != nil {
+		return nil, err
+	}
+	change.Author = author
+
+	return change, nil
+}
+
+func (s *Store) CreateTranscriptChange(ctx context.Context, c *models.TranscriptChangeCreate) (*models.TranscriptChange, error) {
+
+	author, err := s.GetAuthor(ctx, c.AuthorID)
+	if err != nil {
+		return nil, err
+	}
+	if author.Banned {
+		return nil, ErrNotPermitted
+	}
+	change := &models.TranscriptChange{
+		ID:            shortuuid.New(),
+		EpID:          c.EpID,
+		Author:        author,
+		Summary:       c.Summary,
+		Transcription: c.Transcription,
+		State:         models.ContributionStatePending,
+		CreatedAt:     time.Now(),
+	}
+	_, err = s.tx.ExecContext(
+		ctx,
+		`INSERT INTO transcript_change (id, author_id, epid, summary, transcription, state, created_at) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+		change.ID,
+		change.Author.ID,
+		change.EpID,
+		change.Summary,
+		change.Transcription,
+		models.ContributionStatePending,
+		change.CreatedAt.Format(util.SQLDateFormat),
+	)
+	return change, err
+}
+
+func (s *Store) UpdateTranscriptChange(ctx context.Context, c *models.TranscriptChangeUpdate) (*models.TranscriptChange, error) {
+	if c.ID == "" {
+		return nil, fmt.Errorf("no identifier was provided")
+	}
+	_, err := s.tx.ExecContext(
+		ctx,
+		`UPDATE transcript_change SET transcription=$1, summary=$2, state=$3 WHERE id=$4`,
+		c.Transcription,
+		c.Summary,
+		c.State,
+		c.ID,
+	)
+	change, err := s.GetTranscriptChange(ctx, c.ID)
+	if err != nil {
+		return nil, err
+	}
+	if change.Author.Banned {
+		return nil, ErrNotPermitted
+	}
+	return change, err
+}
+
+func (s *Store) UpdateTranscriptChangeState(ctx context.Context, id string, state models.ContributionState) error {
+	_, err := s.tx.ExecContext(
+		ctx,
+		`UPDATE transcript_change SET state=$1 WHERE id=$2`,
+		state,
+		id,
+	)
+	return err
+}
+
+func (s *Store) ListTranscriptChanges(ctx context.Context, q *common.QueryModifier) ([]*models.TranscriptChange, error) {
+	fieldMap := map[string]string{
+		"id":            "c.id",
+		"author_id":     "c.author_id",
+		"epid":          "c.epid",
+		"summary":       "c.summary",
+		"transcription": "c.transcription",
+		"state":         "c.state",
+		"created_at":    "c.created_at",
+		"merged":        "c.merged",
+	}
+
+	where, params, order, paging, err := q.ToSQL(fieldMap, false)
+	if err != nil {
+		return nil, err
+	}
+
+	rows, err := s.tx.QueryxContext(
+		ctx,
+		fmt.Sprintf(`
+		SELECT c.id, c.author_id, c.epid, c.summary, c.transcription, c.state, c.created_at, c.merged
+		FROM transcript_change c
+		LEFT JOIN author a ON c.author_id = a.id
+		WHERE a.id IS NOT NULL AND a.banned = false
+		AND %s
+		%s
+		%s
+		`, where, order, paging),
+		params...,
+	)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var authorIDs []string
+	out := make([]*models.TranscriptChange, 0)
+	for rows.Next() {
+		cur := &models.TranscriptChange{Author: &models.Author{}}
+		if err := rows.Scan(
+			&cur.ID,
+			&cur.Author.ID,
+			&cur.EpID,
+			&cur.Summary,
+			&cur.Transcription,
+			&cur.State,
+			&cur.CreatedAt,
+			&cur.Merged); err != nil {
+			return nil, err
+		}
+		authorIDs = append(authorIDs, cur.Author.ID)
+		out = append(out, cur)
+	}
+	if len(authorIDs) == 0 {
+		return out, nil
+	}
+
+	authorMap, err := s.BatchGetAuthorMap(ctx, authorIDs...)
+	if err != nil {
+		return nil, err
+	}
+	for k := range out {
+		out[k].Author = authorMap[out[k].Author.ID]
+	}
+	return out, nil
 }

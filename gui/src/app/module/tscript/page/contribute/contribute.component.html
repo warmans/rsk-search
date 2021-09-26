@@ -12,14 +12,39 @@
       <div class="card mb-4">
         <div class="card-header">Get Started</div>
         <div class="card-body">
-          <img class="float-right" src="/assets/illustration/pixeltrue-support.svg" style="width: 250px" />
-          <p>There are currently <strong>{{tscipts?.length || 0}} episodes</strong> that require transcriptions. Episodes are transcribed in 3 minute chunks. Only a reddit identity
-          is required to start transcribing.</p>
+          <img class="float-right" src="/assets/illustration/pixeltrue-support.svg" style="width: 250px"/>
+          <p>There are currently <strong>{{tscipts?.length || 0}} episodes</strong> that require transcriptions.
+            Episodes are transcribed in 3 minute chunks. Only a reddit identity
+            is required to start transcribing.</p>
           <p>Click the button below to go to the suggested next chunk for transcription.</p>
           <button class="btn btn-primary" [routerLink]="['/chunk', 'next']">Start Now</button>
-          <div class="text-muted mt-3">If you have already started a transcription find it <a [routerLink]="['/me']">here</a>.</div>
+          <div class="text-muted mt-3">If you have already started a transcription find it <a [routerLink]="['/me']">here</a>.
+          </div>
         </div>
       </div>
+
+      <div class="card mb-4" *ngIf="transcriptChanges?.length > 0">
+        <div class="card-header">Unmerged Transcript Replacements</div>
+        <div class="card-body">
+          <table class="table table-borderless p-0">
+            <tr>
+              <th>Episode</th>
+              <th>State</th>
+              <th>Author</th>
+              <th>Created At</th>
+              <th></th>
+            </tr>
+            <tr *ngFor="let change of transcriptChanges">
+              <td>{{change.episodeId}}</td>
+              <td>{{change.state}}</td>
+              <td>{{change.author.name}}</td>
+              <td>{{change.createdAt}}</td>
+              <td><a class="btn btn-sm btn-info" [routerLink]="['/ep', change.episodeId, 'change', change.id]">View</a></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
       <div class="card mb-4">
         <div class="card-header">Transcription Progress</div>
         <div class="card-body d-flex">
@@ -37,17 +62,22 @@
               [style.width]="(this.overallPending / (this.overallTotal || 1) * 100)+'%'">
             </div>
           </div>
-          <div class="pl-4 font-weight-bold">{{ (this.overallComplete / (this.overallTotal || 1) * 100) | number:'1.0-0' }}%</div>
+          <div class="pl-4 font-weight-bold">{{ (this.overallComplete / (this.overallTotal || 1) * 100) | number:'1.0-0'
+            }}%
+          </div>
         </div>
         <div class="card-body p-0">
           <table class="table">
             <tr>
               <th>ID</th>
-              <th colspan="2" title="Once transcriptions for all chunks have been approved the episode is complete">Progress</th>
+              <th colspan="2" title="Once transcriptions for all chunks have been approved the episode is complete">
+                Progress
+              </th>
             </tr>
             <tr *ngFor="let ep of tscipts">
               <td style="width: 150px"><a [routerLink]="['/tscript', ep.id]">{{ep.id}}</a></td>
-              <td style="width: 150px"><span title="sections approved to the total">{{ progressMap[ep.id]['complete'] }} / {{ep.numChunks}} <span>({{((progressMap[ep.id]['complete'] || 0) / (progressMap[ep.id]['total'] || 1)  * 100) | number:'1.0-0'}}%)</span></span></td>
+              <td style="width: 150px"><span title="sections approved to the total">{{ progressMap[ep.id]['complete'] }} / {{ep.numChunks}} <span>({{((progressMap[ep.id]['complete'] || 0) / (progressMap[ep.id]['total'] || 1)  * 100) | number:'1.0-0'}}%)</span></span>
+              </td>
               <td>
                 <div class="progress">
                   <div

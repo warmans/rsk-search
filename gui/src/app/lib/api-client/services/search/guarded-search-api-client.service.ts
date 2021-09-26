@@ -96,6 +96,20 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
       .pipe(tap((res: any) => guards.isRskChunkContribution(res) || console.error(`TypeGuard for response 'RskChunkContribution' caught inconsistency.`, res)));
   }
 
+  listTranscriptChanges(
+    args: {
+      filter?: string,
+      sortField?: string,
+      sortDirection?: string,
+      page?: number,
+      pageSize?: number,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskTranscriptChangeList> {
+    return super.listTranscriptChanges(args, requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRskTranscriptChangeList(res) || console.error(`TypeGuard for response 'RskTranscriptChangeList' caught inconsistency.`, res)));
+  }
+
   getTranscriptChange(
     args: {
       id: string,
@@ -136,21 +150,6 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
   ): Observable<object> {
     return super.requestTranscriptChangeState(args, requestHttpOptions)
       .pipe(tap((res: any) => typeof res === 'object' || console.error(`TypeGuard for response 'object' caught inconsistency.`, res)));
-  }
-
-  listTranscriptChanges(
-    args: {
-      epid: string,
-      filter?: string,
-      sortField?: string,
-      sortDirection?: string,
-      page?: number,
-      pageSize?: number,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskTranscriptChangeList> {
-    return super.listTranscriptChanges(args, requestHttpOptions)
-      .pipe(tap((res: any) => guards.isRskTranscriptChangeList(res) || console.error(`TypeGuard for response 'RskTranscriptChangeList' caught inconsistency.`, res)));
   }
 
   createTranscriptChange(
@@ -279,17 +278,6 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
   ): Observable<models.RskChunkList> {
     return super.listChunks(args, requestHttpOptions)
       .pipe(tap((res: any) => guards.isRskChunkList(res) || console.error(`TypeGuard for response 'RskChunkList' caught inconsistency.`, res)));
-  }
-
-  getTscriptTimeline(
-    args: {
-      tscriptId: string,
-      page?: number,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskTscriptTimeline> {
-    return super.getTscriptTimeline(args, requestHttpOptions)
-      .pipe(tap((res: any) => guards.isRskTscriptTimeline(res) || console.error(`TypeGuard for response 'RskTscriptTimeline' caught inconsistency.`, res)));
   }
 
   listFieldValues(

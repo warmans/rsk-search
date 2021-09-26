@@ -251,6 +251,63 @@
         ]
       }
     },
+    "/api/contrib/transcript/change": {
+      "get": {
+        "summary": "Submits a new version of a transcript.",
+        "operationId": "listTranscriptChanges",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskTranscriptChangeList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortDirection",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      }
+    },
     "/api/contrib/transcript/change/{id}": {
       "get": {
         "summary": "Get a single existing change.",
@@ -388,67 +445,6 @@
       }
     },
     "/api/contrib/transcript/{epid}/change": {
-      "get": {
-        "summary": "Submits a new version of a transcript.",
-        "operationId": "listTranscriptChanges",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/rskTranscriptChangeList"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "epid",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "filter",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "sortField",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "sortDirection",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          },
-          {
-            "name": "pageSize",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          }
-        ],
-        "tags": [
-          "search"
-        ]
-      },
       "post": {
         "summary": "Submits a new version of a transcript.",
         "operationId": "createTranscriptChange",
@@ -755,44 +751,6 @@
           },
           {
             "name": "pageSize",
-            "in": "query",
-            "required": false,
-            "type": "integer",
-            "format": "int32"
-          }
-        ],
-        "tags": [
-          "search"
-        ]
-      }
-    },
-    "/api/tscript/{tscriptId}/timeline": {
-      "get": {
-        "summary": "Gets a specific transcript chunk to be completed.",
-        "operationId": "getTscriptTimeline",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/rskTscriptTimeline"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "tscriptId",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "page",
             "in": "query",
             "required": false,
             "type": "integer",
@@ -1162,6 +1120,29 @@
         }
       }
     },
+    "rskShortTranscriptChange": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "episodeId": {
+          "type": "string"
+        },
+        "state": {
+          "$ref": "#/definitions/rskContributionState"
+        },
+        "author": {
+          "$ref": "#/definitions/rskAuthor"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "merged": {
+          "type": "boolean"
+        }
+      }
+    },
     "rskTranscriptChange": {
       "type": "object",
       "properties": {
@@ -1169,6 +1150,9 @@
           "type": "string"
         },
         "episodeId": {
+          "type": "string"
+        },
+        "summary": {
           "type": "string"
         },
         "transcript": {
@@ -1185,6 +1169,9 @@
         },
         "createdAt": {
           "type": "string"
+        },
+        "merged": {
+          "type": "boolean"
         }
       }
     },
@@ -1194,7 +1181,7 @@
         "changes": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/rskTranscriptChange"
+            "$ref": "#/definitions/rskShortTranscriptChange"
           }
         }
       }
@@ -1256,31 +1243,6 @@
         "numRejectedContributions": {
           "type": "integer",
           "format": "int32"
-        }
-      }
-    },
-    "rskTscriptTimeline": {
-      "type": "object",
-      "properties": {
-        "events": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/rskTscriptTimelineEvent"
-          }
-        }
-      }
-    },
-    "rskTscriptTimelineEvent": {
-      "type": "object",
-      "properties": {
-        "who": {
-          "type": "string"
-        },
-        "what": {
-          "type": "string"
-        },
-        "when": {
-          "type": "string"
         }
       }
     },

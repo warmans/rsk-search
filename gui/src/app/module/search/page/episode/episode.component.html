@@ -7,6 +7,15 @@
     </ol>
   </nav>
 
+  <div *ngIf="authenticated && pendingChanges?.length > 0" class="row mb-3">
+    <div class="col-12">
+      <div class="alert alert-info">
+        This episode has an unmerged change. New changes cannot be created until this is resolved.
+        <a class="btn btn-sm btn-info" [routerLink]="['/ep', id, 'change', pendingChanges[0].id]">View Change</a>
+      </div>
+    </div>
+  </div>
+
   <div class="row">
     <div class="col">
       <div class="card" *ngIf="episode">
@@ -106,11 +115,11 @@
           <div class="d-flex">
             <div class="flex-grow-1 font-weight-bold">
               Transcript
+              <!-- logic for transcript complete flag incomplete-->
               <span *ngIf="episode.incomplete" class="badge badge-warning ml-3">Incomplete</span>
             </div>
-            <div>
-              <!-- not fully implemented -->
-              <!-- a class="btn btn-sm btn-info" [routerLink]="['/ep', id, 'change']">Submit Correction</a-->
+            <div *ngIf="authenticated && pendingChanges?.length === 0 && !episode.incomplete">
+              <a class="btn btn-sm btn-info" [routerLink]="['/ep', id, 'change']">Submit Correction</a>
             </div>
           </div>
         </div>

@@ -1,6 +1,11 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
-import { RskContributionState, RskTscriptList, RskTscriptStats } from '../../../../lib/api-client/models';
+import {
+  RskContributionState,
+  RskTranscriptChange,
+  RskTscriptList,
+  RskTscriptStats
+} from '../../../../lib/api-client/models';
 import { takeUntil } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
 
@@ -14,6 +19,7 @@ export class ContributeComponent implements OnInit, OnDestroy {
   loading: boolean[] = [];
 
   tscipts: RskTscriptStats[] = [];
+  transcriptChanges: RskTranscriptChange[] = [];
 
   // map of tscript_id => { 'approved' => 1, 'pending_approval' => 2 ...}
   progressMap: { [index: string]: { [index: string]: number } } = {};
@@ -64,6 +70,14 @@ export class ContributeComponent implements OnInit, OnDestroy {
     }).add(() => {
       this.loading.pop();
     });
+
+    this.loading.push(true);
+    this.apiClient.listTranscriptChanges({}).pipe(takeUntil(this.unsubscribe$)).subscribe((res) => {
+      this.transcriptChanges = res.changes;
+    }).add(() => {
+      this.loading.pop();
+    })
+
   }
 
   ngOnDestroy(): void {

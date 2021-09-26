@@ -495,6 +495,27 @@ export function isRskShortTranscript(arg: any): arg is models.RskShortTranscript
   );
   }
 
+export function isRskShortTranscriptChange(arg: any): arg is models.RskShortTranscriptChange {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // author?: RskAuthor
+    ( typeof arg.author === 'undefined' || isRskAuthor(arg.author) ) &&
+    // createdAt?: string
+    ( typeof arg.createdAt === 'undefined' || typeof arg.createdAt === 'string' ) &&
+    // episodeId?: string
+    ( typeof arg.episodeId === 'undefined' || typeof arg.episodeId === 'string' ) &&
+    // id?: string
+    ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
+    // merged?: boolean
+    ( typeof arg.merged === 'undefined' || typeof arg.merged === 'boolean' ) &&
+    // state?: RskContributionState
+    ( typeof arg.state === 'undefined' || isRskContributionState(arg.state) ) &&
+
+  true
+  );
+  }
+
 export function isRskSynopsis(arg: any): arg is models.RskSynopsis {
   return (
   arg != null &&
@@ -574,8 +595,12 @@ export function isRskTranscriptChange(arg: any): arg is models.RskTranscriptChan
     ( typeof arg.episodeId === 'undefined' || typeof arg.episodeId === 'string' ) &&
     // id?: string
     ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
+    // merged?: boolean
+    ( typeof arg.merged === 'undefined' || typeof arg.merged === 'boolean' ) &&
     // state?: RskContributionState
     ( typeof arg.state === 'undefined' || isRskContributionState(arg.state) ) &&
+    // summary?: string
+    ( typeof arg.summary === 'undefined' || typeof arg.summary === 'string' ) &&
     // transcript?: string
     ( typeof arg.transcript === 'undefined' || typeof arg.transcript === 'string' ) &&
 
@@ -587,8 +612,8 @@ export function isRskTranscriptChangeList(arg: any): arg is models.RskTranscript
   return (
   arg != null &&
   typeof arg === 'object' &&
-    // changes?: RskTranscriptChange[]
-    ( typeof arg.changes === 'undefined' || (Array.isArray(arg.changes) && arg.changes.every((item: unknown) => isRskTranscriptChange(item))) ) &&
+    // changes?: RskShortTranscriptChange[]
+    ( typeof arg.changes === 'undefined' || (Array.isArray(arg.changes) && arg.changes.every((item: unknown) => isRskShortTranscriptChange(item))) ) &&
 
   true
   );
@@ -642,32 +667,6 @@ export function isRskTscriptStats(arg: any): arg is models.RskTscriptStats {
     ( typeof arg.publication === 'undefined' || typeof arg.publication === 'string' ) &&
     // series?: number
     ( typeof arg.series === 'undefined' || typeof arg.series === 'number' ) &&
-
-  true
-  );
-  }
-
-export function isRskTscriptTimeline(arg: any): arg is models.RskTscriptTimeline {
-  return (
-  arg != null &&
-  typeof arg === 'object' &&
-    // events?: RskTscriptTimelineEvent[]
-    ( typeof arg.events === 'undefined' || (Array.isArray(arg.events) && arg.events.every((item: unknown) => isRskTscriptTimelineEvent(item))) ) &&
-
-  true
-  );
-  }
-
-export function isRskTscriptTimelineEvent(arg: any): arg is models.RskTscriptTimelineEvent {
-  return (
-  arg != null &&
-  typeof arg === 'object' &&
-    // what?: string
-    ( typeof arg.what === 'undefined' || typeof arg.what === 'string' ) &&
-    // when?: string
-    ( typeof arg.when === 'undefined' || typeof arg.when === 'string' ) &&
-    // who?: string
-    ( typeof arg.who === 'undefined' || typeof arg.who === 'string' ) &&
 
   true
   );

@@ -11,6 +11,9 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
 
   @Input()
   set transcript(value: RskDialog[]) {
+    if (!value){
+      return;
+    }
     this._transcript = value;
     for (let i = 0; i < value.length; i++) {
       if (parseInt(value[i].offsetSec) > 0) {

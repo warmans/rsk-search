@@ -92,26 +92,6 @@ func (s *ContribService) GetChunkStats(ctx context.Context, _ *emptypb.Empty) (*
 	return stats.Proto(), nil
 }
 
-func (s *ContribService) GetTscriptTimeline(ctx context.Context, request *api.GetTscriptTimelineRequest) (*api.TscriptTimeline, error) {
-	result := &api.TscriptTimeline{
-		Events: make([]*api.TscriptTimelineEvent, 0),
-	}
-	err := s.persistentDB.WithStore(func(s *rw.Store) error {
-		events, err := s.ListTscriptTimelineEvents(ctx, request.TscriptId, int(request.Page))
-		if err != nil {
-			return err
-		}
-		for _, v := range events {
-			result.Events = append(result.Events, v.Proto())
-		}
-		return nil
-	})
-	if err != nil {
-		return nil, ErrFromStore(err, "").Err()
-	}
-	return result, nil
-}
-
 func (s *ContribService) GetChunk(ctx context.Context, request *api.GetChunkRequest) (*api.Chunk, error) {
 	var chunk *models.Chunk
 	err := s.persistentDB.WithStore(func(s *rw.Store) error {
@@ -222,7 +202,7 @@ func (s *ContribService) UpdateChunkContribution(ctx context.Context, request *a
 	}
 
 	// validate change is allowed
-	if err := s.validateContributionStateUpdate(claims, contrib, request.State); err != nil {
+	if err := s.validateContributionStateUpdate(claims, contrib.Author.ID, contrib.State, request.State); err != nil {
 		return nil, err
 	}
 
@@ -242,9 +222,6 @@ func (s *ContribService) UpdateChunkContribution(ctx context.Context, request *a
 		contrib.Transcription = request.Transcript
 		contrib.State = models.ContributionStateFromProto(request.State)
 
-		if err := s.createTimelineEvent(tx, ctx, claims, contrib, ""); err != nil {
-			return err
-		}
 		if err := tx.UpdateChunkContribution(ctx, &models.ContributionUpdate{
 			ID:            contrib.ID,
 			AuthorID:      contrib.Author.ID,
@@ -278,7 +255,7 @@ func (s *ContribService) RequesChunktContributionState(ctx context.Context, requ
 	if err != nil {
 		return nil, ErrFromStore(err, request.ContributionId).Err()
 	}
-	if err := s.validateContributionStateUpdate(claims, contrib, request.RequestState); err != nil {
+	if err := s.validateContributionStateUpdate(claims, contrib.Author.ID, contrib.State, request.RequestState); err != nil {
 		return nil, err
 	}
 	if request.Comment != "" && claims.Approver {
@@ -289,9 +266,6 @@ func (s *ContribService) RequesChunktContributionState(ctx context.Context, requ
 		contrib.State = models.ContributionStateFromProto(request.RequestState)
 		contrib.StateComment = request.Comment
 
-		if err := s.createTimelineEvent(tx, ctx, claims, contrib, contrib.StateComment); err != nil {
-			return err
-		}
 		if err := tx.UpdateChunkContributionState(ctx, contrib.ID, contrib.State, contrib.StateComment); err != nil {
 			return err
 		}
@@ -558,19 +532,143 @@ func (s *ContribService) ListDonationRecipients(ctx context.Context, request *ap
 }
 
 func (s *ContribService) ListTranscriptChanges(ctx context.Context, request *api.ListTranscriptChangesRequest) (*api.TranscriptChangeList, error) {
-	panic("implement me")
+
+	qm, err := NewQueryModifiers(request)
+	if err != nil {
+		return nil, err
+	}
+	if qm.Filter != nil {
+		qm.Filter = filter.And(filter.Neq("state", filter.String("pending")), qm.Filter)
+	} else {
+		qm.Filter = filter.Neq("state", filter.String("pending"))
+	}
+
+	out := &api.TranscriptChangeList{
+		Changes: make([]*api.ShortTranscriptChange, 0),
+	}
+	if err := s.persistentDB.WithStore(func(store *rw.Store) error {
+		contributions, err := store.ListTranscriptChanges(ctx, qm)
+		for _, v := range contributions {
+			out.Changes = append(out.Changes, v.ShortProto())
+		}
+		return err
+	}); err != nil {
+		return nil, ErrFromStore(err, "").Err()
+	}
+	return out, nil
 }
 
 func (s *ContribService) GetTranscriptChange(ctx context.Context, request *api.GetTranscriptChangeRequest) (*api.TranscriptChange, error) {
-	panic("implement me")
+	claims, err := s.getClaims(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	var change *models.TranscriptChange
+	err = s.persistentDB.WithStore(func(s *rw.Store) error {
+		var err error
+		change, err = s.GetTranscriptChange(ctx, request.Id)
+		if err != nil {
+			return err
+		}
+		return nil
+	})
+	if err != nil {
+		return nil, ErrFromStore(err, request.Id).Err()
+	}
+	if claims.Approver == false {
+		if change.State == models.ContributionStatePending && change.Author.ID != claims.AuthorID {
+			return nil, ErrPermissionDenied("you cannot view another author's contribution when it is in the pending state").Err()
+		}
+	}
+	return change.Proto(), nil
 }
 
 func (s *ContribService) CreateTranscriptChange(ctx context.Context, request *api.CreateTranscriptChangeRequest) (*api.TranscriptChange, error) {
-	panic("implement me")
+	claims, err := s.getClaims(ctx)
+	if err != nil {
+		return nil, err
+	}
+	var change *models.TranscriptChange
+	err = s.persistentDB.WithStore(func(s *rw.Store) error {
+
+		// merging is going to be complicated in cases where there are multiple changes at once.
+		changes, err := s.ListTranscriptChanges(
+			ctx,
+			common.Q(
+				common.WithFilter(
+					filter.Eq("epid", filter.String(request.Epid)),
+				),
+			),
+		)
+		if err != nil {
+			return err
+		}
+		if len(changes) > 0 {
+			return ErrFailedPrecondition("multiple changes cannot exist at once. Try again once the current change has been processed.").Err()
+		}
+		change, err = s.CreateTranscriptChange(ctx, &models.TranscriptChangeCreate{
+			AuthorID:      claims.AuthorID,
+			EpID:          request.Epid,
+			Summary:       "",
+			Transcription: request.Transcript,
+		})
+		return err
+	})
+	if err != nil {
+		return nil, ErrFromStore(err, "").Err()
+	}
+	return change.Proto(), nil
 }
 
 func (s *ContribService) UpdateTranscriptChange(ctx context.Context, request *api.UpdateTranscriptChangeRequest) (*api.TranscriptChange, error) {
-	panic("implement me")
+
+	claims, err := s.getClaims(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	var oldChange *models.TranscriptChange
+	err = s.persistentDB.WithStore(func(s *rw.Store) error {
+		var err error
+		oldChange, err = s.GetTranscriptChange(ctx, request.Id)
+		return err
+	})
+	if err != nil {
+		return nil, ErrFromStore(err, request.Id).Err()
+	}
+
+	// validate change is allowed
+	if err := s.validateContributionStateUpdate(claims, oldChange.Author.ID, oldChange.State, request.State); err != nil {
+		return nil, err
+	}
+
+	// allow invalid transcript while the contribution is still pending.
+	if request.State != api.ContributionState_STATE_PENDING {
+		lines, _, err := transcript.Import(bufio.NewScanner(bytes.NewBufferString(request.Transcript)), 0)
+		if err != nil {
+			return nil, ErrInvalidRequestField("transcript", err.Error()).Err()
+		}
+		if len(lines) == 0 {
+			return nil, ErrInvalidRequestField("transcript", "no valid lines parsed from transcript").Err()
+		}
+	}
+
+	var updatedChange *models.TranscriptChange
+	err = s.persistentDB.WithStore(func(s *rw.Store) error {
+		var err error
+		updatedChange, err = s.UpdateTranscriptChange(ctx, &models.TranscriptChangeUpdate{
+			ID:            request.Id,
+			Summary:       "",
+			Transcription: request.Transcript,
+			State:         models.ContributionStateFromProto(request.State),
+		})
+		return err
+	})
+	if err != nil {
+		return nil, ErrFromStore(err, "").Err()
+	}
+	return updatedChange.Proto(), nil
 }
 
 func (s *ContribService) DeleteTranscriptChange(ctx context.Context, request *api.DeleteTranscriptChangeRequest) (*emptypb.Empty, error) {
@@ -578,7 +676,29 @@ func (s *ContribService) DeleteTranscriptChange(ctx context.Context, request *ap
 }
 
 func (s *ContribService) RequestTranscriptChangeState(ctx context.Context, request *api.RequestTranscriptChangeStateRequest) (*emptypb.Empty, error) {
-	panic("implement me")
+	claims, err := s.getClaims(ctx)
+	if err != nil {
+		return nil, err
+	}
+	var oldChange *models.TranscriptChange
+	err = s.persistentDB.WithStore(func(s *rw.Store) error {
+		var err error
+		oldChange, err = s.GetTranscriptChange(ctx, request.Id)
+		return err
+	})
+	if err != nil {
+		return nil, ErrFromStore(err, request.Id).Err()
+	}
+	if err := s.validateContributionStateUpdate(claims, oldChange.Author.ID, oldChange.State, request.State); err != nil {
+		return nil, err
+	}
+	err = s.persistentDB.WithStore(func(s *rw.Store) error {
+		return s.UpdateTranscriptChangeState(ctx, request.Id, models.ContributionStateFromProto(request.State))
+	})
+	if err != nil {
+		return nil, ErrFromStore(err, request.Id).Err()
+	}
+	return &emptypb.Empty{}, nil
 }
 
 func (s *ContribService) getClaims(ctx context.Context) (*jwt.Claims, error) {
@@ -593,9 +713,9 @@ func (s *ContribService) getClaims(ctx context.Context) (*jwt.Claims, error) {
 	return claims, nil
 }
 
-func (s *ContribService) validateContributionStateUpdate(claims *jwt.Claims, currentState *models.ChunkContribution, requestedState api.ContributionState) error {
+func (s *ContribService) validateContributionStateUpdate(claims *jwt.Claims, currentAuthorID string, currentState models.ContributionState, requestedState api.ContributionState) error {
 	if !claims.Approver {
-		if currentState.Author.ID != claims.AuthorID {
+		if currentAuthorID != claims.AuthorID {
 			return ErrPermissionDenied("you are not the author of this contribution").Err()
 		}
 		if requestedState == api.ContributionState_STATE_APPROVED || requestedState == api.ContributionState_STATE_REJECTED {
@@ -603,36 +723,14 @@ func (s *ContribService) validateContributionStateUpdate(claims *jwt.Claims, cur
 		}
 	}
 	// if the contribution has been rejected allow the author to return it to pending.
-	if currentState.State == models.ContributionStateRejected {
+	if currentState == models.ContributionStateRejected {
 		if requestedState != api.ContributionState_STATE_PENDING {
-			return ErrFailedPrecondition(fmt.Sprintf("Only rejected contributions can be reverted to pending. Actual state was: %s (requested: %s)", currentState.State, requestedState)).Err()
+			return ErrFailedPrecondition(fmt.Sprintf("Only rejected contributions can be reverted to pending. Actual state was: %s (requested: %s)", currentState, requestedState)).Err()
 		}
 	} else {
 		/// otherwise only allow it to be updated if it's in the pending or approval requested state.
-		if currentState.State != models.ContributionStatePending && currentState.State != models.ContributionStateApprovalRequested {
-			return ErrFailedPrecondition(fmt.Sprintf("Only pending contributions can be edited. Actual state was: %s", currentState.State)).Err()
-		}
-	}
-	return nil
-}
-
-func (s *ContribService) createTimelineEvent(tx *rw.Store, ctx context.Context, claims *jwt.Claims, contrib *models.ChunkContribution, comment string) error {
-	suffix := "."
-	if comment != "" {
-		suffix = fmt.Sprintf(" with comment '%s'.", comment)
-	}
-	switch contrib.State {
-	case models.ContributionStateApprovalRequested:
-		if err := tx.CreateTscriptTimelineEvent(ctx, contrib.ChunkID, claims.Identity.Name, fmt.Sprintf("Submitted contribution %s for approval%s", contrib.ID, suffix)); err != nil {
-			return err
-		}
-	case models.ContributionStateApproved:
-		if err := tx.CreateTscriptTimelineEvent(ctx, contrib.ChunkID, claims.Identity.Name, fmt.Sprintf("Approved contribution %s%s", contrib.ID, suffix)); err != nil {
-			return err
-		}
-	case models.ContributionStateRejected:
-		if err := tx.CreateTscriptTimelineEvent(ctx, contrib.ChunkID, claims.Identity.Name, fmt.Sprintf("Rejected contribution %s%s", contrib.ID, suffix)); err != nil {
-			return err
+		if currentState != models.ContributionStatePending && currentState != models.ContributionStateApprovalRequested {
+			return ErrFailedPrecondition(fmt.Sprintf("Only pending contributions can be edited. Actual state was: %s", currentState)).Err()
 		}
 	}
 	return nil

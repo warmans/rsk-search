@@ -17,6 +17,13 @@ type Author struct {
 	Approver  bool      `db:"approver"`
 }
 
+func (a *Author) ShortAuthor() *ShortAuthor {
+	return &ShortAuthor{
+		ID:   a.ID,
+		Name: a.Name,
+	}
+}
+
 func (a *Author) DecodeIdentity() (*oauth.Identity, error) {
 	ident := &oauth.Identity{}
 	if err := json.Unmarshal([]byte(a.Identity), ident); err != nil {

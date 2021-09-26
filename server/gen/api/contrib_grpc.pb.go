@@ -20,7 +20,6 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ContribServiceClient interface {
 	ListTscripts(ctx context.Context, in *ListTscriptsRequest, opts ...grpc.CallOption) (*TscriptList, error)
-	GetTscriptTimeline(ctx context.Context, in *GetTscriptTimelineRequest, opts ...grpc.CallOption) (*TscriptTimeline, error)
 	// chunks are ~3 min sections of the transcription
 	GetChunkStats(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ChunkStats, error)
 	GetAuthorLeaderboard(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*AuthorLeaderboard, error)
@@ -55,15 +54,6 @@ func NewContribServiceClient(cc grpc.ClientConnInterface) ContribServiceClient {
 func (c *contribServiceClient) ListTscripts(ctx context.Context, in *ListTscriptsRequest, opts ...grpc.CallOption) (*TscriptList, error) {
 	out := new(TscriptList)
 	err := c.cc.Invoke(ctx, "/rsk.ContribService/ListTscripts", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *contribServiceClient) GetTscriptTimeline(ctx context.Context, in *GetTscriptTimelineRequest, opts ...grpc.CallOption) (*TscriptTimeline, error) {
-	out := new(TscriptTimeline)
-	err := c.cc.Invoke(ctx, "/rsk.ContribService/GetTscriptTimeline", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -255,7 +245,6 @@ func (c *contribServiceClient) RequestTranscriptChangeState(ctx context.Context,
 // for forward compatibility
 type ContribServiceServer interface {
 	ListTscripts(context.Context, *ListTscriptsRequest) (*TscriptList, error)
-	GetTscriptTimeline(context.Context, *GetTscriptTimelineRequest) (*TscriptTimeline, error)
 	// chunks are ~3 min sections of the transcription
 	GetChunkStats(context.Context, *emptypb.Empty) (*ChunkStats, error)
 	GetAuthorLeaderboard(context.Context, *emptypb.Empty) (*AuthorLeaderboard, error)
@@ -285,9 +274,6 @@ type UnimplementedContribServiceServer struct {
 
 func (UnimplementedContribServiceServer) ListTscripts(context.Context, *ListTscriptsRequest) (*TscriptList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTscripts not implemented")
-}
-func (UnimplementedContribServiceServer) GetTscriptTimeline(context.Context, *GetTscriptTimelineRequest) (*TscriptTimeline, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetTscriptTimeline not implemented")
 }
 func (UnimplementedContribServiceServer) GetChunkStats(context.Context, *emptypb.Empty) (*ChunkStats, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetChunkStats not implemented")
@@ -375,24 +361,6 @@ func _ContribService_ListTscripts_Handler(srv interface{}, ctx context.Context, 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ContribServiceServer).ListTscripts(ctx, req.(*ListTscriptsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ContribService_GetTscriptTimeline_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetTscriptTimelineRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ContribServiceServer).GetTscriptTimeline(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/rsk.ContribService/GetTscriptTimeline",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ContribServiceServer).GetTscriptTimeline(ctx, req.(*GetTscriptTimelineRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -767,10 +735,6 @@ var ContribService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListTscripts",
 			Handler:    _ContribService_ListTscripts_Handler,
-		},
-		{
-			MethodName: "GetTscriptTimeline",
-			Handler:    _ContribService_GetTscriptTimeline_Handler,
 		},
 		{
 			MethodName: "GetChunkStats",

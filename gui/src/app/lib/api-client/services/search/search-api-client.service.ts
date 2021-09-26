@@ -190,6 +190,43 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  listTranscriptChanges(
+    args: {
+      filter?: string,
+      sortField?: string,
+      sortDirection?: string,
+      page?: number,
+      pageSize?: number,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskTranscriptChangeList> {
+    const path = `/api/contrib/transcript/change`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    if ('filter' in args) {
+      options.params = options.params.set('filter', String(args.filter));
+    }
+    if ('sortField' in args) {
+      options.params = options.params.set('sortField', String(args.sortField));
+    }
+    if ('sortDirection' in args) {
+      options.params = options.params.set('sortDirection', String(args.sortDirection));
+    }
+    if ('page' in args) {
+      options.params = options.params.set('page', String(args.page));
+    }
+    if ('pageSize' in args) {
+      options.params = options.params.set('pageSize', String(args.pageSize));
+    }
+    return this.sendRequest<models.RskTranscriptChangeList>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   getTranscriptChange(
     args: {
       id: string,
@@ -259,44 +296,6 @@ export class SearchAPIClient implements SearchAPIClientInterface {
     };
 
     return this.sendRequest<object>('PATCH', path, options, JSON.stringify(args.body));
-  }
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  listTranscriptChanges(
-    args: {
-      epid: string,
-      filter?: string,
-      sortField?: string,
-      sortDirection?: string,
-      page?: number,
-      pageSize?: number,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskTranscriptChangeList> {
-    const path = `/api/contrib/transcript/${args.epid}/change`;
-    const options: APIHttpOptions = {
-      ...this.options,
-      ...requestHttpOptions,
-    };
-
-    if ('filter' in args) {
-      options.params = options.params.set('filter', String(args.filter));
-    }
-    if ('sortField' in args) {
-      options.params = options.params.set('sortField', String(args.sortField));
-    }
-    if ('sortDirection' in args) {
-      options.params = options.params.set('sortDirection', String(args.sortDirection));
-    }
-    if ('page' in args) {
-      options.params = options.params.set('page', String(args.page));
-    }
-    if ('pageSize' in args) {
-      options.params = options.params.set('pageSize', String(args.pageSize));
-    }
-    return this.sendRequest<models.RskTranscriptChangeList>('GET', path, options);
   }
 
   /**
@@ -561,28 +560,6 @@ export class SearchAPIClient implements SearchAPIClientInterface {
       options.params = options.params.set('pageSize', String(args.pageSize));
     }
     return this.sendRequest<models.RskChunkList>('GET', path, options);
-  }
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  getTscriptTimeline(
-    args: {
-      tscriptId: string,
-      page?: number,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskTscriptTimeline> {
-    const path = `/api/tscript/${args.tscriptId}/timeline`;
-    const options: APIHttpOptions = {
-      ...this.options,
-      ...requestHttpOptions,
-    };
-
-    if ('page' in args) {
-      options.params = options.params.set('page', String(args.page));
-    }
-    return this.sendRequest<models.RskTscriptTimeline>('GET', path, options);
   }
 
   /**

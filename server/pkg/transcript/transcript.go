@@ -97,9 +97,6 @@ func Import(scanner *bufio.Scanner, startPos int64) ([]models.Dialog, []models.S
 	if err := scanner.Err(); err != nil {
 		return nil, nil, err
 	}
-	if numOffsets == 0 {
-		return nil, nil, fmt.Errorf("document appears to be missing offsets")
-	}
 	if currentSynopsis != nil {
 		currentSynopsis.EndPos = position
 		synopsies = append(synopsies, *currentSynopsis)

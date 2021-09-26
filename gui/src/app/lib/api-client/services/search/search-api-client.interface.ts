@@ -83,6 +83,20 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  listTranscriptChanges(
+    args: {
+      filter?: string,
+      sortField?: string,
+      sortDirection?: string,
+      page?: number,
+      pageSize?: number,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskTranscriptChangeList>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   getTranscriptChange(
     args: {
       id: string,
@@ -121,21 +135,6 @@ export interface SearchAPIClientInterface {
     },
     requestHttpOptions?: HttpOptions
   ): Observable<object>;
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  listTranscriptChanges(
-    args: {
-      epid: string,
-      filter?: string,
-      sortField?: string,
-      sortDirection?: string,
-      page?: number,
-      pageSize?: number,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskTranscriptChangeList>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
@@ -264,17 +263,6 @@ export interface SearchAPIClientInterface {
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskChunkList>;
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  getTscriptTimeline(
-    args: {
-      tscriptId: string,
-      page?: number,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskTscriptTimeline>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.

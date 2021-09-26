@@ -22,6 +22,7 @@ func RootCmd() *cobra.Command {
 	index.AddCommand(LoadTscriptCmd())
 	index.AddCommand(CreateRwTestdataCmd())
 	index.AddCommand(ExtractTscriptCmd())
+	index.AddCommand(MergeTranscriptChangesCmd())
 
 	return index
 }

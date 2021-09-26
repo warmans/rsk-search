@@ -204,23 +204,3 @@ type ContributionActivity struct {
 	ApprovedAt  *time.Time
 	RejectedAt  *time.Time
 }
-
-type TimelineEvent struct {
-	Who  string     `db:"who"`
-	What string     `db:"what"`
-	When *time.Time `db:"when"`
-}
-
-func (t *TimelineEvent) Proto() *api.TscriptTimelineEvent {
-	if t == nil {
-		return nil
-	}
-	res := &api.TscriptTimelineEvent{
-		Who:  t.Who,
-		What: t.What,
-	}
-	if t.When != nil {
-		res.When = t.When.Format(time.RFC3339)
-	}
-	return res
-}

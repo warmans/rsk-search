@@ -5,7 +5,12 @@ import { SearchAPIClient } from '../../../../lib/api-client/services/search';
 import { Title } from '@angular/platform-browser';
 import { SessionService } from '../../../core/service/session/session.service';
 import { AlertService } from '../../../core/service/alert/alert.service';
-import { RskContributionState, RskTranscript, RskTranscriptChange } from '../../../../lib/api-client/models';
+import {
+  RskChunkContribution,
+  RskContributionState,
+  RskTranscript,
+  RskTranscriptChange
+} from '../../../../lib/api-client/models';
 import { TranscriberComponent } from '../../../shared/component/transcriber/transcriber.component';
 import { Observable } from 'rxjs';
 
@@ -28,6 +33,8 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
   userCanEdit: boolean = true;
   userIsOwner: boolean = true;
   userIsApprover: boolean = false;
+  cStates = RskContributionState;
+  lastUpdateTimestamp: Date;
 
   loading: boolean[] = [];
 
@@ -76,7 +83,6 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
         this.authenticated = true;
       }
     });
-
   }
 
   ngOnDestroy(): void {
@@ -110,7 +116,8 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
 
   update() {
     this._update(this.change.state).subscribe((res: RskTranscriptChange) => {
-      //this.lastUpdateTimestamp = new Date();
+      this.change = res;
+      this.lastUpdateTimestamp = new Date();
     });
   }
 
@@ -123,6 +130,56 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
         state: state
       }
     }).pipe(takeUntil(this.$destroy));
+  }
+
+  private _updateState(state: RskContributionState) {
+    this.loading.push(true);
+    this.apiClient.requestTranscriptChangeState({
+      id: this.change.id,
+      body: {
+        id: this.change.id,
+        state: state,
+      }
+    }).pipe(takeUntil(this.$destroy)).subscribe((res: RskTranscriptChange) => {
+
+      this.change.state = state;
+
+      switch (this.change.state) {
+        case RskContributionState.STATE_PENDING:
+          this.alertService.success('Retracted', 'Change is now back in the pending state. It will not be reviewed until is is re-submitted.');
+          return;
+        case RskContributionState.STATE_APPROVED:
+          this.alertService.success('Approved', 'Change was approved.');
+          return;
+        case RskContributionState.STATE_REQUEST_APPROVAL:
+          this.alertService.success('Submitted', 'Change is now awaiting manual approval by an approver. This usually takes around 24 hours.');
+          return;
+        case RskContributionState.STATE_REJECTED:
+          this.alertService.success('Rejected', 'Change was rejected.');
+          return;
+      }
+    }).add(() => this.loading.shift());
+  }
+
+  markComplete() {
+    this.loading.push(true);
+    this._update(RskContributionState.STATE_REQUEST_APPROVAL).subscribe((res: RskTranscriptChange) => {
+      this.change = res;
+      this.lastUpdateTimestamp = new Date();
+      this.alertService.success('Submitted', 'Change is now awaiting manual approval by an approver. This usually takes around 24 hours.');
+    }).add(() => this.loading.shift());
+  }
+
+  markIncomplete() {
+    this._updateState(RskContributionState.STATE_PENDING);
+  }
+
+  markApproved() {
+    this._updateState(RskContributionState.STATE_APPROVED);
+  }
+
+  markRejected() {
+    this._updateState(RskContributionState.STATE_REJECTED);
   }
 
 }
