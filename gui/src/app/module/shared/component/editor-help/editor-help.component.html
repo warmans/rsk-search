@@ -12,6 +12,7 @@
   <li>Add additional non-speech information e.g. <span class="code">ricky laughs</span> (use actor <span
     class="code">none:</span> for these lines)
   </li>
+  <li>Add <span class="code">#OFFSET</span> markers if they are missing.</li>
 </ol>
 
 <p>IMPORTANT: Try and keep the <span class="code">#OFFSET</span> tags as close to the
@@ -50,8 +51,16 @@ ricky: yeah
 #/SYN
 karl: I used to have a rifle as a kid...
 ...
-          </pre>
+</pre>
+
 <p>These will not be shown in the text currently, but they are useful to have.</p>
+
+<h4 class="mb-2 mt-4">Inserting Offsets</h4>
+
+<p>When viewing an episode the audio timestamps are either "accurate" or "inferred". Inferred offsets are indicated with a darker color and are often inaccurate.</p>
+<p>The way they are generated means that small inaccuracies will stack until an accurate offset resets the calculation. As a result the more #OFFSETS that are added
+the more accurate the inferred offsets will become, but it is also not strictly necessary to add an offset for every line.</p>
+
 
 <h4 class="mb-2 mt-4">What will happen next?</h4>
 <p>Once a chunk has been submitted it will be reviewed and if it is valid and mostly correct it will be merged

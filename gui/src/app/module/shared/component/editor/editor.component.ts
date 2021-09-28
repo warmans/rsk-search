@@ -77,18 +77,22 @@ export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
 
     const lines = value.split('\n');
 
-    lines.forEach((line) => {
+    lines.forEach((line: string) => {
       if (line.match(/^#OFFSET:.*/g)) {
-        const el = this.renderer.createElement('span');
-        el.innerText = `${line}\n`;
-        el.className = 'do-not-edit';
-        this.renderer.appendChild(this.editableContent.nativeElement, el);
+        this.renderer.appendChild(this.editableContent.nativeElement, this.newOffsetElement(line));
       } else {
         const el = this.renderer.createElement('span');
         el.innerText = `${line}\n`;
         this.renderer.appendChild(this.editableContent.nativeElement, el);
       }
     });
+  }
+
+  private newOffsetElement(line: string): any{
+    const el = this.renderer.createElement('span');
+    el.innerText = `${line}\n`;
+    el.className = 'do-not-edit';
+    return el
   }
 
   private tryEmitOffset() {
@@ -98,6 +102,11 @@ export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
+  insertOffsetAboveCaret(seconds: number): void {
+    let sel = document.getSelection();
+    let nd = sel.anchorNode;
+    this.renderer.insertBefore(nd.parentNode, this.newOffsetElement(`#OFFSET: ${seconds}`), nd);
+  }
 
   getCaretFocus(): CaretFocus {
     let sel = document.getSelection();

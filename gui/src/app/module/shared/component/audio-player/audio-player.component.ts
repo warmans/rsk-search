@@ -25,9 +25,11 @@ export class AudioPlayerComponent implements AfterViewInit {
     this._playbackRate = value;
     this.updatePlayer();
   }
+
   get playbackRate(): number {
     return this._playbackRate;
   }
+
   private _playbackRate: number = 1.0;
 
   @ViewChild('audioElement', { static: false })
@@ -65,19 +67,18 @@ export class AudioPlayerComponent implements AfterViewInit {
   }
 
   public play(withOffset?: number): void {
-    console.log(this.audio, this.audio.readyState);
     if (this.audio && this.audio.readyState >= 1) {
-        if (withOffset !== undefined) {
-            this.audio.currentTime = this.audio.currentTime + withOffset > 0 ? this.audio.currentTime + withOffset : 0;
-        }
-        this.audio.play();
+      if (withOffset !== undefined) {
+        this.audio.currentTime = this.audio.currentTime + withOffset > 0 ? this.audio.currentTime + withOffset : 0;
+      }
+      this.audio.play();
     }
   }
 
   public toggle(withOffset?: number) {
     if (this.playing()) {
       this.pause();
-      return
+      return;
     }
     this.play(withOffset);
   }
@@ -92,7 +93,11 @@ export class AudioPlayerComponent implements AfterViewInit {
   }
 
   public playing(): boolean {
-    return !!(this.audio.currentTime > 0 && !this.audio.paused && !this.audio.ended && this.audio.readyState > 2)
+    return !!(this.audio.currentTime > 0 && !this.audio.paused && !this.audio.ended && this.audio.readyState > 2);
+  }
+
+  public currentTime(): number {
+    return this?.audio?.currentTime || 0;
   }
 
 }

@@ -5,6 +5,7 @@ import { getFirstOffset, parseTranscript, Tscript } from '../../lib/tscript';
 import { AudioPlayerComponent } from '../audio-player/audio-player.component';
 import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { formatDistance } from 'date-fns';
+import { EditorComponent } from '../editor/editor.component';
 
 @Component({
   selector: 'app-transcriber',
@@ -82,6 +83,9 @@ export class TranscriberComponent implements OnInit, OnDestroy {
 
   @ViewChild('editorConfigModal')
   editorConfigModal: EditorConfigComponent;
+
+  @ViewChild('editor')
+  editorComponent: EditorComponent;
 
   $destroy: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -196,6 +200,10 @@ export class TranscriberComponent implements OnInit, OnDestroy {
 
   updatePreview(content: string) {
     this.parsedTscript = parseTranscript(content);
+  }
+
+  insertOffsetAboveCaret() {
+      this.editorComponent.insertOffsetAboveCaret(Math.round(this.audioPlayer.currentTime()));
   }
 
 }

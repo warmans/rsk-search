@@ -26,7 +26,10 @@
 </ul>
 
 <div class="card" [hidden]="!(activeTab==='edit')">
-  <div class="card-header">
+  <div class="card-header sticky-top">
+
+      <button class="btn btn-success btn-sm mr-3" *ngIf="allowEdit" (click)="insertOffsetAboveCaret()" title="Add an #OFFSET tag above the cursor to the current audio timestamp">Insert current #OFFSET</button>
+
       <span class="float-right">
         <button class="btn btn-sm" (click)="showHelp = !showHelp"
                 [ngClass]="{'btn-outline-primary': !showHelp, 'btn-primary': showHelp}" title="Toggle help text">
@@ -56,9 +59,14 @@
   <div [hidden]="showHelp">
     <div class="card-body">
       <!-- watch out for ngIfs here - if the editor is removed from the dom it will cause the text to be reset to the initial transcript -->
-      <app-editor [readonly]="!allowEdit" [wrap]="editorConfig.wrapText" [textContent]="initialTranscript"
-                  (textContentChange)="setUpdatedTranscript($event)"
-                  (atOffsetMarker)="handleOffsetNavigate($event)"></app-editor>
+      <app-editor
+        #editor
+        [readonly]="!allowEdit"
+        [wrap]="editorConfig.wrapText"
+        [textContent]="initialTranscript"
+        (textContentChange)="setUpdatedTranscript($event)"
+        (atOffsetMarker)="handleOffsetNavigate($event)">
+      </app-editor>
     </div>
     <div class="card-footer pt-3 pb-3 text-right" *ngIf="allowEdit">
           <span *ngIf="lastUpdateDate" class="text-muted">
