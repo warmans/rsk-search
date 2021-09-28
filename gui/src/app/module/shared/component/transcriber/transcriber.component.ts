@@ -42,9 +42,11 @@ export class TranscriberComponent implements OnInit, OnDestroy {
       this.activeTab = 'preview';
     }
   }
+
   get allowEdit(): boolean {
     return this._allowEdit;
   }
+
   private _allowEdit: boolean = false;
 
   @Input()
@@ -65,15 +67,17 @@ export class TranscriberComponent implements OnInit, OnDestroy {
 
   showHelp: boolean = false;
 
-  set activeTab(value: "edit" | "preview") {
+  set activeTab(value: 'edit' | 'preview') {
     this._activeTab = value;
-    if (value === "preview") {
+    if (value === 'preview') {
       this.updatePreview(this.updatedTranscript || this.initialTranscript);
     }
   }
-  get activeTab(): "edit" | "preview" {
+
+  get activeTab(): 'edit' | 'preview' {
     return this._activeTab;
   }
+
   private _activeTab: 'edit' | 'preview' = 'edit';
 
   parsedTscript: Tscript;
@@ -118,7 +122,7 @@ export class TranscriberComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.contentUpdated.pipe(takeUntil(this.$destroy), distinctUntilChanged(), debounceTime(1000)).subscribe((v) => {
-      const isFirstUpdate: boolean = this.updatedTranscript === "";
+      const isFirstUpdate: boolean = this.updatedTranscript === '';
       this.updatedTranscript = v;
       if (!isFirstUpdate) {
         this.backupContent(v);
@@ -128,7 +132,7 @@ export class TranscriberComponent implements OnInit, OnDestroy {
   }
 
   setInitialTranscript(text: string) {
-    const backup = this.getBackup()
+    const backup = this.getBackup();
     this.initialTranscript = backup ? backup : text;
     if (backup) {
       this.fromBackup = true;
@@ -203,7 +207,8 @@ export class TranscriberComponent implements OnInit, OnDestroy {
   }
 
   insertOffsetAboveCaret() {
-      this.editorComponent.insertOffsetAboveCaret(Math.round(this.audioPlayer.currentTime()));
+    let startOffset = this.firstOffset > -1 ? this.firstOffset : 0;
+    this.editorComponent.insertOffsetAboveCaret(Math.round(startOffset + this.audioPlayer.currentTime()));
   }
 
 }
