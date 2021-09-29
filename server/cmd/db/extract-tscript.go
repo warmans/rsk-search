@@ -74,7 +74,7 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 
 			logger.Info(fmt.Sprintf("Processing tscript %s-%s...", v.Publication, models.FormatStandardEpisodeName(v.Series, v.Episode)))
 
-			episodeOnDisk, err := data.LoadEpisode(outputDataPath, v.Publication, models.FormatStandardEpisodeName(v.Series, v.Episode))
+			episodeOnDisk, err := data.LoadEpisodeByName(outputDataPath, v.Publication, models.FormatStandardEpisodeName(v.Series, v.Episode))
 			if err != nil {
 				return err
 			}

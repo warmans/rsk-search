@@ -86,9 +86,12 @@ func mergeAll(outputDataPath string, migrationsPath string, conn *rw.Conn, dryRu
 
 			logger.Info(fmt.Sprintf("Processing change %s (%s)...", v.ID, v.EpID))
 
-			episodeOnDisk, err := data.LoadEpisode(outputDataPath, "xfm", v.EpID)
+			episodeOnDisk, err := data.LoadEpisdeByEpisodeID(outputDataPath, v.EpID)
 			if err != nil {
 				return err
+			}
+			if episodeOnDisk == nil {
+				panic("nil episode encountered: "+v.EpID)
 			}
 
 			// clear old data
@@ -146,11 +149,11 @@ func mergeAll(outputDataPath string, migrationsPath string, conn *rw.Conn, dryRu
 // The change is only technically merged once it goes live so the merged flag must be set using a migration.
 func generateMigration(migrationsPath string, approvedChangeIDs []string) error {
 	for k, v := range approvedChangeIDs {
-		approvedChangeIDs[k] = fmt.Sprintf(`"%s"`, v)
+		approvedChangeIDs[k] = fmt.Sprintf(`'%s'`, v)
 	}
 	return os.WriteFile(
 		path.Join(migrationsPath, fmt.Sprintf("%d_merge_changes.sql", time.Now().Unix())),
-		[]byte(fmt.Sprintf("UPDATE transcript_change SET merged=true WHERE id IN (%s)", strings.Join(approvedChangeIDs, ", "))),
+		[]byte(fmt.Sprintf("UPDATE transcript_change SET merged=true WHERE id IN (%s);", strings.Join(approvedChangeIDs, ", "))),
 		0666,
 	)
 }

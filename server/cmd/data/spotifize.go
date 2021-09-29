@@ -64,7 +64,7 @@ func addTinPotRadioLinks(tinPotRadioData string, logger *zap.Logger) error {
 
 		lg := logger.With(zap.String("name", d.Name), zap.String("publication", meta.PublicationXFM), zap.String("date", d.ReleaseDate))
 
-		ep, err := data.LoadEpisode(cfg.dataDir, meta.PublicationXFM, d.Name)
+		ep, err := data.LoadEpisodeByName(cfg.dataDir, meta.PublicationXFM, d.Name)
 		if err != nil {
 			return err
 		}
@@ -96,7 +96,7 @@ func addSongMeta(logger *zap.Logger, token string) error {
 
 		lg := logger.With(zap.String("name", name))
 
-		ep, err := data.LoadEpisode(cfg.dataDir, meta.PublicationXFM, name)
+		ep, err := data.LoadEpisodeByName(cfg.dataDir, meta.PublicationXFM, name)
 		if err != nil {
 			return err
 		}

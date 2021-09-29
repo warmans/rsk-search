@@ -46,7 +46,7 @@ func ImportTranscriptsCmd() *cobra.Command {
 					continue
 				}
 
-				ep, err := data.LoadEpisode(cfg.dataDir, meta.PublicationXFM, name)
+				ep, err := data.LoadEpisodeByName(cfg.dataDir, meta.PublicationXFM, name)
 				if err != nil {
 					return err
 				}

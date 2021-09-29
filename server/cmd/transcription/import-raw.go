@@ -35,7 +35,7 @@ func ImportRawCmd() *cobra.Command {
 				return err
 			}
 
-			ep, err := data.LoadEpisode(episodeDir, publication, episode)
+			ep, err := data.LoadEpisodeByName(episodeDir, publication, episode)
 			if err != nil {
 				return err
 			}

@@ -24,13 +24,12 @@ func SaveEpisodeToFile(dataDir string, ep *models.Transcript) error {
 	})
 }
 
-func LoadEpisodeFile(dataDir string, publication string, name string) (*os.File, error) {
-	return os.Open(path.Join(dataDir, fmt.Sprintf("ep-%s-%s.json", publication, name)))
+func LoadEpisodeFile(dataDir string, fullName string) (*os.File, error) {
+	return os.Open(path.Join(dataDir, fmt.Sprintf("%s.json", fullName)))
 }
 
-func LoadEpisode(dataDir string, publication string, name string) (*models.Transcript, error) {
-
-	f, err := LoadEpisodeFile(dataDir, publication, name)
+func LoadEpisdeByEpisodeID(dataDir string, epID string) (*models.Transcript, error)  {
+	f, err := LoadEpisodeFile(dataDir, epID)
 	if err != nil {
 		if os.IsNotExist(err) {
 			return nil, nil
@@ -43,6 +42,10 @@ func LoadEpisode(dataDir string, publication string, name string) (*models.Trans
 
 	dec := json.NewDecoder(f)
 	return e, dec.Decode(e)
+}
+
+func LoadEpisodeByName(dataDir string, publication string, name string) (*models.Transcript, error) {
+	return LoadEpisdeByEpisodeID(dataDir, fmt.Sprintf("ep-%s-%s", publication, name))
 }
 
 func LoadEpisodePath(path string) (*models.Transcript, error) {

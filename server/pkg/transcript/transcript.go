@@ -64,13 +64,15 @@ func Import(scanner *bufio.Scanner, startPos int64) ([]models.Dialog, []models.S
 		}
 
 		di := models.Dialog{
-			ID:       shortuuid.New(),
-			Type:     models.DialogTypeUnkown,
-			Position: position,
-			Notable:  notable,
+			ID:             shortuuid.New(),
+			Type:           models.DialogTypeUnkown,
+			Position:       position,
+			Notable:        notable,
+			OffsetInferred: true,
 		}
 		if lastOffset > 0 {
 			di.OffsetSec = lastOffset
+			di.OffsetInferred = false
 			lastOffset = 0
 		}
 
