@@ -9,6 +9,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/meta"
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/spotify"
+	"github.com/warmans/rsk-search/pkg/util"
 	"go.uber.org/zap"
 	"os"
 	"strings"
@@ -17,6 +18,7 @@ import (
 func ImportSpotifyData() *cobra.Command {
 
 	var tinPotRadioData string
+	var spotifyDataPath string
 	var spotifyToken string
 
 	cmd := &cobra.Command{
@@ -36,11 +38,12 @@ func ImportSpotifyData() *cobra.Command {
 				return err
 			}
 
-			return addSongMeta(logger.With(zap.String("stage", "songs")), spotifyToken)
+			return addSongMeta(logger.With(zap.String("stage", "songs")), spotifyToken, spotifyDataPath)
 		},
 	}
 
 	cmd.Flags().StringVarP(&tinPotRadioData, "tinpotradio-episodes", "i", "./script/tinpotradio/raw/xfm-spotify-meta.json", "Path to tinpot radio data (episode links)")
+	cmd.Flags().StringVarP(&spotifyDataPath, "spotify-data", "s", "./pkg/meta/data/songs.json", "Path to tinpot radio data (episode links)")
 
 	return cmd
 }
@@ -88,9 +91,23 @@ func addTinPotRadioLinks(tinPotRadioData string, logger *zap.Logger) error {
 	return nil
 }
 
-func addSongMeta(logger *zap.Logger, token string) error {
+func addSongMeta(logger *zap.Logger, token string, metadataPath string) error {
 
 	search := spotify.NewSearch(token)
+
+	f, err := os.OpenFile(metadataPath, os.O_RDWR|os.O_CREATE, 0666)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	songCache := &meta.Songs{}
+	if err := json.NewDecoder(f).Decode(songCache); err != nil {
+		return err
+	}
+	if _, err := f.Seek(0, 0); err != nil {
+		return err
+	}
 
 	for _, name := range meta.XfmEpisodeNames() {
 
@@ -107,13 +124,52 @@ func addSongMeta(logger *zap.Logger, token string) error {
 
 		for k, v := range ep.Transcript {
 			if v.Type == models.DialogTypeSong {
-				searchTerm := strings.TrimSpace(v.Content)
-				lg.Info("Locating track", zap.String("term", searchTerm))
-
-				track, err := search.FindTrack(searchTerm)
-				if err != nil || track == nil {
-					lg.Warn("failed to find track", zap.Error(err), zap.String("term", searchTerm))
+				searchTerm := util.StripNonAlphanumeric(strings.TrimSpace(v.Content))
+				if len(searchTerm) < 3 || strings.ToLower(searchTerm) == "unknown" {
 					continue
+				}
+
+				var track *spotify.Track
+
+				cachedId, ok := songCache.FindKeyByTerm(searchTerm)
+				if !ok {
+					lg.Info("Querying spotify...", zap.String("term", searchTerm))
+					track, err = search.FindTrack(searchTerm)
+					if err != nil || track == nil {
+						lg.Warn("failed to find track", zap.Error(err), zap.String("term", searchTerm))
+						continue
+					}
+					if songCache.Songs == nil {
+						songCache.Songs = make(map[string]*meta.Song)
+					}
+					songCache.Songs[track.TrackURI] = &meta.Song{
+						Terms:      []string{searchTerm},
+						EpisodeIDs: []string{name},
+						Track:      track,
+					}
+				} else {
+					lg.Info("Cached...", zap.String("term", searchTerm))
+
+					track = songCache.Songs[cachedId].Track
+					var found bool
+					for _, epID := range songCache.Songs[cachedId].EpisodeIDs {
+						if epID == name {
+							found = true
+						}
+					}
+					if !found {
+						songCache.Songs[cachedId].EpisodeIDs = append(songCache.Songs[cachedId].EpisodeIDs, name)
+					}
+
+					found = false
+					for _, term := range songCache.Songs[cachedId].Terms {
+						if term == searchTerm {
+							found = true
+						}
+					}
+					if !found {
+						songCache.Songs[cachedId].Terms = append(songCache.Songs[cachedId].Terms, searchTerm)
+					}
 				}
 
 				if v.Meta == nil {
@@ -136,5 +192,7 @@ func addSongMeta(logger *zap.Logger, token string) error {
 		}
 	}
 
-	return nil
+	enc := json.NewEncoder(f)
+	enc.SetIndent("", "  ")
+	return enc.Encode(songCache)
 }

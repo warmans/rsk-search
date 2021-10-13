@@ -6408,7 +6408,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Greatest Hip Hop of the 90s: A Tribute",
+          "song_artist": "Studio Group",
+          "song_track": "(A) Roller Skating Jam Named 'Saturdays' - Sound-A-Like As Made Famous By: De La Soul",
+          "spotify_uri": "spotify:track:7DQWxnWORmoylrMCNrCAuD"
+        },
         "content": "De La Soul – A Jam Named Saturday",
         "notable": false,
         "content_tags": {
@@ -11173,7 +11178,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Car Button Cloth",
+          "song_artist": "The Lemonheads",
+          "song_track": "If I Could Talk I'd Tell You",
+          "spotify_uri": "spotify:track:7F8eSGduNKaqn16evCtdB0"
+        },
         "content": "The Lemonheads – If I Could Talk, I’d Tell You",
         "notable": false,
         "content_tags": null

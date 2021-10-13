@@ -2730,7 +2730,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Peter Gabriel 1: Car (Remastered)",
+          "song_artist": "Peter Gabriel",
+          "song_track": "Solsbury Hill",
+          "spotify_uri": "spotify:track:6vZZtivPrtpggT5SSXsYTy"
+        },
         "content": "Peter Gabriel - Solsbury Hill",
         "notable": false,
         "content_tags": null
@@ -2850,7 +2855,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Sleeping With Ghosts",
+          "song_artist": "Placebo",
+          "song_track": "The Bitter End",
+          "spotify_uri": "spotify:track:3WBPiogtVDBSXK7uOpxJ6m"
+        },
         "content": "Placebo - The Bitter End",
         "notable": false,
         "content_tags": null
@@ -5370,7 +5380,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Comfort in Sound",
+          "song_artist": "Feeder",
+          "song_track": "Forget About Tomorrow",
+          "spotify_uri": "spotify:track:0Su9Yckp5Z681af31yXtRc"
+        },
         "content": "Feeder - Forget About Tomorrow",
         "notable": false,
         "content_tags": null

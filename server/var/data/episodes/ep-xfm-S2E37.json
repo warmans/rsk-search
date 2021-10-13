@@ -3363,7 +3363,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "A Quiet Normal Life: The Best of Warren Zevon",
+          "song_artist": "Warren Zevon",
+          "song_track": "Ain't That Pretty at All",
+          "spotify_uri": "spotify:track:1zcL2JA8taSu8Qtlo0WJno"
+        },
         "content": "Warren Zevon – Ain’t That Pretty at All",
         "notable": false,
         "content_tags": null
@@ -4152,7 +4157,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Baby I'm Bored (Deluxe)",
+          "song_artist": "Evan Dando",
+          "song_track": "Stop My Head",
+          "spotify_uri": "spotify:track:1Bq9v4dIbpzJ797YQXPIIE"
+        },
         "content": "Evan Dando – Stop My Head",
         "notable": false,
         "content_tags": null

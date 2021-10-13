@@ -2154,7 +2154,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "The Music Is You: A Tribute to John Denver",
+          "song_artist": "Evan Dando",
+          "song_track": "Looking for Space",
+          "spotify_uri": "spotify:track:1UAQ6qdxW1Fx8KJlCqmKtd"
+        },
         "content": "Evan Dando - Looking for Space",
         "notable": false,
         "content_tags": null
@@ -2166,7 +2171,12 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "The Music Is You: A Tribute to John Denver",
+          "song_artist": "Evan Dando",
+          "song_track": "Looking for Space",
+          "spotify_uri": "spotify:track:1UAQ6qdxW1Fx8KJlCqmKtd"
+        },
         "content": "Evan Dando - Looking for Space",
         "notable": false,
         "content_tags": null
@@ -2178,7 +2188,12 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Hail To the Thief",
+          "song_artist": "Radiohead",
+          "song_track": "Go To Sleep",
+          "spotify_uri": "spotify:track:42BeMThJuzIQe1oQvhDwgl"
+        },
         "content": "Radiohead - Go to Sleep",
         "notable": false,
         "content_tags": null
@@ -3582,7 +3597,11 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Greatest Hits",
+          "song_track": "Picture Me Rollin'",
+          "spotify_uri": "spotify:track:71jzSTkT0F0w1v4moZIDyc"
+        },
         "content": "Tupac - Picture Me Rollin'",
         "notable": false,
         "content_tags": null
@@ -5238,7 +5257,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Just Push Play",
+          "song_artist": "Aerosmith",
+          "song_track": "Jaded",
+          "spotify_uri": "spotify:track:4iihDHIoKZdOeOW1kFDUtR"
+        },
         "content": "Aerosmith - Jaded",
         "notable": false,
         "content_tags": null
@@ -6846,7 +6870,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Bang!",
+          "song_artist": "World Party",
+          "song_track": "Is It Like Today?",
+          "spotify_uri": "spotify:track:2KtRbxfn4BjegQCqLeCocu"
+        },
         "content": "World Party - Is It Like Today?",
         "notable": false,
         "content_tags": null
@@ -6858,7 +6887,11 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Dangerously In Love",
+          "song_track": "Crazy In Love (feat. Jay-Z)",
+          "spotify_uri": "spotify:track:0TwBtDAWpkpM3srywFVOV5"
+        },
         "content": "Beyoncé - Crazy In Love (feat. Jay-Z)",
         "notable": false,
         "content_tags": null

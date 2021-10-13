@@ -9539,7 +9539,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Jewish Pirate",
+          "song_artist": "Steve Lieberman, The Gangsta Rabbi",
+          "song_track": "Growing Up(bruce Springsteen)",
+          "spotify_uri": "spotify:track:64SLpXUOQsuX2OzGTUbKWZ"
+        },
         "content": "Bruce Springsteen – Growing Up",
         "notable": false,
         "content_tags": {

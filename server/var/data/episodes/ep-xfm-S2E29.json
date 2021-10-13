@@ -2659,7 +2659,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Marc Riley Sessions Volume 2",
+          "song_artist": "The Wedding Present",
+          "song_track": "Pleasant Valley Sunday",
+          "spotify_uri": "spotify:track:3UFVauzwt3D3OvONu25r79"
+        },
         "content": "The Wedding Present - Pleasant Valley Sunday",
         "notable": false,
         "content_tags": null
@@ -6848,10 +6853,10 @@
         "type": "song",
         "actor": "",
         "metadata": {
-          "song_album": "Honestly (In the Style of Zwan) [Karaoke Version]",
-          "song_artist": "Ameritz - Karaoke",
-          "song_track": "Honestly (In the Style of Zwan) [Karaoke Version]",
-          "spotify_uri": "spotify:track:52olRO8G2ZBXtq7D0x4q5m"
+          "song_album": "Rock, Vol. 1 (Karaoke Version)",
+          "song_artist": "La-Le-Lu",
+          "song_track": "Honestly (Karaoke Version) - Originally Performed By Zwan",
+          "spotify_uri": "spotify:track:7ohT8fznOhFvnlokiS7rU8"
         },
         "content": "Zwan - Honestly",
         "notable": false,
@@ -7486,7 +7491,11 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Essential: Urban",
+          "song_track": "Beautiful (feat. Pharrell, Uncle Charlie Wilson)",
+          "spotify_uri": "spotify:track:2zMns6IldNNFzRcdprvkLf"
+        },
         "content": "Snoop Dogg feat. Pharell - Beautiful",
         "notable": false,
         "content_tags": {
@@ -11819,10 +11828,10 @@
         "type": "song",
         "actor": "",
         "metadata": {
-          "song_album": "Boggle Karaoke Collection - Volume 23",
-          "song_artist": "Boggle Karaoke",
-          "song_track": "Can't Get Enough of Your Love (In the Style Of 'Bad Company')",
-          "spotify_uri": "spotify:track:1GxkU2BzUmgyR9S3L1Ub3C"
+          "song_album": "Most Wanted 924",
+          "song_artist": "Sunfly Karaoke",
+          "song_track": "Can't Get Enough (Of Your Love) in the Style of Bad Company",
+          "spotify_uri": "spotify:track:5txuyRsJUlaZ9sLGOv6uxC"
         },
         "content": "Bad Company - Can't Get Enough of Your Love",
         "notable": false,
@@ -13275,10 +13284,10 @@
         "type": "song",
         "actor": "",
         "metadata": {
-          "song_album": "Exit ... Stage Left",
+          "song_album": "Permanent Waves",
           "song_artist": "Rush",
-          "song_track": "The Spirit Of Radio - Live In Canada / 1980",
-          "spotify_uri": "spotify:track:4X4siOXRGAmIos8tJG7uy8"
+          "song_track": "The Spirit Of Radio",
+          "spotify_uri": "spotify:track:4e9hUiLsN4mx61ARosFi7p"
         },
         "content": "Rush - Spirit of the Radio",
         "notable": false,

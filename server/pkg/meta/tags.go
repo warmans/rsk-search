@@ -50,8 +50,6 @@ func GetTagKinds(tag string) []string {
 	return t.Kind
 }
 
-
-
 type Tags map[string]*Tag
 
 type Tag struct {

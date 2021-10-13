@@ -7494,7 +7494,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Free All Angels",
+          "song_artist": "Ash",
+          "song_track": "Theres A Star",
+          "spotify_uri": "spotify:track:6IZvpP8V2FqP7kcowjpEc6"
+        },
         "content": "Ash – There’s a Star",
         "notable": false,
         "content_tags": null
@@ -10261,7 +10266,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Ideas Above Our Station",
+          "song_artist": "Hundred Reasons",
+          "song_track": "I'll Find You",
+          "spotify_uri": "spotify:track:2FUAgbkTJbJPkH8ZFf0XxB"
+        },
         "content": "Hundred Reasons – I’ll Find You",
         "notable": false,
         "content_tags": {

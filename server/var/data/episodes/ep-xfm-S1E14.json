@@ -10608,7 +10608,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Tricks for Dawn",
+          "song_artist": "Mary Lorson",
+          "song_track": "Oh Regret",
+          "spotify_uri": "spotify:track:15d4vEc2GzOPkd4rqwbOdR"
+        },
         "content": "Mary Lorson - Oh Regret",
         "notable": false,
         "content_tags": {

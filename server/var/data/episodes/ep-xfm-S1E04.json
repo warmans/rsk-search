@@ -5460,7 +5460,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Cleaning out the Ashtrays",
+          "song_artist": "Lloyd Cole",
+          "song_track": "Chelsea Hotel #2",
+          "spotify_uri": "spotify:track:12Ny5YAz1a66M7uTMes9Sf"
+        },
         "content": "Lloyd Cole - Chelsea Hotel",
         "notable": false,
         "content_tags": {

@@ -1074,7 +1074,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "White Blood Cells",
+          "song_artist": "The White Stripes",
+          "song_track": "Dead Leaves and the Dirty Ground",
+          "spotify_uri": "spotify:track:2ewjgFhHDTE8BkV8kzpiX2"
+        },
         "content": "White Stripes - Dead Leaves And The Dirty Ground",
         "notable": false,
         "content_tags": null
@@ -1086,7 +1091,12 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "The Rise and Fall of Ziggy Stardust and the Spiders from Mars (2012 Remaster)",
+          "song_artist": "David Bowie",
+          "song_track": "Lady Stardust - 2012 Remaster",
+          "spotify_uri": "spotify:track:2ZWKuGuQ087pzwK4vO4E31"
+        },
         "content": "David Bowie - Lady Stardust",
         "notable": false,
         "content_tags": null

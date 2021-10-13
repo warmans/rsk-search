@@ -3661,7 +3661,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Smoulder",
+          "song_artist": "King Adora",
+          "song_track": "Smoulder",
+          "spotify_uri": "spotify:track:65HUGWpea4WEz3kDo7jogA"
+        },
         "content": "King Adora - Smoulder",
         "notable": false,
         "content_tags": null
@@ -6534,7 +6539,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Instrumental Covers of Lost Prophets",
+          "song_artist": "White Knight Instrumental",
+          "song_track": "The Fake Sound of Progress",
+          "spotify_uri": "spotify:track:4VmZohu3iVacrb7cH2xWNo"
+        },
         "content": "Lost Prophets - The Fake Sound of Progress",
         "notable": false,
         "content_tags": null
