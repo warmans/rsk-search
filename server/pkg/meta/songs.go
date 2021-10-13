@@ -12,7 +12,7 @@ var songs embed.FS
 var songMeta = Tags{}
 
 func init() {
-	f, err := tagIndex.Open("data/songs.json")
+	f, err := songs.Open("data/songs.json")
 	if err != nil {
 		panic("failed to open embedded metadata: " + err.Error())
 	}
