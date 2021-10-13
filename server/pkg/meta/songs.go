@@ -6,7 +6,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/spotify"
 )
 
-//go:embed data/tags.json
+//go:embed data/songs.json
 var songs embed.FS
 
 var songMeta = Tags{}
