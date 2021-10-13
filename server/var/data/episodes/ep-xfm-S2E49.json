@@ -2682,7 +2682,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Nebraska",
+          "song_artist": "Bruce Springsteen",
+          "song_track": "Atlantic City",
+          "spotify_uri": "spotify:track:1Vp8U39YNsDfd6yVuaUq12"
+        },
         "content": "Bruce Springsteen - Atlantic City",
         "notable": false,
         "content_tags": null
@@ -5574,7 +5579,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Silence Is Easy",
+          "song_artist": "Starsailor",
+          "song_track": "Silence Is Easy",
+          "spotify_uri": "spotify:track:1oPuQTM7LExPzaFrF0DXzD"
+        },
         "content": "Starsailor - Silence Is Easy",
         "notable": false,
         "content_tags": null
@@ -10458,7 +10468,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Absolution",
+          "song_artist": "Muse",
+          "song_track": "Time is Running Out",
+          "spotify_uri": "spotify:track:2takcwOaAZWiXQijPHIx7B"
+        },
         "content": "Muse - Time Is Running Out",
         "notable": false,
         "content_tags": null
@@ -13350,7 +13365,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "So Much For The City",
+          "song_artist": "The Thrills",
+          "song_track": "Santa Cruz (You're Not That Far)",
+          "spotify_uri": "spotify:track:0goM5Qsfwgcd06moZiJZCa"
+        },
         "content": "The Thrills - Santa Cruz (You're Not That Far)",
         "notable": false,
         "content_tags": null

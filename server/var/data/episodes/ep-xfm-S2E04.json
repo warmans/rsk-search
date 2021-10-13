@@ -396,7 +396,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Forever Delayed",
+          "song_artist": "Manic Street Preachers",
+          "song_track": "There by the Grace of God",
+          "spotify_uri": "spotify:track:5mhQgVIAQqkWI5Yn9k7ObJ"
+        },
         "content": "Manic Street Preachers - There for the Grace of God",
         "notable": false,
         "content_tags": {

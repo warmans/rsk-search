@@ -258,7 +258,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "The Queen Is Dead",
+          "song_artist": "The Smiths",
+          "song_track": "There Is a Light That Never Goes Out - 2011 Remaster",
+          "spotify_uri": "spotify:track:0WQiDwKJclirSYG9v5tayI"
+        },
         "content": "The Smiths - There Is a Light That Never Goes Out",
         "notable": false,
         "content_tags": null
@@ -1842,7 +1847,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Comfort in Sound",
+          "song_artist": "Feeder",
+          "song_track": "Just The Way I'm Feeling",
+          "spotify_uri": "spotify:track:1zg4NCQ3vHLn3MeaDBPm3s"
+        },
         "content": "Feeder - Just The Way I'm Feeling",
         "notable": false,
         "content_tags": null
@@ -6078,7 +6088,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Heathen Chemistry",
+          "song_artist": "Oasis",
+          "song_track": "Songbird",
+          "spotify_uri": "spotify:track:2tBxJ43XiwEzhf7Xalc5UG"
+        },
         "content": "Oasis - Songbird",
         "notable": false,
         "content_tags": null

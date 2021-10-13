@@ -3370,7 +3370,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Don't Bring Me Down",
+          "song_artist": "Goldrush",
+          "song_track": "Let You Down",
+          "spotify_uri": "spotify:track:66C7V8No0fkCt0pz0lTEOV"
+        },
         "content": "Goldrush - Let You Down",
         "notable": false,
         "content_tags": {
@@ -8302,10 +8307,10 @@
         "type": "song",
         "actor": "",
         "metadata": {
-          "song_album": "Honestly (In the Style of Zwan) [Karaoke Version]",
-          "song_artist": "Ameritz - Karaoke",
-          "song_track": "Honestly (In the Style of Zwan) [Karaoke Version]",
-          "spotify_uri": "spotify:track:52olRO8G2ZBXtq7D0x4q5m"
+          "song_album": "Rock, Vol. 1 (Karaoke Version)",
+          "song_artist": "La-Le-Lu",
+          "song_track": "Honestly (Karaoke Version) - Originally Performed By Zwan",
+          "spotify_uri": "spotify:track:7ohT8fznOhFvnlokiS7rU8"
         },
         "content": "Zwan - Honestly",
         "notable": false,
@@ -10843,10 +10848,10 @@
         "type": "song",
         "actor": "",
         "metadata": {
-          "song_album": "Compilation",
+          "song_album": "If I Was Prince",
           "song_artist": "Bronze Age Fox",
-          "song_track": "Books",
-          "spotify_uri": "spotify:track:3CLJcTjhETa0Ox6vha3QEJ"
+          "song_track": "The Most Beautiful Girl In The World",
+          "spotify_uri": "spotify:track:3K1qym9KWt6WCcYZNrwcwT"
         },
         "content": "Bronze Age Fox - ???",
         "notable": false,

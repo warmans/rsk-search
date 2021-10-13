@@ -12961,7 +12961,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "This Is Not the Green Fury",
+          "song_artist": "Matt Pond PA",
+          "song_track": "Night's End",
+          "spotify_uri": "spotify:track:10DO73375rDycNy1zg4COn"
+        },
         "content": "Matt Pond PA – Night's End",
         "notable": false,
         "content_tags": null

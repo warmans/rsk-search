@@ -8796,7 +8796,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Olympian",
+          "song_artist": "Gene",
+          "song_track": "Truth, Rest Your Head",
+          "spotify_uri": "spotify:track:0mg0PUYdze0DoFjKNAKV5V"
+        },
         "content": "Gene - Truth Rest Your Head",
         "notable": false,
         "content_tags": null
@@ -11379,10 +11384,10 @@
         "type": "song",
         "actor": "",
         "metadata": {
-          "song_album": "Adults Only Hip-Hop",
+          "song_album": "La Cliqua (Double H Production présente)",
           "song_artist": "Gravediggaz",
-          "song_track": "1-800-Suicide",
-          "spotify_uri": "spotify:track:6M8igP70Ho8TLsvkwRtq3r"
+          "song_track": "1-1800 Suicide",
+          "spotify_uri": "spotify:track:7HMVSoaSs8GXNinVhysfZW"
         },
         "content": "Gravediggaz - 1-800-suicide",
         "notable": false,

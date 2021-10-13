@@ -5297,7 +5297,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Heart Skips Beat",
+          "song_artist": "Jona Lewie",
+          "song_track": "Stop The Cavalry",
+          "spotify_uri": "spotify:track:2bPQuniBB9x0fRtxDly0kr"
+        },
         "content": "Jona Lewie",
         "notable": false,
         "content_tags": null
@@ -6545,7 +6550,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Who's Next",
+          "song_artist": "The Who",
+          "song_track": "Won't Get Fooled Again - Original Album Version",
+          "spotify_uri": "spotify:track:0cJPLFrlV7TTCyPLupHzcH"
+        },
         "content": "The Who - Won't Get Fooled Again",
         "notable": false,
         "content_tags": null
@@ -8033,7 +8043,11 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "The Neptunes Present... Clones",
+          "song_track": "Frontin' (feat. Jay-Z) - Club Mix",
+          "spotify_uri": "spotify:track:0iFOG4Ki9aDmJUYUFHQlPG"
+        },
         "content": "Pharrell - Frontin' (feat. Jay Z)",
         "notable": false,
         "content_tags": null
@@ -11045,7 +11059,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Black Masquerade",
+          "song_artist": "Rainbow",
+          "song_track": "Since You've Been Gone - Live",
+          "spotify_uri": "spotify:track:5fUHmQNeujmdzE39UPLcvR"
+        },
         "content": "Rainbow - Since You've Been Gone",
         "notable": false,
         "content_tags": null
@@ -11897,7 +11916,11 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Heavy Metal Christmas",
+          "song_track": "Santa Claus Is Coming To Town",
+          "spotify_uri": "spotify:track:3YRXVd1lusaMPCJYav3pRz"
+        },
         "content": "Paul Di'Anno - Santa Claus is coming to town",
         "notable": false,
         "content_tags": null

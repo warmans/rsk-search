@@ -15768,7 +15768,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "David Holmes presents The Free Association",
+          "song_artist": "David Holmes presents The Free Association",
+          "song_track": "(I Wish I Had A) Wooden Heart - New Mix",
+          "spotify_uri": "spotify:track:2f8UdfIZhHEIsrboizokQq"
+        },
         "content": "The Free Association – (I Wish I Had a) Wooden Heart",
         "notable": false,
         "content_tags": null

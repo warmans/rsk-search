@@ -2321,7 +2321,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Think Tank [Special Edition]",
+          "song_artist": "Blur",
+          "song_track": "Out of Time",
+          "spotify_uri": "spotify:track:79PrPZu9zWyc1qwUwXchVl"
+        },
         "content": "Blur - Out Of Time",
         "notable": false,
         "content_tags": null
@@ -2429,7 +2434,12 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Sleeping With Ghosts",
+          "song_artist": "Placebo",
+          "song_track": "The Bitter End",
+          "spotify_uri": "spotify:track:3WBPiogtVDBSXK7uOpxJ6m"
+        },
         "content": "Placebo - Bitter End.",
         "notable": false,
         "content_tags": null
@@ -12437,7 +12447,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "The Specials (2002 Remaster)",
+          "song_artist": "The Specials",
+          "song_track": "A Message to You Rudy - 2002 Remaster",
+          "spotify_uri": "spotify:track:5dRfBz5ZXJc5gZJsNM04nn"
+        },
         "content": "The Specials - A Message To You Rudy",
         "notable": false,
         "content_tags": null
@@ -12449,7 +12464,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Strays",
+          "song_artist": "Jane's Addiction",
+          "song_track": "Just Because",
+          "spotify_uri": "spotify:track:3k6L0H08zSY5yRDgqI8fqx"
+        },
         "content": "Jane's Addiction - Just Because",
         "notable": false,
         "content_tags": null

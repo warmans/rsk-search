@@ -4476,7 +4476,11 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Mali Music",
+          "song_track": "Sunset Coming On",
+          "spotify_uri": "spotify:track:0pab5P1Vod5G3Oex6Dh1El"
+        },
         "content": "Mali Music – Sunset Coming On",
         "notable": false,
         "content_tags": null
