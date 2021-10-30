@@ -11,6 +11,7 @@ import (
 	"github.com/pkg/errors"
 	"github.com/warmans/rsk-search/pkg/filter"
 	"github.com/warmans/rsk-search/pkg/models"
+	"github.com/warmans/rsk-search/pkg/oauth"
 	"github.com/warmans/rsk-search/pkg/store/common"
 	"github.com/warmans/rsk-search/pkg/util"
 	"strings"
@@ -473,6 +474,7 @@ func (s *Store) AuthorLeaderboard(ctx context.Context) (*models.AuthorLeaderboar
 	query := `
         SELECT
 		   ranks.name,
+		   ranks.identity,
            ranks.approver,
            ranks.num_approved,
 		   (SELECT COALESCE(SUM(r.claim_value), 0) FROM author_reward r WHERE r.author_id = ranks.id AND r.claimed = TRUE)
@@ -480,6 +482,7 @@ func (s *Store) AuthorLeaderboard(ctx context.Context) (*models.AuthorLeaderboar
             SELECT 
             	a.id,
                 a.name,
+			    COALESCE(a.identity, '{}') as identity,
                 a.approver,
                 COALESCE(SUM(CASE WHEN c.state = 'approved' THEN 1 ELSE 0 END), 0) as num_approved
             FROM author a
@@ -498,8 +501,10 @@ func (s *Store) AuthorLeaderboard(ctx context.Context) (*models.AuthorLeaderboar
 	authors := []*models.AuthorRanking{}
 	for rows.Next() {
 		ranking := &models.AuthorRanking{Author: &models.ShortAuthor{}}
+		var identity string
 		err := rows.Scan(
 			&ranking.Author.Name,
+			&identity,
 			&ranking.Approver,
 			&ranking.AcceptedContributions,
 			&ranking.AwardValue,
@@ -507,6 +512,12 @@ func (s *Store) AuthorLeaderboard(ctx context.Context) (*models.AuthorLeaderboar
 		if err != nil {
 			return nil, err
 		}
+
+		ident := &oauth.Identity{}
+		if err := json.Unmarshal([]byte(identity), &ident); err == nil {
+			ranking.Author.IdentityIconImg = ident.Icon
+		}
+
 		authors = append(authors, ranking)
 	}
 

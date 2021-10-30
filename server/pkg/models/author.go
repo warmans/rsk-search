@@ -18,10 +18,14 @@ type Author struct {
 }
 
 func (a *Author) ShortAuthor() *ShortAuthor {
-	return &ShortAuthor{
+	sa := &ShortAuthor{
 		ID:   a.ID,
 		Name: a.Name,
 	}
+	if ident, err := a.DecodeIdentity(); err == nil {
+		sa.IdentityIconImg = ident.Icon
+	}
+	return sa
 }
 
 func (a *Author) DecodeIdentity() (*oauth.Identity, error) {
@@ -33,8 +37,9 @@ func (a *Author) DecodeIdentity() (*oauth.Identity, error) {
 }
 
 type ShortAuthor struct {
-	ID   string `db:"id"`
-	Name string `db:"name"`
+	ID              string `db:"id"`
+	Name            string `db:"name"`
+	IdentityIconImg string `db:"-"`
 }
 
 func (a *ShortAuthor) Proto() *api.Author {
@@ -42,8 +47,9 @@ func (a *ShortAuthor) Proto() *api.Author {
 		return nil
 	}
 	return &api.Author{
-		Id:   a.ID,
-		Name: a.Name,
+		Id:              a.ID,
+		Name:            a.Name,
+		IdentityIconImg: a.IdentityIconImg,
 	}
 }
 
