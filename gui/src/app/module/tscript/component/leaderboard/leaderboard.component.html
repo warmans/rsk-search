@@ -4,8 +4,14 @@
     <table class="table mb-0">
       <tr *ngFor="let a of authors; let i = index">
         <td style="width: 50px" class="text-muted">#{{i+1}}</td>
+        <td style="width: 34px">
+          <div
+            class="user-icon"
+            style=" width: 24px; height: 24px; background-image: url({{ a.author?.identityIconImg }})">
+          </div>
+        </td>
         <td style="width: 150px" class="font-weight-bold">
-           {{a.author.name}}
+          {{a.author.name}}
         </td>
         <td>
           <div *ngIf="a.acceptedContributions > 0" class="text-success">

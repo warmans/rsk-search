@@ -40,6 +40,8 @@ export function isRskAuthor(arg: any): arg is models.RskAuthor {
   typeof arg === 'object' &&
     // id?: string
     ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
+    // identityIconImg?: string
+    ( typeof arg.identityIconImg === 'undefined' || typeof arg.identityIconImg === 'string' ) &&
     // name?: string
     ( typeof arg.name === 'undefined' || typeof arg.name === 'string' ) &&
 
