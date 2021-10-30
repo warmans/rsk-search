@@ -47,24 +47,19 @@ func (s *Store) InsertEpisodeWithTranscript(ctx context.Context, ep *models.Tran
 	if err != nil {
 		return err
 	}
-	epTags, err := tagListToString(ep.Tags)
-	if err != nil {
-		return err
-	}
 	epContributors, err := contributorsToString(ep.Contributors)
 	if err != nil {
 		return err
 	}
 	_, err = s.tx.ExecContext(
 		ctx,
-		`INSERT INTO episode (id, publication, series, episode, release_date, metadata, tags, contributors) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) ON CONFLICT DO NOTHING`,
+		`INSERT INTO episode (id, publication, series, episode, release_date, metadata, contributors) VALUES ($1, $2, $3, $4, $5, $6, $7) ON CONFLICT DO NOTHING`,
 		ep.ID(),
 		ep.Publication,
 		ep.Series,
 		ep.Episode,
 		util.SqlDate(ep.ReleaseDate),
 		epMeta,
-		epTags,
 		epContributors,
 	)
 
@@ -73,12 +68,8 @@ func (s *Store) InsertEpisodeWithTranscript(ctx context.Context, ep *models.Tran
 		if err != nil {
 			return err
 		}
-		diaTags, err := tagMapToString(v.ContentTags)
-		if err != nil {
-			return err
-		}
 		_, err = s.tx.ExecContext(ctx,
-			`INSERT INTO dialog (id, episode_id, pos, offset, type, actor, content, metadata, content_tags, notable) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
+			`INSERT INTO dialog (id, episode_id, pos, offset, type, actor, content, metadata, notable) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
 			v.ID,
 			ep.ID(),
 			v.Position,
@@ -87,7 +78,6 @@ func (s *Store) InsertEpisodeWithTranscript(ctx context.Context, ep *models.Tran
 			v.Actor,
 			v.Content,
 			diaMeta,
-			diaTags,
 			v.Notable,
 		)
 		if err != nil {
@@ -147,19 +137,13 @@ func (s *Store) getTranscriptForQuery(ctx context.Context, query string, params 
 			Meta: make(models.Metadata),
 		}
 		var meta string
-		var tags string
 
-		if err := res.Scan(&result.ID, &epID, &result.Position, &result.OffsetSec, &result.Type, &result.Actor, &result.Content, &meta, &tags, &result.Notable); err != nil {
+		if err := res.Scan(&result.ID, &epID, &result.Position, &result.OffsetSec, &result.Type, &result.Actor, &result.Content, &meta, &result.Notable); err != nil {
 			return nil, "", err
 		}
 		if meta != "" {
 			if err := json.Unmarshal([]byte(meta), &result.Meta); err != nil {
 				return nil, "", errors.Wrap(err, "failed to unmarshal meta")
-			}
-		}
-		if tags != "" {
-			if err := json.Unmarshal([]byte(tags), &result.ContentTags); err != nil {
-				return nil, "", errors.Wrap(err, "failed to unmarshal tags")
 			}
 		}
 		results = append(results, result)
@@ -178,33 +162,11 @@ func metaToString(metadata models.Metadata) (string, error) {
 	return string(bs), nil
 }
 
-func tagListToString(tags []string) (string, error) {
-	if tags == nil {
-		return "", nil
-	}
-	bs, err := json.Marshal(tags)
-	if err != nil {
-		return "", err
-	}
-	return string(bs), nil
-}
-
 func contributorsToString(contributors []string) (string, error) {
 	if contributors == nil {
 		return "", nil
 	}
 	bs, err := json.Marshal(contributors)
-	if err != nil {
-		return "", err
-	}
-	return string(bs), nil
-}
-
-func tagMapToString(tags map[string]string) (string, error) {
-	if tags == nil {
-		return "", nil
-	}
-	bs, err := json.Marshal(tags)
 	if err != nil {
 		return "", err
 	}

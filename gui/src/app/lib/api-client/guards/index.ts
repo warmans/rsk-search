@@ -252,8 +252,6 @@ export function isRskDialog(arg: any): arg is models.RskDialog {
     ( typeof arg.actor === 'undefined' || typeof arg.actor === 'string' ) &&
     // content?: string
     ( typeof arg.content === 'undefined' || typeof arg.content === 'string' ) &&
-    // contentTags?: { [key: string]: RskTag }
-    ( typeof arg.contentTags === 'undefined' || isRskTag(arg.contentTags) ) &&
     // id?: string
     ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
     // isMatchedRow?: boolean
@@ -262,6 +260,8 @@ export function isRskDialog(arg: any): arg is models.RskDialog {
     ( typeof arg.metadata === 'undefined' || typeof arg.metadata === 'string' ) &&
     // notable?: boolean
     ( typeof arg.notable === 'undefined' || typeof arg.notable === 'boolean' ) &&
+    // offsetInferred?: boolean
+    ( typeof arg.offsetInferred === 'undefined' || typeof arg.offsetInferred === 'boolean' ) &&
     // offsetSec?: string
     ( typeof arg.offsetSec === 'undefined' || typeof arg.offsetSec === 'string' ) &&
     // pos?: string
@@ -531,19 +531,6 @@ export function isRskSynopsis(arg: any): arg is models.RskSynopsis {
   );
   }
 
-export function isRskTag(arg: any): arg is models.RskTag {
-  return (
-  arg != null &&
-  typeof arg === 'object' &&
-    // kind?: string[]
-    ( typeof arg.kind === 'undefined' || (Array.isArray(arg.kind) && arg.kind.every((item: unknown) => typeof item === 'string')) ) &&
-    // name?: string
-    ( typeof arg.name === 'undefined' || typeof arg.name === 'string' ) &&
-
-  true
-  );
-  }
-
 export function isRskTranscript(arg: any): arg is models.RskTranscript {
   return (
   arg != null &&
@@ -572,8 +559,6 @@ export function isRskTranscript(arg: any): arg is models.RskTranscript {
     ( typeof arg.shortId === 'undefined' || typeof arg.shortId === 'string' ) &&
     // synopses?: RskSynopsis[]
     ( typeof arg.synopses === 'undefined' || (Array.isArray(arg.synopses) && arg.synopses.every((item: unknown) => isRskSynopsis(item))) ) &&
-    // tags?: RskTag[]
-    ( typeof arg.tags === 'undefined' || (Array.isArray(arg.tags) && arg.tags.every((item: unknown) => isRskTag(item))) ) &&
     // transcript?: RskDialog[]
     ( typeof arg.transcript === 'undefined' || (Array.isArray(arg.transcript) && arg.transcript.every((item: unknown) => isRskDialog(item))) ) &&
 

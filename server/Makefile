@@ -90,11 +90,8 @@ update.transcriptions:
 ifndef SPOTIFY_TOKEN
 	$(error "SPOTIFY TOKEN was not defined")
 endif
-	# there isn't and easy way to do this because so much is built on top of the transcription.
-	# even in this case any new tags will not be added for example
 	./bin/rsk-search data transcribe && \
- 	SPOTIFY_TOKEN=${SPOTIFY_TOKEN} ./bin/rsk-search data spotifize && \
- 	./bin/rsk-search data tag-dialog
+ 	SPOTIFY_TOKEN=${SPOTIFY_TOKEN} ./bin/rsk-search data spotifize
 
 .PHONY: init.all
 init.all:

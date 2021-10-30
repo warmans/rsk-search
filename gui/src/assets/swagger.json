@@ -1239,12 +1239,6 @@
               "type": "string"
             }
           },
-          "contentTags": {
-            "type": "object",
-            "additionalProperties": {
-              "$ref": "#/definitions/rskTag"
-            }
-          },
           "isMatchedRow": {
             "type": "boolean"
           },
@@ -1523,20 +1517,6 @@
           }
         }
       },
-      "rskTag": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "kind": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        }
-      },
       "rskTranscript": {
         "type": "object",
         "properties": {
@@ -1558,12 +1538,6 @@
             "type": "object",
             "additionalProperties": {
               "type": "string"
-            }
-          },
-          "tags": {
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/rskTag"
             }
           },
           "transcript": {

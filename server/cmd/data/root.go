@@ -19,9 +19,8 @@ func RootCmd() *cobra.Command {
 	index.PersistentFlags().StringVarP(&cfg.dataDir, "data-dir", "d", "./var/data/episodes", "Path to the raw data files")
 
 	index.AddCommand(InitCmd())
-	index.AddCommand(ImportTranscriptsCmd())
+	index.AddCommand(ImportPilkipediaRaw())
 	index.AddCommand(ImportSpotifyData())
-	index.AddCommand(TagDialogCmd())
 
 	// exports
 	index.AddCommand(GenerateHTMLCmd())

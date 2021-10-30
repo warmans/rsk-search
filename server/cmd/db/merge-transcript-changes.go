@@ -95,7 +95,6 @@ func mergeAll(outputDataPath string, migrationsPath string, conn *rw.Conn, dryRu
 			}
 
 			// clear old data
-			episodeOnDisk.Tags = nil
 			episodeOnDisk.Synopsis = nil
 			episodeOnDisk.Transcript = nil
 

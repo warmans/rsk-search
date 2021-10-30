@@ -2,7 +2,6 @@ package models
 
 import (
 	"github.com/warmans/rsk-search/gen/api"
-	"github.com/warmans/rsk-search/pkg/meta"
 	"github.com/warmans/rsk-search/pkg/util"
 	"strings"
 	"time"
@@ -51,10 +50,6 @@ type Dialog struct {
 	Meta           Metadata   `json:"metadata"`
 	Content        string     `json:"content"`
 	Notable        bool       `json:"notable"` // note-worthy line of dialog.
-
-	// content tokens mapped to tags
-	// e.g. Foo! (text) => foo (tag)
-	ContentTags map[string]string `json:"content_tags"`
 }
 
 func (d Dialog) Proto(bestMatch bool) *api.Dialog {
@@ -68,14 +63,7 @@ func (d Dialog) Proto(bestMatch bool) *api.Dialog {
 		Content:        d.Content,
 		Metadata:       d.Meta.Proto(),
 		IsMatchedRow:   bestMatch,
-		ContentTags:    make(map[string]*api.Tag),
 		Notable:        d.Notable,
-	}
-	for text, tagName := range d.ContentTags {
-		tag := meta.GetTag(tagName)
-		if tag != nil {
-			dialog.ContentTags[text] = &api.Tag{Name: tagName, Kind: tag.Kind}
-		}
 	}
 	return dialog
 }
@@ -90,7 +78,6 @@ type Transcript struct {
 	// additional optional data
 	Meta         Metadata   `json:"metadata"`
 	Transcript   []Dialog   `json:"transcript"`
-	Tags         []string   `json:"tags"`
 	Synopsis     []Synopsis `json:"synopsis"`
 	Contributors []string   `json:"contributors"`
 }
@@ -132,12 +119,6 @@ func (e *Transcript) Proto(withRawTranscript string, audioURI string) *api.Trans
 		Incomplete:    e.Incomplete,
 		RawTranscript: withRawTranscript,
 		AudioUri:      audioURI,
-	}
-	for _, tn := range e.Tags {
-		tag := meta.GetTag(tn)
-		if tag != nil {
-			ep.Tags = append(ep.Tags, &api.Tag{Name: tn, Kind: tag.Kind})
-		}
 	}
 	for _, d := range e.Transcript {
 		ep.Transcript = append(ep.Transcript, d.Proto(false))
