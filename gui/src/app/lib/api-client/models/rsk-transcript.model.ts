@@ -2,7 +2,6 @@
 import {
   RskDialog,
   RskSynopsis,
-  RskTag,
 } from '.';
 
 export interface RskTranscript {
@@ -18,6 +17,5 @@ export interface RskTranscript {
   series?: number;
   shortId?: string;
   synopses?: RskSynopsis[];
-  tags?: RskTag[];
   transcript?: RskDialog[];
 }

@@ -6,7 +6,6 @@ CREATE TABLE "episode"
     episode      INTEGER,
     release_date TIMESTAMP,
     metadata     JSON,
-    tags         JSON,
     contributors JSON
 );
 
@@ -20,6 +19,5 @@ CREATE TABLE "dialog"
     actor        TEXT,
     content      TEXT,
     metadata     JSON,
-    content_tags JSON,
     notable      BOOLEAN
 );

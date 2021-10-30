@@ -32,23 +32,11 @@ From the server directory:
 ### How to update transcripts
 
 1. Update data in `./var/data/episodes`
-2. Run `make update.transcriptions SPOTIFY_TOKEN=[my token]` (note, this can take several hours as it must re-tag all dialog)
+2. Run `make update.transcriptions SPOTIFY_TOKEN=[my token]`
 3. Re-generate DB/Search index with `make init.all`.
 
 Generating a spotify token. You can just generate one for the from here if you are logged in:
 https://developer.spotify.com/console/get-search-item/ (click GET TOKEN)
-
-### How to update tags
-
-Tags can only be removed or aliased. The tag list in the meta/data dir 
-is just a list of tags that the NER package will detect in the data, but 
-before storing any tag against the dialog it is checked against the 
-file in the tags.json file. 
-
-1. Edit `./pkg/meta/data/tags.json`.
-2. Re-tag dialog `./bin/rsk-search data transcribe` (can take several hours).
-3. Re-generate DB/Search index with `make init.all`.
-
 
 ## Deployment
 

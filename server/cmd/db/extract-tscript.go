@@ -80,7 +80,6 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 			}
 
 			// clear old data
-			episodeOnDisk.Tags = nil
 			episodeOnDisk.Synopsis = nil
 			episodeOnDisk.Transcript = nil
 
@@ -146,7 +145,6 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 							Actor:       "",
 							Meta:        nil,
 							Content:     "[~3 mins of missing transcription]",
-							ContentTags: nil,
 						},
 					)
 					episodeOnDisk.Incomplete = true

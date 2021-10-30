@@ -44,21 +44,6 @@
                 </tr>
               </table>
             </div>
-            <div class="col">
-              <table class="table m-0">
-                <tr>
-                  <th style="width: 200px" class="border-top-0">Tags</th>
-                  <td class="border-top-0">
-                    <a
-                      *ngFor="let tag of episode.tags" class="badge badge-info mr-2"
-                      [routerLink]="['/search']"
-                      [queryParams]='{q: query("content", tag.name)}'>
-                      {{tag.kind}}: {{tag.name}}
-                    </a>
-                  </td>
-                </tr>
-              </table>
-            </div>
           </div>
         </div>
         <div *ngIf="episode.synopses && episode.synopses.length > 0">

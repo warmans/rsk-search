@@ -11,7 +11,6 @@ import (
 	"io/ioutil"
 	"os"
 	"path"
-	"strconv"
 	"time"
 )
 
@@ -110,25 +109,8 @@ func documentsFromPath(filePath string) ([]index.DialogDocument, error) {
 			Actor:       v.Actor,
 			Position:    v.Position,
 			Content:     v.Content,
-			Tags:        vals(v.ContentTags),
 		})
 	}
 
 	return docs, nil
-}
-
-func stringToIntOrZero(str string) int32 {
-	i, _ := strconv.Atoi(str)
-	return int32(i)
-}
-
-func vals(v map[string]string) []string {
-	arr := []string{}
-	if v == nil {
-		return arr
-	}
-	for _, tag := range v {
-		arr = append(arr, tag)
-	}
-	return arr
 }

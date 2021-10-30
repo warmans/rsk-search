@@ -15,12 +15,12 @@ import (
 	"time"
 )
 
-func ImportTranscriptsCmd() *cobra.Command {
+func ImportPilkipediaRaw() *cobra.Command {
 
 	var inputDir string
 
 	cmd := &cobra.Command{
-		Use:   "transcribe",
+		Use:   "import-pilkipedia-raw",
 		Short: "Import transcribed data from pilkipedia",
 		RunE: func(cmd *cobra.Command, args []string) error {
 
