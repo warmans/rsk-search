@@ -35,7 +35,7 @@ From the server directory:
 2. Run `make update.transcriptions SPOTIFY_TOKEN=[my token]`
 3. Re-generate DB/Search index with `make init.all`.
 
-Generating a spotify token. You can just generate one for the from here if you are logged in:
+Generating a spotify token. You can just generate one here if you are logged in:
 https://developer.spotify.com/console/get-search-item/ (click GET TOKEN)
 
 ## Deployment
@@ -49,12 +49,13 @@ https://developer.spotify.com/console/get-search-item/ (click GET TOKEN)
 3. `cd server && make release`.
 3. Re-up docker compose file on server.
 
+(this is done using github actions)
+
 ### New deployment
 1. Build and push docker images with your own namespace.
 2. Update `./deploy/docker-compose.yaml` with correct image names/versions.
 3. Copy docker-compose file to your server.
 4. Run `docker-compose up -d`
-
 
 ## Transcription
 
