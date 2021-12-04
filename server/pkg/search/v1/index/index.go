@@ -9,19 +9,7 @@ import (
 	"time"
 )
 
-type DialogDocument struct {
-	ID          string   `json:"id"`
-	Mapping     string   `json:"mapping"`
-	Publication string   `json:"publication"`
-	Series      int32    `json:"series"`
-	Episode     int32    `json:"episode"`
-	Date        string   `json:"date"`
-	Actor       string   `json:"actor"`
-	Position    int64    `json:"pos"`
-	Content     string   `json:"content"`
-	ContentType string   `json:"type"`
-	Tags        []string `json:"tags"`
-}
+
 
 func RskIndexMapping() (mapping.IndexMapping, error) {
 

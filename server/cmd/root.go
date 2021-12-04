@@ -3,9 +3,10 @@ package cmd
 import (
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/spf13/cobra"
+	"github.com/warmans/rsk-search/cmd/bleve"
+	blugeindex "github.com/warmans/rsk-search/cmd/bluge"
 	"github.com/warmans/rsk-search/cmd/data"
 	"github.com/warmans/rsk-search/cmd/db"
-	"github.com/warmans/rsk-search/cmd/index"
 	"github.com/warmans/rsk-search/cmd/server"
 	"github.com/warmans/rsk-search/cmd/transcription"
 )
@@ -17,7 +18,8 @@ func RootCmd() *cobra.Command {
 	}
 
 	// search index commands
-	root.AddCommand(index.RootCmd())
+	root.AddCommand(bleve.RootCmd())
+	root.AddCommand(blugeindex.RootCmd())
 	root.AddCommand(data.RootCmd())
 	root.AddCommand(server.ServerCmd())
 	root.AddCommand(db.RootCmd())

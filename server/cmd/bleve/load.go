@@ -1,4 +1,4 @@
-package index
+package bleve
 
 import (
 	"encoding/json"
@@ -6,12 +6,12 @@ import (
 	"github.com/blevesearch/bleve/v2"
 	"github.com/spf13/cobra"
 	"github.com/warmans/rsk-search/pkg/models"
-	"github.com/warmans/rsk-search/pkg/search/index"
+	"github.com/warmans/rsk-search/pkg/search"
+	"github.com/warmans/rsk-search/pkg/search/v1/index"
 	"go.uber.org/zap"
 	"io/ioutil"
 	"os"
 	"path"
-	"time"
 )
 
 func LoadCmd() *cobra.Command {
@@ -81,7 +81,7 @@ func populateIndex(inputDataPath string, idx bleve.Index, logger *zap.Logger) er
 	return nil
 }
 
-func documentsFromPath(filePath string) ([]index.DialogDocument, error) {
+func documentsFromPath(filePath string) ([]search.DialogDocument, error) {
 
 	f, err := os.Open(filePath)
 	if err != nil {
@@ -96,15 +96,15 @@ func documentsFromPath(filePath string) ([]index.DialogDocument, error) {
 		return nil, err
 	}
 
-	docs := []index.DialogDocument{}
+	docs := []search.DialogDocument{}
 	for _, v := range episode.Transcript {
-		docs = append(docs, index.DialogDocument{
+		docs = append(docs, search.DialogDocument{
 			ID:          v.ID,
 			Mapping:     "dialog",
 			Publication: episode.Publication,
 			Series:      episode.Series,
 			Episode:     episode.Episode,
-			Date:        episode.ReleaseDate.Format(time.RFC3339),
+			Date:        episode.ReleaseDate,
 			ContentType: string(v.Type),
 			Actor:       v.Actor,
 			Position:    v.Position,

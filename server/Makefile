@@ -95,7 +95,7 @@ endif
 
 .PHONY: init.all
 init.all:
-	$(MAKE) init.db init.index
+	$(MAKE) init.db init.bleve
 
 .PHONY: init.db
 init.db:
@@ -103,7 +103,12 @@ init.db:
 
 .PHONY: init.index
 init.index:
-	rm -rf ./var/rsk.bleve; ./bin/rsk-search index load
+	rm -rf ./var/rsk.bluge; ./bin/rsk-search bluge load
+
+.PHONY: init.bleve
+init.bleve:
+	rm -rf ./var/rsk.bleve; ./bin/rsk-search bleve load
+
 
 .PHONY: docker.build
 docker.build:

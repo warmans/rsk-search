@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/blevesearch/bleve/v2"
+	"github.com/blugelabs/bluge"
 	"github.com/spf13/cobra"
 	"github.com/warmans/rsk-search/pkg/data"
 	"github.com/warmans/rsk-search/pkg/flag"
@@ -11,7 +12,9 @@ import (
 	"github.com/warmans/rsk-search/pkg/oauth"
 	"github.com/warmans/rsk-search/pkg/pledge"
 	"github.com/warmans/rsk-search/pkg/reward"
-	"github.com/warmans/rsk-search/pkg/search"
+	search2 "github.com/warmans/rsk-search/pkg/search"
+	v1 "github.com/warmans/rsk-search/pkg/search/v1"
+	v2 "github.com/warmans/rsk-search/pkg/search/v2"
 	"github.com/warmans/rsk-search/pkg/server"
 	"github.com/warmans/rsk-search/pkg/store/common"
 	"github.com/warmans/rsk-search/pkg/store/ro"
@@ -62,14 +65,13 @@ func ServerCmd() *cobra.Command {
 			}
 			defer logger.Sync() // flushes buffer, if any
 
-			logger.Info("Init index...")
-			rskIndex, err := bleve.Open(srvCfg.BleveIndexPath)
+			episodeCache, err := data.NewEpisodeStore(path.Join(srvCfg.FilesBasePath, "data", "episodes"))
 			if err != nil {
-				return err
+				logger.Fatal("failed to create episode cache", zap.Error(err))
 			}
 
 			// DB is volatile and will be recreated with each deployment
-			logger.Info("Init read-only DB...", zap.String("path", rwDbCfg.DSN))
+			logger.Info("Init read-only DB...", zap.String("path", roDbCfg.DSN))
 			readOnlyStoreConn, err := ro.NewConn(roDbCfg)
 			if err != nil {
 				return err
@@ -79,6 +81,26 @@ func ServerCmd() *cobra.Command {
 					logger.Error("failed to close RO db", zap.Error(err))
 				}
 			}()
+
+			var search search2.Searcher
+
+			var useV2Search = true
+			if useV2Search {
+				config := bluge.DefaultConfig(srvCfg.BlugeIndexPath)
+
+				rskIndex, err := bluge.OpenReader(config)
+				if err != nil {
+					return err
+				}
+				search = v2.NewSearch(rskIndex, readOnlyStoreConn, episodeCache)
+			} else {
+				logger.Info("Init index...")
+				rskIndex, err := bleve.Open(srvCfg.BleveIndexPath)
+				if err != nil {
+					return err
+				}
+				search = v1.NewSearch(rskIndex, readOnlyStoreConn, episodeCache)
+			}
 
 			// DB is persistent and will retain data between deployments
 			logger.Info("Init persistent DB...")
@@ -111,11 +133,6 @@ func ServerCmd() *cobra.Command {
 				}
 			}()
 
-			episodeCache, err := data.NewEpisodeStore(path.Join(srvCfg.FilesBasePath, "data", "episodes"))
-			if err != nil {
-				logger.Fatal("failed to create episode cache", zap.Error(err))
-			}
-
 			// setup oauth
 			tokenCache := oauth.NewCSRFCache()
 			auth := jwt.NewAuth(jwtConfig)
@@ -129,7 +146,7 @@ func ServerCmd() *cobra.Command {
 				grpc.NewSearchService(
 					logger,
 					srvCfg,
-					search.NewSearch(rskIndex, readOnlyStoreConn, episodeCache),
+					search,
 					readOnlyStoreConn,
 					auth,
 					episodeCache,

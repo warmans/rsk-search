@@ -1,4 +1,4 @@
-package index
+package bleve
 
 import (
 	"encoding/json"
@@ -8,7 +8,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/warmans/rsk-search/pkg/filter"
 	"github.com/warmans/rsk-search/pkg/filter/bleve_query"
-	"github.com/warmans/rsk-search/pkg/search/index"
+	"github.com/warmans/rsk-search/pkg/search/v1/index"
 
 	"go.uber.org/zap"
 )

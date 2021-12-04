@@ -24,7 +24,7 @@ import (
 func NewSearchService(
 	logger *zap.Logger,
 	srvCfg config.SearchServiceConfig,
-	searchBackend *search.Search,
+	searchBackend search.Searcher,
 	store *ro.Conn,
 	auth *jwt.Auth,
 	episodeCache *data.EpisodeCache,
@@ -42,7 +42,7 @@ func NewSearchService(
 type SearchService struct {
 	logger        *zap.Logger
 	srvCfg        config.SearchServiceConfig
-	searchBackend *search.Search
+	searchBackend search.Searcher
 	staticDB      *ro.Conn
 	auth          *jwt.Auth
 	episodeCache  *data.EpisodeCache

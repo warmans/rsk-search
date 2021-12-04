@@ -1,4 +1,4 @@
-package index
+package bleve
 
 import (
 	"github.com/spf13/cobra"
@@ -12,7 +12,7 @@ var indexCfg = indexConfig{}
 
 func RootCmd() *cobra.Command {
 	index := &cobra.Command{
-		Use:   "index",
+		Use:   "bleve",
 		Short: "commands related to to the search index",
 	}
 
