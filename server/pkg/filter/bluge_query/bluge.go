@@ -4,8 +4,10 @@ import (
 	"fmt"
 	"github.com/blugelabs/bluge"
 	"github.com/warmans/rsk-search/pkg/filter"
+	"github.com/warmans/rsk-search/pkg/search/v2/mapping"
 	"math"
 	"strings"
+	"time"
 )
 
 func FilterToQuery(f filter.Filter) (bluge.Query, error) {
@@ -67,23 +69,18 @@ func (j *BlugeQuery) condition(field string, op filter.CompOp, value filter.Valu
 
 	switch op {
 	case filter.CompOpEq:
-		if value.Type() == filter.IntType {
-			q := bluge.NewNumericRangeInclusiveQuery(float64(value.Value().(int64)), float64(value.Value().(int64)), true, true)
-			q.SetField(field)
-			return q, nil
+		return j.eqFilter(field, value)
+	case filter.CompOpNeq:
+		q, err := j.eqFilter(field, value)
+		if err != nil {
+			return nil, err
 		}
-		q := bluge.NewMatchPhraseQuery(stripQuotes(value.String()))
-		q.SetField(field)
-		return q, nil
+		return bluge.NewBooleanQuery().AddMustNot(q), nil
 	case filter.CompOpLike:
 		q := bluge.NewMatchQuery(stripQuotes(value.String()))
 		q.SetField(field)
 		q.SetFuzziness(0)
 		return q, nil
-	case filter.CompOpNeq:
-		q := bluge.NewMatchPhraseQuery(stripQuotes(value.String()))
-		q.SetField(field)
-		return bluge.NewBooleanQuery().AddMustNot(q), nil
 	case filter.CompOpGt:
 		switch value.Type() {
 		case filter.IntType:
@@ -164,6 +161,52 @@ func (j *BlugeQuery) condition(field string, op filter.CompOp, value filter.Valu
 	default:
 		return nil, fmt.Errorf("operation %s was not implemented", string(op))
 	}
+}
+
+func (j *BlugeQuery) eqFilter(field string, value filter.Value) (bluge.Query, error) {
+	if t, ok := mapping.Mapping[field]; ok {
+		switch t {
+		case mapping.FieldTypeText:
+			if value.Type() != filter.StringType {
+				return nil, fmt.Errorf("could not compare text field %s with %s", field, value.Type())
+			}
+			q := bluge.NewMatchPhraseQuery(stripQuotes(value.String()))
+			q.SetField(field)
+			return q, nil
+		case mapping.FieldTypeKeyword:
+			if value.Type() != filter.StringType {
+				return nil, fmt.Errorf("could not compare keyword field %s with %s", field, value.Type())
+			}
+			q := bluge.NewTermQuery(stripQuotes(value.String()))
+			q.SetField(field)
+			return q, nil
+		case mapping.FieldTypeNumber:
+			switch value.Type() {
+			case filter.IntType:
+				q := bluge.NewNumericRangeInclusiveQuery(float64(value.Value().(int64)), float64(value.Value().(int64)), true, true)
+				q.SetField(field)
+				return q, nil
+			case filter.FloatType:
+				q := bluge.NewNumericRangeInclusiveQuery(value.Value().(float64), value.Value().(float64), true, true)
+				q.SetField(field)
+				return q, nil
+			default:
+				return nil, fmt.Errorf("cannot compare number to %s", value.Type())
+			}
+		case mapping.FieldTypeDate:
+			if v, ok := value.Value().(string); ok {
+				ts, err := time.Parse(time.RFC3339, v)
+				if err != nil {
+					return nil, fmt.Errorf("failed to parse %s as date: %s", field, err.Error())
+				}
+				q := bluge.NewDateRangeQuery(ts, ts)
+				q.SetField(field)
+				return q, nil
+			}
+			return nil, fmt.Errorf("non-string value given as date")
+		}
+	}
+	return nil, fmt.Errorf("unknown field %s", field)
 }
 
 func stripQuotes(v string) string {

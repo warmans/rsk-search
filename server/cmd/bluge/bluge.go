@@ -4,13 +4,16 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/blugelabs/bluge"
+	"github.com/blugelabs/bluge/analysis/analyzer"
 	"github.com/spf13/cobra"
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/search"
+	"github.com/warmans/rsk-search/pkg/search/v2/mapping"
 	"go.uber.org/zap"
 	"io/ioutil"
 	"os"
 	"path"
+	"time"
 )
 
 type indexConfig struct {
@@ -80,16 +83,10 @@ func populateIndex(inputDir string, writer *bluge.Writer, logger *zap.Logger) er
 
 		batch := bluge.NewBatch()
 		for _, d := range docs {
-
 			doc := bluge.NewDocument(d.ID)
-			doc.AddField(bluge.NewKeywordField("publication", d.Publication).StoreValue())
-			doc.AddField(bluge.NewNumericField("series", float64(d.Series)).StoreValue().Sortable())
-			doc.AddField(bluge.NewDateTimeField("date", d.Date).Sortable())
-			doc.AddField(bluge.NewKeywordField("actor", d.Actor).StoreValue().Sortable())
-			doc.AddField(bluge.NewNumericField("pos", float64(d.Position)).Sortable())
-			doc.AddField(bluge.NewTextField("content", d.Content).SearchTermPositions())
-			doc.AddField(bluge.NewKeywordField("type", d.ContentType).StoreValue().Sortable())
-
+			for k, t := range mapping.Mapping {
+				doc.AddField(getMappedField(k, t, d))
+			}
 			batch.Insert(doc)
 		}
 		if err := writer.Batch(batch); err != nil {
@@ -97,6 +94,19 @@ func populateIndex(inputDir string, writer *bluge.Writer, logger *zap.Logger) er
 		}
 	}
 	return nil
+}
+
+func getMappedField(fieldName string, t mapping.FieldType, d search.DialogDocument) bluge.Field {
+	switch t {
+	case mapping.FieldTypeKeyword:
+		return bluge.NewTextField(fieldName, d.GetNamedField(fieldName).(string)).WithAnalyzer(analyzer.NewKeywordAnalyzer())
+	case mapping.FieldTypeDate:
+		return bluge.NewDateTimeField(fieldName, d.GetNamedField(fieldName).(time.Time))
+	case mapping.FieldTypeNumber:
+		return bluge.NewNumericField(fieldName, float64(d.GetNamedField(fieldName).(int64)))
+	}
+	// just use text fore everything else
+	return bluge.NewTextField(fieldName, fmt.Sprintf("%v", d.GetNamedField(fieldName))).SearchTermPositions()
 }
 
 func documentsFromPath(filePath string) ([]search.DialogDocument, error) {
@@ -120,8 +130,8 @@ func documentsFromPath(filePath string) ([]search.DialogDocument, error) {
 			ID:          v.ID,
 			Mapping:     "dialog",
 			Publication: episode.Publication,
-			Series:      episode.Series,
-			Episode:     episode.Episode,
+			Series:      int64(episode.Series),
+			Episode:     int64(episode.Episode),
 			Date:        episode.ReleaseDate,
 			ContentType: string(v.Type),
 			Actor:       v.Actor,

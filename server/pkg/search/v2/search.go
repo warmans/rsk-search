@@ -4,8 +4,6 @@ import (
 	"context"
 	"fmt"
 	"github.com/blugelabs/bluge"
-	blugeSearch "github.com/blugelabs/bluge/search"
-	"github.com/blugelabs/bluge/search/aggregations"
 	"github.com/warmans/rsk-search/gen/api"
 	"github.com/warmans/rsk-search/pkg/data"
 	"github.com/warmans/rsk-search/pkg/filter"
@@ -108,20 +106,23 @@ func (s *Search) ListTerms(fieldName string, prefix string) (models.FieldValues,
 
 	terms := models.FieldValues{}
 
-	query := bluge.NewPrefixQuery(prefix).SetField(fieldName)
-	request := bluge.NewAllMatches(query)
-	request.AddAggregation("unique", aggregations.NewTermsAggregation(blugeSearch.Field(fieldName), 100))
+	fieldDict, err := s.index.DictionaryIterator(fieldName, nil, []byte(prefix), nil)
+	if err != nil {
+		return nil, err
+	}
+	defer func() {
+		if cerr := fieldDict.Close(); cerr != nil && err == nil {
+			err = cerr
+		}
+	}()
 
-	dmi, err := s.index.Search(context.Background(), request)
-	if err != nil {
-		return nil, err
-	}
-	match, err := dmi.Next()
-	for err == nil && match != nil {
-		match, err = dmi.Next()
-	}
-	if err != nil {
-		return nil, err
+	tfd, err := fieldDict.Next()
+	for err == nil && tfd != nil {
+		terms = append(terms, models.FieldValue{Value: tfd.Term(), Count: int32(tfd.Count())})
+		if len(terms) > 500 {
+			return nil, fmt.Errorf("too many terms for field '%s' returned (prefix: %s)", fieldName, prefix)
+		}
+		tfd, err = fieldDict.Next()
 	}
 
 	return terms, nil

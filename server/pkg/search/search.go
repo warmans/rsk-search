@@ -14,15 +14,36 @@ type Searcher interface {
 }
 
 type DialogDocument struct {
-	ID          string   `json:"id"`
-	Mapping     string   `json:"mapping"`
-	Publication string   `json:"publication"`
-	Series      int32    `json:"series"`
-	Episode     int32    `json:"episode"`
-	Date        time.Time   `json:"date"`
-	Actor       string   `json:"actor"`
-	Position    int64    `json:"pos"`
-	Content     string   `json:"content"`
-	ContentType string   `json:"type"`
-	Tags        []string `json:"tags"`
+	ID          string    `json:"id"`
+	Mapping     string    `json:"mapping"`
+	Publication string    `json:"publication"`
+	Series      int64     `json:"series"`
+	Episode     int64     `json:"episode"`
+	Date        time.Time `json:"date"`
+	Actor       string    `json:"actor"`
+	Position    int64     `json:"pos"`
+	Content     string    `json:"content"`
+	ContentType string    `json:"type"`
+}
+
+func (d DialogDocument) GetNamedField(name string) interface{} {
+	switch name {
+	case "publication":
+		return d.Publication
+	case "series":
+		return d.Series
+	case "episode":
+		return d.Episode
+	case "date":
+		return d.Date
+	case "actor":
+		return d.Actor
+	case "pos":
+		return d.Position
+	case "content":
+		return d.Content
+	case "type":
+		return d.ContentType
+	}
+	return ""
 }
