@@ -89,11 +89,17 @@ message SearchRequest {
 message SearchResultList {
   repeated SearchResult results = 1;
   int32 result_count = 2;
+  map<string, SearchStats> stats = 3;
 }
 
 message SearchResult {
   ShortTranscript episode = 1;
   repeated DialogResult dialogs = 2;
+}
+
+message SearchStats  {
+  repeated string labels = 2;
+  repeated float values = 3;
 }
 
 message ShortTranscript {

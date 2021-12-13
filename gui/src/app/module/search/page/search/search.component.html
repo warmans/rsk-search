@@ -1,5 +1,8 @@
 <div class="container-fluid pt-3" *ngIf="result?.results.length">
   <div class="row">
+    <app-search-stats [rawStats]="result?.stats"></app-search-stats>
+  </div>
+  <div class="row">
     <div class="col">
       <div *ngFor="let res of result?.results" class="result card mb-3">
         <div class="card-header font-weight-bold">

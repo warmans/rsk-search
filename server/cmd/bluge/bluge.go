@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/blugelabs/bluge"
-	"github.com/blugelabs/bluge/analysis/analyzer"
 	"github.com/spf13/cobra"
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/search"
@@ -99,9 +98,9 @@ func populateIndex(inputDir string, writer *bluge.Writer, logger *zap.Logger) er
 func getMappedField(fieldName string, t mapping.FieldType, d search.DialogDocument) bluge.Field {
 	switch t {
 	case mapping.FieldTypeKeyword:
-		return bluge.NewTextField(fieldName, d.GetNamedField(fieldName).(string)).WithAnalyzer(analyzer.NewKeywordAnalyzer())
+		return bluge.NewKeywordField(fieldName, d.GetNamedField(fieldName).(string)).Aggregatable()
 	case mapping.FieldTypeDate:
-		return bluge.NewDateTimeField(fieldName, d.GetNamedField(fieldName).(time.Time))
+		return bluge.NewDateTimeField(fieldName, d.GetNamedField(fieldName).(time.Time)).Aggregatable()
 	case mapping.FieldTypeNumber:
 		return bluge.NewNumericField(fieldName, float64(d.GetNamedField(fieldName).(int64)))
 	}
@@ -127,16 +126,17 @@ func documentsFromPath(filePath string) ([]search.DialogDocument, error) {
 	docs := []search.DialogDocument{}
 	for _, v := range episode.Transcript {
 		docs = append(docs, search.DialogDocument{
-			ID:          v.ID,
-			Mapping:     "dialog",
-			Publication: episode.Publication,
-			Series:      int64(episode.Series),
-			Episode:     int64(episode.Episode),
-			Date:        episode.ReleaseDate,
-			ContentType: string(v.Type),
-			Actor:       v.Actor,
-			Position:    v.Position,
-			Content:     v.Content,
+			ID:           v.ID,
+			TranscriptID: episode.ID(),
+			Mapping:      "dialog",
+			Publication:  episode.Publication,
+			Series:       int64(episode.Series),
+			Episode:      int64(episode.Episode),
+			Date:         episode.ReleaseDate,
+			ContentType:  string(v.Type),
+			Actor:        v.Actor,
+			Position:     v.Position,
+			Content:      v.Content,
 		})
 	}
 

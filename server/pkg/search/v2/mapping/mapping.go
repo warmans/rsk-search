@@ -10,12 +10,13 @@ const (
 )
 
 var Mapping = map[string]FieldType{
-	"publication": FieldTypeKeyword,
-	"series":      FieldTypeNumber,
-	"episode":     FieldTypeNumber,
-	"date":        FieldTypeDate,
-	"actor":       FieldTypeKeyword,
-	"pos":         FieldTypeNumber,
-	"content":     FieldTypeText,
-	"type":        FieldTypeKeyword,
+	"transcript_id": FieldTypeKeyword,
+	"publication":   FieldTypeKeyword,
+	"series":        FieldTypeNumber,
+	"episode":       FieldTypeNumber,
+	"date":          FieldTypeDate,
+	"actor":         FieldTypeKeyword,
+	"pos":           FieldTypeNumber,
+	"content":       FieldTypeText,
+	"type":          FieldTypeKeyword,
 }

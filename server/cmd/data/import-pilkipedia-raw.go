@@ -29,7 +29,7 @@ func ImportPilkipediaRaw() *cobra.Command {
 
 			logger.Info("Importing transcript data from...", zap.String("path", inputDir))
 
-			for dateStr, name := range meta.XfmEpisodeNames() {
+			for dateStr, name := range meta.XfmEpisodeDates() {
 
 				lg := logger.With(zap.String("name", name), zap.String("publication", meta.PublicationXFM), zap.String("date", dateStr))
 

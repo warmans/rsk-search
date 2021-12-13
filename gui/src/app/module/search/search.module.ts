@@ -9,6 +9,8 @@ import { GlSearchComponent } from './component/gl-search/gl-search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { GlSearchFilterComponent } from './component/gl-search-filter/gl-search-filter.component';
+import { NgChartsModule } from 'ng2-charts';
+import { SearchStatsComponent } from './component/search-stats/search-stats.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,7 @@ import { GlSearchFilterComponent } from './component/gl-search-filter/gl-search-
     EpisodeComponent,
     GlSearchComponent,
     GlSearchFilterComponent,
+    SearchStatsComponent,
   ],
   imports: [
     CommonModule,
@@ -25,6 +28,7 @@ import { GlSearchFilterComponent } from './component/gl-search-filter/gl-search-
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
+    NgChartsModule,
   ],
   exports: [DslSearchComponent, GlSearchComponent]
 })

@@ -83,7 +83,7 @@ export class SearchComponent implements OnInit, OnDestroy {
       page: page
     }).pipe(
       takeUntil(this.unsubscribe$),
-    ).subscribe((res) => {
+    ).subscribe((res:RskSearchResultList) => {
       this.result = res;
       let totalPages = Math.ceil(res.resultCount / 15);
       this.pages = Array(Math.min(totalPages, 10)).fill(0).map((x, i) => i);

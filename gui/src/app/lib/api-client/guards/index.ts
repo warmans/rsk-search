@@ -473,6 +473,21 @@ export function isRskSearchResultList(arg: any): arg is models.RskSearchResultLi
     ( typeof arg.resultCount === 'undefined' || typeof arg.resultCount === 'number' ) &&
     // results?: RskSearchResult[]
     ( typeof arg.results === 'undefined' || (Array.isArray(arg.results) && arg.results.every((item: unknown) => isRskSearchResult(item))) ) &&
+    // stats?: { [key: string]: RskSearchStats }
+    ( typeof arg.stats === 'undefined' || isRskSearchStats(arg.stats) ) &&
+
+  true
+  );
+  }
+
+export function isRskSearchStats(arg: any): arg is models.RskSearchStats {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // labels?: string[]
+    ( typeof arg.labels === 'undefined' || (Array.isArray(arg.labels) && arg.labels.every((item: unknown) => typeof item === 'string')) ) &&
+    // values?: number[]
+    ( typeof arg.values === 'undefined' || (Array.isArray(arg.values) && arg.values.every((item: unknown) => typeof item === 'number')) ) &&
 
   true
   );

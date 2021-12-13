@@ -33,6 +33,7 @@ export { RskReward } from './rsk-reward.model';
 export { RskSearchMetadata } from './rsk-search-metadata.model';
 export { RskSearchResult } from './rsk-search-result.model';
 export { RskSearchResultList } from './rsk-search-result-list.model';
+export { RskSearchStats } from './rsk-search-stats.model';
 export { RskShortTranscript } from './rsk-short-transcript.model';
 export { RskShortTranscriptChange } from './rsk-short-transcript-change.model';
 export { RskSynopsis } from './rsk-synopsis.model';

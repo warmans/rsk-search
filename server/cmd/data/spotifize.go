@@ -109,7 +109,7 @@ func addSongMeta(logger *zap.Logger, token string, metadataPath string) error {
 		return err
 	}
 
-	for _, name := range meta.XfmEpisodeNames() {
+	for _, name := range meta.XfmEpisodeDates() {
 
 		lg := logger.With(zap.String("name", name))
 

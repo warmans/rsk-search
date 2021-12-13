@@ -349,6 +349,30 @@
         "resultCount": {
           "type": "integer",
           "format": "int32"
+        },
+        "stats": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/rskSearchStats"
+          }
+        }
+      }
+    },
+    "rskSearchStats": {
+      "type": "object",
+      "properties": {
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "float"
+          }
         }
       }
     },

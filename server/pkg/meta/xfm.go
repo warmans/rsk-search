@@ -7,30 +7,51 @@ import (
 	"time"
 )
 
-//go:embed data/xfm-episode-map.json
-var xfmEpisodeIndex embed.FS
+//go:embed data/xfm-episode-date-map.json
+var xfmEpisodeDateIndex embed.FS
+
+//go:embed data/xfm-episode-order.json
+var xfmOrderedEpisodes embed.FS
 
 var parsedIndex = map[string]string{}
 var episodeIDMap = map[string]struct{}{}
+var episodeOrder = []string{}
 
 func init() {
-	f, err := xfmEpisodeIndex.Open("data/xfm-episode-map.json")
+	epIndexFile, err := xfmEpisodeDateIndex.Open("data/xfm-episode-date-map.json")
 	if err != nil {
 		panic("failed to open embedded metadata: " + err.Error())
 	}
-	defer f.Close()
-	dec := json.NewDecoder(f)
+	defer epIndexFile.Close()
+	dec := json.NewDecoder(epIndexFile)
 	if err := dec.Decode(&parsedIndex); err != nil {
 		panic("failed to decode metadata: " + err.Error())
 	}
 	for _, v := range parsedIndex {
 		episodeIDMap[fmt.Sprintf("ep-%s-%s", PublicationXFM, v)] = struct{}{}
 	}
+
+	orderedEpsFile, err := xfmOrderedEpisodes.Open("data/xfm-episode-order.json")
+	if err != nil {
+		panic("failed to open embedded metadata: " + err.Error())
+	}
+	defer orderedEpsFile.Close()
+	if err := json.NewDecoder(orderedEpsFile).Decode(&episodeOrder); err != nil {
+		panic("failed to decode metadata: " + err.Error())
+	}
 }
 
-func XfmEpisodeNames() map[string]string {
+func XfmEpisodeDates() map[string]string {
 	cpy := map[string]string{}
 	for k, v := range parsedIndex {
+		cpy[k] = v
+	}
+	return cpy
+}
+
+func XfmEpisodeList() []string {
+	cpy := make([]string, len(episodeOrder))
+	for k, v := range episodeOrder {
 		cpy[k] = v
 	}
 	return cpy
