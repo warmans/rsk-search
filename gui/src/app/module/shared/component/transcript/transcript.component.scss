@@ -1,9 +1,5 @@
 @import 'src/scss/variables';
 
-$color-ricky: rgba(249, 223, 22, 0.1);
-$color-steve: rgba(63, 247, 39, 0.1);
-$color-karl: rgba(75, 244, 244, 0.1);
-
 .line {
   border-left: 5px solid;
   border-left: 5px solid transparent;
@@ -11,19 +7,18 @@ $color-karl: rgba(75, 244, 244, 0.1);
 
 .line.steve {
   background-color: $color-steve;
-  border-color: rgb(63, 247, 39)
+  border-color: $color-steve-saturated
 }
 
 .line.ricky {
   background-color: $color-ricky;
-  border-color: rgba(249, 223, 22, 1);
+  border-color: $color-ricky-saturated;
 }
 
 .line.karl {
   background-color: $color-karl;
-  border-color: rgb(75, 244, 244);
+  border-color: $color-karl-saturated;
 }
-
 
 .line .actor {
   width: 80px;

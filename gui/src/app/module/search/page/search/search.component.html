@@ -1,6 +1,8 @@
 <div class="container-fluid pt-3" *ngIf="result?.results.length">
-  <div class="row">
-    <app-search-stats [rawStats]="result?.stats"></app-search-stats>
+  <div class="row mb-3">
+    <div class="col">
+      <app-search-stats [rawStats]="result?.stats"></app-search-stats>
+    </div>
   </div>
   <div class="row">
     <div class="col">

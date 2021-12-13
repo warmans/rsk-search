@@ -27,24 +27,21 @@ export class SearchStatsComponent implements OnInit {
 
   public lineChartOptions: ChartConfiguration['options'] = {
     elements: {
+      point: {
+        radius: 1,
+        backgroundColor: 'transparent'
+      },
       line: {
-        tension: 0.5
+        tension: 0.2,
+        fill: false,
       }
     },
-    scales: {
-      x: {},
-      'y-axis-0':
-        {
-          position: 'left',
-        },
-      'y-axis-1': {
-        position: 'right',
-        grid: {
-          color: 'rgba(255,0,0,0.3)',
-        },
-        ticks: {
-          color: 'red'
-        }
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        position: 'nearest',
+        displayColors: true,
+        intersect: false,
       }
     },
   };
@@ -58,21 +55,45 @@ export class SearchStatsComponent implements OnInit {
 
   updateCharts() {
     this.episodeCountData = {
-      datasets: [
-        {
-          data: this._rawStats['xfm_episode_count'].values,
-          label: 'Episodes',
-          backgroundColor: 'rgba(148,159,177,0.2)',
-          borderColor: 'rgba(148,159,177,1)',
-          pointBackgroundColor: 'rgba(148,159,177,1)',
-          pointBorderColor: '#fff',
-          pointHoverBackgroundColor: '#fff',
-          pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-          fill: 'origin',
-        },
-      ],
-      labels: this._rawStats['xfm_episode_count'].labels
+      datasets: [],
+      labels: undefined,
     };
+
+    for (let rawStatsKey in this._rawStats) {
+      if (this._rawStats.hasOwnProperty(rawStatsKey)) {
+
+        if (this.episodeCountData.labels === undefined) {
+          // just take the first one as they should be identical anyway.
+          this.episodeCountData.labels = this._rawStats[rawStatsKey].labels;
+        }
+        const set = {
+          data: this._rawStats[rawStatsKey].values,
+          label: `${rawStatsKey ? rawStatsKey : 'other'} mentions`,
+          borderColor: this.getLineColor(rawStatsKey),
+          backgroundColor: this.getLineColor(rawStatsKey),
+          pointBackgroundColor: this.getLineColor(rawStatsKey),
+          pointBorderColor: 'transparent',
+          interaction: {
+            intersect: false
+          },
+        };
+        this.episodeCountData.datasets.push(set);
+      }
+    }
   }
 
+  getLineColor(dataName: string): string | undefined {
+
+    // don't know how to use scss classes for plots - see variables.scss :/
+    switch (dataName) {
+      case 'ricky':
+        return 'rgb(249, 223, 22)';
+      case 'steve':
+        return 'rgb(63, 247, 39)';
+      case 'karl':
+        return 'rgb(75, 244, 244)';
+      default:
+        return undefined;
+    }
+  }
 }

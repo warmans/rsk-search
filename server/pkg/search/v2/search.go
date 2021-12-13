@@ -37,10 +37,11 @@ func (s *Search) Search(ctx context.Context, f filter.Filter, page int32) (*api.
 		return nil, err
 	}
 
+	agg := aggregations.NewTermsAggregation(search2.Field("actor"), 25)
+	agg.AddAggregation("transcript_id", aggregations.NewTermsAggregation(search2.Field("transcript_id"), 150))
+
 	req := bluge.NewTopNSearch(PageSize, query).SetFrom(PageSize * int(page)).WithStandardAggregations()
-	req.AddAggregation("actor_count", aggregations.NewTermsAggregation(search2.Field("actor"), 25))
-	// todo: how to filter by publication?
-	req.AddAggregation("xfm_episode_count", aggregations.NewTermsAggregation(search2.Field("transcript_id"), 150))
+	req.AddAggregation("actor_count_over_time", agg)
 
 	dmi, err := s.index.Search(ctx, req)
 	if err != nil {
@@ -49,42 +50,29 @@ func (s *Search) Search(ctx context.Context, f filter.Filter, page int32) (*api.
 	res := &api.SearchResultList{
 		ResultCount: int32(dmi.Aggregations().Count()),
 		Results:     []*api.SearchResult{},
-		Stats: map[string]*api.SearchStats{
-			"xfm_episode_count": {
-				Labels: []string{},
-				Values: []float32{},
-			},
-			"actor_count": {
-				Labels: []string{},
-				Values: []float32{},
-			},
-		},
+		Stats:       map[string]*api.SearchStats{},
 	}
 
-	for _, statName := range []string{"actor_count"} {
-		res.Stats[statName] = &api.SearchStats{
+	for _, actorBucket := range dmi.Aggregations().Aggregation("actor_count_over_time").(search2.BucketCalculator).Buckets() {
+		res.Stats[actorBucket.Name()] = &api.SearchStats{
 			Labels: []string{},
 			Values: []float32{},
 		}
-		for _, b := range dmi.Aggregations().Aggregation(statName).(search2.BucketCalculator).Buckets() {
-			res.Stats[statName].Labels = append(res.Stats[statName].Labels, b.Name())
-			res.Stats[statName].Values = append(res.Stats[statName].Values, float32(b.Count()))
-		}
-	}
 
-	// fill in gaps in the episode stats to give a complete time-series
-	for _, episodeID := range meta.XfmEpisodeList() {
-		var found = false
-		for _, b := range dmi.Aggregations().Aggregation("xfm_episode_count").(search2.BucketCalculator).Buckets() {
-			if strings.HasPrefix(b.Name(), "ep-xfm-") && episodeID == strings.TrimPrefix(b.Name(), "ep-xfm-") {
-				res.Stats["xfm_episode_count"].Labels = append(res.Stats["xfm_episode_count"].Labels, episodeID)
-				res.Stats["xfm_episode_count"].Values = append(res.Stats["xfm_episode_count"].Values, float32(b.Count()))
-				found = true
+		// fill in gaps in the episode stats to give a complete time-series
+		for _, episodeID := range meta.XfmEpisodeList() {
+			var found = false
+			for _, b := range actorBucket.Aggregation("transcript_id").(search2.BucketCalculator).Buckets() {
+				if strings.HasPrefix(b.Name(), "ep-xfm-") && episodeID == strings.TrimPrefix(b.Name(), "ep-xfm-") {
+					res.Stats[actorBucket.Name()].Labels = append(res.Stats[actorBucket.Name()].Labels, episodeID)
+					res.Stats[actorBucket.Name()].Values = append(res.Stats[actorBucket.Name()].Values, float32(b.Count()))
+					found = true
+				}
 			}
-		}
-		if !found {
-			res.Stats["xfm_episode_count"].Labels = append(res.Stats["xfm_episode_count"].Labels, episodeID)
-			res.Stats["xfm_episode_count"].Values = append(res.Stats["xfm_episode_count"].Values, float32(0))
+			if !found {
+				res.Stats[actorBucket.Name()].Labels = append(res.Stats[actorBucket.Name()].Labels, episodeID)
+				res.Stats[actorBucket.Name()].Values = append(res.Stats[actorBucket.Name()].Values, float32(0))
+			}
 		}
 	}
 
