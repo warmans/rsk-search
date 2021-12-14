@@ -84,6 +84,11 @@ dev.populate.test-data: build
 .PHONY: dev.extract.test-data
 dev.extract.test-data: build
 	./bin/rsk-search db extract-tscript --rw-db-dsn=${DEV_DB_DSN} --dry-run=true
+	$(MAKE) dev.infer-offsets
+
+.PHONY: dev.infer-offsets
+dev.infer-offsets:
+	./bin/rsk-search data infer-missing-offsets
 
 .PHONY: update.transcriptions
 update.transcriptions:
