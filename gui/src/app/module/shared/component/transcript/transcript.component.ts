@@ -9,9 +9,10 @@ import { ViewportScroller } from '@angular/common';
 })
 export class TranscriptComponent implements OnInit, AfterViewInit {
 
+
   @Input()
   set transcript(value: RskDialog[]) {
-    if (!value){
+    if (!value) {
       return;
     }
     this._transcript = value;
@@ -30,13 +31,26 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
   private _transcript: RskDialog[];
 
   @Input()
-  scrollToID: string;
+  set scrollToID(value: string) {
+    console.log('scroll to', value);
+    this._scrollToID = value;
+    this.scrollToAnchor();
+  }
+
+  get scrollToID(): string {
+    return this._scrollToID;
+  }
+
+  private _scrollToID: string;
+
+  scrollToPosStart: number;
+  scrollToPosEnd: number;
 
   @Input()
-  enableAudioOffsets: boolean = false;
+  searchResultMode: boolean = false;
 
   @Input()
-  enableLineLinks: boolean = false;
+  enableLineLinking: boolean = false;
 
   @Output()
   emitAudioTimestamp: EventEmitter<number> = new EventEmitter();
@@ -50,7 +64,7 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
   };
 
   constructor(private viewportScroller: ViewportScroller) {
-    viewportScroller.setOffset([0, 80]);
+    viewportScroller.setOffset([0, window.innerHeight / 2]);
   }
 
   ngOnInit(): void {
@@ -64,7 +78,30 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.viewportScroller.scrollToAnchor(this.scrollToID);
+    this.scrollToAnchor();
+  }
+
+  scrollToAnchor() {
+    if (!this._scrollToID) {
+      this.scrollToPosStart = undefined;
+      this.scrollToPosEnd = undefined;
+      return;
+    }
+    let parts = this._scrollToID.split('-');
+    if (parts.length === 2) {
+      this.viewportScroller.scrollToAnchor(this._scrollToID);
+      this.scrollToPosStart = parseInt(parts[1]);
+      this.scrollToPosEnd = this.scrollToPosStart;
+    } else if (parts.length === 3) {
+      this.viewportScroller.scrollToAnchor(`${parts[0]}-${parts[1]}`);
+      this.scrollToPosStart = parseInt(parts[1]);
+      this.scrollToPosEnd = parseInt(parts[2]);
+    }
+  }
+
+  clearFocus() {
+    this.scrollToPosStart = undefined;
+    this.scrollToPosEnd = undefined;
   }
 
   emitTimestamp(ts: number) {

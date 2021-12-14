@@ -1,19 +1,35 @@
 <div class="d-flex" *ngFor="let line of transcript">
 
-  <div *ngIf="audioOffsetsAvailable && enableAudioOffsets"  class="text-sm timestamp mb-2 p-2 flex-shrink-0 d-flex flex-column justify-content-center" style="width: 5rem">
-    <div title="Faded timestamps are inferred and may not be accurate. These can be improved using the corrections feature." [ngClass]="{'text-muted': line.offsetInferred}" *ngIf="line.offsetSec > 0" (click)="emitTimestamp(line.offsetSec)" class="clickable"><i class="bi-caret-right"></i>{{line.offsetSec | formatSeconds}}</div>
+  <div *ngIf="audioOffsetsAvailable && !searchResultMode"
+       class="text-sm timestamp mb-2 p-2 flex-shrink-0 d-flex flex-column justify-content-center" style="width: 5rem">
+    <div
+      title="Faded timestamps are inferred and may not be accurate. These can be improved using the corrections feature."
+      [ngClass]="{'text-muted': line.offsetInferred}" *ngIf="line.offsetSec > 0" (click)="emitTimestamp(line.offsetSec)"
+      class="clickable"><i class="bi-caret-right"></i>{{line.offsetSec | formatSeconds}}
+    </div>
   </div>
 
   <div class="line d-flex mb-2 p-2 {{actorClass(line)}}"
-       [ngClass]="{'matched': line.isMatchedRow, 'font-italic': line.notable }"
+       [ngClass]="{'matched': searchResultMode && line.isMatchedRow, 'not-matched': searchResultMode && !line.isMatchedRow, 'font-italic': line.notable, 'focus': line.pos  >= scrollToPosStart || line.pos <= scrollToPosEnd, 'mute': (scrollToPosStart > 0 && !searchResultMode ? (line.pos < scrollToPosStart || line.pos > scrollToPosEnd) : false) }"
        id="pos-{{line.pos}}">
-    <div class="actor mr-2 text-capitalize">{{line.type === "chat" ? line.actor : (line.type === 'unknown' ? '' : line.type)}}</div>
+    <div class="actor mr-2 text-capitalize">{{line.type === "chat" ? line.actor : (line.type === 'unknown' ? '' :
+      line.type)}}
+    </div>
     <div class="col">
       <span *ngIf="line.type === 'song'">
-        {{line.content}} <a class="badge badge-success" [href]="line?.metadata['spotify_uri'] | safeUrl" *ngIf="line?.metadata && line?.metadata['spotify_uri']">spotify</a>
+        {{line.content}} <a class="badge badge-success" [href]="line?.metadata['spotify_uri'] | safeUrl"
+                            *ngIf="line?.metadata && line?.metadata['spotify_uri']">spotify</a>
       </span>
       <span *ngIf="line.type !== 'song'">{{line.content}}</span>
     </div>
   </div>
-  <div class="mb-2 p-2 d-flex flex-column justify-content-center"><span class="" *ngIf="enableLineLinks"><a title="link to this line" [routerLink]="" [fragment]="'pos-'+line.pos" class="text-black-50"><i class="bi-link"></i></a></span></div>
+  <div class="mb-2 ml-2 d-flex flex-column justify-content-center" *ngIf="enableLineLinking">
+    <span>
+      <a *ngIf="scrollToPosStart != line.pos" title="link to this line" [routerLink]="['./']" [fragment]="'pos-'+line.pos" class="text-black-50">
+        <i class="bi-link"></i>
+      </a>
+    </span>
+    <button *ngIf="scrollToPosStart > 0 && scrollToPosStart == line.pos" title="Currently this section is focussed, you can clear the focus by clicking this button." (click)="clearFocus()" class="btn btn-secondary btn-sm">Clear Focus</button>
+  </div>
+
 </div>

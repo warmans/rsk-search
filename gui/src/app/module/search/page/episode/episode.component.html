@@ -112,8 +112,8 @@
           <app-transcript
             [transcript]="episode.transcript"
             [scrollToID]="scrollToID"
-            [enableLineLinks]="true"
-            [enableAudioOffsets]="true"
+            [searchResultMode]="false"
+            [enableLineLinking]="true"
             (emitAudioTimestamp)="onAudioTimestamp($event)"></app-transcript>
           <div *ngIf="!episode?.transcript?.length" class="text-center p-4">No transcript available.</div>
         </div>

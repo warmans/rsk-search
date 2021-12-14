@@ -11,6 +11,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { GlSearchFilterComponent } from './component/gl-search-filter/gl-search-filter.component';
 import { NgChartsModule } from 'ng2-charts';
 import { SearchStatsComponent } from './component/search-stats/search-stats.component';
+import { MatchedRowPosPipe } from './pipe/match-row-pos.pipe';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { SearchStatsComponent } from './component/search-stats/search-stats.comp
     GlSearchComponent,
     GlSearchFilterComponent,
     SearchStatsComponent,
+    MatchedRowPosPipe,
   ],
   imports: [
     CommonModule,

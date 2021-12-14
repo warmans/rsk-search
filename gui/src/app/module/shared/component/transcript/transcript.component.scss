@@ -25,6 +25,6 @@
   font-weight: bold;
 }
 
-.line.matched {
-  font-weight: bold;
+.line.mute, .line.not-matched {
+  opacity: 0.5;
 }
