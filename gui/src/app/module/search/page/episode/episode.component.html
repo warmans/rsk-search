@@ -46,10 +46,10 @@
             </div>
           </div>
         </div>
-        <div *ngIf="episode.synopses && episode.synopses.length > 0">
+        <div *ngIf="episode?.synopses?.length > 0">
           <div class="card-header">
             <div class="d-flex">
-              <div class="flex-grow-1 font-weight-bold">Synopsis</div>
+              <div class="flex-grow-1 font-weight-bold"><i class="bi bi-card-list mr-1"></i> Synopsis</div>
             </div>
           </div>
           <div class="card-body p-3">
@@ -66,10 +66,30 @@
             </ul>
           </div>
         </div>
+        <div *ngIf="episode?.trivia?.length > 0">
+          <div class="card-header">
+            <div class="d-flex">
+              <div class="flex-grow-1 font-weight-bold"><i class="bi bi-card-list mr-1"></i> Trivia</div>
+            </div>
+          </div>
+          <div class="card-body p-3">
+            <ul class="m-0">
+              <li *ngFor="let tri of episode?.trivia">
+                <!--
+                -- todo: Synopsis offsets are wrong somehow
+                {{syn.startPos}} - {{syn.endPos}}
+                <a *ngIf="syn.startPos > 0" [routerLink]="['/ep', episode?.id]" [fragment]="'pos-'+(syn.startPos)">{{syn.description}}</a>
+                <span *ngIf="syn.startPos === undefined || syn.startPos === null">{{syn.description}}</span>
+                -->
+                <span>{{tri.description}}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
         <div *ngIf="quotes && quotes.length > 0">
           <div class="card-header">
             <div class="d-flex">
-              <div class="flex-grow-1 font-weight-bold">Quotes</div>
+              <div class="flex-grow-1 font-weight-bold"><i class="bi bi-chat-left-quote mr-1"></i> Quotes</div>
             </div>
           </div>
           <div class="card-body p-3">
@@ -85,27 +105,28 @@
         <div>
           <div class="card-header">
             <div class="d-flex">
-              <div class="flex-grow-1 font-weight-bold">Audio</div>
+              <div class="flex-grow-1 font-weight-bold"><i class="bi bi-voicemail mr-1"></i> Audio</div>
             </div>
           </div>
           <div class="card-body p-3">
             <app-audio-player [src]="audioLink" [playbackRate]="1.0" #audioPlayer></app-audio-player>
-            <div class="text-right text-sm mt-2">
+            <!--div class="text-right text-sm mt-2">
               alternatve: <a *ngIf="episode.metadata['spotify_uri']"
                              [href]="episode.metadata['spotify_uri'] | safeUrl"> Tinpotradio (spotify)</a>
-            </div>
+            </div-->
           </div>
         </div>
         <div class="card-header">
           <div class="d-flex">
             <div class="flex-grow-1 font-weight-bold">
-              Transcript
+              <i class="bi bi-text-left mr-1"></i> Transcript
               <!-- logic for transcript complete flag incomplete-->
               <span *ngIf="episode.incomplete" class="badge badge-warning ml-3">Incomplete</span>
             </div>
-            <div *ngIf="authenticated && pendingChanges?.length === 0 && !episode.incomplete">
+            <!-- disabled to fix synopsis/trivia exports -->
+            <!--div *ngIf="authenticated && pendingChanges?.length === 0 && !episode.incomplete">
               <a class="btn btn-sm btn-info" [routerLink]="['/ep', id, 'change']">Submit Correction</a>
-            </div>
+            </div-->
           </div>
         </div>
         <div class="card-body p-3">

@@ -13,7 +13,7 @@ import (
 const PosSpacing = 100
 
 // Import imports plain text transcripts to JSON.
-func Import(scanner *bufio.Scanner, startPos int64) ([]models.Dialog, []models.Synopsis, error) {
+func Import(scanner *bufio.Scanner, startPos int64) ([]models.Dialog, []models.Synopsis, []models.Trivia, error) {
 
 	output := make([]models.Dialog, 0)
 	position := startPos
@@ -22,6 +22,9 @@ func Import(scanner *bufio.Scanner, startPos int64) ([]models.Dialog, []models.S
 
 	synopsies := make([]models.Synopsis, 0)
 	var currentSynopsis *models.Synopsis
+
+	trivia := make([]models.Trivia, 0)
+	var currentTrivia *models.Trivia
 
 	for scanner.Scan() {
 		position += PosSpacing
@@ -43,7 +46,7 @@ func Import(scanner *bufio.Scanner, startPos int64) ([]models.Dialog, []models.S
 		if IsOffsetTag(line) {
 			if offset, ok := ScanOffset(line); ok {
 				if offset > 0 && offset <= lastOffset {
-					return nil, nil, fmt.Errorf("offsets are invalid")
+					return nil, nil, nil, fmt.Errorf("offsets are invalid")
 				}
 				lastOffset = offset
 				numOffsets++
@@ -59,6 +62,17 @@ func Import(scanner *bufio.Scanner, startPos int64) ([]models.Dialog, []models.S
 			}
 			if strings.HasPrefix(line, "#SYN: ") {
 				currentSynopsis = &models.Synopsis{Description: CorrectContent(strings.TrimSpace(strings.TrimPrefix(line, "#SYN:"))), StartPos: position}
+			}
+			continue
+		}
+		if strings.HasPrefix(line, "#TRIVIA: ") || strings.HasPrefix(line, "#/TRIVIA") {
+			if currentTrivia != nil {
+				currentTrivia.EndPos = position - PosSpacing
+				trivia = append(trivia, *currentTrivia)
+				currentTrivia = nil
+			}
+			if strings.HasPrefix(line, "#TRIVIA: ") {
+				currentTrivia = &models.Trivia{Description: CorrectContent(strings.TrimSpace(strings.TrimPrefix(line, "#TRIVIA:"))), StartPos: position}
 			}
 			continue
 		}
@@ -79,7 +93,7 @@ func Import(scanner *bufio.Scanner, startPos int64) ([]models.Dialog, []models.S
 		// line should be in the format "actor: text..."
 		parts := strings.SplitN(line, ":", 2)
 		if len(parts) != 2 {
-			return nil, nil, fmt.Errorf("line did not start with actor name or tag: %s", line)
+			return nil, nil, nil, fmt.Errorf("line did not start with actor name or tag: %s", line)
 		}
 
 		actor := strings.ToLower(strings.TrimSuffix(strings.TrimSpace(parts[0]), ":"))
@@ -97,19 +111,23 @@ func Import(scanner *bufio.Scanner, startPos int64) ([]models.Dialog, []models.S
 	}
 
 	if err := scanner.Err(); err != nil {
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 	if currentSynopsis != nil {
 		currentSynopsis.EndPos = position
 		synopsies = append(synopsies, *currentSynopsis)
 	}
+	if currentTrivia != nil {
+		currentTrivia.EndPos = position
+		trivia = append(trivia, *currentTrivia)
+	}
 
-	return output, synopsies, nil
+	return output, synopsies, trivia, nil
 }
 
 // Export dumps dialog back to the raw format.
 // the problem is this loses most of the metadata and it's not at all easy to
-func Export(dialog []models.Dialog, synopsis []models.Synopsis) (string, error) {
+func Export(dialog []models.Dialog, synopsis []models.Synopsis, trivia []models.Trivia) (string, error) {
 
 	output := strings.Builder{}
 	for _, d := range dialog {
@@ -122,6 +140,14 @@ func Export(dialog []models.Dialog, synopsis []models.Synopsis) (string, error) 
 			}
 			if d.Position == syn.EndPos {
 				output.WriteString("#/SYN\n")
+			}
+		}
+		for _, triv := range trivia {
+			if d.Position == triv.StartPos {
+				output.WriteString(fmt.Sprintf("#TRIVIA: %s\n", triv.Description))
+			}
+			if d.Position == triv.EndPos {
+				output.WriteString("#/TRIVIA\n")
 			}
 		}
 

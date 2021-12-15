@@ -211,4 +211,8 @@ export class TranscriberComponent implements OnInit, OnDestroy {
     this.editorComponent.insertOffsetAboveCaret(Math.round(startOffset + this.audioPlayer.currentTime()));
   }
 
+  insertTextAboveCaret(text: string) {
+    this.editorComponent.insertTextAboveCaret(text);
+  }
+
 }

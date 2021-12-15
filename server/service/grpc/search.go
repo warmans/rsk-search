@@ -119,7 +119,7 @@ func (s *SearchService) Search(ctx context.Context, request *api.SearchRequest) 
 	return s.searchBackend.Search(ctx, f, request.Page)
 }
 
-func (s *SearchService) GetTranscript(ctx context.Context, request *api.GetTranscriptRequest) (*api.Transcript, error) {
+func (s *SearchService) GetTranscript(_ context.Context, request *api.GetTranscriptRequest) (*api.Transcript, error) {
 	ep, err := s.episodeCache.GetEpisode(request.Epid)
 	if err == data.ErrNotFound || ep == nil {
 		return nil, ErrNotFound(request.Epid).Err()
@@ -127,7 +127,7 @@ func (s *SearchService) GetTranscript(ctx context.Context, request *api.GetTrans
 	var rawTranscript string
 	if request.WithRaw {
 		var err error
-		rawTranscript, err = transcript.Export(ep.Transcript, ep.Synopsis)
+		rawTranscript, err = transcript.Export(ep.Transcript, ep.Synopsis, ep.Trivia)
 		if err != nil {
 			return nil, ErrInternal(err).Err()
 		}
@@ -135,22 +135,12 @@ func (s *SearchService) GetTranscript(ctx context.Context, request *api.GetTrans
 	return ep.Proto(rawTranscript, fmt.Sprintf(s.srvCfg.AudioUriPattern, ep.ShortID())), nil
 }
 
-func (s *SearchService) ListTranscripts(ctx context.Context, request *api.ListTranscriptsRequest) (*api.TranscriptList, error) {
+func (s *SearchService) ListTranscripts(_ context.Context, _ *api.ListTranscriptsRequest) (*api.TranscriptList, error) {
 	el := &api.TranscriptList{
 		Episodes: []*api.ShortTranscript{},
 	}
-	err := s.staticDB.WithStore(func(s *ro.Store) error {
-		eps, err := s.ListEpisodes(ctx)
-		if err != nil {
-			return err
-		}
-		for _, e := range eps {
-			el.Episodes = append(el.Episodes, e.ShortProto())
-		}
-		return nil
-	})
-	if err != nil {
-		return nil, ErrFromStore(err, "").Err()
+	for _, ep := range s.episodeCache.ListEpisodes() {
+		el.Episodes = append(el.Episodes, ep.ShortProto())
 	}
 	return el, nil
 }

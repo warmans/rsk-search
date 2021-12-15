@@ -3,12 +3,7 @@ import { SearchAPIClient } from '../../../../lib/api-client/services/search';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
-import {
-  RskChunkStats,
-  RskSearchResultList,
-  RskShortTranscript,
-  RskTranscriptList
-} from '../../../../lib/api-client/models';
+import { RskChunkStats, RskSearchResultList } from '../../../../lib/api-client/models';
 
 @Component({
   selector: 'app-search',
@@ -18,10 +13,6 @@ import {
 export class SearchComponent implements OnInit, OnDestroy {
 
   loading: boolean[] = [];
-
-  showSeries: number[] = [1, 2, 3, 4];
-
-  transcriptList: RskShortTranscript[] = [];
 
   result: RskSearchResultList;
   pages: number[] = [];
@@ -45,25 +36,13 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.titleService.setTitle('Scrimpton');
-    this.listEpisodes();
+    this.titleService.setTitle('Scrimpton Search');
     this.getChunkStats();
   }
 
   ngOnDestroy(): void {
     this.unsubscribe$.next(true);
     this.unsubscribe$.complete();
-  }
-
-  listEpisodes() {
-    this.loading.push(true);
-    this.apiClient.listTranscripts().pipe(
-      takeUntil(this.unsubscribe$),
-    ).subscribe((res: RskTranscriptList) => {
-      this.transcriptList = res.episodes;
-    }).add(() => {
-      this.loading.pop();
-    });
   }
 
   getChunkStats() {
@@ -83,7 +62,7 @@ export class SearchComponent implements OnInit, OnDestroy {
       page: page
     }).pipe(
       takeUntil(this.unsubscribe$),
-    ).subscribe((res:RskSearchResultList) => {
+    ).subscribe((res: RskSearchResultList) => {
       this.result = res;
       let totalPages = Math.ceil(res.resultCount / 15);
       this.pages = Array(Math.min(totalPages, 10)).fill(0).map((x, i) => i);

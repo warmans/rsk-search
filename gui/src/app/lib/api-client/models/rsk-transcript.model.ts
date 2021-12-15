@@ -2,6 +2,7 @@
 import {
   RskDialog,
   RskSynopsis,
+  RskTrivia,
 } from '.';
 
 export interface RskTranscript {
@@ -18,4 +19,5 @@ export interface RskTranscript {
   shortId?: string;
   synopses?: RskSynopsis[];
   transcript?: RskDialog[];
+  trivia?: RskTrivia[];
 }

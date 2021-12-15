@@ -20,6 +20,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EditorHelpComponent } from './component/editor-help/editor-help.component';
 import { TranscriberComponent } from './component/transcriber/transcriber.component';
 import { FormatSecondsPipe } from './pipe/format-seconds.pipe';
+import { TriviaComponent } from './component/trivia/trivia.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { FormatSecondsPipe } from './pipe/format-seconds.pipe';
     TranscriptComponent,
     AudioPlayerComponent,
     SynopsesComponent,
+    TriviaComponent,
     WebhidDeviceComponent,
     WebusbDeviceComponent,
     ContributionStateComponent,

@@ -28,7 +28,22 @@
 <div class="card" [hidden]="!(activeTab==='edit')">
   <div class="card-header sticky-top">
 
-      <button class="btn btn-success btn-sm mr-3" *ngIf="allowEdit" (click)="insertOffsetAboveCaret()" title="Add an #OFFSET tag above the cursor to the current audio timestamp">Insert current #OFFSET</button>
+      <button class="btn btn-success btn-sm mr-3" *ngIf="allowEdit" (click)="insertOffsetAboveCaret()" title="Add an #OFFSET tag above the cursor to the current audio timestamp">
+        #OFFSET (current)
+      </button>
+
+    <button class="btn btn-success btn-sm mr-3" *ngIf="allowEdit" (click)="insertTextAboveCaret('#SYN: ')" title="Add an opening #SYN:  tag above the cursor">
+      #SYN
+    </button>
+    <button class="btn btn-success btn-sm mr-3" *ngIf="allowEdit" (click)="insertTextAboveCaret('#/SYN')" title="Add a closing #/SYN tag above the cursor">
+      #/SYN
+    </button>
+    <button class="btn btn-success btn-sm mr-3" *ngIf="allowEdit" (click)="insertTextAboveCaret('#TRIVIA: ')" title="Add an opening #TRIVIA: tag above the cursor">
+      #TRIVIA
+    </button>
+    <button class="btn btn-success btn-sm mr-3" *ngIf="allowEdit" (click)="insertTextAboveCaret('#/TRIVIA')" title="Add a closing #/TRIVIA tag above the cursor">
+      #/TRIVIA
+    </button>
 
       <span class="float-right">
         <button class="btn btn-sm" (click)="showHelp = !showHelp"
@@ -86,6 +101,7 @@
   </div>
   <div class="card-body preview-window">
     <app-synopses [synopses]="parsedTscript?.synopses"></app-synopses>
+    <app-trivia [trivia]="parsedTscript?.trivia"></app-trivia>
     <app-transcript [transcript]="parsedTscript?.dialog" [searchResultMode]="false" [enableLineLinking]="true"></app-transcript>
   </div>
 </div>

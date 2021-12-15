@@ -80,6 +80,7 @@ type Transcript struct {
 	Transcript   []Dialog   `json:"transcript"`
 	Synopsis     []Synopsis `json:"synopsis"`
 	Contributors []string   `json:"contributors"`
+	Trivia       []Trivia   `json:"trivia"`
 }
 
 func (e *Transcript) ID() string {
@@ -95,10 +96,18 @@ func (e *Transcript) ShortProto() *api.ShortTranscript {
 		return nil
 	}
 	ep := &api.ShortTranscript{
-		Id:          e.ID(),
-		Publication: e.Publication,
-		Series:      e.Series,
-		Episode:     e.Episode,
+		Id:                  e.ID(),
+		Publication:         e.Publication,
+		Series:              e.Series,
+		Episode:             e.Episode,
+		TranscriptAvailable: len(e.Transcript) > 0,
+		Incomplete:          e.Incomplete,
+		ReleaseDate:         e.ReleaseDate.Format(util.ShortDateFormat),
+		Summary:             "", //todo
+		Synopsis:            make([]string, len(e.Synopsis)),
+	}
+	for k, s := range e.Synopsis {
+		ep.Synopsis[k] = s.Description
 	}
 	return ep
 }
@@ -126,29 +135,10 @@ func (e *Transcript) Proto(withRawTranscript string, audioURI string) *api.Trans
 	for _, s := range e.Synopsis {
 		ep.Synopses = append(ep.Synopses, s.Proto())
 	}
+	for _, t := range e.Trivia {
+		ep.Trivia = append(ep.Trivia, t.Proto())
+	}
 	return ep
-}
-
-type ShortTranscript struct {
-	ID                  string
-	Publication         string
-	Series              int32
-	Episode             int32
-	ReleaseDate         time.Time
-	TranscriptAvailable bool
-}
-
-func (e *ShortTranscript) ShortProto() *api.ShortTranscript {
-	if e == nil {
-		return nil
-	}
-	return &api.ShortTranscript{
-		Id:                  e.ID,
-		Publication:         e.Publication,
-		Series:              e.Series,
-		Episode:             e.Episode,
-		TranscriptAvailable: e.TranscriptAvailable,
-	}
 }
 
 type DialogTags struct {
@@ -186,6 +176,20 @@ type Synopsis struct {
 
 func (f Synopsis) Proto() *api.Synopsis {
 	return &api.Synopsis{
+		Description: f.Description,
+		StartPos:    f.StartPos,
+		EndPos:      f.EndPos,
+	}
+}
+
+type Trivia struct {
+	Description string `json:"description"`
+	StartPos    int64  `json:"start_pos"`
+	EndPos      int64  `json:"end_pos"`
+}
+
+func (f Trivia) Proto() *api.Trivia {
+	return &api.Trivia{
 		Description: f.Description,
 		StartPos:    f.StartPos,
 		EndPos:      f.EndPos,

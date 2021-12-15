@@ -41,6 +41,7 @@ export { RskTranscript } from './rsk-transcript.model';
 export { RskTranscriptChange } from './rsk-transcript-change.model';
 export { RskTranscriptChangeList } from './rsk-transcript-change-list.model';
 export { RskTranscriptList } from './rsk-transcript-list.model';
+export { RskTrivia } from './rsk-trivia.model';
 export { RskTscriptList } from './rsk-tscript-list.model';
 export { RskTscriptStats } from './rsk-tscript-stats.model';
 export { RskUpdateChunkContributionRequest } from './rsk-update-chunk-contribution-request.model';

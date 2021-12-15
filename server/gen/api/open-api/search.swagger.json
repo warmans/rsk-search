@@ -395,6 +395,21 @@
         },
         "transcriptAvailable": {
           "type": "boolean"
+        },
+        "incomplete": {
+          "type": "boolean"
+        },
+        "releaseDate": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "synopsis": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },
@@ -469,6 +484,12 @@
         },
         "shortId": {
           "type": "string"
+        },
+        "trivia": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rskTrivia"
+          }
         }
       }
     },
@@ -480,6 +501,22 @@
           "items": {
             "$ref": "#/definitions/rskShortTranscript"
           }
+        }
+      }
+    },
+    "rskTrivia": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "startPos": {
+          "type": "string",
+          "format": "int64"
+        },
+        "endPos": {
+          "type": "string",
+          "format": "int64"
         }
       }
     }

@@ -108,6 +108,10 @@ message ShortTranscript {
   int32 series = 3;
   int32 episode = 4;
   bool transcript_available = 5;
+  bool incomplete = 6;
+  string release_date = 7;
+  string summary = 8;
+  repeated string synopsis = 9;
 }
 
 message DialogResult {
@@ -136,6 +140,12 @@ message Synopsis {
   int64 end_pos = 3;
 }
 
+message Trivia {
+  string description = 1;
+  int64 start_pos = 2;
+  int64 end_pos = 3;
+}
+
 message Tag {
   string name = 1;
   repeated string kind = 2;
@@ -157,6 +167,7 @@ message Transcript {
   string raw_transcript = 12;
   string audio_uri = 13;
   string short_id = 14;
+  repeated Trivia trivia = 15;
 }
 
 message GetTranscriptRequest {

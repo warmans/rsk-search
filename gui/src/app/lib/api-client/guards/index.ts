@@ -501,10 +501,18 @@ export function isRskShortTranscript(arg: any): arg is models.RskShortTranscript
     ( typeof arg.episode === 'undefined' || typeof arg.episode === 'number' ) &&
     // id?: string
     ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
+    // incomplete?: boolean
+    ( typeof arg.incomplete === 'undefined' || typeof arg.incomplete === 'boolean' ) &&
     // publication?: string
     ( typeof arg.publication === 'undefined' || typeof arg.publication === 'string' ) &&
+    // releaseDate?: string
+    ( typeof arg.releaseDate === 'undefined' || typeof arg.releaseDate === 'string' ) &&
     // series?: number
     ( typeof arg.series === 'undefined' || typeof arg.series === 'number' ) &&
+    // summary?: string
+    ( typeof arg.summary === 'undefined' || typeof arg.summary === 'string' ) &&
+    // synopsis?: string[]
+    ( typeof arg.synopsis === 'undefined' || (Array.isArray(arg.synopsis) && arg.synopsis.every((item: unknown) => typeof item === 'string')) ) &&
     // transcriptAvailable?: boolean
     ( typeof arg.transcriptAvailable === 'undefined' || typeof arg.transcriptAvailable === 'boolean' ) &&
 
@@ -578,6 +586,8 @@ export function isRskTranscript(arg: any): arg is models.RskTranscript {
     ( typeof arg.synopses === 'undefined' || (Array.isArray(arg.synopses) && arg.synopses.every((item: unknown) => isRskSynopsis(item))) ) &&
     // transcript?: RskDialog[]
     ( typeof arg.transcript === 'undefined' || (Array.isArray(arg.transcript) && arg.transcript.every((item: unknown) => isRskDialog(item))) ) &&
+    // trivia?: RskTrivia[]
+    ( typeof arg.trivia === 'undefined' || (Array.isArray(arg.trivia) && arg.trivia.every((item: unknown) => isRskTrivia(item))) ) &&
 
   true
   );
@@ -627,6 +637,21 @@ export function isRskTranscriptList(arg: any): arg is models.RskTranscriptList {
   typeof arg === 'object' &&
     // episodes?: RskShortTranscript[]
     ( typeof arg.episodes === 'undefined' || (Array.isArray(arg.episodes) && arg.episodes.every((item: unknown) => isRskShortTranscript(item))) ) &&
+
+  true
+  );
+  }
+
+export function isRskTrivia(arg: any): arg is models.RskTrivia {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // description?: string
+    ( typeof arg.description === 'undefined' || typeof arg.description === 'string' ) &&
+    // endPos?: string
+    ( typeof arg.endPos === 'undefined' || typeof arg.endPos === 'string' ) &&
+    // startPos?: string
+    ( typeof arg.startPos === 'undefined' || typeof arg.startPos === 'string' ) &&
 
   true
   );

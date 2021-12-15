@@ -151,7 +151,7 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 					continue
 				}
 
-				dialog, synopsis, err := transcript.Import(bufio.NewScanner(bytes.NewBufferString(chContribution.Transcription)), lastPos)
+				dialog, synopsis, trivia, err := transcript.Import(bufio.NewScanner(bytes.NewBufferString(chContribution.Transcription)), lastPos)
 				if err != nil {
 					return err
 				}
@@ -166,6 +166,7 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 				}
 				episodeOnDisk.Transcript = append(episodeOnDisk.Transcript, dialog...)
 				episodeOnDisk.Synopsis = append(episodeOnDisk.Synopsis, synopsis...)
+				episodeOnDisk.Trivia = append(episodeOnDisk.Trivia, trivia...)
 			}
 
 			contributors := []string{}

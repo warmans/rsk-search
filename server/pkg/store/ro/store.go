@@ -100,26 +100,6 @@ func (s *Store) GetDialogWithContext(ctx context.Context, dialogID string, withC
 	return s.getTranscriptForQuery(ctx, query, dialogID)
 }
 
-// should support filtering
-func (s *Store) ListEpisodes(ctx context.Context) ([]*models.ShortTranscript, error) {
-
-	results, err := s.tx.QueryxContext(ctx, "SELECT e.id, e.publication, e.series, e.episode, e.release_date, (SELECT COUNT(*) FROM dialog WHERE episode_id = e.id LIMIT 1) > 0 AS transcript_available FROM episode e ORDER BY e.series ASC, e.episode ASC")
-	if err != nil {
-		return nil, err
-	}
-	defer results.Close()
-
-	eps := []*models.ShortTranscript{}
-	for results.Next() {
-		ep := &models.ShortTranscript{}
-		if err := results.Scan(&ep.ID, &ep.Publication, &ep.Series, &ep.Episode, &ep.ReleaseDate, &ep.TranscriptAvailable); err != nil {
-			return nil, err
-		}
-		eps = append(eps, ep)
-	}
-	return eps, nil
-}
-
 func (s *Store) getTranscriptForQuery(ctx context.Context, query string, params ...interface{}) ([]models.Dialog, string, error) {
 
 	res, err := s.tx.QueryxContext(ctx, query, params...)

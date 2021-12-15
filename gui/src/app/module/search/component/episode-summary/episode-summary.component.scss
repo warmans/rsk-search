@@ -1,0 +1,18 @@
+@import "src/scss/variables";
+
+.episode-summary {
+  width: 100%;
+  .icon {
+    width: 42px;
+    height: 42px;
+    background-color: $primary;
+  }
+
+  .sub-title {
+    font-size: 0.8rem;
+  }
+
+  .foot {
+
+  }
+}

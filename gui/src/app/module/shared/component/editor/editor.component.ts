@@ -88,12 +88,19 @@ export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
-  private newOffsetElement(line: string): any{
+  private newOffsetElement(line: string): any {
     const el = this.renderer.createElement('span');
     el.innerText = `${line}\n`;
     el.className = 'do-not-edit';
-    return el
+    return el;
   }
+
+  private newTextElement(text: string): any {
+    const el = this.renderer.createElement('span');
+    el.innerText = `${text}\n`;
+    return el;
+  }
+
 
   private tryEmitOffset() {
     const caretFocus = this.getCaretFocus();
@@ -106,6 +113,12 @@ export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
     let sel = document.getSelection();
     let nd = sel.anchorNode;
     this.renderer.insertBefore(nd.parentNode, this.newOffsetElement(`#OFFSET: ${seconds}`), nd);
+  }
+
+  insertTextAboveCaret(text: string): void {
+    let sel = document.getSelection();
+    let nd = sel.anchorNode;
+    this.renderer.insertBefore(nd.parentNode, this.newTextElement(text), nd);
   }
 
   getCaretFocus(): CaretFocus {

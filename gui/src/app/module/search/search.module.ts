@@ -12,6 +12,8 @@ import { GlSearchFilterComponent } from './component/gl-search-filter/gl-search-
 import { NgChartsModule } from 'ng2-charts';
 import { SearchStatsComponent } from './component/search-stats/search-stats.component';
 import { MatchedRowPosPipe } from './pipe/match-row-pos.pipe';
+import { EpisodeListComponent } from './component/episode-list/episode-list.component';
+import { EpisodeSummaryComponent } from './component/episode-summary/episode-summary.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { MatchedRowPosPipe } from './pipe/match-row-pos.pipe';
     GlSearchFilterComponent,
     SearchStatsComponent,
     MatchedRowPosPipe,
+    EpisodeListComponent,
+    EpisodeSummaryComponent,
   ],
   imports: [
     CommonModule,

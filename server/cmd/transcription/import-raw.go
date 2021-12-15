@@ -26,9 +26,11 @@ func ImportRawCmd() *cobra.Command {
 
 			var dialog []models.Dialog
 			var synopsies []models.Synopsis
+			var trivia []models.Trivia
+
 			err := util.WithExistingFile(args[0], func(f *os.File) error {
 				var err error
-				dialog, synopsies, err = transcript.Import(bufio.NewScanner(f), 0)
+				dialog, synopsies, trivia, err = transcript.Import(bufio.NewScanner(f), 0)
 				return err
 			})
 			if err != nil {
@@ -42,6 +44,7 @@ func ImportRawCmd() *cobra.Command {
 
 			ep.Transcript = dialog
 			ep.Synopsis = synopsies
+			ep.Trivia = trivia
 
 			return data.ReplaceEpisodeFile(episodeDir, ep)
 		},

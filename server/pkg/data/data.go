@@ -8,6 +8,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/util"
 	"os"
 	"path"
+	"sort"
 	"strings"
 	"sync"
 )
@@ -28,7 +29,7 @@ func LoadEpisodeFile(dataDir string, fullName string) (*os.File, error) {
 	return os.Open(path.Join(dataDir, fmt.Sprintf("%s.json", fullName)))
 }
 
-func LoadEpisdeByEpisodeID(dataDir string, epID string) (*models.Transcript, error)  {
+func LoadEpisdeByEpisodeID(dataDir string, epID string) (*models.Transcript, error) {
 	f, err := LoadEpisodeFile(dataDir, epID)
 	if err != nil {
 		if os.IsNotExist(err) {
@@ -113,4 +114,24 @@ func (s *EpisodeCache) GetEpisode(id string) (*models.Transcript, error) {
 		return nil, ErrNotFound
 	}
 	return &ep, nil
+}
+
+func (s *EpisodeCache) ListEpisodes() []*models.Transcript {
+
+	list := []*models.Transcript{}
+
+	s.lock.RLock()
+	defer s.lock.RUnlock()
+	for _, v := range s.cache {
+		list = append(list, transcriptP(v))
+	}
+
+	sort.Slice(list, func(i, j int) bool {
+		return list[i].ReleaseDate.Before(list[j].ReleaseDate)
+	})
+	return list
+}
+
+func transcriptP(transcript models.Transcript) *models.Transcript {
+	return &transcript
 }
