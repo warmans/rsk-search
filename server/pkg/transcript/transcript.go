@@ -2,18 +2,29 @@ package transcript
 
 import (
 	"bufio"
+	"crypto/md5"
 	"fmt"
-	"github.com/lithammer/shortuuid/v3"
 	"github.com/warmans/rsk-search/pkg/models"
 	"strconv"
 	"strings"
 	"unicode"
 )
 
-const PosSpacing = 100
+const PosSpacing = 1
+
+func Validate(scanner *bufio.Scanner) error {
+	lines, _, _, err := Import(scanner, "", 0)
+	if err != nil {
+		return err
+	}
+	if len(lines) == 0 {
+		return fmt.Errorf("no valid lines parsed from transcript")
+	}
+	return nil
+}
 
 // Import imports plain text transcripts to JSON.
-func Import(scanner *bufio.Scanner, startPos int64) ([]models.Dialog, []models.Synopsis, []models.Trivia, error) {
+func Import(scanner *bufio.Scanner, episodeID string, startPos int64) ([]models.Dialog, []models.Synopsis, []models.Trivia, error) {
 
 	output := make([]models.Dialog, 0)
 	position := startPos
@@ -27,10 +38,10 @@ func Import(scanner *bufio.Scanner, startPos int64) ([]models.Dialog, []models.S
 	var currentTrivia *models.Trivia
 
 	for scanner.Scan() {
-		position += PosSpacing
 		notable := false
 
-		line := strings.TrimSpace(scanner.Text())
+		// strip space and non-breakable-spaces
+		line := strings.TrimSpace(strings.ReplaceAll(scanner.Text(), "\u00a0", " "))
 		if line == "" {
 			continue
 		}
@@ -56,7 +67,7 @@ func Import(scanner *bufio.Scanner, startPos int64) ([]models.Dialog, []models.S
 
 		if strings.HasPrefix(line, "#SYN: ") || strings.HasPrefix(line, "#/SYN") {
 			if currentSynopsis != nil {
-				currentSynopsis.EndPos = position - PosSpacing
+				currentSynopsis.EndPos = position
 				synopsies = append(synopsies, *currentSynopsis)
 				currentSynopsis = nil
 			}
@@ -67,7 +78,7 @@ func Import(scanner *bufio.Scanner, startPos int64) ([]models.Dialog, []models.S
 		}
 		if strings.HasPrefix(line, "#TRIVIA: ") || strings.HasPrefix(line, "#/TRIVIA") {
 			if currentTrivia != nil {
-				currentTrivia.EndPos = position - PosSpacing
+				currentTrivia.EndPos = position
 				trivia = append(trivia, *currentTrivia)
 				currentTrivia = nil
 			}
@@ -77,8 +88,9 @@ func Import(scanner *bufio.Scanner, startPos int64) ([]models.Dialog, []models.S
 			continue
 		}
 
+		position += PosSpacing
 		di := models.Dialog{
-			ID:             shortuuid.New(),
+			ID:             models.DialogID(episodeID, position),
 			Type:           models.DialogTypeUnkown,
 			Position:       position,
 			Notable:        notable,
@@ -188,4 +200,9 @@ func ScanOffset(line string) (int64, bool) {
 		return int64(off), true
 	}
 	return 0, false
+}
+
+
+func hashLine(line string) string {
+	return fmt.Sprintf("%x", md5.Sum([]byte(line)))
 }

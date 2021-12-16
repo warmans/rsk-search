@@ -160,12 +160,8 @@ func (s *ContribService) CreateChunkContribution(ctx context.Context, request *a
 		return nil, ErrFromStore(err, "").Err()
 	}
 
-	lines, _, _, err := transcript.Import(bufio.NewScanner(bytes.NewBufferString(request.Transcript)), 0)
-	if err != nil {
+	if err := transcript.Validate(bufio.NewScanner(bytes.NewBufferString(request.Transcript))); err != nil {
 		return nil, ErrInvalidRequestField("transcript", err.Error()).Err()
-	}
-	if len(lines) == 0 {
-		return nil, ErrInvalidRequestField("transcript", "no valid lines parsed from transcript").Err()
 	}
 
 	var contrib *models.ChunkContribution
@@ -208,12 +204,8 @@ func (s *ContribService) UpdateChunkContribution(ctx context.Context, request *a
 
 	// allow invalid transcript while the contribution is still pending.
 	if request.State != api.ContributionState_STATE_PENDING {
-		lines, _, _, err := transcript.Import(bufio.NewScanner(bytes.NewBufferString(request.Transcript)), 0)
-		if err != nil {
+		if err := transcript.Validate(bufio.NewScanner(bytes.NewBufferString(request.Transcript))); err != nil {
 			return nil, ErrInvalidRequestField("transcript", err.Error()).Err()
-		}
-		if len(lines) == 0 {
-			return nil, ErrInvalidRequestField("transcript", "no valid lines parsed from transcript").Err()
 		}
 	}
 
@@ -645,12 +637,8 @@ func (s *ContribService) UpdateTranscriptChange(ctx context.Context, request *ap
 
 	// allow invalid transcript while the contribution is still pending.
 	if request.State != api.ContributionState_STATE_PENDING {
-		lines, _, _, err := transcript.Import(bufio.NewScanner(bytes.NewBufferString(request.Transcript)), 0)
-		if err != nil {
+		if err := transcript.Validate(bufio.NewScanner(bytes.NewBufferString(request.Transcript))); err != nil {
 			return nil, ErrInvalidRequestField("transcript", err.Error()).Err()
-		}
-		if len(lines) == 0 {
-			return nil, ErrInvalidRequestField("transcript", "no valid lines parsed from transcript").Err()
 		}
 	}
 

@@ -101,7 +101,6 @@ export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
     return el;
   }
 
-
   private tryEmitOffset() {
     const caretFocus = this.getCaretFocus();
     if (isOffsetLine(caretFocus.line)) {
@@ -112,18 +111,38 @@ export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
   insertOffsetAboveCaret(seconds: number): void {
     let sel = document.getSelection();
     let nd = sel.anchorNode;
+
+    if (!this.nodeIsChildOfEditor(nd.parentElement)) {
+      return;
+    }
     this.renderer.insertBefore(nd.parentNode, this.newOffsetElement(`#OFFSET: ${seconds}`), nd);
+  }
+
+  nodeIsChildOfEditor(el: HTMLElement): boolean {
+    if (el === this.editableContent.nativeElement) {
+      return true
+    }
+    if (el.parentElement !== null) {
+      return this.nodeIsChildOfEditor(el.parentElement)
+    }
+    return false
   }
 
   insertTextAboveCaret(text: string): void {
     let sel = document.getSelection();
     let nd = sel.anchorNode;
+    if (!this.nodeIsChildOfEditor(nd.parentElement)) {
+      return;
+    }
     this.renderer.insertBefore(nd.parentNode, this.newTextElement(text), nd);
   }
 
   getCaretFocus(): CaretFocus {
     let sel = document.getSelection();
     let nd = sel.anchorNode;
+    if (!this.nodeIsChildOfEditor(nd.parentElement)) {
+      return;
+    }
     return new CaretFocus(nd.textContent, sel.focusOffset);
   }
 

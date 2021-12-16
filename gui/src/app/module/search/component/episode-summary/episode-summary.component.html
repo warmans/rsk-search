@@ -1,7 +1,7 @@
 <div class="episode-summary p-2">
-  <div class="head d-flex flex-row mb-2">
+  <div class="head d-flex flex-row mb-3">
     <div class="d-flex flex-row flex-grow-1">
-      <div class="icon"></div>
+      <div class="icon" [style.background-image]="'url(assets/cover/'+episode.publication+'-s'+episode.series+'.jpg'"></div>
       <div class="pl-3">
         <div class="title">
           <a [routerLink]="['/ep', episode.id]">Series {{episode.series}} Episode {{episode.episode}}</a>

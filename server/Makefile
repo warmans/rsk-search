@@ -86,9 +86,21 @@ dev.extract.test-data: build
 	./bin/rsk-search db extract-tscript --rw-db-dsn=${DEV_DB_DSN} --dry-run=true
 	$(MAKE) dev.infer-offsets
 
+.PHONY: extract.prod
+extract.prod:
+ifndef PROD_DB_DSN
+	$(error "PROD_DB_DSN required")
+endif
+	./bin/rsk-search db extract-tscript --rw-db-dsn=${PROD_DB_DSN} --dry-run=false
+	$(MAKE) dev.infer-offsets
+
 .PHONY: dev.infer-offsets
 dev.infer-offsets:
 	./bin/rsk-search data infer-missing-offsets
+
+.PHONY: dev.refresh-data
+dev.refresh-data: build
+	./bin/rsk-search data refresh && ./bin/rsk-search data infer-missing-offsets
 
 .PHONY: update.transcriptions
 update.transcriptions:

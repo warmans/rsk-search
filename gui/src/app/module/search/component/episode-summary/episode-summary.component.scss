@@ -2,10 +2,19 @@
 
 .episode-summary {
   width: 100%;
+
+  .head {
+
+  }
+
   .icon {
     width: 42px;
     height: 42px;
     background-color: $primary;
+    background-position: center;
+    background-size: cover;
+    border-radius: 2px;
+
   }
 
   .sub-title {

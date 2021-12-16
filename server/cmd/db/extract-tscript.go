@@ -6,7 +6,6 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/lithammer/shortuuid/v3"
 	"github.com/spf13/cobra"
 	"github.com/warmans/rsk-search/pkg/data"
 	"github.com/warmans/rsk-search/pkg/filter"
@@ -82,6 +81,7 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 			// clear old data
 			episodeOnDisk.Synopsis = nil
 			episodeOnDisk.Transcript = nil
+			episodeOnDisk.Trivia = nil
 
 			// contributors should be merged with whatever is on disk
 			uniqueContributors := map[string]struct{}{}
@@ -118,6 +118,7 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 				logger.Info(fmt.Sprintf("Nothing to do - none approved"))
 				continue
 			}
+
 			for _, ch := range allChunks {
 
 				var chContribution *models.ChunkContribution
@@ -127,31 +128,32 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 					}
 				}
 
-				lastPos := int64(0)
+				// all chunks needs to be processed
+				currentPos := int64(0)
 				if len(episodeOnDisk.Transcript) > 0 {
-					lastPos = episodeOnDisk.Transcript[len(episodeOnDisk.Transcript)-1].Position
+					currentPos = episodeOnDisk.Transcript[len(episodeOnDisk.Transcript)-1].Position
 				}
 
 				// if the transcript is missing insert a placeholder
 				if chContribution == nil {
-					lastPos = lastPos + transcript.PosSpacing
+					currentPos += transcript.PosSpacing
 					episodeOnDisk.Transcript = append(
 						episodeOnDisk.Transcript,
 						models.Dialog{
-							ID:          shortuuid.New(),
-							Position:    lastPos + transcript.PosSpacing,
-							OffsetSec:   0,
-							Type:        "gap",
-							Actor:       "",
-							Meta:        nil,
-							Content:     "[~3 mins of missing transcription]",
+							ID:        models.DialogID(episodeOnDisk.ID(), currentPos),
+							Position:  currentPos,
+							OffsetSec: 0,
+							Type:      "gap",
+							Actor:     "",
+							Meta:      nil,
+							Content:   "[~3 mins of missing transcription]",
 						},
 					)
 					episodeOnDisk.Incomplete = true
 					continue
 				}
 
-				dialog, synopsis, trivia, err := transcript.Import(bufio.NewScanner(bytes.NewBufferString(chContribution.Transcription)), lastPos)
+				dialog, synopsis, trivia, err := transcript.Import(bufio.NewScanner(bytes.NewBufferString(chContribution.Transcription)), episodeOnDisk.ID(), currentPos)
 				if err != nil {
 					return err
 				}

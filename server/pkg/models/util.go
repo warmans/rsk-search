@@ -32,6 +32,10 @@ func EpisodeID(ep *Transcript) string {
 	return fmt.Sprintf("ep-%s-%s", ep.Publication, FormatStandardEpisodeName(ep.Series, ep.Episode))
 }
 
+func DialogID(episodeID string, pos int64) string {
+	return fmt.Sprintf("%s-%d", episodeID, pos)
+}
+
 func IncompleteTranscriptID(t Tscript) string {
 	return fmt.Sprintf("ts-%s-%s", t.Publication, FormatStandardEpisodeName(t.Series, t.Episode))
 }

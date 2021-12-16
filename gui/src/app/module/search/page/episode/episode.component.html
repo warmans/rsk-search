@@ -55,13 +55,7 @@
           <div class="card-body p-3">
             <ul class="m-0">
               <li *ngFor="let syn of episode?.synopses">
-                <!--
-                -- todo: Synopsis offsets are wrong somehow
-                {{syn.startPos}} - {{syn.endPos}}
-                <a *ngIf="syn.startPos > 0" [routerLink]="['/ep', episode?.id]" [fragment]="'pos-'+(syn.startPos)">{{syn.description}}</a>
-                <span *ngIf="syn.startPos === undefined || syn.startPos === null">{{syn.description}}</span>
-                -->
-                <span>{{syn.description}}</span>
+                <span>{{syn.description}} (<a [routerLink]="['/ep', episode?.id]" [fragment]="'pos-'+syn.startPos+'-'+syn.endPos">context</a>)</span>
               </li>
             </ul>
           </div>
@@ -75,13 +69,7 @@
           <div class="card-body p-3">
             <ul class="m-0">
               <li *ngFor="let tri of episode?.trivia">
-                <!--
-                -- todo: Synopsis offsets are wrong somehow
-                {{syn.startPos}} - {{syn.endPos}}
-                <a *ngIf="syn.startPos > 0" [routerLink]="['/ep', episode?.id]" [fragment]="'pos-'+(syn.startPos)">{{syn.description}}</a>
-                <span *ngIf="syn.startPos === undefined || syn.startPos === null">{{syn.description}}</span>
-                -->
-                <span>{{tri.description}}</span>
+                <span>{{tri.description}} (<a [routerLink]="['/ep', episode?.id]" [fragment]="'pos-'+tri.startPos+'-'+tri.endPos">context</a>)</span>
               </li>
             </ul>
           </div>

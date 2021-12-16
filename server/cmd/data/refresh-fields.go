@@ -11,13 +11,13 @@ import (
 	"path"
 )
 
-func FixIncompleteFlagsCmd() *cobra.Command {
+func RefreshCmd() *cobra.Command {
 
 	var inputDir string
 	var singleEpisode string
 
 	cmd := &cobra.Command{
-		Use:   "fix-incomplete-flags",
+		Use:   "refresh",
 		Short: "mark any episodes without gaps as complete",
 		RunE: func(cmd *cobra.Command, args []string) error {
 
@@ -51,6 +51,7 @@ func FixIncompleteFlagsCmd() *cobra.Command {
 
 				logger.Info("Processing file...", zap.String("path", dirEntry.Name()))
 
+				// identify gaps
 				hasGaps := false
 				for _, v := range episode.Transcript {
 					if v.Type == models.DialogTypeGap {
@@ -61,6 +62,20 @@ func FixIncompleteFlagsCmd() *cobra.Command {
 					episode.Incomplete = true
 				} else {
 					episode.Incomplete = false
+				}
+
+				// ensure dialog positions are contiguous
+				// this will break synopsis/trivia possibly...
+
+				//var pos int64
+				//for k := range episode.Transcript {
+				//	episode.Transcript[k].Position = pos
+				//	pos += transcript.PosSpacing
+				//}
+
+				// ensure IDs are correct
+				for k := range episode.Transcript {
+					episode.Transcript[k].ID = models.DialogID(episode.ID(), episode.Transcript[k].Position)
 				}
 
 				if err := data.ReplaceEpisodeFile(inputDir, episode); err != nil {
