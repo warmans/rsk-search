@@ -1224,8 +1224,8 @@
             "type": "string"
           },
           "pos": {
-            "type": "string",
-            "format": "int64"
+            "type": "integer",
+            "format": "int32"
           },
           "type": {
             "type": "string"
@@ -1260,7 +1260,7 @@
       "rskDialogResult": {
         "type": "object",
         "properties": {
-          "lines": {
+          "transcript": {
             "type": "array",
             "items": {
               "$ref": "#/definitions/rskDialog"
@@ -1517,6 +1517,15 @@
             "items": {
               "type": "string"
             }
+          },
+          "triviaAvailable": {
+            "type": "boolean"
+          },
+          "actors": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
@@ -1550,12 +1559,12 @@
             "type": "string"
           },
           "startPos": {
-            "type": "string",
-            "format": "int64"
+            "type": "integer",
+            "format": "int32"
           },
           "endPos": {
-            "type": "string",
-            "format": "int64"
+            "type": "integer",
+            "format": "int32"
           }
         }
       },
@@ -1619,6 +1628,12 @@
             "type": "array",
             "items": {
               "$ref": "#/definitions/rskTrivia"
+            }
+          },
+          "actors": {
+            "type": "array",
+            "items": {
+              "type": "string"
             }
           }
         }
@@ -1684,12 +1699,12 @@
             "type": "string"
           },
           "startPos": {
-            "type": "string",
-            "format": "int64"
+            "type": "integer",
+            "format": "int32"
           },
           "endPos": {
-            "type": "string",
-            "format": "int64"
+            "type": "integer",
+            "format": "int32"
           }
         }
       },

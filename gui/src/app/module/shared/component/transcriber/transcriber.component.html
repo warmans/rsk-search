@@ -100,8 +100,6 @@
   <div class="card-header">
   </div>
   <div class="card-body preview-window">
-    <app-synopses [synopses]="parsedTscript?.synopses"></app-synopses>
-    <app-trivia [trivia]="parsedTscript?.trivia"></app-trivia>
-    <app-transcript [transcript]="parsedTscript?.dialog" [searchResultMode]="false" [enableLineLinking]="true"></app-transcript>
+    <app-transcript [transcript]="parsedTscript" [searchResultMode]="false" [enableLineLinking]="true"></app-transcript>
   </div>
 </div>

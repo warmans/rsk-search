@@ -112,10 +112,12 @@ message ShortTranscript {
   string release_date = 7;
   string summary = 8;
   repeated string synopsis = 9;
+  bool trivia_available = 10;
+  repeated string actors = 11;
 }
 
 message DialogResult {
-  repeated Dialog lines = 1;
+  repeated Dialog transcript = 1;
   float score = 2;
 }
 
@@ -123,7 +125,7 @@ message Dialog {
   reserved 7; // content_tags
 
   string id = 1;
-  int64 pos = 2;
+  int32 pos = 2;
   string type = 3;
   string actor = 4;
   string content = 5;
@@ -136,14 +138,14 @@ message Dialog {
 
 message Synopsis {
   string description = 1;
-  int64 start_pos = 2;
-  int64 end_pos = 3;
+  int32 start_pos = 2;
+  int32 end_pos = 3;
 }
 
 message Trivia {
   string description = 1;
-  int64 start_pos = 2;
-  int64 end_pos = 3;
+  int32 start_pos = 2;
+  int32 end_pos = 3;
 }
 
 message Tag {
@@ -168,6 +170,7 @@ message Transcript {
   string audio_uri = 13;
   string short_id = 14;
   repeated Trivia trivia = 15;
+  repeated string actors = 16;
 }
 
 message GetTranscriptRequest {

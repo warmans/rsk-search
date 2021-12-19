@@ -266,8 +266,8 @@ export function isRskDialog(arg: any): arg is models.RskDialog {
     ( typeof arg.offsetInferred === 'undefined' || typeof arg.offsetInferred === 'boolean' ) &&
     // offsetSec?: string
     ( typeof arg.offsetSec === 'undefined' || typeof arg.offsetSec === 'string' ) &&
-    // pos?: string
-    ( typeof arg.pos === 'undefined' || typeof arg.pos === 'string' ) &&
+    // pos?: number
+    ( typeof arg.pos === 'undefined' || typeof arg.pos === 'number' ) &&
     // type?: string
     ( typeof arg.type === 'undefined' || typeof arg.type === 'string' ) &&
 
@@ -279,10 +279,10 @@ export function isRskDialogResult(arg: any): arg is models.RskDialogResult {
   return (
   arg != null &&
   typeof arg === 'object' &&
-    // lines?: RskDialog[]
-    ( typeof arg.lines === 'undefined' || (Array.isArray(arg.lines) && arg.lines.every((item: unknown) => isRskDialog(item))) ) &&
     // score?: number
     ( typeof arg.score === 'undefined' || typeof arg.score === 'number' ) &&
+    // transcript?: RskDialog[]
+    ( typeof arg.transcript === 'undefined' || (Array.isArray(arg.transcript) && arg.transcript.every((item: unknown) => isRskDialog(item))) ) &&
 
   true
   );
@@ -497,6 +497,8 @@ export function isRskShortTranscript(arg: any): arg is models.RskShortTranscript
   return (
   arg != null &&
   typeof arg === 'object' &&
+    // actors?: string[]
+    ( typeof arg.actors === 'undefined' || (Array.isArray(arg.actors) && arg.actors.every((item: unknown) => typeof item === 'string')) ) &&
     // episode?: number
     ( typeof arg.episode === 'undefined' || typeof arg.episode === 'number' ) &&
     // id?: string
@@ -515,6 +517,8 @@ export function isRskShortTranscript(arg: any): arg is models.RskShortTranscript
     ( typeof arg.synopsis === 'undefined' || (Array.isArray(arg.synopsis) && arg.synopsis.every((item: unknown) => typeof item === 'string')) ) &&
     // transcriptAvailable?: boolean
     ( typeof arg.transcriptAvailable === 'undefined' || typeof arg.transcriptAvailable === 'boolean' ) &&
+    // triviaAvailable?: boolean
+    ( typeof arg.triviaAvailable === 'undefined' || typeof arg.triviaAvailable === 'boolean' ) &&
 
   true
   );
@@ -547,10 +551,10 @@ export function isRskSynopsis(arg: any): arg is models.RskSynopsis {
   typeof arg === 'object' &&
     // description?: string
     ( typeof arg.description === 'undefined' || typeof arg.description === 'string' ) &&
-    // endPos?: string
-    ( typeof arg.endPos === 'undefined' || typeof arg.endPos === 'string' ) &&
-    // startPos?: string
-    ( typeof arg.startPos === 'undefined' || typeof arg.startPos === 'string' ) &&
+    // endPos?: number
+    ( typeof arg.endPos === 'undefined' || typeof arg.endPos === 'number' ) &&
+    // startPos?: number
+    ( typeof arg.startPos === 'undefined' || typeof arg.startPos === 'number' ) &&
 
   true
   );
@@ -560,6 +564,8 @@ export function isRskTranscript(arg: any): arg is models.RskTranscript {
   return (
   arg != null &&
   typeof arg === 'object' &&
+    // actors?: string[]
+    ( typeof arg.actors === 'undefined' || (Array.isArray(arg.actors) && arg.actors.every((item: unknown) => typeof item === 'string')) ) &&
     // audioUri?: string
     ( typeof arg.audioUri === 'undefined' || typeof arg.audioUri === 'string' ) &&
     // contributors?: string[]
@@ -648,10 +654,10 @@ export function isRskTrivia(arg: any): arg is models.RskTrivia {
   typeof arg === 'object' &&
     // description?: string
     ( typeof arg.description === 'undefined' || typeof arg.description === 'string' ) &&
-    // endPos?: string
-    ( typeof arg.endPos === 'undefined' || typeof arg.endPos === 'string' ) &&
-    // startPos?: string
-    ( typeof arg.startPos === 'undefined' || typeof arg.startPos === 'string' ) &&
+    // endPos?: number
+    ( typeof arg.endPos === 'undefined' || typeof arg.endPos === 'number' ) &&
+    // startPos?: number
+    ( typeof arg.startPos === 'undefined' || typeof arg.startPos === 'number' ) &&
 
   true
   );

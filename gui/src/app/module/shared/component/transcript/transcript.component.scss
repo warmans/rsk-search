@@ -28,3 +28,30 @@
 .line.mute, .line.not-matched {
   opacity: 0.5;
 }
+
+
+.gutter {
+  width: 25px;
+  border-top:  1px solid #000;
+  border-bottom: 1px solid #000;
+}
+
+.linked-indicator {
+
+}
+
+.no-linked {
+  border-left : 2px dotted #222;
+}
+
+.linked {
+  border-left : 2px solid $primary;
+}
+
+.section-title {
+}
+
+.trivia-breakout {
+  border-left: 2px dashed #6c757d;
+  max-width: 50%;
+}

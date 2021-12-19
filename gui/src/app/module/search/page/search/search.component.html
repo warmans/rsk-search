@@ -8,13 +8,13 @@
     <div class="col">
       <div *ngFor="let res of result?.results" class="result card mb-3">
         <div class="card-header font-weight-bold">
-          <a [routerLink]="['/ep', res?.episode?.id]" [fragment]="res?.dialogs[0]?.lines | matchedRowPos">
+          <a [routerLink]="['/ep', res?.episode?.id]" [fragment]="res?.dialogs[0]?.transcript | matchedRowPos">
             {{ res.episode?.id }}
           </a>
         </div>
         <div class="card-body">
           <div *ngFor="let dialog of res.dialogs" class="dialog">
-            <app-transcript [transcript]="dialog.lines" [searchResultMode]="true" [enableLineLinking]="false"></app-transcript>
+            <app-transcript [transcript]="dialog" [searchResultMode]="true" [enableLineLinking]="false"></app-transcript>
           </div>
         </div>
       </div>

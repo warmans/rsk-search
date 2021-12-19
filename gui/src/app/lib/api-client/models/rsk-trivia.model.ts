@@ -2,6 +2,6 @@
 
 export interface RskTrivia {
   description?: string;
-  endPos?: string;
-  startPos?: string;
+  endPos?: number;
+  startPos?: number;
 }

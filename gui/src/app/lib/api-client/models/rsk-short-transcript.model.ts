@@ -1,6 +1,7 @@
 /* tslint:disable */
 
 export interface RskShortTranscript {
+  actors?: string[];
   episode?: number;
   id?: string;
   incomplete?: boolean;
@@ -10,4 +11,5 @@ export interface RskShortTranscript {
   summary?: string;
   synopsis?: string[];
   transcriptAvailable?: boolean;
+  triviaAvailable?: boolean;
 }

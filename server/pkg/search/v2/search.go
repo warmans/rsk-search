@@ -108,7 +108,7 @@ func (s *Search) Search(ctx context.Context, f filter.Filter, page int32) (*api.
 					for k, d := range dialogs {
 						lines[k] = d.Proto(string(value) == d.ID)
 					}
-					result.Dialogs = append(result.Dialogs, &api.DialogResult{Lines: lines, Score: float32(next.Score)})
+					result.Dialogs = append(result.Dialogs, &api.DialogResult{Transcript: lines, Score: float32(next.Score)})
 				}
 				return true
 			})

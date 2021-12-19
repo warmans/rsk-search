@@ -1,5 +1,5 @@
-<div class="episode-summary p-2">
-  <div class="head d-flex flex-row mb-3">
+<div class="episode-summary">
+  <div class="head d-flex flex-row mb-3 p-2">
     <div class="d-flex flex-row flex-grow-1">
       <div class="icon" [style.background-image]="'url(assets/cover/'+episode.publication+'-s'+episode.series+'.jpg'"></div>
       <div class="pl-3">
@@ -12,15 +12,16 @@
     <div>
       <div *ngIf="episode.transcriptAvailable && !episode.incomplete" class="badge"><i class="bi bi-card-text mr-1"></i> Complete Transcript</div>
       <div *ngIf="!episode.transcriptAvailable || episode.incomplete" class="badge"><i class="bi bi-card-text text-danger mr-1"></i> Incomplete Transcript</div>
+      <div *ngIf="episode.triviaAvailable" class="badge"><i class="bi bi-card-text mr-1"></i> Trivia</div>
     </div>
   </div>
-  <div class="body mb-2">
+  <div class="body mb-2 p-2">
     <div *ngIf="episode.synopsis?.length === 0" class="text-muted">No synopsis available.</div>
     <ul *ngIf="episode.synopsis?.length > 0">
       <li *ngFor="let syn of episode.synopsis">{{syn}}</li>
     </ul>
   </div>
-  <div class="foot text-right">
-
+  <div class="foot text-muted p-2 text-right">
+    {{episode.actors.join(', ')}}
   </div>
 </div>

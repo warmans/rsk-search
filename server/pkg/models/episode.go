@@ -55,7 +55,7 @@ type Dialog struct {
 func (d Dialog) Proto(bestMatch bool) *api.Dialog {
 	dialog := &api.Dialog{
 		Id:             d.ID,
-		Pos:            d.Position,
+		Pos:            int32(d.Position),
 		OffsetSec:      d.OffsetSec,
 		OffsetInferred: d.OffsetInferred,
 		Type:           string(d.Type),
@@ -91,6 +91,25 @@ func (e *Transcript) ShortID() string {
 	return strings.TrimPrefix(EpisodeID(e), "ep-")
 }
 
+func (e Transcript) Actors() []string {
+	actorMap := map[string]struct{}{}
+	for _, v := range e.Transcript {
+		if strings.TrimSpace(v.Actor) == "" {
+			continue
+		}
+		// this is almost always "ricky and steve"
+		if strings.Contains(v.Actor, " and ") || strings.Contains(v.Actor, " & "){
+			continue
+		}
+		actorMap[strings.TrimSpace(v.Actor)] = struct{}{}
+	}
+	actorList := []string{}
+	for k := range actorMap {
+		actorList = append(actorList, k)
+	}
+	return actorList
+}
+
 func (e *Transcript) ShortProto() *api.ShortTranscript {
 	if e == nil {
 		return nil
@@ -105,6 +124,8 @@ func (e *Transcript) ShortProto() *api.ShortTranscript {
 		ReleaseDate:         e.ReleaseDate.Format(util.ShortDateFormat),
 		Summary:             "", //todo
 		Synopsis:            make([]string, len(e.Synopsis)),
+		TriviaAvailable:     len(e.Trivia) > 0,
+		Actors:              e.Actors(),
 	}
 	for k, s := range e.Synopsis {
 		ep.Synopsis[k] = s.Description
@@ -128,6 +149,7 @@ func (e *Transcript) Proto(withRawTranscript string, audioURI string) *api.Trans
 		Incomplete:    e.Incomplete,
 		RawTranscript: withRawTranscript,
 		AudioUri:      audioURI,
+		Actors:        e.Actors(),
 	}
 	for _, d := range e.Transcript {
 		ep.Transcript = append(ep.Transcript, d.Proto(false))
@@ -177,8 +199,8 @@ type Synopsis struct {
 func (f Synopsis) Proto() *api.Synopsis {
 	return &api.Synopsis{
 		Description: f.Description,
-		StartPos:    f.StartPos,
-		EndPos:      f.EndPos,
+		StartPos:    int32(f.StartPos),
+		EndPos:      int32(f.EndPos),
 	}
 }
 
@@ -191,7 +213,7 @@ type Trivia struct {
 func (f Trivia) Proto() *api.Trivia {
 	return &api.Trivia{
 		Description: f.Description,
-		StartPos:    f.StartPos,
-		EndPos:      f.EndPos,
+		StartPos:    int32(f.StartPos),
+		EndPos:      int32(f.EndPos),
 	}
 }

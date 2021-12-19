@@ -4,6 +4,6 @@ import {
 } from '.';
 
 export interface RskDialogResult {
-  lines?: RskDialog[];
   score?: number;
+  transcript?: RskDialog[];
 }

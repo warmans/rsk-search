@@ -60,6 +60,10 @@ export function parseTranscript(transcript: string): Tscript {
     return tscript;
   }
 
+  let currentSynopsis: RskSynopsis;
+  let currentTrivia: RskSynopsis;
+
+  let pos = 1;
   transcript.split('\n').forEach((line) => {
     line = line.trim();
     let notable: boolean = false;
@@ -70,41 +74,56 @@ export function parseTranscript(transcript: string): Tscript {
       line = line.slice(1);
       notable = true;
     }
-    if (isOffsetLine(line) || isEndSynopsisLine(line) || isEndTriviaLine(line)) {
+    if (isOffsetLine(line)) {
       return;
     }
     if (isStartSynopsisLine(line)) {
-      // don't bother with positions for now
-      tscript.synopses.push({ description: getSynopsis(line) });
+      currentSynopsis = { description: getSynopsis(line), startPos: pos};
+      return;
+    }
+    if (isEndSynopsisLine(line)) {
+      currentSynopsis.endPos = pos;
+      tscript.synopses.push(currentSynopsis);
       return;
     }
     if (isStartTriviaLine(line)) {
-      // don't bother with positions for now
-      tscript.trivia.push({ description: getTrivia(line) });
+      currentTrivia = { description: getTrivia(line), startPos: pos};
       return;
     }
+    if (isEndTriviaLine(line)) {
+      currentTrivia.endPos = pos;
+      tscript.trivia.push(currentTrivia);
+      return;
+    }
+
     const parts = line.split(':');
     if (parts.length < 2) {
-      tscript.dialog.push({
+      tscript.transcript.push({
         type: 'unknown',
         content: parts.join(':'),
-        notable: notable
+        notable: notable,
+        pos: pos,
       });
     } else {
       const actor = parts.shift();
-      tscript.dialog.push({
+      tscript.transcript.push({
         type: actor.toLowerCase() == 'song' ? 'song' : 'chat',
         actor: actor.toLowerCase() === 'none' ? '' : actor,
         content: parts.join(':'),
-        notable: notable
+        notable: notable,
+        pos: pos,
       });
     }
+
+    pos++;
   });
+
+  console.log(tscript);
 
   return tscript;
 }
 
 export class Tscript {
-  constructor(public dialog: RskDialog[], public synopses: RskSynopsis[], public trivia: RskTrivia[]) {
+  constructor(public transcript: RskDialog[], public synopses?: RskSynopsis[], public trivia?: RskTrivia[]) {
   }
 }

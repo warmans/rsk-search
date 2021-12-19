@@ -48,10 +48,10 @@
             </div>
             <div class="card-body">
               <div *ngIf="(groupedContributions[ch.id] || []).length === 0" class="text-muted">
-                <app-transcript [transcript]="parseTscript(ch.raw).dialog"></app-transcript>
+                <app-transcript [transcript]="parseTscript(ch.raw)"></app-transcript>
               </div>
               <div *ngIf="(groupedContributions[ch.id] || []).length > 0">
-                <app-transcript [transcript]="parseTscript(groupedContributions[ch.id][(ch.selectedContribution || 0)].transcript).dialog"></app-transcript>
+                <app-transcript [transcript]="parseTscript(groupedContributions[ch.id][(ch.selectedContribution || 0)].transcript)"></app-transcript>
               </div>
             </div>
             <div *ngIf="(groupedContributions[ch.id] || []).length > 0">
@@ -104,7 +104,7 @@
             </div>
             <div *ngIf="co.show_preview">
               <app-synopses [synopses]="parseTscript(co.transcript).synopses"></app-synopses>
-              <app-transcript [transcript]="parseTscript(co.transcript).dialog"></app-transcript>
+              <app-transcript [transcript]="parseTscript(co.transcript)"></app-transcript>
             </div>
           </div>
           <div *ngIf="!co.id" class=" pb-4">

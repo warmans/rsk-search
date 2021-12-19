@@ -9,6 +9,6 @@ export interface RskDialog {
   notable?: boolean;
   offsetInferred?: boolean;
   offsetSec?: string;
-  pos?: string;
+  pos?: number;
   type?: string;
 }

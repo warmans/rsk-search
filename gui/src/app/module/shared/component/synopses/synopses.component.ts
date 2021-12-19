@@ -11,6 +11,9 @@ export class SynopsesComponent implements OnInit {
   @Input()
   synopses: RskSynopsis[];
 
+  @Input()
+  showTitle: boolean = true;
+
   constructor() {
   }
 

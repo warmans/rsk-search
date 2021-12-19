@@ -2,6 +2,6 @@
 
 export interface RskSynopsis {
   description?: string;
-  endPos?: string;
-  startPos?: string;
+  endPos?: number;
+  startPos?: number;
 }

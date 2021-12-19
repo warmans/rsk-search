@@ -1,6 +1,14 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { RskDialog } from '../../../../lib/api-client/models';
+import { RskDialog, RskSynopsis } from '../../../../lib/api-client/models';
 import { ViewportScroller } from '@angular/common';
+import { Tscript } from '../../lib/tscript';
+
+interface DialogGroup {
+  startPos: number;
+  endPos: number;
+
+  tscript: Tscript;
+}
 
 @Component({
   selector: 'app-transcript',
@@ -9,30 +17,28 @@ import { ViewportScroller } from '@angular/common';
 })
 export class TranscriptComponent implements OnInit, AfterViewInit {
 
-
   @Input()
-  set transcript(value: RskDialog[]) {
+  set transcript(value: Tscript) {
     if (!value) {
       return;
     }
     this._transcript = value;
-    for (let i = 0; i < value.length; i++) {
-      if (parseInt(value[i].offsetSec) > 0) {
-        this.audioOffsetsAvailable = true;
-        break;
-      }
-    }
+    this.preProcessTranscript(value);
   }
 
-  get transcript(): RskDialog[] {
+  get transcript(): Tscript {
     return this._transcript;
   }
 
-  private _transcript: RskDialog[];
+  private _transcript: Tscript;
+
+  groupedDialog: DialogGroup[];
+
+  lineInSynopsisMap: { [index: number]: boolean } = {};
+  synopsisTitlePos: { [index: number]: string } = {};
 
   @Input()
   set scrollToID(value: string) {
-    console.log('scroll to', value);
     this._scrollToID = value;
     this.scrollToAnchor();
   }
@@ -109,5 +115,62 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
       return;
     }
     this.emitAudioTimestamp.next(ts);
+  }
+
+  preProcessTranscript(value: Tscript) {
+
+    if (!value) {
+      return;
+    }
+
+    this.synopsisTitlePos = {};
+    (this.transcript?.synopses || []).forEach((s) => {
+      this.synopsisTitlePos[s.startPos] = s.description;
+    });
+
+    this.lineInSynopsisMap = {};
+    this.audioOffsetsAvailable = false;
+    this.groupedDialog = [];
+    let currentGroup: DialogGroup = {
+      startPos: 1,
+      endPos: undefined,
+      tscript: { synopses: [], trivia: [], transcript: [] }
+    };
+    for (let i = 0; i < value?.transcript.length; i++) {
+
+      if (parseInt(value.transcript[i].offsetSec) > 0) {
+        this.audioOffsetsAvailable = true;
+      }
+
+      this.lineInSynopsisMap[value.transcript[i].pos] = !!(value?.synopses || []).find((s: RskSynopsis) => value.transcript[i].pos >= s.startPos && i < s.endPos);
+
+      currentGroup.tscript.transcript.push(value.transcript[i]);
+
+      const foundIntersectingTrivia = (value?.trivia || []).find((s: RskSynopsis) => value.transcript[i].pos === s.startPos - 1 || value.transcript[i].pos === s.endPos);
+      if (foundIntersectingTrivia) {
+        if (value.transcript[i].pos === foundIntersectingTrivia.startPos - 1) {
+          currentGroup.endPos = value.transcript[i].pos;
+          this.groupedDialog.push(currentGroup);
+          currentGroup = {
+            startPos: value.transcript[i].pos,
+            endPos: undefined,
+            tscript: { synopses: [], trivia: [foundIntersectingTrivia], transcript: [] }
+          };
+        }
+        if (value.transcript[i].pos === foundIntersectingTrivia.endPos) {
+          currentGroup.endPos = value.transcript[i].pos;
+          this.groupedDialog.push(currentGroup);
+          currentGroup = {
+            startPos: value.transcript[i].pos,
+            endPos: undefined,
+            tscript: { synopses: [], trivia: [], transcript: [] }
+          };
+        }
+      }
+    }
+    if (currentGroup.endPos === undefined) {
+      currentGroup.endPos = value.transcript.length;
+      this.groupedDialog.push(currentGroup);
+    }
   }
 }
