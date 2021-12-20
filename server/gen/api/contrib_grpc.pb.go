@@ -37,6 +37,7 @@ type ContribServiceClient interface {
 	ListDonationRecipients(ctx context.Context, in *ListDonationRecipientsRequest, opts ...grpc.CallOption) (*DonationRecipientList, error)
 	ListTranscriptChanges(ctx context.Context, in *ListTranscriptChangesRequest, opts ...grpc.CallOption) (*TranscriptChangeList, error)
 	GetTranscriptChange(ctx context.Context, in *GetTranscriptChangeRequest, opts ...grpc.CallOption) (*TranscriptChange, error)
+	GetTranscriptChangeDiff(ctx context.Context, in *GetTranscriptChangeDiffRequest, opts ...grpc.CallOption) (*TranscriptChangeDiff, error)
 	CreateTranscriptChange(ctx context.Context, in *CreateTranscriptChangeRequest, opts ...grpc.CallOption) (*TranscriptChange, error)
 	UpdateTranscriptChange(ctx context.Context, in *UpdateTranscriptChangeRequest, opts ...grpc.CallOption) (*TranscriptChange, error)
 	DeleteTranscriptChange(ctx context.Context, in *DeleteTranscriptChangeRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
@@ -204,6 +205,15 @@ func (c *contribServiceClient) GetTranscriptChange(ctx context.Context, in *GetT
 	return out, nil
 }
 
+func (c *contribServiceClient) GetTranscriptChangeDiff(ctx context.Context, in *GetTranscriptChangeDiffRequest, opts ...grpc.CallOption) (*TranscriptChangeDiff, error) {
+	out := new(TranscriptChangeDiff)
+	err := c.cc.Invoke(ctx, "/rsk.ContribService/GetTranscriptChangeDiff", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *contribServiceClient) CreateTranscriptChange(ctx context.Context, in *CreateTranscriptChangeRequest, opts ...grpc.CallOption) (*TranscriptChange, error) {
 	out := new(TranscriptChange)
 	err := c.cc.Invoke(ctx, "/rsk.ContribService/CreateTranscriptChange", in, out, opts...)
@@ -262,6 +272,7 @@ type ContribServiceServer interface {
 	ListDonationRecipients(context.Context, *ListDonationRecipientsRequest) (*DonationRecipientList, error)
 	ListTranscriptChanges(context.Context, *ListTranscriptChangesRequest) (*TranscriptChangeList, error)
 	GetTranscriptChange(context.Context, *GetTranscriptChangeRequest) (*TranscriptChange, error)
+	GetTranscriptChangeDiff(context.Context, *GetTranscriptChangeDiffRequest) (*TranscriptChangeDiff, error)
 	CreateTranscriptChange(context.Context, *CreateTranscriptChangeRequest) (*TranscriptChange, error)
 	UpdateTranscriptChange(context.Context, *UpdateTranscriptChangeRequest) (*TranscriptChange, error)
 	DeleteTranscriptChange(context.Context, *DeleteTranscriptChangeRequest) (*emptypb.Empty, error)
@@ -322,6 +333,9 @@ func (UnimplementedContribServiceServer) ListTranscriptChanges(context.Context, 
 }
 func (UnimplementedContribServiceServer) GetTranscriptChange(context.Context, *GetTranscriptChangeRequest) (*TranscriptChange, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTranscriptChange not implemented")
+}
+func (UnimplementedContribServiceServer) GetTranscriptChangeDiff(context.Context, *GetTranscriptChangeDiffRequest) (*TranscriptChangeDiff, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTranscriptChangeDiff not implemented")
 }
 func (UnimplementedContribServiceServer) CreateTranscriptChange(context.Context, *CreateTranscriptChangeRequest) (*TranscriptChange, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateTranscriptChange not implemented")
@@ -653,6 +667,24 @@ func _ContribService_GetTranscriptChange_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ContribService_GetTranscriptChangeDiff_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTranscriptChangeDiffRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContribServiceServer).GetTranscriptChangeDiff(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/rsk.ContribService/GetTranscriptChangeDiff",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContribServiceServer).GetTranscriptChangeDiff(ctx, req.(*GetTranscriptChangeDiffRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ContribService_CreateTranscriptChange_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateTranscriptChangeRequest)
 	if err := dec(in); err != nil {
@@ -799,6 +831,10 @@ var ContribService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetTranscriptChange",
 			Handler:    _ContribService_GetTranscriptChange_Handler,
+		},
+		{
+			MethodName: "GetTranscriptChangeDiff",
+			Handler:    _ContribService_GetTranscriptChangeDiff_Handler,
 		},
 		{
 			MethodName: "CreateTranscriptChange",

@@ -7,7 +7,6 @@ require (
 	github.com/blevesearch/bleve/v2 v2.0.2
 	github.com/blevesearch/bleve_index_api v1.0.0
 	github.com/blugelabs/bluge v0.1.8
-	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gocolly/colly/v2 v2.1.0
 	github.com/gogo/protobuf v1.3.1 // indirect
@@ -15,6 +14,7 @@ require (
 	github.com/gorilla/mux v1.8.0
 	github.com/grpc-ecosystem/go-grpc-middleware v1.2.2
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.3.0
+	github.com/hexops/gotextdiff v1.0.3
 	github.com/jdkato/prose/v2 v2.0.0
 	github.com/jmoiron/sqlx v1.3.1
 	github.com/karlseguin/ccache/v2 v2.0.8

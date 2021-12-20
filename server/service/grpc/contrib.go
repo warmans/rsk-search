@@ -7,7 +7,11 @@ import (
 	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
+	"github.com/hexops/gotextdiff"
+	"github.com/hexops/gotextdiff/myers"
+	"github.com/hexops/gotextdiff/span"
 	"github.com/warmans/rsk-search/gen/api"
+	"github.com/warmans/rsk-search/pkg/data"
 	"github.com/warmans/rsk-search/pkg/filter"
 	"github.com/warmans/rsk-search/pkg/jwt"
 	"github.com/warmans/rsk-search/pkg/models"
@@ -28,6 +32,7 @@ func NewContribService(
 	persistentDB *rw.Conn,
 	auth *jwt.Auth,
 	pledgeClient *pledge.Client,
+	episodeCache *data.EpisodeCache,
 ) *ContribService {
 	return &ContribService{
 		logger:       logger,
@@ -35,6 +40,7 @@ func NewContribService(
 		persistentDB: persistentDB,
 		auth:         auth,
 		pledgeClient: pledgeClient,
+		episodeCache: episodeCache,
 	}
 }
 
@@ -44,6 +50,7 @@ type ContribService struct {
 	persistentDB *rw.Conn
 	auth         *jwt.Auth
 	pledgeClient *pledge.Client
+	episodeCache *data.EpisodeCache
 }
 
 func (s *ContribService) RegisterGRPC(server *grpc.Server) {
@@ -574,6 +581,45 @@ func (s *ContribService) GetTranscriptChange(ctx context.Context, request *api.G
 		}
 	}
 	return change.Proto(), nil
+}
+
+func (s *ContribService) GetTranscriptChangeDiff(ctx context.Context, request *api.GetTranscriptChangeDiffRequest) (*api.TranscriptChangeDiff, error) {
+	claims, err := s.getClaims(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	var newTranscript *models.TranscriptChange
+	err = s.persistentDB.WithStore(func(s *rw.Store) error {
+		var err error
+		newTranscript, err = s.GetTranscriptChange(ctx, request.Id)
+		if err != nil {
+			return err
+		}
+		return nil
+	})
+	if err != nil {
+		return nil, ErrFromStore(err, request.Id).Err()
+	}
+	if claims.Approver == false {
+		if newTranscript.State == models.ContributionStatePending && newTranscript.Author.ID != claims.AuthorID {
+			return nil, ErrPermissionDenied("you cannot view another author's contribution when it is in the pending state").Err()
+		}
+	}
+
+	oldTranscript, err := s.episodeCache.GetEpisode(newTranscript.EpID)
+	if err != nil {
+		return nil, ErrNotFound(newTranscript.EpID).Err()
+	}
+	oldRaw, err := transcript.Export(oldTranscript.Transcript, oldTranscript.Synopsis, oldTranscript.Trivia)
+	if err != nil {
+		return nil, err
+	}
+
+	edits := myers.ComputeEdits(span.URIFromPath(fmt.Sprintf("%s.txt", oldTranscript.ID())), oldRaw, newTranscript.Transcription)
+	diff := fmt.Sprint(gotextdiff.ToUnified(fmt.Sprintf("%s.txt", oldTranscript.ID()), fmt.Sprintf("%s.change.txt", oldTranscript.ID()), oldRaw, edits))
+
+	return &api.TranscriptChangeDiff{Diff: diff}, nil
 }
 
 func (s *ContribService) CreateTranscriptChange(ctx context.Context, request *api.CreateTranscriptChangeRequest) (*api.TranscriptChange, error) {

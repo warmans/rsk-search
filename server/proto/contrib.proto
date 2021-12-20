@@ -216,6 +216,17 @@ service ContribService {
     };
   }
 
+  rpc GetTranscriptChangeDiff(GetTranscriptChangeDiffRequest) returns (TranscriptChangeDiff) {
+    option (google.api.http) = {
+      get: "/api/contrib/transcript/change/{id}/diff"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "getTranscriptChangeDiff",
+      summary: "Get the diff for a change."
+      tags: "search"
+    };
+  }
+
 
   rpc CreateTranscriptChange(CreateTranscriptChangeRequest) returns (TranscriptChange) {
     option (google.api.http) = {
@@ -512,11 +523,11 @@ message TranscriptChangeList {
 }
 
 message TranscriptChange {
+  reserved 5;
   string id = 1;
   string episode_id = 2;
   string summary = 3;
   string transcript = 4;
-  string diff = 5;
   ContributionState state = 6;
   Author author = 7;
   string created_at = 8;
@@ -539,4 +550,12 @@ message RequestTranscriptChangeStateRequest {
 
 message GetTranscriptChangeRequest {
   string id = 1;
+}
+
+message GetTranscriptChangeDiffRequest {
+  string id = 1;
+}
+
+message TranscriptChangeDiff {
+  string diff = 1;
 }

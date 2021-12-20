@@ -157,6 +157,7 @@ func ServerCmd() *cobra.Command {
 					persistentDBConn,
 					auth,
 					pledge.NewClient(pledgeCfg),
+					episodeCache,
 				),
 				grpc.NewOauthService(
 					logger,
