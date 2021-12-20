@@ -432,6 +432,37 @@
           ]
         }
       },
+      "/api/contrib/transcript/change/{id}/diff": {
+        "get": {
+          "summary": "Get the diff for a change.",
+          "operationId": "getTranscriptChangeDiff",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskTranscriptChangeDiff"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "tags": [
+            "search"
+          ]
+        }
+      },
       "/api/contrib/transcript/change/{id}/state": {
         "patch": {
           "summary": "request the change's state be changed.",
@@ -1653,9 +1684,6 @@
           "transcript": {
             "type": "string"
           },
-          "diff": {
-            "type": "string"
-          },
           "state": {
             "$ref": "#/definitions/rskContributionState"
           },
@@ -1667,6 +1695,14 @@
           },
           "merged": {
             "type": "boolean"
+          }
+        }
+      },
+      "rskTranscriptChangeDiff": {
+        "type": "object",
+        "properties": {
+          "diff": {
+            "type": "string"
           }
         }
       },

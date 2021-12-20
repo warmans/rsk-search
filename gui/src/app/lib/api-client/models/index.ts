@@ -39,6 +39,7 @@ export { RskShortTranscriptChange } from './rsk-short-transcript-change.model';
 export { RskSynopsis } from './rsk-synopsis.model';
 export { RskTranscript } from './rsk-transcript.model';
 export { RskTranscriptChange } from './rsk-transcript-change.model';
+export { RskTranscriptChangeDiff } from './rsk-transcript-change-diff.model';
 export { RskTranscriptChangeList } from './rsk-transcript-change-list.model';
 export { RskTranscriptList } from './rsk-transcript-list.model';
 export { RskTrivia } from './rsk-trivia.model';

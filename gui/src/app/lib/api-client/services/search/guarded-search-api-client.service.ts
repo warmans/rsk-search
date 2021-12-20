@@ -141,6 +141,16 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
       .pipe(tap((res: any) => guards.isRskTranscriptChange(res) || console.error(`TypeGuard for response 'RskTranscriptChange' caught inconsistency.`, res)));
   }
 
+  getTranscriptChangeDiff(
+    args: {
+      id: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskTranscriptChangeDiff> {
+    return super.getTranscriptChangeDiff(args, requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRskTranscriptChangeDiff(res) || console.error(`TypeGuard for response 'RskTranscriptChangeDiff' caught inconsistency.`, res)));
+  }
+
   requestTranscriptChangeState(
     args: {
       id: string,

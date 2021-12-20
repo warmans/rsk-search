@@ -282,6 +282,24 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  getTranscriptChangeDiff(
+    args: {
+      id: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskTranscriptChangeDiff> {
+    const path = `/api/contrib/transcript/change/${args.id}/diff`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<models.RskTranscriptChangeDiff>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   requestTranscriptChangeState(
     args: {
       id: string,

@@ -607,8 +607,6 @@ export function isRskTranscriptChange(arg: any): arg is models.RskTranscriptChan
     ( typeof arg.author === 'undefined' || isRskAuthor(arg.author) ) &&
     // createdAt?: string
     ( typeof arg.createdAt === 'undefined' || typeof arg.createdAt === 'string' ) &&
-    // diff?: string
-    ( typeof arg.diff === 'undefined' || typeof arg.diff === 'string' ) &&
     // episodeId?: string
     ( typeof arg.episodeId === 'undefined' || typeof arg.episodeId === 'string' ) &&
     // id?: string
@@ -621,6 +619,17 @@ export function isRskTranscriptChange(arg: any): arg is models.RskTranscriptChan
     ( typeof arg.summary === 'undefined' || typeof arg.summary === 'string' ) &&
     // transcript?: string
     ( typeof arg.transcript === 'undefined' || typeof arg.transcript === 'string' ) &&
+
+  true
+  );
+  }
+
+export function isRskTranscriptChangeDiff(arg: any): arg is models.RskTranscriptChangeDiff {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // diff?: string
+    ( typeof arg.diff === 'undefined' || typeof arg.diff === 'string' ) &&
 
   true
   );

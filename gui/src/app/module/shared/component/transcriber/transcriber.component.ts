@@ -55,6 +55,12 @@ export class TranscriberComponent implements OnInit, OnDestroy {
   @Output()
   handleSave: EventEmitter<string> = new EventEmitter<string>();
 
+  @Input()
+  enableDiff: boolean;
+
+  @Input()
+  unifiedDiff: string;
+
   fromBackup: boolean = false;
 
   editorConfig: EditorConfig = localStorage.getItem('editor-config') ? JSON.parse(localStorage.getItem('editor-config')) as EditorConfig : new EditorConfig();
@@ -67,18 +73,18 @@ export class TranscriberComponent implements OnInit, OnDestroy {
 
   showHelp: boolean = false;
 
-  set activeTab(value: 'edit' | 'preview') {
+  set activeTab(value: 'edit' | 'preview' | 'diff') {
     this._activeTab = value;
     if (value === 'preview') {
       this.updatePreview(this.updatedTranscript || this.initialTranscript);
     }
   }
 
-  get activeTab(): 'edit' | 'preview' {
+  get activeTab(): 'edit' | 'preview' | 'diff' {
     return this._activeTab;
   }
 
-  private _activeTab: 'edit' | 'preview' = 'edit';
+  private _activeTab: 'edit' | 'preview' | 'diff' = 'edit';
 
   parsedTscript: Tscript;
 
@@ -203,6 +209,7 @@ export class TranscriberComponent implements OnInit, OnDestroy {
   }
 
   updatePreview(content: string) {
+    this.parsedTscript = null;
     this.parsedTscript = parseTranscript(content);
   }
 

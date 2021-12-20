@@ -617,7 +617,7 @@ func (s *ContribService) GetTranscriptChangeDiff(ctx context.Context, request *a
 	}
 
 	edits := myers.ComputeEdits(span.URIFromPath(fmt.Sprintf("%s.txt", oldTranscript.ID())), oldRaw, newTranscript.Transcription)
-	diff := fmt.Sprint(gotextdiff.ToUnified(fmt.Sprintf("%s.txt", oldTranscript.ID()), fmt.Sprintf("%s.change.txt", oldTranscript.ID()), oldRaw, edits))
+	diff := fmt.Sprint(gotextdiff.ToUnified(fmt.Sprintf("%s.txt", oldTranscript.ID()), fmt.Sprintf("%s.txt", oldTranscript.ID()), oldRaw, edits))
 
 	return &api.TranscriptChangeDiff{Diff: diff}, nil
 }

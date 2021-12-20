@@ -7,7 +7,6 @@ import {
 export interface RskTranscriptChange {
   author?: RskAuthor;
   createdAt?: string;
-  diff?: string;
   episodeId?: string;
   id?: string;
   merged?: boolean;

@@ -21,6 +21,7 @@ import { EditorHelpComponent } from './component/editor-help/editor-help.compone
 import { TranscriberComponent } from './component/transcriber/transcriber.component';
 import { FormatSecondsPipe } from './pipe/format-seconds.pipe';
 import { TriviaComponent } from './component/trivia/trivia.component';
+import { HtmlDiffComponent } from './component/html-diff/html-diff.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { TriviaComponent } from './component/trivia/trivia.component';
     EditorConfigComponent,
     EditorHelpComponent,
     TranscriberComponent,
+    HtmlDiffComponent,
   ],
   imports: [
     CommonModule,

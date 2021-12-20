@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { RskDialog, RskSynopsis } from '../../../../lib/api-client/models';
 import { ViewportScroller } from '@angular/common';
 import { Tscript } from '../../lib/tscript';
@@ -12,6 +12,7 @@ interface DialogGroup {
 
 @Component({
   selector: 'app-transcript',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './transcript.component.html',
   styleUrls: ['./transcript.component.scss']
 })

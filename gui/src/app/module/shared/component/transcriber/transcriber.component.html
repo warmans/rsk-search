@@ -23,6 +23,9 @@
   <li class="nav-item">
     <a class="nav-link" (click)="activeTab='preview'" [ngClass]="{'active': activeTab==='preview'}">Preview</a>
   </li>
+  <li class="nav-item" *ngIf="enableDiff">
+    <a class="nav-link" (click)="activeTab='diff'" [ngClass]="{'active': activeTab==='diff'}">Diff</a>
+  </li>
 </ul>
 
 <div class="card" [hidden]="!(activeTab==='edit')">
@@ -101,5 +104,13 @@
   </div>
   <div class="card-body preview-window">
     <app-transcript [transcript]="parsedTscript" [searchResultMode]="false" [enableLineLinking]="true"></app-transcript>
+  </div>
+</div>
+
+<div *ngIf="enableDiff" class="card" [hidden]="!(activeTab==='diff')">
+  <div class="card-header">
+  </div>
+  <div class="card-body preview-window">
+    <app-html-diff [unifiedDiff]="unifiedDiff"></app-html-diff>
   </div>
 </div>

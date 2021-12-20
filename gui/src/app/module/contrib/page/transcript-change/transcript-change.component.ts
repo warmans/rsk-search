@@ -6,10 +6,10 @@ import { Title } from '@angular/platform-browser';
 import { SessionService } from '../../../core/service/session/session.service';
 import { AlertService } from '../../../core/service/alert/alert.service';
 import {
-  RskChunkContribution,
   RskContributionState,
   RskTranscript,
-  RskTranscriptChange
+  RskTranscriptChange,
+  RskTranscriptChangeDiff
 } from '../../../../lib/api-client/models';
 import { TranscriberComponent } from '../../../shared/component/transcriber/transcriber.component';
 import { Observable } from 'rxjs';
@@ -23,6 +23,8 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
 
   epID: string;
 
+  initialTranscript: string;
+
   transcript: RskTranscript;
 
   change: RskTranscriptChange;
@@ -35,6 +37,7 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
   userIsApprover: boolean = false;
   cStates = RskContributionState;
   lastUpdateTimestamp: Date;
+  unifiedDiff: string;
 
   loading: boolean[] = [];
 
@@ -62,17 +65,18 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
         withRaw: true
       }).pipe(takeUntil(this.$destroy)).subscribe((res: RskTranscript) => {
         this.transcript = res;
+        this.initialTranscript = res.rawTranscript;
       });
 
       if (d.params['change_id']) {
         this.apiClient.getTranscriptChange({ id: d.params['change_id'] }).pipe(takeUntil(this.$destroy)).subscribe((res: RskTranscriptChange) => {
           this.change = res;
+          this.checkUserCanEdit();
+          this.getDiff();
+
+          this.initialTranscript = this.change.transcript;
           this.updatedTranscript = this.change.transcript;
 
-          this.userCanEdit = res.state === RskContributionState.STATE_PENDING;
-          if (!this.sessionService.getClaims().approver) {
-            this.userCanEdit = this.sessionService.getClaims()?.author_id === res.author.id;
-          }
           this.userIsOwner = this.sessionService.getClaims()?.author_id === res.author.id || this.sessionService.getClaims().approver;
           this.userIsApprover = this.sessionService.getClaims().approver;
         });
@@ -117,7 +121,9 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
   update() {
     this._update(this.change.state).subscribe((res: RskTranscriptChange) => {
       this.change = res;
+      this.checkUserCanEdit();
       this.lastUpdateTimestamp = new Date();
+      this.getDiff();
     });
   }
 
@@ -143,6 +149,7 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
     }).pipe(takeUntil(this.$destroy)).subscribe((res: RskTranscriptChange) => {
 
       this.change.state = state;
+      this.checkUserCanEdit();
 
       switch (this.change.state) {
         case RskContributionState.STATE_PENDING:
@@ -161,13 +168,14 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
     }).add(() => this.loading.shift());
   }
 
+  checkUserCanEdit() {
+    const isAuthorOrApprover = this.sessionService.getClaims()?.author_id === this.change.author.id || this.sessionService.getClaims().approver;
+    this.userCanEdit = this.change.state === RskContributionState.STATE_PENDING && isAuthorOrApprover;
+    console.log(this.change.state === RskContributionState.STATE_PENDING, isAuthorOrApprover)
+  }
+
   markComplete() {
-    this.loading.push(true);
-    this._update(RskContributionState.STATE_REQUEST_APPROVAL).subscribe((res: RskTranscriptChange) => {
-      this.change = res;
-      this.lastUpdateTimestamp = new Date();
-      this.alertService.success('Submitted', 'Change is now awaiting manual approval by an approver. This usually takes around 24 hours.');
-    }).add(() => this.loading.shift());
+    this._updateState(RskContributionState.STATE_REQUEST_APPROVAL);
   }
 
   markIncomplete() {
@@ -180,6 +188,15 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
 
   markRejected() {
     this._updateState(RskContributionState.STATE_REJECTED);
+  }
+
+  getDiff() {
+    this.loading.push(true);
+    this.apiClient.getTranscriptChangeDiff({
+      id: this.change.id,
+    }).pipe(takeUntil(this.$destroy)).subscribe((res: RskTranscriptChangeDiff) => {
+      this.unifiedDiff = res.diff;
+    }).add(() => this.loading.shift());
   }
 
 }

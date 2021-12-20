@@ -103,7 +103,7 @@ export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private tryEmitOffset() {
     const caretFocus = this.getCaretFocus();
-    if (isOffsetLine(caretFocus.line)) {
+    if (caretFocus && isOffsetLine(caretFocus.line)) {
       this.atOffsetMarker.next(getOffsetValueFromLine(caretFocus.line));
     }
   }

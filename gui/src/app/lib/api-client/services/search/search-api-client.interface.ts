@@ -128,6 +128,16 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  getTranscriptChangeDiff(
+    args: {
+      id: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskTranscriptChangeDiff>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   requestTranscriptChangeState(
     args: {
       id: string,

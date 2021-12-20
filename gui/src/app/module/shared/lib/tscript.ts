@@ -78,19 +78,19 @@ export function parseTranscript(transcript: string): Tscript {
       return;
     }
     if (isStartSynopsisLine(line)) {
-      currentSynopsis = { description: getSynopsis(line), startPos: pos};
+      currentSynopsis = { description: getSynopsis(line), startPos: pos };
       return;
     }
-    if (isEndSynopsisLine(line)) {
+    if (isEndSynopsisLine(line) && currentSynopsis) {
       currentSynopsis.endPos = pos;
       tscript.synopses.push(currentSynopsis);
       return;
     }
     if (isStartTriviaLine(line)) {
-      currentTrivia = { description: getTrivia(line), startPos: pos};
+      currentTrivia = { description: getTrivia(line), startPos: pos };
       return;
     }
-    if (isEndTriviaLine(line)) {
+    if (isEndTriviaLine(line) && currentTrivia) {
       currentTrivia.endPos = pos;
       tscript.trivia.push(currentTrivia);
       return;
@@ -117,9 +117,6 @@ export function parseTranscript(transcript: string): Tscript {
 
     pos++;
   });
-
-  console.log(tscript);
-
   return tscript;
 }
 
