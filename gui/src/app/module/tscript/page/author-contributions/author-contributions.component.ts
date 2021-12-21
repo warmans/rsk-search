@@ -9,7 +9,7 @@ import {
   RskChunkContribution,
   RskChunkContributionList,
   RskClaimedReward,
-  RskContributionState
+  RskContributionState, RskShortTranscriptChange, RskTranscriptChangeList
 } from '../../../../lib/api-client/models';
 import { Title } from '@angular/platform-browser';
 
@@ -23,6 +23,8 @@ export class AuthorContributionsComponent implements OnInit, OnDestroy {
   claims: Claims;
 
   contributions: RskChunkContribution[];
+
+  changes: RskShortTranscriptChange[];
 
   rewards: RskClaimedReward[];
 
@@ -42,6 +44,7 @@ export class AuthorContributionsComponent implements OnInit, OnDestroy {
         this.claims = this.session.getClaims();
         this.loadContributions();
         this.loadClaimedRewards();
+        this.loadChanges();
       } else {
         this.claims = undefined;
       }
@@ -71,6 +74,17 @@ export class AuthorContributionsComponent implements OnInit, OnDestroy {
       sortDirection: 'desc',
     }).pipe(takeUntil(this.destroy$)).subscribe((list: RskChunkContributionList) => {
       this.contributions = list.contributions;
+    }).add(() => this.loading.pop());
+  }
+
+  loadChanges() {
+    this.loading.push(true);
+    this.apiClient.listTranscriptChanges({
+      filter: Eq(`author_id`, Str(this.session.getClaims().author_id)).print(),
+      sortField: `created_at`,
+      sortDirection: 'desc',
+    }).pipe(takeUntil(this.destroy$)).subscribe((list: RskTranscriptChangeList) => {
+      this.changes = list.changes;
     }).add(() => this.loading.pop());
   }
 

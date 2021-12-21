@@ -31,10 +31,9 @@
 <div class="card" [hidden]="!(activeTab==='edit')">
   <div class="card-header sticky-top">
 
-      <button class="btn btn-success btn-sm mr-3" *ngIf="allowEdit" (click)="insertOffsetAboveCaret()" title="Add an #OFFSET tag above the cursor to the current audio timestamp">
-        #OFFSET (current)
-      </button>
-
+    <button class="btn btn-success btn-sm mr-3" *ngIf="allowEdit" (click)="insertOffsetAboveCaret()" title="Add an #OFFSET tag above the cursor to the current audio timestamp. See hotkey in config.">
+      #OFFSET (current)
+    </button>
     <button class="btn btn-success btn-sm mr-3" *ngIf="allowEdit" (click)="insertTextAboveCaret('#SYN: ')" title="Add an opening #SYN:  tag above the cursor">
       #SYN
     </button>

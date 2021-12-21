@@ -16,9 +16,11 @@
 
   .do-not-edit {
     background-color: transparentize($pink, 0.7);
-    border-top: 1px dashed $pink;
-    border-bottom: 1px dashed $pink;
     cursor: pointer;
+  }
+
+  .meta-tag {
+    background-color: rgba(128, 255, 128, 0.5);
   }
 
   span {

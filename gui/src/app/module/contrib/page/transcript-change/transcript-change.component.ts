@@ -72,7 +72,6 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
         this.apiClient.getTranscriptChange({ id: d.params['change_id'] }).pipe(takeUntil(this.$destroy)).subscribe((res: RskTranscriptChange) => {
           this.change = res;
           this.checkUserCanEdit();
-          this.getDiff();
 
           this.initialTranscript = this.change.transcript;
           this.updatedTranscript = this.change.transcript;
@@ -100,7 +99,7 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
   handleSave(transcript: string): void {
     this.updatedTranscript = transcript;
     if (this.change && this.userCanEdit) {
-      this.update();
+      this.update(()=>{});
     }
   }
 
@@ -118,12 +117,12 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
     }
   }
 
-  update() {
-    this._update(this.change.state).subscribe((res: RskTranscriptChange) => {
+  update(after: ()=>void) {
+    this._update(this.change.state).pipe(takeUntil(this.$destroy)).subscribe((res: RskTranscriptChange) => {
       this.change = res;
       this.checkUserCanEdit();
       this.lastUpdateTimestamp = new Date();
-      this.getDiff();
+      after();
     });
   }
 
@@ -171,7 +170,6 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
   checkUserCanEdit() {
     const isAuthorOrApprover = this.sessionService.getClaims()?.author_id === this.change.author.id || this.sessionService.getClaims().approver;
     this.userCanEdit = this.change.state === RskContributionState.STATE_PENDING && isAuthorOrApprover;
-    console.log(this.change.state === RskContributionState.STATE_PENDING, isAuthorOrApprover)
   }
 
   markComplete() {
@@ -199,4 +197,12 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
     }).add(() => this.loading.shift());
   }
 
+  checkReloadDiff(v: string) {
+    if (v === 'diff') {
+      // always update before loading the diff, to ensure it is accurate.
+      this.update(() => {
+        this.getDiff();
+      })
+    }
+  }
 }

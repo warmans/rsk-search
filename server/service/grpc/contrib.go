@@ -532,14 +532,14 @@ func (s *ContribService) ListDonationRecipients(ctx context.Context, request *ap
 
 func (s *ContribService) ListTranscriptChanges(ctx context.Context, request *api.ListTranscriptChangesRequest) (*api.TranscriptChangeList, error) {
 
-	qm, err := NewQueryModifiers(request)
+	claims, err := s.getClaims(ctx)
 	if err != nil {
 		return nil, err
 	}
-	if qm.Filter != nil {
-		qm.Filter = filter.And(filter.Neq("state", filter.String("pending")), qm.Filter)
-	} else {
-		qm.Filter = filter.Neq("state", filter.String("pending"))
+
+	qm, err := NewQueryModifiers(request)
+	if err != nil {
+		return nil, err
 	}
 
 	out := &api.TranscriptChangeList{
@@ -548,6 +548,10 @@ func (s *ContribService) ListTranscriptChanges(ctx context.Context, request *api
 	if err := s.persistentDB.WithStore(func(store *rw.Store) error {
 		contributions, err := store.ListTranscriptChanges(ctx, qm)
 		for _, v := range contributions {
+			// discard any pending contributions that are not owned by the author
+			if v.Author.ID != claims.AuthorID && v.State == models.ContributionStatePending {
+				continue
+			}
 			out.Changes = append(out.Changes, v.ShortProto())
 		}
 		return err

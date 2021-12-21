@@ -8,8 +8,8 @@ import {
 } from '../../../../lib/api-client/models';
 import { takeUntil } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
-import { Eq } from '../../../../lib/filter-dsl/filter';
-import { Bool } from '../../../../lib/filter-dsl/value';
+import { And, Eq, Neq } from '../../../../lib/filter-dsl/filter';
+import { Bool, Str } from '../../../../lib/filter-dsl/value';
 
 @Component({
   selector: 'app-contribute',
@@ -74,12 +74,16 @@ export class ContributeComponent implements OnInit, OnDestroy {
     });
 
     this.loading.push(true);
-    this.apiClient.listTranscriptChanges({ filter: Eq('merged', Bool(false)).print() }).pipe(takeUntil(this.unsubscribe$)).subscribe((res) => {
+    this.apiClient.listTranscriptChanges({
+      filter: And(
+        Eq('merged', Bool(false)),
+        Neq('state', Str('pending')),
+      ).print()
+    }).pipe(takeUntil(this.unsubscribe$)).subscribe((res) => {
       this.transcriptChanges = res.changes;
     }).add(() => {
       this.loading.pop();
     });
-
   }
 
   ngOnDestroy(): void {

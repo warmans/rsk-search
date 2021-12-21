@@ -46,6 +46,31 @@
           </tr>
         </table>
       </div>
+
+      <div class="card mb-3">
+        <div class="card-header">My Edits</div>
+            <table class="table p-0">
+              <tr>
+                <th>Episode</th>
+                <th>State</th>
+                <th>Created At</th>
+                <th></th>
+                <th></th>
+              </tr>
+              <tr *ngFor="let change of changes">
+                <td>{{change.episodeId}}</td>
+                <td>
+                  <app-contribution-state [state]="change.state"></app-contribution-state>
+                </td>
+                <td>{{change.createdAt}}</td>
+                <td>
+                  <a *ngIf="change.state === states.STATE_PENDING || change.state === states.STATE_REQUEST_APPROVAL || change.state === states.STATE_REJECTED" class="btn btn-sm btn-info" [routerLink]="['/ep', change.episodeId, 'change', change.id]">View</a>
+                  <span *ngIf="change.state !== states.STATE_PENDING && change.state !== states.STATE_REQUEST_APPROVAL && change.state !== states.STATE_REJECTED ">-</span>
+                </td>
+                <td></td>
+              </tr>
+            </table>
+      </div>
     </div>
   </div>
 </div>

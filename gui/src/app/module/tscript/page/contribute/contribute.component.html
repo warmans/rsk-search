@@ -56,7 +56,7 @@
             </tr>
             <tr *ngFor="let change of transcriptChanges">
               <td>{{change.episodeId}}</td>
-              <td>{{change.state}}</td>
+              <td><app-contribution-state [state]="change.state"></app-contribution-state></td>
               <td>{{change.author.name}}</td>
               <td>{{change.createdAt}}</td>
               <td><a class="btn btn-sm btn-info" [routerLink]="['/ep', change.episodeId, 'change', change.id]">View</a></td>

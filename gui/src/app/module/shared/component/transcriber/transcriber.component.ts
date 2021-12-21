@@ -55,6 +55,9 @@ export class TranscriberComponent implements OnInit, OnDestroy {
   @Output()
   handleSave: EventEmitter<string> = new EventEmitter<string>();
 
+  @Output()
+  activateTab: EventEmitter<string> = new EventEmitter<string>();
+
   @Input()
   enableDiff: boolean;
 
@@ -74,6 +77,7 @@ export class TranscriberComponent implements OnInit, OnDestroy {
   showHelp: boolean = false;
 
   set activeTab(value: 'edit' | 'preview' | 'diff') {
+    this.activateTab.next(value);
     this._activeTab = value;
     if (value === 'preview') {
       this.updatePreview(this.updatedTranscript || this.initialTranscript);
@@ -112,6 +116,14 @@ export class TranscriberComponent implements OnInit, OnDestroy {
       }
       if (event.key === (this.editorConfig?.fastForwardKey || 'Pause')) {
         this.audioPlayer.play(3);
+        return false;
+      }
+      if (event.key === (this.editorConfig?.fastForwardKey || 'Pause')) {
+        this.audioPlayer.play(3);
+        return false;
+      }
+      if (event.key === (this.editorConfig?.insertOffsetKey || 'PrintScreen')) {
+        this.insertOffsetAboveCaret();
         return false;
       }
       return true;

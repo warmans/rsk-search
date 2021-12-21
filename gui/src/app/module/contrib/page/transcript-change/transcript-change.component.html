@@ -81,7 +81,8 @@
         [isSaved]="change?.id"
         [enableDiff]="!!change"
         [unifiedDiff]="unifiedDiff"
-        (handleSave)="handleSave($event)">
+        (handleSave)="handleSave($event)"
+        (activateTab)="checkReloadDiff($event)">
       </app-transcriber>
     </div>
   </div>

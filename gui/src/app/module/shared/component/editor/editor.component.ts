@@ -80,6 +80,8 @@ export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
     lines.forEach((line: string) => {
       if (line.match(/^#OFFSET:.*/g)) {
         this.renderer.appendChild(this.editableContent.nativeElement, this.newOffsetElement(line));
+      } else if (line.match(/^#[\/]?(SYN|TRIVIA).*/g)) {
+        this.renderer.appendChild(this.editableContent.nativeElement, this.newTextElement(line));
       } else {
         const el = this.renderer.createElement('span');
         el.innerText = `${line}\n`;
@@ -98,6 +100,7 @@ export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
   private newTextElement(text: string): any {
     const el = this.renderer.createElement('span');
     el.innerText = `${text}\n`;
+    el.className = 'meta-tag';
     return el;
   }
 
@@ -120,12 +123,12 @@ export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
 
   nodeIsChildOfEditor(el: HTMLElement): boolean {
     if (el === this.editableContent.nativeElement) {
-      return true
+      return true;
     }
     if (el.parentElement !== null) {
-      return this.nodeIsChildOfEditor(el.parentElement)
+      return this.nodeIsChildOfEditor(el.parentElement);
     }
-    return false
+    return false;
   }
 
   insertTextAboveCaret(text: string): void {

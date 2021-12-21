@@ -23,6 +23,7 @@ export class EditorConfigComponent implements OnInit {
     'backtrack': new FormControl(),
     'fastForwardKey': new FormControl(),
     'rewindKey': new FormControl(),
+    'insertOffsetKey': new FormControl(),
     'autoSeek': new FormControl(),
     'wrapText': new FormControl(),
   });
@@ -38,6 +39,7 @@ export class EditorConfigComponent implements OnInit {
     this.configForm.get('backtrack').setValue(this.initialConfig.backtrack);
     this.configForm.get('fastForwardKey').setValue(this.initialConfig.fastForwardKey);
     this.configForm.get('rewindKey').setValue(this.initialConfig.rewindKey);
+    this.configForm.get('insertOffsetKey').setValue(this.initialConfig.insertOffsetKey);
     this.configForm.get('autoSeek').setValue(this.initialConfig.autoSeek);
     this.configForm.get('wrapText').setValue(this.initialConfig.wrapText === undefined ? true : this.initialConfig.wrapText);
   }
@@ -50,6 +52,7 @@ export class EditorConfigComponent implements OnInit {
       this.configForm.get('backtrack').value,
       this.configForm.get('fastForwardKey').value,
       this.configForm.get('rewindKey').value,
+      this.configForm.get('insertOffsetKey').value,
       this.configForm.get('autoSeek').value,
       this.configForm.get('wrapText').value,
     );
@@ -64,6 +67,7 @@ export class EditorConfig {
     public backtrack: number = 3,
     public fastForwardKey: string = 'Pause',
     public rewindKey: string = 'ScrollLock',
+    public insertOffsetKey: string = 'PrintScreen',
     public autoSeek: boolean = true,
     public wrapText: boolean = true) {
   }
