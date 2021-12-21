@@ -12,7 +12,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
 import { AudioPlayerComponent } from '../../../shared/component/audio-player/audio-player.component';
 import { SessionService } from '../../../core/service/session/session.service';
-import { And, Eq } from '../../../../lib/filter-dsl/filter';
+import { And, Eq, Neq } from '../../../../lib/filter-dsl/filter';
 import { Bool, Str } from '../../../../lib/filter-dsl/value';
 
 @Component({
@@ -90,7 +90,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
       }).add(() => this.loading = false);
 
     this.apiClient.listTranscriptChanges({
-      filter: And(Eq('epid', Str(this.id)), Eq('merged', Bool(false))).print()
+      filter: And(Eq('epid', Str(this.id)), Eq('merged', Bool(false)), Neq('state', Str('pending'))).print()
     }).pipe(takeUntil(this.unsubscribe$)).subscribe((ep: RskTranscriptChangeList) => {
       this.pendingChanges = ep.changes;
     });
