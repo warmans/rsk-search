@@ -5,7 +5,7 @@
       <li class="breadcrumb-item"><a [routerLink]="['/search']">Home</a></li>
       <li class="breadcrumb-item"><a [routerLink]="['/contribute']">Contribute</a></li>
       <li class="breadcrumb-item" *ngIf="chunk"><a [routerLink]="['/tscript', chunk.tscriptId ]">{{chunk?.tscriptId ||
-        "loading..."}}</a></li>
+      "loading..."}}</a></li>
       <li class="breadcrumb-item active" aria-current="page">Create</li>
     </ol>
   </nav>
@@ -36,7 +36,7 @@
           <div class="card-body">
             <p>Currently your contribution is only saved locally, you can create a draft to allow you to submit it for
               approval.</p>
-            <button class="btn btn-success mt-2" (click)="create()" [disabled]="!updatedTranscript">Create draft</button>
+            <button class="btn btn-success mt-2" (click)="create()">Create draft</button>
           </div>
         </div>
         <div class="card" *ngIf="contribution">
@@ -48,9 +48,10 @@
               <div *ngIf="contribution.state === cStates.STATE_PENDING">
                 <p>This means that the contribution has not yet been reviewed and can still be edited if you are the
                   owner. Clicking the button below will mark it as being ready to be merged.</p>
-                <button class="btn btn-success mt-2" (click)="markComplete()" [disabled]="!updatedTranscript">
+                <button class="btn btn-success mt-2" (click)="markComplete()">
                   Mark as complete <i class="bi-check"></i>
                 </button>
+                <button (click)="discard()" class="btn btn-danger ml-2 mt-2">Discard</button>
               </div>
               <div *ngIf="contribution.state === cStates.STATE_REQUEST_APPROVAL">
                 <p>This means your contribution will now be reviewed and merged (hopefully!).</p>
@@ -69,7 +70,7 @@
               <div *ngIf="contribution.state === cStates.STATE_REJECTED">
                 <p>This means it was not possible to merge your contribution either because it was a duplicate,
                   or because it did not appear to be correct.</p>
-                <button class="btn btn-success mt-2" (click)="markIncomplete()" [disabled]="!updatedTranscript">
+                <button class="btn btn-success mt-2" (click)="markIncomplete()">
                   Revert to incomplete <i class="bi-pen"></i>
                 </button>
               </div>

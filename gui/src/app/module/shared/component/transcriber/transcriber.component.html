@@ -67,7 +67,7 @@
   </div>
 
   <div class="card-notification px-4 py-2" *ngIf="fromBackup">
-    Transcript was recovered from a local backup (you can <a class="btn btn-sm btn-primary" (click)="resetToRaw()">discard</a> the backup to view the <span *ngIf="isSaved">saved</span><span *ngIf="!isSaved">unedited</span> transcript).
+    Transcript was recovered from a local backup (you can <a class="btn btn-sm btn-primary" (click)="resetToRaw()">discard</a> the backup to keep the current <span *ngIf="isSaved">saved</span><span *ngIf="!isSaved">unedited</span> transcript). Close this dialog to keep the backup.
     <button type="button" class="close" aria-label="Close" (click)="fromBackup = false">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -81,8 +81,8 @@
         [readonly]="!allowEdit"
         [wrap]="editorConfig.wrapText"
         [textContent]="initialTranscript"
-        (textContentChange)="setUpdatedTranscript($event)"
-        (atOffsetMarker)="handleOffsetNavigate($event)">
+        (atOffsetMarker)="handleOffsetNavigate($event)"
+        (textContentChange)="handleContentUpdated()">
       </app-editor>
     </div>
     <div class="card-footer pt-3 pb-3 text-right" *ngIf="allowEdit">
@@ -97,16 +97,15 @@
   </div>
 </div>
 
-
-<div class="card" [hidden]="!(activeTab==='preview')">
+<div class="card" *ngIf="(activeTab==='preview')">
   <div class="card-header">
   </div>
   <div class="card-body preview-window">
-    <app-transcript [transcript]="parsedTscript" [searchResultMode]="false" [enableLineLinking]="true"></app-transcript>
+    <app-transcript [rawTranscript]="getContentSnapshot() || initialTranscript" [searchResultMode]="false" [enableLineLinking]="true"></app-transcript>
   </div>
 </div>
 
-<div *ngIf="enableDiff" class="card" [hidden]="!(activeTab==='diff')">
+<div *ngIf="enableDiff && (activeTab==='diff')" class="card">
   <div class="card-header">
   </div>
   <div class="card-body preview-window">

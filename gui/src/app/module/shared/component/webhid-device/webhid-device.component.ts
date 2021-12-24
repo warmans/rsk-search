@@ -28,16 +28,13 @@ export class WebhidDeviceComponent implements OnInit {
     let device: any;
     try {
       const devices = await navigator.hid.requestDevice({ filters: [] });
-      console.log(devices);
       device = devices[1];
     } catch (error) {
       console.warn('No device access granted', error);
       return;
     }
 
-
     if (device) {
-      console.log(device);
       await device.open();
     }
   }

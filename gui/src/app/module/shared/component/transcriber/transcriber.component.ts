@@ -1,9 +1,9 @@
 import { Component, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { EditorConfig, EditorConfigComponent } from '../editor-config/editor-config.component';
 import { Subject } from 'rxjs';
-import { getFirstOffset, parseTranscript, Tscript } from '../../lib/tscript';
+import { getFirstOffset, Tscript } from '../../lib/tscript';
 import { AudioPlayerComponent } from '../audio-player/audio-player.component';
-import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
+import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { formatDistance } from 'date-fns';
 import { EditorComponent } from '../editor/editor.component';
 
@@ -71,7 +71,6 @@ export class TranscriberComponent implements OnInit, OnDestroy {
   contentUpdated: Subject<string> = new Subject<string>();
 
   initialTranscript: string = '';
-  updatedTranscript: string = '';
   firstOffset: number = -1;
 
   showHelp: boolean = false;
@@ -79,9 +78,6 @@ export class TranscriberComponent implements OnInit, OnDestroy {
   set activeTab(value: 'edit' | 'preview' | 'diff') {
     this.activateTab.next(value);
     this._activeTab = value;
-    if (value === 'preview') {
-      this.updatePreview(this.updatedTranscript || this.initialTranscript);
-    }
   }
 
   get activeTab(): 'edit' | 'preview' | 'diff' {
@@ -139,14 +135,17 @@ export class TranscriberComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.contentUpdated.pipe(takeUntil(this.$destroy), distinctUntilChanged(), debounceTime(1000)).subscribe((v) => {
-      const isFirstUpdate: boolean = this.updatedTranscript === '';
-      this.updatedTranscript = v;
-      if (!isFirstUpdate) {
-        this.backupContent(v);
+    this.contentUpdated.pipe(takeUntil(this.$destroy), distinctUntilChanged()).subscribe((v) => {
+      if (!v) {
+        return;
       }
+      this.backupContent(v);
       this.save();
     });
+  }
+
+  getContentSnapshot(): string {
+    return `${this.editorComponent.textContent}`;
   }
 
   setInitialTranscript(text: string) {
@@ -182,12 +181,11 @@ export class TranscriberComponent implements OnInit, OnDestroy {
     if (confirm('Really reset editor to raw raw transcript?')) {
       this.clearBackup();
       this.setInitialTranscript(this._rawTranscript);
-      this.updatePreview(this._rawTranscript);
     }
   }
 
-  setUpdatedTranscript(text: string) {
-    this.contentUpdated.next(text);
+  handleContentUpdated() {
+    this.contentUpdated.next(this.getContentSnapshot());
   }
 
   handleOffsetNavigate(offset: number) {
@@ -216,13 +214,8 @@ export class TranscriberComponent implements OnInit, OnDestroy {
 
   save(): void {
     if (this.handleSave) {
-      this.handleSave.next(this.updatedTranscript);
+      this.handleSave.next(this.getContentSnapshot());
     }
-  }
-
-  updatePreview(content: string) {
-    this.parsedTscript = null;
-    this.parsedTscript = parseTranscript(content);
   }
 
   insertOffsetAboveCaret() {

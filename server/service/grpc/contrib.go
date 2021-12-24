@@ -295,7 +295,7 @@ func (s *ContribService) DeleteChunkContribution(ctx context.Context, request *a
 		return nil, ErrPermissionDenied("you are not the author of this contribution").Err()
 	}
 	if contrib.State != models.ContributionStatePending {
-		return nil, ErrFailedPrecondition(fmt.Sprintf("Only pending contributions can be delete. Actual state was: %s", contrib.State)).Err()
+		return nil, ErrFailedPrecondition(fmt.Sprintf("Only pending contributions can be deleted. Actual state was: %s", contrib.State)).Err()
 	}
 	err = s.persistentDB.WithStore(func(s *rw.Store) error {
 		return s.DeleteContribution(ctx, request.ContributionId)
@@ -639,7 +639,7 @@ func (s *ContribService) CreateTranscriptChange(ctx context.Context, request *ap
 			ctx,
 			common.Q(
 				common.WithFilter(
-					filter.Eq("epid", filter.String(request.Epid)),
+					filter.And(filter.Eq("epid", filter.String(request.Epid)), filter.Neq("state", filter.String("pending"))),
 				),
 			),
 		)
@@ -710,7 +710,32 @@ func (s *ContribService) UpdateTranscriptChange(ctx context.Context, request *ap
 }
 
 func (s *ContribService) DeleteTranscriptChange(ctx context.Context, request *api.DeleteTranscriptChangeRequest) (*emptypb.Empty, error) {
-	panic("implement me")
+	claims, err := s.getClaims(ctx)
+	if err != nil {
+		return nil, err
+	}
+	var change *models.TranscriptChange
+	err = s.persistentDB.WithStore(func(s *rw.Store) error {
+		var err error
+		change, err = s.GetTranscriptChange(ctx, request.Id)
+		return err
+	})
+	if err != nil {
+		return nil, ErrFromStore(err, request.Id).Err()
+	}
+	if change.Author.ID != claims.AuthorID {
+		return nil, ErrNotFound(request.Id).Err()
+	}
+	if change.State != models.ContributionStatePending {
+		return nil, ErrFailedPrecondition("change must be in pending state").Err()
+	}
+	err = s.persistentDB.WithStore(func(s *rw.Store) error {
+		return s.DeleteTranscriptChange(ctx, request.Id)
+	})
+	if err != nil {
+		return nil, ErrFromStore(err, request.Id).Err()
+	}
+	return &emptypb.Empty{}, nil
 }
 
 func (s *ContribService) RequestTranscriptChangeState(ctx context.Context, request *api.RequestTranscriptChangeStateRequest) (*emptypb.Empty, error) {

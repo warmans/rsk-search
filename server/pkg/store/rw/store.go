@@ -856,6 +856,18 @@ func (s *Store) UpdateTranscriptChange(ctx context.Context, c *models.Transcript
 	return change, err
 }
 
+func (s *Store) DeleteTranscriptChange(ctx context.Context, id string) error {
+	if id == "" {
+		return fmt.Errorf("no identifier was provided")
+	}
+	_, err := s.tx.ExecContext(
+		ctx,
+		`DELETE FROM transcript_change WHERE id=$1`,
+		id,
+	)
+	return err
+}
+
 func (s *Store) UpdateTranscriptChangeState(ctx context.Context, id string, state models.ContributionState) error {
 	_, err := s.tx.ExecContext(
 		ctx,

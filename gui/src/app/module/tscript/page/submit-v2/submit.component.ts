@@ -3,7 +3,7 @@ import { SearchAPIClient } from '../../../../lib/api-client/services/search';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Observable, Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
+import { debounceTime, takeUntil } from 'rxjs/operators';
 import { SessionService } from '../../../core/service/session/session.service';
 import { getFirstOffset, Tscript } from '../../../shared/lib/tscript';
 import { AlertService } from '../../../core/service/alert/alert.service';
@@ -30,7 +30,7 @@ export class SubmitV2Component implements OnInit, OnDestroy {
   // to stop the caret from getting messed up by updates we need to separate the input
   // data from the output.
   initialTranscript: string = '';
-  updatedTranscript: string = '';
+
   firstOffset: number = -1;
 
   contentUpdated: Subject<string> = new Subject<string>();
@@ -125,7 +125,6 @@ export class SubmitV2Component implements OnInit, OnDestroy {
   }
 
   executeUpdate(text: string): void {
-    this.updatedTranscript = text;
     if (this.contribution && this.userCanEdit) {
       this.update();
     }
@@ -157,10 +156,6 @@ export class SubmitV2Component implements OnInit, OnDestroy {
     this.firstOffset = getFirstOffset(this.initialTranscript);
   }
 
-  setUpdatedTranscript(text: string) {
-    this.executeUpdate(text);
-  }
-
   timeSinceSave(): string {
     return formatDistance(this.lastUpdateTimestamp, new Date());
   }
@@ -174,7 +169,10 @@ export class SubmitV2Component implements OnInit, OnDestroy {
       this.loading.push(true);
       this.apiClient.createChunkContribution({
         chunkId: this.chunk.id,
-        body: { chunkId: this.chunk.id, transcript: this.updatedTranscript }
+        body: {
+          chunkId: this.chunk.id,
+          transcript: this.transcriber.getContentSnapshot()
+        }
       }).pipe(takeUntil(this.$destroy)).subscribe((res: RskChunkContribution) => {
         this.transcriber.clearBackup();
         this.alertService.success('Created', 'Draft was created. It will now be auto-saved on change.');
@@ -195,7 +193,7 @@ export class SubmitV2Component implements OnInit, OnDestroy {
       contributionId: this.contribution.id,
       body: {
         contributionId: this.contribution.id,
-        transcript: this.updatedTranscript,
+        transcript: this.transcriber.getContentSnapshot(),
         state: state
       }
     }).pipe(takeUntil(this.$destroy));
@@ -247,5 +245,12 @@ export class SubmitV2Component implements OnInit, OnDestroy {
 
   markRejected() {
     this._updateState(RskContributionState.STATE_REJECTED);
+  }
+
+  discard() {
+    if (confirm('are you sure you want to discard saved transcript?')) {
+      this.apiClient.deleteChunkContribution({ contributionId: this.contribution.id });
+    }
+    this.router.navigate(['/chunk', this.chunk.id]);
   }
 }

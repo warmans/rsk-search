@@ -1,7 +1,7 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { RskDialog, RskSynopsis } from '../../../../lib/api-client/models';
 import { ViewportScroller } from '@angular/common';
-import { Tscript } from '../../lib/tscript';
+import { parseTranscript, Tscript } from '../../lib/tscript';
 
 interface DialogGroup {
   startPos: number;
@@ -18,6 +18,7 @@ interface DialogGroup {
 })
 export class TranscriptComponent implements OnInit, AfterViewInit {
 
+
   @Input()
   set transcript(value: Tscript) {
     if (!value) {
@@ -32,6 +33,18 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
   }
 
   private _transcript: Tscript;
+
+  @Input()
+  set rawTranscript(value: string) {
+    this._rawTranscript = value;
+    this.transcript = parseTranscript(value);
+  }
+
+  get rawTranscript(): string {
+    return this._rawTranscript;
+  }
+
+  private _rawTranscript: string;
 
   groupedDialog: DialogGroup[];
 

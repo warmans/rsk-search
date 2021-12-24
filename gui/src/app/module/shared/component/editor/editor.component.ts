@@ -1,16 +1,7 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-  Renderer2,
-  ViewChild
-} from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
 import { getOffsetValueFromLine, isOffsetLine } from '../../../shared/lib/tscript';
+import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-editor',
@@ -30,9 +21,8 @@ export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   get textContent(): string {
-    if (this.editableContent) {
-      return this.editableContent.nativeElement.innerText;
-    }
+    // do not return the innerText directly. If the div is hidden by the parent
+    // before calling this, it will get text with no line breaks.
     return this._textContent;
   }
 
@@ -44,6 +34,8 @@ export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @Output()
   textContentChange: EventEmitter<string> = new EventEmitter<string>();
+
+  textChangeDebouncer: Subject<string> = new Subject<string>();
 
   @Output()
   atOffsetMarker: EventEmitter<number> = new EventEmitter<number>();
@@ -57,11 +49,19 @@ export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.textChangeDebouncer.pipe(debounceTime(500)).subscribe((v: string) => {
+      this.textContentChange.next(v);
+    });
   }
 
   onKeypress() {
-    this.textContentChange.next(this.editableContent.nativeElement.innerText);
+    this.contentChanged();
     this.tryEmitOffset();
+  }
+
+  contentChanged() {
+    this._textContent = this.editableContent.nativeElement.innerText;
+    this.textChangeDebouncer.next(this._textContent);
   }
 
   ngOnDestroy(): void {
@@ -119,16 +119,7 @@ export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
       return;
     }
     this.renderer.insertBefore(nd.parentNode, this.newOffsetElement(`#OFFSET: ${seconds}`), nd);
-  }
-
-  nodeIsChildOfEditor(el: HTMLElement): boolean {
-    if (el === this.editableContent.nativeElement) {
-      return true;
-    }
-    if (el.parentElement !== null) {
-      return this.nodeIsChildOfEditor(el.parentElement);
-    }
-    return false;
+    this.contentChanged();
   }
 
   insertTextAboveCaret(text: string): void {
@@ -138,6 +129,17 @@ export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
       return;
     }
     this.renderer.insertBefore(nd.parentNode, this.newTextElement(text), nd);
+    this.contentChanged();
+  }
+
+  private nodeIsChildOfEditor(el: HTMLElement): boolean {
+    if (el === this.editableContent.nativeElement) {
+      return true;
+    }
+    if (el.parentElement !== null) {
+      return this.nodeIsChildOfEditor(el.parentElement);
+    }
+    return false;
   }
 
   getCaretFocus(): CaretFocus {

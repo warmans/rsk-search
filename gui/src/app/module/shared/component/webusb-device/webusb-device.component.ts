@@ -18,7 +18,6 @@ export class WebusbDeviceComponent implements OnInit {
     let device = await navigator.usb.requestDevice({
       filters: []
     });
-    console.log(device);
     await device.open();
     await device.selectConfiguration(1);
     await device.claimInterface(0);
@@ -27,7 +26,6 @@ export class WebusbDeviceComponent implements OnInit {
       const result = await device.transferIn(3, 64);
       const decoder = new TextDecoder();
       const message = decoder.decode(result.data);
-      console.log(message);
 
       const messageParts = message.split(' = ');
       // if (messageParts[0] === 'Count') {
