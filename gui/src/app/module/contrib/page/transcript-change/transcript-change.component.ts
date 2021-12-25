@@ -74,9 +74,10 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
 
           this.userIsOwner = this.sessionService.getClaims()?.author_id === res.author.id || this.sessionService.getClaims().approver;
           this.userIsApprover = this.sessionService.getClaims().approver;
-        }).add(() => this.loading.shift());;
+        }).add(() => this.loading.shift());
+        ;
       }
-    })
+    });
 
     sessionService.onTokenChange.pipe(takeUntil(this.$destroy)).subscribe((token: string): void => {
       if (token != null) {
@@ -206,10 +207,14 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
 
   checkReloadDiff(v: string) {
     if (v === 'diff') {
-      // always update before loading the diff, to ensure it is accurate.
-      this.update(() => {
+      if (this.change.state === RskContributionState.STATE_PENDING) {
+        // always update before loading the diff, to ensure it is accurate.
+        this.update(() => {
+          this.getDiff();
+        });
+      } else {
         this.getDiff();
-      });
+      }
     }
   }
 
