@@ -1,0 +1,20 @@
+<button class="btn btn-danger" (click)="showRejectDialog()">Reject</button>
+
+<div class="modal" [ngClass]="{'open': modalOpen}">
+  <div class="modal-dialog  modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirm Rejection</h5>
+      </div>
+      <div class="modal-body">
+        <label>Reason:</label>
+        <textarea class="form-control" [formControl]="reasonInput"></textarea>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-danger" (click)="reject()">Reject</button>
+        <button class="btn btn-secondary" (click)="cancel()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

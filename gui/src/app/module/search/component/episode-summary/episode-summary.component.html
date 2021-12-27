@@ -18,7 +18,9 @@
   <div class="body mb-2 p-2">
     <div *ngIf="episode.synopsis?.length === 0" class="text-muted">No synopsis available.</div>
     <ul *ngIf="episode.synopsis?.length > 0">
-      <li *ngFor="let syn of episode.synopsis">{{syn}}</li>
+      <li *ngFor="let syn of episode.synopsis">
+        {{syn.description}} <a class="text-muted" [routerLink]="['/ep', episode.id]" [fragment]="'pos-'+syn.startPos+'-'+syn.endPos"><i class="bi bi-arrow-right"></i></a>
+      </li>
     </ul>
   </div>
   <div class="foot text-muted p-2 text-right">

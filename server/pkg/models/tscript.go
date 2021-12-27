@@ -176,12 +176,13 @@ func (c *ChunkContribution) Proto() *api.ChunkContribution {
 		return nil
 	}
 	return &api.ChunkContribution{
-		Id:         c.ID,
-		ChunkId:    c.ChunkID,
-		Transcript: c.Transcription,
-		State:      c.State.Proto(),
-		Author:     c.Author.Proto(),
-		CreatedAt:  c.CreatedAt.Format(time.RFC3339),
+		Id:           c.ID,
+		ChunkId:      c.ChunkID,
+		Transcript:   c.Transcription,
+		State:        c.State.Proto(),
+		StateComment: c.StateComment,
+		Author:       c.Author.Proto(),
+		CreatedAt:    c.CreatedAt.Format(time.RFC3339),
 	}
 }
 

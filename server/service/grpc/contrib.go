@@ -257,7 +257,7 @@ func (s *ContribService) RequesChunktContributionState(ctx context.Context, requ
 	if err := s.validateContributionStateUpdate(claims, contrib.Author.ID, contrib.State, request.RequestState); err != nil {
 		return nil, err
 	}
-	if request.Comment != "" && claims.Approver {
+	if request.Comment != "" && !claims.Approver {
 		return nil, ErrPermissionDenied("Only an approver can set a state comment.").Err()
 	}
 	err = s.persistentDB.WithStore(func(tx *rw.Store) error {
@@ -782,7 +782,7 @@ func (s *ContribService) validateContributionStateUpdate(claims *jwt.Claims, cur
 			return ErrPermissionDenied("you are not the author of this contribution").Err()
 		}
 		if requestedState == api.ContributionState_STATE_APPROVED || requestedState == api.ContributionState_STATE_REJECTED {
-			return ErrPermissionDenied("you are not an approver").Err()
+			return ErrPermissionDenied("You are not allowed to approve/reject contributions.").Err()
 		}
 	}
 	// if the contribution has been rejected allow the author to return it to pending.
@@ -790,6 +790,8 @@ func (s *ContribService) validateContributionStateUpdate(claims *jwt.Claims, cur
 		if requestedState != api.ContributionState_STATE_PENDING {
 			return ErrFailedPrecondition(fmt.Sprintf("Only rejected contributions can be reverted to pending. Actual state was: %s (requested: %s)", currentState, requestedState)).Err()
 		}
+	} else if currentState == models.ContributionStateApproved {
+
 	} else {
 		/// otherwise only allow it to be updated if it's in the pending or approval requested state.
 		if currentState != models.ContributionStatePending && currentState != models.ContributionStateApprovalRequested {

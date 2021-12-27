@@ -98,7 +98,7 @@ func (e Transcript) Actors() []string {
 			continue
 		}
 		// this is almost always "ricky and steve"
-		if strings.Contains(v.Actor, " and ") || strings.Contains(v.Actor, " & "){
+		if strings.Contains(v.Actor, " and ") || strings.Contains(v.Actor, " & ") {
 			continue
 		}
 		actorMap[strings.TrimSpace(v.Actor)] = struct{}{}
@@ -123,12 +123,12 @@ func (e *Transcript) ShortProto() *api.ShortTranscript {
 		Incomplete:          e.Incomplete,
 		ReleaseDate:         e.ReleaseDate.Format(util.ShortDateFormat),
 		Summary:             "", //todo
-		Synopsis:            make([]string, len(e.Synopsis)),
+		Synopsis:            make([]*api.Synopsis, len(e.Synopsis)),
 		TriviaAvailable:     len(e.Trivia) > 0,
 		Actors:              e.Actors(),
 	}
 	for k, s := range e.Synopsis {
-		ep.Synopsis[k] = s.Description
+		ep.Synopsis[k] = s.Proto()
 	}
 	return ep
 }

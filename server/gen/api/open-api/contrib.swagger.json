@@ -918,6 +918,9 @@
         },
         "createdAt": {
           "type": "string"
+        },
+        "stateComment": {
+          "type": "string"
         }
       }
     },

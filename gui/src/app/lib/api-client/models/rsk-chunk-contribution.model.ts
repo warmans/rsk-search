@@ -10,5 +10,6 @@ export interface RskChunkContribution {
   createdAt?: string;
   id?: string;
   state?: RskContributionState;
+  stateComment?: string;
   transcript?: string;
 }

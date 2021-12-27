@@ -110,6 +110,8 @@ export function isRskChunkContribution(arg: any): arg is models.RskChunkContribu
     ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
     // state?: RskContributionState
     ( typeof arg.state === 'undefined' || isRskContributionState(arg.state) ) &&
+    // stateComment?: string
+    ( typeof arg.stateComment === 'undefined' || typeof arg.stateComment === 'string' ) &&
     // transcript?: string
     ( typeof arg.transcript === 'undefined' || typeof arg.transcript === 'string' ) &&
 
@@ -513,8 +515,8 @@ export function isRskShortTranscript(arg: any): arg is models.RskShortTranscript
     ( typeof arg.series === 'undefined' || typeof arg.series === 'number' ) &&
     // summary?: string
     ( typeof arg.summary === 'undefined' || typeof arg.summary === 'string' ) &&
-    // synopsis?: string[]
-    ( typeof arg.synopsis === 'undefined' || (Array.isArray(arg.synopsis) && arg.synopsis.every((item: unknown) => typeof item === 'string')) ) &&
+    // synopsis?: RskSynopsis[]
+    ( typeof arg.synopsis === 'undefined' || (Array.isArray(arg.synopsis) && arg.synopsis.every((item: unknown) => isRskSynopsis(item))) ) &&
     // transcriptAvailable?: boolean
     ( typeof arg.transcriptAvailable === 'undefined' || typeof arg.transcriptAvailable === 'boolean' ) &&
     // triviaAvailable?: boolean

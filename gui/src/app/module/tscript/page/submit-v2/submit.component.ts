@@ -46,6 +46,10 @@ export class SubmitV2Component implements OnInit, OnDestroy {
   loading: boolean[] = [];
   lastUpdateTimestamp: Date;
 
+  rejectCallback: (contributionId: string, comment: string) => void = (contributionId: string, comment: string) => {
+    this.markRejected(comment);
+  };
+
   $destroy: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   @ViewChild('transcriber')
@@ -199,13 +203,14 @@ export class SubmitV2Component implements OnInit, OnDestroy {
     }).pipe(takeUntil(this.$destroy));
   }
 
-  private _updateState(state: RskContributionState) {
+  private _updateState(state: RskContributionState, comment?: string) {
     this.loading.push(true);
     this.apiClient.requestChunkContributionState({
       contributionId: this.contribution.id,
       body: {
         contributionId: this.contribution.id,
         requestState: state,
+        comment: comment,
       }
     }).pipe(takeUntil(this.$destroy)).subscribe((res) => {
       this.setContribution(res);
@@ -243,14 +248,14 @@ export class SubmitV2Component implements OnInit, OnDestroy {
     this._updateState(RskContributionState.STATE_APPROVED);
   }
 
-  markRejected() {
-    this._updateState(RskContributionState.STATE_REJECTED);
+  markRejected(comment: string) {
+    this._updateState(RskContributionState.STATE_REJECTED, comment);
   }
 
   discard() {
     if (confirm('are you sure you want to discard saved transcript?')) {
       this.apiClient.deleteChunkContribution({ contributionId: this.contribution.id });
+      this.router.navigate(['/chunk', this.chunk.id]);
     }
-    this.router.navigate(['/chunk', this.chunk.id]);
   }
 }

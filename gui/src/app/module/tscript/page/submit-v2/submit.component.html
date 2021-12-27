@@ -58,9 +58,9 @@
                 <div class="d-flex">
                   <button class="btn btn-warning mt-2" (click)="markIncomplete()">Revert to incomplete <i
                     class="bi-pen"></i></button>
-                  <div *ngIf="userIsApprover">
+                  <div *ngIf="userIsApprover" class="d-flex">
                     <button class="btn btn-success mt-2 ml-3" (click)="markApproved()">Approve</button>
-                    <button class="btn btn-danger mt-2 ml-3" (click)="markRejected()">Reject</button>
+                    <div class="mt-2 ml-3"><app-reject-button [contributionId]="contribution.id" [rejectAction]="rejectCallback"></app-reject-button></div>
                   </div>
                 </div>
               </div>

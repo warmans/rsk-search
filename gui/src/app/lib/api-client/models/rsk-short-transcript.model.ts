@@ -1,4 +1,7 @@
 /* tslint:disable */
+import {
+  RskSynopsis,
+} from '.';
 
 export interface RskShortTranscript {
   actors?: string[];
@@ -9,7 +12,7 @@ export interface RskShortTranscript {
   releaseDate?: string;
   series?: number;
   summary?: string;
-  synopsis?: string[];
+  synopsis?: RskSynopsis[];
   transcriptAvailable?: boolean;
   triviaAvailable?: boolean;
 }

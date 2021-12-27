@@ -10,6 +10,8 @@ import { ContributeComponent } from './page/contribute/contribute.component';
 import { LeaderboardComponent } from './component/leaderboard/leaderboard.component';
 import { RewardModule } from '../reward/reward.module';
 import { SubmitV2Component } from './page/submit-v2/submit.component';
+import { RejectButtonComponent } from './component/reject-button/reject-button.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,12 +22,14 @@ import { SubmitV2Component } from './page/submit-v2/submit.component';
     ApproveComponent,
     ContributeComponent,
     LeaderboardComponent,
+    RejectButtonComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
     RouterModule,
     RewardModule,
+    ReactiveFormsModule,
   ],
   exports: []
 })

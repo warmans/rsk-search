@@ -111,7 +111,7 @@ message ShortTranscript {
   bool incomplete = 6;
   string release_date = 7;
   string summary = 8;
-  repeated string synopsis = 9;
+  repeated Synopsis synopsis = 9;
   bool trivia_available = 10;
   repeated string actors = 11;
 }

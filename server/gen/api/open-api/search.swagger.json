@@ -408,7 +408,7 @@
         "synopsis": {
           "type": "array",
           "items": {
-            "type": "string"
+            "$ref": "#/definitions/rskSynopsis"
           }
         },
         "triviaAvailable": {

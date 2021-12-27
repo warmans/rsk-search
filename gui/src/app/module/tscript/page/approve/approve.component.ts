@@ -1,12 +1,6 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
-import {
-  RskChunk,
-  RskChunkContribution,
-  RskChunkContributionList,
-  RskChunkList,
-  RskContributionState
-} from '../../../../lib/api-client/models';
+import { RskChunk, RskChunkContribution, RskChunkContributionList, RskChunkList, RskContributionState } from '../../../../lib/api-client/models';
 import { takeUntil } from 'rxjs/operators';
 import { ActivatedRoute, Data } from '@angular/router';
 import { Title } from '@angular/platform-browser';
@@ -37,6 +31,10 @@ export class ApproveComponent implements OnInit {
   loading: boolean[] = [];
 
   pendingApprovalOnly: boolean = false;
+
+  rejectCallback: (contributionId: string, comment: string) => void = (contributionId: string, comment: string) => {
+    this.updateState(contributionId, RskContributionState.STATE_REJECTED, comment);
+  };
 
   private destroy$ = new EventEmitter<any>();
 
@@ -69,7 +67,7 @@ export class ApproveComponent implements OnInit {
     }
 
     this.loading.push(true);
-    this.apiClient.listChunks({ tscriptId: this.tscriptID, sortField: "start_second", sortDirection: "asc" }).pipe(takeUntil(this.destroy$)).subscribe((resp: RskChunkList) => {
+    this.apiClient.listChunks({ tscriptId: this.tscriptID, sortField: 'start_second', sortDirection: 'asc' }).pipe(takeUntil(this.destroy$)).subscribe((resp: RskChunkList) => {
       this.chunks = resp.chunks;
     }).add(() => this.loading.pop());
 
@@ -123,16 +121,16 @@ export class ApproveComponent implements OnInit {
     return parseTranscript(raw);
   }
 
-  updateState(co: RskChunkContribution, state: RskContributionState) {
+  updateState(contributionId: string, state: RskContributionState, comment?: string) {
     this.loading.push(true);
     this.apiClient.requestChunkContributionState({
-      contributionId: co.id,
+      contributionId: contributionId,
       body: {
-        contributionId: co.id,
+        contributionId: contributionId,
         requestState: state,
+        comment: comment,
       }
     }).subscribe((result) => {
-      co.state = result.state;
       this.loadData();
     }).add(() => this.loading.pop());
   }

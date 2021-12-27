@@ -367,6 +367,7 @@ func (s *Store) ListChunkContributions(ctx context.Context, q *common.QueryModif
        		COALESCE(a.name, 'unknown'), 
        		c.transcription, 
        		COALESCE(c.state, 'unknown'),
+       		COALESCE(c.state_comment, ''),
        		c.created_at
 		FROM tscript_contribution c
 		LEFT JOIN tscript_chunk ch ON c.tscript_chunk_id = ch.id 
@@ -394,6 +395,7 @@ func (s *Store) ListChunkContributions(ctx context.Context, q *common.QueryModif
 			&cur.Author.Name,
 			&cur.Transcription,
 			&cur.State,
+			&cur.StateComment,
 			&cur.CreatedAt); err != nil {
 			return nil, err
 		}
@@ -611,7 +613,7 @@ func (s *Store) ListRequiredAuthorRewards(ctx context.Context, rewardSpacing int
 	SELECT 
         c.author_id,
         c.threshold_reached
-    fROM (
+    FROM (
         SELECT author_id, generate_series (1, COUNT(*) / %d) AS threshold_reached 
         FROM tscript_contribution
         WHERE state = 'approved'
