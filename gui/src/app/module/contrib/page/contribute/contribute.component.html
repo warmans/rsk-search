@@ -8,7 +8,31 @@
   </nav>
 
   <div class="row">
+
     <div class="col">
+      <div class="card mb-4">
+
+        <div class="card-header">What's This Then?</div>
+        <div class="card-body">
+
+          <div class="font-weight-bold mb-2">History</div>
+          <p>
+            In the beginning there was Pilkipedia. Over the years the site fell into dis-repair. Scrimpton was created
+            to preserve an archive of searchable Xfm transcripts. But the archive was not complete, some episodes had never
+            been transcribed or were missing sections. So this tool was added to fill in the gaps.
+          </p>
+
+          <div class="font-weight-bold mb-2">How does it work?</div>
+          <ol>
+            <li>Click Start Now below.</li>
+            <li>You will be prompted to authenticate using Reddit (contributions require a Reddit account).</li>
+            <li>The audio and editor are provided. You just need to transcribe the contents of the audio file.</li>
+            <li>Submit your transcription.</li>
+            <li>Await approval from an approver (admin).</li>
+          </ol>
+        </div>
+      </div>
+
       <div class="card mb-4">
         <div class="card-header">Get Started</div>
         <div class="card-body">
@@ -16,30 +40,10 @@
           <p>There are currently <strong>{{tscipts?.length || 0}} episodes</strong> that require transcriptions.
             Episodes are transcribed in 3 minute chunks. Only a reddit identity
             is required to start transcribing.</p>
-          <p>Click the button below to go to the suggested next chunk for transcription.</p>
+          <p>See the suggested next chunk for transcription:</p>
           <button class="btn btn-primary" [routerLink]="['/chunk', 'next']">Start Now</button>
           <div class="text-muted mt-3">If you have already started a transcription find it <a [routerLink]="['/me']">here</a>.
           </div>
-        </div>
-      </div>
-
-
-      <div class="card mb-4">
-
-        <div class="card-header">What's New 15.12.2021</div>
-        <div class="card-body">
-
-          <div class="font-weight-bold">Trivia Tags</div>
-          <p>Trivia can now be added to transcripts using TRIVIA tags (same as synopsis).</p>
-
-          <div class="font-weight-bold">Corrections Feature</div>
-          <p>Whole episode corrections can now be submitted by going to an episode from the home page and clicking "Submit Correction" in the
-            Transcript header (you must be logged in to see the button). This allows an entire episode transcript to be replaced. Note: rewards
-            are currently not given for corrections.</p>
-
-          <div class="font-weight-bold">Inferred Offsets</div>
-          <p>Audio offsets are now inferred where missing. However these become less accurate the fewer accurate offsets in a transcript as a result a new button has been
-          added to allow offsets to be inserted manually from the editor based on the audio player's current timestamp.</p>
         </div>
       </div>
 
@@ -56,10 +60,12 @@
             </tr>
             <tr *ngFor="let change of transcriptChanges">
               <td>{{change.episodeId}}</td>
-              <td><app-contribution-state [state]="change.state"></app-contribution-state></td>
+              <td>
+                <app-contribution-state [state]="change.state"></app-contribution-state>
+              </td>
               <td>{{change.author.name}}</td>
               <td>{{change.createdAt}}</td>
-              <td><a class="btn btn-sm btn-info" [routerLink]="['/ep', change.episodeId, 'change', change.id]">View</a></td>
+              <td><a class="btn btn-sm btn-info" [routerLink]="['/ep', change.episodeId, 'change', change.id]" [queryParams]="{'readonly': '1'}">View</a></td>
             </tr>
           </table>
         </div>
@@ -96,7 +102,8 @@
             </tr>
             <tr *ngFor="let ep of tscipts">
               <td style="width: 150px"><a [routerLink]="['/tscript', ep.id]">{{ep.id}}</a></td>
-              <td style="width: 150px"><span title="sections approved to the total">{{ progressMap[ep.id]['complete'] }} / {{ep.numChunks}} <span>({{((progressMap[ep.id]['complete'] || 0) / (progressMap[ep.id]['total'] || 1)  * 100) | number:'1.0-0'}}%)</span></span>
+              <td style="width: 150px"><span title="sections approved to the total">{{ progressMap[ep.id]['complete'] }} / {{ep.numChunks}}
+                <span>({{((progressMap[ep.id]['complete'] || 0) / (progressMap[ep.id]['total'] || 1) * 100) | number:'1.0-0'}}%)</span></span>
               </td>
               <td>
                 <div class="progress">

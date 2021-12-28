@@ -22,6 +22,7 @@ import { TranscriberComponent } from './component/transcriber/transcriber.compon
 import { FormatSecondsPipe } from './pipe/format-seconds.pipe';
 import { TriviaComponent } from './component/trivia/trivia.component';
 import { HtmlDiffComponent } from './component/html-diff/html-diff.component';
+import { ClaimedRewardsComponent } from './component/claimed-rewards/claimed-rewards.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { HtmlDiffComponent } from './component/html-diff/html-diff.component';
     EditorHelpComponent,
     TranscriberComponent,
     HtmlDiffComponent,
+    ClaimedRewardsComponent,
   ],
   imports: [
     CommonModule,
@@ -70,6 +72,7 @@ import { HtmlDiffComponent } from './component/html-diff/html-diff.component';
     EditorConfigComponent,
     EditorHelpComponent,
     TranscriberComponent,
+    ClaimedRewardsComponent,
   ]
 })
 export class SharedModule {

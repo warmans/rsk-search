@@ -8,7 +8,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { SearchAPIClientModule } from '../lib/api-client/services/search';
 import { SearchModule } from '../module/search/search.module';
 import { SharedModule } from '../module/shared/shared.module';
-import { TscriptModule } from '../module/tscript/tscript.module';
 import { RewardModule } from '../module/reward/reward.module';
 import { ContribModule } from '../module/contrib/contrib.module';
 
@@ -24,7 +23,6 @@ import { ContribModule } from '../module/contrib/contrib.module';
     SearchAPIClientModule.forRoot(),
     SharedModule,
     SearchModule,
-    TscriptModule,
     RewardModule,
     ContribModule,
   ],

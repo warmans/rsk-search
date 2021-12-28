@@ -14,11 +14,11 @@ import {
 import { Title } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-author-contributions',
-  templateUrl: './author-contributions.component.html',
-  styleUrls: ['./author-contributions.component.scss']
+  selector: 'app-author-profile',
+  templateUrl: './author-profile.component.html',
+  styleUrls: ['./author-profile.component.scss']
 })
-export class AuthorContributionsComponent implements OnInit, OnDestroy {
+export class AuthorProfile implements OnInit, OnDestroy {
 
   claims: Claims;
 

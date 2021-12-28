@@ -18,7 +18,7 @@
           </div>
         </div>
       </div>
-      <nav aria-label="Page navigation example">
+      <nav aria-label="pages">
         <ul class="pagination">
           <li *ngFor="let i of pages" class="page-item" [ngClass]="{'active': i === currentPage}">
             <a class="page-link" [routerLink]="['/search']" [queryParams]="{'page': i}" [queryParamsHandling]="'merge'">{{i}}</a>
@@ -30,7 +30,7 @@
   </div>
 </div>
 <div *ngIf="result === undefined || !result?.results.length" class="container pt-4">
-  <div class="row">
+  <div class="row mb-4">
     <div class="col">
       <div *ngIf="result !== undefined && result?.results.length === 0" class="card no-results mb-4">
         <div class="card-body text-center">
@@ -56,11 +56,6 @@
   </div>
   <div class="row mb-4">
     <div class="col">
-      <app-episode-list></app-episode-list>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
       <div class="card episode-list">
         <div class="card-header">Transcript Archive</div>
         <div class="card-body">
@@ -70,6 +65,11 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <app-episode-list></app-episode-list>
     </div>
   </div>
 </div>

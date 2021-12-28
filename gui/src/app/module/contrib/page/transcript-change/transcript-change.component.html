@@ -3,8 +3,8 @@
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a [routerLink]="['/search']">Home</a></li>
-      <li class="breadcrumb-item"><a [routerLink]="['/ep', epID]">{{epID}}</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Change</li>
+      <li class="breadcrumb-item"><a [routerLink]="['/contribute']">Contribute</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{epID}}</li>
     </ol>
   </nav>
 
@@ -92,6 +92,6 @@
 
 </div>
 
-<app-reddit-login [open]="!authenticated"></app-reddit-login>
+<app-reddit-login *ngIf="!readOnly" [open]="!authenticated"></app-reddit-login>
 
 <app-loading-overlay [loading]="loading.length > 0"></app-loading-overlay>

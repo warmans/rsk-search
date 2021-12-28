@@ -10,11 +10,11 @@ import { And, Eq } from '../../../../lib/filter-dsl/filter';
 import { Str } from '../../../../lib/filter-dsl/value';
 
 @Component({
-  selector: 'app-approve',
-  templateUrl: './approve.component.html',
-  styleUrls: ['./approve.component.scss']
+  selector: 'app-episode-chunk-contributions',
+  templateUrl: './episode-chunk-contributions.component.html',
+  styleUrls: ['./episode-chunk-contributions.component.scss']
 })
-export class ApproveComponent implements OnInit {
+export class EpisodeChunkContributions implements OnInit {
 
   tscriptID: string;
 

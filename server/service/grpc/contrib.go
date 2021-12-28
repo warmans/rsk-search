@@ -532,11 +532,6 @@ func (s *ContribService) ListDonationRecipients(ctx context.Context, request *ap
 
 func (s *ContribService) ListTranscriptChanges(ctx context.Context, request *api.ListTranscriptChangesRequest) (*api.TranscriptChangeList, error) {
 
-	claims, err := s.getClaims(ctx)
-	if err != nil {
-		return nil, err
-	}
-
 	qm, err := NewQueryModifiers(request)
 	if err != nil {
 		return nil, err
@@ -549,7 +544,7 @@ func (s *ContribService) ListTranscriptChanges(ctx context.Context, request *api
 		contributions, err := store.ListTranscriptChanges(ctx, qm)
 		for _, v := range contributions {
 			// discard any pending contributions that are not owned by the author
-			if v.Author.ID != claims.AuthorID && v.State == models.ContributionStatePending {
+			if v.State == models.ContributionStatePending && !s.isAuthor(ctx, v.Author.ID) {
 				continue
 			}
 			out.Changes = append(out.Changes, v.ShortProto())
@@ -562,13 +557,9 @@ func (s *ContribService) ListTranscriptChanges(ctx context.Context, request *api
 }
 
 func (s *ContribService) GetTranscriptChange(ctx context.Context, request *api.GetTranscriptChangeRequest) (*api.TranscriptChange, error) {
-	claims, err := s.getClaims(ctx)
-	if err != nil {
-		return nil, err
-	}
 
 	var change *models.TranscriptChange
-	err = s.persistentDB.WithStore(func(s *rw.Store) error {
+	err := s.persistentDB.WithStore(func(s *rw.Store) error {
 		var err error
 		change, err = s.GetTranscriptChange(ctx, request.Id)
 		if err != nil {
@@ -579,22 +570,19 @@ func (s *ContribService) GetTranscriptChange(ctx context.Context, request *api.G
 	if err != nil {
 		return nil, ErrFromStore(err, request.Id).Err()
 	}
-	if claims.Approver == false {
-		if change.State == models.ContributionStatePending && change.Author.ID != claims.AuthorID {
+	if !s.isApprover(ctx) {
+		if change.State == models.ContributionStatePending && !s.isAuthor(ctx, change.Author.ID) {
 			return nil, ErrPermissionDenied("you cannot view another author's contribution when it is in the pending state").Err()
 		}
 	}
+
 	return change.Proto(), nil
 }
 
 func (s *ContribService) GetTranscriptChangeDiff(ctx context.Context, request *api.GetTranscriptChangeDiffRequest) (*api.TranscriptChangeDiff, error) {
-	claims, err := s.getClaims(ctx)
-	if err != nil {
-		return nil, err
-	}
 
 	var newTranscript *models.TranscriptChange
-	err = s.persistentDB.WithStore(func(s *rw.Store) error {
+	err := s.persistentDB.WithStore(func(s *rw.Store) error {
 		var err error
 		newTranscript, err = s.GetTranscriptChange(ctx, request.Id)
 		if err != nil {
@@ -605,9 +593,9 @@ func (s *ContribService) GetTranscriptChangeDiff(ctx context.Context, request *a
 	if err != nil {
 		return nil, ErrFromStore(err, request.Id).Err()
 	}
-	if claims.Approver == false {
-		if newTranscript.State == models.ContributionStatePending && newTranscript.Author.ID != claims.AuthorID {
-			return nil, ErrPermissionDenied("you cannot view another author's contribution when it is in the pending state").Err()
+	if !s.isApprover(ctx) {
+		if newTranscript.State == models.ContributionStatePending && s.isAuthor(ctx, newTranscript.Author.ID) {
+			return nil, ErrPermissionDenied("you cannot view another author's contribution diff when it is in the pending state").Err()
 		}
 	}
 
@@ -615,6 +603,7 @@ func (s *ContribService) GetTranscriptChangeDiff(ctx context.Context, request *a
 	if err != nil {
 		return nil, ErrNotFound(newTranscript.EpID).Err()
 	}
+
 	oldRaw, err := transcript.Export(oldTranscript.Transcript, oldTranscript.Synopsis, oldTranscript.Trivia)
 	if err != nil {
 		return nil, err
@@ -774,6 +763,39 @@ func (s *ContribService) getClaims(ctx context.Context) (*jwt.Claims, error) {
 		return nil, ErrUnauthorized(err.Error()).Err()
 	}
 	return claims, nil
+}
+
+func (s *ContribService) isAuthenticated(ctx context.Context) bool {
+	token := jwt.ExtractTokenFromRequestContext(ctx)
+	if token == "" {
+		return false
+	}
+	if _, err := s.auth.VerifyToken(token); err == nil {
+		return true
+	}
+	return false
+}
+
+func (s *ContribService) isAuthor(ctx context.Context, authorID string) bool {
+	token := jwt.ExtractTokenFromRequestContext(ctx)
+	if token == "" {
+		return false
+	}
+	if claims, err := s.auth.VerifyToken(token); err == nil {
+		return claims.AuthorID == authorID
+	}
+	return false
+}
+
+func (s *ContribService) isApprover(ctx context.Context) bool {
+	token := jwt.ExtractTokenFromRequestContext(ctx)
+	if token == "" {
+		return false
+	}
+	if claims, err := s.auth.VerifyToken(token); err == nil {
+		return claims.Approver
+	}
+	return false
 }
 
 func (s *ContribService) validateContributionStateUpdate(claims *jwt.Claims, currentAuthorID string, currentState models.ContributionState, requestedState api.ContributionState) error {

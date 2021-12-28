@@ -13,11 +13,11 @@ import { EditorConfig } from '../../../shared/component/editor-config/editor-con
 import { TranscriberComponent } from '../../../shared/component/transcriber/transcriber.component';
 
 @Component({
-  selector: 'app-submit-v2',
-  templateUrl: './submit.component.html',
-  styleUrls: ['./submit.component.scss']
+  selector: 'app-episode-chunk-submit',
+  templateUrl: './episode-chunk-submit.component.html',
+  styleUrls: ['./episode-chunk-submit.component.scss']
 })
-export class SubmitV2Component implements OnInit, OnDestroy {
+export class EpisodeChunkSubmit implements OnInit, OnDestroy {
 
   authenticated: boolean = false;
   authError: string;

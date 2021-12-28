@@ -24,6 +24,7 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
 
   change: RskTranscriptChange;
 
+  readOnly: boolean = true;
   authenticated: boolean = false;
   userCanEdit: boolean = true;
   userIsOwner: boolean = true;
@@ -49,6 +50,9 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
   ) {
     titleService.setTitle('Contribute');
 
+    // don't bother prompting for login etc. if the intent is just to read the change.
+    this.readOnly = route.snapshot.queryParamMap.get('readonly') === '1';
+
     route.paramMap.pipe(takeUntil(this.$destroy)).subscribe((d: Data) => {
 
       this.epID = d.params['epid'];
@@ -72,10 +76,9 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
 
           this.initialTranscript = this.change.transcript;
 
-          this.userIsOwner = this.sessionService.getClaims()?.author_id === res.author.id || this.sessionService.getClaims().approver;
-          this.userIsApprover = this.sessionService.getClaims().approver;
+          this.userIsOwner = this.sessionService.getClaims()?.author_id === res.author.id || this.sessionService.getClaims()?.approver;
+          this.userIsApprover = this.sessionService.getClaims()?.approver;
         }).add(() => this.loading.shift());
-        ;
       }
     });
 
@@ -176,8 +179,13 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
   }
 
   checkUserCanEdit() {
-    const isAuthorOrApprover = this.sessionService.getClaims()?.author_id === this.change.author.id || this.sessionService.getClaims().approver;
-    this.userCanEdit = this.change.state === RskContributionState.STATE_PENDING && isAuthorOrApprover;
+    if (this.readOnly) {
+      // don't even check if they can edit if the intent is to read only.
+      this.userCanEdit = false;
+    } else {
+      const isAuthorOrApprover = this.sessionService.getClaims()?.author_id === this.change.author.id || this.sessionService.getClaims().approver;
+      this.userCanEdit = this.change.state === RskContributionState.STATE_PENDING && isAuthorOrApprover;
+    }
   }
 
   markComplete() {

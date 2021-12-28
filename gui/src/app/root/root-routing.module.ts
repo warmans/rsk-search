@@ -2,15 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SearchComponent } from '../module/search/page/search/search.component';
 import { EpisodeComponent } from '../module/search/page/episode/episode.component';
-import { SubmitComponent } from '../module/tscript/page/submit/submit.component';
-import { RandomComponent } from '../module/tscript/page/random/random.component';
-import { AuthorContributionsComponent } from '../module/tscript/page/author-contributions/author-contributions.component';
-import { ApproveComponent } from '../module/tscript/page/approve/approve.component';
-import { ContributeComponent } from '../module/tscript/page/contribute/contribute.component';
+import { RandomComponent } from '../module/contrib/page/random/random.component';
+import { AuthorProfile } from '../module/contrib/page/author-profile/author-profile.component';
+import { EpisodeChunkContributions } from '../module/contrib/page/episode-chunk-contributions/episode-chunk-contributions.component';
+import { ContributeComponent } from '../module/contrib/page/contribute/contribute.component';
 import { RedeemComponent } from '../module/reward/page/redeem/redeem.component';
 import { TranscriptChangeComponent } from '../module/contrib/page/transcript-change/transcript-change.component';
-import { SubmitV2Component } from '../module/tscript/page/submit-v2/submit.component';
-
+import { EpisodeChunkSubmit } from '../module/contrib/page/episode-chunk-submit/episode-chunk-submit.component';
 
 const routes: Routes = [
   {
@@ -35,19 +33,19 @@ const routes: Routes = [
   },
   {
     path: 'chunk/:id',
-    component: SubmitV2Component,
+    component: EpisodeChunkSubmit,
   },
   {
     path: 'chunk/:id/contrib/:contribution_id',
-    component: SubmitV2Component,
+    component: EpisodeChunkSubmit,
   },
   {
     path: 'me',
-    component: AuthorContributionsComponent,
+    component: AuthorProfile,
   },
   {
     path: 'tscript/:tscript_id',
-    component: ApproveComponent,
+    component: EpisodeChunkContributions,
   },
   {
     path: 'contribute',

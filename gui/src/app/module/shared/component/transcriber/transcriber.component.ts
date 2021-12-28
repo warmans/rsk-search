@@ -159,14 +159,14 @@ export class TranscriberComponent implements OnInit, OnDestroy {
   }
 
   backupContent(text: string) {
-    if (!text || !this.contentID) {
+    if (!text || !this.contentID || !this._allowEdit) {
       return;
     }
     localStorage.setItem(`content-backup-${this.contentID}`, text);
   }
 
   getBackup(): string {
-    if (!this.contentID) {
+    if (!this.contentID || !this._allowEdit) {
       return;
     }
     return localStorage.getItem(`content-backup-${this.contentID}`);

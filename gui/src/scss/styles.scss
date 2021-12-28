@@ -198,3 +198,12 @@ span.code {
   background-position: center;
   background-size: contain;
 }
+
+.pagination {
+  .page-link:hover {
+    @include theme() {
+      background-color: theme-get('hover-highlight');
+      color: #fff;
+    }
+  }
+}
