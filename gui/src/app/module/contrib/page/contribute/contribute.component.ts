@@ -28,7 +28,8 @@ export class ContributeComponent implements OnInit, OnDestroy {
 
   overallTotal: number = 0;
   overallComplete: number = 0;
-  overallPending: number = 0;
+  overallPendingApproval: number = 0;
+  overallAwaitingContributions: number = 0;
 
   private unsubscribe$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -45,7 +46,7 @@ export class ContributeComponent implements OnInit, OnDestroy {
 
       this.overallTotal = 0;
       this.overallComplete = 0;
-      this.overallPending = 0;
+      this.overallPendingApproval = 0;
 
       this.tscipts.forEach((ts) => {
         if (this.progressMap[ts.id] === undefined) {
@@ -63,12 +64,15 @@ export class ContributeComponent implements OnInit, OnDestroy {
                 break;
               case RskContributionState.STATE_REQUEST_APPROVAL:
                 this.progressMap[ts.id]['pending_approval']++;
-                this.overallPending++;
+                this.overallPendingApproval++;
                 break;
             }
           });
         }
       });
+
+      this.overallAwaitingContributions = this.overallTotal - (this.overallComplete + this.overallPendingApproval)
+
     }).add(() => {
       this.loading.pop();
     });

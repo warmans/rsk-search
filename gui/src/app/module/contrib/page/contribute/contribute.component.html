@@ -23,12 +23,27 @@
           </p>
 
           <div class="font-weight-bold mb-2">How does it work?</div>
+
+          <p>There are two ways you can contribute; firstly you can transcribe chunks of audio (when available) however you may also
+            improve existing transcriptions by adding summaries/trivia, standardising text, and fixing errors.</p>
+
+          <div class="font-weight-bold mb-2">Adding a transcription</div>
           <ol>
-            <li>Click Start Now below.</li>
+            <li>Click Start Now below (if there are applicable chunks).</li>
             <li>You will be prompted to authenticate using Reddit (contributions require a Reddit account).</li>
             <li>The audio and editor are provided. You just need to transcribe the contents of the audio file.</li>
             <li>Submit your transcription.</li>
             <li>Await approval from an approver (admin).</li>
+            <li>Changes are then synced to the flat files and re-deployed before taking effect (may take several days).</li>
+          </ol>
+
+          <div class="font-weight-bold mb-2">Editing a transcription</div>
+          <ol>
+            <li>Load the episode from the <a [routerLink]="['/']">episode list</a>.</li>
+            <li>In the Transcript header click "Submit correction"</li>
+            <li>Submit your edit.</li>
+            <li>Await approval from an approver (admin).</li>
+            <li>Once the change is merged it will replace the original (may take several days).</li>
           </ol>
         </div>
       </div>
@@ -37,19 +52,27 @@
         <div class="card-header">Get Started</div>
         <div class="card-body">
           <img class="float-right" src="/assets/illustration/pixeltrue-support.svg" style="width: 250px"/>
-          <p>There are currently <strong>{{tscipts?.length || 0}} episodes</strong> that require transcriptions.
-            Episodes are transcribed in 3 minute chunks. Only a reddit identity
-            is required to start transcribing.</p>
-          <p>See the suggested next chunk for transcription:</p>
-          <button class="btn btn-primary" [routerLink]="['/chunk', 'next']">Start Now</button>
+          <p>Episodes are transcribed in 3 minute chunks. Only a reddit identity
+          is required to start transcribing.</p>
+          <p>There are currently <strong>{{overallAwaitingContributions || 0}} chunks</strong> that require transcriptions.</p>
+
+          <div *ngIf="overallAwaitingContributions > 0">
+            <p>See the suggested next chunk for transcription:</p>
+            <button class="btn btn-primary" [routerLink]="['/chunk', 'next']">Start Now</button>
+          </div>
+          <div *ngIf="overallAwaitingContributions === 0">
+            All chunks have already been transcribed. However you can still submit an edit. See details above.
+          </div>
           <div class="text-muted mt-3">If you have already started a transcription find it <a [routerLink]="['/me']">here</a>.
           </div>
         </div>
       </div>
 
       <div class="card mb-4" *ngIf="transcriptChanges?.length > 0">
-        <div class="card-header">Unmerged Transcript Replacements</div>
+        <div class="card-header">Unmerged Transcript Edits</div>
         <div class="card-body">
+          <p>After an edit is approved it must be merged. This means the content is extracted and added to the JSON archive.
+          Until this happens you will not see your changes reflected. This will happen within days of the edit bring submitted.</p>
           <table class="table table-borderless p-0">
             <tr>
               <th>Episode</th>
@@ -85,7 +108,7 @@
               class="progress-bar bg-info"
               role="progressbar"
               title="Awaiting approval."
-              [style.width]="(this.overallPending / (this.overallTotal || 1) * 100)+'%'">
+              [style.width]="(this.overallPendingApproval / (this.overallTotal || 1) * 100)+'%'">
             </div>
           </div>
           <div class="pl-4 font-weight-bold">{{ (this.overallComplete / (this.overallTotal || 1) * 100) | number:'1.0-0'

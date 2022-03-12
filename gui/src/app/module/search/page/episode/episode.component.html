@@ -121,7 +121,7 @@
               <div class="d-flex">
                 <button class="btn btn-sm btn-primary" (click)="scrollToTop()">Top</button>
                 <button class="btn btn-sm btn-primary ml-2" *ngIf="scrollToID" (click)="scrollToID=undefined">Clear Focus</button>
-                <div class="ml-2" *ngIf="authenticated && pendingChanges?.length === 0 && !episode.incomplete">
+                <div class="ml-2" *ngIf="pendingChanges?.length === 0 && !episode.incomplete">
                   <a class="btn btn-sm btn-info" [routerLink]="['/ep', id, 'change']">Submit Correction</a>
                 </div>
               </div>

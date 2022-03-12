@@ -37,15 +37,22 @@ export class SessionService {
       return null;
     }
     // token is header.payload.signature
+    console.log(this.token);
     const tokenParts = this.token.split('.');
     if (tokenParts.length !== 3) {
       this.destroySession();
       return;
     }
-
-    const claims = JSON.parse(atob(tokenParts[1]));
+    let claims: any;
+    try {
+      claims = JSON.parse(SessionService.decodeBase64(tokenParts[1]));
+    } catch (err) {
+      console.error('failed to decode token', err);
+      claims = null;
+    }
     if (!claims) {
-      return null;
+      this.destroySession();
+      return;
     }
     this.claims = new Claims(claims.author_id, claims.approver || false, claims.identity as Identity);
     return this.claims;
@@ -55,7 +62,13 @@ export class SessionService {
     localStorage.setItem('token', '');
     this.registerToken(null);
   }
+
+  // atob doesn't support base64 completely (??). Meaning _ will break it. Just replacing it seems to fix it.
+  private static decodeBase64(str: string): string {
+    return atob(str.replace(/_/g, '/'));
+  }
 }
+
 
 export class Claims {
   constructor(readonly author_id: string, readonly approver: boolean, readonly identity: Identity) {

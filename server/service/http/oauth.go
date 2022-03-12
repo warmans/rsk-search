@@ -13,6 +13,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/store/rw"
 	"github.com/warmans/rsk-search/service/config"
 	"go.uber.org/zap"
+	"html"
 	"net/http"
 	"net/url"
 	"time"
@@ -82,7 +83,7 @@ func (c *OauthService) RedditReturnHandler(resp http.ResponseWriter, req *http.R
 	// reddit is surprisingly strict about how many requests you can send per second.
 	time.Sleep(time.Second * 2)
 
-	ident, rawIdentityJSON, err := c.getRedditIdentity(bearerToken)
+	ident, _, err := c.getRedditIdentity(bearerToken)
 	if err != nil {
 		returnParams.Add("error", err.Error())
 		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
@@ -106,9 +107,16 @@ func (c *OauthService) RedditReturnHandler(resp http.ResponseWriter, req *http.R
 		return
 	}
 
+	encodedIdentity, err := json.Marshal(ident)
+	if err != nil {
+		returnParams.Add("error", "Failed to decode response. Please report this on the scrimpton bug tracker.")
+		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
+		return
+	}
+
 	author := &models.Author{
 		Name:     ident.Name,
-		Identity: rawIdentityJSON,
+		Identity: string(encodedIdentity),
 	}
 	err = c.rwStore.WithStore(func(s *rw.Store) error {
 		return s.UpsertAuthor(req.Context(), author)
@@ -208,6 +216,9 @@ func (c *OauthService) getRedditIdentity(bearerToken string) (*oauth.Identity, s
 		c.logger.Error("failed to decode identity", zap.Error(err))
 		return nil, "", fmt.Errorf("failed to parse identity")
 	}
+
+	// "new reddit" user icons for some reason now have a html encoded path. So just always try and decode it.
+	ident.Icon = html.UnescapeString(ident.Icon)
 
 	return ident, string(responseBytes), nil
 }
