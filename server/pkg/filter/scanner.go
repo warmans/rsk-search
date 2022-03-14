@@ -17,13 +17,14 @@ const (
 	tagAnd tag = "AND"
 	tagOr  tag = "OR"
 
-	tagEq   tag = "="
-	tagNeq  tag = "!="
-	tagLike tag = "~="
-	tagGt   tag = ">"
-	tagGe   tag = ">="
-	tagLe   tag = "<="
-	tagLt   tag = "<"
+	tagEq    tag = "="
+	tagNeq   tag = "!="
+	tagLike  tag = "~="
+	tagFuzzy tag = "~"
+	tagGt    tag = ">"
+	tagGe    tag = ">="
+	tagLe    tag = "<="
+	tagLt    tag = "<"
 
 	tagField  tag = "FIELD"
 	tagInt    tag = "INT"
@@ -111,7 +112,7 @@ func (s *scanner) next() (token, error) {
 		if s.matchNextRune('=') {
 			return s.emit(tagLike), nil
 		}
-		return s.error("expected '='")
+		return s.emit(tagFuzzy), nil
 	case '>':
 		if s.matchNextRune('=') {
 			return s.emit(tagGe), nil

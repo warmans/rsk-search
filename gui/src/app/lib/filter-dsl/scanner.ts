@@ -13,6 +13,7 @@ export enum Tag {
   Eq = '=',
   Neq = '!=',
   Like = '~=',
+  FuzzyLike = '~',
   Gt = '>',
   Ge = '>=',
   Le = '<=',
@@ -103,7 +104,7 @@ export class Scanner {
         if (this.matchNextChar('=')) {
           return this.emit(Tag.Like);
         }
-        return this.emitError('expected = after ~');
+        return this.emit(Tag.FuzzyLike)
       case '>':
         if (this.matchNextChar('=')) {
           return this.emit(Tag.Ge);

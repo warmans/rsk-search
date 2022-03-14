@@ -93,6 +93,9 @@ func (j *queryBuilder) compExpr(f *filter.CompFilter, p *params) (string, error)
 		return fmt.Sprintf(`%s <= %s`, col, p.next(f.Value.Value())), nil
 	case filter.CompOpLike:
 		return fmt.Sprintf(`%s LIKE %s`, col, p.next(fmt.Sprintf("%%%s%%", strings.Trim(f.Value.String(), `"`)))), nil
+	case filter.CompOpFuzzyLike:
+		// could make this better if proper fuzzy search is needed.
+		return fmt.Sprintf(`%s ILIKE %s`, col, p.next(fmt.Sprintf("%%%s%%", strings.Trim(f.Value.String(), `"`)))), nil
 	}
 	return "", fmt.Errorf("unknown operator: %s", string(f.Op))
 }

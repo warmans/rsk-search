@@ -205,7 +205,7 @@ export class CSTParser {
 
         // op
         let next = this.nextNonWhitespace(node);
-        CSTParser.requireTag(next, Tag.Eq, Tag.Neq, Tag.Lt, Tag.Le, Tag.Gt, Tag.Ge, Tag.Like);
+        CSTParser.requireTag(next, Tag.Eq, Tag.Neq, Tag.Lt, Tag.Le, Tag.Gt, Tag.Ge, Tag.Like, Tag.FuzzyLike);
         node.appendChild(new TokenNode(NodeKind.CompOp, next));
 
         // value

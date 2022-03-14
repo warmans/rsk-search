@@ -82,6 +82,7 @@ export class ContributeComponent implements OnInit, OnDestroy {
       filter: And(
         Eq('merged', Bool(false)),
         Neq('state', Str('pending')),
+        Neq('state', Str('rejected')),
       ).print()
     }).pipe(takeUntil(this.unsubscribe$)).subscribe((res) => {
       this.transcriptChanges = res.changes;

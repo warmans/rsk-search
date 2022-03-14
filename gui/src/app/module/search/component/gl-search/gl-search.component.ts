@@ -77,7 +77,7 @@ export class GlSearchComponent implements OnInit {
     // group terms by exact/non-exact and convert them into a single filter statement.
     let query: Filter = null;
     this.parseSearchTerm(term).forEach((v: searchTerm) => {
-      let comp = NewCompFilter('content', v.exact ? CompOp.Eq : CompOp.Like, Str(v.value));
+      let comp = NewCompFilter('content', v.exact ? CompOp.Eq : CompOp.FuzzyLike, Str(v.value));
       if (query == null) {
         query = comp;
         return;
@@ -165,7 +165,7 @@ export class GlSearchComponent implements OnInit {
         return;
       }
       if (compFilter.field === 'content') {
-        if (compFilter.op === CompOp.Like) {
+        if (compFilter.op === CompOp.Like || compFilter.op === CompOp.FuzzyLike) {
           termText.push(compFilter.value.v);
         } else {
           termText.push(`"${compFilter.value.v}"`);

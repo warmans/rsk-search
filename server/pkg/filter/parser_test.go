@@ -49,6 +49,9 @@ func TestParseCompFilter(t *testing.T) {
 		`foo ~= "bar"`: {
 			expectFilter: Like("foo", String("bar")),
 		},
+		`foo ~ "bar"`: {
+			expectFilter: FuzzyLike("foo", String("bar")),
+		},
 	}
 	for condition, test := range tests {
 		t.Run(condition, func(t *testing.T) {

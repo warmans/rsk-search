@@ -93,7 +93,7 @@ func (p *parser) parseInner() (Filter, error) {
 		}
 		return filter, nil
 	case tagField:
-		op, err := p.requireNext(tagEq, tagNeq, tagLt, tagLe, tagGe, tagGt, tagLike)
+		op, err := p.requireNext(tagEq, tagNeq, tagLt, tagLe, tagGe, tagGt, tagLike, tagFuzzy)
 		if err != nil {
 			return nil, err
 		}
@@ -116,6 +116,8 @@ func (p *parser) parseInner() (Filter, error) {
 			return Ge(token.lexeme, val), nil
 		case tagLike:
 			return Like(token.lexeme, val), nil
+		case tagFuzzy:
+			return FuzzyLike(token.lexeme, val), nil
 		default:
 			panic(errors.Errorf("unexpected field token '%s'", op.tag))
 		}

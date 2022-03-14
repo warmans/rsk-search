@@ -98,7 +98,9 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
   }
 
   handleSave(transcript: string): void {
-    if (this.change && this.userCanEdit) {
+    // there is some kind of race condition that means sometimes it attempts to save an empty transcript.
+    // quick-fix: just ignore updates with a falsy transcript.
+    if (this.change && this.userCanEdit && transcript) {
       this.update(() => {
       });
     }

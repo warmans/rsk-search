@@ -81,6 +81,11 @@ func (j *BlugeQuery) condition(field string, op filter.CompOp, value filter.Valu
 		q.SetField(field)
 		q.SetFuzziness(0)
 		return q, nil
+	case filter.CompOpFuzzyLike:
+		q := bluge.NewMatchQuery(stripQuotes(value.String()))
+		q.SetField(field)
+		q.SetFuzziness(1)
+		return q, nil
 	case filter.CompOpGt:
 		switch value.Type() {
 		case filter.IntType:

@@ -23,6 +23,10 @@ install.buf:
 build:
 	go build -o ./bin/rsk-search .
 
+.PHONY: test
+test:
+	go test -v ./...
+
 .PHONY: install.tools
 install.tools: install.buf
 	for TOOL in `cat tools.go | grep _ | awk -F'"' '{print $$2}'`; do \

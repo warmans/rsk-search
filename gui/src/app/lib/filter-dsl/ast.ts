@@ -1,5 +1,5 @@
 import { Scanner, Tag, tagPrecedence, Tok } from './scanner';
-import { And, Eq, Filter, Ge, Gt, isBoolOp, Le, Like, Lt, Neq, Or } from './filter';
+import { And, Eq, Filter, FuzzyLike, Ge, Gt, isBoolOp, Le, Like, Lt, Neq, Or } from './filter';
 import { trimChars } from '../util';
 import { Bool, Float, Int, Str, Value } from './value';
 
@@ -53,7 +53,7 @@ export class ASTParser {
         this.requireNext(Tag.RParen);
         return filter;
       case Tag.Field:
-        const op = this.requireNext(Tag.Eq, Tag.Neq, Tag.Lt, Tag.Le, Tag.Gt, Tag.Ge, Tag.Like);
+        const op = this.requireNext(Tag.Eq, Tag.Neq, Tag.Lt, Tag.Le, Tag.Gt, Tag.Ge, Tag.Like, Tag.FuzzyLike);
         switch (op.tag) {
           case Tag.Eq:
             return Eq(t.lexeme, this.parseValue());
@@ -61,6 +61,8 @@ export class ASTParser {
             return Neq(t.lexeme, this.parseValue());
           case Tag.Like:
             return Like(t.lexeme, this.parseValue());
+          case Tag.FuzzyLike:
+            return FuzzyLike(t.lexeme, this.parseValue());
           case Tag.Gt:
             return Gt(t.lexeme, this.parseValue());
           case Tag.Ge:

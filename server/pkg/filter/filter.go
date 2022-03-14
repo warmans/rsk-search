@@ -3,13 +3,14 @@ package filter
 type CompOp string
 
 const (
-	CompOpEq   CompOp = "="
-	CompOpNeq  CompOp = "!="
-	CompOpLike CompOp = "~="
-	CompOpLt   CompOp = "<"
-	CompOpLe   CompOp = "<="
-	CompOpGt   CompOp = ">"
-	CompOpGe   CompOp = ">="
+	CompOpEq        CompOp = "="
+	CompOpNeq       CompOp = "!="
+	CompOpLike      CompOp = "~="
+	CompOpFuzzyLike CompOp = "~"
+	CompOpLt        CompOp = "<"
+	CompOpLe        CompOp = "<="
+	CompOpGt        CompOp = ">"
+	CompOpGe        CompOp = ">="
 )
 
 func (op CompOp) Precedence() int {
@@ -134,6 +135,10 @@ func Le(field string, val Value) Filter {
 
 func Like(field string, val Value) Filter {
 	return &CompFilter{Field: field, Op: CompOpLike, Value: val}
+}
+
+func FuzzyLike(field string, val Value) Filter {
+	return &CompFilter{Field: field, Op: CompOpFuzzyLike, Value: val}
 }
 
 func NewExtractFilterVisitor(f Filter) *ExtractFilterVisitor {

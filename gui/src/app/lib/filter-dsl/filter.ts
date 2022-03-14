@@ -6,6 +6,7 @@ export enum CompOp {
   Eq = '=',
   Neq = '!=',
   Like = '~=',
+  FuzzyLike = '~',
   Lt = '<',
   Le = '<=',
   Gt = '>',
@@ -133,4 +134,9 @@ export function Le(field: string, value: Value): Filter {
 export function Like(field: string, value: Value): Filter {
   return new CompFilter(field, CompOp.Like, value);
 }
+
+export function FuzzyLike(field: string, value: Value): Filter {
+  return new CompFilter(field, CompOp.FuzzyLike, value);
+}
+
 
