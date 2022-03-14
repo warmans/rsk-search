@@ -628,7 +628,12 @@ func (s *ContribService) CreateTranscriptChange(ctx context.Context, request *ap
 			ctx,
 			common.Q(
 				common.WithFilter(
-					filter.And(filter.Eq("epid", filter.String(request.Epid)), filter.Eq("state", filter.String("pending"))),
+					filter.And(
+						filter.Eq("epid", filter.String(request.Epid)),
+						filter.Eq("merged", filter.Bool(false)),
+						filter.Neq("state", filter.String(string(models.ContributionStatePending))),
+						filter.Neq("state", filter.String(string(models.ContributionStateRejected))),
+					),
 				),
 			),
 		)

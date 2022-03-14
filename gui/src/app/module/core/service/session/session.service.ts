@@ -37,7 +37,6 @@ export class SessionService {
       return null;
     }
     // token is header.payload.signature
-    console.log(this.token);
     const tokenParts = this.token.split('.');
     if (tokenParts.length !== 3) {
       this.destroySession();

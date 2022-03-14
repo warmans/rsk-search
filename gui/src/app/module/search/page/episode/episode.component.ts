@@ -90,7 +90,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
       }).add(() => this.loading = false);
 
     this.apiClient.listTranscriptChanges({
-      filter: And(Eq('epid', Str(this.id)), Eq('merged', Bool(false)), Neq('state', Str('pending'))).print()
+      filter: And(Eq('epid', Str(this.id)), Eq('merged', Bool(false)), Neq('state', Str('pending')), Neq('state', Str('rejected'))).print()
     }).pipe(takeUntil(this.unsubscribe$)).subscribe((ep: RskTranscriptChangeList) => {
       this.pendingChanges = ep.changes;
     });
