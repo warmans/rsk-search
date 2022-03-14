@@ -623,12 +623,12 @@ func (s *ContribService) CreateTranscriptChange(ctx context.Context, request *ap
 	var change *models.TranscriptChange
 	err = s.persistentDB.WithStore(func(s *rw.Store) error {
 
-		// merging is going to be complicated in cases where there are multiple changes at once.
+		// stop more than 1 pending change existing at once. Once the change is merged it can be ignored.
 		changes, err := s.ListTranscriptChanges(
 			ctx,
 			common.Q(
 				common.WithFilter(
-					filter.And(filter.Eq("epid", filter.String(request.Epid)), filter.Neq("state", filter.String("pending"))),
+					filter.And(filter.Eq("epid", filter.String(request.Epid)), filter.Eq("state", filter.String("pending"))),
 				),
 			),
 		)
