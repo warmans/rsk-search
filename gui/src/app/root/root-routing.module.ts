@@ -9,11 +9,16 @@ import { ContributeComponent } from '../module/contrib/page/contribute/contribut
 import { RedeemComponent } from '../module/reward/page/redeem/redeem.component';
 import { TranscriptChangeComponent } from '../module/contrib/page/transcript-change/transcript-change.component';
 import { EpisodeChunkSubmit } from '../module/contrib/page/episode-chunk-submit/episode-chunk-submit.component';
+import { ChangelogComponent } from '../module/search/page/changelog/changelog.component';
 
 const routes: Routes = [
   {
     path: 'search',
     component: SearchComponent,
+  },
+  {
+    path: 'changelog',
+    component: ChangelogComponent,
   },
   {
     path: 'ep/:id',

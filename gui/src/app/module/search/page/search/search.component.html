@@ -44,17 +44,32 @@
       <div class="card mb-4">
         <div class="card-header">Contribute</div>
         <div class="card-body">
-          <p>There are currently <strong>{{ chunkStats?.numPending }}</strong> transcription chunks that require
-            transcription.</p>
-          <p>It's easy and only requires a Reddit account. Each chunk is 3 minutes of audio. Tools and audio are
-            provided.</p>
-          <p>There are also rewards for multiple contributions.</p>
-          <button class="btn btn-primary" [routerLink]="['/contribute']">Start Contributing</button>
+          <p>This site was built with the help of community contributions. Users can contribute in various ways including transcribing audio or editing existing transcripts.</p>
+          <p>To get involved you just need a reddit account.</p>
+          <button class="btn btn-primary" [routerLink]="['/contribute']">Contribute</button>
         </div>
       </div>
     </div>
   </div>
-  <div class="row mb-4">
+  <div class="row" *ngIf="latestChangelog">
+    <div class="col">
+      <div class="card mb-4">
+        <div class="card-header">Changelog - {{latestChangelog.date}} </div>
+        <div class="card-body">
+          <app-markdown [raw]="latestChangelog.content"></app-markdown>
+          <div class="text-right">
+            <a [routerLink]="['/changelog']">More...</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <app-episode-list></app-episode-list>
+    </div>
+  </div>
+  <div class="row mt-4">
     <div class="col">
       <div class="card episode-list">
         <div class="card-header">Transcript Archive</div>
@@ -65,11 +80,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <app-episode-list></app-episode-list>
     </div>
   </div>
 </div>

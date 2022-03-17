@@ -121,7 +121,7 @@ init.all:
 
 .PHONY: init.db
 init.db:
-	rm ./var/ro.sqlite3; ./bin/rsk-search db load-ro
+	rm ./var/ro.sqlite3; ./bin/rsk-search db load-ro && ./bin/rsk-search db load-changelogs
 
 .PHONY: init.index
 init.index:

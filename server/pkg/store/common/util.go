@@ -83,6 +83,12 @@ func WithFilter(f filter.Filter) QueryOpt {
 	}
 }
 
+func WithDefaultSorting(field string, direction SortDirection) QueryOpt {
+	return func(q *QueryModifier) {
+		q.defaultSorting = &Sorting{Field: field, Direction: direction}
+	}
+}
+
 func Q(opts ...QueryOpt) *QueryModifier {
 	q := &QueryModifier{}
 	for _, v := range opts {
@@ -96,6 +102,9 @@ type QueryModifier struct {
 	Paging  *Paging
 	Sorting *Sorting
 	Filter  filter.Filter
+
+	// if no sorting is passed allow a default to be given.
+	defaultSorting *Sorting
 }
 
 func (q *QueryModifier) Apply(opt QueryOpt) *QueryModifier {
@@ -120,6 +129,13 @@ func (q *QueryModifier) ToSQL(fieldMap map[string]string, withWHERE bool) (where
 		order, err = q.Sorting.Stmnt(fieldMap)
 		if err != nil {
 			return
+		}
+	} else {
+		if q.defaultSorting != nil {
+			order, err = q.defaultSorting.Stmnt(fieldMap)
+			if err != nil {
+				return
+			}
 		}
 	}
 	if q.Paging != nil {

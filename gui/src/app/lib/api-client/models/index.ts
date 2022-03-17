@@ -5,6 +5,8 @@ export { RewardKind } from './reward-kind.enum';
 export { RskAuthor } from './rsk-author.model';
 export { RskAuthorLeaderboard } from './rsk-author-leaderboard.model';
 export { RskAuthorRanking } from './rsk-author-ranking.model';
+export { RskChangelog } from './rsk-changelog.model';
+export { RskChangelogList } from './rsk-changelog-list.model';
 export { RskChunk } from './rsk-chunk.model';
 export { RskChunkContribution } from './rsk-chunk-contribution.model';
 export { RskChunkContributionList } from './rsk-chunk-contribution-list.model';

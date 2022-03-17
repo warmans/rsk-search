@@ -14,6 +14,7 @@ import { SearchStatsComponent } from './component/search-stats/search-stats.comp
 import { MatchedRowPosPipe } from './pipe/match-row-pos.pipe';
 import { EpisodeListComponent } from './component/episode-list/episode-list.component';
 import { EpisodeSummaryComponent } from './component/episode-summary/episode-summary.component';
+import { ChangelogComponent } from './page/changelog/changelog.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { EpisodeSummaryComponent } from './component/episode-summary/episode-sum
     MatchedRowPosPipe,
     EpisodeListComponent,
     EpisodeSummaryComponent,
+    ChangelogComponent,
   ],
   imports: [
     CommonModule,

@@ -16,6 +16,20 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  listChangelogs(
+    args: {
+      filter?: string,
+      sortField?: string,
+      sortDirection?: string,
+      page?: number,
+      pageSize?: number,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskChangelogList>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   listChunkContributions(
     args: {
       filter?: string,

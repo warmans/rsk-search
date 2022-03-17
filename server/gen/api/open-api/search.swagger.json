@@ -19,6 +19,63 @@
     "application/json"
   ],
   "paths": {
+    "/api/changelog": {
+      "get": {
+        "summary": "Fetch list of changelogs",
+        "operationId": "listChangelogs",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskChangelogList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortDirection",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      }
+    },
     "/api/metadata": {
       "get": {
         "summary": "Fetch search metadata e.g. searchable fields",
@@ -219,6 +276,28 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "rskChangelog": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        }
+      }
+    },
+    "rskChangelogList": {
+      "type": "object",
+      "properties": {
+        "changelogs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rskChangelog"
           }
         }
       }

@@ -16,7 +16,7 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   external_docs: {
     url: "http://scrimpton.com";
     description: "Search Xfm transcriptions";
-  }
+  };
   schemes: HTTP;
 };
 service SearchService {
@@ -79,6 +79,19 @@ service SearchService {
       tags: "search"
     };
   }
+
+  // changelogs
+  rpc ListChangelogs(ListChangelogsRequest) returns (ChangelogList) {
+    option (google.api.http) = {
+      get: "/api/changelog"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "listChangelogs",
+      summary: "Fetch list of changelogs"
+      tags: "search"
+    };
+  }
+
 }
 
 message SearchRequest {
@@ -218,4 +231,22 @@ message FieldValueList {
 message FieldValue {
   string value = 1;
   int32 count = 2;
+}
+
+
+message ListChangelogsRequest {
+  string filter = 2;
+  string sort_field = 3;
+  string sort_direction = 4;
+  int32 page = 5;
+  int32 page_size = 6;
+}
+
+message ChangelogList {
+  repeated Changelog changelogs = 1;
+}
+
+message Changelog {
+  string date = 1;
+  string content = 2;
 }

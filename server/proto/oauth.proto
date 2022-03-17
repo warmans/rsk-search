@@ -15,7 +15,7 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   external_docs: {
     url: "http://scrimpton.com";
     description: "Search Xfm transcriptions";
-  }
+  };
   schemes: HTTP;
 };
 service OauthService {

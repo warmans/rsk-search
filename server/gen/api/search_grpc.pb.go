@@ -24,6 +24,8 @@ type SearchServiceClient interface {
 	ListFieldValues(ctx context.Context, in *ListFieldValuesRequest, opts ...grpc.CallOption) (*FieldValueList, error)
 	GetTranscript(ctx context.Context, in *GetTranscriptRequest, opts ...grpc.CallOption) (*Transcript, error)
 	ListTranscripts(ctx context.Context, in *ListTranscriptsRequest, opts ...grpc.CallOption) (*TranscriptList, error)
+	// changelogs
+	ListChangelogs(ctx context.Context, in *ListChangelogsRequest, opts ...grpc.CallOption) (*ChangelogList, error)
 }
 
 type searchServiceClient struct {
@@ -79,6 +81,15 @@ func (c *searchServiceClient) ListTranscripts(ctx context.Context, in *ListTrans
 	return out, nil
 }
 
+func (c *searchServiceClient) ListChangelogs(ctx context.Context, in *ListChangelogsRequest, opts ...grpc.CallOption) (*ChangelogList, error) {
+	out := new(ChangelogList)
+	err := c.cc.Invoke(ctx, "/rsk.SearchService/ListChangelogs", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SearchServiceServer is the server API for SearchService service.
 // All implementations should embed UnimplementedSearchServiceServer
 // for forward compatibility
@@ -88,6 +99,8 @@ type SearchServiceServer interface {
 	ListFieldValues(context.Context, *ListFieldValuesRequest) (*FieldValueList, error)
 	GetTranscript(context.Context, *GetTranscriptRequest) (*Transcript, error)
 	ListTranscripts(context.Context, *ListTranscriptsRequest) (*TranscriptList, error)
+	// changelogs
+	ListChangelogs(context.Context, *ListChangelogsRequest) (*ChangelogList, error)
 }
 
 // UnimplementedSearchServiceServer should be embedded to have forward compatible implementations.
@@ -108,6 +121,9 @@ func (UnimplementedSearchServiceServer) GetTranscript(context.Context, *GetTrans
 }
 func (UnimplementedSearchServiceServer) ListTranscripts(context.Context, *ListTranscriptsRequest) (*TranscriptList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTranscripts not implemented")
+}
+func (UnimplementedSearchServiceServer) ListChangelogs(context.Context, *ListChangelogsRequest) (*ChangelogList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListChangelogs not implemented")
 }
 
 // UnsafeSearchServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -211,6 +227,24 @@ func _SearchService_ListTranscripts_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SearchService_ListChangelogs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListChangelogsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SearchServiceServer).ListChangelogs(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/rsk.SearchService/ListChangelogs",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SearchServiceServer).ListChangelogs(ctx, req.(*ListChangelogsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SearchService_ServiceDesc is the grpc.ServiceDesc for SearchService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -237,6 +271,10 @@ var SearchService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListTranscripts",
 			Handler:    _SearchService_ListTranscripts_Handler,
+		},
+		{
+			MethodName: "ListChangelogs",
+			Handler:    _SearchService_ListChangelogs_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

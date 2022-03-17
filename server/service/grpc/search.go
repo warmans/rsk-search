@@ -145,6 +145,30 @@ func (s *SearchService) ListTranscripts(_ context.Context, _ *api.ListTranscript
 	return el, nil
 }
 
+func (s *SearchService) ListChangelogs(ctx context.Context, request *api.ListChangelogsRequest) (*api.ChangelogList, error) {
+	qm, err := NewQueryModifiers(request)
+	if err != nil {
+		return nil, err
+	}
+	result := &api.ChangelogList{
+		Changelogs: make([]*api.Changelog, 0),
+	}
+	err = s.staticDB.WithStore(func(s *ro.Store) error {
+		changelogs, err := s.ListChangelogs(ctx, qm)
+		if err != nil {
+			return err
+		}
+		for _, v := range changelogs {
+			result.Changelogs = append(result.Changelogs, v.Proto())
+		}
+		return nil
+	})
+	if err != nil {
+		return nil, err
+	}
+	return result, nil
+}
+
 func checkWhy(f filter.Filter) error {
 	visitor := filter.NewExtractFilterVisitor(f)
 	filters, err := visitor.ExtractCompFilters("content")

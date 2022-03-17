@@ -100,6 +100,51 @@ func (s *Store) GetDialogWithContext(ctx context.Context, dialogID string, withC
 	return s.getTranscriptForQuery(ctx, query, dialogID)
 }
 
+func (s *Store) InsertChangelog(ctx context.Context, ep *models.Changelog) error {
+	_, err := s.tx.ExecContext(
+		ctx,
+		`INSERT INTO changelog ("date", "content") VALUES ($2, $3)`,
+		util.SqlDate(ep.Date),
+		ep.Content,
+	)
+	return err
+}
+
+func (s *Store) ListChangelogs(ctx context.Context, q *common.QueryModifier) ([]*models.Changelog, error) {
+	fieldMap := map[string]string{
+		"date":    "date",
+		"content": "content",
+	}
+
+	q.Apply(common.WithDefaultSorting("date", common.SortDesc))
+
+	where, params, order, paging, err := q.ToSQL(fieldMap, true)
+	if err != nil {
+		return nil, err
+	}
+
+	rows, err := s.tx.QueryxContext(
+		ctx,
+		fmt.Sprintf(`SELECT date, content FROM changelog %s %s %s`, where, order, paging),
+		params...,
+	)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	out := make([]*models.Changelog, 0)
+	for rows.Next() {
+		row := &models.Changelog{}
+		if err := rows.Scan(&row.Date, &row.Content); err != nil {
+			return nil, err
+		}
+		out = append(out, row)
+	}
+	return out, nil
+
+}
+
 func (s *Store) getTranscriptForQuery(ctx context.Context, query string, params ...interface{}) ([]models.Dialog, string, error) {
 
 	res, err := s.tx.QueryxContext(ctx, query, params...)

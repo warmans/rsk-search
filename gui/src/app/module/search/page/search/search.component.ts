@@ -1,9 +1,9 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { takeUntil } from 'rxjs/operators';
+import { take, takeUntil } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
-import { RskChunkStats, RskSearchResultList } from '../../../../lib/api-client/models';
+import { RskChangelog, RskSearchResultList } from '../../../../lib/api-client/models';
 
 @Component({
   selector: 'app-search',
@@ -18,8 +18,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   pages: number[] = [];
   currentPage: number;
   morePages: boolean = false;
-
-  chunkStats: RskChunkStats;
+  latestChangelog: RskChangelog;
 
   private unsubscribe$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -37,21 +36,15 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.titleService.setTitle('Scrimpton Search');
-    this.getChunkStats();
+
+    this.apiClient.listChangelogs({pageSize: 1}).pipe(takeUntil(this.unsubscribe$)).subscribe((res) => {
+      this.latestChangelog = (res.changelogs || []).pop()
+    });
   }
 
   ngOnDestroy(): void {
     this.unsubscribe$.next(true);
     this.unsubscribe$.complete();
-  }
-
-  getChunkStats() {
-    this.loading.push(true);
-    this.apiClient.getChunkStats().subscribe((stats: RskChunkStats) => {
-      this.chunkStats = stats;
-    }).add(() => {
-      this.loading.pop();
-    });
   }
 
   executeQuery(value: string, page: number) {

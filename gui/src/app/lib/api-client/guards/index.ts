@@ -77,6 +77,30 @@ export function isRskAuthorRanking(arg: any): arg is models.RskAuthorRanking {
   );
   }
 
+export function isRskChangelog(arg: any): arg is models.RskChangelog {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // content?: string
+    ( typeof arg.content === 'undefined' || typeof arg.content === 'string' ) &&
+    // date?: string
+    ( typeof arg.date === 'undefined' || typeof arg.date === 'string' ) &&
+
+  true
+  );
+  }
+
+export function isRskChangelogList(arg: any): arg is models.RskChangelogList {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // changelogs?: RskChangelog[]
+    ( typeof arg.changelogs === 'undefined' || (Array.isArray(arg.changelogs) && arg.changelogs.every((item: unknown) => isRskChangelog(item))) ) &&
+
+  true
+  );
+  }
+
 export function isRskChunk(arg: any): arg is models.RskChunk {
   return (
   arg != null &&
