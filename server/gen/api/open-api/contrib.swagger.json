@@ -19,6 +19,120 @@
     "application/json"
   ],
   "paths": {
+    "/api/author/contribution": {
+      "get": {
+        "summary": "Lists all the contributions for a single author",
+        "operationId": "listAuthorContributions",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskAuthorContributionList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortDirection",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      }
+    },
+    "/api/author/ranks": {
+      "get": {
+        "summary": "Lists the rankings of the authors.",
+        "operationId": "listAuthorRanks",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskAuthorRankList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortDirection",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      }
+    },
     "/api/contrib/chunk": {
       "get": {
         "summary": "lists contributed transcript chunks",
@@ -795,6 +909,15 @@
     }
   },
   "definitions": {
+    "AuthorContributionContributionType": {
+      "type": "string",
+      "enum": [
+        "CONTRIBUTION_TYPE_UNKNOWN",
+        "CHUNK",
+        "CHANGE"
+      ],
+      "default": "CONTRIBUTION_TYPE_UNKNOWN"
+    },
     "RewardRewardKind": {
       "type": "string",
       "enum": [
@@ -847,6 +970,41 @@
         }
       }
     },
+    "rskAuthorContribution": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "episodeId": {
+          "type": "string"
+        },
+        "contributionType": {
+          "$ref": "#/definitions/AuthorContributionContributionType"
+        },
+        "author": {
+          "$ref": "#/definitions/rskAuthor"
+        },
+        "points": {
+          "type": "number",
+          "format": "float"
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      }
+    },
+    "rskAuthorContributionList": {
+      "type": "object",
+      "properties": {
+        "contributions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rskAuthorContribution"
+          }
+        }
+      }
+    },
     "rskAuthorLeaderboard": {
       "type": "object",
       "properties": {
@@ -854,6 +1012,41 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/rskAuthorRanking"
+          }
+        }
+      },
+      "title": "OLD rankings - should be deleted"
+    },
+    "rskAuthorRank": {
+      "type": "object",
+      "properties": {
+        "author": {
+          "$ref": "#/definitions/rskAuthor"
+        },
+        "approvedChunks": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "approvedChanges": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "points": {
+          "type": "number",
+          "format": "float"
+        },
+        "rank": {
+          "type": "string"
+        }
+      }
+    },
+    "rskAuthorRankList": {
+      "type": "object",
+      "properties": {
+        "rankings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rskAuthorRank"
           }
         }
       }

@@ -16,6 +16,34 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  listAuthorContributions(
+    args: {
+      filter?: string,
+      sortField?: string,
+      sortDirection?: string,
+      page?: number,
+      pageSize?: number,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskAuthorContributionList>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  listAuthorRanks(
+    args: {
+      filter?: string,
+      sortField?: string,
+      sortDirection?: string,
+      page?: number,
+      pageSize?: number,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskAuthorRankList>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   listChangelogs(
     args: {
       filter?: string,

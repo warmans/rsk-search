@@ -29,6 +29,34 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
       .pipe(tap((res: any) => guards.isRskRedditAuthURL(res) || console.error(`TypeGuard for response 'RskRedditAuthURL' caught inconsistency.`, res)));
   }
 
+  listAuthorContributions(
+    args: {
+      filter?: string,
+      sortField?: string,
+      sortDirection?: string,
+      page?: number,
+      pageSize?: number,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskAuthorContributionList> {
+    return super.listAuthorContributions(args, requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRskAuthorContributionList(res) || console.error(`TypeGuard for response 'RskAuthorContributionList' caught inconsistency.`, res)));
+  }
+
+  listAuthorRanks(
+    args: {
+      filter?: string,
+      sortField?: string,
+      sortDirection?: string,
+      page?: number,
+      pageSize?: number,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskAuthorRankList> {
+    return super.listAuthorRanks(args, requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRskAuthorRankList(res) || console.error(`TypeGuard for response 'RskAuthorRankList' caught inconsistency.`, res)));
+  }
+
   listChangelogs(
     args: {
       filter?: string,

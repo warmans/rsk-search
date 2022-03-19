@@ -227,7 +227,6 @@ service ContribService {
     };
   }
 
-
   rpc CreateTranscriptChange (CreateTranscriptChangeRequest) returns (TranscriptChange) {
     option (google.api.http) = {
       post: "/api/contrib/transcript/{epid}/change",
@@ -274,6 +273,31 @@ service ContribService {
       tags: "search"
     };
   }
+
+  // contributions v2
+
+  rpc ListAuthorContributions (ListAuthorContributionsRequest) returns (AuthorContributionList) {
+    option (google.api.http) = {
+      get: "/api/author/contribution"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "listAuthorContributions",
+      summary: "Lists all the contributions for a single author"
+      tags: "search"
+    };
+  }
+
+  rpc ListAuthorRanks (ListAuthorRanksRequest) returns (AuthorRankList) {
+    option (google.api.http) = {
+      get: "/api/author/ranks"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "listAuthorRanks",
+      summary: "Lists the rankings of the authors."
+      tags: "search"
+    };
+  }
+
 }
 
 message Tscript {
@@ -400,6 +424,7 @@ message ChunkStates {
   repeated ContributionState states = 1;
 }
 
+// OLD rankings - should be deleted
 message AuthorLeaderboard {
   repeated AuthorRanking authors = 1;
 }
@@ -409,6 +434,27 @@ message AuthorRanking {
   bool approver = 2;
   int32 accepted_contributions = 3;
   float award_value = 4;
+}
+
+// NEW rankings
+message ListAuthorRanksRequest {
+  string filter = 1;
+  string sort_field = 2;
+  string sort_direction = 3;
+  int32 page = 4;
+  int32 page_size = 5;
+}
+
+message AuthorRankList {
+  repeated AuthorRank rankings = 1;
+}
+
+message AuthorRank {
+  Author author = 1;
+  int32 approved_chunks = 2;
+  int32 approved_changes = 3;
+  float points = 4;
+  string rank = 5;
 }
 
 message PendingRewardList {
@@ -561,3 +607,32 @@ message GetTranscriptChangeDiffRequest {
 message TranscriptChangeDiff {
   string diff = 1;
 }
+
+message ListAuthorContributionsRequest {
+  string filter = 1;
+  string sort_field = 2;
+  string sort_direction = 3;
+  int32 page = 4;
+  int32 page_size = 5;
+}
+
+message AuthorContributionList {
+  repeated AuthorContribution contributions = 1;
+}
+
+message AuthorContribution {
+
+  enum ContributionType {
+    CONTRIBUTION_TYPE_UNKNOWN = 0;
+    CHUNK = 1;
+    CHANGE = 2;
+  }
+
+  string id = 1;
+  string episode_id = 2;
+  ContributionType contribution_type = 3;
+  Author author = 7;
+  float points = 8;
+  string created_at = 9;
+}
+

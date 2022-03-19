@@ -14,6 +14,14 @@ return arg != null && typeof arg.lastModified === 'number' && typeof arg.name ==
 
 /* generated type guards */
 
+export function isAuthorContributionType(arg: any): arg is models.AuthorContributionType {
+  return false
+   || arg === models.AuthorContributionType.CONTRIBUTION_TYPE_UNKNOWN
+   || arg === models.AuthorContributionType.CHUNK
+   || arg === models.AuthorContributionType.CHANGE
+  ;
+  }
+
 export function isFieldMetaKind(arg: any): arg is models.FieldMetaKind {
   return false
    || arg === models.FieldMetaKind.UNKNOWN
@@ -49,12 +57,63 @@ export function isRskAuthor(arg: any): arg is models.RskAuthor {
   );
   }
 
+export function isRskAuthorContribution(arg: any): arg is models.RskAuthorContribution {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // author?: RskAuthor
+    ( typeof arg.author === 'undefined' || isRskAuthor(arg.author) ) &&
+    // contributionType?: AuthorContributionType
+    ( typeof arg.contributionType === 'undefined' || isAuthorContributionType(arg.contributionType) ) &&
+    // createdAt?: string
+    ( typeof arg.createdAt === 'undefined' || typeof arg.createdAt === 'string' ) &&
+    // episodeId?: string
+    ( typeof arg.episodeId === 'undefined' || typeof arg.episodeId === 'string' ) &&
+    // id?: string
+    ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
+    // points?: number
+    ( typeof arg.points === 'undefined' || typeof arg.points === 'number' ) &&
+
+  true
+  );
+  }
+
+export function isRskAuthorContributionList(arg: any): arg is models.RskAuthorContributionList {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // contributions?: RskAuthorContribution[]
+    ( typeof arg.contributions === 'undefined' || (Array.isArray(arg.contributions) && arg.contributions.every((item: unknown) => isRskAuthorContribution(item))) ) &&
+
+  true
+  );
+  }
+
 export function isRskAuthorLeaderboard(arg: any): arg is models.RskAuthorLeaderboard {
   return (
   arg != null &&
   typeof arg === 'object' &&
     // authors?: RskAuthorRanking[]
     ( typeof arg.authors === 'undefined' || (Array.isArray(arg.authors) && arg.authors.every((item: unknown) => isRskAuthorRanking(item))) ) &&
+
+  true
+  );
+  }
+
+export function isRskAuthorRank(arg: any): arg is models.RskAuthorRank {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // approvedChanges?: number
+    ( typeof arg.approvedChanges === 'undefined' || typeof arg.approvedChanges === 'number' ) &&
+    // approvedChunks?: number
+    ( typeof arg.approvedChunks === 'undefined' || typeof arg.approvedChunks === 'number' ) &&
+    // author?: RskAuthor
+    ( typeof arg.author === 'undefined' || isRskAuthor(arg.author) ) &&
+    // points?: number
+    ( typeof arg.points === 'undefined' || typeof arg.points === 'number' ) &&
+    // rank?: string
+    ( typeof arg.rank === 'undefined' || typeof arg.rank === 'string' ) &&
 
   true
   );
@@ -72,6 +131,17 @@ export function isRskAuthorRanking(arg: any): arg is models.RskAuthorRanking {
     ( typeof arg.author === 'undefined' || isRskAuthor(arg.author) ) &&
     // awardValue?: number
     ( typeof arg.awardValue === 'undefined' || typeof arg.awardValue === 'number' ) &&
+
+  true
+  );
+  }
+
+export function isRskAuthorRankList(arg: any): arg is models.RskAuthorRankList {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // rankings?: RskAuthorRank[]
+    ( typeof arg.rankings === 'undefined' || (Array.isArray(arg.rankings) && arg.rankings.every((item: unknown) => isRskAuthorRank(item))) ) &&
 
   true
   );

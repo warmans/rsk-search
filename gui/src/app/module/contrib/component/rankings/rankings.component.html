@@ -1,0 +1,40 @@
+<div class="card">
+  <div class="card-header">Top Contributors</div>
+  <div class="card-body p-0">
+    <table class="table mb-0">
+      <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th>Rank</th>
+        <th>Edits</th>
+        <th>Chunks</th>
+        <th>Points</th>
+      </tr>
+      <tr *ngFor="let a of ranking; let i = index">
+        <td style="width: 50px" class="text-muted">#{{i+1}}</td>
+        <td style="width: 34px">
+          <div
+            class="user-icon"
+            style=" width: 24px; height: 24px; background-image: url({{ a.author?.identityIconImg }})">
+          </div>
+        </td>
+        <td style="width: 150px" class="font-weight-bold">
+          {{a.author.name}}
+        </td>
+        <td>
+          {{a.rank}}
+        </td>
+        <td>
+          {{a.approvedChanges}}
+        </td>
+        <td>
+          {{a.approvedChunks}}
+        </td>
+        <td>
+          {{a.points}}
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

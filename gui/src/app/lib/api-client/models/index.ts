@@ -1,10 +1,15 @@
 /* tslint:disable */
 
+export { AuthorContributionType } from './author-contribution-type.enum';
 export { FieldMetaKind } from './field-meta-kind.enum';
 export { RewardKind } from './reward-kind.enum';
 export { RskAuthor } from './rsk-author.model';
+export { RskAuthorContribution } from './rsk-author-contribution.model';
+export { RskAuthorContributionList } from './rsk-author-contribution-list.model';
 export { RskAuthorLeaderboard } from './rsk-author-leaderboard.model';
+export { RskAuthorRank } from './rsk-author-rank.model';
 export { RskAuthorRanking } from './rsk-author-ranking.model';
+export { RskAuthorRankList } from './rsk-author-rank-list.model';
 export { RskChangelog } from './rsk-changelog.model';
 export { RskChangelogList } from './rsk-changelog-list.model';
 export { RskChunk } from './rsk-chunk.model';

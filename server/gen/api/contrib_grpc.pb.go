@@ -42,6 +42,8 @@ type ContribServiceClient interface {
 	UpdateTranscriptChange(ctx context.Context, in *UpdateTranscriptChangeRequest, opts ...grpc.CallOption) (*TranscriptChange, error)
 	DeleteTranscriptChange(ctx context.Context, in *DeleteTranscriptChangeRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	RequestTranscriptChangeState(ctx context.Context, in *RequestTranscriptChangeStateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ListAuthorContributions(ctx context.Context, in *ListAuthorContributionsRequest, opts ...grpc.CallOption) (*AuthorContributionList, error)
+	ListAuthorRanks(ctx context.Context, in *ListAuthorRanksRequest, opts ...grpc.CallOption) (*AuthorRankList, error)
 }
 
 type contribServiceClient struct {
@@ -250,6 +252,24 @@ func (c *contribServiceClient) RequestTranscriptChangeState(ctx context.Context,
 	return out, nil
 }
 
+func (c *contribServiceClient) ListAuthorContributions(ctx context.Context, in *ListAuthorContributionsRequest, opts ...grpc.CallOption) (*AuthorContributionList, error) {
+	out := new(AuthorContributionList)
+	err := c.cc.Invoke(ctx, "/rsk.ContribService/ListAuthorContributions", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *contribServiceClient) ListAuthorRanks(ctx context.Context, in *ListAuthorRanksRequest, opts ...grpc.CallOption) (*AuthorRankList, error) {
+	out := new(AuthorRankList)
+	err := c.cc.Invoke(ctx, "/rsk.ContribService/ListAuthorRanks", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ContribServiceServer is the server API for ContribService service.
 // All implementations should embed UnimplementedContribServiceServer
 // for forward compatibility
@@ -277,6 +297,8 @@ type ContribServiceServer interface {
 	UpdateTranscriptChange(context.Context, *UpdateTranscriptChangeRequest) (*TranscriptChange, error)
 	DeleteTranscriptChange(context.Context, *DeleteTranscriptChangeRequest) (*emptypb.Empty, error)
 	RequestTranscriptChangeState(context.Context, *RequestTranscriptChangeStateRequest) (*emptypb.Empty, error)
+	ListAuthorContributions(context.Context, *ListAuthorContributionsRequest) (*AuthorContributionList, error)
+	ListAuthorRanks(context.Context, *ListAuthorRanksRequest) (*AuthorRankList, error)
 }
 
 // UnimplementedContribServiceServer should be embedded to have forward compatible implementations.
@@ -348,6 +370,12 @@ func (UnimplementedContribServiceServer) DeleteTranscriptChange(context.Context,
 }
 func (UnimplementedContribServiceServer) RequestTranscriptChangeState(context.Context, *RequestTranscriptChangeStateRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RequestTranscriptChangeState not implemented")
+}
+func (UnimplementedContribServiceServer) ListAuthorContributions(context.Context, *ListAuthorContributionsRequest) (*AuthorContributionList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAuthorContributions not implemented")
+}
+func (UnimplementedContribServiceServer) ListAuthorRanks(context.Context, *ListAuthorRanksRequest) (*AuthorRankList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListAuthorRanks not implemented")
 }
 
 // UnsafeContribServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -757,6 +785,42 @@ func _ContribService_RequestTranscriptChangeState_Handler(srv interface{}, ctx c
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ContribService_ListAuthorContributions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAuthorContributionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContribServiceServer).ListAuthorContributions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/rsk.ContribService/ListAuthorContributions",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContribServiceServer).ListAuthorContributions(ctx, req.(*ListAuthorContributionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ContribService_ListAuthorRanks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListAuthorRanksRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContribServiceServer).ListAuthorRanks(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/rsk.ContribService/ListAuthorRanks",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContribServiceServer).ListAuthorRanks(ctx, req.(*ListAuthorRanksRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ContribService_ServiceDesc is the grpc.ServiceDesc for ContribService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -851,6 +915,14 @@ var ContribService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RequestTranscriptChangeState",
 			Handler:    _ContribService_RequestTranscriptChangeState_Handler,
+		},
+		{
+			MethodName: "ListAuthorContributions",
+			Handler:    _ContribService_ListAuthorContributions_Handler,
+		},
+		{
+			MethodName: "ListAuthorRanks",
+			Handler:    _ContribService_ListAuthorRanks_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

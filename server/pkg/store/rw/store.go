@@ -311,30 +311,56 @@ func (s *Store) UpdateChunkContribution(ctx context.Context, c *models.Contribut
 	if c.ID == "" {
 		return fmt.Errorf("no identifier was provided")
 	}
-	if banned, err := s.AuthorIsBanned(ctx, c.AuthorID); err != nil || banned {
-		if err != nil {
-			return errors.Wrap(err, "failed to identity author")
-		}
-		return ErrNotPermitted
+
+	oldCon, err := s.GetChunkContribution(ctx, c.ID)
+	if err != nil {
+		return err
 	}
-	_, err := s.tx.ExecContext(
+	_, err = s.tx.ExecContext(
 		ctx,
 		`UPDATE tscript_contribution SET transcription=$1, state=$2 WHERE id=$3`,
 		c.Transcription,
 		c.State,
 		c.ID,
 	)
+	if oldCon.State != models.ContributionStateApproved && c.State == models.ContributionStateApproved {
+		if err := s.CreateAuthorContribution(ctx, models.AuthorContributionCreate{
+			AuthorID:         oldCon.Author.ID,
+			EpID:             strings.Replace(oldCon.TscriptID, "ts-", "ep-", 1),
+			ContributionType: models.ContributionTypeChunk,
+		}); err != nil {
+			return err
+		}
+	}
 	return err
 }
 
 func (s *Store) UpdateChunkContributionState(ctx context.Context, id string, state models.ContributionState, comment string) error {
-	_, err := s.tx.ExecContext(
+
+	con, err := s.GetChunkContribution(ctx, id)
+	if err != nil {
+		return err
+	}
+
+	_, err = s.tx.ExecContext(
 		ctx,
 		`UPDATE tscript_contribution SET state=$1, state_comment=NULLIF($2, '') WHERE id=$3`,
 		state,
 		comment,
 		id,
 	)
+	if err != nil {
+		return err
+	}
+	if con.State != models.ContributionStateApproved && state == models.ContributionStateApproved {
+		if err := s.CreateAuthorContribution(ctx, models.AuthorContributionCreate{
+			AuthorID:         con.Author.ID,
+			EpID:             strings.Replace(con.TscriptID, "ts-", "ep-", 1),
+			ContributionType: models.ContributionTypeChunk,
+		}); err != nil {
+			return err
+		}
+	}
 	return err
 }
 
@@ -404,24 +430,15 @@ func (s *Store) ListChunkContributions(ctx context.Context, q *common.QueryModif
 	return out, nil
 }
 
-func (s *Store) GetContribution(ctx context.Context, id string) (*models.ChunkContribution, error) {
-	out := &models.ChunkContribution{Author: &models.ShortAuthor{}}
-	row := s.tx.QueryRowxContext(
-		ctx,
-		`
-		SELECT c.id, c.author_id, a.name, c.tscript_chunk_id, c.transcription, COALESCE(c.state, 'unknown'), c.created_at 
-		FROM tscript_contribution c 
-		LEFT JOIN author a ON c.author_id = a.id 
-		WHERE c.id=$1`,
-		id,
-	)
-	if err := row.Scan(&out.ID, &out.Author.ID, &out.Author.Name, &out.ChunkID, &out.Transcription, &out.State, &out.CreatedAt); err != nil {
-		if err == sql.ErrNoRows {
-			return nil, err
-		}
-		return nil, errors.Wrap(err, "scan failed")
+func (s *Store) GetChunkContribution(ctx context.Context, id string) (*models.ChunkContribution, error) {
+	contributions, err := s.ListChunkContributions(ctx, &common.QueryModifier{Filter: filter.Eq("id", filter.String(id))})
+	if err != nil {
+		return nil, err
 	}
-	return out, nil
+	if len(contributions) == 0 {
+		return nil, sql.ErrNoRows
+	}
+	return contributions[0], nil
 }
 
 func (s *Store) DeleteContribution(ctx context.Context, id string) error {
@@ -524,6 +541,66 @@ func (s *Store) AuthorLeaderboard(ctx context.Context) (*models.AuthorLeaderboar
 	}
 
 	return &models.AuthorLeaderboard{Authors: authors}, nil
+}
+
+func (s *Store) ListAuthorRankings(ctx context.Context, qm *common.QueryModifier) ([]*models.AuthorRank, error) {
+	fieldMap := map[string]string{
+		"author_id":   "a.id",
+		"author_name": "a.name",
+		"points":      "points",
+		"rank":        "rank",
+	}
+
+	where, params, order, paging, err := qm.ToSQL(fieldMap, true)
+	if err != nil {
+		return nil, err
+	}
+
+	rows, err := s.tx.QueryxContext(
+		ctx,
+		fmt.Sprintf(`
+		SELECT 
+			a.id,
+			a.name,
+ 			COALESCE(a.identity, '{}'),
+			(SELECT SUM(points) AS points FROM author_contribution where author_id=a.id) as points,
+			(SELECT name FROM rank WHERE points <= (SELECT SUM(points) AS points FROM author_contribution where author_id=a.id) order by points desc limit 1) as rank,
+			c.approved_chunks,
+			c.approved_changes
+		FROM author a
+		LEFT JOIN (
+			SELECT 
+				ac.author_id,
+				COALESCE(SUM(CASE WHEN ac.contribution_type = 'chunk' then 1 ELSE 0 END), 0) as approved_chunks,
+				COALESCE(SUM(CASE WHEN ac.contribution_type = 'change' then 1 ELSE 0 END), 0) as approved_changes
+			FROM author_contribution ac
+			group by ac.author_id
+		) c ON a.id = c.author_id
+		%s
+		%s
+		%s
+		`, where, order, paging),
+		params...,
+	)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	out := make([]*models.AuthorRank, 0)
+	for rows.Next() {
+		cur := &models.AuthorRank{Author: &models.ShortAuthor{}}
+		var ident string
+		if err := rows.Scan(&cur.Author.ID, &cur.Author.Name, &ident, &cur.Points, &cur.Rank, &cur.ApprovedChunks, &cur.ApprovedChanges); err != nil {
+			return nil, err
+		}
+		decodedIdent := &oauth.Identity{}
+		if err := json.Unmarshal([]byte(ident), &decodedIdent); err == nil {
+			cur.Author.IdentityIconImg = decodedIdent.Icon
+		}
+		out = append(out, cur)
+	}
+	return out, nil
 }
 
 func (s *Store) UpdateChunkActivity(ctx context.Context, id string, activity ChunkActivity) error {
@@ -840,14 +917,6 @@ func (s *Store) UpdateTranscriptChange(ctx context.Context, c *models.Transcript
 	if c.ID == "" {
 		return nil, fmt.Errorf("no identifier was provided")
 	}
-	_, err := s.tx.ExecContext(
-		ctx,
-		`UPDATE transcript_change SET transcription=$1, summary=$2, state=$3 WHERE id=$4`,
-		c.Transcription,
-		c.Summary,
-		c.State,
-		c.ID,
-	)
 	change, err := s.GetTranscriptChange(ctx, c.ID)
 	if err != nil {
 		return nil, err
@@ -855,6 +924,28 @@ func (s *Store) UpdateTranscriptChange(ctx context.Context, c *models.Transcript
 	if change.Author.Banned {
 		return nil, ErrNotPermitted
 	}
+	_, err = s.tx.ExecContext(
+		ctx,
+		`UPDATE transcript_change SET transcription=$1, summary=$2, state=$3 WHERE id=$4`,
+		c.Transcription,
+		c.Summary,
+		c.State,
+		c.ID,
+	)
+	if change.State != models.ContributionStateApproved && c.State == models.ContributionStateApproved {
+		if err := s.CreateAuthorContribution(ctx, models.AuthorContributionCreate{
+			AuthorID:         change.Author.ID,
+			EpID:             change.EpID,
+			ContributionType: models.ContributionTypeChange,
+		}); err != nil {
+			return nil, err
+		}
+	}
+
+	change.Transcription = c.Transcription
+	change.Summary = c.Summary
+	change.State = c.State
+
 	return change, err
 }
 
@@ -871,13 +962,30 @@ func (s *Store) DeleteTranscriptChange(ctx context.Context, id string) error {
 }
 
 func (s *Store) UpdateTranscriptChangeState(ctx context.Context, id string, state models.ContributionState) error {
-	_, err := s.tx.ExecContext(
+
+	change, err := s.GetTranscriptChange(ctx, id)
+	if err != nil {
+		return err
+	}
+	_, err = s.tx.ExecContext(
 		ctx,
 		`UPDATE transcript_change SET state=$1 WHERE id=$2`,
 		state,
 		id,
 	)
-	return err
+	if err != nil {
+		return err
+	}
+	if change.State != models.ContributionStateApproved && state == models.ContributionStateApproved {
+		if err := s.CreateAuthorContribution(ctx, models.AuthorContributionCreate{
+			AuthorID:         change.Author.ID,
+			EpID:             change.EpID,
+			ContributionType: models.ContributionTypeChange,
+		}); err != nil {
+			return err
+		}
+	}
+	return nil
 }
 
 func (s *Store) ListTranscriptChanges(ctx context.Context, q *common.QueryModifier) ([]*models.TranscriptChange, error) {
@@ -943,6 +1051,70 @@ func (s *Store) ListTranscriptChanges(ctx context.Context, q *common.QueryModifi
 	}
 	for k := range out {
 		out[k].Author = authorMap[out[k].Author.ID]
+	}
+	return out, nil
+}
+
+func (s *Store) CreateAuthorContribution(ctx context.Context, co models.AuthorContributionCreate) error {
+	_, err := s.tx.ExecContext(
+		ctx,
+		`INSERT INTO author_contribution (id, author_id, epid, contribution_type, points, points_spent, created_at) VALUES ($1, $2, $3, $4, $5, false, $6)`,
+		shortuuid.New(),
+		co.AuthorID,
+		co.EpID,
+		co.ContributionType,
+		co.Points,
+		time.Now(),
+	)
+	return err
+}
+
+func (s *Store) ListAuthorContributions(ctx context.Context, q *common.QueryModifier) ([]*models.AuthorContribution, error) {
+	fieldMap := map[string]string{
+		"id":                "c.id",
+		"author_id":         "c.author_id",
+		"epid":              "c.epid",
+		"contribution_type": "c.contribution_type",
+		"created_at":        "c.created_at",
+	}
+
+	where, params, order, paging, err := q.ToSQL(fieldMap, false)
+	if err != nil {
+		return nil, err
+	}
+
+	rows, err := s.tx.QueryxContext(
+		ctx,
+		fmt.Sprintf(`
+		SELECT c.id, c.epid, c.contribution_type, c.points, c.created_at, a.id, a.name
+		FROM author_contribution c
+		LEFT JOIN author a ON c.author_id = a.id
+		WHERE a.id IS NOT NULL AND a.banned = false
+		AND %s
+		%s
+		%s
+		`, where, order, paging),
+		params...,
+	)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	out := make([]*models.AuthorContribution, 0)
+	for rows.Next() {
+		cur := &models.AuthorContribution{Author: &models.ShortAuthor{}}
+		if err := rows.Scan(
+			&cur.ID,
+			&cur.EpID,
+			&cur.ContributionType,
+			&cur.Points,
+			&cur.CreatedAt,
+			&cur.Author.ID,
+			&cur.Author.Name); err != nil {
+			return nil, err
+		}
+		out = append(out, cur)
 	}
 	return out, nil
 }

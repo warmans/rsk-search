@@ -126,3 +126,66 @@ func (a *AuthorReward) ClaimedProto() *api.ClaimedReward {
 		ClaimAt:          util.PTime(a.ClaimAt).Format(time.RFC3339),
 	}
 }
+
+type ContributionType string
+
+func (c ContributionType) Proto() api.AuthorContribution_ContributionType {
+	switch c {
+	case ContributionTypeChunk:
+		return api.AuthorContribution_CHUNK
+	case ContributionTypeChange:
+		return api.AuthorContribution_CHANGE
+	}
+	return api.AuthorContribution_CONTRIBUTION_TYPE_UNKNOWN
+}
+
+const (
+	ContributionTypeUnknown ContributionType = ""
+	ContributionTypeChunk   ContributionType = "chunk"
+	ContributionTypeChange  ContributionType = "change"
+)
+
+type AuthorContributionCreate struct {
+	AuthorID         string
+	EpID             string
+	ContributionType ContributionType
+	Points           float32
+}
+
+type AuthorContribution struct {
+	ID               string
+	Author           *ShortAuthor
+	EpID             string
+	ContributionType ContributionType
+	Points           float32
+	CreatedAt        time.Time
+}
+
+func (a *AuthorContribution) Proto() *api.AuthorContribution {
+	return &api.AuthorContribution{
+		Id:               a.ID,
+		EpisodeId:        a.EpID,
+		ContributionType: a.ContributionType.Proto(),
+		Author:           a.Author.Proto(),
+		Points:           a.Points,
+		CreatedAt:        a.CreatedAt.Format(time.RFC3339),
+	}
+}
+
+type AuthorRank struct {
+	Author          *ShortAuthor
+	ApprovedChunks  int32
+	ApprovedChanges int32
+	Points          float32
+	Rank            string
+}
+
+func (a *AuthorRank) Proto() *api.AuthorRank {
+	return &api.AuthorRank{
+		Author:          a.Author.Proto(),
+		ApprovedChunks:  a.ApprovedChunks,
+		ApprovedChanges: a.ApprovedChanges,
+		Points:          a.Points,
+		Rank:            a.Rank,
+	}
+}

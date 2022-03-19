@@ -53,6 +53,7 @@ type ContribService struct {
 	episodeCache *data.EpisodeCache
 }
 
+
 func (s *ContribService) RegisterGRPC(server *grpc.Server) {
 	api.RegisterContribServiceServer(server, s)
 }
@@ -197,7 +198,7 @@ func (s *ContribService) UpdateChunkContribution(ctx context.Context, request *a
 	var contrib *models.ChunkContribution
 	err = s.persistentDB.WithStore(func(s *rw.Store) error {
 		var err error
-		contrib, err = s.GetContribution(ctx, request.ContributionId)
+		contrib, err = s.GetChunkContribution(ctx, request.ContributionId)
 		return err
 	})
 	if err != nil {
@@ -248,7 +249,7 @@ func (s *ContribService) RequesChunktContributionState(ctx context.Context, requ
 	var contrib *models.ChunkContribution
 	err = s.persistentDB.WithStore(func(s *rw.Store) error {
 		var err error
-		contrib, err = s.GetContribution(ctx, request.ContributionId)
+		contrib, err = s.GetChunkContribution(ctx, request.ContributionId)
 		return err
 	})
 	if err != nil {
@@ -285,7 +286,7 @@ func (s *ContribService) DeleteChunkContribution(ctx context.Context, request *a
 	var contrib *models.ChunkContribution
 	err = s.persistentDB.WithStore(func(s *rw.Store) error {
 		var err error
-		contrib, err = s.GetContribution(ctx, request.ContributionId)
+		contrib, err = s.GetChunkContribution(ctx, request.ContributionId)
 		return err
 	})
 	if err != nil {
@@ -333,6 +334,7 @@ func (s *ContribService) ListChunkContributions(ctx context.Context, request *ap
 	return out, nil
 }
 
+// GetAuthorLeaderboard deprecated
 func (s *ContribService) GetAuthorLeaderboard(ctx context.Context, empty *emptypb.Empty) (*api.AuthorLeaderboard, error) {
 	var out *api.AuthorLeaderboard
 	err := s.persistentDB.WithStore(func(s *rw.Store) error {
@@ -349,6 +351,32 @@ func (s *ContribService) GetAuthorLeaderboard(ctx context.Context, empty *emptyp
 	return out, err
 }
 
+func (s *ContribService) ListAuthorRanks(ctx context.Context, request *api.ListAuthorRanksRequest) (*api.AuthorRankList, error) {
+
+	qm, err := NewQueryModifiers(request)
+	if err != nil {
+		return nil, err
+	}
+	qm.Apply(common.WithDefaultSorting("points", common.SortDesc))
+
+	out := &api.AuthorRankList{Rankings: make([]*api.AuthorRank, 0)}
+	err = s.persistentDB.WithStore(func(s *rw.Store) error {
+		lb, err := s.ListAuthorRankings(ctx, qm)
+		if err != nil {
+			return err
+		}
+		for _, v := range lb {
+			out.Rankings = append(out.Rankings, v.Proto())
+		}
+		return nil
+	})
+	if err != nil {
+		return nil, ErrFromStore(err, "").Err()
+	}
+	return out, err
+}
+
+
 func (s *ContribService) GetChunkContribution(ctx context.Context, request *api.GetChunkContributionRequest) (*api.ChunkContribution, error) {
 
 	claims, err := s.getClaims(ctx)
@@ -359,7 +387,7 @@ func (s *ContribService) GetChunkContribution(ctx context.Context, request *api.
 	var contrib *models.ChunkContribution
 	err = s.persistentDB.WithStore(func(s *rw.Store) error {
 		var err error
-		contrib, err = s.GetContribution(ctx, request.ContributionId)
+		contrib, err = s.GetChunkContribution(ctx, request.ContributionId)
 		if err != nil {
 			return err
 		}
@@ -521,9 +549,6 @@ func (s *ContribService) ListDonationRecipients(ctx context.Context, request *ap
 	if err != nil {
 		return nil, ErrFromStore(err, request.RewardId).Err()
 	}
-
-	//todo: vary results based on threshold
-
 	res := &api.DonationRecipientList{
 		Organizations: getDonationRecipients(reward.Threshold),
 	}
@@ -756,6 +781,31 @@ func (s *ContribService) RequestTranscriptChangeState(ctx context.Context, reque
 		return nil, ErrFromStore(err, request.Id).Err()
 	}
 	return &emptypb.Empty{}, nil
+}
+
+func (s *ContribService) ListAuthorContributions(ctx context.Context, request *api.ListAuthorContributionsRequest) (*api.AuthorContributionList, error) {
+
+	qm, err := NewQueryModifiers(request)
+	if err != nil {
+		return nil, err
+	}
+
+	out := &api.AuthorContributionList{Contributions: make([]*api.AuthorContribution, 0)}
+
+	err = s.persistentDB.WithStore(func(s *rw.Store) error {
+		cont, err := s.ListAuthorContributions(ctx, qm)
+		if err != nil {
+			return err
+		}
+		for _, v := range cont {
+			out.Contributions = append(out.Contributions, v.Proto())
+		}
+		return nil
+	})
+	if err != nil {
+		return nil, ErrFromStore(err, "").Err()
+	}
+	return out, nil
 }
 
 func (s *ContribService) getClaims(ctx context.Context) (*jwt.Claims, error) {
