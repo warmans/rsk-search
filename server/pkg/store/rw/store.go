@@ -581,12 +581,12 @@ func (s *Store) ListAuthorRankings(ctx context.Context, qm *common.QueryModifier
 			a.id,
 			a.name,
  			COALESCE(a.identity, '{}'),
-			(SELECT SUM(points) AS points FROM author_contribution where author_id=a.id) as points,
+			COALESCE((SELECT SUM(points) AS points FROM author_contribution where author_id=a.id), 0) as points,
 			(SELECT id FROM rank WHERE points <= (SELECT SUM(points) AS points FROM author_contribution where author_id = a.id) order by points desc limit 1) as current_rank,
 			(SELECT id FROM rank WHERE points > (SELECT SUM(points) AS points FROM author_contribution where author_id = a.id) order by points asc limit 1) as next_rank,
 			COALESCE((SELECT SUM(claim_value) FROM author_reward WHERE claimed = true AND author_id = a.id), 0) as reward_value_claimed,
-			c.approved_chunks,
-			c.approved_changes
+			COALESCE(c.approved_chunks, 0),
+			COALESCE(c.approved_changes, 0)
 		FROM author a
 		LEFT JOIN (
 			SELECT 
@@ -1108,7 +1108,7 @@ func (s *Store) ListAuthorContributions(ctx context.Context, q *common.QueryModi
 	rows, err := s.tx.QueryxContext(
 		ctx,
 		fmt.Sprintf(`
-		SELECT c.id, c.epid, c.contribution_type, c.points, c.created_at, a.id, a.name
+		SELECT c.id, c.epid, c.contribution_type, COALESCE(c.points, 0), c.created_at, a.id, a.name
 		FROM author_contribution c
 		LEFT JOIN author a ON c.author_id = a.id
 		WHERE a.id IS NOT NULL AND a.banned = false
