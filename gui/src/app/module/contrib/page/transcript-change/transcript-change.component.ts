@@ -8,6 +8,7 @@ import { AlertService } from '../../../core/service/alert/alert.service';
 import { RskContributionState, RskTranscript, RskTranscriptChange, RskTranscriptChangeDiff } from '../../../../lib/api-client/models';
 import { TranscriberComponent } from '../../../shared/component/transcriber/transcriber.component';
 import { Observable } from 'rxjs';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-transcript-change',
@@ -23,6 +24,8 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
   transcript: RskTranscript;
 
   change: RskTranscriptChange;
+
+  approvalPoints: FormControl = new FormControl(0.2);
 
   readOnly: boolean = true;
   authenticated: boolean = false;
@@ -157,6 +160,7 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
       body: {
         id: this.change.id,
         state: state,
+        pointsOnApprove: this.approvalPoints.value,
       }
     }).pipe(takeUntil(this.$destroy)).subscribe((res: RskTranscriptChange) => {
 

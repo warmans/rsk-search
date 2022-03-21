@@ -1,38 +1,48 @@
 <div class="card">
-  <div class="card-header">Top Contributors</div>
+  <div class="card-header">Contributor Rankings</div>
   <div class="card-body p-0">
     <table class="table mb-0">
       <tr>
         <th></th>
         <th></th>
-        <th></th>
-        <th>Rank</th>
+        <th title="Points are earned though contributions.">Points <i class="bi-question-circle"></i></th>
+        <th>Next Rank</th>
         <th>Edits</th>
         <th>Chunks</th>
-        <th>Points</th>
+        <th title="Rewards were given in the form of charitable donations for transcribing audio.">Raised <i class="bi-question-circle"></i></th>
       </tr>
       <tr *ngFor="let a of ranking; let i = index">
-        <td style="width: 50px" class="text-muted">#{{i+1}}</td>
         <td style="width: 34px">
           <div
             class="user-icon"
             style=" width: 24px; height: 24px; background-image: url({{ a.author?.identityIconImg }})">
           </div>
         </td>
-        <td style="width: 150px" class="font-weight-bold">
-          {{a.author.name}}
+        <td>
+          <div class="font-weight-bold">
+            {{ a.author.name }}
+          </div>
+          <div class="text-muted">
+            <span title="Rank unlocked at {{a.currentRank.points}} points, next rank at {{a.nextRank.points}}">{{a.currentRank.name}}</span>
+          </div>
+        </td>
+        <td>{{ a.points }}</td>
+        <td>
+          <div class="progress mb-1 mr-3">
+            <div class="progress-bar"  [style.width]="((((a.nextRank.points - a.currentRank.points)-(a.nextRank.points - a.points)) / (a.nextRank.points - a.currentRank.points)) * 100)+'%'"></div>
+          </div>
+          <div class="text-muted">
+            {{ a.nextRank.points - a.points }} point(s) until next rank
+          </div>
         </td>
         <td>
-          {{a.rank}}
+          {{ a.approvedChanges }}
         </td>
         <td>
-          {{a.approvedChanges}}
+          {{ a.approvedChunks }}
         </td>
         <td>
-          {{a.approvedChunks}}
-        </td>
-        <td>
-          {{a.points}}
+          {{ a.rewardValueUsd | currency }}
         </td>
       </tr>
     </table>

@@ -1031,12 +1031,19 @@
           "type": "integer",
           "format": "int32"
         },
+        "rewardValueUsd": {
+          "type": "number",
+          "format": "float"
+        },
         "points": {
           "type": "number",
           "format": "float"
         },
-        "rank": {
-          "type": "string"
+        "currentRank": {
+          "$ref": "#/definitions/rskRank"
+        },
+        "nextRank": {
+          "$ref": "#/definitions/rskRank"
         }
       }
     },
@@ -1301,6 +1308,21 @@
         }
       }
     },
+    "rskRank": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "points": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
     "rskRequestChunkContributionStateRequest": {
       "type": "object",
       "properties": {
@@ -1323,6 +1345,10 @@
         },
         "state": {
           "$ref": "#/definitions/rskContributionState"
+        },
+        "pointsOnApprove": {
+          "type": "number",
+          "format": "float"
         }
       }
     },
@@ -1506,6 +1532,10 @@
         },
         "state": {
           "$ref": "#/definitions/rskContributionState"
+        },
+        "pointsOnApprove": {
+          "type": "number",
+          "format": "float"
         }
       }
     }

@@ -33,6 +33,7 @@ export { RskFieldMeta } from './rsk-field-meta.model';
 export { RskFieldValue } from './rsk-field-value.model';
 export { RskFieldValueList } from './rsk-field-value-list.model';
 export { RskPendingRewardList } from './rsk-pending-reward-list.model';
+export { RskRank } from './rsk-rank.model';
 export { RskRedditAuthURL } from './rsk-reddit-auth-url.model';
 export { RskRequestChunkContributionStateRequest } from './rsk-request-chunk-contribution-state-request.model';
 export { RskRequestTranscriptChangeStateRequest } from './rsk-request-transcript-change-state-request.model';

@@ -38,9 +38,18 @@
                 <div class="d-flex">
                   <button class="btn btn-warning mt-2" (click)="markIncomplete()">Revert to incomplete <i
                     class="bi-pen"></i></button>
-                  <div *ngIf="userIsApprover">
-                    <button class="btn btn-success mt-2 ml-3" (click)="markApproved()">Approve</button>
-                    <button class="btn btn-danger mt-2 ml-3" (click)="markRejected()">Reject</button>
+                  <div *ngIf="userIsApprover" class="d-flex pt-2">
+                    <button class="btn btn-success ml-3" (click)="markApproved()">Approve ({{this.approvalPoints.value}})</button>
+                    <div>
+                      <select class="form-control" [formControl]="approvalPoints">
+                        <option value="0.2">Typo 0.2</option>
+                        <option value="0.5">Correction 0.5</option>
+                        <option value="1">Improvement 1</option>
+                        <option value="2">Overhaul 2</option>
+                        <option value="3">Major Overhaul 3</option>
+                      </select>
+                    </div>
+                    <button class="btn btn-danger ml-3" (click)="markRejected()">Reject</button>
                   </div>
                 </div>
               </div>

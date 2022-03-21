@@ -110,10 +110,14 @@ export function isRskAuthorRank(arg: any): arg is models.RskAuthorRank {
     ( typeof arg.approvedChunks === 'undefined' || typeof arg.approvedChunks === 'number' ) &&
     // author?: RskAuthor
     ( typeof arg.author === 'undefined' || isRskAuthor(arg.author) ) &&
+    // currentRank?: RskRank
+    ( typeof arg.currentRank === 'undefined' || isRskRank(arg.currentRank) ) &&
+    // nextRank?: RskRank
+    ( typeof arg.nextRank === 'undefined' || isRskRank(arg.nextRank) ) &&
     // points?: number
     ( typeof arg.points === 'undefined' || typeof arg.points === 'number' ) &&
-    // rank?: string
-    ( typeof arg.rank === 'undefined' || typeof arg.rank === 'string' ) &&
+    // rewardValueUsd?: number
+    ( typeof arg.rewardValueUsd === 'undefined' || typeof arg.rewardValueUsd === 'number' ) &&
 
   true
   );
@@ -477,6 +481,21 @@ export function isRskPendingRewardList(arg: any): arg is models.RskPendingReward
   );
   }
 
+export function isRskRank(arg: any): arg is models.RskRank {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // id?: string
+    ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
+    // name?: string
+    ( typeof arg.name === 'undefined' || typeof arg.name === 'string' ) &&
+    // points?: number
+    ( typeof arg.points === 'undefined' || typeof arg.points === 'number' ) &&
+
+  true
+  );
+  }
+
 export function isRskRedditAuthURL(arg: any): arg is models.RskRedditAuthURL {
   return (
   arg != null &&
@@ -509,6 +528,8 @@ export function isRskRequestTranscriptChangeStateRequest(arg: any): arg is model
   typeof arg === 'object' &&
     // id?: string
     ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
+    // pointsOnApprove?: number
+    ( typeof arg.pointsOnApprove === 'undefined' || typeof arg.pointsOnApprove === 'number' ) &&
     // state?: RskContributionState
     ( typeof arg.state === 'undefined' || isRskContributionState(arg.state) ) &&
 
@@ -831,6 +852,8 @@ export function isRskUpdateTranscriptChangeRequest(arg: any): arg is models.RskU
   typeof arg === 'object' &&
     // id?: string
     ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
+    // pointsOnApprove?: number
+    ( typeof arg.pointsOnApprove === 'undefined' || typeof arg.pointsOnApprove === 'number' ) &&
     // state?: RskContributionState
     ( typeof arg.state === 'undefined' || isRskContributionState(arg.state) ) &&
     // transcript?: string

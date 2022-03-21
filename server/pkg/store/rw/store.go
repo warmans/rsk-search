@@ -543,6 +543,24 @@ func (s *Store) AuthorLeaderboard(ctx context.Context) (*models.AuthorLeaderboar
 	return &models.AuthorLeaderboard{Authors: authors}, nil
 }
 
+func (s *Store) ListRanks(ctx context.Context) ([]*models.Rank, error) {
+	rows, err := s.tx.QueryxContext(ctx, "SELECT id, name, points FROM rank")
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	res := []*models.Rank{}
+	for rows.Next() {
+		cur := &models.Rank{}
+		if err := rows.StructScan(cur); err != nil {
+			return nil, err
+		}
+		res = append(res, cur)
+	}
+	return res, nil
+}
+
 func (s *Store) ListAuthorRankings(ctx context.Context, qm *common.QueryModifier) ([]*models.AuthorRank, error) {
 	fieldMap := map[string]string{
 		"author_id":   "a.id",
@@ -564,7 +582,9 @@ func (s *Store) ListAuthorRankings(ctx context.Context, qm *common.QueryModifier
 			a.name,
  			COALESCE(a.identity, '{}'),
 			(SELECT SUM(points) AS points FROM author_contribution where author_id=a.id) as points,
-			(SELECT name FROM rank WHERE points <= (SELECT SUM(points) AS points FROM author_contribution where author_id=a.id) order by points desc limit 1) as rank,
+			(SELECT id FROM rank WHERE points <= (SELECT SUM(points) AS points FROM author_contribution where author_id = a.id) order by points desc limit 1) as current_rank,
+			(SELECT id FROM rank WHERE points > (SELECT SUM(points) AS points FROM author_contribution where author_id = a.id) order by points asc limit 1) as next_rank,
+			COALESCE((SELECT SUM(claim_value) FROM author_reward WHERE claimed = true AND author_id = a.id), 0) as reward_value_claimed,
 			c.approved_chunks,
 			c.approved_changes
 		FROM author a
@@ -591,7 +611,7 @@ func (s *Store) ListAuthorRankings(ctx context.Context, qm *common.QueryModifier
 	for rows.Next() {
 		cur := &models.AuthorRank{Author: &models.ShortAuthor{}}
 		var ident string
-		if err := rows.Scan(&cur.Author.ID, &cur.Author.Name, &ident, &cur.Points, &cur.Rank, &cur.ApprovedChunks, &cur.ApprovedChanges); err != nil {
+		if err := rows.Scan(&cur.Author.ID, &cur.Author.Name, &ident, &cur.Points, &cur.CurrentRankID, &cur.NextRankID, &cur.RewardValueUSD, &cur.ApprovedChunks, &cur.ApprovedChanges); err != nil {
 			return nil, err
 		}
 		decodedIdent := &oauth.Identity{}
@@ -913,7 +933,7 @@ func (s *Store) CreateTranscriptChange(ctx context.Context, c *models.Transcript
 	return change, err
 }
 
-func (s *Store) UpdateTranscriptChange(ctx context.Context, c *models.TranscriptChangeUpdate) (*models.TranscriptChange, error) {
+func (s *Store) UpdateTranscriptChange(ctx context.Context, c *models.TranscriptChangeUpdate, ppointsOnApprove float32) (*models.TranscriptChange, error) {
 	if c.ID == "" {
 		return nil, fmt.Errorf("no identifier was provided")
 	}
@@ -937,6 +957,7 @@ func (s *Store) UpdateTranscriptChange(ctx context.Context, c *models.Transcript
 			AuthorID:         change.Author.ID,
 			EpID:             change.EpID,
 			ContributionType: models.ContributionTypeChange,
+			Points:           ppointsOnApprove,
 		}); err != nil {
 			return nil, err
 		}
@@ -961,7 +982,7 @@ func (s *Store) DeleteTranscriptChange(ctx context.Context, id string) error {
 	return err
 }
 
-func (s *Store) UpdateTranscriptChangeState(ctx context.Context, id string, state models.ContributionState) error {
+func (s *Store) UpdateTranscriptChangeState(ctx context.Context, id string, state models.ContributionState, pointsOnApprove float32) error {
 
 	change, err := s.GetTranscriptChange(ctx, id)
 	if err != nil {
@@ -981,6 +1002,7 @@ func (s *Store) UpdateTranscriptChangeState(ctx context.Context, id string, stat
 			AuthorID:         change.Author.ID,
 			EpID:             change.EpID,
 			ContributionType: models.ContributionTypeChange,
+			Points:           pointsOnApprove,
 		}); err != nil {
 			return err
 		}

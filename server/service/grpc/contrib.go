@@ -34,6 +34,20 @@ func NewContribService(
 	pledgeClient *pledge.Client,
 	episodeCache *data.EpisodeCache,
 ) *ContribService {
+
+	var rankCache models.Ranks
+	err := persistentDB.WithStore(func(s *rw.Store) error {
+		var err error
+		rankCache, err = s.ListRanks(context.Background())
+		if err != nil {
+			return err
+		}
+		return nil
+	})
+	if err != nil {
+		panic(fmt.Sprintf("failed to create rank cache: %s", err.Error()))
+	}
+
 	return &ContribService{
 		logger:       logger,
 		srvCfg:       srvCfg,
@@ -41,6 +55,7 @@ func NewContribService(
 		auth:         auth,
 		pledgeClient: pledgeClient,
 		episodeCache: episodeCache,
+		rankCache:    rankCache,
 	}
 }
 
@@ -51,8 +66,8 @@ type ContribService struct {
 	auth         *jwt.Auth
 	pledgeClient *pledge.Client
 	episodeCache *data.EpisodeCache
+	rankCache    models.Ranks
 }
-
 
 func (s *ContribService) RegisterGRPC(server *grpc.Server) {
 	api.RegisterContribServiceServer(server, s)
@@ -360,13 +375,13 @@ func (s *ContribService) ListAuthorRanks(ctx context.Context, request *api.ListA
 	qm.Apply(common.WithDefaultSorting("points", common.SortDesc))
 
 	out := &api.AuthorRankList{Rankings: make([]*api.AuthorRank, 0)}
-	err = s.persistentDB.WithStore(func(s *rw.Store) error {
-		lb, err := s.ListAuthorRankings(ctx, qm)
+	err = s.persistentDB.WithStore(func(st *rw.Store) error {
+		lb, err := st.ListAuthorRankings(ctx, qm)
 		if err != nil {
 			return err
 		}
 		for _, v := range lb {
-			out.Rankings = append(out.Rankings, v.Proto())
+			out.Rankings = append(out.Rankings, v.Proto(s.rankCache))
 		}
 		return nil
 	})
@@ -375,7 +390,6 @@ func (s *ContribService) ListAuthorRanks(ctx context.Context, request *api.ListA
 	}
 	return out, err
 }
-
 
 func (s *ContribService) GetChunkContribution(ctx context.Context, request *api.GetChunkContributionRequest) (*api.ChunkContribution, error) {
 
@@ -719,7 +733,7 @@ func (s *ContribService) UpdateTranscriptChange(ctx context.Context, request *ap
 			Summary:       "",
 			Transcription: request.Transcript,
 			State:         models.ContributionStateFromProto(request.State),
-		})
+		}, request.PointsOnApprove)
 		return err
 	})
 	if err != nil {
@@ -775,7 +789,7 @@ func (s *ContribService) RequestTranscriptChangeState(ctx context.Context, reque
 		return nil, err
 	}
 	err = s.persistentDB.WithStore(func(s *rw.Store) error {
-		return s.UpdateTranscriptChangeState(ctx, request.Id, models.ContributionStateFromProto(request.State))
+		return s.UpdateTranscriptChangeState(ctx, request.Id, models.ContributionStateFromProto(request.State), request.PointsOnApprove)
 	})
 	if err != nil {
 		return nil, ErrFromStore(err, request.Id).Err()

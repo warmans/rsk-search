@@ -5,5 +5,6 @@ import {
 
 export interface RskRequestTranscriptChangeStateRequest {
   id?: string;
+  pointsOnApprove?: number;
   state?: RskContributionState;
 }

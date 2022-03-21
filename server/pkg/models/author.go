@@ -172,20 +172,46 @@ func (a *AuthorContribution) Proto() *api.AuthorContribution {
 	}
 }
 
+type Ranks []*Rank
+
+func (r Ranks) ByID(id string) *Rank {
+	for _, v := range r {
+		if v.ID == id {
+			return v
+		}
+	}
+	return &Rank{ID: "0000", Name: "Unknown", Points: 100000}
+}
+
+type Rank struct {
+	ID     string  `db:"id"`
+	Name   string  `db:"name"`
+	Points float32 `db:"points"`
+}
+
+func (r *Rank) Proto() *api.Rank {
+	return &api.Rank{Id: r.ID, Name: r.Name, Points: r.Points}
+}
+
 type AuthorRank struct {
 	Author          *ShortAuthor
 	ApprovedChunks  int32
 	ApprovedChanges int32
 	Points          float32
-	Rank            string
+	RewardValueUSD  float32
+	CurrentRankID   string
+	NextRankID      string
 }
 
-func (a *AuthorRank) Proto() *api.AuthorRank {
+func (a *AuthorRank) Proto(ranks Ranks) *api.AuthorRank {
+
 	return &api.AuthorRank{
 		Author:          a.Author.Proto(),
 		ApprovedChunks:  a.ApprovedChunks,
 		ApprovedChanges: a.ApprovedChanges,
 		Points:          a.Points,
-		Rank:            a.Rank,
+		RewardValueUsd:  a.RewardValueUSD,
+		CurrentRank:     ranks.ByID(a.CurrentRankID).Proto(),
+		NextRank:        ranks.ByID(a.NextRankID).Proto(),
 	}
 }

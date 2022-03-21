@@ -453,8 +453,16 @@ message AuthorRank {
   Author author = 1;
   int32 approved_chunks = 2;
   int32 approved_changes = 3;
-  float points = 4;
-  string rank = 5;
+  float reward_value_usd = 4;
+  float points = 5;
+  Rank current_rank = 6;
+  Rank next_rank = 7;
+}
+
+message Rank {
+  string id = 1;
+  string name = 2;
+  float points = 3;
 }
 
 message PendingRewardList {
@@ -560,6 +568,7 @@ message UpdateTranscriptChangeRequest {
   string id = 1;
   string transcript = 2;
   ContributionState state = 3;
+  float pointsOnApprove = 4;
 }
 
 message DeleteTranscriptChangeRequest {
@@ -594,6 +603,7 @@ message ShortTranscriptChange {
 message RequestTranscriptChangeStateRequest {
   string id = 1;
   ContributionState state = 2;
+  float pointsOnApprove = 3;
 }
 
 message GetTranscriptChangeRequest {
