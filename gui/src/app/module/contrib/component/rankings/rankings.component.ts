@@ -1,7 +1,10 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
-import { takeUntil } from 'rxjs/operators';
+import { debounceTime, takeUntil } from 'rxjs/operators';
 import { RskAuthorRank, RskAuthorRankList } from '../../../../lib/api-client/models';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
+import { FormControl } from '@angular/forms';
+import { Like } from '../../../../lib/filter-dsl/filter';
+import { Str } from '../../../../lib/filter-dsl/value';
 
 @Component({
   selector: 'app-rankings',
@@ -14,12 +17,28 @@ export class RankingsComponent implements OnInit, OnDestroy {
 
   ranking: RskAuthorRank[] = [];
 
+  searchInput: FormControl = new FormControl('');
+
+  loading: boolean = false;
+
   constructor(private apiClient: SearchAPIClient) {
   }
 
   ngOnInit(): void {
-    this.apiClient.listAuthorRanks({}).pipe(takeUntil(this.destroy$)).subscribe((res: RskAuthorRankList) => {
+    this.refreshRankings();
+    this.searchInput.valueChanges.pipe(takeUntil(this.destroy$), debounceTime(100)).subscribe((val) => {
+      this.refreshRankings(val);
+    });
+  }
+
+  refreshRankings(username?: string) {
+    this.loading = true;
+    this.apiClient.listAuthorRanks(
+      { filter: (username || '').trim() ? Like('author_name', Str(username.trim())).print() : '' },
+    ).pipe(takeUntil(this.destroy$)).subscribe((res: RskAuthorRankList) => {
       this.ranking = res.rankings;
+    }).add(() => {
+      this.loading = false;
     });
   }
 

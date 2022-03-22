@@ -18,7 +18,7 @@
           </div>
           <strong *ngIf="i === activeFilters.length-1" class="connector pl-2 pr-1 text-nowrap">with content:</strong>
         </div>
-        <input class="freetext-container flex-grow-1 p-2 border-0 form-control" formControlName="term" placeholder="Enter search terms, double quote terms for a phrase/exact match."/>
+        <input #termInput class="freetext-container flex-grow-1 p-2 border-0 form-control" formControlName="term" placeholder="Enter search terms, double quote terms for a phrase/exact match."/>
       </div>
     </div>
     <div class="buttons">

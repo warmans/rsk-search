@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MetaService } from '../../../core/service/meta/meta.service';
 import { FieldMetaKind, RskFieldMeta } from '../../../../lib/api-client/models';
 import { distinctUntilChanged, first } from 'rxjs/operators';
@@ -15,10 +15,13 @@ import { SearchFilter } from '../gl-search-filter/gl-search-filter.component';
   templateUrl: './gl-search.component.html',
   styleUrls: ['./gl-search.component.scss']
 })
-export class GlSearchComponent implements OnInit {
+export class GlSearchComponent implements OnInit, AfterViewInit {
 
   @Output()
   queryUpdated: EventEmitter<string> = new EventEmitter<string>();
+
+  @Input()
+  autoFocus: boolean = true;
 
   searchForm = new FormGroup({
     term: new FormControl(null, [Validators.maxLength(1024)]),
@@ -31,6 +34,8 @@ export class GlSearchComponent implements OnInit {
   filterOverlayOpen = false;
 
   fieldKinds = FieldMetaKind;
+
+  @ViewChild('termInput') termInput;
 
   constructor(meta: MetaService, route: ActivatedRoute) {
     meta.getMeta().pipe(first()).subscribe((m) => {
@@ -46,6 +51,10 @@ export class GlSearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit() {
+    this.termInput.nativeElement.focus();
   }
 
   resetFilters() {

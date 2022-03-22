@@ -3,8 +3,9 @@
   <div class="card-body p-0">
     <table class="table mb-0">
       <tr>
-        <th></th>
-        <th></th>
+        <th colspan="2">
+          <input class="form-control themed" placeholder="Search..." [formControl]="searchInput"/>
+        </th>
         <th title="Points are earned though contributions.">Points <i class="bi-question-circle"></i></th>
         <th>Next Rank</th>
         <th>Edits</th>
@@ -47,4 +48,7 @@
       </tr>
     </table>
   </div>
+
+  <app-loading-overlay [loading]="loading" [fullScreen]="false"></app-loading-overlay>
+
 </div>

@@ -1,4 +1,4 @@
-.loading-overlay {
+.loading-overlay, .parent-overlay {
   position: fixed;
   width: 100%;
   height:100%;
@@ -10,4 +10,9 @@
   .loading-indicator {
     margin: auto;
   }
+}
+
+.parent-overlay {
+  position: absolute !important;
+  left: 0;
 }

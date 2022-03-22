@@ -9,7 +9,7 @@ body {
   margin-bottom: 60px; /* Margin bottom by footer height */
 }
 
-pre  {
+pre {
   @include theme() {
     color: theme-get('text-color');
   }
@@ -135,7 +135,6 @@ span.code {
   }
 }
 
-
 .nav-tabs {
 
   border-bottom: none;
@@ -159,8 +158,6 @@ span.code {
     cursor: pointer;
   }
 }
-
-
 
 .text-sm {
   font-size: 0.8rem;
@@ -206,4 +203,17 @@ span.code {
       color: #fff;
     }
   }
+}
+
+.form-control.themed {
+  @include theme() {
+    background-color: theme-get('fg-body-darker');
+    color: theme-get('text-color');
+    border-color: theme-get('fg-body-lighter');
+  }
+}
+
+.form-control.themed:active, .form-control.themed:focus {
+  outline: none;
+  box-shadow: none;
 }

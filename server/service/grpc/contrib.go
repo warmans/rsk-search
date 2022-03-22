@@ -16,7 +16,6 @@ import (
 	"github.com/warmans/rsk-search/pkg/jwt"
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/pledge"
-	"github.com/warmans/rsk-search/pkg/reward"
 	"github.com/warmans/rsk-search/pkg/store/common"
 	"github.com/warmans/rsk-search/pkg/store/rw"
 	"github.com/warmans/rsk-search/pkg/transcript"
@@ -496,7 +495,7 @@ func (s *ContribService) ClaimReward(ctx context.Context, request *api.ClaimRewa
 		}
 
 		var recipient *api.DonationRecipient
-		for _, v := range getDonationRecipients(reward.Threshold) {
+		for _, v := range getDonationRecipients() {
 			if v.Id == request.GetDonationArgs().Recipient {
 				recipient = v
 			}
@@ -564,7 +563,7 @@ func (s *ContribService) ListDonationRecipients(ctx context.Context, request *ap
 		return nil, ErrFromStore(err, request.RewardId).Err()
 	}
 	res := &api.DonationRecipientList{
-		Organizations: getDonationRecipients(reward.Threshold),
+		Organizations: getDonationRecipients(),
 	}
 	return res, nil
 }
@@ -892,131 +891,128 @@ func (s *ContribService) validateContributionStateUpdate(claims *jwt.Claims, cur
 	return nil
 }
 
-func getDonationRecipients(thresold int32) []*api.DonationRecipient {
-
-	switch thresold {
-	case 2:
-		return []*api.DonationRecipient{
-			{
-				Id:      "5957dbb1-b979-4b33-b068-ad56aadbe3f8",
-				Name:    "St. John's Ambulance",
-				Mission: "We are the charity that steps forward in the moments that matter, to save lives and keep communities safe.",
-				LogoUrl: "/assets/logo/43-1634280-0504257.png",
-				NgoId:   "43-1634280-0504257",
-				Url:     "https://www.sja.org.uk/",
-				Quote:   "But seriously, All joking aside. I genuinely wanted to give some massive props - give some big-ups - to the St. John's people, because I genuinely, without any joking, and I  genuinely think they they do a brilliant job.",
-			},
-			{
-				Id:      "11034875-b8d5-4653-8558-214ae12a81b7",
-				Name:    "Dogs Trust",
-				Mission: "Our mission is to bring about the day when all dogs can enjoy a happy life, free from the threat of unnecessary destruction.",
-				LogoUrl: "/assets/logo/43-1634280-0279288.jpg",
-				NgoId:   "43-1634280-0279288",
-				Url:     "https://www.dogstrust.org.uk",
-			},
-			{
-				Id:      "40ebb87d-62f4-4297-a808-c5f35ef3719f",
-				Name:    "Rainforest Alliance",
-				Mission: "The Rainforest Alliance works to conserve biodiversity and ensure sustainable livelihoods by transforming land-use practices, business practices and consumer behavior.\n\nWe envision a world where people can thrive and prosper in harmony with the land",
-				LogoUrl: "/assets/logo/13-3377893.png",
-				NgoId:   "13-3377893",
-				Url:     "https://www.pledge.to/organizations/13-3377893/rainforest-alliance",
-			},
-		}
-	default:
-		return []*api.DonationRecipient{
-			{
-				Id:      "e349c52c-73aa-4123-83b2-6466d1aa2d54",
-				Name:    "International Primate Protection League",
-				Mission: "PPL is a grassroots nonprofit organization dedicated to protecting the world’s remaining primates, great and small. Since 1973 we have worked to expose primate abuse and battled international traffickers.",
-				LogoUrl: "/assets/logo/51-0194013.png",
-				NgoId:   "51-0194013",
-				Url:     "https://www.pledge.to/organizations/51-0194013/international-primate-protection-league",
-			},
-			{
-				Id:      "700f6e06-a00d-46fe-a76a-e8271585c2bb",
-				Name:    "World Wildlife Fund",
-				Mission: "As the world’s leading conservation organization, WWF works in nearly 100 countries. At every level, we collaborate with people around the world to develop and deliver innovative solutions that protect communities, wildlife, and the places in which they live.",
-				LogoUrl: "/assets/logo/52-1693387.png",
-				NgoId:   "52-1693387",
-				Url:     "https://www.pledge.to/organizations/52-1693387/world-wildlife-fund",
-			},
-			{
-				Id:      "27547c25-7b00-4cb1-9c21-2834acb37da3",
-				Name:    "Rainforest Rescue",
-				Mission: "Rainforest Rescue is a not-for-profit organisation that has been protecting and restoring rainforests in Australia and internationally since 1998 by providing opportunities for individuals and businesses to Protect Rainforests Forever.",
-				LogoUrl: "/assets/logo/30-0108263-675.svg",
-				NgoId:   "30-0108263-675",
-				Url:     "https://www.pledge.to/organizations/30-0108263-675/rainforest-rescue",
-			},
-		}
+func getDonationRecipients() []*api.DonationRecipient {
+	return []*api.DonationRecipient{
+		{
+			Id:      "e349c52c-73aa-4123-83b2-6466d1aa2d54",
+			Name:    "International Primate Protection League",
+			Mission: "PPL is a grassroots nonprofit organization dedicated to protecting the world’s remaining primates, great and small. Since 1973 we have worked to expose primate abuse and battled international traffickers.",
+			LogoUrl: "/assets/logo/51-0194013.png",
+			NgoId:   "51-0194013",
+			Url:     "https://www.pledge.to/organizations/51-0194013/international-primate-protection-league",
+		},
+		{
+			Id:      "700f6e06-a00d-46fe-a76a-e8271585c2bb",
+			Name:    "World Wildlife Fund",
+			Mission: "As the world’s leading conservation organization, WWF works in nearly 100 countries. At every level, we collaborate with people around the world to develop and deliver innovative solutions that protect communities, wildlife, and the places in which they live.",
+			LogoUrl: "/assets/logo/52-1693387.png",
+			NgoId:   "52-1693387",
+			Url:     "https://www.pledge.to/organizations/52-1693387/world-wildlife-fund",
+		},
+		{
+			Id:      "27547c25-7b00-4cb1-9c21-2834acb37da3",
+			Name:    "Rainforest Rescue",
+			Mission: "Rainforest Rescue is a not-for-profit organisation that has been protecting and restoring rainforests in Australia and internationally since 1998 by providing opportunities for individuals and businesses to Protect Rainforests Forever.",
+			LogoUrl: "/assets/logo/30-0108263-675.svg",
+			NgoId:   "30-0108263-675",
+			Url:     "https://www.pledge.to/organizations/30-0108263-675/rainforest-rescue",
+		},
+		{
+			Id:      "5957dbb1-b979-4b33-b068-ad56aadbe3f8",
+			Name:    "St. John's Ambulance",
+			Mission: "We are the charity that steps forward in the moments that matter, to save lives and keep communities safe.",
+			LogoUrl: "/assets/logo/43-1634280-0504257.png",
+			NgoId:   "43-1634280-0504257",
+			Url:     "https://www.sja.org.uk/",
+			Quote:   "But seriously, All joking aside. I genuinely wanted to give some massive props - give some big-ups - to the St. John's people, because I genuinely, without any joking, and I  genuinely think they they do a brilliant job.",
+		},
+		{
+			Id:      "11034875-b8d5-4653-8558-214ae12a81b7",
+			Name:    "Dogs Trust",
+			Mission: "Our mission is to bring about the day when all dogs can enjoy a happy life, free from the threat of unnecessary destruction.",
+			LogoUrl: "/assets/logo/43-1634280-0279288.jpg",
+			NgoId:   "43-1634280-0279288",
+			Url:     "https://www.dogstrust.org.uk",
+		},
+		{
+			Id:      "40ebb87d-62f4-4297-a808-c5f35ef3719f",
+			Name:    "Rainforest Alliance",
+			Mission: "The Rainforest Alliance works to conserve biodiversity and ensure sustainable livelihoods by transforming land-use practices, business practices and consumer behavior.\n\nWe envision a world where people can thrive and prosper in harmony with the land",
+			LogoUrl: "/assets/logo/13-3377893.png",
+			NgoId:   "13-3377893",
+			Url:     "https://www.pledge.to/organizations/13-3377893/rainforest-alliance",
+		},
 	}
+
 }
 
 func getRewardForThreshold(mod *models.AuthorReward) *api.Reward {
-	switch mod.Threshold {
-	case 1:
-		return &api.Reward{
-			Id:            mod.ID,
-			Kind:          api.Reward_DONATION,
-			Name:          fmt.Sprintf("Man alive!"),
-			Criteria:      fmt.Sprintf("Contribute %d transcription chunks.", mod.Threshold*reward.RewardSpacing),
-			Value:         1,
-			ValueCurrency: "USD",
-		}
-	case 2:
-		return &api.Reward{
-			Id:            mod.ID,
-			Kind:          api.Reward_DONATION,
-			Name:          fmt.Sprintf("Are you trying to turn my children into Communist revolutionaries?"),
-			Criteria:      fmt.Sprintf("Contribute %d transcription chunks.", mod.Threshold*reward.RewardSpacing),
-			Value:         1,
-			ValueCurrency: "USD",
-		}
-	case 3:
-		return &api.Reward{
-			Id:            mod.ID,
-			Kind:          api.Reward_DONATION,
-			Name:          fmt.Sprintf("In my opinion bronze is slightly better than gold."),
-			Criteria:      fmt.Sprintf("Contribute %d transcription chunks.", mod.Threshold*reward.RewardSpacing),
-			Value:         2,
-			ValueCurrency: "USD",
-		}
-	case 4:
-		return &api.Reward{
-			Id:            mod.ID,
-			Kind:          api.Reward_DONATION,
-			Name:          fmt.Sprintf("I can't even begin to explain it."),
-			Criteria:      fmt.Sprintf("Contribute %d transcription chunks.", mod.Threshold*reward.RewardSpacing),
-			Value:         2,
-			ValueCurrency: "USD",
-		}
-	case 5:
-		return &api.Reward{
-			Id:            mod.ID,
-			Kind:          api.Reward_DONATION,
-			Name:          fmt.Sprintf("There is a machine that can give you a tattoo."),
-			Criteria:      fmt.Sprintf("Contribute %d transcription chunks.", mod.Threshold*reward.RewardSpacing),
-			Value:         3,
-			ValueCurrency: "USD",
-		}
-	case 6:
-		return &api.Reward{
-			Id:            mod.ID,
-			Kind:          api.Reward_DONATION,
-			Name:          fmt.Sprintf("Kate Bush is on the phone!"),
-			Criteria:      fmt.Sprintf("Contribute %d transcription chunks.", mod.Threshold*reward.RewardSpacing),
-			Value:         3,
-			ValueCurrency: "USD",
-		}
-	default:
-		return &api.Reward{
-			Id:            mod.ID,
-			Kind:          api.Reward_DONATION,
-			Name:          fmt.Sprintf("Infinity sorty of, sorts it out for you."),
-			Criteria:      fmt.Sprintf("Contribute %d transcription chunks.", mod.Threshold*reward.RewardSpacing),
-			Value:         1,
-			ValueCurrency: "USD",
-		}
+
+	// always return the same reward for now
+	return &api.Reward{
+		Id:            mod.ID,
+		Kind:          api.Reward_DONATION,
+		Name:          fmt.Sprintf("Here's some tat in a jiffybag"),
+		Criteria:      fmt.Sprintf("Earn %0.2f Points", mod.PointsSpent),
+		Value:         2,
+		ValueCurrency: "USD",
 	}
+
+	//rewards := []*api.Reward{
+	//	{
+	//		Id:            mod.ID,
+	//		Kind:          api.Reward_DONATION,
+	//		Name:          fmt.Sprintf("Man alive!"),
+	//		Criteria:      fmt.Sprintf("Earn %0.2f Points", mod.PointsSpent),
+	//		Value:         1,
+	//		ValueCurrency: "USD",
+	//	},
+	//	{
+	//		Id:            mod.ID,
+	//		Kind:          api.Reward_DONATION,
+	//		Name:          fmt.Sprintf("Are you trying to turn my children into Communist revolutionaries?"),
+	//		Criteria:      fmt.Sprintf("Earn %0.2f Points", mod.PointsSpent),
+	//		Value:         1,
+	//		ValueCurrency: "USD",
+	//	},
+	//	{
+	//		Id:            mod.ID,
+	//		Kind:          api.Reward_DONATION,
+	//		Name:          fmt.Sprintf("In my opinion bronze is slightly better than gold."),
+	//		Criteria:      fmt.Sprintf("Earn %0.2f Points", mod.PointsSpent),
+	//		Value:         2,
+	//		ValueCurrency: "USD",
+	//	},
+	//	{
+	//		Id:            mod.ID,
+	//		Kind:          api.Reward_DONATION,
+	//		Name:          fmt.Sprintf("I can't even begin to explain it."),
+	//		Criteria:      fmt.Sprintf("Earn %0.2f Points", mod.PointsSpent),
+	//		Value:         2,
+	//		ValueCurrency: "USD",
+	//	},
+	//	{
+	//		Id:            mod.ID,
+	//		Kind:          api.Reward_DONATION,
+	//		Name:          fmt.Sprintf("There is a machine that can give you a tattoo."),
+	//		Criteria:      fmt.Sprintf("Earn %0.2f Points", mod.PointsSpent),
+	//		Value:         2,
+	//		ValueCurrency: "USD",
+	//	},
+	//	{
+	//		Id:            mod.ID,
+	//		Kind:          api.Reward_DONATION,
+	//		Name:          fmt.Sprintf("Kate Bush is on the phone!"),
+	//		Criteria:      fmt.Sprintf("Earn %0.2f Points", mod.PointsSpent),
+	//		Value:         3,
+	//		ValueCurrency: "USD",
+	//	}, {
+	//		Id:            mod.ID,
+	//		Kind:          api.Reward_DONATION,
+	//		Name:          fmt.Sprintf("Infinity sorty of, sorts it out for you."),
+	//		Criteria:      fmt.Sprintf("Earn %0.2f Points", mod.PointsSpent),
+	//		Value:         1,
+	//		ValueCurrency: "USD",
+	//	},
+	//}
 }

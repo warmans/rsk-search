@@ -10,6 +10,9 @@ export class LoadingOverlayComponent implements OnInit {
   @Input()
   loading: boolean = false;
 
+  @Input()
+  fullScreen: boolean = true;
+
   constructor() {
 
   }

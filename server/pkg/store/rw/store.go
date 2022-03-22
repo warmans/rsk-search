@@ -14,6 +14,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/oauth"
 	"github.com/warmans/rsk-search/pkg/store/common"
 	"github.com/warmans/rsk-search/pkg/util"
+	"math"
 	"strings"
 	"time"
 )
@@ -702,52 +703,34 @@ func (s *Store) AuthorIsBanned(ctx context.Context, id string) (bool, error) {
 	return banned, row.Scan(&banned)
 }
 
-func (s *Store) ListRequiredAuthorRewards(ctx context.Context, rewardSpacing int64) ([]*models.AuthorReward, error) {
-
-	// this should return 1 row per author per threshold level e.g.
-	// if the threshold is 1 and an author has 3 contributions three rows will be returned.
-	query := `
-	SELECT 
-        c.author_id,
-        c.threshold_reached
-    FROM (
-        SELECT author_id, generate_series (1, COUNT(*) / %d) AS threshold_reached 
-        FROM tscript_contribution
-        WHERE state = 'approved'
-        GROUP BY author_id
-    ) c
-    LEFT JOIN author a ON a.id = c.author_id
-    LEFT JOIN (
-        SELECT r.author_id, r.threshold, r.claimed
-        FROM author_reward r 
-        where r.threshold = threshold
-    ) cl ON cl.author_id = c.author_id AND cl.threshold = c.threshold_reached
-    WHERE c.author_id IS NOT NULL
-    AND a.banned = false
-    AND  COALESCE(cl.claimed, FALSE) = FALSE
-	AND (
-		SELECT COUNT(*) 
-		FROM author_reward r 
-		WHERE r.author_id = a.id 
-		AND r.threshold = c.threshold_reached) = 0
-    ORDER BY c.threshold_reached ASC
-	`
-	rows, err := s.tx.QueryxContext(ctx, fmt.Sprintf(query, rewardSpacing))
+func (s *Store) ListRequiredAuthorRewardsV2(ctx context.Context, pointsForReward float32) ([]*models.RequiredReward, error) {
+	rows, err := s.tx.QueryxContext(ctx, `
+		SELECT rr.*
+		FROM (
+			SELECT author_id, SUM(points - points_spent) AS points_spendable 
+			FROM author_contribution 
+			GROUP BY author_id
+		) AS rr 
+		WHERE rr.points_spendable > $1
+	`, pointsForReward)
 	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
 
-	rewards := []*models.AuthorReward{}
+	out := make([]*models.RequiredReward, 0)
 	for rows.Next() {
-		reward := &models.AuthorReward{}
-		err := rows.Scan(&reward.AuthorID, &reward.Threshold)
-		if err != nil {
+		var pointsSpendable float32
+		var authorID string
+		if err := rows.Scan(&authorID, &pointsSpendable); err != nil {
 			return nil, err
 		}
-		rewards = append(rewards, reward)
+		for i := 0; i < int(math.Floor(float64(pointsSpendable/pointsForReward))); i++ {
+			cur := &models.RequiredReward{AuthorID: authorID, Points: pointsForReward}
+			out = append(out, cur)
+		}
 	}
-	return rewards, nil
+	return out, nil
 }
 
 func (s *Store) ListPendingRewards(ctx context.Context, authorID string) ([]*models.AuthorReward, error) {
@@ -777,14 +760,14 @@ func (s *Store) listRewards(ctx context.Context, authorID string, claimed bool) 
 	return rewards, nil
 }
 
-func (s *Store) CreatePendingReward(ctx context.Context, authorID string, threshold int32) (string, error) {
+func (s *Store) CreatePendingReward(ctx context.Context, authorID string, pointsSpent float32) (string, error) {
 	id := shortuuid.New()
 	if _, err := s.tx.ExecContext(
 		ctx,
-		`INSERT INTO author_reward (id, author_id, threshold, created_at) VALUES ($1, $2, $3, NOW())`,
+		`INSERT INTO author_reward (id, author_id, points_spent, created_at) VALUES ($1, $2, $3, NOW())`,
 		id,
 		authorID,
-		threshold); err != nil {
+		pointsSpent); err != nil {
 		return "", err
 	}
 	return id, nil
@@ -1080,7 +1063,7 @@ func (s *Store) ListTranscriptChanges(ctx context.Context, q *common.QueryModifi
 func (s *Store) CreateAuthorContribution(ctx context.Context, co models.AuthorContributionCreate) error {
 	_, err := s.tx.ExecContext(
 		ctx,
-		`INSERT INTO author_contribution (id, author_id, epid, contribution_type, points, points_spent, created_at) VALUES ($1, $2, $3, $4, $5, false, $6)`,
+		`INSERT INTO author_contribution (id, author_id, epid, contribution_type, points, points_spent, created_at) VALUES ($1, $2, $3, $4, $5, 0, $6)`,
 		shortuuid.New(),
 		co.AuthorID,
 		co.EpID,
@@ -1089,6 +1072,75 @@ func (s *Store) CreateAuthorContribution(ctx context.Context, co models.AuthorCo
 		time.Now(),
 	)
 	return err
+}
+
+func (s *Store) SpendPoints(ctx context.Context, authorId string, spendRequired float32) error {
+
+	// use FOR UPDATE SKIP LOCKED just in case multiple worker processes run at once.
+	// this should stop the same points being spent more than once.
+	rows, err := s.tx.QueryxContext(
+		ctx,
+		`
+		SELECT id, points - points_spent AS remainder 
+		FROM author_contribution 
+		WHERE author_id = $1
+	  	AND points - points_spent > 0
+   		FOR UPDATE SKIP LOCKED
+		`,
+		authorId,
+	)
+	if err != nil {
+		return err
+	}
+
+	//
+	// Buffer the spendable data in memory, since it's not possible to run 2 queries at once with the pq driver.
+	//
+	spendableRows := make([]struct{
+		id string
+		remainder float32
+	}, 0)
+	if err := func () error {
+		defer rows.Close()
+		for rows.Next() {
+			spendable := struct {
+				id string
+				remainder float32
+			}{}
+
+			if err := rows.Scan(&spendable.id, &spendable.remainder); err != nil {
+				return err
+			}
+			spendableRows = append(spendableRows, spendable)
+		}
+		return nil
+	}(); err != nil {
+		return err
+	}
+
+	//
+	// now spend as many points as possible
+	//
+	for _, v := range spendableRows {
+		var rowSpend float32
+		if v.remainder > spendRequired {
+			rowSpend = spendRequired
+		} else {
+			rowSpend = v.remainder
+		}
+		if _, err := s.tx.ExecContext(ctx, `UPDATE author_contribution SET points_spent = points_spent + $1 WHERE id=$2`, rowSpend, v.id); err != nil {
+			return err
+		}
+		spendRequired = spendRequired - rowSpend
+		if spendRequired == 0 {
+			break
+		}
+	}
+
+	if spendRequired > 0 {
+		return fmt.Errorf("unable to spend spendRequired, %0.2f was not allocated", spendRequired)
+	}
+	return nil
 }
 
 func (s *Store) ListAuthorContributions(ctx context.Context, q *common.QueryModifier) ([]*models.AuthorContribution, error) {

@@ -12,8 +12,8 @@ import (
 	"time"
 )
 
-// RewardSpacing - every N approved contributions a reward will be triggered
-const RewardSpacing = 5
+// PointsForReward - generally every N approved contributions a reward will be triggered (changes can be less than 1 point)
+const PointsForReward = 5
 
 type Config struct {
 	CheckInterval int64
@@ -84,20 +84,23 @@ func (w *Worker) Stop(ctx context.Context) error {
 
 func (w *Worker) calculateRewards() error {
 
-	var awardsRequired []*models.AuthorReward
+	var awardsRequired []*models.RequiredReward
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
 	defer cancel()
 
 	err := w.db.WithStore(func(s *rw.Store) error {
 		var err error
-		awardsRequired, err = s.ListRequiredAuthorRewards(ctx, RewardSpacing)
+		awardsRequired, err = s.ListRequiredAuthorRewardsV2(ctx, PointsForReward)
 		if err != nil {
 			return errors.Wrap(err, "failed to list required rewards")
 		}
 		w.logger.Debug("Num rewards required", zap.Int("num", len(awardsRequired)))
 		for k, a := range awardsRequired {
-			if awardsRequired[k].ID, err = s.CreatePendingReward(ctx, a.AuthorID, a.Threshold); err != nil {
+			if err := s.SpendPoints(ctx, a.AuthorID, a.Points); err != nil {
+				return errors.Wrap(err, "failed to spend points")
+			}
+			if awardsRequired[k].ID, err = s.CreatePendingReward(ctx, a.AuthorID, a.Points); err != nil {
 				return errors.Wrap(err, "failed to create pending reward")
 			}
 		}
@@ -111,7 +114,7 @@ func (w *Worker) calculateRewards() error {
 			"Created reward",
 			zap.String("id", a.ID),
 			zap.String("author_id", a.AuthorID),
-			zap.Int32("threshold", a.Threshold),
+			zap.Float32("points", a.Points),
 		)
 	}
 	return nil
