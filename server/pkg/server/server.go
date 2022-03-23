@@ -11,6 +11,7 @@ import (
 	grpc_recovery "github.com/grpc-ecosystem/go-grpc-middleware/recovery"
 	grpc_ctxtags "github.com/grpc-ecosystem/go-grpc-middleware/tags"
 	grpc_validator "github.com/grpc-ecosystem/go-grpc-middleware/validator"
+	grpc_prometheus "github.com/grpc-ecosystem/go-grpc-prometheus"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/pkg/errors"
 	"github.com/spf13/pflag"
@@ -52,20 +53,25 @@ func NewServer(logger *zap.Logger, cfg GrpcServerConfig, grpcServices []GRPCServ
 
 	grpcServer := grpc.NewServer(
 		grpc.UnaryInterceptor(grpc_middleware.ChainUnaryServer(
+			grpc_recovery.UnaryServerInterceptor(panicHandler),
 			middleware.UnaryErrorInterceptor(),
 			grpc_ctxtags.UnaryServerInterceptor(),
 			grpc_zap.UnaryServerInterceptor(logger, grpc_zap.WithMessageProducer(middleware.LogMessageProducer())),
-			grpc_recovery.UnaryServerInterceptor(panicHandler),
 			grpc_validator.UnaryServerInterceptor(),
+			grpc_prometheus.UnaryServerInterceptor,
 		)),
 		grpc.StreamInterceptor(grpc_middleware.ChainStreamServer(
+			grpc_recovery.StreamServerInterceptor(panicHandler),
 			middleware.StreamErrorServerInterceptor(),
 			grpc_ctxtags.StreamServerInterceptor(),
 			grpc_zap.StreamServerInterceptor(logger, grpc_zap.WithMessageProducer(middleware.LogMessageProducer())),
-			grpc_recovery.StreamServerInterceptor(panicHandler),
 			grpc_validator.StreamServerInterceptor(),
+			grpc_prometheus.StreamServerInterceptor,
 		)),
 	)
+
+	// required for grpc_prometheus interceptors
+	grpc_prometheus.Register(grpcServer)
 
 	s := &Server{
 		cfg:          cfg,

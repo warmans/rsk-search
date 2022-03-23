@@ -947,72 +947,12 @@ func getDonationRecipients() []*api.DonationRecipient {
 }
 
 func getRewardForThreshold(mod *models.AuthorReward) *api.Reward {
-
-	// always return the same reward for now
 	return &api.Reward{
 		Id:            mod.ID,
 		Kind:          api.Reward_DONATION,
-		Name:          fmt.Sprintf("Here's some tat in a jiffybag"),
+		Name:          fmt.Sprintf("Here's some tat in a jiffy bag"),
 		Criteria:      fmt.Sprintf("Earn %0.2f Points", mod.PointsSpent),
 		Value:         2,
 		ValueCurrency: "USD",
 	}
-
-	//rewards := []*api.Reward{
-	//	{
-	//		Id:            mod.ID,
-	//		Kind:          api.Reward_DONATION,
-	//		Name:          fmt.Sprintf("Man alive!"),
-	//		Criteria:      fmt.Sprintf("Earn %0.2f Points", mod.PointsSpent),
-	//		Value:         1,
-	//		ValueCurrency: "USD",
-	//	},
-	//	{
-	//		Id:            mod.ID,
-	//		Kind:          api.Reward_DONATION,
-	//		Name:          fmt.Sprintf("Are you trying to turn my children into Communist revolutionaries?"),
-	//		Criteria:      fmt.Sprintf("Earn %0.2f Points", mod.PointsSpent),
-	//		Value:         1,
-	//		ValueCurrency: "USD",
-	//	},
-	//	{
-	//		Id:            mod.ID,
-	//		Kind:          api.Reward_DONATION,
-	//		Name:          fmt.Sprintf("In my opinion bronze is slightly better than gold."),
-	//		Criteria:      fmt.Sprintf("Earn %0.2f Points", mod.PointsSpent),
-	//		Value:         2,
-	//		ValueCurrency: "USD",
-	//	},
-	//	{
-	//		Id:            mod.ID,
-	//		Kind:          api.Reward_DONATION,
-	//		Name:          fmt.Sprintf("I can't even begin to explain it."),
-	//		Criteria:      fmt.Sprintf("Earn %0.2f Points", mod.PointsSpent),
-	//		Value:         2,
-	//		ValueCurrency: "USD",
-	//	},
-	//	{
-	//		Id:            mod.ID,
-	//		Kind:          api.Reward_DONATION,
-	//		Name:          fmt.Sprintf("There is a machine that can give you a tattoo."),
-	//		Criteria:      fmt.Sprintf("Earn %0.2f Points", mod.PointsSpent),
-	//		Value:         2,
-	//		ValueCurrency: "USD",
-	//	},
-	//	{
-	//		Id:            mod.ID,
-	//		Kind:          api.Reward_DONATION,
-	//		Name:          fmt.Sprintf("Kate Bush is on the phone!"),
-	//		Criteria:      fmt.Sprintf("Earn %0.2f Points", mod.PointsSpent),
-	//		Value:         3,
-	//		ValueCurrency: "USD",
-	//	}, {
-	//		Id:            mod.ID,
-	//		Kind:          api.Reward_DONATION,
-	//		Name:          fmt.Sprintf("Infinity sorty of, sorts it out for you."),
-	//		Criteria:      fmt.Sprintf("Earn %0.2f Points", mod.PointsSpent),
-	//		Value:         1,
-	//		ValueCurrency: "USD",
-	//	},
-	//}
 }

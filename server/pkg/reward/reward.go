@@ -84,10 +84,10 @@ func (w *Worker) Stop(ctx context.Context) error {
 
 func (w *Worker) calculateRewards() error {
 
-	var awardsRequired []*models.RequiredReward
-
 	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
 	defer cancel()
+
+	var awardsRequired []*models.RequiredReward
 
 	err := w.db.WithStore(func(s *rw.Store) error {
 		var err error

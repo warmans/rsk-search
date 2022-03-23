@@ -48,6 +48,21 @@ services:
     ports:
       - 443:443
     restart: unless-stopped
+  prometheus:
+    image: "prom/prometheus:v2.34.0"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus:/prometheus
+    ports:
+      - 9090:9090
+    restart: unless-stopped
+  grafana:
+    image: "grafana/grafana:8.2.6"
+    volumes:
+      - ./grafana/data:/var/lib/grafana
+    ports:
+      - 3000:3000
+    restart: unless-stopped
   gui:
     image: "warmans/rsk-search-gui:latest"
     depends_on:
@@ -65,9 +80,9 @@ services:
       RSK_SEARCH_OAUTH_SECRET: ""
       RSK_SEARCH_OAUTH_APP_ID: ""
       RSK_SEARCH_OAUTH_RETURN_URL: ""
-      RSK_SEARCH_REWARDS_DISABLED: "false"
-      RSK_SEARCH_PLEDGE_SECRET: ""
-      RSK_SEARCH_PLEDGE_DEF_EMAIL: ""
-      RSK_SEARCH_PLEDGE_DEF_FIRSTNAME: ""
-      RSK_SEARCH_PLEDGE_DEF_LASTNAME: ""
+      RSK_SEARCH_REWARDS_DISABLED: "true"
+      RSK_SEARCH_PLEDGE_SECRET: "changeme"
+      RSK_SEARCH_PLEDGE_DEF_EMAIL: "changeme"
+      RSK_SEARCH_PLEDGE_DEF_FIRSTNAME: "changeme"
+      RSK_SEARCH_PLEDGE_DEF_LASTNAME: "changeme"
     restart: unless-stopped
