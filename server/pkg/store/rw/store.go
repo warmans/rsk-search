@@ -583,8 +583,8 @@ func (s *Store) ListAuthorRankings(ctx context.Context, qm *common.QueryModifier
 			a.name,
  			COALESCE(a.identity, '{}'),
 			COALESCE((SELECT SUM(points) AS points FROM author_contribution where author_id=a.id), 0) as points,
-			(SELECT id FROM rank WHERE points <= (SELECT SUM(points) AS points FROM author_contribution where author_id = a.id) order by points desc limit 1) as current_rank,
-			(SELECT id FROM rank WHERE points > (SELECT SUM(points) AS points FROM author_contribution where author_id = a.id) order by points asc limit 1) as next_rank,
+			COALESCE((SELECT id FROM rank WHERE points <= (SELECT COALESCE(SUM(points), 0) AS points FROM author_contribution where author_id = a.id) order by points desc limit 1), '') as current_rank,
+			COALESCE((SELECT id FROM rank WHERE points > (SELECT COALESCE(SUM(points), 0) AS points FROM author_contribution where author_id = a.id) order by points asc limit 1), '') as next_rank,
 			COALESCE((SELECT SUM(claim_value) FROM author_reward WHERE claimed = true AND author_id = a.id), 0) as reward_value_claimed,
 			COALESCE(c.approved_chunks, 0),
 			COALESCE(c.approved_changes, 0)

@@ -13,7 +13,8 @@ CREATE TABLE "rank"
 );
 
 INSERT INTO rank (id, name, points)
-VALUES (uuid_generate_v4(), 'Smelly Eyebrows', 1),
+VALUES (uuid_generate_v4(), 'Unranked', 0),
+       (uuid_generate_v4(), 'Smelly Eyebrows', 1),
        (uuid_generate_v4(), 'Posh Student', 2),
        (uuid_generate_v4(), 'Camfield', 3),
        (uuid_generate_v4(), 'Lanzagrotty', 4),
