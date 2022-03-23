@@ -549,19 +549,6 @@ func (s *ContribService) ClaimReward(ctx context.Context, request *api.ClaimRewa
 }
 
 func (s *ContribService) ListDonationRecipients(ctx context.Context, request *api.ListDonationRecipientsRequest) (*api.DonationRecipientList, error) {
-
-	var reward *models.AuthorReward
-	err := s.persistentDB.WithStore(func(store *rw.Store) error {
-		var err error
-		reward, err = store.GetRewardForUpdate(ctx, request.RewardId)
-		if err != nil {
-			return err
-		}
-		return nil
-	})
-	if err != nil {
-		return nil, ErrFromStore(err, request.RewardId).Err()
-	}
 	res := &api.DonationRecipientList{
 		Organizations: getDonationRecipients(),
 	}
