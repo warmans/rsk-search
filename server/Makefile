@@ -63,8 +63,11 @@ generate.json.zip:
 
 .PHONY: generate.plaintext.zip
 generate.plaintext.zip:
-	mkdir -p ./var/data/plaintext && ./bin/rsk-search data dump-plaintext;
 	cd var/data/plaintext; zip -r ../../episodes-plaintext.zip *.txt
+
+.PHONY: generate.plaintext
+generate.plaintext:
+	mkdir -p ./var/data/plaintext && ./bin/rsk-search data dump-plaintext;
 
 .PHONY: run
 run: build

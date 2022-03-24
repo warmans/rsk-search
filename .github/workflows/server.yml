@@ -30,7 +30,7 @@ jobs:
 
       - name: Generate files
         working-directory: ${{env.working-directory}}
-        run: make init.all generate.zip
+        run: make init.all generate.plaintext generate.zip
 
       - name: Store binaries
         uses: actions/upload-artifact@v2
@@ -44,7 +44,9 @@ jobs:
           name: server-data
           path: |
             ${{env.working-directory}}/var
-            !${{env.working-directory}}/var/data
+            !${{env.working-directory}}/var/data/episodes
+            !${{env.working-directory}}/var/data/incomplete
+            !${{env.working-directory}}/var/data/pending
   publish:
     runs-on: ubuntu-latest
     needs: build
