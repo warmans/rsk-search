@@ -55,8 +55,16 @@ generate.swagger-bundle:
 		-merge ./gen/api/open-api/oauth.swagger.json,./gen/api/open-api/search.swagger.json,./gen/api/open-api/contrib.swagger.json
 
 .PHONY: generate.zip
-generate.zip:
+generate.zip:  generate.json.zip generate.plaintext.zip
+
+.PHONY: generate.json.zip
+generate.json.zip:
 	cd var/data/episodes; zip -r ../../episodes-json.zip *.json
+
+.PHONY: generate.plaintext.zip
+generate.plaintext.zip:
+	mkdir -p ./var/data/plaintext && ./bin/rsk-search data dump-plaintext;
+	cd var/data/plaintext; zip -r ../../episodes-plaintext.zip *.txt
 
 .PHONY: run
 run: build

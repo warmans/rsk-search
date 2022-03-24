@@ -35,5 +35,7 @@ func RootCmd() *cobra.Command {
 	index.AddCommand(InferMissingOffsetsCmd())
 	index.AddCommand(RefreshCmd())
 
+	index.AddCommand(DumpPlaintext())
+
 	return index
 }

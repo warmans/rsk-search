@@ -6,6 +6,24 @@ import (
 	"os"
 )
 
+func WithCreateOrReplaceFile(path string, cb func(f *os.File) error) (err error) {
+	f, err := os.OpenFile(path, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0666)
+	if err != nil {
+		return err
+	}
+	defer func() {
+		if closeErr := f.Close(); closeErr != nil {
+			if err != nil {
+				err = fmt.Errorf("failed to close with error %s after error: %w", closeErr.Error(), err)
+			}
+			err = closeErr
+		}
+	}()
+	err = cb(f)
+	return
+}
+
+
 func WithNewFile(path string, cb func(f *os.File) error) (err error) {
 	f, err := os.OpenFile(path, os.O_RDWR|os.O_CREATE|os.O_EXCL, 0666)
 	if err != nil {
