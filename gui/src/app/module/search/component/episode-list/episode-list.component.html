@@ -1,8 +1,41 @@
 <div class="card episode-list">
-  <div class="card-header">Episode Browser</div>
+  <div class="card-header d-flex justify-content-between">
+    Transcript Archive
+    <div class="d-flex">
+      <button class="btn btn-xs btn-secondary mr-1" (click)="showDownloadDialog = !showDownloadDialog">
+        <i class="bi-cloud-download mr-2"></i> Download transcripts
+      </button>
+    </div>
+  </div>
   <div class="card-body">
     <div *ngFor="let ep of transcriptList" class="mb-2 episode-container">
       <app-episode-summary [episode]="ep"></app-episode-summary>
     </div>
+  </div>
+</div>
+<div class="download-modal modal"[ngClass]="{'open': showDownloadDialog}">
+  <div class="modal-dialog  modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <i class="bi-cloud-download mr-2"></i> Download transcript archive
+        <button type="button" class="close" (click)="showDownloadDialog = false" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Various formats are available for download.</p>
+        <table class="table">
+          <tr>
+            <td style="width: 200px"><a href="/dl/archive/episodes-json.zip" target="_blank">episodes-json.zip</a></td>
+            <td>The JSON version is easily readable by computers.</td>
+          </tr>
+          <tr>
+            <td><a href="/dl/archive/episodes-plaintext.zip" target="_blank">episodes-plaintext.zip</a></td>
+            <td>The text version is easily readable by humans.</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
   </div>
 </div>

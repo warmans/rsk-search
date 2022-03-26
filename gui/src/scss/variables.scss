@@ -47,3 +47,12 @@ $color-ricky-saturated: rgba(249, 223, 22, 1);
 
 $color-karl: rgba(75, 244, 244, 0.1);
 $color-karl-saturated: rgb(75, 244, 244);
+
+
+/* even smaller button */
+$input-btn-padding-y-xs:      .125rem !default;
+$input-btn-padding-x-xs:      .25rem !default;
+$input-btn-font-size-xs:      $font-size-sm * 0.80  !default;
+$input-btn-line-height-xs:    $line-height-sm * 0.80 !default;
+
+

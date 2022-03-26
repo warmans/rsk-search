@@ -17,6 +17,7 @@ export class EpisodeListComponent implements OnInit {
   showSeries: number[] = [1, 2, 3, 4];
 
   private unsubscribe$: EventEmitter<boolean> = new EventEmitter<boolean>()
+  showDownloadDialog: boolean = false;
 
   constructor(private apiClient: SearchAPIClient) { }
 
