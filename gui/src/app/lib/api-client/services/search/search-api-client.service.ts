@@ -449,16 +449,16 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  getSearchMetadata(
+  getMetadata(
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RskSearchMetadata> {
+  ): Observable<models.RskMetadata> {
     const path = `/api/metadata`;
     const options: APIHttpOptions = {
       ...this.options,
       ...requestHttpOptions,
     };
 
-    return this.sendRequest<models.RskSearchMetadata>('GET', path, options);
+    return this.sendRequest<models.RskMetadata>('GET', path, options);
   }
 
   /**

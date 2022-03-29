@@ -202,9 +202,9 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  getSearchMetadata(
+  getMetadata(
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RskSearchMetadata>;
+  ): Observable<models.RskMetadata>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.

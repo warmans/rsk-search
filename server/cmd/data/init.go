@@ -21,7 +21,7 @@ func InitCmd() *cobra.Command {
 			logger, _ := zap.NewProduction()
 			defer logger.Sync() // flushes buffer, if any
 
-			for date, name := range meta.XfmEpisodeDates() {
+			for date, name := range meta.EpisodeDates() {
 				if err := initEpisodeFile(cfg.dataDir, date, name); err != nil {
 					return fmt.Errorf("failed to init file for date: %s name: %s: %w", date, name, err)
 				}

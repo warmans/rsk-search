@@ -1,12 +1,7 @@
 import { Component, EventEmitter, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Data } from '@angular/router';
+import { ActivatedRoute, Data, Router } from '@angular/router';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
-import {
-  RskDialog,
-  RskTranscript,
-  RskTranscriptChange,
-  RskTranscriptChangeList
-} from '../../../../lib/api-client/models';
+import { RskDialog, RskMetadata, RskTranscript, RskTranscriptChange, RskTranscriptChangeList } from '../../../../lib/api-client/models';
 import { ViewportScroller } from '@angular/common';
 import { takeUntil } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
@@ -14,6 +9,7 @@ import { AudioPlayerComponent } from '../../../shared/component/audio-player/aud
 import { SessionService } from '../../../core/service/session/session.service';
 import { And, Eq, Neq } from '../../../../lib/filter-dsl/filter';
 import { Bool, Str } from '../../../../lib/filter-dsl/value';
+import { MetaService } from '../../../core/service/meta/meta.service';
 
 @Component({
   selector: 'app-episode',
@@ -44,6 +40,9 @@ export class EpisodeComponent implements OnInit, OnDestroy {
 
   authenticated: boolean = false;
 
+  previousEpisodeId: string;
+  nextEpisodeId: string;
+
   unsubscribe$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   @ViewChild('audioPlayer')
@@ -55,11 +54,11 @@ export class EpisodeComponent implements OnInit, OnDestroy {
     private viewportScroller: ViewportScroller,
     private titleService: Title,
     private sessionService: SessionService,
+    private meta: MetaService,
+    private router: Router,
   ) {
     route.paramMap.subscribe((d: Data) => {
-      this.id = d.params['id'];
-      this.shortID = this.id.replace(/ep\-/, '');
-      this.audioLink = `https://storage.googleapis.com/scrimpton-raw-audio/${this.shortID}.mp3`;
+      this.loadEpisode(d.params['id']);
     });
     route.fragment.subscribe((f) => {
       this.scrollToID = f;
@@ -69,19 +68,44 @@ export class EpisodeComponent implements OnInit, OnDestroy {
         this.authenticated = true;
       }
     });
+
   }
 
   ngOnInit(): void {
+  }
+
+  loadEpisode(id: string) {
+
+    this.id = id;
+    this.shortID = id.replace(/ep\-/, '');
+    this.audioLink = `https://storage.googleapis.com/scrimpton-raw-audio/${this.shortID}.mp3`;
+
     this.loading = true;
     this.error = undefined;
+
     this.apiClient.getTranscript({ epid: this.id }).pipe(takeUntil(this.unsubscribe$)).subscribe(
       (ep: RskTranscript) => {
+
         this.episode = ep;
         this.titleService.setTitle(ep.id);
         this.transcribers = ep.contributors.join(', ');
         ep.transcript.forEach((r: RskDialog) => {
           if (r.notable) {
             this.quotes.push(r);
+          }
+        });
+        this.meta.getMeta().pipe(takeUntil(this.unsubscribe$)).subscribe((res: RskMetadata) => {
+          const curIndex = (res.episodeShortIDs || []).findIndex((v) => v == ep.shortId);
+          if (curIndex === -1) {
+            console.error(`failed to find episode in metadata ${ep.shortId}`);
+          }
+
+          this.previousEpisodeId = this.nextEpisodeId = null;
+          if (curIndex > 0 && (res.episodeShortIDs || []).length > 0) {
+            this.previousEpisodeId = `ep-${res.episodeShortIDs[curIndex - 1]}`;
+          }
+          if (curIndex < ((res.episodeShortIDs || []).length - 1)) {
+            this.nextEpisodeId = `ep-${res.episodeShortIDs[curIndex + 1]}`;
           }
         });
       },

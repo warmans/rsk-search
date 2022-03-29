@@ -20,7 +20,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type SearchServiceClient interface {
 	Search(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (*SearchResultList, error)
-	GetSearchMetadata(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SearchMetadata, error)
+	GetMetadata(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Metadata, error)
 	ListFieldValues(ctx context.Context, in *ListFieldValuesRequest, opts ...grpc.CallOption) (*FieldValueList, error)
 	GetTranscript(ctx context.Context, in *GetTranscriptRequest, opts ...grpc.CallOption) (*Transcript, error)
 	ListTranscripts(ctx context.Context, in *ListTranscriptsRequest, opts ...grpc.CallOption) (*TranscriptList, error)
@@ -45,9 +45,9 @@ func (c *searchServiceClient) Search(ctx context.Context, in *SearchRequest, opt
 	return out, nil
 }
 
-func (c *searchServiceClient) GetSearchMetadata(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SearchMetadata, error) {
-	out := new(SearchMetadata)
-	err := c.cc.Invoke(ctx, "/rsk.SearchService/GetSearchMetadata", in, out, opts...)
+func (c *searchServiceClient) GetMetadata(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Metadata, error) {
+	out := new(Metadata)
+	err := c.cc.Invoke(ctx, "/rsk.SearchService/GetMetadata", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -95,7 +95,7 @@ func (c *searchServiceClient) ListChangelogs(ctx context.Context, in *ListChange
 // for forward compatibility
 type SearchServiceServer interface {
 	Search(context.Context, *SearchRequest) (*SearchResultList, error)
-	GetSearchMetadata(context.Context, *emptypb.Empty) (*SearchMetadata, error)
+	GetMetadata(context.Context, *emptypb.Empty) (*Metadata, error)
 	ListFieldValues(context.Context, *ListFieldValuesRequest) (*FieldValueList, error)
 	GetTranscript(context.Context, *GetTranscriptRequest) (*Transcript, error)
 	ListTranscripts(context.Context, *ListTranscriptsRequest) (*TranscriptList, error)
@@ -110,8 +110,8 @@ type UnimplementedSearchServiceServer struct {
 func (UnimplementedSearchServiceServer) Search(context.Context, *SearchRequest) (*SearchResultList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Search not implemented")
 }
-func (UnimplementedSearchServiceServer) GetSearchMetadata(context.Context, *emptypb.Empty) (*SearchMetadata, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetSearchMetadata not implemented")
+func (UnimplementedSearchServiceServer) GetMetadata(context.Context, *emptypb.Empty) (*Metadata, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMetadata not implemented")
 }
 func (UnimplementedSearchServiceServer) ListFieldValues(context.Context, *ListFieldValuesRequest) (*FieldValueList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListFieldValues not implemented")
@@ -155,20 +155,20 @@ func _SearchService_Search_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SearchService_GetSearchMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _SearchService_GetMetadata_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SearchServiceServer).GetSearchMetadata(ctx, in)
+		return srv.(SearchServiceServer).GetMetadata(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/rsk.SearchService/GetSearchMetadata",
+		FullMethod: "/rsk.SearchService/GetMetadata",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SearchServiceServer).GetSearchMetadata(ctx, req.(*emptypb.Empty))
+		return srv.(SearchServiceServer).GetMetadata(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -257,8 +257,8 @@ var SearchService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _SearchService_Search_Handler,
 		},
 		{
-			MethodName: "GetSearchMetadata",
-			Handler:    _SearchService_GetSearchMetadata_Handler,
+			MethodName: "GetMetadata",
+			Handler:    _SearchService_GetMetadata_Handler,
 		},
 		{
 			MethodName: "ListFieldValues",

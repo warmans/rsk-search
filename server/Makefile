@@ -13,7 +13,7 @@ DEV_DB_DSN ?= "postgres://$(DEV_DB_USER):$(DEV_DB_PASS)@$(DEV_DB_HOST):5432/$(DE
 install.buf:
 	echo "=> Installing buff to local bin dir"
 	BIN="./bin" && \
-	VERSION="0.38.0" && \
+	VERSION="1.3.0" && \
 	BINARY_NAME="buf" && \
 	curl -sSL "https://github.com/bufbuild/buf/releases/download/v$${VERSION}/$${BINARY_NAME}-`uname -s`-`uname -m`" \
 		-o "$${BIN}/$${BINARY_NAME}" && \
@@ -38,7 +38,7 @@ vendor:
 	echo "=> Installing go deps..."
 	go mod download
 	echo "=> Installing proto deps..."
-	./bin/buf beta mod update
+	./bin/buf mod update
 
 .PHONY: generate
 generate: generate.proto generate.swagger-bundle

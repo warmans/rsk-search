@@ -34,13 +34,13 @@ service SearchService {
     };
   }
 
-  rpc GetSearchMetadata(google.protobuf.Empty) returns (SearchMetadata) {
+  rpc GetMetadata(google.protobuf.Empty) returns (Metadata) {
     option (google.api.http) = {
       get: "/api/metadata"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      operation_id: "getSearchMetadata",
-      summary: "Fetch search metadata e.g. searchable fields"
+      operation_id: "getMetadata",
+      summary: "Search related metadata (searchable fields, available publications etc.)"
       tags: "search"
     };
   }
@@ -198,8 +198,9 @@ message TranscriptList {
   repeated ShortTranscript episodes = 1;
 }
 
-message SearchMetadata {
-  repeated FieldMeta fields = 1;
+message Metadata {
+  repeated FieldMeta search_fields = 1;
+  repeated string episodeShortIDs = 2;
 }
 
 message FieldMeta {
@@ -232,7 +233,6 @@ message FieldValue {
   string value = 1;
   int32 count = 2;
 }
-
 
 message ListChangelogsRequest {
   string filter = 2;

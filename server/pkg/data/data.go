@@ -49,6 +49,11 @@ func LoadEpisodeByName(dataDir string, publication string, name string) (*models
 	return LoadEpisdeByEpisodeID(dataDir, fmt.Sprintf("ep-%s-%s", publication, name))
 }
 
+func LoadEpisodeByShortID(dataDir string, shortId string) (*models.Transcript, error) {
+	return LoadEpisdeByEpisodeID(dataDir, fmt.Sprintf("ep-%s", shortId))
+}
+
+
 func LoadEpisodePath(path string) (*models.Transcript, error) {
 	episode := &models.Transcript{}
 	if err := util.WithReadJSONFileDecoder(path, func(dec *json.Decoder) error {

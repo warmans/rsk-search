@@ -60,10 +60,10 @@ func (s *Search) Search(ctx context.Context, f filter.Filter, page int32) (*api.
 		}
 
 		// fill in gaps in the episode stats to give a complete time-series
-		for _, episodeID := range meta.XfmEpisodeList() {
+		for _, episodeID := range meta.EpisodeList() {
 			var found = false
 			for _, b := range actorBucket.Aggregation("transcript_id").(search2.BucketCalculator).Buckets() {
-				if strings.HasPrefix(b.Name(), "ep-xfm-") && episodeID == strings.TrimPrefix(b.Name(), "ep-xfm-") {
+				if strings.HasPrefix(b.Name(), "ep-") && episodeID == strings.TrimPrefix(b.Name(), "ep-") {
 					res.Stats[actorBucket.Name()].Labels = append(res.Stats[actorBucket.Name()].Labels, episodeID)
 					res.Stats[actorBucket.Name()].Values = append(res.Stats[actorBucket.Name()].Values, float32(b.Count()))
 					found = true

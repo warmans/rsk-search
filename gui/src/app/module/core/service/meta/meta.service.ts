@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
 import { Observable, of } from 'rxjs';
-import { FieldMetaKind, RskSearchMetadata } from '../../../../lib/api-client/models';
+import { FieldMetaKind, RskMetadata } from '../../../../lib/api-client/models';
 import { first } from 'rxjs/operators';
 
 @Injectable({
@@ -9,17 +9,17 @@ import { first } from 'rxjs/operators';
 })
 export class MetaService {
 
-  private cache: RskSearchMetadata;
+  private cache: RskMetadata;
 
   constructor(private apiClient: SearchAPIClient) {
-    this.apiClient.getSearchMetadata().pipe(first()).subscribe((v: RskSearchMetadata) => {
+    this.apiClient.getMetadata().pipe(first()).subscribe((v: RskMetadata) => {
       this.cache = v;
     });
   }
 
-  getMeta(): Observable<RskSearchMetadata> {
+  getMeta(): Observable<RskMetadata> {
     if (this.cache === undefined) {
-      return this.apiClient.getSearchMetadata();
+      return this.apiClient.getMetadata();
     }
     return of(this.cache);
   }

@@ -215,11 +215,11 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
       .pipe(tap((res: any) => guards.isRskTranscriptChange(res) || console.error(`TypeGuard for response 'RskTranscriptChange' caught inconsistency.`, res)));
   }
 
-  getSearchMetadata(
+  getMetadata(
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RskSearchMetadata> {
-    return super.getSearchMetadata(requestHttpOptions)
-      .pipe(tap((res: any) => guards.isRskSearchMetadata(res) || console.error(`TypeGuard for response 'RskSearchMetadata' caught inconsistency.`, res)));
+  ): Observable<models.RskMetadata> {
+    return super.getMetadata(requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRskMetadata(res) || console.error(`TypeGuard for response 'RskMetadata' caught inconsistency.`, res)));
   }
 
   listPendingRewards(

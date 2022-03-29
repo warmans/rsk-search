@@ -4,21 +4,20 @@ import (
 	"embed"
 	"encoding/json"
 	"fmt"
-	"time"
 )
 
-//go:embed data/xfm-episode-date-map.json
-var xfmEpisodeDateIndex embed.FS
+//go:embed data/episode-date-map.json
+var episodeDateIndex embed.FS
 
-//go:embed data/xfm-episode-order.json
-var xfmOrderedEpisodes embed.FS
+//go:embed data/episode-order.json
+var orderedEpisodes embed.FS
 
 var parsedIndex = map[string]string{}
 var episodeIDMap = map[string]struct{}{}
 var episodeOrder = []string{}
 
 func init() {
-	epIndexFile, err := xfmEpisodeDateIndex.Open("data/xfm-episode-date-map.json")
+	epIndexFile, err := episodeDateIndex.Open("data/episode-date-map.json")
 	if err != nil {
 		panic("failed to open embedded metadata: " + err.Error())
 	}
@@ -28,10 +27,10 @@ func init() {
 		panic("failed to decode metadata: " + err.Error())
 	}
 	for _, v := range parsedIndex {
-		episodeIDMap[fmt.Sprintf("ep-%s-%s", PublicationXFM, v)] = struct{}{}
+		episodeIDMap[fmt.Sprintf("ep-%s", v)] = struct{}{}
 	}
 
-	orderedEpsFile, err := xfmOrderedEpisodes.Open("data/xfm-episode-order.json")
+	orderedEpsFile, err := orderedEpisodes.Open("data/episode-order.json")
 	if err != nil {
 		panic("failed to open embedded metadata: " + err.Error())
 	}
@@ -41,7 +40,7 @@ func init() {
 	}
 }
 
-func XfmEpisodeDates() map[string]string {
+func EpisodeDates() map[string]string {
 	cpy := map[string]string{}
 	for k, v := range parsedIndex {
 		cpy[k] = v
@@ -49,7 +48,8 @@ func XfmEpisodeDates() map[string]string {
 	return cpy
 }
 
-func XfmEpisodeList() []string {
+// EpisodeList returns an index of xfm episodes in the "shortId" format e.g. xfm-S1E01
+func EpisodeList() []string {
 	cpy := make([]string, len(episodeOrder))
 	for k, v := range episodeOrder {
 		cpy[k] = v
@@ -62,14 +62,4 @@ func XfmEpisodeList() []string {
 func IsValidEpisodeID(id string) bool {
 	_, ok := episodeIDMap[id]
 	return ok
-}
-
-func XfmEpisodeDateToName(date time.Time) (string, error) {
-	dateStr := date.Format(time.RFC3339)
-	name, ok := parsedIndex[dateStr]
-	if !ok {
-		return "", fmt.Errorf("date %s did not map to any known episode", dateStr)
-
-	}
-	return name, nil
 }

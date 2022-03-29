@@ -714,13 +714,13 @@
       },
       "/api/metadata": {
         "get": {
-          "summary": "Fetch search metadata e.g. searchable fields",
-          "operationId": "getSearchMetadata",
+          "summary": "Search related metadata (searchable fields, available publications etc.)",
+          "operationId": "getMetadata",
           "responses": {
             "200": {
               "description": "A successful response.",
               "schema": {
-                "$ref": "#/definitions/rskSearchMetadata"
+                "$ref": "#/definitions/rskMetadata"
               }
             },
             "default": {
@@ -1664,6 +1664,23 @@
           }
         }
       },
+      "rskMetadata": {
+        "type": "object",
+        "properties": {
+          "searchFields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/rskFieldMeta"
+            }
+          },
+          "episodeShortIDs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
       "rskPendingRewardList": {
         "type": "object",
         "properties": {
@@ -1748,17 +1765,6 @@
           },
           "valueCurrency": {
             "type": "string"
-          }
-        }
-      },
-      "rskSearchMetadata": {
-        "type": "object",
-        "properties": {
-          "fields": {
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/rskFieldMeta"
-            }
           }
         }
       },

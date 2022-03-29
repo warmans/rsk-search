@@ -109,11 +109,11 @@ func addSongMeta(logger *zap.Logger, token string, metadataPath string) error {
 		return err
 	}
 
-	for _, name := range meta.XfmEpisodeDates() {
+	for _, shortId := range meta.EpisodeDates() {
 
-		lg := logger.With(zap.String("name", name))
+		lg := logger.With(zap.String("name", shortId))
 
-		ep, err := data.LoadEpisodeByName(cfg.dataDir, meta.PublicationXFM, name)
+		ep, err := data.LoadEpisodeByShortID(cfg.dataDir, shortId)
 		if err != nil {
 			return err
 		}
@@ -144,7 +144,7 @@ func addSongMeta(logger *zap.Logger, token string, metadataPath string) error {
 					}
 					songCache.Songs[track.TrackURI] = &meta.Song{
 						Terms:      []string{searchTerm},
-						EpisodeIDs: []string{name},
+						EpisodeIDs: []string{shortId},
 						Track:      track,
 					}
 				} else {
@@ -153,12 +153,12 @@ func addSongMeta(logger *zap.Logger, token string, metadataPath string) error {
 					track = songCache.Songs[cachedId].Track
 					var found bool
 					for _, epID := range songCache.Songs[cachedId].EpisodeIDs {
-						if epID == name {
+						if epID == shortId {
 							found = true
 						}
 					}
 					if !found {
-						songCache.Songs[cachedId].EpisodeIDs = append(songCache.Songs[cachedId].EpisodeIDs, name)
+						songCache.Songs[cachedId].EpisodeIDs = append(songCache.Songs[cachedId].EpisodeIDs, shortId)
 					}
 
 					found = false

@@ -15,3 +15,8 @@ func StripNonAlphanumeric(s string) string {
 	}
 	return result.String()
 }
+
+func LastSegment(str string, sep string) string {
+	split := strings.Split(str, sep)
+	return split[len(split)-1]
+}

@@ -39,7 +39,7 @@ export class GlSearchComponent implements OnInit, AfterViewInit {
 
   constructor(meta: MetaService, route: ActivatedRoute) {
     meta.getMeta().pipe(first()).subscribe((m) => {
-      this.fieldMeta = m.fields;
+      this.fieldMeta = m.searchFields;
       route.queryParamMap.pipe(distinctUntilChanged()).subscribe((params) => {
         if (params.get('q') === null || params.get('q').trim() === '') {
           this.resetFilters();

@@ -25,25 +25,25 @@ func (k FieldKind) Proto() api.FieldMeta_Kind {
 }
 
 const (
-	// non-analyzed unique keywords (e.g. dsf342f32f3)
+	// FieldIdentifier non-analyzed unique keywords (e.g. dsf342f32f3)
 	FieldIdentifier = FieldKind("identifier")
 
-	// non-analyzed keywords (e.g. foo)
+	// FieldKeyword non-analyzed keywords (e.g. foo)
 	FieldKeyword = FieldKind("keyword")
 
-	// list of keywords e.g. [foo, bar]
+	// FieldKeywordList list of keywords e.g. [foo, bar]
 	FieldKeywordList = FieldKind("keyword_list")
 
-	// analyzed words (e.g. "foo bar, baz"
+	// FieldText analyzed words (e.g. "foo bar, baz"
 	FieldText = FieldKind("text")
 
-	// whole numbers e.g. 1
+	// FieldInt whole numbers e.g. 1
 	FieldInt = FieldKind("int")
 
-	// real numbers e.g. 1.5
+	// FieldFloat real numbers e.g. 1.5
 	FieldFloat = FieldKind("float")
 
-	// datestamp in RFC339 e.g. 2020-01-25T00:00:00Z
+	// FieldDate datestamp in RFC339 e.g. 2020-01-25T00:00:00Z
 	FieldDate = FieldKind("date")
 )
 
@@ -51,12 +51,10 @@ type SearchMeta struct {
 	Fields []FieldMeta
 }
 
-func (m SearchMeta) Proto() *api.SearchMetadata {
-	sm := &api.SearchMetadata{
-		Fields: make([]*api.FieldMeta, len(m.Fields)),
-	}
+func (m SearchMeta) Proto() []*api.FieldMeta {
+	sm := make([]*api.FieldMeta, len(m.Fields))
 	for k, v := range m.Fields {
-		sm.Fields[k] = v.Proto()
+		sm[k] = v.Proto()
 	}
 	return sm
 }

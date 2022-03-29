@@ -2,12 +2,17 @@ package models
 
 import (
 	"fmt"
+	"github.com/warmans/rsk-search/pkg/util"
 	"strconv"
 	"strings"
 )
 
-// e.g. S01E02 becomes 1,2,nil
+// ParseStandardEpisodeName e.g. xfm-S01E02 becomes 1,2,nil
 func ParseStandardEpisodeName(raw string) (int32, int32, error) {
+
+	// remove ep-?xfm-
+	raw = util.LastSegment(raw, "-")
+
 	raw = strings.TrimPrefix(raw, "S")
 	parts := strings.Split(raw, "E")
 	if len(parts) != 2 {

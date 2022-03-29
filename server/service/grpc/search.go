@@ -96,8 +96,11 @@ func NewQueryModifiers(req interface{}) (*common.QueryModifier, error) {
 	return q, nil
 }
 
-func (s *SearchService) GetSearchMetadata(ctx context.Context, empty *emptypb.Empty) (*api.SearchMetadata, error) {
-	return meta.GetSearchMeta().Proto(), nil
+func (s *SearchService) GetMetadata(ctx context.Context, empty *emptypb.Empty) (*api.Metadata, error) {
+	return &api.Metadata{
+		SearchFields: meta.GetSearchMeta().Proto(),
+		EpisodeShortIDs: meta.EpisodeList(),
+	}, nil
 }
 
 func (s *SearchService) ListFieldValues(ctx context.Context, request *api.ListFieldValuesRequest) (*api.FieldValueList, error) {

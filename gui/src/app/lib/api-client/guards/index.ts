@@ -470,6 +470,19 @@ export function isRskFieldValueList(arg: any): arg is models.RskFieldValueList {
   );
   }
 
+export function isRskMetadata(arg: any): arg is models.RskMetadata {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // episodeShortIDs?: string[]
+    ( typeof arg.episodeShortIDs === 'undefined' || (Array.isArray(arg.episodeShortIDs) && arg.episodeShortIDs.every((item: unknown) => typeof item === 'string')) ) &&
+    // searchFields?: RskFieldMeta[]
+    ( typeof arg.searchFields === 'undefined' || (Array.isArray(arg.searchFields) && arg.searchFields.every((item: unknown) => isRskFieldMeta(item))) ) &&
+
+  true
+  );
+  }
+
 export function isRskPendingRewardList(arg: any): arg is models.RskPendingRewardList {
   return (
   arg != null &&
@@ -553,17 +566,6 @@ export function isRskReward(arg: any): arg is models.RskReward {
     ( typeof arg.value === 'undefined' || typeof arg.value === 'number' ) &&
     // valueCurrency?: string
     ( typeof arg.valueCurrency === 'undefined' || typeof arg.valueCurrency === 'string' ) &&
-
-  true
-  );
-  }
-
-export function isRskSearchMetadata(arg: any): arg is models.RskSearchMetadata {
-  return (
-  arg != null &&
-  typeof arg === 'object' &&
-    // fields?: RskFieldMeta[]
-    ( typeof arg.fields === 'undefined' || (Array.isArray(arg.fields) && arg.fields.every((item: unknown) => isRskFieldMeta(item))) ) &&
 
   true
   );
