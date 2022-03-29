@@ -41,7 +41,6 @@ $themes: (
   @return map-get($theme-map, $key);
 }
 
-
 body.dark-theme {
   background-color: #17191F;
 }

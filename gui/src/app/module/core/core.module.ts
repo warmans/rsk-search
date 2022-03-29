@@ -5,6 +5,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { APIErrorInterceptor } from './interceptor/api-error.interceptor';
 import { MetaService } from './service/meta/meta.service';
 import { OutgoingTokenInterceptor } from './interceptor/outgoing-token.interceptor';
+import { AudioService } from './service/audio/audio.service';
 
 @NgModule({
   declarations: [],
@@ -14,6 +15,7 @@ import { OutgoingTokenInterceptor } from './interceptor/outgoing-token.intercept
   providers: [
     AlertService,
     MetaService,
+    AudioService,
     { provide: HTTP_INTERCEPTORS, useClass: APIErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: OutgoingTokenInterceptor, multi: true },
   ]

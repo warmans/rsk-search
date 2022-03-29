@@ -10,6 +10,7 @@ import { SessionService } from '../../../core/service/session/session.service';
 import { And, Eq, Neq } from '../../../../lib/filter-dsl/filter';
 import { Bool, Str } from '../../../../lib/filter-dsl/value';
 import { MetaService } from '../../../core/service/meta/meta.service';
+import { AudioService } from '../../../core/service/audio/audio.service';
 
 @Component({
   selector: 'app-episode',
@@ -55,7 +56,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
     private titleService: Title,
     private sessionService: SessionService,
     private meta: MetaService,
-    private router: Router,
+    private audioService: AudioService,
   ) {
     route.paramMap.subscribe((d: Data) => {
       this.loadEpisode(d.params['id']);
@@ -135,5 +136,10 @@ export class EpisodeComponent implements OnInit, OnDestroy {
 
   onAudioTimestamp(ts: number) {
     this.audioPlayer.seek(ts, true);
+  }
+
+  playAudio() {
+    this.audioService.setAudioSrc(this.episode.shortId, this.episode.audioUri);
+    this.audioService.playAudio();
   }
 }

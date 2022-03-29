@@ -108,6 +108,7 @@
             </div>
           </div>
           <div class="card-body p-3">
+            <button class="btn btn-secondary" (click)="playAudio()"></button>
             <app-audio-player [src]="audioLink" [playbackRate]="1.0" #audioPlayer></app-audio-player>
             <!--div class="text-right text-sm mt-2">
               alternatve: <a *ngIf="episode.metadata['spotify_uri']"

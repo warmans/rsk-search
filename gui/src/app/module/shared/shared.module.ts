@@ -24,6 +24,7 @@ import { TriviaComponent } from './component/trivia/trivia.component';
 import { HtmlDiffComponent } from './component/html-diff/html-diff.component';
 import { ClaimedRewardsComponent } from './component/claimed-rewards/claimed-rewards.component';
 import { MarkdownComponent } from './component/markdown/markdown.component';
+import { AudioPlayerV2Component } from './component/audio-player-v2/audio-player-v2.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { MarkdownComponent } from './component/markdown/markdown.component';
     HtmlDiffComponent,
     ClaimedRewardsComponent,
     MarkdownComponent,
+    AudioPlayerV2Component,
   ],
   imports: [
     CommonModule,
@@ -76,6 +78,7 @@ import { MarkdownComponent } from './component/markdown/markdown.component';
     TranscriberComponent,
     ClaimedRewardsComponent,
     MarkdownComponent,
+    AudioPlayerV2Component,
   ]
 })
 export class SharedModule {

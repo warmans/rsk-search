@@ -237,3 +237,12 @@ span.code {
   outline: none;
   box-shadow: none;
 }
+
+// how to use theme-get in the actual component?!
+.player {
+  @include theme() {
+    color: theme-get('text-color');
+    background-color: theme-get('fg-body-darker');
+    border-top: 1px solid theme-get('fg-body');
+  }
+}
