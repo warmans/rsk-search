@@ -1,16 +1,15 @@
-import { Component, EventEmitter, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Data, Router } from '@angular/router';
+import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Data } from '@angular/router';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
 import { RskDialog, RskMetadata, RskTranscript, RskTranscriptChange, RskTranscriptChangeList } from '../../../../lib/api-client/models';
 import { ViewportScroller } from '@angular/common';
 import { takeUntil } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
-import { AudioPlayerComponent } from '../../../shared/component/audio-player/audio-player.component';
 import { SessionService } from '../../../core/service/session/session.service';
 import { And, Eq, Neq } from '../../../../lib/filter-dsl/filter';
 import { Bool, Str } from '../../../../lib/filter-dsl/value';
 import { MetaService } from '../../../core/service/meta/meta.service';
-import { AudioService } from '../../../core/service/audio/audio.service';
+import { AudioService, PlayerState, Status } from '../../../core/service/audio/audio.service';
 
 @Component({
   selector: 'app-episode',
@@ -25,7 +24,8 @@ export class EpisodeComponent implements OnInit, OnDestroy {
 
   shortID: string;
 
-  scrollToID: string;
+  scrollToID: string|null = null;
+  scrollToSeconds: number|null = null;
 
   episode: RskTranscript;
 
@@ -44,10 +44,12 @@ export class EpisodeComponent implements OnInit, OnDestroy {
   previousEpisodeId: string;
   nextEpisodeId: string;
 
+  audioStatus: Status;
+
+  audioStates = PlayerState;
+
   unsubscribe$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  @ViewChild('audioPlayer')
-  audioPlayer: AudioPlayerComponent;
 
   constructor(
     private route: ActivatedRoute,
@@ -62,17 +64,27 @@ export class EpisodeComponent implements OnInit, OnDestroy {
       this.loadEpisode(d.params['id']);
     });
     route.fragment.subscribe((f) => {
-      this.scrollToID = f;
+      if (!f) {
+        return;
+      }
+      if (f.startsWith("pos-")) {
+        this.scrollToID = f;
+      }
+      if (f.startsWith('sec-')) {
+        this.scrollToSeconds = parseInt(f.replace('sec-', ''));
+      }
     });
     sessionService.onTokenChange.pipe(takeUntil(this.unsubscribe$)).subscribe((token: string): void => {
       if (token != null) {
         this.authenticated = true;
       }
     });
-
   }
 
   ngOnInit(): void {
+    this.audioService.status.pipe(takeUntil(this.unsubscribe$)).subscribe((sta: Status) => {
+      this.audioStatus = sta;
+    });
   }
 
   loadEpisode(id: string) {
@@ -135,11 +147,17 @@ export class EpisodeComponent implements OnInit, OnDestroy {
   }
 
   onAudioTimestamp(ts: number) {
-    this.audioPlayer.seek(ts, true);
+    this.audioService.setAudioSrc(this.episode.shortId, this.episode.audioUri);
+    this.audioService.seekAudio(ts);
+    this.audioService.playAudio();
   }
 
   playAudio() {
     this.audioService.setAudioSrc(this.episode.shortId, this.episode.audioUri);
     this.audioService.playAudio();
+  }
+
+  pauseAudio() {
+    this.audioService.pauseAudio();
   }
 }

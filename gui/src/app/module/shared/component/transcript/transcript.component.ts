@@ -52,7 +52,10 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
   synopsisTitlePos: { [index: number]: string } = {};
 
   @Input()
-  set scrollToID(value: string) {
+  set scrollToID(value: string|null) {
+    if (value === null) {
+      return;
+    }
     this._scrollToID = value;
     this.scrollToAnchor();
   }
@@ -62,6 +65,21 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
   }
 
   private _scrollToID: string;
+
+  @Input()
+  set scrollToSeconds(value: number|null) {
+    if (value === null) {
+      return;
+    }
+    this._scrollToSeconds = value;
+    this._scrollToSecondOffset(value);
+  }
+
+  get scrollToSeconds(): number {
+    return this._scrollToSeconds;
+  }
+
+  private _scrollToSeconds: number;
 
   scrollToPosStart: number;
   scrollToPosEnd: number;
@@ -116,6 +134,15 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
       this.viewportScroller.scrollToAnchor(`${parts[0]}-${parts[1]}`);
       this.scrollToPosStart = parseInt(parts[1]);
       this.scrollToPosEnd = parseInt(parts[2]);
+    }
+  }
+
+  private _scrollToSecondOffset(seconds: number) {
+    for (let i = 0; i < this.transcript.transcript.length; i++) {
+      if (parseInt(this.transcript.transcript[i].offsetSec) >= seconds) {
+        this.scrollToID = `pos-${this.transcript.transcript[i].pos}`;
+        return;
+      }
     }
   }
 
