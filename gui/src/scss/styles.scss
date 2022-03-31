@@ -203,9 +203,9 @@ span.code {
   }
 }
 
-.btn-xs {
-  @include button-size($input-btn-padding-y-xs, $input-btn-padding-x-xs, $input-btn-font-size-xs, $input-btn-line-height-xs, $btn-border-radius-sm);
-}
+//.btn-xs {
+//  @include button-size($input-btn-padding-y-xs, $input-btn-padding-x-xs, $input-btn-font-size-xs, $input-btn-line-height-xs, $btn-border-radius-sm);
+//}
 
 
 .close {
