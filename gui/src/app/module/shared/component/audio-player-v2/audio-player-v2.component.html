@@ -1,8 +1,7 @@
 <div class="player d-flex" *ngIf="this.audioStatus?.audioName">
   <div class="controls p-2 d-flex align-items-center">
-    <div class="clickable p-1" *ngIf="audioStatus.state !== states.playing" (click)="play()"><i class="bi-play"></i></div>
-    <div class="clickable p-1" *ngIf="audioStatus.state === states.playing" (click)="pause()"><i class="bi-pause"></i></div>
-      <div class="clickable p-1" (click)="skipForward()"><i class="bi-skip-forward"></i></div>
+    <div class="clickable p-1" *ngIf="audioStatus.state !== states.playing" (click)="play()"><i class="bi-play-circle-fill"></i></div>
+    <div class="clickable p-1" *ngIf="audioStatus.state === states.playing" (click)="pause()"><i class="bi-pause-circle-fill"></i></div>
   </div>
   <div class="flex-grow-1 p-2">
     <div class="mb-1"><a *ngIf="audioStatus.audioName" [routerLink]="['/ep', 'ep-'+audioStatus.audioName]">{{ audioStatus.audioName }}</a> <span *ngIf="audioStatus?.state === states.loading">(loading...)</span></div>

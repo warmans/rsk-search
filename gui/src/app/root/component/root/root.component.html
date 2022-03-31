@@ -1,7 +1,7 @@
 <nav class="navbar navbar-light bg-light">
   <div class="d-flex w-100">
     <div class="mr-3">
-      <a [routerLink]="['/search']"><img src="/assets/android-chrome-192x192.png" style="height: 48px;"/></a>
+      <a [routerLink]="['/search']"><img src="/assets/android-chrome-192x192.png" style="height: 3rem"/></a>
     </div>
     <div class="flex-grow-1">
       <!--app-dsl-search (executeQuery)="executeSearch($event)"></app-dsl-search-->
@@ -18,7 +18,7 @@
       <a [routerLink]="['/me']" *ngIf="loggedInUser?.identity?.icon_img" >
         <div
           class="user-icon"
-          style=" width: 48px; height: 47px; background-image: url({{ loggedInUser?.identity?.icon_img }})">
+          style=" width: 3rem; height: 3rem; background-image: url({{ loggedInUser?.identity?.icon_img }})">
         </div>
       </a>
     </div>

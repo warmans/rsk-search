@@ -14,9 +14,9 @@ export class AudioPlayerV2Component implements OnInit, OnDestroy {
 
   states = PlayerState;
 
-  private volumeControl: FormControl = new FormControl(100);
+  volumeControl: FormControl = new FormControl(100);
 
-  private playerProgressControl: FormControl = new FormControl(0);
+  playerProgressControl: FormControl = new FormControl(0);
 
   private unsubscribe$: EventEmitter<void> = new EventEmitter<void>();
 

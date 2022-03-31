@@ -5,6 +5,13 @@ html {
   min-height: 100%;
 }
 
+@media (max-width: 576px) {
+  html {
+    font-size: 2.5vw;
+  }
+}
+
+
 body {
   margin-bottom: 60px; /* Margin bottom by footer height */
 }

@@ -4,7 +4,7 @@
 
 .inputs {
   border: 1px solid #ccc;
-  height: 48px;
+  height: 2.9rem;
   background-color: #fff;
   border-right: none;
 }
@@ -43,4 +43,9 @@
 
 .filter-overlay div:hover {
   background-color: #f6f6f6;
+}
+.buttons {
+  .btn {
+    height: 100%;
+  }
 }
