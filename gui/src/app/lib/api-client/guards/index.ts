@@ -618,6 +618,8 @@ export function isRskShortTranscript(arg: any): arg is models.RskShortTranscript
   typeof arg === 'object' &&
     // actors?: string[]
     ( typeof arg.actors === 'undefined' || (Array.isArray(arg.actors) && arg.actors.every((item: unknown) => typeof item === 'string')) ) &&
+    // audioUri?: string
+    ( typeof arg.audioUri === 'undefined' || typeof arg.audioUri === 'string' ) &&
     // episode?: number
     ( typeof arg.episode === 'undefined' || typeof arg.episode === 'number' ) &&
     // id?: string
@@ -630,6 +632,8 @@ export function isRskShortTranscript(arg: any): arg is models.RskShortTranscript
     ( typeof arg.releaseDate === 'undefined' || typeof arg.releaseDate === 'string' ) &&
     // series?: number
     ( typeof arg.series === 'undefined' || typeof arg.series === 'number' ) &&
+    // shortId?: string
+    ( typeof arg.shortId === 'undefined' || typeof arg.shortId === 'string' ) &&
     // summary?: string
     ( typeof arg.summary === 'undefined' || typeof arg.summary === 'string' ) &&
     // synopsis?: RskSynopsis[]

@@ -11,15 +11,16 @@ CREATE TABLE "episode"
 
 CREATE TABLE "dialog"
 (
-    "id"         TEXT PRIMARY KEY,
-    "episode_id" TEXT REFERENCES episode (id),
-    "pos"        INTEGER NOT NULL,
-    "offset"     INTEGER NULL,
-    "type"       TEXT    NOT NULL,
-    "actor"      TEXT,
-    "content"    TEXT,
-    "metadata"   JSON,
-    "notable"    BOOLEAN
+    "id"              TEXT PRIMARY KEY,
+    "episode_id"      TEXT REFERENCES episode (id),
+    "pos"             INTEGER NOT NULL,
+    "offset"          INTEGER NULL,
+    "offset_inferred" BOOLEAN NOT NULL DEFAULT TRUE,
+    "type"            TEXT    NOT NULL,
+    "actor"           TEXT,
+    "content"         TEXT,
+    "metadata"        JSON,
+    "notable"         BOOLEAN
 );
 
 CREATE INDEX dialog_pos ON dialog ("pos");

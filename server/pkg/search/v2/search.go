@@ -20,14 +20,15 @@ import (
 const ResultContextLines = 3
 const PageSize = 10
 
-func NewSearch(index *bluge.Reader, readOnlyDB *ro.Conn, episodeCache *data.EpisodeCache) search.Searcher {
-	return &Search{index: index, readOnlyDB: readOnlyDB, episodeCache: episodeCache}
+func NewSearch(index *bluge.Reader, readOnlyDB *ro.Conn, episodeCache *data.EpisodeCache, audioUriPattern string) search.Searcher {
+	return &Search{index: index, readOnlyDB: readOnlyDB, episodeCache: episodeCache, audioUriPattern: audioUriPattern}
 }
 
 type Search struct {
-	index        *bluge.Reader
-	readOnlyDB   *ro.Conn
-	episodeCache *data.EpisodeCache
+	index           *bluge.Reader
+	readOnlyDB      *ro.Conn
+	episodeCache    *data.EpisodeCache
+	audioUriPattern string
 }
 
 func (s *Search) Search(ctx context.Context, f filter.Filter, page int32) (*api.SearchResultList, error) {
@@ -101,7 +102,7 @@ func (s *Search) Search(ctx context.Context, f filter.Filter, page int32) (*api.
 						innerErr = err
 						return false
 					}
-					result.Episode = ep.ShortProto()
+					result.Episode = ep.ShortProto(fmt.Sprintf(s.audioUriPattern, ep.ShortID()))
 
 					// dialogs
 					lines := make([]*api.Dialog, len(dialogs))

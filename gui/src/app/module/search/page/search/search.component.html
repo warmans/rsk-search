@@ -14,7 +14,11 @@
         </div>
         <div class="card-body">
           <div *ngFor="let dialog of res.dialogs" class="dialog">
-            <app-transcript [transcript]="dialog" [searchResultMode]="true" [enableLineLinking]="false"></app-transcript>
+            <app-transcript
+              [transcript]="dialog"
+              [searchResultMode]="true"
+              [enableLineLinking]="false"
+              (emitAudioTimestamp)="onAudioTimestamp(res.episode,  $event)"></app-transcript>
           </div>
         </div>
       </div>

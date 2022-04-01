@@ -1,9 +1,10 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { take, takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
-import { RskChangelog, RskSearchResultList } from '../../../../lib/api-client/models';
+import { RskChangelog, RskSearchResultList, RskShortTranscript } from '../../../../lib/api-client/models';
+import { AudioService } from '../../../core/service/audio/audio.service';
 
 @Component({
   selector: 'app-search',
@@ -22,7 +23,11 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   private unsubscribe$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(private apiClient: SearchAPIClient, private route: ActivatedRoute, private titleService: Title) {
+  constructor(
+    private apiClient: SearchAPIClient,
+    private route: ActivatedRoute,
+    private titleService: Title,
+    private audioService: AudioService) {
 
     route.queryParamMap.pipe(takeUntil(this.unsubscribe$)).subscribe((params: ParamMap) => {
       this.currentPage = parseInt(params.get('page'), 10) || 0;
@@ -37,8 +42,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.titleService.setTitle('Scrimpton Search');
 
-    this.apiClient.listChangelogs({pageSize: 1}).pipe(takeUntil(this.unsubscribe$)).subscribe((res) => {
-      this.latestChangelog = (res.changelogs || []).pop()
+    this.apiClient.listChangelogs({ pageSize: 1 }).pipe(takeUntil(this.unsubscribe$)).subscribe((res) => {
+      this.latestChangelog = (res.changelogs || []).pop();
     });
   }
 
@@ -63,5 +68,11 @@ export class SearchComponent implements OnInit, OnDestroy {
     }).add(() => {
       this.loading.pop();
     });
+  }
+
+  onAudioTimestamp(ep: RskShortTranscript, ts: number) {
+    this.audioService.setAudioSrc(ep.shortId, ep.audioUri);
+    this.audioService.seekAudio(ts);
+    this.audioService.playAudio();
   }
 }

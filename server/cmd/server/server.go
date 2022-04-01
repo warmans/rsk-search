@@ -92,14 +92,14 @@ func ServerCmd() *cobra.Command {
 				if err != nil {
 					return err
 				}
-				search = v2.NewSearch(rskIndex, readOnlyStoreConn, episodeCache)
+				search = v2.NewSearch(rskIndex, readOnlyStoreConn, episodeCache, srvCfg.AudioUriPattern)
 			} else {
 				logger.Info("Init index...")
 				rskIndex, err := bleve.Open(srvCfg.BleveIndexPath)
 				if err != nil {
 					return err
 				}
-				search = v1.NewSearch(rskIndex, readOnlyStoreConn, episodeCache)
+				search = v1.NewSearch(rskIndex, readOnlyStoreConn, episodeCache, srvCfg.AudioUriPattern)
 			}
 
 			// DB is persistent and will retain data between deployments

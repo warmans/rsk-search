@@ -69,11 +69,12 @@ func (s *Store) InsertEpisodeWithTranscript(ctx context.Context, ep *models.Tran
 			return err
 		}
 		_, err = s.tx.ExecContext(ctx,
-			`INSERT INTO dialog (id, episode_id, pos, offset, type, actor, content, metadata, notable) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
+			`INSERT INTO dialog (id, episode_id, pos, offset, offset_inferred, type, actor, content, metadata, notable) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
 			v.ID,
 			ep.ID(),
 			v.Position,
 			v.OffsetSec,
+			v.OffsetInferred,
 			string(v.Type),
 			v.Actor,
 			v.Content,
@@ -163,7 +164,7 @@ func (s *Store) getTranscriptForQuery(ctx context.Context, query string, params 
 		}
 		var meta string
 
-		if err := res.Scan(&result.ID, &epID, &result.Position, &result.OffsetSec, &result.Type, &result.Actor, &result.Content, &meta, &result.Notable); err != nil {
+		if err := res.Scan(&result.ID, &epID, &result.Position, &result.OffsetSec, &result.OffsetInferred, &result.Type, &result.Actor, &result.Content, &meta, &result.Notable); err != nil {
 			return nil, "", err
 		}
 		if meta != "" {

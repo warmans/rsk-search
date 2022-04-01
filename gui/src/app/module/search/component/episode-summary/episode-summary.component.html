@@ -1,12 +1,17 @@
 <div class="episode-summary">
-  <div class="head d-flex flex-row mb-3 p-2">
+  <div class="head d-flex flex-row p-2">
     <div class="d-flex flex-row flex-grow-1">
-      <div class="icon" [style.background-image]="'url(assets/cover/'+episode.publication+'-s'+episode.series+'.jpg'"></div>
+      <div
+        (click)="playEpisode(episode)"
+        class="icon d-flex align-items-center justify-content-around"
+        [style.background-image]="'url(assets/cover/'+episode.publication+'-s'+episode.series+'.jpg'">
+        <i class="bi-play-circle"></i>
+      </div>
       <div class="pl-3">
-        <div class="title">
+        <div class="title mb-1">
           <a [routerLink]="['/ep', episode.id]">Series {{episode.series}} Episode {{episode.episode}}</a>
         </div>
-        <div class="sub-title">{{episode.releaseDate}}</div>
+        <div class="sub-title mb-2">{{episode.releaseDate}}</div>
       </div>
     </div>
     <div>
@@ -17,7 +22,7 @@
   </div>
   <div class="body mb-2 p-2">
     <div *ngIf="episode.synopsis?.length === 0" class="text-muted">No synopsis available.</div>
-    <ul *ngIf="episode.synopsis?.length > 0">
+    <ul class="pl-3" *ngIf="episode.synopsis?.length > 0">
       <li *ngFor="let syn of episode.synopsis">
         {{syn.description}} <a class="text-muted" [routerLink]="['/ep', episode.id]" [fragment]="'pos-'+syn.startPos+'-'+syn.endPos"><i class="bi bi-arrow-right"></i></a>
       </li>

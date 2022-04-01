@@ -110,7 +110,7 @@ func (e Transcript) Actors() []string {
 	return actorList
 }
 
-func (e *Transcript) ShortProto() *api.ShortTranscript {
+func (e *Transcript) ShortProto(audioURI string) *api.ShortTranscript {
 	if e == nil {
 		return nil
 	}
@@ -126,6 +126,8 @@ func (e *Transcript) ShortProto() *api.ShortTranscript {
 		Synopsis:            make([]*api.Synopsis, len(e.Synopsis)),
 		TriviaAvailable:     len(e.Trivia) > 0,
 		Actors:              e.Actors(),
+		ShortId: e.ShortID(),
+		AudioUri: audioURI,
 	}
 	for k, s := range e.Synopsis {
 		ep.Synopsis[k] = s.Proto()

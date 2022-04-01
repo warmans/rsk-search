@@ -2,6 +2,7 @@ package v1
 
 import (
 	"context"
+	"fmt"
 	"github.com/blevesearch/bleve/v2"
 	"github.com/warmans/rsk-search/gen/api"
 	"github.com/warmans/rsk-search/pkg/data"
@@ -15,14 +16,15 @@ import (
 const ResultContextLines = 3
 const PageSize = 10
 
-func NewSearch(index bleve.Index, readOnlyDB *ro.Conn, episodeCache *data.EpisodeCache) search.Searcher {
-	return &Search{index: index, readOnlyDB: readOnlyDB, episodeCache: episodeCache}
+func NewSearch(index bleve.Index, readOnlyDB *ro.Conn, episodeCache *data.EpisodeCache, audioUriPattern string) search.Searcher {
+	return &Search{index: index, readOnlyDB: readOnlyDB, episodeCache: episodeCache, audioUriPattern: audioUriPattern}
 }
 
 type Search struct {
 	index        bleve.Index
 	readOnlyDB   *ro.Conn
 	episodeCache *data.EpisodeCache
+	audioUriPattern string
 }
 
 func (s *Search) Search(ctx context.Context, f filter.Filter, page int32) (*api.SearchResultList, error) {
@@ -66,7 +68,7 @@ func (s *Search) Search(ctx context.Context, f filter.Filter, page int32) (*api.
 				if err != nil {
 					return err
 				}
-				result.Episode = ep.ShortProto()
+				result.Episode = ep.ShortProto(fmt.Sprintf(s.audioUriPattern, ep.ShortID()))
 
 				// dialogs
 				lines := make([]*api.Dialog, len(dialogs))

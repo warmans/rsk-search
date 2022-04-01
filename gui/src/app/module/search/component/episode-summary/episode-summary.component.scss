@@ -8,20 +8,36 @@
   }
 
   .icon {
-    width: 42px;
-    height: 42px;
+    width: 4rem;
+    height: 4rem;
     background-color: $primary;
     background-position: center;
     background-size: cover;
     border-radius: 2px;
+    cursor: pointer;
+  }
 
+  .icon i {
+    display: none;
+  }
+
+  .icon:hover i {
+    display: block;
+  }
+
+  .title {
+    font-weight: bold;
   }
 
   .sub-title {
-    font-size: 0.8rem;
+    font-size: 1rem;
   }
 
   .foot {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  ul {
+    padding-left: 0;
   }
 }

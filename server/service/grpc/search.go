@@ -98,7 +98,7 @@ func NewQueryModifiers(req interface{}) (*common.QueryModifier, error) {
 
 func (s *SearchService) GetMetadata(ctx context.Context, empty *emptypb.Empty) (*api.Metadata, error) {
 	return &api.Metadata{
-		SearchFields: meta.GetSearchMeta().Proto(),
+		SearchFields:    meta.GetSearchMeta().Proto(),
 		EpisodeShortIDs: meta.EpisodeList(),
 	}, nil
 }
@@ -143,7 +143,7 @@ func (s *SearchService) ListTranscripts(_ context.Context, _ *api.ListTranscript
 		Episodes: []*api.ShortTranscript{},
 	}
 	for _, ep := range s.episodeCache.ListEpisodes() {
-		el.Episodes = append(el.Episodes, ep.ShortProto())
+		el.Episodes = append(el.Episodes, ep.ShortProto(fmt.Sprintf(s.srvCfg.AudioUriPattern, ep.ShortID())))
 	}
 	return el, nil
 }

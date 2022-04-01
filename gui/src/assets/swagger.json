@@ -1864,6 +1864,12 @@
             "items": {
               "type": "string"
             }
+          },
+          "audioUri": {
+            "type": "string"
+          },
+          "shortId": {
+            "type": "string"
           }
         }
       },

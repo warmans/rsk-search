@@ -18,7 +18,6 @@ interface DialogGroup {
 })
 export class TranscriptComponent implements OnInit, AfterViewInit {
 
-
   @Input()
   set transcript(value: Tscript) {
     if (!value) {

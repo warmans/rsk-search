@@ -11,10 +11,10 @@
           [ngClass]="{'linked': lineInSynopsisMap[line.pos], 'no-linked': !lineInSynopsisMap[line.pos]}"
           class="linked-indicator px-2">
         </div>
-        <div *ngIf="audioOffsetsAvailable && !searchResultMode"
+        <div *ngIf="audioOffsetsAvailable"
              class="text-sm timestamp mb-2 py-2 flex-shrink-0 d-flex flex-column justify-content-center" style="width: 4rem">
           <div
-            title="Faded timestamps are inferred and may not be accurate. These can be improved using the corrections feature."
+            title="Timestamps are inferred and may not be accurate. These can be improved using the corrections feature."
             [ngClass]="{'text-muted': line.offsetInferred}" *ngIf="line.offsetSec > 0" (click)="emitTimestamp(line.offsetSec)"
             class="clickable"><i class="bi-caret-right"></i>{{line.offsetSec | formatSeconds}}
           </div>
