@@ -64,6 +64,11 @@ export class TranscriberComponent implements OnInit, OnDestroy {
   @Input()
   unifiedDiff: string;
 
+  // when editing a chunk we need to get the first offset and use it to modify the current offset
+  // since we are working with a random chunk of audio from the episode.
+  @Input()
+  chunkMode: boolean = false;
+
   fromBackup: boolean = false;
 
   editorConfig: EditorConfig = localStorage.getItem('editor-config') ? JSON.parse(localStorage.getItem('editor-config')) as EditorConfig : new EditorConfig();
@@ -155,7 +160,7 @@ export class TranscriberComponent implements OnInit, OnDestroy {
       this.fromBackup = true;
     }
     this.contentUpdated.next(this.initialTranscript);
-    this.firstOffset = getFirstOffset(this.initialTranscript);
+    this.firstOffset = this.chunkMode ? getFirstOffset(this.initialTranscript) : 0;
   }
 
   backupContent(text: string) {
