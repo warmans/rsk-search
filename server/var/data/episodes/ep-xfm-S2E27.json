@@ -5090,7 +5090,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Back In Black",
+          "song_artist": "AC/DC",
+          "song_track": "You Shook Me All Night Long",
+          "spotify_uri": "spotify:track:2SiXAy7TuUkycRVbbWDEpo"
+        },
         "content": "AC/DC - You Shook Me All Night Long",
         "notable": false
       },
@@ -5970,7 +5975,12 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "A Rush of Blood to the Head",
+          "song_artist": "Coldplay",
+          "song_track": "Clocks",
+          "spotify_uri": "spotify:track:0BCPKOYdS2jbQ8iyB56Zns"
+        },
         "content": "Coldplay - Clocks",
         "notable": false
       },
@@ -8423,7 +8433,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Heathen Chemistry",
+          "song_artist": "Oasis",
+          "song_track": "Songbird",
+          "spotify_uri": "spotify:track:2tBxJ43XiwEzhf7Xalc5UG"
+        },
         "content": "Oasis - Songbird",
         "notable": false
       },

@@ -711,7 +711,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "The Only Ones",
+          "song_artist": "The Only Ones",
+          "song_track": "Another Girl, Another Planet - 2008 re-mastered version",
+          "spotify_uri": "spotify:track:5TmQl8urbTlfZb8xKisSl0"
+        },
         "content": "The Only Ones - Another Girl, Another Planet",
         "notable": false
       },
@@ -1855,7 +1860,12 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Urban Hymns (Super Deluxe / Remastered 2016)",
+          "song_artist": "The Verve",
+          "song_track": "Sonnet",
+          "spotify_uri": "spotify:track:2WhE1D8PcqUL8ttRYRaCfl"
+        },
         "content": "The Verve - Sonnet",
         "notable": false
       },
@@ -3736,7 +3746,11 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Zuma",
+          "song_track": "Pardon My Heart - 2016 Remaster",
+          "spotify_uri": "spotify:track:5CEe8Ugb8vxXI9jNvYjflT"
+        },
         "content": "Neil Young - Pardon My Heart",
         "notable": false
       },
@@ -6508,7 +6522,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "The Negatives",
+          "song_artist": "Lloyd Cole",
+          "song_track": "Impossible Girl",
+          "spotify_uri": "spotify:track:7yRR1O5CIiVTl54R7Ct2Bg"
+        },
         "content": "Lloyd Cole - Impossible Girl",
         "notable": false
       },
@@ -8136,7 +8155,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Hot Fuss",
+          "song_artist": "The Killers",
+          "song_track": "Somebody Told Me",
+          "spotify_uri": "spotify:track:6PwjJ58I4t7Mae9xfZ9l9v"
+        },
         "content": "The Killers - Somebody Told Me",
         "notable": false
       },
@@ -9500,7 +9524,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Pushing the Senses",
+          "song_artist": "Feeder",
+          "song_track": "Pushing The Senses",
+          "spotify_uri": "spotify:track:5KLTqUuLMQzTFmUydRh1Ud"
+        },
         "content": "Feeder - Pushing the Senses",
         "notable": false
       },

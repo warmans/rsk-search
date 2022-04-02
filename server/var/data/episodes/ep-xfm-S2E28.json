@@ -1559,7 +1559,12 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Youth And Young Manhood",
+          "song_artist": "Kings of Leon",
+          "song_track": "Molly's Chambers",
+          "spotify_uri": "spotify:track:0nCAVzknkzRXRgB6LhRv04"
+        },
         "content": "Kings of Leon - Molly's Chambers",
         "notable": false
       },
@@ -3924,7 +3929,12 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "The Rise and Fall of Ziggy Stardust and the Spiders from Mars (2012 Remaster)",
+          "song_artist": "David Bowie",
+          "song_track": "Lady Stardust - 2012 Remaster",
+          "spotify_uri": "spotify:track:2ZWKuGuQ087pzwK4vO4E31"
+        },
         "content": "David Bowie - Lady Stardust",
         "notable": false
       },
@@ -5046,7 +5056,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "A Rush of Blood to the Head",
+          "song_artist": "Coldplay",
+          "song_track": "Clocks",
+          "spotify_uri": "spotify:track:0BCPKOYdS2jbQ8iyB56Zns"
+        },
         "content": "Coldplay - Clocks",
         "notable": false
       },
@@ -11096,7 +11111,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Mona Bone Jakon (Remastered 2020)",
+          "song_artist": "Yusuf / Cat Stevens",
+          "song_track": "Lilywhite",
+          "spotify_uri": "spotify:track:2xua22XyOXFs0y2VziBvQQ"
+        },
         "content": "Cat Stevens - Lilywhite",
         "notable": false
       }

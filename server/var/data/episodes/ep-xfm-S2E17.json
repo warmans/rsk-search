@@ -4243,7 +4243,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Sha Sha",
+          "song_artist": "Ben Kweller",
+          "song_track": "In Other Words",
+          "spotify_uri": "spotify:track:5crqmDgnvttvJoI4VlXqa3"
+        },
         "content": "Ben Kweller - In Other Words",
         "notable": false
       },

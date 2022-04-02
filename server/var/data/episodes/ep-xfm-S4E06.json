@@ -634,7 +634,12 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Pisces, Aquarius, Capricorn \u0026 Jones Ltd. (Deluxe Edition)",
+          "song_artist": "The Monkees",
+          "song_track": "Pleasant Valley Sunday - 2007 Remaster",
+          "spotify_uri": "spotify:track:2HqB3VSdiYmDkTTCPzVHOf"
+        },
         "content": "The Monkees, \"Pleasant Valley Sunday\"",
         "notable": false
       },
@@ -1668,7 +1673,12 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Out Of Nothing",
+          "song_artist": "Embrace",
+          "song_track": "Gravity",
+          "spotify_uri": "spotify:track:4QIFS5XokMBJjfAdZjABPV"
+        },
         "content": "Embrace, \"Gravity\"",
         "notable": false
       },
@@ -4627,7 +4637,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Goodbye Jumbo",
+          "song_artist": "World Party",
+          "song_track": "Put the Message In the Box",
+          "spotify_uri": "spotify:track:6fExMvR1PjfDzqaQSqSmn9"
+        },
         "content": "World Party - Put The Message In The Box",
         "notable": false
       },
@@ -5199,7 +5214,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Ten Years Of Gold",
+          "song_artist": "Kenny Rogers",
+          "song_track": "Ruby Don't Take Your Love To Town",
+          "spotify_uri": "spotify:track:3MoCJ7TOCMlFdyeBEHt24q"
+        },
         "content": "Ruby Don't Take Your Love To Town - Kenny Rogers",
         "notable": false
       },
@@ -8191,7 +8211,12 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "JackInABox",
+          "song_artist": "Turin Brakes",
+          "song_track": "Fishing For A Dream",
+          "spotify_uri": "spotify:track:5ImV32qJxce0GE2Y3eoEgq"
+        },
         "content": "Turin Brakes - Fishing for a Dream",
         "notable": false
       },

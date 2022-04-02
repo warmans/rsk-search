@@ -31,7 +31,7 @@ func ImportSpotifyData() *cobra.Command {
 
 			spotifyToken = os.Getenv("SPOTIFY_TOKEN")
 			if spotifyToken == "" {
-				return fmt.Errorf("token cannot be empty")
+				logger.Warn("No spotify token configured. Local cache will be used instead.")
 			}
 
 			if err := addTinPotRadioLinks(tinPotRadioData, logger.With(zap.String("stage", "tinpotradio"))); err != nil {
@@ -133,6 +133,10 @@ func addSongMeta(logger *zap.Logger, token string, metadataPath string) error {
 
 				cachedId, ok := songCache.FindKeyByTerm(searchTerm)
 				if !ok {
+					if token == "" {
+						lg.Warn("No spotify token given. Using cache only...", zap.String("term", searchTerm))
+						continue
+					}
 					lg.Info("Querying spotify...", zap.String("term", searchTerm))
 					track, err = search.FindTrack(searchTerm)
 					if err != nil || track == nil {

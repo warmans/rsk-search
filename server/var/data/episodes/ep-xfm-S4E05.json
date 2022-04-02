@@ -569,7 +569,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Johnny The Fox",
+          "song_artist": "Thin Lizzy",
+          "song_track": "Don't Believe A Word",
+          "spotify_uri": "spotify:track:19Db89BvpKxmuT4S31OkRX"
+        },
         "content": "Thin Lizzy - Don't Believe A Word",
         "notable": false
       },
@@ -1570,7 +1575,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Give the People What They Want",
+          "song_artist": "The Kinks",
+          "song_track": "Better Things",
+          "spotify_uri": "spotify:track:179Rs3pkJx9vUWnN4jhcYA"
+        },
         "content": "The Kinks - Better Things",
         "notable": false
       },
@@ -3033,7 +3043,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Pushing the Senses",
+          "song_artist": "Feeder",
+          "song_track": "Pushing The Senses",
+          "spotify_uri": "spotify:track:5KLTqUuLMQzTFmUydRh1Ud"
+        },
         "content": "Feeder - Pushing the Senses",
         "notable": false
       },

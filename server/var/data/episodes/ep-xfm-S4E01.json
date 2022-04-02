@@ -1614,7 +1614,11 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "The B.Coming",
+          "song_track": "Feel It In The Air",
+          "spotify_uri": "spotify:track:4rICUbwZZuqUOcgQgtux2k"
+        },
         "content": "Beanie Sigel - Feel it in the Air",
         "notable": false
       },
@@ -4419,7 +4423,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "In Your Honor",
+          "song_artist": "Foo Fighters",
+          "song_track": "Best of You",
+          "spotify_uri": "spotify:track:5FZxsHWIvUsmSK1IAvm2pp"
+        },
         "content": "Foo Fighters - Best of You.",
         "notable": false
       },
@@ -5772,7 +5781,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Only By The Night",
+          "song_artist": "Kings of Leon",
+          "song_track": "Sex on Fire",
+          "spotify_uri": "spotify:track:0ntQJM78wzOLVeCUAW7Y45"
+        },
         "content": "Kings of Leon",
         "notable": false
       },
@@ -6399,7 +6413,11 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Dusty Rainbow from the Dark",
+          "song_track": "Magic Numbers",
+          "spotify_uri": "spotify:track:7bfPAlCcZZipE7TiHWb5LE"
+        },
         "content": "Magic Numbers",
         "notable": false
       },

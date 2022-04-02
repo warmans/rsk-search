@@ -116,12 +116,12 @@ dev.infer-offsets:
 
 .PHONY: dev.refresh-data
 dev.refresh-data:
-	./bin/rsk-search data refresh && ./bin/rsk-search data infer-missing-offsets
+	./bin/rsk-search data refresh && ./bin/rsk-search data infer-missing-offsets && ./bin/rsk-search data spotifize
 
-.PHONY: update.transcriptions
-update.transcriptions:
+.PHONY: update.spotify-links
+update.spotify-links:
 ifndef SPOTIFY_TOKEN
-	$(error "SPOTIFY TOKEN was not defined")
+	$(error "SPOTIFY TOKEN was not defined, consider using dev.refresh-data")
 endif
 	./bin/rsk-search data transcribe && \
  	SPOTIFY_TOKEN=${SPOTIFY_TOKEN} ./bin/rsk-search data spotifize
