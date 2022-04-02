@@ -69,11 +69,12 @@ func (d Dialog) Proto(bestMatch bool) *api.Dialog {
 }
 
 type Transcript struct {
-	Publication string    `json:"publication"`
-	Series      int32     `json:"series"`
-	Episode     int32     `json:"episode"`
-	ReleaseDate time.Time `json:"release_date"`
-	Incomplete  bool      `json:"incomplete"`
+	Publication    string    `json:"publication"`
+	Series         int32     `json:"series"`
+	Episode        int32     `json:"episode"`
+	ReleaseDate    time.Time `json:"release_date"`
+	Incomplete     bool      `json:"incomplete"`
+	OffsetAccuracy int32     `json:"offset_accuracy"`
 
 	// additional optional data
 	Meta         Metadata   `json:"metadata"`
@@ -126,8 +127,9 @@ func (e *Transcript) ShortProto(audioURI string) *api.ShortTranscript {
 		Synopsis:            make([]*api.Synopsis, len(e.Synopsis)),
 		TriviaAvailable:     len(e.Trivia) > 0,
 		Actors:              e.Actors(),
-		ShortId: e.ShortID(),
-		AudioUri: audioURI,
+		ShortId:             e.ShortID(),
+		AudioUri:            audioURI,
+		OffsetAccuracyPcnt:  e.OffsetAccuracy,
 	}
 	for k, s := range e.Synopsis {
 		ep.Synopsis[k] = s.Proto()
@@ -140,18 +142,19 @@ func (e *Transcript) Proto(withRawTranscript string, audioURI string) *api.Trans
 		return nil
 	}
 	ep := &api.Transcript{
-		Id:            e.ID(),
-		ShortId:       e.ShortID(),
-		Publication:   e.Publication,
-		Series:        e.Series,
-		Episode:       e.Episode,
-		Metadata:      e.Meta.Proto(),
-		ReleaseDate:   e.ReleaseDate.Format(util.ShortDateFormat),
-		Contributors:  e.Contributors,
-		Incomplete:    e.Incomplete,
-		RawTranscript: withRawTranscript,
-		AudioUri:      audioURI,
-		Actors:        e.Actors(),
+		Id:                 e.ID(),
+		ShortId:            e.ShortID(),
+		Publication:        e.Publication,
+		Series:             e.Series,
+		Episode:            e.Episode,
+		Metadata:           e.Meta.Proto(),
+		ReleaseDate:        e.ReleaseDate.Format(util.ShortDateFormat),
+		Contributors:       e.Contributors,
+		Incomplete:         e.Incomplete,
+		RawTranscript:      withRawTranscript,
+		AudioUri:           audioURI,
+		Actors:             e.Actors(),
+		OffsetAccuracyPcnt: e.OffsetAccuracy,
 	}
 	for _, d := range e.Transcript {
 		ep.Transcript = append(ep.Transcript, d.Proto(false))

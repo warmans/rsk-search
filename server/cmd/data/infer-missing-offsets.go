@@ -60,9 +60,15 @@ func InferMissingOffsetsCmd() *cobra.Command {
 
 				wpm := calculateWordsPerSecond(episodeDuration, episode.Transcript)
 
+				numAccurateOffsets := float64(0)
 				for lineNum := range episode.Transcript {
 					episode.Transcript[lineNum].OffsetSec, episode.Transcript[lineNum].OffsetInferred = wpm.getSecondOffset(int64(lineNum))
+					if !episode.Transcript[lineNum].OffsetInferred {
+						numAccurateOffsets++
+					}
 				}
+				episode.OffsetAccuracy =  int32(numAccurateOffsets / float64(len(episode.Transcript)) * 100)
+
 				if err := data.ReplaceEpisodeFile(inputDir, episode); err != nil {
 					return err
 				}

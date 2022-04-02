@@ -15,9 +15,12 @@
       </div>
     </div>
     <div>
-      <div *ngIf="episode.transcriptAvailable && !episode.incomplete" class="badge"><i class="bi bi-card-text mr-1"></i> Complete Transcript</div>
-      <div *ngIf="!episode.transcriptAvailable || episode.incomplete" class="badge"><i class="bi bi-card-text text-danger mr-1"></i> Incomplete Transcript</div>
-      <div *ngIf="episode.triviaAvailable" class="badge"><i class="bi bi-card-text mr-1"></i> Trivia</div>
+      <div *ngIf="episode.transcriptAvailable && !episode.incomplete" class="badge mr-2"><i class="bi bi-card-text mr-1"></i> Complete Transcript</div>
+      <div *ngIf="!episode.transcriptAvailable || episode.incomplete" class="badge mr-2"><i class="bi bi-card-text text-danger mr-1"></i> Incomplete Transcript</div>
+      <div *ngIf="episode.triviaAvailable" class="badge mr-2"><i class="bi bi-card-text mr-1"></i> Trivia</div>
+      <div class="badge" title="Timecodes are inferred where missing. If a transcript includes more manually placed offsets the inferred offsets are more accurate.">
+        <i class="bi bi-card-text mr-1"></i> {{episode.offsetAccuracyPcnt | timecodeAccuracy}} Timecode Accuracy
+      </div>
     </div>
   </div>
   <div class="body mb-2 p-2">

@@ -99,7 +99,7 @@ dev.populate.test-data: build
 .PHONY: dev.extract.test-data
 dev.extract.test-data: build
 	./bin/rsk-search db extract-tscript --rw-db-dsn=${DEV_DB_DSN} --dry-run=true
-	$(MAKE) dev.infer-offsets
+	$(MAKE) dev.refresh-data
 
 .PHONY: extract.prod
 extract.prod:
@@ -108,14 +108,14 @@ ifndef PROD_DB_DSN
 endif
 	./bin/rsk-search db extract-tscript --rw-db-dsn=${PROD_DB_DSN} --dry-run=false
 	./bin/rsk-search db merge-transcript-changes --rw-db-dsn=${PROD_DB_DSN} --dry-run=false
-	$(MAKE) dev.infer-offsets
+	$(MAKE) dev.refresh-data
 
 .PHONY: dev.infer-offsets
 dev.infer-offsets:
 	./bin/rsk-search data infer-missing-offsets
 
 .PHONY: dev.refresh-data
-dev.refresh-data: build
+dev.refresh-data:
 	./bin/rsk-search data refresh && ./bin/rsk-search data infer-missing-offsets
 
 .PHONY: update.transcriptions

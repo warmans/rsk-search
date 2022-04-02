@@ -129,6 +129,7 @@ message ShortTranscript {
   repeated string actors = 11;
   string audio_uri = 12;
   string short_id = 13;
+  int32 offset_accuracy_pcnt = 14;
 }
 
 message DialogResult {
@@ -186,6 +187,7 @@ message Transcript {
   string short_id = 14;
   repeated Trivia trivia = 15;
   repeated string actors = 16;
+  int32 offset_accuracy_pcnt = 17;
 }
 
 message GetTranscriptRequest {

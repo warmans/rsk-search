@@ -56,6 +56,7 @@
                   <td>
                     <button *ngIf="!audioStatus || audioStatus?.state !== audioStates.playing" class="btn btn-sm btn-primary" (click)="playAudio()"><i class="bi bi-play"></i> Play</button>
                     <button *ngIf="audioStatus?.state === audioStates.playing" class="btn btn-sm btn-primary" (click)="pauseAudio()"><i class="bi bi-pause"></i> Pause</button>
+                    <span class="muted ml-3">({{episode.offsetAccuracyPcnt | timecodeAccuracy}} Timecode Accuracy)</span>
                   </td>
                 </tr>
               </table>

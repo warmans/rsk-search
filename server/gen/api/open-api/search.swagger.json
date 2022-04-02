@@ -510,6 +510,10 @@
         },
         "shortId": {
           "type": "string"
+        },
+        "offsetAccuracyPcnt": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },
@@ -596,6 +600,10 @@
           "items": {
             "type": "string"
           }
+        },
+        "offsetAccuracyPcnt": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },

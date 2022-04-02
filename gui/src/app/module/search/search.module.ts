@@ -15,6 +15,7 @@ import { MatchedRowPosPipe } from './pipe/match-row-pos.pipe';
 import { EpisodeListComponent } from './component/episode-list/episode-list.component';
 import { EpisodeSummaryComponent } from './component/episode-summary/episode-summary.component';
 import { ChangelogComponent } from './page/changelog/changelog.component';
+import { TimecodeAccuracyPipe } from './pipe/timecode-accuracy.pipe';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { ChangelogComponent } from './page/changelog/changelog.component';
     EpisodeListComponent,
     EpisodeSummaryComponent,
     ChangelogComponent,
+    TimecodeAccuracyPipe,
   ],
   imports: [
     CommonModule,
