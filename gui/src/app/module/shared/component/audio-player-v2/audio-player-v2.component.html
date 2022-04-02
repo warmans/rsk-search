@@ -1,18 +1,22 @@
-<div class="player d-flex" *ngIf="this.audioStatus?.audioName">
-  <div class="controls p-2 d-flex align-items-center">
-    <div class="clickable p-1" *ngIf="audioStatus.state !== states.playing" (click)="play()"><i class="bi-play-circle-fill"></i></div>
-    <div class="clickable p-1" *ngIf="audioStatus.state === states.playing" (click)="pause()"><i class="bi-pause-circle-fill"></i></div>
+<div class="player d-flex px-2" *ngIf="this.audioStatus?.audioName">
+  <div class="controls py-2 pr-2 d-flex align-items-center">
+    <div class="clickable p-1" *ngIf="audioStatus?.state !== states.playing" (click)="play()"><i class="bi-play-circle-fill"></i></div>
+    <div class="clickable p-1" *ngIf="audioStatus?.state === states.playing" (click)="pause()"><i class="bi-pause-circle-fill"></i></div>
   </div>
   <div class="flex-grow-1 p-2">
-    <div class="mb-1"><a *ngIf="audioStatus.audioName" [routerLink]="['/ep', 'ep-'+audioStatus.audioName]">{{ audioStatus.audioName }}</a> <span *ngIf="audioStatus?.state === states.loading">(loading...)</span></div>
+    <div class="mb-1">
+      <a *ngIf="audioStatus.audioName && !audioStatus.standalone" [routerLink]="['/ep', 'ep-'+audioStatus.audioName]">{{ audioStatus.audioName }}</a>
+      <span *ngIf="audioStatus.audioName && audioStatus.standalone">{{ audioStatus.audioName }}</span>
+      <span *ngIf="audioStatus?.state === states.loading">(loading...)</span>
+    </div>
     <div>
       <input style="width: 100%" type="range" [min]="0" [max]="this.audioStatus.totalTime" [formControl]="playerProgressControl">
     </div>
     <div class="d-flex justify-content-between">
       <div *ngIf="audioStatus.state === states.ended">End</div>
       <div *ngIf="audioStatus.state !== states.ended">
-        <a *ngIf="audioStatus.audioName" [routerLink]="['/ep', 'ep-'+audioStatus.audioName]" [fragment]="'sec-'+audioStatus.currentTime">{{audioStatus?.currentTime | formatSeconds}}</a>
-
+        <a *ngIf="audioStatus.audioName && !audioStatus.standalone" [routerLink]="['/ep', 'ep-'+audioStatus.audioName]" [fragment]="'sec-'+audioStatus.currentTime">{{audioStatus?.currentTime | formatSeconds}}</a>
+        <span *ngIf="audioStatus.audioName && audioStatus.standalone">{{audioStatus?.currentTime | formatSeconds}}</span>
       </div>
       <div>{{audioStatus?.totalTime | formatSeconds}}</div>
     </div>
@@ -21,7 +25,7 @@
     <i class="bi bi-volume-up mr-1"></i>
     <input type="range" min="0" max="100" [formControl]="volumeControl">
   </div>
-  <div class="exit d-flex align-items-center px-3">
+  <div class="exit d-flex align-items-center px-3" *ngIf="!audioStatus.standalone">
     <div class="clickable p-1 close" (click)="closeAudio()">&times;</div>
   </div>
 </div>

@@ -8,7 +8,7 @@ export class FormatSecondsPipe implements PipeTransform {
   }
   transform(seconds: number): string {
     if (!seconds) {
-      return "";
+      return "-";
     }
     return (new Date(seconds * 1000)).toISOString().substr(14, 5);
   }

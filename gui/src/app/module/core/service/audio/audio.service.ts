@@ -4,6 +4,7 @@ import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 export interface Status {
   audioName: string;
   audioFile: string;
+  standalone: boolean;
   state: PlayerState;
   currentTime: number;
   totalTime: number;
@@ -20,6 +21,7 @@ export interface TimeStatus {
 export interface FileStatus {
   audioName: string;
   audioFile: string;
+  standalone: boolean;
 }
 
 export enum PlayerState {
@@ -38,9 +40,15 @@ export class AudioService {
 
   private audioName: string | null = null;
 
+  // if the player is setup in an unusual way (e.g. chunk transcriptions) notify the player component so it
+  // can disable some features.
+  // this will also affect persisting player state to local storage.
+  private standaloneMode: boolean = false;
+
   private statusSub: BehaviorSubject<Status> = new BehaviorSubject<Status>({
     audioName: '',
     audioFile: '',
+    standalone: this.standaloneMode,
     state: PlayerState.paused,
     currentTime: 0,
     totalTime: 0,
@@ -57,22 +65,17 @@ export class AudioService {
 
   private playerStatusSub: BehaviorSubject<PlayerState> = new BehaviorSubject(PlayerState.paused);
   private percentLoadedSub: BehaviorSubject<number> = new BehaviorSubject(0);
-  private audioSourceSub: BehaviorSubject<FileStatus> = new BehaviorSubject<FileStatus>({ audioFile: '', audioName: '' });
+  private audioSourceSub: BehaviorSubject<FileStatus> = new BehaviorSubject<FileStatus>({ audioFile: '', audioName: '', standalone: false });
 
   constructor() {
     this.audio = new Audio();
     this.attachListeners();
 
     combineLatest([this.timeStatusSub, this.playerStatusSub, this.percentLoadedSub, this.audioSourceSub]).subscribe(([timeState, playerState, pcntLoaded, file]) => {
-
-      if (file.audioFile == '') {
-        this.statusSub.next(null);
-        return;
-      }
-
       const status = {
         audioName: file.audioName,
         audioFile: file.audioFile,
+        standalone: file.standalone,
         state: playerState,
         currentTime: timeState.currentTime,
         totalTime: timeState.totalTime,
@@ -133,48 +136,41 @@ export class AudioService {
 
   public reset() {
     this.pauseAudio();
-    this.clearPlayerState();
-    this.setAudioSrc(null, '');
+    this.setAudioSrc(null, '', false);
+    this.clearPersistentPlayerState();
   }
 
-  /**
-   * This is typically a URL to an MP3 file
-   * @param name
-   * @param src
-   */
-  public setAudioSrc(name: string | null, src: string): void {
-    if (this.audioName === name) {
-      return;
-    }
+  public setAudioSrc(name: string | null, src: string, standalone?: boolean): void {
+    this.pauseAudio();
+
     this.audioName = name;
     this.audio.src = src;
-    this.audioSourceSub.next({ audioFile: src, audioName: name });
+    this.standaloneMode = standalone;
+    this.audioSourceSub.next({ audioFile: src, audioName: name, standalone: standalone });
   }
 
-  /**
-   * The method to play audio
-   */
-  public playAudio(): void {
+  public playAudio(withOffset?: number): void {
+    if (!this.audio) {
+      return;
+    }
+    if (withOffset !== undefined) {
+      this.audio.currentTime = this.audio.currentTime + withOffset > 0 ? this.audio.currentTime + withOffset : 0;
+    }
     this.audio.play();
   }
 
-  /**
-   * The method to pause audio
-   */
   public pauseAudio(): void {
+    // force an event to be emitted ASAP.
+    this.playerStatusSub.next(PlayerState.paused);
     this.audio.pause();
   }
 
-  /**
-   * Convenience method to toggle the audio between playing and paused
-   */
-  public toggleAudio(): void {
-    (this.audio.paused) ? this.audio.play() : this.audio.pause();
+  public toggleAudio(withOffset?: number): void {
+    (this.audio.paused) ? this.playAudio(withOffset) : this.pauseAudio();
   }
 
   /**
-   * Method to seek to a position on the audio track (in milliseconds, I think),
-   * @param position
+   * @param position number seconds.milliseconds
    */
   public seekAudio(position: number): void {
     this.audio.currentTime = position;
@@ -183,6 +179,11 @@ export class AudioService {
   public setVolume(vol: number): void {
     this.persistPlayerVolume(vol);
     this.audio.volume = vol;
+  }
+
+  public setPlaybackRate(rate: number): void {
+    this.audio.defaultPlaybackRate = rate;
+    this.audio.playbackRate = rate;
   }
 
   private calculateTime = (evt) => {
@@ -197,28 +198,23 @@ export class AudioService {
     });
   };
 
-  /**
-   * This method takes the track's "duration" and "currentTime" properties to calculate the percent of time elapsed.
-   * This is valuable for setting the position of a range input. It is called from the calculatePercentLoaded method.
-   * @param p
-   */
   private setPercentLoaded(p): void {
     this.percentLoadedSub.next(parseInt(p, 10) || 0);
   }
 
-  private clearPlayerState() {
-    localStorage.removeItem('audio_service_status');
+  private clearPersistentPlayerState() {
+    localStorage.removeItem(`audio_service_status${this.standaloneMode ? '-' + this.audioName : ''}`);
   }
 
   private persistPlayerState(s: Status) {
     if (!s.audioFile || !s.audioName) {
       return;
     }
-    localStorage.setItem('audio_service_status', JSON.stringify(s));
+    localStorage.setItem(`audio_service_status${this.standaloneMode ? '-' + this.audioName : ''}`, JSON.stringify(s));
   }
 
   private tryLoadPlayerState() {
-    const storedJSON = localStorage.getItem('audio_service_status');
+    const storedJSON = localStorage.getItem(`audio_service_status${this.standaloneMode ? '-' + this.audioName : ''}`);
     if (storedJSON) {
       let state: Status;
       try {
