@@ -16,8 +16,8 @@ DEV_DB_DSN ?= "postgres://$(DEV_DB_USER):$(DEV_DB_PASS)@$(DEV_DB_HOST):5432/$(DE
 #----------------------------------------------------------------------------------------------
 
 .PHONY: setup
-setup: check.env install.tools install.buf install.golangci
-	echo "SETUP"
+setup: install.tools install.buf install.golangci
+	echo "=> Setup OK"
 
 .PHONY: install.tools
 install.tools:
