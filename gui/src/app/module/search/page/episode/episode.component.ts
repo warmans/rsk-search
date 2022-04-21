@@ -108,17 +108,17 @@ export class EpisodeComponent implements OnInit, OnDestroy {
           }
         });
         this.meta.getMeta().pipe(takeUntil(this.unsubscribe$)).subscribe((res: RskMetadata) => {
-          const curIndex = (res.episodeShortIDs || []).findIndex((v) => v == ep.shortId);
+          const curIndex = (res.episodeShortIds || []).findIndex((v) => v == ep.shortId);
           if (curIndex === -1) {
             console.error(`failed to find episode in metadata ${ep.shortId}`);
           }
 
           this.previousEpisodeId = this.nextEpisodeId = null;
-          if (curIndex > 0 && (res.episodeShortIDs || []).length > 0) {
-            this.previousEpisodeId = `ep-${res.episodeShortIDs[curIndex - 1]}`;
+          if (curIndex > 0 && (res.episodeShortIds || []).length > 0) {
+            this.previousEpisodeId = `ep-${res.episodeShortIds[curIndex - 1]}`;
           }
-          if (curIndex < ((res.episodeShortIDs || []).length - 1)) {
-            this.nextEpisodeId = `ep-${res.episodeShortIDs[curIndex + 1]}`;
+          if (curIndex < ((res.episodeShortIds || []).length - 1)) {
+            this.nextEpisodeId = `ep-${res.episodeShortIds[curIndex + 1]}`;
           }
         });
       },

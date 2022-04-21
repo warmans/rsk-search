@@ -25,3 +25,4 @@ jobs:
         with:
           version: v1.45.2
           working-directory: server
+          args: --timout=5m

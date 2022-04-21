@@ -292,12 +292,13 @@ func RegisterSearchServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.SearchService/Search")
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.SearchService/Search", runtime.WithHTTPPathPattern("/api/search"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_SearchService_Search_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_SearchService_Search_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -315,12 +316,13 @@ func RegisterSearchServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.SearchService/GetMetadata")
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.SearchService/GetMetadata", runtime.WithHTTPPathPattern("/api/metadata"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_SearchService_GetMetadata_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_SearchService_GetMetadata_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -338,12 +340,13 @@ func RegisterSearchServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.SearchService/ListFieldValues")
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.SearchService/ListFieldValues", runtime.WithHTTPPathPattern("/api/values/{field}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_SearchService_ListFieldValues_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_SearchService_ListFieldValues_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -361,12 +364,13 @@ func RegisterSearchServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.SearchService/GetTranscript")
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.SearchService/GetTranscript", runtime.WithHTTPPathPattern("/api/transcript/{epid}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_SearchService_GetTranscript_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_SearchService_GetTranscript_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -384,12 +388,13 @@ func RegisterSearchServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.SearchService/ListTranscripts")
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.SearchService/ListTranscripts", runtime.WithHTTPPathPattern("/api/transcript"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_SearchService_ListTranscripts_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_SearchService_ListTranscripts_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -407,12 +412,13 @@ func RegisterSearchServiceHandlerServer(ctx context.Context, mux *runtime.ServeM
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.SearchService/ListChangelogs")
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.SearchService/ListChangelogs", runtime.WithHTTPPathPattern("/api/changelog"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_SearchService_ListChangelogs_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_SearchService_ListChangelogs_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -469,12 +475,13 @@ func RegisterSearchServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.SearchService/Search")
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/rsk.SearchService/Search", runtime.WithHTTPPathPattern("/api/search"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_SearchService_Search_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_SearchService_Search_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -489,12 +496,13 @@ func RegisterSearchServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.SearchService/GetMetadata")
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/rsk.SearchService/GetMetadata", runtime.WithHTTPPathPattern("/api/metadata"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_SearchService_GetMetadata_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_SearchService_GetMetadata_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -509,12 +517,13 @@ func RegisterSearchServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.SearchService/ListFieldValues")
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/rsk.SearchService/ListFieldValues", runtime.WithHTTPPathPattern("/api/values/{field}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_SearchService_ListFieldValues_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_SearchService_ListFieldValues_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -529,12 +538,13 @@ func RegisterSearchServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.SearchService/GetTranscript")
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/rsk.SearchService/GetTranscript", runtime.WithHTTPPathPattern("/api/transcript/{epid}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_SearchService_GetTranscript_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_SearchService_GetTranscript_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -549,12 +559,13 @@ func RegisterSearchServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.SearchService/ListTranscripts")
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/rsk.SearchService/ListTranscripts", runtime.WithHTTPPathPattern("/api/transcript"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_SearchService_ListTranscripts_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_SearchService_ListTranscripts_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -569,12 +580,13 @@ func RegisterSearchServiceHandlerClient(ctx context.Context, mux *runtime.ServeM
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.SearchService/ListChangelogs")
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/rsk.SearchService/ListChangelogs", runtime.WithHTTPPathPattern("/api/changelog"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_SearchService_ListChangelogs_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_SearchService_ListChangelogs_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)

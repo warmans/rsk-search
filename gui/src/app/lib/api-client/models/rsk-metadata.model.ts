@@ -4,6 +4,6 @@ import {
 } from '.';
 
 export interface RskMetadata {
-  episodeShortIDs?: string[];
+  episodeShortIds?: string[];
   searchFields?: RskFieldMeta[];
 }

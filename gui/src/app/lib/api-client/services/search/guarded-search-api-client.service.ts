@@ -88,7 +88,7 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
   createChunkContribution(
     args: {
       chunkId: string,
-      body: models.RskCreateChunkContributionRequest,
+      body: object,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskChunkContribution> {
@@ -119,7 +119,7 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
   updateChunkContribution(
     args: {
       contributionId: string,
-      body: models.RskUpdateChunkContributionRequest,
+      body: object,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskChunkContribution> {
@@ -130,7 +130,7 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
   requestChunkContributionState(
     args: {
       contributionId: string,
-      body: models.RskRequestChunkContributionStateRequest,
+      body: object,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskChunkContribution> {
@@ -175,7 +175,7 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
   updateTranscriptChange(
     args: {
       id: string,
-      body: models.RskUpdateTranscriptChangeRequest,
+      body: object,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscriptChange> {
@@ -196,7 +196,7 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
   requestTranscriptChangeState(
     args: {
       id: string,
-      body: models.RskRequestTranscriptChangeStateRequest,
+      body: object,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<object> {
@@ -207,7 +207,7 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
   createTranscriptChange(
     args: {
       epid: string,
-      body: models.RskCreateTranscriptChangeRequest,
+      body: object,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscriptChange> {
@@ -239,7 +239,7 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
   claimReward(
     args: {
       id: string,
-      body: models.RskClaimRewardRequest,
+      body: object,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<object> {

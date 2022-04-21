@@ -1188,12 +1188,13 @@ func RegisterContribServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/ListTscripts")
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/ListTscripts", runtime.WithHTTPPathPattern("/api/tscript"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ContribService_ListTscripts_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ContribService_ListTscripts_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1211,12 +1212,13 @@ func RegisterContribServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/GetChunkStats")
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/GetChunkStats", runtime.WithHTTPPathPattern("/api/tscript/stats"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ContribService_GetChunkStats_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ContribService_GetChunkStats_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1234,12 +1236,13 @@ func RegisterContribServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/GetAuthorLeaderboard")
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/GetAuthorLeaderboard", runtime.WithHTTPPathPattern("/api/tscript/author/leaderboard"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ContribService_GetAuthorLeaderboard_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ContribService_GetAuthorLeaderboard_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1257,12 +1260,13 @@ func RegisterContribServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/GetChunk")
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/GetChunk", runtime.WithHTTPPathPattern("/api/tscript/chunk/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ContribService_GetChunk_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ContribService_GetChunk_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1280,12 +1284,13 @@ func RegisterContribServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/ListChunks")
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/ListChunks", runtime.WithHTTPPathPattern("/api/tscript/{tscript_id}/chunk"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ContribService_ListChunks_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ContribService_ListChunks_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1303,12 +1308,13 @@ func RegisterContribServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/ListChunkContributions")
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/ListChunkContributions", runtime.WithHTTPPathPattern("/api/contrib/chunk"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ContribService_ListChunkContributions_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ContribService_ListChunkContributions_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1326,12 +1332,13 @@ func RegisterContribServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/GetChunkContribution")
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/GetChunkContribution", runtime.WithHTTPPathPattern("/api/contrib/chunk/{contribution_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ContribService_GetChunkContribution_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ContribService_GetChunkContribution_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1349,12 +1356,13 @@ func RegisterContribServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/CreateChunkContribution")
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/CreateChunkContribution", runtime.WithHTTPPathPattern("/api/contrib/chunk/{chunk_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ContribService_CreateChunkContribution_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ContribService_CreateChunkContribution_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1372,12 +1380,13 @@ func RegisterContribServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/UpdateChunkContribution")
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/UpdateChunkContribution", runtime.WithHTTPPathPattern("/api/contrib/chunk/{contribution_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ContribService_UpdateChunkContribution_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ContribService_UpdateChunkContribution_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1395,12 +1404,13 @@ func RegisterContribServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/DeleteChunkContribution")
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/DeleteChunkContribution", runtime.WithHTTPPathPattern("/api/contrib/chunk/{contribution_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ContribService_DeleteChunkContribution_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ContribService_DeleteChunkContribution_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1418,12 +1428,13 @@ func RegisterContribServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/RequesChunktContributionState")
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/RequesChunktContributionState", runtime.WithHTTPPathPattern("/api/contrib/chunk/{contribution_id}/state"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ContribService_RequesChunktContributionState_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ContribService_RequesChunktContributionState_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1441,12 +1452,13 @@ func RegisterContribServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/ListPendingRewards")
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/ListPendingRewards", runtime.WithHTTPPathPattern("/api/rewards"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ContribService_ListPendingRewards_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ContribService_ListPendingRewards_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1464,12 +1476,13 @@ func RegisterContribServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/ListClaimedRewards")
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/ListClaimedRewards", runtime.WithHTTPPathPattern("/api/rewards/claimed"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ContribService_ListClaimedRewards_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ContribService_ListClaimedRewards_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1487,12 +1500,13 @@ func RegisterContribServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/ClaimReward")
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/ClaimReward", runtime.WithHTTPPathPattern("/api/rewards/{id}/claim"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ContribService_ClaimReward_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ContribService_ClaimReward_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1510,12 +1524,13 @@ func RegisterContribServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/ListDonationRecipients")
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/ListDonationRecipients", runtime.WithHTTPPathPattern("/api/rewards/{reward_id}/recipients"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ContribService_ListDonationRecipients_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ContribService_ListDonationRecipients_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1533,12 +1548,13 @@ func RegisterContribServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/ListTranscriptChanges")
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/ListTranscriptChanges", runtime.WithHTTPPathPattern("/api/contrib/transcript/change"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ContribService_ListTranscriptChanges_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ContribService_ListTranscriptChanges_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1556,12 +1572,13 @@ func RegisterContribServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/GetTranscriptChange")
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/GetTranscriptChange", runtime.WithHTTPPathPattern("/api/contrib/transcript/change/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ContribService_GetTranscriptChange_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ContribService_GetTranscriptChange_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1579,12 +1596,13 @@ func RegisterContribServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/GetTranscriptChangeDiff")
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/GetTranscriptChangeDiff", runtime.WithHTTPPathPattern("/api/contrib/transcript/change/{id}/diff"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ContribService_GetTranscriptChangeDiff_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ContribService_GetTranscriptChangeDiff_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1602,12 +1620,13 @@ func RegisterContribServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/CreateTranscriptChange")
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/CreateTranscriptChange", runtime.WithHTTPPathPattern("/api/contrib/transcript/{epid}/change"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ContribService_CreateTranscriptChange_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ContribService_CreateTranscriptChange_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1625,12 +1644,13 @@ func RegisterContribServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/UpdateTranscriptChange")
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/UpdateTranscriptChange", runtime.WithHTTPPathPattern("/api/contrib/transcript/change/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ContribService_UpdateTranscriptChange_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ContribService_UpdateTranscriptChange_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1648,12 +1668,13 @@ func RegisterContribServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/DeleteTranscriptChange")
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/DeleteTranscriptChange", runtime.WithHTTPPathPattern("/api/contrib/transcript/change/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ContribService_DeleteTranscriptChange_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ContribService_DeleteTranscriptChange_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1671,12 +1692,13 @@ func RegisterContribServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/RequestTranscriptChangeState")
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/RequestTranscriptChangeState", runtime.WithHTTPPathPattern("/api/contrib/transcript/change/{id}/state"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ContribService_RequestTranscriptChangeState_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ContribService_RequestTranscriptChangeState_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1694,12 +1716,13 @@ func RegisterContribServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/ListAuthorContributions")
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/ListAuthorContributions", runtime.WithHTTPPathPattern("/api/author/contribution"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ContribService_ListAuthorContributions_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ContribService_ListAuthorContributions_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1717,12 +1740,13 @@ func RegisterContribServiceHandlerServer(ctx context.Context, mux *runtime.Serve
 		var stream runtime.ServerTransportStream
 		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/ListAuthorRanks")
+		var err error
+		ctx, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/rsk.ContribService/ListAuthorRanks", runtime.WithHTTPPathPattern("/api/author/ranks"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_ContribService_ListAuthorRanks_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_ContribService_ListAuthorRanks_0(ctx, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
@@ -1779,12 +1803,13 @@ func RegisterContribServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/ListTscripts")
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/ListTscripts", runtime.WithHTTPPathPattern("/api/tscript"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ContribService_ListTscripts_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ContribService_ListTscripts_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1799,12 +1824,13 @@ func RegisterContribServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/GetChunkStats")
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/GetChunkStats", runtime.WithHTTPPathPattern("/api/tscript/stats"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ContribService_GetChunkStats_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ContribService_GetChunkStats_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1819,12 +1845,13 @@ func RegisterContribServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/GetAuthorLeaderboard")
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/GetAuthorLeaderboard", runtime.WithHTTPPathPattern("/api/tscript/author/leaderboard"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ContribService_GetAuthorLeaderboard_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ContribService_GetAuthorLeaderboard_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1839,12 +1866,13 @@ func RegisterContribServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/GetChunk")
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/GetChunk", runtime.WithHTTPPathPattern("/api/tscript/chunk/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ContribService_GetChunk_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ContribService_GetChunk_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1859,12 +1887,13 @@ func RegisterContribServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/ListChunks")
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/ListChunks", runtime.WithHTTPPathPattern("/api/tscript/{tscript_id}/chunk"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ContribService_ListChunks_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ContribService_ListChunks_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1879,12 +1908,13 @@ func RegisterContribServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/ListChunkContributions")
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/ListChunkContributions", runtime.WithHTTPPathPattern("/api/contrib/chunk"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ContribService_ListChunkContributions_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ContribService_ListChunkContributions_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1899,12 +1929,13 @@ func RegisterContribServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/GetChunkContribution")
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/GetChunkContribution", runtime.WithHTTPPathPattern("/api/contrib/chunk/{contribution_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ContribService_GetChunkContribution_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ContribService_GetChunkContribution_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1919,12 +1950,13 @@ func RegisterContribServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/CreateChunkContribution")
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/CreateChunkContribution", runtime.WithHTTPPathPattern("/api/contrib/chunk/{chunk_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ContribService_CreateChunkContribution_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ContribService_CreateChunkContribution_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1939,12 +1971,13 @@ func RegisterContribServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/UpdateChunkContribution")
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/UpdateChunkContribution", runtime.WithHTTPPathPattern("/api/contrib/chunk/{contribution_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ContribService_UpdateChunkContribution_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ContribService_UpdateChunkContribution_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1959,12 +1992,13 @@ func RegisterContribServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/DeleteChunkContribution")
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/DeleteChunkContribution", runtime.WithHTTPPathPattern("/api/contrib/chunk/{contribution_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ContribService_DeleteChunkContribution_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ContribService_DeleteChunkContribution_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1979,12 +2013,13 @@ func RegisterContribServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/RequesChunktContributionState")
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/RequesChunktContributionState", runtime.WithHTTPPathPattern("/api/contrib/chunk/{contribution_id}/state"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ContribService_RequesChunktContributionState_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ContribService_RequesChunktContributionState_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -1999,12 +2034,13 @@ func RegisterContribServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/ListPendingRewards")
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/ListPendingRewards", runtime.WithHTTPPathPattern("/api/rewards"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ContribService_ListPendingRewards_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ContribService_ListPendingRewards_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2019,12 +2055,13 @@ func RegisterContribServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/ListClaimedRewards")
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/ListClaimedRewards", runtime.WithHTTPPathPattern("/api/rewards/claimed"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ContribService_ListClaimedRewards_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ContribService_ListClaimedRewards_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2039,12 +2076,13 @@ func RegisterContribServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/ClaimReward")
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/ClaimReward", runtime.WithHTTPPathPattern("/api/rewards/{id}/claim"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ContribService_ClaimReward_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ContribService_ClaimReward_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2059,12 +2097,13 @@ func RegisterContribServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/ListDonationRecipients")
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/ListDonationRecipients", runtime.WithHTTPPathPattern("/api/rewards/{reward_id}/recipients"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ContribService_ListDonationRecipients_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ContribService_ListDonationRecipients_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2079,12 +2118,13 @@ func RegisterContribServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/ListTranscriptChanges")
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/ListTranscriptChanges", runtime.WithHTTPPathPattern("/api/contrib/transcript/change"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ContribService_ListTranscriptChanges_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ContribService_ListTranscriptChanges_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2099,12 +2139,13 @@ func RegisterContribServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/GetTranscriptChange")
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/GetTranscriptChange", runtime.WithHTTPPathPattern("/api/contrib/transcript/change/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ContribService_GetTranscriptChange_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ContribService_GetTranscriptChange_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2119,12 +2160,13 @@ func RegisterContribServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/GetTranscriptChangeDiff")
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/GetTranscriptChangeDiff", runtime.WithHTTPPathPattern("/api/contrib/transcript/change/{id}/diff"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ContribService_GetTranscriptChangeDiff_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ContribService_GetTranscriptChangeDiff_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2139,12 +2181,13 @@ func RegisterContribServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/CreateTranscriptChange")
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/CreateTranscriptChange", runtime.WithHTTPPathPattern("/api/contrib/transcript/{epid}/change"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ContribService_CreateTranscriptChange_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ContribService_CreateTranscriptChange_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2159,12 +2202,13 @@ func RegisterContribServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/UpdateTranscriptChange")
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/UpdateTranscriptChange", runtime.WithHTTPPathPattern("/api/contrib/transcript/change/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ContribService_UpdateTranscriptChange_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ContribService_UpdateTranscriptChange_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2179,12 +2223,13 @@ func RegisterContribServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/DeleteTranscriptChange")
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/DeleteTranscriptChange", runtime.WithHTTPPathPattern("/api/contrib/transcript/change/{id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ContribService_DeleteTranscriptChange_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ContribService_DeleteTranscriptChange_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2199,12 +2244,13 @@ func RegisterContribServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/RequestTranscriptChangeState")
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/RequestTranscriptChangeState", runtime.WithHTTPPathPattern("/api/contrib/transcript/change/{id}/state"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ContribService_RequestTranscriptChangeState_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ContribService_RequestTranscriptChangeState_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2219,12 +2265,13 @@ func RegisterContribServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/ListAuthorContributions")
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/ListAuthorContributions", runtime.WithHTTPPathPattern("/api/author/contribution"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ContribService_ListAuthorContributions_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ContribService_ListAuthorContributions_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
@@ -2239,12 +2286,13 @@ func RegisterContribServiceHandlerClient(ctx context.Context, mux *runtime.Serve
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
-		rctx, err := runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/ListAuthorRanks")
+		var err error
+		ctx, err = runtime.AnnotateContext(ctx, mux, req, "/rsk.ContribService/ListAuthorRanks", runtime.WithHTTPPathPattern("/api/author/ranks"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_ContribService_ListAuthorRanks_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_ContribService_ListAuthorRanks_0(ctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)

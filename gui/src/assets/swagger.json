@@ -304,7 +304,12 @@
               "in": "body",
               "required": true,
               "schema": {
-                "$ref": "#/definitions/rskCreateChunkContributionRequest"
+                "type": "object",
+                "properties": {
+                  "transcript": {
+                    "type": "string"
+                  }
+                }
               }
             }
           ],
@@ -401,7 +406,15 @@
               "in": "body",
               "required": true,
               "schema": {
-                "$ref": "#/definitions/rskUpdateChunkContributionRequest"
+                "type": "object",
+                "properties": {
+                  "transcript": {
+                    "type": "string"
+                  },
+                  "state": {
+                    "$ref": "#/definitions/rskContributionState"
+                  }
+                }
               }
             }
           ],
@@ -440,7 +453,15 @@
               "in": "body",
               "required": true,
               "schema": {
-                "$ref": "#/definitions/rskRequestChunkContributionStateRequest"
+                "type": "object",
+                "properties": {
+                  "requestState": {
+                    "$ref": "#/definitions/rskContributionState"
+                  },
+                  "comment": {
+                    "type": "string"
+                  }
+                }
               }
             }
           ],
@@ -594,7 +615,19 @@
               "in": "body",
               "required": true,
               "schema": {
-                "$ref": "#/definitions/rskUpdateTranscriptChangeRequest"
+                "type": "object",
+                "properties": {
+                  "transcript": {
+                    "type": "string"
+                  },
+                  "state": {
+                    "$ref": "#/definitions/rskContributionState"
+                  },
+                  "pointsOnApprove": {
+                    "type": "number",
+                    "format": "float"
+                  }
+                }
               }
             }
           ],
@@ -664,7 +697,16 @@
               "in": "body",
               "required": true,
               "schema": {
-                "$ref": "#/definitions/rskRequestTranscriptChangeStateRequest"
+                "type": "object",
+                "properties": {
+                  "state": {
+                    "$ref": "#/definitions/rskContributionState"
+                  },
+                  "pointsOnApprove": {
+                    "type": "number",
+                    "format": "float"
+                  }
+                }
               }
             }
           ],
@@ -703,7 +745,12 @@
               "in": "body",
               "required": true,
               "schema": {
-                "$ref": "#/definitions/rskCreateTranscriptChangeRequest"
+                "type": "object",
+                "properties": {
+                  "transcript": {
+                    "type": "string"
+                  }
+                }
               }
             }
           ],
@@ -811,7 +858,12 @@
               "in": "body",
               "required": true,
               "schema": {
-                "$ref": "#/definitions/rskClaimRewardRequest"
+                "type": "object",
+                "properties": {
+                  "donationArgs": {
+                    "$ref": "#/definitions/rskDonationArgs"
+                  }
+                }
               }
             }
           ],
@@ -1185,14 +1237,11 @@
       "protobufAny": {
         "type": "object",
         "properties": {
-          "typeUrl": {
+          "@type": {
             "type": "string"
-          },
-          "value": {
-            "type": "string",
-            "format": "byte"
           }
-        }
+        },
+        "additionalProperties": {}
       },
       "rpcStatus": {
         "type": "object",
@@ -1451,17 +1500,6 @@
           }
         }
       },
-      "rskClaimRewardRequest": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "donationArgs": {
-            "$ref": "#/definitions/rskDonationArgs"
-          }
-        }
-      },
       "rskClaimedReward": {
         "type": "object",
         "properties": {
@@ -1507,28 +1545,6 @@
           "STATE_REJECTED"
         ],
         "default": "STATE_UNDEFINED"
-      },
-      "rskCreateChunkContributionRequest": {
-        "type": "object",
-        "properties": {
-          "chunkId": {
-            "type": "string"
-          },
-          "transcript": {
-            "type": "string"
-          }
-        }
-      },
-      "rskCreateTranscriptChangeRequest": {
-        "type": "object",
-        "properties": {
-          "epid": {
-            "type": "string"
-          },
-          "transcript": {
-            "type": "string"
-          }
-        }
       },
       "rskDialog": {
         "type": "object",
@@ -1673,7 +1689,7 @@
               "$ref": "#/definitions/rskFieldMeta"
             }
           },
-          "episodeShortIDs": {
+          "episodeShortIds": {
             "type": "array",
             "items": {
               "type": "string"
@@ -1712,35 +1728,6 @@
         "properties": {
           "url": {
             "type": "string"
-          }
-        }
-      },
-      "rskRequestChunkContributionStateRequest": {
-        "type": "object",
-        "properties": {
-          "contributionId": {
-            "type": "string"
-          },
-          "requestState": {
-            "$ref": "#/definitions/rskContributionState"
-          },
-          "comment": {
-            "type": "string"
-          }
-        }
-      },
-      "rskRequestTranscriptChangeStateRequest": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "state": {
-            "$ref": "#/definitions/rskContributionState"
-          },
-          "pointsOnApprove": {
-            "type": "number",
-            "format": "float"
           }
         }
       },
@@ -2122,38 +2109,6 @@
           "numRejectedContributions": {
             "type": "integer",
             "format": "int32"
-          }
-        }
-      },
-      "rskUpdateChunkContributionRequest": {
-        "type": "object",
-        "properties": {
-          "contributionId": {
-            "type": "string"
-          },
-          "transcript": {
-            "type": "string"
-          },
-          "state": {
-            "$ref": "#/definitions/rskContributionState"
-          }
-        }
-      },
-      "rskUpdateTranscriptChangeRequest": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "transcript": {
-            "type": "string"
-          },
-          "state": {
-            "$ref": "#/definitions/rskContributionState"
-          },
-          "pointsOnApprove": {
-            "type": "number",
-            "format": "float"
           }
         }
       }
