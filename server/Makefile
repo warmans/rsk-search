@@ -16,7 +16,7 @@ DEV_DB_DSN ?= "postgres://$(DEV_DB_USER):$(DEV_DB_PASS)@$(DEV_DB_HOST):5432/$(DE
 #----------------------------------------------------------------------------------------------
 
 .PHONY: setup
-setup: install.tools install.buf install.golangci
+setup: check.env install.tools install.buf install.golangci
 	echo "=> Setup OK"
 
 .PHONY: install.tools
@@ -43,12 +43,12 @@ install.golangci:
 
 .PHONY: check.env
 check.env:
-ifeq (, $(shell which direnv))
- $(error "direnv not found in PATH. This tool is required to modify the project env see: https://direnv.net/docs/installation.html (or just apt-get install direnv)")
-endif
-ifeq (, $(shell which buf))
- $(error "buf not found in PATH. Run setup (make setup)")
-endif
+	ifeq (, $(shell which direnv))
+	 $(error "direnv not found in PATH. This tool is required to modify the project env see: https://direnv.net/docs/installation.html (or just apt-get install direnv)")
+	endif
+	ifeq (, $(shell which buf))
+	 $(error "buf not found in PATH. Run setup (make setup)")
+	endif
 
 #----------------------------------------------------------------------------------------------
 # Linting
@@ -70,6 +70,13 @@ lint.proto:
 # build/test
 #----------------------------------------------------------------------------------------------
 
+.PHONY: vendor
+vendor:
+	echo "=> Installing go deps..."
+	go mod download
+	echo "=> Installing proto deps..."
+	./bin/buf mod update
+
 .PHONY: build
 build:
 	go build -o ./bin/rsk-search .
@@ -77,13 +84,6 @@ build:
 .PHONY: test
 test:
 	go test -v ./...
-
-.PHONY: vendor
-vendor:
-	echo "=> Installing go deps..."
-	go mod download
-	echo "=> Installing proto deps..."
-	./bin/buf mod update
 
 #----------------------------------------------------------------------------------------------
 # Generated artifacts/code
