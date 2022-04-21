@@ -304,12 +304,7 @@
               "in": "body",
               "required": true,
               "schema": {
-                "type": "object",
-                "properties": {
-                  "transcript": {
-                    "type": "string"
-                  }
-                }
+                "$ref": "#/definitions/rskCreateChunkContributionRequest"
               }
             }
           ],
@@ -406,15 +401,7 @@
               "in": "body",
               "required": true,
               "schema": {
-                "type": "object",
-                "properties": {
-                  "transcript": {
-                    "type": "string"
-                  },
-                  "state": {
-                    "$ref": "#/definitions/rskContributionState"
-                  }
-                }
+                "$ref": "#/definitions/rskUpdateChunkContributionRequest"
               }
             }
           ],
@@ -453,15 +440,7 @@
               "in": "body",
               "required": true,
               "schema": {
-                "type": "object",
-                "properties": {
-                  "requestState": {
-                    "$ref": "#/definitions/rskContributionState"
-                  },
-                  "comment": {
-                    "type": "string"
-                  }
-                }
+                "$ref": "#/definitions/rskRequestChunkContributionStateRequest"
               }
             }
           ],
@@ -615,19 +594,7 @@
               "in": "body",
               "required": true,
               "schema": {
-                "type": "object",
-                "properties": {
-                  "transcript": {
-                    "type": "string"
-                  },
-                  "state": {
-                    "$ref": "#/definitions/rskContributionState"
-                  },
-                  "pointsOnApprove": {
-                    "type": "number",
-                    "format": "float"
-                  }
-                }
+                "$ref": "#/definitions/rskUpdateTranscriptChangeRequest"
               }
             }
           ],
@@ -697,16 +664,7 @@
               "in": "body",
               "required": true,
               "schema": {
-                "type": "object",
-                "properties": {
-                  "state": {
-                    "$ref": "#/definitions/rskContributionState"
-                  },
-                  "pointsOnApprove": {
-                    "type": "number",
-                    "format": "float"
-                  }
-                }
+                "$ref": "#/definitions/rskRequestTranscriptChangeStateRequest"
               }
             }
           ],
@@ -745,12 +703,7 @@
               "in": "body",
               "required": true,
               "schema": {
-                "type": "object",
-                "properties": {
-                  "transcript": {
-                    "type": "string"
-                  }
-                }
+                "$ref": "#/definitions/rskCreateTranscriptChangeRequest"
               }
             }
           ],
@@ -858,12 +811,7 @@
               "in": "body",
               "required": true,
               "schema": {
-                "type": "object",
-                "properties": {
-                  "donationArgs": {
-                    "$ref": "#/definitions/rskDonationArgs"
-                  }
-                }
+                "$ref": "#/definitions/rskClaimRewardRequest"
               }
             }
           ],
@@ -1237,11 +1185,14 @@
       "protobufAny": {
         "type": "object",
         "properties": {
-          "@type": {
+          "typeUrl": {
             "type": "string"
+          },
+          "value": {
+            "type": "string",
+            "format": "byte"
           }
-        },
-        "additionalProperties": {}
+        }
       },
       "rpcStatus": {
         "type": "object",
@@ -1500,6 +1451,17 @@
           }
         }
       },
+      "rskClaimRewardRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "donationArgs": {
+            "$ref": "#/definitions/rskDonationArgs"
+          }
+        }
+      },
       "rskClaimedReward": {
         "type": "object",
         "properties": {
@@ -1545,6 +1507,28 @@
           "STATE_REJECTED"
         ],
         "default": "STATE_UNDEFINED"
+      },
+      "rskCreateChunkContributionRequest": {
+        "type": "object",
+        "properties": {
+          "chunkId": {
+            "type": "string"
+          },
+          "transcript": {
+            "type": "string"
+          }
+        }
+      },
+      "rskCreateTranscriptChangeRequest": {
+        "type": "object",
+        "properties": {
+          "epid": {
+            "type": "string"
+          },
+          "transcript": {
+            "type": "string"
+          }
+        }
       },
       "rskDialog": {
         "type": "object",
@@ -1728,6 +1712,35 @@
         "properties": {
           "url": {
             "type": "string"
+          }
+        }
+      },
+      "rskRequestChunkContributionStateRequest": {
+        "type": "object",
+        "properties": {
+          "contributionId": {
+            "type": "string"
+          },
+          "requestState": {
+            "$ref": "#/definitions/rskContributionState"
+          },
+          "comment": {
+            "type": "string"
+          }
+        }
+      },
+      "rskRequestTranscriptChangeStateRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "state": {
+            "$ref": "#/definitions/rskContributionState"
+          },
+          "pointsOnApprove": {
+            "type": "number",
+            "format": "float"
           }
         }
       },
@@ -2109,6 +2122,38 @@
           "numRejectedContributions": {
             "type": "integer",
             "format": "int32"
+          }
+        }
+      },
+      "rskUpdateChunkContributionRequest": {
+        "type": "object",
+        "properties": {
+          "contributionId": {
+            "type": "string"
+          },
+          "transcript": {
+            "type": "string"
+          },
+          "state": {
+            "$ref": "#/definitions/rskContributionState"
+          }
+        }
+      },
+      "rskUpdateTranscriptChangeRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "transcript": {
+            "type": "string"
+          },
+          "state": {
+            "$ref": "#/definitions/rskContributionState"
+          },
+          "pointsOnApprove": {
+            "type": "number",
+            "format": "float"
           }
         }
       }

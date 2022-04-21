@@ -87,7 +87,7 @@ func NewQueryModifiers(req interface{}) (*common.QueryModifier, error) {
 func (s *SearchService) GetMetadata(ctx context.Context, empty *emptypb.Empty) (*api.Metadata, error) {
 	return &api.Metadata{
 		SearchFields:    meta.GetSearchMeta().Proto(),
-		EpisodeShortIDs: meta.EpisodeList(),
+		EpisodeShortIds: meta.EpisodeList(),
 	}, nil
 }
 
