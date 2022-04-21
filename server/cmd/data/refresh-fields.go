@@ -2,6 +2,7 @@ package data
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/spf13/cobra"
 	"github.com/warmans/rsk-search/pkg/data"
 	"github.com/warmans/rsk-search/pkg/models"
@@ -24,7 +25,7 @@ func RefreshCmd() *cobra.Command {
 			logger, _ := zap.NewProduction()
 			defer func() {
 				if err := logger.Sync(); err != nil {
-					panic("failed to sync logger: "+err.Error())
+					fmt.Println("WARNING: failed to sync logger: "+err.Error())
 				}
 			}()
 

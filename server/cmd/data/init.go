@@ -20,7 +20,7 @@ func InitCmd() *cobra.Command {
 			logger, _ := zap.NewProduction()
 			defer func() {
 				if err := logger.Sync(); err != nil {
-					panic("failed to sync logger: "+err.Error())
+					fmt.Println("WARNING: failed to sync logger: "+err.Error())
 				}
 			}()
 

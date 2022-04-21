@@ -3,6 +3,7 @@ package data
 import (
 	"bufio"
 	"encoding/json"
+	"fmt"
 	"github.com/jdkato/prose/v2"
 	"github.com/spf13/cobra"
 	"go.uber.org/zap"
@@ -22,7 +23,7 @@ func NERTrainCmd() *cobra.Command {
 			logger, _ := zap.NewProduction()
 			defer func() {
 				if err := logger.Sync(); err != nil {
-					panic("failed to sync logger: "+err.Error())
+					fmt.Println("WARNING: failed to sync logger: "+err.Error())
 				}
 			}()
 

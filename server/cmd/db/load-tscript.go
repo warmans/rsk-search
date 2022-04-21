@@ -3,6 +3,7 @@ package db
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"github.com/spf13/cobra"
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/store/common"
@@ -27,7 +28,7 @@ func LoadTscriptCmd() *cobra.Command {
 			logger, _ := zap.NewProduction()
 			defer func() {
 				if err := logger.Sync(); err != nil {
-					panic("failed to sync logger: "+err.Error())
+					fmt.Println("WARNING: failed to sync logger: "+err.Error())
 				}
 			}()
 
