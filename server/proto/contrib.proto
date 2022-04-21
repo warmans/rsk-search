@@ -568,7 +568,7 @@ message UpdateTranscriptChangeRequest {
   string id = 1;
   string transcript = 2;
   ContributionState state = 3;
-  float pointsOnApprove = 4;
+  float points_on_approve = 4;
 }
 
 message DeleteTranscriptChangeRequest {
@@ -603,7 +603,7 @@ message ShortTranscriptChange {
 message RequestTranscriptChangeStateRequest {
   string id = 1;
   ContributionState state = 2;
-  float pointsOnApprove = 3;
+  float points_on_approve = 3;
 }
 
 message GetTranscriptChangeRequest {

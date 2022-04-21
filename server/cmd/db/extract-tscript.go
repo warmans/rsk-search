@@ -35,7 +35,11 @@ func ExtractTscriptCmd() *cobra.Command {
 		RunE: func(cmd *cobra.Command, args []string) error {
 
 			logger, _ := zap.NewProduction()
-			defer logger.Sync() // flushes buffer, if any
+			defer func() {
+				if err := logger.Sync(); err != nil {
+					panic("failed to sync logger: "+err.Error())
+				}
+			}()
 
 			if dbCfg.DSN == "" {
 				panic("dsn not set")
@@ -115,7 +119,7 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 				return err
 			}
 			if len(approved) == 0 {
-				logger.Info(fmt.Sprintf("Nothing to do - none approved"))
+				logger.Info("Nothing to do - none approved")
 				continue
 			}
 

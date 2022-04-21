@@ -83,7 +83,7 @@ func (r *RedditGold) giveGold(redditID string) error {
 	if err != nil {
 		return errors.Wrap(err, "failed to create request")
 	}
-	req.Header.Set("User-Agent", fmt.Sprintf("scrimpton-bot (by /u/warmans)"))
+	req.Header.Set("User-Agent", "scrimpton-bot (by /u/warmans)")
 	req.Header.Set("Authorization", fmt.Sprintf("bearer %s", token))
 
 	resp, err := http.DefaultClient.Do(req)
@@ -119,7 +119,7 @@ func (r *RedditGold) getToken() (string, error) {
 	if err != nil {
 		return "", errors.Wrap(err, "failed to create token request")
 	}
-	req.Header.Set("User-Agent", fmt.Sprintf("scrimpton-bot (by /u/warmans)"))
+	req.Header.Set("User-Agent", "scrimpton-bot (by /u/warmans)")
 	req.SetBasicAuth(r.cfg.AppID, r.cfg.AppSecret)
 
 	resp, err := http.DefaultClient.Do(req)

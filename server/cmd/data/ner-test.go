@@ -22,7 +22,11 @@ func NERTestCmd() *cobra.Command {
 		RunE: func(cmd *cobra.Command, args []string) error {
 
 			logger, _ := zap.NewProduction()
-			defer logger.Sync() // flushes buffer, if any
+			defer func() {
+				if err := logger.Sync(); err != nil {
+					panic("failed to sync logger: "+err.Error())
+				}
+			}()
 
 			episode := &models.Transcript{}
 			if err := util.WithReadJSONFileDecoder(inputFile, func(dec *json.Decoder) error {

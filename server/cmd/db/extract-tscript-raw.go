@@ -28,7 +28,11 @@ func ExtractTscriptRawCmd() *cobra.Command {
 		RunE: func(cmd *cobra.Command, args []string) error {
 
 			logger, _ := zap.NewProduction()
-			defer logger.Sync() // flushes buffer, if any
+			defer func() {
+				if err := logger.Sync(); err != nil {
+					panic("failed to sync logger: "+err.Error())
+				}
+			}()
 
 			if dbCfg.DSN == "" {
 				panic("dsn not set")
@@ -97,7 +101,7 @@ func extractRaw(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.L
 				return err
 			}
 			if len(approved) == 0 {
-				logger.Info(fmt.Sprintf("Nothing to do - none approved"))
+				logger.Info("Nothing to do - none approved")
 				continue
 			}
 			for _, ch := range allChunks {
@@ -111,7 +115,7 @@ func extractRaw(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.L
 
 				// if the transcript is missing insert a placeholder
 				if chContribution == nil {
-					if _, err := outputFile.WriteString(fmt.Sprintf("none: [missing transcript section]\n")); err != nil {
+					if _, err := outputFile.WriteString("none: [missing transcript section]\n"); err != nil {
 						return err
 					}
 					continue

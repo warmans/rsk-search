@@ -33,7 +33,9 @@ func main() {
 	indexer.OnHTML(`li > a`, func(e *colly.HTMLElement) {
 		// Activate detailCollector if the link contains "coursera.org/learn"
 		if strings.HasSuffix(e.Text, "/Transcript") {
-			episodeDetailsCollector.Visit(e.Request.AbsoluteURL(e.Attr("href")))
+			if err := episodeDetailsCollector.Visit(e.Request.AbsoluteURL(e.Attr("href"))); err != nil {
+				panic(err.Error())
+			}
 		}
 	})
 

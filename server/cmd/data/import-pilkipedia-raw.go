@@ -3,7 +3,6 @@ package data
 import (
 	"encoding/json"
 	"fmt"
-	_ "github.com/blevesearch/bleve/v2/config"
 	"github.com/spf13/cobra"
 	"github.com/warmans/rsk-search/pkg/data"
 	"github.com/warmans/rsk-search/pkg/meta"
@@ -25,7 +24,11 @@ func ImportPilkipediaRaw() *cobra.Command {
 		RunE: func(cmd *cobra.Command, args []string) error {
 
 			logger, _ := zap.NewProduction()
-			defer logger.Sync() // flushes buffer, if any
+			defer func() {
+				if err := logger.Sync(); err != nil {
+					panic("failed to sync logger: "+err.Error())
+				}
+			}()
 
 			logger.Info("Importing transcript data from...", zap.String("path", inputDir))
 

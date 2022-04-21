@@ -123,12 +123,12 @@ func (c *OauthService) RedditReturnHandler(resp http.ResponseWriter, req *http.R
 	})
 	if err != nil {
 		c.logger.Error("failed to create local user", zap.Error(err))
-		returnParams.Add("error", fmt.Sprintf("failed to create local user"))
+		returnParams.Add("error", "failed to create local user")
 		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
 		return
 	}
 
-	if author.Banned == true {
+	if author.Banned {
 		returnParams.Add("error", "Account is not allowed.")
 		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
 	}
@@ -136,7 +136,7 @@ func (c *OauthService) RedditReturnHandler(resp http.ResponseWriter, req *http.R
 	token, err := c.auth.NewJWTForIdentity(author, ident)
 	if err != nil {
 		c.logger.Error("failed to create token", zap.Error(err))
-		returnParams.Add("error", fmt.Sprintf("failed to create token"))
+		returnParams.Add("error", "failed to create token")
 		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
 		return
 	}
@@ -155,7 +155,7 @@ func (c *OauthService) getRedditBearerToken(code string) (string, error) {
 		c.logger.Error("failed to create access token request", zap.Error(err))
 		return "", fmt.Errorf("unknown error")
 	}
-	req.Header.Set("User-Agent", fmt.Sprintf("scrimpton-bot (by /u/warmans)"))
+	req.Header.Set("User-Agent", "scrimpton-bot (by /u/warmans)")
 	req.SetBasicAuth(c.oauthCfg.AppID, c.oauthCfg.Secret)
 
 	resp, err := http.DefaultClient.Do(req)
@@ -194,7 +194,7 @@ func (c *OauthService) getRedditIdentity(bearerToken string) (*oauth.Identity, s
 		return nil, "", fmt.Errorf("failed to request identity")
 	}
 
-	req.Header.Set("User-Agent", fmt.Sprintf("scrimpton-bot (by /u/warmans)"))
+	req.Header.Set("User-Agent", "scrimpton-bot (by /u/warmans)")
 	req.Header.Set("Authorization", fmt.Sprintf("bearer %s", bearerToken))
 
 	resp, err := http.DefaultClient.Do(req)

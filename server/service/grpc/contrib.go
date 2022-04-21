@@ -409,7 +409,7 @@ func (s *ContribService) GetChunkContribution(ctx context.Context, request *api.
 	if err != nil {
 		return nil, ErrFromStore(err, request.ContributionId).Err()
 	}
-	if claims.Approver == false {
+	if !claims.Approver {
 		if contrib.State == models.ContributionStatePending && contrib.Author.ID != claims.AuthorID {
 			return nil, ErrPermissionDenied("you cannot view another author's contribution when it is in the pending state").Err()
 		}
@@ -820,17 +820,6 @@ func (s *ContribService) getClaims(ctx context.Context) (*jwt.Claims, error) {
 	return claims, nil
 }
 
-func (s *ContribService) isAuthenticated(ctx context.Context) bool {
-	token := jwt.ExtractTokenFromRequestContext(ctx)
-	if token == "" {
-		return false
-	}
-	if _, err := s.auth.VerifyToken(token); err == nil {
-		return true
-	}
-	return false
-}
-
 func (s *ContribService) isAuthor(ctx context.Context, authorID string) bool {
 	token := jwt.ExtractTokenFromRequestContext(ctx)
 	if token == "" {
@@ -937,7 +926,7 @@ func getRewardForThreshold(mod *models.AuthorReward) *api.Reward {
 	return &api.Reward{
 		Id:            mod.ID,
 		Kind:          api.Reward_DONATION,
-		Name:          fmt.Sprintf("Here's some tat in a jiffy bag"),
+		Name:          "Here's some tat in a jiffy bag",
 		Criteria:      fmt.Sprintf("Earn %0.2f Points", mod.PointsSpent),
 		Value:         2,
 		ValueCurrency: "USD",

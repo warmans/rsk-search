@@ -25,7 +25,11 @@ func LoadTscriptCmd() *cobra.Command {
 		RunE: func(cmd *cobra.Command, args []string) error {
 
 			logger, _ := zap.NewProduction()
-			defer logger.Sync() // flushes buffer, if any
+			defer func() {
+				if err := logger.Sync(); err != nil {
+					panic("failed to sync logger: "+err.Error())
+				}
+			}()
 
 			if dbCfg.DSN == "" {
 				panic("dsn not set")

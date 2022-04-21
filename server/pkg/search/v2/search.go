@@ -126,7 +126,9 @@ func (s *Search) Search(ctx context.Context, f filter.Filter, page int32) (*api.
 		}
 		res.Results = append(res.Results, result)
 
-		next, err = dmi.Next()
+		if next, err = dmi.Next(); err != nil {
+			return nil, err
+		}
 	}
 	if err != nil {
 		return nil, err

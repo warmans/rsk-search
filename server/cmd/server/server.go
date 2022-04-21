@@ -3,7 +3,6 @@ package server
 import (
 	"context"
 	"fmt"
-	"github.com/blevesearch/bleve/v2"
 	"github.com/blugelabs/bluge"
 	"github.com/spf13/cobra"
 	"github.com/warmans/rsk-search/pkg/data"
@@ -12,8 +11,6 @@ import (
 	"github.com/warmans/rsk-search/pkg/oauth"
 	"github.com/warmans/rsk-search/pkg/pledge"
 	"github.com/warmans/rsk-search/pkg/reward"
-	search2 "github.com/warmans/rsk-search/pkg/search"
-	v1 "github.com/warmans/rsk-search/pkg/search/v1"
 	v2 "github.com/warmans/rsk-search/pkg/search/v2"
 	"github.com/warmans/rsk-search/pkg/server"
 	"github.com/warmans/rsk-search/pkg/store/common"
@@ -63,7 +60,11 @@ func ServerCmd() *cobra.Command {
 			if loggerErr != nil {
 				panic(loggerErr)
 			}
-			defer logger.Sync() // flushes buffer, if any
+			defer func() {
+				if err := logger.Sync(); err != nil {
+					panic("failed to sync logger: "+err.Error())
+				}
+			}()
 
 			episodeCache, err := data.NewEpisodeStore(path.Join(srvCfg.FilesBasePath, "data", "episodes"))
 			if err != nil {
@@ -82,25 +83,13 @@ func ServerCmd() *cobra.Command {
 				}
 			}()
 
-			var search search2.Searcher
-
-			var useV2Search = true
-			if useV2Search {
-				config := bluge.DefaultConfig(srvCfg.BlugeIndexPath)
-
-				rskIndex, err := bluge.OpenReader(config)
-				if err != nil {
-					return err
-				}
-				search = v2.NewSearch(rskIndex, readOnlyStoreConn, episodeCache, srvCfg.AudioUriPattern)
-			} else {
-				logger.Info("Init index...")
-				rskIndex, err := bleve.Open(srvCfg.BleveIndexPath)
-				if err != nil {
-					return err
-				}
-				search = v1.NewSearch(rskIndex, readOnlyStoreConn, episodeCache, srvCfg.AudioUriPattern)
+			// search index
+			blugeCfg := bluge.DefaultConfig(srvCfg.BlugeIndexPath)
+			rskIndex, err := bluge.OpenReader(blugeCfg)
+			if err != nil {
+				return err
 			}
+			search := v2.NewSearch(rskIndex, readOnlyStoreConn, episodeCache, srvCfg.AudioUriPattern)
 
 			// DB is persistent and will retain data between deployments
 			logger.Info("Init persistent DB...")
@@ -181,7 +170,7 @@ func ServerCmd() *cobra.Command {
 				logger.Fatal("failed to create server", zap.Error(err))
 			}
 
-			c := make(chan os.Signal)
+			c := make(chan os.Signal, 1)
 			signal.Notify(c, os.Interrupt, syscall.SIGTERM)
 			go func() {
 				<-c

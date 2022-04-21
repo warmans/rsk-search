@@ -24,7 +24,11 @@ func InferMissingOffsetsCmd() *cobra.Command {
 		RunE: func(cmd *cobra.Command, args []string) error {
 
 			logger, _ := zap.NewProduction()
-			defer logger.Sync()
+			defer func() {
+				if err := logger.Sync(); err != nil {
+					panic("failed to sync logger: "+err.Error())
+				}
+			}()
 
 			logger.Info("Importing transcript data from...", zap.String("path", inputDir))
 
@@ -114,13 +118,6 @@ func (w speechVelocity) rangeIndex(lineNum int64) (int, bool) {
 	return 0, false
 }
 
-func (w speechVelocity) previousStartSecond() int64 {
-	if len(w.ranges) < 2 {
-		return 0
-	}
-	return w.ranges[len(w.ranges)-2].startSecond
-}
-
 func (w speechVelocity) currentStartSecond() int64 {
 	if len(w.ranges) == 0 {
 		return 0
@@ -161,7 +158,7 @@ func calculateWordsPerSecond(totalLengthSeconds int64, dialog []models.Dialog) s
 		},
 	}
 	for lineNum, line := range dialog {
-		if line.OffsetSec != 0 && line.OffsetSec != vel.currentStartSecond() && line.OffsetInferred == false {
+		if line.OffsetSec != 0 && line.OffsetSec != vel.currentStartSecond() && !line.OffsetInferred {
 
 			// finalize current range
 			vel.ranges[len(vel.ranges)-1].lastLineNum = int64(lineNum) - 1

@@ -47,7 +47,6 @@ func newQueryBuilder(filterMapping map[string]string) *queryBuilder {
 }
 
 type queryBuilder struct {
-	sql            string
 	filterToSelect map[string]string
 }
 
@@ -111,10 +110,4 @@ type params struct {
 func (p *params) next(v interface{}) string {
 	p.par = append(p.par, v)
 	return fmt.Sprintf("$%d", len(p.par))
-}
-
-func (p *params) add(ps ...interface{}) {
-	for _, b := range ps {
-		p.par = append(p.par, b)
-	}
 }

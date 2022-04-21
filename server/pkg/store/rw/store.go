@@ -76,7 +76,7 @@ func (s *Store) ListTscripts(ctx context.Context) ([]*models.TscriptStats, error
 
 	rows, err := s.tx.QueryxContext(
 		ctx,
-		fmt.Sprintf(`
+		`
 			SELECT 
 				ts.id,
 				ts.publication, 
@@ -99,7 +99,7 @@ func (s *Store) ListTscripts(ctx context.Context) ([]*models.TscriptStats, error
                 GROUP BY tscript_chunk_id) as contribution_states ON ch.id = contribution_states.tscript_chunk_id
 			GROUP BY ts.id
 			ORDER BY ts.publication, ts.series, ts.episode ASC
-		`),
+		`,
 	)
 	if err != nil {
 		return nil, err

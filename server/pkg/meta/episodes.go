@@ -51,9 +51,7 @@ func EpisodeDates() map[string]string {
 // EpisodeList returns an index of xfm episodes in the "shortId" format e.g. xfm-S1E01
 func EpisodeList() []string {
 	cpy := make([]string, len(episodeOrder))
-	for k, v := range episodeOrder {
-		cpy[k] = v
-	}
+	copy(cpy, episodeOrder)
 	return cpy
 }
 

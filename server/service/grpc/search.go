@@ -58,18 +58,6 @@ func (s *SearchService) RegisterHTTP(ctx context.Context, router *mux.Router, mu
 	}
 }
 
-func (s *SearchService) getClaims(ctx context.Context) (*jwt.Claims, error) {
-	token := jwt.ExtractTokenFromRequestContext(ctx)
-	if token == "" {
-		return nil, ErrUnauthorized("no token provided").Err()
-	}
-	claims, err := s.auth.VerifyToken(token)
-	if err != nil {
-		return nil, ErrUnauthorized(err.Error()).Err()
-	}
-	return claims, nil
-}
-
 func NewQueryModifiers(req interface{}) (*common.QueryModifier, error) {
 	q := common.Q()
 	if p, ok := req.(common.Pager); ok {

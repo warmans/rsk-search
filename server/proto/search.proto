@@ -204,7 +204,7 @@ message TranscriptList {
 
 message Metadata {
   repeated FieldMeta search_fields = 1;
-  repeated string episodeShortIDs = 2;
+  repeated string episode_short_ids = 2;
 }
 
 message FieldMeta {

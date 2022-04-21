@@ -2,7 +2,6 @@ package transcript
 
 import (
 	"bufio"
-	"crypto/md5"
 	"fmt"
 	"github.com/warmans/rsk-search/pkg/models"
 	"strconv"
@@ -143,7 +142,7 @@ func Export(dialog []models.Dialog, synopsis []models.Synopsis, trivia []models.
 
 	output := strings.Builder{}
 	for _, d := range dialog {
-		if d.OffsetSec > 0 && d.OffsetInferred == false {
+		if d.OffsetSec > 0 && !d.OffsetInferred {
 			output.WriteString(fmt.Sprintf("#OFFSET: %d\n", d.OffsetSec))
 		}
 		for _, syn := range synopsis {
@@ -200,9 +199,4 @@ func ScanOffset(line string) (int64, bool) {
 		return int64(off), true
 	}
 	return 0, false
-}
-
-
-func hashLine(line string) string {
-	return fmt.Sprintf("%x", md5.Sum([]byte(line)))
 }

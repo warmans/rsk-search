@@ -26,7 +26,7 @@ func (c *Config) RegisterFlags(fs *pflag.FlagSet, prefix string) {
 func NewWorker(db *rw.Conn, logger *zap.Logger, cfg Config) *Worker {
 	return &Worker{
 		db:     db,
-		stop:   make(chan struct{}, 0),
+		stop:   make(chan struct{}),
 		logger: logger.With(zap.String("component", "reward worker")),
 		cfg:    cfg,
 	}

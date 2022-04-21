@@ -2,6 +2,8 @@ ifndef MAKE_DEBUG
     MAKEFLAGS += -s
 endif
 
+LOCAL_BIN:="$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))/.env/bin"
+
 GIT_TAG := $(shell git describe --tags --exact-match 2>/dev/null || echo "unknown")
 
 DEV_DB_USER ?= scrimpton
@@ -9,15 +11,61 @@ DEV_DB_PASS ?= insecure
 DEV_DB_HOST ?= localhost
 DEV_DB_DSN ?= "postgres://$(DEV_DB_USER):$(DEV_DB_PASS)@$(DEV_DB_HOST):5432/$(DEV_DB_USER)?sslmode=disable"
 
+#----------------------------------------------------------------------------------------------
+# Dev env setup
+#----------------------------------------------------------------------------------------------
+
+.PHONY: setup
+setup: check.env install.tools install.buf install.golangci
+
+.PHONY: install.tools
+install.tools:
+	echo "=> Installing tools to $(LOCAL_BIN)"
+	cd .env; for TOOL in `cat tools.go | grep _ | awk -F'"' '{print $$2}'`; do \
+		GOBIN=$(LOCAL_BIN) go install $${TOOL}; \
+	done;
+
 .PHONY: install.buf
 install.buf:
-	echo "=> Installing buff to local bin dir"
-	BIN="./bin" && \
-	VERSION="1.3.0" && \
+	echo "=> Installing buf to $(LOCAL_BIN)"
+	BIN="$(LOCAL_BIN)" && \
+	VERSION="1.4.0" && \
 	BINARY_NAME="buf" && \
 	curl -sSL "https://github.com/bufbuild/buf/releases/download/v$${VERSION}/$${BINARY_NAME}-`uname -s`-`uname -m`" \
 		-o "$${BIN}/$${BINARY_NAME}" && \
 		chmod +x "$${BIN}/$${BINARY_NAME}"
+
+.PHONY: install.golangci
+install.golangci:
+	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(LOCAL_BIN) v1.45.2
+
+.PHONY: check.env
+check.env:
+ifeq (, $(shell which direnv))
+ $(error "direnv not found in PATH. This tool is required to modify the project env see: https://direnv.net/docs/installation.html (or just apt-get install direnv)")
+endif
+ifeq (, $(shell which buf))
+ $(error "buf not found in PATH. Run setup (make setup)")
+endif
+
+#----------------------------------------------------------------------------------------------
+# Linting
+#----------------------------------------------------------------------------------------------
+
+.PHONT: lint
+lint: lint.go lint.proto
+
+.PHONT: lint.go
+lint.go:
+	golangci-lint run
+
+.PHONT: lint.proto
+lint.proto:
+	buf lint
+
+#----------------------------------------------------------------------------------------------
+# build/test
+#----------------------------------------------------------------------------------------------
 
 .PHONY: build
 build:
@@ -27,12 +75,6 @@ build:
 test:
 	go test -v ./...
 
-.PHONY: install.tools
-install.tools: install.buf
-	for TOOL in `cat tools.go | grep _ | awk -F'"' '{print $$2}'`; do \
-		go install $${TOOL}; \
-	done;
-
 .PHONY: vendor
 vendor:
 	echo "=> Installing go deps..."
@@ -40,12 +82,16 @@ vendor:
 	echo "=> Installing proto deps..."
 	./bin/buf mod update
 
+#----------------------------------------------------------------------------------------------
+# Generated artifacts/code
+#----------------------------------------------------------------------------------------------
+
 .PHONY: generate
 generate: generate.proto generate.swagger-bundle
 
 .PHONY: generate.proto
 generate.proto:
-	rm -rf gen_temp && ./bin/buf generate && rm -rf gen && mv gen_temp gen
+	rm -rf gen_temp && buf generate && rm -rf gen && mv gen_temp gen
 
 .PHONY: generate.swagger-bundle
 generate.swagger-bundle:
@@ -68,6 +114,22 @@ generate.plaintext.zip:
 .PHONY: generate.plaintext
 generate.plaintext:
 	mkdir -p ./var/data/plaintext && ./bin/rsk-search data dump-plaintext;
+
+#----------------------------------------------------------------------------------------------
+# Run services
+#----------------------------------------------------------------------------------------------
+
+.PHONY: init.all
+init.all:
+	$(MAKE) init.db init.index
+
+.PHONY: init.db
+init.db:
+	rm ./var/ro.sqlite3; ./bin/rsk-search db load-ro && ./bin/rsk-search db load-changelogs
+
+.PHONY: init.index
+init.index:
+	rm -rf ./var/rsk.bluge; ./bin/rsk-search bluge load
 
 .PHONY: run
 run: build
@@ -101,6 +163,10 @@ dev.extract.test-data: build
 	./bin/rsk-search db extract-tscript --rw-db-dsn=${DEV_DB_DSN} --dry-run=true
 	$(MAKE) dev.refresh-data
 
+#----------------------------------------------------------------------------------------------
+# Misc.
+#----------------------------------------------------------------------------------------------
+
 .PHONY: extract.prod
 extract.prod:
 ifndef PROD_DB_DSN
@@ -126,21 +192,9 @@ endif
 	./bin/rsk-search data transcribe && \
  	SPOTIFY_TOKEN=${SPOTIFY_TOKEN} ./bin/rsk-search data spotifize
 
-.PHONY: init.all
-init.all:
-	$(MAKE) init.db init.index
-
-.PHONY: init.db
-init.db:
-	rm ./var/ro.sqlite3; ./bin/rsk-search db load-ro && ./bin/rsk-search db load-changelogs
-
-.PHONY: init.index
-init.index:
-	rm -rf ./var/rsk.bluge; ./bin/rsk-search bluge load
-
-.PHONY: geve
-init.bleve:
-	rm -rf ./var/rsk.bleve; ./bin/rsk-search bleve load
+#----------------------------------------------------------------------------------------------
+# Packaging
+#----------------------------------------------------------------------------------------------
 
 .PHONY: docker.build
 docker.build:

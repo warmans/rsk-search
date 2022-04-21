@@ -110,7 +110,7 @@ func (s *Search) FindTrack(term string) (*Track, error) {
 	}
 
 	for _, a := range bestMatch.Artists {
-		track.Artists = append(track.Artists, Artist{Name: a.Name, URI: a.URI})
+		track.Artists = append(track.Artists, Artist(a))
 	}
 
 	return track, nil

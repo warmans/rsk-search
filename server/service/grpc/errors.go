@@ -74,7 +74,7 @@ func ErrNotFound(id string) *status.Status {
 func ErrServerConfused() *status.Status {
 	s, err := status.New(codes.InvalidArgument, http.StatusText(http.StatusBadRequest)).WithDetails(
 		&errdetails.DebugInfo{
-			Detail: fmt.Sprintf("Server was confused by request"),
+			Detail: "Server was confused by request",
 		},
 	)
 	if err != nil {
@@ -86,7 +86,7 @@ func ErrServerConfused() *status.Status {
 func ErrAuthFailed() *status.Status {
 	s, err := status.New(codes.Unauthenticated, http.StatusText(http.StatusUnauthorized)).WithDetails(
 		&errdetails.DebugInfo{
-			Detail: fmt.Sprintf("Authorization request failed as the verification code did not match. It may have already expired."),
+			Detail: "Authorization request failed as the verification code did not match. It may have already expired.",
 		},
 	)
 	if err != nil {
@@ -138,7 +138,7 @@ func ErrNotImplemented() *status.Status {
 func ErrRateLimited() *status.Status {
 	s, err := status.New(codes.Unavailable, http.StatusText(http.StatusServiceUnavailable)).WithDetails(
 		&errdetails.DebugInfo{
-			Detail: fmt.Sprintf("Too many requests"),
+			Detail:"Too many requests",
 		},
 	)
 	if err != nil {

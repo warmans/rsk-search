@@ -1,5 +1,7 @@
 # rsk-search
 
+## Setup 
+
 ## GUI Development
 
 From the gui directory:
@@ -15,7 +17,7 @@ API to the local running API.
 
 From the server directory: 
 
-1. Install build tools with `make install.tools`
+1. Install deps `make setup`
 2. Build CLI with `make vendor build`.
 3. Create the DB and index with `make init.all` (only needs to be done once, or after the raw data is changed)
 4. Start a local postgres instance `make dev.services.start`

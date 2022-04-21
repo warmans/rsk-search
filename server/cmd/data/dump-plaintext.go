@@ -24,7 +24,11 @@ func DumpPlaintext() *cobra.Command {
 		RunE: func(cmd *cobra.Command, args []string) error {
 
 			logger, _ := zap.NewProduction()
-			defer logger.Sync()
+			defer func() {
+				if err := logger.Sync(); err != nil {
+					panic("failed to sync logger: "+err.Error())
+				}
+			}()
 
 			logger.Info("Importing transcript data from...", zap.String("path", inputDir))
 
