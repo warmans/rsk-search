@@ -28,6 +28,7 @@ type TranscriptChange struct {
 	State         ContributionState
 	CreatedAt     time.Time
 	Merged        bool
+	PointsAwarded float32
 }
 
 func (c *TranscriptChange) Proto() *api.TranscriptChange {
@@ -35,14 +36,15 @@ func (c *TranscriptChange) Proto() *api.TranscriptChange {
 		return nil
 	}
 	return &api.TranscriptChange{
-		Id:         c.ID,
-		EpisodeId:  c.EpID,
-		Summary:    c.Summary,
-		Transcript: c.Transcription,
-		State:      c.State.Proto(),
-		Author:     c.Author.ShortAuthor().Proto(),
-		CreatedAt:  c.CreatedAt.Format(time.RFC3339),
-		Merged:     c.Merged,
+		Id:            c.ID,
+		EpisodeId:     c.EpID,
+		Summary:       c.Summary,
+		Transcript:    c.Transcription,
+		State:         c.State.Proto(),
+		Author:        c.Author.ShortAuthor().Proto(),
+		CreatedAt:     c.CreatedAt.Format(time.RFC3339),
+		Merged:        c.Merged,
+		PointsAwarded: c.PointsAwarded,
 	}
 }
 
@@ -51,11 +53,12 @@ func (c *TranscriptChange) ShortProto() *api.ShortTranscriptChange {
 		return nil
 	}
 	return &api.ShortTranscriptChange{
-		Id:        c.ID,
-		EpisodeId: c.EpID,
-		State:     c.State.Proto(),
-		Author:    c.Author.ShortAuthor().Proto(),
-		CreatedAt: c.CreatedAt.Format(time.RFC3339),
-		Merged:    c.Merged,
+		Id:            c.ID,
+		EpisodeId:     c.EpID,
+		State:         c.State.Proto(),
+		Author:        c.Author.ShortAuthor().Proto(),
+		CreatedAt:     c.CreatedAt.Format(time.RFC3339),
+		Merged:        c.Merged,
+		PointsAwarded: c.PointsAwarded,
 	}
 }

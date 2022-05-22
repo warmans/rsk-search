@@ -10,5 +10,6 @@ export interface RskShortTranscriptChange {
   episodeId?: string;
   id?: string;
   merged?: boolean;
+  pointsAwarded?: number;
   state?: RskContributionState;
 }

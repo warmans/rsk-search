@@ -1396,6 +1396,10 @@
         },
         "merged": {
           "type": "boolean"
+        },
+        "pointsAwarded": {
+          "type": "number",
+          "format": "float"
         }
       }
     },
@@ -1425,6 +1429,10 @@
         },
         "merged": {
           "type": "boolean"
+        },
+        "pointsAwarded": {
+          "type": "number",
+          "format": "float"
         }
       }
     },

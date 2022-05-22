@@ -21,6 +21,8 @@ import (
 
 type ChunkActivity string
 
+const ChunkContributionPoints = 3
+
 const (
 	ChunkActivityAccessed  = "accessed"  // chunk fetched
 	ChunkActivitySubmitted = "submitted" // contribution submitted
@@ -325,11 +327,16 @@ func (s *Store) UpdateChunkContribution(ctx context.Context, c *models.Contribut
 		c.ID,
 	)
 	if oldCon.State != models.ContributionStateApproved && c.State == models.ContributionStateApproved {
-		if err := s.CreateAuthorContribution(ctx, models.AuthorContributionCreate{
+		contributionID, err := s.CreateAuthorContribution(ctx, models.AuthorContributionCreate{
 			AuthorID:         oldCon.Author.ID,
 			EpID:             strings.Replace(oldCon.TscriptID, "ts-", "ep-", 1),
 			ContributionType: models.ContributionTypeChunk,
-		}); err != nil {
+			Points:           ChunkContributionPoints,
+		})
+		if err != nil {
+			return err
+		}
+		if err := s.LinkAuthorContributionToTscriptContribution(ctx, contributionID, c.ID); err != nil {
 			return err
 		}
 	}
@@ -354,11 +361,16 @@ func (s *Store) UpdateChunkContributionState(ctx context.Context, id string, sta
 		return err
 	}
 	if con.State != models.ContributionStateApproved && state == models.ContributionStateApproved {
-		if err := s.CreateAuthorContribution(ctx, models.AuthorContributionCreate{
+		contributionID, err := s.CreateAuthorContribution(ctx, models.AuthorContributionCreate{
 			AuthorID:         con.Author.ID,
 			EpID:             strings.Replace(con.TscriptID, "ts-", "ep-", 1),
 			ContributionType: models.ContributionTypeChunk,
-		}); err != nil {
+			Points:           ChunkContributionPoints,
+		})
+		if err != nil {
+			return err
+		}
+		if err := s.LinkAuthorContributionToTscriptContribution(ctx, contributionID, con.ID); err != nil {
 			return err
 		}
 	}
@@ -936,12 +948,17 @@ func (s *Store) UpdateTranscriptChange(ctx context.Context, c *models.Transcript
 		c.ID,
 	)
 	if change.State != models.ContributionStateApproved && c.State == models.ContributionStateApproved {
-		if err := s.CreateAuthorContribution(ctx, models.AuthorContributionCreate{
+		var contributionID string
+		var err error
+		if contributionID, err = s.CreateAuthorContribution(ctx, models.AuthorContributionCreate{
 			AuthorID:         change.Author.ID,
 			EpID:             change.EpID,
 			ContributionType: models.ContributionTypeChange,
 			Points:           ppointsOnApprove,
 		}); err != nil {
+			return nil, err
+		}
+		if err := s.LinkAuthorContributionToChange(ctx, contributionID, c.ID); err != nil {
 			return nil, err
 		}
 	}
@@ -981,12 +998,17 @@ func (s *Store) UpdateTranscriptChangeState(ctx context.Context, id string, stat
 		return err
 	}
 	if change.State != models.ContributionStateApproved && state == models.ContributionStateApproved {
-		if err := s.CreateAuthorContribution(ctx, models.AuthorContributionCreate{
+		var contributionID string
+		var err error
+		if contributionID, err = s.CreateAuthorContribution(ctx, models.AuthorContributionCreate{
 			AuthorID:         change.Author.ID,
 			EpID:             change.EpID,
 			ContributionType: models.ContributionTypeChange,
 			Points:           pointsOnApprove,
 		}); err != nil {
+			return err
+		}
+		if err := s.LinkAuthorContributionToChange(ctx, contributionID, change.ID); err != nil {
 			return err
 		}
 	}
@@ -1013,9 +1035,11 @@ func (s *Store) ListTranscriptChanges(ctx context.Context, q *common.QueryModifi
 	rows, err := s.tx.QueryxContext(
 		ctx,
 		fmt.Sprintf(`
-		SELECT c.id, c.author_id, c.epid, c.summary, c.transcription, c.state, c.created_at, c.merged
+		SELECT c.id, c.author_id, c.epid, c.summary, c.transcription, c.state, c.created_at, c.merged, COALESCE(con.points, 0)
 		FROM transcript_change c
 		LEFT JOIN author a ON c.author_id = a.id
+		LEFT JOIN author_contribution_transcript_change actc ON c.id = actc.transcript_change_id
+		LEFT JOIN author_contribution con ON con.id = actc.author_contribution_id AND con.contribution_type='change'
 		WHERE a.id IS NOT NULL AND a.banned = false
 		AND %s
 		%s
@@ -1040,7 +1064,8 @@ func (s *Store) ListTranscriptChanges(ctx context.Context, q *common.QueryModifi
 			&cur.Transcription,
 			&cur.State,
 			&cur.CreatedAt,
-			&cur.Merged); err != nil {
+			&cur.Merged,
+			&cur.PointsAwarded); err != nil {
 			return nil, err
 		}
 		authorIDs = append(authorIDs, cur.Author.ID)
@@ -1060,16 +1085,37 @@ func (s *Store) ListTranscriptChanges(ctx context.Context, q *common.QueryModifi
 	return out, nil
 }
 
-func (s *Store) CreateAuthorContribution(ctx context.Context, co models.AuthorContributionCreate) error {
+func (s *Store) CreateAuthorContribution(ctx context.Context, co models.AuthorContributionCreate) (string, error) {
+	id := shortuuid.New()
 	_, err := s.tx.ExecContext(
 		ctx,
 		`INSERT INTO author_contribution (id, author_id, epid, contribution_type, points, points_spent, created_at) VALUES ($1, $2, $3, $4, $5, 0, $6)`,
-		shortuuid.New(),
+		id,
 		co.AuthorID,
 		co.EpID,
 		co.ContributionType,
 		co.Points,
 		time.Now(),
+	)
+	return id, err
+}
+
+func (s *Store) LinkAuthorContributionToChange(ctx context.Context, contributionID string, changeID string, ) error {
+	_, err := s.tx.ExecContext(
+		ctx,
+		`INSERT INTO author_contribution_transcript_change (author_contribution_id, transcript_change_id) VALUES ($1, $2)`,
+		contributionID,
+		changeID,
+	)
+	return err
+}
+
+func (s *Store) LinkAuthorContributionToTscriptContribution(ctx context.Context, contributionID string, tscriptContributionID string, ) error {
+	_, err := s.tx.ExecContext(
+		ctx,
+		`INSERT INTO author_contribution_tscript_contribution (author_contribution_id, tscript_contribution_id) VALUES ($1, $2)`,
+		contributionID,
+		tscriptContributionID,
 	)
 	return err
 }
@@ -1096,15 +1142,15 @@ func (s *Store) SpendPoints(ctx context.Context, authorId string, spendRequired 
 	//
 	// Buffer the spendable data in memory, since it's not possible to run 2 queries at once with the pq driver.
 	//
-	spendableRows := make([]struct{
-		id string
+	spendableRows := make([]struct {
+		id        string
 		remainder float32
 	}, 0)
-	if err := func () error {
+	if err := func() error {
 		defer rows.Close()
 		for rows.Next() {
 			spendable := struct {
-				id string
+				id        string
 				remainder float32
 			}{}
 

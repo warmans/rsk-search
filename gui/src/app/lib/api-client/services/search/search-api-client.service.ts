@@ -211,7 +211,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   createChunkContribution(
     args: {
       chunkId: string,
-      body: object,
+      body: models.RskCreateChunkContributionRequest,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskChunkContribution> {
@@ -266,7 +266,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   updateChunkContribution(
     args: {
       contributionId: string,
-      body: object,
+      body: models.RskUpdateChunkContributionRequest,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskChunkContribution> {
@@ -285,7 +285,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   requestChunkContributionState(
     args: {
       contributionId: string,
-      body: object,
+      body: models.RskRequestChunkContributionStateRequest,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskChunkContribution> {
@@ -377,7 +377,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   updateTranscriptChange(
     args: {
       id: string,
-      body: object,
+      body: models.RskUpdateTranscriptChangeRequest,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscriptChange> {
@@ -414,7 +414,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   requestTranscriptChangeState(
     args: {
       id: string,
-      body: object,
+      body: models.RskRequestTranscriptChangeStateRequest,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<object> {
@@ -433,7 +433,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   createTranscriptChange(
     args: {
       epid: string,
-      body: object,
+      body: models.RskCreateTranscriptChangeRequest,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscriptChange> {
@@ -497,7 +497,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   claimReward(
     args: {
       id: string,
-      body: object,
+      body: models.RskClaimRewardRequest,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<object> {

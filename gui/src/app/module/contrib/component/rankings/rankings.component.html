@@ -27,13 +27,13 @@
             <span title="Rank unlocked at {{a.currentRank.points}} points, next rank at {{a.nextRank.points}}">{{a.currentRank.name}}</span>
           </div>
         </td>
-        <td>{{ a.points }}</td>
+        <td>{{ a.points | number }}</td>
         <td>
           <div class="progress mb-1 mr-3">
             <div class="progress-bar"  [style.width]="((((a.nextRank.points - a.currentRank.points)-(a.nextRank.points - a.points)) / (a.nextRank.points - a.currentRank.points)) * 100)+'%'"></div>
           </div>
           <div class="text-muted">
-            {{ a.nextRank.points - a.points }} point(s) until next rank
+            {{ a.nextRank.points - a.points | number }} point(s) until next rank
           </div>
         </td>
         <td>

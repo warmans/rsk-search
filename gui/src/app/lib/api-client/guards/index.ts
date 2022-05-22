@@ -297,6 +297,19 @@ export function isRskClaimedRewardList(arg: any): arg is models.RskClaimedReward
   );
   }
 
+export function isRskClaimRewardRequest(arg: any): arg is models.RskClaimRewardRequest {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // donationArgs?: RskDonationArgs
+    ( typeof arg.donationArgs === 'undefined' || isRskDonationArgs(arg.donationArgs) ) &&
+    // id?: string
+    ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
+
+  true
+  );
+  }
+
 export function isRskContributionState(arg: any): arg is models.RskContributionState {
   return false
    || arg === models.RskContributionState.STATE_UNDEFINED
@@ -305,6 +318,32 @@ export function isRskContributionState(arg: any): arg is models.RskContributionS
    || arg === models.RskContributionState.STATE_APPROVED
    || arg === models.RskContributionState.STATE_REJECTED
   ;
+  }
+
+export function isRskCreateChunkContributionRequest(arg: any): arg is models.RskCreateChunkContributionRequest {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // chunkId?: string
+    ( typeof arg.chunkId === 'undefined' || typeof arg.chunkId === 'string' ) &&
+    // transcript?: string
+    ( typeof arg.transcript === 'undefined' || typeof arg.transcript === 'string' ) &&
+
+  true
+  );
+  }
+
+export function isRskCreateTranscriptChangeRequest(arg: any): arg is models.RskCreateTranscriptChangeRequest {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // epid?: string
+    ( typeof arg.epid === 'undefined' || typeof arg.epid === 'string' ) &&
+    // transcript?: string
+    ( typeof arg.transcript === 'undefined' || typeof arg.transcript === 'string' ) &&
+
+  true
+  );
   }
 
 export function isRskDialog(arg: any): arg is models.RskDialog {
@@ -344,6 +383,17 @@ export function isRskDialogResult(arg: any): arg is models.RskDialogResult {
     ( typeof arg.score === 'undefined' || typeof arg.score === 'number' ) &&
     // transcript?: RskDialog[]
     ( typeof arg.transcript === 'undefined' || (Array.isArray(arg.transcript) && arg.transcript.every((item: unknown) => isRskDialog(item))) ) &&
+
+  true
+  );
+  }
+
+export function isRskDonationArgs(arg: any): arg is models.RskDonationArgs {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // recipient?: string
+    ( typeof arg.recipient === 'undefined' || typeof arg.recipient === 'string' ) &&
 
   true
   );
@@ -470,6 +520,36 @@ export function isRskRedditAuthURL(arg: any): arg is models.RskRedditAuthURL {
   );
   }
 
+export function isRskRequestChunkContributionStateRequest(arg: any): arg is models.RskRequestChunkContributionStateRequest {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // comment?: string
+    ( typeof arg.comment === 'undefined' || typeof arg.comment === 'string' ) &&
+    // contributionId?: string
+    ( typeof arg.contributionId === 'undefined' || typeof arg.contributionId === 'string' ) &&
+    // requestState?: RskContributionState
+    ( typeof arg.requestState === 'undefined' || isRskContributionState(arg.requestState) ) &&
+
+  true
+  );
+  }
+
+export function isRskRequestTranscriptChangeStateRequest(arg: any): arg is models.RskRequestTranscriptChangeStateRequest {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // id?: string
+    ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
+    // pointsOnApprove?: number
+    ( typeof arg.pointsOnApprove === 'undefined' || typeof arg.pointsOnApprove === 'number' ) &&
+    // state?: RskContributionState
+    ( typeof arg.state === 'undefined' || isRskContributionState(arg.state) ) &&
+
+  true
+  );
+  }
+
 export function isRskReward(arg: any): arg is models.RskReward {
   return (
   arg != null &&
@@ -583,6 +663,8 @@ export function isRskShortTranscriptChange(arg: any): arg is models.RskShortTran
     ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
     // merged?: boolean
     ( typeof arg.merged === 'undefined' || typeof arg.merged === 'boolean' ) &&
+    // pointsAwarded?: number
+    ( typeof arg.pointsAwarded === 'undefined' || typeof arg.pointsAwarded === 'number' ) &&
     // state?: RskContributionState
     ( typeof arg.state === 'undefined' || isRskContributionState(arg.state) ) &&
 
@@ -660,6 +742,8 @@ export function isRskTranscriptChange(arg: any): arg is models.RskTranscriptChan
     ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
     // merged?: boolean
     ( typeof arg.merged === 'undefined' || typeof arg.merged === 'boolean' ) &&
+    // pointsAwarded?: number
+    ( typeof arg.pointsAwarded === 'undefined' || typeof arg.pointsAwarded === 'number' ) &&
     // state?: RskContributionState
     ( typeof arg.state === 'undefined' || isRskContributionState(arg.state) ) &&
     // summary?: string
@@ -756,6 +840,38 @@ export function isRskTscriptStats(arg: any): arg is models.RskTscriptStats {
     ( typeof arg.publication === 'undefined' || typeof arg.publication === 'string' ) &&
     // series?: number
     ( typeof arg.series === 'undefined' || typeof arg.series === 'number' ) &&
+
+  true
+  );
+  }
+
+export function isRskUpdateChunkContributionRequest(arg: any): arg is models.RskUpdateChunkContributionRequest {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // contributionId?: string
+    ( typeof arg.contributionId === 'undefined' || typeof arg.contributionId === 'string' ) &&
+    // state?: RskContributionState
+    ( typeof arg.state === 'undefined' || isRskContributionState(arg.state) ) &&
+    // transcript?: string
+    ( typeof arg.transcript === 'undefined' || typeof arg.transcript === 'string' ) &&
+
+  true
+  );
+  }
+
+export function isRskUpdateTranscriptChangeRequest(arg: any): arg is models.RskUpdateTranscriptChangeRequest {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // id?: string
+    ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
+    // pointsOnApprove?: number
+    ( typeof arg.pointsOnApprove === 'undefined' || typeof arg.pointsOnApprove === 'number' ) &&
+    // state?: RskContributionState
+    ( typeof arg.state === 'undefined' || isRskContributionState(arg.state) ) &&
+    // transcript?: string
+    ( typeof arg.transcript === 'undefined' || typeof arg.transcript === 'string' ) &&
 
   true
   );

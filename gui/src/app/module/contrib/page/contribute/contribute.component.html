@@ -74,6 +74,7 @@
               <th>State</th>
               <th>Author</th>
               <th>Created At</th>
+              <th>Points Awarded</th>
               <th></th>
             </tr>
             <tr *ngFor="let change of transcriptChanges">
@@ -83,6 +84,7 @@
               </td>
               <td>{{change.author.name}}</td>
               <td>{{change.createdAt}}</td>
+              <td>{{change.pointsAwarded || 'NA'}}</td>
               <td><a class="btn btn-sm btn-info" [routerLink]="['/ep', change.episodeId, 'change', change.id]" [queryParams]="{'readonly': '1'}">View</a></td>
             </tr>
           </table>

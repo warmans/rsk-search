@@ -589,6 +589,7 @@ message TranscriptChange {
   Author author = 7;
   string created_at = 8;
   bool merged = 9;
+  float points_awarded = 10;
 }
 
 message ShortTranscriptChange {
@@ -598,6 +599,7 @@ message ShortTranscriptChange {
   Author author = 7;
   string created_at = 8;
   bool merged = 9;
+  float points_awarded = 10;
 }
 
 message RequestTranscriptChangeStateRequest {
