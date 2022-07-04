@@ -3,6 +3,7 @@ import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest
 import { EMPTY, Observable, throwError as observableThrowError } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { AlertService } from '../service/alert/alert.service';
+import { SessionService } from '../service/session/session.service';
 
 interface ErrorDetails {
   text: string;
@@ -12,7 +13,7 @@ interface ErrorDetails {
 @Injectable()
 export class APIErrorInterceptor implements HttpInterceptor {
 
-  constructor(private alerts: AlertService) {
+  constructor(private alerts: AlertService, private session: SessionService) {
   }
 
   intercept(
@@ -27,12 +28,13 @@ export class APIErrorInterceptor implements HttpInterceptor {
           if (!err) {
             return EMPTY;
           }
+          const errText = errorTextFromRPCError(err);
           switch (err.status) {
-            case 0:
-              this.alerts.danger('API Call Failed', "Unknown network error");
+            case 401:
+              this.session.destroySession();
+              this.alerts.danger(`Your session expired or otherwise invalid and has been cleared. Please re-authenticate to access contribution features.`, ...(errText.details || []));
               break;
             default:
-              const errText = errorTextFromRPCError(err);
               this.alerts.danger(`API Call Failed: ${errText.text}`, ...(errText.details || []));
           }
           return observableThrowError(err);
@@ -43,8 +45,8 @@ export class APIErrorInterceptor implements HttpInterceptor {
 }
 
 function errorTextFromRPCError(err: HttpErrorResponse): ErrorDetails {
-  if (!err) {
-    return { text: 'Unknown error' };
+  if (!err || err.status == 0) {
+    return { text: 'Unknown network error' };
   }
   if (err.status === 504) {
     return { text: 'Request timeout' };
