@@ -4,7 +4,7 @@
     "episode": 2,
     "release_date": "2001-11-17T00:00:00Z",
     "incomplete": false,
-    "offset_accuracy": 3,
+    "offset_accuracy": 4,
     "metadata": {
       "duration_ms": "2116754",
       "pilkipedia_url": "https://web.archive.org/web/20200704135748/http://www.pilkipedia.co.uk/wiki/index.php?title=17_November_2001/Transcript",
@@ -26,8 +26,8 @@
       {
         "id": "ep-xfm-S1E02-2",
         "pos": 2,
-        "offset_sec": 4,
-        "offset_inferred": true,
+        "offset_sec": 6,
+        "offset_inferred": false,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -37,7 +37,7 @@
       {
         "id": "ep-xfm-S1E02-3",
         "pos": 3,
-        "offset_sec": 5,
+        "offset_sec": 7,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -48,7 +48,7 @@
       {
         "id": "ep-xfm-S1E02-4",
         "pos": 4,
-        "offset_sec": 8,
+        "offset_sec": 10,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -59,7 +59,7 @@
       {
         "id": "ep-xfm-S1E02-5",
         "pos": 5,
-        "offset_sec": 8,
+        "offset_sec": 10,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -70,7 +70,7 @@
       {
         "id": "ep-xfm-S1E02-6",
         "pos": 6,
-        "offset_sec": 10,
+        "offset_sec": 12,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -81,7 +81,7 @@
       {
         "id": "ep-xfm-S1E02-7",
         "pos": 7,
-        "offset_sec": 12,
+        "offset_sec": 14,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -92,7 +92,7 @@
       {
         "id": "ep-xfm-S1E02-8",
         "pos": 8,
-        "offset_sec": 16,
+        "offset_sec": 17,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -103,7 +103,7 @@
       {
         "id": "ep-xfm-S1E02-9",
         "pos": 9,
-        "offset_sec": 17,
+        "offset_sec": 19,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -114,7 +114,7 @@
       {
         "id": "ep-xfm-S1E02-10",
         "pos": 10,
-        "offset_sec": 20,
+        "offset_sec": 21,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -125,7 +125,7 @@
       {
         "id": "ep-xfm-S1E02-11",
         "pos": 11,
-        "offset_sec": 21,
+        "offset_sec": 22,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -136,7 +136,7 @@
       {
         "id": "ep-xfm-S1E02-12",
         "pos": 12,
-        "offset_sec": 22,
+        "offset_sec": 23,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -147,7 +147,7 @@
       {
         "id": "ep-xfm-S1E02-13",
         "pos": 13,
-        "offset_sec": 24,
+        "offset_sec": 25,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -2067,7 +2067,7 @@
         "actor": "ricky",
         "metadata": null,
         "content": "And he's got – they’ve – he isn't a cock, but he's got a cock!",
-        "notable": false
+        "notable": true
       },
       {
         "id": "ep-xfm-S1E02-188",
@@ -3078,7 +3078,7 @@
       {
         "id": "ep-xfm-S1E02-279",
         "pos": 279,
-        "offset_sec": 611,
+        "offset_sec": 610,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -3336,7 +3336,7 @@
       {
         "id": "ep-xfm-S1E02-302",
         "pos": 302,
-        "offset_sec": 663,
+        "offset_sec": 662,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -3347,8 +3347,8 @@
       {
         "id": "ep-xfm-S1E02-303",
         "pos": 303,
-        "offset_sec": 666,
-        "offset_inferred": true,
+        "offset_sec": 665,
+        "offset_inferred": false,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3369,7 +3369,7 @@
       {
         "id": "ep-xfm-S1E02-305",
         "pos": 305,
-        "offset_sec": 668,
+        "offset_sec": 667,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -3380,7 +3380,7 @@
       {
         "id": "ep-xfm-S1E02-306",
         "pos": 306,
-        "offset_sec": 671,
+        "offset_sec": 670,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -3435,7 +3435,7 @@
       {
         "id": "ep-xfm-S1E02-311",
         "pos": 311,
-        "offset_sec": 682,
+        "offset_sec": 681,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -4353,7 +4353,7 @@
       {
         "id": "ep-xfm-S1E02-394",
         "pos": 394,
-        "offset_sec": 930,
+        "offset_sec": 929,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -4364,7 +4364,7 @@
       {
         "id": "ep-xfm-S1E02-395",
         "pos": 395,
-        "offset_sec": 931,
+        "offset_sec": 930,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -4375,7 +4375,7 @@
       {
         "id": "ep-xfm-S1E02-396",
         "pos": 396,
-        "offset_sec": 931,
+        "offset_sec": 930,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -4386,7 +4386,7 @@
       {
         "id": "ep-xfm-S1E02-397",
         "pos": 397,
-        "offset_sec": 942,
+        "offset_sec": 940,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -4397,7 +4397,7 @@
       {
         "id": "ep-xfm-S1E02-398",
         "pos": 398,
-        "offset_sec": 942,
+        "offset_sec": 940,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -4408,7 +4408,7 @@
       {
         "id": "ep-xfm-S1E02-399",
         "pos": 399,
-        "offset_sec": 947,
+        "offset_sec": 945,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -4419,7 +4419,7 @@
       {
         "id": "ep-xfm-S1E02-400",
         "pos": 400,
-        "offset_sec": 948,
+        "offset_sec": 946,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -4430,7 +4430,7 @@
       {
         "id": "ep-xfm-S1E02-401",
         "pos": 401,
-        "offset_sec": 956,
+        "offset_sec": 953,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -4441,7 +4441,7 @@
       {
         "id": "ep-xfm-S1E02-402",
         "pos": 402,
-        "offset_sec": 957,
+        "offset_sec": 954,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -4452,7 +4452,7 @@
       {
         "id": "ep-xfm-S1E02-403",
         "pos": 403,
-        "offset_sec": 961,
+        "offset_sec": 957,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -4463,7 +4463,7 @@
       {
         "id": "ep-xfm-S1E02-404",
         "pos": 404,
-        "offset_sec": 961,
+        "offset_sec": 958,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -4474,8 +4474,8 @@
       {
         "id": "ep-xfm-S1E02-405",
         "pos": 405,
-        "offset_sec": 968,
-        "offset_inferred": true,
+        "offset_sec": 963,
+        "offset_inferred": false,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -4485,7 +4485,7 @@
       {
         "id": "ep-xfm-S1E02-406",
         "pos": 406,
-        "offset_sec": 969,
+        "offset_sec": 965,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -4496,7 +4496,7 @@
       {
         "id": "ep-xfm-S1E02-407",
         "pos": 407,
-        "offset_sec": 972,
+        "offset_sec": 967,
         "offset_inferred": true,
         "type": "chat",
         "actor": "",
@@ -4507,7 +4507,7 @@
       {
         "id": "ep-xfm-S1E02-408",
         "pos": 408,
-        "offset_sec": 972,
+        "offset_sec": 968,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -4518,7 +4518,7 @@
       {
         "id": "ep-xfm-S1E02-409",
         "pos": 409,
-        "offset_sec": 984,
+        "offset_sec": 979,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -4529,7 +4529,7 @@
       {
         "id": "ep-xfm-S1E02-410",
         "pos": 410,
-        "offset_sec": 984,
+        "offset_sec": 980,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -4540,7 +4540,7 @@
       {
         "id": "ep-xfm-S1E02-411",
         "pos": 411,
-        "offset_sec": 988,
+        "offset_sec": 984,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -4551,7 +4551,7 @@
       {
         "id": "ep-xfm-S1E02-412",
         "pos": 412,
-        "offset_sec": 989,
+        "offset_sec": 985,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -4562,7 +4562,7 @@
       {
         "id": "ep-xfm-S1E02-413",
         "pos": 413,
-        "offset_sec": 989,
+        "offset_sec": 985,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -4573,7 +4573,7 @@
       {
         "id": "ep-xfm-S1E02-414",
         "pos": 414,
-        "offset_sec": 991,
+        "offset_sec": 986,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -4584,7 +4584,7 @@
       {
         "id": "ep-xfm-S1E02-415",
         "pos": 415,
-        "offset_sec": 995,
+        "offset_sec": 990,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -4595,7 +4595,7 @@
       {
         "id": "ep-xfm-S1E02-416",
         "pos": 416,
-        "offset_sec": 995,
+        "offset_sec": 991,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -4606,7 +4606,7 @@
       {
         "id": "ep-xfm-S1E02-417",
         "pos": 417,
-        "offset_sec": 997,
+        "offset_sec": 992,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -4617,7 +4617,7 @@
       {
         "id": "ep-xfm-S1E02-418",
         "pos": 418,
-        "offset_sec": 997,
+        "offset_sec": 993,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -4628,7 +4628,7 @@
       {
         "id": "ep-xfm-S1E02-419",
         "pos": 419,
-        "offset_sec": 999,
+        "offset_sec": 995,
         "offset_inferred": true,
         "type": "chat",
         "actor": "",
@@ -4639,7 +4639,7 @@
       {
         "id": "ep-xfm-S1E02-420",
         "pos": 420,
-        "offset_sec": 1000,
+        "offset_sec": 995,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -4650,7 +4650,7 @@
       {
         "id": "ep-xfm-S1E02-421",
         "pos": 421,
-        "offset_sec": 1001,
+        "offset_sec": 996,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -4661,8 +4661,8 @@
       {
         "id": "ep-xfm-S1E02-422",
         "pos": 422,
-        "offset_sec": 1001,
-        "offset_inferred": true,
+        "offset_sec": 996,
+        "offset_inferred": false,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -4672,7 +4672,7 @@
       {
         "id": "ep-xfm-S1E02-423",
         "pos": 423,
-        "offset_sec": 1003,
+        "offset_sec": 1000,
         "offset_inferred": true,
         "type": "chat",
         "actor": "",
@@ -4683,7 +4683,7 @@
       {
         "id": "ep-xfm-S1E02-424",
         "pos": 424,
-        "offset_sec": 1004,
+        "offset_sec": 1001,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -4694,7 +4694,7 @@
       {
         "id": "ep-xfm-S1E02-425",
         "pos": 425,
-        "offset_sec": 1008,
+        "offset_sec": 1007,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -4705,7 +4705,7 @@
       {
         "id": "ep-xfm-S1E02-426",
         "pos": 426,
-        "offset_sec": 1009,
+        "offset_sec": 1007,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -4716,7 +4716,7 @@
       {
         "id": "ep-xfm-S1E02-427",
         "pos": 427,
-        "offset_sec": 1009,
+        "offset_sec": 1008,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -4727,7 +4727,7 @@
       {
         "id": "ep-xfm-S1E02-428",
         "pos": 428,
-        "offset_sec": 1010,
+        "offset_sec": 1009,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -4738,7 +4738,7 @@
       {
         "id": "ep-xfm-S1E02-429",
         "pos": 429,
-        "offset_sec": 1011,
+        "offset_sec": 1010,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -4749,8 +4749,8 @@
       {
         "id": "ep-xfm-S1E02-430",
         "pos": 430,
-        "offset_sec": 1012,
-        "offset_inferred": true,
+        "offset_sec": 1011,
+        "offset_inferred": false,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -5948,7 +5948,7 @@
       {
         "id": "ep-xfm-S1E02-539",
         "pos": 539,
-        "offset_sec": 1376,
+        "offset_sec": 1375,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -5959,7 +5959,7 @@
       {
         "id": "ep-xfm-S1E02-540",
         "pos": 540,
-        "offset_sec": 1377,
+        "offset_sec": 1376,
         "offset_inferred": true,
         "type": "chat",
         "actor": "",
@@ -5970,7 +5970,7 @@
       {
         "id": "ep-xfm-S1E02-541",
         "pos": 541,
-        "offset_sec": 1377,
+        "offset_sec": 1376,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -5981,7 +5981,7 @@
       {
         "id": "ep-xfm-S1E02-542",
         "pos": 542,
-        "offset_sec": 1378,
+        "offset_sec": 1377,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -5992,7 +5992,7 @@
       {
         "id": "ep-xfm-S1E02-543",
         "pos": 543,
-        "offset_sec": 1379,
+        "offset_sec": 1378,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -6003,7 +6003,7 @@
       {
         "id": "ep-xfm-S1E02-544",
         "pos": 544,
-        "offset_sec": 1387,
+        "offset_sec": 1385,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -6014,7 +6014,7 @@
       {
         "id": "ep-xfm-S1E02-545",
         "pos": 545,
-        "offset_sec": 1391,
+        "offset_sec": 1388,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -6025,7 +6025,7 @@
       {
         "id": "ep-xfm-S1E02-546",
         "pos": 546,
-        "offset_sec": 1394,
+        "offset_sec": 1391,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -6036,7 +6036,7 @@
       {
         "id": "ep-xfm-S1E02-547",
         "pos": 547,
-        "offset_sec": 1398,
+        "offset_sec": 1394,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -6047,7 +6047,7 @@
       {
         "id": "ep-xfm-S1E02-548",
         "pos": 548,
-        "offset_sec": 1400,
+        "offset_sec": 1396,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -6058,7 +6058,7 @@
       {
         "id": "ep-xfm-S1E02-549",
         "pos": 549,
-        "offset_sec": 1403,
+        "offset_sec": 1399,
         "offset_inferred": true,
         "type": "chat",
         "actor": "",
@@ -6069,7 +6069,7 @@
       {
         "id": "ep-xfm-S1E02-550",
         "pos": 550,
-        "offset_sec": 1404,
+        "offset_sec": 1400,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -6080,7 +6080,7 @@
       {
         "id": "ep-xfm-S1E02-551",
         "pos": 551,
-        "offset_sec": 1405,
+        "offset_sec": 1401,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -6091,7 +6091,7 @@
       {
         "id": "ep-xfm-S1E02-552",
         "pos": 552,
-        "offset_sec": 1405,
+        "offset_sec": 1401,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -6102,7 +6102,7 @@
       {
         "id": "ep-xfm-S1E02-553",
         "pos": 553,
-        "offset_sec": 1407,
+        "offset_sec": 1403,
         "offset_inferred": true,
         "type": "chat",
         "actor": "",
@@ -6113,7 +6113,7 @@
       {
         "id": "ep-xfm-S1E02-554",
         "pos": 554,
-        "offset_sec": 1408,
+        "offset_sec": 1403,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -6124,7 +6124,7 @@
       {
         "id": "ep-xfm-S1E02-555",
         "pos": 555,
-        "offset_sec": 1410,
+        "offset_sec": 1405,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -6135,7 +6135,7 @@
       {
         "id": "ep-xfm-S1E02-556",
         "pos": 556,
-        "offset_sec": 1410,
+        "offset_sec": 1405,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -6146,7 +6146,7 @@
       {
         "id": "ep-xfm-S1E02-557",
         "pos": 557,
-        "offset_sec": 1417,
+        "offset_sec": 1412,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -6157,7 +6157,7 @@
       {
         "id": "ep-xfm-S1E02-558",
         "pos": 558,
-        "offset_sec": 1418,
+        "offset_sec": 1412,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -6168,8 +6168,8 @@
       {
         "id": "ep-xfm-S1E02-559",
         "pos": 559,
-        "offset_sec": 1422,
-        "offset_inferred": true,
+        "offset_sec": 1415,
+        "offset_inferred": false,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -6179,7 +6179,7 @@
       {
         "id": "ep-xfm-S1E02-560",
         "pos": 560,
-        "offset_sec": 1423,
+        "offset_sec": 1416,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -6190,7 +6190,7 @@
       {
         "id": "ep-xfm-S1E02-561",
         "pos": 561,
-        "offset_sec": 1429,
+        "offset_sec": 1423,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -6201,7 +6201,7 @@
       {
         "id": "ep-xfm-S1E02-562",
         "pos": 562,
-        "offset_sec": 1429,
+        "offset_sec": 1424,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -6212,7 +6212,7 @@
       {
         "id": "ep-xfm-S1E02-563",
         "pos": 563,
-        "offset_sec": 1430,
+        "offset_sec": 1424,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -6223,7 +6223,7 @@
       {
         "id": "ep-xfm-S1E02-564",
         "pos": 564,
-        "offset_sec": 1434,
+        "offset_sec": 1428,
         "offset_inferred": true,
         "type": "chat",
         "actor": "",
@@ -6234,7 +6234,7 @@
       {
         "id": "ep-xfm-S1E02-565",
         "pos": 565,
-        "offset_sec": 1434,
+        "offset_sec": 1429,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -6245,7 +6245,7 @@
       {
         "id": "ep-xfm-S1E02-566",
         "pos": 566,
-        "offset_sec": 1438,
+        "offset_sec": 1433,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -6256,7 +6256,7 @@
       {
         "id": "ep-xfm-S1E02-567",
         "pos": 567,
-        "offset_sec": 1439,
+        "offset_sec": 1434,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -6267,8 +6267,8 @@
       {
         "id": "ep-xfm-S1E02-568",
         "pos": 568,
-        "offset_sec": 1441,
-        "offset_inferred": true,
+        "offset_sec": 1436,
+        "offset_inferred": false,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -6278,7 +6278,7 @@
       {
         "id": "ep-xfm-S1E02-569",
         "pos": 569,
-        "offset_sec": 1442,
+        "offset_sec": 1437,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -6289,7 +6289,7 @@
       {
         "id": "ep-xfm-S1E02-570",
         "pos": 570,
-        "offset_sec": 1443,
+        "offset_sec": 1439,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -6300,7 +6300,7 @@
       {
         "id": "ep-xfm-S1E02-571",
         "pos": 571,
-        "offset_sec": 1444,
+        "offset_sec": 1440,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -6311,7 +6311,7 @@
       {
         "id": "ep-xfm-S1E02-572",
         "pos": 572,
-        "offset_sec": 1445,
+        "offset_sec": 1441,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -6322,7 +6322,7 @@
       {
         "id": "ep-xfm-S1E02-573",
         "pos": 573,
-        "offset_sec": 1449,
+        "offset_sec": 1445,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -6333,7 +6333,7 @@
       {
         "id": "ep-xfm-S1E02-574",
         "pos": 574,
-        "offset_sec": 1450,
+        "offset_sec": 1446,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -6344,7 +6344,7 @@
       {
         "id": "ep-xfm-S1E02-575",
         "pos": 575,
-        "offset_sec": 1453,
+        "offset_sec": 1450,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -6355,7 +6355,7 @@
       {
         "id": "ep-xfm-S1E02-576",
         "pos": 576,
-        "offset_sec": 1455,
+        "offset_sec": 1451,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -6366,7 +6366,7 @@
       {
         "id": "ep-xfm-S1E02-577",
         "pos": 577,
-        "offset_sec": 1455,
+        "offset_sec": 1451,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -6377,7 +6377,7 @@
       {
         "id": "ep-xfm-S1E02-578",
         "pos": 578,
-        "offset_sec": 1457,
+        "offset_sec": 1453,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -6388,7 +6388,7 @@
       {
         "id": "ep-xfm-S1E02-579",
         "pos": 579,
-        "offset_sec": 1457,
+        "offset_sec": 1454,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -6399,7 +6399,7 @@
       {
         "id": "ep-xfm-S1E02-580",
         "pos": 580,
-        "offset_sec": 1459,
+        "offset_sec": 1456,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -6410,8 +6410,8 @@
       {
         "id": "ep-xfm-S1E02-581",
         "pos": 581,
-        "offset_sec": 1467,
-        "offset_inferred": true,
+        "offset_sec": 1464,
+        "offset_inferred": false,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -6421,7 +6421,7 @@
       {
         "id": "ep-xfm-S1E02-582",
         "pos": 582,
-        "offset_sec": 1469,
+        "offset_sec": 1466,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -6432,7 +6432,7 @@
       {
         "id": "ep-xfm-S1E02-583",
         "pos": 583,
-        "offset_sec": 1472,
+        "offset_sec": 1470,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -6443,7 +6443,7 @@
       {
         "id": "ep-xfm-S1E02-584",
         "pos": 584,
-        "offset_sec": 1473,
+        "offset_sec": 1471,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky and steve",
@@ -6454,7 +6454,7 @@
       {
         "id": "ep-xfm-S1E02-585",
         "pos": 585,
-        "offset_sec": 1473,
+        "offset_sec": 1471,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -6465,7 +6465,7 @@
       {
         "id": "ep-xfm-S1E02-586",
         "pos": 586,
-        "offset_sec": 1474,
+        "offset_sec": 1472,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -6476,7 +6476,7 @@
       {
         "id": "ep-xfm-S1E02-587",
         "pos": 587,
-        "offset_sec": 1476,
+        "offset_sec": 1474,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -6487,7 +6487,7 @@
       {
         "id": "ep-xfm-S1E02-588",
         "pos": 588,
-        "offset_sec": 1476,
+        "offset_sec": 1475,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -6498,7 +6498,7 @@
       {
         "id": "ep-xfm-S1E02-589",
         "pos": 589,
-        "offset_sec": 1478,
+        "offset_sec": 1476,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -6509,7 +6509,7 @@
       {
         "id": "ep-xfm-S1E02-590",
         "pos": 590,
-        "offset_sec": 1479,
+        "offset_sec": 1478,
         "offset_inferred": true,
         "type": "song",
         "actor": "",
@@ -6525,7 +6525,7 @@
       {
         "id": "ep-xfm-S1E02-591",
         "pos": 591,
-        "offset_sec": 1479,
+        "offset_sec": 1478,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -6536,7 +6536,7 @@
       {
         "id": "ep-xfm-S1E02-592",
         "pos": 592,
-        "offset_sec": 1490,
+        "offset_sec": 1489,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -9010,7 +9010,8 @@
     "synopsis": null,
     "contributors": [
       "bjd85",
-      "warmans"
+      "warmans",
+      "wontbemad"
     ],
     "trivia": null
   }
