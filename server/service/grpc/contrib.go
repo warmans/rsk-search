@@ -98,6 +98,31 @@ func (s *ContribService) ListTscripts(ctx context.Context, request *api.ListTscr
 	return el, nil
 }
 
+func (s *ContribService) CreateTscriptImport(ctx context.Context, request *api.CreateTscriptImportRequest) (*api.TscriptImport, error) {
+	claims, err := s.getClaims(ctx)
+	if err != nil {
+		return nil, err
+	}
+	if !claims.Approver {
+		return nil, ErrUnauthorized("Only approvers may create new incomplete transcripts").Err()
+	}
+	var tscriptImport *models.TscriptImport
+
+	err = s.persistentDB.WithStore(func(s *rw.Store) error {
+		var err error
+		tscriptImport, err = s.CreateTscriptImport(ctx, &models.TscriptImportCreate{
+			EpID:   request.Epid,
+			Stage:  models.TscriptImportStageNotStarted,
+			Mp3URI: "",
+		})
+		return err
+	})
+	if err != nil {
+		return nil, ErrFromStore(err, "").Err()
+	}
+	return tscriptImport.Proto(), nil
+}
+
 func (s *ContribService) GetChunkStats(ctx context.Context, _ *emptypb.Empty) (*api.ChunkStats, error) {
 	var stats *models.ChunkStats
 	err := s.persistentDB.WithStore(func(s *rw.Store) error {

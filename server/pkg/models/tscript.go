@@ -43,6 +43,54 @@ const (
 	ContributionStateUnknown           ContributionState = "unknown"
 )
 
+type TscriptImportStage string
+
+func (s TscriptImportStage) Proto() api.TscriptImport_ImportStage {
+	switch s {
+	case TscriptImportStageNotStarted:
+		return api.TscriptImport_NOT_STARTED
+	case TscriptImportStageCreateWAV:
+		return api.TscriptImport_CREATE_WAV
+	case TscriptImportStageMachineTranscribe:
+		return api.TscriptImport_MACHINE_TRANSCRIBE
+	case TscriptImportStageChunkMachineTranscription:
+		return api.TscriptImport_CHUNK_MACHINE_TRANSCRIPTION
+	case TscriptImportStageSplitMp3Chunks:
+		return api.TscriptImport_SPLIT_MP3_CHUNKS
+	case TscriptImportStagePublishTscriptChunks:
+		return api.TscriptImport_PUBLISH_TSCRIPT_CHUNKS
+	}
+	return api.TscriptImport_IMPORT_STAGE_UNKNOWN
+}
+
+const (
+	TscriptImportStageUnknown                   TscriptImportStage = ""
+	TscriptImportStageNotStarted                TscriptImportStage = "not_started"
+	TscriptImportStageCreateWAV                 TscriptImportStage = "create_wav"
+	TscriptImportStageMachineTranscribe         TscriptImportStage = "machine_transcribe"
+	TscriptImportStageChunkMachineTranscription TscriptImportStage = "chunk_machine_transcription"
+	TscriptImportStageSplitMp3Chunks            TscriptImportStage = "split_mp3_chunks"
+	TscriptImportStagePublishTscriptChunks      TscriptImportStage = "publish_tscript_chunks"
+)
+
+func TscriptImportStageFromProto(state api.TscriptImport_ImportStage) TscriptImportStage {
+	switch state {
+	case api.TscriptImport_NOT_STARTED:
+		return TscriptImportStageNotStarted
+	case api.TscriptImport_CREATE_WAV:
+		return TscriptImportStageCreateWAV
+	case api.TscriptImport_MACHINE_TRANSCRIBE:
+		return TscriptImportStageMachineTranscribe
+	case api.TscriptImport_CHUNK_MACHINE_TRANSCRIPTION:
+		return TscriptImportStageChunkMachineTranscription
+	case api.TscriptImport_SPLIT_MP3_CHUNKS:
+		return TscriptImportStageSplitMp3Chunks
+	case api.TscriptImport_PUBLISH_TSCRIPT_CHUNKS:
+		return TscriptImportStagePublishTscriptChunks
+	}
+	return TscriptImportStageUnknown
+}
+
 const EndSecondEOF = -1
 
 type Tscript struct {
@@ -206,3 +254,32 @@ type ContributionActivity struct {
 	RejectedAt  *time.Time
 }
 
+type TscriptImportCreate struct {
+	EpID   string             `json:"epid" db:"epid"`
+	Stage  TscriptImportStage `json:"stage" db:"stage"`
+	Mp3URI string             `json:"mp3_uri" db:"mp3_uri"`
+}
+
+type TscriptImportUpdate struct {
+	ID    string             `json:"id" db:"id"`
+	Stage TscriptImportStage `json:"stage" db:"stage"`
+}
+
+type TscriptImport struct {
+	ID     string             `json:"id" db:"id"`
+	EpID   string             `json:"epid" db:"epid"`
+	Stage  TscriptImportStage `json:"stage" db:"stage"`
+	Mp3URI string             `json:"mp3_uri" db:"mp3_uri"`
+}
+
+func (c *TscriptImport) Proto() *api.TscriptImport {
+	if c == nil {
+		return nil
+	}
+	return &api.TscriptImport{
+		Id:     c.ID,
+		Stage:  c.Stage.Proto(),
+		Epid:   c.EpID,
+		Mp3Uri: c.Mp3URI,
+	}
+}

@@ -821,6 +821,39 @@
         ]
       }
     },
+    "/api/tscript/import": {
+      "post": {
+        "summary": "Creates a new incomplete transcript by importing an mp3.",
+        "operationId": "importTscript",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskTscriptImport"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/rskCreateTscriptImportRequest"
+            }
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      }
+    },
     "/api/tscript/stats": {
       "get": {
         "summary": "Get details about the current chunk backlog",
@@ -925,6 +958,19 @@
         "DONATION"
       ],
       "default": "UNKNOWN"
+    },
+    "TscriptImportImportStage": {
+      "type": "string",
+      "enum": [
+        "IMPORT_STAGE_UNKNOWN",
+        "NOT_STARTED",
+        "CREATE_WAV",
+        "MACHINE_TRANSCRIBE",
+        "CHUNK_MACHINE_TRANSCRIPTION",
+        "SPLIT_MP3_CHUNKS",
+        "PUBLISH_TSCRIPT_CHUNKS"
+      ],
+      "default": "IMPORT_STAGE_UNKNOWN"
     },
     "protobufAny": {
       "type": "object",
@@ -1252,6 +1298,17 @@
         }
       }
     },
+    "rskCreateTscriptImportRequest": {
+      "type": "object",
+      "properties": {
+        "epid": {
+          "type": "string"
+        },
+        "mp3Uri": {
+          "type": "string"
+        }
+      }
+    },
     "rskDonationArgs": {
       "type": "object",
       "properties": {
@@ -1454,6 +1511,24 @@
           }
         }
       }
+    },
+    "rskTscriptImport": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "stage": {
+          "$ref": "#/definitions/TscriptImportImportStage"
+        },
+        "epid": {
+          "type": "string"
+        },
+        "mp3Uri": {
+          "type": "string"
+        }
+      },
+      "title": "create_wav -\u003e auto_transcribe -\u003e create_chunks -\u003e split_mp3 -\u003e publish_chunks"
     },
     "rskTscriptList": {
       "type": "object",

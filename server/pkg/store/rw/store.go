@@ -125,7 +125,6 @@ func (s *Store) ListTscripts(ctx context.Context) ([]*models.TscriptStats, error
 			&cur.NumApprovedContributions,
 			&cur.NumPendingContributions,
 			&cur.NumRequestApprovalContributions,
-
 		); err != nil {
 			return nil, err
 		}
@@ -1100,7 +1099,7 @@ func (s *Store) CreateAuthorContribution(ctx context.Context, co models.AuthorCo
 	return id, err
 }
 
-func (s *Store) LinkAuthorContributionToChange(ctx context.Context, contributionID string, changeID string, ) error {
+func (s *Store) LinkAuthorContributionToChange(ctx context.Context, contributionID string, changeID string) error {
 	_, err := s.tx.ExecContext(
 		ctx,
 		`INSERT INTO author_contribution_transcript_change (author_contribution_id, transcript_change_id) VALUES ($1, $2)`,
@@ -1110,7 +1109,7 @@ func (s *Store) LinkAuthorContributionToChange(ctx context.Context, contribution
 	return err
 }
 
-func (s *Store) LinkAuthorContributionToTscriptContribution(ctx context.Context, contributionID string, tscriptContributionID string, ) error {
+func (s *Store) LinkAuthorContributionToTscriptContribution(ctx context.Context, contributionID string, tscriptContributionID string) error {
 	_, err := s.tx.ExecContext(
 		ctx,
 		`INSERT INTO author_contribution_tscript_contribution (author_contribution_id, tscript_contribution_id) VALUES ($1, $2)`,
@@ -1237,4 +1236,25 @@ func (s *Store) ListAuthorContributions(ctx context.Context, q *common.QueryModi
 		out = append(out, cur)
 	}
 	return out, nil
+}
+
+func (s *Store) CreateTscriptImport(ctx context.Context, tscriptImport *models.TscriptImportCreate) (*models.TscriptImport, error) {
+	imp := &models.TscriptImport{
+		ID:     shortuuid.New(),
+		EpID:   tscriptImport.EpID,
+		Stage:  tscriptImport.Stage,
+		Mp3URI: tscriptImport.Mp3URI,
+	}
+	_, err := s.tx.ExecContext(
+		ctx,
+		`INSERT INTO transcript_change (id, epid, stage, mp3_uri) VALUES ($1, $2, $3, $4)`,
+		imp.ID,
+		imp.EpID,
+		imp.Stage,
+		imp.Mp3URI,
+	)
+	if err != nil {
+		return nil, err
+	}
+	return imp, err
 }
