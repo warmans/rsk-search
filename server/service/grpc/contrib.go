@@ -113,7 +113,7 @@ func (s *ContribService) CreateTscriptImport(ctx context.Context, request *api.C
 		tscriptImport, err = s.CreateTscriptImport(ctx, &models.TscriptImportCreate{
 			EpID:   request.Epid,
 			Stage:  models.TscriptImportStageNotStarted,
-			Mp3URI: "",
+			Mp3URI: request.Mp3Uri,
 		})
 		return err
 	})

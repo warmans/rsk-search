@@ -1215,19 +1215,6 @@
         ],
         "default": "UNKNOWN"
       },
-      "TscriptImportImportStage": {
-        "type": "string",
-        "enum": [
-          "IMPORT_STAGE_UNKNOWN",
-          "NOT_STARTED",
-          "CREATE_WAV",
-          "MACHINE_TRANSCRIBE",
-          "CHUNK_MACHINE_TRANSCRIPTION",
-          "SPLIT_MP3_CHUNKS",
-          "PUBLISH_TSCRIPT_CHUNKS"
-        ],
-        "default": "IMPORT_STAGE_UNKNOWN"
-      },
       "protobufAny": {
         "type": "object",
         "properties": {
@@ -2137,7 +2124,7 @@
             "type": "string"
           },
           "stage": {
-            "$ref": "#/definitions/TscriptImportImportStage"
+            "type": "string"
           },
           "epid": {
             "type": "string"

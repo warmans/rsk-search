@@ -660,7 +660,6 @@ message AuthorContribution {
   string created_at = 9;
 }
 
-
 message CreateTscriptImportRequest {
   string epid = 1; // must be in the correct format e.g. xfm-S2E36
   string mp3_uri = 2;
@@ -668,18 +667,8 @@ message CreateTscriptImportRequest {
 
 // create_wav -> auto_transcribe -> create_chunks -> split_mp3 -> publish_chunks
 message TscriptImport {
-  enum ImportStage {
-    IMPORT_STAGE_UNKNOWN = 0;
-    NOT_STARTED = 1;
-    CREATE_WAV = 2;
-    MACHINE_TRANSCRIBE = 3;
-    CHUNK_MACHINE_TRANSCRIPTION = 4;
-    SPLIT_MP3_CHUNKS = 5;
-    PUBLISH_TSCRIPT_CHUNKS = 6;
-  }
-
   string id = 1;
-  ImportStage stage = 2;
+  string stage = 2;
   string epid = 3; // must be in the correct format e.g. xfm-S2E36
   string mp3_uri = 4;
 }
