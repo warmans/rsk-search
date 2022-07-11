@@ -1,7 +1,10 @@
 package models
 
 import (
+	"fmt"
 	"github.com/warmans/rsk-search/gen/api"
+	"os"
+	"path"
 	"time"
 )
 
@@ -41,19 +44,6 @@ const (
 	ContributionStateApproved          ContributionState = "approved"
 	ContributionStateRejected          ContributionState = "rejected"
 	ContributionStateUnknown           ContributionState = "unknown"
-)
-
-type TscriptImportStage string
-
-const (
-	TscriptImportStageUnknown                   TscriptImportStage = ""
-	TscriptImportStageNotStarted                TscriptImportStage = "not_started"
-	TscriptImportStageCreateWorkspace           TscriptImportStage = "create_workspace"
-	TscriptImportStageCreateWAV                 TscriptImportStage = "create_wav"
-	TscriptImportStageMachineTranscribe         TscriptImportStage = "machine_transcribe"
-	TscriptImportStageChunkMachineTranscription TscriptImportStage = "chunk_machine_transcription"
-	TscriptImportStageSplitMp3Chunks            TscriptImportStage = "split_mp3_chunks"
-	TscriptImportStagePublishTscriptChunks      TscriptImportStage = "publish_tscript_chunks"
 )
 
 const EndSecondEOF = -1
@@ -220,21 +210,18 @@ type ContributionActivity struct {
 }
 
 type TscriptImportCreate struct {
-	EpID   string             `json:"epid" db:"epid"`
-	Stage  TscriptImportStage `json:"stage" db:"stage"`
-	Mp3URI string             `json:"mp3_uri" db:"mp3_uri"`
+	EpID   string `json:"epid" db:"epid"`
+	Mp3URI string `json:"mp3_uri" db:"mp3_uri"`
 }
 
 type TscriptImportUpdate struct {
-	ID    string             `json:"id" db:"id"`
-	Stage TscriptImportStage `json:"stage" db:"stage"`
+	ID string `json:"id" db:"id"`
 }
 
 type TscriptImport struct {
-	ID     string             `json:"id" db:"id"`
-	EpID   string             `json:"epid" db:"epid"`
-	Stage  TscriptImportStage `json:"stage" db:"stage"`
-	Mp3URI string             `json:"mp3_uri" db:"mp3_uri"`
+	ID     string `json:"id" db:"id"`
+	EpID   string `json:"epid" db:"epid"`
+	Mp3URI string `json:"mp3_uri" db:"mp3_uri"`
 }
 
 func (c *TscriptImport) Proto() *api.TscriptImport {
@@ -243,14 +230,16 @@ func (c *TscriptImport) Proto() *api.TscriptImport {
 	}
 	return &api.TscriptImport{
 		Id:     c.ID,
-		Stage:  string(c.Stage),
 		Epid:   c.EpID,
 		Mp3Uri: c.Mp3URI,
 	}
 }
 
+func (c *TscriptImport) WorkingDir() string {
+	return fmt.Sprintf(path.Join(os.TempDir(), c.ID))
+}
+
 type TscriptImportLog struct {
-	Stage TscriptImportStage     `json:"stage"`
-	Msg   string                 `json:"msg"`
-	Data  map[string]interface{} `json:"data"`
+	Stage string `json:"stage"`
+	Msg   string `json:"msg"`
 }

@@ -1242,15 +1242,13 @@ func (s *Store) CreateTscriptImport(ctx context.Context, tscriptImport *models.T
 	imp := &models.TscriptImport{
 		ID:     shortuuid.New(),
 		EpID:   tscriptImport.EpID,
-		Stage:  tscriptImport.Stage,
 		Mp3URI: tscriptImport.Mp3URI,
 	}
 	_, err := s.tx.ExecContext(
 		ctx,
-		`INSERT INTO transcript_import (id, epid, stage, mp3_uri) VALUES ($1, $2, $3, $4)`,
+		`INSERT INTO transcript_import (id, epid, mp3_uri) VALUES ($1, $2, $3)`,
 		imp.ID,
 		imp.EpID,
-		imp.Stage,
 		imp.Mp3URI,
 	)
 	if err != nil {
@@ -1259,16 +1257,11 @@ func (s *Store) CreateTscriptImport(ctx context.Context, tscriptImport *models.T
 	return imp, err
 }
 
-func (s *Store) SetTscriptImportStage(ctx context.Context, tscriptImportID string, stage models.TscriptImportStage, log *models.TscriptImportLog) error {
-	if log == nil {
-		_, err := s.tx.ExecContext(ctx, `UPDATE transcript_import SET stage=$1 WHERE id=$2 `, string(stage), tscriptImportID)
-		return err
-	}
-
+func (s *Store) PushTscriptImportLog(ctx context.Context, tscriptImportID string, log *models.TscriptImportLog) error {
 	logJSON, err := json.Marshal([]*models.TscriptImportLog{log})
 	if err != nil {
 		return fmt.Errorf("failed to marshal log to JSON: %s", err.Error())
 	}
-	_, err = s.tx.ExecContext(ctx, `UPDATE transcript_import SET stage=$1, log=((CASE WHEN log IS NULL THEN '[]'::JSONB ELSE log END) || $2::JSONB) WHERE id=$3 `, string(stage), string(logJSON), tscriptImportID)
+	_, err = s.tx.ExecContext(ctx, `UPDATE transcript_import SET log=((CASE WHEN log IS NULL THEN '[]'::JSONB ELSE log END) || $2::JSONB) WHERE id=$2 `, string(logJSON), tscriptImportID)
 	return err
 }
