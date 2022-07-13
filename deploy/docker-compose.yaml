@@ -1,5 +1,18 @@
 version: "3.2"
 services:
+  redis:
+    image: redis:7-alpine
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning
+    volumes:
+      - /data
+  asynqmon:
+    image: hibiken/asynqmon
+    ports:
+      - '4000:8080'
+    environment:
+      REDIS_ADDR: 'redis:6379'
   postgres:
     image: postgres:13.2-alpine
     restart: always
@@ -85,4 +98,5 @@ services:
       RSK_SEARCH_PLEDGE_DEF_EMAIL: "changeme"
       RSK_SEARCH_PLEDGE_DEF_FIRSTNAME: "changeme"
       RSK_SEARCH_PLEDGE_DEF_LASTNAME: "changeme"
+      RSK_SEARCH_REDIS_ADDR: "redis:6379"
     restart: unless-stopped

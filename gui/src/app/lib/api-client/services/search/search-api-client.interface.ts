@@ -297,6 +297,16 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  createTscriptImport(
+    args: {
+      body: models.RskCreateTscriptImportRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskTscriptImport>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   getChunkStats(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskChunkStats>;

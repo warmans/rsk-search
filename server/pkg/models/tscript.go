@@ -3,7 +3,6 @@ package models
 import (
 	"fmt"
 	"github.com/warmans/rsk-search/gen/api"
-	"os"
 	"path"
 	"time"
 )
@@ -235,8 +234,20 @@ func (c *TscriptImport) Proto() *api.TscriptImport {
 	}
 }
 
-func (c *TscriptImport) WorkingDir() string {
-	return fmt.Sprintf(path.Join(os.TempDir(), c.ID))
+func (c *TscriptImport) WorkingDir(parentDirParth string) string {
+	return fmt.Sprintf(path.Join(parentDirParth, c.ID))
+}
+
+func (c *TscriptImport) Mp3() string {
+	return fmt.Sprintf("%s.mp3", c.EpID)
+}
+
+func (c *TscriptImport) WAV() string {
+	return fmt.Sprintf("%s.wav", c.EpID)
+}
+
+func (c *TscriptImport) MachineTranscript() string {
+	return fmt.Sprintf("%s.machine.txt", c.EpID)
 }
 
 type TscriptImportLog struct {

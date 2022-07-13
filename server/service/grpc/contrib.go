@@ -20,6 +20,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/store/rw"
 	"github.com/warmans/rsk-search/pkg/transcript"
 	"github.com/warmans/rsk-search/service/config"
+	"github.com/warmans/rsk-search/service/queue"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 	"google.golang.org/protobuf/types/known/emptypb"
@@ -32,6 +33,7 @@ func NewContribService(
 	auth *jwt.Auth,
 	pledgeClient *pledge.Client,
 	episodeCache *data.EpisodeCache,
+	taskQueue queue.ImportPipeline,
 ) *ContribService {
 
 	var rankCache models.Ranks
@@ -55,6 +57,7 @@ func NewContribService(
 		pledgeClient: pledgeClient,
 		episodeCache: episodeCache,
 		rankCache:    rankCache,
+		taskQueue:    taskQueue,
 	}
 }
 
@@ -66,6 +69,7 @@ type ContribService struct {
 	pledgeClient *pledge.Client
 	episodeCache *data.EpisodeCache
 	rankCache    models.Ranks
+	taskQueue    queue.ImportPipeline
 }
 
 func (s *ContribService) RegisterGRPC(server *grpc.Server) {
@@ -108,13 +112,21 @@ func (s *ContribService) CreateTscriptImport(ctx context.Context, request *api.C
 	}
 	var tscriptImport *models.TscriptImport
 
-	err = s.persistentDB.WithStore(func(s *rw.Store) error {
+	err = s.persistentDB.WithStore(func(store *rw.Store) error {
 		var err error
-		tscriptImport, err = s.CreateTscriptImport(ctx, &models.TscriptImportCreate{
+		tscriptImport, err = store.CreateTscriptImport(ctx, &models.TscriptImportCreate{
 			EpID:   request.Epid,
 			Mp3URI: request.Mp3Uri,
 		})
-		return err
+		if err != nil {
+			return err
+		}
+
+		// enqueue the import
+		if err := s.taskQueue.StartNewImport(ctx, tscriptImport); err != nil {
+			return err
+		}
+		return nil
 	})
 	if err != nil {
 		return nil, ErrFromStore(err, "").Err()

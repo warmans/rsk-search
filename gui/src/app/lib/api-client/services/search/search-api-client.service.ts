@@ -641,6 +641,24 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  createTscriptImport(
+    args: {
+      body: models.RskCreateTscriptImportRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskTscriptImport> {
+    const path = `/api/tscript/import`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<models.RskTscriptImport>('POST', path, options, JSON.stringify(args.body));
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   getChunkStats(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskChunkStats> {

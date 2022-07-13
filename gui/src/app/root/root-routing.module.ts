@@ -10,6 +10,8 @@ import { RedeemComponent } from '../module/reward/page/redeem/redeem.component';
 import { TranscriptChangeComponent } from '../module/contrib/page/transcript-change/transcript-change.component';
 import { EpisodeChunkSubmit } from '../module/contrib/page/episode-chunk-submit/episode-chunk-submit.component';
 import { ChangelogComponent } from '../module/search/page/changelog/changelog.component';
+import { ImportComponent } from '../module/admin/page/import/import.component';
+import { CanActivateAdmin } from '../module/admin/can-activate-admin';
 
 const routes: Routes = [
   {
@@ -63,6 +65,14 @@ const routes: Routes = [
       disableRewardPopup: true
     },
   },
+  {
+    path: 'admin/import',
+    component: ImportComponent,
+    canActivate: [CanActivateAdmin],
+    data: {
+      disableRewardPopup: true
+    }
+  },
   { path: '', redirectTo: '/search', pathMatch: 'full' },
 ];
 
@@ -76,7 +86,7 @@ const routes: Routes = [
         scrollPositionRestoration: 'enabled'
       },
     )],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class RootRoutingModule {
 }

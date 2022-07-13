@@ -346,6 +346,19 @@ export function isRskCreateTranscriptChangeRequest(arg: any): arg is models.RskC
   );
   }
 
+export function isRskCreateTscriptImportRequest(arg: any): arg is models.RskCreateTscriptImportRequest {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // epid?: string
+    ( typeof arg.epid === 'undefined' || typeof arg.epid === 'string' ) &&
+    // mp3Uri?: string
+    ( typeof arg.mp3Uri === 'undefined' || typeof arg.mp3Uri === 'string' ) &&
+
+  true
+  );
+  }
+
 export function isRskDialog(arg: any): arg is models.RskDialog {
   return (
   arg != null &&
@@ -798,6 +811,21 @@ export function isRskTrivia(arg: any): arg is models.RskTrivia {
     ( typeof arg.endPos === 'undefined' || typeof arg.endPos === 'number' ) &&
     // startPos?: number
     ( typeof arg.startPos === 'undefined' || typeof arg.startPos === 'number' ) &&
+
+  true
+  );
+  }
+
+export function isRskTscriptImport(arg: any): arg is models.RskTscriptImport {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // epid?: string
+    ( typeof arg.epid === 'undefined' || typeof arg.epid === 'string' ) &&
+    // id?: string
+    ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
+    // mp3Uri?: string
+    ( typeof arg.mp3Uri === 'undefined' || typeof arg.mp3Uri === 'string' ) &&
 
   true
   );

@@ -1,9 +1,12 @@
 package server
 
 import (
+	speech "cloud.google.com/go/speech/apiv1"
+	"cloud.google.com/go/storage"
 	"context"
 	"fmt"
 	"github.com/blugelabs/bluge"
+	"github.com/spf13/afero"
 	"github.com/spf13/cobra"
 	"github.com/warmans/rsk-search/pkg/data"
 	"github.com/warmans/rsk-search/pkg/flag"
@@ -13,12 +16,14 @@ import (
 	"github.com/warmans/rsk-search/pkg/reward"
 	v2 "github.com/warmans/rsk-search/pkg/search/v2"
 	"github.com/warmans/rsk-search/pkg/server"
+	speech2text2 "github.com/warmans/rsk-search/pkg/speech2text"
 	"github.com/warmans/rsk-search/pkg/store/common"
 	"github.com/warmans/rsk-search/pkg/store/ro"
 	"github.com/warmans/rsk-search/pkg/store/rw"
 	"github.com/warmans/rsk-search/service/config"
 	"github.com/warmans/rsk-search/service/grpc"
 	"github.com/warmans/rsk-search/service/http"
+	"github.com/warmans/rsk-search/service/queue"
 	"go.uber.org/zap"
 	"os"
 	"os/signal"
@@ -39,6 +44,8 @@ func ServerCmd() *cobra.Command {
 	jwtConfig := &jwt.Config{}
 	rewardCfg := reward.Config{}
 	pledgeCfg := pledge.Config{}
+	redisCfg := &queue.ImportqueueConfig{}
+	speech2TextCfg := &speech2text2.GcloudConfig{}
 
 	cmd := &cobra.Command{
 		Use:   "server",
@@ -62,7 +69,7 @@ func ServerCmd() *cobra.Command {
 			}
 			defer func() {
 				if err := logger.Sync(); err != nil {
-					fmt.Println("WARNING: failed to sync logger: "+err.Error())
+					fmt.Println("WARNING: failed to sync logger: " + err.Error())
 				}
 			}()
 
@@ -131,6 +138,31 @@ func ServerCmd() *cobra.Command {
 				return fmt.Errorf("pledge API key was missing")
 			}
 
+			//todo: need to mount credentials in prod env
+			googleStorage, err := storage.NewClient(context.Background())
+			if err != nil {
+				logger.Fatal("Failed to create google storage client", zap.Error(err))
+			}
+
+			googleSpeech, err := speech.NewClient(context.Background())
+			if err != nil {
+				logger.Fatal("Failed to create google speech client", zap.Error(err))
+			}
+
+			// task queue
+			taskQueue := queue.NewImportQueue(
+				logger,
+				afero.NewOsFs(),
+				persistentDBConn,
+				speech2text2.NewGcloud(logger, googleStorage, googleSpeech, speech2TextCfg),
+				redisCfg,
+			)
+			go func() {
+				if err := taskQueue.Start(); err != nil {
+					logger.Fatal("Task queue failed", zap.Error(err))
+				}
+			}()
+
 			grpcServices := []server.GRPCService{
 				grpc.NewSearchService(
 					logger,
@@ -147,6 +179,7 @@ func ServerCmd() *cobra.Command {
 					auth,
 					pledge.NewClient(pledgeCfg),
 					episodeCache,
+					taskQueue,
 				),
 				grpc.NewOauthService(
 					logger,
@@ -175,6 +208,7 @@ func ServerCmd() *cobra.Command {
 			go func() {
 				<-c
 				srv.Stop()
+				taskQueue.Stop()
 			}()
 			go func() {
 				if err := srv.StartHTTP(); err != nil {
@@ -196,6 +230,8 @@ func ServerCmd() *cobra.Command {
 	jwtConfig.RegisterFlags(cmd.Flags(), ServicePrefix)
 	rewardCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
 	pledgeCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
+	redisCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
+	speech2TextCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
 
 	return cmd
 }

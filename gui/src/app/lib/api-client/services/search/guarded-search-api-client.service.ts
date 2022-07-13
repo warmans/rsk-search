@@ -310,6 +310,16 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
       .pipe(tap((res: any) => guards.isRskChunk(res) || console.error(`TypeGuard for response 'RskChunk' caught inconsistency.`, res)));
   }
 
+  createTscriptImport(
+    args: {
+      body: models.RskCreateTscriptImportRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskTscriptImport> {
+    return super.createTscriptImport(args, requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRskTscriptImport(res) || console.error(`TypeGuard for response 'RskTscriptImport' caught inconsistency.`, res)));
+  }
+
   getChunkStats(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskChunkStats> {

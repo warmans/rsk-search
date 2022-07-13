@@ -1,0 +1,24 @@
+<div class="container-fluid pt-3">
+  <div class="row mb-3">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          Import
+        </div>
+        <div class="card-body">
+          <form [formGroup]="importForm">
+            <div class="mb-3">
+              <label class="form-label">Episode ID</label>
+              <input formControlName="epid" type="text" class="form-control" placeholder="publication-SnEn">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">MP3 URI</label>
+              <input formControlName="mp3_uri" type="text" class="form-control" placeholder="google cloud URL">
+            </div>
+          </form>
+          <button class="btn btn-primary" [disabled]="!this.importForm.valid" (click)="startImport()">Start Import</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1246,7 +1246,7 @@ func (s *Store) CreateTscriptImport(ctx context.Context, tscriptImport *models.T
 	}
 	_, err := s.tx.ExecContext(
 		ctx,
-		`INSERT INTO transcript_import (id, epid, mp3_uri) VALUES ($1, $2, $3)`,
+		`INSERT INTO tscript_import (id, epid, mp3_uri) VALUES ($1, $2, $3)`,
 		imp.ID,
 		imp.EpID,
 		imp.Mp3URI,
@@ -1262,6 +1262,6 @@ func (s *Store) PushTscriptImportLog(ctx context.Context, tscriptImportID string
 	if err != nil {
 		return fmt.Errorf("failed to marshal log to JSON: %s", err.Error())
 	}
-	_, err = s.tx.ExecContext(ctx, `UPDATE transcript_import SET log=((CASE WHEN log IS NULL THEN '[]'::JSONB ELSE log END) || $2::JSONB) WHERE id=$2 `, string(logJSON), tscriptImportID)
+	_, err = s.tx.ExecContext(ctx, `UPDATE tscript_import SET log=((CASE WHEN log IS NULL THEN '[]'::JSONB ELSE log END) || $1::JSONB) WHERE id=$2 `, string(logJSON), tscriptImportID)
 	return err
 }

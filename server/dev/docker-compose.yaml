@@ -9,3 +9,17 @@ services:
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-scrimpton}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-insecure}
+  redis:
+    image: redis:7-alpine
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning
+    volumes:
+      - /data
+  asynqmon:
+    image: hibiken/asynqmon
+    ports:
+    - '4000:8080'
+    environment:
+      REDIS_ADDR: 'redis:6379'
+

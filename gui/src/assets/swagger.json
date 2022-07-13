@@ -1029,7 +1029,7 @@
       "/api/tscript/import": {
         "post": {
           "summary": "Creates a new incomplete transcript by importing an mp3.",
-          "operationId": "importTscript",
+          "operationId": "createTscriptImport",
           "responses": {
             "200": {
               "description": "A successful response.",
@@ -2123,17 +2123,13 @@
           "id": {
             "type": "string"
           },
-          "stage": {
-            "type": "string"
-          },
           "epid": {
             "type": "string"
           },
           "mp3Uri": {
             "type": "string"
           }
-        },
-        "title": "create_wav -\u003e auto_transcribe -\u003e create_chunks -\u003e split_mp3 -\u003e publish_chunks"
+        }
       },
       "rskTscriptList": {
         "type": "object",
