@@ -21,7 +21,7 @@ type GcloudConfig struct {
 
 func (c *GcloudConfig) RegisterFlags(fs *pflag.FlagSet, prefix string) {
 	flag.StringVarEnv(fs, &c.Bucket, prefix, "speech2text-gcloud-bucket", "scrimpton-raw-audio", "bucket to store WAVs when transcribing")
-	flag.StringVarEnv(fs, &c.Bucket, prefix, "speech2text-gcloud-wav-store", "wav", "sub dir within the bucket")
+	flag.StringVarEnv(fs, &c.WavStoragePath, prefix, "speech2text-gcloud-wav-store", "wav", "sub dir within the bucket")
 }
 
 func NewGcloud(
@@ -49,9 +49,13 @@ type Gcloud struct {
 
 func (g *Gcloud) GenerateText(ctx context.Context, localWavPath string, outputWriter io.Writer) error {
 
+	if os.Getenv("GOOGLE_APPLICATION_CREDENTIALS") == "" {
+		return fmt.Errorf("no google application credentials in env")
+	}
+
 	gsUtilURL, err := g.uploadWav(ctx, localWavPath)
 	if err != nil {
-		return nil
+		return err
 	}
 
 	g.logger.Info("Uploaded WAV", zap.String("url", gsUtilURL))
@@ -101,7 +105,7 @@ func (g *Gcloud) GenerateText(ctx context.Context, localWavPath string, outputWr
 	return nil
 }
 
-func (g Gcloud) uploadWav(ctx context.Context, localWavPath string) (string, error) {
+func (g *Gcloud) uploadWav(ctx context.Context, localWavPath string) (string, error) {
 
 	localFile, err := os.Open(localWavPath)
 	if err != nil {
@@ -109,11 +113,17 @@ func (g Gcloud) uploadWav(ctx context.Context, localWavPath string) (string, err
 	}
 	defer localFile.Close()
 
+	// ctx timeout?
+
 	writer := g.storage.Bucket(g.bucket).Object(path.Join(g.wavStoragePath, path.Base(localWavPath))).NewWriter(ctx)
-	defer writer.Close()
 
 	if _, err := io.Copy(writer, localFile); err != nil {
+		writer.Close()
 		return "", err
 	}
+	if err := writer.Close(); err != nil {
+		return "", err
+	}
+
 	return fmt.Sprintf("gs://%s/%s/%s", g.bucket, g.wavStoragePath, path.Base(localWavPath)), nil
 }

@@ -11,8 +11,8 @@ import { AlertService } from '../../../core/service/alert/alert.service';
 export class ImportComponent implements OnInit {
 
   importForm: FormGroup = new FormGroup({
-    'epid': new FormControl('xfm-S1E01', [Validators.required]),
-    'mp3_uri': new FormControl('https://storage.googleapis.com/scrimpton-raw-audio/xfm-S1E01.mp3', [Validators.required]),
+    'epid': new FormControl('sample-S0E0', [Validators.required]),
+    'mp3_uri': new FormControl('https://storage.googleapis.com/scrimpton-raw-audio/sample-S0E0.mp3', [Validators.required]),
   });
 
   constructor(private apiClient: SearchAPIClient, private alerts: AlertService) {

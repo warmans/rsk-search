@@ -250,6 +250,10 @@ func (c *TscriptImport) MachineTranscript() string {
 	return fmt.Sprintf("%s.machine.txt", c.EpID)
 }
 
+func (c *TscriptImport) ChunkedMachineTranscript() string {
+	return fmt.Sprintf("%s.chunks.json", c.EpID)
+}
+
 type TscriptImportLog struct {
 	Stage string `json:"stage"`
 	Msg   string `json:"msg"`

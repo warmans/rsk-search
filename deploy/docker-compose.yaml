@@ -87,6 +87,8 @@ services:
       - "127.0.0.1:8888:8888"
     depends_on:
       - postgres
+    volumes:
+      - ${PWD}/google-service-key.json:/root/google-service-key.json
     environment:
       RSK_SEARCH_RW_DB_DSN: "postgres://scrimpton:insecure@postgres:5432/scrimpton?sslmode=disable"
       RSK_SEARCH_JWT_KEY: ""
@@ -99,4 +101,6 @@ services:
       RSK_SEARCH_PLEDGE_DEF_FIRSTNAME: "changeme"
       RSK_SEARCH_PLEDGE_DEF_LASTNAME: "changeme"
       RSK_SEARCH_REDIS_ADDR: "redis:6379"
+      GOOGLE_APPLICATION_CREDENTIALS: "/root/google-service-key.json"
+      RSK_SEARCH_PYTHON_SCRIPT_DIR: "/opt/rsk/script"
     restart: unless-stopped

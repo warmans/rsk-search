@@ -7,6 +7,23 @@ import (
 	"strings"
 )
 
+func ParseEpID(raw string) (string, int32, int32, error) {
+
+	// this shouldn't be in a episodeID but there are still some around.
+	raw = strings.TrimPrefix(raw, "ep-")
+
+	publicationAndSeries := strings.Split(raw, "-")
+	if len(publicationAndSeries) != 2 {
+		return "", 0, 0, fmt.Errorf("could not parse publication from filename: %s", raw)
+	}
+	series, episode, err := ParseStandardEpisodeName(publicationAndSeries[1])
+	if err != nil {
+		return "", 0, 0, fmt.Errorf("could not parse series/episode from filename: %s", publicationAndSeries[1])
+	}
+
+	return publicationAndSeries[0], series, episode, nil
+}
+
 // ParseStandardEpisodeName e.g. xfm-S01E02 becomes 1,2,nil
 func ParseStandardEpisodeName(raw string) (int32, int32, error) {
 
