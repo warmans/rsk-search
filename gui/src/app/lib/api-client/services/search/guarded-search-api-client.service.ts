@@ -22,6 +22,26 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
     super(httpClient, domain, options);
   }
 
+  createTscriptImport(
+    args: {
+      body: models.RskCreateTscriptImportRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskTscriptImport> {
+    return super.createTscriptImport(args, requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRskTscriptImport(res) || console.error(`TypeGuard for response 'RskTscriptImport' caught inconsistency.`, res)));
+  }
+
+  deleteTscript(
+    args: {
+      id: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<object> {
+    return super.deleteTscript(args, requestHttpOptions)
+      .pipe(tap((res: any) => typeof res === 'object' || console.error(`TypeGuard for response 'object' caught inconsistency.`, res)));
+  }
+
   getRedditAuthURL(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskRedditAuthURL> {
@@ -308,16 +328,6 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
   ): Observable<models.RskChunk> {
     return super.getChunk(args, requestHttpOptions)
       .pipe(tap((res: any) => guards.isRskChunk(res) || console.error(`TypeGuard for response 'RskChunk' caught inconsistency.`, res)));
-  }
-
-  createTscriptImport(
-    args: {
-      body: models.RskCreateTscriptImportRequest,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskTscriptImport> {
-    return super.createTscriptImport(args, requestHttpOptions)
-      .pipe(tap((res: any) => guards.isRskTscriptImport(res) || console.error(`TypeGuard for response 'RskTscriptImport' caught inconsistency.`, res)));
   }
 
   getChunkStats(

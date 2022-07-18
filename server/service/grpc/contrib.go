@@ -33,7 +33,6 @@ func NewContribService(
 	auth *jwt.Auth,
 	pledgeClient *pledge.Client,
 	episodeCache *data.EpisodeCache,
-	taskQueue queue.ImportPipeline,
 ) *ContribService {
 
 	var rankCache models.Ranks
@@ -57,7 +56,6 @@ func NewContribService(
 		pledgeClient: pledgeClient,
 		episodeCache: episodeCache,
 		rankCache:    rankCache,
-		taskQueue:    taskQueue,
 	}
 }
 
@@ -100,38 +98,6 @@ func (s *ContribService) ListTscripts(ctx context.Context, request *api.ListTscr
 		return nil, ErrFromStore(err, "").Err()
 	}
 	return el, nil
-}
-
-func (s *ContribService) CreateTscriptImport(ctx context.Context, request *api.CreateTscriptImportRequest) (*api.TscriptImport, error) {
-	claims, err := s.getClaims(ctx)
-	if err != nil {
-		return nil, err
-	}
-	if !claims.Approver {
-		return nil, ErrUnauthorized("Only approvers may create new incomplete transcripts").Err()
-	}
-	var tscriptImport *models.TscriptImport
-
-	err = s.persistentDB.WithStore(func(store *rw.Store) error {
-		var err error
-		tscriptImport, err = store.CreateTscriptImport(ctx, &models.TscriptImportCreate{
-			EpID:   request.Epid,
-			Mp3URI: request.Mp3Uri,
-		})
-		if err != nil {
-			return err
-		}
-
-		// enqueue the import
-		if err := s.taskQueue.StartNewImport(ctx, tscriptImport); err != nil {
-			return err
-		}
-		return nil
-	})
-	if err != nil {
-		return nil, ErrFromStore(err, "").Err()
-	}
-	return tscriptImport.Proto(), nil
 }
 
 func (s *ContribService) GetChunkStats(ctx context.Context, _ *emptypb.Empty) (*api.ChunkStats, error) {

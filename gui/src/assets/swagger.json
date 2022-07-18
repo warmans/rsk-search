@@ -23,6 +23,70 @@
       "url": "http://scrimpton.com"
     },
     "paths": {
+      "/api/admin/tscript/import": {
+        "post": {
+          "summary": "Creates a new incomplete transcript by importing an mp3.",
+          "operationId": "createTscriptImport",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskTscriptImport"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/rskCreateTscriptImportRequest"
+              }
+            }
+          ],
+          "tags": [
+            "search"
+          ]
+        }
+      },
+      "/api/admin/tscript/{id}": {
+        "delete": {
+          "summary": "Delete a completed partial transacript. This should only be done after the data has been extracted to the permanent transcript (flat file).",
+          "operationId": "deleteTscript",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "properties": {}
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "tags": [
+            "search"
+          ]
+        }
+      },
       "/api/auth/reddit-url": {
         "get": {
           "summary": "Redirects user to reddit oauth confirmation page",
@@ -1019,39 +1083,6 @@
               "in": "path",
               "required": true,
               "type": "string"
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/tscript/import": {
-        "post": {
-          "summary": "Creates a new incomplete transcript by importing an mp3.",
-          "operationId": "createTscriptImport",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskTscriptImport"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "body",
-              "in": "body",
-              "required": true,
-              "schema": {
-                "$ref": "#/definitions/rskCreateTscriptImportRequest"
-              }
             }
           ],
           "tags": [

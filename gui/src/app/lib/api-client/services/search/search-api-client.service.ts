@@ -45,6 +45,42 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  createTscriptImport(
+    args: {
+      body: models.RskCreateTscriptImportRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskTscriptImport> {
+    const path = `/api/admin/tscript/import`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<models.RskTscriptImport>('POST', path, options, JSON.stringify(args.body));
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  deleteTscript(
+    args: {
+      id: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<object> {
+    const path = `/api/admin/tscript/${args.id}`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<object>('DELETE', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   getRedditAuthURL(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskRedditAuthURL> {
@@ -636,24 +672,6 @@ export class SearchAPIClient implements SearchAPIClientInterface {
     };
 
     return this.sendRequest<models.RskChunk>('GET', path, options);
-  }
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  createTscriptImport(
-    args: {
-      body: models.RskCreateTscriptImportRequest,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskTscriptImport> {
-    const path = `/api/tscript/import`;
-    const options: APIHttpOptions = {
-      ...this.options,
-      ...requestHttpOptions,
-    };
-
-    return this.sendRequest<models.RskTscriptImport>('POST', path, options, JSON.stringify(args.body));
   }
 
   /**

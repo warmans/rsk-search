@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package rsk;
+
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+import "google/protobuf/empty.proto";
+
+option go_package = "github.com/warmans/rsk-search/server/gen/api";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    version: "1.0";
+  };
+  external_docs: {
+    url: "http://scrimpton.com";
+    description: "Admin functions.";
+  };
+  schemes: HTTP;
+};
+service AdminService {
+
+  rpc DeleteTscript (DeleteTscriptRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/api/admin/tscript/{id}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "deleteTscript",
+      summary: "Delete a completed partial transacript. This should only be done after the data has been extracted to the permanent transcript (flat file)."
+      tags: "search"
+    };
+  }
+
+  rpc CreateTscriptImport (CreateTscriptImportRequest) returns (TscriptImport) {
+    option (google.api.http) = {
+      post: "/api/admin/tscript/import",
+      body: "*",
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "createTscriptImport",
+      summary: "Creates a new incomplete transcript by importing an mp3."
+      tags: "search"
+    };
+  }
+
+}
+
+message DeleteTscriptRequest {
+  string id = 1;
+}
+
+message CreateTscriptImportRequest {
+  string epid = 1; // must be in the correct format e.g. xfm-S2E36
+  string mp3_uri = 2;
+}
+
+message TscriptImport {
+  string id = 1;
+  string epid = 2; // must be in the correct format e.g. xfm-S2E36
+  string mp3_uri = 3;
+}

@@ -44,7 +44,7 @@ func ServerCmd() *cobra.Command {
 	jwtConfig := &jwt.Config{}
 	rewardCfg := reward.Config{}
 	pledgeCfg := pledge.Config{}
-	redisCfg := &queue.ImportqueueConfig{}
+	importQueueConfig := &queue.ImportqueueConfig{}
 	speech2TextCfg := &speech2text2.GcloudConfig{}
 
 	cmd := &cobra.Command{
@@ -155,7 +155,8 @@ func ServerCmd() *cobra.Command {
 				afero.NewOsFs(),
 				persistentDBConn,
 				speech2text2.NewGcloud(logger, googleStorage, googleSpeech, speech2TextCfg),
-				redisCfg,
+				googleStorage,
+				importQueueConfig,
 			)
 			go func() {
 				if err := taskQueue.Start(); err != nil {
@@ -179,12 +180,17 @@ func ServerCmd() *cobra.Command {
 					auth,
 					pledge.NewClient(pledgeCfg),
 					episodeCache,
-					taskQueue,
 				),
 				grpc.NewOauthService(
 					logger,
 					tokenCache,
 					oauthCfg,
+				),
+				grpc.NewAdminService(
+					logger,
+					taskQueue,
+					auth,
+					persistentDBConn,
 				),
 			}
 
@@ -230,7 +236,7 @@ func ServerCmd() *cobra.Command {
 	jwtConfig.RegisterFlags(cmd.Flags(), ServicePrefix)
 	rewardCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
 	pledgeCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
-	redisCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
+	importQueueConfig.RegisterFlags(cmd.Flags(), ServicePrefix)
 	speech2TextCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
 
 	return cmd

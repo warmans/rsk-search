@@ -73,6 +73,21 @@ type Store struct {
 	tx *sqlx.Tx
 }
 
+func (s *Store) DeleteTscript(ctx context.Context, id string) error {
+	// leave the contributions in the DB in case they need to be recovered later.
+	// although possibly clean them up later...
+	//if _, err := s.tx.ExecContext(ctx, `DELETE FROM tscript_contribution WHERE tscript_chunk_id IN (SELECT * id FROM tscript_chunk WHERE tscript_id = $1)`, id); err != nil {
+	//	return err
+	//}
+	if _, err := s.tx.ExecContext(ctx, `DELETE FROM tscript_chunk WHERE tscript_id = $1`, id); err != nil {
+		return err
+	}
+	if _, err := s.tx.ExecContext(ctx, `DELETE FROM tscript WHERE id = $1`, id); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (s *Store) ListTscripts(ctx context.Context) ([]*models.TscriptStats, error) {
 	out := make([]*models.TscriptStats, 0)
 

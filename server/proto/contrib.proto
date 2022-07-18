@@ -43,18 +43,6 @@ service ContribService {
     };
   }
 
-  rpc CreateTscriptImport (CreateTscriptImportRequest) returns (TscriptImport) {
-    option (google.api.http) = {
-      post: "/api/tscript/import",
-      body: "*",
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      operation_id: "createTscriptImport",
-      summary: "Creates a new incomplete transcript by importing an mp3."
-      tags: "search"
-    };
-  }
-
   rpc GetAuthorLeaderboard (google.protobuf.Empty) returns (AuthorLeaderboard) {
     option (google.api.http) = {
       get: "/api/tscript/author/leaderboard"
@@ -660,13 +648,3 @@ message AuthorContribution {
   string created_at = 9;
 }
 
-message CreateTscriptImportRequest {
-  string epid = 1; // must be in the correct format e.g. xfm-S2E36
-  string mp3_uri = 2;
-}
-
-message TscriptImport {
-  string id = 1;
-  string epid = 2; // must be in the correct format e.g. xfm-S2E36
-  string mp3_uri = 3;
-}

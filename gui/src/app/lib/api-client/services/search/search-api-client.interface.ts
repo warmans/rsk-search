@@ -9,6 +9,26 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  createTscriptImport(
+    args: {
+      body: models.RskCreateTscriptImportRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskTscriptImport>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  deleteTscript(
+    args: {
+      id: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<object>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   getRedditAuthURL(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskRedditAuthURL>;
@@ -293,16 +313,6 @@ export interface SearchAPIClientInterface {
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskChunk>;
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  createTscriptImport(
-    args: {
-      body: models.RskCreateTscriptImportRequest,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskTscriptImport>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.

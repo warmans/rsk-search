@@ -1,0 +1,148 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "admin.proto",
+    "version": "1.0"
+  },
+  "tags": [
+    {
+      "name": "AdminService"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/admin/tscript/import": {
+      "post": {
+        "summary": "Creates a new incomplete transcript by importing an mp3.",
+        "operationId": "createTscriptImport",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskTscriptImport"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/rskCreateTscriptImportRequest"
+            }
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      }
+    },
+    "/api/admin/tscript/{id}": {
+      "delete": {
+        "summary": "Delete a completed partial transacript. This should only be done after the data has been extracted to the permanent transcript (flat file).",
+        "operationId": "deleteTscript",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "typeUrl": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "rskCreateTscriptImportRequest": {
+      "type": "object",
+      "properties": {
+        "epid": {
+          "type": "string"
+        },
+        "mp3Uri": {
+          "type": "string"
+        }
+      }
+    },
+    "rskTscriptImport": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "epid": {
+          "type": "string"
+        },
+        "mp3Uri": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Admin functions.",
+    "url": "http://scrimpton.com"
+  }
+}

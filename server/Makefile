@@ -101,7 +101,7 @@ generate.swagger-bundle:
 	go run ./script/swagger-merge/main.go \
 		-out ../gui/src/assets/swagger.json \
 		-base ./script/swagger-merge/base.swagger.json \
-		-merge ./gen/api/open-api/oauth.swagger.json,./gen/api/open-api/search.swagger.json,./gen/api/open-api/contrib.swagger.json
+		-merge ./gen/api/open-api/oauth.swagger.json,./gen/api/open-api/search.swagger.json,./gen/api/open-api/contrib.swagger.json,./gen/api/open-api/admin.swagger.json
 
 .PHONY: generate.zip
 generate.zip:  generate.json.zip generate.plaintext.zip

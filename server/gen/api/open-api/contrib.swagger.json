@@ -821,39 +821,6 @@
         ]
       }
     },
-    "/api/tscript/import": {
-      "post": {
-        "summary": "Creates a new incomplete transcript by importing an mp3.",
-        "operationId": "createTscriptImport",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/rskTscriptImport"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/rpcStatus"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/rskCreateTscriptImportRequest"
-            }
-          }
-        ],
-        "tags": [
-          "search"
-        ]
-      }
-    },
     "/api/tscript/stats": {
       "get": {
         "summary": "Get details about the current chunk backlog",
@@ -1285,17 +1252,6 @@
         }
       }
     },
-    "rskCreateTscriptImportRequest": {
-      "type": "object",
-      "properties": {
-        "epid": {
-          "type": "string"
-        },
-        "mp3Uri": {
-          "type": "string"
-        }
-      }
-    },
     "rskDonationArgs": {
       "type": "object",
       "properties": {
@@ -1496,20 +1452,6 @@
           "items": {
             "$ref": "#/definitions/rskShortTranscriptChange"
           }
-        }
-      }
-    },
-    "rskTscriptImport": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "epid": {
-          "type": "string"
-        },
-        "mp3Uri": {
-          "type": "string"
         }
       }
     },

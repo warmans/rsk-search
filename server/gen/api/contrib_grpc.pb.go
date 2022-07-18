@@ -22,7 +22,6 @@ type ContribServiceClient interface {
 	ListTscripts(ctx context.Context, in *ListTscriptsRequest, opts ...grpc.CallOption) (*TscriptList, error)
 	// chunks are ~3 min sections of the transcription
 	GetChunkStats(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ChunkStats, error)
-	CreateTscriptImport(ctx context.Context, in *CreateTscriptImportRequest, opts ...grpc.CallOption) (*TscriptImport, error)
 	GetAuthorLeaderboard(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*AuthorLeaderboard, error)
 	GetChunk(ctx context.Context, in *GetChunkRequest, opts ...grpc.CallOption) (*Chunk, error)
 	ListChunks(ctx context.Context, in *ListChunksRequest, opts ...grpc.CallOption) (*ChunkList, error)
@@ -67,15 +66,6 @@ func (c *contribServiceClient) ListTscripts(ctx context.Context, in *ListTscript
 func (c *contribServiceClient) GetChunkStats(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ChunkStats, error) {
 	out := new(ChunkStats)
 	err := c.cc.Invoke(ctx, "/rsk.ContribService/GetChunkStats", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *contribServiceClient) CreateTscriptImport(ctx context.Context, in *CreateTscriptImportRequest, opts ...grpc.CallOption) (*TscriptImport, error) {
-	out := new(TscriptImport)
-	err := c.cc.Invoke(ctx, "/rsk.ContribService/CreateTscriptImport", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -287,7 +277,6 @@ type ContribServiceServer interface {
 	ListTscripts(context.Context, *ListTscriptsRequest) (*TscriptList, error)
 	// chunks are ~3 min sections of the transcription
 	GetChunkStats(context.Context, *emptypb.Empty) (*ChunkStats, error)
-	CreateTscriptImport(context.Context, *CreateTscriptImportRequest) (*TscriptImport, error)
 	GetAuthorLeaderboard(context.Context, *emptypb.Empty) (*AuthorLeaderboard, error)
 	GetChunk(context.Context, *GetChunkRequest) (*Chunk, error)
 	ListChunks(context.Context, *ListChunksRequest) (*ChunkList, error)
@@ -321,9 +310,6 @@ func (UnimplementedContribServiceServer) ListTscripts(context.Context, *ListTscr
 }
 func (UnimplementedContribServiceServer) GetChunkStats(context.Context, *emptypb.Empty) (*ChunkStats, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetChunkStats not implemented")
-}
-func (UnimplementedContribServiceServer) CreateTscriptImport(context.Context, *CreateTscriptImportRequest) (*TscriptImport, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateTscriptImport not implemented")
 }
 func (UnimplementedContribServiceServer) GetAuthorLeaderboard(context.Context, *emptypb.Empty) (*AuthorLeaderboard, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetAuthorLeaderboard not implemented")
@@ -435,24 +421,6 @@ func _ContribService_GetChunkStats_Handler(srv interface{}, ctx context.Context,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ContribServiceServer).GetChunkStats(ctx, req.(*emptypb.Empty))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ContribService_CreateTscriptImport_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateTscriptImportRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ContribServiceServer).CreateTscriptImport(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/rsk.ContribService/CreateTscriptImport",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ContribServiceServer).CreateTscriptImport(ctx, req.(*CreateTscriptImportRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -867,10 +835,6 @@ var ContribService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetChunkStats",
 			Handler:    _ContribService_GetChunkStats_Handler,
-		},
-		{
-			MethodName: "CreateTscriptImport",
-			Handler:    _ContribService_CreateTscriptImport_Handler,
 		},
 		{
 			MethodName: "GetAuthorLeaderboard",
