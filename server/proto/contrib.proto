@@ -305,6 +305,7 @@ message Tscript {
   string publication = 2;
   int32 series = 3;
   int32 episode = 4;
+  string name = 5;
 }
 
 message Author {
@@ -418,6 +419,7 @@ message TscriptStats {
   int32 num_request_approval_contributions = 9;
   int32 num_approved_contributions = 10;
   int32 num_rejected_contributions = 11;
+  string name = 12;
 }
 
 message ChunkStates {

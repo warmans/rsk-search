@@ -70,7 +70,7 @@ func (s *AdminService) CreateTscriptImport(ctx context.Context, request *api.Cre
 		return nil, err
 	}
 	if !claims.Approver {
-		return nil, ErrUnauthorized("Only approvers may create new incomplete transcripts").Err()
+		return nil, ErrUnauthorized("Only approvers may create new transcript imports").Err()
 	}
 	var tscriptImport *models.TscriptImport
 
@@ -78,6 +78,7 @@ func (s *AdminService) CreateTscriptImport(ctx context.Context, request *api.Cre
 		var err error
 		tscriptImport, err = store.CreateTscriptImport(ctx, &models.TscriptImportCreate{
 			EpID:   request.Epid,
+			EpName: request.Epname,
 			Mp3URI: request.Mp3Uri,
 		})
 		if err != nil {
@@ -94,6 +95,39 @@ func (s *AdminService) CreateTscriptImport(ctx context.Context, request *api.Cre
 		return nil, ErrFromStore(err, "").Err()
 	}
 	return tscriptImport.Proto(), nil
+}
+
+func (s *AdminService) ListTscriptImports(ctx context.Context, request *api.ListTscriptImportsRequest) (*api.TscriptImportList, error) {
+	claims, err := s.getClaims(ctx)
+	if err != nil {
+		return nil, err
+	}
+	if !claims.Approver {
+		return nil, ErrUnauthorized("Only approvers may view transcript imports").Err()
+	}
+	qm, err := NewQueryModifiers(request)
+	if err != nil {
+		return nil, err
+	}
+
+	var res []*models.TscriptImport
+	if err := s.persistentDB.WithStore(func(s *rw.Store) error {
+		var err error
+		res, err = s.ListTscriptImports(ctx, qm)
+		if err != nil {
+			return err
+		}
+		return nil
+	}); err != nil {
+		return nil, err
+	}
+
+	out := make([]*api.TscriptImport, len(res))
+	for k, v := range res {
+		out[k] = v.Proto()
+	}
+
+	return &api.TscriptImportList{Imports: out}, nil
 }
 
 func (s *AdminService) getClaims(ctx context.Context) (*jwt.Claims, error) {

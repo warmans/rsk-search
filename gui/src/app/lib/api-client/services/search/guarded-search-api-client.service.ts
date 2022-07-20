@@ -32,6 +32,20 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
       .pipe(tap((res: any) => guards.isRskTscriptImport(res) || console.error(`TypeGuard for response 'RskTscriptImport' caught inconsistency.`, res)));
   }
 
+  listTscriptImports(
+    args: {
+      filter?: string,
+      sortField?: string,
+      sortDirection?: string,
+      page?: number,
+      pageSize?: number,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskTscriptImportList> {
+    return super.listTscriptImports(args, requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRskTscriptImportList(res) || console.error(`TypeGuard for response 'RskTscriptImportList' caught inconsistency.`, res)));
+  }
+
   deleteTscript(
     args: {
       id: string,

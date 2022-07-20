@@ -99,6 +99,7 @@ func (s *Store) ListTscripts(ctx context.Context) ([]*models.TscriptStats, error
 				ts.publication, 
 				ts.series,
 				ts.episode,
+				COALESCE(ts.name, ''),
 				json_object_agg(ch.id, contribution_states.states) AS contribution_states,
  				COUNT(DISTINCT ch.id) num_chunks,
  				COUNT(DISTINCT co.id) num_contributions,
@@ -134,6 +135,7 @@ func (s *Store) ListTscripts(ctx context.Context) ([]*models.TscriptStats, error
 			&cur.Publication,
 			&cur.Series,
 			&cur.Episode,
+			&cur.Name,
 			&contribStates,
 			&cur.NumChunks,
 			&cur.NumContributions,
@@ -155,11 +157,12 @@ func (s *Store) InsertOrIgnoreTscript(ctx context.Context, tscript *models.Tscri
 
 	_, err := s.tx.ExecContext(
 		ctx,
-		`INSERT INTO tscript (id, publication, series, episode) VALUES ($1, $2, $3, $4) ON CONFLICT (id) DO NOTHING`,
+		`INSERT INTO tscript (id, publication, series, episode, name) VALUES ($1, $2, $3, $4, $5) ON CONFLICT (id) DO NOTHING`,
 		tscript.ID(),
 		tscript.Publication,
 		tscript.Series,
 		tscript.Episode,
+		tscript.Name,
 	)
 	if err != nil {
 		return err
@@ -1255,16 +1258,20 @@ func (s *Store) ListAuthorContributions(ctx context.Context, q *common.QueryModi
 
 func (s *Store) CreateTscriptImport(ctx context.Context, tscriptImport *models.TscriptImportCreate) (*models.TscriptImport, error) {
 	imp := &models.TscriptImport{
-		ID:     shortuuid.New(),
-		EpID:   tscriptImport.EpID,
-		Mp3URI: tscriptImport.Mp3URI,
+		ID:        shortuuid.New(),
+		EpID:      tscriptImport.EpID,
+		EpName:    tscriptImport.EpName,
+		Mp3URI:    tscriptImport.Mp3URI,
+		CreatedAt: util.TimeP(time.Now()),
 	}
 	_, err := s.tx.ExecContext(
 		ctx,
-		`INSERT INTO tscript_import (id, epid, mp3_uri) VALUES ($1, $2, $3)`,
+		`INSERT INTO tscript_import (id, epid, epname, mp3_uri, created_at) VALUES ($1, $2, $3, $4, $5)`,
 		imp.ID,
 		imp.EpID,
+		imp.EpName,
 		imp.Mp3URI,
+		imp.CreatedAt,
 	)
 	if err != nil {
 		return nil, err
@@ -1279,4 +1286,60 @@ func (s *Store) PushTscriptImportLog(ctx context.Context, tscriptImportID string
 	}
 	_, err = s.tx.ExecContext(ctx, `UPDATE tscript_import SET log=((CASE WHEN log IS NULL THEN '[]'::JSONB ELSE log END) || $1::JSONB) WHERE id=$2 `, string(logJSON), tscriptImportID)
 	return err
+}
+
+func (s *Store) CompleteTscriptImport(ctx context.Context, tscriptImportID string) error {
+	_, err := s.tx.ExecContext(ctx, `UPDATE tscript_import SET completed_at=NOW() WHERE id=$1 `, tscriptImportID)
+	return err
+}
+
+func (s *Store) ListTscriptImports(ctx context.Context, q *common.QueryModifier) ([]*models.TscriptImport, error) {
+
+	fieldMap := map[string]string{
+		"id":           "id",
+		"epid":         "epid",
+		"epname":       "epname",
+		"mp3_uri":      "mp3_uri",
+		"log":          "log",
+		"created_at":   "created_at",
+		"completed_at": "completed_at",
+	}
+
+	where, params, order, paging, err := q.ToSQL(fieldMap, true)
+	if err != nil {
+		return nil, err
+	}
+	rows, err := s.tx.QueryxContext(
+		ctx,
+		fmt.Sprintf(`
+			SELECT 
+				"id",
+				"epid",
+				COALESCE("epname", '') as epname,
+				"mp3_uri",
+				COALESCE("log", '[]')::TEXT as log,
+				"created_at",
+				"completed_at"
+			FROM tscript_import
+			%s 
+			%s 
+			%s`,
+			where,
+			order,
+			paging,
+		),
+		params...,
+	)
+	if err != nil {
+		return nil, err
+	}
+	imports := make([]*models.TscriptImport, 0)
+	for rows.Next() {
+		imp := &models.TscriptImport{}
+		if err := rows.StructScan(imp); err != nil {
+			return nil, err
+		}
+		imports = append(imports, imp)
+	}
+	return imports, nil
 }

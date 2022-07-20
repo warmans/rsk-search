@@ -72,6 +72,7 @@ type Transcript struct {
 	Publication    string    `json:"publication"`
 	Series         int32     `json:"series"`
 	Episode        int32     `json:"episode"`
+	Name           string    `json:"name"` // some episodes don't really have a proper series/episode and need to be identified by a name e.g. Radio 2 special
 	ReleaseDate    time.Time `json:"release_date"`
 	Incomplete     bool      `json:"incomplete"`
 	OffsetAccuracy int32     `json:"offset_accuracy"`
@@ -210,9 +211,10 @@ func (f Synopsis) Proto() *api.Synopsis {
 }
 
 type Trivia struct {
-	Description string `json:"description"`
-	StartPos    int64  `json:"start_pos"`
-	EndPos      int64  `json:"end_pos"`
+	Description         string `json:"description"`
+	ExtendedDescription string `json:"extended_description"`
+	StartPos            int64  `json:"start_pos"`
+	EndPos              int64  `json:"end_pos"`
 }
 
 func (f Trivia) Proto() *api.Trivia {

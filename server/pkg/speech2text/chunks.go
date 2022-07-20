@@ -12,9 +12,9 @@ import (
 
 const targetChunkDuration = 180
 
-func MapChunksFromGoogleTranscript(epid string, inFile io.Reader, outputWriter io.Writer) error {
+func MapChunksFromGoogleTranscript(epid string, epName string, inFile io.Reader, outputWriter io.Writer) error {
 
-	ts, err := getIncompleteTranscriptionModelFromName(epid)
+	ts, err := getIncompleteTranscriptionModelFromName(epid, epName)
 	if err != nil {
 		return err
 	}
@@ -61,7 +61,7 @@ func getChunks(scanner *bufio.Scanner) ([]models.Chunk, error) {
 	return chs, scanner.Err()
 }
 
-func getIncompleteTranscriptionModelFromName(epid string) (*models.Tscript, error) {
+func getIncompleteTranscriptionModelFromName(epid string, epName string) (*models.Tscript, error) {
 	publication, series, episode, err := models.ParseEpID(epid)
 	if err != nil {
 		return nil, err
@@ -70,5 +70,6 @@ func getIncompleteTranscriptionModelFromName(epid string) (*models.Tscript, erro
 		Publication: publication,
 		Series:      series,
 		Episode:     episode,
+		Name:        epName,
 	}, nil
 }

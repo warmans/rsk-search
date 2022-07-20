@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion7
 type AdminServiceClient interface {
 	DeleteTscript(ctx context.Context, in *DeleteTscriptRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	CreateTscriptImport(ctx context.Context, in *CreateTscriptImportRequest, opts ...grpc.CallOption) (*TscriptImport, error)
+	ListTscriptImports(ctx context.Context, in *ListTscriptImportsRequest, opts ...grpc.CallOption) (*TscriptImportList, error)
 }
 
 type adminServiceClient struct {
@@ -49,12 +50,22 @@ func (c *adminServiceClient) CreateTscriptImport(ctx context.Context, in *Create
 	return out, nil
 }
 
+func (c *adminServiceClient) ListTscriptImports(ctx context.Context, in *ListTscriptImportsRequest, opts ...grpc.CallOption) (*TscriptImportList, error) {
+	out := new(TscriptImportList)
+	err := c.cc.Invoke(ctx, "/rsk.AdminService/ListTscriptImports", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AdminServiceServer is the server API for AdminService service.
 // All implementations should embed UnimplementedAdminServiceServer
 // for forward compatibility
 type AdminServiceServer interface {
 	DeleteTscript(context.Context, *DeleteTscriptRequest) (*emptypb.Empty, error)
 	CreateTscriptImport(context.Context, *CreateTscriptImportRequest) (*TscriptImport, error)
+	ListTscriptImports(context.Context, *ListTscriptImportsRequest) (*TscriptImportList, error)
 }
 
 // UnimplementedAdminServiceServer should be embedded to have forward compatible implementations.
@@ -66,6 +77,9 @@ func (UnimplementedAdminServiceServer) DeleteTscript(context.Context, *DeleteTsc
 }
 func (UnimplementedAdminServiceServer) CreateTscriptImport(context.Context, *CreateTscriptImportRequest) (*TscriptImport, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateTscriptImport not implemented")
+}
+func (UnimplementedAdminServiceServer) ListTscriptImports(context.Context, *ListTscriptImportsRequest) (*TscriptImportList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListTscriptImports not implemented")
 }
 
 // UnsafeAdminServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -115,6 +129,24 @@ func _AdminService_CreateTscriptImport_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AdminService_ListTscriptImports_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListTscriptImportsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServiceServer).ListTscriptImports(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/rsk.AdminService/ListTscriptImports",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServiceServer).ListTscriptImports(ctx, req.(*ListTscriptImportsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AdminService_ServiceDesc is the grpc.ServiceDesc for AdminService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -129,6 +161,10 @@ var AdminService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateTscriptImport",
 			Handler:    _AdminService_CreateTscriptImport_Handler,
+		},
+		{
+			MethodName: "ListTscriptImports",
+			Handler:    _AdminService_ListTscriptImports_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

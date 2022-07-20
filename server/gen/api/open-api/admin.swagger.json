@@ -52,6 +52,63 @@
         ]
       }
     },
+    "/api/admin/tscript/imports": {
+      "get": {
+        "summary": "Lists previously run imports.",
+        "operationId": "listTscriptImports",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskTscriptImportList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortDirection",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      }
+    },
     "/api/admin/tscript/{id}": {
       "delete": {
         "summary": "Delete a completed partial transacript. This should only be done after the data has been extracted to the permanent transcript (flat file).",
@@ -123,6 +180,9 @@
         },
         "mp3Uri": {
           "type": "string"
+        },
+        "epname": {
+          "type": "string"
         }
       }
     },
@@ -136,6 +196,43 @@
           "type": "string"
         },
         "mp3Uri": {
+          "type": "string"
+        },
+        "epname": {
+          "type": "string"
+        },
+        "log": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rskTscriptImportLog"
+          }
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "completedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "rskTscriptImportList": {
+      "type": "object",
+      "properties": {
+        "imports": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rskTscriptImport"
+          }
+        }
+      }
+    },
+    "rskTscriptImportLog": {
+      "type": "object",
+      "properties": {
+        "stage": {
+          "type": "string"
+        },
+        "msg": {
           "type": "string"
         }
       }

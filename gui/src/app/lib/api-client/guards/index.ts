@@ -352,6 +352,8 @@ export function isRskCreateTscriptImportRequest(arg: any): arg is models.RskCrea
   typeof arg === 'object' &&
     // epid?: string
     ( typeof arg.epid === 'undefined' || typeof arg.epid === 'string' ) &&
+    // epname?: string
+    ( typeof arg.epname === 'undefined' || typeof arg.epname === 'string' ) &&
     // mp3Uri?: string
     ( typeof arg.mp3Uri === 'undefined' || typeof arg.mp3Uri === 'string' ) &&
 
@@ -820,12 +822,44 @@ export function isRskTscriptImport(arg: any): arg is models.RskTscriptImport {
   return (
   arg != null &&
   typeof arg === 'object' &&
+    // completedAt?: string
+    ( typeof arg.completedAt === 'undefined' || typeof arg.completedAt === 'string' ) &&
+    // createdAt?: string
+    ( typeof arg.createdAt === 'undefined' || typeof arg.createdAt === 'string' ) &&
     // epid?: string
     ( typeof arg.epid === 'undefined' || typeof arg.epid === 'string' ) &&
+    // epname?: string
+    ( typeof arg.epname === 'undefined' || typeof arg.epname === 'string' ) &&
     // id?: string
     ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
+    // log?: RskTscriptImportLog[]
+    ( typeof arg.log === 'undefined' || (Array.isArray(arg.log) && arg.log.every((item: unknown) => isRskTscriptImportLog(item))) ) &&
     // mp3Uri?: string
     ( typeof arg.mp3Uri === 'undefined' || typeof arg.mp3Uri === 'string' ) &&
+
+  true
+  );
+  }
+
+export function isRskTscriptImportList(arg: any): arg is models.RskTscriptImportList {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // imports?: RskTscriptImport[]
+    ( typeof arg.imports === 'undefined' || (Array.isArray(arg.imports) && arg.imports.every((item: unknown) => isRskTscriptImport(item))) ) &&
+
+  true
+  );
+  }
+
+export function isRskTscriptImportLog(arg: any): arg is models.RskTscriptImportLog {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // msg?: string
+    ( typeof arg.msg === 'undefined' || typeof arg.msg === 'string' ) &&
+    // stage?: string
+    ( typeof arg.stage === 'undefined' || typeof arg.stage === 'string' ) &&
 
   true
   );

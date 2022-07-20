@@ -1,8 +1,10 @@
 package models
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/warmans/rsk-search/gen/api"
+	"github.com/warmans/rsk-search/pkg/util"
 	"path"
 	"time"
 )
@@ -51,6 +53,7 @@ type Tscript struct {
 	Publication string  `json:"publication"`
 	Series      int32   `json:"series"`
 	Episode     int32   `json:"episode"`
+	Name        string  `json:"name"`
 	Chunks      []Chunk `json:"chunks"`
 }
 
@@ -63,6 +66,7 @@ type TscriptStats struct {
 	Publication                     string
 	Series                          int32
 	Episode                         int32
+	Name                            string
 	ChunkContributionStates         map[string][]ContributionState
 	NumChunks                       int32
 	NumContributions                int32
@@ -77,6 +81,7 @@ func (c *TscriptStats) AsEpisode() *Transcript {
 		Publication: c.Publication,
 		Series:      c.Series,
 		Episode:     c.Episode,
+		Name:        c.Name,
 	}
 }
 
@@ -89,6 +94,7 @@ func (c *TscriptStats) Proto() *api.TscriptStats {
 		Publication:                     c.Publication,
 		Series:                          c.Series,
 		Episode:                         c.Episode,
+		Name:                            c.Name,
 		ChunkContributions:              map[string]*api.ChunkStates{},
 		NumChunks:                       c.NumChunks,
 		NumContributions:                c.NumContributions,
@@ -210,27 +216,37 @@ type ContributionActivity struct {
 
 type TscriptImportCreate struct {
 	EpID   string `json:"epid" db:"epid"`
+	EpName string `json:"epname" db:"epname"`
 	Mp3URI string `json:"mp3_uri" db:"mp3_uri"`
-}
-
-type TscriptImportUpdate struct {
-	ID string `json:"id" db:"id"`
 }
 
 type TscriptImport struct {
-	ID     string `json:"id" db:"id"`
-	EpID   string `json:"epid" db:"epid"`
-	Mp3URI string `json:"mp3_uri" db:"mp3_uri"`
+	ID          string     `json:"id" db:"id"`
+	EpID        string     `json:"epid" db:"epid"`
+	EpName      string     `json:"epname" db:"epname"`
+	Mp3URI      string     `json:"mp3_uri" db:"mp3_uri"`
+	Log         string     `json:"-" db:"log"`
+	CreatedAt   *time.Time `json:"-" db:"created_at"`
+	CompletedAt *time.Time `json:"-" db:"completed_at"`
 }
 
 func (c *TscriptImport) Proto() *api.TscriptImport {
 	if c == nil {
 		return nil
 	}
+	logs := make([]*api.TscriptImportLog, 0)
+	if c.Log != "" {
+		if err := json.Unmarshal([]byte(c.Log), &logs); err != nil {
+			// just ignore it for now. The logs aren't used for anything yet.
+		}
+	}
 	return &api.TscriptImport{
-		Id:     c.ID,
-		Epid:   c.EpID,
-		Mp3Uri: c.Mp3URI,
+		Id:          c.ID,
+		Epid:        c.EpID,
+		Mp3Uri:      c.Mp3URI,
+		Log:         logs,
+		CreatedAt:   util.FormatTimeForRPCResponse(c.CreatedAt),
+		CompletedAt: util.FormatTimeForRPCResponse(c.CompletedAt),
 	}
 }
 

@@ -19,6 +19,20 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  listTscriptImports(
+    args: {
+      filter?: string,
+      sortField?: string,
+      sortDirection?: string,
+      page?: number,
+      pageSize?: number,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskTscriptImportList>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   deleteTscript(
     args: {
       id: string,

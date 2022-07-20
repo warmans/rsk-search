@@ -12,11 +12,38 @@
               <input formControlName="epid" type="text" class="form-control" placeholder="publication-SnEn">
             </div>
             <div class="mb-3">
+              <label class="form-label">Episode Name (optional)</label>
+              <input formControlName="epname" type="text" class="form-control" placeholder="E.g. Guide to...">
+            </div>
+            <div class="mb-3">
               <label class="form-label">MP3 URI</label>
               <input formControlName="mp3_uri" type="text" class="form-control" placeholder="google cloud URL">
             </div>
           </form>
           <button class="btn btn-primary" [disabled]="!this.importForm.valid" (click)="startImport()">Start Import</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          Tscript Imports
+        </div>
+        <div class="card-body">
+          <div class="row p-2" *ngFor="let imp of imports">
+            <div class="col-2">{{imp.id}}</div>
+            <div class="col-1">{{imp.createdAt}}</div>
+            <div class="col-1">{{imp.completedAt || "INCOMPLETE" }}</div>
+            <div class="col-1">{{imp.epid}}</div>
+            <div class="col-2">{{imp.epname}}</div>
+            <div class="col-2">{{imp.mp3Uri}}</div>
+            <div class="col-2">{{(imp.log || []).length > 0 ? imp.log[imp.log.length-1].msg : 'No Log'}}</div>
+            <div class="col-1"><button class="btn btn-primary btn-sm" (click)="imp.showLog = !imp.showLog">LOG</button></div>
+            <div class="col-12 p-2" *ngIf="imp.showLog">
+              <div class="row code" *ngFor="let log of imp.log">
+                <div class="col-2">{{log.stage}}</div>
+                <div class="col-10">{{log.msg}}</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="card">

@@ -43,6 +43,16 @@ service AdminService {
     };
   }
 
+  rpc ListTscriptImports (ListTscriptImportsRequest) returns (TscriptImportList) {
+    option (google.api.http) = {
+      get: "/api/admin/tscript/imports"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "listTscriptImports",
+      summary: "Lists previously run imports."
+      tags: "search"
+    };
+  }
 }
 
 message DeleteTscriptRequest {
@@ -52,10 +62,32 @@ message DeleteTscriptRequest {
 message CreateTscriptImportRequest {
   string epid = 1; // must be in the correct format e.g. xfm-S2E36
   string mp3_uri = 2;
+  string epname = 3;
 }
 
 message TscriptImport {
   string id = 1;
   string epid = 2; // must be in the correct format e.g. xfm-S2E36
   string mp3_uri = 3;
+  string epname = 4; // optional
+  repeated TscriptImportLog log = 5;
+  string created_at = 6;
+  string completed_at = 7;
+}
+
+message TscriptImportLog {
+  string stage = 1;
+  string msg = 2;
+}
+
+message ListTscriptImportsRequest{
+  string filter = 1;
+  string sort_field = 2;
+  string sort_direction = 3;
+  int32 page = 4;
+  int32 page_size = 5;
+}
+
+message TscriptImportList {
+  repeated TscriptImport imports = 1;
 }

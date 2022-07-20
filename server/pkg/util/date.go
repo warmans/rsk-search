@@ -12,3 +12,10 @@ func ShortDate(t time.Time) string {
 func SqlDate(t time.Time) string {
 	return t.Format(SQLDateFormat)
 }
+
+func FormatTimeForRPCResponse(t *time.Time) string {
+	if t == nil {
+		return ""
+	}
+	return t.Format(SQLDateFormat)
+}

@@ -258,7 +258,7 @@ func (q *ImportQueue) HandleCreateMachineTranscription(ctx context.Context, t *a
 	}
 	defer outFile.Close()
 
-	if err := speech2text.MapChunksFromGoogleTranscript(tsImport.EpID, f, outFile); err != nil {
+	if err := speech2text.MapChunksFromGoogleTranscript(tsImport.EpID, tsImport.EpName, f, outFile); err != nil {
 		return err
 	}
 
@@ -336,15 +336,19 @@ func (q *ImportQueue) HandlePublish(ctx context.Context, t *asynq.Task) error {
 		return err
 	}
 	if err := q.rw.WithStore(func(s *rw.Store) error {
-		return s.InsertOrIgnoreTscript(context.Background(), tscript)
+		if err := s.InsertOrIgnoreTscript(context.Background(), tscript); err != nil {
+			return err
+		}
+		if err := s.CompleteTscriptImport(ctx, tsImport.ID); err != nil {
+			return err
+		}
+		return q.fs.RemoveAll(tsImport.WorkingDir(q.cfg.WorkingDir))
 	}); err != nil {
 		return err
 	}
 
 	q.TryUpdateImportLog(ctx, tsImport.ID, t.Type(), "Publish complete")
-
-	// cleanup
-	return q.fs.RemoveAll(tsImport.WorkingDir(q.cfg.WorkingDir))
+	return nil
 }
 
 func (q *ImportQueue) Start() error {
