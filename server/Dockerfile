@@ -4,7 +4,9 @@ RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/s
     wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.33-r0/glibc-2.33-r0.apk && \
     apk add glibc-2.33-r0.apk && \
     apk add ffmpeg && \
-    apk add python3
+    apk add python3 py-pip
+
+RUN python3 -m pip install pydub
 
 RUN mkdir -p /opt/rsk/persistent && chown -R nobody /opt/rsk
 RUN mkdir -p /opt/rsk/script
