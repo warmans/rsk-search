@@ -8,8 +8,7 @@ RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/s
 
 RUN python3 -m pip install pydub
 
-RUN mkdir -p /opt/rsk/persistent && mkdir -p /opt/rsk/script && RUN chown -R nobody /opt/rsk
-RUN mkdir -p /opt/rsk/imports
+RUN mkdir -p /opt/rsk/persistent && mkdir -p /opt/rsk/script && mkdir -p /opt/rsk/imports && chown -R nobody /opt/rsk
 
 ARG USER=nobody
 USER nobody
