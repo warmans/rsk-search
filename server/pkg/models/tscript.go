@@ -236,8 +236,10 @@ func (c *TscriptImport) Proto() *api.TscriptImport {
 	}
 	logs := make([]*api.TscriptImportLog, 0)
 	if c.Log != "" {
-		// just ignore it for now. The logs aren't used for anything yet.
-		json.Unmarshal([]byte(c.Log), &logs)
+		if err := json.Unmarshal([]byte(c.Log), &logs); err != nil {
+			// just ignore it for now. The logs aren't used for anything yet.
+			logs = make([]*api.TscriptImportLog, 0)
+		}
 	}
 	return &api.TscriptImport{
 		Id:          c.ID,
