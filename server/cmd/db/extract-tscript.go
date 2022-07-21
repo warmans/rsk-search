@@ -37,7 +37,7 @@ func ExtractTscriptCmd() *cobra.Command {
 			logger, _ := zap.NewProduction()
 			defer func() {
 				if err := logger.Sync(); err != nil {
-					fmt.Println("WARNING: failed to sync logger: "+err.Error())
+					fmt.Println("WARNING: failed to sync logger: " + err.Error())
 				}
 			}()
 
@@ -80,6 +80,16 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 			episodeOnDisk, err := data.LoadEpisodeByName(outputDataPath, v.Publication, models.FormatStandardEpisodeName(v.Series, v.Episode))
 			if err != nil {
 				return err
+			}
+			if episodeOnDisk == nil {
+				episodeOnDisk = &models.Transcript{
+					Publication:    v.Publication,
+					Series:         v.Series,
+					Episode:        v.Episode,
+					Name:           v.Name,
+					Incomplete:     true,
+					OffsetAccuracy: 0,
+				}
 			}
 
 			// clear old data
@@ -132,7 +142,7 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 					}
 				}
 
-				// all chunks needs to be processed
+				// all chunks need to be processed.
 				currentPos := int64(0)
 				if len(episodeOnDisk.Transcript) > 0 {
 					currentPos = episodeOnDisk.Transcript[len(episodeOnDisk.Transcript)-1].Position

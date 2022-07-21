@@ -641,6 +641,8 @@ export function isRskShortTranscript(arg: any): arg is models.RskShortTranscript
     ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
     // incomplete?: boolean
     ( typeof arg.incomplete === 'undefined' || typeof arg.incomplete === 'boolean' ) &&
+    // name?: string
+    ( typeof arg.name === 'undefined' || typeof arg.name === 'string' ) &&
     // offsetAccuracyPcnt?: number
     ( typeof arg.offsetAccuracyPcnt === 'undefined' || typeof arg.offsetAccuracyPcnt === 'number' ) &&
     // publication?: string
@@ -720,6 +722,8 @@ export function isRskTranscript(arg: any): arg is models.RskTranscript {
     ( typeof arg.incomplete === 'undefined' || typeof arg.incomplete === 'boolean' ) &&
     // metadata?: { [key: string]: string }
     ( typeof arg.metadata === 'undefined' || typeof arg.metadata === 'string' ) &&
+    // name?: string
+    ( typeof arg.name === 'undefined' || typeof arg.name === 'string' ) &&
     // offsetAccuracyPcnt?: number
     ( typeof arg.offsetAccuracyPcnt === 'undefined' || typeof arg.offsetAccuracyPcnt === 'number' ) &&
     // publication?: string
@@ -886,6 +890,8 @@ export function isRskTscriptStats(arg: any): arg is models.RskTscriptStats {
     ( typeof arg.episode === 'undefined' || typeof arg.episode === 'number' ) &&
     // id?: string
     ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
+    // name?: string
+    ( typeof arg.name === 'undefined' || typeof arg.name === 'string' ) &&
     // numApprovedContributions?: number
     ( typeof arg.numApprovedContributions === 'undefined' || typeof arg.numApprovedContributions === 'number' ) &&
     // numChunks?: number

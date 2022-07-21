@@ -20,7 +20,7 @@
     <div class="col">
       <div class="card" *ngIf="episode">
         <div class="card-header d-flex justify-content-between">
-          <div>{{ shortID }}</div>
+          <div>{{ shortID }}<span *ngIf="episode.name"> - "{{episode.name}}"</span></div>
           <div><a *ngIf="previousEpisodeId" class="mr-2" [routerLink]="['/ep', previousEpisodeId]"><i class="bi bi-arrow-left"></i> Previous</a> <a *ngIf="nextEpisodeId" class="ml-2" [routerLink]="['/ep', nextEpisodeId]">Next <i class="bi bi-arrow-right"></i></a></div>
         </div>
         <div class="card-body">

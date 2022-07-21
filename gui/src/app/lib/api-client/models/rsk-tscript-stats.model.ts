@@ -7,6 +7,7 @@ export interface RskTscriptStats {
   chunkContributions?: { [key: string]: RskChunkStates };
   episode?: number;
   id?: string;
+  name?: string;
   numApprovedContributions?: number;
   numChunks?: number;
   numContributions?: number;

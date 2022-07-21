@@ -2009,6 +2009,9 @@
           "offsetAccuracyPcnt": {
             "type": "integer",
             "format": "int32"
+          },
+          "name": {
+            "type": "string"
           }
         }
       },
@@ -2126,6 +2129,9 @@
           "offsetAccuracyPcnt": {
             "type": "integer",
             "format": "int32"
+          },
+          "name": {
+            "type": "string"
           }
         }
       },

@@ -9,7 +9,7 @@
       </div>
       <div class="pl-3">
         <div class="title mb-1">
-          <a [routerLink]="['/ep', episode.id]">Series {{episode.series}} Episode {{episode.episode}}</a>
+          <a [routerLink]="['/ep', episode.id]">Series {{episode.series}} Episode {{episode.episode}} <span *ngIf="episode.name"> - "{{episode.name}}"</span></a>
         </div>
         <div class="sub-title mb-2">{{episode.releaseDate}}</div>
       </div>

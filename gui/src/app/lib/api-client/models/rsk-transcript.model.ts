@@ -13,6 +13,7 @@ export interface RskTranscript {
   id?: string;
   incomplete?: boolean;
   metadata?: { [key: string]: string };
+  name?: string;
   offsetAccuracyPcnt?: number;
   publication?: string;
   rawTranscript?: string;

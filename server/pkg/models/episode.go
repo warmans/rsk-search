@@ -131,6 +131,7 @@ func (e *Transcript) ShortProto(audioURI string) *api.ShortTranscript {
 		ShortId:             e.ShortID(),
 		AudioUri:            audioURI,
 		OffsetAccuracyPcnt:  e.OffsetAccuracy,
+		Name:                e.Name,
 	}
 	for k, s := range e.Synopsis {
 		ep.Synopsis[k] = s.Proto()
@@ -156,6 +157,7 @@ func (e *Transcript) Proto(withRawTranscript string, audioURI string) *api.Trans
 		AudioUri:           audioURI,
 		Actors:             e.Actors(),
 		OffsetAccuracyPcnt: e.OffsetAccuracy,
+		Name:               e.Name,
 	}
 	for _, d := range e.Transcript {
 		ep.Transcript = append(ep.Transcript, d.Proto(false))
