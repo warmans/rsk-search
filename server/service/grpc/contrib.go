@@ -20,7 +20,6 @@ import (
 	"github.com/warmans/rsk-search/pkg/store/rw"
 	"github.com/warmans/rsk-search/pkg/transcript"
 	"github.com/warmans/rsk-search/service/config"
-	"github.com/warmans/rsk-search/service/queue"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 	"google.golang.org/protobuf/types/known/emptypb"
@@ -67,7 +66,6 @@ type ContribService struct {
 	pledgeClient *pledge.Client
 	episodeCache *data.EpisodeCache
 	rankCache    models.Ranks
-	taskQueue    queue.ImportPipeline
 }
 
 func (s *ContribService) RegisterGRPC(server *grpc.Server) {

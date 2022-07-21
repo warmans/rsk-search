@@ -236,9 +236,8 @@ func (c *TscriptImport) Proto() *api.TscriptImport {
 	}
 	logs := make([]*api.TscriptImportLog, 0)
 	if c.Log != "" {
-		if err := json.Unmarshal([]byte(c.Log), &logs); err != nil {
-			// just ignore it for now. The logs aren't used for anything yet.
-		}
+		// just ignore it for now. The logs aren't used for anything yet.
+		json.Unmarshal([]byte(c.Log), &logs)
 	}
 	return &api.TscriptImport{
 		Id:          c.ID,
@@ -251,7 +250,7 @@ func (c *TscriptImport) Proto() *api.TscriptImport {
 }
 
 func (c *TscriptImport) WorkingDir(parentDirParth string) string {
-	return fmt.Sprintf(path.Join(parentDirParth, c.ID))
+	return path.Join(parentDirParth, c.ID)
 }
 
 func (c *TscriptImport) Mp3() string {
