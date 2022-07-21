@@ -163,6 +163,12 @@ type AuthorContribution struct {
 	ContributionType ContributionType
 	Points           float32
 	CreatedAt        time.Time
+
+	// if type is ContributionTypeChunk
+	ChunkContribution *ChunkContribution
+
+	// if type is ContributionTypeChange
+	ChangeContribution *ChangeContribution
 }
 
 func (a *AuthorContribution) Proto() *api.AuthorContribution {
@@ -174,6 +180,9 @@ func (a *AuthorContribution) Proto() *api.AuthorContribution {
 		Points:           a.Points,
 		CreatedAt:        a.CreatedAt.Format(time.RFC3339),
 	}
+}
+
+type ChangeContribution struct {
 }
 
 type Ranks []*Rank

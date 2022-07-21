@@ -417,7 +417,7 @@ func (s *Store) ListChunkContributions(ctx context.Context, q *common.QueryModif
 		fmt.Sprintf(`
 		SELECT 
 			c.id,
-			ch.tscript_id,
+			COALESCE(ch.tscript_id, ''),
 			c.tscript_chunk_id,
        		c.author_id, 
        		COALESCE(a.name, 'unknown'), 
