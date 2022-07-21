@@ -89,6 +89,7 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 					Name:           v.Name,
 					Incomplete:     true,
 					OffsetAccuracy: 0,
+					Contributors:   []string{},
 				}
 			}
 
