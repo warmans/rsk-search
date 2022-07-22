@@ -20,6 +20,7 @@ import (
 	"os/exec"
 	"path"
 	"strings"
+	"time"
 )
 
 const (
@@ -120,7 +121,7 @@ func (q *ImportQueue) DispatchMachineTranscribe(ctx context.Context, tscriptImpo
 		return err
 	}
 	q.logger.Debug("Enqueue machine transcribe...")
-	_, err = q.client.EnqueueContext(ctx, asynq.NewTask(TaskImportMachineTranscribe, payload))
+	_, err = q.client.EnqueueContext(ctx, asynq.NewTask(TaskImportMachineTranscribe, payload, asynq.Timeout(time.Hour*3)))
 	return err
 }
 
