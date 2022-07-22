@@ -34,7 +34,7 @@
   </div>
 </div>
 <div *ngIf="result === undefined || !result?.results.length" class="container pt-4">
-  <div class="row mb-4">
+  <div class="row mb-2">
     <div class="col">
       <div *ngIf="result !== undefined && result?.results.length === 0" class="card no-results mb-4">
         <div class="card-body text-center">
@@ -50,6 +50,7 @@
         <div class="card-body">
           <p>This site was built with the help of community contributions. Users can contribute in various ways including transcribing audio or editing existing transcripts.</p>
           <p>To get involved you just need a reddit account.</p>
+          <p>There are currently <strong class="text-primary">{{contribtionsNeeded || 0}}</strong> contributions needed.</p>
           <button class="btn btn-primary" [routerLink]="['/contribute']">Contribute</button>
         </div>
       </div>

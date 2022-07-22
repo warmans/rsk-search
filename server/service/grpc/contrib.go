@@ -870,6 +870,22 @@ func (s *ContribService) validateContributionStateUpdate(claims *jwt.Claims, cur
 func getDonationRecipients() []*api.DonationRecipient {
 	return []*api.DonationRecipient{
 		{
+			Id:      "b5096382-996f-463d-a531-75b29163a2b2",
+			Name:    "UNICEF - Ukraine Relief",
+			Mission: "UNICEF has been working nonstop in eastern Ukraine, delivering lifesaving programs for affected children and families as fighting has taken an increasingly heavy toll on the civilian population of 3.4 million people — including 510,000 children — living in the Donbas region.",
+			LogoUrl: "/assets/logo/bf20017fbe112e29.jpeg",
+			NgoId:   "13-1760110-006",
+			Url:     "https://www.unicef.org/ukraine/en",
+		},
+		{
+			Id:      "d694d55b-5888-4368-9a88-70acd55f33b0",
+			Name:    "Revived Soldiers Ukraine",
+			Mission: "Aiding with medical help to people of Ukraine, severely wounded soldiers and members of their families.",
+			LogoUrl: "/assets/logo/rsu.jpg",
+			NgoId:   "47-5315018",
+			Url:     "https://www.rsukraine.org/",
+		},
+		{
 			Id:      "e349c52c-73aa-4123-83b2-6466d1aa2d54",
 			Name:    "International Primate Protection League",
 			Mission: "PPL is a grassroots nonprofit organization dedicated to protecting the world’s remaining primates, great and small. Since 1973 we have worked to expose primate abuse and battled international traffickers.",

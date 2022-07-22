@@ -20,6 +20,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   currentPage: number;
   morePages: boolean = false;
   latestChangelog: RskChangelog;
+  contribtionsNeeded: number;
 
   private unsubscribe$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -44,6 +45,14 @@ export class SearchComponent implements OnInit, OnDestroy {
 
     this.apiClient.listChangelogs({ pageSize: 1 }).pipe(takeUntil(this.unsubscribe$)).subscribe((res) => {
       this.latestChangelog = (res.changelogs || []).pop();
+    });
+
+    this.apiClient.listTscripts().pipe(takeUntil(this.unsubscribe$)).subscribe((res) => {
+      this.contribtionsNeeded = 0;
+      (res.tscripts || []).forEach((v) => {
+        this.contribtionsNeeded += v.numChunks - ((v.numApprovedContributions || 0) + (v.numPendingContributions || 0));
+      })
+      console.log(res);
     });
   }
 
