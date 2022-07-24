@@ -143,7 +143,8 @@ run: build
 		--pledge-def-email=${PLEDGE_EMAIL} \
 		--pledge-def-firstname=${PLEDGE_FNAME} \
 		--pledge-def-lastname=${PLEDGE_LNAME} \
-		--rewards-disabled=false
+		--rewards-disabled=false \
+		--import-keep-files=true
 
 .PHONY: dev.services.start
 dev.services.start:

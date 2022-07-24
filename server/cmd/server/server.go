@@ -44,7 +44,7 @@ func ServerCmd() *cobra.Command {
 	jwtConfig := &jwt.Config{}
 	rewardCfg := reward.Config{}
 	pledgeCfg := pledge.Config{}
-	importQueueConfig := &queue.ImportqueueConfig{}
+	importQueueConfig := &queue.ImportQueueConfig{}
 	speech2TextCfg := &speech2text2.GcloudConfig{}
 
 	cmd := &cobra.Command{

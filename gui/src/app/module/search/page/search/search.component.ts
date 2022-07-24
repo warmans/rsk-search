@@ -52,7 +52,6 @@ export class SearchComponent implements OnInit, OnDestroy {
       (res.tscripts || []).forEach((v) => {
         this.contribtionsNeeded += v.numChunks - ((v.numApprovedContributions || 0) + (v.numPendingContributions || 0));
       })
-      console.log(res);
     });
   }
 

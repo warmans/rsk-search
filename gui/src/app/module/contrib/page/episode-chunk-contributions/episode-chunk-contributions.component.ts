@@ -67,7 +67,7 @@ export class EpisodeChunkContributions implements OnInit {
     }
 
     this.loading.push(true);
-    this.apiClient.listChunks({ tscriptId: this.tscriptID, sortField: 'start_second', sortDirection: 'asc' }).pipe(takeUntil(this.destroy$)).subscribe((resp: RskChunkList) => {
+    this.apiClient.listChunks({ tscriptId: this.tscriptID, sortField: 'start_second', sortDirection: 'asc', pageSize: 200 }).pipe(takeUntil(this.destroy$)).subscribe((resp: RskChunkList) => {
       this.chunks = resp.chunks;
     }).add(() => this.loading.pop());
 

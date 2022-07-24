@@ -100,7 +100,8 @@ services:
       RSK_SEARCH_PLEDGE_DEF_EMAIL: "changeme"
       RSK_SEARCH_PLEDGE_DEF_FIRSTNAME: "changeme"
       RSK_SEARCH_PLEDGE_DEF_LASTNAME: "changeme"
-      RSK_SEARCH_REDIS_ADDR: "redis:6379"
+      RSK_SEARCH_IMPORT_REDIS_ADDR: "redis:6379"
+      RSK_SEARCH_IMPORT_PYTHON_SCRIPT_DIR: "/opt/rsk/script"
       GOOGLE_APPLICATION_CREDENTIALS: "/root/google-service-key.json"
-      RSK_SEARCH_PYTHON_SCRIPT_DIR: "/opt/rsk/script"
+
     restart: unless-stopped

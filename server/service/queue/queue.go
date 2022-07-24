@@ -31,22 +31,24 @@ const (
 	TaskImportPublish           = "import:publish"
 )
 
-type ImportqueueConfig struct {
+type ImportQueueConfig struct {
 	Addr              string
 	WorkingDir        string
 	GcloudAudioBucket string
 	GcloudChunkBucket string
 	GcloudWavDir      string
 	PythonScriptDir   string
+	KeepFiles         bool
 }
 
-func (c *ImportqueueConfig) RegisterFlags(fs *pflag.FlagSet, prefix string) {
-	flag.StringVarEnv(fs, &c.Addr, prefix, "redis-addr", "localhost:6379", "redis address to use for queue backend")
-	flag.StringVarEnv(fs, &c.WorkingDir, prefix, "work-dir", "./var/imports", "location to store in progress import artifacts")
-	flag.StringVarEnv(fs, &c.GcloudAudioBucket, prefix, "gcloud-audio-bucket", "scrimpton-raw-audio", "bucket to upload data where needed")
-	flag.StringVarEnv(fs, &c.GcloudChunkBucket, prefix, "gcloud-chunk-bucket", "scrimpton-chunked-audio", "bucket for storing audio chunks")
-	flag.StringVarEnv(fs, &c.GcloudWavDir, prefix, "gcloud-wav-dir", "wav", "bucket to upload data where needed")
-	flag.StringVarEnv(fs, &c.PythonScriptDir, prefix, "python-script-dir", "./script/audio-splitter", "location of python scripts used for audio splitting")
+func (c *ImportQueueConfig) RegisterFlags(fs *pflag.FlagSet, prefix string) {
+	flag.StringVarEnv(fs, &c.Addr, prefix, "import-redis-addr", "localhost:6379", "redis address to use for queue backend")
+	flag.StringVarEnv(fs, &c.WorkingDir, prefix, "import-work-dir", "./var/imports", "location to store in progress import artifacts")
+	flag.StringVarEnv(fs, &c.GcloudAudioBucket, prefix, "import-gcloud-audio-bucket", "scrimpton-raw-audio", "bucket to upload data where needed")
+	flag.StringVarEnv(fs, &c.GcloudChunkBucket, prefix, "import-gcloud-chunk-bucket", "scrimpton-chunked-audio", "bucket for storing audio chunks")
+	flag.StringVarEnv(fs, &c.GcloudWavDir, prefix, "import-gcloud-wav-dir", "wav", "bucket to upload data where needed")
+	flag.StringVarEnv(fs, &c.PythonScriptDir, prefix, "import-python-script-dir", "./script/audio-splitter", "location of python scripts used for audio splitting")
+	flag.BoolVarEnv(fs, &c.KeepFiles, prefix, "import-keep-files", false, "do not remove files after publish")
 }
 
 type ImportPipeline interface {
@@ -59,7 +61,7 @@ func NewImportQueue(
 	rw *rw.Conn,
 	speech2text *speech2text.Gcloud,
 	gcloud *storage.Client,
-	cfg *ImportqueueConfig) *ImportQueue {
+	cfg *ImportQueueConfig) *ImportQueue {
 	a := asynq.NewServer(
 		asynq.RedisClientOpt{Addr: cfg.Addr},
 		asynq.Config{
@@ -81,7 +83,7 @@ func NewImportQueue(
 
 type ImportQueue struct {
 	logger      *zap.Logger
-	cfg         *ImportqueueConfig
+	cfg         *ImportQueueConfig
 	srv         *asynq.Server
 	client      *asynq.Client
 	rw          *rw.Conn
@@ -291,7 +293,6 @@ func (q *ImportQueue) HandleSplitAudioChunks(ctx context.Context, t *asynq.Task)
 		"--outpath", chunkOutputDir,
 		"--audio", wavPath,
 	)
-	//cmd.Dir = tsImport.WorkingDir(q.workDirRoot)
 
 	q.logger.Info("Shelling out to python script to split Mp3")
 	out, err := cmd.CombinedOutput()
@@ -330,6 +331,7 @@ func (q *ImportQueue) HandlePublish(ctx context.Context, t *asynq.Task) error {
 		q.logger.Info("Copied chunk to bucket", zap.String("file", v.Name()), zap.String("bucket", q.cfg.GcloudChunkBucket))
 	}
 
+	q.logger.Info("Import chunks to DB")
 	tscript := &models.Tscript{}
 	if err := util.WithReadJSONFileDecoder(path.Join(tsImport.WorkingDir(q.cfg.WorkingDir), tsImport.ChunkedMachineTranscript()), func(dec *json.Decoder) error {
 		return dec.Decode(tscript)
@@ -342,6 +344,9 @@ func (q *ImportQueue) HandlePublish(ctx context.Context, t *asynq.Task) error {
 		}
 		if err := s.CompleteTscriptImport(ctx, tsImport.ID); err != nil {
 			return err
+		}
+		if q.cfg.KeepFiles {
+			return nil
 		}
 		return q.fs.RemoveAll(tsImport.WorkingDir(q.cfg.WorkingDir))
 	}); err != nil {
