@@ -49,3 +49,23 @@
     height: 100%;
   }
 }
+
+.autocomplete-dropdown {
+  position: absolute;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .line {
+    padding: 5px 0 5px 0;
+  }
+
+  .line:hover {
+    background-color: #f6f6f6;
+    cursor: pointer;
+  }
+  .line.active {
+    background-color: #f6f6f6;
+  }
+
+}

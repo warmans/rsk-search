@@ -509,6 +509,21 @@ export function isRskPendingRewardList(arg: any): arg is models.RskPendingReward
   );
   }
 
+export function isRskPrediction(arg: any): arg is models.RskPrediction {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // actor?: string
+    ( typeof arg.actor === 'undefined' || typeof arg.actor === 'string' ) &&
+    // line?: string
+    ( typeof arg.line === 'undefined' || typeof arg.line === 'string' ) &&
+    // words?: RskWordPosition[]
+    ( typeof arg.words === 'undefined' || (Array.isArray(arg.words) && arg.words.every((item: unknown) => isRskWordPosition(item))) ) &&
+
+  true
+  );
+  }
+
 export function isRskRank(arg: any): arg is models.RskRank {
   return (
   arg != null &&
@@ -622,6 +637,19 @@ export function isRskSearchStats(arg: any): arg is models.RskSearchStats {
     ( typeof arg.labels === 'undefined' || (Array.isArray(arg.labels) && arg.labels.every((item: unknown) => typeof item === 'string')) ) &&
     // values?: number[]
     ( typeof arg.values === 'undefined' || (Array.isArray(arg.values) && arg.values.every((item: unknown) => typeof item === 'number')) ) &&
+
+  true
+  );
+  }
+
+export function isRskSearchTermPredictions(arg: any): arg is models.RskSearchTermPredictions {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // predictions?: RskPrediction[]
+    ( typeof arg.predictions === 'undefined' || (Array.isArray(arg.predictions) && arg.predictions.every((item: unknown) => isRskPrediction(item))) ) &&
+    // prefix?: string
+    ( typeof arg.prefix === 'undefined' || typeof arg.prefix === 'string' ) &&
 
   true
   );
@@ -940,6 +968,21 @@ export function isRskUpdateTranscriptChangeRequest(arg: any): arg is models.RskU
     ( typeof arg.state === 'undefined' || isRskContributionState(arg.state) ) &&
     // transcript?: string
     ( typeof arg.transcript === 'undefined' || typeof arg.transcript === 'string' ) &&
+
+  true
+  );
+  }
+
+export function isRskWordPosition(arg: any): arg is models.RskWordPosition {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // endPos?: number
+    ( typeof arg.endPos === 'undefined' || typeof arg.endPos === 'number' ) &&
+    // startPos?: number
+    ( typeof arg.startPos === 'undefined' || typeof arg.startPos === 'number' ) &&
+    // word?: string
+    ( typeof arg.word === 'undefined' || typeof arg.word === 'string' ) &&
 
   true
   );

@@ -289,6 +289,17 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  predictSearchTerm(
+    args: {
+      prefix?: string,
+      maxPredictions?: number,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskSearchTermPredictions>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   listTranscripts(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscriptList>;

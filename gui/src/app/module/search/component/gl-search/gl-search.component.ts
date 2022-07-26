@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { MetaService } from '../../../core/service/meta/meta.service';
 import { FieldMetaKind, RskFieldMeta } from '../../../../lib/api-client/models';
-import { distinctUntilChanged, first } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, first, takeUntil } from 'rxjs/operators';
 import { And, BoolFilter, CompFilter, CompOp, Filter, NewCompFilter, Visitor } from '../../../../lib/filter-dsl/filter';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { PrintPlainText } from '../../../../lib/filter-dsl/printer';
@@ -15,13 +15,19 @@ import { SearchFilter } from '../gl-search-filter/gl-search-filter.component';
   templateUrl: './gl-search.component.html',
   styleUrls: ['./gl-search.component.scss']
 })
-export class GlSearchComponent implements OnInit, AfterViewInit {
+export class GlSearchComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @Output()
   queryUpdated: EventEmitter<string> = new EventEmitter<string>();
 
+  @Output()
+  termUpdated: EventEmitter<string> = new EventEmitter<string>();
+
   @Input()
   autoFocus: boolean = true;
+
+  @Input()
+  autoCompleteValues: string[] = [];
 
   searchForm = new FormGroup({
     term: new FormControl(null, [Validators.maxLength(1024)]),
@@ -35,7 +41,25 @@ export class GlSearchComponent implements OnInit, AfterViewInit {
 
   fieldKinds = FieldMetaKind;
 
+  showAutoCompleteDropdown: boolean = false;
+  selectedAutoCompleteRow: number = 0;
+
+
+  destroy$ = new EventEmitter();
+
   @ViewChild('termInput') termInput;
+
+  @ViewChild('termInputRoot') componentRootEl;
+
+  @HostListener('document:click', ['$event'])
+  clickOut(event) {
+    if (this.componentRootEl.nativeElement.contains(event.target)) {
+      this.setFocus();
+      return;
+    }
+    this.setFocusOff();
+  }
+
 
   constructor(meta: MetaService, route: ActivatedRoute) {
     meta.getMeta().pipe(first()).subscribe((m) => {
@@ -51,10 +75,20 @@ export class GlSearchComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.searchForm.get('term').valueChanges.pipe(takeUntil(this.destroy$), distinctUntilChanged(), debounceTime(500)).subscribe(
+      (val: string) => {
+        this.termUpdated.next(val);
+      }
+    );
   }
 
   ngAfterViewInit() {
     this.termInput.nativeElement.focus();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next(null);
+    this.destroy$.complete();
   }
 
   resetFilters() {
@@ -184,6 +218,54 @@ export class GlSearchComponent implements OnInit, AfterViewInit {
       this.activeFilters.push(new SearchFilter(meta, compFilter.op, compFilter.value.v));
     });
     this.searchForm.get('term').setValue(termText.join(' '));
+  }
+
+
+  onKeydown(key: KeyboardEvent): boolean {
+    this.setFocus();
+    switch (key.code) {
+      case 'ArrowDown':
+        if (this.selectedAutoCompleteRow >= this.autoCompleteValues.length - 1) {
+          this.selectedAutoCompleteRow = 0;
+        } else {
+          this.selectedAutoCompleteRow++;
+        }
+        break;
+      case 'ArrowUp':
+        if (this.selectedAutoCompleteRow < 1) {
+          this.selectedAutoCompleteRow = this.autoCompleteValues.length - 1;
+        } else {
+          this.selectedAutoCompleteRow--;
+        }
+        break;
+      case 'Enter':
+        if (!this.autoCompleteValues[this.selectedAutoCompleteRow]) {
+          return true;
+        }
+        this.setSearchTerm(`"${this.autoCompleteValues[this.selectedAutoCompleteRow]}"`);
+        return true;
+      case 'Escape':
+        this.autoCompleteValues = [];
+        break;
+      default:
+        return true;
+    }
+    return false;
+  }
+
+  setFocus() {
+    this.showAutoCompleteDropdown = true;
+  }
+
+  setFocusOff() {
+    this.showAutoCompleteDropdown = false;
+  }
+
+  setSearchTerm(term: string, emit?: boolean) {
+    this.searchForm.get('term').setValue(term);
+    if (emit) {
+      this.emitQuery();
+    }
   }
 }
 

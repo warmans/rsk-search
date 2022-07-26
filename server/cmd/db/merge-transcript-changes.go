@@ -5,6 +5,7 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 	"github.com/warmans/rsk-search/pkg/data"
 	"github.com/warmans/rsk-search/pkg/filter"
@@ -12,6 +13,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/store/common"
 	"github.com/warmans/rsk-search/pkg/store/rw"
 	"github.com/warmans/rsk-search/pkg/transcript"
+	"github.com/warmans/rsk-search/pkg/util"
 	"go.uber.org/zap"
 	"os"
 	"path"
@@ -38,7 +40,7 @@ func MergeTranscriptChangesCmd() *cobra.Command {
 			logger, _ := zap.NewProduction()
 			defer func() {
 				if err := logger.Sync(); err != nil {
-					fmt.Println("WARNING: failed to sync logger: "+err.Error())
+					fmt.Println("WARNING: failed to sync logger: " + err.Error())
 				}
 			}()
 
@@ -77,8 +79,7 @@ func mergeAll(outputDataPath string, migrationsPath string, conn *rw.Conn, dryRu
 			common.Q(common.WithFilter(
 				filter.And(
 					filter.Eq("state", filter.String(string(models.ContributionStateApproved))),
-					filter.Eq("merged", filter.Bool(false),
-					),
+					filter.Eq("merged", filter.Bool(false)),
 				)),
 			),
 		)
@@ -88,6 +89,14 @@ func mergeAll(outputDataPath string, migrationsPath string, conn *rw.Conn, dryRu
 
 		for _, v := range approvedChanges {
 
+			/*
+			     <option value="0.2">Typo 0.2</option>
+			     <option value="0.5">Correction 0.5</option>
+			     <option value="1">Improvement 1</option>
+			     <option value="2">Overhaul 2</option>
+			     <option value="3">Major Overhaul 3</option>
+			   </select>
+			*/
 			logger.Info(fmt.Sprintf("Processing change %s (%s)...", v.ID, v.EpID))
 
 			episodeOnDisk, err := data.LoadEpisdeByEpisodeID(outputDataPath, v.EpID)
@@ -95,12 +104,13 @@ func mergeAll(outputDataPath string, migrationsPath string, conn *rw.Conn, dryRu
 				return err
 			}
 			if episodeOnDisk == nil {
-				panic("nil episode encountered: "+v.EpID)
+				panic("nil episode encountered: " + v.EpID)
 			}
 
 			// clear old data
 			episodeOnDisk.Synopsis = nil
 			episodeOnDisk.Transcript = nil
+			episodeOnDisk.Trivia = nil
 
 			// contributors should be merged with whatever is on disk
 			uniqueContributors := map[string]struct{}{}
@@ -125,6 +135,19 @@ func mergeAll(outputDataPath string, migrationsPath string, conn *rw.Conn, dryRu
 			}
 			sort.Strings(contributors)
 			episodeOnDisk.Contributors = contributors
+
+			// update version
+			switch true {
+			case v.PointsAwarded > 0 && v.PointsAwarded <= 1:
+				episodeOnDisk.Version, err = util.NextVersion(episodeOnDisk.Version, util.PatchVersion)
+			case v.PointsAwarded > 1 && v.PointsAwarded <= 2:
+				episodeOnDisk.Version, err = util.NextVersion(episodeOnDisk.Version, util.MinorVersion)
+			case v.PointsAwarded > 2:
+				episodeOnDisk.Version, err = util.NextVersion(episodeOnDisk.Version, util.MajorVersion)
+			}
+			if err != nil {
+				return errors.Wrap(err, "failed to update version")
+			}
 
 			if dryRun {
 				if err := stdoutPrinter.Encode(episodeOnDisk); err != nil {

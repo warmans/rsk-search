@@ -629,6 +629,31 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  predictSearchTerm(
+    args: {
+      prefix?: string,
+      maxPredictions?: number,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskSearchTermPredictions> {
+    const path = `/api/search/predict-terms`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    if ('prefix' in args) {
+      options.params = options.params.set('prefix', String(args.prefix));
+    }
+    if ('maxPredictions' in args) {
+      options.params = options.params.set('maxPredictions', String(args.maxPredictions));
+    }
+    return this.sendRequest<models.RskSearchTermPredictions>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   listTranscripts(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscriptList> {

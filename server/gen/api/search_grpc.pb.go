@@ -22,6 +22,7 @@ type SearchServiceClient interface {
 	Search(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (*SearchResultList, error)
 	GetMetadata(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Metadata, error)
 	ListFieldValues(ctx context.Context, in *ListFieldValuesRequest, opts ...grpc.CallOption) (*FieldValueList, error)
+	PredictSearchTerm(ctx context.Context, in *PredictSearchTermRequest, opts ...grpc.CallOption) (*SearchTermPredictions, error)
 	GetTranscript(ctx context.Context, in *GetTranscriptRequest, opts ...grpc.CallOption) (*Transcript, error)
 	ListTranscripts(ctx context.Context, in *ListTranscriptsRequest, opts ...grpc.CallOption) (*TranscriptList, error)
 	// changelogs
@@ -63,6 +64,15 @@ func (c *searchServiceClient) ListFieldValues(ctx context.Context, in *ListField
 	return out, nil
 }
 
+func (c *searchServiceClient) PredictSearchTerm(ctx context.Context, in *PredictSearchTermRequest, opts ...grpc.CallOption) (*SearchTermPredictions, error) {
+	out := new(SearchTermPredictions)
+	err := c.cc.Invoke(ctx, "/rsk.SearchService/PredictSearchTerm", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *searchServiceClient) GetTranscript(ctx context.Context, in *GetTranscriptRequest, opts ...grpc.CallOption) (*Transcript, error) {
 	out := new(Transcript)
 	err := c.cc.Invoke(ctx, "/rsk.SearchService/GetTranscript", in, out, opts...)
@@ -97,6 +107,7 @@ type SearchServiceServer interface {
 	Search(context.Context, *SearchRequest) (*SearchResultList, error)
 	GetMetadata(context.Context, *emptypb.Empty) (*Metadata, error)
 	ListFieldValues(context.Context, *ListFieldValuesRequest) (*FieldValueList, error)
+	PredictSearchTerm(context.Context, *PredictSearchTermRequest) (*SearchTermPredictions, error)
 	GetTranscript(context.Context, *GetTranscriptRequest) (*Transcript, error)
 	ListTranscripts(context.Context, *ListTranscriptsRequest) (*TranscriptList, error)
 	// changelogs
@@ -115,6 +126,9 @@ func (UnimplementedSearchServiceServer) GetMetadata(context.Context, *emptypb.Em
 }
 func (UnimplementedSearchServiceServer) ListFieldValues(context.Context, *ListFieldValuesRequest) (*FieldValueList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListFieldValues not implemented")
+}
+func (UnimplementedSearchServiceServer) PredictSearchTerm(context.Context, *PredictSearchTermRequest) (*SearchTermPredictions, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PredictSearchTerm not implemented")
 }
 func (UnimplementedSearchServiceServer) GetTranscript(context.Context, *GetTranscriptRequest) (*Transcript, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTranscript not implemented")
@@ -191,6 +205,24 @@ func _SearchService_ListFieldValues_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SearchService_PredictSearchTerm_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PredictSearchTermRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SearchServiceServer).PredictSearchTerm(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/rsk.SearchService/PredictSearchTerm",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SearchServiceServer).PredictSearchTerm(ctx, req.(*PredictSearchTermRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _SearchService_GetTranscript_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetTranscriptRequest)
 	if err := dec(in); err != nil {
@@ -263,6 +295,10 @@ var SearchService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListFieldValues",
 			Handler:    _SearchService_ListFieldValues_Handler,
+		},
+		{
+			MethodName: "PredictSearchTerm",
+			Handler:    _SearchService_PredictSearchTerm_Handler,
 		},
 		{
 			MethodName: "GetTranscript",

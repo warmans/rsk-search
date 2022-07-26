@@ -10,6 +10,8 @@ import (
 
 type Searcher interface {
 	Search(ctx context.Context, f filter.Filter, page int32) (*api.SearchResultList, error)
+	// PredictSearchTerms supports auto-complete for the search bar.
+	PredictSearchTerms(ctx context.Context, prefix string, numPredictions int32) (*api.SearchTermPredictions, error)
 	ListTerms(fieldName string, prefix string) (models.FieldValues, error)
 }
 
@@ -44,6 +46,8 @@ func (d DialogDocument) GetNamedField(name string) interface{} {
 	case "pos":
 		return d.Position
 	case "content":
+		return d.Content
+	case "autocomplete":
 		return d.Content
 	case "type":
 		return d.ContentType

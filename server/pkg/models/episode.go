@@ -72,7 +72,8 @@ type Transcript struct {
 	Publication    string    `json:"publication"`
 	Series         int32     `json:"series"`
 	Episode        int32     `json:"episode"`
-	Name           string    `json:"name"` // some episodes don't really have a proper series/episode and need to be identified by a name e.g. Radio 2 special
+	Name           string    `json:"name"`    // some episodes don't really have a proper series/episode and need to be identified by a name e.g. Radio 2 special
+	Version        string    `json:"version"` // SEMVER
 	ReleaseDate    time.Time `json:"release_date"`
 	Incomplete     bool      `json:"incomplete"`
 	OffsetAccuracy int32     `json:"offset_accuracy"`
@@ -132,6 +133,7 @@ func (e *Transcript) ShortProto(audioURI string) *api.ShortTranscript {
 		AudioUri:            audioURI,
 		OffsetAccuracyPcnt:  e.OffsetAccuracy,
 		Name:                e.Name,
+		Version:             e.Version,
 	}
 	for k, s := range e.Synopsis {
 		ep.Synopsis[k] = s.Proto()
@@ -158,6 +160,7 @@ func (e *Transcript) Proto(withRawTranscript string, audioURI string) *api.Trans
 		Actors:             e.Actors(),
 		OffsetAccuracyPcnt: e.OffsetAccuracy,
 		Name:               e.Name,
+		Version:            e.Version,
 	}
 	for _, d := range e.Transcript {
 		ep.Transcript = append(ep.Transcript, d.Proto(false))

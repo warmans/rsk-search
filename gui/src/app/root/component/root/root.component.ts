@@ -1,7 +1,8 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { Claims, SessionService } from '../../../module/core/service/session/session.service';
-import { takeUntil } from 'rxjs/operators';
+import { debounceTime, takeUntil } from 'rxjs/operators';
+import { SearchAPIClient } from '../../../lib/api-client/services/search';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,9 @@ export class RootComponent implements OnInit, OnDestroy {
 
   destory$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(private renderer: Renderer2, private router: Router, private session: SessionService) {
+  searchPredictions: string[] = [];
+
+  constructor(private renderer: Renderer2, private router: Router, private session: SessionService, private apiClient: SearchAPIClient) {
     session.onTokenChange.pipe(takeUntil(this.destory$)).subscribe((token) => {
       if (token) {
         this.loggedInUser = this.session.getClaims();
@@ -50,17 +53,28 @@ export class RootComponent implements OnInit, OnDestroy {
     if (this.darkTheme) {
       this.renderer.removeClass(document.body, 'light-theme');
       this.renderer.addClass(document.body, 'dark-theme');
-      localStorage.setItem("theme", "dark");
+      localStorage.setItem('theme', 'dark');
     } else {
       this.renderer.removeClass(document.body, 'dark-theme');
       this.renderer.addClass(document.body, 'light-theme');
-      localStorage.setItem("theme", "light");
+      localStorage.setItem('theme', 'light');
     }
   }
 
   ngOnInit(): void {
-    this.darkTheme = localStorage.getItem("theme") === "dark";
+    this.darkTheme = localStorage.getItem('theme') === 'dark';
     this.updateTheme();
   }
 
+  predictTerms(prefix: string) {
+    this.searchPredictions = [];
+    if ((prefix || '').trim() == '') {
+      return;
+    }
+    this.apiClient.predictSearchTerm({ prefix: prefix, maxPredictions: 5 })
+      .pipe(takeUntil(this.destory$))
+      .subscribe((value) => {
+      this.searchPredictions = value.predictions.map(v => v.line)
+    });
+  }
 }

@@ -28,7 +28,7 @@ func LoadTscriptCmd() *cobra.Command {
 			logger, _ := zap.NewProduction()
 			defer func() {
 				if err := logger.Sync(); err != nil {
-					fmt.Println("WARNING: failed to sync logger: "+err.Error())
+					fmt.Println("WARNING: failed to sync logger: " + err.Error())
 				}
 			}()
 
@@ -60,7 +60,7 @@ func populatePersistentDB(inputDataPath string, conn *rw.Conn, logger *zap.Logge
 		return err
 	}
 	for _, dirEntry := range incompleteEntries {
-		if dirEntry.IsDir() || strings.HasPrefix(dirEntry.Name(), ".") {
+		if dirEntry.IsDir() || strings.HasPrefix(dirEntry.Name(), ".") || !strings.HasSuffix(dirEntry.Name(), ".chunks.json") {
 			continue
 		}
 		logger.Info("Parsing file...", zap.String("path", dirEntry.Name()))

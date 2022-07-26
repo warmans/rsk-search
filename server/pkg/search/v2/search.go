@@ -14,6 +14,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/search"
 	"github.com/warmans/rsk-search/pkg/store/ro"
+	"sort"
 	"strings"
 )
 
@@ -161,4 +162,71 @@ func (s *Search) ListTerms(fieldName string, prefix string) (models.FieldValues,
 	}
 
 	return terms, nil
+}
+
+func (s *Search) PredictSearchTerms(ctx context.Context, prefix string, numPredictions int32) (*api.SearchTermPredictions, error) {
+
+	q := bluge.NewMatchQuery(prefix)
+	q.SetField("autocomplete")
+	//q.SetSlop(0)
+
+	req := bluge.NewTopNSearch(int(numPredictions), q).SetFrom(0)
+	req.IncludeLocations()
+
+	dmi, err := s.index.Search(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+
+	predictions := &api.SearchTermPredictions{
+		Prefix:      prefix,
+		Predictions: []*api.Prediction{},
+	}
+
+	next, err := dmi.Next()
+	for err == nil && next != nil {
+		p := &api.Prediction{}
+		err = next.VisitStoredFields(func(field string, value []byte) bool {
+			if field == "autocomplete" {
+				p.Line = string(value)
+				return false
+			}
+			return true
+		})
+		if err != nil {
+			return nil, err
+		}
+		for _, words := range next.Locations {
+			for word, positions := range words {
+				for _, v := range positions {
+					p.Words = append(p.Words, &api.WordPosition{Word: word, StartPos: int32(v.Start), EndPos: int32(v.End)})
+				}
+			}
+		}
+		// don't return exactly the same text as was searched for.
+		if prefix != p.Line {
+			predictions.Predictions = append(predictions.Predictions, simplifyPrediction(p))
+		}
+
+		if next, err = dmi.Next(); err != nil {
+			return nil, err
+		}
+	}
+
+	return predictions, nil
+}
+
+func simplifyPrediction(pred *api.Prediction) *api.Prediction {
+	if len(pred.Words) == 0 {
+		return pred
+	}
+	sort.SliceStable(pred.Words, func(i, j int) bool {
+		return pred.Words[i].StartPos < pred.Words[j].StartPos
+	})
+	pred.Line = pred.Line[pred.Words[0].StartPos:]
+	if len(pred.Line) > 128 {
+		pred.Line = pred.Line[:128]
+	}
+
+	return pred
 }

@@ -4,6 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/blugelabs/bluge"
+	"github.com/blugelabs/bluge/analysis"
+	"github.com/blugelabs/bluge/analysis/token"
+	"github.com/blugelabs/bluge/analysis/tokenizer"
 	"github.com/spf13/cobra"
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/search"
@@ -46,7 +49,7 @@ func LoadCmd() *cobra.Command {
 			logger, _ := zap.NewProduction()
 			defer func() {
 				if err := logger.Sync(); err != nil {
-					fmt.Println("WARNING: failed to sync logger: "+err.Error())
+					fmt.Println("WARNING: failed to sync logger: " + err.Error())
 				}
 			}()
 
@@ -107,9 +110,19 @@ func getMappedField(fieldName string, t mapping.FieldType, d search.DialogDocume
 		return bluge.NewDateTimeField(fieldName, d.GetNamedField(fieldName).(time.Time)).Aggregatable()
 	case mapping.FieldTypeNumber:
 		return bluge.NewNumericField(fieldName, float64(d.GetNamedField(fieldName).(int64)))
+	case mapping.FieldTypeShingles:
+		shingleAnalyzer := &analysis.Analyzer{
+			Tokenizer: tokenizer.NewUnicodeTokenizer(),
+			TokenFilters: []analysis.TokenFilter{
+				token.NewLowerCaseFilter(),
+				token.NewNgramFilter(2, 6),
+				//token.NewShingleFilter(1, 6, false, " ", "_"),
+			},
+		}
+		return bluge.NewTextField(fieldName, fmt.Sprintf("%v", d.GetNamedField(fieldName))).WithAnalyzer(shingleAnalyzer).SearchTermPositions().StoreValue()
 	}
-	// just use text fore everything else
-	return bluge.NewTextField(fieldName, fmt.Sprintf("%v", d.GetNamedField(fieldName))).SearchTermPositions()
+	// just use text for everything else
+	return bluge.NewTextField(fieldName, fmt.Sprintf("%v", d.GetNamedField(fieldName))).SearchTermPositions().StoreValue()
 }
 
 func documentsFromPath(filePath string) ([]search.DialogDocument, error) {

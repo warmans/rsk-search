@@ -137,6 +137,44 @@
         ]
       }
     },
+    "/api/search/predict-terms": {
+      "get": {
+        "summary": "Predict the search term being typed similar to auto-complete.",
+        "operationId": "predictSearchTerm",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskSearchTermPredictions"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "prefix",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "maxPredictions",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      }
+    },
     "/api/transcript": {
       "get": {
         "summary": "Fetch list of available episodes",
@@ -408,6 +446,20 @@
         }
       }
     },
+    "rskPrediction": {
+      "type": "object",
+      "properties": {
+        "line": {
+          "type": "string"
+        },
+        "words": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rskWordPosition"
+          }
+        }
+      }
+    },
     "rskSearchResult": {
       "type": "object",
       "properties": {
@@ -457,6 +509,20 @@
           "items": {
             "type": "number",
             "format": "float"
+          }
+        }
+      }
+    },
+    "rskSearchTermPredictions": {
+      "type": "object",
+      "properties": {
+        "prefix": {
+          "type": "string"
+        },
+        "predictions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rskPrediction"
           }
         }
       }
@@ -516,6 +582,9 @@
           "format": "int32"
         },
         "name": {
+          "type": "string"
+        },
+        "version": {
           "type": "string"
         }
       }
@@ -610,6 +679,9 @@
         },
         "name": {
           "type": "string"
+        },
+        "version": {
+          "type": "string"
         }
       }
     },
@@ -628,6 +700,22 @@
       "type": "object",
       "properties": {
         "description": {
+          "type": "string"
+        },
+        "startPos": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "endPos": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "rskWordPosition": {
+      "type": "object",
+      "properties": {
+        "word": {
           "type": "string"
         },
         "startPos": {

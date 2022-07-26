@@ -3,10 +3,11 @@ package mapping
 type FieldType string
 
 const (
-	FieldTypeKeyword FieldType = "keyword"
-	FieldTypeText    FieldType = "text"
-	FieldTypeNumber  FieldType = "number"
-	FieldTypeDate    FieldType = "date"
+	FieldTypeKeyword  FieldType = "keyword"
+	FieldTypeText     FieldType = "text"
+	FieldTypeNumber   FieldType = "number"
+	FieldTypeDate     FieldType = "date"
+	FieldTypeShingles FieldType = "shingles"
 )
 
 var Mapping = map[string]FieldType{
@@ -18,5 +19,6 @@ var Mapping = map[string]FieldType{
 	"actor":         FieldTypeKeyword,
 	"pos":           FieldTypeNumber,
 	"content":       FieldTypeText,
+	"autocomplete":  FieldTypeShingles,
 	"type":          FieldTypeKeyword,
 }

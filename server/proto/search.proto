@@ -56,6 +56,17 @@ service SearchService {
     };
   }
 
+  rpc PredictSearchTerm(PredictSearchTermRequest) returns (SearchTermPredictions) {
+    option (google.api.http) = {
+      get: "/api/search/predict-terms"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "predictSearchTerm",
+      summary: "Predict the search term being typed similar to auto-complete."
+      tags: "search"
+    };
+  }
+
   // episodes
 
   rpc GetTranscript(GetTranscriptRequest) returns (Transcript) {
@@ -131,6 +142,7 @@ message ShortTranscript {
   string short_id = 13;
   int32 offset_accuracy_pcnt = 14;
   string name = 15;
+  string version = 16;
 }
 
 message DialogResult {
@@ -190,6 +202,7 @@ message Transcript {
   repeated string actors = 16;
   int32 offset_accuracy_pcnt = 17;
   string name = 18;
+  string version = 19;
 }
 
 message GetTranscriptRequest {
@@ -238,6 +251,27 @@ message FieldValueList {
 message FieldValue {
   string value = 1;
   int32 count = 2;
+}
+
+message PredictSearchTermRequest {
+  string prefix = 1;
+  int32 max_predictions = 2;
+}
+
+message SearchTermPredictions  {
+  string prefix = 1;
+  repeated Prediction predictions = 2;
+}
+
+message Prediction {
+  string line = 1;
+  repeated WordPosition words = 2;
+}
+
+message WordPosition {
+  string word = 1;
+  int32 startPos = 2;
+  int32 endPos = 3;
 }
 
 message ListChangelogsRequest {

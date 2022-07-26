@@ -110,6 +110,17 @@ func (s *SearchService) Search(ctx context.Context, request *api.SearchRequest) 
 	return s.searchBackend.Search(ctx, f, request.Page)
 }
 
+func (s *SearchService) PredictSearchTerm(ctx context.Context, request *api.PredictSearchTermRequest) (*api.SearchTermPredictions, error) {
+	maxPredictions := int32(100)
+	if request.MaxPredictions < maxPredictions {
+		maxPredictions = request.MaxPredictions
+	}
+	if strings.TrimSpace(request.Prefix) == "" {
+		return &api.SearchTermPredictions{}, nil
+	}
+	return s.searchBackend.PredictSearchTerms(ctx, request.Prefix, maxPredictions)
+}
+
 func (s *SearchService) GetTranscript(_ context.Context, request *api.GetTranscriptRequest) (*api.Transcript, error) {
 	ep, err := s.episodeCache.GetEpisode(request.Epid)
 	if err == data.ErrNotFound || ep == nil {

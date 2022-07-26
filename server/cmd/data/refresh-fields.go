@@ -25,7 +25,7 @@ func RefreshCmd() *cobra.Command {
 			logger, _ := zap.NewProduction()
 			defer func() {
 				if err := logger.Sync(); err != nil {
-					fmt.Println("WARNING: failed to sync logger: "+err.Error())
+					fmt.Println("WARNING: failed to sync logger: " + err.Error())
 				}
 			}()
 
@@ -46,6 +46,11 @@ func RefreshCmd() *cobra.Command {
 					return dec.Decode(episode)
 				}); err != nil {
 					return err
+				}
+
+				// set an initial version if missing.
+				if episode.Version == "" {
+					episode.Version = "0.0.0"
 				}
 
 				if singleEpisode != "" {

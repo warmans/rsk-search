@@ -4,8 +4,7 @@
       <a [routerLink]="['/search']"><img src="/assets/android-chrome-192x192.png" style="height: 3rem"/></a>
     </div>
     <div class="flex-grow-1">
-      <!--app-dsl-search (executeQuery)="executeSearch($event)"></app-dsl-search-->
-      <app-gl-search (queryUpdated)="executeSearch($event)"></app-gl-search>
+      <app-gl-search (queryUpdated)="executeSearch($event)" (termUpdated)="predictTerms($event)" [autoCompleteValues]="searchPredictions"></app-gl-search>
     </div>
     <div class="ml-3 d-flex">
       <button class="btn btn-transparent btn-lg mr-3" (click)="toggleDarkmode()" title="Toggle dark theme.">
