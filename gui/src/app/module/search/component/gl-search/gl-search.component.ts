@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { MetaService } from '../../../core/service/meta/meta.service';
-import { FieldMetaKind, RskFieldMeta } from '../../../../lib/api-client/models';
+import { FieldMetaKind, RskFieldMeta, RskPrediction } from '../../../../lib/api-client/models';
 import { debounceTime, distinctUntilChanged, first, takeUntil } from 'rxjs/operators';
 import { And, BoolFilter, CompFilter, CompOp, Filter, NewCompFilter, Visitor } from '../../../../lib/filter-dsl/filter';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -9,6 +9,7 @@ import { Str, ValueFromFieldMeta } from '../../../../lib/filter-dsl/value';
 import { ActivatedRoute } from '@angular/router';
 import { ParseAST } from '../../../../lib/filter-dsl/ast';
 import { SearchFilter } from '../gl-search-filter/gl-search-filter.component';
+import { highlightPrediction } from '../../../../lib/util';
 
 @Component({
   selector: 'app-gl-search',
@@ -16,6 +17,7 @@ import { SearchFilter } from '../gl-search-filter/gl-search-filter.component';
   styleUrls: ['./gl-search.component.scss']
 })
 export class GlSearchComponent implements OnInit, AfterViewInit, OnDestroy {
+
 
   @Output()
   queryUpdated: EventEmitter<string> = new EventEmitter<string>();
@@ -27,11 +29,29 @@ export class GlSearchComponent implements OnInit, AfterViewInit, OnDestroy {
   autoFocus: boolean = true;
 
   @Input()
-  autoCompleteValues: string[] = [];
+  set autoCompleteValues(value: RskPrediction[]) {
+    this._autoCompleteValues = value;
+    this.selectedAutoCompleteRow = -1;
+    this.highlightedAutocompleteVals = value.map((val: RskPrediction) => highlightPrediction(val));
+  }
+
+  get autoCompleteValues(): RskPrediction[] {
+    return this._autoCompleteValues;
+  }
+
+  private _autoCompleteValues: RskPrediction[] = [];
+
+  highlightedAutocompleteVals: string[] = [];
 
   searchForm = new FormGroup({
     term: new FormControl(null, [Validators.maxLength(1024)]),
   });
+
+  showSettings: boolean = false;
+  settingsForm = new FormGroup({
+    autoComplete: new FormControl(localStorage.getItem("search.settings.autoComplete") === null ? true : localStorage.getItem("search.settings.autoComplete") === "true"),
+    //phraseMatchByDefault: new FormControl(localStorage.getItem("search.settings.phraseMatchByDefault") === "true"),
+  })
 
   fieldMeta: RskFieldMeta[] = [];
 
@@ -42,8 +62,7 @@ export class GlSearchComponent implements OnInit, AfterViewInit, OnDestroy {
   fieldKinds = FieldMetaKind;
 
   showAutoCompleteDropdown: boolean = false;
-  selectedAutoCompleteRow: number = 0;
-
+  selectedAutoCompleteRow: number = -1;
 
   destroy$ = new EventEmitter();
 
@@ -59,7 +78,6 @@ export class GlSearchComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     this.setFocusOff();
   }
-
 
   constructor(meta: MetaService, route: ActivatedRoute) {
     meta.getMeta().pipe(first()).subscribe((m) => {
@@ -77,9 +95,16 @@ export class GlSearchComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
     this.searchForm.get('term').valueChanges.pipe(takeUntil(this.destroy$), distinctUntilChanged(), debounceTime(500)).subscribe(
       (val: string) => {
-        this.termUpdated.next(val);
+        if (this.settingsForm.get('autoComplete').value) {
+          this.termUpdated.next(val);
+        }
       }
     );
+
+    this.settingsForm.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
+      localStorage.setItem("search.settings.autoComplete", this.settingsForm.get('autoComplete').value);
+      localStorage.setItem("search.settings.phraseMatchByDefault", this.settingsForm.get('phraseMatchByDefault').value);
+    });
   }
 
   ngAfterViewInit() {
@@ -220,32 +245,31 @@ export class GlSearchComponent implements OnInit, AfterViewInit, OnDestroy {
     this.searchForm.get('term').setValue(termText.join(' '));
   }
 
-
   onKeydown(key: KeyboardEvent): boolean {
     this.setFocus();
     switch (key.code) {
       case 'ArrowDown':
-        if (this.selectedAutoCompleteRow >= this.autoCompleteValues.length - 1) {
-          this.selectedAutoCompleteRow = 0;
+        if (this.selectedAutoCompleteRow >= this._autoCompleteValues.length - 1) {
+          this.selectedAutoCompleteRow = -1;
         } else {
           this.selectedAutoCompleteRow++;
         }
         break;
       case 'ArrowUp':
-        if (this.selectedAutoCompleteRow < 1) {
-          this.selectedAutoCompleteRow = this.autoCompleteValues.length - 1;
+        if (this.selectedAutoCompleteRow <= -1) {
+          this.selectedAutoCompleteRow = this._autoCompleteValues.length - 1;
         } else {
           this.selectedAutoCompleteRow--;
         }
         break;
       case 'Enter':
-        if (!this.autoCompleteValues[this.selectedAutoCompleteRow]) {
+        if (!this._autoCompleteValues[this.selectedAutoCompleteRow]?.line) {
           return true;
         }
-        this.setSearchTerm(`"${this.autoCompleteValues[this.selectedAutoCompleteRow]}"`);
+        this.setSearchTerm(`"${this._autoCompleteValues[this.selectedAutoCompleteRow]?.line}"`);
         return true;
       case 'Escape':
-        this.autoCompleteValues = [];
+        this._autoCompleteValues = [];
         break;
       default:
         return true;

@@ -58,6 +58,7 @@
 
   .line {
     padding: 5px 0 5px 0;
+    // see global style.scss
   }
 
   .line:hover {
@@ -66,6 +67,8 @@
   }
   .line.active {
     background-color: #f6f6f6;
+    color: #000;
   }
-
 }
+
+

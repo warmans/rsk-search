@@ -114,9 +114,8 @@ func getMappedField(fieldName string, t mapping.FieldType, d search.DialogDocume
 		shingleAnalyzer := &analysis.Analyzer{
 			Tokenizer: tokenizer.NewUnicodeTokenizer(),
 			TokenFilters: []analysis.TokenFilter{
-				token.NewLowerCaseFilter(),
-				token.NewNgramFilter(2, 6),
-				//token.NewShingleFilter(1, 6, false, " ", "_"),
+				//token.NewLowerCaseFilter(),
+				token.NewNgramFilter(2, 16),
 			},
 		}
 		return bluge.NewTextField(fieldName, fmt.Sprintf("%v", d.GetNamedField(fieldName))).WithAnalyzer(shingleAnalyzer).SearchTermPositions().StoreValue()

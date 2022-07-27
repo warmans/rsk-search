@@ -20,19 +20,25 @@
             <strong *ngIf="i === activeFilters.length-1" class="connector pl-2 pr-1 text-nowrap">with content:</strong>
           </div>
           <div #termInputRoot class="position-relative flex-grow-1">
+            <div class="flex-grow-1 d-flex">
             <input
               #termInput
-              class="freetext-container flex-grow-1 p-2 border-0 form-control"
+              class="freetext-container flex-grow-1 p-2 border-0 form-control align-self-center"
               formControlName="term"
               placeholder="Enter search terms, double quote terms for a phrase/exact match."
               (keydown)="onKeydown($event)"
               (focus)="setFocus()" />
-            <div id="autocomplete-dropdown" class="autocomplete-dropdown p-2" *ngIf="(autoCompleteValues || []).length > 0 && showAutoCompleteDropdown">
+              <div class="align-self-center p-2">
+                <div class="btn btn-sm" (click)="showSettings = true"><i class="bi bi-sliders"></i></div>
+              </div>
+            </div>
+            <div class="autocomplete-dropdown p-2" *ngIf="(autoCompleteValues || []).length > 0 && showAutoCompleteDropdown && settingsForm.get('autoComplete').value">
               <div class="line"
-                   *ngFor="let line of autoCompleteValues; let idx = index"
+                   *ngFor="let line of highlightedAutocompleteVals; let idx = index"
                    [ngClass]="{'active': idx === selectedAutoCompleteRow}"
-                   (click)="setSearchTerm(line, true)"
-              >{{ line }}</div>
+                   (click)="setSearchTerm(autoCompleteValues[idx].line, true)"
+                   [innerHTML]="line">
+              </div>
             </div>
           </div>
         </div>
@@ -42,4 +48,28 @@
       </div>
     </div>
   </form>
+</div>
+<div class="modal" [ngClass]="{'open': showSettings}">
+  <div class="modal-dialog  modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        Search Settings
+        <button type="button" class="close" (click)="showSettings = false" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body ">
+        <form [formGroup]="settingsForm">
+          <div class="form-check">
+            <input formControlName="autoComplete" type="checkbox" class="form-check-input" id="enableAutocomplete">
+            <label class="form-check-label clickable" for="enableAutocomplete">Show autocomplete while typing.</label>
+          </div>
+          <!--div class="form-check">
+            <input formControlName="phraseMatchByDefault" type="checkbox" class="form-check-input" id="phraseMatchByDefault">
+            <label class="form-check-label clickable" for="phraseMatchByDefault">Phrase match by default (automatically add quotes around search terms).</label>
+          </div-->
+        </form>
+      </div>
+    </div>
+  </div>
 </div>

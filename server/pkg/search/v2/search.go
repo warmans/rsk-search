@@ -168,9 +168,9 @@ func (s *Search) PredictSearchTerms(ctx context.Context, prefix string, numPredi
 
 	q := bluge.NewMatchQuery(prefix)
 	q.SetField("autocomplete")
-	//q.SetSlop(0)
 
-	req := bluge.NewTopNSearch(int(numPredictions), q).SetFrom(0)
+	// fetch extras in case some need to be discarded
+	req := bluge.NewTopNSearch(maxInt(int(numPredictions), 50), q).SetFrom(0)
 	req.IncludeLocations()
 
 	dmi, err := s.index.Search(ctx, req)
@@ -199,13 +199,20 @@ func (s *Search) PredictSearchTerms(ctx context.Context, prefix string, numPredi
 		for _, words := range next.Locations {
 			for word, positions := range words {
 				for _, v := range positions {
-					p.Words = append(p.Words, &api.WordPosition{Word: word, StartPos: int32(v.Start), EndPos: int32(v.End)})
+					p.Words = append(p.Words, &api.WordPosition{Word: word, StartPos: int32(maxInt(v.Start, 0)), EndPos: int32(v.End)})
 				}
 			}
 		}
-		// don't return exactly the same text as was searched for.
-		if prefix != p.Line {
-			predictions.Predictions = append(predictions.Predictions, simplifyPrediction(p))
+		if stringsAreNotTooSimilar(prefix, p.Line) && len(p.Line) < 256 {
+			// sort the predictions so they are in order of appearance in the text.
+			sort.SliceStable(p.Words, func(i, j int) bool {
+				return p.Words[i].StartPos < p.Words[j].StartPos
+			})
+			predictions.Predictions = append(predictions.Predictions, p)
+		}
+
+		if len(predictions.Predictions) >= int(numPredictions) {
+			return predictions, nil
 		}
 
 		if next, err = dmi.Next(); err != nil {
@@ -216,17 +223,13 @@ func (s *Search) PredictSearchTerms(ctx context.Context, prefix string, numPredi
 	return predictions, nil
 }
 
-func simplifyPrediction(pred *api.Prediction) *api.Prediction {
-	if len(pred.Words) == 0 {
-		return pred
+func maxInt(a, b int) int {
+	if a > b {
+		return a
 	}
-	sort.SliceStable(pred.Words, func(i, j int) bool {
-		return pred.Words[i].StartPos < pred.Words[j].StartPos
-	})
-	pred.Line = pred.Line[pred.Words[0].StartPos:]
-	if len(pred.Line) > 128 {
-		pred.Line = pred.Line[:128]
-	}
+	return b
+}
 
-	return pred
+func stringsAreNotTooSimilar(search, found string) bool {
+	return strings.Trim(strings.ToLower(search), ".?,!") != strings.Trim(strings.ToLower(found), ".?,!")
 }

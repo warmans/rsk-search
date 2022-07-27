@@ -1,8 +1,9 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { Claims, SessionService } from '../../../module/core/service/session/session.service';
-import { debounceTime, takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import { SearchAPIClient } from '../../../lib/api-client/services/search';
+import { RskPrediction, RskSearchTermPredictions } from '../../../lib/api-client/models';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,7 @@ export class RootComponent implements OnInit, OnDestroy {
 
   destory$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  searchPredictions: string[] = [];
+  searchPredictions: RskPrediction[] = [];
 
   constructor(private renderer: Renderer2, private router: Router, private session: SessionService, private apiClient: SearchAPIClient) {
     session.onTokenChange.pipe(takeUntil(this.destory$)).subscribe((token) => {
@@ -73,8 +74,8 @@ export class RootComponent implements OnInit, OnDestroy {
     }
     this.apiClient.predictSearchTerm({ prefix: prefix, maxPredictions: 5 })
       .pipe(takeUntil(this.destory$))
-      .subscribe((value) => {
-      this.searchPredictions = value.predictions.map(v => v.line)
-    });
+      .subscribe((value: RskSearchTermPredictions) => {
+        this.searchPredictions = value.predictions;
+      });
   }
 }

@@ -253,3 +253,15 @@ pre {
     border-top: 1px solid theme-get('fg-body');
   }
 }
+
+// autocomplete styled globally to avoid angular encapulation of innerHtml
+.autocomplete-dropdown{
+  .line {
+    .matched {
+      background: rgba(255, 255, 0, 0.2);
+    }
+    .not-matched {
+      color: #444;
+    }
+  }
+}
