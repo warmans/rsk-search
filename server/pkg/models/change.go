@@ -6,10 +6,11 @@ import (
 )
 
 type TranscriptChangeCreate struct {
-	AuthorID      string
-	EpID          string
-	Summary       string
-	Transcription string
+	AuthorID          string
+	EpID              string
+	TranscriptVersion string
+	Summary           string
+	Transcription     string
 }
 
 type TranscriptChangeUpdate struct {
@@ -20,15 +21,16 @@ type TranscriptChangeUpdate struct {
 }
 
 type TranscriptChange struct {
-	ID            string
-	EpID          string
-	Author        *Author
-	Summary       string
-	Transcription string
-	State         ContributionState
-	CreatedAt     time.Time
-	Merged        bool
-	PointsAwarded float32
+	ID                string
+	EpID              string
+	TranscriptVersion string
+	Author            *Author
+	Summary           string
+	Transcription     string
+	State             ContributionState
+	CreatedAt         time.Time
+	Merged            bool
+	PointsAwarded     float32
 }
 
 func (c *TranscriptChange) Proto() *api.TranscriptChange {
@@ -36,15 +38,16 @@ func (c *TranscriptChange) Proto() *api.TranscriptChange {
 		return nil
 	}
 	return &api.TranscriptChange{
-		Id:            c.ID,
-		EpisodeId:     c.EpID,
-		Summary:       c.Summary,
-		Transcript:    c.Transcription,
-		State:         c.State.Proto(),
-		Author:        c.Author.ShortAuthor().Proto(),
-		CreatedAt:     c.CreatedAt.Format(time.RFC3339),
-		Merged:        c.Merged,
-		PointsAwarded: c.PointsAwarded,
+		Id:                c.ID,
+		EpisodeId:         c.EpID,
+		TranscriptVersion: c.TranscriptVersion,
+		Summary:           c.Summary,
+		Transcript:        c.Transcription,
+		State:             c.State.Proto(),
+		Author:            c.Author.ShortAuthor().Proto(),
+		CreatedAt:         c.CreatedAt.Format(time.RFC3339),
+		Merged:            c.Merged,
+		PointsAwarded:     c.PointsAwarded,
 	}
 }
 
@@ -53,12 +56,13 @@ func (c *TranscriptChange) ShortProto() *api.ShortTranscriptChange {
 		return nil
 	}
 	return &api.ShortTranscriptChange{
-		Id:            c.ID,
-		EpisodeId:     c.EpID,
-		State:         c.State.Proto(),
-		Author:        c.Author.ShortAuthor().Proto(),
-		CreatedAt:     c.CreatedAt.Format(time.RFC3339),
-		Merged:        c.Merged,
-		PointsAwarded: c.PointsAwarded,
+		Id:                c.ID,
+		EpisodeId:         c.EpID,
+		TranscriptVersion: c.TranscriptVersion,
+		State:             c.State.Proto(),
+		Author:            c.Author.ShortAuthor().Proto(),
+		CreatedAt:         c.CreatedAt.Format(time.RFC3339),
+		Merged:            c.Merged,
+		PointsAwarded:     c.PointsAwarded,
 	}
 }

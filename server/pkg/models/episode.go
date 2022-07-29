@@ -73,7 +73,7 @@ type Transcript struct {
 	Series         int32     `json:"series"`
 	Episode        int32     `json:"episode"`
 	Name           string    `json:"name"`    // some episodes don't really have a proper series/episode and need to be identified by a name e.g. Radio 2 special
-	Version        string    `json:"version"` // SEMVER
+	Version        string    `json:"version"` // SemVer
 	ReleaseDate    time.Time `json:"release_date"`
 	Incomplete     bool      `json:"incomplete"`
 	OffsetAccuracy int32     `json:"offset_accuracy"`

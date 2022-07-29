@@ -43,14 +43,7 @@
     </div>
     <div>
       <span class="float-right">
-        <button class="btn btn-sm" (click)="showHelp = !showHelp"
-                [ngClass]="{'btn-outline-primary': !showHelp, 'btn-primary': showHelp}" title="Toggle help text">
-          <span *ngIf="!showHelp">I am confused</span>
-          <span *ngIf="showHelp">I am satisfied</span>
-        </button>
-      </span>
-      <span class="float-right">
-          <button class="btn btn-danger btn-sm mr-3" *ngIf="allowEdit" (click)="resetToRaw()"
+          <button class="btn btn-danger btn-sm" *ngIf="allowEdit" (click)="resetToRaw()"
                   title="revert text to chunk original">Reset</button>
         </span>
       <span class="float-right">
@@ -58,6 +51,13 @@
                              (configUpdated)="editorConfig = $event"></app-editor-config>
           <button class="btn btn-sm btn-info mr-3" *ngIf="allowEdit" (click)="openEditorConfig()"
                   title="Change editor config">Editor/Audio Config</button>
+      </span>
+      <span class="float-right">
+        <button class="btn btn-sm mr-3" (click)="showHelp = !showHelp"
+                [ngClass]="{'btn-outline-success': !showHelp, 'btn-success': showHelp}" title="Toggle help text">
+          <span *ngIf="!showHelp">HELP</span>
+          <span *ngIf="showHelp">Hide HELP</span>
+        </button>
       </span>
     </div>
   </div>

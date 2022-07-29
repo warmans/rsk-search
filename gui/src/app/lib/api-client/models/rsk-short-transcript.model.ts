@@ -19,4 +19,5 @@ export interface RskShortTranscript {
   synopsis?: RskSynopsis[];
   transcriptAvailable?: boolean;
   triviaAvailable?: boolean;
+  version?: string;
 }

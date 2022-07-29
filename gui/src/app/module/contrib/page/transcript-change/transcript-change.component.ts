@@ -10,6 +10,8 @@ import { TranscriberComponent } from '../../../shared/component/transcriber/tran
 import { Observable } from 'rxjs';
 import { FormControl } from '@angular/forms';
 
+const DISMISS_HELP_KEY: string = 'contribute.change.help.hide';
+
 @Component({
   selector: 'app-transcript-change',
   templateUrl: './transcript-change.component.html',
@@ -27,6 +29,7 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
 
   approvalPoints: FormControl = new FormControl(0.2);
 
+  versionMismatchError = false;
   readOnly: boolean = true;
   authenticated: boolean = false;
   userCanEdit: boolean = true;
@@ -35,6 +38,7 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
   cStates = RskContributionState;
   lastUpdateTimestamp: Date;
   unifiedDiff: string;
+  instructionsHidden: boolean = localStorage.getItem(DISMISS_HELP_KEY) === 'true';
 
   loading: boolean[] = [];
 
@@ -68,21 +72,19 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
         this.transcript = res;
         if (!d.params['change_id']) {
           this.initialTranscript = res.rawTranscript;
+        } else {
+          this.apiClient.getTranscriptChange({ id: d.params['change_id'] }).pipe(takeUntil(this.$destroy)).subscribe((res: RskTranscriptChange) => {
+            this.change = res;
+            this.checkUserCanEdit();
+
+            this.initialTranscript = this.change.transcript;
+
+            this.versionMismatchError = (this.change?.transcriptVersion !== this.transcript?.version);
+            this.userIsOwner = this.sessionService.getClaims()?.author_id === res.author.id || this.sessionService.getClaims()?.approver;
+            this.userIsApprover = this.sessionService.getClaims()?.approver;
+          });
         }
       }).add(() => this.loading.shift());
-
-      if (d.params['change_id']) {
-        this.loading.push(true);
-        this.apiClient.getTranscriptChange({ id: d.params['change_id'] }).pipe(takeUntil(this.$destroy)).subscribe((res: RskTranscriptChange) => {
-          this.change = res;
-          this.checkUserCanEdit();
-
-          this.initialTranscript = this.change.transcript;
-
-          this.userIsOwner = this.sessionService.getClaims()?.author_id === res.author.id || this.sessionService.getClaims()?.approver;
-          this.userIsApprover = this.sessionService.getClaims()?.approver;
-        }).add(() => this.loading.shift());
-      }
     });
 
     sessionService.onTokenChange.pipe(takeUntil(this.$destroy)).subscribe((token: string): void => {
@@ -114,7 +116,7 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
       this.loading.push(true);
       this.apiClient.createTranscriptChange({
         epid: this.transcript.id,
-        body: { epid: this.transcript.id, transcript: this.transcriber.getContentSnapshot() }
+        body: { epid: this.transcript.id, transcript: this.transcriber.getContentSnapshot(), transcriptVersion: this.transcript?.version || 'NONE' }
       }).pipe(takeUntil(this.$destroy)).subscribe((res: RskTranscriptChange) => {
         this.initialTranscript = res.transcript;
         this.transcriber.clearBackup();
@@ -232,4 +234,13 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
     }
   }
 
+  hideInstructions() {
+    this.instructionsHidden = true;
+    localStorage.setItem(DISMISS_HELP_KEY, "true")
+  }
+
+  undoHideInstructions() {
+    this.instructionsHidden = false;
+    localStorage.removeItem(DISMISS_HELP_KEY)
+  }
 }

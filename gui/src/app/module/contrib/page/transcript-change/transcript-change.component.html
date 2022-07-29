@@ -10,8 +10,19 @@
 
   <div class="row mb-3">
     <div class="col-12">
+      <div class="alert alert-danger" *ngIf="change && this.versionMismatchError">
+        <strong>Version Mismatch</strong>
+        <p>Your change was created with transcript version {{change?.transcriptVersion || 'NONE'}} but the transcript is now at
+          version {{transcript?.version || 'NONE'}}. This means merging your change will revert someone else's contribution.
+          Unfortunately all you can do is discard the change and start again.</p>
+        <p>You may also be able to copy your current change to notepad, discard it and copy/paste the relevant sections into a new change.</p>
+      </div>
+
       <div class="card">
-        <div class="card-header">Submit Transcript Change</div>
+        <div class="card-header d-flex align-items-center justify-content-between">
+          Submit Transcript Change
+          <button *ngIf="instructionsHidden" class="btn btn-link btn-sm text-sm" (click)="undoHideInstructions()">Show Instructions</button>
+        </div>
         <div class="card" *ngIf="!change">
           <div class="card-body">
             <p>Currently your contribution is only saved locally, you can create a draft to allow you to submit it for
@@ -28,7 +39,7 @@
               <div *ngIf="change.state === cStates.STATE_PENDING">
                 <p>This means that the contribution has not yet been reviewed and can still be edited if you are the
                   owner. Clicking the button below will mark it as being ready to be merged.</p>
-                <button class="btn btn-success mt-2" (click)="markComplete()">
+                <button [disabled]="this.versionMismatchError" class="btn btn-success mt-2" (click)="markComplete()">
                   Mark as complete <i class="bi-check"></i>
                 </button>
                 <button class="btn btn-danger ml-3 mt-2" (click)="discardChange()">Discard</button>
@@ -66,6 +77,13 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="card" *ngIf="!instructionsHidden">
+        <div class="card-header d-flex align-items-center justify-content-between">
+          Instructions
+          <button class="btn btn-sm btn-success" (click)="hideInstructions()">Hide</button>
+        </div>
         <div class="card-body">
           <div>
             <strong class="mb-2">Objectives:</strong>
@@ -88,11 +106,12 @@
       <app-transcriber
         #transcriber
         [contentID]="change ? change.id : transcript?.id"
+        [contentVersion]="change ? change.transcriptVersion : transcript?.version"
         [rawTranscript]="initialTranscript || ''"
         [lastUpdateDate]=""
         [audioPlayerURL]="transcript?.audioUri"
         [allowEdit]="userCanEdit"
-        [isSaved]="change?.id"
+        [isSaved]="!!change?.id"
         [enableDiff]="!!change"
         [unifiedDiff]="unifiedDiff"
         [chunkMode]="false"

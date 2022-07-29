@@ -23,4 +23,5 @@ export interface RskTranscript {
   synopses?: RskSynopsis[];
   transcript?: RskDialog[];
   trivia?: RskTrivia[];
+  version?: string;
 }

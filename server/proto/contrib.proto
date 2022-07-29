@@ -556,6 +556,7 @@ message ChunkList {
 message CreateTranscriptChangeRequest {
   string epid = 1;
   string transcript = 2;
+  string transcript_version = 3;
 }
 
 message ListTranscriptChangesRequest {
@@ -592,6 +593,7 @@ message TranscriptChange {
   string created_at = 8;
   bool merged = 9;
   float points_awarded = 10;
+  string transcript_version = 11;
 }
 
 message ShortTranscriptChange {
@@ -602,6 +604,7 @@ message ShortTranscriptChange {
   string created_at = 8;
   bool merged = 9;
   float points_awarded = 10;
+  string transcript_version = 11;
 }
 
 message RequestTranscriptChangeStateRequest {

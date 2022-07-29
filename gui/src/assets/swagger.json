@@ -1686,6 +1686,9 @@
           },
           "transcript": {
             "type": "string"
+          },
+          "transcriptVersion": {
+            "type": "string"
           }
         }
       },
@@ -2108,6 +2111,9 @@
           "pointsAwarded": {
             "type": "number",
             "format": "float"
+          },
+          "transcriptVersion": {
+            "type": "string"
           }
         }
       },
@@ -2237,6 +2243,9 @@
           "pointsAwarded": {
             "type": "number",
             "format": "float"
+          },
+          "transcriptVersion": {
+            "type": "string"
           }
         }
       },

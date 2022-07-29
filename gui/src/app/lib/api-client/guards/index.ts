@@ -341,6 +341,8 @@ export function isRskCreateTranscriptChangeRequest(arg: any): arg is models.RskC
     ( typeof arg.epid === 'undefined' || typeof arg.epid === 'string' ) &&
     // transcript?: string
     ( typeof arg.transcript === 'undefined' || typeof arg.transcript === 'string' ) &&
+    // transcriptVersion?: string
+    ( typeof arg.transcriptVersion === 'undefined' || typeof arg.transcriptVersion === 'string' ) &&
 
   true
   );
@@ -513,8 +515,6 @@ export function isRskPrediction(arg: any): arg is models.RskPrediction {
   return (
   arg != null &&
   typeof arg === 'object' &&
-    // actor?: string
-    ( typeof arg.actor === 'undefined' || typeof arg.actor === 'string' ) &&
     // line?: string
     ( typeof arg.line === 'undefined' || typeof arg.line === 'string' ) &&
     // words?: RskWordPosition[]
@@ -689,6 +689,8 @@ export function isRskShortTranscript(arg: any): arg is models.RskShortTranscript
     ( typeof arg.transcriptAvailable === 'undefined' || typeof arg.transcriptAvailable === 'boolean' ) &&
     // triviaAvailable?: boolean
     ( typeof arg.triviaAvailable === 'undefined' || typeof arg.triviaAvailable === 'boolean' ) &&
+    // version?: string
+    ( typeof arg.version === 'undefined' || typeof arg.version === 'string' ) &&
 
   true
   );
@@ -712,6 +714,8 @@ export function isRskShortTranscriptChange(arg: any): arg is models.RskShortTran
     ( typeof arg.pointsAwarded === 'undefined' || typeof arg.pointsAwarded === 'number' ) &&
     // state?: RskContributionState
     ( typeof arg.state === 'undefined' || isRskContributionState(arg.state) ) &&
+    // transcriptVersion?: string
+    ( typeof arg.transcriptVersion === 'undefined' || typeof arg.transcriptVersion === 'string' ) &&
 
   true
   );
@@ -770,6 +774,8 @@ export function isRskTranscript(arg: any): arg is models.RskTranscript {
     ( typeof arg.transcript === 'undefined' || (Array.isArray(arg.transcript) && arg.transcript.every((item: unknown) => isRskDialog(item))) ) &&
     // trivia?: RskTrivia[]
     ( typeof arg.trivia === 'undefined' || (Array.isArray(arg.trivia) && arg.trivia.every((item: unknown) => isRskTrivia(item))) ) &&
+    // version?: string
+    ( typeof arg.version === 'undefined' || typeof arg.version === 'string' ) &&
 
   true
   );
@@ -797,6 +803,8 @@ export function isRskTranscriptChange(arg: any): arg is models.RskTranscriptChan
     ( typeof arg.summary === 'undefined' || typeof arg.summary === 'string' ) &&
     // transcript?: string
     ( typeof arg.transcript === 'undefined' || typeof arg.transcript === 'string' ) &&
+    // transcriptVersion?: string
+    ( typeof arg.transcriptVersion === 'undefined' || typeof arg.transcriptVersion === 'string' ) &&
 
   true
   );

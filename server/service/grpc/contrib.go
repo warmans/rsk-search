@@ -669,10 +669,11 @@ func (s *ContribService) CreateTranscriptChange(ctx context.Context, request *ap
 			return ErrFailedPrecondition("multiple changes cannot exist at once. Try again once the current change has been processed.").Err()
 		}
 		change, err = s.CreateTranscriptChange(ctx, &models.TranscriptChangeCreate{
-			AuthorID:      claims.AuthorID,
-			EpID:          request.Epid,
-			Summary:       "",
-			Transcription: request.Transcript,
+			AuthorID:          claims.AuthorID,
+			EpID:              request.Epid,
+			Summary:           "",
+			Transcription:     request.Transcript,
+			TranscriptVersion: request.TranscriptVersion,
 		})
 		return err
 	})

@@ -899,8 +899,8 @@ func (s *Store) GetTranscriptChange(ctx context.Context, id string) (*models.Tra
 	var authorID string
 
 	err := s.tx.
-		QueryRowxContext(ctx, `SELECT id, author_id, epid, summary, transcription, state, created_at, merged FROM transcript_change WHERE id=$1`, id).
-		Scan(&change.ID, &authorID, &change.EpID, &change.Summary, &change.Transcription, &change.State, &change.CreatedAt, &change.Merged)
+		QueryRowxContext(ctx, `SELECT id, author_id, epid, COALESCE(transcript_version, 'NONE'), summary, transcription, state, created_at, merged FROM transcript_change WHERE id=$1`, id).
+		Scan(&change.ID, &authorID, &change.EpID, &change.TranscriptVersion, &change.Summary, &change.Transcription, &change.State, &change.CreatedAt, &change.Merged)
 	if err != nil {
 		return nil, err
 	}
@@ -923,20 +923,22 @@ func (s *Store) CreateTranscriptChange(ctx context.Context, c *models.Transcript
 		return nil, ErrNotPermitted
 	}
 	change := &models.TranscriptChange{
-		ID:            shortuuid.New(),
-		EpID:          c.EpID,
-		Author:        author,
-		Summary:       c.Summary,
-		Transcription: c.Transcription,
-		State:         models.ContributionStatePending,
-		CreatedAt:     time.Now(),
+		ID:                shortuuid.New(),
+		EpID:              c.EpID,
+		Author:            author,
+		Summary:           c.Summary,
+		Transcription:     c.Transcription,
+		State:             models.ContributionStatePending,
+		CreatedAt:         time.Now(),
+		TranscriptVersion: c.TranscriptVersion,
 	}
 	_, err = s.tx.ExecContext(
 		ctx,
-		`INSERT INTO transcript_change (id, author_id, epid, summary, transcription, state, created_at) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+		`INSERT INTO transcript_change (id, author_id, epid, transcript_version, summary, transcription, state, created_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
 		change.ID,
 		change.Author.ID,
 		change.EpID,
+		change.TranscriptVersion,
 		change.Summary,
 		change.Transcription,
 		models.ContributionStatePending,
@@ -1034,14 +1036,15 @@ func (s *Store) UpdateTranscriptChangeState(ctx context.Context, id string, stat
 
 func (s *Store) ListTranscriptChanges(ctx context.Context, q *common.QueryModifier) ([]*models.TranscriptChange, error) {
 	fieldMap := map[string]string{
-		"id":            "c.id",
-		"author_id":     "c.author_id",
-		"epid":          "c.epid",
-		"summary":       "c.summary",
-		"transcription": "c.transcription",
-		"state":         "c.state",
-		"created_at":    "c.created_at",
-		"merged":        "c.merged",
+		"id":                 "c.id",
+		"author_id":          "c.author_id",
+		"epid":               "c.epid",
+		"transcript_version": "c.transcript_version",
+		"summary":            "c.summary",
+		"transcription":      "c.transcription",
+		"state":              "c.state",
+		"created_at":         "c.created_at",
+		"merged":             "c.merged",
 	}
 
 	where, params, order, paging, err := q.ToSQL(fieldMap, false)
@@ -1052,7 +1055,7 @@ func (s *Store) ListTranscriptChanges(ctx context.Context, q *common.QueryModifi
 	rows, err := s.tx.QueryxContext(
 		ctx,
 		fmt.Sprintf(`
-		SELECT c.id, c.author_id, c.epid, c.summary, c.transcription, c.state, c.created_at, c.merged, COALESCE(con.points, 0)
+		SELECT c.id, c.author_id, c.epid, COALESCE(c.transcript_version, 'NONE'), c.summary, c.transcription, c.state, c.created_at, c.merged, COALESCE(con.points, 0)
 		FROM transcript_change c
 		LEFT JOIN author a ON c.author_id = a.id
 		LEFT JOIN author_contribution_transcript_change actc ON c.id = actc.transcript_change_id
@@ -1077,6 +1080,7 @@ func (s *Store) ListTranscriptChanges(ctx context.Context, q *common.QueryModifi
 			&cur.ID,
 			&cur.Author.ID,
 			&cur.EpID,
+			&cur.TranscriptVersion,
 			&cur.Summary,
 			&cur.Transcription,
 			&cur.State,

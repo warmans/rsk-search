@@ -12,4 +12,5 @@ export interface RskShortTranscriptChange {
   merged?: boolean;
   pointsAwarded?: number;
   state?: RskContributionState;
+  transcriptVersion?: string;
 }

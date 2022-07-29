@@ -6,6 +6,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 	"github.com/warmans/rsk-search/pkg/data"
 	"github.com/warmans/rsk-search/pkg/filter"
@@ -199,7 +200,7 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 				}
 			} else {
 				if err := data.ReplaceEpisodeFile(outputDataPath, episodeOnDisk); err != nil {
-					return err
+					return errors.Wrap(err, "failed to write episode to disk")
 				}
 			}
 		}

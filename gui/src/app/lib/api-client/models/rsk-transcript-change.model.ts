@@ -14,4 +14,5 @@ export interface RskTranscriptChange {
   state?: RskContributionState;
   summary?: string;
   transcript?: string;
+  transcriptVersion?: string;
 }

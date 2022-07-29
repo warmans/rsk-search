@@ -8,8 +8,8 @@
     </div>
     <div class="ml-3 d-flex">
       <button class="btn btn-transparent btn-lg mr-3" (click)="toggleDarkmode()" title="Toggle dark theme.">
-        <i class="bi-lightbulb-off" *ngIf="!darkTheme"></i>
-        <i class="bi-lightbulb" *ngIf="darkTheme"></i>
+        <i class="bi-moon-fill" *ngIf="!darkTheme"></i>
+        <i class="bi-sun-fill" *ngIf="darkTheme"></i>
       </button>
       <a class="btn btn-info btn-lg" [routerLink]="['/me']" *ngIf="!loggedInUser?.identity?.icon_img">
         <i class="bi-person"></i>
@@ -35,6 +35,7 @@
 <footer class="footer">
   <div class="container">
     <div class="text-center text-muted mt-4 p-2">
+      <a href="https://www.buymeacoffee.com/scrimptonsite" target="_blank">Donate</a> |
       <a href="https://github.com/warmans/rsk-search/issues" target="_blank">Report a Bug</a> or
       <a href="https://github.com/warmans/rsk-search/pulls" target="_blank">Contribute Code</a> |
       Illustrations by <a href="https://icons8.com/illustrations/author/5ec7b0e101d0360016f3d1b3" target="_blank">Pixeltrue</a> from <a target="_blank" href="https://icons8.com/illustrations">Ouch!</a>

@@ -18,6 +18,9 @@ export class TranscriberComponent implements OnInit, OnDestroy {
   contentID: string;
 
   @Input()
+  contentVersion: string
+
+  @Input()
   set rawTranscript(value: string) {
     this._rawTranscript = value;
     this.setInitialTranscript(value);
@@ -214,19 +217,23 @@ export class TranscriberComponent implements OnInit, OnDestroy {
     if (!text || !this.contentID || !this._allowEdit) {
       return;
     }
-    localStorage.setItem(`content-backup-${this.contentID}`, text);
+    localStorage.setItem(this.localBackupKey(), text);
   }
 
   getBackup(): string {
     if (!this.contentID || !this._allowEdit) {
       return;
     }
-    return localStorage.getItem(`content-backup-${this.contentID}`);
+    return localStorage.getItem(this.localBackupKey());
   }
 
   clearBackup(): void {
-    localStorage.removeItem(`content-backup-${this.contentID}`);
+    localStorage.removeItem(this.localBackupKey());
     this.fromBackup = false;
+  }
+
+  localBackupKey(): string {
+    return `content-backup-${this.contentID}${this.contentVersion ? '-'+this.contentVersion : ''}`
   }
 
   resetToRaw() {
