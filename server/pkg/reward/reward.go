@@ -7,13 +7,11 @@ import (
 	"github.com/spf13/pflag"
 	"github.com/warmans/rsk-search/pkg/flag"
 	"github.com/warmans/rsk-search/pkg/models"
+	"github.com/warmans/rsk-search/pkg/points"
 	"github.com/warmans/rsk-search/pkg/store/rw"
 	"go.uber.org/zap"
 	"time"
 )
-
-// PointsForReward - generally every N approved contributions a reward will be triggered (changes can be less than 1 point)
-const PointsForReward = 5
 
 type Config struct {
 	CheckInterval int64
@@ -91,7 +89,7 @@ func (w *Worker) calculateRewards() error {
 
 	err := w.db.WithStore(func(s *rw.Store) error {
 		var err error
-		awardsRequired, err = s.ListRequiredAuthorRewardsV2(ctx, PointsForReward)
+		awardsRequired, err = s.ListRequiredAuthorRewardsV2(ctx, points.PointsForReward)
 		if err != nil {
 			return errors.Wrap(err, "failed to list required rewards")
 		}

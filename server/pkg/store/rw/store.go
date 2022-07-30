@@ -12,6 +12,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/filter"
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/oauth"
+	"github.com/warmans/rsk-search/pkg/points"
 	"github.com/warmans/rsk-search/pkg/store/common"
 	"github.com/warmans/rsk-search/pkg/util"
 	"math"
@@ -20,8 +21,6 @@ import (
 )
 
 type ChunkActivity string
-
-const ChunkContributionPoints = 3
 
 const (
 	ChunkActivityAccessed  = "accessed"  // chunk fetched
@@ -348,7 +347,7 @@ func (s *Store) UpdateChunkContribution(ctx context.Context, c *models.Contribut
 			AuthorID:         oldCon.Author.ID,
 			EpID:             strings.Replace(oldCon.TscriptID, "ts-", "ep-", 1),
 			ContributionType: models.ContributionTypeChunk,
-			Points:           ChunkContributionPoints,
+			Points:           points.ChunkContributionPoints,
 		})
 		if err != nil {
 			return err
@@ -382,7 +381,7 @@ func (s *Store) UpdateChunkContributionState(ctx context.Context, id string, sta
 			AuthorID:         con.Author.ID,
 			EpID:             strings.Replace(con.TscriptID, "ts-", "ep-", 1),
 			ContributionType: models.ContributionTypeChunk,
-			Points:           ChunkContributionPoints,
+			Points:           points.ChunkContributionPoints,
 		})
 		if err != nil {
 			return err

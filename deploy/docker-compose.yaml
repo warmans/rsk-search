@@ -54,6 +54,7 @@ services:
       - PGID=1000
       - TZ=Europe/Berlin
       - URL=scrimpton.com
+      - EXTRA_DOMAINS=karltakesasneakylookatmenscocks.com,www.karltakesasneakylookatmenscocks.com
       - SUBDOMAINS=www,staging
       - VALIDATION=http
     volumes:
