@@ -10,7 +10,7 @@
 
   <div class="row mb-3">
     <div class="col-12">
-      <div class="alert alert-danger" *ngIf="change && this.versionMismatchError">
+      <div class="alert alert-danger" *ngIf="userCanEdit && change && this.versionMismatchError">
         <strong>Version Mismatch</strong>
         <p>Your change was created with transcript version {{change?.transcriptVersion || 'NONE'}} but the transcript is now at
           version {{transcript?.version || 'NONE'}}. This means merging your change will revert someone else's contribution.

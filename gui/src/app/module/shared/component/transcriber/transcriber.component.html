@@ -11,49 +11,46 @@
 </ul>
 
 <div class="card" [hidden]="!(activeTab==='edit')">
-  <div class="card-header sticky-top d-flex justify-content-between">
+  <div class="card-header sticky-top d-flex justify-content-between" *ngIf="allowEdit">
     <div>
-      <button class="btn btn-success btn-sm mr-3" *ngIf="allowEdit" (click)="insertOffsetAboveCaret()" title="Add an #OFFSET tag above the cursor to the current audio timestamp. See hotkey in config.">
+      <button class="btn btn-success btn-sm mr-3" (click)="insertOffsetAboveCaret()" title="Add an #OFFSET tag above the cursor to the current audio timestamp. See hotkey in config.">
         #OFFSET ({{(audioStatus?.currentTime || 0) | number:'1.0-0'}}) <span class="badge" *ngIf="editorConfig?.insertOffsetKey"><i class="bi-keyboard-fill mr-1"></i> {{editorConfig?.insertOffsetKey}}</span>
       </button>
-      <button class="btn btn-success btn-sm mr-3" *ngIf="allowEdit" (click)="insertTextAboveCaret('#SYN: ')" title="Add an opening #SYN:  tag above the cursor">
-        #SYN
+      <button class="btn btn-success btn-sm mr-3" (click)="insertSynAboveCaret()" title="Add an opening #SYN:  tag above the cursor">
+        #SYN <span class="badge" *ngIf="editorConfig?.insertSynKey"><i class="bi-keyboard-fill mr-1"></i>{{editorConfig?.insertSynKey || 'NONE'}}</span>
       </button>
-      <button class="btn btn-success btn-sm mr-3" *ngIf="allowEdit" (click)="insertTextAboveCaret('#/SYN')" title="Add a closing #/SYN tag above the cursor">
+      <button class="btn btn-success btn-sm mr-3" (click)="insertTextAboveCaret('#/SYN')" title="Add a closing #/SYN tag above the cursor">
         #/SYN
       </button>
-      <button class="btn btn-success btn-sm mr-3" *ngIf="allowEdit" (click)="insertTextAboveCaret('#TRIVIA: ')" title="Add an opening #TRIVIA: tag above the cursor">
+      <button class="btn btn-success btn-sm mr-3" (click)="insertTextAboveCaret('#TRIVIA: ')" title="Add an opening #TRIVIA: tag above the cursor">
         #TRIVIA
       </button>
-      <button class="btn btn-success btn-sm" *ngIf="allowEdit" (click)="insertTextAboveCaret('#/TRIVIA')" title="Add a closing #/TRIVIA tag above the cursor">
+      <button class="btn btn-success btn-sm" (click)="insertTextAboveCaret('#/TRIVIA')" title="Add a closing #/TRIVIA tag above the cursor">
         #/TRIVIA
       </button>
       <span class="mx-3"> | </span>
-      <button class="btn btn-success btn-sm" *ngIf="allowEdit" (click)="skipBackwards()" title="Skip audio back">
-        <i class="bi bi-skip-backward"></i> Skip <span class="badge" *ngIf="editorConfig?.rewindKey"><i class="bi-keyboard-fill mr-1"></i>{{editorConfig?.rewindKey || 'ScrollLock'}}</span>
+      <button class="btn btn-success btn-sm" (click)="skipBackwards()" title="Skip audio back">
+        <i class="bi bi-skip-backward"></i> Skip <span class="badge" *ngIf="editorConfig?.rewindKey"><i class="bi-keyboard-fill mr-1"></i>{{editorConfig?.rewindKey || 'NONE'}}</span>
       </button>
-      <button class="btn btn-success btn-sm ml-3" *ngIf="allowEdit" (click)="togglePlayer()" title="Skip audio back">
+      <button class="btn btn-success btn-sm ml-3" (click)="togglePlayer()" title="Skip audio back">
         <span *ngIf="audioStatus.state !== playerStates.playing"><i class="bi bi-play-circle-fill"></i> Play</span>
         <span *ngIf="audioStatus.state === playerStates.playing"><i class="bi bi-pause-circle-fill"></i> Pause</span>
-        <span class="badge" *ngIf="editorConfig?.playPauseKey"><i class="bi-keyboard-fill mr-1"></i>{{editorConfig?.playPauseKey || 'ScrollLock'}}</span>
+        <span class="badge" *ngIf="editorConfig?.playPauseKey"><i class="bi-keyboard-fill mr-1"></i>{{editorConfig?.playPauseKey || 'NONE'}}</span>
       </button>
-      <button class="btn btn-success btn-sm ml-3" *ngIf="allowEdit" (click)="skipForward()" title="Skip audio back">
+      <button class="btn btn-success btn-sm ml-3" (click)="skipForward()" title="Skip audio back">
         <i class="bi bi-skip-forward"></i> Skip <span class="badge" *ngIf="editorConfig?.fastForwardKey"><i class="bi-keyboard-fill mr-1"></i>{{editorConfig?.fastForwardKey || 'Pause'}}</span>
       </button>
+      <span class="mx-3"> | </span>
+      <button class="btn btn-success btn-sm" (click)="refreshEditorHTML()" title="Add coloring to any tags that were added manually. This is not done automatically for performance reasons.">Refresh Formatting</button>
     </div>
     <div>
-      <span class="float-right">
-          <button class="btn btn-danger btn-sm" *ngIf="allowEdit" (click)="resetToRaw()"
-                  title="revert text to chunk original">Reset</button>
-        </span>
-      <span class="float-right">
-          <app-editor-config #editorConfigModal [initialConfig]="editorConfig"
-                             (configUpdated)="editorConfig = $event"></app-editor-config>
-          <button class="btn btn-sm btn-info mr-3" *ngIf="allowEdit" (click)="openEditorConfig()"
-                  title="Change editor config">Editor/Audio Config</button>
+      <button class="btn btn-danger btn-sm" *ngIf="allowEdit" (click)="resetToRaw()" title="revert text to chunk original">Reset</button>
+      <span class="ml-3">
+          <app-editor-config #editorConfigModal [initialConfig]="editorConfig" (configUpdated)="editorConfig = $event"></app-editor-config>
+          <button class="btn btn-sm btn-info" *ngIf="allowEdit" (click)="openEditorConfig()" title="Change editor config">Editor/Audio Config</button>
       </span>
-      <span class="float-right">
-        <button class="btn btn-sm mr-3" (click)="showHelp = !showHelp"
+      <span>
+        <button class="btn btn-sm ml-3" (click)="showHelp = !showHelp"
                 [ngClass]="{'btn-outline-success': !showHelp, 'btn-success': showHelp}" title="Toggle help text">
           <span *ngIf="!showHelp">HELP</span>
           <span *ngIf="showHelp">Hide HELP</span>
@@ -62,7 +59,7 @@
     </div>
   </div>
 
-  <div class="card-notification px-4 py-2" *ngIf="fromBackup">
+  <div class="card-notification px-4 py-2" *ngIf="allowEdit && fromBackup">
     Transcript was recovered from a local backup (you can <a class="btn btn-sm btn-primary" (click)="resetToRaw()">discard</a> the backup to keep the current <span *ngIf="isSaved">saved</span><span *ngIf="!isSaved">unedited</span> transcript). Close this dialog to keep the backup.
     <button type="button" class="close" aria-label="Close" (click)="fromBackup = false">
       <span aria-hidden="true">&times;</span>
@@ -94,16 +91,12 @@
 </div>
 
 <div class="card" *ngIf="(activeTab==='preview')">
-  <div class="card-header">
-  </div>
   <div class="card-body preview-window">
     <app-transcript [rawTranscript]="getContentSnapshot() || initialTranscript" [searchResultMode]="false" [enableLineLinking]="true"></app-transcript>
   </div>
 </div>
 
 <div *ngIf="enableDiff && (activeTab==='diff')" class="card">
-  <div class="card-header">
-  </div>
   <div class="card-body preview-window">
     <app-html-diff [unifiedDiff]="unifiedDiff"></app-html-diff>
   </div>

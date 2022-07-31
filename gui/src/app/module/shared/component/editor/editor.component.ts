@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
-import { getOffsetValueFromLine, isOffsetLine } from '../../../shared/lib/tscript';
+import { getOffsetValueFromLine, isOffsetLine, lineHasActorPrefix } from '../../../shared/lib/tscript';
 import { Subject } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-editor',
@@ -49,7 +49,7 @@ export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.textChangeDebouncer.pipe(debounceTime(500)).subscribe((v: string) => {
+    this.textChangeDebouncer.pipe(distinctUntilChanged(), debounceTime(500)).subscribe((v: string) => {
       this.textContentChange.next(v);
     });
   }
@@ -57,6 +57,7 @@ export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
   onKeypress() {
     this.contentChanged();
     this.tryEmitOffset();
+    //this.tryShowAutocomplete();
   }
 
   contentChanged() {
@@ -69,6 +70,10 @@ export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
     this.destory$.complete();
   }
 
+  refreshInnerHtml() {
+    this.updateInnerHtml(this._textContent);
+  }
+
   updateInnerHtml(value: string) {
     if (!value || !this.editableContent) {
       return;
@@ -78,6 +83,10 @@ export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
     const lines = value.split('\n');
 
     lines.forEach((line: string) => {
+      line = line.trim();
+      if (line.length  === 0) {
+        return;
+      }
       if (line.match(/^#OFFSET:.*/g)) {
         this.renderer.appendChild(this.editableContent.nativeElement, this.newOffsetElement(line));
       } else if (line.match(/^#[\/]?(SYN|TRIVIA).*/g)) {
@@ -104,12 +113,39 @@ export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
     return el;
   }
 
+  private newAutocomplete(items: string[]) {
+    const el = this.renderer.createElement('span');
+    el.innerText = `${items.join(",")}\n`;
+    el.className = 'autocomplete';
+    return el;
+  }
+
   private tryEmitOffset() {
     const caretFocus = this.getCaretFocus();
     if (caretFocus && isOffsetLine(caretFocus.line)) {
       this.atOffsetMarker.next(getOffsetValueFromLine(caretFocus.line));
     }
   }
+
+  // private activeAutocomplete: {el: HTMLElement, parent: any};
+  //
+  // private tryShowAutocomplete() {
+  //   const caretFocus = this.getCaretFocus();
+  //   if (!caretFocus) {
+  //     return;
+  //   }
+  //   if (this.activeAutocomplete) {
+  //     this.renderer.removeChild(this.activeAutocomplete.parent, this.activeAutocomplete.el);
+  //     this.activeAutocomplete = undefined;
+  //   }
+  //   if (!lineHasActorPrefix(caretFocus.line)) {
+  //     let sel = document.getSelection();
+  //     let nd = sel.anchorNode;
+  //     let newNode = this.newAutocomplete(["foo", "bar"]);
+  //     this.renderer.appendChild(nd, newNode);
+  //     this.activeAutocomplete = {el: newNode, parent: nd};
+  //   }
+  // }
 
   insertOffsetAboveCaret(seconds: number): void {
     let sel = document.getSelection();

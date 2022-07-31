@@ -1,7 +1,7 @@
 import { Component, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { EditorConfig, EditorConfigComponent } from '../editor-config/editor-config.component';
 import { Subject } from 'rxjs';
-import { getFirstOffset, Tscript } from '../../lib/tscript';
+import { getFirstOffset } from '../../lib/tscript';
 import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { formatDistance } from 'date-fns';
 import { EditorComponent } from '../editor/editor.component';
@@ -18,7 +18,7 @@ export class TranscriberComponent implements OnInit, OnDestroy {
   contentID: string;
 
   @Input()
-  contentVersion: string
+  contentVersion: string;
 
   @Input()
   set rawTranscript(value: string) {
@@ -92,6 +92,7 @@ export class TranscriberComponent implements OnInit, OnDestroy {
     this.audioService.setPlaybackRate(cfg.playbackRate || 1);
     localStorage.setItem('editor-config', JSON.stringify(cfg));
   }
+
   private _editorConfig: EditorConfig;
 
   contentUpdated: Subject<string> = new Subject<string>();
@@ -115,8 +116,6 @@ export class TranscriberComponent implements OnInit, OnDestroy {
 
   private _activeTab: 'edit' | 'preview' | 'diff' = 'edit';
 
-  parsedTscript: Tscript;
-
   @ViewChild('editorConfigModal')
   editorConfigModal: EditorConfigComponent;
 
@@ -128,24 +127,28 @@ export class TranscriberComponent implements OnInit, OnDestroy {
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent): boolean {
     if (this._editorConfig.autoSeek === undefined ? true : this._editorConfig.autoSeek) {
-      if (event.key === (this._editorConfig?.playPauseKey || 'Insert')) {
+      if (this._editorConfig?.playPauseKey && event.key === (this._editorConfig?.playPauseKey)) {
         this.audioService.toggleAudio(0 - (this._editorConfig?.backtrack || 3));
         return false;
       }
-      if (event.key === (this._editorConfig?.rewindKey || 'ScrollLock')) {
+      if (this._editorConfig?.rewindKey && event.key === (this._editorConfig?.rewindKey)) {
         this.skipBackwards();
         return false;
       }
-      if (event.key === (this._editorConfig?.fastForwardKey || 'Pause')) {
-        this.skipForward()
+      if (this._editorConfig?.fastForwardKey && event.key === (this._editorConfig?.fastForwardKey)) {
+        this.skipForward();
         return false;
       }
-      if (event.key === (this._editorConfig?.fastForwardKey || 'Pause')) {
-        this.skipForward()
+      if (this._editorConfig?.fastForwardKey && event.key === (this._editorConfig?.fastForwardKey)) {
+        this.skipForward();
         return false;
       }
-      if (event.key === (this._editorConfig?.insertOffsetKey || 'PrintScreen')) {
+      if (this._editorConfig?.insertOffsetKey && event.key === (this._editorConfig?.insertOffsetKey)) {
         this.insertOffsetAboveCaret();
+        return false;
+      }
+      if (this._editorConfig?.insertSynKey && event.key === (this._editorConfig?.insertSynKey)) {
+        this.insertSynAboveCaret();
         return false;
       }
       return true;
@@ -233,7 +236,7 @@ export class TranscriberComponent implements OnInit, OnDestroy {
   }
 
   localBackupKey(): string {
-    return `content-backup-${this.contentID}${this.contentVersion ? '-'+this.contentVersion : ''}`
+    return `content-backup-${this.contentID}${this.contentVersion ? '-' + this.contentVersion : ''}`;
   }
 
   resetToRaw() {
@@ -262,10 +265,6 @@ export class TranscriberComponent implements OnInit, OnDestroy {
     this.editorConfigModal.open = true;
   }
 
-  handleEditorConfigUpdated(cfg: EditorConfig) {
-
-  }
-
   timeSinceSave(): string {
     return formatDistance(this.lastUpdateDate, new Date());
   }
@@ -278,12 +277,18 @@ export class TranscriberComponent implements OnInit, OnDestroy {
 
   insertOffsetAboveCaret() {
     let startOffset = this.firstOffset > -1 ? this.firstOffset : 0;
-    this.editorComponent.insertOffsetAboveCaret(Math.floor(startOffset + (this.audioStatus?.currentTime || 0)-0.5));
+    this.editorComponent.insertOffsetAboveCaret(Math.floor(startOffset + (this.audioStatus?.currentTime || 0) - (this._editorConfig.insertOffsetBacktrack || 0)));
+  }
+
+  insertSynAboveCaret() {
+    this.insertTextAboveCaret('#SYN: ');
   }
 
   insertTextAboveCaret(text: string) {
     this.editorComponent.insertTextAboveCaret(text);
   }
 
-
+  refreshEditorHTML() {
+    this.editorComponent.refreshInnerHtml();
+  }
 }

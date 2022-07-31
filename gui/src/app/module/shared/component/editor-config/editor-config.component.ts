@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { KeyPressEventCodes } from '../../../../lib/keys';
 
 @Component({
@@ -24,6 +24,8 @@ export class EditorConfigComponent implements OnInit {
     'fastForwardKey': new FormControl(),
     'rewindKey': new FormControl(),
     'insertOffsetKey': new FormControl(),
+    'insertOffsetBacktrack': new FormControl(),
+    'insertSynKey': new FormControl(),
     'autoSeek': new FormControl(),
     'wrapText': new FormControl(),
   });
@@ -31,6 +33,7 @@ export class EditorConfigComponent implements OnInit {
   keyCodes = KeyPressEventCodes;
 
   constructor() {
+    this.configForm.setValidators(this.validateKeyBindings());
   }
 
   ngOnInit(): void {
@@ -40,8 +43,27 @@ export class EditorConfigComponent implements OnInit {
     this.configForm.get('fastForwardKey').setValue(this.initialConfig.fastForwardKey);
     this.configForm.get('rewindKey').setValue(this.initialConfig.rewindKey);
     this.configForm.get('insertOffsetKey').setValue(this.initialConfig.insertOffsetKey);
+    this.configForm.get('insertOffsetBacktrack').setValue(this.initialConfig.insertOffsetBacktrack || 0);
+    this.configForm.get('insertSynKey').setValue(this.initialConfig.insertSynKey);
     this.configForm.get('autoSeek').setValue(this.initialConfig.autoSeek);
     this.configForm.get('wrapText').setValue(this.initialConfig.wrapText === undefined ? true : this.initialConfig.wrapText);
+  }
+
+  validateKeyBindings(): ValidatorFn {
+    return (group: FormGroup): ValidationErrors => {
+      const boundKeys: { [index: string]: boolean } = {};
+
+      for (let ctrlName in group.controls) {
+        if (!group.controls.hasOwnProperty(ctrlName) || group.get(ctrlName).value === '') {
+          continue;
+        }
+        if (KeyPressEventCodes.indexOf(group.get(ctrlName).value) > -1 && boundKeys[group.get(ctrlName).value]) {
+          group.get(ctrlName).setErrors({ 'duplicateValue': [`${group.get(ctrlName).value} already in use`] });
+        }
+        boundKeys[group.get(ctrlName).value] = true;
+      }
+      return;
+    };
   }
 
   emitUpdatedconfig() {
@@ -53,6 +75,8 @@ export class EditorConfigComponent implements OnInit {
       this.configForm.get('fastForwardKey').value,
       this.configForm.get('rewindKey').value,
       this.configForm.get('insertOffsetKey').value,
+      this.configForm.get('insertOffsetBacktrack').value,
+      this.configForm.get('insertSynKey').value,
       this.configForm.get('autoSeek').value,
       this.configForm.get('wrapText').value,
     );
@@ -68,6 +92,8 @@ export class EditorConfig {
     public fastForwardKey: string = 'Pause',
     public rewindKey: string = 'ScrollLock',
     public insertOffsetKey: string = 'PrintScreen',
+    public insertOffsetBacktrack: number = 0.5,
+    public insertSynKey: string = '',
     public autoSeek: boolean = true,
     public wrapText: boolean = true) {
   }

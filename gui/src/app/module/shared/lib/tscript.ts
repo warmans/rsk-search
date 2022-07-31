@@ -1,5 +1,9 @@
 import { RskDialog, RskSynopsis, RskTrivia } from '../../../lib/api-client/models';
 
+export function lineHasActorPrefix(line: string): boolean {
+  return line.length > 1 && line.indexOf(':') > -1;
+}
+
 export function isOffsetLine(line: string): boolean {
   return getOffsetValueFromLine(line) > -1;
 }

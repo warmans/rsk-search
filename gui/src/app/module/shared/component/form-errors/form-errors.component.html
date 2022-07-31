@@ -1,4 +1,4 @@
-<div *ngIf="field.invalid" class="text-danger mt-1 p-1">
+<div *ngIf="field?.invalid" class="text-danger mt-1 p-1">
   <div *ngIf="field?.errors?.required">
     {{fieldName}} is required.
   </div>
@@ -7,5 +7,8 @@
   </div>
   <div *ngIf="field?.errors?.apiErrors">
     <div *ngFor="let err of (field?.errors?.apiErrors || [])">{{ err }}</div>
+  </div>
+  <div *ngIf="field?.errors?.duplicateValue">
+    <div *ngFor="let err of (field?.errors?.duplicateValue || [])">{{ err }}</div>
   </div>
 </div>
