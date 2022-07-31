@@ -3,7 +3,7 @@
     "series": 1,
     "episode": 6,
     "name": "",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "release_date": "2001-12-15T00:00:00Z",
     "incomplete": false,
     "offset_accuracy": 0,
@@ -1863,7 +1863,7 @@
         "type": "chat",
         "actor": "",
         "metadata": null,
-        "content": "Ricky Laughs",
+        "content": "Ricky laughs",
         "notable": false
       },
       {
@@ -2550,7 +2550,7 @@
         "type": "chat",
         "actor": "",
         "metadata": null,
-        "content": "Ricky Laughs",
+        "content": "Ricky laughs",
         "notable": false
       },
       {
@@ -3056,7 +3056,7 @@
         "type": "chat",
         "actor": "",
         "metadata": null,
-        "content": "Steve Laughs",
+        "content": "Steve laughs",
         "notable": false
       },
       {
@@ -9338,7 +9338,7 @@
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "Cause he is not with that. He looks damper. If they saw him walking down the street looking like a ponce. They would just laugh and jeer.",
+        "content": "Cause he is not with that. He looks dapper. If they saw him walking down the street looking like a ponce, they would just laugh and jeer.",
         "notable": false
       },
       {
@@ -10254,8 +10254,130 @@
         "notable": false
       }
     ],
-    "synopsis": null,
+    "synopsis": [
+      {
+        "description": "Ricky has procured some amazing prizes (for once)",
+        "start_pos": 0,
+        "end_pos": 28
+      },
+      {
+        "description": "Ricky has an idea for a new competition called 2-1 but he's too inarticulate to explain it",
+        "start_pos": 28,
+        "end_pos": 90
+      },
+      {
+        "description": "The phone lines are going mad for 2-1",
+        "start_pos": 91,
+        "end_pos": 109
+      },
+      {
+        "description": "2-1 Question; We have a listener called Clive and he's got a question about James Bond",
+        "start_pos": 111,
+        "end_pos": 164
+      },
+      {
+        "description": "Karl isn't as good at asking questions as Anne Robinson",
+        "start_pos": 164,
+        "end_pos": 183
+      },
+      {
+        "description": "2-1 question; What food kind of doesn't make you fat?",
+        "start_pos": 183,
+        "end_pos": 212
+      },
+      {
+        "description": "2-1 question; What semi-precious stone does the Pope wear?",
+        "start_pos": 223,
+        "end_pos": 277
+      },
+      {
+        "description": "Jonathan Ross visits RSK with his massive member out",
+        "start_pos": 278,
+        "end_pos": 414
+      },
+      {
+        "description": "Steve questions Ricky's relationship with Jonathan Ross",
+        "start_pos": 417,
+        "end_pos": 448
+      },
+      {
+        "description": "2-1 question; What's the most expensive pub in London?",
+        "start_pos": 450,
+        "end_pos": 510
+      },
+      {
+        "description": "Steve's mate Dave Greenword implicates Xfm in the breaking of copyright law",
+        "start_pos": 511,
+        "end_pos": 530
+      },
+      {
+        "description": "Xfm give RSK vouchers for Christmas. Steve isn't impressed.",
+        "start_pos": 534,
+        "end_pos": 586
+      },
+      {
+        "description": "Steve mines the email for 2-1 questions",
+        "start_pos": 597,
+        "end_pos": 627
+      },
+      {
+        "description": "Ricky and Steve want to talk to the winner of 2-1 live but Karl has failed at his job",
+        "start_pos": 627,
+        "end_pos": 658
+      },
+      {
+        "description": "Ricky and Steve dissect the Bob Dylan song If You See Her, Say Hello",
+        "start_pos": 658,
+        "end_pos": 672
+      },
+      {
+        "description": "The lads call Neil, the winner of 2-1, live",
+        "start_pos": 672,
+        "end_pos": 726
+      },
+      {
+        "description": "Ricky has recorded a beautiful Christmas song",
+        "start_pos": 728,
+        "end_pos": 755
+      },
+      {
+        "description": "\"Management\" has some feedback about the show so RSK take it highbrow",
+        "start_pos": 757,
+        "end_pos": 788
+      },
+      {
+        "description": "The Falklands was a ranged war and WW1 poetry was a little bit bent",
+        "start_pos": 788,
+        "end_pos": 811
+      },
+      {
+        "description": "Steve's Hip Hop Hooray feature",
+        "start_pos": 815,
+        "end_pos": 855
+      },
+      {
+        "description": "Listeners have some tough questions for Ricky",
+        "start_pos": 855,
+        "end_pos": 864
+      },
+      {
+        "description": "Ricky is retiring his world-famous film review",
+        "start_pos": 869,
+        "end_pos": 886
+      },
+      {
+        "description": "Karl is going away for Christmas",
+        "start_pos": 886,
+        "end_pos": 906
+      },
+      {
+        "description": "Steve wants to touch and kiss and love Karl for Christmas",
+        "start_pos": 906,
+        "end_pos": 924
+      }
+    ],
     "contributors": [
+      "EarthlingCalling",
       "KomradeKvestions"
     ],
     "trivia": null
