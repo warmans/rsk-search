@@ -249,6 +249,13 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
       .pipe(tap((res: any) => guards.isRskTranscriptChange(res) || console.error(`TypeGuard for response 'RskTranscriptChange' caught inconsistency.`, res)));
   }
 
+  listIncomingDonations(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskIncomingDonationList> {
+    return super.listIncomingDonations(requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRskIncomingDonationList(res) || console.error(`TypeGuard for response 'RskIncomingDonationList' caught inconsistency.`, res)));
+  }
+
   getMetadata(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskMetadata> {
@@ -268,6 +275,13 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
   ): Observable<models.RskClaimedRewardList> {
     return super.listClaimedRewards(requestHttpOptions)
       .pipe(tap((res: any) => guards.isRskClaimedRewardList(res) || console.error(`TypeGuard for response 'RskClaimedRewardList' caught inconsistency.`, res)));
+  }
+
+  getDonationStats(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskDonationStats> {
+    return super.getDonationStats(requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRskDonationStats(res) || console.error(`TypeGuard for response 'RskDonationStats' caught inconsistency.`, res)));
   }
 
   claimReward(

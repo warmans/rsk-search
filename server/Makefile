@@ -144,7 +144,8 @@ run: build
 		--pledge-def-firstname=${PLEDGE_FNAME} \
 		--pledge-def-lastname=${PLEDGE_LNAME} \
 		--rewards-disabled=false \
-		--import-keep-files=true
+		--import-keep-files=true \
+		--coffee-access-token=${COFFEE_ACCESS_TOKEN}
 
 .PHONY: dev.services.start
 dev.services.start:

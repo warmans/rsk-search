@@ -11,6 +11,7 @@ import (
 	"github.com/hexops/gotextdiff/myers"
 	"github.com/hexops/gotextdiff/span"
 	"github.com/warmans/rsk-search/gen/api"
+	"github.com/warmans/rsk-search/pkg/coffee"
 	"github.com/warmans/rsk-search/pkg/data"
 	"github.com/warmans/rsk-search/pkg/filter"
 	"github.com/warmans/rsk-search/pkg/jwt"
@@ -23,6 +24,7 @@ import (
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 	"google.golang.org/protobuf/types/known/emptypb"
+	"strconv"
 )
 
 func NewContribService(
@@ -32,6 +34,7 @@ func NewContribService(
 	auth *jwt.Auth,
 	pledgeClient *pledge.Client,
 	episodeCache *data.EpisodeCache,
+	coffee *coffee.Client,
 ) *ContribService {
 
 	var rankCache models.Ranks
@@ -55,6 +58,7 @@ func NewContribService(
 		pledgeClient: pledgeClient,
 		episodeCache: episodeCache,
 		rankCache:    rankCache,
+		coffee:       coffee,
 	}
 }
 
@@ -66,6 +70,7 @@ type ContribService struct {
 	pledgeClient *pledge.Client
 	episodeCache *data.EpisodeCache
 	rankCache    models.Ranks
+	coffee       *coffee.Client
 }
 
 func (s *ContribService) RegisterGRPC(server *grpc.Server) {
@@ -805,6 +810,44 @@ func (s *ContribService) ListAuthorContributions(ctx context.Context, request *a
 	})
 	if err != nil {
 		return nil, ErrFromStore(err, "").Err()
+	}
+	return out, nil
+}
+
+func (s *ContribService) GetDonationStats(ctx context.Context, empty *emptypb.Empty) (*api.DonationStats, error) {
+	var stats models.DonationRecipientStats
+	if err := s.persistentDB.WithStore(func(s *rw.Store) error {
+		var err error
+		stats, err = s.GetDonationStats(ctx)
+		return err
+	}); err != nil {
+		return nil, ErrFromStore(err, "").Err()
+	}
+	return stats.Proto(), nil
+}
+
+func (s *ContribService) ListIncomingDonations(ctx context.Context, request *api.ListIncomingDonationsRequest) (*api.IncomingDonationList, error) {
+	out := &api.IncomingDonationList{}
+
+	if s.coffee == nil {
+		return out, nil
+	}
+	sups, err := s.coffee.Supporters()
+	if err != nil {
+		return nil, ErrInternal(err).Err()
+	}
+	for _, sup := range sups.Data {
+		priceFloat, err := strconv.ParseFloat(sup.Price, 32)
+		if err != nil {
+			s.logger.Error("failed to parse float", zap.String("val", sup.Price), zap.Error(err))
+			continue
+		}
+		out.Donations = append(out.Donations, &api.IncomingDonation{
+			Name:           sup.Name,
+			Amount:         float32(priceFloat) * float32(sup.Qty),
+			AmountCurrency: sup.Currency,
+			Note:           sup.Note,
+		})
 	}
 	return out, nil
 }

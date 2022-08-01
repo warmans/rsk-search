@@ -103,6 +103,7 @@ services:
       RSK_SEARCH_PLEDGE_DEF_LASTNAME: "changeme"
       RSK_SEARCH_IMPORT_REDIS_ADDR: "redis:6379"
       RSK_SEARCH_IMPORT_PYTHON_SCRIPT_DIR: "/opt/rsk/script"
+      RSK_SEARCH_BMAC_ACCESS_TOKEN: na
       GOOGLE_APPLICATION_CREDENTIALS: "/root/google-service-key.json"
 
     restart: unless-stopped

@@ -141,8 +141,26 @@
         </div>
       </div>
 
-      <app-rankings></app-rankings>
-
+      <ul class="nav nav-tabs font-weight-bold">
+        <li class="nav-item mr-2">
+          <a class="nav-link" (click)="activeContributionsPanel='authors'" [ngClass]="{'active': activeContributionsPanel === 'authors'}">Author Ranking</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="activeContributionsPanel='outgoing_donations'" [ngClass]="{'active':  activeContributionsPanel === 'outgoing_donations'}">Causes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="activeContributionsPanel='incoming_donations'" [ngClass]="{'active':  activeContributionsPanel === 'incoming_donations'}">Donations</a>
+        </li>
+      </ul>
+      <div *ngIf="activeContributionsPanel === 'authors'">
+        <app-rankings></app-rankings>
+      </div>
+      <div *ngIf="activeContributionsPanel === 'outgoing_donations'">
+        <app-causes></app-causes>
+      </div>
+      <div *ngIf="activeContributionsPanel === 'incoming_donations'">
+        <app-donations></app-donations>
+      </div>
     </div>
   </div>
 </div>

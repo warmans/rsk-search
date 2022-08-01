@@ -35,6 +35,7 @@ type ContribServiceClient interface {
 	ListClaimedRewards(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ClaimedRewardList, error)
 	ClaimReward(ctx context.Context, in *ClaimRewardRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ListDonationRecipients(ctx context.Context, in *ListDonationRecipientsRequest, opts ...grpc.CallOption) (*DonationRecipientList, error)
+	GetDonationStats(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*DonationStats, error)
 	ListTranscriptChanges(ctx context.Context, in *ListTranscriptChangesRequest, opts ...grpc.CallOption) (*TranscriptChangeList, error)
 	GetTranscriptChange(ctx context.Context, in *GetTranscriptChangeRequest, opts ...grpc.CallOption) (*TranscriptChange, error)
 	GetTranscriptChangeDiff(ctx context.Context, in *GetTranscriptChangeDiffRequest, opts ...grpc.CallOption) (*TranscriptChangeDiff, error)
@@ -44,6 +45,7 @@ type ContribServiceClient interface {
 	RequestTranscriptChangeState(ctx context.Context, in *RequestTranscriptChangeStateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ListAuthorContributions(ctx context.Context, in *ListAuthorContributionsRequest, opts ...grpc.CallOption) (*AuthorContributionList, error)
 	ListAuthorRanks(ctx context.Context, in *ListAuthorRanksRequest, opts ...grpc.CallOption) (*AuthorRankList, error)
+	ListIncomingDonations(ctx context.Context, in *ListIncomingDonationsRequest, opts ...grpc.CallOption) (*IncomingDonationList, error)
 }
 
 type contribServiceClient struct {
@@ -189,6 +191,15 @@ func (c *contribServiceClient) ListDonationRecipients(ctx context.Context, in *L
 	return out, nil
 }
 
+func (c *contribServiceClient) GetDonationStats(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*DonationStats, error) {
+	out := new(DonationStats)
+	err := c.cc.Invoke(ctx, "/rsk.ContribService/GetDonationStats", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *contribServiceClient) ListTranscriptChanges(ctx context.Context, in *ListTranscriptChangesRequest, opts ...grpc.CallOption) (*TranscriptChangeList, error) {
 	out := new(TranscriptChangeList)
 	err := c.cc.Invoke(ctx, "/rsk.ContribService/ListTranscriptChanges", in, out, opts...)
@@ -270,6 +281,15 @@ func (c *contribServiceClient) ListAuthorRanks(ctx context.Context, in *ListAuth
 	return out, nil
 }
 
+func (c *contribServiceClient) ListIncomingDonations(ctx context.Context, in *ListIncomingDonationsRequest, opts ...grpc.CallOption) (*IncomingDonationList, error) {
+	out := new(IncomingDonationList)
+	err := c.cc.Invoke(ctx, "/rsk.ContribService/ListIncomingDonations", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ContribServiceServer is the server API for ContribService service.
 // All implementations should embed UnimplementedContribServiceServer
 // for forward compatibility
@@ -290,6 +310,7 @@ type ContribServiceServer interface {
 	ListClaimedRewards(context.Context, *emptypb.Empty) (*ClaimedRewardList, error)
 	ClaimReward(context.Context, *ClaimRewardRequest) (*emptypb.Empty, error)
 	ListDonationRecipients(context.Context, *ListDonationRecipientsRequest) (*DonationRecipientList, error)
+	GetDonationStats(context.Context, *emptypb.Empty) (*DonationStats, error)
 	ListTranscriptChanges(context.Context, *ListTranscriptChangesRequest) (*TranscriptChangeList, error)
 	GetTranscriptChange(context.Context, *GetTranscriptChangeRequest) (*TranscriptChange, error)
 	GetTranscriptChangeDiff(context.Context, *GetTranscriptChangeDiffRequest) (*TranscriptChangeDiff, error)
@@ -299,6 +320,7 @@ type ContribServiceServer interface {
 	RequestTranscriptChangeState(context.Context, *RequestTranscriptChangeStateRequest) (*emptypb.Empty, error)
 	ListAuthorContributions(context.Context, *ListAuthorContributionsRequest) (*AuthorContributionList, error)
 	ListAuthorRanks(context.Context, *ListAuthorRanksRequest) (*AuthorRankList, error)
+	ListIncomingDonations(context.Context, *ListIncomingDonationsRequest) (*IncomingDonationList, error)
 }
 
 // UnimplementedContribServiceServer should be embedded to have forward compatible implementations.
@@ -350,6 +372,9 @@ func (UnimplementedContribServiceServer) ClaimReward(context.Context, *ClaimRewa
 func (UnimplementedContribServiceServer) ListDonationRecipients(context.Context, *ListDonationRecipientsRequest) (*DonationRecipientList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListDonationRecipients not implemented")
 }
+func (UnimplementedContribServiceServer) GetDonationStats(context.Context, *emptypb.Empty) (*DonationStats, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDonationStats not implemented")
+}
 func (UnimplementedContribServiceServer) ListTranscriptChanges(context.Context, *ListTranscriptChangesRequest) (*TranscriptChangeList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTranscriptChanges not implemented")
 }
@@ -376,6 +401,9 @@ func (UnimplementedContribServiceServer) ListAuthorContributions(context.Context
 }
 func (UnimplementedContribServiceServer) ListAuthorRanks(context.Context, *ListAuthorRanksRequest) (*AuthorRankList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListAuthorRanks not implemented")
+}
+func (UnimplementedContribServiceServer) ListIncomingDonations(context.Context, *ListIncomingDonationsRequest) (*IncomingDonationList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListIncomingDonations not implemented")
 }
 
 // UnsafeContribServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -659,6 +687,24 @@ func _ContribService_ListDonationRecipients_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ContribService_GetDonationStats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContribServiceServer).GetDonationStats(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/rsk.ContribService/GetDonationStats",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContribServiceServer).GetDonationStats(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _ContribService_ListTranscriptChanges_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListTranscriptChangesRequest)
 	if err := dec(in); err != nil {
@@ -821,6 +867,24 @@ func _ContribService_ListAuthorRanks_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ContribService_ListIncomingDonations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListIncomingDonationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContribServiceServer).ListIncomingDonations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/rsk.ContribService/ListIncomingDonations",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContribServiceServer).ListIncomingDonations(ctx, req.(*ListIncomingDonationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ContribService_ServiceDesc is the grpc.ServiceDesc for ContribService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -889,6 +953,10 @@ var ContribService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ContribService_ListDonationRecipients_Handler,
 		},
 		{
+			MethodName: "GetDonationStats",
+			Handler:    _ContribService_GetDonationStats_Handler,
+		},
+		{
 			MethodName: "ListTranscriptChanges",
 			Handler:    _ContribService_ListTranscriptChanges_Handler,
 		},
@@ -923,6 +991,10 @@ var ContribService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListAuthorRanks",
 			Handler:    _ContribService_ListAuthorRanks_Handler,
+		},
+		{
+			MethodName: "ListIncomingDonations",
+			Handler:    _ContribService_ListIncomingDonations_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -31,6 +31,8 @@ export class ContributeComponent implements OnInit, OnDestroy {
   overallPendingApproval: number = 0;
   overallAwaitingContributions: number = 0;
 
+  activeContributionsPanel: "authors"|"outgoing_donations"|"incoming_donations" = "authors";
+
   private unsubscribe$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private apiClient: SearchAPIClient, private titleService: Title) {

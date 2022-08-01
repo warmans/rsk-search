@@ -118,6 +118,7 @@ type AuthorReward struct {
 	ClaimAt               *time.Time `db:"claim_at"`
 	ClaimConfirmationCode *string    `db:"claim_confirmation_code"`
 	Error                 *string    `db:"error"`
+	RecipientName         *string    `db:"recipient_name"`
 }
 
 func (a *AuthorReward) ClaimedProto() *api.ClaimedReward {

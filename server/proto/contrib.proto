@@ -192,6 +192,17 @@ service ContribService {
     };
   }
 
+  rpc GetDonationStats (google.protobuf.Empty) returns (DonationStats) {
+    option (google.api.http) = {
+      get: "/api/rewards/stats"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "getDonationStats",
+      summary: "show stats on donations made via rewards system"
+      tags: "search"
+    };
+  }
+
   // Transcript Corrections
 
   rpc ListTranscriptChanges (ListTranscriptChangesRequest) returns (TranscriptChangeList) {
@@ -294,6 +305,17 @@ service ContribService {
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       operation_id: "listAuthorRanks",
       summary: "Lists the rankings of the authors."
+      tags: "search"
+    };
+  }
+
+  rpc ListIncomingDonations (ListIncomingDonationsRequest) returns (IncomingDonationList) {
+    option (google.api.http) = {
+      get: "/api/donations"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "listIncomingDonations",
+      summary: "Lists donations made to scrimpton."
       tags: "search"
     };
   }
@@ -653,3 +675,26 @@ message AuthorContribution {
   string created_at = 9;
 }
 
+message DonationStats {
+  repeated RecipientStats stats = 1;
+}
+
+message RecipientStats {
+  string donation_recipient = 1;
+  float points_spent = 2;
+  float donated_amount_usd = 3;
+}
+
+message ListIncomingDonationsRequest {
+}
+
+message IncomingDonationList {
+  repeated IncomingDonation donations = 1;
+}
+
+message IncomingDonation {
+  string name = 1;
+  float amount = 2;
+  string amount_currency = 3;
+  string note = 4;
+}

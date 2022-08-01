@@ -450,6 +450,17 @@ export function isRskDonationRecipientList(arg: any): arg is models.RskDonationR
   );
   }
 
+export function isRskDonationStats(arg: any): arg is models.RskDonationStats {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // stats?: RskRecipientStats[]
+    ( typeof arg.stats === 'undefined' || (Array.isArray(arg.stats) && arg.stats.every((item: unknown) => isRskRecipientStats(item))) ) &&
+
+  true
+  );
+  }
+
 export function isRskFieldMeta(arg: any): arg is models.RskFieldMeta {
   return (
   arg != null &&
@@ -482,6 +493,34 @@ export function isRskFieldValueList(arg: any): arg is models.RskFieldValueList {
   typeof arg === 'object' &&
     // values?: RskFieldValue[]
     ( typeof arg.values === 'undefined' || (Array.isArray(arg.values) && arg.values.every((item: unknown) => isRskFieldValue(item))) ) &&
+
+  true
+  );
+  }
+
+export function isRskIncomingDonation(arg: any): arg is models.RskIncomingDonation {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // amount?: number
+    ( typeof arg.amount === 'undefined' || typeof arg.amount === 'number' ) &&
+    // amountCurrency?: string
+    ( typeof arg.amountCurrency === 'undefined' || typeof arg.amountCurrency === 'string' ) &&
+    // name?: string
+    ( typeof arg.name === 'undefined' || typeof arg.name === 'string' ) &&
+    // note?: string
+    ( typeof arg.note === 'undefined' || typeof arg.note === 'string' ) &&
+
+  true
+  );
+  }
+
+export function isRskIncomingDonationList(arg: any): arg is models.RskIncomingDonationList {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // donations?: RskIncomingDonation[]
+    ( typeof arg.donations === 'undefined' || (Array.isArray(arg.donations) && arg.donations.every((item: unknown) => isRskIncomingDonation(item))) ) &&
 
   true
   );
@@ -534,6 +573,21 @@ export function isRskRank(arg: any): arg is models.RskRank {
     ( typeof arg.name === 'undefined' || typeof arg.name === 'string' ) &&
     // points?: number
     ( typeof arg.points === 'undefined' || typeof arg.points === 'number' ) &&
+
+  true
+  );
+  }
+
+export function isRskRecipientStats(arg: any): arg is models.RskRecipientStats {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // donatedAmountUsd?: number
+    ( typeof arg.donatedAmountUsd === 'undefined' || typeof arg.donatedAmountUsd === 'number' ) &&
+    // donationRecipient?: string
+    ( typeof arg.donationRecipient === 'undefined' || typeof arg.donationRecipient === 'string' ) &&
+    // pointsSpent?: number
+    ( typeof arg.pointsSpent === 'undefined' || typeof arg.pointsSpent === 'number' ) &&
 
   true
   );

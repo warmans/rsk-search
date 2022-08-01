@@ -12,6 +12,8 @@ import { ContributeComponent } from './page/contribute/contribute.component';
 import { RandomComponent } from './page/random/random.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RankingsComponent } from './component/rankings/rankings.component';
+import { CausesComponent } from './component/causes/causes.component';
+import { DonationsComponent } from './component/donations/donations.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { RankingsComponent } from './component/rankings/rankings.component';
     ContributeComponent,
     RejectButtonComponent,
     LeaderboardComponent,
-    RankingsComponent
+    RankingsComponent,
+    CausesComponent,
+    DonationsComponent
   ],
   imports: [
     CommonModule,

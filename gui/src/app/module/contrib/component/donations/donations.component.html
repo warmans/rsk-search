@@ -1,0 +1,20 @@
+<div class="card position-relative">
+  <div class="card-body p-0">
+    <div *ngIf="!donations">Loading...</div>
+    <table class="table">
+      <tr>
+        <th>From</th>
+        <th>Amount</th>
+        <th>Approx. Server Days</th>
+        <th>Note</th>
+      </tr>
+      <tr *ngFor="let don of donations">
+        <td>{{don.name}}</td>
+        <td>{{don.amount | currency:don.amountCurrency}}</td>
+        <td>{{(don.amount / 10) * 30 | number }}</td>
+        <td>{{don.note}}</td>
+      </tr>
+    </table>
+  </div>
+  <app-loading-overlay [loading]="loading"></app-loading-overlay>
+</div>

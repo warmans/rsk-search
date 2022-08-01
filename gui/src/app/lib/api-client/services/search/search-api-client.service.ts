@@ -522,6 +522,21 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  listIncomingDonations(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskIncomingDonationList> {
+    const path = `/api/donations`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<models.RskIncomingDonationList>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   getMetadata(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskMetadata> {
@@ -562,6 +577,21 @@ export class SearchAPIClient implements SearchAPIClientInterface {
     };
 
     return this.sendRequest<models.RskClaimedRewardList>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  getDonationStats(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskDonationStats> {
+    const path = `/api/rewards/stats`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<models.RskDonationStats>('GET', path, options);
   }
 
   /**

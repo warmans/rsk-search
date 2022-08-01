@@ -833,6 +833,29 @@
           ]
         }
       },
+      "/api/donations": {
+        "get": {
+          "summary": "Lists donations made to scrimpton.",
+          "operationId": "listIncomingDonations",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskIncomingDonationList"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "tags": [
+            "search"
+          ]
+        }
+      },
       "/api/metadata": {
         "get": {
           "summary": "Search related metadata (searchable fields, available publications etc.)",
@@ -888,6 +911,29 @@
               "description": "A successful response.",
               "schema": {
                 "$ref": "#/definitions/rskClaimedRewardList"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "tags": [
+            "search"
+          ]
+        }
+      },
+      "/api/rewards/stats": {
+        "get": {
+          "summary": "show stats on donations made via rewards system",
+          "operationId": "getDonationStats",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskDonationStats"
               }
             },
             "default": {
@@ -1806,6 +1852,17 @@
           }
         }
       },
+      "rskDonationStats": {
+        "type": "object",
+        "properties": {
+          "stats": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/rskRecipientStats"
+            }
+          }
+        }
+      },
       "rskFieldMeta": {
         "type": "object",
         "properties": {
@@ -1836,6 +1893,35 @@
             "type": "array",
             "items": {
               "$ref": "#/definitions/rskFieldValue"
+            }
+          }
+        }
+      },
+      "rskIncomingDonation": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number",
+            "format": "float"
+          },
+          "amountCurrency": {
+            "type": "string"
+          },
+          "note": {
+            "type": "string"
+          }
+        }
+      },
+      "rskIncomingDonationList": {
+        "type": "object",
+        "properties": {
+          "donations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/rskIncomingDonation"
             }
           }
         }
@@ -1892,6 +1978,22 @@
             "type": "string"
           },
           "points": {
+            "type": "number",
+            "format": "float"
+          }
+        }
+      },
+      "rskRecipientStats": {
+        "type": "object",
+        "properties": {
+          "donationRecipient": {
+            "type": "string"
+          },
+          "pointsSpent": {
+            "type": "number",
+            "format": "float"
+          },
+          "donatedAmountUsd": {
             "type": "number",
             "format": "float"
           }

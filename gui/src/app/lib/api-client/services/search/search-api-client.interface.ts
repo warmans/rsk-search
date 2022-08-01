@@ -236,6 +236,13 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  listIncomingDonations(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskIncomingDonationList>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   getMetadata(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskMetadata>;
@@ -253,6 +260,13 @@ export interface SearchAPIClientInterface {
   listClaimedRewards(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskClaimedRewardList>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  getDonationStats(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskDonationStats>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.

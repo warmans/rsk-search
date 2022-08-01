@@ -1346,3 +1346,31 @@ func (s *Store) ListTscriptImports(ctx context.Context, q *common.QueryModifier)
 	}
 	return imports, nil
 }
+
+func (s *Store) GetDonationStats(ctx context.Context) (models.DonationRecipientStats, error) {
+	rows, err := s.tx.QueryxContext(
+		ctx,
+		fmt.Sprintf(`
+			SELECT 
+				coalesce(recipient_name, 'Other') as recipient_name,
+				SUM(points_spent) AS points_spent,
+				SUM(claim_value) AS claim_value
+			FROM author_reward
+			WHERE claimed=true AND claim_kind = 'DONATION' AND claim_value_currency = 'USD'
+			GROUP BY recipient_name
+			ORDER BY claim_value DESC, points_spent DESC 
+		`),
+	)
+	if err != nil {
+		return nil, err
+	}
+	recipients := make(models.DonationRecipientStats, 0)
+	for rows.Next() {
+		don := &models.DonationRecipientStat{}
+		if err := rows.StructScan(don); err != nil {
+			return nil, err
+		}
+		recipients = append(recipients, don)
+	}
+	return recipients, nil
+}

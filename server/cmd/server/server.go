@@ -8,6 +8,7 @@ import (
 	"github.com/blugelabs/bluge"
 	"github.com/spf13/afero"
 	"github.com/spf13/cobra"
+	"github.com/warmans/rsk-search/pkg/coffee"
 	"github.com/warmans/rsk-search/pkg/data"
 	"github.com/warmans/rsk-search/pkg/flag"
 	"github.com/warmans/rsk-search/pkg/jwt"
@@ -46,6 +47,7 @@ func ServerCmd() *cobra.Command {
 	pledgeCfg := pledge.Config{}
 	importQueueConfig := &queue.ImportQueueConfig{}
 	speech2TextCfg := &speech2text2.GcloudConfig{}
+	coffeeCfg := &coffee.Config{}
 
 	cmd := &cobra.Command{
 		Use:   "server",
@@ -164,6 +166,14 @@ func ServerCmd() *cobra.Command {
 				}
 			}()
 
+			// buy-me-a-coffee client
+			var coffeeClient *coffee.Client
+			if coffeeCfg.AccessToken != "" {
+				coffeeClient = coffee.NewClient(coffeeCfg)
+			} else {
+				logger.Info("Coffee client disabled (no access token)")
+			}
+
 			grpcServices := []server.GRPCService{
 				grpc.NewSearchService(
 					logger,
@@ -180,6 +190,7 @@ func ServerCmd() *cobra.Command {
 					auth,
 					pledge.NewClient(pledgeCfg),
 					episodeCache,
+					coffeeClient,
 				),
 				grpc.NewOauthService(
 					logger,
@@ -238,6 +249,7 @@ func ServerCmd() *cobra.Command {
 	pledgeCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
 	importQueueConfig.RegisterFlags(cmd.Flags(), ServicePrefix)
 	speech2TextCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
+	coffeeCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
 
 	return cmd
 }
