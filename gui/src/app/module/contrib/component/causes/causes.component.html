@@ -3,15 +3,13 @@
     <table class="table">
       <tr>
         <th>Recipient</th>
-        <th>Points Spent</th>
         <th>Total value</th>
       </tr>
       <tr *ngFor="let stat of stats">
         <td>{{stat.donationRecipient}}</td>
-        <td>{{stat.pointsSpent | number}}</td>
         <td>{{stat.donatedAmountUsd | currency}}</td>
       </tr>
-      <tr class="text-primary"><th>TOTAL</th><th>{{totalPoints | number}}</th><th>{{totalUSD | currency}}</th></tr>
+      <tr class="text-primary"><th>TOTAL</th><th>{{totalUSD | currency}}</th></tr>
     </table>
   </div>
 </div>
