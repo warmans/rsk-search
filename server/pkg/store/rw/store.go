@@ -1350,7 +1350,7 @@ func (s *Store) ListTscriptImports(ctx context.Context, q *common.QueryModifier)
 func (s *Store) GetDonationStats(ctx context.Context) (models.DonationRecipientStats, error) {
 	rows, err := s.tx.QueryxContext(
 		ctx,
-		fmt.Sprintf(`
+		`
 			SELECT 
 				coalesce(recipient_name, 'Other') as recipient_name,
 				SUM(points_spent) AS points_spent,
@@ -1359,7 +1359,7 @@ func (s *Store) GetDonationStats(ctx context.Context) (models.DonationRecipientS
 			WHERE claimed=true AND claim_kind = 'DONATION' AND claim_value_currency = 'USD'
 			GROUP BY recipient_name
 			ORDER BY claim_value DESC, points_spent DESC 
-		`),
+		`,
 	)
 	if err != nil {
 		return nil, err
