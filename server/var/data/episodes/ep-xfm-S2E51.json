@@ -3,10 +3,10 @@
     "series": 2,
     "episode": 51,
     "name": "",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "release_date": "2003-08-16T00:00:00Z",
     "incomplete": false,
-    "offset_accuracy": 3,
+    "offset_accuracy": 12,
     "metadata": {
       "duration_ms": "3693244",
       "pilkipedia_url": "https://web.archive.org/web/20200704135748/http://www.pilkipedia.co.uk/wiki/index.php?title=16_August_2003/Transcript",
@@ -15,8 +15,8 @@
     },
     "transcript": [
       {
-        "id": "ep-xfm-S2E51-0",
-        "pos": 0,
+        "id": "ep-xfm-S2E51-1",
+        "pos": 1,
         "offset_sec": 0,
         "offset_inferred": false,
         "type": "song",
@@ -31,8 +31,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-1",
-        "pos": 1,
+        "id": "ep-xfm-S2E51-2",
+        "pos": 2,
         "offset_sec": 0,
         "offset_inferred": false,
         "type": "chat",
@@ -42,9 +42,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-2",
-        "pos": 2,
-        "offset_sec": 216,
+        "id": "ep-xfm-S2E51-3",
+        "pos": 3,
+        "offset_sec": 14,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -53,9 +53,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-3",
-        "pos": 3,
-        "offset_sec": 253,
+        "id": "ep-xfm-S2E51-4",
+        "pos": 4,
+        "offset_sec": 16,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -64,9 +64,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-4",
-        "pos": 4,
-        "offset_sec": 284,
+        "id": "ep-xfm-S2E51-5",
+        "pos": 5,
+        "offset_sec": 18,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -75,9 +75,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-5",
-        "pos": 5,
-        "offset_sec": 297,
+        "id": "ep-xfm-S2E51-6",
+        "pos": 6,
+        "offset_sec": 19,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -86,10 +86,10 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-6",
-        "pos": 6,
-        "offset_sec": 317,
-        "offset_inferred": true,
+        "id": "ep-xfm-S2E51-7",
+        "pos": 7,
+        "offset_sec": 20,
+        "offset_inferred": false,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -97,9 +97,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-7",
-        "pos": 7,
-        "offset_sec": 348,
+        "id": "ep-xfm-S2E51-8",
+        "pos": 8,
+        "offset_sec": 22,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -108,9 +108,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-8",
-        "pos": 8,
-        "offset_sec": 781,
+        "id": "ep-xfm-S2E51-9",
+        "pos": 9,
+        "offset_sec": 40,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -119,10 +119,10 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-9",
-        "pos": 9,
-        "offset_sec": 866,
-        "offset_inferred": true,
+        "id": "ep-xfm-S2E51-10",
+        "pos": 10,
+        "offset_sec": 43,
+        "offset_inferred": false,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -130,9 +130,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-10",
-        "pos": 10,
-        "offset_sec": 931,
+        "id": "ep-xfm-S2E51-11",
+        "pos": 11,
+        "offset_sec": 45,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -141,9 +141,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-11",
-        "pos": 11,
-        "offset_sec": 937,
+        "id": "ep-xfm-S2E51-12",
+        "pos": 12,
+        "offset_sec": 46,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -152,9 +152,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-12",
-        "pos": 12,
-        "offset_sec": 1057,
+        "id": "ep-xfm-S2E51-13",
+        "pos": 13,
+        "offset_sec": 49,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -163,10 +163,10 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-13",
-        "pos": 13,
-        "offset_sec": 1177,
-        "offset_inferred": true,
+        "id": "ep-xfm-S2E51-14",
+        "pos": 14,
+        "offset_sec": 52,
+        "offset_inferred": false,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -174,20 +174,20 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-14",
-        "pos": 14,
-        "offset_sec": 1414,
+        "id": "ep-xfm-S2E51-15",
+        "pos": 15,
+        "offset_sec": 63,
         "offset_inferred": true,
-        "type": "unknown",
+        "type": "chat",
         "actor": "",
         "metadata": null,
         "content": "Steve laughs",
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-15",
-        "pos": 15,
-        "offset_sec": 1429,
+        "id": "ep-xfm-S2E51-16",
+        "pos": 16,
+        "offset_sec": 63,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -196,9 +196,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-16",
-        "pos": 16,
-        "offset_sec": 1435,
+        "id": "ep-xfm-S2E51-17",
+        "pos": 17,
+        "offset_sec": 63,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -207,9 +207,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-17",
-        "pos": 17,
-        "offset_sec": 1492,
+        "id": "ep-xfm-S2E51-18",
+        "pos": 18,
+        "offset_sec": 66,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -218,9 +218,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-18",
-        "pos": 18,
-        "offset_sec": 1566,
+        "id": "ep-xfm-S2E51-19",
+        "pos": 19,
+        "offset_sec": 69,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -229,9 +229,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-19",
-        "pos": 19,
-        "offset_sec": 1621,
+        "id": "ep-xfm-S2E51-20",
+        "pos": 20,
+        "offset_sec": 71,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -240,21 +240,21 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-20",
-        "pos": 20,
-        "offset_sec": 1703,
+        "id": "ep-xfm-S2E51-21",
+        "pos": 21,
+        "offset_sec": 75,
         "offset_inferred": true,
-        "type": "unknown",
+        "type": "chat",
         "actor": "",
         "metadata": null,
         "content": "Ricky laughs",
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-21",
-        "pos": 21,
-        "offset_sec": 1718,
-        "offset_inferred": true,
+        "id": "ep-xfm-S2E51-22",
+        "pos": 22,
+        "offset_sec": 75,
+        "offset_inferred": false,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -262,9 +262,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-22",
-        "pos": 22,
-        "offset_sec": 1830,
+        "id": "ep-xfm-S2E51-23",
+        "pos": 23,
+        "offset_sec": 80,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -273,9 +273,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-23",
-        "pos": 23,
-        "offset_sec": 1902,
+        "id": "ep-xfm-S2E51-24",
+        "pos": 24,
+        "offset_sec": 84,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -284,20 +284,20 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-24",
-        "pos": 24,
-        "offset_sec": 1913,
+        "id": "ep-xfm-S2E51-25",
+        "pos": 25,
+        "offset_sec": 84,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "He's gonna go off and, sort of, make some quite poor, sort of, jazz-inflected white man's soul leaving us to go about our business",
+        "content": "He's gonna go off and, sort of, make some quite poor, sort of, jazz-inflected white man's soul leaving us to go about our business.",
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-25",
-        "pos": 25,
-        "offset_sec": 2078,
+        "id": "ep-xfm-S2E51-26",
+        "pos": 26,
+        "offset_sec": 91,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -306,20 +306,20 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-26",
-        "pos": 26,
-        "offset_sec": 2109,
+        "id": "ep-xfm-S2E51-27",
+        "pos": 27,
+        "offset_sec": 93,
         "offset_inferred": true,
-        "type": "unknown",
+        "type": "chat",
         "actor": "",
         "metadata": null,
         "content": "Steve laughs",
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-27",
-        "pos": 27,
-        "offset_sec": 2124,
+        "id": "ep-xfm-S2E51-28",
+        "pos": 28,
+        "offset_sec": 93,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -328,10 +328,10 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-28",
-        "pos": 28,
-        "offset_sec": 2193,
-        "offset_inferred": true,
+        "id": "ep-xfm-S2E51-29",
+        "pos": 29,
+        "offset_sec": 96,
+        "offset_inferred": false,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -339,9 +339,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-29",
-        "pos": 29,
-        "offset_sec": 2241,
+        "id": "ep-xfm-S2E51-30",
+        "pos": 30,
+        "offset_sec": 98,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -350,9 +350,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-30",
-        "pos": 30,
-        "offset_sec": 2247,
+        "id": "ep-xfm-S2E51-31",
+        "pos": 31,
+        "offset_sec": 98,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -361,9 +361,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-31",
-        "pos": 31,
-        "offset_sec": 2315,
+        "id": "ep-xfm-S2E51-32",
+        "pos": 32,
+        "offset_sec": 101,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -372,9 +372,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-32",
-        "pos": 32,
-        "offset_sec": 2321,
+        "id": "ep-xfm-S2E51-33",
+        "pos": 33,
+        "offset_sec": 101,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -383,9 +383,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-33",
-        "pos": 33,
-        "offset_sec": 2413,
+        "id": "ep-xfm-S2E51-34",
+        "pos": 34,
+        "offset_sec": 104,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -394,9 +394,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-34",
-        "pos": 34,
-        "offset_sec": 2608,
+        "id": "ep-xfm-S2E51-35",
+        "pos": 35,
+        "offset_sec": 111,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -405,9 +405,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-35",
-        "pos": 35,
-        "offset_sec": 2660,
+        "id": "ep-xfm-S2E51-36",
+        "pos": 36,
+        "offset_sec": 113,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -416,9 +416,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-36",
-        "pos": 36,
-        "offset_sec": 2706,
+        "id": "ep-xfm-S2E51-37",
+        "pos": 37,
+        "offset_sec": 114,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -427,9 +427,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-37",
-        "pos": 37,
-        "offset_sec": 2760,
+        "id": "ep-xfm-S2E51-38",
+        "pos": 38,
+        "offset_sec": 116,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -438,9 +438,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-38",
-        "pos": 38,
-        "offset_sec": 2863,
+        "id": "ep-xfm-S2E51-39",
+        "pos": 39,
+        "offset_sec": 120,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -449,9 +449,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-39",
-        "pos": 39,
-        "offset_sec": 2870,
+        "id": "ep-xfm-S2E51-40",
+        "pos": 40,
+        "offset_sec": 120,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -460,9 +460,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-40",
-        "pos": 40,
-        "offset_sec": 2926,
+        "id": "ep-xfm-S2E51-41",
+        "pos": 41,
+        "offset_sec": 122,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -471,9 +471,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-41",
-        "pos": 41,
-        "offset_sec": 2972,
+        "id": "ep-xfm-S2E51-42",
+        "pos": 42,
+        "offset_sec": 123,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -482,9 +482,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-42",
-        "pos": 42,
-        "offset_sec": 2993,
+        "id": "ep-xfm-S2E51-43",
+        "pos": 43,
+        "offset_sec": 124,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -493,9 +493,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-43",
-        "pos": 43,
-        "offset_sec": 3030,
+        "id": "ep-xfm-S2E51-44",
+        "pos": 44,
+        "offset_sec": 125,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -504,9 +504,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-44",
-        "pos": 44,
-        "offset_sec": 3058,
+        "id": "ep-xfm-S2E51-45",
+        "pos": 45,
+        "offset_sec": 126,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -515,9 +515,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-45",
-        "pos": 45,
-        "offset_sec": 3189,
+        "id": "ep-xfm-S2E51-46",
+        "pos": 46,
+        "offset_sec": 131,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -526,10 +526,10 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-46",
-        "pos": 46,
-        "offset_sec": 3210,
-        "offset_inferred": true,
+        "id": "ep-xfm-S2E51-47",
+        "pos": 47,
+        "offset_sec": 131,
+        "offset_inferred": false,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -537,9 +537,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-47",
-        "pos": 47,
-        "offset_sec": 3326,
+        "id": "ep-xfm-S2E51-48",
+        "pos": 48,
+        "offset_sec": 138,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -548,9 +548,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-48",
-        "pos": 48,
-        "offset_sec": 3357,
+        "id": "ep-xfm-S2E51-49",
+        "pos": 49,
+        "offset_sec": 140,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -559,9 +559,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-49",
-        "pos": 49,
-        "offset_sec": 3388,
+        "id": "ep-xfm-S2E51-50",
+        "pos": 50,
+        "offset_sec": 142,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -570,9 +570,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-50",
-        "pos": 50,
-        "offset_sec": 3478,
+        "id": "ep-xfm-S2E51-51",
+        "pos": 51,
+        "offset_sec": 148,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -581,9 +581,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-51",
-        "pos": 51,
-        "offset_sec": 3518,
+        "id": "ep-xfm-S2E51-52",
+        "pos": 52,
+        "offset_sec": 150,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -592,9 +592,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-52",
-        "pos": 52,
-        "offset_sec": 3528,
+        "id": "ep-xfm-S2E51-53",
+        "pos": 53,
+        "offset_sec": 151,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -603,9 +603,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-53",
-        "pos": 53,
-        "offset_sec": 3611,
+        "id": "ep-xfm-S2E51-54",
+        "pos": 54,
+        "offset_sec": 156,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -614,9 +614,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-54",
-        "pos": 54,
-        "offset_sec": 3621,
+        "id": "ep-xfm-S2E51-55",
+        "pos": 55,
+        "offset_sec": 156,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -625,20 +625,20 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-55",
-        "pos": 55,
-        "offset_sec": 3662,
+        "id": "ep-xfm-S2E51-56",
+        "pos": 56,
+        "offset_sec": 159,
         "offset_inferred": true,
-        "type": "unknown",
+        "type": "chat",
         "actor": "",
         "metadata": null,
         "content": "Steve laughs",
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-56",
-        "pos": 56,
-        "offset_sec": 3677,
+        "id": "ep-xfm-S2E51-57",
+        "pos": 57,
+        "offset_sec": 160,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -647,9 +647,9 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E51-57",
-        "pos": 57,
-        "offset_sec": 3693,
+        "id": "ep-xfm-S2E51-58",
+        "pos": 58,
+        "offset_sec": 161,
         "offset_inferred": true,
         "type": "song",
         "actor": "",
@@ -661,9 +661,726 @@
         },
         "content": "Rainbow - Since You've Been Gone",
         "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-59",
+        "pos": 59,
+        "offset_sec": 161,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Well, I mean for a last show that song had everything. It's got two guitar solos.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-60",
+        "pos": 60,
+        "offset_sec": 167,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Yes",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-61",
+        "pos": 61,
+        "offset_sec": 167,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "It's got a key change. It's got bad grammar - \"Since you bin gone\" by Rainbow and that's for Camfield, the prince of rock.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-62",
+        "pos": 62,
+        "offset_sec": 176,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Yeah",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-63",
+        "pos": 63,
+        "offset_sec": 177,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "He's going to be the king when Vance, you know, just hands over his crown.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-64",
+        "pos": 64,
+        "offset_sec": 181,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-65",
+        "pos": 65,
+        "offset_sec": 182,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "And you've still got that on Xfm. So you know. Don't worry about us going. Oh you weren't? Oh okay then. No one cares.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-66",
+        "pos": 66,
+        "offset_sec": 189,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "No one cares...",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-67",
+        "pos": 67,
+        "offset_sec": 190,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "No one cares. This is our last show. Lets make it a good one!",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-68",
+        "pos": 68,
+        "offset_sec": 193,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Let me give out the email address because I imagine there's going to be a flood of emails.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-69",
+        "pos": 69,
+        "offset_sec": 199,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Saying \"please karl, keep the team together\".",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-70",
+        "pos": 70,
+        "offset_sec": 202,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "It's \"johnno.colman@\".",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-71",
+        "pos": 71,
+        "offset_sec": 203,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Colman's not a team. He's just a big lad. right come on.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-72",
+        "pos": 72,
+        "offset_sec": 207,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Erm, what do you mean come on? I've got nothing.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-73",
+        "pos": 73,
+        "offset_sec": 209,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Ricky.gervais@Xfm.co.uk",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-74",
+        "pos": 74,
+        "offset_sec": 211,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Or karl.pilkington because you can do it throughout the week. You can do it throughout the two months. And erm, what's the phone number for Xfm? 0-2-0-7 is it 7-66-6000? And then just ask to be put though to Karl and leave a message on his voicemail.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-75",
+        "pos": 75,
+        "offset_sec": 227,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-76",
+        "pos": 76,
+        "offset_sec": 227,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Erm, so email him a lot. 0-2-0-7 7-66 6000...",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-77",
+        "pos": 77,
+        "offset_sec": 230,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Who cares",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-78",
+        "pos": 78,
+        "offset_sec": 231,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "...I think, and just ask for Karl Pilkington. Little Karl Pilkington. Little baldy manc twit.Uhh, and say \"please stay\". \"Please stay\". Erm, Karl. Say something then. It's your last show.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-79",
+        "pos": 79,
+        "offset_sec": 242,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "How are you?",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-80",
+        "pos": 80,
+        "offset_sec": 243,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Say hello.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-81",
+        "pos": 81,
+        "offset_sec": 244,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "What are you feelings Karl so far? I mean are you tearful? Are you upset?",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-82",
+        "pos": 82,
+        "offset_sec": 248,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Not at all. I can't wait for 3 o'clock.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-83",
+        "pos": 83,
+        "offset_sec": 251,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "Ricky laughs.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-84",
+        "pos": 84,
+        "offset_sec": 252,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "[inaudible] lose interest in me, how Ricky was saying he only does it for the fun. I haven't even got that.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-85",
+        "pos": 85,
+        "offset_sec": 258,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "Ricky screeches.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-86",
+        "pos": 86,
+        "offset_sec": 260,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "I am paid peanuts to work Saturdays. It wrecks my weekend.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-87",
+        "pos": 87,
+        "offset_sec": 263,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Pay peanuts, you get monkeys.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-88",
+        "pos": 88,
+        "offset_sec": 265,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "I have no fun.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-89",
+        "pos": 89,
+        "offset_sec": 266,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-90",
+        "pos": 90,
+        "offset_sec": 266,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Right?",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-91",
+        "pos": 91,
+        "offset_sec": 267,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "You're having a laugh? You love this! You love this! You love me coming in and having a little chat before hand and after.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-92",
+        "pos": 92,
+        "offset_sec": 274,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Yeah but that's the funny thing isn't it? Listeners just think \"why does he get so moody about it having Ricky annoying him just on a Saturday?\"",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-93",
+        "pos": 93,
+        "offset_sec": 284,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yep!",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-94",
+        "pos": 94,
+        "offset_sec": 284,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "It's not just of a Saturday.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-95",
+        "pos": 95,
+        "offset_sec": 286,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Why?",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-96",
+        "pos": 96,
+        "offset_sec": 286,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "It's in the week as well.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-97",
+        "pos": 97,
+        "offset_sec": 288,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "How do I annoy you?!",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-98",
+        "pos": 98,
+        "offset_sec": 289,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "[inaudible]",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-99",
+        "pos": 99,
+        "offset_sec": 289,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "How do I annoy you?!",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-100",
+        "pos": 100,
+        "offset_sec": 290,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Daily [inaudible]...",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-101",
+        "pos": 101,
+        "offset_sec": 291,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "HOW DO I ANNOY YOU KARL? See you can't... be specific.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-102",
+        "pos": 102,
+        "offset_sec": 294,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Erm...",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-103",
+        "pos": 103,
+        "offset_sec": 294,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "See!",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-104",
+        "pos": 104,
+        "offset_sec": 294,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "The first thing that springs to mind when I'm trying to work with Steve before saying \"Come on lets find some interesting stuff to talk about\", I think you were playing the accordion? In my ear. Was it the accordion?",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-105",
+        "pos": 105,
+        "offset_sec": 303,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "(laughing) Yeah",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-106",
+        "pos": 106,
+        "offset_sec": 304,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "It doesn't really matter. They get the idea.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-107",
+        "pos": 107,
+        "offset_sec": 306,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Although I can't play the accordion so it wasn't very good was it?",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-108",
+        "pos": 108,
+        "offset_sec": 309,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Where did you find an accordion?",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-109",
+        "pos": 109,
+        "offset_sec": 310,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "I just [inaudible] out there, right, and then I...",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-110",
+        "pos": 110,
+        "offset_sec": 312,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Next to the drum kit.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-111",
+        "pos": 111,
+        "offset_sec": 313,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "And then I had a loudspeaker and I put the accordion in front of the loudspeaker. Isn't it loud those loudspeakers? They're amazing.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-112",
+        "pos": 112,
+        "offset_sec": 319,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "My question is this Karl. Do you honestly think that's going to stop just because we're not on air anymore? He's not going to see you on a Saturday so he's just going to come in even more often.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-113",
+        "pos": 113,
+        "offset_sec": 327,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah I can just drop in.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-114",
+        "pos": 114,
+        "offset_sec": 328,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "He won't bother me as much though.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-115",
+        "pos": 115,
+        "offset_sec": 329,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "I think he will...",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-116",
+        "pos": 116,
+        "offset_sec": 330,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "And he'll have his fob taken off him so he won't be able to just wander in.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-117",
+        "pos": 117,
+        "offset_sec": 333,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Course I won't!",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-118",
+        "pos": 118,
+        "offset_sec": 334,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "What, they're not... do you think they're... they're... of course they're going to let Ricky Gervais walk in any time he wants.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-119",
+        "pos": 119,
+        "offset_sec": 338,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah I might come in, might do a few trailers, might hang out - you know - with Andrew going \"hey Andrew how's it going?\" he'd go \"yeah having a bit of trouble what do you think?\" I'd say \"lose that off the playlist! Put that one on! Sack them!\"",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-120",
+        "pos": 120,
+        "offset_sec": 3193,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Yeah",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-121",
+        "pos": 121,
+        "offset_sec": 3239,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah, lets have a little bit of Feeder.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E51-122",
+        "pos": 122,
+        "offset_sec": 3693,
+        "offset_inferred": true,
+        "type": "song",
+        "actor": "",
+        "metadata": null,
+        "content": "Feeder - Forget about tomorrow",
+        "notable": false
       }
     ],
-    "synopsis": null,
-    "contributors": null,
+    "synopsis": [
+      {
+        "description": "Is karl sad about ending the show? (no)",
+        "start_pos": 80,
+        "end_pos": 88
+      },
+      {
+        "description": "Ricky has been annoying Karl with an accordion",
+        "start_pos": 103,
+        "end_pos": 119
+      }
+    ],
+    "contributors": [
+      "warmans"
+    ],
     "trivia": null
   }
