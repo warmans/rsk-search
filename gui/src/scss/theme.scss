@@ -16,6 +16,7 @@ $themes: (
     'bg-color': #f6f6f6,
     'fg-body': #fff,
     'fg-body-darker': #F7F7F7,
+    'fg-body-lighter': lighten(#F7F7F7, 10%),
     'fg-border': #dee2e6,
     'progress-bg': #e9ecef,
     'navbar-bg': #f8f9fa,

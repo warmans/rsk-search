@@ -28,6 +28,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
   scrollToSeconds: number|null = null;
 
   episode: RskTranscript;
+  episodeImage: string;
 
   pendingChanges: RskTranscriptChange[];
 
@@ -102,6 +103,8 @@ export class EpisodeComponent implements OnInit, OnDestroy {
         this.episode = ep;
         this.titleService.setTitle(ep.id);
         this.transcribers = ep.contributors.join(', ');
+        this.episodeImage = `assets/cover/${ep.publication}-s${ep.series}.jpg`
+
         ep.transcript.forEach((r: RskDialog) => {
           if (r.notable) {
             this.quotes.push(r);

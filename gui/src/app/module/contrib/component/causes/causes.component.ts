@@ -17,6 +17,7 @@ export class CausesComponent implements OnInit, OnDestroy {
   totalPoints: number;
 
   totalUSD: number;
+  showMoreInfo: boolean = false;
 
   constructor(private apiClient: SearchAPIClient) {
   }

@@ -1,4 +1,12 @@
 <div class="card">
+  <div class="card-header text-paragraph">
+    Authors can rank up by submitting more contributions. <a class="text-primary clickable" (click)="showMoreInfo = !showMoreInfo"><span *ngIf="!showMoreInfo">more</span><span *ngIf="showMoreInfo">less</span>...</a>
+    <div *ngIf="showMoreInfo" class="pt-2">
+      <p>Each time a contribution is <strong>accepted</strong> some points are awarded to the author. The number of points can vary depending on the type of contribution.<br />
+        The more points the author gains the higher their rank. While all contributions are valuable, ranks are intended as a way to recognize contributors that have gone above and beyond.
+      </p>
+    </div>
+  </div>
   <div class="card-body p-0">
     <table class="table mb-0">
       <tr>

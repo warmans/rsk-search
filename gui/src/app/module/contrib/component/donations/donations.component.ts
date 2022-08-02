@@ -15,6 +15,7 @@ export class DonationsComponent implements OnInit {
   donations: RskIncomingDonation[] = [];
 
   loading: boolean = false;
+  showMoreInfo: boolean;
 
   constructor(private apiClient: SearchAPIClient) {
   }

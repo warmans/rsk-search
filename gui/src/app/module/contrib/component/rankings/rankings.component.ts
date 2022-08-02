@@ -20,6 +20,7 @@ export class RankingsComponent implements OnInit, OnDestroy {
   searchInput: FormControl = new FormControl('');
 
   loading: boolean = false;
+  showMoreInfo: boolean;
 
   constructor(private apiClient: SearchAPIClient) {
   }

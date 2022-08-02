@@ -1,6 +1,11 @@
 <div class="card">
-  <div class="card-header text-secondary">
-    Donations are made for every 5 points earned though transcriptions. <a>More Info...</a>
+  <div class="card-header text-paragraph">
+    Donations are made for every 5 points earned though transcriptions. <a class="text-primary clickable" (click)="showMoreInfo = !showMoreInfo"><span *ngIf="!showMoreInfo">more</span><span *ngIf="showMoreInfo">less</span>...</a>
+    <div *ngIf="showMoreInfo" class="pt-2">
+      <p>Each time a contribution is <strong>accepted</strong> some points are awarded to the author. The number of points can vary depending on the type of contribution.<br />
+        Once the author hits a threshold (5 points at the time of writing) a reward will be generated. This will show a popup allowing them to claim the reward by selecting a charity to receive a small donation.<br /></p>
+      This list shows the historic totals of all donations distributed though this system.
+    </div>
   </div>
   <div class="card-body p-0">
     <table class="table">

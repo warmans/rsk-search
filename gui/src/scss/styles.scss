@@ -95,6 +95,13 @@ pre {
       }
     }
 
+    p {
+      font-weight: normal;
+      @include theme() {
+        color: theme-get('text-color');
+      }
+    }
+
     .btn-secondary {
       background-color: transparent;
       border-color: transparent;
@@ -183,6 +190,13 @@ pre {
 
 .text-xs {
   font-size: 0.5rem;
+}
+
+.text-paragraph {
+  font-weight: normal !important;
+  @include theme() {
+    color: theme-get('text-color');
+  }
 }
 
 .btn-transparent {
