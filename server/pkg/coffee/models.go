@@ -1,5 +1,7 @@
 package coffee
 
+// SupporterList
+// todo: this can use generics
 type SupporterList struct {
 	Data  []Supporter `json:"data"`
 	Total int32       `json:"total"`
