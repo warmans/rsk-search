@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
 import { takeUntil } from 'rxjs/operators';
 import { RskDonationStats, RskRecipientStats } from '../../../../lib/api-client/models';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-causes',
@@ -17,7 +18,10 @@ export class CausesComponent implements OnInit, OnDestroy {
   totalPoints: number;
 
   totalUSD: number;
+
   showMoreInfo: boolean = false;
+
+  pointsForReward: number = environment.contributionAwardThreshold
 
   constructor(private apiClient: SearchAPIClient) {
   }

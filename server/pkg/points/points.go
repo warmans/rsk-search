@@ -4,4 +4,5 @@ package points
 const ChunkContributionPoints = 2
 
 // PointsForReward Number of points to trigger a reward.
-const PointsForReward = 5
+// SEE ui/environment file.
+const PointsForReward = 10

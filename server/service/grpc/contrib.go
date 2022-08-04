@@ -544,7 +544,7 @@ func (s *ContribService) ClaimReward(ctx context.Context, request *api.ClaimRewa
 			rewardValue.Value,
 			rewardValue.ValueCurrency,
 			donation.ID,
-			fmt.Sprintf("Donated %0.2f %s to %s", rewardValue.Value, rewardValue.ValueCurrency, recipient.Name),
+			recipient.Name,
 		)
 	})
 	if err != nil {

@@ -51,7 +51,7 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
   synopsisTitlePos: { [index: number]: string } = {};
 
   @Input()
-  set scrollToID(value: string|null) {
+  set scrollToID(value: string | null) {
     if (value === null) {
       return;
     }
@@ -66,7 +66,7 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
   private _scrollToID: string;
 
   @Input()
-  set scrollToSeconds(value: number|null) {
+  set scrollToSeconds(value: number | null) {
     if (value === null) {
       return;
     }
@@ -98,6 +98,8 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
     'ricky': 'ricky',
     'steve': 'steve',
     'karl': 'karl',
+    'claire': 'claire',
+    'camfield': 'camfield',
   };
 
   constructor(private viewportScroller: ViewportScroller) {

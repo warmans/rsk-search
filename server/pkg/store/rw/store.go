@@ -820,15 +820,16 @@ func (s *Store) GetRewardForUpdate(ctx context.Context, id string) (*models.Auth
 	return reward, nil
 }
 
-func (s *Store) ClaimReward(ctx context.Context, id string, kind string, value float32, currency string, confirmationCode string, description string) error {
+func (s *Store) ClaimReward(ctx context.Context, id string, kind string, value float32, currency string, confirmationCode string, recipient string) error {
 	if _, err := s.tx.ExecContext(
 		ctx,
-		`UPDATE author_reward SET claimed=true, claim_kind=$1, claim_value=$2, claim_value_currency=$3, claim_confirmation_code=$4, claim_description=$5, claim_at=NOW() WHERE id=$6`,
+		`UPDATE author_reward SET claimed=true, claim_kind=$1, claim_value=$2, claim_value_currency=$3, claim_confirmation_code=$4, claim_description=$5, claim_at=NOW(), recipient_name=$6 WHERE id=$7`,
 		kind,
 		value,
 		currency,
 		confirmationCode,
-		description,
+		fmt.Sprintf("Donated %0.2f %s to %s", value, currency, recipient),
+		recipient,
 		id); err != nil {
 		return err
 	}
