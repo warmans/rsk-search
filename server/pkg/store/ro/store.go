@@ -82,7 +82,7 @@ func (s *Store) InsertEpisodeWithTranscript(ctx context.Context, ep *models.Tran
 			v.Notable,
 		)
 		if err != nil {
-			return err
+			return errors.Wrapf(err, "failed at line: %s", v.ID)
 		}
 	}
 	return err

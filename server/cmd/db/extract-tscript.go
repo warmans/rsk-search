@@ -135,6 +135,7 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 				continue
 			}
 
+			currentPos := int64(0)
 			for _, ch := range allChunks {
 
 				var chContribution *models.ChunkContribution
@@ -145,19 +146,17 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 				}
 
 				// all chunks need to be processed.
-				currentPos := int64(1)
 				if len(episodeOnDisk.Transcript) > 0 {
 					currentPos = episodeOnDisk.Transcript[len(episodeOnDisk.Transcript)-1].Position
 				}
 
 				// if the transcript is missing insert a placeholder
 				if chContribution == nil {
-					currentPos += transcript.PosSpacing
 					episodeOnDisk.Transcript = append(
 						episodeOnDisk.Transcript,
 						models.Dialog{
-							ID:        models.DialogID(episodeOnDisk.ID(), currentPos),
-							Position:  currentPos,
+							ID:        models.DialogID(episodeOnDisk.ID(), currentPos+transcript.PosSpacing),
+							Position:  currentPos + transcript.PosSpacing,
 							OffsetSec: 0,
 							Type:      "gap",
 							Actor:     "",
@@ -169,7 +168,7 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 					continue
 				}
 
-				dialog, synopsis, trivia, err := transcript.Import(bufio.NewScanner(bytes.NewBufferString(chContribution.Transcription)), episodeOnDisk.ID(), currentPos)
+				dialog, synopsis, trivia, err := transcript.Import(bufio.NewScanner(bytes.NewBufferString(chContribution.Transcription)), episodeOnDisk.ID(), currentPos+transcript.PosSpacing)
 				if err != nil {
 					return err
 				}
