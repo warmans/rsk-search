@@ -13,8 +13,8 @@
     },
     "transcript": [
       {
-        "id": "ep-fame-S1E01-1",
-        "pos": 1,
+        "id": "ep-fame-S1E01-2",
+        "pos": 2,
         "offset_sec": 0,
         "offset_inferred": false,
         "type": "gap",
@@ -24,20 +24,9 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-2",
-        "pos": 2,
-        "offset_sec": 195,
-        "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
-        "metadata": null,
-        "content": "[~3 mins of missing transcription]",
-        "notable": false
-      },
-      {
         "id": "ep-fame-S1E01-3",
         "pos": 3,
-        "offset_sec": 390,
+        "offset_sec": 195,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -48,7 +37,7 @@
       {
         "id": "ep-fame-S1E01-4",
         "pos": 4,
-        "offset_sec": 585,
+        "offset_sec": 390,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -59,7 +48,7 @@
       {
         "id": "ep-fame-S1E01-5",
         "pos": 5,
-        "offset_sec": 780,
+        "offset_sec": 585,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -70,7 +59,7 @@
       {
         "id": "ep-fame-S1E01-6",
         "pos": 6,
-        "offset_sec": 975,
+        "offset_sec": 780,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -81,7 +70,7 @@
       {
         "id": "ep-fame-S1E01-7",
         "pos": 7,
-        "offset_sec": 1170,
+        "offset_sec": 975,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -92,7 +81,7 @@
       {
         "id": "ep-fame-S1E01-8",
         "pos": 8,
-        "offset_sec": 1365,
+        "offset_sec": 1170,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -103,7 +92,7 @@
       {
         "id": "ep-fame-S1E01-9",
         "pos": 9,
-        "offset_sec": 1560,
+        "offset_sec": 1365,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -114,7 +103,7 @@
       {
         "id": "ep-fame-S1E01-10",
         "pos": 10,
-        "offset_sec": 1755,
+        "offset_sec": 1560,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -125,6 +114,17 @@
       {
         "id": "ep-fame-S1E01-11",
         "pos": 11,
+        "offset_sec": 1755,
+        "offset_inferred": true,
+        "type": "gap",
+        "actor": "",
+        "metadata": null,
+        "content": "[~3 mins of missing transcription]",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-12",
+        "pos": 12,
         "offset_sec": 1950,
         "offset_inferred": true,
         "type": "gap",
@@ -929,18 +929,18 @@
     "synopsis": [
       {
         "description": "Karl is an insect lifeguard",
-        "start_pos": 11,
-        "end_pos": 43
+        "start_pos": 12,
+        "end_pos": 44
       },
       {
         "description": "Karl's holiday is so boring a bird commits suicide",
-        "start_pos": 47,
-        "end_pos": 59
+        "start_pos": 48,
+        "end_pos": 60
       },
       {
         "description": "Karl's holiday continues with more fascinating food-related anecdotes, including the infamous pikelets",
-        "start_pos": 62,
-        "end_pos": 82
+        "start_pos": 63,
+        "end_pos": 83
       }
     ],
     "contributors": [

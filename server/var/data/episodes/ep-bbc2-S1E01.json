@@ -13,8 +13,8 @@
     },
     "transcript": [
       {
-        "id": "ep-bbc2-S1E01-1",
-        "pos": 1,
+        "id": "ep-bbc2-S1E01-2",
+        "pos": 2,
         "offset_sec": 0,
         "offset_inferred": false,
         "type": "gap",
@@ -24,20 +24,9 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-2",
-        "pos": 2,
-        "offset_sec": 199,
-        "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
-        "metadata": null,
-        "content": "[~3 mins of missing transcription]",
-        "notable": false
-      },
-      {
         "id": "ep-bbc2-S1E01-3",
         "pos": 3,
-        "offset_sec": 397,
+        "offset_sec": 199,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -48,7 +37,7 @@
       {
         "id": "ep-bbc2-S1E01-4",
         "pos": 4,
-        "offset_sec": 595,
+        "offset_sec": 397,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -59,6 +48,17 @@
       {
         "id": "ep-bbc2-S1E01-5",
         "pos": 5,
+        "offset_sec": 595,
+        "offset_inferred": true,
+        "type": "gap",
+        "actor": "",
+        "metadata": null,
+        "content": "[~3 mins of missing transcription]",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E01-6",
+        "pos": 6,
         "offset_sec": 793,
         "offset_inferred": true,
         "type": "gap",
@@ -1036,8 +1036,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-94",
-        "pos": 94,
+        "id": "ep-bbc2-S1E01-93",
+        "pos": 93,
         "offset_sec": 1561,
         "offset_inferred": false,
         "type": "chat",
@@ -1047,8 +1047,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-95",
-        "pos": 95,
+        "id": "ep-bbc2-S1E01-94",
+        "pos": 94,
         "offset_sec": 1562,
         "offset_inferred": true,
         "type": "chat",
@@ -1058,8 +1058,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-96",
-        "pos": 96,
+        "id": "ep-bbc2-S1E01-95",
+        "pos": 95,
         "offset_sec": 1564,
         "offset_inferred": true,
         "type": "chat",
@@ -1069,8 +1069,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-97",
-        "pos": 97,
+        "id": "ep-bbc2-S1E01-96",
+        "pos": 96,
         "offset_sec": 1566,
         "offset_inferred": true,
         "type": "chat",
@@ -1080,8 +1080,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-98",
-        "pos": 98,
+        "id": "ep-bbc2-S1E01-97",
+        "pos": 97,
         "offset_sec": 1567,
         "offset_inferred": true,
         "type": "chat",
@@ -1091,8 +1091,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-99",
-        "pos": 99,
+        "id": "ep-bbc2-S1E01-98",
+        "pos": 98,
         "offset_sec": 1569,
         "offset_inferred": true,
         "type": "chat",
@@ -1102,8 +1102,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-100",
-        "pos": 100,
+        "id": "ep-bbc2-S1E01-99",
+        "pos": 99,
         "offset_sec": 1575,
         "offset_inferred": true,
         "type": "chat",
@@ -1113,8 +1113,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-101",
-        "pos": 101,
+        "id": "ep-bbc2-S1E01-100",
+        "pos": 100,
         "offset_sec": 1577,
         "offset_inferred": true,
         "type": "chat",
@@ -1124,8 +1124,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-102",
-        "pos": 102,
+        "id": "ep-bbc2-S1E01-101",
+        "pos": 101,
         "offset_sec": 1583,
         "offset_inferred": true,
         "type": "chat",
@@ -1135,8 +1135,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-103",
-        "pos": 103,
+        "id": "ep-bbc2-S1E01-102",
+        "pos": 102,
         "offset_sec": 1588,
         "offset_inferred": true,
         "type": "chat",
@@ -1146,8 +1146,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-104",
-        "pos": 104,
+        "id": "ep-bbc2-S1E01-103",
+        "pos": 103,
         "offset_sec": 1591,
         "offset_inferred": true,
         "type": "chat",
@@ -1157,8 +1157,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-105",
-        "pos": 105,
+        "id": "ep-bbc2-S1E01-104",
+        "pos": 104,
         "offset_sec": 1591,
         "offset_inferred": true,
         "type": "chat",
@@ -1168,8 +1168,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-106",
-        "pos": 106,
+        "id": "ep-bbc2-S1E01-105",
+        "pos": 105,
         "offset_sec": 1592,
         "offset_inferred": false,
         "type": "chat",
@@ -1179,8 +1179,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-107",
-        "pos": 107,
+        "id": "ep-bbc2-S1E01-106",
+        "pos": 106,
         "offset_sec": 1595,
         "offset_inferred": true,
         "type": "chat",
@@ -1190,8 +1190,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-108",
-        "pos": 108,
+        "id": "ep-bbc2-S1E01-107",
+        "pos": 107,
         "offset_sec": 1595,
         "offset_inferred": true,
         "type": "chat",
@@ -1201,8 +1201,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-109",
-        "pos": 109,
+        "id": "ep-bbc2-S1E01-108",
+        "pos": 108,
         "offset_sec": 1603,
         "offset_inferred": true,
         "type": "chat",
@@ -1212,8 +1212,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-110",
-        "pos": 110,
+        "id": "ep-bbc2-S1E01-109",
+        "pos": 109,
         "offset_sec": 1605,
         "offset_inferred": true,
         "type": "chat",
@@ -1223,8 +1223,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-111",
-        "pos": 111,
+        "id": "ep-bbc2-S1E01-110",
+        "pos": 110,
         "offset_sec": 1608,
         "offset_inferred": true,
         "type": "chat",
@@ -1234,8 +1234,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-112",
-        "pos": 112,
+        "id": "ep-bbc2-S1E01-111",
+        "pos": 111,
         "offset_sec": 1608,
         "offset_inferred": true,
         "type": "chat",
@@ -1245,8 +1245,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-113",
-        "pos": 113,
+        "id": "ep-bbc2-S1E01-112",
+        "pos": 112,
         "offset_sec": 1611,
         "offset_inferred": true,
         "type": "chat",
@@ -1256,8 +1256,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-114",
-        "pos": 114,
+        "id": "ep-bbc2-S1E01-113",
+        "pos": 113,
         "offset_sec": 1611,
         "offset_inferred": true,
         "type": "chat",
@@ -1267,8 +1267,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-115",
-        "pos": 115,
+        "id": "ep-bbc2-S1E01-114",
+        "pos": 114,
         "offset_sec": 1611,
         "offset_inferred": true,
         "type": "chat",
@@ -1278,8 +1278,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-116",
-        "pos": 116,
+        "id": "ep-bbc2-S1E01-115",
+        "pos": 115,
         "offset_sec": 1612,
         "offset_inferred": true,
         "type": "chat",
@@ -1289,8 +1289,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-117",
-        "pos": 117,
+        "id": "ep-bbc2-S1E01-116",
+        "pos": 116,
         "offset_sec": 1614,
         "offset_inferred": true,
         "type": "chat",
@@ -1300,8 +1300,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-118",
-        "pos": 118,
+        "id": "ep-bbc2-S1E01-117",
+        "pos": 117,
         "offset_sec": 1618,
         "offset_inferred": true,
         "type": "chat",
@@ -1311,8 +1311,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-119",
-        "pos": 119,
+        "id": "ep-bbc2-S1E01-118",
+        "pos": 118,
         "offset_sec": 1619,
         "offset_inferred": true,
         "type": "chat",
@@ -1322,8 +1322,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-120",
-        "pos": 120,
+        "id": "ep-bbc2-S1E01-119",
+        "pos": 119,
         "offset_sec": 1621,
         "offset_inferred": false,
         "type": "chat",
@@ -1333,8 +1333,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-121",
-        "pos": 121,
+        "id": "ep-bbc2-S1E01-120",
+        "pos": 120,
         "offset_sec": 1629,
         "offset_inferred": true,
         "type": "chat",
@@ -1344,8 +1344,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-122",
-        "pos": 122,
+        "id": "ep-bbc2-S1E01-121",
+        "pos": 121,
         "offset_sec": 1636,
         "offset_inferred": true,
         "type": "chat",
@@ -1355,8 +1355,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-123",
-        "pos": 123,
+        "id": "ep-bbc2-S1E01-122",
+        "pos": 122,
         "offset_sec": 1636,
         "offset_inferred": true,
         "type": "chat",
@@ -1366,8 +1366,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-124",
-        "pos": 124,
+        "id": "ep-bbc2-S1E01-123",
+        "pos": 123,
         "offset_sec": 1642,
         "offset_inferred": true,
         "type": "chat",
@@ -1377,8 +1377,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-125",
-        "pos": 125,
+        "id": "ep-bbc2-S1E01-124",
+        "pos": 124,
         "offset_sec": 1643,
         "offset_inferred": true,
         "type": "chat",
@@ -1388,8 +1388,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-126",
-        "pos": 126,
+        "id": "ep-bbc2-S1E01-125",
+        "pos": 125,
         "offset_sec": 1644,
         "offset_inferred": true,
         "type": "chat",
@@ -1399,8 +1399,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-127",
-        "pos": 127,
+        "id": "ep-bbc2-S1E01-126",
+        "pos": 126,
         "offset_sec": 1651,
         "offset_inferred": false,
         "type": "song",
@@ -1410,8 +1410,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-128",
-        "pos": 128,
+        "id": "ep-bbc2-S1E01-127",
+        "pos": 127,
         "offset_sec": 1651,
         "offset_inferred": false,
         "type": "chat",
@@ -1421,8 +1421,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-129",
-        "pos": 129,
+        "id": "ep-bbc2-S1E01-128",
+        "pos": 128,
         "offset_sec": 1674,
         "offset_inferred": true,
         "type": "chat",
@@ -1432,8 +1432,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-130",
-        "pos": 130,
+        "id": "ep-bbc2-S1E01-129",
+        "pos": 129,
         "offset_sec": 1679,
         "offset_inferred": true,
         "type": "chat",
@@ -1443,8 +1443,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-131",
-        "pos": 131,
+        "id": "ep-bbc2-S1E01-130",
+        "pos": 130,
         "offset_sec": 1679,
         "offset_inferred": true,
         "type": "song",
@@ -1454,8 +1454,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-132",
-        "pos": 132,
+        "id": "ep-bbc2-S1E01-131",
+        "pos": 131,
         "offset_sec": 1679,
         "offset_inferred": false,
         "type": "chat",
@@ -1465,8 +1465,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-133",
-        "pos": 133,
+        "id": "ep-bbc2-S1E01-132",
+        "pos": 132,
         "offset_sec": 1692,
         "offset_inferred": true,
         "type": "chat",
@@ -1476,8 +1476,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-134",
-        "pos": 134,
+        "id": "ep-bbc2-S1E01-133",
+        "pos": 133,
         "offset_sec": 1693,
         "offset_inferred": true,
         "type": "chat",
@@ -1487,8 +1487,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-135",
-        "pos": 135,
+        "id": "ep-bbc2-S1E01-134",
+        "pos": 134,
         "offset_sec": 1694,
         "offset_inferred": true,
         "type": "chat",
@@ -1498,8 +1498,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-136",
-        "pos": 136,
+        "id": "ep-bbc2-S1E01-135",
+        "pos": 135,
         "offset_sec": 1696,
         "offset_inferred": true,
         "type": "chat",
@@ -1509,8 +1509,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-137",
-        "pos": 137,
+        "id": "ep-bbc2-S1E01-136",
+        "pos": 136,
         "offset_sec": 1697,
         "offset_inferred": true,
         "type": "chat",
@@ -1520,8 +1520,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-138",
-        "pos": 138,
+        "id": "ep-bbc2-S1E01-137",
+        "pos": 137,
         "offset_sec": 1698,
         "offset_inferred": true,
         "type": "chat",
@@ -1531,8 +1531,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-139",
-        "pos": 139,
+        "id": "ep-bbc2-S1E01-138",
+        "pos": 138,
         "offset_sec": 1702,
         "offset_inferred": true,
         "type": "chat",
@@ -1542,8 +1542,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-140",
-        "pos": 140,
+        "id": "ep-bbc2-S1E01-139",
+        "pos": 139,
         "offset_sec": 1703,
         "offset_inferred": true,
         "type": "chat",
@@ -1553,8 +1553,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-141",
-        "pos": 141,
+        "id": "ep-bbc2-S1E01-140",
+        "pos": 140,
         "offset_sec": 1713,
         "offset_inferred": false,
         "type": "chat",
@@ -1564,8 +1564,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-142",
-        "pos": 142,
+        "id": "ep-bbc2-S1E01-141",
+        "pos": 141,
         "offset_sec": 1763,
         "offset_inferred": true,
         "type": "chat",
@@ -1575,8 +1575,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-143",
-        "pos": 143,
+        "id": "ep-bbc2-S1E01-142",
+        "pos": 142,
         "offset_sec": 1968,
         "offset_inferred": true,
         "type": "chat",
@@ -1586,8 +1586,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-144",
-        "pos": 144,
+        "id": "ep-bbc2-S1E01-143",
+        "pos": 143,
         "offset_sec": 2303,
         "offset_inferred": true,
         "type": "chat",
@@ -1597,8 +1597,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-145",
-        "pos": 145,
+        "id": "ep-bbc2-S1E01-144",
+        "pos": 144,
         "offset_sec": 2326,
         "offset_inferred": true,
         "type": "chat",
@@ -1608,8 +1608,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-146",
-        "pos": 146,
+        "id": "ep-bbc2-S1E01-145",
+        "pos": 145,
         "offset_sec": 2371,
         "offset_inferred": true,
         "type": "chat",
@@ -1619,8 +1619,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-147",
-        "pos": 147,
+        "id": "ep-bbc2-S1E01-146",
+        "pos": 146,
         "offset_sec": 2436,
         "offset_inferred": true,
         "type": "chat",
@@ -1630,8 +1630,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-148",
-        "pos": 148,
+        "id": "ep-bbc2-S1E01-147",
+        "pos": 147,
         "offset_sec": 2485,
         "offset_inferred": true,
         "type": "chat",
@@ -1641,8 +1641,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-149",
-        "pos": 149,
+        "id": "ep-bbc2-S1E01-148",
+        "pos": 148,
         "offset_sec": 2562,
         "offset_inferred": true,
         "type": "chat",
@@ -1652,8 +1652,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-150",
-        "pos": 150,
+        "id": "ep-bbc2-S1E01-149",
+        "pos": 149,
         "offset_sec": 2587,
         "offset_inferred": true,
         "type": "chat",
@@ -1663,9 +1663,20 @@
         "notable": false
       },
       {
+        "id": "ep-bbc2-S1E01-150",
+        "pos": 150,
+        "offset_sec": 2742,
+        "offset_inferred": true,
+        "type": "gap",
+        "actor": "",
+        "metadata": null,
+        "content": "[~3 mins of missing transcription]",
+        "notable": false
+      },
+      {
         "id": "ep-bbc2-S1E01-151",
         "pos": 151,
-        "offset_sec": 2742,
+        "offset_sec": 2818,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -1676,7 +1687,7 @@
       {
         "id": "ep-bbc2-S1E01-152",
         "pos": 152,
-        "offset_sec": 2818,
+        "offset_sec": 2895,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -1687,7 +1698,7 @@
       {
         "id": "ep-bbc2-S1E01-153",
         "pos": 153,
-        "offset_sec": 2895,
+        "offset_sec": 2971,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -1698,7 +1709,7 @@
       {
         "id": "ep-bbc2-S1E01-154",
         "pos": 154,
-        "offset_sec": 2971,
+        "offset_sec": 3048,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -1709,7 +1720,7 @@
       {
         "id": "ep-bbc2-S1E01-155",
         "pos": 155,
-        "offset_sec": 3048,
+        "offset_sec": 3124,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -1720,7 +1731,7 @@
       {
         "id": "ep-bbc2-S1E01-156",
         "pos": 156,
-        "offset_sec": 3124,
+        "offset_sec": 3201,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -1731,7 +1742,7 @@
       {
         "id": "ep-bbc2-S1E01-157",
         "pos": 157,
-        "offset_sec": 3201,
+        "offset_sec": 3277,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -1742,17 +1753,6 @@
       {
         "id": "ep-bbc2-S1E01-158",
         "pos": 158,
-        "offset_sec": 3277,
-        "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
-        "metadata": null,
-        "content": "[~3 mins of missing transcription]",
-        "notable": false
-      },
-      {
-        "id": "ep-bbc2-S1E01-159",
-        "pos": 159,
         "offset_sec": 3354,
         "offset_inferred": true,
         "type": "gap",
@@ -1762,8 +1762,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-160",
-        "pos": 160,
+        "id": "ep-bbc2-S1E01-158",
+        "pos": 158,
         "offset_sec": 3430,
         "offset_inferred": false,
         "type": "chat",
@@ -1773,8 +1773,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-161",
-        "pos": 161,
+        "id": "ep-bbc2-S1E01-159",
+        "pos": 159,
         "offset_sec": 3431,
         "offset_inferred": true,
         "type": "chat",
@@ -1784,8 +1784,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-162",
-        "pos": 162,
+        "id": "ep-bbc2-S1E01-160",
+        "pos": 160,
         "offset_sec": 3436,
         "offset_inferred": true,
         "type": "chat",
@@ -1795,8 +1795,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-163",
-        "pos": 163,
+        "id": "ep-bbc2-S1E01-161",
+        "pos": 161,
         "offset_sec": 3437,
         "offset_inferred": true,
         "type": "chat",
@@ -1806,8 +1806,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-164",
-        "pos": 164,
+        "id": "ep-bbc2-S1E01-162",
+        "pos": 162,
         "offset_sec": 3439,
         "offset_inferred": true,
         "type": "chat",
@@ -1817,8 +1817,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-165",
-        "pos": 165,
+        "id": "ep-bbc2-S1E01-163",
+        "pos": 163,
         "offset_sec": 3440,
         "offset_inferred": true,
         "type": "chat",
@@ -1828,14 +1828,36 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E01-166",
-        "pos": 166,
+        "id": "ep-bbc2-S1E01-164",
+        "pos": 164,
         "offset_sec": 3442,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
         "content": "Alright. See you later then.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E01-165",
+        "pos": 165,
+        "offset_sec": 3443,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Right.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E01-166",
+        "pos": 166,
+        "offset_sec": 3443,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Next week 'innit?",
         "notable": false
       },
       {
@@ -1846,34 +1868,12 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "Right.",
+        "content": "Yep!",
         "notable": false
       },
       {
         "id": "ep-bbc2-S1E01-168",
         "pos": 168,
-        "offset_sec": 3443,
-        "offset_inferred": true,
-        "type": "chat",
-        "actor": "karl",
-        "metadata": null,
-        "content": "Next week 'innit?",
-        "notable": false
-      },
-      {
-        "id": "ep-bbc2-S1E01-169",
-        "pos": 169,
-        "offset_sec": 3443,
-        "offset_inferred": true,
-        "type": "chat",
-        "actor": "ricky",
-        "metadata": null,
-        "content": "Yep!",
-        "notable": false
-      },
-      {
-        "id": "ep-bbc2-S1E01-170",
-        "pos": 170,
         "offset_sec": 3443,
         "offset_inferred": true,
         "type": "chat",
@@ -1886,8 +1886,8 @@
     "synopsis": [
       {
         "description": "Karl tells a Dickensian story about buying his mother a Victoria Plum Gnome for Christmas.",
-        "start_pos": 5,
-        "end_pos": 86
+        "start_pos": 6,
+        "end_pos": 87
       },
       {
         "description": "Rockbusters clues",

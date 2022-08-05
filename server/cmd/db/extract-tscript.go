@@ -145,7 +145,7 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 				}
 
 				// all chunks need to be processed.
-				currentPos := int64(0)
+				currentPos := int64(1)
 				if len(episodeOnDisk.Transcript) > 0 {
 					currentPos = episodeOnDisk.Transcript[len(episodeOnDisk.Transcript)-1].Position
 				}

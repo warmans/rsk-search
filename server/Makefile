@@ -173,7 +173,7 @@ dev.extract.test-data: build
 #----------------------------------------------------------------------------------------------
 
 .PHONY: extract.prod
-extract.prod:
+extract.prod: build
 ifndef PROD_DB_DSN
 	$(error "PROD_DB_DSN required")
 endif

@@ -87,7 +87,6 @@ func Import(scanner *bufio.Scanner, episodeID string, startPos int64) ([]models.
 			continue
 		}
 
-		position += PosSpacing
 		di := models.Dialog{
 			ID:             models.DialogID(episodeID, position),
 			Type:           models.DialogTypeUnkown,
@@ -119,6 +118,9 @@ func Import(scanner *bufio.Scanner, episodeID string, startPos int64) ([]models.
 		di.Content = CorrectContent(strings.TrimSpace(parts[1]))
 
 		output = append(output, di)
+
+		// advance to next line
+		position += PosSpacing
 	}
 
 	if err := scanner.Err(); err != nil {

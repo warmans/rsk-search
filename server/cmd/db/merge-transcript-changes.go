@@ -110,7 +110,7 @@ func mergeAll(outputDataPath string, migrationsPath string, conn *rw.Conn, dryRu
 				uniqueContributors[v] = struct{}{}
 			}
 
-			dialog, synopsis, trivia, err := transcript.Import(bufio.NewScanner(bytes.NewBufferString(v.Transcription)), episodeOnDisk.ID(), 0)
+			dialog, synopsis, trivia, err := transcript.Import(bufio.NewScanner(bytes.NewBufferString(v.Transcription)), episodeOnDisk.ID(), 1)
 			if err != nil {
 				return err
 			}
