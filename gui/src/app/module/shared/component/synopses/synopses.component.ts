@@ -9,6 +9,9 @@ import { RskSynopsis } from '../../../../lib/api-client/models';
 export class SynopsesComponent implements OnInit {
 
   @Input()
+  episodeID: string;
+
+  @Input()
   synopses: RskSynopsis[];
 
   @Input()

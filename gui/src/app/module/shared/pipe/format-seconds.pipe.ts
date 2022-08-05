@@ -6,10 +6,17 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FormatSecondsPipe implements PipeTransform {
   constructor() {
   }
-  transform(seconds: number): string {
+
+  transform(seconds: number | string): string {
     if (!seconds) {
-      return "-";
+      return '-';
     }
-    return (new Date(seconds * 1000)).toISOString().substr(14, 5);
+
+    const secondsNum: number = (typeof seconds === 'string') ? parseInt(seconds) : seconds;
+    const minsNum: number = secondsNum / 60;
+
+    const mins: string = String(minsNum.toFixed(0)).padStart(2, '0');
+    const secs: string = String(((minsNum % 1) * 60).toFixed(0)).padStart(2, '0');
+    return `${mins}:${secs}`;
   }
 }

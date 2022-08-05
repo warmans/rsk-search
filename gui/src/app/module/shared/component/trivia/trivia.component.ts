@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { RskSynopsis, RskTrivia } from '../../../../lib/api-client/models';
+import { RskTrivia } from '../../../../lib/api-client/models';
 
 @Component({
   selector: 'app-trivia',
@@ -7,6 +7,9 @@ import { RskSynopsis, RskTrivia } from '../../../../lib/api-client/models';
   styleUrls: ['./trivia.component.scss']
 })
 export class TriviaComponent implements OnInit {
+
+  @Input()
+  episodeID: string;
 
   @Input()
   trivia: RskTrivia[];

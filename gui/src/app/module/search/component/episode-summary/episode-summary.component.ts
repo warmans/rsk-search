@@ -10,7 +10,16 @@ import { AudioService } from '../../../core/service/audio/audio.service';
 export class EpisodeSummaryComponent implements OnInit {
 
   @Input()
-  episode: RskShortTranscript;
+  set episode(value: RskShortTranscript) {
+    this._episode = value;
+    this.episodeImage = value?.metadata["cover_art_url"] ? value?.metadata["cover_art_url"] : `/assets/cover/${value.publication}-s${value.series}.jpg`
+  }
+  get episode(): RskShortTranscript {
+    return this._episode;
+  }
+  private _episode: RskShortTranscript;
+
+  episodeImage: string;
 
   constructor(private audioService: AudioService) {
   }

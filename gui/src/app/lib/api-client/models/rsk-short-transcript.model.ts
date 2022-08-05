@@ -9,6 +9,7 @@ export interface RskShortTranscript {
   episode?: number;
   id?: string;
   incomplete?: boolean;
+  metadata?: { [key: string]: string };
   name?: string;
   offsetAccuracyPcnt?: number;
   publication?: string;

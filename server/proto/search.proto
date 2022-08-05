@@ -143,6 +143,7 @@ message ShortTranscript {
   int32 offset_accuracy_pcnt = 14;
   string name = 15;
   string version = 16;
+  map<string, string> metadata = 17;
 }
 
 message DialogResult {

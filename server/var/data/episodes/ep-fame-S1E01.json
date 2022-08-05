@@ -6,8 +6,11 @@
     "version": "0.0.0",
     "release_date": "2007-10-12T00:00:00Z",
     "incomplete": true,
-    "offset_accuracy": 0,
-    "metadata": null,
+    "offset_accuracy": 10,
+    "metadata": {
+      "cover_art_url": "/assets/cover/special.jpg",
+      "duration_ms": "2422200"
+    },
     "transcript": [
       {
         "id": "ep-fame-S1E01-1",
@@ -23,8 +26,8 @@
       {
         "id": "ep-fame-S1E01-2",
         "pos": 2,
-        "offset_sec": 0,
-        "offset_inferred": false,
+        "offset_sec": 195,
+        "offset_inferred": true,
         "type": "gap",
         "actor": "",
         "metadata": null,
@@ -34,8 +37,8 @@
       {
         "id": "ep-fame-S1E01-3",
         "pos": 3,
-        "offset_sec": 0,
-        "offset_inferred": false,
+        "offset_sec": 390,
+        "offset_inferred": true,
         "type": "gap",
         "actor": "",
         "metadata": null,
@@ -45,8 +48,8 @@
       {
         "id": "ep-fame-S1E01-4",
         "pos": 4,
-        "offset_sec": 0,
-        "offset_inferred": false,
+        "offset_sec": 585,
+        "offset_inferred": true,
         "type": "gap",
         "actor": "",
         "metadata": null,
@@ -56,8 +59,8 @@
       {
         "id": "ep-fame-S1E01-5",
         "pos": 5,
-        "offset_sec": 0,
-        "offset_inferred": false,
+        "offset_sec": 780,
+        "offset_inferred": true,
         "type": "gap",
         "actor": "",
         "metadata": null,
@@ -67,8 +70,8 @@
       {
         "id": "ep-fame-S1E01-6",
         "pos": 6,
-        "offset_sec": 0,
-        "offset_inferred": false,
+        "offset_sec": 975,
+        "offset_inferred": true,
         "type": "gap",
         "actor": "",
         "metadata": null,
@@ -78,8 +81,8 @@
       {
         "id": "ep-fame-S1E01-7",
         "pos": 7,
-        "offset_sec": 0,
-        "offset_inferred": false,
+        "offset_sec": 1170,
+        "offset_inferred": true,
         "type": "gap",
         "actor": "",
         "metadata": null,
@@ -89,8 +92,8 @@
       {
         "id": "ep-fame-S1E01-8",
         "pos": 8,
-        "offset_sec": 0,
-        "offset_inferred": false,
+        "offset_sec": 1365,
+        "offset_inferred": true,
         "type": "gap",
         "actor": "",
         "metadata": null,
@@ -100,8 +103,8 @@
       {
         "id": "ep-fame-S1E01-9",
         "pos": 9,
-        "offset_sec": 0,
-        "offset_inferred": false,
+        "offset_sec": 1560,
+        "offset_inferred": true,
         "type": "gap",
         "actor": "",
         "metadata": null,
@@ -111,8 +114,8 @@
       {
         "id": "ep-fame-S1E01-10",
         "pos": 10,
-        "offset_sec": 0,
-        "offset_inferred": false,
+        "offset_sec": 1755,
+        "offset_inferred": true,
         "type": "gap",
         "actor": "",
         "metadata": null,
@@ -122,8 +125,8 @@
       {
         "id": "ep-fame-S1E01-11",
         "pos": 11,
-        "offset_sec": 0,
-        "offset_inferred": false,
+        "offset_sec": 1950,
+        "offset_inferred": true,
         "type": "gap",
         "actor": "",
         "metadata": null,
@@ -144,7 +147,7 @@
       {
         "id": "ep-fame-S1E01-13",
         "pos": 13,
-        "offset_sec": 0,
+        "offset_sec": 2151,
         "offset_inferred": true,
         "type": "chat",
         "actor": "",
@@ -155,7 +158,7 @@
       {
         "id": "ep-fame-S1E01-14",
         "pos": 14,
-        "offset_sec": 0,
+        "offset_sec": 2153,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -166,7 +169,7 @@
       {
         "id": "ep-fame-S1E01-15",
         "pos": 15,
-        "offset_sec": 0,
+        "offset_sec": 2158,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -188,7 +191,7 @@
       {
         "id": "ep-fame-S1E01-17",
         "pos": 17,
-        "offset_sec": 0,
+        "offset_sec": 2163,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -199,7 +202,7 @@
       {
         "id": "ep-fame-S1E01-18",
         "pos": 18,
-        "offset_sec": 0,
+        "offset_sec": 2163,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -210,7 +213,7 @@
       {
         "id": "ep-fame-S1E01-19",
         "pos": 19,
-        "offset_sec": 0,
+        "offset_sec": 2164,
         "offset_inferred": true,
         "type": "chat",
         "actor": "",
@@ -232,7 +235,7 @@
       {
         "id": "ep-fame-S1E01-21",
         "pos": 21,
-        "offset_sec": 0,
+        "offset_sec": 2165,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -243,7 +246,7 @@
       {
         "id": "ep-fame-S1E01-22",
         "pos": 22,
-        "offset_sec": 0,
+        "offset_sec": 2168,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -254,7 +257,7 @@
       {
         "id": "ep-fame-S1E01-23",
         "pos": 23,
-        "offset_sec": 0,
+        "offset_sec": 2174,
         "offset_inferred": true,
         "type": "chat",
         "actor": "",
@@ -265,7 +268,7 @@
       {
         "id": "ep-fame-S1E01-24",
         "pos": 24,
-        "offset_sec": 0,
+        "offset_sec": 2175,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -276,7 +279,7 @@
       {
         "id": "ep-fame-S1E01-25",
         "pos": 25,
-        "offset_sec": 0,
+        "offset_sec": 2176,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -298,7 +301,7 @@
       {
         "id": "ep-fame-S1E01-27",
         "pos": 27,
-        "offset_sec": 0,
+        "offset_sec": 2200,
         "offset_inferred": true,
         "type": "chat",
         "actor": "",
@@ -309,7 +312,7 @@
       {
         "id": "ep-fame-S1E01-28",
         "pos": 28,
-        "offset_sec": 0,
+        "offset_sec": 2200,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -320,7 +323,7 @@
       {
         "id": "ep-fame-S1E01-29",
         "pos": 29,
-        "offset_sec": 0,
+        "offset_sec": 2203,
         "offset_inferred": true,
         "type": "chat",
         "actor": "",
@@ -331,7 +334,7 @@
       {
         "id": "ep-fame-S1E01-30",
         "pos": 30,
-        "offset_sec": 0,
+        "offset_sec": 2203,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -342,7 +345,7 @@
       {
         "id": "ep-fame-S1E01-31",
         "pos": 31,
-        "offset_sec": 0,
+        "offset_sec": 2204,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -353,7 +356,7 @@
       {
         "id": "ep-fame-S1E01-32",
         "pos": 32,
-        "offset_sec": 0,
+        "offset_sec": 2205,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -364,7 +367,7 @@
       {
         "id": "ep-fame-S1E01-33",
         "pos": 33,
-        "offset_sec": 0,
+        "offset_sec": 2210,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -375,7 +378,7 @@
       {
         "id": "ep-fame-S1E01-34",
         "pos": 34,
-        "offset_sec": 0,
+        "offset_sec": 2212,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -386,7 +389,7 @@
       {
         "id": "ep-fame-S1E01-35",
         "pos": 35,
-        "offset_sec": 0,
+        "offset_sec": 2214,
         "offset_inferred": true,
         "type": "chat",
         "actor": "",
@@ -397,7 +400,7 @@
       {
         "id": "ep-fame-S1E01-36",
         "pos": 36,
-        "offset_sec": 0,
+        "offset_sec": 2215,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -408,7 +411,7 @@
       {
         "id": "ep-fame-S1E01-37",
         "pos": 37,
-        "offset_sec": 0,
+        "offset_sec": 2215,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -419,7 +422,7 @@
       {
         "id": "ep-fame-S1E01-38",
         "pos": 38,
-        "offset_sec": 0,
+        "offset_sec": 2217,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -430,7 +433,7 @@
       {
         "id": "ep-fame-S1E01-39",
         "pos": 39,
-        "offset_sec": 0,
+        "offset_sec": 2221,
         "offset_inferred": true,
         "type": "chat",
         "actor": "",
@@ -441,7 +444,7 @@
       {
         "id": "ep-fame-S1E01-40",
         "pos": 40,
-        "offset_sec": 0,
+        "offset_sec": 2222,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -452,7 +455,7 @@
       {
         "id": "ep-fame-S1E01-41",
         "pos": 41,
-        "offset_sec": 0,
+        "offset_sec": 2222,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -474,7 +477,7 @@
       {
         "id": "ep-fame-S1E01-43",
         "pos": 43,
-        "offset_sec": 0,
+        "offset_sec": 2225,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -485,7 +488,7 @@
       {
         "id": "ep-fame-S1E01-44",
         "pos": 44,
-        "offset_sec": 0,
+        "offset_sec": 2229,
         "offset_inferred": true,
         "type": "chat",
         "actor": "",
@@ -496,7 +499,7 @@
       {
         "id": "ep-fame-S1E01-45",
         "pos": 45,
-        "offset_sec": 0,
+        "offset_sec": 2230,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -507,7 +510,7 @@
       {
         "id": "ep-fame-S1E01-46",
         "pos": 46,
-        "offset_sec": 0,
+        "offset_sec": 2230,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -518,7 +521,7 @@
       {
         "id": "ep-fame-S1E01-47",
         "pos": 47,
-        "offset_sec": 0,
+        "offset_sec": 2232,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -529,7 +532,7 @@
       {
         "id": "ep-fame-S1E01-48",
         "pos": 48,
-        "offset_sec": 0,
+        "offset_sec": 2233,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -540,7 +543,7 @@
       {
         "id": "ep-fame-S1E01-49",
         "pos": 49,
-        "offset_sec": 0,
+        "offset_sec": 2242,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -551,7 +554,7 @@
       {
         "id": "ep-fame-S1E01-50",
         "pos": 50,
-        "offset_sec": 0,
+        "offset_sec": 2243,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -562,7 +565,7 @@
       {
         "id": "ep-fame-S1E01-51",
         "pos": 51,
-        "offset_sec": 0,
+        "offset_sec": 2245,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -573,7 +576,7 @@
       {
         "id": "ep-fame-S1E01-52",
         "pos": 52,
-        "offset_sec": 0,
+        "offset_sec": 2246,
         "offset_inferred": true,
         "type": "chat",
         "actor": "",
@@ -584,7 +587,7 @@
       {
         "id": "ep-fame-S1E01-53",
         "pos": 53,
-        "offset_sec": 0,
+        "offset_sec": 2247,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -595,7 +598,7 @@
       {
         "id": "ep-fame-S1E01-54",
         "pos": 54,
-        "offset_sec": 0,
+        "offset_sec": 2251,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -617,7 +620,7 @@
       {
         "id": "ep-fame-S1E01-56",
         "pos": 56,
-        "offset_sec": 0,
+        "offset_sec": 2255,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -628,7 +631,7 @@
       {
         "id": "ep-fame-S1E01-57",
         "pos": 57,
-        "offset_sec": 0,
+        "offset_sec": 2257,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -639,7 +642,7 @@
       {
         "id": "ep-fame-S1E01-58",
         "pos": 58,
-        "offset_sec": 0,
+        "offset_sec": 2258,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -661,7 +664,7 @@
       {
         "id": "ep-fame-S1E01-60",
         "pos": 60,
-        "offset_sec": 0,
+        "offset_sec": 2273,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -672,7 +675,7 @@
       {
         "id": "ep-fame-S1E01-61",
         "pos": 61,
-        "offset_sec": 0,
+        "offset_sec": 2274,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -683,7 +686,7 @@
       {
         "id": "ep-fame-S1E01-62",
         "pos": 62,
-        "offset_sec": 0,
+        "offset_sec": 2275,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -694,7 +697,7 @@
       {
         "id": "ep-fame-S1E01-63",
         "pos": 63,
-        "offset_sec": 0,
+        "offset_sec": 2276,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -705,7 +708,7 @@
       {
         "id": "ep-fame-S1E01-64",
         "pos": 64,
-        "offset_sec": 0,
+        "offset_sec": 2279,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -716,7 +719,7 @@
       {
         "id": "ep-fame-S1E01-65",
         "pos": 65,
-        "offset_sec": 0,
+        "offset_sec": 2287,
         "offset_inferred": true,
         "type": "chat",
         "actor": "",
@@ -727,7 +730,7 @@
       {
         "id": "ep-fame-S1E01-66",
         "pos": 66,
-        "offset_sec": 0,
+        "offset_sec": 2287,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -738,7 +741,7 @@
       {
         "id": "ep-fame-S1E01-67",
         "pos": 67,
-        "offset_sec": 0,
+        "offset_sec": 2291,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -760,7 +763,7 @@
       {
         "id": "ep-fame-S1E01-69",
         "pos": 69,
-        "offset_sec": 0,
+        "offset_sec": 2320,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -771,7 +774,7 @@
       {
         "id": "ep-fame-S1E01-70",
         "pos": 70,
-        "offset_sec": 0,
+        "offset_sec": 2321,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -782,7 +785,7 @@
       {
         "id": "ep-fame-S1E01-71",
         "pos": 71,
-        "offset_sec": 0,
+        "offset_sec": 2330,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -793,7 +796,7 @@
       {
         "id": "ep-fame-S1E01-72",
         "pos": 72,
-        "offset_sec": 0,
+        "offset_sec": 2360,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -804,7 +807,7 @@
       {
         "id": "ep-fame-S1E01-73",
         "pos": 73,
-        "offset_sec": 0,
+        "offset_sec": 2361,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -815,7 +818,7 @@
       {
         "id": "ep-fame-S1E01-74",
         "pos": 74,
-        "offset_sec": 0,
+        "offset_sec": 2371,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -826,7 +829,7 @@
       {
         "id": "ep-fame-S1E01-75",
         "pos": 75,
-        "offset_sec": 0,
+        "offset_sec": 2385,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -837,7 +840,7 @@
       {
         "id": "ep-fame-S1E01-76",
         "pos": 76,
-        "offset_sec": 0,
+        "offset_sec": 2388,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -848,7 +851,7 @@
       {
         "id": "ep-fame-S1E01-77",
         "pos": 77,
-        "offset_sec": 0,
+        "offset_sec": 2390,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -859,7 +862,7 @@
       {
         "id": "ep-fame-S1E01-78",
         "pos": 78,
-        "offset_sec": 0,
+        "offset_sec": 2390,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -870,7 +873,7 @@
       {
         "id": "ep-fame-S1E01-79",
         "pos": 79,
-        "offset_sec": 0,
+        "offset_sec": 2391,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -881,7 +884,7 @@
       {
         "id": "ep-fame-S1E01-80",
         "pos": 80,
-        "offset_sec": 0,
+        "offset_sec": 2403,
         "offset_inferred": true,
         "type": "chat",
         "actor": "",
@@ -892,7 +895,7 @@
       {
         "id": "ep-fame-S1E01-81",
         "pos": 81,
-        "offset_sec": 0,
+        "offset_sec": 2405,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -903,7 +906,7 @@
       {
         "id": "ep-fame-S1E01-82",
         "pos": 82,
-        "offset_sec": 0,
+        "offset_sec": 2415,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -914,8 +917,8 @@
       {
         "id": "ep-fame-S1E01-83",
         "pos": 83,
-        "offset_sec": 0,
-        "offset_inferred": false,
+        "offset_sec": 2416,
+        "offset_inferred": true,
         "type": "gap",
         "actor": "",
         "metadata": null,

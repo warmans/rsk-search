@@ -68,6 +68,7 @@ import { AudioPlayerV2Component } from './component/audio-player-v2/audio-player
     TranscriptComponent,
     AudioPlayerComponent,
     SynopsesComponent,
+    TriviaComponent,
     WebhidDeviceComponent,
     WebusbDeviceComponent,
     ContributionStateComponent,

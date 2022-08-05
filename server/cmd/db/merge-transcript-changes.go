@@ -89,14 +89,6 @@ func mergeAll(outputDataPath string, migrationsPath string, conn *rw.Conn, dryRu
 
 		for _, v := range approvedChanges {
 
-			/*
-			     <option value="0.2">Typo 0.2</option>
-			     <option value="0.5">Correction 0.5</option>
-			     <option value="1">Improvement 1</option>
-			     <option value="2">Overhaul 2</option>
-			     <option value="3">Major Overhaul 3</option>
-			   </select>
-			*/
 			logger.Info(fmt.Sprintf("Processing change %s (%s)...", v.ID, v.EpID))
 
 			episodeOnDisk, err := data.LoadEpisdeByEpisodeID(outputDataPath, v.EpID)

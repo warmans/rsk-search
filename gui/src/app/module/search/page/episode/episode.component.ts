@@ -103,7 +103,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
         this.episode = ep;
         this.titleService.setTitle(ep.id);
         this.transcribers = ep.contributors.join(', ');
-        this.episodeImage = `assets/cover/${ep.publication}-s${ep.series}.jpg`
+        this.episodeImage = ep.metadata["cover_art_url"] ? ep.metadata["cover_art_url"] : `/assets/cover/${ep.publication}-s${ep.series}.jpg`
 
         ep.transcript.forEach((r: RskDialog) => {
           if (r.notable) {

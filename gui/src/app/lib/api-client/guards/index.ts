@@ -723,6 +723,8 @@ export function isRskShortTranscript(arg: any): arg is models.RskShortTranscript
     ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
     // incomplete?: boolean
     ( typeof arg.incomplete === 'undefined' || typeof arg.incomplete === 'boolean' ) &&
+    // metadata?: { [key: string]: string }
+    ( typeof arg.metadata === 'undefined' || typeof arg.metadata === 'string' ) &&
     // name?: string
     ( typeof arg.name === 'undefined' || typeof arg.name === 'string' ) &&
     // offsetAccuracyPcnt?: number

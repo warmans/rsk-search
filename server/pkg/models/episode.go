@@ -24,6 +24,7 @@ const (
 	MetadataTypeSpotifyPreviewURL = MetadataType("spotify_player_url")
 	MetadataTypeSpotifyURI        = MetadataType("spotify_uri")
 	MetadataTypeDurationMs        = MetadataType("duration_ms")
+	CoverArtURL                   = MetadataType("cover_art_url")
 
 	MetadataSongArtist = MetadataType("song_artist")
 	MetadataSongTrack  = MetadataType("song_track")
@@ -134,6 +135,7 @@ func (e *Transcript) ShortProto(audioURI string) *api.ShortTranscript {
 		OffsetAccuracyPcnt:  e.OffsetAccuracy,
 		Name:                e.Name,
 		Version:             e.Version,
+		Metadata:            e.Meta.Proto(),
 	}
 	for k, s := range e.Synopsis {
 		ep.Synopsis[k] = s.Proto()

@@ -4,7 +4,7 @@
       <div
         (click)="playEpisode(episode)"
         class="icon d-flex align-items-center justify-content-around"
-        [style.background-image]="'url(assets/cover/'+episode.publication+'-s'+episode.series+'.jpg'">
+        [style.background-image]="'url('+episodeImage+')'">
         <i class="bi-play-circle"></i>
       </div>
       <div class="pl-3">
@@ -24,12 +24,7 @@
     </div>
   </div>
   <div class="body mb-2 p-2">
-    <div *ngIf="episode.synopsis?.length === 0" class="text-muted">No synopsis available.</div>
-    <ul class="pl-3" *ngIf="episode.synopsis?.length > 0">
-      <li *ngFor="let syn of episode.synopsis">
-        {{syn.description}} <a class="text-muted" [routerLink]="['/ep', episode.id]" [fragment]="'pos-'+syn.startPos+'-'+syn.endPos"><i class="bi bi-arrow-right"></i></a>
-      </li>
-    </ul>
+    <app-synopses [synopses]="episode.synopsis" [episodeID]="episode.id"></app-synopses>
   </div>
   <div class="foot text-muted p-2 text-right">
     {{episode.actors.join(', ')}}
