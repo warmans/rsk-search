@@ -3,7 +3,7 @@
     "series": 2,
     "episode": 28,
     "name": "",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "release_date": "2003-03-01T00:00:00Z",
     "incomplete": false,
     "offset_accuracy": 11,
@@ -5263,7 +5263,7 @@
         "actor": "steve",
         "metadata": null,
         "content": "He's not sure. He's not sure.",
-        "notable": true
+        "notable": false
       },
       {
         "id": "ep-xfm-S2E28-477",
@@ -7275,7 +7275,7 @@
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "Why is it your business?  Why are you- Why are you such a nosy neighbor that you're concerned?",
+        "content": "Why is it your business? Why are you- Why are you such a nosy neighbor that you're concerned?",
         "notable": false
       },
       {
@@ -10289,7 +10289,7 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "Vesta...  Eurgh, boiling a skill.",
+        "content": "Vesta... Eurgh, boiling a skill.",
         "notable": false
       },
       {
@@ -11165,14 +11165,14 @@
         "end_pos": 426
       },
       {
-        "description": "Pork chop stuck to woman's buttock",
-        "start_pos": 430,
-        "end_pos": 456
+        "description": "This woman had a pork chop stuck to her arse for five years.",
+        "start_pos": 431,
+        "end_pos": 457
       },
       {
         "description": "Do We Need 'Em? - Cockroaches (Rerun)",
-        "start_pos": 515,
-        "end_pos": 546
+        "start_pos": 480,
+        "end_pos": 547
       },
       {
         "description": "Eight year who's old breast fed",
@@ -11181,7 +11181,7 @@
       },
       {
         "description": "Karl smashes window and falls asleep",
-        "start_pos": 774,
+        "start_pos": 750,
         "end_pos": 805
       },
       {
@@ -11214,32 +11214,8 @@
       "bodyloadhater69",
       "fishworm",
       "maturinggambino",
-      "tdtbaa"
+      "tdtbaa",
+      "warmans"
     ],
-    "trivia": [
-      {
-        "description": "Intro once again copy pasted from Pilkipedia. (http://www.pilkipedia.co.uk/wiki/index.php?title=01_March_2003/Transcript#They_Can_Hold_Their_Breath_For_Forty_Minutes)",
-        "extended_description": "",
-        "start_pos": 458,
-        "end_pos": 466
-      },
-      {
-        "description": "Re-run of Do We Need 'Em - Cockroaches. Name changed to Judith as explained in previous contribution from this episode.",
-        "extended_description": "",
-        "start_pos": 466,
-        "end_pos": 515
-      },
-      {
-        "description": "I use the name \"Judith\" for the guest despite Karl introducing her as Jessica. The trivia section of the Pilkipedia article for the original episode of Do We Need 'Em explains why (http://www.pilkipedia.co.uk/wiki/index.php?title=18_January_2003#Trivia)",
-        "extended_description": "",
-        "start_pos": 515,
-        "end_pos": 515
-      },
-      {
-        "description": "I copy pasted these lines from the Pilkipedia transcript (http://www.pilkipedia.co.uk/wiki/index.php?title=01_March_2003/Transcript#They_Can_Hold_Their_Breath_For_Forty_Minutes) and from the Scrimpton copy of the Classic Link (https://scrimpton.com/ep/ep-xfm-S2E12#pos-89800) just to keep things a bit more consistent and to save time.",
-        "extended_description": "",
-        "start_pos": 546,
-        "end_pos": 560
-      }
-    ]
+    "trivia": null
   }
