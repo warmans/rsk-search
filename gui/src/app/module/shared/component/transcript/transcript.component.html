@@ -46,7 +46,9 @@
   </div>
   <div class="ml-3 d-flex d-flex flex-column justify-content-center trivia-breakout" *ngIf="group.tscript?.trivia.length > 0">
     <div class="p-3 text-muted">
-      <div *ngFor="let t of group.tscript.trivia">{{ t.description }}</div>
+      <div *ngFor="let t of group.tscript.trivia">
+        <app-markdown [raw]="t.description"></app-markdown>
+      </div>
     </div>
   </div>
 </div>
