@@ -29,13 +29,18 @@ export function isTriviaLine(line: string): boolean {
   return isStartTriviaLine(line) || isEndTriviaLine(line);
 }
 
+// synopsis or trivia text block.
+export function isMetadataBlockText(line: string): boolean {
+  return !!line.match(/^#.*/g);
+}
+
 export function getTrivia(line: string): string {
-  const match = line.match(/^#TRIVIA:\s(.+)/);
+  const match = line.match(/^#TRIVIA:(.+)/);
   return match?.length == 2 ? match[1] : '';
 }
 
 export function isStartTriviaLine(line: string): boolean {
-  return !!line.match(/^#TRIVIA:.+/g);
+  return !!line.match(/^#TRIVIA:.*/g);
 }
 
 export function isEndTriviaLine(line: string): boolean {
@@ -88,6 +93,7 @@ export function parseTranscript(transcript: string): Tscript {
     if (isEndSynopsisLine(line) && currentSynopsis) {
       currentSynopsis.endPos = pos;
       tscript.synopses.push(currentSynopsis);
+      currentSynopsis = undefined;
       return;
     }
     if (isStartTriviaLine(line)) {
@@ -97,6 +103,13 @@ export function parseTranscript(transcript: string): Tscript {
     if (isEndTriviaLine(line) && currentTrivia) {
       currentTrivia.endPos = pos;
       tscript.trivia.push(currentTrivia);
+      currentTrivia = undefined;
+      return;
+    }
+    // further lines prefix with a # are considered more trivia lines
+    if (currentTrivia && isMetadataBlockText(line)) {
+      const lineWithoutPrefix = line.replace(/^#/g, '');
+      currentTrivia.description += `\n${lineWithoutPrefix}`;
       return;
     }
 
@@ -121,6 +134,15 @@ export function parseTranscript(transcript: string): Tscript {
 
     pos++;
   });
+
+  if (currentTrivia) {
+    currentTrivia.endPos = pos;
+    tscript.trivia.push(currentTrivia);
+  }
+  if (currentSynopsis) {
+    currentSynopsis.endPos = pos;
+    tscript.synopses.push(currentSynopsis);
+  }
   return tscript;
 }
 

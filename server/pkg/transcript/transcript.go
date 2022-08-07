@@ -75,15 +75,23 @@ func Import(scanner *bufio.Scanner, episodeID string, startPos int64) ([]models.
 			}
 			continue
 		}
-		if strings.HasPrefix(line, "#TRIVIA: ") || strings.HasPrefix(line, "#/TRIVIA") {
+		if strings.HasPrefix(line, "#TRIVIA:") || strings.HasPrefix(line, "#/TRIVIA") {
 			if currentTrivia != nil {
 				currentTrivia.EndPos = position
 				trivia = append(trivia, *currentTrivia)
 				currentTrivia = nil
 			}
-			if strings.HasPrefix(line, "#TRIVIA: ") {
+			if strings.HasPrefix(line, "#TRIVIA:") {
 				currentTrivia = &models.Trivia{Description: CorrectContent(strings.TrimSpace(strings.TrimPrefix(line, "#TRIVIA:"))), StartPos: position}
 			}
+			continue
+		}
+		// continued trivia e.g.
+		// #TRIVIA:
+		// # foo
+		// # bar baz
+		if currentTrivia != nil && strings.HasPrefix(line, "#") {
+			currentTrivia.Description += "\n" + strings.TrimSpace(strings.TrimPrefix(line, "#"))
 			continue
 		}
 
