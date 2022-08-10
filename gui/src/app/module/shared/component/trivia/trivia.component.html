@@ -1,5 +1,5 @@
 <div *ngIf="trivia.length === 0" class="text-muted">No trivia available.</div>
-<div *ngFor="let tri of trivia" class="mb-1">
+<div *ngFor="let tri of trivia; let idx = index" class="mb-1">
   <i class="bi bi-info-circle mr-2 text-primary"></i>
   <a class="text-paragraph" [routerLink]="['/ep', episodeID]" [fragment]="'pos-'+tri.startPos+'-'+tri.endPos">{{tri.description}} <i class="bi bi-arrow-right"></i></a>
 </div>

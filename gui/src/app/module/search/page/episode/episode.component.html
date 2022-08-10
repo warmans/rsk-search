@@ -80,16 +80,6 @@
             <app-synopses [synopses]="episode?.synopses" [episodeID]="episode.id"></app-synopses>
           </div>
         </div>
-        <div *ngIf="episode?.trivia?.length > 0">
-          <div class="card-header">
-            <div class="d-flex">
-              <div class="flex-grow-1 font-weight-bold"><i class="bi bi-card-list mr-1"></i> Trivia</div>
-            </div>
-          </div>
-          <div class="card-body">
-            <app-trivia [trivia]="episode?.trivia" [episodeID]="episode.id"></app-trivia>
-          </div>
-        </div>
         <div *ngIf="quotes && quotes.length > 0">
           <div class="card-header">
             <div class="d-flex">
