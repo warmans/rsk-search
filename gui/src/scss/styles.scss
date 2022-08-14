@@ -170,17 +170,27 @@ pre {
   .nav-link.active, .nav-item.show .nav-link {
     border-bottom: none;
     @include theme() {
-      color: theme-get('text-color');
       background-color: theme-get('fg-body-darker') !important;
       border-color: theme-get('fg-border');
     }
   }
 
-  .nav-link:hover {
+  .nav-item .nav-link {
+    @include theme() {
+      color: theme-get("text-color");
+    }
+  }
+
+  .nav-link:hover, .nav-link.active {
+    color: $primary !important;
     border: 1px solid;
     outline: none;
     box-shadow: none;
     cursor: pointer;
+  }
+
+  .nav-link:hover {
+    border: 1px solid transparent;
   }
 }
 

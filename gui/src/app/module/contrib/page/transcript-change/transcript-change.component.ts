@@ -165,7 +165,6 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
         pointsOnApprove: this.approvalPoints.value,
       }
     }).pipe(takeUntil(this.$destroy)).subscribe((res: RskTranscriptChange) => {
-
       this.change.state = state;
       this.checkUserCanEdit();
 
@@ -202,6 +201,13 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
 
   markIncomplete() {
     this._updateState(RskContributionState.STATE_PENDING);
+    // remove readonly param since it's now been moved into a writable state
+    this.router.navigate([], {
+      queryParams: {
+        'readonly': null,
+      },
+      queryParamsHandling: 'merge'
+    })
   }
 
   markApproved() {
