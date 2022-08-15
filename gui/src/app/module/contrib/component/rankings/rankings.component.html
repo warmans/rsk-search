@@ -22,16 +22,24 @@
       <tr *ngFor="let a of ranking; let i = index">
         <td style="width: 34px">
           <div
+            [ngClass]="{'supporter': a.author?.supporter}"
             class="user-icon"
-            style=" width: 24px; height: 24px; background-image: url({{ a.author?.identityIconImg }})">
+            style="background-image: url({{ a.author?.identityIconImg }})">
           </div>
         </td>
         <td>
-          <div class="font-weight-bold">
-            {{ a.author.name }}
-          </div>
-          <div class="text-muted">
-            <span title="Rank unlocked at {{a.currentRank.points}} points, next rank at {{a.nextRank.points}}">{{a.currentRank.name}}</span>
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <div class="font-weight-bold">
+                {{ a.author.name }}
+              </div>
+              <div class="text-muted">
+                <span title="Rank unlocked at {{a.currentRank.points}} points, next rank at {{a.nextRank.points}}">{{a.currentRank.name}}</span>
+              </div>
+            </div>
+            <div class="align-items-center">
+              <span *ngIf="a.author?.supporter"><i class="bi bi-award-fill ml-2 gold" title="This user has supported Scrimpton with a donation."></i></span>
+            </div>
           </div>
         </td>
         <td>{{ a.points | number }}</td>

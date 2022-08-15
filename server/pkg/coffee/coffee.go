@@ -9,11 +9,13 @@ import (
 )
 
 type Config struct {
-	AccessToken string
+	AccessToken           string
+	SupporterSyncInterval int64
 }
 
 func (c *Config) RegisterFlags(fs *pflag.FlagSet, prefix string) {
 	flag.StringVarEnv(fs, &c.AccessToken, prefix, "coffee-access-token", "", "Buy me a coffee access token")
+	flag.Int64VarEnv(fs, &c.SupporterSyncInterval, prefix, "supporter-check-interval-seconds", 3600, "attempt to sync supporters to local DB every N seconds")
 }
 
 func NewClient(cfg *Config) *Client {

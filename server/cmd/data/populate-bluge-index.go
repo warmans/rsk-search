@@ -1,4 +1,4 @@
-package blugeindex
+package data
 
 import (
 	"encoding/json"
@@ -24,25 +24,12 @@ type indexConfig struct {
 
 var indexCfg = indexConfig{}
 
-func RootCmd() *cobra.Command {
-	index := &cobra.Command{
-		Use:   "bluge",
-		Short: "commands related to to the bluge search index",
-	}
-
-	index.PersistentFlags().StringVarP(&indexCfg.path, "index-path", "p", "./var/rsk.bluge", "Path to bluge index")
-
-	index.AddCommand(LoadCmd())
-
-	return index
-}
-
-func LoadCmd() *cobra.Command {
+func PopulateBlugeIndex() *cobra.Command {
 
 	var inputDir string
 
 	cmd := &cobra.Command{
-		Use:   "load",
+		Use:   "populate-bluge-index",
 		Short: "refresh the search index from the given directory",
 		RunE: func(cmd *cobra.Command, args []string) error {
 

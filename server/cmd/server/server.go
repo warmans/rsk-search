@@ -170,6 +170,19 @@ func ServerCmd() *cobra.Command {
 			var coffeeClient *coffee.Client
 			if coffeeCfg.AccessToken != "" {
 				coffeeClient = coffee.NewClient(coffeeCfg)
+				coffeeWorker := coffee.NewWorker(coffeeClient, persistentDBConn, logger, coffeeCfg)
+				go func() {
+					if err := coffeeWorker.Start(); err != nil {
+						logger.Error("Coffee worker failed", zap.Error(err))
+					}
+					defer func() {
+						ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
+						defer cancel()
+						if err := coffeeWorker.Stop(ctx); err != nil {
+							logger.Error("coffee worker stop failed", zap.Error(err))
+						}
+					}()
+				}()
 			} else {
 				logger.Info("Coffee client disabled (no access token)")
 			}

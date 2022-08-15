@@ -132,7 +132,7 @@ init.db:
 
 .PHONY: init.index
 init.index:
-	rm -rf ./var/rsk.bluge; ./bin/rsk-search bluge load
+	rm -rf ./var/rsk.bluge; ./bin/rsk-search data populate-bluge-index
 
 .PHONY: run
 run: build

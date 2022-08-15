@@ -24,18 +24,13 @@ func RootCmd() *cobra.Command {
 
 	// exports
 	index.AddCommand(GenerateHTMLCmd())
-
-	// various Named Entity Recognition stuff
-	index.AddCommand(NERTrainGenerateCmd())
-	index.AddCommand(NERTrainCmd())
-	index.AddCommand(NERTestCmd())
-	index.AddCommand(NERDumpTagsCmd())
-	index.AddCommand(NERCleanTagsCmd())
-
 	index.AddCommand(InferMissingOffsetsCmd())
 	index.AddCommand(RefreshCmd())
-
 	index.AddCommand(DumpPlaintext())
+
+	// index
+
+	index.AddCommand(PopulateBlugeIndex())
 
 	return index
 }

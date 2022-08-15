@@ -218,10 +218,9 @@ func (f Synopsis) Proto() *api.Synopsis {
 }
 
 type Trivia struct {
-	Description         string `json:"description"`
-	ExtendedDescription string `json:"extended_description"`
-	StartPos            int64  `json:"start_pos"`
-	EndPos              int64  `json:"end_pos"`
+	Description string `json:"description"`
+	StartPos    int64  `json:"start_pos"`
+	EndPos      int64  `json:"end_pos"`
 }
 
 func (f Trivia) Proto() *api.Trivia {

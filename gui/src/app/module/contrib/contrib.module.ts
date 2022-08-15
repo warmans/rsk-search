@@ -5,7 +5,6 @@ import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { EpisodeChunkSubmit } from './page/episode-chunk-submit/episode-chunk-submit.component';
 import { RejectButtonComponent } from './component/reject-button/reject-button.component';
-import { LeaderboardComponent } from './component/leaderboard/leaderboard.component';
 import { EpisodeChunkContributions } from './page/episode-chunk-contributions/episode-chunk-contributions.component';
 import { AuthorProfile } from './page/author-profile/author-profile.component';
 import { ContributeComponent } from './page/contribute/contribute.component';
@@ -24,7 +23,6 @@ import { DonationsComponent } from './component/donations/donations.component';
     RandomComponent,
     ContributeComponent,
     RejectButtonComponent,
-    LeaderboardComponent,
     RankingsComponent,
     CausesComponent,
     DonationsComponent

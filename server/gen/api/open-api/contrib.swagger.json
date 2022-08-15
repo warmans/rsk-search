@@ -1013,6 +1013,9 @@
         },
         "identityIconImg": {
           "type": "string"
+        },
+        "supporter": {
+          "type": "boolean"
         }
       }
     },

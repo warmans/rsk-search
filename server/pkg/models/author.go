@@ -15,12 +15,14 @@ type Author struct {
 	CreatedAt time.Time `db:"created_at"`
 	Banned    bool      `db:"banned"`
 	Approver  bool      `db:"approver"`
+	Supporter bool      `db:"supporter"`
 }
 
 func (a *Author) ShortAuthor() *ShortAuthor {
 	sa := &ShortAuthor{
-		ID:   a.ID,
-		Name: a.Name,
+		ID:        a.ID,
+		Name:      a.Name,
+		Supporter: a.Supporter,
 	}
 	if ident, err := a.DecodeIdentity(); err == nil {
 		sa.IdentityIconImg = ident.Icon
@@ -40,6 +42,7 @@ type ShortAuthor struct {
 	ID              string `db:"id"`
 	Name            string `db:"name"`
 	IdentityIconImg string `db:"-"`
+	Supporter       bool   `db:"supporter"`
 }
 
 func (a *ShortAuthor) Proto() *api.Author {
@@ -50,6 +53,7 @@ func (a *ShortAuthor) Proto() *api.Author {
 		Id:              a.ID,
 		Name:            a.Name,
 		IdentityIconImg: a.IdentityIconImg,
+		Supporter:       a.Supporter,
 	}
 }
 
@@ -81,6 +85,7 @@ func (l *AuthorLeaderboard) Proto() *api.AuthorLeaderboard {
 type AuthorRanking struct {
 	Author                *ShortAuthor
 	Approver              bool
+	Supporter             bool
 	AcceptedContributions int32
 	AwardValue            float32
 }
@@ -215,6 +220,7 @@ type AuthorRank struct {
 	RewardValueUSD  float32
 	CurrentRankID   string
 	NextRankID      string
+	Supporter       bool
 }
 
 func (a *AuthorRank) Proto(ranks Ranks) *api.AuthorRank {

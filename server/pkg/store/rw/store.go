@@ -532,6 +532,7 @@ func (s *Store) AuthorLeaderboard(ctx context.Context) (*models.AuthorLeaderboar
                 a.name,
 			    COALESCE(a.identity, '{}') as identity,
                 a.approver,
+                a.suporter,
                 COALESCE(SUM(CASE WHEN c.state = 'approved' THEN 1 ELSE 0 END), 0) as num_approved
             FROM author a
             LEFT JOIN tscript_contribution c ON c.author_id = a.id
@@ -554,6 +555,7 @@ func (s *Store) AuthorLeaderboard(ctx context.Context) (*models.AuthorLeaderboar
 			&ranking.Author.Name,
 			&identity,
 			&ranking.Approver,
+			&ranking.Supporter,
 			&ranking.AcceptedContributions,
 			&ranking.AwardValue,
 		)
@@ -609,6 +611,7 @@ func (s *Store) ListAuthorRankings(ctx context.Context, qm *common.QueryModifier
 		SELECT 
 			a.id,
 			a.name,
+			a.supporter,
  			COALESCE(a.identity, '{}'),
 			COALESCE((SELECT SUM(points) AS points FROM author_contribution where author_id=a.id), 0) as points,
 			COALESCE((SELECT id FROM rank WHERE points <= (SELECT COALESCE(SUM(points), 0) AS points FROM author_contribution where author_id = a.id) order by points desc limit 1), '') as current_rank,
@@ -640,7 +643,7 @@ func (s *Store) ListAuthorRankings(ctx context.Context, qm *common.QueryModifier
 	for rows.Next() {
 		cur := &models.AuthorRank{Author: &models.ShortAuthor{}}
 		var ident string
-		if err := rows.Scan(&cur.Author.ID, &cur.Author.Name, &ident, &cur.Points, &cur.CurrentRankID, &cur.NextRankID, &cur.RewardValueUSD, &cur.ApprovedChunks, &cur.ApprovedChanges); err != nil {
+		if err := rows.Scan(&cur.Author.ID, &cur.Author.Name, &cur.Author.Supporter, &ident, &cur.Points, &cur.CurrentRankID, &cur.NextRankID, &cur.RewardValueUSD, &cur.ApprovedChunks, &cur.ApprovedChanges); err != nil {
 			return nil, err
 		}
 		decodedIdent := &oauth.Identity{}
@@ -729,6 +732,13 @@ func (s *Store) AuthorIsBanned(ctx context.Context, id string) (bool, error) {
 	var banned bool
 	row := s.tx.QueryRowxContext(ctx, "SELECT banned FROM author WHERE id=$1 ", id)
 	return banned, row.Scan(&banned)
+}
+
+// SetAuthorsAsSupporters attempts to set any authors as supporters if they used the same name in buymeacoffee
+func (s *Store) SetAuthorsAsSupporters(ctx context.Context, supporterNames []string) error {
+	ph, params := util.CreatePlaceholdersForStrings(supporterNames)
+	_, err := s.tx.ExecContext(ctx, fmt.Sprintf(`UPDATE author SET supporter=true WHERE name IN (%s)`, ph), params...)
+	return err
 }
 
 func (s *Store) ListRequiredAuthorRewardsV2(ctx context.Context, pointsForReward float32) ([]*models.RequiredReward, error) {
@@ -845,15 +855,8 @@ func (s *Store) FailReward(ctx context.Context, id string, reason string) error 
 
 func (s *Store) BatchGetAuthor(ctx context.Context, authorIDs ...string) ([]*models.Author, error) {
 
-	placeholders := make([]string, len(authorIDs))
-	params := make([]interface{}, len(authorIDs))
-
-	for k, id := range authorIDs {
-		placeholders[k] = fmt.Sprintf("$%d", k+1)
-		params[k] = id
-	}
-
-	rows, err := s.tx.QueryxContext(ctx, fmt.Sprintf(`SELECT * from author WHERE id IN (%s)`, strings.Join(placeholders, ", ")), params...)
+	placeholders, params := util.CreatePlaceholdersForStrings(authorIDs)
+	rows, err := s.tx.QueryxContext(ctx, fmt.Sprintf(`SELECT * from author WHERE id IN (%s)`, placeholders), params...)
 	if err != nil {
 		return nil, err
 	}

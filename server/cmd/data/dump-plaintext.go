@@ -26,7 +26,7 @@ func DumpPlaintext() *cobra.Command {
 			logger, _ := zap.NewProduction()
 			defer func() {
 				if err := logger.Sync(); err != nil {
-					fmt.Println("WARNING: failed to sync logger: "+err.Error())
+					fmt.Println("WARNING: failed to sync logger: " + err.Error())
 				}
 			}()
 
@@ -51,7 +51,7 @@ func DumpPlaintext() *cobra.Command {
 
 				logger.Info("Processing file...", zap.String("path", dirEntry.Name()))
 
-				rawTranscript, err := transcript.Export(episode.Transcript, episode.Synopsis, episode.Trivia)
+				rawTranscript, err := transcript.Export(episode.Transcript, episode.Synopsis, episode.Trivia, transcript.WithStripMetadata())
 				if err != nil {
 					return err
 				}

@@ -334,6 +334,7 @@ message Author {
   string id = 1;
   string name = 2;
   string identity_icon_img = 3;
+  bool supporter = 4;
 }
 
 message ChunkStats {
