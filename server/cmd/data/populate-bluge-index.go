@@ -18,15 +18,9 @@ import (
 	"time"
 )
 
-type indexConfig struct {
-	path string
-}
-
-var indexCfg = indexConfig{}
-
 func PopulateBlugeIndex() *cobra.Command {
 
-	var inputDir string
+	var indexPath string
 
 	cmd := &cobra.Command{
 		Use:   "populate-bluge-index",
@@ -40,20 +34,20 @@ func PopulateBlugeIndex() *cobra.Command {
 				}
 			}()
 
-			fmt.Printf("Using index %s...\n", indexCfg.path)
+			fmt.Printf("Using index %s...\n", indexPath)
 
-			config := bluge.DefaultConfig(indexCfg.path)
+			config := bluge.DefaultConfig(indexPath)
 
 			rskIndex, err := bluge.OpenWriter(config)
 			if err != nil {
 				return err
 			}
 			logger.Info("Populating index...")
-			return populateIndex(inputDir, rskIndex, logger)
+			return populateIndex(cfg.dataDir, rskIndex, logger)
 		},
 	}
 
-	cmd.Flags().StringVarP(&inputDir, "input-path", "i", "./var/data/episodes", "Path to raw data files")
+	cmd.Flags().StringVarP(&indexPath, "index-path", "i", "./var/rsk.bluge", "Path to index file")
 
 	return cmd
 }
