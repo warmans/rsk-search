@@ -77,6 +77,7 @@ type Transcript struct {
 	Version        string    `json:"version"` // SemVer
 	ReleaseDate    time.Time `json:"release_date"`
 	Incomplete     bool      `json:"incomplete"`
+	Bestof         bool      `json:"bestof"`
 	OffsetAccuracy int32     `json:"offset_accuracy"`
 
 	// additional optional data
@@ -136,6 +137,7 @@ func (e *Transcript) ShortProto(audioURI string) *api.ShortTranscript {
 		Name:                e.Name,
 		Version:             e.Version,
 		Metadata:            e.Meta.Proto(),
+		Bestof:              e.Bestof,
 	}
 	for k, s := range e.Synopsis {
 		ep.Synopsis[k] = s.Proto()
@@ -163,6 +165,7 @@ func (e *Transcript) Proto(withRawTranscript string, audioURI string) *api.Trans
 		OffsetAccuracyPcnt: e.OffsetAccuracy,
 		Name:               e.Name,
 		Version:            e.Version,
+		Bestof:             e.Bestof,
 	}
 	for _, d := range e.Transcript {
 		ep.Transcript = append(ep.Transcript, d.Proto(false))

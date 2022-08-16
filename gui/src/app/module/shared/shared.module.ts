@@ -25,6 +25,8 @@ import { HtmlDiffComponent } from './component/html-diff/html-diff.component';
 import { ClaimedRewardsComponent } from './component/claimed-rewards/claimed-rewards.component';
 import { MarkdownComponent } from './component/markdown/markdown.component';
 import { AudioPlayerV2Component } from './component/audio-player-v2/audio-player-v2.component';
+import { BarComponent } from './component/filterbar/bar/bar.component';
+import { ValueListComponent } from './component/filterbar/value-list/value-list.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,8 @@ import { AudioPlayerV2Component } from './component/audio-player-v2/audio-player
     ClaimedRewardsComponent,
     MarkdownComponent,
     AudioPlayerV2Component,
+    BarComponent,
+    ValueListComponent,
   ],
   imports: [
     CommonModule,
@@ -80,6 +84,8 @@ import { AudioPlayerV2Component } from './component/audio-player-v2/audio-player
     ClaimedRewardsComponent,
     MarkdownComponent,
     AudioPlayerV2Component,
+    BarComponent,
+    ValueListComponent,
   ]
 })
 export class SharedModule {

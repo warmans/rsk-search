@@ -3,18 +3,21 @@
     <div class="d-flex flex-row flex-grow-1">
       <div
         (click)="playEpisode(episode)"
-        class="icon d-flex align-items-center justify-content-around"
+        class="icon d-flex align-items-center justify-content-around album-art"
         [style.background-image]="'url('+episodeImage+')'">
         <i class="bi-play-circle"></i>
       </div>
-      <div class="pl-3">
-        <div class="title mb-1">
-          <a [routerLink]="['/ep', episode.id]">Series {{episode.series}} Episode {{episode.episode}} <span *ngIf="episode.name"> - "{{episode.name}}"</span></a>
+      <div class="pl-3 d-flex flex-column justify-content-around">
+        <div>
+          <div class="title mb-2">
+            <a [routerLink]="['/ep', episode.id]">Series {{episode.series}} Episode {{episode.episode}} <span *ngIf="episode.name"> - "{{episode.name}}"</span></a>
+          </div>
+          <div class="sub-title text-sm">{{episode.shortId}} | {{episode.releaseDate | date}}</div>
         </div>
-        <div class="sub-title mb-2">{{episode.releaseDate}}</div>
       </div>
     </div>
     <div>
+      <div *ngIf="episode.bestof" class="badge mr-2"><i class="bi bi-card-text mr-1"></i> Bestof Episode</div>
       <div *ngIf="episode.transcriptAvailable && !episode.incomplete" class="badge mr-2"><i class="bi bi-card-text mr-1"></i> Complete Transcript</div>
       <div *ngIf="!episode.transcriptAvailable || episode.incomplete" class="badge mr-2"><i class="bi bi-card-text text-danger mr-1"></i> Incomplete Transcript</div>
       <div *ngIf="episode.triviaAvailable" class="badge mr-2"><i class="bi bi-card-text mr-1"></i> Trivia</div>
@@ -23,10 +26,10 @@
       </div>
     </div>
   </div>
-  <div class="body mb-2 p-2">
+  <div class="body p-2">
     <app-synopses [synopses]="episode.synopsis" [episodeID]="episode.id"></app-synopses>
   </div>
-  <div class="foot text-muted p-2 text-right">
-    {{episode.actors.join(', ')}}
+  <div class="foot text-muted p-2">
+    <i class="bi bi-person-lines-fill mr-2"></i> {{episode.actors.join(', ')}}
   </div>
 </div>

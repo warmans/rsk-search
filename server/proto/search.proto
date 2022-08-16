@@ -144,6 +144,7 @@ message ShortTranscript {
   string name = 15;
   string version = 16;
   map<string, string> metadata = 17;
+  bool bestof = 18;
 }
 
 message DialogResult {
@@ -204,6 +205,7 @@ message Transcript {
   int32 offset_accuracy_pcnt = 17;
   string name = 18;
   string version = 19;
+  bool bestof = 20;
 }
 
 message GetTranscriptRequest {

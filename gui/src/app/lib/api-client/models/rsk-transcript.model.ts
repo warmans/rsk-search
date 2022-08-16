@@ -8,6 +8,7 @@ import {
 export interface RskTranscript {
   actors?: string[];
   audioUri?: string;
+  bestof?: boolean;
   contributors?: string[];
   episode?: number;
   id?: string;

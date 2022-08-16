@@ -1,0 +1,65 @@
+<div class="filterbar-container" [ngClass]="{'focus': (state !== states.IDLE)}">
+  <div class="history"></div>
+  <div class="input-container">
+    <div class="selected">
+
+      <div class="item" *ngFor="let itm of selected; let i = index;">
+        <span class="label">{{ itm.conf.label }}</span>
+        <span class="comparison" (click)="revertToPendingComparison(i)" [ngClass]="{'selectable': itm.conf.validComparisons}">{{ itm.comparison }}</span>
+        <span class="values selectable" (click)="revertToPendingValue(i)">{{ itm.displayValue() }}</span>
+        <span class="close" (click)="removeSelected(i)">&#10006;</span>
+      </div>
+
+      <div class="item pending" *ngIf="pending" [ngSwitch]="pending.conf.kind">
+        <span class="label">{{ pending.conf.label }}</span>
+        <span class="comparison">{{ pending.comparison }}</span>
+      </div>
+
+    </div>
+    <div class="input">
+      <input #primaryInput (focus)="onFocus()" (keyup)="onKeypress($event.code)" />
+
+      <!-- selectable fields -->
+      <div class="selectables" *ngIf="state === states.SELECTING">
+        <app-value-list
+          [filter]="primaryInput.value"
+          [valueSource]="configsToValueSource()"
+          [keyboardEvents]="keyboardEvents"
+          [enableMultiselect]="false"
+          (onValue)="preSelect($event)"></app-value-list>
+      </div>
+
+      <!-- sub-components of fields -->
+      <div *ngIf="state === states.IN_SELECTABLE">
+
+        <div *ngIf="this.pending.comparison === ''">
+          <app-value-list
+            [filter]="primaryInput.value"
+            [valueSource]="this.pending.comparisonsToValueSource()"
+            [keyboardEvents]="keyboardEvents"
+            [enableMultiselect]="false"
+            (onValue)="this.pending.selectComparison($event)"></app-value-list>
+        </div>
+
+        <div *ngIf="this.pending && this.pending.comparison !== ''">
+          <app-value-list
+            [initialSelectedValues]="this.pending.value"
+            [filter]="primaryInput.value"
+            [valueSource]="this.pending.conf.valueSource"
+            [valueSourceFilters]="this.selected"
+            [valueSourcePaging]="this.pending.conf.valueSourcePaging"
+            [keyboardEvents]="keyboardEvents"
+            [allowFreeInput]="this.pending.conf.allowFreeInput"
+            [enableMultiselect]="this.pending.conf.multiSelect"
+            (onValue)="this.pending.selectValue($event)"></app-value-list>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="reset selectable" (click)="reset()">
+      &#10006;
+    </div>
+
+  </div>
+</div>

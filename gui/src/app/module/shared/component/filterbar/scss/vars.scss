@@ -1,0 +1,28 @@
+
+$common-border-color: #e5e5e5 !default;
+$common-border-width: 1px !default;
+$common-border-style: solid !default;
+$common-border: $common-border-width $common-border-style $common-border-color !default;
+$common-focus-color: #73afea !default;
+$common-gutter-size: 5px !default;
+$common-background-color: #fff;
+$common-selectable-hover-background-color: #fff !default;
+$common-badge-background: #f8f8f8 !default;
+
+/* MAIN INPUT BAR */
+$bar-border: $common-border !default;
+$bar-background-color: #fff !default;
+$bar-padding:  5px !default;
+$bar-border-focus: $common-border-width $common-border-style $common-focus-color !default;
+
+/* SELECTED ITEMS */
+$bar-selected-item-background-color: $common-badge-background !default;
+$bar-selected-item-border: $common-border !default;
+$bar-selected-item-spacing: $common-gutter-size !default;
+
+/* VALUE LIST DROPDOWN */
+$value-list-border: $common-border !default;
+$value-list-min-width: 280px !default;
+$value-list-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !default;
+$value-list-selected-border: $common-border !default;
+$value-list-selected-background-color: $common-badge-background !default;

@@ -1,0 +1,28 @@
+<div class="value-list-container" *ngIf="values.length > 0 || valueSource">
+
+  <div class="selected-values" *ngIf="enableMultiselect">
+    <div>
+      <div class="selected" *ngFor="let s of valuesSelected; let i = index;" (click)="toggleSelected(s)">{{s}}</div>
+    </div>
+    <span class="confirm" (click)="selectMulti()">&#10004;</span>
+  </div>
+
+  <div class="value-list">
+    <div class="value" *ngFor="let value of values; let i = index;" (click)="select(value)" [ngClass]="{'active': i === focusedValue,'selected': isSelected(value.value)}">
+      <div class="title" >
+        <span class="icon" *ngIf="value.icon">{{value.icon}}</span>
+        <span class="label">{{value.label || value.value}}</span>
+      </div>
+      <div class="help" *ngIf="value.helpText">
+      {{value.helpText}}
+      </div>
+    </div>
+    <div *ngIf="values.length === 0 && valueSource">No values</div>
+  </div>
+
+  <div class="paging" *ngIf="valueSourcePaging && this.valueSource">
+    <div class="left" (click)="pageBack()" [ngClass]="{'enabled': this.page > 0}">PREV</div>
+    <div class="cur">{{page}}</div>
+    <div class="left" (click)="pageForward()" [ngClass]="{'enabled': values.length === pageSize}">NEXT</div>
+  </div>
+</div>

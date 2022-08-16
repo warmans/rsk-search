@@ -1,14 +1,22 @@
+<ul class="nav nav-tabs font-weight-bold">
+  <li class="nav-item mr-2">
+    <a class="nav-link active">Transcript Archive</a>
+  </li>
+</ul>
 <div class="card episode-list">
   <div class="card-header d-flex justify-content-between align-items-center">
-    Transcript Archive
-    <div class="d-flex">
+    <div class="w-100 d-flex justify-content-between">
+      <div class="flex-grow-1 mr-2">
+        <!--app-filterbar [config]="filterBarConfig"></app-filterbar-->
+        <input class="form-control themed" placeholder="Quick find episode by ID/name..." [formControl]="searchInput"/>
+      </div>
       <button class="btn btn-sm btn-secondary mr-1" (click)="showDownloadDialog = !showDownloadDialog">
-        <i class="bi-cloud-download mr-2"></i> Download transcripts
+        <i class="bi-cloud-download mr-2"></i> Download archive
       </button>
     </div>
   </div>
   <div class="card-body">
-    <div *ngFor="let ep of transcriptList" class="mb-2 episode-container">
+    <div *ngFor="let ep of filteredTranscriptList" class="mb-2 episode-container">
       <app-episode-summary [episode]="ep"></app-episode-summary>
     </div>
   </div>

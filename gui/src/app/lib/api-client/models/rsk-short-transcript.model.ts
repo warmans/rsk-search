@@ -6,6 +6,7 @@ import {
 export interface RskShortTranscript {
   actors?: string[];
   audioUri?: string;
+  bestof?: boolean;
   episode?: number;
   id?: string;
   incomplete?: boolean;

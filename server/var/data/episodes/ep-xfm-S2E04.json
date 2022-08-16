@@ -3,9 +3,10 @@
     "series": 2,
     "episode": 4,
     "name": "",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "release_date": "2002-09-14T00:00:00Z",
-    "incomplete": false,
+    "incomplete": true,
+    "bestof": true,
     "offset_accuracy": 6,
     "metadata": {
       "duration_ms": "3555135",
@@ -44,7 +45,7 @@
       {
         "id": "ep-xfm-S2E04-2",
         "pos": 2,
-        "offset_sec": 1035,
+        "offset_sec": 1018,
         "offset_inferred": true,
         "type": "unknown",
         "actor": "",
@@ -55,7 +56,7 @@
       {
         "id": "ep-xfm-S2E04-3",
         "pos": 3,
-        "offset_sec": 1107,
+        "offset_sec": 1089,
         "offset_inferred": true,
         "type": "chat",
         "actor": "classic link",
@@ -66,7 +67,7 @@
       {
         "id": "ep-xfm-S2E04-4",
         "pos": 4,
-        "offset_sec": 1198,
+        "offset_sec": 1179,
         "offset_inferred": true,
         "type": "song",
         "actor": "",
@@ -82,7 +83,7 @@
       {
         "id": "ep-xfm-S2E04-5",
         "pos": 5,
-        "offset_sec": 1198,
+        "offset_sec": 1179,
         "offset_inferred": true,
         "type": "chat",
         "actor": "classic link",
@@ -93,7 +94,7 @@
       {
         "id": "ep-xfm-S2E04-6",
         "pos": 6,
-        "offset_sec": 1278,
+        "offset_sec": 1257,
         "offset_inferred": true,
         "type": "song",
         "actor": "",
@@ -104,7 +105,7 @@
       {
         "id": "ep-xfm-S2E04-7",
         "pos": 7,
-        "offset_sec": 1278,
+        "offset_sec": 1257,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -115,7 +116,7 @@
       {
         "id": "ep-xfm-S2E04-8",
         "pos": 8,
-        "offset_sec": 1946,
+        "offset_sec": 1915,
         "offset_inferred": true,
         "type": "unknown",
         "actor": "",
@@ -126,7 +127,7 @@
       {
         "id": "ep-xfm-S2E04-9",
         "pos": 9,
-        "offset_sec": 2019,
+        "offset_sec": 1986,
         "offset_inferred": true,
         "type": "chat",
         "actor": "classic link",
@@ -137,7 +138,7 @@
       {
         "id": "ep-xfm-S2E04-10",
         "pos": 10,
-        "offset_sec": 2093,
+        "offset_sec": 2060,
         "offset_inferred": true,
         "type": "song",
         "actor": "",
@@ -152,7 +153,7 @@
       {
         "id": "ep-xfm-S2E04-11",
         "pos": 11,
-        "offset_sec": 2093,
+        "offset_sec": 2060,
         "offset_inferred": true,
         "type": "chat",
         "actor": "classic link",
@@ -163,7 +164,7 @@
       {
         "id": "ep-xfm-S2E04-12",
         "pos": 12,
-        "offset_sec": 2168,
+        "offset_sec": 2133,
         "offset_inferred": true,
         "type": "song",
         "actor": "",
@@ -179,7 +180,7 @@
       {
         "id": "ep-xfm-S2E04-13",
         "pos": 13,
-        "offset_sec": 2168,
+        "offset_sec": 2133,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -190,7 +191,7 @@
       {
         "id": "ep-xfm-S2E04-14",
         "pos": 14,
-        "offset_sec": 2584,
+        "offset_sec": 2542,
         "offset_inferred": true,
         "type": "unknown",
         "actor": "",
@@ -201,7 +202,7 @@
       {
         "id": "ep-xfm-S2E04-15",
         "pos": 15,
-        "offset_sec": 2656,
+        "offset_sec": 2613,
         "offset_inferred": true,
         "type": "chat",
         "actor": "classic link",
@@ -212,7 +213,7 @@
       {
         "id": "ep-xfm-S2E04-16",
         "pos": 16,
-        "offset_sec": 2694,
+        "offset_sec": 2651,
         "offset_inferred": true,
         "type": "song",
         "actor": "",
@@ -228,7 +229,7 @@
       {
         "id": "ep-xfm-S2E04-17",
         "pos": 17,
-        "offset_sec": 2694,
+        "offset_sec": 2651,
         "offset_inferred": true,
         "type": "chat",
         "actor": "classic link",
@@ -239,7 +240,7 @@
       {
         "id": "ep-xfm-S2E04-18",
         "pos": 18,
-        "offset_sec": 2776,
+        "offset_sec": 2732,
         "offset_inferred": true,
         "type": "song",
         "actor": "",
@@ -255,7 +256,7 @@
       {
         "id": "ep-xfm-S2E04-19",
         "pos": 19,
-        "offset_sec": 2776,
+        "offset_sec": 2732,
         "offset_inferred": true,
         "type": "chat",
         "actor": "classic link",
@@ -266,7 +267,7 @@
       {
         "id": "ep-xfm-S2E04-20",
         "pos": 20,
-        "offset_sec": 2856,
+        "offset_sec": 2810,
         "offset_inferred": true,
         "type": "song",
         "actor": "",
@@ -282,7 +283,7 @@
       {
         "id": "ep-xfm-S2E04-21",
         "pos": 21,
-        "offset_sec": 2856,
+        "offset_sec": 2810,
         "offset_inferred": true,
         "type": "chat",
         "actor": "classic link",
@@ -293,7 +294,7 @@
       {
         "id": "ep-xfm-S2E04-22",
         "pos": 22,
-        "offset_sec": 2935,
+        "offset_sec": 2888,
         "offset_inferred": true,
         "type": "song",
         "actor": "",
@@ -309,7 +310,7 @@
       {
         "id": "ep-xfm-S2E04-23",
         "pos": 23,
-        "offset_sec": 2935,
+        "offset_sec": 2888,
         "offset_inferred": true,
         "type": "song",
         "actor": "",
@@ -325,7 +326,7 @@
       {
         "id": "ep-xfm-S2E04-24",
         "pos": 24,
-        "offset_sec": 2935,
+        "offset_sec": 2888,
         "offset_inferred": true,
         "type": "chat",
         "actor": "classic link",
@@ -336,7 +337,7 @@
       {
         "id": "ep-xfm-S2E04-25",
         "pos": 25,
-        "offset_sec": 3014,
+        "offset_sec": 2966,
         "offset_inferred": true,
         "type": "chat",
         "actor": "classic link",
@@ -347,7 +348,7 @@
       {
         "id": "ep-xfm-S2E04-26",
         "pos": 26,
-        "offset_sec": 3036,
+        "offset_sec": 2987,
         "offset_inferred": true,
         "type": "song",
         "actor": "",
@@ -363,7 +364,7 @@
       {
         "id": "ep-xfm-S2E04-27",
         "pos": 27,
-        "offset_sec": 3036,
+        "offset_sec": 2987,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -374,7 +375,7 @@
       {
         "id": "ep-xfm-S2E04-28",
         "pos": 28,
-        "offset_sec": 3450,
+        "offset_sec": 3395,
         "offset_inferred": true,
         "type": "chat",
         "actor": "classic link",
@@ -385,7 +386,7 @@
       {
         "id": "ep-xfm-S2E04-29",
         "pos": 29,
-        "offset_sec": 3510,
+        "offset_sec": 3454,
         "offset_inferred": true,
         "type": "song",
         "actor": "",
@@ -401,7 +402,7 @@
       {
         "id": "ep-xfm-S2E04-30",
         "pos": 30,
-        "offset_sec": 3510,
+        "offset_sec": 3454,
         "offset_inferred": true,
         "type": "chat",
         "actor": "classic link",
@@ -412,7 +413,7 @@
       {
         "id": "ep-xfm-S2E04-31",
         "pos": 31,
-        "offset_sec": 3556,
+        "offset_sec": 3499,
         "offset_inferred": true,
         "type": "song",
         "actor": "",
@@ -423,6 +424,17 @@
           "spotify_uri": "spotify:track:6fBy4h0spon7gkmZroCRmR"
         },
         "content": "Bruce Springsteen - Darkness On The Edge Of Town",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E04-32",
+        "pos": 32,
+        "offset_sec": 3499,
+        "offset_inferred": true,
+        "type": "gap",
+        "actor": "",
+        "metadata": null,
+        "content": "Various missing content.",
         "notable": false
       }
     ],

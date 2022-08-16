@@ -2195,6 +2195,9 @@
             "additionalProperties": {
               "type": "string"
             }
+          },
+          "bestof": {
+            "type": "boolean"
           }
         }
       },
@@ -2321,6 +2324,9 @@
           },
           "version": {
             "type": "string"
+          },
+          "bestof": {
+            "type": "boolean"
           }
         }
       },

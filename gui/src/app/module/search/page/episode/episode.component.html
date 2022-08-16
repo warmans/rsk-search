@@ -33,7 +33,7 @@
                 </tr>
                 <tr>
                   <th style="width: 200px">Broadcast</th>
-                  <td>{{episode.releaseDate}}</td>
+                  <td>{{episode.releaseDate | date}}</td>
                 </tr>
                 <tr>
                   <th>Transcript Data</th>
@@ -44,6 +44,12 @@
                 <tr>
                   <th>Presenters</th>
                   <td>{{episode.actors.join(', ')}}</td>
+                </tr>
+                <tr>
+                  <th>Tags</th>
+                  <td>
+                    <span *ngIf="episode.bestof" class="badge badge-secondary">Bestof</span>
+                  </td>
                 </tr>
                 <tr>
                   <th>Transcribers</th>
