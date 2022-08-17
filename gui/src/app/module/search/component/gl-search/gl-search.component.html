@@ -32,7 +32,7 @@
                 <div class="btn btn-sm" (click)="showSettings = true"><i class="bi bi-sliders"></i></div>
               </div>
             </div>
-            <div class="autocomplete-dropdown p-2" *ngIf="(autoCompleteValues || []).length > 0 && showAutoCompleteDropdown && settingsForm.get('autoComplete').value">
+            <div class="autocomplete-dropdown p-2 animate__animated animate__fadeIn animate__faster" *ngIf="(autoCompleteValues || []).length > 0 && showAutoCompleteDropdown && settingsForm.get('autoComplete').value">
               <div class="line"
                    *ngFor="let line of highlightedAutocompleteVals; let idx = index"
                    [ngClass]="{'active': idx === selectedAutoCompleteRow}"

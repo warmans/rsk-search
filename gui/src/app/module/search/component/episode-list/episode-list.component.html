@@ -7,16 +7,15 @@
   <div class="card-header d-flex justify-content-between align-items-center">
     <div class="w-100 d-flex justify-content-between">
       <div class="flex-grow-1 mr-2">
-        <!--app-filterbar [config]="filterBarConfig"></app-filterbar-->
-        <input class="form-control themed" placeholder="Quick find episode by ID/name..." [formControl]="searchInput"/>
+        <input class="form-control" placeholder="Quick find episode by ID/name..." [formControl]="searchInput"/>
       </div>
-      <button class="btn btn-sm btn-secondary mr-1" (click)="showDownloadDialog = !showDownloadDialog">
+      <button class="btn btn-sm btn-link mr-1" (click)="showDownloadDialog = !showDownloadDialog">
         <i class="bi-cloud-download mr-2"></i> Download archive
       </button>
     </div>
   </div>
   <div class="card-body">
-    <div *ngFor="let ep of filteredTranscriptList" class="mb-2 episode-container">
+    <div *ngFor="let ep of filteredTranscriptList" class="mb-2 episode-container animate__animated animate__fadeIn animate__faster">
       <app-episode-summary [episode]="ep"></app-episode-summary>
     </div>
   </div>

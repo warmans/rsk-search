@@ -14,7 +14,7 @@ export class RootComponent implements OnInit, OnDestroy {
 
   loggedInUser: Claims;
 
-  darkTheme: boolean = false;
+  darkTheme: boolean = true;
 
   destory$: EventEmitter<boolean> = new EventEmitter<boolean>();
 

@@ -33,7 +33,7 @@
               <div class="font-weight-bold">
                 {{ a.author.name }}
               </div>
-              <div class="text-muted">
+              <div class="font-weight-light">
                 <span title="Rank unlocked at {{a.currentRank.points}} points, next rank at {{a.nextRank.points}}">{{a.currentRank.name}}</span>
               </div>
             </div>
@@ -45,9 +45,12 @@
         <td>{{ a.points | number }}</td>
         <td>
           <div class="progress mb-1 mr-3">
-            <div class="progress-bar"  [style.width]="((((a.nextRank.points - a.currentRank.points)-(a.nextRank.points - a.points)) / (a.nextRank.points - a.currentRank.points)) * 100)+'%'"></div>
+            <div
+              class="progress-bar"
+              [style.width]="((((a.nextRank.points - a.currentRank.points)-(a.nextRank.points - a.points)) / (a.nextRank.points - a.currentRank.points)) * 100)+'%'">
+            </div>
           </div>
-          <div class="text-muted">
+          <div class="font-weight-light">
             {{ a.nextRank.points - a.points | number }} point(s) until next rank
           </div>
         </td>

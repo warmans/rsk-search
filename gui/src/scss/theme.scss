@@ -2,26 +2,38 @@ $themes: (
   dark-theme: (
     'text-color': #f7f7ff,
     'bg-color': #17191F,
-    'fg-body': #343A40,
+    'fg-body': #2f343a,
     'fg-body-darker': #2A2E33,
-    'fg-body-lighter': lighten(#343A40, 10%),
-    'fg-border': darken(#343A40, 5%),
     'progress-bg': #17191F,
     'navbar-bg': #343A40,
     'code-bg': #17191F,
     'hover-highlight': rgba(255, 255, 255, 0.2),
+
+    // stop calling vars "lighter/darker" as it doesn't always apply for each theme.
+    'header-block-bg': #2A2E33,
+    'header-block-border': darken(#2A2E33, 5%),
+    'header-block-text': #f7f7ff,
+
+    'body-block-border': #292d32,
+    'body-block-standout': lighten(#343A40, 10%),
   ),
   light-theme: (
     'text-color': #333333,
     'bg-color': #f6f6f6,
     'fg-body': #fff,
     'fg-body-darker': #F7F7F7,
-    'fg-body-lighter': lighten(#F7F7F7, 10%),
-    'fg-border': #dee2e6,
     'progress-bg': #e9ecef,
     'navbar-bg': #f8f9fa,
     'code-bg': #d9d9d9,
     'hover-highlight': transparentize(#E15132, 0.2),
+
+    // stop calling vars "lighter/darker" as it doesn't always apply for each theme.
+    'header-block-bg': #F7F7F7,
+    'header-block-border': #dee2e6,
+    'header-block-text': #333333,
+
+    'body-block-border': #dee2e6,
+    'body-block-standout': darken(#F7F7F7, 2%),
   )
 );
 

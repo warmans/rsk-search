@@ -6,7 +6,7 @@
   </div>
   <div class="row">
     <div class="col">
-      <div *ngFor="let res of result?.results" class="result card mb-3">
+      <div *ngFor="let res of result?.results" class="result card mb-3 animate__animated animate__fadeIn animate__faster">
         <div class="card-header font-weight-bold">
           <a [routerLink]="['/ep', res?.episode?.id]" [fragment]="res?.dialogs[0]?.transcript | matchedRowPos">
             {{ res.episode?.id }}
