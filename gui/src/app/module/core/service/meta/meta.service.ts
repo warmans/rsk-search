@@ -12,9 +12,7 @@ export class MetaService {
   private cache: RskMetadata;
 
   constructor(private apiClient: SearchAPIClient) {
-    this.apiClient.getMetadata().pipe(first()).subscribe((v: RskMetadata) => {
-      this.cache = v;
-    });
+
   }
 
   getMeta(): Observable<RskMetadata> {

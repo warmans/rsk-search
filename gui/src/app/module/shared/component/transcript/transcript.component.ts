@@ -1,5 +1,5 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { RskDialog, RskSynopsis } from '../../../../lib/api-client/models';
+import { RskDialog, RskSynopsis, RskTranscript } from '../../../../lib/api-client/models';
 import { ViewportScroller } from '@angular/common';
 import { parseTranscript, Tscript } from '../../lib/tscript';
 
@@ -19,7 +19,10 @@ interface DialogGroup {
 export class TranscriptComponent implements OnInit, AfterViewInit {
 
   @Input()
-  set transcript(value: Tscript) {
+  epid: string;
+
+  @Input()
+  set transcript(value: Tscript|RskTranscript) {
     if (!value) {
       return;
     }
@@ -27,11 +30,11 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
     this.preProcessTranscript(value);
   }
 
-  get transcript(): Tscript {
+  get transcript(): Tscript|RskTranscript {
     return this._transcript;
   }
 
-  private _transcript: Tscript;
+  private _transcript: Tscript|RskTranscript;
 
   @Input()
   set rawTranscript(value: string) {
@@ -48,7 +51,7 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
   groupedDialog: DialogGroup[];
 
   lineInSynopsisMap: { [index: number]: boolean } = {};
-  synopsisTitlePos: { [index: number]: string } = {};
+  synopsisPos: { [index: number]: RskSynopsis } = {};
 
   @Input()
   set scrollToID(value: string | null) {
@@ -88,6 +91,18 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
 
   @Input()
   enableLineLinking: boolean = false;
+
+  @Input()
+  enableAudioLinks: boolean = true;
+
+  @Input()
+  enableShareLinks: boolean = true;
+
+  @Input()
+  startLine: number;
+
+  @Input()
+  endLine: number;
 
   @Output()
   emitAudioTimestamp: EventEmitter<number> = new EventEmitter();
@@ -152,22 +167,23 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
     this.scrollToPosEnd = undefined;
   }
 
-  emitTimestamp(ts: number) {
-    if (ts == 0) {
+  emitTimestamp(ts: string) {
+    const tsInt  =parseInt(ts) ;
+    if (!tsInt) {
       return;
     }
-    this.emitAudioTimestamp.next(ts);
+    this.emitAudioTimestamp.next(tsInt);
   }
 
-  preProcessTranscript(value: Tscript) {
+  preProcessTranscript(episode: Tscript|RskTranscript) {
 
-    if (!value) {
+    if (!episode) {
       return;
     }
 
-    this.synopsisTitlePos = {};
+    this.synopsisPos = {};
     (this.transcript?.synopses || []).forEach((s) => {
-      this.synopsisTitlePos[s.startPos] = s.description;
+      this.synopsisPos[s.startPos] = s;
     });
 
     this.lineInSynopsisMap = {};
@@ -178,32 +194,32 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
       endPos: undefined,
       tscript: { synopses: [], trivia: [], transcript: [] }
     };
-    for (let i = 0; i < value?.transcript.length; i++) {
+    for (let i = (this.startLine || 0); i < (this.endLine && this.endLine < episode?.transcript.length ? this.endLine : episode?.transcript.length); i++) {
 
-      if (parseInt(value.transcript[i].offsetSec) > 0) {
+      if (parseInt(episode.transcript[i].offsetSec) > 0) {
         this.audioOffsetsAvailable = true;
       }
 
-      this.lineInSynopsisMap[value.transcript[i].pos] = !!(value?.synopses || []).find((s: RskSynopsis) => value.transcript[i].pos >= s.startPos && i < s.endPos);
+      this.lineInSynopsisMap[episode.transcript[i].pos] = !!(episode?.synopses || []).find((s: RskSynopsis) => episode.transcript[i].pos >= s.startPos && i < s.endPos);
 
-      currentGroup.tscript.transcript.push(value.transcript[i]);
+      currentGroup.tscript.transcript.push(episode.transcript[i]);
 
-      const foundIntersectingTrivia = (value?.trivia || []).find((s: RskSynopsis) => value.transcript[i].pos === s.startPos - 1 || value.transcript[i].pos === s.endPos);
+      const foundIntersectingTrivia = (episode?.trivia || []).find((s: RskSynopsis) => episode.transcript[i].pos === s.startPos - 1 || episode.transcript[i].pos === s.endPos);
       if (foundIntersectingTrivia) {
-        if (value.transcript[i].pos === foundIntersectingTrivia.startPos - 1) {
-          currentGroup.endPos = value.transcript[i].pos;
+        if (episode.transcript[i].pos === foundIntersectingTrivia.startPos - 1) {
+          currentGroup.endPos = episode.transcript[i].pos;
           this.groupedDialog.push(currentGroup);
           currentGroup = {
-            startPos: value.transcript[i].pos,
+            startPos: episode.transcript[i].pos,
             endPos: undefined,
             tscript: { synopses: [], trivia: [foundIntersectingTrivia], transcript: [] }
           };
         }
-        if (value.transcript[i].pos === foundIntersectingTrivia.endPos) {
-          currentGroup.endPos = value.transcript[i].pos;
+        if (episode.transcript[i].pos === foundIntersectingTrivia.endPos) {
+          currentGroup.endPos = episode.transcript[i].pos;
           this.groupedDialog.push(currentGroup);
           currentGroup = {
-            startPos: value.transcript[i].pos,
+            startPos: episode.transcript[i].pos,
             endPos: undefined,
             tscript: { synopses: [], trivia: [], transcript: [] }
           };
@@ -211,7 +227,7 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
       }
     }
     if (currentGroup.endPos === undefined) {
-      currentGroup.endPos = value.transcript.length;
+      currentGroup.endPos =  episode.transcript[episode.transcript.length-1].pos;
       this.groupedDialog.push(currentGroup);
     }
   }

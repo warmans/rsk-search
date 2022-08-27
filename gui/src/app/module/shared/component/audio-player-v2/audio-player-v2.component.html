@@ -10,7 +10,7 @@
       <span *ngIf="audioStatus?.state === states.loading">(loading...)</span>
     </div>
     <div>
-      <input style="width: 100%" type="range" [min]="0" [max]="this.audioStatus.totalTime" [formControl]="playerProgressControl">
+      <input style="width: 100%" type="range" [min]="audioStatus.startSecond || 0" [max]="audioStatus.endSecond || audioStatus.totalTime" [formControl]="playerProgressControl">
     </div>
     <div class="d-flex justify-content-between">
       <div *ngIf="audioStatus.state === states.ended">End</div>
@@ -18,14 +18,14 @@
         <a *ngIf="audioStatus.audioName && !audioStatus.standalone" [routerLink]="['/ep', 'ep-'+audioStatus.audioName]" [fragment]="'sec-'+audioStatus.currentTime">{{audioStatus?.currentTime | formatSeconds}}</a>
         <span *ngIf="audioStatus.audioName && audioStatus.standalone">{{audioStatus?.currentTime | formatSeconds}}</span>
       </div>
-      <div>{{audioStatus?.totalTime | formatSeconds}}</div>
+      <div>{{audioStatus.endSecond || audioStatus?.totalTime | formatSeconds}}</div>
     </div>
   </div>
   <div class="volume p-2 d-flex align-items-center">
     <i class="bi bi-volume-up mr-1"></i>
     <input type="range" min="0" max="100" [formControl]="volumeControl">
   </div>
-  <div class="exit d-flex align-items-center px-3" *ngIf="!audioStatus.standalone">
+  <div class="exit d-flex align-items-center px-3" *ngIf="!audioStatus.standalone && showCloseControl">
     <div class="clickable p-1 close" (click)="closeAudio()">&times;</div>
   </div>
 </div>

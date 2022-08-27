@@ -11,6 +11,7 @@ import { SharedModule } from '../module/shared/shared.module';
 import { RewardModule } from '../module/reward/reward.module';
 import { ContribModule } from '../module/contrib/contrib.module';
 import { AdminModule } from '../module/admin/admin.module';
+import { EmbedModule } from '../module/embed/embed.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { AdminModule } from '../module/admin/admin.module';
     RewardModule,
     ContribModule,
     AdminModule,
+    EmbedModule,
   ],
   providers: [Title],
   bootstrap: [RootComponent]

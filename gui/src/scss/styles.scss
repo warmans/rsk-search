@@ -273,7 +273,7 @@ pre {
 }
 
 // how to use theme-get in the actual component?!
-.player {
+.player-fixed {
   @include theme() {
     color: theme-get('text-color');
     background-color: theme-get('fg-body-darker');

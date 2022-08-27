@@ -27,6 +27,7 @@ import { MarkdownComponent } from './component/markdown/markdown.component';
 import { AudioPlayerV2Component } from './component/audio-player-v2/audio-player-v2.component';
 import { BarComponent } from './component/filterbar/bar/bar.component';
 import { ValueListComponent } from './component/filterbar/value-list/value-list.component';
+import { AudioPlayerFixedComponent } from './component/audio-player-fixed/audio-player-fixed.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { ValueListComponent } from './component/filterbar/value-list/value-list.
     AudioPlayerV2Component,
     BarComponent,
     ValueListComponent,
+    AudioPlayerFixedComponent,
   ],
   imports: [
     CommonModule,
@@ -62,31 +64,32 @@ import { ValueListComponent } from './component/filterbar/value-list/value-list.
     ReactiveFormsModule,
   ],
   providers: [],
-  exports: [
-    FormErrorsComponent,
-    AlertComponent,
-    DropdownComponent,
-    LoadingOverlayComponent,
-    SafeUrlPipe,
-    FormatSecondsPipe,
-    TranscriptComponent,
-    AudioPlayerComponent,
-    SynopsesComponent,
-    TriviaComponent,
-    WebhidDeviceComponent,
-    WebusbDeviceComponent,
-    ContributionStateComponent,
-    RedditLoginComponent,
-    EditorComponent,
-    EditorConfigComponent,
-    EditorHelpComponent,
-    TranscriberComponent,
-    ClaimedRewardsComponent,
-    MarkdownComponent,
-    AudioPlayerV2Component,
-    BarComponent,
-    ValueListComponent,
-  ]
+    exports: [
+        FormErrorsComponent,
+        AlertComponent,
+        DropdownComponent,
+        LoadingOverlayComponent,
+        SafeUrlPipe,
+        FormatSecondsPipe,
+        TranscriptComponent,
+        AudioPlayerComponent,
+        SynopsesComponent,
+        TriviaComponent,
+        WebhidDeviceComponent,
+        WebusbDeviceComponent,
+        ContributionStateComponent,
+        RedditLoginComponent,
+        EditorComponent,
+        EditorConfigComponent,
+        EditorHelpComponent,
+        TranscriberComponent,
+        ClaimedRewardsComponent,
+        MarkdownComponent,
+        AudioPlayerV2Component,
+        BarComponent,
+        ValueListComponent,
+        AudioPlayerFixedComponent,
+    ]
 })
 export class SharedModule {
 }

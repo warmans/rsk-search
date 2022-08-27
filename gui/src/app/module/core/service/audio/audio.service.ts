@@ -10,6 +10,10 @@ export interface Status {
   totalTime: number;
   percentElapsed: number;
   percentLoaded: number;
+
+  // play only a section of the audio.
+  startSecond?: number;
+  endSecond?: number;
 }
 
 export interface TimeStatus {
@@ -22,6 +26,10 @@ export interface FileStatus {
   audioName: string;
   audioFile: string;
   standalone: boolean;
+
+  // play only a section of the audio.
+  startSecond?: number;
+  endSecond?: number;
 }
 
 export enum PlayerState {
@@ -81,6 +89,8 @@ export class AudioService {
         totalTime: timeState.totalTime,
         percentElapsed: timeState.percentElapsed,
         percentLoaded: pcntLoaded,
+        startSecond: file.startSecond,
+        endSecond: file.endSecond,
       };
       this.statusSub.next(status);
 
@@ -140,13 +150,13 @@ export class AudioService {
     this.clearPersistentPlayerState();
   }
 
-  public setAudioSrc(name: string | null, src: string, standalone?: boolean): void {
+  public setAudioSrc(name: string | null, src: string, standalone?: boolean, startSecond?: number, endSecond?: number): void {
     this.pauseAudio();
 
     this.audioName = name;
-    this.audio.src = src;
+    this.audio.src = src + ((startSecond || endSecond) ? `#t=${startSecond},${endSecond}` : ``);
     this.standaloneMode = standalone;
-    this.audioSourceSub.next({ audioFile: src, audioName: name, standalone: standalone });
+    this.audioSourceSub.next({ audioFile: src, audioName: name, standalone: standalone, startSecond: startSecond, endSecond: endSecond });
   }
 
   public playAudio(withOffset?: number): void {

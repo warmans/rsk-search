@@ -12,8 +12,13 @@ import { EpisodeChunkSubmit } from '../module/contrib/page/episode-chunk-submit/
 import { ChangelogComponent } from '../module/search/page/changelog/changelog.component';
 import { ImportComponent } from '../module/admin/page/import/import.component';
 import { CanActivateAdmin } from '../module/admin/can-activate-admin';
+import { TranscriptSectionComponent } from '../module/embed/page/transcript-section/transcript-section.component';
 
 const routes: Routes = [
+  {
+    path: 'embed',
+    component: TranscriptSectionComponent,
+  },
   {
     path: 'search',
     component: SearchComponent,

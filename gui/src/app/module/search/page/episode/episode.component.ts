@@ -51,7 +51,6 @@ export class EpisodeComponent implements OnInit, OnDestroy {
 
   unsubscribe$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-
   constructor(
     private route: ActivatedRoute,
     private apiClient: SearchAPIClient,
@@ -61,10 +60,10 @@ export class EpisodeComponent implements OnInit, OnDestroy {
     private meta: MetaService,
     private audioService: AudioService,
   ) {
-    route.paramMap.subscribe((d: Data) => {
+    route.paramMap.pipe(takeUntil(this.unsubscribe$)).subscribe((d: Data) => {
       this.loadEpisode(d.params['id']);
     });
-    route.fragment.subscribe((f) => {
+    route.fragment.pipe(takeUntil(this.unsubscribe$)).subscribe((f) => {
       if (!f) {
         return;
       }
@@ -92,7 +91,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
 
     this.id = id;
     this.shortID = id.replace(/ep\-/, '');
-    this.audioLink = `https://storage.googleapis.com/scrimpton-raw-audio/${this.shortID}.mp3`;
+
 
     this.loading = true;
     this.error = undefined;
@@ -104,6 +103,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
         this.titleService.setTitle(ep.id);
         this.transcribers = ep.contributors.join(', ');
         this.episodeImage = ep.metadata["cover_art_url"] ? ep.metadata["cover_art_url"] : `/assets/cover/${ep.publication}-s${ep.series}.jpg`
+        this.audioLink = ep.audioUri;
 
         ep.transcript.forEach((r: RskDialog) => {
           if (r.notable) {

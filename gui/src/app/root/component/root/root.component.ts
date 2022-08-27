@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Renderer2 } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Claims, SessionService } from '../../../module/core/service/session/session.service';
 import { takeUntil } from 'rxjs/operators';
 import { SearchAPIClient } from '../../../lib/api-client/services/search';
@@ -12,6 +12,8 @@ import { RskPrediction, RskSearchTermPredictions } from '../../../lib/api-client
 })
 export class RootComponent implements OnInit, OnDestroy {
 
+  embedMode: boolean;
+
   loggedInUser: Claims;
 
   darkTheme: boolean = true;
@@ -20,12 +22,23 @@ export class RootComponent implements OnInit, OnDestroy {
 
   searchPredictions: RskPrediction[] = [];
 
-  constructor(private renderer: Renderer2, private router: Router, private session: SessionService, private apiClient: SearchAPIClient) {
+  constructor(
+    private renderer: Renderer2,
+    private router: Router,
+    private route: ActivatedRoute,
+    private session: SessionService,
+    private apiClient: SearchAPIClient,
+  ) {
     session.onTokenChange.pipe(takeUntil(this.destory$)).subscribe((token) => {
       if (token) {
         this.loggedInUser = this.session.getClaims();
       } else {
         this.loggedInUser = undefined;
+      }
+    });
+    this.router.events.pipe(takeUntil(this.destory$)).subscribe((event) => {
+      if(event instanceof NavigationEnd) {
+        this.embedMode = event.url.startsWith("/embed")
       }
     });
   }

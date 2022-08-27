@@ -2,8 +2,18 @@
   <div class="flex-grow-1">
 
     <div  *ngFor="let line of group?.tscript?.transcript">
-      <div class="line d-flex mb-2 p-2 section-title pt-3 pb-3"  *ngIf="synopsisTitlePos[line.pos]">
-        <strong><i class="bi bi-card-list mr-1"></i>{{synopsisTitlePos[line.pos]}}</strong>
+      <div class="line d-flex mb-2 p-2 section-title pt-3 pb-3"  *ngIf="synopsisPos[line.pos]?.description">
+        <strong><i class="bi bi-card-list mr-2"></i>{{synopsisPos[line.pos].description}}</strong>
+        <a
+          *ngIf="epid && enableShareLinks"
+          class="ml-3"
+          [routerLink]="['/embed']"
+          [queryParams]="{
+            epid: epid,
+            start: synopsisPos[line.pos].startPos-1,
+            end: synopsisPos[line.pos].endPos-1
+          }"> <i class="bi bi-share"></i>
+        </a>
       </div>
       <div class="d-flex">
         <div
@@ -11,7 +21,7 @@
           [ngClass]="{'linked': lineInSynopsisMap[line.pos], 'no-linked': !lineInSynopsisMap[line.pos]}"
           class="linked-indicator px-2">
         </div>
-        <div *ngIf="audioOffsetsAvailable"
+        <div *ngIf="audioOffsetsAvailable && enableAudioLinks"
              class="text-sm timestamp mb-2 py-2 flex-shrink-0 d-flex flex-column justify-content-center" style="width: 4rem">
           <div
             title="Timestamps are inferred and may not be accurate. These can be improved using the corrections feature."

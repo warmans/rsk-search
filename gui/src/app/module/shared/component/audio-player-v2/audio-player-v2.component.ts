@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit } from '@angular/core';
 import { AudioService, PlayerState, Status } from '../../../core/service/audio/audio.service';
 import { FormControl } from '@angular/forms';
 import { takeUntil } from 'rxjs/operators';
@@ -9,6 +9,9 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./audio-player-v2.component.scss']
 })
 export class AudioPlayerV2Component implements OnInit, OnDestroy {
+
+  @Input()
+  showCloseControl: boolean = true;
 
   audioStatus: Status;
 

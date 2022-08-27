@@ -1,44 +1,50 @@
-<nav class="navbar navbar-light bg-light">
-  <div class="d-flex w-100">
-    <div class="mr-3">
-      <a [routerLink]="['/search']"><img src="/assets/android-chrome-192x192.png" style="height: 3rem"/></a>
+<ng-container *ngIf="embedMode === true">
+  <router-outlet></router-outlet>
+</ng-container>
+
+<ng-container *ngIf="embedMode === false">
+  <nav class="navbar navbar-light bg-light">
+    <div class="d-flex w-100">
+      <div class="mr-3">
+        <a [routerLink]="['/search']"><img src="/assets/android-chrome-192x192.png" style="height: 3rem"/></a>
+      </div>
+      <div class="flex-grow-1">
+        <app-gl-search (queryUpdated)="executeSearch($event)" (termUpdated)="predictTerms($event)" [autoCompleteValues]="searchPredictions"></app-gl-search>
+      </div>
+      <div class="ml-3 d-flex">
+        <button class="btn btn-transparent btn-lg mr-3" (click)="toggleDarkmode()" title="Toggle dark theme.">
+          <i class="bi-moon-fill" *ngIf="!darkTheme"></i>
+          <i class="bi-sun-fill" *ngIf="darkTheme"></i>
+        </button>
+        <a class="btn btn-info btn-lg" [routerLink]="['/me']" *ngIf="!loggedInUser?.identity?.icon_img">
+          <i class="bi-person"></i>
+        </a>
+        <a [routerLink]="['/me']" *ngIf="loggedInUser?.identity?.icon_img" >
+          <div
+            class="user-icon"
+            style=" width: 3rem; height: 3rem; background-image: url({{ loggedInUser?.identity?.icon_img }})">
+          </div>
+        </a>
+      </div>
     </div>
-    <div class="flex-grow-1">
-      <app-gl-search (queryUpdated)="executeSearch($event)" (termUpdated)="predictTerms($event)" [autoCompleteValues]="searchPredictions"></app-gl-search>
+  </nav>
+
+  <app-alert></app-alert>
+
+  <router-outlet></router-outlet>
+
+  <app-audio-player-fixed></app-audio-player-fixed>
+
+  <app-pending-rewards></app-pending-rewards>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="text-center text-muted mt-4 p-2">
+        <a href="https://www.buymeacoffee.com/scrimptonsite" target="_blank">Donate</a> |
+        <a href="https://github.com/warmans/rsk-search/issues" target="_blank">Report a Bug</a> or
+        <a href="https://github.com/warmans/rsk-search/pulls" target="_blank">Contribute Code</a> |
+        Illustrations by <a href="https://icons8.com/illustrations/author/5ec7b0e101d0360016f3d1b3" target="_blank">Pixeltrue</a> from <a target="_blank" href="https://icons8.com/illustrations">Ouch!</a>
+      </div>
     </div>
-    <div class="ml-3 d-flex">
-      <button class="btn btn-transparent btn-lg mr-3" (click)="toggleDarkmode()" title="Toggle dark theme.">
-        <i class="bi-moon-fill" *ngIf="!darkTheme"></i>
-        <i class="bi-sun-fill" *ngIf="darkTheme"></i>
-      </button>
-      <a class="btn btn-info btn-lg" [routerLink]="['/me']" *ngIf="!loggedInUser?.identity?.icon_img">
-        <i class="bi-person"></i>
-      </a>
-      <a [routerLink]="['/me']" *ngIf="loggedInUser?.identity?.icon_img" >
-        <div
-          class="user-icon"
-          style=" width: 3rem; height: 3rem; background-image: url({{ loggedInUser?.identity?.icon_img }})">
-        </div>
-      </a>
-    </div>
-  </div>
-</nav>
-
-<app-alert></app-alert>
-
-<router-outlet></router-outlet>
-
-<app-audio-player-v2></app-audio-player-v2>
-
-<app-pending-rewards></app-pending-rewards>
-
-<footer class="footer">
-  <div class="container">
-    <div class="text-center text-muted mt-4 p-2">
-      <a href="https://www.buymeacoffee.com/scrimptonsite" target="_blank">Donate</a> |
-      <a href="https://github.com/warmans/rsk-search/issues" target="_blank">Report a Bug</a> or
-      <a href="https://github.com/warmans/rsk-search/pulls" target="_blank">Contribute Code</a> |
-      Illustrations by <a href="https://icons8.com/illustrations/author/5ec7b0e101d0360016f3d1b3" target="_blank">Pixeltrue</a> from <a target="_blank" href="https://icons8.com/illustrations">Ouch!</a>
-    </div>
-  </div>
-</footer>
+  </footer>
+</ng-container>
