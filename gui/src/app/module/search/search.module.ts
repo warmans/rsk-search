@@ -16,6 +16,7 @@ import { EpisodeListComponent } from './component/episode-list/episode-list.comp
 import { EpisodeSummaryComponent } from './component/episode-summary/episode-summary.component';
 import { ChangelogComponent } from './page/changelog/changelog.component';
 import { TimecodeAccuracyPipe } from './pipe/timecode-accuracy.pipe';
+import { EmbedModule } from '../embed/embed.module';
 
 @NgModule({
   declarations: [
@@ -31,15 +32,16 @@ import { TimecodeAccuracyPipe } from './pipe/timecode-accuracy.pipe';
     ChangelogComponent,
     TimecodeAccuracyPipe,
   ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    SharedModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgSelectModule,
-    NgChartsModule,
-  ],
+    imports: [
+        CommonModule,
+        RouterModule,
+        SharedModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgSelectModule,
+        NgChartsModule,
+        EmbedModule,
+    ],
   exports: [DslSearchComponent, GlSearchComponent]
 })
 export class SearchModule {

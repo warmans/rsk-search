@@ -92,7 +92,7 @@
 
 <div class="card" *ngIf="(activeTab==='preview')">
   <div class="card-body preview-window">
-    <app-transcript [rawTranscript]="getContentSnapshot() || initialTranscript" [searchResultMode]="false" [enableLineLinking]="true"></app-transcript>
+    <app-transcript [rawTranscript]="getContentSnapshot() || initialTranscript" [searchResultMode]="false" [enableLineLinking]="false"></app-transcript>
   </div>
 </div>
 

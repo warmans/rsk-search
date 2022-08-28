@@ -10,6 +10,7 @@ import { And, Eq, Neq } from '../../../../lib/filter-dsl/filter';
 import { Bool, Str } from '../../../../lib/filter-dsl/value';
 import { MetaService } from '../../../core/service/meta/meta.service';
 import { AudioService, PlayerState, Status } from '../../../core/service/audio/audio.service';
+import { ShareOpts } from '../../../shared/component/transcript/transcript.component';
 
 @Component({
   selector: 'app-episode',
@@ -24,8 +25,8 @@ export class EpisodeComponent implements OnInit, OnDestroy {
 
   shortID: string;
 
-  scrollToID: string|null = null;
-  scrollToSeconds: number|null = null;
+  scrollToID: string | null = null;
+  scrollToSeconds: number | null = null;
 
   episode: RskTranscript;
   episodeImage: string;
@@ -49,6 +50,9 @@ export class EpisodeComponent implements OnInit, OnDestroy {
 
   audioStates = PlayerState;
 
+  shareStart: number;
+  shareEnd: number;
+
   unsubscribe$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(
@@ -67,7 +71,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
       if (!f) {
         return;
       }
-      if (f.startsWith("pos-")) {
+      if (f.startsWith('pos-')) {
         this.scrollToID = f;
       }
       if (f.startsWith('sec-')) {
@@ -102,7 +106,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
         this.episode = ep;
         this.titleService.setTitle(ep.id);
         this.transcribers = ep.contributors.join(', ');
-        this.episodeImage = ep.metadata["cover_art_url"] ? ep.metadata["cover_art_url"] : `/assets/cover/${ep.publication}-s${ep.series}.jpg`
+        this.episodeImage = ep.metadata['cover_art_url'] ? ep.metadata['cover_art_url'] : `/assets/cover/${ep.publication}-s${ep.series}.jpg`;
         this.audioLink = ep.audioUri;
 
         ep.transcript.forEach((r: RskDialog) => {
@@ -162,5 +166,10 @@ export class EpisodeComponent implements OnInit, OnDestroy {
 
   pauseAudio() {
     this.audioService.pauseAudio();
+  }
+
+  onShare(opts: ShareOpts) {
+    this.shareStart = opts.startPos;
+    this.shareEnd = opts.endPos;
   }
 }

@@ -10,6 +10,12 @@ interface DialogGroup {
   tscript: Tscript;
 }
 
+export interface ShareOpts {
+  epid: string;
+  startPos: number;
+  endPos: number;
+}
+
 @Component({
   selector: 'app-transcript',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -22,7 +28,7 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
   epid: string;
 
   @Input()
-  set transcript(value: Tscript|RskTranscript) {
+  set transcript(value: Tscript | RskTranscript) {
     if (!value) {
       return;
     }
@@ -30,11 +36,11 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
     this.preProcessTranscript(value);
   }
 
-  get transcript(): Tscript|RskTranscript {
+  get transcript(): Tscript | RskTranscript {
     return this._transcript;
   }
 
-  private _transcript: Tscript|RskTranscript;
+  private _transcript: Tscript | RskTranscript;
 
   @Input()
   set rawTranscript(value: string) {
@@ -107,6 +113,9 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
   @Output()
   emitAudioTimestamp: EventEmitter<number> = new EventEmitter();
 
+  @Output()
+  emitShare: EventEmitter<ShareOpts> = new EventEmitter();
+
   audioOffsetsAvailable: boolean = false;
 
   actorClassMap = {
@@ -168,14 +177,14 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
   }
 
   emitTimestamp(ts: string) {
-    const tsInt  =parseInt(ts) ;
+    const tsInt = parseInt(ts);
     if (!tsInt) {
       return;
     }
     this.emitAudioTimestamp.next(tsInt);
   }
 
-  preProcessTranscript(episode: Tscript|RskTranscript) {
+  preProcessTranscript(episode: Tscript | RskTranscript) {
 
     if (!episode) {
       return;
@@ -227,8 +236,12 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
       }
     }
     if (currentGroup.endPos === undefined) {
-      currentGroup.endPos =  episode.transcript[episode.transcript.length-1].pos;
+      currentGroup.endPos = episode.transcript[episode.transcript.length - 1].pos;
       this.groupedDialog.push(currentGroup);
     }
+  }
+
+  emitShareOpts(startPos: number, endPos: number) {
+    this.emitShare.next({ epid: this.epid, startPos: startPos, endPos: endPos });
   }
 }

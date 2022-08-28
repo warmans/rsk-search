@@ -6,13 +6,9 @@
         <strong><i class="bi bi-card-list mr-2"></i>{{synopsisPos[line.pos].description}}</strong>
         <a
           *ngIf="epid && enableShareLinks"
-          class="ml-3"
-          [routerLink]="['/embed']"
-          [queryParams]="{
-            epid: epid,
-            start: synopsisPos[line.pos].startPos-1,
-            end: synopsisPos[line.pos].endPos-1
-          }"> <i class="bi bi-share"></i>
+          class="ml-3 clickable"
+          (click)="emitShareOpts(synopsisPos[line.pos].startPos-1, synopsisPos[line.pos].endPos-1)">
+            <i class="bi bi-share"></i>
         </a>
       </div>
       <div class="d-flex">

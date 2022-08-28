@@ -127,7 +127,9 @@
             [scrollToSeconds]="scrollToSeconds"
             [searchResultMode]="false"
             [enableLineLinking]="true"
-            (emitAudioTimestamp)="onAudioTimestamp($event)"></app-transcript>
+            [enableShareLinks]="!episode?.incomplete"
+            (emitAudioTimestamp)="onAudioTimestamp($event)"
+            (emitShare)="onShare($event)"></app-transcript>
           <div *ngIf="!episode?.transcript?.length" class="text-center p-4">No transcript available.</div>
         </div>
       </div>
@@ -153,3 +155,7 @@
 </div>
 
 <app-loading-overlay [loading]="loading"></app-loading-overlay>
+
+<ng-container *ngIf="episode && shareStart && shareEnd">
+  <app-preview-modal [epid]="episode?.id" [startPos]="shareStart" [endPos]="shareEnd"></app-preview-modal>
+</ng-container>
