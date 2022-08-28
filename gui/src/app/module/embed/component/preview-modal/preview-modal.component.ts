@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
 import { FormControl, FormGroup } from '@angular/forms';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
@@ -43,12 +43,14 @@ export class PreviewModalComponent implements OnInit, OnDestroy {
     return this.sharePropertiesForm.get('endPos').value;
   }
 
+  @Output()
+  closed: EventEmitter<boolean> = new EventEmitter();
+
   sharePropertiesForm = new FormGroup({
     startPos: new FormControl(),
     endPos: new FormControl(),
   });
 
-  open: boolean = true;
   embedURL: string;
   iframeURL: SafeUrl;
   embedCode: string;
@@ -70,8 +72,6 @@ export class PreviewModalComponent implements OnInit, OnDestroy {
   }
 
   updateIframeURL() {
-    this.open = true;
-
     let params = new HttpParams();
     if (this.epid) {
       params = params.append('epid', this.epid);
@@ -86,5 +86,9 @@ export class PreviewModalComponent implements OnInit, OnDestroy {
     this.embedURL = `${window.location.protocol}//${window.location.host}/embed?${params.toString()}`;
     this.iframeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.embedURL);
     this.embedCode = `<iframe src="${this.embedURL}"></iframe>`;
+  }
+
+  close() {
+    this.closed.next(true);
   }
 }

@@ -156,6 +156,6 @@
 
 <app-loading-overlay [loading]="loading"></app-loading-overlay>
 
-<ng-container *ngIf="episode && shareStart && shareEnd">
-  <app-preview-modal [epid]="episode?.id" [startPos]="shareStart" [endPos]="shareEnd"></app-preview-modal>
+<ng-container *ngIf="episode && shareOpen">
+  <app-preview-modal [epid]="episode?.id" [startPos]="shareStart" [endPos]="shareEnd" (closed)="shareOpen = false"></app-preview-modal>
 </ng-container>

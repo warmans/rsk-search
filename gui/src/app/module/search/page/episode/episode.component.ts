@@ -50,6 +50,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
 
   audioStates = PlayerState;
 
+  shareOpen: boolean = false;
   shareStart: number;
   shareEnd: number;
 
@@ -169,7 +170,9 @@ export class EpisodeComponent implements OnInit, OnDestroy {
   }
 
   onShare(opts: ShareOpts) {
+    // force it to run change detection.
     this.shareStart = opts.startPos;
     this.shareEnd = opts.endPos;
+    this.shareOpen = true;
   }
 }

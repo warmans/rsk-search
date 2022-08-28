@@ -1,17 +1,15 @@
-<div class="modal d-flex" [ngClass]="{'open': open}" *ngIf="open">
+<div class="modal d-flex" [ngClass]="{'open': true}">
   <div class="modal-dialog align-self-center ">
     <div class="modal-content">
       <div class="modal-header">
         Share Section
-        <button type="button" class="close" (click)="open = false" aria-label="Close">
+        <button type="button" class="close" (click)="close()" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <form [formGroup]="sharePropertiesForm">
           <div class="form-row">
-
-
             <div class="form-group col">
               <label for="startPos">Start Line</label>
               <input formControlName="startPos" type="number" class="form-control" id="startPos">
