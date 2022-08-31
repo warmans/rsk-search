@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Data } from '@angular/router';
+import { ActivatedRoute, Data, Router } from '@angular/router';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
 import { RskDialog, RskMetadata, RskTranscript, RskTranscriptChange, RskTranscriptChangeList } from '../../../../lib/api-client/models';
 import { ViewportScroller } from '@angular/common';
@@ -10,7 +10,7 @@ import { And, Eq, Neq } from '../../../../lib/filter-dsl/filter';
 import { Bool, Str } from '../../../../lib/filter-dsl/value';
 import { MetaService } from '../../../core/service/meta/meta.service';
 import { AudioService, PlayerState, Status } from '../../../core/service/audio/audio.service';
-import { ShareOpts } from '../../../shared/component/transcript/transcript.component';
+import { Section } from '../../../shared/component/transcript/transcript.component';
 
 @Component({
   selector: 'app-episode',
@@ -57,6 +57,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
   unsubscribe$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private apiClient: SearchAPIClient,
     private viewportScroller: ViewportScroller,
@@ -70,6 +71,8 @@ export class EpisodeComponent implements OnInit, OnDestroy {
     });
     route.fragment.pipe(takeUntil(this.unsubscribe$)).subscribe((f) => {
       if (!f) {
+        this.scrollToID = undefined;
+        this.scrollToSeconds = undefined;
         return;
       }
       if (f.startsWith('pos-')) {
@@ -169,10 +172,27 @@ export class EpisodeComponent implements OnInit, OnDestroy {
     this.audioService.pauseAudio();
   }
 
-  onShare(opts: ShareOpts) {
+  shareSelection() {
+    let parts = this.scrollToID.split('-');
+    if (parts.length === 2) {
+      this.onShare(parseInt(parts[1]), parseInt(parts[1]) + 1);
+    } else if (parts.length === 3) {
+      this.onShare(parseInt(parts[1])-1, parseInt(parts[2]));
+    }
+  }
+
+  onShare(shareStart: number, shareEnd: number) {
     // force it to run change detection.
-    this.shareStart = opts.startPos;
-    this.shareEnd = opts.endPos;
+    this.shareStart = shareStart;
+    this.shareEnd = shareEnd;
     this.shareOpen = true;
+  }
+
+  selectSection(sel: Section) {
+    this.router.navigate([], { fragment: `pos-${sel.startPos}-${sel.endPos}` });
+  }
+
+  clearSelection() {
+    this.router.navigate([], { });
   }
 }

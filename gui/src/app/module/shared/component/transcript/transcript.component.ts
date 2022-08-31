@@ -6,11 +6,10 @@ import { parseTranscript, Tscript } from '../../lib/tscript';
 interface DialogGroup {
   startPos: number;
   endPos: number;
-
   tscript: Tscript;
 }
 
-export interface ShareOpts {
+export interface Section {
   epid: string;
   startPos: number;
   endPos: number;
@@ -114,7 +113,10 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
   emitAudioTimestamp: EventEmitter<number> = new EventEmitter();
 
   @Output()
-  emitShare: EventEmitter<ShareOpts> = new EventEmitter();
+  emitShare: EventEmitter<Section> = new EventEmitter();
+
+  @Output()
+  emitSelection: EventEmitter<Section> = new EventEmitter();
 
   audioOffsetsAvailable: boolean = false;
 
@@ -171,17 +173,23 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
     }
   }
 
-  clearFocus() {
-    this.scrollToPosStart = undefined;
-    this.scrollToPosEnd = undefined;
-  }
-
   emitTimestamp(ts: string) {
     const tsInt = parseInt(ts);
     if (!tsInt) {
       return;
     }
     this.emitAudioTimestamp.next(tsInt);
+  }
+
+  selectPosition(pos: number, ev: any): boolean {
+    if (ev.shiftKey && this.scrollToPosStart) {
+      const start = this.scrollToPosStart > pos ? pos : this.scrollToPosStart;
+      const end = this.scrollToPosStart > pos ? this.scrollToPosStart : pos;
+      this.emitSelection.next({ startPos: start, endPos: end, epid: this.epid });
+      return false;
+    }
+    this.emitSelection.next({ startPos: pos, endPos: pos, epid: this.epid });
+    return true;
   }
 
   preProcessTranscript(episode: Tscript | RskTranscript) {
