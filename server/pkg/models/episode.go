@@ -7,6 +7,46 @@ import (
 	"time"
 )
 
+func WithProblem(ps TranscriptProblems, p TranscriptProblem) TranscriptProblems {
+	out := TranscriptProblems{}
+	for _, v := range ps {
+		if v != p {
+			out = append(out, v)
+		}
+	}
+	// ensure problems are not duplicated by always removing it first
+	return append(WithoutProblem(ps, p), p)
+}
+
+func WithoutProblem(ps TranscriptProblems, p TranscriptProblem) TranscriptProblems {
+	out := TranscriptProblems{}
+	for _, v := range ps {
+		if v != p {
+			out = append(out, v)
+		}
+	}
+	return out
+}
+
+type TranscriptProblems []TranscriptProblem
+
+func (tp TranscriptProblems) Proto() []string {
+	out := []string{}
+	for _, v := range tp {
+		out = append(out, string(v))
+	}
+	return out
+}
+
+type TranscriptProblem string
+
+const (
+	TranscriptProblemEmpty           = TranscriptProblem("empty")
+	TranscriptProblemIncomplete      = TranscriptProblem("incomplete")
+	TranscriptProblemMissingOffsets  = TranscriptProblem("missing_offsets")
+	TranscriptProblemMissingSynopsis = TranscriptProblem("missing_synopsis")
+)
+
 type DialogType string
 
 const (
@@ -70,15 +110,19 @@ func (d Dialog) Proto(bestMatch bool) *api.Dialog {
 }
 
 type Transcript struct {
-	Publication    string    `json:"publication"`
-	Series         int32     `json:"series"`
-	Episode        int32     `json:"episode"`
-	Name           string    `json:"name"`    // some episodes don't really have a proper series/episode and need to be identified by a name e.g. Radio 2 special
-	Version        string    `json:"version"` // SemVer
-	ReleaseDate    time.Time `json:"release_date"`
-	Incomplete     bool      `json:"incomplete"`
-	Bestof         bool      `json:"bestof"`
-	OffsetAccuracy int32     `json:"offset_accuracy"`
+	Publication string    `json:"publication"`
+	Series      int32     `json:"series"`
+	Episode     int32     `json:"episode"`
+	Name        string    `json:"name"`    // some episodes don't really have a proper series/episode and need to be identified by a name e.g. Radio 2 special
+	Version     string    `json:"version"` // SemVer
+	ReleaseDate time.Time `json:"release_date"`
+	// is the episode missing some sections of transcript?
+	Incomplete bool `json:"incomplete"`
+	// is the episode a "clip show"?
+	Bestof bool `json:"bestof"`
+	// is the episode a "one off" special type episode?
+	Special        bool  `json:"special"`
+	OffsetAccuracy int32 `json:"offset_accuracy"`
 
 	// additional optional data
 	Meta         Metadata   `json:"metadata"`
@@ -138,6 +182,7 @@ func (e *Transcript) ShortProto(audioURI string) *api.ShortTranscript {
 		Version:             e.Version,
 		Metadata:            e.Meta.Proto(),
 		Bestof:              e.Bestof,
+		Special:             e.Special,
 	}
 	for k, s := range e.Synopsis {
 		ep.Synopsis[k] = s.Proto()
@@ -166,6 +211,7 @@ func (e *Transcript) Proto(withRawTranscript string, audioURI string) *api.Trans
 		Name:               e.Name,
 		Version:            e.Version,
 		Bestof:             e.Bestof,
+		Special:            e.Special,
 	}
 	for _, d := range e.Transcript {
 		ep.Transcript = append(ep.Transcript, d.Proto(false))

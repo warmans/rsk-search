@@ -21,6 +21,7 @@ export interface RskTranscript {
   releaseDate?: string;
   series?: number;
   shortId?: string;
+  special?: boolean;
   synopses?: RskSynopsis[];
   transcript?: RskDialog[];
   trivia?: RskTrivia[];

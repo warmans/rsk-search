@@ -47,6 +47,17 @@ export class EpisodeListComponent implements OnInit {
   }
   ];
 
+  private _activePublication: 'xfm'|'guide'|'special' = 'xfm';
+
+  get activePublication(): 'xfm'|'guide'|'special' {
+    return this._activePublication;
+  }
+
+  set activePublication(value: 'xfm'|'guide'|'special') {
+    this._activePublication = value;
+    this.resetEpisodeList();
+  }
+
   private destroy$ = new EventEmitter<boolean>();
 
   constructor(private apiClient: SearchAPIClient) {
@@ -57,11 +68,11 @@ export class EpisodeListComponent implements OnInit {
 
     this.searchInput.valueChanges.pipe(takeUntil(this.destroy$), debounceTime(100)).subscribe((val) => {
       if (val !== '') {
-        this.filteredTranscriptList = (this.transcriptList || []).filter((t: RskShortTranscript) => {
+        this.filteredTranscriptList = this.activePublicationTranscripts().filter((t: RskShortTranscript) => {
           return t.shortId.toLowerCase().indexOf(val.toLowerCase()) > 0 || t.name.toLowerCase().indexOf(val.toLowerCase()) > 0;
         });
       } else {
-        this.filteredTranscriptList = this.transcriptList;
+        this.resetEpisodeList();
       }
     });
   }
@@ -71,9 +82,22 @@ export class EpisodeListComponent implements OnInit {
     this.apiClient.listTranscripts().pipe(
       takeUntil(this.destroy$),
     ).subscribe((res: RskTranscriptList) => {
-      this.filteredTranscriptList = this.transcriptList = res.episodes;
+      this.transcriptList = res.episodes;
+      this.filteredTranscriptList = this.activePublicationTranscripts();
     }).add(() => {
       this.loading.pop();
     });
+  }
+
+  activePublicationTranscripts(): RskShortTranscript[] {
+    if (this.activePublication === 'special') {
+      return this.transcriptList?.filter(t => t.special) || [];
+    }
+    return this.transcriptList?.filter((t => !t.special && t.publication === this.activePublication)) || [];
+  }
+
+  resetEpisodeList() {
+    this.searchInput.setValue("");
+    this.filteredTranscriptList = this.activePublicationTranscripts();
   }
 }

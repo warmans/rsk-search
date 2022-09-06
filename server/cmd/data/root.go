@@ -5,7 +5,8 @@ import (
 )
 
 type dataConfig struct {
-	dataDir string
+	dataDir  string
+	audioDir string
 }
 
 var cfg = dataConfig{}
@@ -17,6 +18,7 @@ func RootCmd() *cobra.Command {
 	}
 
 	index.PersistentFlags().StringVarP(&cfg.dataDir, "data-dir", "d", "./var/data/episodes", "Path to the raw data files")
+	index.PersistentFlags().StringVarP(&cfg.audioDir, "audio-dir", "a", "", "Path to the audio files")
 
 	index.AddCommand(InitCmd())
 	index.AddCommand(ImportPilkipediaRaw())

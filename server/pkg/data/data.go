@@ -19,8 +19,12 @@ func ReplaceEpisodeFile(dataDir string, ep *models.Transcript) error {
 	})
 }
 
+func EpisodeFileName(dataDir string, ep *models.Transcript) string {
+	return path.Join(dataDir, fmt.Sprintf("%s.json", models.EpisodeID(ep)))
+}
+
 func SaveEpisodeToFile(dataDir string, ep *models.Transcript) error {
-	return util.WithCreateJSONFileEncoder(path.Join(dataDir, fmt.Sprintf("%s.json", models.EpisodeID(ep))), func(encoder *json.Encoder) error {
+	return util.WithCreateJSONFileEncoder(EpisodeFileName(dataDir, ep), func(encoder *json.Encoder) error {
 		return encoder.Encode(ep)
 	})
 }
@@ -52,7 +56,6 @@ func LoadEpisodeByName(dataDir string, publication string, name string) (*models
 func LoadEpisodeByShortID(dataDir string, shortId string) (*models.Transcript, error) {
 	return LoadEpisdeByEpisodeID(dataDir, fmt.Sprintf("ep-%s", shortId))
 }
-
 
 func LoadEpisodePath(path string) (*models.Transcript, error) {
 	episode := &models.Transcript{}

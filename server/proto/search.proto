@@ -145,6 +145,7 @@ message ShortTranscript {
   string version = 16;
   map<string, string> metadata = 17;
   bool bestof = 18;
+  bool special = 19;
 }
 
 message DialogResult {
@@ -206,6 +207,7 @@ message Transcript {
   string name = 18;
   string version = 19;
   bool bestof = 20;
+  bool special = 21;
 }
 
 message GetTranscriptRequest {

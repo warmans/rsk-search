@@ -16,7 +16,7 @@ func ParseEpID(raw string) (string, int32, int32, error) {
 	if len(publicationAndSeries) != 2 {
 		return "", 0, 0, fmt.Errorf("could not parse publication from filename: %s", raw)
 	}
-	series, episode, err := ParseStandardEpisodeName(publicationAndSeries[1])
+	series, episode, err := ExtractSeriesAndEpisode(publicationAndSeries[1])
 	if err != nil {
 		return "", 0, 0, fmt.Errorf("could not parse series/episode from filename: %s", publicationAndSeries[1])
 	}
@@ -24,8 +24,8 @@ func ParseEpID(raw string) (string, int32, int32, error) {
 	return publicationAndSeries[0], series, episode, nil
 }
 
-// ParseStandardEpisodeName e.g. xfm-S01E02 becomes 1,2,nil
-func ParseStandardEpisodeName(raw string) (int32, int32, error) {
+// ExtractSeriesAndEpisode e.g. xfm-S01E02 becomes 1,2,nil
+func ExtractSeriesAndEpisode(raw string) (int32, int32, error) {
 
 	// remove ep-?xfm-
 	raw = util.LastSegment(raw, "-")

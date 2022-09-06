@@ -134,6 +134,10 @@ init.db:
 init.index:
 	rm -rf ./var/rsk.bluge; ./bin/rsk-search data populate-bluge-index
 
+.PHONY: init.transcripts
+init.transcripts:
+	./bin/rsk-search data init
+
 .PHONY: run
 run: build
 	DEBUG=true ./bin/rsk-search server \

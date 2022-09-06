@@ -741,6 +741,8 @@ export function isRskShortTranscript(arg: any): arg is models.RskShortTranscript
     ( typeof arg.series === 'undefined' || typeof arg.series === 'number' ) &&
     // shortId?: string
     ( typeof arg.shortId === 'undefined' || typeof arg.shortId === 'string' ) &&
+    // special?: boolean
+    ( typeof arg.special === 'undefined' || typeof arg.special === 'boolean' ) &&
     // summary?: string
     ( typeof arg.summary === 'undefined' || typeof arg.summary === 'string' ) &&
     // synopsis?: RskSynopsis[]
@@ -830,6 +832,8 @@ export function isRskTranscript(arg: any): arg is models.RskTranscript {
     ( typeof arg.series === 'undefined' || typeof arg.series === 'number' ) &&
     // shortId?: string
     ( typeof arg.shortId === 'undefined' || typeof arg.shortId === 'string' ) &&
+    // special?: boolean
+    ( typeof arg.special === 'undefined' || typeof arg.special === 'boolean' ) &&
     // synopses?: RskSynopsis[]
     ( typeof arg.synopses === 'undefined' || (Array.isArray(arg.synopses) && arg.synopses.every((item: unknown) => isRskSynopsis(item))) ) &&
     // transcript?: RskDialog[]

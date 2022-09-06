@@ -109,7 +109,7 @@ func stringP(str string) *string {
 
 // S1E02
 func mustParseName(name string) (int32, int32) {
-	series, episode, err := models.ParseStandardEpisodeName(name)
+	series, episode, err := models.ExtractSeriesAndEpisode(name)
 	if err != nil {
 		panic(err)
 	}

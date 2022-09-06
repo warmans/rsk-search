@@ -17,6 +17,7 @@ export interface RskShortTranscript {
   releaseDate?: string;
   series?: number;
   shortId?: string;
+  special?: boolean;
   summary?: string;
   synopsis?: RskSynopsis[];
   transcriptAvailable?: boolean;

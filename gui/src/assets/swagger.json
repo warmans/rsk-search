@@ -2198,6 +2198,9 @@
           },
           "bestof": {
             "type": "boolean"
+          },
+          "special": {
+            "type": "boolean"
           }
         }
       },
@@ -2326,6 +2329,9 @@
             "type": "string"
           },
           "bestof": {
+            "type": "boolean"
+          },
+          "special": {
             "type": "boolean"
           }
         }
