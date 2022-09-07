@@ -276,8 +276,8 @@ message Prediction {
 
 message WordPosition {
   string word = 1;
-  int32 startPos = 2;
-  int32 endPos = 3;
+  int32 start_pos = 2;
+  int32 end_pos = 3;
 }
 
 message ListChangelogsRequest {

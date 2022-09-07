@@ -8,12 +8,6 @@ import (
 )
 
 func WithProblem(ps TranscriptProblems, p TranscriptProblem) TranscriptProblems {
-	out := TranscriptProblems{}
-	for _, v := range ps {
-		if v != p {
-			out = append(out, v)
-		}
-	}
 	// ensure problems are not duplicated by always removing it first
 	return append(WithoutProblem(ps, p), p)
 }
