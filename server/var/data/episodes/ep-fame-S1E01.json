@@ -8,7 +8,7 @@
     "incomplete": true,
     "bestof": false,
     "special": true,
-    "offset_accuracy": 10,
+    "offset_accuracy": 12,
     "metadata": {
       "cover_art_url": "/assets/cover/special.jpg",
       "duration_ms": "2422200"
@@ -765,7 +765,7 @@
       {
         "id": "ep-fame-S1E01-69",
         "pos": 69,
-        "offset_sec": 2320,
+        "offset_sec": 2301,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -776,7 +776,7 @@
       {
         "id": "ep-fame-S1E01-70",
         "pos": 70,
-        "offset_sec": 2321,
+        "offset_sec": 2302,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -787,7 +787,7 @@
       {
         "id": "ep-fame-S1E01-71",
         "pos": 71,
-        "offset_sec": 2330,
+        "offset_sec": 2304,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -798,7 +798,7 @@
       {
         "id": "ep-fame-S1E01-72",
         "pos": 72,
-        "offset_sec": 2360,
+        "offset_sec": 2312,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -809,7 +809,7 @@
       {
         "id": "ep-fame-S1E01-73",
         "pos": 73,
-        "offset_sec": 2361,
+        "offset_sec": 2313,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -820,7 +820,7 @@
       {
         "id": "ep-fame-S1E01-74",
         "pos": 74,
-        "offset_sec": 2371,
+        "offset_sec": 2315,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -831,7 +831,7 @@
       {
         "id": "ep-fame-S1E01-75",
         "pos": 75,
-        "offset_sec": 2385,
+        "offset_sec": 2319,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -842,7 +842,7 @@
       {
         "id": "ep-fame-S1E01-76",
         "pos": 76,
-        "offset_sec": 2388,
+        "offset_sec": 2320,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -853,7 +853,7 @@
       {
         "id": "ep-fame-S1E01-77",
         "pos": 77,
-        "offset_sec": 2390,
+        "offset_sec": 2320,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -864,7 +864,7 @@
       {
         "id": "ep-fame-S1E01-78",
         "pos": 78,
-        "offset_sec": 2390,
+        "offset_sec": 2321,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -875,7 +875,7 @@
       {
         "id": "ep-fame-S1E01-79",
         "pos": 79,
-        "offset_sec": 2391,
+        "offset_sec": 2321,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -886,7 +886,7 @@
       {
         "id": "ep-fame-S1E01-80",
         "pos": 80,
-        "offset_sec": 2403,
+        "offset_sec": 2324,
         "offset_inferred": true,
         "type": "chat",
         "actor": "",
@@ -897,7 +897,7 @@
       {
         "id": "ep-fame-S1E01-81",
         "pos": 81,
-        "offset_sec": 2405,
+        "offset_sec": 2325,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -908,7 +908,7 @@
       {
         "id": "ep-fame-S1E01-82",
         "pos": 82,
-        "offset_sec": 2415,
+        "offset_sec": 2327,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -919,12 +919,243 @@
       {
         "id": "ep-fame-S1E01-83",
         "pos": 83,
-        "offset_sec": 2416,
-        "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
+        "offset_sec": 2327,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
         "metadata": null,
-        "content": "[~3 mins of missing transcription]",
+        "content": "And it was a big upheaval because, like, I was going home and her Dad kept trying to sneak them into our bags. Because it's like, \"They were for you, you take them - \"",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-84",
+        "pos": 84,
+        "offset_sec": 2336,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Smuggling!",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-85",
+        "pos": 85,
+        "offset_sec": 2336,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "\"We don't want your stuff in our house!\" Because he gets a bit funny about stuff being left over. There's bins that you can't put certain stuff in. There's a bin in the lounge and I put a Tangerine peel in, and he goes \"That sort of stuff does not go in that bin\". I said, 'It's Rubbish,' \"Yeah but it's not the right sort of rubbish.\"",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-86",
+        "pos": 86,
+        "offset_sec": 2352,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "But -",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-87",
+        "pos": 87,
+        "offset_sec": 2353,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Someone will camp next to it.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-88",
+        "pos": 88,
+        "offset_sec": 2354,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "*Laughs*",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-89",
+        "pos": 89,
+        "offset_sec": 2354,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah! We want to get a better class of camper. Oh, that's the book, and it's called 'Happy slapped by a Jellyfish'.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-90",
+        "pos": 90,
+        "offset_sec": 2361,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Yeah, that's from one of the chapters in it.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-91",
+        "pos": 91,
+        "offset_sec": 2364,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "By Karl Pilkington. Get that soon.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-92",
+        "pos": 92,
+        "offset_sec": 2366,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Particularly if you're thinking of visiting, uh, Madeira or Australia.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-93",
+        "pos": 93,
+        "offset_sec": 2370,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah, well, that's about it. Thanks for listening to this. If you've enjoyed this and you haven't heard the others, we've got the whole, um, all three series on iTunes. You can go and download those. Uh -",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-94",
+        "pos": 94,
+        "offset_sec": 2382,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "'The Ricky Gervais Show', is that what it's called?",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-95",
+        "pos": 95,
+        "offset_sec": 2384,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "It's called 'The Ricky Gervais Show', yeah. Um. Karl's also made a programme for me, Steve. On my 'Fame' DVD, out in November. It's called 'Fame', so, I thought of a little title: \"Fame - I'm going to live forever\". Remember that guy we met, who's gonna live forever?",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-96",
+        "pos": 96,
+        "offset_sec": 2397,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Oh yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-97",
+        "pos": 97,
+        "offset_sec": 2398,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Called Howard. That was a meeting of minds. And, it's um, it's Karl meeting Howard.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-98",
+        "pos": 98,
+        "offset_sec": 2402,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Good little holiday.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-99",
+        "pos": 99,
+        "offset_sec": 2403,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "It's really good, isn't it? It's really good. And they do - he really gets on with him. And we're probably going to do a new series of the podcast maybe next year. What do you think, Karl? If you're not too busy making this film with Clive Warren.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-100",
+        "pos": 100,
+        "offset_sec": 2414,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Uh, we'll see how it goes. Don't plan anything.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-101",
+        "pos": 101,
+        "offset_sec": 2417,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah, just check out RickyGervais.com. I am Ricky Gervais, with me - Stephen Merchant.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-102",
+        "pos": 102,
+        "offset_sec": 2421,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Goodbye.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-103",
+        "pos": 103,
+        "offset_sec": 2422,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "And Karl.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-104",
+        "pos": 104,
+        "offset_sec": 2422,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Alright.",
         "notable": false
       }
     ],
@@ -946,7 +1177,8 @@
       }
     ],
     "contributors": [
-      "EarthlingCalling"
+      "EarthlingCalling",
+      "Simon1863"
     ],
     "trivia": null
   }

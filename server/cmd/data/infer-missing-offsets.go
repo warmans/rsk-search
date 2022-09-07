@@ -27,7 +27,7 @@ func InferMissingOffsetsCmd() *cobra.Command {
 			logger, _ := zap.NewProduction()
 			defer func() {
 				if err := logger.Sync(); err != nil {
-					fmt.Println("WARNING: failed to sync logger: "+err.Error())
+					fmt.Println("WARNING: failed to sync logger: " + err.Error())
 				}
 			}()
 
@@ -55,6 +55,9 @@ func InferMissingOffsetsCmd() *cobra.Command {
 						continue
 					}
 				}
+				if len(episode.Transcript) == 0 {
+					continue
+				}
 
 				logger.Info("Processing file...", zap.String("path", dirEntry.Name()))
 
@@ -72,7 +75,7 @@ func InferMissingOffsetsCmd() *cobra.Command {
 						numAccurateOffsets++
 					}
 				}
-				episode.OffsetAccuracy =  int32(numAccurateOffsets / float64(len(episode.Transcript)) * 100)
+				episode.OffsetAccuracy = int32(numAccurateOffsets / float64(len(episode.Transcript)) * 100)
 
 				if err := data.ReplaceEpisodeFile(inputDir, episode); err != nil {
 					return err
