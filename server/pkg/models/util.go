@@ -50,8 +50,13 @@ func FormatStandardEpisodeName(series, episode int32) string {
 	return fmt.Sprintf("S%dE%02d", series, episode)
 }
 
-func EpisodeID(ep *Transcript) string {
-	return fmt.Sprintf("ep-%s-%s", ep.Publication, FormatStandardEpisodeName(ep.Series, ep.Episode))
+// EpID is an episode ID that is prefixed with `ep-`.
+func EpID(publication string, series int32, episode int32) string {
+	return fmt.Sprintf("ep-%s-%s", publication, FormatStandardEpisodeName(series, episode))
+}
+
+func EpIDFromTranscript(ep *Transcript) string {
+	return EpID(ep.Publication, ep.Series, ep.Episode)
 }
 
 func DialogID(episodeID string, pos int64) string {

@@ -14,13 +14,13 @@ import (
 )
 
 func ReplaceEpisodeFile(dataDir string, ep *models.Transcript) error {
-	return util.WithReplaceJSONFileEncoder(path.Join(dataDir, fmt.Sprintf("%s.json", models.EpisodeID(ep))), func(encoder *json.Encoder) error {
+	return util.WithReplaceJSONFileEncoder(path.Join(dataDir, fmt.Sprintf("%s.json", models.EpIDFromTranscript(ep))), func(encoder *json.Encoder) error {
 		return encoder.Encode(ep)
 	})
 }
 
 func EpisodeFileName(dataDir string, ep *models.Transcript) string {
-	return path.Join(dataDir, fmt.Sprintf("%s.json", models.EpisodeID(ep)))
+	return path.Join(dataDir, fmt.Sprintf("%s.json", models.EpIDFromTranscript(ep)))
 }
 
 func SaveEpisodeToFile(dataDir string, ep *models.Transcript) error {

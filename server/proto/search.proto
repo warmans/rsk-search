@@ -208,6 +208,7 @@ message Transcript {
   string version = 19;
   bool bestof = 20;
   bool special = 21;
+  bool locked = 22;
 }
 
 message GetTranscriptRequest {

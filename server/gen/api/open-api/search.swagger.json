@@ -700,6 +700,9 @@
         },
         "special": {
           "type": "boolean"
+        },
+        "locked": {
+          "type": "boolean"
         }
       }
     },

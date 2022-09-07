@@ -10,9 +10,11 @@ import (
 	"github.com/warmans/rsk-search/pkg/filter"
 	"github.com/warmans/rsk-search/pkg/jwt"
 	"github.com/warmans/rsk-search/pkg/meta"
+	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/search"
 	"github.com/warmans/rsk-search/pkg/store/common"
 	"github.com/warmans/rsk-search/pkg/store/ro"
+	"github.com/warmans/rsk-search/pkg/store/rw"
 	"github.com/warmans/rsk-search/pkg/transcript"
 	"github.com/warmans/rsk-search/service/config"
 	"go.uber.org/zap"
@@ -25,15 +27,18 @@ func NewSearchService(
 	logger *zap.Logger,
 	srvCfg config.SearchServiceConfig,
 	searchBackend search.Searcher,
-	store *ro.Conn,
+	staticDB *ro.Conn,
+	persistentDB *rw.Conn,
 	auth *jwt.Auth,
 	episodeCache *data.EpisodeCache,
+
 ) *SearchService {
 	return &SearchService{
 		logger:        logger,
 		srvCfg:        srvCfg,
 		searchBackend: searchBackend,
-		staticDB:      store,
+		staticDB:      staticDB,
+		persistentDB:  persistentDB,
 		auth:          auth,
 		episodeCache:  episodeCache,
 	}
@@ -44,6 +49,7 @@ type SearchService struct {
 	srvCfg        config.SearchServiceConfig
 	searchBackend search.Searcher
 	staticDB      *ro.Conn
+	persistentDB  *rw.Conn
 	auth          *jwt.Auth
 	episodeCache  *data.EpisodeCache
 }
@@ -121,7 +127,7 @@ func (s *SearchService) PredictSearchTerm(ctx context.Context, request *api.Pred
 	return s.searchBackend.PredictSearchTerms(ctx, request.Prefix, maxPredictions)
 }
 
-func (s *SearchService) GetTranscript(_ context.Context, request *api.GetTranscriptRequest) (*api.Transcript, error) {
+func (s *SearchService) GetTranscript(ctx context.Context, request *api.GetTranscriptRequest) (*api.Transcript, error) {
 	ep, err := s.episodeCache.GetEpisode(request.Epid)
 	if err == data.ErrNotFound || ep == nil {
 		return nil, ErrNotFound(request.Epid).Err()
@@ -134,7 +140,12 @@ func (s *SearchService) GetTranscript(_ context.Context, request *api.GetTranscr
 			return nil, ErrInternal(err).Err()
 		}
 	}
-	return ep.Proto(rawTranscript, fmt.Sprintf(s.srvCfg.AudioUriPattern, ep.ShortID())), nil
+	lockedEpsiodeIDs, err := s.lockedEpisodeIDs(ctx)
+	if err != nil {
+		return nil, ErrInternal(err).Err()
+	}
+	_, locked := lockedEpsiodeIDs[ep.ID()]
+	return ep.Proto(rawTranscript, fmt.Sprintf(s.srvCfg.AudioUriPattern, ep.ShortID()), locked), nil
 }
 
 func (s *SearchService) ListTranscripts(_ context.Context, _ *api.ListTranscriptsRequest) (*api.TranscriptList, error) {
@@ -169,6 +180,23 @@ func (s *SearchService) ListChangelogs(ctx context.Context, request *api.ListCha
 		return nil, err
 	}
 	return result, nil
+}
+
+// if an episode is currently bring transcribed mark it as locked to prevent changes being submitted before
+// all chunks have been completed.
+func (s *SearchService) lockedEpisodeIDs(ctx context.Context) (map[string]struct{}, error) {
+	inProgressTscriptIDs := map[string]struct{}{}
+	err := s.persistentDB.WithStore(func(s *rw.Store) error {
+		inProgressTscripts, err := s.ListTscripts(ctx)
+		if err != nil {
+			return err
+		}
+		for _, v := range inProgressTscripts {
+			inProgressTscriptIDs[models.EpID(v.Publication, v.Series, v.Episode)] = struct{}{}
+		}
+		return err
+	})
+	return inProgressTscriptIDs, err
 }
 
 func checkWhy(f filter.Filter) error {

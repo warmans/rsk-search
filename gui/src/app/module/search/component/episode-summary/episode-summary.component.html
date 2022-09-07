@@ -5,14 +5,14 @@
         (click)="playEpisode(episode)"
         class="icon d-flex align-items-center justify-content-around album-art"
         [style.background-image]="'url('+episodeImage+')'">
-        <i class="bi-play-circle"></i>
+        <i class="bi-play-circle-fill text-body"></i>
       </div>
       <div class="pl-3 d-flex flex-column justify-content-around">
         <div>
           <div class="title mb-2">
             <a [routerLink]="['/ep', episode.id]">Series {{episode.series}} Episode {{episode.episode}} <span *ngIf="episode.name"> - "{{episode.name}}"</span></a>
           </div>
-          <div class="sub-title font-weight-light">{{episode.shortId}} | {{episode.releaseDate | date}}</div>
+          <div class="sub-title font-weight-light"><a (click)="playEpisode(episode)"><i class="bi-play-circle-fill clickable mr-2"></i>{{episode.shortId}}</a> | {{episode.releaseDate | date}}</div>
         </div>
       </div>
     </div>

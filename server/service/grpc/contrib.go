@@ -650,6 +650,10 @@ func (s *ContribService) CreateTranscriptChange(ctx context.Context, request *ap
 	if err != nil {
 		return nil, err
 	}
+	if err := s.validateLockedState(ctx, request.Epid); err != nil {
+		return nil, err
+	}
+
 	var change *models.TranscriptChange
 	err = s.persistentDB.WithStore(func(s *rw.Store) error {
 
@@ -703,6 +707,10 @@ func (s *ContribService) UpdateTranscriptChange(ctx context.Context, request *ap
 	})
 	if err != nil {
 		return nil, ErrFromStore(err, request.Id).Err()
+	}
+
+	if err := s.validateLockedState(ctx, oldChange.EpID); err != nil {
+		return nil, err
 	}
 
 	// validate change is allowed
@@ -777,6 +785,11 @@ func (s *ContribService) RequestTranscriptChangeState(ctx context.Context, reque
 	if err != nil {
 		return nil, ErrFromStore(err, request.Id).Err()
 	}
+
+	if err := s.validateLockedState(ctx, oldChange.EpID); err != nil {
+		return nil, err
+	}
+
 	if err := s.validateContributionStateUpdate(claims, oldChange.Author.ID, oldChange.State, request.State); err != nil {
 		return nil, err
 	}
@@ -909,6 +922,23 @@ func (s *ContribService) validateContributionStateUpdate(claims *jwt.Claims, cur
 		}
 	}
 	return nil
+}
+
+// if an episode is currently bring transcribed mark it as locked to prevent changes being submitted before
+// all chunks have been completed.
+func (s *ContribService) validateLockedState(ctx context.Context, epID string) error {
+	return s.persistentDB.WithStore(func(s *rw.Store) error {
+		inProgressTscripts, err := s.ListTscripts(ctx)
+		if err != nil {
+			return err
+		}
+		for _, v := range inProgressTscripts {
+			if epID == models.EpID(v.Publication, v.Series, v.Episode) {
+				return ErrFailedPrecondition("episode is locked").Err()
+			}
+		}
+		return err
+	})
 }
 
 func getDonationRecipients() []*api.DonationRecipient {

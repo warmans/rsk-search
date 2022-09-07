@@ -816,6 +816,8 @@ export function isRskTranscript(arg: any): arg is models.RskTranscript {
     ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
     // incomplete?: boolean
     ( typeof arg.incomplete === 'undefined' || typeof arg.incomplete === 'boolean' ) &&
+    // locked?: boolean
+    ( typeof arg.locked === 'undefined' || typeof arg.locked === 'boolean' ) &&
     // metadata?: { [key: string]: string }
     ( typeof arg.metadata === 'undefined' || typeof arg.metadata === 'string' ) &&
     // name?: string

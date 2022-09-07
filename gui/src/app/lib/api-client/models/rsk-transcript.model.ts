@@ -13,6 +13,7 @@ export interface RskTranscript {
   episode?: number;
   id?: string;
   incomplete?: boolean;
+  locked?: boolean;
   metadata?: { [key: string]: string };
   name?: string;
   offsetAccuracyPcnt?: number;

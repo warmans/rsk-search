@@ -110,10 +110,11 @@ func (d Dialog) Proto(bestMatch bool) *api.Dialog {
 }
 
 type Transcript struct {
-	Publication string    `json:"publication"`
-	Series      int32     `json:"series"`
-	Episode     int32     `json:"episode"`
-	Name        string    `json:"name"`    // some episodes don't really have a proper series/episode and need to be identified by a name e.g. Radio 2 special
+	Publication string `json:"publication"`
+	Series      int32  `json:"series"`
+	Episode     int32  `json:"episode"`
+	// some episodes don't really have a proper series/episode and need to be identified by a name e.g. Radio 2 special
+	Name        string    `json:"name"`
 	Version     string    `json:"version"` // SemVer
 	ReleaseDate time.Time `json:"release_date"`
 	// is the episode missing some sections of transcript?
@@ -133,11 +134,11 @@ type Transcript struct {
 }
 
 func (e *Transcript) ID() string {
-	return EpisodeID(e)
+	return EpIDFromTranscript(e)
 }
 
 func (e *Transcript) ShortID() string {
-	return strings.TrimPrefix(EpisodeID(e), "ep-")
+	return strings.TrimPrefix(EpIDFromTranscript(e), "ep-")
 }
 
 func (e Transcript) Actors() []string {
@@ -190,7 +191,7 @@ func (e *Transcript) ShortProto(audioURI string) *api.ShortTranscript {
 	return ep
 }
 
-func (e *Transcript) Proto(withRawTranscript string, audioURI string) *api.Transcript {
+func (e *Transcript) Proto(withRawTranscript string, audioURI string, locked bool) *api.Transcript {
 	if e == nil {
 		return nil
 	}
@@ -212,6 +213,7 @@ func (e *Transcript) Proto(withRawTranscript string, audioURI string) *api.Trans
 		Version:            e.Version,
 		Bestof:             e.Bestof,
 		Special:            e.Special,
+		Locked:             locked,
 	}
 	for _, d := range e.Transcript {
 		ep.Transcript = append(ep.Transcript, d.Proto(false))

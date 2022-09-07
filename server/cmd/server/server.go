@@ -193,6 +193,7 @@ func ServerCmd() *cobra.Command {
 					srvCfg,
 					search,
 					readOnlyStoreConn,
+					persistentDBConn,
 					auth,
 					episodeCache,
 				),

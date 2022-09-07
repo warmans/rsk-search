@@ -49,6 +49,7 @@
                   <th>Tags</th>
                   <td>
                     <span *ngIf="episode.bestof" class="badge badge-secondary">Bestof</span>
+                    <span *ngIf="episode.locked" class="badge badge-warning" title="Changes cannot be submitted for this transcript because it is in the process of being transcribed.">Locked</span>
                   </td>
                 </tr>
                 <tr>
@@ -113,7 +114,7 @@
                 <button class="btn btn-sm btn-primary" (click)="scrollToTop()">Top</button>
                 <button class="btn btn-sm btn-primary ml-2" *ngIf="scrollToID || scrollToSeconds" (click)="clearSelection()">Clear Selection</button>
                 <button class="btn btn-sm btn-primary ml-2" *ngIf="scrollToID || scrollToSeconds" (click)="shareSelection()">Share Selection</button>
-                <div class="ml-2" *ngIf="pendingChanges?.length === 0 && !episode.incomplete">
+                <div class="ml-2" *ngIf="pendingChanges?.length === 0 && !episode.locked">
                   <a class="btn btn-sm btn-info" [routerLink]="['/ep', id, 'change']">Submit Correction</a>
                 </div>
               </div>
