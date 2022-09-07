@@ -14,52 +14,54 @@
 
         <div class="card-header">Quickstart</div>
         <div class="card-body">
-            <img class="float-right" src="/assets/illustration/pixeltrue-support.svg" style="width: 250px"/>
-            <div class="font-weight-bold mb-2">History</div>
-            <p>
-              In the beginning there was Pilkipedia. Over the years the site fell into dis-repair. Scrimpton was created
-              to preserve an archive of searchable Xfm transcripts. But the archive was not complete, some episodes had never
-              been transcribed or were missing sections. So this tool was added to fill in the gaps.
-            </p>
+          <img class="float-right" src="/assets/illustration/pixeltrue-support.svg" style="width: 250px"/>
+          <div class="font-weight-bold mb-2">History</div>
+          <p>
+            In the beginning there was Pilkipedia. Over the years the site fell into dis-repair. Scrimpton was created
+            to preserve an archive of searchable Xfm transcripts. But the archive was not complete, some episodes had never
+            been transcribed or were missing sections. So this tool was added to fill in the gaps.
+          </p>
 
-            <div class="font-weight-bold mb-2">How does it work?</div>
+          <div class="font-weight-bold mb-2">How can I contribute to the site?</div>
 
-            <p>There are two ways you can contribute; firstly you can transcribe chunks of new audio (when available). You may also
-              improve existing transcriptions by adding summaries/trivia/timestamps, standardising text, and fixing errors.</p>
+          <p>
+            Submit issues, suggestions or just start a discussion on the <a target="_blank" href="https://reddit.com/r/scrimpton">subreddit</a> or
+            via <a target="_blank" href="https://github.com/warmans/rsk-search">github</a>.
+          </p>
 
-          <div class="font-weight-bold mb-2">What do I get in return?</div>
+          <div class="font-weight-bold mb-2">How does it work?</div>
 
-          <p>The main thing you get is to have helped create a searchable archive of RSK content. However, there is also a ranking system
-          with rewards with for contributions. Rewards are small donations to charity on your behalf.</p>
+          <p>There are two ways you can contribute; firstly you can transcribe chunks of new audio (when available). You may also
+            improve existing transcriptions by adding summaries/trivia/timestamps, standardising text, and fixing errors.</p>
 
-            <div class="font-weight-bold mb-2">Editing a transcription</div>
+          <div class="font-weight-bold mb-2">Editing a transcription</div>
+          <ol>
+            <li>Load the episode from the <a [routerLink]="['/']">episode list</a>.</li>
+            <li>In the Transcript header click "Submit correction"</li>
+            <li>Submit your edit.</li>
+            <li>Await approval from an approver (admin).</li>
+            <li>Once the change is merged it will replace the original (may take several days).</li>
+          </ol>
+
+          <hr/>
+
+          <div [ngClass]="{'text-muted': overallAwaitingContributions === 0}">
+            <div class="font-weight-bold mb-2">Transcribing an audio chunk ({{overallAwaitingContributions || 0}} chunks available)</div>
+            <p>If no chunks are available you will not be able to start a transcription. However, if there are pending chunks:</p>
             <ol>
-              <li>Load the episode from the <a [routerLink]="['/']">episode list</a>.</li>
-              <li>In the Transcript header click "Submit correction"</li>
-              <li>Submit your edit.</li>
+              <li>Click Start Now below.</li>
+              <li>You will be prompted to authenticate using Reddit (contributions require a Reddit account).</li>
+              <li>The audio and editor are provided for a random 3 minute audio chunk. You just need to transcribe these three minutes.</li>
+              <li>Submit your transcription.</li>
               <li>Await approval from an approver (admin).</li>
-              <li>Once the change is merged it will replace the original (may take several days).</li>
+              <li>Changes are then synced to the flat files and re-deployed before taking effect (may take several days).</li>
             </ol>
 
-            <hr/>
-
-            <div [ngClass]="{'text-muted': overallAwaitingContributions === 0}">
-              <div class="font-weight-bold mb-2">Transcribing an audio chunk ({{overallAwaitingContributions || 0}} chunks available)</div>
-              <p>If no chunks are available you will not be able to start a transcription. However, if there are pending chunks:</p>
-              <ol>
-                <li>Click Start Now below.</li>
-                <li>You will be prompted to authenticate using Reddit (contributions require a Reddit account).</li>
-                <li>The audio and editor are provided for a random 3 minute audio chunk. You just need to transcribe these three minutes.</li>
-                <li>Submit your transcription.</li>
-                <li>Await approval from an approver (admin).</li>
-                <li>Changes are then synced to the flat files and re-deployed before taking effect (may take several days).</li>
-              </ol>
-
-              <div *ngIf="overallAwaitingContributions > 0">
-                <button class="btn btn-primary" [routerLink]="['/chunk', 'next']">Start Now</button>
-              </div>
-              <div class="text-muted mt-3">If you have already started a transcription find it <a [routerLink]="['/me']">here</a>.</div>
+            <div *ngIf="overallAwaitingContributions > 0">
+              <button class="btn btn-primary" [routerLink]="['/chunk', 'next']">Start Now</button>
             </div>
+            <div class="text-muted mt-3">If you have already started a transcription find it <a [routerLink]="['/me']">here</a>.</div>
+          </div>
         </div>
       </div>
 
