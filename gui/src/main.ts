@@ -10,7 +10,7 @@ Sentry.init({
   dsn: 'https://8992b69abcda4231821c0697176ce365@o1428053.ingest.sentry.io/6777807',
   integrations: [
     new BrowserTracing({
-      tracingOrigins: ['localhost', 'https://yourserver.io/api'],
+      tracingOrigins: ['localhost', 'https://scrimpton.com/api', 'https://karltakesasneakylookatmenscocks.com/api'],
       routingInstrumentation: Sentry.routingInstrumentation,
     }),
   ],
