@@ -73,16 +73,7 @@ func RefreshCmd() *cobra.Command {
 				} else {
 					episode.Incomplete = false
 				}
-
-				// ensure dialog positions are contiguous
-				// this will break synopsis/trivia possibly...
-
-				//var pos int64
-				//for k := range episode.Transcript {
-				//	episode.Transcript[k].Position = pos
-				//	pos += transcript.PosSpacing
-				//}
-
+				
 				// ensure IDs are correct
 				for k := range episode.Transcript {
 					episode.Transcript[k].ID = models.DialogID(episode.ID(), episode.Transcript[k].Position)

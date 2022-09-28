@@ -116,7 +116,10 @@ type Transcript struct {
 	// is the episode a "clip show"?
 	Bestof bool `json:"bestof"`
 	// is the episode a "one off" special type episode?
-	Special        bool  `json:"special"`
+	Special bool `json:"special"`
+	// Force an episode into the locked state. If false it will not override any other locking.
+	Locked bool `json:"locked"`
+
 	OffsetAccuracy int32 `json:"offset_accuracy"`
 
 	// additional optional data
@@ -185,7 +188,7 @@ func (e *Transcript) ShortProto(audioURI string) *api.ShortTranscript {
 	return ep
 }
 
-func (e *Transcript) Proto(withRawTranscript string, audioURI string, locked bool) *api.Transcript {
+func (e *Transcript) Proto(withRawTranscript string, audioURI string, forceLockedOn bool) *api.Transcript {
 	if e == nil {
 		return nil
 	}
@@ -207,7 +210,7 @@ func (e *Transcript) Proto(withRawTranscript string, audioURI string, locked boo
 		Version:            e.Version,
 		Bestof:             e.Bestof,
 		Special:            e.Special,
-		Locked:             locked,
+		Locked:             e.Locked || forceLockedOn,
 	}
 	for _, d := range e.Transcript {
 		ep.Transcript = append(ep.Transcript, d.Proto(false))
