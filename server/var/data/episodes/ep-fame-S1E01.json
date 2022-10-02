@@ -9,7 +9,7 @@
     "bestof": false,
     "special": true,
     "locked": false,
-    "offset_accuracy": 8,
+    "offset_accuracy": 9,
     "metadata": {
       "cover_art_url": "/assets/cover/special.jpg",
       "duration_ms": "2422200"
@@ -18,40 +18,634 @@
       {
         "id": "ep-fame-S1E01-1",
         "pos": 1,
-        "offset_sec": 0,
+        "offset_sec": 6,
         "offset_inferred": false,
-        "type": "gap",
-        "actor": "",
+        "type": "chat",
+        "actor": "ricky",
         "metadata": null,
-        "content": "[~3 mins of missing transcription]",
+        "content": "Hi, welcome to the Ricky, Gervais show with me Ricky Gervais, Stephen Merchant.",
         "notable": false
       },
       {
         "id": "ep-fame-S1E01-2",
         "pos": 2,
-        "offset_sec": 196,
+        "offset_sec": 17,
         "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
+        "type": "chat",
+        "actor": "steve",
         "metadata": null,
-        "content": "[~3 mins of missing transcription]",
+        "content": "Hello there.",
         "notable": false
       },
       {
         "id": "ep-fame-S1E01-3",
         "pos": 3,
-        "offset_sec": 392,
+        "offset_sec": 18,
         "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
+        "type": "chat",
+        "actor": "ricky",
         "metadata": null,
-        "content": "[~3 mins of missing transcription]",
+        "content": "And the Shaving monkey with a head like a fucking orange, that is Karl Pilkington.",
         "notable": false
       },
       {
         "id": "ep-fame-S1E01-4",
         "pos": 4,
-        "offset_sec": 588,
+        "offset_sec": 29,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "All right.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-5",
+        "pos": 5,
+        "offset_sec": 30,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Well, this is a special edition. A free giveaway podcast, that people who came to see my show Fame in London got, put on their seat, gratis. Thanks for coming.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-6",
+        "pos": 6,
+        "offset_sec": 39,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Well, unless you didn't even come, and still got this free. Unless someone went: \"I didn't want. It was rubbish\" and gave it to you, you're listening to it for free. Or you've sort of downloaded it illegally. It was free anyway! Ah, forget it.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-7",
+        "pos": 7,
+        "offset_sec": 53,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "We've been away for a while now. We're back together.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-8",
+        "pos": 8,
+        "offset_sec": 56,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "The old team.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-9",
+        "pos": 9,
+        "offset_sec": 57,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "The old team back together in a little room in central London.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-10",
+        "pos": 10,
+        "offset_sec": 60,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Karl? Looking back on the year, what's happened? I remember last year the most memorable thing that happened was, you saw a grubby in a biscuit so...",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-11",
+        "pos": 11,
+        "offset_sec": 70,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "That was a highlight that into his diary.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-12",
+        "pos": 12,
+        "offset_sec": 72,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah. So what's the big thing of this year? What's the big thing so far of 2007 that, as if I say 2007, you'll go: \"Oh, yeah, that was the year that...\"",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-13",
+        "pos": 13,
+        "offset_sec": 81,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "In years to come?",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-14",
+        "pos": 14,
+        "offset_sec": 82,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah, in 10 years time",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-15",
+        "pos": 15,
+        "offset_sec": 84,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah, I'll go remember 2007? You go \"Of course I do. It was the year that...\"",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-16",
+        "pos": 16,
+        "offset_sec": 87,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "I'm haven't really been following what's going on cause of all our other light personal issues",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-17",
+        "pos": 17,
+        "offset_sec": 92,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Well yeah, what's the big...?",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-18",
+        "pos": 18,
+        "offset_sec": 93,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "It's me boiler... It's me boiler is playing up still. Sick of it.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-19",
+        "pos": 19,
+        "offset_sec": 97,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Your what?",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-20",
+        "pos": 20,
+        "offset_sec": 97,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Me boiler. ,",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-21",
+        "pos": 21,
+        "offset_sec": 98,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "The boiler?",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-22",
+        "pos": 22,
+        "offset_sec": 98,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "The boiler, that heats the water up and stuff. Except it doesn't.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-23",
+        "pos": 23,
+        "offset_sec": 101,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "You know what I'd do in that situation? I'd instantly get a repairman out to sort it out.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-24",
+        "pos": 24,
+        "offset_sec": 106,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Done that, done that twice. It was 80 quid for him just to say, looks like you need a new one.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-25",
+        "pos": 25,
+        "offset_sec": 110,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Why didn't you get a new one then?",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-26",
+        "pos": 26,
+        "offset_sec": 112,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Because you then you wondered, you meant to believe him, or is he out to sort of trying to con me.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-27",
+        "pos": 27,
+        "offset_sec": 116,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Well he's the expert.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-28",
+        "pos": 28,
+        "offset_sec": 117,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Yeah but is he?",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-29",
+        "pos": 29,
+        "offset_sec": 118,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Well I don't know.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-30",
+        "pos": 30,
+        "offset_sec": 119,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "It's like you have to get a second opinion.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-31",
+        "pos": 31,
+        "offset_sec": 121,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "So that was the first time then, so what was the second time? Who came out the second time?",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-32",
+        "pos": 32,
+        "offset_sec": 125,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "It was the same fella",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-33",
+        "pos": 33,
+        "offset_sec": 126,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "And what did he say? Why did you call me?",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-34",
+        "pos": 34,
+        "offset_sec": 128,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "I thought you were gonna get a second opinion.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-35",
+        "pos": 35,
+        "offset_sec": 130,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "I know, but I called the company and they just sent him again, because I think",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-36",
+        "pos": 36,
+        "offset_sec": 133,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Well call a different company!",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-37",
+        "pos": 37,
+        "offset_sec": 134,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "What was it? What was his second opinion? For 80 quid.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-38",
+        "pos": 38,
+        "offset_sec": 137,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "That he under charged you and it's now 150?",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-39",
+        "pos": 39,
+        "offset_sec": 138,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "No, because they said they must look in the book and sort of go: \"Oh, you know, Harry went round there\" or whatever. And and they must think what he went there last time so he knows situation.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-40",
+        "pos": 40,
+        "offset_sec": 149,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-41",
+        "pos": 41,
+        "offset_sec": 149,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "And got the same fella again, so he turned up",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-42",
+        "pos": 42,
+        "offset_sec": 151,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Well, then you got the same opinion I assume",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-43",
+        "pos": 43,
+        "offset_sec": 154,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Same answer, yeah",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-44",
+        "pos": 44,
+        "offset_sec": 155,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Okay, yeah so two twice you've called someone out and they said you need a new boiler. He had the overalls on, holding a monkey wrench again. He came in a van.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-45",
+        "pos": 45,
+        "offset_sec": 163,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Yeah",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-46",
+        "pos": 46,
+        "offset_sec": 163,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "He charged you. He's the professional. Why haven't you got a new boiler?",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-47",
+        "pos": 47,
+        "offset_sec": 167,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Because then he went on to say that you know, it's a dangerous set up I've got. It shouldn't be set up the way it is, it's dangerous. Something about gas leaking out of it.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-48",
+        "pos": 48,
+        "offset_sec": 176,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Silent laugh from Ricky",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-49",
+        "pos": 49,
+        "offset_sec": 177,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "He said you know, \"you don't sleep close to this do you?\" And I said \"well bedroom's there\" it's not a big flat, you've seen it Steve.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-50",
+        "pos": 50,
+        "offset_sec": 316,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-51",
+        "pos": 51,
+        "offset_sec": 321,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "Ricky laughs",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-52",
+        "pos": 52,
+        "offset_sec": 334,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Everything's en suite innit?",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-53",
+        "pos": 53,
+        "offset_sec": 363,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "(laughing) \"Everything's en suite\"! Oh dear",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-54",
+        "pos": 54,
+        "offset_sec": 407,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "So yeah anyway. He just sort of said look, you know, he doesn't want to touch it. He said you need to get someone in who can sort this out for you but",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-55",
+        "pos": 55,
+        "offset_sec": 563,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "What? And it took him two visits and 160 to feel that out?",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-56",
+        "pos": 56,
+        "offset_sec": 623,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Yeah, this is what they do init?",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-57",
+        "pos": 57,
+        "offset_sec": 656,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "So what's his advice?",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-58",
+        "pos": 58,
+        "offset_sec": 678,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -60,8 +654,30 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-5",
-        "pos": 5,
+        "id": "ep-fame-S1E01-59",
+        "pos": 59,
+        "offset_sec": 713,
+        "offset_inferred": true,
+        "type": "gap",
+        "actor": "",
+        "metadata": null,
+        "content": "[~3 mins of missing transcription]",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-60",
+        "pos": 60,
+        "offset_sec": 748,
+        "offset_inferred": true,
+        "type": "gap",
+        "actor": "",
+        "metadata": null,
+        "content": "[~3 mins of missing transcription]",
+        "notable": false
+      },
+      {
+        "id": "ep-fame-S1E01-61",
+        "pos": 61,
         "offset_sec": 783,
         "offset_inferred": false,
         "type": "chat",
@@ -71,8 +687,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-6",
-        "pos": 6,
+        "id": "ep-fame-S1E01-62",
+        "pos": 62,
         "offset_sec": 816,
         "offset_inferred": true,
         "type": "chat",
@@ -82,8 +698,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-7",
-        "pos": 7,
+        "id": "ep-fame-S1E01-63",
+        "pos": 63,
         "offset_sec": 842,
         "offset_inferred": true,
         "type": "chat",
@@ -93,8 +709,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-8",
-        "pos": 8,
+        "id": "ep-fame-S1E01-64",
+        "pos": 64,
         "offset_sec": 852,
         "offset_inferred": true,
         "type": "chat",
@@ -104,8 +720,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-9",
-        "pos": 9,
+        "id": "ep-fame-S1E01-65",
+        "pos": 65,
         "offset_sec": 895,
         "offset_inferred": true,
         "type": "chat",
@@ -115,8 +731,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-10",
-        "pos": 10,
+        "id": "ep-fame-S1E01-66",
+        "pos": 66,
         "offset_sec": 933,
         "offset_inferred": true,
         "type": "chat",
@@ -126,8 +742,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-11",
-        "pos": 11,
+        "id": "ep-fame-S1E01-67",
+        "pos": 67,
         "offset_sec": 943,
         "offset_inferred": true,
         "type": "chat",
@@ -137,8 +753,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-12",
-        "pos": 12,
+        "id": "ep-fame-S1E01-68",
+        "pos": 68,
         "offset_sec": 945,
         "offset_inferred": true,
         "type": "chat",
@@ -148,8 +764,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-13",
-        "pos": 13,
+        "id": "ep-fame-S1E01-69",
+        "pos": 69,
         "offset_sec": 1013,
         "offset_inferred": true,
         "type": "chat",
@@ -159,8 +775,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-14",
-        "pos": 14,
+        "id": "ep-fame-S1E01-70",
+        "pos": 70,
         "offset_sec": 1021,
         "offset_inferred": true,
         "type": "chat",
@@ -170,8 +786,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-15",
-        "pos": 15,
+        "id": "ep-fame-S1E01-71",
+        "pos": 71,
         "offset_sec": 1046,
         "offset_inferred": true,
         "type": "chat",
@@ -181,8 +797,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-16",
-        "pos": 16,
+        "id": "ep-fame-S1E01-72",
+        "pos": 72,
         "offset_sec": 1066,
         "offset_inferred": true,
         "type": "chat",
@@ -192,8 +808,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-17",
-        "pos": 17,
+        "id": "ep-fame-S1E01-73",
+        "pos": 73,
         "offset_sec": 1073,
         "offset_inferred": true,
         "type": "chat",
@@ -203,8 +819,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-18",
-        "pos": 18,
+        "id": "ep-fame-S1E01-74",
+        "pos": 74,
         "offset_sec": 1081,
         "offset_inferred": true,
         "type": "chat",
@@ -214,8 +830,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-19",
-        "pos": 19,
+        "id": "ep-fame-S1E01-75",
+        "pos": 75,
         "offset_sec": 1105,
         "offset_inferred": true,
         "type": "chat",
@@ -225,8 +841,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-20",
-        "pos": 20,
+        "id": "ep-fame-S1E01-76",
+        "pos": 76,
         "offset_sec": 1120,
         "offset_inferred": true,
         "type": "chat",
@@ -236,8 +852,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-21",
-        "pos": 21,
+        "id": "ep-fame-S1E01-77",
+        "pos": 77,
         "offset_sec": 1126,
         "offset_inferred": true,
         "type": "chat",
@@ -247,8 +863,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-22",
-        "pos": 22,
+        "id": "ep-fame-S1E01-78",
+        "pos": 78,
         "offset_sec": 1174,
         "offset_inferred": true,
         "type": "chat",
@@ -258,8 +874,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-23",
-        "pos": 23,
+        "id": "ep-fame-S1E01-79",
+        "pos": 79,
         "offset_sec": 1185,
         "offset_inferred": true,
         "type": "chat",
@@ -269,8 +885,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-24",
-        "pos": 24,
+        "id": "ep-fame-S1E01-80",
+        "pos": 80,
         "offset_sec": 1204,
         "offset_inferred": true,
         "type": "chat",
@@ -280,8 +896,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-25",
-        "pos": 25,
+        "id": "ep-fame-S1E01-81",
+        "pos": 81,
         "offset_sec": 1255,
         "offset_inferred": true,
         "type": "chat",
@@ -291,8 +907,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-26",
-        "pos": 26,
+        "id": "ep-fame-S1E01-82",
+        "pos": 82,
         "offset_sec": 1257,
         "offset_inferred": true,
         "type": "chat",
@@ -302,8 +918,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-27",
-        "pos": 27,
+        "id": "ep-fame-S1E01-83",
+        "pos": 83,
         "offset_sec": 1292,
         "offset_inferred": true,
         "type": "chat",
@@ -313,8 +929,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-28",
-        "pos": 28,
+        "id": "ep-fame-S1E01-84",
+        "pos": 84,
         "offset_sec": 1293,
         "offset_inferred": true,
         "type": "chat",
@@ -324,8 +940,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-29",
-        "pos": 29,
+        "id": "ep-fame-S1E01-85",
+        "pos": 85,
         "offset_sec": 1364,
         "offset_inferred": true,
         "type": "chat",
@@ -335,8 +951,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-30",
-        "pos": 30,
+        "id": "ep-fame-S1E01-86",
+        "pos": 86,
         "offset_sec": 1369,
         "offset_inferred": true,
         "type": "chat",
@@ -346,8 +962,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-31",
-        "pos": 31,
+        "id": "ep-fame-S1E01-87",
+        "pos": 87,
         "offset_sec": 1393,
         "offset_inferred": true,
         "type": "chat",
@@ -357,8 +973,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-32",
-        "pos": 32,
+        "id": "ep-fame-S1E01-88",
+        "pos": 88,
         "offset_sec": 1430,
         "offset_inferred": true,
         "type": "chat",
@@ -368,8 +984,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-33",
-        "pos": 33,
+        "id": "ep-fame-S1E01-89",
+        "pos": 89,
         "offset_sec": 1437,
         "offset_inferred": true,
         "type": "chat",
@@ -379,8 +995,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-34",
-        "pos": 34,
+        "id": "ep-fame-S1E01-90",
+        "pos": 90,
         "offset_sec": 1451,
         "offset_inferred": true,
         "type": "chat",
@@ -390,8 +1006,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-35",
-        "pos": 35,
+        "id": "ep-fame-S1E01-91",
+        "pos": 91,
         "offset_sec": 1464,
         "offset_inferred": true,
         "type": "chat",
@@ -401,8 +1017,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-36",
-        "pos": 36,
+        "id": "ep-fame-S1E01-92",
+        "pos": 92,
         "offset_sec": 1479,
         "offset_inferred": true,
         "type": "chat",
@@ -412,8 +1028,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-37",
-        "pos": 37,
+        "id": "ep-fame-S1E01-93",
+        "pos": 93,
         "offset_sec": 1505,
         "offset_inferred": true,
         "type": "chat",
@@ -423,8 +1039,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-38",
-        "pos": 38,
+        "id": "ep-fame-S1E01-94",
+        "pos": 94,
         "offset_sec": 1520,
         "offset_inferred": true,
         "type": "chat",
@@ -434,8 +1050,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-39",
-        "pos": 39,
+        "id": "ep-fame-S1E01-95",
+        "pos": 95,
         "offset_sec": 1528,
         "offset_inferred": true,
         "type": "chat",
@@ -445,8 +1061,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-40",
-        "pos": 40,
+        "id": "ep-fame-S1E01-96",
+        "pos": 96,
         "offset_sec": 1529,
         "offset_inferred": true,
         "type": "chat",
@@ -456,8 +1072,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-41",
-        "pos": 41,
+        "id": "ep-fame-S1E01-97",
+        "pos": 97,
         "offset_sec": 1574,
         "offset_inferred": true,
         "type": "chat",
@@ -467,8 +1083,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-42",
-        "pos": 42,
+        "id": "ep-fame-S1E01-98",
+        "pos": 98,
         "offset_sec": 1585,
         "offset_inferred": true,
         "type": "chat",
@@ -478,8 +1094,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-43",
-        "pos": 43,
+        "id": "ep-fame-S1E01-99",
+        "pos": 99,
         "offset_sec": 1639,
         "offset_inferred": true,
         "type": "chat",
@@ -489,8 +1105,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-44",
-        "pos": 44,
+        "id": "ep-fame-S1E01-100",
+        "pos": 100,
         "offset_sec": 1652,
         "offset_inferred": true,
         "type": "chat",
@@ -500,8 +1116,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-45",
-        "pos": 45,
+        "id": "ep-fame-S1E01-101",
+        "pos": 101,
         "offset_sec": 1729,
         "offset_inferred": true,
         "type": "chat",
@@ -511,8 +1127,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-46",
-        "pos": 46,
+        "id": "ep-fame-S1E01-102",
+        "pos": 102,
         "offset_sec": 1756,
         "offset_inferred": true,
         "type": "chat",
@@ -522,8 +1138,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-47",
-        "pos": 47,
+        "id": "ep-fame-S1E01-103",
+        "pos": 103,
         "offset_sec": 1758,
         "offset_inferred": true,
         "type": "chat",
@@ -533,8 +1149,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-48",
-        "pos": 48,
+        "id": "ep-fame-S1E01-104",
+        "pos": 104,
         "offset_sec": 1845,
         "offset_inferred": true,
         "type": "chat",
@@ -544,8 +1160,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-49",
-        "pos": 49,
+        "id": "ep-fame-S1E01-105",
+        "pos": 105,
         "offset_sec": 1855,
         "offset_inferred": true,
         "type": "chat",
@@ -555,8 +1171,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-50",
-        "pos": 50,
+        "id": "ep-fame-S1E01-106",
+        "pos": 106,
         "offset_sec": 1862,
         "offset_inferred": true,
         "type": "chat",
@@ -566,8 +1182,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-51",
-        "pos": 51,
+        "id": "ep-fame-S1E01-107",
+        "pos": 107,
         "offset_sec": 1872,
         "offset_inferred": true,
         "type": "chat",
@@ -577,8 +1193,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-52",
-        "pos": 52,
+        "id": "ep-fame-S1E01-108",
+        "pos": 108,
         "offset_sec": 1880,
         "offset_inferred": true,
         "type": "chat",
@@ -588,8 +1204,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-53",
-        "pos": 53,
+        "id": "ep-fame-S1E01-109",
+        "pos": 109,
         "offset_sec": 1896,
         "offset_inferred": true,
         "type": "chat",
@@ -599,8 +1215,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-54",
-        "pos": 54,
+        "id": "ep-fame-S1E01-110",
+        "pos": 110,
         "offset_sec": 1916,
         "offset_inferred": true,
         "type": "chat",
@@ -610,8 +1226,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-55",
-        "pos": 55,
+        "id": "ep-fame-S1E01-111",
+        "pos": 111,
         "offset_sec": 1921,
         "offset_inferred": true,
         "type": "chat",
@@ -621,8 +1237,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-56",
-        "pos": 56,
+        "id": "ep-fame-S1E01-112",
+        "pos": 112,
         "offset_sec": 1941,
         "offset_inferred": true,
         "type": "chat",
@@ -632,8 +1248,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-57",
-        "pos": 57,
+        "id": "ep-fame-S1E01-113",
+        "pos": 113,
         "offset_sec": 1951,
         "offset_inferred": true,
         "type": "chat",
@@ -643,8 +1259,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-58",
-        "pos": 58,
+        "id": "ep-fame-S1E01-114",
+        "pos": 114,
         "offset_sec": 1968,
         "offset_inferred": true,
         "type": "chat",
@@ -654,8 +1270,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-59",
-        "pos": 59,
+        "id": "ep-fame-S1E01-115",
+        "pos": 115,
         "offset_sec": 1975,
         "offset_inferred": true,
         "type": "chat",
@@ -665,8 +1281,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-60",
-        "pos": 60,
+        "id": "ep-fame-S1E01-116",
+        "pos": 116,
         "offset_sec": 1976,
         "offset_inferred": true,
         "type": "chat",
@@ -676,8 +1292,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-61",
-        "pos": 61,
+        "id": "ep-fame-S1E01-117",
+        "pos": 117,
         "offset_sec": 2046,
         "offset_inferred": true,
         "type": "chat",
@@ -687,8 +1303,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-62",
-        "pos": 62,
+        "id": "ep-fame-S1E01-118",
+        "pos": 118,
         "offset_sec": 2060,
         "offset_inferred": true,
         "type": "chat",
@@ -698,8 +1314,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-63",
-        "pos": 63,
+        "id": "ep-fame-S1E01-119",
+        "pos": 119,
         "offset_sec": 2076,
         "offset_inferred": true,
         "type": "gap",
@@ -709,8 +1325,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-64",
-        "pos": 64,
+        "id": "ep-fame-S1E01-120",
+        "pos": 120,
         "offset_sec": 2087,
         "offset_inferred": true,
         "type": "gap",
@@ -720,8 +1336,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-65",
-        "pos": 65,
+        "id": "ep-fame-S1E01-121",
+        "pos": 121,
         "offset_sec": 2099,
         "offset_inferred": true,
         "type": "gap",
@@ -731,8 +1347,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-66",
-        "pos": 66,
+        "id": "ep-fame-S1E01-122",
+        "pos": 122,
         "offset_sec": 2110,
         "offset_inferred": true,
         "type": "gap",
@@ -742,8 +1358,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-67",
-        "pos": 67,
+        "id": "ep-fame-S1E01-123",
+        "pos": 123,
         "offset_sec": 2122,
         "offset_inferred": true,
         "type": "gap",
@@ -753,8 +1369,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-68",
-        "pos": 68,
+        "id": "ep-fame-S1E01-124",
+        "pos": 124,
         "offset_sec": 2133,
         "offset_inferred": true,
         "type": "gap",
@@ -764,8 +1380,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-69",
-        "pos": 69,
+        "id": "ep-fame-S1E01-125",
+        "pos": 125,
         "offset_sec": 2144,
         "offset_inferred": false,
         "type": "chat",
@@ -775,8 +1391,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-70",
-        "pos": 70,
+        "id": "ep-fame-S1E01-126",
+        "pos": 126,
         "offset_sec": 2151,
         "offset_inferred": true,
         "type": "chat",
@@ -786,8 +1402,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-71",
-        "pos": 71,
+        "id": "ep-fame-S1E01-127",
+        "pos": 127,
         "offset_sec": 2153,
         "offset_inferred": true,
         "type": "chat",
@@ -797,8 +1413,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-72",
-        "pos": 72,
+        "id": "ep-fame-S1E01-128",
+        "pos": 128,
         "offset_sec": 2158,
         "offset_inferred": true,
         "type": "chat",
@@ -808,8 +1424,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-73",
-        "pos": 73,
+        "id": "ep-fame-S1E01-129",
+        "pos": 129,
         "offset_sec": 2158,
         "offset_inferred": false,
         "type": "chat",
@@ -819,8 +1435,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-74",
-        "pos": 74,
+        "id": "ep-fame-S1E01-130",
+        "pos": 130,
         "offset_sec": 2163,
         "offset_inferred": true,
         "type": "chat",
@@ -830,8 +1446,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-75",
-        "pos": 75,
+        "id": "ep-fame-S1E01-131",
+        "pos": 131,
         "offset_sec": 2163,
         "offset_inferred": true,
         "type": "chat",
@@ -841,8 +1457,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-76",
-        "pos": 76,
+        "id": "ep-fame-S1E01-132",
+        "pos": 132,
         "offset_sec": 2164,
         "offset_inferred": true,
         "type": "chat",
@@ -852,8 +1468,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-77",
-        "pos": 77,
+        "id": "ep-fame-S1E01-133",
+        "pos": 133,
         "offset_sec": 2164,
         "offset_inferred": false,
         "type": "chat",
@@ -863,8 +1479,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-78",
-        "pos": 78,
+        "id": "ep-fame-S1E01-134",
+        "pos": 134,
         "offset_sec": 2165,
         "offset_inferred": true,
         "type": "chat",
@@ -874,8 +1490,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-79",
-        "pos": 79,
+        "id": "ep-fame-S1E01-135",
+        "pos": 135,
         "offset_sec": 2168,
         "offset_inferred": true,
         "type": "chat",
@@ -885,8 +1501,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-80",
-        "pos": 80,
+        "id": "ep-fame-S1E01-136",
+        "pos": 136,
         "offset_sec": 2174,
         "offset_inferred": true,
         "type": "chat",
@@ -896,8 +1512,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-81",
-        "pos": 81,
+        "id": "ep-fame-S1E01-137",
+        "pos": 137,
         "offset_sec": 2175,
         "offset_inferred": true,
         "type": "chat",
@@ -907,8 +1523,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-82",
-        "pos": 82,
+        "id": "ep-fame-S1E01-138",
+        "pos": 138,
         "offset_sec": 2176,
         "offset_inferred": true,
         "type": "chat",
@@ -918,8 +1534,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-83",
-        "pos": 83,
+        "id": "ep-fame-S1E01-139",
+        "pos": 139,
         "offset_sec": 2195,
         "offset_inferred": false,
         "type": "chat",
@@ -929,8 +1545,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-84",
-        "pos": 84,
+        "id": "ep-fame-S1E01-140",
+        "pos": 140,
         "offset_sec": 2200,
         "offset_inferred": true,
         "type": "chat",
@@ -940,8 +1556,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-85",
-        "pos": 85,
+        "id": "ep-fame-S1E01-141",
+        "pos": 141,
         "offset_sec": 2200,
         "offset_inferred": true,
         "type": "chat",
@@ -951,8 +1567,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-86",
-        "pos": 86,
+        "id": "ep-fame-S1E01-142",
+        "pos": 142,
         "offset_sec": 2203,
         "offset_inferred": true,
         "type": "chat",
@@ -962,8 +1578,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-87",
-        "pos": 87,
+        "id": "ep-fame-S1E01-143",
+        "pos": 143,
         "offset_sec": 2203,
         "offset_inferred": true,
         "type": "chat",
@@ -973,8 +1589,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-88",
-        "pos": 88,
+        "id": "ep-fame-S1E01-144",
+        "pos": 144,
         "offset_sec": 2204,
         "offset_inferred": true,
         "type": "chat",
@@ -984,8 +1600,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-89",
-        "pos": 89,
+        "id": "ep-fame-S1E01-145",
+        "pos": 145,
         "offset_sec": 2205,
         "offset_inferred": true,
         "type": "chat",
@@ -995,8 +1611,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-90",
-        "pos": 90,
+        "id": "ep-fame-S1E01-146",
+        "pos": 146,
         "offset_sec": 2210,
         "offset_inferred": true,
         "type": "chat",
@@ -1006,8 +1622,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-91",
-        "pos": 91,
+        "id": "ep-fame-S1E01-147",
+        "pos": 147,
         "offset_sec": 2212,
         "offset_inferred": true,
         "type": "chat",
@@ -1017,8 +1633,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-92",
-        "pos": 92,
+        "id": "ep-fame-S1E01-148",
+        "pos": 148,
         "offset_sec": 2214,
         "offset_inferred": true,
         "type": "chat",
@@ -1028,8 +1644,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-93",
-        "pos": 93,
+        "id": "ep-fame-S1E01-149",
+        "pos": 149,
         "offset_sec": 2215,
         "offset_inferred": true,
         "type": "chat",
@@ -1039,8 +1655,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-94",
-        "pos": 94,
+        "id": "ep-fame-S1E01-150",
+        "pos": 150,
         "offset_sec": 2215,
         "offset_inferred": true,
         "type": "chat",
@@ -1050,8 +1666,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-95",
-        "pos": 95,
+        "id": "ep-fame-S1E01-151",
+        "pos": 151,
         "offset_sec": 2217,
         "offset_inferred": true,
         "type": "chat",
@@ -1061,8 +1677,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-96",
-        "pos": 96,
+        "id": "ep-fame-S1E01-152",
+        "pos": 152,
         "offset_sec": 2221,
         "offset_inferred": true,
         "type": "chat",
@@ -1072,8 +1688,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-97",
-        "pos": 97,
+        "id": "ep-fame-S1E01-153",
+        "pos": 153,
         "offset_sec": 2222,
         "offset_inferred": true,
         "type": "chat",
@@ -1083,8 +1699,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-98",
-        "pos": 98,
+        "id": "ep-fame-S1E01-154",
+        "pos": 154,
         "offset_sec": 2222,
         "offset_inferred": true,
         "type": "chat",
@@ -1094,8 +1710,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-99",
-        "pos": 99,
+        "id": "ep-fame-S1E01-155",
+        "pos": 155,
         "offset_sec": 2224,
         "offset_inferred": false,
         "type": "chat",
@@ -1105,8 +1721,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-100",
-        "pos": 100,
+        "id": "ep-fame-S1E01-156",
+        "pos": 156,
         "offset_sec": 2225,
         "offset_inferred": true,
         "type": "chat",
@@ -1116,8 +1732,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-101",
-        "pos": 101,
+        "id": "ep-fame-S1E01-157",
+        "pos": 157,
         "offset_sec": 2229,
         "offset_inferred": true,
         "type": "chat",
@@ -1127,8 +1743,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-102",
-        "pos": 102,
+        "id": "ep-fame-S1E01-158",
+        "pos": 158,
         "offset_sec": 2230,
         "offset_inferred": true,
         "type": "chat",
@@ -1138,8 +1754,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-103",
-        "pos": 103,
+        "id": "ep-fame-S1E01-159",
+        "pos": 159,
         "offset_sec": 2230,
         "offset_inferred": true,
         "type": "chat",
@@ -1149,8 +1765,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-104",
-        "pos": 104,
+        "id": "ep-fame-S1E01-160",
+        "pos": 160,
         "offset_sec": 2232,
         "offset_inferred": true,
         "type": "chat",
@@ -1160,8 +1776,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-105",
-        "pos": 105,
+        "id": "ep-fame-S1E01-161",
+        "pos": 161,
         "offset_sec": 2233,
         "offset_inferred": true,
         "type": "chat",
@@ -1171,8 +1787,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-106",
-        "pos": 106,
+        "id": "ep-fame-S1E01-162",
+        "pos": 162,
         "offset_sec": 2242,
         "offset_inferred": true,
         "type": "chat",
@@ -1182,8 +1798,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-107",
-        "pos": 107,
+        "id": "ep-fame-S1E01-163",
+        "pos": 163,
         "offset_sec": 2243,
         "offset_inferred": true,
         "type": "chat",
@@ -1193,8 +1809,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-108",
-        "pos": 108,
+        "id": "ep-fame-S1E01-164",
+        "pos": 164,
         "offset_sec": 2245,
         "offset_inferred": true,
         "type": "chat",
@@ -1204,8 +1820,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-109",
-        "pos": 109,
+        "id": "ep-fame-S1E01-165",
+        "pos": 165,
         "offset_sec": 2246,
         "offset_inferred": true,
         "type": "chat",
@@ -1215,8 +1831,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-110",
-        "pos": 110,
+        "id": "ep-fame-S1E01-166",
+        "pos": 166,
         "offset_sec": 2247,
         "offset_inferred": true,
         "type": "chat",
@@ -1226,8 +1842,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-111",
-        "pos": 111,
+        "id": "ep-fame-S1E01-167",
+        "pos": 167,
         "offset_sec": 2251,
         "offset_inferred": true,
         "type": "chat",
@@ -1237,8 +1853,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-112",
-        "pos": 112,
+        "id": "ep-fame-S1E01-168",
+        "pos": 168,
         "offset_sec": 2254,
         "offset_inferred": false,
         "type": "chat",
@@ -1248,8 +1864,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-113",
-        "pos": 113,
+        "id": "ep-fame-S1E01-169",
+        "pos": 169,
         "offset_sec": 2255,
         "offset_inferred": true,
         "type": "chat",
@@ -1259,8 +1875,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-114",
-        "pos": 114,
+        "id": "ep-fame-S1E01-170",
+        "pos": 170,
         "offset_sec": 2257,
         "offset_inferred": true,
         "type": "chat",
@@ -1270,8 +1886,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-115",
-        "pos": 115,
+        "id": "ep-fame-S1E01-171",
+        "pos": 171,
         "offset_sec": 2258,
         "offset_inferred": true,
         "type": "chat",
@@ -1281,8 +1897,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-116",
-        "pos": 116,
+        "id": "ep-fame-S1E01-172",
+        "pos": 172,
         "offset_sec": 2265,
         "offset_inferred": false,
         "type": "chat",
@@ -1292,8 +1908,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-117",
-        "pos": 117,
+        "id": "ep-fame-S1E01-173",
+        "pos": 173,
         "offset_sec": 2273,
         "offset_inferred": true,
         "type": "chat",
@@ -1303,8 +1919,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-118",
-        "pos": 118,
+        "id": "ep-fame-S1E01-174",
+        "pos": 174,
         "offset_sec": 2274,
         "offset_inferred": true,
         "type": "chat",
@@ -1314,8 +1930,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-119",
-        "pos": 119,
+        "id": "ep-fame-S1E01-175",
+        "pos": 175,
         "offset_sec": 2275,
         "offset_inferred": true,
         "type": "chat",
@@ -1325,8 +1941,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-120",
-        "pos": 120,
+        "id": "ep-fame-S1E01-176",
+        "pos": 176,
         "offset_sec": 2276,
         "offset_inferred": true,
         "type": "chat",
@@ -1336,8 +1952,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-121",
-        "pos": 121,
+        "id": "ep-fame-S1E01-177",
+        "pos": 177,
         "offset_sec": 2279,
         "offset_inferred": true,
         "type": "chat",
@@ -1347,8 +1963,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-122",
-        "pos": 122,
+        "id": "ep-fame-S1E01-178",
+        "pos": 178,
         "offset_sec": 2287,
         "offset_inferred": true,
         "type": "chat",
@@ -1358,8 +1974,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-123",
-        "pos": 123,
+        "id": "ep-fame-S1E01-179",
+        "pos": 179,
         "offset_sec": 2287,
         "offset_inferred": true,
         "type": "chat",
@@ -1369,8 +1985,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-124",
-        "pos": 124,
+        "id": "ep-fame-S1E01-180",
+        "pos": 180,
         "offset_sec": 2291,
         "offset_inferred": true,
         "type": "chat",
@@ -1380,8 +1996,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-125",
-        "pos": 125,
+        "id": "ep-fame-S1E01-181",
+        "pos": 181,
         "offset_sec": 2294,
         "offset_inferred": false,
         "type": "chat",
@@ -1391,8 +2007,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-126",
-        "pos": 126,
+        "id": "ep-fame-S1E01-182",
+        "pos": 182,
         "offset_sec": 2301,
         "offset_inferred": true,
         "type": "chat",
@@ -1402,8 +2018,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-127",
-        "pos": 127,
+        "id": "ep-fame-S1E01-183",
+        "pos": 183,
         "offset_sec": 2302,
         "offset_inferred": true,
         "type": "chat",
@@ -1413,8 +2029,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-128",
-        "pos": 128,
+        "id": "ep-fame-S1E01-184",
+        "pos": 184,
         "offset_sec": 2304,
         "offset_inferred": true,
         "type": "chat",
@@ -1424,8 +2040,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-129",
-        "pos": 129,
+        "id": "ep-fame-S1E01-185",
+        "pos": 185,
         "offset_sec": 2312,
         "offset_inferred": true,
         "type": "chat",
@@ -1435,8 +2051,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-130",
-        "pos": 130,
+        "id": "ep-fame-S1E01-186",
+        "pos": 186,
         "offset_sec": 2313,
         "offset_inferred": true,
         "type": "chat",
@@ -1446,8 +2062,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-131",
-        "pos": 131,
+        "id": "ep-fame-S1E01-187",
+        "pos": 187,
         "offset_sec": 2315,
         "offset_inferred": true,
         "type": "chat",
@@ -1457,8 +2073,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-132",
-        "pos": 132,
+        "id": "ep-fame-S1E01-188",
+        "pos": 188,
         "offset_sec": 2319,
         "offset_inferred": true,
         "type": "chat",
@@ -1468,8 +2084,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-133",
-        "pos": 133,
+        "id": "ep-fame-S1E01-189",
+        "pos": 189,
         "offset_sec": 2320,
         "offset_inferred": true,
         "type": "chat",
@@ -1479,8 +2095,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-134",
-        "pos": 134,
+        "id": "ep-fame-S1E01-190",
+        "pos": 190,
         "offset_sec": 2320,
         "offset_inferred": true,
         "type": "chat",
@@ -1490,8 +2106,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-135",
-        "pos": 135,
+        "id": "ep-fame-S1E01-191",
+        "pos": 191,
         "offset_sec": 2321,
         "offset_inferred": true,
         "type": "chat",
@@ -1501,8 +2117,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-136",
-        "pos": 136,
+        "id": "ep-fame-S1E01-192",
+        "pos": 192,
         "offset_sec": 2321,
         "offset_inferred": true,
         "type": "chat",
@@ -1512,8 +2128,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-137",
-        "pos": 137,
+        "id": "ep-fame-S1E01-193",
+        "pos": 193,
         "offset_sec": 2324,
         "offset_inferred": true,
         "type": "chat",
@@ -1523,8 +2139,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-138",
-        "pos": 138,
+        "id": "ep-fame-S1E01-194",
+        "pos": 194,
         "offset_sec": 2325,
         "offset_inferred": true,
         "type": "chat",
@@ -1534,8 +2150,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-139",
-        "pos": 139,
+        "id": "ep-fame-S1E01-195",
+        "pos": 195,
         "offset_sec": 2327,
         "offset_inferred": true,
         "type": "chat",
@@ -1545,8 +2161,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-140",
-        "pos": 140,
+        "id": "ep-fame-S1E01-196",
+        "pos": 196,
         "offset_sec": 2327,
         "offset_inferred": false,
         "type": "chat",
@@ -1556,8 +2172,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-141",
-        "pos": 141,
+        "id": "ep-fame-S1E01-197",
+        "pos": 197,
         "offset_sec": 2336,
         "offset_inferred": true,
         "type": "chat",
@@ -1567,8 +2183,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-142",
-        "pos": 142,
+        "id": "ep-fame-S1E01-198",
+        "pos": 198,
         "offset_sec": 2336,
         "offset_inferred": true,
         "type": "chat",
@@ -1578,8 +2194,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-143",
-        "pos": 143,
+        "id": "ep-fame-S1E01-199",
+        "pos": 199,
         "offset_sec": 2352,
         "offset_inferred": true,
         "type": "chat",
@@ -1589,8 +2205,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-144",
-        "pos": 144,
+        "id": "ep-fame-S1E01-200",
+        "pos": 200,
         "offset_sec": 2353,
         "offset_inferred": true,
         "type": "chat",
@@ -1600,8 +2216,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-145",
-        "pos": 145,
+        "id": "ep-fame-S1E01-201",
+        "pos": 201,
         "offset_sec": 2354,
         "offset_inferred": true,
         "type": "chat",
@@ -1611,8 +2227,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-146",
-        "pos": 146,
+        "id": "ep-fame-S1E01-202",
+        "pos": 202,
         "offset_sec": 2354,
         "offset_inferred": false,
         "type": "chat",
@@ -1622,8 +2238,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-147",
-        "pos": 147,
+        "id": "ep-fame-S1E01-203",
+        "pos": 203,
         "offset_sec": 2361,
         "offset_inferred": true,
         "type": "chat",
@@ -1633,8 +2249,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-148",
-        "pos": 148,
+        "id": "ep-fame-S1E01-204",
+        "pos": 204,
         "offset_sec": 2364,
         "offset_inferred": true,
         "type": "chat",
@@ -1644,8 +2260,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-149",
-        "pos": 149,
+        "id": "ep-fame-S1E01-205",
+        "pos": 205,
         "offset_sec": 2366,
         "offset_inferred": true,
         "type": "chat",
@@ -1655,8 +2271,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-150",
-        "pos": 150,
+        "id": "ep-fame-S1E01-206",
+        "pos": 206,
         "offset_sec": 2370,
         "offset_inferred": true,
         "type": "chat",
@@ -1666,8 +2282,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-151",
-        "pos": 151,
+        "id": "ep-fame-S1E01-207",
+        "pos": 207,
         "offset_sec": 2382,
         "offset_inferred": true,
         "type": "chat",
@@ -1677,8 +2293,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-152",
-        "pos": 152,
+        "id": "ep-fame-S1E01-208",
+        "pos": 208,
         "offset_sec": 2384,
         "offset_inferred": false,
         "type": "chat",
@@ -1688,8 +2304,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-153",
-        "pos": 153,
+        "id": "ep-fame-S1E01-209",
+        "pos": 209,
         "offset_sec": 2397,
         "offset_inferred": true,
         "type": "chat",
@@ -1699,8 +2315,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-154",
-        "pos": 154,
+        "id": "ep-fame-S1E01-210",
+        "pos": 210,
         "offset_sec": 2398,
         "offset_inferred": true,
         "type": "chat",
@@ -1710,8 +2326,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-155",
-        "pos": 155,
+        "id": "ep-fame-S1E01-211",
+        "pos": 211,
         "offset_sec": 2402,
         "offset_inferred": true,
         "type": "chat",
@@ -1721,8 +2337,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-156",
-        "pos": 156,
+        "id": "ep-fame-S1E01-212",
+        "pos": 212,
         "offset_sec": 2403,
         "offset_inferred": true,
         "type": "chat",
@@ -1732,8 +2348,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-157",
-        "pos": 157,
+        "id": "ep-fame-S1E01-213",
+        "pos": 213,
         "offset_sec": 2414,
         "offset_inferred": false,
         "type": "chat",
@@ -1743,8 +2359,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-158",
-        "pos": 158,
+        "id": "ep-fame-S1E01-214",
+        "pos": 214,
         "offset_sec": 2417,
         "offset_inferred": true,
         "type": "chat",
@@ -1754,8 +2370,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-159",
-        "pos": 159,
+        "id": "ep-fame-S1E01-215",
+        "pos": 215,
         "offset_sec": 2421,
         "offset_inferred": true,
         "type": "chat",
@@ -1765,8 +2381,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-160",
-        "pos": 160,
+        "id": "ep-fame-S1E01-216",
+        "pos": 216,
         "offset_sec": 2422,
         "offset_inferred": true,
         "type": "chat",
@@ -1776,8 +2392,8 @@
         "notable": false
       },
       {
-        "id": "ep-fame-S1E01-161",
-        "pos": 161,
+        "id": "ep-fame-S1E01-217",
+        "pos": 217,
         "offset_sec": 2422,
         "offset_inferred": true,
         "type": "chat",
@@ -1790,24 +2406,25 @@
     "synopsis": [
       {
         "description": "Karl is an insect lifeguard",
-        "start_pos": 69,
-        "end_pos": 101
+        "start_pos": 125,
+        "end_pos": 157
       },
       {
         "description": "Karl's holiday is so boring a bird commits suicide",
-        "start_pos": 105,
-        "end_pos": 117
+        "start_pos": 161,
+        "end_pos": 173
       },
       {
         "description": "Karl's holiday continues with more fascinating food-related anecdotes, including the infamous pikelets",
-        "start_pos": 120,
-        "end_pos": 140
+        "start_pos": 176,
+        "end_pos": 196
       }
     ],
     "contributors": [
       "EarthlingCalling",
       "Simon1863",
-      "Tinseltopia"
+      "Tinseltopia",
+      "wontbemad"
     ],
     "trivia": null
   }
