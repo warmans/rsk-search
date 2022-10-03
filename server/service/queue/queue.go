@@ -313,23 +313,53 @@ func (q *ImportQueue) HandleSplitAudioChunks(ctx context.Context, t *asynq.Task)
 	}
 
 	chunkMetadataPath := path.Join(tsImport.WorkingDir(q.cfg.WorkingDir), tsImport.ChunkedMachineTranscript())
-	wavPath := path.Join(tsImport.WorkingDir(q.cfg.WorkingDir), tsImport.Mp3())
 
-	cmd := exec.Command(
-		"python3",
-		path.Join(q.cfg.PythonScriptDir, "split-ep.py"),
-		"--meta", chunkMetadataPath,
-		"--outpath", chunkOutputDir,
-		"--audio", wavPath,
-	)
-
-	q.logger.Info("Shelling out to python script to split Mp3")
-	out, err := cmd.CombinedOutput()
-	if err != nil {
-		err = errors.Wrap(err, "failed to exec split-ep.py")
-		q.logger.Error(err.Error(), zap.Error(err), zap.Strings("output", strings.Split(string(out), "\n")))
+	var tscript *models.Tscript
+	if err := util.WithReadJSONFileDecoder(chunkMetadataPath, func(dec *json.Decoder) error {
+		if err := dec.Decode(&tscript); err != nil {
+			return err
+		}
+		return nil
+	}); err != nil {
 		return err
 	}
+
+	for _, chunk := range tscript.Chunks {
+
+		args := []string{
+			"-i", path.Join(tsImport.WorkingDir(q.cfg.WorkingDir), tsImport.Mp3()),
+			"-vcodec", "copy",
+			"-acodec", "copy",
+			"-ss", fmt.Sprintf("%d", chunk.StartSecond),
+		}
+		if chunk.EndSecond > -1 {
+			args = append(args, "-to", fmt.Sprintf("%d", chunk.EndSecond))
+		}
+		// else it will default to eof
+
+		cmd := exec.Command(
+			"ffmpeg",
+			append(args, path.Join(chunkOutputDir, fmt.Sprintf("%s.mp3", chunk.ID)))...,
+		)
+
+		q.logger.Info("Shelling out to ffmpeg to extract Mp3 chunk", zap.String("chunk_id", chunk.ID), zap.Int64("strat", chunk.StartSecond))
+		out, err := cmd.CombinedOutput()
+		if err != nil {
+			err = errors.Wrap(err, "failed to exec split-ep.py")
+			q.logger.Error(err.Error(), zap.Error(err), zap.Strings("output", strings.Split(string(out), "\n")))
+			return err
+		}
+	}
+
+	//wavPath := path.Join(tsImport.WorkingDir(q.cfg.WorkingDir), tsImport.Mp3())
+	//
+	//cmd := exec.Command(
+	//	"python3",
+	//	path.Join(q.cfg.PythonScriptDir, "split-ep.py"),
+	//	"--meta", chunkMetadataPath,
+	//	"--outpath", chunkOutputDir,
+	//	"--audio", wavPath,
+	//)
 
 	q.TryUpdateImportLog(ctx, tsImport.ID, t.Type(), "Mp3 split complete: %s", chunkOutputDir)
 
