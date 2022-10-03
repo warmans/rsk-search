@@ -149,7 +149,8 @@ run: build
 		--pledge-def-lastname=${PLEDGE_LNAME} \
 		--rewards-disabled=false \
 		--import-keep-files=true \
-		--coffee-access-token=${COFFEE_ACCESS_TOKEN}
+		--coffee-access-token=${COFFEE_ACCESS_TOKEN} \
+		--assembly-ai-access-token=${ASSEMBLY_AI_ACCESS_TOKEN}
 
 .PHONY: dev.services.start
 dev.services.start:

@@ -16,7 +16,7 @@ args = parser.parse_args()
 with open(args.meta) as f:
     data = json.load(f)
 
-episode = AudioSegment.from_wav(args.audio)
+episode = AudioSegment.from_file(args.audio)
 
 for chunk in data["chunks"]:
     print("chunk", chunk["id"], chunk["start_second"], chunk["end_second"])

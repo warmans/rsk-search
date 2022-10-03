@@ -12,27 +12,30 @@ type dataConfig struct {
 var cfg = dataConfig{}
 
 func RootCmd() *cobra.Command {
-	index := &cobra.Command{
+	root := &cobra.Command{
 		Use:   "data",
 		Short: "commands related to to the search index",
 	}
 
-	index.PersistentFlags().StringVarP(&cfg.dataDir, "data-dir", "d", "./var/data/episodes", "Path to the raw data files")
-	index.PersistentFlags().StringVarP(&cfg.audioDir, "audio-dir", "a", "", "Path to the audio files")
+	root.PersistentFlags().StringVarP(&cfg.dataDir, "data-dir", "d", "./var/data/episodes", "Path to the raw data files")
+	root.PersistentFlags().StringVarP(&cfg.audioDir, "audio-dir", "a", "", "Path to the audio files")
 
-	index.AddCommand(InitCmd())
-	index.AddCommand(ImportPilkipediaRaw())
-	index.AddCommand(ImportSpotifyData())
+	root.AddCommand(InitCmd())
+	root.AddCommand(ImportPilkipediaRaw())
+	root.AddCommand(ImportSpotifyData())
 
 	// exports
-	index.AddCommand(GenerateHTMLCmd())
-	index.AddCommand(InferMissingOffsetsCmd())
-	index.AddCommand(RefreshCmd())
-	index.AddCommand(DumpPlaintext())
+	root.AddCommand(GenerateHTMLCmd())
+	root.AddCommand(InferMissingOffsetsCmd())
+	root.AddCommand(RefreshCmd())
+	root.AddCommand(DumpPlaintext())
 
 	// index
+	root.AddCommand(PopulateBlugeIndex())
 
-	index.AddCommand(PopulateBlugeIndex())
+	// assembly ai testing
+	root.AddCommand(TranscribeAssemblyAICmd())
+	root.AddCommand(AssemblyAI2Dialog())
 
-	return index
+	return root
 }

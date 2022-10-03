@@ -8,6 +8,7 @@ import (
 	"github.com/blugelabs/bluge"
 	"github.com/spf13/afero"
 	"github.com/spf13/cobra"
+	"github.com/warmans/rsk-search/pkg/assemblyai"
 	"github.com/warmans/rsk-search/pkg/coffee"
 	"github.com/warmans/rsk-search/pkg/data"
 	"github.com/warmans/rsk-search/pkg/flag"
@@ -23,9 +24,10 @@ import (
 	"github.com/warmans/rsk-search/pkg/store/rw"
 	"github.com/warmans/rsk-search/service/config"
 	"github.com/warmans/rsk-search/service/grpc"
-	"github.com/warmans/rsk-search/service/http"
+	httpsrv "github.com/warmans/rsk-search/service/http"
 	"github.com/warmans/rsk-search/service/queue"
 	"go.uber.org/zap"
+	"net/http"
 	"os"
 	"os/signal"
 	"path"
@@ -48,6 +50,7 @@ func ServerCmd() *cobra.Command {
 	importQueueConfig := &queue.ImportQueueConfig{}
 	speech2TextCfg := &speech2text2.GcloudConfig{}
 	coffeeCfg := &coffee.Config{}
+	assemblyAiCfg := &assemblyai.Config{}
 
 	cmd := &cobra.Command{
 		Use:   "server",
@@ -157,6 +160,7 @@ func ServerCmd() *cobra.Command {
 				afero.NewOsFs(),
 				persistentDBConn,
 				speech2text2.NewGcloud(logger, googleStorage, googleSpeech, speech2TextCfg),
+				assemblyai.NewClient(logger, http.DefaultClient, assemblyAiCfg),
 				googleStorage,
 				importQueueConfig,
 			)
@@ -220,11 +224,11 @@ func ServerCmd() *cobra.Command {
 			}
 
 			httpServices := []server.HTTPService{
-				http.NewMetricsService(),
-				http.NewDownloadService(logger, srvCfg),
+				httpsrv.NewMetricsService(),
+				httpsrv.NewDownloadService(logger, srvCfg),
 			}
 			if oauthCfg.Secret != "" {
-				httpServices = append(httpServices, http.NewOauthService(logger, tokenCache, persistentDBConn, auth, oauthCfg, srvCfg))
+				httpServices = append(httpServices, httpsrv.NewOauthService(logger, tokenCache, persistentDBConn, auth, oauthCfg, srvCfg))
 			} else {
 				logger.Info("OAUTH SECRET WAS MISSING - OAUTH ENDPOINTS WILL NOT BE REGISTERED!")
 			}
@@ -264,6 +268,7 @@ func ServerCmd() *cobra.Command {
 	importQueueConfig.RegisterFlags(cmd.Flags(), ServicePrefix)
 	speech2TextCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
 	coffeeCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
+	assemblyAiCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
 
 	return cmd
 }
