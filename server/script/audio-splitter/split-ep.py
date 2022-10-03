@@ -16,7 +16,10 @@ args = parser.parse_args()
 with open(args.meta) as f:
     data = json.load(f)
 
-episode = AudioSegment.from_file(args.audio)
+if args.audio.endswith(".mp3"):
+    episode = AudioSegment.from_mp3(args.audio)
+else:
+    episode = AudioSegment.from_wav(args.audio)
 
 for chunk in data["chunks"]:
     print("chunk", chunk["id"], chunk["start_second"], chunk["end_second"])
