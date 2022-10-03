@@ -111,7 +111,7 @@ func (q *ImportQueue) DispatchCreateWorkspace(ctx context.Context, tscriptImport
 		return err
 	}
 	q.logger.Debug("Enqueue create workspace...")
-	_, err = q.client.EnqueueContext(ctx, asynq.NewTask(TaskImportCreateWorkspace, payload))
+	_, err = q.client.EnqueueContext(ctx, asynq.NewTask(TaskImportCreateWorkspace, payload), asynq.Timeout(time.Minute*10), asynq.MaxRetry(5))
 	return err
 }
 
@@ -121,7 +121,7 @@ func (q *ImportQueue) DispatchCreateWav(ctx context.Context, tscriptImport *mode
 		return err
 	}
 	q.logger.Debug("Enqueue create WAV...")
-	_, err = q.client.EnqueueContext(ctx, asynq.NewTask(TaskImportCreateWav, payload))
+	_, err = q.client.EnqueueContext(ctx, asynq.NewTask(TaskImportCreateWav, payload), asynq.Timeout(time.Hour), asynq.MaxRetry(5))
 	return err
 }
 
@@ -141,7 +141,7 @@ func (q *ImportQueue) DispatchSplitAudioChunks(ctx context.Context, tscriptImpor
 		return err
 	}
 	q.logger.Debug("Enqueue split audio chunks...")
-	_, err = q.client.EnqueueContext(ctx, asynq.NewTask(TaskImportSplitChunks, payload))
+	_, err = q.client.EnqueueContext(ctx, asynq.NewTask(TaskImportSplitChunks, payload), asynq.Timeout(time.Hour*1), asynq.MaxRetry(5))
 	return err
 }
 
