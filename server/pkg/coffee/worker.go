@@ -45,6 +45,7 @@ func (w *Worker) Start() error {
 			supporters, err := w.client.Supporters()
 			if err != nil {
 				w.logger.Error("Failed sync supporters from coffee", zap.Error(err))
+				continue
 			}
 			supNames := []string{}
 			for _, v := range supporters.Data {
@@ -58,6 +59,7 @@ func (w *Worker) Start() error {
 			})
 			if err != nil {
 				w.logger.Error("Failed to update local DB with supporters", zap.Error(err))
+				continue
 			}
 		case <-w.stop:
 			return nil

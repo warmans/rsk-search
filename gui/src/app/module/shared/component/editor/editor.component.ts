@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
-import { getOffsetValueFromLine, isOffsetLine, lineHasActorPrefix } from '../../../shared/lib/tscript';
+import { getOffsetValueFromLine, isOffsetLine } from '../../../shared/lib/tscript';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
@@ -74,6 +74,23 @@ export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
     this.updateInnerHtml(this._textContent);
   }
 
+  findAndReplace(find: string, replace: string) {
+
+    // this is really dumb. If you want to preserve the undo buffer then you need top use this API... which is deprecated
+    // and there is no replacement. And it sucks. Better than not allowing undo... I guess.
+    // Currently, replace could break the HTML. I guess I should edit the innerText then re-create the inner HTML.
+    // can't be bothered.
+    this.editableContent.nativeElement.focus();
+    document.execCommand('selectAll');
+    document.execCommand(
+      'insertHTML',
+      false,
+      this.editableContent.nativeElement.innerHTML.replace(new RegExp(`${find}`, 'g'), replace),
+    );
+
+    this.contentChanged();
+  }
+
   updateInnerHtml(value: string) {
     if (!value || !this.editableContent) {
       return;
@@ -84,7 +101,7 @@ export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
 
     lines.forEach((line: string) => {
       line = line.trim();
-      if (line.length  === 0) {
+      if (line.length === 0) {
         return;
       }
       if (line.match(/^#OFFSET:.*/g)) {
@@ -115,7 +132,7 @@ export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private newAutocomplete(items: string[]) {
     const el = this.renderer.createElement('span');
-    el.innerText = `${items.join(",")}\n`;
+    el.innerText = `${items.join(',')}\n`;
     el.className = 'autocomplete';
     return el;
   }

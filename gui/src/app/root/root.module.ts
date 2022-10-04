@@ -12,6 +12,7 @@ import { RewardModule } from '../module/reward/reward.module';
 import { ContribModule } from '../module/contrib/contrib.module';
 import { AdminModule } from '../module/admin/admin.module';
 import { EmbedModule } from '../module/embed/embed.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { EmbedModule } from '../module/embed/embed.module';
     ContribModule,
     AdminModule,
     EmbedModule,
+    NgbModule,
   ],
   providers: [Title],
   bootstrap: [RootComponent]

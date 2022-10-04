@@ -139,6 +139,29 @@ pre {
   }
 }
 
+.popover {
+  @include theme() {
+    background-color: theme-get('fg-body');
+  }
+
+  .popover-header {
+    font-weight: bold;
+    color: $primary;
+    @include theme() {
+      background-color: theme-get('header-block-bg');
+      border-color: theme-get('header-block-border') !important;
+    }
+
+  }
+
+  .popover-body {
+    @include theme() {
+      background-color: theme-get('fg-body');
+      color: theme-get('text-color');
+    }
+  }
+}
+
 .table {
   @include theme() {
     color: theme-get('text-color');
@@ -153,7 +176,7 @@ pre {
 }
 
 .breadcrumb {
-  background-color: transparent;
+  background-color: transparent !important;
 }
 
 .progress {
@@ -182,7 +205,7 @@ pre {
 
 .nav-tabs {
 
-  border-bottom: none;
+  border-bottom: none !important;
   z-index: 1000;
   top: 1px;
   position: relative;
@@ -299,3 +322,6 @@ app-markdown {
     max-width: 100%;
   }
 }
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';

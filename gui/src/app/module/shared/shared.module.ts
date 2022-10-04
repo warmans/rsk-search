@@ -28,6 +28,8 @@ import { AudioPlayerV2Component } from './component/audio-player-v2/audio-player
 import { BarComponent } from './component/filterbar/bar/bar.component';
 import { ValueListComponent } from './component/filterbar/value-list/value-list.component';
 import { AudioPlayerFixedComponent } from './component/audio-player-fixed/audio-player-fixed.component';
+import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
+import { FindReplaceComponent } from './component/find-replace/find-replace.component';
 
 @NgModule({
   declarations: [
@@ -57,11 +59,13 @@ import { AudioPlayerFixedComponent } from './component/audio-player-fixed/audio-
     BarComponent,
     ValueListComponent,
     AudioPlayerFixedComponent,
+    FindReplaceComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
+    NgbPopoverModule,
   ],
   providers: [],
     exports: [

@@ -1,11 +1,12 @@
 import { Component, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { EditorConfig, EditorConfigComponent } from '../editor-config/editor-config.component';
 import { Subject } from 'rxjs';
-import { getFirstOffset, parseTranscript } from '../../lib/tscript';
+import { getFirstOffset } from '../../lib/tscript';
 import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { formatDistance } from 'date-fns';
 import { EditorComponent } from '../editor/editor.component';
 import { AudioService, PlayerState, Status } from '../../../core/service/audio/audio.service';
+import { FindReplace } from '../find-replace/find-replace.component';
 
 @Component({
   selector: 'app-transcriber',
@@ -121,8 +122,6 @@ export class TranscriberComponent implements OnInit, OnDestroy {
 
   @ViewChild('editor')
   editorComponent: EditorComponent;
-
-  findReplaceDialogOpen: boolean = false;
 
   $destroy: EventEmitter<void> = new EventEmitter<void>();
 
@@ -294,7 +293,7 @@ export class TranscriberComponent implements OnInit, OnDestroy {
     this.editorComponent.refreshInnerHtml();
   }
 
-  openFindReplaceDialog() {
-    this.findReplaceDialogOpen = true;
+  runFindAndReplace(vals: FindReplace) {
+    this.editorComponent.findAndReplace(vals.find, vals.replace);
   }
 }

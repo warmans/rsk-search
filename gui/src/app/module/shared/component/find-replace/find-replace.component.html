@@ -1,0 +1,23 @@
+<button
+  class="btn btn-success btn-sm ml-3"
+  title="Find and replace value"
+  [ngbPopover]="findAndReplacePopover"
+  [placement]="'bottom-start'"
+  [autoClose]="'outside'" triggers="manual" #p="ngbPopover" (click)="p.toggle()" popoverTitle="Find/Replace">
+  Find/Replace
+</button>
+
+<ng-template #findAndReplacePopover>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="form-group">
+      <label for="find">Find</label>
+      <input [formControlName]="'find'" type="find" class="form-control" id="find" aria-describedby="find" autocomplete="off">
+    </div>
+    <div class="form-group">
+      <label for="replace">Replace</label>
+      <input [formControlName]="'replace'" type="replace" class="form-control" id="replace" aria-describedby="replace" autocomplete="off">
+    </div>
+    <button class="btn btn-sm btn-primary" type="submit" [disabled]="!form.valid">Replace All</button>
+  </form>
+
+</ng-template>
