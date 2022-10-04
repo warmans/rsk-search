@@ -1,7 +1,7 @@
 import { Component, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { EditorConfig, EditorConfigComponent } from '../editor-config/editor-config.component';
 import { Subject } from 'rxjs';
-import { getFirstOffset } from '../../lib/tscript';
+import { getFirstOffset, parseTranscript } from '../../lib/tscript';
 import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { formatDistance } from 'date-fns';
 import { EditorComponent } from '../editor/editor.component';
@@ -122,7 +122,9 @@ export class TranscriberComponent implements OnInit, OnDestroy {
   @ViewChild('editor')
   editorComponent: EditorComponent;
 
-  $destroy: EventEmitter<boolean> = new EventEmitter<boolean>();
+  findReplaceDialogOpen: boolean = false;
+
+  $destroy: EventEmitter<void> = new EventEmitter<void>();
 
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent): boolean {
@@ -290,5 +292,9 @@ export class TranscriberComponent implements OnInit, OnDestroy {
 
   refreshEditorHTML() {
     this.editorComponent.refreshInnerHtml();
+  }
+
+  openFindReplaceDialog() {
+    this.findReplaceDialogOpen = true;
   }
 }

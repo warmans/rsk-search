@@ -42,7 +42,7 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
 
   loading: boolean[] = [];
 
-  $destroy: EventEmitter<boolean> = new EventEmitter<boolean>();
+  $destroy: EventEmitter<void> = new EventEmitter<void>();
 
   @ViewChild('transcriber')
   transcriber: TranscriberComponent;

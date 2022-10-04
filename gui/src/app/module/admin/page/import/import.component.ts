@@ -21,7 +21,7 @@ export class ImportComponent implements OnInit, OnDestroy {
   tscripts: RskTscriptStats[] = [];
   imports: RskTscriptImport[] = [];
 
-  private unsubscribe$: EventEmitter<boolean> = new EventEmitter<boolean>();
+  private unsubscribe$: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(private apiClient: SearchAPIClient, private alerts: AlertService) {
   }

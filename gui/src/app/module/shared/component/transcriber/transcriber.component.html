@@ -42,6 +42,7 @@
       </button>
       <span class="mx-3"> | </span>
       <button class="btn btn-success btn-sm" (click)="refreshEditorHTML()" title="Add coloring to any tags that were added manually. This is not done automatically for performance reasons.">Refresh Formatting</button>
+      <button class="btn btn-success btn-sm ml-3" (click)="openFindReplaceDialog()" title="Replace machine transcript actor labels.">Fix Names</button>
     </div>
     <div>
       <button class="btn btn-danger btn-sm" *ngIf="allowEdit" (click)="resetToRaw()" title="revert text to chunk original">Reset</button>
@@ -99,5 +100,21 @@
 <div *ngIf="enableDiff && (activeTab==='diff')" class="card">
   <div class="card-body preview-window">
     <app-html-diff [unifiedDiff]="unifiedDiff"></app-html-diff>
+  </div>
+</div>
+<!-- actor replacement tool -->
+<div class="modal" [ngClass]="{'open': findReplaceDialogOpen}" tabindex="-1" role="dialog">
+  <div class="modal-dialog  modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Fix Names</h5>
+        <button type="button" class="close" aria-label="Close" (click)="findReplaceDialogOpen = false">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+      </div>
+    </div>
   </div>
 </div>

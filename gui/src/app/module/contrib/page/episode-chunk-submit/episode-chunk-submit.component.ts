@@ -50,7 +50,7 @@ export class EpisodeChunkSubmit implements OnInit, OnDestroy {
     this.markRejected(comment);
   };
 
-  $destroy: EventEmitter<boolean> = new EventEmitter<boolean>();
+  $destroy: EventEmitter<void> = new EventEmitter<void>();
 
   @ViewChild('transcriber')
   transcriber: TranscriberComponent;
