@@ -5,6 +5,7 @@ go 1.16
 require (
 	cloud.google.com/go v0.75.0
 	cloud.google.com/go/storage v1.14.0
+	facette.io/natsort v0.0.0-20181210072756-2cd4dd1e2dcb
 	github.com/blugelabs/bluge v0.2.2
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/go-redis/redis/v8 v8.11.5 // indirect
@@ -17,7 +18,6 @@ require (
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.3.0
 	github.com/hexops/gotextdiff v1.0.3
 	github.com/hibiken/asynq v0.23.0
-	github.com/jdkato/prose/v2 v2.0.0
 	github.com/jmoiron/sqlx v1.3.1
 	github.com/karlseguin/ccache/v2 v2.0.8
 	github.com/lib/pq v1.10.0

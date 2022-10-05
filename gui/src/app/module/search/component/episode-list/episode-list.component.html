@@ -9,6 +9,12 @@
     <li class="nav-item mr-2">
       <a class="nav-link" [ngClass]="{'active': activePublication === 'special'}" (click)="activePublication = 'special'">Specials</a>
     </li>
+    <li class="nav-item mr-2">
+      <a class="nav-link" [ngClass]="{'active': activePublication === 'other'}" (click)="activePublication = 'other'">Other</a>
+    </li>
+    <li class="nav-item mr-2">
+      <a class="nav-link" [ngClass]="{'active': activePublication === 'preview'}" (click)="activePublication = 'preview'">Preview</a>
+    </li>
   </ul>
   <button class="btn btn-sm btn-link mr-1" (click)="showDownloadDialog = !showDownloadDialog">
     <i class="bi-cloud-download mr-2"></i> Download transcripts

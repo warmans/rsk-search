@@ -45,6 +45,10 @@
                   <th>Presenters</th>
                   <td>{{episode.actors.join(', ')}}</td>
                 </tr>
+                <tr *ngIf="episode.summary">
+                  <th>Summary</th>
+                  <td>{{ episode.summary }}</td>
+                </tr>
                 <tr>
                   <th>Tags</th>
                   <td>

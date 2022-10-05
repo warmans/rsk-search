@@ -2,6 +2,7 @@ package grpc
 
 import (
 	"context"
+	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/warmans/rsk-search/gen/api"
@@ -76,6 +77,16 @@ func (s *AdminService) CreateTscriptImport(ctx context.Context, request *api.Cre
 
 	err = s.persistentDB.WithStore(func(store *rw.Store) error {
 		var err error
+		existingTscripts, err := store.ListTscripts(ctx)
+		if err != nil {
+			return err
+		}
+		for _, v := range existingTscripts {
+			if request.Epid == v.AsEpisode().ID() {
+				return ErrFailedPrecondition(fmt.Sprintf("Epid %s already exists as a tscript", request.Epid)).Err()
+			}
+		}
+
 		tscriptImport, err = store.CreateTscriptImport(ctx, &models.TscriptImportCreate{
 			EpID:   request.Epid,
 			EpName: request.Epname,

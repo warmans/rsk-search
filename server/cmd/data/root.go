@@ -21,6 +21,7 @@ func RootCmd() *cobra.Command {
 	root.PersistentFlags().StringVarP(&cfg.audioDir, "audio-dir", "a", "", "Path to the audio files")
 
 	root.AddCommand(InitCmd())
+	root.AddCommand(InitFromAudioFilesCmd())
 	root.AddCommand(ImportPilkipediaRaw())
 	root.AddCommand(ImportSpotifyData())
 

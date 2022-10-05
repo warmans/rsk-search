@@ -26,9 +26,11 @@ export class EpisodeComponent implements OnInit, OnDestroy {
   shortID: string;
 
   scrollToID: string | null = null;
+
   scrollToSeconds: number | null = null;
 
   episode: RskTranscript;
+
   episodeImage: string;
 
   pendingChanges: RskTranscriptChange[];
@@ -44,6 +46,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
   authenticated: boolean = false;
 
   previousEpisodeId: string;
+
   nextEpisodeId: string;
 
   audioStatus: Status;

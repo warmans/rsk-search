@@ -53,7 +53,7 @@ func initEpisodeFile(logger *zap.Logger, cfg dataConfig, dateStr string, name st
 		Publication: publication,
 		Series:      series,
 		Episode:     episode,
-		ReleaseDate: d,
+		ReleaseDate: &d,
 		Version:     "0.0.0",
 		Transcript:  []models.Dialog{},
 		Meta: map[models.MetadataType]string{

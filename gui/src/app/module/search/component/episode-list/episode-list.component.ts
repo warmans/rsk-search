@@ -2,9 +2,9 @@ import { Component, EventEmitter, OnInit } from '@angular/core';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { RskShortTranscript, RskTranscriptList } from '../../../../lib/api-client/models';
-import { SelectableConfig, SelectableKind } from '../../../shared/component/filterbar/bar/bar.component';
-import { of } from 'rxjs';
 import { FormControl } from '@angular/forms';
+
+type tabState = 'xfm'|'guide'|'special'|'other'|'preview';
 
 @Component({
   selector: 'app-episode-list',
@@ -21,39 +21,15 @@ export class EpisodeListComponent implements OnInit {
 
   showDownloadDialog: boolean = false;
 
-  // simple filter
   searchInput: FormControl = new FormControl('');
 
-  // complex filtering WIP
-  filterBarConfig: SelectableConfig[] = [{
-    kind: SelectableKind.FREETEXT,
-    field: 'shortId',
-    label: 'ID',
-    helpText: 'The episode ID',
-  }, {
-    kind: SelectableKind.FREETEXT,
-    field: 'bar',
-    label: 'Boo',
-    helpText: 'Another value.',
-    valueSourcePaging: true,
-    valueSource: (filters, query, page, pagesize) => {
-      const values = [];
-      for (let i = 0; i <= 100; i++) {
-        values.push({ label: 'Foo ' + i, value: 'foo' + i });
-      }
-      return of(values.filter((v) => v.label.indexOf(query) > -1));
-    },
-    multiSelect: true,
-  }
-  ];
+  private _activePublication: tabState = 'xfm';
 
-  private _activePublication: 'xfm'|'guide'|'special' = 'xfm';
-
-  get activePublication(): 'xfm'|'guide'|'special' {
+  get activePublication(): tabState {
     return this._activePublication;
   }
 
-  set activePublication(value: 'xfm'|'guide'|'special') {
+  set activePublication(value: tabState) {
     this._activePublication = value;
     this.resetEpisodeList();
   }
@@ -65,7 +41,6 @@ export class EpisodeListComponent implements OnInit {
 
   ngOnInit(): void {
     this.listEpisodes();
-
     this.searchInput.valueChanges.pipe(takeUntil(this.destroy$), debounceTime(100)).subscribe((val) => {
       if (val !== '') {
         this.filteredTranscriptList = this.activePublicationTranscripts().filter((t: RskShortTranscript) => {

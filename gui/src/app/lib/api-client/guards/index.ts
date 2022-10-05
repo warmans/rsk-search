@@ -836,6 +836,8 @@ export function isRskTranscript(arg: any): arg is models.RskTranscript {
     ( typeof arg.shortId === 'undefined' || typeof arg.shortId === 'string' ) &&
     // special?: boolean
     ( typeof arg.special === 'undefined' || typeof arg.special === 'boolean' ) &&
+    // summary?: string
+    ( typeof arg.summary === 'undefined' || typeof arg.summary === 'string' ) &&
     // synopses?: RskSynopsis[]
     ( typeof arg.synopses === 'undefined' || (Array.isArray(arg.synopses) && arg.synopses.every((item: unknown) => isRskSynopsis(item))) ) &&
     // transcript?: RskDialog[]

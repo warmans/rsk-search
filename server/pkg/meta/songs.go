@@ -9,7 +9,7 @@ import (
 //go:embed data/songs.json
 var songs embed.FS
 
-var songMeta = Tags{}
+var songMeta = Songs{}
 
 func init() {
 	f, err := songs.Open("data/songs.json")
@@ -44,4 +44,3 @@ func (s *Songs) FindKeyByTerm(term string) (string, bool) {
 	}
 	return "", false
 }
-

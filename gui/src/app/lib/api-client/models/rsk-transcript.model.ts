@@ -23,6 +23,7 @@ export interface RskTranscript {
   series?: number;
   shortId?: string;
   special?: boolean;
+  summary?: string;
   synopses?: RskSynopsis[];
   transcript?: RskDialog[];
   trivia?: RskTrivia[];

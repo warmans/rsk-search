@@ -2336,6 +2336,9 @@
           },
           "locked": {
             "type": "boolean"
+          },
+          "summary": {
+            "type": "string"
           }
         }
       },

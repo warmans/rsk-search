@@ -72,7 +72,7 @@ func main() {
 				fmt.Printf("Failed to parse release date for %s: %s \n", pageTitle.Text, err.Error())
 				releaseDate = &time.Time{}
 			}
-			episode.ReleaseDate = *releaseDate
+			episode.ReleaseDate = releaseDate
 			episode.Publication, episode.Series = ParsePublication(pageDescription)
 		} else {
 			fmt.Printf("No source for metadata found - skipping")

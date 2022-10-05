@@ -16,7 +16,6 @@ func RootCmd() *cobra.Command {
 
 	// search index commands
 	root.AddCommand(data.RootCmd())
-	root.AddCommand(data.RootCmd())
 	root.AddCommand(server.ServerCmd())
 	root.AddCommand(db.RootCmd())
 

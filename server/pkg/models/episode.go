@@ -7,40 +7,6 @@ import (
 	"time"
 )
 
-func WithProblem(ps TranscriptProblems, p TranscriptProblem) TranscriptProblems {
-	// ensure problems are not duplicated by always removing it first
-	return append(WithoutProblem(ps, p), p)
-}
-
-func WithoutProblem(ps TranscriptProblems, p TranscriptProblem) TranscriptProblems {
-	out := TranscriptProblems{}
-	for _, v := range ps {
-		if v != p {
-			out = append(out, v)
-		}
-	}
-	return out
-}
-
-type TranscriptProblems []TranscriptProblem
-
-func (tp TranscriptProblems) Proto() []string {
-	out := []string{}
-	for _, v := range tp {
-		out = append(out, string(v))
-	}
-	return out
-}
-
-type TranscriptProblem string
-
-const (
-	TranscriptProblemEmpty           = TranscriptProblem("empty")
-	TranscriptProblemIncomplete      = TranscriptProblem("incomplete")
-	TranscriptProblemMissingOffsets  = TranscriptProblem("missing_offsets")
-	TranscriptProblemMissingSynopsis = TranscriptProblem("missing_synopsis")
-)
-
 type DialogType string
 
 const (
@@ -108,9 +74,10 @@ type Transcript struct {
 	Series      int32  `json:"series"`
 	Episode     int32  `json:"episode"`
 	// some episodes don't really have a proper series/episode and need to be identified by a name e.g. Radio 2 special
-	Name        string    `json:"name"`
-	Version     string    `json:"version"` // SemVer
-	ReleaseDate time.Time `json:"release_date"`
+	Name        string     `json:"name"`
+	Summary     string     `json:"summary"`
+	Version     string     `json:"version"` // SemVer
+	ReleaseDate *time.Time `json:"release_date"`
 	// is the episode missing some sections of transcript?
 	Incomplete bool `json:"incomplete"`
 	// is the episode a "clip show"?
@@ -168,8 +135,8 @@ func (e *Transcript) ShortProto(audioURI string) *api.ShortTranscript {
 		Episode:             e.Episode,
 		TranscriptAvailable: len(e.Transcript) > 0,
 		Incomplete:          e.Incomplete,
-		ReleaseDate:         e.ReleaseDate.Format(util.ShortDateFormat),
-		Summary:             "", //todo
+		ReleaseDate:         util.ShortDate(e.ReleaseDate),
+		Summary:             e.Summary,
 		Synopsis:            make([]*api.Synopsis, len(e.Synopsis)),
 		TriviaAvailable:     len(e.Trivia) > 0,
 		Actors:              e.Actors(),
@@ -199,7 +166,7 @@ func (e *Transcript) Proto(withRawTranscript string, audioURI string, forceLocke
 		Series:             e.Series,
 		Episode:            e.Episode,
 		Metadata:           e.Meta.Proto(),
-		ReleaseDate:        e.ReleaseDate.Format(util.ShortDateFormat),
+		ReleaseDate:        util.ShortDate(e.ReleaseDate),
 		Contributors:       e.Contributors,
 		Incomplete:         e.Incomplete,
 		RawTranscript:      withRawTranscript,
@@ -211,6 +178,7 @@ func (e *Transcript) Proto(withRawTranscript string, audioURI string, forceLocke
 		Bestof:             e.Bestof,
 		Special:            e.Special,
 		Locked:             e.Locked || forceLockedOn,
+		Summary:            e.Summary,
 	}
 	for _, d := range e.Transcript {
 		ep.Transcript = append(ep.Transcript, d.Proto(false))

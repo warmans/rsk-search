@@ -16,17 +16,17 @@ type Searcher interface {
 }
 
 type DialogDocument struct {
-	ID           string    `json:"id"`
-	TranscriptID string    `json:"transcript_id"`
-	Mapping      string    `json:"mapping"`
-	Publication  string    `json:"publication"`
-	Series       int64     `json:"series"`
-	Episode      int64     `json:"episode"`
-	Date         time.Time `json:"date"`
-	Actor        string    `json:"actor"`
-	Position     int64     `json:"pos"`
-	Content      string    `json:"content"`
-	ContentType  string    `json:"type"`
+	ID           string     `json:"id"`
+	TranscriptID string     `json:"transcript_id"`
+	Mapping      string     `json:"mapping"`
+	Publication  string     `json:"publication"`
+	Series       int64      `json:"series"`
+	Episode      int64      `json:"episode"`
+	Date         *time.Time `json:"date"`
+	Actor        string     `json:"actor"`
+	Position     int64      `json:"pos"`
+	Content      string     `json:"content"`
+	ContentType  string     `json:"type"`
 }
 
 func (d DialogDocument) GetNamedField(name string) interface{} {

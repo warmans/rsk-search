@@ -105,7 +105,7 @@ func (s *Store) InsertChangelog(ctx context.Context, ep *models.Changelog) error
 	_, err := s.tx.ExecContext(
 		ctx,
 		`INSERT INTO changelog ("date", "content") VALUES ($2, $3)`,
-		util.SqlDate(ep.Date),
+		util.SqlDate(&ep.Date),
 		ep.Content,
 	)
 	return err

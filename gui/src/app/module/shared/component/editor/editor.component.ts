@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
-import { getOffsetValueFromLine, isOffsetLine } from '../../../shared/lib/tscript';
+import { getOffsetValueFromLine, isOffsetLine } from '../../lib/tscript';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 

@@ -2,6 +2,7 @@ package data
 
 import (
 	"encoding/json"
+	"facette.io/natsort"
 	"fmt"
 	"github.com/pkg/errors"
 	"github.com/warmans/rsk-search/pkg/models"
@@ -135,7 +136,7 @@ func (s *EpisodeCache) ListEpisodes() []*models.Transcript {
 	}
 
 	sort.Slice(list, func(i, j int) bool {
-		return list[i].ReleaseDate.Before(list[j].ReleaseDate)
+		return natsort.Compare(list[i].ID(), list[j].ID())
 	})
 	return list
 }

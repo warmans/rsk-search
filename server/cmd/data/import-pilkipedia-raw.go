@@ -26,7 +26,7 @@ func ImportPilkipediaRaw() *cobra.Command {
 			logger, _ := zap.NewProduction()
 			defer func() {
 				if err := logger.Sync(); err != nil {
-					fmt.Println("WARNING: failed to sync logger: "+err.Error())
+					fmt.Println("WARNING: failed to sync logger: " + err.Error())
 				}
 			}()
 
@@ -85,7 +85,7 @@ func ImportPilkipediaRaw() *cobra.Command {
 
 func loadTranscript(inputDir string, publication string, date time.Time) (*models.Transcript, error) {
 
-	f, err := os.Open(path.Join(inputDir, fmt.Sprintf("transcript-%s-%s.json", publication, util.ShortDate(date))))
+	f, err := os.Open(path.Join(inputDir, fmt.Sprintf("transcript-%s-%s.json", publication, util.ShortDate(&date))))
 	if err != nil {
 		if os.IsNotExist(err) {
 			return nil, nil
