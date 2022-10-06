@@ -168,6 +168,9 @@ export class AudioService {
   }
 
   public setAudioSrc(name: string | null, src: string, standalone?: boolean, startSecond?: number, endSecond?: number): void {
+    if (this.audioName === name) {
+      return;
+    }
     this.pauseAudio();
 
     this.audioName = name;
