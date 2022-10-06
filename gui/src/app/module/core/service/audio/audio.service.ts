@@ -79,7 +79,7 @@ export class AudioService {
   private playerStatusSub: BehaviorSubject<PlayerState> = new BehaviorSubject(PlayerState.paused);
   private percentLoadedSub: BehaviorSubject<number> = new BehaviorSubject(0);
   private audioSourceSub: BehaviorSubject<FileStatus> = new BehaviorSubject<FileStatus>({ audioFile: '', audioName: '', standalone: false });
-  private audioHistoryLogSub: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
+  private audioHistoryLogSub: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(this.getListenLog());
 
   public audioHistoryLog = this.audioHistoryLogSub.asObservable();
 
