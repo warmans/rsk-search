@@ -78,7 +78,7 @@ func InitFromAudioFilesCmd() *cobra.Command {
 			}
 
 			sort.Slice(audioFiles, func(i, j int) bool {
-				return audioFiles[i].year < audioFiles[i].year
+				return audioFiles[i].year < audioFiles[j].year
 			})
 
 			renamedFileDir := path.Join(cfg.audioDir, "renamed")
