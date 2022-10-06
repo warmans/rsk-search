@@ -243,7 +243,7 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
         }
       }
     }
-    if (currentGroup.endPos === undefined) {
+    if (currentGroup.endPos === undefined && (episode.transcript || []).length > 0) {
       currentGroup.endPos = episode.transcript[episode.transcript.length - 1].pos;
       this.groupedDialog.push(currentGroup);
     }
