@@ -36,8 +36,7 @@ export class EpisodeSummaryComponent implements OnInit, OnDestroy {
       if (!this.episode) {
         return;
       }
-      console.log(played, this.episode.shortId);
-      this.played = played.indexOf(this.episode.shortId) > -1
+      this.played = played.indexOf(this.episode.shortId) > -1;
     });
   }
 
