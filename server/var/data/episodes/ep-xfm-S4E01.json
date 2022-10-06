@@ -4,7 +4,7 @@
     "episode": 1,
     "name": "",
     "summary": "",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "release_date": "2005-05-28T00:00:00Z",
     "incomplete": false,
     "bestof": false,
@@ -8685,7 +8685,14 @@
     ],
     "synopsis": null,
     "contributors": [
-      "ImportantSlip14"
+      "ImportantSlip14",
+      "warmans"
     ],
-    "trivia": null
+    "trivia": [
+      {
+        "description": "You can see the freewebs site on [archive.org](https://web.archive.org/web/20051105025023/http://www.freewebs.com/the_k_man/)",
+        "start_pos": 172,
+        "end_pos": 196
+      }
+    ]
   }
