@@ -2,6 +2,8 @@ package data
 
 import (
 	"fmt"
+	"github.com/davecgh/go-spew/spew"
+	"github.com/dhowden/tag"
 	"github.com/spf13/cobra"
 	"github.com/warmans/rsk-search/pkg/data"
 	"github.com/warmans/rsk-search/pkg/models"
@@ -22,11 +24,13 @@ type audioFile struct {
 	date        *time.Time
 	year        int
 	publication string
+	summary     string
 }
 
 func InitFromAudioFilesCmd() *cobra.Command {
 
 	var publication string
+	var metadataStrategy string
 
 	cmd := &cobra.Command{
 		Use:   "init-from-audio",
@@ -49,18 +53,28 @@ func InitFromAudioFilesCmd() *cobra.Command {
 				if v.IsDir() {
 					continue
 				}
-				dateStr, name, year, err := parseFileName(logger, v.Name())
-				if err != nil {
-					logger.Warn(fmt.Sprintf("Failed to parse %s", v.Name()))
-					continue
+				filePath := path.Join(cfg.audioDir, v.Name())
+
+				if metadataStrategy == "filename" {
+					dateStr, name, year, err := parseFileName(logger, v.Name())
+					if err != nil {
+						logger.Warn(fmt.Sprintf("Failed to parse %s", v.Name()))
+						continue
+					}
+					audioFiles = append(audioFiles, audioFile{
+						path:        filePath,
+						name:        name,
+						date:        dateStr,
+						year:        year,
+						publication: publication,
+					})
+				} else {
+					meta, err := parseMetadata(logger, filePath, publication)
+					if err != nil {
+						return err
+					}
+					audioFiles = append(audioFiles, meta)
 				}
-				audioFiles = append(audioFiles, audioFile{
-					path:        path.Join(cfg.audioDir, v.Name()),
-					name:        name,
-					date:        dateStr,
-					year:        year,
-					publication: publication,
-				})
 			}
 
 			sort.Slice(audioFiles, func(i, j int) bool {
@@ -73,7 +87,7 @@ func InitFromAudioFilesCmd() *cobra.Command {
 				if err != nil {
 					return fmt.Errorf("failed to init file for file %s date: %s name: %s: %w", f.path, f.date, f.name, err)
 				}
-				if _, err := exec.Command("cp", f.path, path.Join(renamedFileDir, fmt.Sprintf("%s.mp3", ep.ID()))).CombinedOutput(); err != nil {
+				if _, err := exec.Command("cp", f.path, path.Join(renamedFileDir, fmt.Sprintf("%s.mp3", ep.ShortID()))).CombinedOutput(); err != nil {
 					return err
 				}
 
@@ -83,8 +97,67 @@ func InitFromAudioFilesCmd() *cobra.Command {
 	}
 
 	cmd.Flags().StringVarP(&publication, "publication", "p", "other", "Publication to give episodes")
+	cmd.Flags().StringVarP(&metadataStrategy, "meta-strategy", "m", "id3", "id3 or filename")
 
 	return cmd
+}
+
+func parseMetadata(logger *zap.Logger, fileName string, publication string) (audioFile, error) {
+	file, err := os.Open(fileName)
+	if err != nil {
+		return audioFile{}, err
+	}
+	tags, err := tag.ReadFrom(file)
+	if err != nil {
+		return audioFile{}, err
+	}
+	rawTags := tags.Raw()
+
+	spew.Dump(rawTags)
+
+	result := audioFile{}
+	result.publication = publication
+	result.path = fileName
+	result.name = tags.Title()
+	result.summary = findDescription(rawTags)
+	result.year = tags.Year()
+
+	if dateStr := findReleaseTimestamp(rawTags); dateStr != "" {
+		date, err := time.Parse(time.RFC3339, dateStr)
+		if err == nil {
+			result.date = &date
+		} else {
+			logger.Warn(fmt.Sprintf("failed to parse RELEASETIME %s", dateStr))
+		}
+	}
+	if result.date == nil && result.year > 0 {
+		startOfYear := time.Date(result.year, 0, 0, 0, 0, 0, 0, time.UTC)
+		result.date = &startOfYear
+	}
+
+	return result, nil
+}
+
+func findDescription(tags map[string]interface{}) string {
+	for _, key := range []string{"TDS", "TT3", "DESCRIPTION", "SUBTITLE", "PODCASTDESC"} {
+		if foundTag, ok := tags[key]; ok && foundTag != nil {
+			if strVal, strOk := foundTag.(string); strOk && strVal != "" {
+				return strVal
+			}
+		}
+	}
+	return ""
+}
+
+func findReleaseTimestamp(tags map[string]interface{}) string {
+	for _, key := range []string{"TDEN", "TDRL", "TDR"} {
+		if foundTag, ok := tags[key]; ok && foundTag != nil {
+			if strVal, strOk := foundTag.(string); strOk {
+				return strVal
+			}
+		}
+	}
+	return ""
 }
 
 // 2005 - Extras - Steve Interviewed by Simon Amstell on XFM 2005-08-13.mp3
@@ -128,6 +201,7 @@ func initEpisodeFileFromAudio(
 		ReleaseDate: f.date,
 		Name:        f.name,
 		Version:     "0.0.0",
+		Summary:     f.summary,
 		Transcript:  []models.Dialog{},
 		Locked:      true,
 		Meta: map[models.MetadataType]string{

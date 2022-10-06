@@ -11,11 +11,13 @@
         <div>
           <div class="title mb-2">
             <a [routerLink]="['/ep', episode.id]">
-              <span *ngIf="episode.publication != 'other' && !episode.special">Series {{episode.series}} Episode {{episode.episode}} <span *ngIf="episode.name"> - "{{episode.name}}"</span></span>
-              <span *ngIf="episode.publication === 'other' || episode.special">{{ episode.name || "Unknown" }}</span>
+              <span *ngIf="episode.publication === 'xfm' || episode.publication === 'guide'">Series {{episode.series}} Episode {{episode.episode}} <span *ngIf="episode.name"> - "{{episode.name}}"</span></span>
+              <span *ngIf="episode.publication !== 'xfm' && episode.publication !== 'guide'">{{ episode.name || "Unknown" }}</span>
             </a>
           </div>
-          <div class="sub-title font-weight-light"><a (click)="playEpisode(episode)"><i class="bi-play-circle-fill clickable mr-2"></i>{{episode.shortId}}</a> | {{episode.releaseDate | date}}</div>
+          <div class="sub-title font-weight-light">
+            <a (click)="playEpisode(episode)"><i class="bi-play-circle-fill clickable mr-2"></i>{{episode.shortId}}</a> | {{ played ? 'PLAYED' : 'UNPLAYED' }} | {{ (episode.releaseDate | date) || "Date Unknown" }}
+          </div>
         </div>
       </div>
     </div>

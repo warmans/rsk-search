@@ -7,7 +7,9 @@ require (
 	cloud.google.com/go/storage v1.14.0
 	facette.io/natsort v0.0.0-20181210072756-2cd4dd1e2dcb
 	github.com/blugelabs/bluge v0.2.2
+	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
+	github.com/dhowden/tag v0.0.0-20220618230019-adf36e896086
 	github.com/go-redis/redis/v8 v8.11.5 // indirect
 	github.com/gocolly/colly/v2 v2.1.0
 	github.com/google/uuid v1.3.0 // indirect

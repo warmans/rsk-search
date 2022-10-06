@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
 
+const STORAGE_KEY_LISTENLOG = 'audio_service_listen_log';
+const STORAGE_KEY_VOLUME = 'audio_service_volume';
+
 export interface Status {
   audioName: string;
   audioFile: string;
@@ -10,6 +13,7 @@ export interface Status {
   totalTime: number;
   percentElapsed: number;
   percentLoaded: number;
+  listened: boolean;
 
   // play only a section of the audio.
   startSecond?: number;
@@ -62,6 +66,7 @@ export class AudioService {
     totalTime: 0,
     percentElapsed: 0,
     percentLoaded: 0,
+    listened: false,
   });
   public status: Observable<Status> = this.statusSub.asObservable();
 
@@ -74,12 +79,23 @@ export class AudioService {
   private playerStatusSub: BehaviorSubject<PlayerState> = new BehaviorSubject(PlayerState.paused);
   private percentLoadedSub: BehaviorSubject<number> = new BehaviorSubject(0);
   private audioSourceSub: BehaviorSubject<FileStatus> = new BehaviorSubject<FileStatus>({ audioFile: '', audioName: '', standalone: false });
+  private audioHistoryLogSub: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
+
+  public audioHistoryLog = this.audioHistoryLogSub.asObservable();
 
   constructor() {
     this.audio = new Audio();
     this.attachListeners();
 
-    combineLatest([this.timeStatusSub, this.playerStatusSub, this.percentLoadedSub, this.audioSourceSub]).subscribe(([timeState, playerState, pcntLoaded, file]) => {
+    this.playerStatusSub.subscribe((playerState) => {
+      if (playerState === PlayerState.ended) {
+        this.persistEpisodeListened(this.audioName);
+      }
+    })
+
+    combineLatest(
+      [this.timeStatusSub, this.playerStatusSub, this.percentLoadedSub, this.audioSourceSub, this.audioHistoryLogSub]
+    ).subscribe(([timeState, playerState, pcntLoaded, file, history]) => {
       const status = {
         audioName: file.audioName,
         audioFile: file.audioFile,
@@ -91,6 +107,7 @@ export class AudioService {
         percentLoaded: pcntLoaded,
         startSecond: file.startSecond,
         endSecond: file.endSecond,
+        listened: history.indexOf(file.audioName) > -1,
       };
       this.statusSub.next(status);
 
@@ -196,6 +213,27 @@ export class AudioService {
     this.audio.playbackRate = rate;
   }
 
+  public getListenLog(): string[] {
+    let listenLog: string[] = [];
+    try {
+      listenLog = JSON.parse(localStorage.getItem(STORAGE_KEY_LISTENLOG) || '[]');
+    } catch (e) {
+    }
+    return listenLog;
+  }
+
+  public getCurrentFileIsListened(): boolean {
+    return this.getListenLog().indexOf(this.audioName) > -1;
+  }
+
+  public markAsPlayed(): void {
+    this.persistEpisodeListened(this.audioName);
+  }
+
+  public markAsUnplayed(): void {
+    this.persistEpisodeUnlistened(this.audioName);
+  }
+
   private calculateTime = (evt) => {
     const ct = this.audio.currentTime;
     const d = this.audio.duration;
@@ -223,6 +261,32 @@ export class AudioService {
     localStorage.setItem(`audio_service_status${this.standaloneMode ? '-' + this.audioName : ''}`, JSON.stringify(s));
   }
 
+  private persistEpisodeListened(audioName: string) {
+    if (this.standaloneMode) {
+      return;
+    }
+
+    const listenLog = this.getListenLog()
+    if (listenLog.indexOf(audioName) === -1) {
+      listenLog.push(audioName);
+    }
+    localStorage.setItem(STORAGE_KEY_LISTENLOG, JSON.stringify(listenLog));
+    this.audioHistoryLogSub.next(listenLog);
+  }
+
+  private persistEpisodeUnlistened(audioName: string) {
+    if (this.standaloneMode) {
+      return;
+    }
+    const listenLog = this.getListenLog();
+    const nameIdx = listenLog.indexOf(audioName);
+    if (nameIdx > -1) {
+      listenLog.splice(nameIdx, 1);
+      localStorage.setItem(STORAGE_KEY_LISTENLOG, JSON.stringify(listenLog));
+      this.audioHistoryLogSub.next(listenLog);
+    }
+  }
+
   private tryLoadPlayerState() {
     const storedJSON = localStorage.getItem(`audio_service_status${this.standaloneMode ? '-' + this.audioName : ''}`);
     if (storedJSON) {
@@ -241,11 +305,11 @@ export class AudioService {
   }
 
   private persistPlayerVolume(vol: number) {
-    localStorage.setItem('audio_service_volume', JSON.stringify(vol));
+    localStorage.setItem(STORAGE_KEY_VOLUME, JSON.stringify(vol));
   }
 
   private tryLoadPlayerVolume() {
-    const storedJSON = localStorage.getItem('audio_service_volume');
+    const storedJSON = localStorage.getItem(STORAGE_KEY_VOLUME);
     let vol: number = 1;
     if (storedJSON) {
       try {

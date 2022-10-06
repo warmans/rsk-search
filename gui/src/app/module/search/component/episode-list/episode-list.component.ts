@@ -1,8 +1,10 @@
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { RskShortTranscript, RskTranscriptList } from '../../../../lib/api-client/models';
 import { FormControl } from '@angular/forms';
+import { AudioService } from '../../../core/service/audio/audio.service';
+import { combineLatest } from 'rxjs';
 
 type tabState = 'xfm'|'guide'|'special'|'other'|'preview';
 
@@ -11,7 +13,7 @@ type tabState = 'xfm'|'guide'|'special'|'other'|'preview';
   templateUrl: './episode-list.component.html',
   styleUrls: ['./episode-list.component.scss']
 })
-export class EpisodeListComponent implements OnInit {
+export class EpisodeListComponent implements OnInit, OnDestroy {
 
   loading: boolean[] = [];
 
@@ -34,9 +36,9 @@ export class EpisodeListComponent implements OnInit {
     this.resetEpisodeList();
   }
 
-  private destroy$ = new EventEmitter<boolean>();
+  private destroy$ = new EventEmitter<void>();
 
-  constructor(private apiClient: SearchAPIClient) {
+  constructor(private apiClient: SearchAPIClient, private audioService: AudioService) {
   }
 
   ngOnInit(): void {
@@ -50,6 +52,11 @@ export class EpisodeListComponent implements OnInit {
         this.resetEpisodeList();
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   listEpisodes() {

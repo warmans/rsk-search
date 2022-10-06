@@ -30,14 +30,14 @@ export class AudioPlayerV2Component implements OnInit, OnDestroy {
 
     this.audioService.status.pipe(takeUntil(this.unsubscribe$)).subscribe((sta: Status) => {
       this.audioStatus = sta;
-      if (!sta){
+      if (!sta) {
         return;
       }
-      this.playerProgressControl.setValue(sta.currentTime, {emitEvent: false});
+      this.playerProgressControl.setValue(sta.currentTime, { emitEvent: false });
     });
 
     this.volumeControl.valueChanges.pipe(takeUntil(this.unsubscribe$)).subscribe((v) => {
-      this.audioService.setVolume(v/100);
+      this.audioService.setVolume(v / 100);
     });
 
     this.playerProgressControl.valueChanges.pipe(takeUntil(this.unsubscribe$)).subscribe((v) => {
@@ -66,5 +66,11 @@ export class AudioPlayerV2Component implements OnInit, OnDestroy {
     this.audioService.reset();
   }
 
+  markAsPlayed() {
+    this.audioService.markAsPlayed();
+  }
 
+  markAsUnplayed() {
+    this.audioService.markAsUnplayed();
+  }
 }
