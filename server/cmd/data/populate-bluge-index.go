@@ -72,7 +72,9 @@ func populateIndex(inputDir string, writer *bluge.Writer, logger *zap.Logger) er
 		for _, d := range docs {
 			doc := bluge.NewDocument(d.ID)
 			for k, t := range mapping.Mapping {
-				doc.AddField(getMappedField(k, t, d))
+				if mapped, ok := getMappedField(k, t, d); ok {
+					doc.AddField(mapped)
+				}
 			}
 			batch.Insert(doc)
 		}
@@ -83,14 +85,18 @@ func populateIndex(inputDir string, writer *bluge.Writer, logger *zap.Logger) er
 	return nil
 }
 
-func getMappedField(fieldName string, t mapping.FieldType, d search.DialogDocument) bluge.Field {
+func getMappedField(fieldName string, t mapping.FieldType, d search.DialogDocument) (bluge.Field, bool) {
 	switch t {
 	case mapping.FieldTypeKeyword:
-		return bluge.NewKeywordField(fieldName, d.GetNamedField(fieldName).(string)).Aggregatable()
+		return bluge.NewKeywordField(fieldName, d.GetNamedField(fieldName).(string)).Aggregatable(), true
 	case mapping.FieldTypeDate:
-		return bluge.NewDateTimeField(fieldName, d.GetNamedField(fieldName).(time.Time)).Aggregatable()
+		dateField := d.GetNamedField(fieldName).(*time.Time)
+		if dateField == nil {
+			return nil, false
+		}
+		return bluge.NewDateTimeField(fieldName, *dateField).Aggregatable(), true
 	case mapping.FieldTypeNumber:
-		return bluge.NewNumericField(fieldName, float64(d.GetNamedField(fieldName).(int64)))
+		return bluge.NewNumericField(fieldName, float64(d.GetNamedField(fieldName).(int64))), true
 	case mapping.FieldTypeShingles:
 		shingleAnalyzer := &analysis.Analyzer{
 			Tokenizer: tokenizer.NewUnicodeTokenizer(),
@@ -99,10 +105,10 @@ func getMappedField(fieldName string, t mapping.FieldType, d search.DialogDocume
 				token.NewNgramFilter(2, 16),
 			},
 		}
-		return bluge.NewTextField(fieldName, fmt.Sprintf("%v", d.GetNamedField(fieldName))).WithAnalyzer(shingleAnalyzer).SearchTermPositions().StoreValue()
+		return bluge.NewTextField(fieldName, fmt.Sprintf("%v", d.GetNamedField(fieldName))).WithAnalyzer(shingleAnalyzer).SearchTermPositions().StoreValue(), true
 	}
 	// just use text for everything else
-	return bluge.NewTextField(fieldName, fmt.Sprintf("%v", d.GetNamedField(fieldName))).SearchTermPositions().StoreValue()
+	return bluge.NewTextField(fieldName, fmt.Sprintf("%v", d.GetNamedField(fieldName))).SearchTermPositions().StoreValue(), true
 }
 
 func documentsFromPath(filePath string) ([]search.DialogDocument, error) {
