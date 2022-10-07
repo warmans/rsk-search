@@ -27,7 +27,7 @@
         </div>
       </div>
     </div>
-    <div class="font-weight-light text-sm">
+    <div class="font-weight-light text-sm" *ngIf="episode.transcriptAvailable">
       <div *ngIf="episode.bestof" class="mr-2"><i class="bi bi-card-text mr-1"></i> Bestof Episode</div>
       <div *ngIf="episode.transcriptAvailable && !episode.incomplete" class="mr-2"><i class="bi bi-card-text mr-1"></i> Complete Transcript</div>
       <div *ngIf="!episode.transcriptAvailable || episode.incomplete" class="mr-2"><i class="bi bi-card-text text-danger mr-1"></i> Incomplete Transcript</div>
