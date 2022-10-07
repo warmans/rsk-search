@@ -5,7 +5,8 @@ const STORAGE_KEY_LISTENLOG = 'audio_service_listen_log';
 const STORAGE_KEY_VOLUME = 'audio_service_volume';
 
 export interface Status {
-  audioName: string;
+  audioID: string;
+  audioName: string,
   audioFile: string;
   standalone: boolean;
   state: PlayerState;
@@ -27,7 +28,8 @@ export interface TimeStatus {
 }
 
 export interface FileStatus {
-  audioName: string;
+  audioID: string;
+  audioName: string,
   audioFile: string;
   standalone: boolean;
 
@@ -50,7 +52,7 @@ export class AudioService {
 
   public audio: HTMLAudioElement;
 
-  private audioName: string | null = null;
+  private audioID: string | null = null;
 
   // if the player is setup in an unusual way (e.g. chunk transcriptions) notify the player component so it
   // can disable some features.
@@ -58,6 +60,7 @@ export class AudioService {
   private standaloneMode: boolean = false;
 
   private statusSub: BehaviorSubject<Status> = new BehaviorSubject<Status>({
+    audioID: '',
     audioName: '',
     audioFile: '',
     standalone: this.standaloneMode,
@@ -78,7 +81,7 @@ export class AudioService {
 
   private playerStatusSub: BehaviorSubject<PlayerState> = new BehaviorSubject(PlayerState.paused);
   private percentLoadedSub: BehaviorSubject<number> = new BehaviorSubject(0);
-  private audioSourceSub: BehaviorSubject<FileStatus> = new BehaviorSubject<FileStatus>({ audioFile: '', audioName: '', standalone: false });
+  private audioSourceSub: BehaviorSubject<FileStatus> = new BehaviorSubject<FileStatus>({ audioFile: '', audioID: '', audioName: '', standalone: false });
   private audioHistoryLogSub: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(this.getListenLog());
 
   public audioHistoryLog = this.audioHistoryLogSub.asObservable();
@@ -89,7 +92,7 @@ export class AudioService {
 
     this.playerStatusSub.subscribe((playerState) => {
       if (playerState === PlayerState.ended) {
-        this.persistEpisodeListened(this.audioName);
+        this.persistEpisodeListened(this.audioID);
       }
     })
 
@@ -97,6 +100,7 @@ export class AudioService {
       [this.timeStatusSub, this.playerStatusSub, this.percentLoadedSub, this.audioSourceSub, this.audioHistoryLogSub]
     ).subscribe(([timeState, playerState, pcntLoaded, file, history]) => {
       const status = {
+        audioID: file.audioID,
         audioName: file.audioName,
         audioFile: file.audioFile,
         standalone: file.standalone,
@@ -107,7 +111,7 @@ export class AudioService {
         percentLoaded: pcntLoaded,
         startSecond: file.startSecond,
         endSecond: file.endSecond,
-        listened: history.indexOf(file.audioName) > -1,
+        listened: history.indexOf(file.audioID) > -1,
       };
       this.statusSub.next(status);
 
@@ -163,20 +167,20 @@ export class AudioService {
 
   public reset() {
     this.pauseAudio();
-    this.setAudioSrc(null, '', false);
+    this.setAudioSrc(null, '', '', false);
     this.clearPersistentPlayerState();
   }
 
-  public setAudioSrc(name: string | null, src: string, standalone?: boolean, startSecond?: number, endSecond?: number): void {
-    if (this.audioName === name) {
+  public setAudioSrc(id: string | null, name: string | null, src: string, standalone?: boolean, startSecond?: number, endSecond?: number): void {
+    if (this.audioID === id) {
       return;
     }
     this.pauseAudio();
 
-    this.audioName = name;
+    this.audioID = id;
     this.audio.src = src + ((startSecond || endSecond) ? `#t=${startSecond},${endSecond}` : ``);
     this.standaloneMode = standalone;
-    this.audioSourceSub.next({ audioFile: src, audioName: name, standalone: standalone, startSecond: startSecond, endSecond: endSecond });
+    this.audioSourceSub.next({ audioFile: src, audioID: id, audioName: name, standalone: standalone, startSecond: startSecond, endSecond: endSecond });
   }
 
   public playAudio(withOffset?: number): void {
@@ -226,15 +230,15 @@ export class AudioService {
   }
 
   public getCurrentFileIsListened(): boolean {
-    return this.getListenLog().indexOf(this.audioName) > -1;
+    return this.getListenLog().indexOf(this.audioID) > -1;
   }
 
   public markAsPlayed(): void {
-    this.persistEpisodeListened(this.audioName);
+    this.persistEpisodeListened(this.audioID);
   }
 
   public markAsUnplayed(): void {
-    this.persistEpisodeUnlistened(this.audioName);
+    this.persistEpisodeUnlistened(this.audioID);
   }
 
   private calculateTime = (evt) => {
@@ -254,35 +258,35 @@ export class AudioService {
   }
 
   private clearPersistentPlayerState() {
-    localStorage.removeItem(`audio_service_status${this.standaloneMode ? '-' + this.audioName : ''}`);
+    localStorage.removeItem(`audio_service_status${this.standaloneMode ? '-' + this.audioID : ''}`);
   }
 
   private persistPlayerState(s: Status) {
-    if (!s.audioFile || !s.audioName) {
+    if (!s.audioFile || !s.audioID) {
       return;
     }
-    localStorage.setItem(`audio_service_status${this.standaloneMode ? '-' + this.audioName : ''}`, JSON.stringify(s));
+    localStorage.setItem(`audio_service_status${this.standaloneMode ? '-' + this.audioID : ''}`, JSON.stringify(s));
   }
 
-  private persistEpisodeListened(audioName: string) {
+  private persistEpisodeListened(audioID: string) {
     if (this.standaloneMode) {
       return;
     }
 
     const listenLog = this.getListenLog()
-    if (listenLog.indexOf(audioName) === -1) {
-      listenLog.push(audioName);
+    if (listenLog.indexOf(audioID) === -1) {
+      listenLog.push(audioID);
     }
     localStorage.setItem(STORAGE_KEY_LISTENLOG, JSON.stringify(listenLog));
     this.audioHistoryLogSub.next(listenLog);
   }
 
-  private persistEpisodeUnlistened(audioName: string) {
+  private persistEpisodeUnlistened(audioID: string) {
     if (this.standaloneMode) {
       return;
     }
     const listenLog = this.getListenLog();
-    const nameIdx = listenLog.indexOf(audioName);
+    const nameIdx = listenLog.indexOf(audioID);
     if (nameIdx > -1) {
       listenLog.splice(nameIdx, 1);
       localStorage.setItem(STORAGE_KEY_LISTENLOG, JSON.stringify(listenLog));
@@ -291,7 +295,7 @@ export class AudioService {
   }
 
   private tryLoadPlayerState() {
-    const storedJSON = localStorage.getItem(`audio_service_status${this.standaloneMode ? '-' + this.audioName : ''}`);
+    const storedJSON = localStorage.getItem(`audio_service_status${this.standaloneMode ? '-' + this.audioID : ''}`);
     if (storedJSON) {
       let state: Status;
       try {
@@ -300,7 +304,7 @@ export class AudioService {
         console.error(`failed to load audio service state: ${e}`);
       }
       if (state) {
-        this.setAudioSrc(state.audioName, state.audioFile);
+        this.setAudioSrc(state.audioID, state.audioName, state.audioFile);
         this.audio.load();
         this.seekAudio(state.currentTime);
       }

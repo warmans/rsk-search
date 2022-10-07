@@ -41,5 +41,16 @@
 
   .album-art {
     border-radius: 5px;
+    position: relative;;
+
+    .played-corner-marker {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 0;
+      height: 0;
+      border-top: 15px solid $primary;
+      border-left: 15px solid transparent;
+    }
   }
 }

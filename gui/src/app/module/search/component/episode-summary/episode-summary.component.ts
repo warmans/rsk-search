@@ -46,7 +46,7 @@ export class EpisodeSummaryComponent implements OnInit, OnDestroy {
   }
 
   playEpisode(episode: RskShortTranscript) {
-    this.audioService.setAudioSrc(episode.shortId, episode.audioUri);
+    this.audioService.setAudioSrc(episode.shortId, episode.name, episode.audioUri);
     this.audioService.playAudio();
   }
 }

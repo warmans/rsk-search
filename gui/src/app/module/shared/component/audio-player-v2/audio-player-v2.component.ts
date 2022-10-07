@@ -68,6 +68,7 @@ export class AudioPlayerV2Component implements OnInit, OnDestroy {
 
   markAsPlayed() {
     this.audioService.markAsPlayed();
+    this.closeAudio();
   }
 
   markAsUnplayed() {

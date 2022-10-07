@@ -161,13 +161,13 @@ export class EpisodeComponent implements OnInit, OnDestroy {
   }
 
   onAudioTimestamp(ts: number) {
-    this.audioService.setAudioSrc(this.episode.shortId, this.episode.audioUri);
+    this.audioService.setAudioSrc(this.episode.shortId, this.episode.name, this.episode.audioUri);
     this.audioService.seekAudio(ts);
     this.audioService.playAudio();
   }
 
   playAudio() {
-    this.audioService.setAudioSrc(this.episode.shortId, this.episode.audioUri);
+    this.audioService.setAudioSrc(this.episode.shortId, this.episode.name, this.episode.audioUri);
     this.audioService.playAudio();
   }
 

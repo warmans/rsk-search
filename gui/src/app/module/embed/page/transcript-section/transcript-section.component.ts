@@ -57,7 +57,7 @@ export class TranscriptSectionComponent implements OnInit, OnDestroy {
             endSecond = parseInt(line.offsetSec);
           }
         })
-        this.audioService.setAudioSrc(ep.id, ep.audioUri, true, startSecond, endSecond);
+        this.audioService.setAudioSrc(ep.id, ep.name, ep.audioUri, true, startSecond, endSecond);
       },
       (err) => {
         this.error = 'Failed to fetch episode';

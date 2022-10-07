@@ -1,4 +1,4 @@
-<div class="player d-flex px-2" *ngIf="this.audioStatus?.audioName">
+<div class="player d-flex px-2" *ngIf="this.audioStatus?.audioID">
   <div class="controls py-2 pr-2 d-flex align-items-center">
     <div class="clickable p-1" *ngIf="audioStatus?.state !== states.playing" (click)="play()"><i class="bi-play-circle-fill"></i></div>
     <div class="clickable p-1" *ngIf="audioStatus?.state === states.playing" (click)="pause()"><i class="bi-pause-circle-fill"></i></div>
@@ -6,9 +6,10 @@
   <div class="flex-grow-1 p-2">
     <div class="mb-1 d-flex justify-content-between">
       <div>
-        <a *ngIf="audioStatus.audioName && !audioStatus.standalone" [routerLink]="['/ep', 'ep-'+audioStatus.audioName]">{{ audioStatus.audioName }}</a>
-        <span *ngIf="audioStatus.audioName && audioStatus.standalone">{{ audioStatus.audioName }}</span>
+        <a *ngIf="audioStatus.audioID && !audioStatus.standalone" [routerLink]="['/ep', 'ep-'+audioStatus.audioID]">{{ audioStatus.audioID }}</a>
+        <span *ngIf="audioStatus.audioID && audioStatus.standalone">{{ audioStatus.audioID }}</span>
         <span *ngIf="audioStatus?.state === states.loading">(loading...)</span>
+        <span class="" *ngIf="audioStatus.audioName"> - {{ audioStatus.audioName }}</span>
       </div>
       <div>
         <a *ngIf="!audioStatus.listened" class="clickable" (click)="markAsPlayed()">Mark as played</a>
@@ -22,8 +23,8 @@
       <div class="d-flex">
         <div *ngIf="audioStatus.state === states.ended">End</div>
         <div *ngIf="audioStatus.state !== states.ended">
-          <a *ngIf="audioStatus.audioName && !audioStatus.standalone" [routerLink]="['/ep', 'ep-'+audioStatus.audioName]" [fragment]="'sec-'+audioStatus.currentTime">{{audioStatus?.currentTime | formatSeconds}}</a>
-          <span *ngIf="audioStatus.audioName && audioStatus.standalone">{{audioStatus?.currentTime | formatSeconds}}</span>
+          <a *ngIf="audioStatus.audioID && !audioStatus.standalone" [routerLink]="['/ep', 'ep-'+audioStatus.audioID]" [fragment]="'sec-'+audioStatus.currentTime">{{audioStatus?.currentTime | formatSeconds}}</a>
+          <span *ngIf="audioStatus.audioID && audioStatus.standalone">{{audioStatus?.currentTime | formatSeconds}}</span>
         </div>
       </div>
       <div>{{audioStatus.endSecond || audioStatus?.totalTime | formatSeconds}}</div>

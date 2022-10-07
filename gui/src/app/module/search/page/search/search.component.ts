@@ -79,7 +79,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   onAudioTimestamp(ep: RskShortTranscript, ts: number) {
-    this.audioService.setAudioSrc(ep.shortId, ep.audioUri);
+    this.audioService.setAudioSrc(ep.shortId, ep.name, ep.audioUri);
     this.audioService.seekAudio(ts);
     this.audioService.playAudio();
   }

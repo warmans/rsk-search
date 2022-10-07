@@ -184,7 +184,7 @@ export class TranscriberComponent implements OnInit, OnDestroy {
     const parts = (this._audioPlayerURL || '').split('/');
     const name = parts[parts.length - 1] ? parts[parts.length - 1] : null;
     if (name) {
-      this.audioService.setAudioSrc(name, this._audioPlayerURL, true);
+      this.audioService.setAudioSrc(name, null, this._audioPlayerURL, true);
       if (andPlay) {
         this.audioService.playAudio();
       }
