@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SearchComponent } from './page/search/search.component';
-import { DslSearchComponent } from './component/dsl-search/dsl-search.component';
 import { EpisodeComponent } from './page/episode/episode.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
@@ -21,7 +20,6 @@ import { EmbedModule } from '../embed/embed.module';
 @NgModule({
   declarations: [
     SearchComponent,
-    DslSearchComponent,
     EpisodeComponent,
     GlSearchComponent,
     GlSearchFilterComponent,
@@ -42,7 +40,7 @@ import { EmbedModule } from '../embed/embed.module';
         NgChartsModule,
         EmbedModule,
     ],
-  exports: [DslSearchComponent, GlSearchComponent]
+  exports: [GlSearchComponent]
 })
 export class SearchModule {
 }

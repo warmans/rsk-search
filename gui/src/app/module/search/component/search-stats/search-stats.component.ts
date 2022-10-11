@@ -1,11 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { RskSearchStats } from '../../../../lib/api-client/models';
 import { ChartConfiguration } from 'chart.js';
 
 @Component({
   selector: 'app-search-stats',
   templateUrl: './search-stats.component.html',
-  styleUrls: ['./search-stats.component.scss']
+  styleUrls: ['./search-stats.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchStatsComponent implements OnInit {
 

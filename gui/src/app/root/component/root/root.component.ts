@@ -1,9 +1,9 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { Claims, SessionService } from '../../../module/core/service/session/session.service';
+import { Claims, SessionService } from 'src/app/module/core/service/session/session.service';
 import { takeUntil } from 'rxjs/operators';
-import { SearchAPIClient } from '../../../lib/api-client/services/search';
-import { RskPrediction, RskSearchTermPredictions } from '../../../lib/api-client/models';
+import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
+import { RskPrediction, RskSearchTermPredictions } from 'src/app/lib/api-client/models';
 
 @Component({
   selector: 'app-root',

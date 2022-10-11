@@ -45,7 +45,6 @@
       <app-find-replace (onSubmit)="runFindAndReplace($event)"></app-find-replace>
     </div>
     <div>
-      <button class="btn btn-danger btn-sm" *ngIf="allowEdit" (click)="resetToRaw()" title="revert text to chunk original">Reset</button>
       <span class="ml-3">
           <app-editor-config #editorConfigModal [initialConfig]="editorConfig" (configUpdated)="editorConfig = $event"></app-editor-config>
           <button class="btn btn-sm btn-info" *ngIf="allowEdit" (click)="openEditorConfig()" title="Change editor config">Editor/Audio Config</button>

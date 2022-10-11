@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 export interface FindReplace {
@@ -9,7 +9,8 @@ export interface FindReplace {
 @Component({
   selector: 'app-find-replace',
   templateUrl: './find-replace.component.html',
-  styleUrls: ['./find-replace.component.scss']
+  styleUrls: ['./find-replace.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FindReplaceComponent {
 

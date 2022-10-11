@@ -1,17 +1,16 @@
-import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { RskShortTranscript, RskTranscriptList } from '../../../../lib/api-client/models';
 import { FormControl } from '@angular/forms';
 import { AudioService } from '../../../core/service/audio/audio.service';
-import { combineLatest } from 'rxjs';
 
-type tabState = 'xfm'|'guide'|'special'|'other'|'preview';
+type tabState = 'xfm' | 'guide' | 'special' | 'other' | 'preview';
 
 @Component({
   selector: 'app-episode-list',
   templateUrl: './episode-list.component.html',
-  styleUrls: ['./episode-list.component.scss']
+  styleUrls: ['./episode-list.component.scss'],
 })
 export class EpisodeListComponent implements OnInit, OnDestroy {
 
@@ -38,7 +37,7 @@ export class EpisodeListComponent implements OnInit, OnDestroy {
 
   private destroy$ = new EventEmitter<void>();
 
-  constructor(private apiClient: SearchAPIClient, private audioService: AudioService) {
+  constructor(private apiClient: SearchAPIClient) {
   }
 
   ngOnInit(): void {
@@ -79,7 +78,7 @@ export class EpisodeListComponent implements OnInit, OnDestroy {
   }
 
   resetEpisodeList() {
-    this.searchInput.setValue("");
+    this.searchInput.setValue('');
     this.filteredTranscriptList = this.activePublicationTranscripts();
   }
 }

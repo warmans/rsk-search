@@ -11,6 +11,7 @@ import { Bool, Str } from '../../../../lib/filter-dsl/value';
 import { MetaService } from '../../../core/service/meta/meta.service';
 import { AudioService, PlayerState, Status } from '../../../core/service/audio/audio.service';
 import { Section } from '../../../shared/component/transcript/transcript.component';
+import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-episode',
@@ -101,16 +102,17 @@ export class EpisodeComponent implements OnInit, OnDestroy {
   loadEpisode(id: string) {
 
     this.id = id;
-    this.shortID = id.replace(/ep\-/, '');
-
-
     this.loading = true;
     this.error = undefined;
 
-    this.apiClient.getTranscript({ epid: this.id }).pipe(takeUntil(this.unsubscribe$)).subscribe(
-      (ep: RskTranscript) => {
+    combineLatest([
+        this.apiClient.getTranscript({ epid: this.id }).pipe(takeUntil(this.unsubscribe$)),
+        this.meta.getMeta().pipe(takeUntil(this.unsubscribe$)),
+    ]).pipe(takeUntil(this.unsubscribe$)).subscribe(
+      ([ep, metadata]) => {
 
         this.episode = ep;
+        this.shortID = ep.shortId;
         this.titleService.setTitle(ep.id);
         this.transcribers = ep.contributors.join(', ');
         this.episodeImage = ep.metadata['cover_art_url'] ? ep.metadata['cover_art_url'] : `/assets/cover/${ep.publication}-s${ep.series}.jpg`;
@@ -121,20 +123,19 @@ export class EpisodeComponent implements OnInit, OnDestroy {
             this.quotes.push(r);
           }
         });
-        this.meta.getMeta().pipe(takeUntil(this.unsubscribe$)).subscribe((res: RskMetadata) => {
-          const curIndex = (res.episodeShortIds || []).findIndex((v) => v == ep.shortId);
-          if (curIndex === -1) {
-            console.error(`failed to find episode in metadata ${ep.shortId}`);
-          }
 
-          this.previousEpisodeId = this.nextEpisodeId = null;
-          if (curIndex > 0 && (res.episodeShortIds || []).length > 0) {
-            this.previousEpisodeId = `ep-${res.episodeShortIds[curIndex - 1]}`;
-          }
-          if (curIndex < ((res.episodeShortIds || []).length - 1)) {
-            this.nextEpisodeId = `ep-${res.episodeShortIds[curIndex + 1]}`;
-          }
-        });
+        const curIndex = (metadata.episodeShortIds || []).findIndex((v) => v == ep.shortId);
+        if (curIndex === -1) {
+          console.error(`failed to find episode in metadata ${ep.shortId}`);
+        }
+
+        this.previousEpisodeId = this.nextEpisodeId = null;
+        if (curIndex > 0 && (metadata.episodeShortIds || []).length > 0) {
+          this.previousEpisodeId = `ep-${metadata.episodeShortIds[curIndex - 1]}`;
+        }
+        if (curIndex < ((metadata.episodeShortIds || []).length - 1)) {
+          this.nextEpisodeId = `ep-${metadata.episodeShortIds[curIndex + 1]}`;
+        }
       },
       (err) => {
         this.error = 'Failed to fetch episode';

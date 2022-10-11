@@ -2,7 +2,7 @@
   <div class="head d-flex flex-row p-2">
     <div class="d-flex flex-row flex-grow-1">
       <div
-        (click)="playEpisode(episode)"
+        (click)="toggleEpisode(episode)"
         class="icon d-flex align-items-center justify-content-around album-art"
         [style.background-image]="'url('+episodeImage+')'">
         <i class="bi-play-circle-fill text-body"></i>
@@ -21,7 +21,10 @@
             </span>
           </div>
           <div class="sub-title font-weight-light">
-            <a (click)="playEpisode(episode)"><i class="clickable mr-2" [ngClass]="{'bi-play-circle-fill': !played, 'bi-play-circle': played}"></i>{{episode.shortId}}</a> |
+            <a (click)="toggleEpisode(episode)">
+              <i class="clickable mr-2" [ngClass]="{'bi-play-circle-fill': !played, 'bi-play-circle': played, 'text-success': playing}"></i>
+              {{episode.shortId}}
+            </a> |
             {{ (episode.releaseDate | date) || "Date Unknown" }}
           </div>
         </div>

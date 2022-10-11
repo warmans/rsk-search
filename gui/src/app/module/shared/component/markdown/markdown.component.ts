@@ -1,10 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { parse } from 'marked';
 
 @Component({
   selector: 'app-markdown',
   templateUrl: './markdown.component.html',
-  styleUrls: ['./markdown.component.scss']
+  styleUrls: ['./markdown.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MarkdownComponent implements OnInit {
 

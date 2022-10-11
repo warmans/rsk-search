@@ -1,4 +1,17 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  Renderer2,
+  ViewChild
+} from '@angular/core';
 import { getOffsetValueFromLine, isOffsetLine } from '../../lib/tscript';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
@@ -6,7 +19,8 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 @Component({
   selector: 'app-editor',
   templateUrl: './editor.component.html',
-  styleUrls: ['./editor.component.scss']
+  styleUrls: ['./editor.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
 
@@ -19,7 +33,6 @@ export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
       this.updateInnerHtml(this._textContent);
     }
   }
-
   get textContent(): string {
     // do not return the innerText directly. If the div is hidden by the parent
     // before calling this, it will get text with no line breaks.
@@ -45,7 +58,7 @@ export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
 
   destory$: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private renderer: Renderer2) {
+  constructor(private renderer: Renderer2, private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {

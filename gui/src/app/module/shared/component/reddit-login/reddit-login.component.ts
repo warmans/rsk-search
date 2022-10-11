@@ -1,15 +1,15 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
-import { SearchAPIClient } from '../../../../lib/api-client/services/search';
+import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 import { ActivatedRoute, Data, Router } from '@angular/router';
-import { SessionService } from '../../../core/service/session/session.service';
+import { SessionService } from 'src/app/module/core/service/session/session.service';
 
 @Component({
   selector: 'app-reddit-login',
   templateUrl: './reddit-login.component.html',
   styleUrls: ['./reddit-login.component.scss']
 })
-export class RedditLoginComponent implements OnInit, OnDestroy {
+export class RedditLoginComponent implements OnDestroy {
 
   @Input()
   open: boolean = false;
@@ -22,7 +22,7 @@ export class RedditLoginComponent implements OnInit, OnDestroy {
 
   authenticated: boolean = false;
 
-  destroy$: EventEmitter<boolean> = new EventEmitter<boolean>();
+  destroy$: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(
     private apiClient: SearchAPIClient,
@@ -51,10 +51,6 @@ export class RedditLoginComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnInit(): void {
-
-  }
-
   requestAuth() {
     this.loading = true;
     this.apiClient.getRedditAuthURL().pipe(takeUntil(this.destroy$)).subscribe((res) => {
@@ -63,7 +59,7 @@ export class RedditLoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.destroy$.next(true);
+    this.destroy$.next();
     this.destroy$.complete();
   }
 

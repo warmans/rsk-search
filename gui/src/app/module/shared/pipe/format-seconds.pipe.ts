@@ -4,6 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'formatSeconds'
 })
 export class FormatSecondsPipe implements PipeTransform {
+
   constructor() {
   }
 

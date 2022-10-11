@@ -102,8 +102,8 @@ export class GlSearchComponent implements OnInit, AfterViewInit, OnDestroy {
     );
 
     this.settingsForm.valueChanges.pipe(takeUntil(this.destroy$)).subscribe(() => {
-      localStorage.setItem("search.settings.autoComplete", this.settingsForm.get('autoComplete').value);
-      localStorage.setItem("search.settings.phraseMatchByDefault", this.settingsForm.get('phraseMatchByDefault').value);
+      localStorage.setItem("search.settings.autoComplete", this.settingsForm.get('autoComplete')?.value || true);
+      localStorage.setItem("search.settings.phraseMatchByDefault", this.settingsForm.get('phraseMatchByDefault')?.value || false);
     });
   }
 

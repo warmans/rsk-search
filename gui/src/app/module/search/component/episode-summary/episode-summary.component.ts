@@ -1,12 +1,13 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit } from '@angular/core';
 import { RskShortTranscript } from '../../../../lib/api-client/models';
-import { AudioService } from '../../../core/service/audio/audio.service';
+import { AudioService, Status } from '../../../core/service/audio/audio.service';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-episode-summary',
   templateUrl: './episode-summary.component.html',
-  styleUrls: ['./episode-summary.component.scss']
+  styleUrls: ['./episode-summary.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EpisodeSummaryComponent implements OnInit, OnDestroy {
 
@@ -26,17 +27,28 @@ export class EpisodeSummaryComponent implements OnInit, OnDestroy {
 
   played: boolean = false;
 
+  playing: boolean = false;
+
   private destroy$ = new EventEmitter<void>();
 
-  constructor(private audioService: AudioService) {
+  constructor(private audioService: AudioService, private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
+    this.audioService.status.pipe(takeUntil(this.destroy$)).subscribe((status: Status) => {
+      const playing = (status.audioID === this.episode.shortId);
+      if (playing !== this.playing) {
+        this.playing = playing;
+        this.cdr.detectChanges();
+      }
+    });
+
     this.audioService.audioHistoryLog.pipe(takeUntil(this.destroy$)).subscribe((played) => {
       if (!this.episode) {
         return;
       }
       this.played = played.indexOf(this.episode.shortId) > -1;
+      this.cdr.detectChanges();
     });
   }
 
@@ -45,8 +57,8 @@ export class EpisodeSummaryComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  playEpisode(episode: RskShortTranscript) {
+  toggleEpisode(episode: RskShortTranscript) {
     this.audioService.setAudioSrc(episode.shortId, episode.name, episode.audioUri);
-    this.audioService.playAudio();
+    this.audioService.toggleAudio();
   }
 }

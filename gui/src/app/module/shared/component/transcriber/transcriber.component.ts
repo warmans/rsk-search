@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { EditorConfig, EditorConfigComponent } from '../editor-config/editor-config.component';
 import { Subject } from 'rxjs';
 import { getFirstOffset } from '../../lib/tscript';
@@ -11,7 +11,8 @@ import { FindReplace } from '../find-replace/find-replace.component';
 @Component({
   selector: 'app-transcriber',
   templateUrl: './transcriber.component.html',
-  styleUrls: ['./transcriber.component.scss']
+  styleUrls: ['./transcriber.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TranscriberComponent implements OnInit, OnDestroy {
 
@@ -156,7 +157,7 @@ export class TranscriberComponent implements OnInit, OnDestroy {
     }
   }
 
-  constructor(public audioService: AudioService) {
+  constructor(private audioService: AudioService, private cdr: ChangeDetectorRef) {
     audioService.status.pipe(takeUntil(this.$destroy)).subscribe((sta) => {
       this.audioStatus = sta;
     });
@@ -210,6 +211,9 @@ export class TranscriberComponent implements OnInit, OnDestroy {
   setInitialTranscript(text: string) {
     const backup = this.getBackup();
     this.initialTranscript = backup ? backup : text;
+    if (this.editorComponent) {
+      this.editorComponent.textContent = this.initialTranscript;
+    }
     if (backup) {
       this.fromBackup = true;
     }
@@ -241,9 +245,10 @@ export class TranscriberComponent implements OnInit, OnDestroy {
   }
 
   resetToRaw() {
-    if (confirm('Really reset editor to raw raw transcript?')) {
+    if (confirm('Really reset editor to raw transcript?')) {
       this.clearBackup();
       this.setInitialTranscript(this._rawTranscript);
+      this.cdr.detectChanges();
     }
   }
 
