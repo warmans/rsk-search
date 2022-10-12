@@ -99,7 +99,7 @@ func NewEpisodeStore(dataDir string) (*EpisodeCache, error) {
 	}
 
 	store := &EpisodeCache{
-		episodeList: make([]models.Transcript, len(episodes), len(episodes)),
+		episodeList: make([]models.Transcript, len(episodes)),
 		episodeMap:  map[string]models.Transcript{},
 		lock:        sync.RWMutex{},
 	}
@@ -133,7 +133,7 @@ func (s *EpisodeCache) GetEpisode(id string) (*models.Transcript, error) {
 func (s *EpisodeCache) ListEpisodes() []*models.Transcript {
 
 	// copy the episodeList when fetched to avoid unexpected modifications.
-	list := make([]*models.Transcript, len(s.episodeList), len(s.episodeList))
+	list := make([]*models.Transcript, len(s.episodeList))
 
 	s.lock.RLock()
 	defer s.lock.RUnlock()
