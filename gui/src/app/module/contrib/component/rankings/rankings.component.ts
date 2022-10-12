@@ -1,10 +1,10 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { debounceTime, takeUntil } from 'rxjs/operators';
-import { RskAuthorRank, RskAuthorRankList } from '../../../../lib/api-client/models';
-import { SearchAPIClient } from '../../../../lib/api-client/services/search';
+import { RskAuthorRank, RskAuthorRankList } from 'src/app/lib/api-client/models';
+import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 import { FormControl } from '@angular/forms';
-import { Like } from '../../../../lib/filter-dsl/filter';
-import { Str } from '../../../../lib/filter-dsl/value';
+import { Like } from 'src/app/lib/filter-dsl/filter';
+import { Str } from 'src/app/lib/filter-dsl/value';
 
 @Component({
   selector: 'app-rankings',

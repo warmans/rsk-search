@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
-import { RskDonationRecipient, RskReward } from '../../../../lib/api-client/models';
+import { RskDonationRecipient, RskReward } from 'src/app/lib/api-client/models';
 import { takeUntil } from 'rxjs/operators';
-import { SearchAPIClient } from '../../../../lib/api-client/services/search';
+import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -66,7 +66,7 @@ export class RedeemComponent implements OnInit {
       id: this.reward.id,
       body: { id: this.reward.id, donationArgs: { recipient: this.form.get('cause').value } }
     }).pipe(takeUntil(this.destroy$)).subscribe((res) => {
-      this.alertService.success('Reward collected sucessfully.');
+      this.alertService.success('Reward collected successfully.');
       this.router.navigate(['/contribute']);
     }).add(() => this.loading.pop());
   }

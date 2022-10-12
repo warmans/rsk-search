@@ -286,7 +286,7 @@ export class GlSearchComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   setSearchTerm(term: string, emit?: boolean) {
-    this.searchForm.get('term').setValue(term);
+    this.searchForm.get('term').setValue(`"${term}"`);
     if (emit) {
       this.emitQuery();
     }

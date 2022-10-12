@@ -85,40 +85,45 @@ func LoadAllEpisodes(dataDir string) ([]*models.Transcript, error) {
 		}
 		episodes = append(episodes, ep)
 	}
+	sort.Slice(episodes, func(i, j int) bool {
+		return natsort.Compare(episodes[i].ID(), episodes[j].ID())
+	})
 	return episodes, nil
 }
 
 func NewEpisodeStore(dataDir string) (*EpisodeCache, error) {
 
-	store := &EpisodeCache{
-		cache: map[string]models.Transcript{},
-		lock:  sync.RWMutex{},
-	}
 	episodes, err := LoadAllEpisodes(dataDir)
 	if err != nil {
 		return nil, err
 	}
 
+	store := &EpisodeCache{
+		episodeList: make([]models.Transcript, len(episodes), len(episodes)),
+		episodeMap:  map[string]models.Transcript{},
+		lock:        sync.RWMutex{},
+	}
 	store.lock.Lock()
 	defer store.lock.Unlock()
-	for _, ep := range episodes {
-		store.cache[ep.ID()] = *ep
+	for k, ep := range episodes {
+		store.episodeMap[ep.ID()] = *ep
+		store.episodeList[k] = *ep
 	}
-
 	return store, nil
 }
 
 var ErrNotFound = errors.New("not found")
 
 type EpisodeCache struct {
-	cache map[string]models.Transcript
-	lock  sync.RWMutex
+	episodeMap  map[string]models.Transcript
+	episodeList []models.Transcript
+	lock        sync.RWMutex
 }
 
 func (s *EpisodeCache) GetEpisode(id string) (*models.Transcript, error) {
 	s.lock.RLock()
 	defer s.lock.RUnlock()
-	ep, ok := s.cache[id]
+	ep, ok := s.episodeMap[id]
 	if !ok {
 		return nil, ErrNotFound
 	}
@@ -127,17 +132,14 @@ func (s *EpisodeCache) GetEpisode(id string) (*models.Transcript, error) {
 
 func (s *EpisodeCache) ListEpisodes() []*models.Transcript {
 
-	list := []*models.Transcript{}
+	// copy the episodeList when fetched to avoid unexpected modifications.
+	list := make([]*models.Transcript, len(s.episodeList), len(s.episodeList))
 
 	s.lock.RLock()
 	defer s.lock.RUnlock()
-	for _, v := range s.cache {
-		list = append(list, transcriptP(v))
+	for k, v := range s.episodeList {
+		list[k] = transcriptP(v)
 	}
-
-	sort.Slice(list, func(i, j int) bool {
-		return natsort.Compare(list[i].ID(), list[j].ID())
-	})
 	return list
 }
 

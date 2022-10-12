@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
-import { RskDonationStats, RskIncomingDonation, RskIncomingDonationList, RskRecipientStats } from '../../../../lib/api-client/models';
-import { SearchAPIClient } from '../../../../lib/api-client/services/search';
+import { RskIncomingDonation, RskIncomingDonationList } from 'src/app/lib/api-client/models';
+import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
@@ -22,7 +22,7 @@ export class DonationsComponent implements OnInit {
 
   ngOnInit(): void {
     this.apiClient.listIncomingDonations().pipe(takeUntil(this.destroy$)).subscribe((res: RskIncomingDonationList) => {
-        this.donations = res.donations;
+      this.donations = res.donations;
     });
   }
 

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { SearchAPIClient } from '../../../../lib/api-client/services/search';
+import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 import { AlertService } from '../../../core/service/alert/alert.service';
 
 @Component({
@@ -25,7 +25,7 @@ export class RejectButtonComponent implements OnInit, OnDestroy {
 
   destroy$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(private apiClient: SearchAPIClient, private alertService: AlertService) {
+  constructor() {
   }
 
   ngOnInit(): void {

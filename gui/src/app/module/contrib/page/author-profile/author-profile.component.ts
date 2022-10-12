@@ -1,16 +1,18 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
-import { SearchAPIClient } from '../../../../lib/api-client/services/search';
+import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 import { Claims, SessionService } from '../../../core/service/session/session.service';
 import { takeUntil } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { Eq } from '../../../../lib/filter-dsl/filter';
-import { Str } from '../../../../lib/filter-dsl/value';
+import { Eq } from 'src/app/lib/filter-dsl/filter';
+import { Str } from 'src/app/lib/filter-dsl/value';
 import {
   RskChunkContribution,
   RskChunkContributionList,
   RskClaimedReward,
-  RskContributionState, RskShortTranscriptChange, RskTranscriptChangeList
-} from '../../../../lib/api-client/models';
+  RskContributionState,
+  RskShortTranscriptChange,
+  RskTranscriptChangeList
+} from 'src/app/lib/api-client/models';
 import { Title } from '@angular/platform-browser';
 
 @Component({

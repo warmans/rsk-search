@@ -1,13 +1,13 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Data, Router } from '@angular/router';
-import { SearchAPIClient } from '../../../../lib/api-client/services/search';
-import { RskDialog, RskMetadata, RskTranscript, RskTranscriptChange, RskTranscriptChangeList } from '../../../../lib/api-client/models';
+import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
+import { RskDialog, RskTranscript, RskTranscriptChange, RskTranscriptChangeList } from 'src/app/lib/api-client/models';
 import { ViewportScroller } from '@angular/common';
 import { takeUntil } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
 import { SessionService } from '../../../core/service/session/session.service';
-import { And, Eq, Neq } from '../../../../lib/filter-dsl/filter';
-import { Bool, Str } from '../../../../lib/filter-dsl/value';
+import { And, Eq, Neq } from 'src/app/lib/filter-dsl/filter';
+import { Bool, Str } from 'src/app/lib/filter-dsl/value';
 import { MetaService } from '../../../core/service/meta/meta.service';
 import { AudioService, PlayerState, Status } from '../../../core/service/audio/audio.service';
 import { Section } from '../../../shared/component/transcript/transcript.component';
@@ -106,8 +106,8 @@ export class EpisodeComponent implements OnInit, OnDestroy {
     this.error = undefined;
 
     combineLatest([
-        this.apiClient.getTranscript({ epid: this.id }).pipe(takeUntil(this.unsubscribe$)),
-        this.meta.getMeta().pipe(takeUntil(this.unsubscribe$)),
+      this.apiClient.getTranscript({ epid: this.id }).pipe(takeUntil(this.unsubscribe$)),
+      this.meta.getMeta().pipe(takeUntil(this.unsubscribe$)),
     ]).pipe(takeUntil(this.unsubscribe$)).subscribe(
       ([ep, metadata]) => {
 
@@ -181,7 +181,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
     if (parts.length === 2) {
       this.onShare(parseInt(parts[1]), parseInt(parts[1]) + 1);
     } else if (parts.length === 3) {
-      this.onShare(parseInt(parts[1])-1, parseInt(parts[2]));
+      this.onShare(parseInt(parts[1]) - 1, parseInt(parts[2]));
     }
   }
 
@@ -197,6 +197,6 @@ export class EpisodeComponent implements OnInit, OnDestroy {
   }
 
   clearSelection() {
-    this.router.navigate([], { });
+    this.router.navigate([], {});
   }
 }

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
-import { SearchAPIClient } from '../../../../lib/api-client/services/search';
+import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 import { takeUntil } from 'rxjs/operators';
-import { RskReward } from '../../../../lib/api-client/models';
+import { RskReward } from 'src/app/lib/api-client/models';
 import { Router, RoutesRecognized } from '@angular/router';
 import { SessionService } from '../../../core/service/session/session.service';
 

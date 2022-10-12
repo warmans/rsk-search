@@ -17,9 +17,9 @@ export interface Section {
 
 @Component({
   selector: 'app-transcript',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './transcript.component.html',
-  styleUrls: ['./transcript.component.scss']
+  styleUrls: ['./transcript.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TranscriptComponent implements OnInit, AfterViewInit {
 
