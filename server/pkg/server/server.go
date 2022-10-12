@@ -51,6 +51,8 @@ func NewServer(logger *zap.Logger, cfg GrpcServerConfig, grpcServices []GRPCServ
 		return fmt.Errorf("%v", p)
 	})
 
+	grpc_prometheus.EnableHandlingTimeHistogram()
+
 	grpcServer := grpc.NewServer(
 		grpc.UnaryInterceptor(grpc_middleware.ChainUnaryServer(
 			grpc_recovery.UnaryServerInterceptor(panicHandler),
