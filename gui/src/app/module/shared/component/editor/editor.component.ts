@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import { getOffsetValueFromLine, isOffsetLine } from '../../lib/tscript';
 import { Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-editor',
@@ -58,11 +58,15 @@ export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
 
   destory$: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private renderer: Renderer2, private cdr: ChangeDetectorRef) {
+  constructor(private renderer: Renderer2) {
   }
 
   ngOnInit(): void {
-    this.textChangeDebouncer.pipe(distinctUntilChanged(), debounceTime(500)).subscribe((v: string) => {
+    this.textChangeDebouncer.pipe(
+      distinctUntilChanged(),
+      debounceTime(500),
+      takeUntil(this.destory$)).
+    subscribe((v: string) => {
       this.textContentChange.next(v);
     });
   }

@@ -123,7 +123,7 @@ export class EpisodeChunkSubmit implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.contentUpdated.pipe(takeUntil(this.$destroy), debounceTime(1000)).subscribe((v) => {
+    this.contentUpdated.pipe(debounceTime(1000), takeUntil(this.$destroy)).subscribe((v) => {
       this.executeUpdate(v);
     });
   }

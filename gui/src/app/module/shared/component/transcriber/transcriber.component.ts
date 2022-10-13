@@ -172,7 +172,7 @@ export class TranscriberComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.contentUpdated.pipe(takeUntil(this.$destroy), distinctUntilChanged()).subscribe((v) => {
+    this.contentUpdated.pipe(distinctUntilChanged(), takeUntil(this.$destroy)).subscribe((v) => {
       if (!v) {
         return;
       }

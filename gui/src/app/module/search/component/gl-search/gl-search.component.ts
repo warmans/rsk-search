@@ -80,9 +80,9 @@ export class GlSearchComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   constructor(meta: MetaService, route: ActivatedRoute) {
-    meta.getMeta().pipe(first()).subscribe((m) => {
+    meta.getMeta().pipe(first(), takeUntil(this.destroy$)).subscribe((m) => {
       this.fieldMeta = m.searchFields;
-      route.queryParamMap.pipe(distinctUntilChanged()).subscribe((params) => {
+      route.queryParamMap.pipe(distinctUntilChanged(), takeUntil(this.destroy$)).subscribe((params) => {
         if (params.get('q') === null || params.get('q').trim() === '') {
           this.resetFilters();
           return;
@@ -93,7 +93,7 @@ export class GlSearchComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.searchForm.get('term').valueChanges.pipe(takeUntil(this.destroy$), distinctUntilChanged(), debounceTime(500)).subscribe(
+    this.searchForm.get('term').valueChanges.pipe(distinctUntilChanged(), debounceTime(500), takeUntil(this.destroy$)).subscribe(
       (val: string) => {
         if (this.settingsForm.get('autoComplete').value) {
           this.termUpdated.next(val);

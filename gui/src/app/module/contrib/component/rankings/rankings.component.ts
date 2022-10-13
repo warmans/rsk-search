@@ -27,7 +27,7 @@ export class RankingsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.refreshRankings();
-    this.searchInput.valueChanges.pipe(takeUntil(this.destroy$), debounceTime(100)).subscribe((val) => {
+    this.searchInput.valueChanges.pipe(debounceTime(100), takeUntil(this.destroy$)).subscribe((val) => {
       this.refreshRankings(val);
     });
   }

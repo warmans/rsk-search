@@ -27,7 +27,7 @@ export class TranscriptSectionComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.route.queryParamMap.pipe(takeUntil(this.unsubscribe$), debounceTime(1000)).subscribe((d: Data) => {
+    this.route.queryParamMap.pipe(debounceTime(1000), takeUntil(this.unsubscribe$)).subscribe((d: Data) => {
       this.epid = d.params['epid'];
       this.startLine = parseInt(d.params['start'], 10) || 0;
       this.endLine = parseInt(d.params['end'], 10) || this.startLine+1;

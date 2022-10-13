@@ -25,7 +25,9 @@
               <i class="clickable mr-2" [ngClass]="{'bi-play-circle-fill': !played, 'bi-play-circle': played, 'text-success': playing}"></i>
               {{episode.shortId}}
             </a> |
-            {{ (episode.releaseDate | date) || "Date Unknown" }}
+            {{ ( episode.metadata["duration_ms"] | formatSeconds: true ) || "Duration Unknown" }} |
+            {{ (episode.releaseDate | date) || "Date Unknown" }} 
+
           </div>
         </div>
       </div>

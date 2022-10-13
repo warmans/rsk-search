@@ -43,7 +43,7 @@ export class EpisodeSummaryComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.audioService.audioHistoryLog.pipe(takeUntil(this.destroy$)).subscribe((played) => {
+    this.audioService.audioHistoryLog.pipe(takeUntil(this.destroy$)).subscribe((played: string[]) => {
       if (!this.episode) {
         return;
       }

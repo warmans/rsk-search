@@ -59,7 +59,6 @@ export class GlSearchFilterComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.possibleValues$ =
       this.valueInput$.pipe(
-        takeUntil(this.destroy$),
         distinctUntilChanged(),
         filter((v) => v !== null),
         tap(() => this.valuesLoading = true),
@@ -71,7 +70,8 @@ export class GlSearchFilterComponent implements OnInit, OnDestroy {
           map((v: RskFieldValue[]): string[] => v.map((v: RskFieldValue) => v.value)),
           catchError(() => of([])), // empty list on error
           tap(() => this.valuesLoading = false)
-        ))
+        )),
+        takeUntil(this.destroy$),
       );
   }
 

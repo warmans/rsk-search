@@ -8,12 +8,15 @@ export class FormatSecondsPipe implements PipeTransform {
   constructor() {
   }
 
-  transform(seconds: number | string): string {
+  transform(seconds: number | string, secondsAreMilliseconds?: boolean): string {
     if (!seconds) {
       return '-';
     }
 
-    const secondsNum: number = (typeof seconds === 'string') ? parseInt(seconds) : seconds;
+    let secondsNum: number = (typeof seconds === 'string') ? parseInt(seconds) : seconds;
+    if (secondsAreMilliseconds) {
+      secondsNum = secondsNum / 1000;
+    }
     const minsNum: number = secondsNum / 60;
 
     const mins: string = String(minsNum.toFixed(0)).padStart(2, '0');

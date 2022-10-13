@@ -106,8 +106,8 @@ export class EpisodeComponent implements OnInit, OnDestroy {
     this.error = undefined;
 
     combineLatest([
-      this.apiClient.getTranscript({ epid: this.id }).pipe(takeUntil(this.unsubscribe$)),
-      this.meta.getMeta().pipe(takeUntil(this.unsubscribe$)),
+      this.apiClient.getTranscript({ epid: this.id }),
+      this.meta.getMeta(),
     ]).pipe(takeUntil(this.unsubscribe$)).subscribe(
       ([ep, metadata]) => {
 
