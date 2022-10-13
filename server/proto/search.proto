@@ -126,6 +126,13 @@ message SearchStats  {
   repeated float values = 3;
 }
 
+enum AudioQuality {
+  UNKNOWN = 0;
+  POOR = 1;
+  AVERAGE = 2;
+  GOOD = 3;
+}
+
 message ShortTranscript {
   string id = 1;
   string publication = 2;
@@ -146,6 +153,7 @@ message ShortTranscript {
   map<string, string> metadata = 17;
   bool bestof = 18;
   bool special = 19;
+  AudioQuality audio_quality = 20;
 }
 
 message DialogResult {
@@ -210,6 +218,7 @@ message Transcript {
   bool special = 21;
   bool locked = 22;
   string summary = 23;
+  AudioQuality audio_quality = 24;
 }
 
 message GetTranscriptRequest {

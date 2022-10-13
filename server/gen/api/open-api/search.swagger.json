@@ -318,6 +318,16 @@
         }
       }
     },
+    "rskAudioQuality": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "POOR",
+        "AVERAGE",
+        "GOOD"
+      ],
+      "default": "UNKNOWN"
+    },
     "rskChangelog": {
       "type": "object",
       "properties": {
@@ -598,6 +608,9 @@
         },
         "special": {
           "type": "boolean"
+        },
+        "audioQuality": {
+          "$ref": "#/definitions/rskAudioQuality"
         }
       }
     },
@@ -706,6 +719,9 @@
         },
         "summary": {
           "type": "string"
+        },
+        "audioQuality": {
+          "$ref": "#/definitions/rskAudioQuality"
         }
       }
     },

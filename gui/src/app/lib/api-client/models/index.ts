@@ -3,6 +3,7 @@
 export { AuthorContributionType } from './author-contribution-type.enum';
 export { FieldMetaKind } from './field-meta-kind.enum';
 export { RewardKind } from './reward-kind.enum';
+export { RskAudioQuality } from './rsk-audio-quality.enum';
 export { RskAuthor } from './rsk-author.model';
 export { RskAuthorContribution } from './rsk-author-contribution.model';
 export { RskAuthorContributionList } from './rsk-author-contribution-list.model';

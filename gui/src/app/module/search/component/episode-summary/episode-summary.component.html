@@ -46,7 +46,8 @@
     <p *ngIf="episode.summary">{{ episode.summary }}</p>
     <app-synopses [synopses]="episode.synopsis" [episodeID]="episode.id"></app-synopses>
   </div>
-  <div class="foot p-2 font-weight-light text-right">
-    {{episode.actors.join(', ')}}
+  <div class="foot p-2 font-weight-light d-flex justify-content-between">
+    <div></div>
+    <div>{{episode.actors.join(', ')}}</div>
   </div>
 </div>

@@ -1,5 +1,6 @@
 /* tslint:disable */
 import {
+  RskAudioQuality,
   RskDialog,
   RskSynopsis,
   RskTrivia,
@@ -7,6 +8,7 @@ import {
 
 export interface RskTranscript {
   actors?: string[];
+  audioQuality?: RskAudioQuality;
   audioUri?: string;
   bestof?: boolean;
   contributors?: string[];

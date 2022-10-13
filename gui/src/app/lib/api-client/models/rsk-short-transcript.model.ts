@@ -1,10 +1,12 @@
 /* tslint:disable */
 import {
+  RskAudioQuality,
   RskSynopsis,
 } from '.';
 
 export interface RskShortTranscript {
   actors?: string[];
+  audioQuality?: RskAudioQuality;
   audioUri?: string;
   bestof?: boolean;
   episode?: number;

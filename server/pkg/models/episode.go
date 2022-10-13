@@ -17,6 +17,27 @@ const (
 	DialogTypeGap    = DialogType("gap")
 )
 
+type AudioQuality string
+
+func (q AudioQuality) Proto() api.AudioQuality {
+	switch q {
+	case AudioQualityPoor:
+		return api.AudioQuality_POOR
+	case AudioQualityAverage:
+		return api.AudioQuality_AVERAGE
+	case AudioQualityGood:
+		return api.AudioQuality_GOOD
+	}
+	return api.AudioQuality_UNKNOWN
+}
+
+const (
+	AudioQualityUnknown = AudioQuality("")
+	AudioQualityPoor    = AudioQuality("poor")
+	AudioQualityAverage = AudioQuality("average")
+	AudioQualityGood    = AudioQuality("good")
+)
+
 type MetadataType string
 
 const (
@@ -89,6 +110,8 @@ type Transcript struct {
 
 	OffsetAccuracy int32 `json:"offset_accuracy"`
 
+	AudioQuality AudioQuality `json:"audio_quality"`
+
 	// additional optional data
 	Meta         Metadata   `json:"metadata"`
 	Transcript   []Dialog   `json:"transcript"`
@@ -148,6 +171,7 @@ func (e *Transcript) ShortProto(audioURI string) *api.ShortTranscript {
 		Metadata:            e.Meta.Proto(),
 		Bestof:              e.Bestof,
 		Special:             e.Special,
+		AudioQuality:        e.AudioQuality.Proto(),
 	}
 	for k, s := range e.Synopsis {
 		ep.Synopsis[k] = s.Proto()
@@ -179,6 +203,7 @@ func (e *Transcript) Proto(withRawTranscript string, audioURI string, forceLocke
 		Special:            e.Special,
 		Locked:             e.Locked || forceLockedOn,
 		Summary:            e.Summary,
+		AudioQuality:       e.AudioQuality.Proto(),
 	}
 	for _, d := range e.Transcript {
 		ep.Transcript = append(ep.Transcript, d.Proto(false))

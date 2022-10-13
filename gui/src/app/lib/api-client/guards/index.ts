@@ -42,6 +42,15 @@ export function isRewardKind(arg: any): arg is models.RewardKind {
   ;
   }
 
+export function isRskAudioQuality(arg: any): arg is models.RskAudioQuality {
+  return false
+   || arg === models.RskAudioQuality.UNKNOWN
+   || arg === models.RskAudioQuality.POOR
+   || arg === models.RskAudioQuality.AVERAGE
+   || arg === models.RskAudioQuality.GOOD
+  ;
+  }
+
 export function isRskAuthor(arg: any): arg is models.RskAuthor {
   return (
   arg != null &&
@@ -717,6 +726,8 @@ export function isRskShortTranscript(arg: any): arg is models.RskShortTranscript
   typeof arg === 'object' &&
     // actors?: string[]
     ( typeof arg.actors === 'undefined' || (Array.isArray(arg.actors) && arg.actors.every((item: unknown) => typeof item === 'string')) ) &&
+    // audioQuality?: RskAudioQuality
+    ( typeof arg.audioQuality === 'undefined' || isRskAudioQuality(arg.audioQuality) ) &&
     // audioUri?: string
     ( typeof arg.audioUri === 'undefined' || typeof arg.audioUri === 'string' ) &&
     // bestof?: boolean
@@ -804,6 +815,8 @@ export function isRskTranscript(arg: any): arg is models.RskTranscript {
   typeof arg === 'object' &&
     // actors?: string[]
     ( typeof arg.actors === 'undefined' || (Array.isArray(arg.actors) && arg.actors.every((item: unknown) => typeof item === 'string')) ) &&
+    // audioQuality?: RskAudioQuality
+    ( typeof arg.audioQuality === 'undefined' || isRskAudioQuality(arg.audioQuality) ) &&
     // audioUri?: string
     ( typeof arg.audioUri === 'undefined' || typeof arg.audioUri === 'string' ) &&
     // bestof?: boolean
