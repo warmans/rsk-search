@@ -169,11 +169,11 @@ func parseFileName(logger *zap.Logger, filePath string, fileName string, publica
 	var date string
 
 	fileName = strings.TrimSpace(fileName)
-	fullPattern := regexp.MustCompile("^([0-9x]+)?[\\s\\-]*(.+)([0-9]{4}-[0-9]{2}-[0-9]{2}).+$")
+	fullPattern := regexp.MustCompile(`^([0-9x]+)?[\s\-]*(.+)([0-9]{4}-[0-9]{2}-[0-9]{2}).+$`)
 	matches := fullPattern.FindAllStringSubmatch(fileName, -1)
 
 	if len(matches) == 0 {
-		partialPattern := regexp.MustCompile("^([0-9x]+)?[\\s\\-]*(.+)$")
+		partialPattern := regexp.MustCompile(`^([0-9x]+)?[\s\-]*(.+)$`)
 		matches = partialPattern.FindAllStringSubmatch(fileName, -1)
 
 		year = matches[0][1]
