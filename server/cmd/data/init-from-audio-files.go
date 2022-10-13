@@ -2,7 +2,6 @@ package data
 
 import (
 	"fmt"
-	"github.com/davecgh/go-spew/spew"
 	"github.com/dhowden/tag"
 	"github.com/spf13/cobra"
 	"github.com/warmans/rsk-search/pkg/data"
@@ -12,6 +11,7 @@ import (
 	"os"
 	"os/exec"
 	"path"
+	"regexp"
 	"sort"
 	"strconv"
 	"strings"
@@ -30,7 +30,7 @@ type audioFile struct {
 func InitFromAudioFilesCmd() *cobra.Command {
 
 	var publication string
-	var metadataStrategy string
+	var dryRun bool
 
 	cmd := &cobra.Command{
 		Use:   "init-from-audio",
@@ -55,24 +55,18 @@ func InitFromAudioFilesCmd() *cobra.Command {
 				}
 				filePath := path.Join(cfg.audioDir, v.Name())
 
-				if metadataStrategy == "filename" {
-					dateStr, name, year, err := parseFileName(logger, v.Name())
+				logger.Info(fmt.Sprintf("processing %s", filePath))
+
+				meta, err := parseFileName(logger, filePath, v.Name(), publication)
+				if err != nil {
+					logger.Warn(fmt.Sprintf("Failed to parse filename %s, fall back to id3", v.Name()))
+					meta, err = parseMetadata(logger, filePath, publication)
 					if err != nil {
-						logger.Warn(fmt.Sprintf("Failed to parse %s", v.Name()))
+						logger.Warn(fmt.Sprintf("Failed to parse id3 of %s, giving up", v.Name()))
 						continue
 					}
-					audioFiles = append(audioFiles, audioFile{
-						path:        filePath,
-						name:        name,
-						date:        dateStr,
-						year:        year,
-						publication: publication,
-					})
+					audioFiles = append(audioFiles, meta)
 				} else {
-					meta, err := parseMetadata(logger, filePath, publication)
-					if err != nil {
-						return err
-					}
 					audioFiles = append(audioFiles, meta)
 				}
 			}
@@ -81,7 +75,17 @@ func InitFromAudioFilesCmd() *cobra.Command {
 				return audioFiles[i].year < audioFiles[j].year
 			})
 
+			if dryRun {
+				for _, f := range audioFiles {
+					logger.Info("Created file", zap.String("name", f.name), zap.Timep("date", f.date), zap.Int("year", f.year))
+				}
+				return nil
+			}
+
 			renamedFileDir := path.Join(cfg.audioDir, "renamed")
+			if _, err := exec.Command("rm", "-rf", fmt.Sprintf("%s/*", renamedFileDir)).CombinedOutput(); err != nil {
+				return err
+			}
 			for k, f := range audioFiles {
 				ep, err := initEpisodeFileFromAudio(logger, f, int32(k)+1, cfg.dataDir)
 				if err != nil {
@@ -90,14 +94,13 @@ func InitFromAudioFilesCmd() *cobra.Command {
 				if _, err := exec.Command("cp", f.path, path.Join(renamedFileDir, fmt.Sprintf("%s.mp3", ep.ShortID()))).CombinedOutput(); err != nil {
 					return err
 				}
-
 			}
 			return nil
 		},
 	}
 
 	cmd.Flags().StringVarP(&publication, "publication", "p", "other", "Publication to give episodes")
-	cmd.Flags().StringVarP(&metadataStrategy, "meta-strategy", "m", "id3", "id3 or filename")
+	cmd.Flags().BoolVarP(&dryRun, "dry-run", "x", false, "don't write any files ")
 
 	return cmd
 }
@@ -112,8 +115,6 @@ func parseMetadata(logger *zap.Logger, fileName string, publication string) (aud
 		return audioFile{}, err
 	}
 	rawTags := tags.Raw()
-
-	spew.Dump(rawTags)
 
 	result := audioFile{}
 	result.publication = publication
@@ -161,30 +162,62 @@ func findReleaseTimestamp(tags map[string]interface{}) string {
 }
 
 // 2005 - Extras - Steve Interviewed by Simon Amstell on XFM 2005-08-13.mp3
-func parseFileName(logger *zap.Logger, fileName string) (*time.Time, string, int, error) {
-	fileName = strings.TrimSuffix(fileName, ".mp3")
-	segments := strings.Split(fileName, " ")
+func parseFileName(logger *zap.Logger, filePath string, fileName string, publication string) (audioFile, error) {
 
-	// last segment should be a date in the format YYY-MM-DD or YYY-MM
-	dateParts := strings.Split(segments[len(segments)-1], "-")
-	if len(dateParts) == 2 {
-		dateParts = append(dateParts, "01")
+	var year string
+	var name string
+	var date string
+
+	fileName = strings.TrimSpace(fileName)
+	fullPattern := regexp.MustCompile("^([0-9x]+)?[\\s\\-]*(.+)([0-9]{4}-[0-9]{2}-[0-9]{2}).+$")
+	matches := fullPattern.FindAllStringSubmatch(fileName, -1)
+
+	if len(matches) == 0 {
+		partialPattern := regexp.MustCompile("^([0-9x]+)?[\\s\\-]*(.+)$")
+		matches = partialPattern.FindAllStringSubmatch(fileName, -1)
+
+		year = matches[0][1]
+		name = matches[0][2]
+		date = ""
+
+		if len(matches) == 0 {
+			return audioFile{}, fmt.Errorf("name does not match")
+		}
+	} else {
+		year = matches[0][1]
+		name = matches[0][2]
+		date = matches[0][3]
 	}
-	dateStr := fmt.Sprintf("%sT00:00:00Z", strings.Join(dateParts, "-"))
-	name := strings.Join(segments[:len(segments)-1], " ")
 
-	ts, err := time.Parse(time.RFC3339, dateStr)
+	var ts time.Time
+	if date != "" {
+		dateStr := fmt.Sprintf("%sT00:00:00Z", date)
+		var err error
+		ts, err = time.Parse(time.RFC3339, dateStr)
+		if err != nil {
+			logger.Warn(fmt.Sprintf("%s has an invalid timestamp: %s", fileName, dateStr))
+		}
+	}
+
+	intYear, err := strconv.Atoi(strings.Replace(year, "x", "0", -1))
 	if err != nil {
-		logger.Warn(fmt.Sprintf("%s has an invalid timestamp: %s", fileName, dateStr))
+		logger.Warn(fmt.Sprintf("%s has an invalid year: %s", fileName, date))
 	}
 
-	year := strings.Replace(segments[0], "x", "0", -1)
-	intYear, err := strconv.Atoi(year)
-	if err != nil {
-		return nil, "", 0, err
-	}
+	return audioFile{
+		path:        filePath,
+		name:        strings.TrimSuffix(strings.TrimSpace(name), ".mp3"),
+		date:        timePointer(ts),
+		year:        intYear,
+		publication: publication,
+	}, nil
+}
 
-	return &ts, name, intYear, nil
+func timePointer(ts time.Time) *time.Time {
+	if ts.IsZero() {
+		return nil
+	}
+	return &ts
 }
 
 func initEpisodeFileFromAudio(

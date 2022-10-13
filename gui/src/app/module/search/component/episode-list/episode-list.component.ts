@@ -1,11 +1,10 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
-import { SearchAPIClient } from '../../../../lib/api-client/services/search';
+import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
+import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 import { debounceTime, takeUntil } from 'rxjs/operators';
-import { RskShortTranscript, RskTranscriptList } from '../../../../lib/api-client/models';
+import { RskShortTranscript, RskTranscriptList } from 'src/app/lib/api-client/models';
 import { FormControl } from '@angular/forms';
-import { AudioService } from '../../../core/service/audio/audio.service';
 
-type tabState = 'xfm' | 'guide' | 'special' | 'other' | 'preview';
+type tabState = 'xfm' | 'guide' | 'special' | 'other' | 'karl' |  'preview';
 
 @Component({
   selector: 'app-episode-list',
