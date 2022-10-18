@@ -680,7 +680,7 @@ func (s *ContribService) CreateTranscriptChange(ctx context.Context, request *ap
 		change, err = s.CreateTranscriptChange(ctx, &models.TranscriptChangeCreate{
 			AuthorID:          claims.AuthorID,
 			EpID:              request.Epid,
-			Summary:           "",
+			Summary:           request.Summary,
 			Transcription:     request.Transcript,
 			TranscriptVersion: request.TranscriptVersion,
 		})

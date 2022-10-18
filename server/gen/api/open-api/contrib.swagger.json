@@ -1301,6 +1301,9 @@
         },
         "transcriptVersion": {
           "type": "string"
+        },
+        "summary": {
+          "type": "string"
         }
       }
     },
@@ -1661,6 +1664,9 @@
         "pointsOnApprove": {
           "type": "number",
           "format": "float"
+        },
+        "summary": {
+          "type": "string"
         }
       }
     }
