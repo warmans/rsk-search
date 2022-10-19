@@ -1,14 +1,15 @@
 import { Component, EventEmitter, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { takeUntil } from 'rxjs/operators';
+import { debounceTime, takeUntil } from 'rxjs/operators';
 import { ActivatedRoute, Data, Router } from '@angular/router';
-import { SearchAPIClient } from '../../../../lib/api-client/services/search';
+import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 import { Title } from '@angular/platform-browser';
 import { SessionService } from '../../../core/service/session/session.service';
 import { AlertService } from '../../../core/service/alert/alert.service';
-import { RskContributionState, RskTranscript, RskTranscriptChange, RskTranscriptChangeDiff } from '../../../../lib/api-client/models';
-import { TranscriberComponent } from '../../../shared/component/transcriber/transcriber.component';
-import { Observable } from 'rxjs';
+import { RskContributionState, RskTranscript, RskTranscriptChange, RskTranscriptChangeDiff } from 'src/app/lib/api-client/models';
+import { EditorComponent } from '../../../shared/component/editor/editor.component';
+import { Observable, Subject } from 'rxjs';
 import { FormControl } from '@angular/forms';
+import { TranscriptMetadata } from 'src/app/module/shared/component/metadata-editor/metadata-editor.component';
 
 const DISMISS_HELP_KEY: string = 'contribute.change.help.hide';
 
@@ -27,6 +28,8 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
 
   change: RskTranscriptChange;
 
+  metadata: TranscriptMetadata;
+
   approvalPoints: FormControl = new FormControl(0.2);
 
   versionMismatchError = false;
@@ -37,15 +40,27 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
   userIsApprover: boolean = false;
   cStates = RskContributionState;
   lastUpdateTimestamp: Date;
-  unifiedDiff: string;
+  diffs: string[];
   instructionsHidden: boolean = localStorage.getItem(DISMISS_HELP_KEY) === 'true';
+  updateQueue: Subject<void> = new Subject<void>();
+
+  set activeTab(value: 'edit' | 'preview' | 'diff' | 'meta') {
+    this.checkReloadDiff(value);
+    this._activeTab = value;
+  }
+
+  get activeTab(): 'edit' | 'preview' | 'diff' | 'meta' {
+    return this._activeTab;
+  }
+
+  private _activeTab: 'edit' | 'preview' | 'diff' | 'meta' = 'edit';
 
   loading: boolean[] = [];
 
-  $destroy: EventEmitter<void> = new EventEmitter<void>();
+  destroy$: EventEmitter<void> = new EventEmitter<void>();
 
-  @ViewChild('transcriber')
-  transcriber: TranscriberComponent;
+  @ViewChild('editor')
+  transcriber: EditorComponent;
 
   constructor(
     private route: ActivatedRoute,
@@ -60,7 +75,7 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
     // don't bother prompting for login etc. if the intent is just to read the change.
     this.readOnly = route.snapshot.queryParamMap.get('readonly') === '1';
 
-    route.paramMap.pipe(takeUntil(this.$destroy)).subscribe((d: Data) => {
+    route.paramMap.pipe(takeUntil(this.destroy$)).subscribe((d: Data) => {
 
       this.epID = d.params['epid'];
 
@@ -68,16 +83,17 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
       this.apiClient.getTranscript({
         epid: this.epID,
         withRaw: true
-      }).pipe(takeUntil(this.$destroy)).subscribe((res: RskTranscript) => {
+      }).pipe(takeUntil(this.destroy$)).subscribe((res: RskTranscript) => {
         this.transcript = res;
         if (!d.params['change_id']) {
           this.initialTranscript = res.rawTranscript;
         } else {
-          this.apiClient.getTranscriptChange({ id: d.params['change_id'] }).pipe(takeUntil(this.$destroy)).subscribe((res: RskTranscriptChange) => {
+          this.apiClient.getTranscriptChange({ id: d.params['change_id'] }).pipe(takeUntil(this.destroy$)).subscribe((res: RskTranscriptChange) => {
             this.change = res;
             this.checkUserCanEdit();
 
             this.initialTranscript = this.change.transcript;
+            this.metadata = { summary: this.change.summary };
 
             this.versionMismatchError = (this.change?.transcriptVersion !== this.transcript?.version);
             this.userIsOwner = this.sessionService.getClaims()?.author_id === res.author.id || this.sessionService.getClaims()?.approver;
@@ -87,7 +103,7 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
       }).add(() => this.loading.shift());
     });
 
-    sessionService.onTokenChange.pipe(takeUntil(this.$destroy)).subscribe((token: string): void => {
+    sessionService.onTokenChange.pipe(takeUntil(this.destroy$)).subscribe((token: string): void => {
       if (token != null) {
         this.authenticated = true;
       }
@@ -95,19 +111,22 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.$destroy.next();
-    this.$destroy.complete();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   ngOnInit(): void {
+    this.updateQueue.pipe(debounceTime(1000), takeUntil(this.destroy$)).subscribe(() => {
+      this.update(() => {
+      });
+    });
   }
 
   handleSave(transcript: string): void {
     // there is some kind of race condition that means sometimes it attempts to save an empty transcript.
     // quick-fix: just ignore updates with a falsy transcript.
     if (this.change && this.userCanEdit && transcript) {
-      this.update(() => {
-      });
+      this.updateQueue.next();
     }
   }
 
@@ -116,8 +135,13 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
       this.loading.push(true);
       this.apiClient.createTranscriptChange({
         epid: this.transcript.id,
-        body: { epid: this.transcript.id, transcript: this.transcriber.getContentSnapshot(), transcriptVersion: this.transcript?.version || 'NONE' }
-      }).pipe(takeUntil(this.$destroy)).subscribe((res: RskTranscriptChange) => {
+        body: {
+          epid: this.transcript.id,
+          transcript: this.transcriber.getContentSnapshot(),
+          transcriptVersion: this.transcript?.version || 'NONE',
+          summary: this.metadata?.summary,
+        }
+      }).pipe(takeUntil(this.destroy$)).subscribe((res: RskTranscriptChange) => {
         this.initialTranscript = res.transcript;
         this.transcriber.clearBackup();
         this.alertService.success('Created', 'Draft change was created. It will now be auto-saved on change.');
@@ -129,14 +153,14 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
   discardChange() {
     if (confirm('Really discard change?')) {
       this.loading.push(true);
-      this.apiClient.deleteTranscriptChange({ id: this.change.id }).pipe(takeUntil(this.$destroy)).subscribe((res) => {
+      this.apiClient.deleteTranscriptChange({ id: this.change.id }).pipe(takeUntil(this.destroy$)).subscribe((res) => {
         this.router.navigate(['/ep', this.transcript.id, 'change']);
       }).add(() => this.loading.shift());
     }
   }
 
   update(after: () => void) {
-    this._update(this.change.state).pipe(takeUntil(this.$destroy)).subscribe((res: RskTranscriptChange) => {
+    this._update(this.change.state).pipe(takeUntil(this.destroy$)).subscribe((res: RskTranscriptChange) => {
       this.change = res;
       this.checkUserCanEdit();
       this.lastUpdateTimestamp = new Date();
@@ -150,9 +174,10 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
       body: {
         id: this.change.id,
         transcript: this.transcriber.getContentSnapshot(),
+        summary: this.metadata.summary,
         state: state
       }
-    }).pipe(takeUntil(this.$destroy));
+    }).pipe(takeUntil(this.destroy$));
   }
 
   private _updateState(state: RskContributionState) {
@@ -164,7 +189,7 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
         state: state,
         pointsOnApprove: this.approvalPoints.value,
       }
-    }).pipe(takeUntil(this.$destroy)).subscribe((res: RskTranscriptChange) => {
+    }).pipe(takeUntil(this.destroy$)).subscribe((res: RskTranscriptChange) => {
       this.change.state = state;
       this.checkUserCanEdit();
 
@@ -193,6 +218,9 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
       const isAuthorOrApprover = this.sessionService.getClaims()?.author_id === this.change.author.id || this.sessionService.getClaims().approver;
       this.userCanEdit = this.change.state === RskContributionState.STATE_PENDING && isAuthorOrApprover;
     }
+    if (!this.userCanEdit) {
+      this.activeTab = 'preview';
+    }
   }
 
   markComplete() {
@@ -207,7 +235,7 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
         'readonly': null,
       },
       queryParamsHandling: 'merge'
-    })
+    });
   }
 
   markApproved() {
@@ -222,8 +250,8 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
     this.loading.push(true);
     this.apiClient.getTranscriptChangeDiff({
       id: this.change.id,
-    }).pipe(takeUntil(this.$destroy)).subscribe((res: RskTranscriptChangeDiff) => {
-      this.unifiedDiff = res.diff;
+    }).pipe(takeUntil(this.destroy$)).subscribe((res: RskTranscriptChangeDiff) => {
+      this.diffs = res.diffs;
     }).add(() => this.loading.shift());
   }
 
@@ -242,11 +270,18 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
 
   hideInstructions() {
     this.instructionsHidden = true;
-    localStorage.setItem(DISMISS_HELP_KEY, "true")
+    localStorage.setItem(DISMISS_HELP_KEY, 'true');
   }
 
   undoHideInstructions() {
     this.instructionsHidden = false;
-    localStorage.removeItem(DISMISS_HELP_KEY)
+    localStorage.removeItem(DISMISS_HELP_KEY);
+  }
+
+  metadataUpdated(metadata: TranscriptMetadata) {
+    this.metadata = metadata;
+    if (this.change) {
+      this.updateQueue.next();
+    }
   }
 }

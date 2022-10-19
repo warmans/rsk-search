@@ -1748,6 +1748,9 @@
           },
           "transcriptVersion": {
             "type": "string"
+          },
+          "summary": {
+            "type": "string"
           }
         }
       },
@@ -2397,8 +2400,11 @@
       "rskTranscriptChangeDiff": {
         "type": "object",
         "properties": {
-          "diff": {
-            "type": "string"
+          "diffs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
@@ -2583,6 +2589,9 @@
           "pointsOnApprove": {
             "type": "number",
             "format": "float"
+          },
+          "summary": {
+            "type": "string"
           }
         }
       },

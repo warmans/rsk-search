@@ -647,7 +647,7 @@ message GetTranscriptChangeDiffRequest {
 }
 
 message TranscriptChangeDiff {
-  string diff = 1;
+  repeated string diffs = 2;
 }
 
 message ListAuthorContributionsRequest {

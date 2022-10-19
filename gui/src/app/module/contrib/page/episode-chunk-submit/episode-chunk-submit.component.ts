@@ -1,16 +1,14 @@
 import { Component, EventEmitter, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { SearchAPIClient } from '../../../../lib/api-client/services/search';
+import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { SessionService } from '../../../core/service/session/session.service';
-import { getFirstOffset, Tscript } from '../../../shared/lib/tscript';
+import { getFirstOffset } from '../../../shared/lib/tscript';
 import { AlertService } from '../../../core/service/alert/alert.service';
-import { formatDistance } from 'date-fns';
-import { RskChunk, RskChunkContribution, RskContributionState } from '../../../../lib/api-client/models';
-import { EditorConfig } from '../../../shared/component/editor-config/editor-config.component';
-import { TranscriberComponent } from '../../../shared/component/transcriber/transcriber.component';
+import { RskChunk, RskChunkContribution, RskContributionState } from 'src/app/lib/api-client/models';
+import { EditorComponent } from '../../../shared/component/editor/editor.component';
 
 @Component({
   selector: 'app-episode-chunk-submit',
@@ -20,7 +18,6 @@ import { TranscriberComponent } from '../../../shared/component/transcriber/tran
 export class EpisodeChunkSubmit implements OnInit, OnDestroy {
 
   authenticated: boolean = false;
-  authError: string;
   chunk: RskChunk;
   contribution: RskChunkContribution;
   userCanEdit: boolean = true;
@@ -35,16 +32,15 @@ export class EpisodeChunkSubmit implements OnInit, OnDestroy {
 
   contentUpdated: Subject<string> = new Subject<string>();
 
-  editorConfig: EditorConfig = localStorage.getItem('editor-config') ? JSON.parse(localStorage.getItem('editor-config')) as EditorConfig : new EditorConfig();
-
   audioPlayerURL: string = '';
-  parsedTscript: Tscript;
-  showHelp: boolean = false;
 
   cStates = RskContributionState;
 
   loading: boolean[] = [];
+
   lastUpdateTimestamp: Date;
+
+  activeTab: 'edit' | 'preview' | 'diff' = 'edit';
 
   rejectCallback: (contributionId: string, comment: string) => void = (contributionId: string, comment: string) => {
     this.markRejected(comment);
@@ -52,8 +48,8 @@ export class EpisodeChunkSubmit implements OnInit, OnDestroy {
 
   $destroy: EventEmitter<void> = new EventEmitter<void>();
 
-  @ViewChild('transcriber')
-  transcriber: TranscriberComponent;
+  @ViewChild('editor')
+  editor: EditorComponent;
 
   constructor(
     private route: ActivatedRoute,
@@ -66,7 +62,6 @@ export class EpisodeChunkSubmit implements OnInit, OnDestroy {
     titleService.setTitle('Contribute');
 
     route.paramMap.pipe(takeUntil(this.$destroy)).subscribe((d: Data) => {
-
 
       if (d.params['contribution_id']) {
 
@@ -141,7 +136,7 @@ export class EpisodeChunkSubmit implements OnInit, OnDestroy {
 
     // each time the contribution is saved the backup needs to be cleared to ensure the editor is in sync with the
     // server-side version of the transcript.
-    this.transcriber.clearBackup();
+    this.editor.clearBackup();
 
     this.setInitialTranscript(res.transcript);
 
@@ -160,10 +155,6 @@ export class EpisodeChunkSubmit implements OnInit, OnDestroy {
     this.firstOffset = getFirstOffset(this.initialTranscript);
   }
 
-  timeSinceSave(): string {
-    return formatDistance(this.lastUpdateTimestamp, new Date());
-  }
-
   handleSave(text: string) {
     this.contentUpdated.next(text);
   }
@@ -175,10 +166,10 @@ export class EpisodeChunkSubmit implements OnInit, OnDestroy {
         chunkId: this.chunk.id,
         body: {
           chunkId: this.chunk.id,
-          transcript: this.transcriber.getContentSnapshot()
+          transcript: this.editor.getContentSnapshot()
         }
       }).pipe(takeUntil(this.$destroy)).subscribe((res: RskChunkContribution) => {
-        this.transcriber.clearBackup();
+        this.editor.clearBackup();
         this.alertService.success('Created', 'Draft was created. It will now be auto-saved on change.');
         this.router.navigate(['/chunk', this.chunk.id, 'contrib', res.id]);
       }).add(() => this.loading.shift());
@@ -188,7 +179,7 @@ export class EpisodeChunkSubmit implements OnInit, OnDestroy {
   update() {
     this._update(this.contribution.state).subscribe((res: RskChunkContribution) => {
       this.lastUpdateTimestamp = new Date();
-      this.transcriber.clearBackup();
+      this.editor.clearBackup();
     });
   }
 
@@ -197,7 +188,7 @@ export class EpisodeChunkSubmit implements OnInit, OnDestroy {
       contributionId: this.contribution.id,
       body: {
         contributionId: this.contribution.id,
-        transcript: this.transcriber.getContentSnapshot(),
+        transcript: this.editor.getContentSnapshot(),
         state: state
       }
     }).pipe(takeUntil(this.$destroy));

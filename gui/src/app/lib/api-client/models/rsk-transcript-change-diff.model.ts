@@ -1,5 +1,5 @@
 /* tslint:disable */
 
 export interface RskTranscriptChangeDiff {
-  diff?: string;
+  diffs?: string[];
 }

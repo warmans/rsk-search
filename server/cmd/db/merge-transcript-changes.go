@@ -121,6 +121,9 @@ func mergeAll(outputDataPath string, migrationsPath string, conn *rw.Conn, dryRu
 			episodeOnDisk.Synopsis = append(episodeOnDisk.Synopsis, synopsis...)
 			episodeOnDisk.Trivia = append(episodeOnDisk.Trivia, trivia...)
 
+			// metadata
+			episodeOnDisk.Summary = v.Summary
+
 			contributors := []string{}
 			for c := range uniqueContributors {
 				contributors = append(contributors, c)

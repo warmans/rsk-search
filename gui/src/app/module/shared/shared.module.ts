@@ -10,11 +10,11 @@ import { RouterModule } from '@angular/router';
 import { SynopsesComponent } from './component/synopses/synopses.component';
 import { ContributionStateComponent } from './component/contribution-state/contribution-state.component';
 import { RedditLoginComponent } from './component/reddit-login/reddit-login.component';
-import { EditorComponent } from './component/editor/editor.component';
+import { EditorInputComponent } from './component/editor-input/editor-input.component';
 import { EditorConfigComponent } from './component/editor-config/editor-config.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditorHelpComponent } from './component/editor-help/editor-help.component';
-import { TranscriberComponent } from './component/transcriber/transcriber.component';
+import { EditorComponent } from './component/editor/editor.component';
 import { FormatSecondsPipe } from './pipe/format-seconds.pipe';
 import { TriviaComponent } from './component/trivia/trivia.component';
 import { HtmlDiffComponent } from './component/html-diff/html-diff.component';
@@ -24,6 +24,7 @@ import { AudioPlayerV2Component } from './component/audio-player-v2/audio-player
 import { AudioPlayerFixedComponent } from './component/audio-player-fixed/audio-player-fixed.component';
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { FindReplaceComponent } from './component/find-replace/find-replace.component';
+import { MetadataEditorComponent } from './component/metadata-editor/metadata-editor.component';
 
 @NgModule({
   declarations: [
@@ -38,16 +39,17 @@ import { FindReplaceComponent } from './component/find-replace/find-replace.comp
     TriviaComponent,
     ContributionStateComponent,
     RedditLoginComponent,
-    EditorComponent,
+    EditorInputComponent,
     EditorConfigComponent,
     EditorHelpComponent,
-    TranscriberComponent,
+    EditorComponent,
     HtmlDiffComponent,
     ClaimedRewardsComponent,
     MarkdownComponent,
     AudioPlayerV2Component,
     AudioPlayerFixedComponent,
     FindReplaceComponent,
+    MetadataEditorComponent,
   ],
   imports: [
     CommonModule,
@@ -67,14 +69,16 @@ import { FindReplaceComponent } from './component/find-replace/find-replace.comp
     TriviaComponent,
     ContributionStateComponent,
     RedditLoginComponent,
-    EditorComponent,
+    EditorInputComponent,
     EditorConfigComponent,
     EditorHelpComponent,
-    TranscriberComponent,
+    EditorComponent,
     ClaimedRewardsComponent,
     MarkdownComponent,
     AudioPlayerV2Component,
     AudioPlayerFixedComponent,
+    HtmlDiffComponent,
+    MetadataEditorComponent,
   ]
 })
 export class SharedModule {

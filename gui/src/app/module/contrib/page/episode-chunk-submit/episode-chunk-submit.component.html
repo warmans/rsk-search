@@ -60,7 +60,9 @@
                     class="bi-pen"></i></button>
                   <div *ngIf="userIsApprover" class="d-flex">
                     <button class="btn btn-success mt-2 ml-3" (click)="markApproved()">Approve</button>
-                    <div class="mt-2 ml-3"><app-reject-button [contributionId]="contribution.id" [rejectAction]="rejectCallback"></app-reject-button></div>
+                    <div class="mt-2 ml-3">
+                      <app-reject-button [contributionId]="contribution.id" [rejectAction]="rejectCallback"></app-reject-button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -85,18 +87,42 @@
 
   <div class="row mb-2">
     <div class="col-12">
-      <app-transcriber
-        #transcriber
-        [contentID]="contribution ? contribution.id : chunk?.id"
-        [contentVersion]="'chunk'"
-        [rawTranscript]="initialTranscript"
-        [lastUpdateDate]="lastUpdateTimestamp"
-        [audioPlayerURL]="audioPlayerURL"
-        [allowEdit]="userCanEdit"
-        [isSaved]="contribution ? true : false"
-        [chunkMode]="true"
-        (handleSave)="handleSave($event)">
-      </app-transcriber>
+
+      <ul class="nav nav-tabs font-weight-bold">
+        <li class="nav-item mr-2">
+          <a class="nav-link" (click)="activeTab='edit'" [ngClass]="{'active': activeTab==='edit'}">Editor</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="activeTab='preview'" [ngClass]="{'active': activeTab==='preview'}">Preview</a>
+        </li>
+      </ul>
+
+      <div [hidden]="!(activeTab==='edit')">
+        <app-editor
+          #editor
+          [contentID]="contribution ? contribution.id : chunk?.id"
+          [contentVersion]="'chunk'"
+          [rawTranscript]="initialTranscript"
+          [lastUpdateDate]="lastUpdateTimestamp"
+          [audioPlayerURL]="audioPlayerURL"
+          [allowEdit]="userCanEdit"
+          [isSaved]="contribution ? true : false"
+          [chunkMode]="true"
+          (handleSave)="handleSave($event)">
+        </app-editor>
+      </div>
+
+      <div class="card" *ngIf="(activeTab==='preview')">
+        <div class="card-header"></div>
+        <div class="card-body preview-window">
+          <app-transcript
+            [rawTranscript]="editor.getContentSnapshot() || initialTranscript"
+            [searchResultMode]="false"
+            [enableLineLinking]="false">
+          </app-transcript>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

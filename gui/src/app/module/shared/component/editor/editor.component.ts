@@ -1,232 +1,284 @@
-import {
-  AfterViewInit,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-  Renderer2,
-  ViewChild
-} from '@angular/core';
-import { getOffsetValueFromLine, isOffsetLine } from '../../lib/tscript';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { EditorConfig, EditorConfigComponent } from '../editor-config/editor-config.component';
 import { Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
+import { getFirstOffset } from '../../lib/tscript';
+import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
+import { formatDistance } from 'date-fns';
+import { EditorInputComponent } from '../editor-input/editor-input.component';
+import { AudioService, PlayerState, Status } from '../../../core/service/audio/audio.service';
+import { FindReplace } from '../find-replace/find-replace.component';
 
 @Component({
   selector: 'app-editor',
   templateUrl: './editor.component.html',
   styleUrls: ['./editor.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class EditorComponent implements OnInit, OnDestroy, AfterViewInit {
-
-  _textContent = '';
+export class EditorComponent implements OnInit, OnDestroy {
 
   @Input()
-  set textContent(f: string) {
-    this._textContent = f;
-    if (this.editableContent) {
-      this.updateInnerHtml(this._textContent);
+  contentID: string;
+
+  @Input()
+  contentVersion: string;
+
+  @Input()
+  set rawTranscript(value: string) {
+    this._rawTranscript = value;
+    this.setInitialTranscript(value);
+  }
+
+  get rawTranscript(): string {
+    return this._rawTranscript;
+  }
+
+  private _rawTranscript: string = '';
+
+  @Input()
+  lastUpdateDate: Date;
+
+  @Input()
+  set audioPlayerURL(value: string) {
+    this._audioPlayerURL = value;
+    this.loadAudio();
+  }
+
+  get audioPlayerURL(): string {
+    return this._audioPlayerURL;
+  }
+
+  private _audioPlayerURL: string = '';
+
+  @Input()
+  set allowEdit(value: boolean) {
+    this._allowEdit = value;
+  }
+
+  get allowEdit(): boolean {
+    return this._allowEdit;
+  }
+
+  private _allowEdit: boolean = false;
+
+  @Input()
+  isSaved: boolean = false;
+
+  @Output()
+  handleSave: EventEmitter<string> = new EventEmitter<string>();
+
+  @Output()
+  activateTab: EventEmitter<string> = new EventEmitter<string>();
+
+  // when editing a chunk we need to get the first offset and use it to modify the current offset
+  // since we are working with a random chunk of audio from the episode.
+  @Input()
+  chunkMode: boolean = false;
+
+  fromBackup: boolean = false;
+
+  get editorConfig(): EditorConfig {
+    return this._editorConfig;
+  }
+
+  set editorConfig(cfg: EditorConfig) {
+    this._editorConfig = cfg;
+    this.audioService.setPlaybackRate(cfg.playbackRate || 1);
+    localStorage.setItem('editor-config', JSON.stringify(cfg));
+  }
+
+  private _editorConfig: EditorConfig;
+
+  contentUpdated: Subject<string> = new Subject<string>();
+
+  initialTranscript: string = '';
+  firstOffset: number = -1;
+
+  showHelp: boolean = false;
+
+  audioStatus: Status;
+  playerStates = PlayerState;
+
+  @ViewChild('editorConfigModal')
+  editorConfigModal: EditorConfigComponent;
+
+  @ViewChild('editorInput')
+  editorComponent: EditorInputComponent;
+
+  $destroy: EventEmitter<void> = new EventEmitter<void>();
+
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent): boolean {
+    if (this._editorConfig.autoSeek === undefined ? true : this._editorConfig.autoSeek) {
+      if (this._editorConfig?.playPauseKey && event.key === (this._editorConfig?.playPauseKey)) {
+        this.audioService.toggleAudio(0 - (this._editorConfig?.backtrack || 3));
+        return false;
+      }
+      if (this._editorConfig?.rewindKey && event.key === (this._editorConfig?.rewindKey)) {
+        this.skipBackwards();
+        return false;
+      }
+      if (this._editorConfig?.fastForwardKey && event.key === (this._editorConfig?.fastForwardKey)) {
+        this.skipForward();
+        return false;
+      }
+      if (this._editorConfig?.fastForwardKey && event.key === (this._editorConfig?.fastForwardKey)) {
+        this.skipForward();
+        return false;
+      }
+      if (this._editorConfig?.insertOffsetKey && event.key === (this._editorConfig?.insertOffsetKey)) {
+        this.insertOffsetAboveCaret();
+        return false;
+      }
+      if (this._editorConfig?.insertSynKey && event.key === (this._editorConfig?.insertSynKey)) {
+        this.insertSynAboveCaret();
+        return false;
+      }
+      return true;
     }
   }
-  get textContent(): string {
-    // do not return the innerText directly. If the div is hidden by the parent
-    // before calling this, it will get text with no line breaks.
-    return this._textContent;
-  }
 
-  @Input()
-  readonly: boolean = false;
-
-  @Input()
-  wrap: boolean = false;
-
-  @Output()
-  textContentChange: EventEmitter<string> = new EventEmitter<string>();
-
-  textChangeDebouncer: Subject<string> = new Subject<string>();
-
-  @Output()
-  atOffsetMarker: EventEmitter<number> = new EventEmitter<number>();
-
-  @ViewChild('textContainer')
-  editableContent: ElementRef;
-
-  destory$: EventEmitter<any> = new EventEmitter<any>();
-
-  constructor(private renderer: Renderer2) {
-  }
-
-  ngOnInit(): void {
-    this.textChangeDebouncer.pipe(
-      distinctUntilChanged(),
-      debounceTime(500),
-      takeUntil(this.destory$)).
-    subscribe((v: string) => {
-      this.textContentChange.next(v);
+  constructor(private audioService: AudioService, private cdr: ChangeDetectorRef) {
+    audioService.status.pipe(takeUntil(this.$destroy)).subscribe((sta) => {
+      this.audioStatus = sta;
     });
-  }
 
-  onKeypress() {
-    this.contentChanged();
-    this.tryEmitOffset();
-    //this.tryShowAutocomplete();
-  }
-
-  contentChanged() {
-    this._textContent = this.editableContent.nativeElement.innerText;
-    this.textChangeDebouncer.next(this._textContent);
+    this.editorConfig = localStorage.getItem('editor-config') ? JSON.parse(localStorage.getItem('editor-config')) as EditorConfig : new EditorConfig();
   }
 
   ngOnDestroy(): void {
-    this.destory$.next(true);
-    this.destory$.complete();
+    this.audioService.reset();
+    this.$destroy.next();
+    this.$destroy.complete();
   }
 
-  refreshInnerHtml() {
-    this.updateInnerHtml(this._textContent);
-  }
-
-  findAndReplace(find: string, replace: string) {
-
-    // this is really dumb. If you want to preserve the undo buffer then you need top use this API... which is deprecated
-    // and there is no replacement. And it sucks. Better than not allowing undo... I guess.
-    // Currently, replace could break the HTML. I guess I should edit the innerText then re-create the inner HTML.
-    // can't be bothered.
-    this.editableContent.nativeElement.focus();
-    document.execCommand('selectAll');
-    document.execCommand(
-      'insertHTML',
-      false,
-      this.editableContent.nativeElement.innerHTML.replace(new RegExp(`${find}`, 'g'), replace),
-    );
-
-    this.contentChanged();
-  }
-
-  updateInnerHtml(value: string) {
-    if (!value || !this.editableContent) {
-      return;
-    }
-    this.editableContent.nativeElement.innerText = '';
-
-    const lines = value.split('\n');
-
-    lines.forEach((line: string) => {
-      line = line.trim();
-      if (line.length === 0) {
+  ngOnInit(): void {
+    this.contentUpdated.pipe(distinctUntilChanged(), takeUntil(this.$destroy)).subscribe((v) => {
+      if (!v) {
         return;
       }
-      if (line.match(/^#OFFSET:.*/g)) {
-        this.renderer.appendChild(this.editableContent.nativeElement, this.newOffsetElement(line));
-      } else if (line.match(/^#[\/]?(SYN|TRIVIA).*/g)) {
-        this.renderer.appendChild(this.editableContent.nativeElement, this.newTextElement(line));
-      } else {
-        const el = this.renderer.createElement('span');
-        el.innerText = `${line}\n`;
-        this.renderer.appendChild(this.editableContent.nativeElement, el);
-      }
+      this.backupContent(v);
+      this.save();
     });
   }
 
-  private newOffsetElement(line: string): any {
-    const el = this.renderer.createElement('span');
-    el.innerText = `${line}\n`;
-    el.className = 'do-not-edit';
-    return el;
-  }
-
-  private newTextElement(text: string): any {
-    const el = this.renderer.createElement('span');
-    el.innerText = `${text}\n`;
-    el.className = 'meta-tag';
-    return el;
-  }
-
-  private newAutocomplete(items: string[]) {
-    const el = this.renderer.createElement('span');
-    el.innerText = `${items.join(',')}\n`;
-    el.className = 'autocomplete';
-    return el;
-  }
-
-  private tryEmitOffset() {
-    const caretFocus = this.getCaretFocus();
-    if (caretFocus && isOffsetLine(caretFocus.line)) {
-      this.atOffsetMarker.next(getOffsetValueFromLine(caretFocus.line));
+  loadAudio(andPlay?: boolean) {
+    const parts = (this._audioPlayerURL || '').split('/');
+    const name = parts[parts.length - 1] ? parts[parts.length - 1] : null;
+    if (name) {
+      this.audioService.setAudioSrc(name, null, this._audioPlayerURL, true);
+      if (andPlay) {
+        this.audioService.playAudio();
+      }
     }
   }
 
-  // private activeAutocomplete: {el: HTMLElement, parent: any};
-  //
-  // private tryShowAutocomplete() {
-  //   const caretFocus = this.getCaretFocus();
-  //   if (!caretFocus) {
-  //     return;
-  //   }
-  //   if (this.activeAutocomplete) {
-  //     this.renderer.removeChild(this.activeAutocomplete.parent, this.activeAutocomplete.el);
-  //     this.activeAutocomplete = undefined;
-  //   }
-  //   if (!lineHasActorPrefix(caretFocus.line)) {
-  //     let sel = document.getSelection();
-  //     let nd = sel.anchorNode;
-  //     let newNode = this.newAutocomplete(["foo", "bar"]);
-  //     this.renderer.appendChild(nd, newNode);
-  //     this.activeAutocomplete = {el: newNode, parent: nd};
-  //   }
-  // }
+  skipForward() {
+    this.audioService.playAudio(3);
+  }
 
-  insertOffsetAboveCaret(seconds: number): void {
-    let sel = document.getSelection();
-    let nd = sel.anchorNode;
+  skipBackwards() {
+    this.audioService.playAudio(-3);
+  }
 
-    if (!this.nodeIsChildOfEditor(nd.parentElement)) {
+  togglePlayer() {
+    this.audioService.toggleAudio();
+  }
+
+  getContentSnapshot(): string {
+    return `${this.editorComponent?.textContent || ''}`;
+  }
+
+  setInitialTranscript(text: string) {
+    const backup = this.getBackup();
+    this.initialTranscript = backup ? backup : text;
+    if (this.editorComponent) {
+      this.editorComponent.textContent = this.initialTranscript;
+    }
+    if (backup) {
+      this.fromBackup = true;
+    }
+    this.contentUpdated.next(this.initialTranscript);
+    this.firstOffset = this.chunkMode ? getFirstOffset(this.initialTranscript) : 0;
+  }
+
+  backupContent(text: string) {
+    if (!text || !this.contentID || !this._allowEdit) {
       return;
     }
-    this.renderer.insertBefore(nd.parentNode, this.newOffsetElement(`#OFFSET: ${seconds}`), nd);
-    this.contentChanged();
+    localStorage.setItem(this.localBackupKey(), text);
   }
 
-  insertTextAboveCaret(text: string): void {
-    let sel = document.getSelection();
-    let nd = sel.anchorNode;
-    if (!this.nodeIsChildOfEditor(nd.parentElement)) {
+  getBackup(): string {
+    if (!this.contentID || !this._allowEdit) {
       return;
     }
-    this.renderer.insertBefore(nd.parentNode, this.newTextElement(text), nd);
-    this.contentChanged();
+    return localStorage.getItem(this.localBackupKey());
   }
 
-  private nodeIsChildOfEditor(el: HTMLElement): boolean {
-    if (el === this.editableContent.nativeElement) {
-      return true;
-    }
-    if (el.parentElement !== null) {
-      return this.nodeIsChildOfEditor(el.parentElement);
-    }
-    return false;
+  clearBackup(): void {
+    localStorage.removeItem(this.localBackupKey());
+    this.fromBackup = false;
   }
 
-  getCaretFocus(): CaretFocus {
-    let sel = document.getSelection();
-    let nd = sel.anchorNode;
-    if (!this.nodeIsChildOfEditor(nd.parentElement)) {
+  localBackupKey(): string {
+    return `content-backup-${this.contentID}${this.contentVersion ? '-' + this.contentVersion : ''}`;
+  }
+
+  resetToRaw() {
+    if (confirm('Really reset editor to raw transcript?')) {
+      this.clearBackup();
+      this.setInitialTranscript(this._rawTranscript);
+      this.cdr.detectChanges();
+    }
+  }
+
+  handleContentUpdated() {
+    this.contentUpdated.next(this.getContentSnapshot());
+  }
+
+  handleOffsetNavigate(offset: number) {
+    if (this._editorConfig?.autoSeek === undefined ? true : this._editorConfig.autoSeek) {
+      if (offset - this.firstOffset >= 0) {
+        this.audioService.seekAudio(offset - this.firstOffset);
+      }
+    }
+  }
+
+  openEditorConfig() {
+    if (!this.editorConfigModal) {
       return;
     }
-    return new CaretFocus(nd.textContent, sel.focusOffset);
+    this.editorConfigModal.open = true;
   }
 
-  ngAfterViewInit(): void {
-    this.updateInnerHtml(this._textContent);
+  timeSinceSave(): string {
+    return formatDistance(this.lastUpdateDate, new Date());
   }
-}
 
-class CaretFocus {
-  constructor(public line: string, public offset: number) {
+  save(): void {
+    if (this.handleSave) {
+      this.handleSave.next(this.getContentSnapshot());
+    }
+  }
+
+  insertOffsetAboveCaret() {
+    let startOffset = this.firstOffset > -1 ? this.firstOffset : 0;
+    this.editorComponent.insertOffsetAboveCaret(Math.floor(startOffset + (this.audioStatus?.currentTime || 0) - (this._editorConfig.insertOffsetBacktrack || 0)));
+  }
+
+  insertSynAboveCaret() {
+    this.insertTextAboveCaret('#SYN: ');
+  }
+
+  insertTextAboveCaret(text: string) {
+    this.editorComponent.insertTextAboveCaret(text);
+  }
+
+  refreshEditorHTML() {
+    this.editorComponent.refreshInnerHtml();
+  }
+
+  runFindAndReplace(vals: FindReplace) {
+    this.editorComponent.findAndReplace(vals.find, vals.replace);
   }
 }

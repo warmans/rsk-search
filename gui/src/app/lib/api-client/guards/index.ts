@@ -350,6 +350,8 @@ export function isRskCreateTranscriptChangeRequest(arg: any): arg is models.RskC
   typeof arg === 'object' &&
     // epid?: string
     ( typeof arg.epid === 'undefined' || typeof arg.epid === 'string' ) &&
+    // summary?: string
+    ( typeof arg.summary === 'undefined' || typeof arg.summary === 'string' ) &&
     // transcript?: string
     ( typeof arg.transcript === 'undefined' || typeof arg.transcript === 'string' ) &&
     // transcriptVersion?: string
@@ -897,8 +899,8 @@ export function isRskTranscriptChangeDiff(arg: any): arg is models.RskTranscript
   return (
   arg != null &&
   typeof arg === 'object' &&
-    // diff?: string
-    ( typeof arg.diff === 'undefined' || typeof arg.diff === 'string' ) &&
+    // diffs?: string[]
+    ( typeof arg.diffs === 'undefined' || (Array.isArray(arg.diffs) && arg.diffs.every((item: unknown) => typeof item === 'string')) ) &&
 
   true
   );
@@ -1057,6 +1059,8 @@ export function isRskUpdateTranscriptChangeRequest(arg: any): arg is models.RskU
     ( typeof arg.pointsOnApprove === 'undefined' || typeof arg.pointsOnApprove === 'number' ) &&
     // state?: RskContributionState
     ( typeof arg.state === 'undefined' || isRskContributionState(arg.state) ) &&
+    // summary?: string
+    ( typeof arg.summary === 'undefined' || typeof arg.summary === 'string' ) &&
     // transcript?: string
     ( typeof arg.transcript === 'undefined' || typeof arg.transcript === 'string' ) &&
 

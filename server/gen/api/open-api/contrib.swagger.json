@@ -1556,8 +1556,11 @@
     "rskTranscriptChangeDiff": {
       "type": "object",
       "properties": {
-        "diff": {
-          "type": "string"
+        "diffs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },

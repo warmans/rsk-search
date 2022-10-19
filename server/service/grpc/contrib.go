@@ -634,15 +634,50 @@ func (s *ContribService) GetTranscriptChangeDiff(ctx context.Context, request *a
 		return nil, ErrNotFound(newTranscript.EpID).Err()
 	}
 
-	oldRaw, err := transcript.Export(oldTranscript.Transcript, oldTranscript.Synopsis, oldTranscript.Trivia)
+	oldTranscriptRaw, err := transcript.Export(oldTranscript.Transcript, oldTranscript.Synopsis, oldTranscript.Trivia)
 	if err != nil {
 		return nil, err
 	}
 
-	edits := myers.ComputeEdits(span.URIFromPath(fmt.Sprintf("%s.txt", oldTranscript.ID())), oldRaw, newTranscript.Transcription)
-	diff := fmt.Sprint(gotextdiff.ToUnified(fmt.Sprintf("%s.txt", oldTranscript.ID()), fmt.Sprintf("%s.txt", oldTranscript.ID()), oldRaw, edits))
+	diffs := []string{}
 
-	return &api.TranscriptChangeDiff{Diff: diff}, nil
+	// summary diff
+	summaryEdits := myers.ComputeEdits(
+		span.URIFromPath("SUMMARY"),
+		oldTranscript.Summary,
+		newTranscript.Summary,
+	)
+	if len(summaryEdits) > 0 {
+		summaryDiff := fmt.Sprint(
+			gotextdiff.ToUnified(
+				"SUMMARY",
+				"SUMMARY",
+				oldTranscript.Summary,
+				summaryEdits,
+			),
+		)
+		diffs = append(diffs, summaryDiff)
+	}
+
+	// transcript diff
+	transcriptEdits := myers.ComputeEdits(
+		span.URIFromPath("TRANSCRIPT"),
+		oldTranscriptRaw,
+		newTranscript.Transcription,
+	)
+	if len(transcriptEdits) > 0 {
+		transcriptDiff := fmt.Sprint(
+			gotextdiff.ToUnified(
+				"TRANSCRIPT",
+				"TRANSCRIPT",
+				oldTranscriptRaw,
+				transcriptEdits,
+			),
+		)
+		diffs = append(diffs, transcriptDiff)
+	}
+
+	return &api.TranscriptChangeDiff{Diffs: diffs}, nil
 }
 
 func (s *ContribService) CreateTranscriptChange(ctx context.Context, request *api.CreateTranscriptChangeRequest) (*api.TranscriptChange, error) {
@@ -730,7 +765,7 @@ func (s *ContribService) UpdateTranscriptChange(ctx context.Context, request *ap
 		var err error
 		updatedChange, err = s.UpdateTranscriptChange(ctx, &models.TranscriptChangeUpdate{
 			ID:            request.Id,
-			Summary:       "",
+			Summary:       request.Summary,
 			Transcription: request.Transcript,
 			State:         models.ContributionStateFromProto(request.State),
 		}, request.PointsOnApprove)
