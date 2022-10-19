@@ -10,7 +10,7 @@
     "bestof": false,
     "special": false,
     "locked": false,
-    "offset_accuracy": 14,
+    "offset_accuracy": 10,
     "audio_quality": "",
     "metadata": {
       "cover_art_url": "/assets/cover/default.jpg",
@@ -438,7 +438,7 @@
       {
         "id": "ep-guide-S1E02-39",
         "pos": 39,
-        "offset_sec": 681,
+        "offset_sec": 444,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -449,7 +449,7 @@
       {
         "id": "ep-guide-S1E02-40",
         "pos": 40,
-        "offset_sec": 701,
+        "offset_sec": 448,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -460,7 +460,7 @@
       {
         "id": "ep-guide-S1E02-41",
         "pos": 41,
-        "offset_sec": 841,
+        "offset_sec": 482,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -471,7 +471,7 @@
       {
         "id": "ep-guide-S1E02-42",
         "pos": 42,
-        "offset_sec": 860,
+        "offset_sec": 486,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -482,7 +482,7 @@
       {
         "id": "ep-guide-S1E02-43",
         "pos": 43,
-        "offset_sec": 947,
+        "offset_sec": 507,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -493,7 +493,7 @@
       {
         "id": "ep-guide-S1E02-44",
         "pos": 44,
-        "offset_sec": 1131,
+        "offset_sec": 551,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -504,7 +504,7 @@
       {
         "id": "ep-guide-S1E02-45",
         "pos": 45,
-        "offset_sec": 1315,
+        "offset_sec": 594,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -515,7 +515,7 @@
       {
         "id": "ep-guide-S1E02-46",
         "pos": 46,
-        "offset_sec": 1344,
+        "offset_sec": 601,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -526,7 +526,7 @@
       {
         "id": "ep-guide-S1E02-47",
         "pos": 47,
-        "offset_sec": 1501,
+        "offset_sec": 639,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -537,7 +537,7 @@
       {
         "id": "ep-guide-S1E02-48",
         "pos": 48,
-        "offset_sec": 1525,
+        "offset_sec": 645,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -548,7 +548,7 @@
       {
         "id": "ep-guide-S1E02-49",
         "pos": 49,
-        "offset_sec": 1600,
+        "offset_sec": 662,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -559,7 +559,7 @@
       {
         "id": "ep-guide-S1E02-50",
         "pos": 50,
-        "offset_sec": 1682,
+        "offset_sec": 682,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -570,7 +570,7 @@
       {
         "id": "ep-guide-S1E02-51",
         "pos": 51,
-        "offset_sec": 1765,
+        "offset_sec": 701,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -581,7 +581,7 @@
       {
         "id": "ep-guide-S1E02-52",
         "pos": 52,
-        "offset_sec": 1847,
+        "offset_sec": 721,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -592,7 +592,7 @@
       {
         "id": "ep-guide-S1E02-53",
         "pos": 53,
-        "offset_sec": 1929,
+        "offset_sec": 741,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -603,7 +603,7 @@
       {
         "id": "ep-guide-S1E02-54",
         "pos": 54,
-        "offset_sec": 2011,
+        "offset_sec": 760,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -614,7 +614,7 @@
       {
         "id": "ep-guide-S1E02-55",
         "pos": 55,
-        "offset_sec": 2093,
+        "offset_sec": 780,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -625,7 +625,7 @@
       {
         "id": "ep-guide-S1E02-56",
         "pos": 56,
-        "offset_sec": 2176,
+        "offset_sec": 799,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -636,7 +636,7 @@
       {
         "id": "ep-guide-S1E02-57",
         "pos": 57,
-        "offset_sec": 2258,
+        "offset_sec": 819,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -647,7 +647,7 @@
       {
         "id": "ep-guide-S1E02-58",
         "pos": 58,
-        "offset_sec": 2340,
+        "offset_sec": 838,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -658,17 +658,435 @@
       {
         "id": "ep-guide-S1E02-59",
         "pos": 59,
-        "offset_sec": 2422,
+        "offset_sec": 858,
         "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
+        "type": "chat",
+        "actor": "ricky",
         "metadata": null,
-        "content": "[~3 mins of missing transcription]",
+        "content": "Pleasurable.",
         "notable": false
       },
       {
         "id": "ep-guide-S1E02-60",
         "pos": 60,
+        "offset_sec": 865,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "So",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-61",
+        "pos": 61,
+        "offset_sec": 866,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "But...",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-62",
+        "pos": 62,
+        "offset_sec": 869,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "My pleasure, er, pleasure nerve",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-63",
+        "pos": 63,
+        "offset_sec": 887,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "(Laughs)",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-64",
+        "pos": 64,
+        "offset_sec": 892,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "That you talking about in my head. It lights up when I have a Twix.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-65",
+        "pos": 65,
+        "offset_sec": 930,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "I don't think it ever lights up, right? I don't think you've got a pleasure nerve",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-66",
+        "pos": 66,
+        "offset_sec": 977,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "But it lights up when I have a Twix.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-67",
+        "pos": 67,
+        "offset_sec": 998,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Right",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-68",
+        "pos": 68,
+        "offset_sec": 1001,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "It lights up, err... If there's something, if there's some chicken, right? It lights up if there's a...",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-69",
+        "pos": 69,
+        "offset_sec": 1060,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Fuck me, what a miserable cunt he is.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-70",
+        "pos": 70,
+        "offset_sec": 1081,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "You know, all all loads of things...",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-71",
+        "pos": 71,
+        "offset_sec": 1102,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Chicken and Twix",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-72",
+        "pos": 72,
+        "offset_sec": 1111,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "That's it, that's all he lives for, hang yourself mate.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-73",
+        "pos": 73,
+        "offset_sec": 1143,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "So what you're saying is; if I had that device that the rat's got, I'd just sit there wouldn't I? Hitting it, thinking \"I cant be bothered going to the shop for a Twix. I'll just hit this button\".",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-74",
+        "pos": 74,
+        "offset_sec": 1255,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah... think of this. So, aggressive is the horned frog of Argentina, that people believe that, if the Frog bites the lip of a horse, the horse will die. Actually, the Frog's mouth contains no poison. It earned its fearsome reputation because it attacks animals many times its size. What do you think of a frog attacking a horse?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-75",
+        "pos": 75,
+        "offset_sec": 1445,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "It's ridiculous, I don't know what's going on.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-76",
+        "pos": 76,
+        "offset_sec": 1472,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "I don't know why that would happen. Why is it getting upset with a horse? Of all the things for a frog to be like, getting cocky with, them two should never even meet!",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-77",
+        "pos": 77,
+        "offset_sec": 1568,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "(Laughing) Why? Why? Why?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-78",
+        "pos": 78,
+        "offset_sec": 1582,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Because it's not, I mean fights, are normally 'over' something, aren't they?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-79",
+        "pos": 79,
+        "offset_sec": 1626,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-80",
+        "pos": 80,
+        "offset_sec": 1629,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "If you have a fight with someone, \"you're in my yard\" or....",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-81",
+        "pos": 81,
+        "offset_sec": 1663,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-82",
+        "pos": 82,
+        "offset_sec": 1666,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "You know, It's, it's, your fighting over something.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-83",
+        "pos": 83,
+        "offset_sec": 1696,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "I love the fact that he immediately goes back to the 1930s.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-84",
+        "pos": 84,
+        "offset_sec": 1730,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-85",
+        "pos": 85,
+        "offset_sec": 1732,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "You're in my yard!",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-86",
+        "pos": 86,
+        "offset_sec": 1743,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "But, a horse and a Frog. How did that disagree ...",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-87",
+        "pos": 87,
+        "offset_sec": 1772,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "What are they squabbling over?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-88",
+        "pos": 88,
+        "offset_sec": 1789,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "I don't, I don't understand what they've got in common. I don't, I don't understand it. I bet that's only happened once, it's a rare incident, someone said \"put that in a book\".",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-89",
+        "pos": 89,
+        "offset_sec": 1891,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "(Laughs)",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-90",
+        "pos": 90,
+        "offset_sec": 1895,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "I can't imagine it. That that's happening a lot, that horses are being bit by frogs all over the shop.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-91",
+        "pos": 91,
+        "offset_sec": 1954,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "(Laughs)",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-92",
+        "pos": 92,
+        "offset_sec": 1959,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "I saw this trailer... for this documentary that said er, \"The man who's having a baby\", and I turned on, and it's a woman... going through a sex change and she's pregnant. That's not a man having a baby. That's a woman having a beard.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-93",
+        "pos": 93,
+        "offset_sec": 2093,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Having a breakdown.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-94",
+        "pos": 94,
+        "offset_sec": 2104,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "What, why is that? What? That's a con, that is pure sense.... \"There's as a man, having a baby, look; world's first...\" no its a woman, it's a woman, What do you think of that? What would you do? If you were a doctor and I came to you and went, \"Karl, listen, I'm having a bit of a rethink of these. Er, I don't...the penis, I hate it. I hate this cock.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-95",
+        "pos": 95,
+        "offset_sec": 2307,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "But what do you mean you hate it?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-96",
+        "pos": 96,
+        "offset_sec": 2326,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "I hate. I don't want it there, it doesn't look right? Doesn't look right. It just sits there resting on these fucking awful testicles, that I'm going to get rid of. I want, I want this thrown away.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-97",
+        "pos": 97,
+        "offset_sec": 2439,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Yeah. Well it's you know, they're not a great look. I know that, everyone knows that, it's just the way they are.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E02-98",
+        "pos": 98,
         "offset_sec": 2504,
         "offset_inferred": false,
         "type": "chat",
@@ -678,8 +1096,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-61",
-        "pos": 61,
+        "id": "ep-guide-S1E02-99",
+        "pos": 99,
         "offset_sec": 2510,
         "offset_inferred": true,
         "type": "chat",
@@ -689,8 +1107,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-62",
-        "pos": 62,
+        "id": "ep-guide-S1E02-100",
+        "pos": 100,
         "offset_sec": 2511,
         "offset_inferred": true,
         "type": "chat",
@@ -700,8 +1118,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-63",
-        "pos": 63,
+        "id": "ep-guide-S1E02-101",
+        "pos": 101,
         "offset_sec": 2514,
         "offset_inferred": true,
         "type": "chat",
@@ -711,8 +1129,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-64",
-        "pos": 64,
+        "id": "ep-guide-S1E02-102",
+        "pos": 102,
         "offset_sec": 2517,
         "offset_inferred": true,
         "type": "chat",
@@ -722,8 +1140,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-65",
-        "pos": 65,
+        "id": "ep-guide-S1E02-103",
+        "pos": 103,
         "offset_sec": 2526,
         "offset_inferred": true,
         "type": "chat",
@@ -733,8 +1151,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-66",
-        "pos": 66,
+        "id": "ep-guide-S1E02-104",
+        "pos": 104,
         "offset_sec": 2527,
         "offset_inferred": true,
         "type": "chat",
@@ -744,8 +1162,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-67",
-        "pos": 67,
+        "id": "ep-guide-S1E02-105",
+        "pos": 105,
         "offset_sec": 2528,
         "offset_inferred": true,
         "type": "chat",
@@ -755,8 +1173,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-68",
-        "pos": 68,
+        "id": "ep-guide-S1E02-106",
+        "pos": 106,
         "offset_sec": 2538,
         "offset_inferred": false,
         "type": "chat",
@@ -766,8 +1184,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-69",
-        "pos": 69,
+        "id": "ep-guide-S1E02-107",
+        "pos": 107,
         "offset_sec": 2544,
         "offset_inferred": true,
         "type": "chat",
@@ -777,8 +1195,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-70",
-        "pos": 70,
+        "id": "ep-guide-S1E02-108",
+        "pos": 108,
         "offset_sec": 2544,
         "offset_inferred": true,
         "type": "chat",
@@ -788,8 +1206,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-71",
-        "pos": 71,
+        "id": "ep-guide-S1E02-109",
+        "pos": 109,
         "offset_sec": 2548,
         "offset_inferred": true,
         "type": "chat",
@@ -799,8 +1217,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-72",
-        "pos": 72,
+        "id": "ep-guide-S1E02-110",
+        "pos": 110,
         "offset_sec": 2554,
         "offset_inferred": true,
         "type": "chat",
@@ -810,8 +1228,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-73",
-        "pos": 73,
+        "id": "ep-guide-S1E02-111",
+        "pos": 111,
         "offset_sec": 2554,
         "offset_inferred": true,
         "type": "chat",
@@ -821,8 +1239,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-74",
-        "pos": 74,
+        "id": "ep-guide-S1E02-112",
+        "pos": 112,
         "offset_sec": 2575,
         "offset_inferred": false,
         "type": "chat",
@@ -832,8 +1250,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-75",
-        "pos": 75,
+        "id": "ep-guide-S1E02-113",
+        "pos": 113,
         "offset_sec": 2579,
         "offset_inferred": true,
         "type": "chat",
@@ -843,8 +1261,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-76",
-        "pos": 76,
+        "id": "ep-guide-S1E02-114",
+        "pos": 114,
         "offset_sec": 2579,
         "offset_inferred": true,
         "type": "chat",
@@ -854,8 +1272,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-77",
-        "pos": 77,
+        "id": "ep-guide-S1E02-115",
+        "pos": 115,
         "offset_sec": 2588,
         "offset_inferred": true,
         "type": "chat",
@@ -865,8 +1283,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-78",
-        "pos": 78,
+        "id": "ep-guide-S1E02-116",
+        "pos": 116,
         "offset_sec": 2589,
         "offset_inferred": true,
         "type": "chat",
@@ -876,8 +1294,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-79",
-        "pos": 79,
+        "id": "ep-guide-S1E02-117",
+        "pos": 117,
         "offset_sec": 2590,
         "offset_inferred": true,
         "type": "chat",
@@ -887,8 +1305,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-80",
-        "pos": 80,
+        "id": "ep-guide-S1E02-118",
+        "pos": 118,
         "offset_sec": 2601,
         "offset_inferred": true,
         "type": "chat",
@@ -898,8 +1316,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-81",
-        "pos": 81,
+        "id": "ep-guide-S1E02-119",
+        "pos": 119,
         "offset_sec": 2601,
         "offset_inferred": true,
         "type": "chat",
@@ -909,8 +1327,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-82",
-        "pos": 82,
+        "id": "ep-guide-S1E02-120",
+        "pos": 120,
         "offset_sec": 2605,
         "offset_inferred": true,
         "type": "chat",
@@ -920,8 +1338,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-83",
-        "pos": 83,
+        "id": "ep-guide-S1E02-121",
+        "pos": 121,
         "offset_sec": 2607,
         "offset_inferred": true,
         "type": "chat",
@@ -931,8 +1349,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-84",
-        "pos": 84,
+        "id": "ep-guide-S1E02-122",
+        "pos": 122,
         "offset_sec": 2607,
         "offset_inferred": true,
         "type": "chat",
@@ -942,8 +1360,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-85",
-        "pos": 85,
+        "id": "ep-guide-S1E02-123",
+        "pos": 123,
         "offset_sec": 2610,
         "offset_inferred": false,
         "type": "chat",
@@ -953,8 +1371,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-86",
-        "pos": 86,
+        "id": "ep-guide-S1E02-124",
+        "pos": 124,
         "offset_sec": 2615,
         "offset_inferred": true,
         "type": "chat",
@@ -964,8 +1382,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-87",
-        "pos": 87,
+        "id": "ep-guide-S1E02-125",
+        "pos": 125,
         "offset_sec": 2616,
         "offset_inferred": true,
         "type": "chat",
@@ -975,8 +1393,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-88",
-        "pos": 88,
+        "id": "ep-guide-S1E02-126",
+        "pos": 126,
         "offset_sec": 2618,
         "offset_inferred": true,
         "type": "chat",
@@ -986,8 +1404,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-89",
-        "pos": 89,
+        "id": "ep-guide-S1E02-127",
+        "pos": 127,
         "offset_sec": 2619,
         "offset_inferred": true,
         "type": "chat",
@@ -997,8 +1415,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-90",
-        "pos": 90,
+        "id": "ep-guide-S1E02-128",
+        "pos": 128,
         "offset_sec": 2620,
         "offset_inferred": true,
         "type": "chat",
@@ -1008,8 +1426,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-91",
-        "pos": 91,
+        "id": "ep-guide-S1E02-129",
+        "pos": 129,
         "offset_sec": 2624,
         "offset_inferred": true,
         "type": "chat",
@@ -1019,8 +1437,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-92",
-        "pos": 92,
+        "id": "ep-guide-S1E02-130",
+        "pos": 130,
         "offset_sec": 2627,
         "offset_inferred": false,
         "type": "chat",
@@ -1030,8 +1448,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-93",
-        "pos": 93,
+        "id": "ep-guide-S1E02-131",
+        "pos": 131,
         "offset_sec": 2628,
         "offset_inferred": true,
         "type": "chat",
@@ -1041,8 +1459,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-94",
-        "pos": 94,
+        "id": "ep-guide-S1E02-132",
+        "pos": 132,
         "offset_sec": 2659,
         "offset_inferred": false,
         "type": "chat",
@@ -1052,8 +1470,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-95",
-        "pos": 95,
+        "id": "ep-guide-S1E02-133",
+        "pos": 133,
         "offset_sec": 2665,
         "offset_inferred": true,
         "type": "chat",
@@ -1063,8 +1481,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-96",
-        "pos": 96,
+        "id": "ep-guide-S1E02-134",
+        "pos": 134,
         "offset_sec": 2670,
         "offset_inferred": false,
         "type": "chat",
@@ -1074,8 +1492,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E02-97",
-        "pos": 97,
+        "id": "ep-guide-S1E02-135",
+        "pos": 135,
         "offset_sec": 2859,
         "offset_inferred": true,
         "type": "gap",
@@ -1087,7 +1505,8 @@
     ],
     "synopsis": null,
     "contributors": [
-      "Weird-Map7114"
+      "Weird-Map7114",
+      "mbfj22"
     ],
     "trivia": null
   }
