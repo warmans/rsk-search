@@ -1,0 +1,17 @@
+<div class="search-bar-container" #componentRoot>
+  <div class="bar d-flex p-2">
+    <div class="terms">
+      <div *ngFor="let mod of searchModifiers" class="term badge badge-secondary mr-2"><i class="bi" [ngClass]="{'bi-person': mod.field === 'actor'}"></i> {{ mod.value.v }}</div>
+    </div>
+    <input type="text" class="flex-grow-1" [formControl]="termTextInput" (keydown)="onKeydown($event)"/>
+    <div class="controls pr-2">
+      <i class="bi bi-sliders clickable" title="Advanced options" (click)="searchDropdown = 'advanced'"></i>
+    </div>
+  </div>
+  <div class="search-dropdown p-3 mt-2" *ngIf="searchDropdown === 'autocomplete'">
+    <app-search-bar-autocomplete></app-search-bar-autocomplete>
+  </div>
+  <div class="search-dropdown p-3 mt-2" *ngIf="searchDropdown === 'advanced'">
+    <app-search-bar-advanced></app-search-bar-advanced>
+  </div>
+</div>

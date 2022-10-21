@@ -1,0 +1,24 @@
+.search-bar-container {
+  color: #333;
+  position: relative;
+
+  .bar {
+    background-color: #fff;
+
+    input {
+      border: none;
+
+    }
+    input:active, input:focus {
+      outline: none;
+      border: none;
+    }
+  }
+
+  .search-dropdown {
+    display: block;
+    position: absolute;
+    background-color: #fff;
+    width: 100%;
+  }
+}

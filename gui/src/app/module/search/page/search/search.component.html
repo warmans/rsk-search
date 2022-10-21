@@ -45,8 +45,16 @@
   </div>
   <div class="row">
     <div class="col">
-      <div class="card mb-4">
-        <div class="card-header">Contribute</div>
+      <ul class="nav nav-tabs font-weight-bold">
+        <li class="nav-item mr-2">
+          <a class="nav-link" (click)="activeInfoPanel='contribute'" [ngClass]="{'active': activeInfoPanel === 'contribute'}">Contribute</a>
+        </li>
+        <li class="nav-item mr-2">
+          <a class="nav-link" (click)="activeInfoPanel='changelog'" [ngClass]="{'active': activeInfoPanel === 'changelog'}">Changelog</a>
+        </li>
+      </ul>
+      <div class="card mb-4" *ngIf="activeInfoPanel === 'contribute'">
+        <div class="card-header"></div>
         <div class="card-body">
           <p>This site was built with the help of community contributions. Users can contribute in various ways including transcribing audio or editing existing transcripts. To
             ask a question, request a feature or report a bug head over to <a target="_blank" href="https://reddit.com/r/scrimpton">/r/scrimpton</a>.</p>
@@ -55,15 +63,12 @@
           <button class="btn btn-primary" [routerLink]="['/contribute']">Contribute</button>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="row" *ngIf="latestChangelog">
-    <div class="col">
-      <div class="card mb-4">
-        <div class="card-header">Changelog - {{latestChangelog.date}} </div>
+      <div class="card mb-4" *ngIf="activeInfoPanel === 'changelog'">
+        <div class="card-header"></div>
         <div class="card-body">
+          <div class="font-weight-bold mb-2">{{latestChangelog.date}}</div>
           <app-markdown [raw]="latestChangelog.content"></app-markdown>
-          <div class="text-right">
+          <div>
             <a [routerLink]="['/changelog']">More...</a>
           </div>
         </div>

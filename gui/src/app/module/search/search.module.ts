@@ -16,6 +16,9 @@ import { EpisodeSummaryComponent } from './component/episode-summary/episode-sum
 import { ChangelogComponent } from './page/changelog/changelog.component';
 import { TimecodeAccuracyPipe } from './pipe/timecode-accuracy.pipe';
 import { EmbedModule } from '../embed/embed.module';
+import { SearchBarComponent } from './component/search-bar/search-bar.component';
+import { SearchBarAutocompleteComponent } from './component/search-bar-autocomplete/search-bar-autocomplete.component';
+import { SearchBarAdvancedComponent } from './component/search-bar-advanced/search-bar-advanced.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,9 @@ import { EmbedModule } from '../embed/embed.module';
     EpisodeSummaryComponent,
     ChangelogComponent,
     TimecodeAccuracyPipe,
+    SearchBarComponent,
+    SearchBarAutocompleteComponent,
+    SearchBarAdvancedComponent,
   ],
     imports: [
         CommonModule,
@@ -40,7 +46,7 @@ import { EmbedModule } from '../embed/embed.module';
         NgChartsModule,
         EmbedModule,
     ],
-  exports: [GlSearchComponent]
+  exports: [GlSearchComponent, SearchBarComponent]
 })
 export class SearchModule {
 }
