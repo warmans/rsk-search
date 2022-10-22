@@ -9,9 +9,12 @@
     </div>
   </div>
   <div class="search-dropdown p-3 mt-2" *ngIf="searchDropdown === 'autocomplete'">
-    <app-search-bar-autocomplete></app-search-bar-autocomplete>
+    <app-search-bar-autocomplete
+      [termPrefix]="termText"
+      [keyInput]="keyPress$.asObservable()">
+    </app-search-bar-autocomplete>
   </div>
   <div class="search-dropdown p-3 mt-2" *ngIf="searchDropdown === 'advanced'">
-    <app-search-bar-advanced></app-search-bar-advanced>
+    <app-search-bar-advanced [modifiers]="searchModifiers"></app-search-bar-advanced>
   </div>
 </div>

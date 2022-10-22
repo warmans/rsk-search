@@ -1,1 +1,9 @@
-<p>search-bar-autocomplete works!</p>
+<div class="autocomplete-dropdown">
+  <div class="text-muted" *ngIf="(highlightedAutocompleteVals || []).length === 0">Loading...</div>
+  <div class="line"
+       *ngFor="let line of highlightedAutocompleteVals; let idx = index"
+       [ngClass]="{'active': idx === selectedAutoCompleteRow}"
+       (click)="selectTerm(autocompleteVals[idx].line)"
+       [innerHTML]="line">
+  </div>
+</div>

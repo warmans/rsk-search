@@ -203,7 +203,16 @@ func (s *Search) PredictSearchTerms(ctx context.Context, prefix string, numPredi
 				}
 			}
 		}
-		if stringsAreNotTooSimilar(prefix, p.Line) && len(p.Line) < 256 {
+
+		// de-duplicate results
+		duplicate := false
+		for _, v := range predictions.Predictions {
+			if !duplicate {
+				duplicate = !stringsAreNotTooSimilar(v.Line, p.Line)
+			}
+		}
+
+		if !duplicate && stringsAreNotTooSimilar(prefix, p.Line) && len(p.Line) < 256 {
 			// sort the predictions so they are in order of appearance in the text.
 			sort.SliceStable(p.Words, func(i, j int) bool {
 				return p.Words[i].StartPos < p.Words[j].StartPos

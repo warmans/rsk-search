@@ -7,6 +7,8 @@ import { Str, Value } from 'src/app/lib/filter-dsl/value';
 import { PrintPlainText } from 'src/app/lib/filter-dsl/printer';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ParseAST } from 'src/app/lib/filter-dsl/ast';
+import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
+import { RskMetadata } from 'src/app/lib/api-client/models';
 
 export interface SearchModifier {
   field: string;
@@ -30,7 +32,13 @@ export class SearchBarComponent implements OnInit, OnDestroy {
 
   termTextInput: FormControl = new FormControl();
 
+  termText: string;
+
   searchModifiers: CompFilter[] = [];
+
+  searchMeta: RskMetadata;
+
+  keyPress$: Subject<KeyboardEvent> = new Subject<KeyboardEvent>();
 
   destroy$: Subject<void> = new Subject();
 
@@ -46,7 +54,12 @@ export class SearchBarComponent implements OnInit, OnDestroy {
     this.setStateIdle();
   }
 
-  constructor(route: ActivatedRoute) {
+  constructor(private apiClient: SearchAPIClient, route: ActivatedRoute) {
+
+    this.apiClient.getMetadata().pipe(takeUntil(this.destroy$)).subscribe((res: RskMetadata) => {
+      this.searchMeta = res;
+    });
+
     route.queryParamMap.pipe(distinctUntilChanged(), takeUntil(this.destroy$)).subscribe((params: ParamMap) => {
       if (params.get('q') === null || params.get('q').trim() === '') {
         this.resetTerms();
@@ -58,6 +71,7 @@ export class SearchBarComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.termTextInput.valueChanges.pipe(takeUntil(this.destroy$)).subscribe((currentValue: string) => {
+      this.termText = currentValue;
       if (currentValue === '') {
         this.setStateIdle();
       } else {
@@ -69,6 +83,10 @@ export class SearchBarComponent implements OnInit, OnDestroy {
   onKeydown(key: KeyboardEvent): boolean {
     // todo: pass key presses to autocomplete
     this.setStateFocussed();
+
+    // pass to child components
+    this.keyPress$.next(key);
+
     switch (key.code) {
       case 'ArrowDown':
         break;
