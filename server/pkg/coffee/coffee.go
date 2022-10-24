@@ -1,10 +1,12 @@
 package coffee
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"github.com/spf13/pflag"
 	"github.com/warmans/rsk-search/pkg/flag"
+	"io"
 	"net/http"
 )
 
@@ -28,11 +30,12 @@ type Client struct {
 }
 
 func (c *Client) Supporters() (*SupporterList, error) {
-	req, err := http.NewRequest(http.MethodGet, "https://developers.buymeacoffee.com/api/v1/supporters", nil)
+	req, err := http.NewRequest(http.MethodGet, "https://developers.buymeacoffee.com/api/v1/supporters", &bytes.Buffer{})
 	if err != nil {
 		return nil, err
 	}
 	req.Header.Add("Authorization", fmt.Sprintf("Bearer %s", c.accessToken))
+	req.Header.Set("User-Agent", "scrimpton-bot")
 
 	resp, err := c.httpClient.Do(req)
 	if err != nil {
@@ -40,12 +43,16 @@ func (c *Client) Supporters() (*SupporterList, error) {
 	}
 	defer resp.Body.Close()
 
+	buffer := &bytes.Buffer{}
+	if _, err := io.Copy(buffer, resp.Body); err != nil {
+		return nil, err
+	}
 	out := &SupporterList{
 		Data:  make([]Supporter, 0),
 		Total: 0,
 	}
-	if err := json.NewDecoder(resp.Body).Decode(&out); err != nil {
-		return nil, err
+	if err := json.NewDecoder(buffer).Decode(&out); err != nil {
+		return nil, fmt.Errorf("%v (status: %s, resp: %s)", err, resp.Status, buffer.String())
 	}
 	return out, nil
 }

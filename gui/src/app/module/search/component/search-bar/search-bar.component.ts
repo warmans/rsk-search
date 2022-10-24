@@ -8,7 +8,6 @@ import { PrintPlainText } from 'src/app/lib/filter-dsl/printer';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ParseAST } from 'src/app/lib/filter-dsl/ast';
 import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
-import { RskMetadata } from 'src/app/lib/api-client/models';
 
 export interface SearchModifier {
   field: string;
@@ -36,8 +35,6 @@ export class SearchBarComponent implements OnInit, OnDestroy {
 
   searchModifiers: CompFilter[] = [];
 
-  searchMeta: RskMetadata;
-
   keyPress$: Subject<KeyboardEvent> = new Subject<KeyboardEvent>();
 
   destroy$: Subject<void> = new Subject();
@@ -55,10 +52,6 @@ export class SearchBarComponent implements OnInit, OnDestroy {
   }
 
   constructor(private apiClient: SearchAPIClient, route: ActivatedRoute) {
-
-    this.apiClient.getMetadata().pipe(takeUntil(this.destroy$)).subscribe((res: RskMetadata) => {
-      this.searchMeta = res;
-    });
 
     route.queryParamMap.pipe(distinctUntilChanged(), takeUntil(this.destroy$)).subscribe((params: ParamMap) => {
       if (params.get('q') === null || params.get('q').trim() === '') {
