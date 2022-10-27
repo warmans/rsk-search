@@ -10,7 +10,7 @@
     "bestof": false,
     "special": true,
     "locked": false,
-    "offset_accuracy": 12,
+    "offset_accuracy": 13,
     "audio_quality": "",
     "metadata": {
       "cover_art_url": "/assets/cover/special.jpg",
@@ -438,7 +438,7 @@
       {
         "id": "ep-nme-S1E01-39",
         "pos": 39,
-        "offset_sec": 313,
+        "offset_sec": 163,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -449,7 +449,7 @@
       {
         "id": "ep-nme-S1E01-40",
         "pos": 40,
-        "offset_sec": 349,
+        "offset_sec": 165,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -460,7 +460,7 @@
       {
         "id": "ep-nme-S1E01-41",
         "pos": 41,
-        "offset_sec": 372,
+        "offset_sec": 166,
         "offset_inferred": true,
         "type": "chat",
         "actor": "",
@@ -471,7 +471,7 @@
       {
         "id": "ep-nme-S1E01-42",
         "pos": 42,
-        "offset_sec": 382,
+        "offset_sec": 167,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -482,7 +482,7 @@
       {
         "id": "ep-nme-S1E01-43",
         "pos": 43,
-        "offset_sec": 407,
+        "offset_sec": 168,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -493,7 +493,7 @@
       {
         "id": "ep-nme-S1E01-44",
         "pos": 44,
-        "offset_sec": 492,
+        "offset_sec": 173,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -504,7 +504,7 @@
       {
         "id": "ep-nme-S1E01-45",
         "pos": 45,
-        "offset_sec": 640,
+        "offset_sec": 181,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -515,29 +515,381 @@
       {
         "id": "ep-nme-S1E01-46",
         "pos": 46,
-        "offset_sec": 661,
-        "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
+        "offset_sec": 182,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
         "metadata": null,
-        "content": "[~3 mins of missing transcription]",
+        "content": "About people that got something wrong with them. That is what you do. If ever you say \"did you see that thing last night?\" it's going to be something like the the the 'kid who was born with too many legs' or 'the the baby with an arse for a head'. It's always going to be stuff like that.",
         "notable": false
       },
       {
         "id": "ep-nme-S1E01-47",
         "pos": 47,
-        "offset_sec": 688,
+        "offset_sec": 198,
         "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
+        "type": "chat",
+        "actor": "karl",
         "metadata": null,
-        "content": "[~3 mins of missing transcription]",
+        "content": "Yeah",
         "notable": false
       },
       {
         "id": "ep-nme-S1E01-48",
         "pos": 48,
-        "offset_sec": 716,
+        "offset_sec": 198,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "It's like there was a program on a bit back, about a fellow who had a rather funny head and what have you, and I lived in a small village. And nobody double taked anymore because you get used to it.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-49",
+        "pos": 49,
+        "offset_sec": 209,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "What was up with his head?",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-50",
+        "pos": 50,
+        "offset_sec": 211,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Jut had like a... Sort of looked like the new Elephant Man. He sort of gone for that look.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-51",
+        "pos": 51,
+        "offset_sec": 215,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "Ricky laughs",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-52",
+        "pos": 52,
+        "offset_sec": 216,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "He'd gone for that look! What was he doing in the morning? Just eat a bun sort of shave",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-53",
+        "pos": 53,
+        "offset_sec": 220,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "No he just... All I'm saying is, people in his village. It wasn't a big village. People used to it and they no longer stared. And that's what I'm saying with you.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-54",
+        "pos": 54,
+        "offset_sec": 229,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "But it's interesting that, because you've you say you've acclimatized to my so-called weirdness- I don't know what weirdness that is, I've still not grasped that... But Ricky continues...",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-55",
+        "pos": 55,
+        "offset_sec": 238,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "It's the eyes.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-56",
+        "pos": 56,
+        "offset_sec": 239,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "What?",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-57",
+        "pos": 57,
+        "offset_sec": 239,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "Ricky bursts laughing",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-58",
+        "pos": 58,
+        "offset_sec": 240,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "It's just the eyes.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-59",
+        "pos": 59,
+        "offset_sec": 241,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "(laughs) He started listing shit!",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-60",
+        "pos": 60,
+        "offset_sec": 242,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "What are you... I hadn't had a go at you and your stupid f*****g round head like a f*****g orange. Which is the thing which perpetually entertains Ricky. Ricky is never acclimatized to you, is that fair, Rick?",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-61",
+        "pos": 61,
+        "offset_sec": 253,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah, I love it. I just, I can't get enough of him. Because I see different things. Every time I look at Karl, sometimes I see like a completely sort of like spherical object, right? Like honestly, like some sort of pumpkin on you know... like Halloween. And then I see him, I see flat straight on...",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-62",
+        "pos": 62,
+        "offset_sec": 268,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "With a pumpkin, Rick... When a Jack-o-Lantern sits outside someone's house right? There is a certain light behind the eyes.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-63",
+        "pos": 63,
+        "offset_sec": 274,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "Ricky laughs",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-64",
+        "pos": 64,
+        "offset_sec": 274,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Not with Karl.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-65",
+        "pos": 65,
+        "offset_sec": 275,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "And then sometimes he looks like a plate. Do you know what I mean? Like, you know, a clay plate that a child has made.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-66",
+        "pos": 66,
+        "offset_sec": 282,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "When they've made a face on the plate, you know, using their food.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-67",
+        "pos": 67,
+        "offset_sec": 286,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Or a biscuit. Like one of those biscuits you know those novelty biscuits you can buy for your birthday?",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-68",
+        "pos": 68,
+        "offset_sec": 291,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Sure, with some eyes and a smile.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-69",
+        "pos": 69,
+        "offset_sec": 293,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah. But that's not the I think that's not the biggest thing about Karl... It isn't his physically, it isn't the roundness of his head, it isn't the gimpness of his slack-jawed face...",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-70",
+        "pos": 70,
+        "offset_sec": 303,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "It's not even his hairy body and sort of like chimp-like gait. It is...",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-71",
+        "pos": 71,
+        "offset_sec": 307,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Although, those are all key features.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-72",
+        "pos": 72,
+        "offset_sec": 309,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "These are all key features.  But it's his incredible mind. And I think... Maybe over the next two hours or so. If you haven't heard of Jarl, then I think you're in for a treat. If you've heard a little Karl, then you're already being treated I think, by the fact that he is present on this special broadcast.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-73",
+        "pos": 73,
+        "offset_sec": 326,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Rick can I suggest that we take a pause there? Play some music. Come back, we'll talk some more.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-74",
+        "pos": 74,
+        "offset_sec": 331,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Oh, this isn't just about Karl. We're playing some great tunes!",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-75",
+        "pos": 75,
+        "offset_sec": 343,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Arctic Monkeys - Fluorescent Adolescent. Talking of monkeys: we're here with Karl Pilkington.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-76",
+        "pos": 76,
+        "offset_sec": 422,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "Steve laughs",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-77",
+        "pos": 77,
+        "offset_sec": 432,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "I say we: I'm Ricky Gervais, with me: Stephen Merchant",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-78",
+        "pos": 78,
+        "offset_sec": 478,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Hello",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-79",
+        "pos": 79,
+        "offset_sec": 482,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Doing a special, one-off broadcast. Now,  it's special in the sense that - I don't know why special I started that sentence, I've no, you know, I really I had no backup... - It's not a particularly special. We've done this thousands of times.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-80",
+        "pos": 80,
+        "offset_sec": 686,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -546,8 +898,19 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-49",
-        "pos": 49,
+        "id": "ep-nme-S1E01-81",
+        "pos": 81,
+        "offset_sec": 715,
+        "offset_inferred": true,
+        "type": "gap",
+        "actor": "",
+        "metadata": null,
+        "content": "[~3 mins of missing transcription]",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-82",
+        "pos": 82,
         "offset_sec": 743,
         "offset_inferred": false,
         "type": "chat",
@@ -557,8 +920,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-50",
-        "pos": 50,
+        "id": "ep-nme-S1E01-83",
+        "pos": 83,
         "offset_sec": 744,
         "offset_inferred": true,
         "type": "chat",
@@ -568,8 +931,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-51",
-        "pos": 51,
+        "id": "ep-nme-S1E01-84",
+        "pos": 84,
         "offset_sec": 751,
         "offset_inferred": true,
         "type": "chat",
@@ -579,8 +942,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-52",
-        "pos": 52,
+        "id": "ep-nme-S1E01-85",
+        "pos": 85,
         "offset_sec": 751,
         "offset_inferred": true,
         "type": "chat",
@@ -590,8 +953,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-53",
-        "pos": 53,
+        "id": "ep-nme-S1E01-86",
+        "pos": 86,
         "offset_sec": 756,
         "offset_inferred": true,
         "type": "chat",
@@ -601,8 +964,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-54",
-        "pos": 54,
+        "id": "ep-nme-S1E01-87",
+        "pos": 87,
         "offset_sec": 765,
         "offset_inferred": true,
         "type": "chat",
@@ -612,8 +975,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-55",
-        "pos": 55,
+        "id": "ep-nme-S1E01-88",
+        "pos": 88,
         "offset_sec": 767,
         "offset_inferred": true,
         "type": "chat",
@@ -623,8 +986,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-56",
-        "pos": 56,
+        "id": "ep-nme-S1E01-89",
+        "pos": 89,
         "offset_sec": 768,
         "offset_inferred": true,
         "type": "chat",
@@ -634,8 +997,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-57",
-        "pos": 57,
+        "id": "ep-nme-S1E01-90",
+        "pos": 90,
         "offset_sec": 769,
         "offset_inferred": true,
         "type": "chat",
@@ -645,8 +1008,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-58",
-        "pos": 58,
+        "id": "ep-nme-S1E01-91",
+        "pos": 91,
         "offset_sec": 772,
         "offset_inferred": true,
         "type": "chat",
@@ -656,8 +1019,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-59",
-        "pos": 59,
+        "id": "ep-nme-S1E01-92",
+        "pos": 92,
         "offset_sec": 773,
         "offset_inferred": false,
         "type": "chat",
@@ -667,8 +1030,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-60",
-        "pos": 60,
+        "id": "ep-nme-S1E01-93",
+        "pos": 93,
         "offset_sec": 774,
         "offset_inferred": true,
         "type": "chat",
@@ -678,8 +1041,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-61",
-        "pos": 61,
+        "id": "ep-nme-S1E01-94",
+        "pos": 94,
         "offset_sec": 775,
         "offset_inferred": true,
         "type": "chat",
@@ -689,8 +1052,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-62",
-        "pos": 62,
+        "id": "ep-nme-S1E01-95",
+        "pos": 95,
         "offset_sec": 776,
         "offset_inferred": true,
         "type": "chat",
@@ -700,8 +1063,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-63",
-        "pos": 63,
+        "id": "ep-nme-S1E01-96",
+        "pos": 96,
         "offset_sec": 778,
         "offset_inferred": true,
         "type": "chat",
@@ -711,8 +1074,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-64",
-        "pos": 64,
+        "id": "ep-nme-S1E01-97",
+        "pos": 97,
         "offset_sec": 785,
         "offset_inferred": true,
         "type": "chat",
@@ -722,8 +1085,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-65",
-        "pos": 65,
+        "id": "ep-nme-S1E01-98",
+        "pos": 98,
         "offset_sec": 785,
         "offset_inferred": true,
         "type": "chat",
@@ -733,8 +1096,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-66",
-        "pos": 66,
+        "id": "ep-nme-S1E01-99",
+        "pos": 99,
         "offset_sec": 786,
         "offset_inferred": true,
         "type": "chat",
@@ -744,8 +1107,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-67",
-        "pos": 67,
+        "id": "ep-nme-S1E01-100",
+        "pos": 100,
         "offset_sec": 789,
         "offset_inferred": true,
         "type": "chat",
@@ -755,8 +1118,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-68",
-        "pos": 68,
+        "id": "ep-nme-S1E01-101",
+        "pos": 101,
         "offset_sec": 789,
         "offset_inferred": true,
         "type": "chat",
@@ -766,8 +1129,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-69",
-        "pos": 69,
+        "id": "ep-nme-S1E01-102",
+        "pos": 102,
         "offset_sec": 793,
         "offset_inferred": true,
         "type": "chat",
@@ -777,8 +1140,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-70",
-        "pos": 70,
+        "id": "ep-nme-S1E01-103",
+        "pos": 103,
         "offset_sec": 793,
         "offset_inferred": true,
         "type": "chat",
@@ -788,8 +1151,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-71",
-        "pos": 71,
+        "id": "ep-nme-S1E01-104",
+        "pos": 104,
         "offset_sec": 795,
         "offset_inferred": true,
         "type": "chat",
@@ -799,8 +1162,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-72",
-        "pos": 72,
+        "id": "ep-nme-S1E01-105",
+        "pos": 105,
         "offset_sec": 797,
         "offset_inferred": false,
         "type": "chat",
@@ -810,8 +1173,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-73",
-        "pos": 73,
+        "id": "ep-nme-S1E01-106",
+        "pos": 106,
         "offset_sec": 798,
         "offset_inferred": true,
         "type": "chat",
@@ -821,8 +1184,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-74",
-        "pos": 74,
+        "id": "ep-nme-S1E01-107",
+        "pos": 107,
         "offset_sec": 803,
         "offset_inferred": true,
         "type": "chat",
@@ -832,8 +1195,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-75",
-        "pos": 75,
+        "id": "ep-nme-S1E01-108",
+        "pos": 108,
         "offset_sec": 803,
         "offset_inferred": true,
         "type": "chat",
@@ -843,8 +1206,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-76",
-        "pos": 76,
+        "id": "ep-nme-S1E01-109",
+        "pos": 109,
         "offset_sec": 805,
         "offset_inferred": true,
         "type": "chat",
@@ -854,8 +1217,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-77",
-        "pos": 77,
+        "id": "ep-nme-S1E01-110",
+        "pos": 110,
         "offset_sec": 808,
         "offset_inferred": true,
         "type": "chat",
@@ -865,8 +1228,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-78",
-        "pos": 78,
+        "id": "ep-nme-S1E01-111",
+        "pos": 111,
         "offset_sec": 808,
         "offset_inferred": true,
         "type": "chat",
@@ -876,8 +1239,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-79",
-        "pos": 79,
+        "id": "ep-nme-S1E01-112",
+        "pos": 112,
         "offset_sec": 814,
         "offset_inferred": true,
         "type": "chat",
@@ -887,8 +1250,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-80",
-        "pos": 80,
+        "id": "ep-nme-S1E01-113",
+        "pos": 113,
         "offset_sec": 815,
         "offset_inferred": true,
         "type": "chat",
@@ -898,8 +1261,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-81",
-        "pos": 81,
+        "id": "ep-nme-S1E01-114",
+        "pos": 114,
         "offset_sec": 815,
         "offset_inferred": true,
         "type": "chat",
@@ -909,8 +1272,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-82",
-        "pos": 82,
+        "id": "ep-nme-S1E01-115",
+        "pos": 115,
         "offset_sec": 818,
         "offset_inferred": true,
         "type": "chat",
@@ -920,8 +1283,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-83",
-        "pos": 83,
+        "id": "ep-nme-S1E01-116",
+        "pos": 116,
         "offset_sec": 819,
         "offset_inferred": true,
         "type": "chat",
@@ -931,8 +1294,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-84",
-        "pos": 84,
+        "id": "ep-nme-S1E01-117",
+        "pos": 117,
         "offset_sec": 820,
         "offset_inferred": true,
         "type": "chat",
@@ -942,8 +1305,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-85",
-        "pos": 85,
+        "id": "ep-nme-S1E01-118",
+        "pos": 118,
         "offset_sec": 821,
         "offset_inferred": true,
         "type": "chat",
@@ -953,8 +1316,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-86",
-        "pos": 86,
+        "id": "ep-nme-S1E01-119",
+        "pos": 119,
         "offset_sec": 823,
         "offset_inferred": true,
         "type": "chat",
@@ -964,8 +1327,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-87",
-        "pos": 87,
+        "id": "ep-nme-S1E01-120",
+        "pos": 120,
         "offset_sec": 823,
         "offset_inferred": true,
         "type": "chat",
@@ -975,8 +1338,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-88",
-        "pos": 88,
+        "id": "ep-nme-S1E01-121",
+        "pos": 121,
         "offset_sec": 824,
         "offset_inferred": true,
         "type": "chat",
@@ -986,8 +1349,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-89",
-        "pos": 89,
+        "id": "ep-nme-S1E01-122",
+        "pos": 122,
         "offset_sec": 826,
         "offset_inferred": true,
         "type": "chat",
@@ -997,8 +1360,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-90",
-        "pos": 90,
+        "id": "ep-nme-S1E01-123",
+        "pos": 123,
         "offset_sec": 826,
         "offset_inferred": false,
         "type": "chat",
@@ -1008,8 +1371,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-91",
-        "pos": 91,
+        "id": "ep-nme-S1E01-124",
+        "pos": 124,
         "offset_sec": 830,
         "offset_inferred": true,
         "type": "chat",
@@ -1019,8 +1382,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-92",
-        "pos": 92,
+        "id": "ep-nme-S1E01-125",
+        "pos": 125,
         "offset_sec": 832,
         "offset_inferred": true,
         "type": "chat",
@@ -1030,8 +1393,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-93",
-        "pos": 93,
+        "id": "ep-nme-S1E01-126",
+        "pos": 126,
         "offset_sec": 836,
         "offset_inferred": true,
         "type": "chat",
@@ -1041,8 +1404,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-94",
-        "pos": 94,
+        "id": "ep-nme-S1E01-127",
+        "pos": 127,
         "offset_sec": 837,
         "offset_inferred": true,
         "type": "chat",
@@ -1052,8 +1415,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-95",
-        "pos": 95,
+        "id": "ep-nme-S1E01-128",
+        "pos": 128,
         "offset_sec": 840,
         "offset_inferred": true,
         "type": "chat",
@@ -1063,8 +1426,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-96",
-        "pos": 96,
+        "id": "ep-nme-S1E01-129",
+        "pos": 129,
         "offset_sec": 844,
         "offset_inferred": true,
         "type": "chat",
@@ -1074,8 +1437,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-97",
-        "pos": 97,
+        "id": "ep-nme-S1E01-130",
+        "pos": 130,
         "offset_sec": 848,
         "offset_inferred": true,
         "type": "chat",
@@ -1085,8 +1448,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-98",
-        "pos": 98,
+        "id": "ep-nme-S1E01-131",
+        "pos": 131,
         "offset_sec": 856,
         "offset_inferred": false,
         "type": "chat",
@@ -1096,8 +1459,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-99",
-        "pos": 99,
+        "id": "ep-nme-S1E01-132",
+        "pos": 132,
         "offset_sec": 866,
         "offset_inferred": true,
         "type": "chat",
@@ -1107,8 +1470,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-100",
-        "pos": 100,
+        "id": "ep-nme-S1E01-133",
+        "pos": 133,
         "offset_sec": 866,
         "offset_inferred": true,
         "type": "chat",
@@ -1118,8 +1481,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-101",
-        "pos": 101,
+        "id": "ep-nme-S1E01-134",
+        "pos": 134,
         "offset_sec": 869,
         "offset_inferred": true,
         "type": "chat",
@@ -1129,8 +1492,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-102",
-        "pos": 102,
+        "id": "ep-nme-S1E01-135",
+        "pos": 135,
         "offset_sec": 869,
         "offset_inferred": true,
         "type": "chat",
@@ -1140,8 +1503,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-103",
-        "pos": 103,
+        "id": "ep-nme-S1E01-136",
+        "pos": 136,
         "offset_sec": 887,
         "offset_inferred": true,
         "type": "chat",
@@ -1151,8 +1514,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-104",
-        "pos": 104,
+        "id": "ep-nme-S1E01-137",
+        "pos": 137,
         "offset_sec": 887,
         "offset_inferred": false,
         "type": "chat",
@@ -1162,8 +1525,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-105",
-        "pos": 105,
+        "id": "ep-nme-S1E01-138",
+        "pos": 138,
         "offset_sec": 896,
         "offset_inferred": true,
         "type": "chat",
@@ -1173,8 +1536,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-106",
-        "pos": 106,
+        "id": "ep-nme-S1E01-139",
+        "pos": 139,
         "offset_sec": 898,
         "offset_inferred": true,
         "type": "chat",
@@ -1184,8 +1547,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-107",
-        "pos": 107,
+        "id": "ep-nme-S1E01-140",
+        "pos": 140,
         "offset_sec": 902,
         "offset_inferred": true,
         "type": "chat",
@@ -1195,8 +1558,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-108",
-        "pos": 108,
+        "id": "ep-nme-S1E01-141",
+        "pos": 141,
         "offset_sec": 903,
         "offset_inferred": true,
         "type": "chat",
@@ -1206,8 +1569,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-109",
-        "pos": 109,
+        "id": "ep-nme-S1E01-142",
+        "pos": 142,
         "offset_sec": 903,
         "offset_inferred": true,
         "type": "chat",
@@ -1217,8 +1580,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-110",
-        "pos": 110,
+        "id": "ep-nme-S1E01-143",
+        "pos": 143,
         "offset_sec": 908,
         "offset_inferred": true,
         "type": "chat",
@@ -1228,8 +1591,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-111",
-        "pos": 111,
+        "id": "ep-nme-S1E01-144",
+        "pos": 144,
         "offset_sec": 910,
         "offset_inferred": true,
         "type": "chat",
@@ -1239,8 +1602,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-112",
-        "pos": 112,
+        "id": "ep-nme-S1E01-145",
+        "pos": 145,
         "offset_sec": 911,
         "offset_inferred": true,
         "type": "chat",
@@ -1250,8 +1613,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-113",
-        "pos": 113,
+        "id": "ep-nme-S1E01-146",
+        "pos": 146,
         "offset_sec": 912,
         "offset_inferred": true,
         "type": "chat",
@@ -1261,8 +1624,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-114",
-        "pos": 114,
+        "id": "ep-nme-S1E01-147",
+        "pos": 147,
         "offset_sec": 913,
         "offset_inferred": true,
         "type": "chat",
@@ -1272,8 +1635,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-115",
-        "pos": 115,
+        "id": "ep-nme-S1E01-148",
+        "pos": 148,
         "offset_sec": 914,
         "offset_inferred": true,
         "type": "chat",
@@ -1283,8 +1646,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-116",
-        "pos": 116,
+        "id": "ep-nme-S1E01-149",
+        "pos": 149,
         "offset_sec": 916,
         "offset_inferred": true,
         "type": "chat",
@@ -1294,8 +1657,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-117",
-        "pos": 117,
+        "id": "ep-nme-S1E01-150",
+        "pos": 150,
         "offset_sec": 917,
         "offset_inferred": false,
         "type": "chat",
@@ -1305,8 +1668,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-118",
-        "pos": 118,
+        "id": "ep-nme-S1E01-151",
+        "pos": 151,
         "offset_sec": 970,
         "offset_inferred": true,
         "type": "chat",
@@ -1316,8 +1679,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-119",
-        "pos": 119,
+        "id": "ep-nme-S1E01-152",
+        "pos": 152,
         "offset_sec": 988,
         "offset_inferred": true,
         "type": "chat",
@@ -1327,8 +1690,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-120",
-        "pos": 120,
+        "id": "ep-nme-S1E01-153",
+        "pos": 153,
         "offset_sec": 1001,
         "offset_inferred": true,
         "type": "chat",
@@ -1338,8 +1701,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-121",
-        "pos": 121,
+        "id": "ep-nme-S1E01-154",
+        "pos": 154,
         "offset_sec": 1073,
         "offset_inferred": true,
         "type": "chat",
@@ -1349,8 +1712,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-122",
-        "pos": 122,
+        "id": "ep-nme-S1E01-155",
+        "pos": 155,
         "offset_sec": 1196,
         "offset_inferred": true,
         "type": "chat",
@@ -1360,8 +1723,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-123",
-        "pos": 123,
+        "id": "ep-nme-S1E01-156",
+        "pos": 156,
         "offset_sec": 1343,
         "offset_inferred": true,
         "type": "chat",
@@ -1371,8 +1734,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-124",
-        "pos": 124,
+        "id": "ep-nme-S1E01-157",
+        "pos": 157,
         "offset_sec": 1355,
         "offset_inferred": true,
         "type": "chat",
@@ -1382,8 +1745,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-125",
-        "pos": 125,
+        "id": "ep-nme-S1E01-158",
+        "pos": 158,
         "offset_sec": 1553,
         "offset_inferred": true,
         "type": "gap",
@@ -1393,8 +1756,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-126",
-        "pos": 126,
+        "id": "ep-nme-S1E01-159",
+        "pos": 159,
         "offset_sec": 1592,
         "offset_inferred": true,
         "type": "gap",
@@ -1404,8 +1767,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-127",
-        "pos": 127,
+        "id": "ep-nme-S1E01-160",
+        "pos": 160,
         "offset_sec": 1631,
         "offset_inferred": true,
         "type": "gap",
@@ -1415,8 +1778,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-128",
-        "pos": 128,
+        "id": "ep-nme-S1E01-161",
+        "pos": 161,
         "offset_sec": 1670,
         "offset_inferred": true,
         "type": "gap",
@@ -1426,8 +1789,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-129",
-        "pos": 129,
+        "id": "ep-nme-S1E01-162",
+        "pos": 162,
         "offset_sec": 1708,
         "offset_inferred": false,
         "type": "chat",
@@ -1437,8 +1800,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-130",
-        "pos": 130,
+        "id": "ep-nme-S1E01-163",
+        "pos": 163,
         "offset_sec": 1709,
         "offset_inferred": true,
         "type": "chat",
@@ -1448,8 +1811,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-131",
-        "pos": 131,
+        "id": "ep-nme-S1E01-164",
+        "pos": 164,
         "offset_sec": 1710,
         "offset_inferred": true,
         "type": "chat",
@@ -1459,8 +1822,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-132",
-        "pos": 132,
+        "id": "ep-nme-S1E01-165",
+        "pos": 165,
         "offset_sec": 1724,
         "offset_inferred": true,
         "type": "chat",
@@ -1470,8 +1833,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-133",
-        "pos": 133,
+        "id": "ep-nme-S1E01-166",
+        "pos": 166,
         "offset_sec": 1728,
         "offset_inferred": true,
         "type": "chat",
@@ -1481,8 +1844,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-134",
-        "pos": 134,
+        "id": "ep-nme-S1E01-167",
+        "pos": 167,
         "offset_sec": 1728,
         "offset_inferred": true,
         "type": "chat",
@@ -1492,8 +1855,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-135",
-        "pos": 135,
+        "id": "ep-nme-S1E01-168",
+        "pos": 168,
         "offset_sec": 1731,
         "offset_inferred": false,
         "type": "chat",
@@ -1503,8 +1866,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-136",
-        "pos": 136,
+        "id": "ep-nme-S1E01-169",
+        "pos": 169,
         "offset_sec": 1734,
         "offset_inferred": true,
         "type": "chat",
@@ -1514,8 +1877,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-137",
-        "pos": 137,
+        "id": "ep-nme-S1E01-170",
+        "pos": 170,
         "offset_sec": 1737,
         "offset_inferred": true,
         "type": "chat",
@@ -1525,8 +1888,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-138",
-        "pos": 138,
+        "id": "ep-nme-S1E01-171",
+        "pos": 171,
         "offset_sec": 1742,
         "offset_inferred": true,
         "type": "chat",
@@ -1536,8 +1899,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-139",
-        "pos": 139,
+        "id": "ep-nme-S1E01-172",
+        "pos": 172,
         "offset_sec": 1756,
         "offset_inferred": true,
         "type": "chat",
@@ -1547,8 +1910,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-140",
-        "pos": 140,
+        "id": "ep-nme-S1E01-173",
+        "pos": 173,
         "offset_sec": 1757,
         "offset_inferred": false,
         "type": "chat",
@@ -1558,8 +1921,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-141",
-        "pos": 141,
+        "id": "ep-nme-S1E01-174",
+        "pos": 174,
         "offset_sec": 1765,
         "offset_inferred": false,
         "type": "chat",
@@ -1569,8 +1932,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-142",
-        "pos": 142,
+        "id": "ep-nme-S1E01-175",
+        "pos": 175,
         "offset_sec": 1776,
         "offset_inferred": false,
         "type": "chat",
@@ -1580,8 +1943,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-143",
-        "pos": 143,
+        "id": "ep-nme-S1E01-176",
+        "pos": 176,
         "offset_sec": 1777,
         "offset_inferred": true,
         "type": "chat",
@@ -1591,8 +1954,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-144",
-        "pos": 144,
+        "id": "ep-nme-S1E01-177",
+        "pos": 177,
         "offset_sec": 1777,
         "offset_inferred": true,
         "type": "chat",
@@ -1602,8 +1965,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-145",
-        "pos": 145,
+        "id": "ep-nme-S1E01-178",
+        "pos": 178,
         "offset_sec": 1778,
         "offset_inferred": true,
         "type": "chat",
@@ -1613,8 +1976,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-146",
-        "pos": 146,
+        "id": "ep-nme-S1E01-179",
+        "pos": 179,
         "offset_sec": 1779,
         "offset_inferred": true,
         "type": "chat",
@@ -1624,8 +1987,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-147",
-        "pos": 147,
+        "id": "ep-nme-S1E01-180",
+        "pos": 180,
         "offset_sec": 1781,
         "offset_inferred": true,
         "type": "chat",
@@ -1635,8 +1998,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-148",
-        "pos": 148,
+        "id": "ep-nme-S1E01-181",
+        "pos": 181,
         "offset_sec": 1782,
         "offset_inferred": true,
         "type": "chat",
@@ -1646,8 +2009,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-149",
-        "pos": 149,
+        "id": "ep-nme-S1E01-182",
+        "pos": 182,
         "offset_sec": 1786,
         "offset_inferred": true,
         "type": "chat",
@@ -1657,8 +2020,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-150",
-        "pos": 150,
+        "id": "ep-nme-S1E01-183",
+        "pos": 183,
         "offset_sec": 1786,
         "offset_inferred": true,
         "type": "chat",
@@ -1668,8 +2031,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-151",
-        "pos": 151,
+        "id": "ep-nme-S1E01-184",
+        "pos": 184,
         "offset_sec": 1787,
         "offset_inferred": true,
         "type": "chat",
@@ -1679,8 +2042,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-152",
-        "pos": 152,
+        "id": "ep-nme-S1E01-185",
+        "pos": 185,
         "offset_sec": 1791,
         "offset_inferred": true,
         "type": "chat",
@@ -1690,8 +2053,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-153",
-        "pos": 153,
+        "id": "ep-nme-S1E01-186",
+        "pos": 186,
         "offset_sec": 1792,
         "offset_inferred": true,
         "type": "chat",
@@ -1701,8 +2064,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-154",
-        "pos": 154,
+        "id": "ep-nme-S1E01-187",
+        "pos": 187,
         "offset_sec": 1794,
         "offset_inferred": true,
         "type": "chat",
@@ -1712,8 +2075,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-155",
-        "pos": 155,
+        "id": "ep-nme-S1E01-188",
+        "pos": 188,
         "offset_sec": 1802,
         "offset_inferred": true,
         "type": "chat",
@@ -1723,8 +2086,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-156",
-        "pos": 156,
+        "id": "ep-nme-S1E01-189",
+        "pos": 189,
         "offset_sec": 1804,
         "offset_inferred": true,
         "type": "chat",
@@ -1734,8 +2097,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-157",
-        "pos": 157,
+        "id": "ep-nme-S1E01-190",
+        "pos": 190,
         "offset_sec": 1806,
         "offset_inferred": false,
         "type": "chat",
@@ -1745,8 +2108,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-158",
-        "pos": 158,
+        "id": "ep-nme-S1E01-191",
+        "pos": 191,
         "offset_sec": 1824,
         "offset_inferred": true,
         "type": "chat",
@@ -1756,8 +2119,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-159",
-        "pos": 159,
+        "id": "ep-nme-S1E01-192",
+        "pos": 192,
         "offset_sec": 1825,
         "offset_inferred": true,
         "type": "chat",
@@ -1767,8 +2130,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-160",
-        "pos": 160,
+        "id": "ep-nme-S1E01-193",
+        "pos": 193,
         "offset_sec": 1828,
         "offset_inferred": true,
         "type": "chat",
@@ -1778,8 +2141,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-161",
-        "pos": 161,
+        "id": "ep-nme-S1E01-194",
+        "pos": 194,
         "offset_sec": 1829,
         "offset_inferred": true,
         "type": "chat",
@@ -1789,8 +2152,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-162",
-        "pos": 162,
+        "id": "ep-nme-S1E01-195",
+        "pos": 195,
         "offset_sec": 1832,
         "offset_inferred": true,
         "type": "chat",
@@ -1800,8 +2163,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-163",
-        "pos": 163,
+        "id": "ep-nme-S1E01-196",
+        "pos": 196,
         "offset_sec": 1835,
         "offset_inferred": true,
         "type": "chat",
@@ -1811,8 +2174,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-164",
-        "pos": 164,
+        "id": "ep-nme-S1E01-197",
+        "pos": 197,
         "offset_sec": 1835,
         "offset_inferred": false,
         "type": "song",
@@ -1822,8 +2185,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-165",
-        "pos": 165,
+        "id": "ep-nme-S1E01-198",
+        "pos": 198,
         "offset_sec": 1835,
         "offset_inferred": false,
         "type": "chat",
@@ -1833,8 +2196,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-166",
-        "pos": 166,
+        "id": "ep-nme-S1E01-199",
+        "pos": 199,
         "offset_sec": 1842,
         "offset_inferred": true,
         "type": "chat",
@@ -1844,8 +2207,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-167",
-        "pos": 167,
+        "id": "ep-nme-S1E01-200",
+        "pos": 200,
         "offset_sec": 1844,
         "offset_inferred": true,
         "type": "chat",
@@ -1855,8 +2218,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-168",
-        "pos": 168,
+        "id": "ep-nme-S1E01-201",
+        "pos": 201,
         "offset_sec": 1845,
         "offset_inferred": true,
         "type": "chat",
@@ -1866,8 +2229,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-169",
-        "pos": 169,
+        "id": "ep-nme-S1E01-202",
+        "pos": 202,
         "offset_sec": 1845,
         "offset_inferred": false,
         "type": "chat",
@@ -1877,8 +2240,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-170",
-        "pos": 170,
+        "id": "ep-nme-S1E01-203",
+        "pos": 203,
         "offset_sec": 1854,
         "offset_inferred": true,
         "type": "chat",
@@ -1888,8 +2251,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-171",
-        "pos": 171,
+        "id": "ep-nme-S1E01-204",
+        "pos": 204,
         "offset_sec": 1855,
         "offset_inferred": true,
         "type": "chat",
@@ -1899,8 +2262,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-172",
-        "pos": 172,
+        "id": "ep-nme-S1E01-205",
+        "pos": 205,
         "offset_sec": 1858,
         "offset_inferred": true,
         "type": "chat",
@@ -1910,8 +2273,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-173",
-        "pos": 173,
+        "id": "ep-nme-S1E01-206",
+        "pos": 206,
         "offset_sec": 1858,
         "offset_inferred": true,
         "type": "chat",
@@ -1921,8 +2284,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-174",
-        "pos": 174,
+        "id": "ep-nme-S1E01-207",
+        "pos": 207,
         "offset_sec": 1859,
         "offset_inferred": false,
         "type": "chat",
@@ -1932,8 +2295,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-175",
-        "pos": 175,
+        "id": "ep-nme-S1E01-208",
+        "pos": 208,
         "offset_sec": 2036,
         "offset_inferred": true,
         "type": "chat",
@@ -1943,8 +2306,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-176",
-        "pos": 176,
+        "id": "ep-nme-S1E01-209",
+        "pos": 209,
         "offset_sec": 2177,
         "offset_inferred": true,
         "type": "chat",
@@ -1954,8 +2317,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-177",
-        "pos": 177,
+        "id": "ep-nme-S1E01-210",
+        "pos": 210,
         "offset_sec": 2611,
         "offset_inferred": true,
         "type": "chat",
@@ -1965,8 +2328,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-178",
-        "pos": 178,
+        "id": "ep-nme-S1E01-211",
+        "pos": 211,
         "offset_sec": 2634,
         "offset_inferred": true,
         "type": "chat",
@@ -1976,8 +2339,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-179",
-        "pos": 179,
+        "id": "ep-nme-S1E01-212",
+        "pos": 212,
         "offset_sec": 3019,
         "offset_inferred": true,
         "type": "chat",
@@ -1987,8 +2350,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-180",
-        "pos": 180,
+        "id": "ep-nme-S1E01-213",
+        "pos": 213,
         "offset_sec": 3068,
         "offset_inferred": true,
         "type": "gap",
@@ -1998,8 +2361,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-181",
-        "pos": 181,
+        "id": "ep-nme-S1E01-214",
+        "pos": 214,
         "offset_sec": 3138,
         "offset_inferred": true,
         "type": "gap",
@@ -2009,8 +2372,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-182",
-        "pos": 182,
+        "id": "ep-nme-S1E01-215",
+        "pos": 215,
         "offset_sec": 3207,
         "offset_inferred": true,
         "type": "gap",
@@ -2020,8 +2383,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-183",
-        "pos": 183,
+        "id": "ep-nme-S1E01-216",
+        "pos": 216,
         "offset_sec": 3277,
         "offset_inferred": true,
         "type": "gap",
@@ -2031,8 +2394,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-184",
-        "pos": 184,
+        "id": "ep-nme-S1E01-217",
+        "pos": 217,
         "offset_sec": 3347,
         "offset_inferred": true,
         "type": "gap",
@@ -2042,8 +2405,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-185",
-        "pos": 185,
+        "id": "ep-nme-S1E01-218",
+        "pos": 218,
         "offset_sec": 3416,
         "offset_inferred": true,
         "type": "gap",
@@ -2053,8 +2416,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-186",
-        "pos": 186,
+        "id": "ep-nme-S1E01-219",
+        "pos": 219,
         "offset_sec": 3486,
         "offset_inferred": true,
         "type": "gap",
@@ -2064,8 +2427,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-187",
-        "pos": 187,
+        "id": "ep-nme-S1E01-220",
+        "pos": 220,
         "offset_sec": 3556,
         "offset_inferred": true,
         "type": "gap",
@@ -2075,8 +2438,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-188",
-        "pos": 188,
+        "id": "ep-nme-S1E01-221",
+        "pos": 221,
         "offset_sec": 3625,
         "offset_inferred": true,
         "type": "gap",
@@ -2086,8 +2449,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-189",
-        "pos": 189,
+        "id": "ep-nme-S1E01-222",
+        "pos": 222,
         "offset_sec": 3695,
         "offset_inferred": true,
         "type": "gap",
@@ -2097,8 +2460,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-190",
-        "pos": 190,
+        "id": "ep-nme-S1E01-223",
+        "pos": 223,
         "offset_sec": 3764,
         "offset_inferred": false,
         "type": "chat",
@@ -2108,8 +2471,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-191",
-        "pos": 191,
+        "id": "ep-nme-S1E01-224",
+        "pos": 224,
         "offset_sec": 3774,
         "offset_inferred": true,
         "type": "chat",
@@ -2119,8 +2482,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-192",
-        "pos": 192,
+        "id": "ep-nme-S1E01-225",
+        "pos": 225,
         "offset_sec": 3775,
         "offset_inferred": true,
         "type": "chat",
@@ -2130,8 +2493,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-193",
-        "pos": 193,
+        "id": "ep-nme-S1E01-226",
+        "pos": 226,
         "offset_sec": 3776,
         "offset_inferred": true,
         "type": "chat",
@@ -2141,8 +2504,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-194",
-        "pos": 194,
+        "id": "ep-nme-S1E01-227",
+        "pos": 227,
         "offset_sec": 3777,
         "offset_inferred": true,
         "type": "chat",
@@ -2152,8 +2515,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-195",
-        "pos": 195,
+        "id": "ep-nme-S1E01-228",
+        "pos": 228,
         "offset_sec": 3783,
         "offset_inferred": true,
         "type": "chat",
@@ -2163,8 +2526,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-196",
-        "pos": 196,
+        "id": "ep-nme-S1E01-229",
+        "pos": 229,
         "offset_sec": 3784,
         "offset_inferred": true,
         "type": "chat",
@@ -2174,8 +2537,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-197",
-        "pos": 197,
+        "id": "ep-nme-S1E01-230",
+        "pos": 230,
         "offset_sec": 3791,
         "offset_inferred": false,
         "type": "chat",
@@ -2185,8 +2548,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-198",
-        "pos": 198,
+        "id": "ep-nme-S1E01-231",
+        "pos": 231,
         "offset_sec": 3800,
         "offset_inferred": true,
         "type": "chat",
@@ -2196,8 +2559,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-199",
-        "pos": 199,
+        "id": "ep-nme-S1E01-232",
+        "pos": 232,
         "offset_sec": 3803,
         "offset_inferred": true,
         "type": "chat",
@@ -2207,8 +2570,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-200",
-        "pos": 200,
+        "id": "ep-nme-S1E01-233",
+        "pos": 233,
         "offset_sec": 3804,
         "offset_inferred": true,
         "type": "chat",
@@ -2218,8 +2581,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-201",
-        "pos": 201,
+        "id": "ep-nme-S1E01-234",
+        "pos": 234,
         "offset_sec": 3809,
         "offset_inferred": true,
         "type": "chat",
@@ -2229,8 +2592,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-202",
-        "pos": 202,
+        "id": "ep-nme-S1E01-235",
+        "pos": 235,
         "offset_sec": 3809,
         "offset_inferred": true,
         "type": "chat",
@@ -2240,8 +2603,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-203",
-        "pos": 203,
+        "id": "ep-nme-S1E01-236",
+        "pos": 236,
         "offset_sec": 3811,
         "offset_inferred": true,
         "type": "chat",
@@ -2251,8 +2614,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-204",
-        "pos": 204,
+        "id": "ep-nme-S1E01-237",
+        "pos": 237,
         "offset_sec": 3813,
         "offset_inferred": true,
         "type": "chat",
@@ -2262,8 +2625,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-205",
-        "pos": 205,
+        "id": "ep-nme-S1E01-238",
+        "pos": 238,
         "offset_sec": 3814,
         "offset_inferred": true,
         "type": "chat",
@@ -2273,8 +2636,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-206",
-        "pos": 206,
+        "id": "ep-nme-S1E01-239",
+        "pos": 239,
         "offset_sec": 3822,
         "offset_inferred": false,
         "type": "chat",
@@ -2284,8 +2647,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-207",
-        "pos": 207,
+        "id": "ep-nme-S1E01-240",
+        "pos": 240,
         "offset_sec": 3827,
         "offset_inferred": true,
         "type": "chat",
@@ -2295,8 +2658,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-208",
-        "pos": 208,
+        "id": "ep-nme-S1E01-241",
+        "pos": 241,
         "offset_sec": 3830,
         "offset_inferred": true,
         "type": "chat",
@@ -2306,8 +2669,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-209",
-        "pos": 209,
+        "id": "ep-nme-S1E01-242",
+        "pos": 242,
         "offset_sec": 3831,
         "offset_inferred": true,
         "type": "chat",
@@ -2317,8 +2680,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-210",
-        "pos": 210,
+        "id": "ep-nme-S1E01-243",
+        "pos": 243,
         "offset_sec": 3836,
         "offset_inferred": true,
         "type": "chat",
@@ -2328,8 +2691,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-211",
-        "pos": 211,
+        "id": "ep-nme-S1E01-244",
+        "pos": 244,
         "offset_sec": 3839,
         "offset_inferred": true,
         "type": "chat",
@@ -2339,8 +2702,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-212",
-        "pos": 212,
+        "id": "ep-nme-S1E01-245",
+        "pos": 245,
         "offset_sec": 3839,
         "offset_inferred": true,
         "type": "chat",
@@ -2350,8 +2713,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-213",
-        "pos": 213,
+        "id": "ep-nme-S1E01-246",
+        "pos": 246,
         "offset_sec": 3842,
         "offset_inferred": true,
         "type": "chat",
@@ -2361,8 +2724,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-214",
-        "pos": 214,
+        "id": "ep-nme-S1E01-247",
+        "pos": 247,
         "offset_sec": 3844,
         "offset_inferred": true,
         "type": "chat",
@@ -2372,8 +2735,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-215",
-        "pos": 215,
+        "id": "ep-nme-S1E01-248",
+        "pos": 248,
         "offset_sec": 3845,
         "offset_inferred": true,
         "type": "chat",
@@ -2383,8 +2746,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-216",
-        "pos": 216,
+        "id": "ep-nme-S1E01-249",
+        "pos": 249,
         "offset_sec": 3845,
         "offset_inferred": true,
         "type": "chat",
@@ -2394,8 +2757,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-217",
-        "pos": 217,
+        "id": "ep-nme-S1E01-250",
+        "pos": 250,
         "offset_sec": 3846,
         "offset_inferred": true,
         "type": "chat",
@@ -2405,8 +2768,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-218",
-        "pos": 218,
+        "id": "ep-nme-S1E01-251",
+        "pos": 251,
         "offset_sec": 3847,
         "offset_inferred": true,
         "type": "chat",
@@ -2419,19 +2782,20 @@
     "synopsis": [
       {
         "description": "Does anyone have anything to plug?",
-        "start_pos": 190,
-        "end_pos": 212
+        "start_pos": 223,
+        "end_pos": 245
       }
     ],
     "contributors": [
       "EarthlingCalling",
-      "warmans"
+      "warmans",
+      "wontbemad"
     ],
     "trivia": [
       {
         "description": "Nme.com is indeed the address of the NME website.",
-        "start_pos": 215,
-        "end_pos": 216
+        "start_pos": 248,
+        "end_pos": 249
       }
     ]
   }
