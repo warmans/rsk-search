@@ -10,7 +10,12 @@
           <span>&times;</span>
         </div>
       </div>
-      <input type="text" class="flex-grow-1" [formControl]="termTextInput" (keydown)="onKeydown($event)"/>
+      <input
+        type="text"
+        class="flex-grow-1"
+        [formControl]="termTextInput"
+        (keydown)="onKeydown($event)"
+        placeholder="Enter search terms, double quote terms for a phrase/exact match. See advanced search options on the right."/>
       <div class="controls pr-2">
         <i class="bi bi-sliders clickable" title="Advanced options" (click)="searchDropdown = 'advanced'"></i>
       </div>
