@@ -1,9 +1,9 @@
 <div class="autocomplete-dropdown">
-  <div class="text-muted" *ngIf="(highlightedAutocompleteVals || []).length === 0">Loading...</div>
+  <div class="text-muted" *ngIf="(highlightedAutocompleteVals || []).length === 0">{{ loading ? 'Loading' : 'No results'}}...</div>
   <div class="line"
        *ngFor="let line of highlightedAutocompleteVals; let idx = index"
        [ngClass]="{'active': idx === selectedAutoCompleteRow}"
-       (click)="selectTerm(autocompleteVals[idx].line)"
+       (click)="selectTerm(autocompleteVals[idx].line, true)"
        [innerHTML]="line">
   </div>
 </div>

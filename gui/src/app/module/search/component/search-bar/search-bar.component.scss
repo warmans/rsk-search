@@ -4,6 +4,7 @@
 
   .bar {
     background-color: #fff;
+    border: 1px solid #ccc;
 
     input {
       border: none;
@@ -22,5 +23,11 @@
     background-color: #fff;
     width: 100%;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.buttons {
+  .btn {
+    height: 100%;
   }
 }

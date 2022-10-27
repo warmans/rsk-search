@@ -663,6 +663,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
     args: {
       prefix?: string,
       maxPredictions?: number,
+      query?: string,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskSearchTermPredictions> {
@@ -677,6 +678,9 @@ export class SearchAPIClient implements SearchAPIClientInterface {
     }
     if ('maxPredictions' in args) {
       options.params = options.params.set('maxPredictions', String(args.maxPredictions));
+    }
+    if ('query' in args) {
+      options.params = options.params.set('query', String(args.query));
     }
     return this.sendRequest<models.RskSearchTermPredictions>('GET', path, options);
   }

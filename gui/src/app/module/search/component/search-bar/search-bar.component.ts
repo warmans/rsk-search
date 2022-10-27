@@ -9,12 +9,6 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ParseAST } from 'src/app/lib/filter-dsl/ast';
 import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 
-export interface SearchModifier {
-  field: string;
-  value: Value;
-  comparison: CompOp;
-}
-
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
@@ -51,15 +45,9 @@ export class SearchBarComponent implements OnInit, OnDestroy {
     this.setStateIdle();
   }
 
-  constructor(private apiClient: SearchAPIClient, route: ActivatedRoute) {
+  constructor(private apiClient: SearchAPIClient, private route: ActivatedRoute) {
 
-    route.queryParamMap.pipe(distinctUntilChanged(), takeUntil(this.destroy$)).subscribe((params: ParamMap) => {
-      if (params.get('q') === null || params.get('q').trim() === '') {
-        this.resetTerms();
-        return;
-      }
-      this.parseQuery(params.get('q'));
-    });
+
   }
 
   ngOnInit(): void {
@@ -70,6 +58,14 @@ export class SearchBarComponent implements OnInit, OnDestroy {
       } else {
         this.setStateTyping();
       }
+    });
+
+    this.route.queryParamMap.pipe(distinctUntilChanged(), takeUntil(this.destroy$)).subscribe((params: ParamMap) => {
+      if (params.get('q') === null || params.get('q').trim() === '') {
+        this.resetTerms();
+        return;
+      }
+      this.parseQuery(params.get('q'));
     });
   }
 
@@ -82,13 +78,18 @@ export class SearchBarComponent implements OnInit, OnDestroy {
 
     switch (key.code) {
       case 'ArrowDown':
+        this.setStateTyping();
         break;
       case 'ArrowUp':
         break;
       case 'Enter':
+        if (this.searchDropdown === 'autocomplete') {
+          return false;
+        }
         this.emitQuery();
         return true;
       case 'Escape':
+        this.setStateIdle();
         break;
       default:
         return true;
@@ -118,6 +119,11 @@ export class SearchBarComponent implements OnInit, OnDestroy {
   resetTerms() {
     this.searchModifiers = [];
     this.termTextInput.setValue('');
+  }
+
+  setTermAndEmit(term: string) {
+    this.termTextInput.setValue(term);
+    this.emitQuery();
   }
 
   emitQuery() {
@@ -216,7 +222,13 @@ export class SearchBarComponent implements OnInit, OnDestroy {
       }
       this.searchModifiers.push(compFilter);
     });
-    this.termTextInput.setValue(termText.join(' '));
+    // do not emit event to prevent control going into typing state.
+    this.termTextInput.setValue(termText.join(' '), {emitEvent: false});
+    this.termText = termText.join(' ');
+  }
+
+  removeModifier(idx: number) {
+    this.searchModifiers.splice(idx, 1);
   }
 }
 

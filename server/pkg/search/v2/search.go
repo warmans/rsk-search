@@ -164,10 +164,22 @@ func (s *Search) ListTerms(fieldName string, prefix string) (models.FieldValues,
 	return terms, nil
 }
 
-func (s *Search) PredictSearchTerms(ctx context.Context, prefix string, numPredictions int32) (*api.SearchTermPredictions, error) {
+func (s *Search) PredictSearchTerms(ctx context.Context, prefix string, numPredictions int32, f filter.Filter) (*api.SearchTermPredictions, error) {
 
-	q := bluge.NewMatchQuery(prefix)
-	q.SetField("autocomplete")
+	var q bluge.Query
+	if f != nil {
+		// filtered autocomplete
+		filterQuery, err := bluge_query.FilterToQuery(filter.And(f, filter.Like("autocomplete", filter.String(prefix))))
+		if err != nil {
+			return nil, err
+		}
+		q = filterQuery
+	} else {
+		// autocomplete by prefix only
+		matchQuery := bluge.NewMatchQuery(prefix)
+		matchQuery.SetField("autocomplete")
+		q = matchQuery
+	}
 
 	// fetch extras in case some need to be discarded
 	req := bluge.NewTopNSearch(maxInt(int(numPredictions), 50), q).SetFrom(0)

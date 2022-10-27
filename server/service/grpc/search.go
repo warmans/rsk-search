@@ -117,6 +117,16 @@ func (s *SearchService) Search(ctx context.Context, request *api.SearchRequest) 
 }
 
 func (s *SearchService) PredictSearchTerm(ctx context.Context, request *api.PredictSearchTermRequest) (*api.SearchTermPredictions, error) {
+
+	var f filter.Filter
+	if request.Query != "" {
+		var err error
+		f, err = filter.Parse(request.Query)
+		if err != nil {
+			return nil, ErrInvalidRequestField("query", err.Error()).Err()
+		}
+	}
+
 	maxPredictions := int32(100)
 	if request.MaxPredictions < maxPredictions {
 		maxPredictions = request.MaxPredictions
@@ -124,7 +134,7 @@ func (s *SearchService) PredictSearchTerm(ctx context.Context, request *api.Pred
 	if strings.TrimSpace(request.Prefix) == "" {
 		return &api.SearchTermPredictions{}, nil
 	}
-	return s.searchBackend.PredictSearchTerms(ctx, request.Prefix, maxPredictions)
+	return s.searchBackend.PredictSearchTerms(ctx, request.Prefix, maxPredictions, f)
 }
 
 func (s *SearchService) GetTranscript(ctx context.Context, request *api.GetTranscriptRequest) (*api.Transcript, error) {

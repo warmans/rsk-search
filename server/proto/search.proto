@@ -272,6 +272,7 @@ message FieldValue {
 message PredictSearchTermRequest {
   string prefix = 1;
   int32 max_predictions = 2;
+  string query = 3;
 }
 
 message SearchTermPredictions  {

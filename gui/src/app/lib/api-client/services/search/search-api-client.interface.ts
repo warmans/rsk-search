@@ -307,6 +307,7 @@ export interface SearchAPIClientInterface {
     args: {
       prefix?: string,
       maxPredictions?: number,
+      query?: string,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskSearchTermPredictions>;

@@ -320,6 +320,7 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
     args: {
       prefix?: string,
       maxPredictions?: number,
+      query?: string,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskSearchTermPredictions> {
