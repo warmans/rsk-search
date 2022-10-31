@@ -4,10 +4,8 @@ import { SearchComponent } from './page/search/search.component';
 import { EpisodeComponent } from './page/episode/episode.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
-import { GlSearchComponent } from './component/gl-search/gl-search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { GlSearchFilterComponent } from './component/gl-search-filter/gl-search-filter.component';
 import { NgChartsModule } from 'ng2-charts';
 import { SearchStatsComponent } from './component/search-stats/search-stats.component';
 import { MatchedRowPosPipe } from './pipe/match-row-pos.pipe';
@@ -24,8 +22,6 @@ import { SearchBarAdvancedComponent } from './component/search-bar-advanced/sear
   declarations: [
     SearchComponent,
     EpisodeComponent,
-    GlSearchComponent,
-    GlSearchFilterComponent,
     SearchStatsComponent,
     MatchedRowPosPipe,
     EpisodeListComponent,
@@ -36,17 +32,17 @@ import { SearchBarAdvancedComponent } from './component/search-bar-advanced/sear
     SearchBarAutocompleteComponent,
     SearchBarAdvancedComponent,
   ],
-    imports: [
-        CommonModule,
-        RouterModule,
-        SharedModule,
-        FormsModule,
-        ReactiveFormsModule,
-        NgSelectModule,
-        NgChartsModule,
-        EmbedModule,
-    ],
-  exports: [GlSearchComponent, SearchBarComponent]
+  imports: [
+    CommonModule,
+    RouterModule,
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgSelectModule,
+    NgChartsModule,
+    EmbedModule,
+  ],
+  exports: [SearchBarComponent]
 })
 export class SearchModule {
 }
