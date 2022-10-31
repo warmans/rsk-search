@@ -1,22 +1,22 @@
 <div class="d-flex justify-content-between">
   <ul class="nav nav-tabs font-weight-bold">
     <li class="nav-item mr-2">
-      <a class="nav-link" [ngClass]="{'active': activePublication === 'xfm'}" (click)="activePublication = 'xfm'">Xfm</a>
+      <a class="nav-link" [ngClass]="{'active': activePublication === 'xfm'}" (click)="loadPublicationTab('xfm')">Xfm</a>
     </li>
     <li class="nav-item mr-2">
-      <a class="nav-link" [ngClass]="{'active': activePublication === 'guide'}" (click)="activePublication = 'guide'">Guides</a>
+      <a class="nav-link" [ngClass]="{'active': activePublication === 'guide'}" (click)="loadPublicationTab('guide')">Guides</a>
     </li>
     <li class="nav-item mr-2">
-      <a class="nav-link" [ngClass]="{'active': activePublication === 'special'}" (click)="activePublication = 'special'">Specials</a>
+      <a class="nav-link" [ngClass]="{'active': activePublication === 'special'}" (click)="loadPublicationTab('special')">Specials</a>
     </li>
     <li class="nav-item mr-2">
-      <a class="nav-link" [ngClass]="{'active': activePublication === 'other'}" (click)="activePublication = 'other'">Other</a>
+      <a class="nav-link" [ngClass]="{'active': activePublication === 'other'}" (click)="loadPublicationTab('other')">Other</a>
     </li>
     <li class="nav-item mr-2">
-      <a class="nav-link" [ngClass]="{'active': activePublication === 'karl'}" (click)="activePublication = 'karl'">Karl</a>
+      <a class="nav-link" [ngClass]="{'active': activePublication === 'karl'}" (click)="loadPublicationTab('karl')">Karl</a>
     </li>
     <li class="nav-item mr-2">
-      <a class="nav-link" [ngClass]="{'active': activePublication === 'preview'}" (click)="activePublication = 'preview'">Preview</a>
+      <a class="nav-link" [ngClass]="{'active': activePublication === 'preview'}" (click)="loadPublicationTab('preview')">Preview</a>
     </li>
   </ul>
   <button class="btn btn-sm btn-link mr-1" (click)="showDownloadDialog = !showDownloadDialog">
