@@ -34,6 +34,15 @@ export class ImportComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.updateTscriptList();
     this.updateTscriptImportList();
+
+    this.importForm.get('mp3_uri').valueChanges.pipe(takeUntil(this.unsubscribe$)).subscribe((value: string) => {
+
+      const filePattern = new RegExp(/.+\/(.*)\.mp3$/gm);
+      let matches = filePattern.exec(value);
+      if ((matches || []).length > 0) {
+        this.importForm.get('epid').setValue(matches[1]);
+      }
+    });
   }
 
   updateTscriptList() {
