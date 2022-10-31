@@ -3,8 +3,9 @@ import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { RskShortTranscript, RskTranscriptList } from 'src/app/lib/api-client/models';
 import { FormControl } from '@angular/forms';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
-type tabState = 'xfm' | 'guide' | 'special' | 'other' | 'karl' |  'preview';
+type tabState = 'xfm' | 'guide' | 'special' | 'other' | 'karl' | 'preview';
 
 @Component({
   selector: 'app-episode-list',
@@ -36,7 +37,10 @@ export class EpisodeListComponent implements OnInit, OnDestroy {
 
   private destroy$ = new EventEmitter<void>();
 
-  constructor(private apiClient: SearchAPIClient) {
+  constructor(private apiClient: SearchAPIClient, private router: Router, route: ActivatedRoute) {
+    route.queryParamMap.pipe(takeUntil(this.destroy$)).subscribe((params: ParamMap) => {
+      this.activePublication = params.get('publication') as tabState || 'xfm';
+    });
   }
 
   ngOnInit(): void {
@@ -79,5 +83,9 @@ export class EpisodeListComponent implements OnInit, OnDestroy {
   resetEpisodeList() {
     this.searchInput.setValue('');
     this.filteredTranscriptList = this.activePublicationTranscripts();
+  }
+
+  loadPublicationTab(tab: tabState) {
+    this.router.navigate(['/search'], { queryParams: { 'publication': tab } }).finally();
   }
 }

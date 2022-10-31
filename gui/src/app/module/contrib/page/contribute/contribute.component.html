@@ -112,7 +112,7 @@
               [style.width]="(this.overallComplete / (this.overallTotal || 1) * 100)+'%'">
             </div>
             <div
-              class="progress-bar bg-info"
+              class="progress-bar bg-secondary"
               role="progressbar"
               title="Awaiting approval."
               [style.width]="(this.overallPendingApproval / (this.overallTotal || 1) * 100)+'%'">
@@ -144,7 +144,7 @@
                     [style.width]="((progressMap[ep.id]['complete'] || 0) / (progressMap[ep.id]['total'] || 1)  * 100)+'%'">
                   </div>
                   <div
-                    class="progress-bar bg-info"
+                    class="progress-bar bg-secondary"
                     role="progressbar"
                     title="{{progressMap[ep.id]['pending_approval']}} awaiting approval"
                     [style.width]="((progressMap[ep.id]['pending_approval'] || 0) / (progressMap[ep.id]['total'] || 1)  * 100)+'%'">
