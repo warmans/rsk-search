@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  contributionAwardThreshold: 10,
+  contributionAwardThreshold: 8,
 };
 
 /*
