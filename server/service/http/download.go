@@ -113,7 +113,7 @@ func (c *DownloadService) DownloadMP3(resp http.ResponseWriter, req *http.Reques
 		return
 	}
 
-	c.httpMetrics.OutboundMediaBytesTotal.WithLabelValues("mp3")
+	c.httpMetrics.OutboundMediaBytesTotal.WithLabelValues("mp3").Observe(float64(f.Size()))
 	http.ServeFile(resp, req, filePath)
 }
 
