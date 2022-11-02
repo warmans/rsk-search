@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package rsk;
+
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+import "google/protobuf/empty.proto";
+
+option go_package = "github.com/warmans/rsk-search/server/gen/api";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    version: "1.0";
+  };
+  external_docs: {
+    url: "http://scrimpton.com";
+    description: "Service status";
+  };
+  schemes: HTTP;
+};
+service StatusService {
+
+  rpc GetQuotaSummary(google.protobuf.Empty) returns (Quotas) {
+    option (google.api.http) = {
+      get: "/api/status/quotas"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "getQuotaSummary",
+      summary: "Get summary of the service quotas"
+      tags: "search"
+    };
+  }
+}
+
+message Quotas {
+  int32 bandwidth_total_mib = 1;
+  int32 bandwidth_remaining_mib = 2;
+}

@@ -688,6 +688,21 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  getQuotaSummary(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskQuotas> {
+    const path = `/api/status/quotas`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<models.RskQuotas>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   listTranscripts(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscriptList> {

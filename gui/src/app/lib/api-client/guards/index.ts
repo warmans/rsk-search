@@ -576,6 +576,19 @@ export function isRskPrediction(arg: any): arg is models.RskPrediction {
   );
   }
 
+export function isRskQuotas(arg: any): arg is models.RskQuotas {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // bandwidthRemainingMib?: number
+    ( typeof arg.bandwidthRemainingMib === 'undefined' || typeof arg.bandwidthRemainingMib === 'number' ) &&
+    // bandwidthTotalMib?: number
+    ( typeof arg.bandwidthTotalMib === 'undefined' || typeof arg.bandwidthTotalMib === 'number' ) &&
+
+  true
+  );
+  }
+
 export function isRskRank(arg: any): arg is models.RskRank {
   return (
   arg != null &&

@@ -25,6 +25,7 @@ import (
 	"github.com/warmans/rsk-search/service/config"
 	"github.com/warmans/rsk-search/service/grpc"
 	httpsrv "github.com/warmans/rsk-search/service/http"
+	"github.com/warmans/rsk-search/service/metrics"
 	"github.com/warmans/rsk-search/service/queue"
 	"go.uber.org/zap"
 	"net/http"
@@ -221,11 +222,15 @@ func ServerCmd() *cobra.Command {
 					auth,
 					persistentDBConn,
 				),
+				grpc.NewStatusService(
+					logger,
+					persistentDBConn,
+				),
 			}
 
 			httpServices := []server.HTTPService{
 				httpsrv.NewMetricsService(),
-				httpsrv.NewDownloadService(logger, srvCfg),
+				httpsrv.NewDownloadService(logger, srvCfg, persistentDBConn, metrics.NewHTTPMetrics()),
 			}
 			if oauthCfg.Secret != "" {
 				httpServices = append(httpServices, httpsrv.NewOauthService(logger, tokenCache, persistentDBConn, auth, oauthCfg, srvCfg))

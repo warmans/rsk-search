@@ -4,6 +4,7 @@ import (
 	"embed"
 	"encoding/json"
 	"fmt"
+	"github.com/warmans/rsk-search/pkg/models"
 )
 
 //go:embed data/episode-date-map.json
@@ -55,9 +56,16 @@ func EpisodeList() []string {
 	return cpy
 }
 
-// IsValidEpisodeID returns true if the value is a known episode ID according to the episode-map.json
-// The id is in the format ep-[publication]-S[season]E[episode]
+// IsValidEpisodeID returns true if the ID appears to be valid based on the format, but doesn't mean it will exist.
 func IsValidEpisodeID(id string) bool {
+	if _, _, _, err := models.ParseEpID(id); err != nil {
+		return false
+	}
+	return true
+}
+
+// IsKnownEpisodeID returns true if this episode is the data mapping metadata.
+func IsKnownEpisodeID(id string) bool {
 	_, ok := episodeIDMap[id]
 	return ok
 }

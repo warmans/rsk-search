@@ -1100,6 +1100,29 @@
           ]
         }
       },
+      "/api/status/quotas": {
+        "get": {
+          "summary": "Get summary of the service quotas",
+          "operationId": "getQuotaSummary",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskQuotas"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "tags": [
+            "search"
+          ]
+        }
+      },
       "/api/transcript": {
         "get": {
           "summary": "Fetch list of available episodes",
@@ -1987,6 +2010,19 @@
             "items": {
               "$ref": "#/definitions/rskWordPosition"
             }
+          }
+        }
+      },
+      "rskQuotas": {
+        "type": "object",
+        "properties": {
+          "bandwidthTotalMib": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "bandwidthRemainingMib": {
+            "type": "integer",
+            "format": "int32"
           }
         }
       },

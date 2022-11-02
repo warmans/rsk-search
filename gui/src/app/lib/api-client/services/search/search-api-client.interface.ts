@@ -315,6 +315,13 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  getQuotaSummary(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskQuotas>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   listTranscripts(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscriptList>;

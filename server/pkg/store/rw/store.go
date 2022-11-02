@@ -1378,3 +1378,39 @@ func (s *Store) GetDonationStats(ctx context.Context) (models.DonationRecipientS
 	}
 	return recipients, nil
 }
+
+func (s *Store) IncrementMediaAccessLog(ctx context.Context, mediaType string, epid string, bytes int64) error {
+	now := time.Now()
+	_, err := s.tx.ExecContext(
+		ctx,
+		`INSERT INTO media_access_log (epid, media_type, time_bucket, num_times_accessed, total_bytes) 
+		VALUES ($1, $2, $3, 1, $4) 
+		ON CONFLICT (epid, media_type, time_bucket) DO 
+			UPDATE SET num_times_accessed = media_access_log.num_times_accessed + 1, total_bytes = media_access_log.total_bytes + $4`,
+		epid,
+		mediaType,
+		time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, time.UTC),
+		bytes,
+	)
+	return err
+}
+
+func (s *Store) GetMediaStatsForCurrentMonth(ctx context.Context) (int64, int64, error) {
+	now := time.Now()
+	startOfMonth := time.Date(now.Year(), now.Month(), 1, 0, 0, 0, 0, time.UTC)
+	endOfMonth := startOfMonth.AddDate(0, 1, 0)
+
+	var totalDownloads int64
+	var totalBytes int64
+	err := s.tx.QueryRowxContext(
+		ctx,
+		`
+			SELECT COALESCE(SUM(num_times_accessed), 0), COALESCE(SUM(total_bytes), 0) 
+			FROM media_access_log
+			WHERE time_bucket >= $1 AND time_bucket < $2`,
+		startOfMonth,
+		endOfMonth,
+	).Scan(&totalDownloads, &totalBytes)
+
+	return totalDownloads, totalBytes, err
+}

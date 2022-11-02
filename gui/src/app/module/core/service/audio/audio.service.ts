@@ -43,6 +43,7 @@ export enum PlayerState {
   paused = 'paused',
   loading = 'loading',
   ended = 'ended',
+  failed = 'failed',
 }
 
 @Injectable({
@@ -83,6 +84,7 @@ export class AudioService {
   private percentLoadedSub: BehaviorSubject<number> = new BehaviorSubject(0);
   private audioSourceSub: BehaviorSubject<FileStatus> = new BehaviorSubject<FileStatus>({ audioFile: '', audioID: '', audioName: '', standalone: false });
   private audioHistoryLogSub: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(this.getListenLog());
+  private errorsSub: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(this.getListenLog());
 
   public audioHistoryLog = this.audioHistoryLogSub.asObservable();
 
@@ -131,6 +133,7 @@ export class AudioService {
     this.audio.addEventListener('progress', this.calculatePercentLoaded, false);
     this.audio.addEventListener('waiting', this.setPlayerStatus, false);
     this.audio.addEventListener('ended', this.setPlayerStatus, false);
+    this.audio.addEventListener('error', this.setPlayerStatus, false);
   }
 
   private calculatePercentLoaded = (evt) => {
@@ -158,6 +161,9 @@ export class AudioService {
         break;
       case 'ended':
         this.playerStatusSub.next(PlayerState.ended);
+        break;
+      case 'error':
+        this.playerStatusSub.next(PlayerState.failed);
         break;
       default:
         this.playerStatusSub.next(PlayerState.paused);

@@ -31,6 +31,11 @@
 
   <app-alert></app-alert>
 
+  <div class="alert alert-warning" *ngIf="bandwidthQuotaUsedPcnt > 95">
+    <strong>Scrimpton has reached {{ bandwidthQuotaUsedPcnt * 100 | number}}% of its bandwidth quota.</strong>
+    <div>This means a bandwidth limit has been reached preventing further file downloads. This may prevent audio files from being played until the quota is reset at the end of the month.</div>
+  </div>
+
   <router-outlet></router-outlet>
 
   <app-audio-player-fixed></app-audio-player-fixed>

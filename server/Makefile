@@ -101,7 +101,7 @@ generate.swagger-bundle:
 	go run ./script/swagger-merge/main.go \
 		-out ../gui/src/assets/swagger.json \
 		-base ./script/swagger-merge/base.swagger.json \
-		-merge ./gen/api/open-api/oauth.swagger.json,./gen/api/open-api/search.swagger.json,./gen/api/open-api/contrib.swagger.json,./gen/api/open-api/admin.swagger.json
+		-merge ./gen/api/open-api/oauth.swagger.json,./gen/api/open-api/search.swagger.json,./gen/api/open-api/contrib.swagger.json,./gen/api/open-api/admin.swagger.json,./gen/api/open-api/status.swagger.json
 
 .PHONY: generate.zip
 generate.zip:  generate.json.zip generate.plaintext.zip
@@ -150,7 +150,8 @@ run: build
 		--rewards-disabled=false \
 		--import-keep-files=true \
 		--coffee-access-token=${COFFEE_ACCESS_TOKEN} \
-		--assembly-ai-access-token=${ASSEMBLY_AI_ACCESS_TOKEN}
+		--assembly-ai-access-token=${ASSEMBLY_AI_ACCESS_TOKEN} \
+		--media-base-path=${MEDIA_BASE_PATH}
 
 .PHONY: dev.services.start
 dev.services.start:

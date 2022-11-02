@@ -90,6 +90,7 @@ services:
       - postgres
     volumes:
       - ${PWD}/google-service-key.json:/root/google-service-key.json
+      - /mnt/audio:/audio
     environment:
       RSK_SEARCH_RW_DB_DSN: "postgres://scrimpton:insecure@postgres:5432/scrimpton?sslmode=disable"
       RSK_SEARCH_JWT_KEY: ""

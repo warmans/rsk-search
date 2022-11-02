@@ -40,6 +40,7 @@ export { RskIncomingDonationList } from './rsk-incoming-donation-list.model';
 export { RskMetadata } from './rsk-metadata.model';
 export { RskPendingRewardList } from './rsk-pending-reward-list.model';
 export { RskPrediction } from './rsk-prediction.model';
+export { RskQuotas } from './rsk-quotas.model';
 export { RskRank } from './rsk-rank.model';
 export { RskRecipientStats } from './rsk-recipient-stats.model';
 export { RskRedditAuthURL } from './rsk-reddit-auth-url.model';

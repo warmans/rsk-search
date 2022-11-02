@@ -3,7 +3,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Claims, SessionService } from 'src/app/module/core/service/session/session.service';
 import { takeUntil } from 'rxjs/operators';
 import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
-import { RskPrediction, RskSearchTermPredictions } from 'src/app/lib/api-client/models';
+import { RskQuotas } from 'src/app/lib/api-client/models';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +20,8 @@ export class RootComponent implements OnInit, OnDestroy {
 
   destory$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  searchPredictions: RskPrediction[] = [];
+  quotas: RskQuotas;
+  bandwidthQuotaUsedPcnt: number = 0;
 
   constructor(
     private renderer: Renderer2,
@@ -37,8 +38,8 @@ export class RootComponent implements OnInit, OnDestroy {
       }
     });
     this.router.events.pipe(takeUntil(this.destory$)).subscribe((event) => {
-      if(event instanceof NavigationEnd) {
-        this.embedMode = event.url.startsWith("/embed")
+      if (event instanceof NavigationEnd) {
+        this.embedMode = event.url.startsWith('/embed');
       }
     });
   }
@@ -78,17 +79,10 @@ export class RootComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.darkTheme = localStorage.getItem('theme') === 'dark';
     this.updateTheme();
-  }
 
-  predictTerms(prefix: string) {
-    this.searchPredictions = [];
-    if ((prefix || '').trim() == '') {
-      return;
-    }
-    this.apiClient.predictSearchTerm({ prefix: prefix, maxPredictions: 5 })
-      .pipe(takeUntil(this.destory$))
-      .subscribe((value: RskSearchTermPredictions) => {
-        this.searchPredictions = value.predictions;
-      });
+    this.apiClient.getQuotaSummary().pipe(takeUntil(this.destory$)).subscribe((res: RskQuotas) => {
+      this.quotas = res;
+      this.bandwidthQuotaUsedPcnt = (1 - (res.bandwidthRemainingMib / res.bandwidthTotalMib));
+    });
   }
 }

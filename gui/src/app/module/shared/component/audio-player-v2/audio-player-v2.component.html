@@ -9,6 +9,7 @@
         <a *ngIf="audioStatus.audioID && !audioStatus.standalone" [routerLink]="['/ep', 'ep-'+audioStatus.audioID]">{{ audioStatus.audioID }}</a>
         <span *ngIf="audioStatus.audioID && audioStatus.standalone">{{ audioStatus.audioID }}</span>
         <span *ngIf="audioStatus?.state === states.loading">(loading...)</span>
+        <span *ngIf="audioStatus?.state === states.failed">(ERROR! Audio couldn't be loaded)</span>
         <span class="" *ngIf="audioStatus.audioName"> - {{ audioStatus.audioName }}</span>
       </div>
       <div>
