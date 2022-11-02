@@ -19,7 +19,7 @@ func NewHTTPMetrics() *HTTPMetrics {
 			[]string{"media_type"},
 		),
 	}
-	prometheus.DefaultRegisterer.Register(metrics.OutboundMediaBytesTotal)
+	prometheus.DefaultRegisterer.MustRegister(metrics.OutboundMediaBytesTotal)
 	return metrics
 }
 
