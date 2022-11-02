@@ -95,6 +95,8 @@ func (c *DownloadService) DownloadMP3(resp http.ResponseWriter, req *http.Reques
 		if err != nil {
 			return err
 		}
+
+		c.httpMetrics.OutboundMediaQuotaRemaining.Set(float64(quota.BandwidthQuotaInMiB - quota.BytesAsMib(bytes)))
 		if quota.BytesAsMib(bytes+f.Size()) > quota.BandwidthQuotaInMiB {
 			return DownloadsOverQuota
 		}
@@ -113,7 +115,7 @@ func (c *DownloadService) DownloadMP3(resp http.ResponseWriter, req *http.Reques
 		return
 	}
 
-	c.httpMetrics.OutboundMediaBytesTotal.WithLabelValues("mp3").Observe(float64(f.Size()))
+	c.httpMetrics.OutboundMediaBytesTotal.Set(float64(f.Size()))
 	http.ServeFile(resp, req, filePath)
 }
 
