@@ -6,7 +6,7 @@
     "summary": "",
     "version": "0.0.0",
     "release_date": "2008-12-31T12:00:00Z",
-    "incomplete": true,
+    "incomplete": false,
     "bestof": false,
     "special": false,
     "locked": false,
@@ -6675,7 +6675,7 @@
       {
         "id": "ep-guide-S1E01-606",
         "pos": 606,
-        "offset_sec": 2686,
+        "offset_sec": 2675,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -6686,7 +6686,7 @@
       {
         "id": "ep-guide-S1E01-607",
         "pos": 607,
-        "offset_sec": 2737,
+        "offset_sec": 2683,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -6697,7 +6697,7 @@
       {
         "id": "ep-guide-S1E01-608",
         "pos": 608,
-        "offset_sec": 2747,
+        "offset_sec": 2684,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -6708,7 +6708,7 @@
       {
         "id": "ep-guide-S1E01-609",
         "pos": 609,
-        "offset_sec": 2753,
+        "offset_sec": 2685,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -6719,7 +6719,7 @@
       {
         "id": "ep-guide-S1E01-610",
         "pos": 610,
-        "offset_sec": 2758,
+        "offset_sec": 2686,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -6730,17 +6730,468 @@
       {
         "id": "ep-guide-S1E01-611",
         "pos": 611,
-        "offset_sec": 2880,
-        "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
+        "offset_sec": 2703,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
         "metadata": null,
-        "content": "[~3 mins of missing transcription]",
+        "content": "I couldn't care that people were staring at me. I was rolling about on the floor, like a dying fly, on me back. I just didn't care about what was going on around me, but I was told that because it's busy that they might have to send someone out to shove like something up my arse that would get to the pain quicker.",
         "notable": false
       },
       {
         "id": "ep-guide-S1E01-612",
         "pos": 612,
+        "offset_sec": 2719,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Woah woah woah.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-613",
+        "pos": 613,
+        "offset_sec": 2720,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "What do you mean send them out? While you're laying on the floor in A\u0026E they're going to stick something up your arse?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-614",
+        "pos": 614,
+        "offset_sec": 2726,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "I think so yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-615",
+        "pos": 615,
+        "offset_sec": 2726,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "What do you mean? Oh you mean a pill? I thought you meant to get to your kidney quicker than up your knob.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-616",
+        "pos": 616,
+        "offset_sec": 2732,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "No, no no a pill. They put it up there and apparently it'll kick in quicker.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-617",
+        "pos": 617,
+        "offset_sec": 2735,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah...",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-618",
+        "pos": 618,
+        "offset_sec": 2736,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "The tablet works quicker.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-619",
+        "pos": 619,
+        "offset_sec": 2737,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-620",
+        "pos": 620,
+        "offset_sec": 2737,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Up your arse than it does down your throat.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-621",
+        "pos": 621,
+        "offset_sec": 2740,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah because it's a mucus membrane and it's... yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-622",
+        "pos": 622,
+        "offset_sec": 2742,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Well, I was up for it. I just was like whatever it takes now saying that to me now -",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-623",
+        "pos": 623,
+        "offset_sec": 2747,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "But hold on though. What if the doctor said, \"okay, I could give you this morphine, take it, it will take a few minutes to kick in or I could rub some on my um, penis. I'll pop an orange on the end of my penis. I rub that in morphine and I put that up your rectum. Mr. Pilkington. Are you in agony or not? Are you in agony? Okay look I'll just smear it...\"",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-624",
+        "pos": 624,
+        "offset_sec": 2765,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "I'd say - I'll get a second opinion.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-625",
+        "pos": 625,
+        "offset_sec": 2767,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Well no you haven't got time - there it is? Do you want this up your arse, it's covered in morphine. He's in his private life. He's a, he's a, he's a promiscuous gay man and but in his, in his professional life he's is a doctor with a morphine smeared penis and he's ready for action. So if you're...",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-626",
+        "pos": 626,
+        "offset_sec": 2783,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "And he's willing to do that in the middle of A\u0026E.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-627",
+        "pos": 627,
+        "offset_sec": 2786,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah so...",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-628",
+        "pos": 628,
+        "offset_sec": 2786,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "He takes no pleasure from that.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-629",
+        "pos": 629,
+        "offset_sec": 2788,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "...it's the only way to -  are you in pain?@ Do you want this done or not? Yes or no?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-630",
+        "pos": 630,
+        "offset_sec": 2792,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "He comes out into A\u0026E reception, his trousers around his ankles. He has an erect penis. He says karl, do you want me to stick this up your arse? and your answer is?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-631",
+        "pos": 631,
+        "offset_sec": 2802,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yes or no?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-632",
+        "pos": 632,
+        "offset_sec": 2802,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "You're in terrible agony.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-633",
+        "pos": 633,
+        "offset_sec": 2804,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "He's wearing a condom. It's smeared the condom in and it's not, it's not, it's not unprotected morphine penile umm surgery.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-634",
+        "pos": 634,
+        "offset_sec": 2815,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Administration.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-635",
+        "pos": 635,
+        "offset_sec": 2816,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Administration yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-636",
+        "pos": 636,
+        "offset_sec": 2817,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "And what in and out - done?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-637",
+        "pos": 637,
+        "offset_sec": 2820,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Just in and out yeah. He just administered the - your arse takes on the morphine from the doctor penis. It's the only way really?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-638",
+        "pos": 638,
+        "offset_sec": 2830,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "In and out?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-639",
+        "pos": 639,
+        "offset_sec": 2831,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah - in and out, up once. Okay. And out.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-640",
+        "pos": 640,
+        "offset_sec": 2834,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "And it'll definitely work?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-641",
+        "pos": 641,
+        "offset_sec": 2836,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Uh you will... The pain will go away.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-642",
+        "pos": 642,
+        "offset_sec": 2839,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "No side effects?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-643",
+        "pos": 643,
+        "offset_sec": 2840,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "It'll be pleasurable if anything.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-644",
+        "pos": 644,
+        "offset_sec": 2842,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "No side effects.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-645",
+        "pos": 645,
+        "offset_sec": 2843,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "I'd probably call Auntie Nora and ask if she's had it yet.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-646",
+        "pos": 646,
+        "offset_sec": 2847,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "Ricky laughs.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-647",
+        "pos": 647,
+        "offset_sec": 2848,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Can I just return us back to where we started from because in Ricky's introduction he said that modern man, in a sense with all the technology we have, can play God, and this is something which is huge now - a lot of ethical discussion -",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-648",
+        "pos": 648,
+        "offset_sec": 2863,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-649",
+        "pos": 649,
+        "offset_sec": 2864,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "-about things like stem cell research. Should we be interfering in what should be a Godly terrain? You say \"No\", straight away straight away - \"No\".",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-650",
+        "pos": 650,
+        "offset_sec": 2872,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "I think they're sort of like messing about now, I think that's the problem. They've got the tools and they like to use them, and that's what happens. I've got a sander for Christmas and I can't wait to sand stuff. I can't even think of enough things that need sanding, but I want to use it.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-651",
+        "pos": 651,
+        "offset_sec": 2887,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Not scruffy sanda?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-652",
+        "pos": 652,
+        "offset_sec": 2888,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "And that's the problem isn't it? If you got the tools -  you can't have the tools and so pop them in the shed.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E01-653",
+        "pos": 653,
         "offset_sec": 2893,
         "offset_inferred": false,
         "type": "chat",
@@ -6750,8 +7201,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-613",
-        "pos": 613,
+        "id": "ep-guide-S1E01-654",
+        "pos": 654,
         "offset_sec": 2896,
         "offset_inferred": true,
         "type": "chat",
@@ -6761,8 +7212,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-614",
-        "pos": 614,
+        "id": "ep-guide-S1E01-655",
+        "pos": 655,
         "offset_sec": 2898,
         "offset_inferred": true,
         "type": "chat",
@@ -6772,8 +7223,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-615",
-        "pos": 615,
+        "id": "ep-guide-S1E01-656",
+        "pos": 656,
         "offset_sec": 2903,
         "offset_inferred": true,
         "type": "chat",
@@ -6783,8 +7234,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-616",
-        "pos": 616,
+        "id": "ep-guide-S1E01-657",
+        "pos": 657,
         "offset_sec": 2905,
         "offset_inferred": true,
         "type": "chat",
@@ -6794,8 +7245,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-617",
-        "pos": 617,
+        "id": "ep-guide-S1E01-658",
+        "pos": 658,
         "offset_sec": 2911,
         "offset_inferred": true,
         "type": "chat",
@@ -6805,8 +7256,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-618",
-        "pos": 618,
+        "id": "ep-guide-S1E01-659",
+        "pos": 659,
         "offset_sec": 2912,
         "offset_inferred": true,
         "type": "chat",
@@ -6816,8 +7267,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-619",
-        "pos": 619,
+        "id": "ep-guide-S1E01-660",
+        "pos": 660,
         "offset_sec": 2913,
         "offset_inferred": true,
         "type": "chat",
@@ -6827,8 +7278,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-620",
-        "pos": 620,
+        "id": "ep-guide-S1E01-661",
+        "pos": 661,
         "offset_sec": 2914,
         "offset_inferred": true,
         "type": "chat",
@@ -6838,8 +7289,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-621",
-        "pos": 621,
+        "id": "ep-guide-S1E01-662",
+        "pos": 662,
         "offset_sec": 2915,
         "offset_inferred": true,
         "type": "chat",
@@ -6849,8 +7300,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-622",
-        "pos": 622,
+        "id": "ep-guide-S1E01-663",
+        "pos": 663,
         "offset_sec": 2917,
         "offset_inferred": true,
         "type": "chat",
@@ -6860,8 +7311,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-623",
-        "pos": 623,
+        "id": "ep-guide-S1E01-664",
+        "pos": 664,
         "offset_sec": 2924,
         "offset_inferred": true,
         "type": "chat",
@@ -6871,8 +7322,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-624",
-        "pos": 624,
+        "id": "ep-guide-S1E01-665",
+        "pos": 665,
         "offset_sec": 2924,
         "offset_inferred": false,
         "type": "chat",
@@ -6882,8 +7333,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-625",
-        "pos": 625,
+        "id": "ep-guide-S1E01-666",
+        "pos": 666,
         "offset_sec": 2926,
         "offset_inferred": true,
         "type": "chat",
@@ -6893,8 +7344,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-626",
-        "pos": 626,
+        "id": "ep-guide-S1E01-667",
+        "pos": 667,
         "offset_sec": 2943,
         "offset_inferred": true,
         "type": "chat",
@@ -6904,8 +7355,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-627",
-        "pos": 627,
+        "id": "ep-guide-S1E01-668",
+        "pos": 668,
         "offset_sec": 2943,
         "offset_inferred": false,
         "type": "chat",
@@ -6915,8 +7366,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-628",
-        "pos": 628,
+        "id": "ep-guide-S1E01-669",
+        "pos": 669,
         "offset_sec": 2945,
         "offset_inferred": true,
         "type": "chat",
@@ -6926,8 +7377,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-629",
-        "pos": 629,
+        "id": "ep-guide-S1E01-670",
+        "pos": 670,
         "offset_sec": 2946,
         "offset_inferred": true,
         "type": "chat",
@@ -6937,8 +7388,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-630",
-        "pos": 630,
+        "id": "ep-guide-S1E01-671",
+        "pos": 671,
         "offset_sec": 2947,
         "offset_inferred": true,
         "type": "chat",
@@ -6948,8 +7399,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-631",
-        "pos": 631,
+        "id": "ep-guide-S1E01-672",
+        "pos": 672,
         "offset_sec": 2950,
         "offset_inferred": true,
         "type": "chat",
@@ -6959,8 +7410,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-632",
-        "pos": 632,
+        "id": "ep-guide-S1E01-673",
+        "pos": 673,
         "offset_sec": 2956,
         "offset_inferred": true,
         "type": "chat",
@@ -6970,8 +7421,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-633",
-        "pos": 633,
+        "id": "ep-guide-S1E01-674",
+        "pos": 674,
         "offset_sec": 2963,
         "offset_inferred": true,
         "type": "chat",
@@ -6981,8 +7432,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-634",
-        "pos": 634,
+        "id": "ep-guide-S1E01-675",
+        "pos": 675,
         "offset_sec": 2963,
         "offset_inferred": true,
         "type": "chat",
@@ -6992,8 +7443,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-635",
-        "pos": 635,
+        "id": "ep-guide-S1E01-676",
+        "pos": 676,
         "offset_sec": 2967,
         "offset_inferred": true,
         "type": "chat",
@@ -7003,8 +7454,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-636",
-        "pos": 636,
+        "id": "ep-guide-S1E01-677",
+        "pos": 677,
         "offset_sec": 2967,
         "offset_inferred": true,
         "type": "chat",
@@ -7014,8 +7465,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-637",
-        "pos": 637,
+        "id": "ep-guide-S1E01-678",
+        "pos": 678,
         "offset_sec": 2970,
         "offset_inferred": true,
         "type": "chat",
@@ -7025,8 +7476,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-638",
-        "pos": 638,
+        "id": "ep-guide-S1E01-679",
+        "pos": 679,
         "offset_sec": 2972,
         "offset_inferred": false,
         "type": "chat",
@@ -7036,8 +7487,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-639",
-        "pos": 639,
+        "id": "ep-guide-S1E01-680",
+        "pos": 680,
         "offset_sec": 2973,
         "offset_inferred": true,
         "type": "chat",
@@ -7047,8 +7498,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-640",
-        "pos": 640,
+        "id": "ep-guide-S1E01-681",
+        "pos": 681,
         "offset_sec": 2977,
         "offset_inferred": true,
         "type": "chat",
@@ -7058,8 +7509,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-641",
-        "pos": 641,
+        "id": "ep-guide-S1E01-682",
+        "pos": 682,
         "offset_sec": 2978,
         "offset_inferred": true,
         "type": "chat",
@@ -7069,8 +7520,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-642",
-        "pos": 642,
+        "id": "ep-guide-S1E01-683",
+        "pos": 683,
         "offset_sec": 2980,
         "offset_inferred": true,
         "type": "chat",
@@ -7080,8 +7531,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-643",
-        "pos": 643,
+        "id": "ep-guide-S1E01-684",
+        "pos": 684,
         "offset_sec": 2985,
         "offset_inferred": true,
         "type": "chat",
@@ -7091,8 +7542,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-644",
-        "pos": 644,
+        "id": "ep-guide-S1E01-685",
+        "pos": 685,
         "offset_sec": 2988,
         "offset_inferred": true,
         "type": "chat",
@@ -7102,8 +7553,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-645",
-        "pos": 645,
+        "id": "ep-guide-S1E01-686",
+        "pos": 686,
         "offset_sec": 2989,
         "offset_inferred": true,
         "type": "chat",
@@ -7113,8 +7564,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-646",
-        "pos": 646,
+        "id": "ep-guide-S1E01-687",
+        "pos": 687,
         "offset_sec": 2990,
         "offset_inferred": true,
         "type": "chat",
@@ -7124,8 +7575,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-647",
-        "pos": 647,
+        "id": "ep-guide-S1E01-688",
+        "pos": 688,
         "offset_sec": 2993,
         "offset_inferred": true,
         "type": "chat",
@@ -7135,8 +7586,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-648",
-        "pos": 648,
+        "id": "ep-guide-S1E01-689",
+        "pos": 689,
         "offset_sec": 2994,
         "offset_inferred": true,
         "type": "chat",
@@ -7146,8 +7597,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-649",
-        "pos": 649,
+        "id": "ep-guide-S1E01-690",
+        "pos": 690,
         "offset_sec": 2996,
         "offset_inferred": true,
         "type": "chat",
@@ -7157,8 +7608,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-650",
-        "pos": 650,
+        "id": "ep-guide-S1E01-691",
+        "pos": 691,
         "offset_sec": 2997,
         "offset_inferred": true,
         "type": "chat",
@@ -7168,8 +7619,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-651",
-        "pos": 651,
+        "id": "ep-guide-S1E01-692",
+        "pos": 692,
         "offset_sec": 2997,
         "offset_inferred": true,
         "type": "chat",
@@ -7179,8 +7630,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-652",
-        "pos": 652,
+        "id": "ep-guide-S1E01-693",
+        "pos": 693,
         "offset_sec": 3000,
         "offset_inferred": true,
         "type": "chat",
@@ -7190,8 +7641,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-653",
-        "pos": 653,
+        "id": "ep-guide-S1E01-694",
+        "pos": 694,
         "offset_sec": 3001,
         "offset_inferred": true,
         "type": "chat",
@@ -7201,8 +7652,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-654",
-        "pos": 654,
+        "id": "ep-guide-S1E01-695",
+        "pos": 695,
         "offset_sec": 3003,
         "offset_inferred": false,
         "type": "chat",
@@ -7212,8 +7663,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-655",
-        "pos": 655,
+        "id": "ep-guide-S1E01-696",
+        "pos": 696,
         "offset_sec": 3011,
         "offset_inferred": true,
         "type": "chat",
@@ -7223,8 +7674,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-656",
-        "pos": 656,
+        "id": "ep-guide-S1E01-697",
+        "pos": 697,
         "offset_sec": 3017,
         "offset_inferred": true,
         "type": "chat",
@@ -7234,8 +7685,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-657",
-        "pos": 657,
+        "id": "ep-guide-S1E01-698",
+        "pos": 698,
         "offset_sec": 3025,
         "offset_inferred": true,
         "type": "chat",
@@ -7245,8 +7696,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-658",
-        "pos": 658,
+        "id": "ep-guide-S1E01-699",
+        "pos": 699,
         "offset_sec": 3026,
         "offset_inferred": false,
         "type": "chat",
@@ -7256,8 +7707,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-659",
-        "pos": 659,
+        "id": "ep-guide-S1E01-700",
+        "pos": 700,
         "offset_sec": 3032,
         "offset_inferred": false,
         "type": "chat",
@@ -7267,8 +7718,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-660",
-        "pos": 660,
+        "id": "ep-guide-S1E01-701",
+        "pos": 701,
         "offset_sec": 3038,
         "offset_inferred": false,
         "type": "chat",
@@ -7278,8 +7729,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-661",
-        "pos": 661,
+        "id": "ep-guide-S1E01-702",
+        "pos": 702,
         "offset_sec": 3042,
         "offset_inferred": false,
         "type": "chat",
@@ -7289,8 +7740,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-662",
-        "pos": 662,
+        "id": "ep-guide-S1E01-703",
+        "pos": 703,
         "offset_sec": 3043,
         "offset_inferred": true,
         "type": "chat",
@@ -7300,8 +7751,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-663",
-        "pos": 663,
+        "id": "ep-guide-S1E01-704",
+        "pos": 704,
         "offset_sec": 3044,
         "offset_inferred": true,
         "type": "chat",
@@ -7311,8 +7762,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-664",
-        "pos": 664,
+        "id": "ep-guide-S1E01-705",
+        "pos": 705,
         "offset_sec": 3046,
         "offset_inferred": true,
         "type": "chat",
@@ -7322,8 +7773,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-665",
-        "pos": 665,
+        "id": "ep-guide-S1E01-706",
+        "pos": 706,
         "offset_sec": 3047,
         "offset_inferred": true,
         "type": "chat",
@@ -7333,8 +7784,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-666",
-        "pos": 666,
+        "id": "ep-guide-S1E01-707",
+        "pos": 707,
         "offset_sec": 3052,
         "offset_inferred": true,
         "type": "chat",
@@ -7344,8 +7795,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-667",
-        "pos": 667,
+        "id": "ep-guide-S1E01-708",
+        "pos": 708,
         "offset_sec": 3052,
         "offset_inferred": true,
         "type": "chat",
@@ -7355,8 +7806,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-668",
-        "pos": 668,
+        "id": "ep-guide-S1E01-709",
+        "pos": 709,
         "offset_sec": 3055,
         "offset_inferred": false,
         "type": "chat",
@@ -7366,8 +7817,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-669",
-        "pos": 669,
+        "id": "ep-guide-S1E01-710",
+        "pos": 710,
         "offset_sec": 3062,
         "offset_inferred": true,
         "type": "chat",
@@ -7377,8 +7828,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-670",
-        "pos": 670,
+        "id": "ep-guide-S1E01-711",
+        "pos": 711,
         "offset_sec": 3065,
         "offset_inferred": true,
         "type": "chat",
@@ -7388,8 +7839,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-671",
-        "pos": 671,
+        "id": "ep-guide-S1E01-712",
+        "pos": 712,
         "offset_sec": 3065,
         "offset_inferred": true,
         "type": "chat",
@@ -7399,8 +7850,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-672",
-        "pos": 672,
+        "id": "ep-guide-S1E01-713",
+        "pos": 713,
         "offset_sec": 3067,
         "offset_inferred": true,
         "type": "chat",
@@ -7410,8 +7861,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-673",
-        "pos": 673,
+        "id": "ep-guide-S1E01-714",
+        "pos": 714,
         "offset_sec": 3067,
         "offset_inferred": true,
         "type": "chat",
@@ -7421,8 +7872,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-674",
-        "pos": 674,
+        "id": "ep-guide-S1E01-715",
+        "pos": 715,
         "offset_sec": 3072,
         "offset_inferred": true,
         "type": "chat",
@@ -7432,8 +7883,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-675",
-        "pos": 675,
+        "id": "ep-guide-S1E01-716",
+        "pos": 716,
         "offset_sec": 3074,
         "offset_inferred": true,
         "type": "chat",
@@ -7443,8 +7894,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-676",
-        "pos": 676,
+        "id": "ep-guide-S1E01-717",
+        "pos": 717,
         "offset_sec": 3076,
         "offset_inferred": true,
         "type": "chat",
@@ -7454,8 +7905,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-677",
-        "pos": 677,
+        "id": "ep-guide-S1E01-718",
+        "pos": 718,
         "offset_sec": 3078,
         "offset_inferred": false,
         "type": "chat",
@@ -7465,8 +7916,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-678",
-        "pos": 678,
+        "id": "ep-guide-S1E01-719",
+        "pos": 719,
         "offset_sec": 3084,
         "offset_inferred": true,
         "type": "chat",
@@ -7476,8 +7927,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-679",
-        "pos": 679,
+        "id": "ep-guide-S1E01-720",
+        "pos": 720,
         "offset_sec": 3084,
         "offset_inferred": true,
         "type": "chat",
@@ -7487,8 +7938,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-680",
-        "pos": 680,
+        "id": "ep-guide-S1E01-721",
+        "pos": 721,
         "offset_sec": 3089,
         "offset_inferred": true,
         "type": "chat",
@@ -7498,8 +7949,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-681",
-        "pos": 681,
+        "id": "ep-guide-S1E01-722",
+        "pos": 722,
         "offset_sec": 3089,
         "offset_inferred": true,
         "type": "chat",
@@ -7509,8 +7960,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-682",
-        "pos": 682,
+        "id": "ep-guide-S1E01-723",
+        "pos": 723,
         "offset_sec": 3098,
         "offset_inferred": true,
         "type": "chat",
@@ -7520,8 +7971,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-683",
-        "pos": 683,
+        "id": "ep-guide-S1E01-724",
+        "pos": 724,
         "offset_sec": 3103,
         "offset_inferred": true,
         "type": "chat",
@@ -7531,8 +7982,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-684",
-        "pos": 684,
+        "id": "ep-guide-S1E01-725",
+        "pos": 725,
         "offset_sec": 3103,
         "offset_inferred": true,
         "type": "chat",
@@ -7542,8 +7993,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-685",
-        "pos": 685,
+        "id": "ep-guide-S1E01-726",
+        "pos": 726,
         "offset_sec": 3108,
         "offset_inferred": false,
         "type": "chat",
@@ -7553,8 +8004,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-686",
-        "pos": 686,
+        "id": "ep-guide-S1E01-727",
+        "pos": 727,
         "offset_sec": 3114,
         "offset_inferred": true,
         "type": "chat",
@@ -7564,8 +8015,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-687",
-        "pos": 687,
+        "id": "ep-guide-S1E01-728",
+        "pos": 728,
         "offset_sec": 3115,
         "offset_inferred": true,
         "type": "chat",
@@ -7575,8 +8026,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-688",
-        "pos": 688,
+        "id": "ep-guide-S1E01-729",
+        "pos": 729,
         "offset_sec": 3118,
         "offset_inferred": true,
         "type": "chat",
@@ -7586,8 +8037,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-689",
-        "pos": 689,
+        "id": "ep-guide-S1E01-730",
+        "pos": 730,
         "offset_sec": 3121,
         "offset_inferred": true,
         "type": "chat",
@@ -7597,8 +8048,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-690",
-        "pos": 690,
+        "id": "ep-guide-S1E01-731",
+        "pos": 731,
         "offset_sec": 3128,
         "offset_inferred": true,
         "type": "chat",
@@ -7608,8 +8059,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-691",
-        "pos": 691,
+        "id": "ep-guide-S1E01-732",
+        "pos": 732,
         "offset_sec": 3130,
         "offset_inferred": true,
         "type": "chat",
@@ -7619,8 +8070,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-692",
-        "pos": 692,
+        "id": "ep-guide-S1E01-733",
+        "pos": 733,
         "offset_sec": 3137,
         "offset_inferred": true,
         "type": "chat",
@@ -7630,8 +8081,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-693",
-        "pos": 693,
+        "id": "ep-guide-S1E01-734",
+        "pos": 734,
         "offset_sec": 3138,
         "offset_inferred": false,
         "type": "chat",
@@ -7641,8 +8092,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-694",
-        "pos": 694,
+        "id": "ep-guide-S1E01-735",
+        "pos": 735,
         "offset_sec": 3145,
         "offset_inferred": true,
         "type": "chat",
@@ -7652,8 +8103,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-695",
-        "pos": 695,
+        "id": "ep-guide-S1E01-736",
+        "pos": 736,
         "offset_sec": 3145,
         "offset_inferred": true,
         "type": "chat",
@@ -7663,8 +8114,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-696",
-        "pos": 696,
+        "id": "ep-guide-S1E01-737",
+        "pos": 737,
         "offset_sec": 3149,
         "offset_inferred": true,
         "type": "chat",
@@ -7674,8 +8125,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-697",
-        "pos": 697,
+        "id": "ep-guide-S1E01-738",
+        "pos": 738,
         "offset_sec": 3150,
         "offset_inferred": true,
         "type": "chat",
@@ -7685,8 +8136,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-698",
-        "pos": 698,
+        "id": "ep-guide-S1E01-739",
+        "pos": 739,
         "offset_sec": 3151,
         "offset_inferred": true,
         "type": "chat",
@@ -7696,8 +8147,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-699",
-        "pos": 699,
+        "id": "ep-guide-S1E01-740",
+        "pos": 740,
         "offset_sec": 3154,
         "offset_inferred": true,
         "type": "chat",
@@ -7707,8 +8158,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-700",
-        "pos": 700,
+        "id": "ep-guide-S1E01-741",
+        "pos": 741,
         "offset_sec": 3154,
         "offset_inferred": true,
         "type": "chat",
@@ -7718,8 +8169,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-701",
-        "pos": 701,
+        "id": "ep-guide-S1E01-742",
+        "pos": 742,
         "offset_sec": 3165,
         "offset_inferred": true,
         "type": "chat",
@@ -7729,8 +8180,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-702",
-        "pos": 702,
+        "id": "ep-guide-S1E01-743",
+        "pos": 743,
         "offset_sec": 3167,
         "offset_inferred": true,
         "type": "chat",
@@ -7740,8 +8191,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-703",
-        "pos": 703,
+        "id": "ep-guide-S1E01-744",
+        "pos": 744,
         "offset_sec": 3168,
         "offset_inferred": false,
         "type": "chat",
@@ -7751,8 +8202,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-704",
-        "pos": 704,
+        "id": "ep-guide-S1E01-745",
+        "pos": 745,
         "offset_sec": 3171,
         "offset_inferred": true,
         "type": "chat",
@@ -7762,8 +8213,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-705",
-        "pos": 705,
+        "id": "ep-guide-S1E01-746",
+        "pos": 746,
         "offset_sec": 3173,
         "offset_inferred": true,
         "type": "chat",
@@ -7773,8 +8224,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-706",
-        "pos": 706,
+        "id": "ep-guide-S1E01-747",
+        "pos": 747,
         "offset_sec": 3193,
         "offset_inferred": false,
         "type": "chat",
@@ -7784,8 +8235,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-707",
-        "pos": 707,
+        "id": "ep-guide-S1E01-748",
+        "pos": 748,
         "offset_sec": 3197,
         "offset_inferred": true,
         "type": "chat",
@@ -7795,8 +8246,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-708",
-        "pos": 708,
+        "id": "ep-guide-S1E01-749",
+        "pos": 749,
         "offset_sec": 3204,
         "offset_inferred": true,
         "type": "chat",
@@ -7806,8 +8257,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-709",
-        "pos": 709,
+        "id": "ep-guide-S1E01-750",
+        "pos": 750,
         "offset_sec": 3211,
         "offset_inferred": true,
         "type": "chat",
@@ -7817,8 +8268,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E01-710",
-        "pos": 710,
+        "id": "ep-guide-S1E01-751",
+        "pos": 751,
         "offset_sec": 3212,
         "offset_inferred": false,
         "type": "chat",
@@ -7830,13 +8281,19 @@
     ],
     "synopsis": [
       {
+        "description": "Would Karl accept morphine if it was administered by a doctor's penis?",
+        "start_pos": 623,
+        "end_pos": 647
+      },
+      {
         "description": "Ricky \u0026 Karl plays Albert at the doctor",
-        "start_pos": 681,
-        "end_pos": 707
+        "start_pos": 722,
+        "end_pos": 748
       }
     ],
     "contributors": [
       "Weird-Map7114",
+      "warmans",
       "wontbemad"
     ],
     "trivia": null
