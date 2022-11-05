@@ -13,6 +13,7 @@ import { ChangelogComponent } from '../module/search/page/changelog/changelog.co
 import { ImportComponent } from '../module/admin/page/import/import.component';
 import { CanActivateAdmin } from '../module/admin/can-activate-admin';
 import { TranscriptSectionComponent } from '../module/embed/page/transcript-section/transcript-section.component';
+import { QuotasComponent } from 'src/app/module/admin/page/quotas/quotas.component';
 
 const routes: Routes = [
   {
@@ -73,6 +74,14 @@ const routes: Routes = [
   {
     path: 'admin/import',
     component: ImportComponent,
+    canActivate: [CanActivateAdmin],
+    data: {
+      disableRewardPopup: true
+    }
+  },
+  {
+    path: 'admin/quotas',
+    component: QuotasComponent,
     canActivate: [CanActivateAdmin],
     data: {
       disableRewardPopup: true

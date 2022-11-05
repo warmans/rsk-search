@@ -9,7 +9,6 @@
         <a *ngIf="audioStatus.audioID && !audioStatus.standalone" [routerLink]="['/ep', 'ep-'+audioStatus.audioID]">{{ audioStatus.audioID }}</a>
         <span *ngIf="audioStatus.audioID && audioStatus.standalone">{{ audioStatus.audioID }}</span>
         <span *ngIf="audioStatus?.state === states.loading">(loading...)</span>
-        <span *ngIf="audioStatus?.state === states.failed">(ERROR! Audio couldn't be loaded)</span>
         <span class="" *ngIf="audioStatus.audioName"> - {{ audioStatus.audioName }}</span>
       </div>
       <div>
@@ -37,5 +36,11 @@
   </div>
   <div class="exit d-flex align-items-center px-3" *ngIf="!audioStatus.standalone && showCloseControl">
     <div class="clickable p-1 close" (click)="closeAudio()">&times;</div>
+  </div>
+  <div class="error-overlay d-flex align-items-center" *ngIf="audioStatus?.state === states.failed">
+    <div class="font-weight-bold flex-grow-1 d-flex align-items-center justify-content-center">
+      <span class="bg-danger text-white px-2 mr-2">FAILED! Audio couldn't be loaded.</span>
+      <a class="btn btn-sm btn-secondary" (click)="closeAudio()">Close player</a>
+    </div>
   </div>
 </div>

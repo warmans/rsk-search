@@ -4,6 +4,7 @@ import { Claims, SessionService } from 'src/app/module/core/service/session/sess
 import { takeUntil } from 'rxjs/operators';
 import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 import { RskQuotas } from 'src/app/lib/api-client/models';
+import { QuotaService } from 'src/app/module/core/service/quota/quota.service';
 
 @Component({
   selector: 'app-root',
@@ -29,6 +30,7 @@ export class RootComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private session: SessionService,
     private apiClient: SearchAPIClient,
+    private quotaService: QuotaService,
   ) {
     session.onTokenChange.pipe(takeUntil(this.destory$)).subscribe((token) => {
       if (token) {
@@ -41,6 +43,10 @@ export class RootComponent implements OnInit, OnDestroy {
       if (event instanceof NavigationEnd) {
         this.embedMode = event.url.startsWith('/embed');
       }
+    });
+    quotaService.quotas$.pipe(takeUntil(this.destory$)).subscribe((res: RskQuotas) => {
+      this.quotas = res;
+      this.bandwidthQuotaUsedPcnt = (1 - (res.bandwidthRemainingMib / res.bandwidthTotalMib));
     });
   }
 
@@ -79,10 +85,5 @@ export class RootComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.darkTheme = localStorage.getItem('theme') === 'dark';
     this.updateTheme();
-
-    this.apiClient.getQuotaSummary().pipe(takeUntil(this.destory$)).subscribe((res: RskQuotas) => {
-      this.quotas = res;
-      this.bandwidthQuotaUsedPcnt = (1 - (res.bandwidthRemainingMib / res.bandwidthTotalMib));
-    });
   }
 }

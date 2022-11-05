@@ -1,0 +1,26 @@
+<div class="container-fluid pt-3">
+  <div class="row mb-3">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          Quota Usage
+        </div>
+        <div class="card-body">
+          <div class="mb-3"><strong class="mb-3">Bandwidth</strong></div>
+          <div class="progress mb-2">
+            <div
+              class="progress-bar bg-success"
+              role="progressbar"
+              title="Approved."
+              [style.width]="bandwidthQuotaUsedPcnt+'%'">
+              {{bandwidthQuotaUsedPcnt}}%
+            </div>
+          </div>
+          <div class="text-muted">
+            {{(quotas?.bandwidthRemainingMib || 0) / 1024 | number}} / {{(quotas?.bandwidthTotalMib || 0) / 1024}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
