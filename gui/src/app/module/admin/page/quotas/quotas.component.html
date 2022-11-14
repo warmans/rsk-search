@@ -13,11 +13,11 @@
               role="progressbar"
               title="Approved."
               [style.width]="bandwidthQuotaUsedPcnt+'%'">
-              {{bandwidthQuotaUsedPcnt}}%
+              {{bandwidthQuotaUsedPcnt | number}}%
             </div>
           </div>
           <div class="text-muted">
-            {{(quotas?.bandwidthRemainingMib || 0) / 1024 | number}} / {{(quotas?.bandwidthTotalMib || 0) / 1024}}
+            {{(quotas?.bandwidthTotalMib - quotas?.bandwidthRemainingMib || 0) / 1024 | number}}Mib / {{(quotas?.bandwidthTotalMib || 0) / 1024 | number}}Mib
           </div>
         </div>
       </div>

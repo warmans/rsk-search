@@ -33,16 +33,26 @@
     </div>
   </div>
 </div>
-<div *ngIf="result === undefined || !result?.results.length" class="container pt-4">
-  <div class="row mb-2">
-    <div class="col">
-      <div *ngIf="result !== undefined && result?.results.length === 0" class="card no-results mb-4">
-        <div class="card-body text-center">
-          Alright, there weren't any results for that search and that.
-        </div>
+
+<div class="container-fluid pt-3" *ngIf="(loading || []).length === 0 && query !== '' && !result?.results?.length">
+  <div class="vh-100 d-flex flex-column justify-content-around align-items-center">
+    <div class="card no-results mb-4" style="max-width: 800px;">
+      <div class="card-body text-center">
+        <strong>No transcripts found that matched your search terms</strong>
+      </div>
+      <div class="card-body">
+        <ul>
+          <li>If your search is "double quoted" try removing the quotes.</li>
+          <li>To match on multiple exact terms in any order "quote" "each" "term" "separately". </li>
+          <li>The episode my not have been fully transcribed. See <a routerLink="/contribute">Contribute</a>.</li>
+          <li>Report a bug on <a target="_blank" href="https://reddit.com/r/scrimpton">/r/scrimpton</a></li>
+        </ul>
       </div>
     </div>
   </div>
+</div>
+
+<div *ngIf="query === ''" class="container pt-4">
   <div class="row">
     <div class="col">
       <ul class="nav nav-tabs font-weight-bold">
@@ -58,8 +68,9 @@
         <div class="card-body">
           <p>This site was built with the help of community contributions. Users can contribute in various ways including transcribing audio or editing existing transcripts. To
             ask a question, request a feature or report a bug head over to <a target="_blank" href="https://reddit.com/r/scrimpton">/r/scrimpton</a>.</p>
-          <p>To get involved you just need a reddit account. You can also <a href="https://www.buymeacoffee.com/scrimptonsite" target="_blank">donate</a> to help pay server costs via BuyMeACoffee.</p>
-          <p>There are currently <strong class="text-primary">{{contribtionsNeeded || 0}}</strong> contributions needed.</p>
+          <p>To get involved you just need a reddit account. You can also <a href="https://www.buymeacoffee.com/scrimptonsite" target="_blank">donate</a> to help pay server costs
+            via BuyMeACoffee.</p>
+          <p>There are currently <strong class="text-primary">{{contributionsNeeded || 0}}</strong> contributions needed.</p>
           <button class="btn btn-primary" [routerLink]="['/contribute']">Contribute</button>
         </div>
       </div>

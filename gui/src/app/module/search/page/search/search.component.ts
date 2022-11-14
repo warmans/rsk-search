@@ -1,9 +1,9 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
-import { SearchAPIClient } from '../../../../lib/api-client/services/search';
+import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
-import { RskChangelog, RskSearchResultList, RskShortTranscript } from '../../../../lib/api-client/models';
+import { RskChangelog, RskSearchResultList, RskShortTranscript } from 'src/app/lib/api-client/models';
 import { AudioService } from '../../../core/service/audio/audio.service';
 
 @Component({
@@ -15,12 +15,13 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   loading: boolean[] = [];
 
+  query: string;
   result: RskSearchResultList;
   pages: number[] = [];
   currentPage: number;
   morePages: boolean = false;
   latestChangelog: RskChangelog;
-  contribtionsNeeded: number;
+  contributionsNeeded: number;
 
   private unsubscribe$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -34,11 +35,12 @@ export class SearchComponent implements OnInit, OnDestroy {
 
     route.queryParamMap.pipe(takeUntil(this.unsubscribe$)).subscribe((params: ParamMap) => {
       this.currentPage = parseInt(params.get('page'), 10) || 0;
-      if (params.get('q') === null || params.get('q').trim() == '') {
+      this.query = (params.get('q') || '').trim();
+      if (this.query === '') {
         this.result = null;
         return;
       }
-      this.executeQuery(params.get('q'), this.currentPage);
+      this.executeQuery(this.query, this.currentPage);
     });
   }
 
@@ -50,9 +52,9 @@ export class SearchComponent implements OnInit, OnDestroy {
     });
 
     this.apiClient.listTscripts().pipe(takeUntil(this.unsubscribe$)).subscribe((res) => {
-      this.contribtionsNeeded = 0;
+      this.contributionsNeeded = 0;
       (res.tscripts || []).forEach((v) => {
-        this.contribtionsNeeded += v.numChunks - ((v.numApprovedContributions || 0) + (v.numPendingContributions || 0));
+        this.contributionsNeeded += v.numChunks - ((v.numApprovedContributions || 0) + (v.numPendingContributions || 0));
       })
     });
   }
