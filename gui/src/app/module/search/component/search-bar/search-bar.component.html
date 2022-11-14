@@ -1,30 +1,31 @@
 <div class="search-bar-container" #componentRoot>
-  <div class="d-flex">
-    <div class="bar flex-grow-1 d-flex p-2">
-      <div class="terms">
-        <div *ngFor="let mod of searchModifiers; let idx = index;" class="term badge badge-primary mr-2 clickable" (click)="removeModifier(idx)">
-          <i
-            class="bi"
-            [ngClass]="{'bi-person': mod.field === 'actor', 'bi-collection': mod.field === 'publication', 'bi-justify': mod.field === 'type'}">
-          </i> {{ mod.value.v }}
-          <span>&times;</span>
+  <form (ngSubmit)="emitQuery()">
+    <div class="d-flex">
+      <div class="bar flex-grow-1 d-flex p-2">
+        <div class="terms">
+          <div *ngFor="let mod of searchModifiers; let idx = index;" class="term badge badge-primary mr-2 clickable" (click)="removeModifier(idx)">
+            <i
+              class="bi"
+              [ngClass]="{'bi-person': mod.field === 'actor', 'bi-collection': mod.field === 'publication', 'bi-justify': mod.field === 'type'}">
+            </i> {{ mod.value.v }}
+            <span>&times;</span>
+          </div>
+        </div>
+        <input
+          type="text"
+          class="flex-grow-1"
+          [formControl]="termTextInput"
+          (keydown)="onKeydown($event)"
+          placeholder="Enter search terms, double quote terms for a phrase/exact match. See advanced search options on the right."/>
+        <div class="controls pr-2">
+          <i class="bi bi-sliders clickable" title="Advanced options" (click)="searchDropdown = 'advanced'"></i>
         </div>
       </div>
-      <input
-        type="text"
-        class="flex-grow-1"
-        [formControl]="termTextInput"
-        (keydown)="onKeydown($event)"
-        placeholder="Enter search terms, double quote terms for a phrase/exact match. See advanced search options on the right."/>
-      <div class="controls pr-2">
-        <i class="bi bi-sliders clickable" title="Advanced options" (click)="searchDropdown = 'advanced'"></i>
+      <div class="buttons">
+        <button class="btn btn-primary" type="submit"><i class="bi-search"></i></button>
       </div>
     </div>
-    <div class="buttons">
-      <button class="btn btn-primary" type="submit"><i class="bi-search"></i></button>
-    </div>
-  </div>
-
+  </form>
   <div class="search-dropdown p-3 mt-2" *ngIf="searchDropdown === 'autocomplete'">
     <app-search-bar-autocomplete
       [termPrefix]="termText"
