@@ -153,7 +153,11 @@
       <div *ngIf="(activeTab==='meta')" class="card">
         <div class="card-header"></div>
         <div class="card-body">
-          <app-metadata-editor [allowEdit]="userCanEdit" [transcriptMeta]="metadata" (metadataUpdated)="metadataUpdated($event)"></app-metadata-editor>
+          <app-metadata-editor
+            [allowEdit]="userCanEdit"
+            [transcriptMeta]="metadata"
+            (metadataUpdated)="metadataUpdated($event)">
+          </app-metadata-editor>
         </div>
       </div>
 

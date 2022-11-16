@@ -15,15 +15,14 @@ export interface TranscriptMetadata {
 export class MetadataEditorComponent implements OnInit, OnDestroy {
 
   @Input()
-  get transcriptMeta(): TranscriptMetadata {
-    return { summary: this.form.get('summary').value };
-  }
-
   set transcriptMeta(value: TranscriptMetadata) {
     if (!value) {
       return;
     }
     this.form.get('summary').setValue(value.summary, {emitEvent: false});
+  }
+  get transcriptMeta(): TranscriptMetadata {
+    return { summary: this.form.get('summary').value };
   }
 
   @Input()

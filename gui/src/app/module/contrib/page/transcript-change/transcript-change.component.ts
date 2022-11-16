@@ -85,6 +85,8 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
         withRaw: true
       }).pipe(takeUntil(this.destroy$)).subscribe((res: RskTranscript) => {
         this.transcript = res;
+        this.metadata = { summary: res.summary };
+
         if (!d.params['change_id']) {
           this.initialTranscript = res.rawTranscript;
         } else {
@@ -92,8 +94,8 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
             this.change = res;
             this.checkUserCanEdit();
 
-            this.initialTranscript = this.change.transcript;
-            this.metadata = { summary: this.change.summary };
+            this.initialTranscript = res.transcript;
+            this.metadata = { summary: res.summary };
 
             this.versionMismatchError = (this.change?.transcriptVersion !== this.transcript?.version);
             this.userIsOwner = this.sessionService.getClaims()?.author_id === res.author.id || this.sessionService.getClaims()?.approver;
