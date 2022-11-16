@@ -26,6 +26,9 @@ export class MetadataEditorComponent implements OnInit, OnDestroy {
     this.form.get('summary').setValue(value.summary, {emitEvent: false});
   }
 
+  @Input()
+  allowEdit: boolean = false;
+
   @Output()
   metadataUpdated: EventEmitter<TranscriptMetadata> = new EventEmitter<TranscriptMetadata>();
 

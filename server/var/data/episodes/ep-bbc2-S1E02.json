@@ -11371,7 +11371,7 @@
       {
         "id": "ep-bbc2-S1E02-1032",
         "pos": 1032,
-        "offset_sec": 2810,
+        "offset_sec": 2642,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -11382,7 +11382,7 @@
       {
         "id": "ep-bbc2-S1E02-1033",
         "pos": 1033,
-        "offset_sec": 3282,
+        "offset_sec": 2655,
         "offset_inferred": true,
         "type": "chat",
         "actor": "",
@@ -11393,7 +11393,7 @@
       {
         "id": "ep-bbc2-S1E02-1034",
         "pos": 1034,
-        "offset_sec": 3304,
+        "offset_sec": 2656,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -11404,73 +11404,535 @@
       {
         "id": "ep-bbc2-S1E02-1035",
         "pos": 1035,
-        "offset_sec": 3659,
-        "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
+        "offset_sec": 2666,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
         "metadata": null,
-        "content": "[~3 mins of missing transcription]",
+        "content": "What did you say?",
         "notable": false
       },
       {
         "id": "ep-bbc2-S1E02-1036",
         "pos": 1036,
-        "offset_sec": 3707,
+        "offset_sec": 2668,
         "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
+        "type": "chat",
+        "actor": "steve",
         "metadata": null,
-        "content": "[~3 mins of missing transcription]",
+        "content": "I said he was a mental case.",
         "notable": false
       },
       {
         "id": "ep-bbc2-S1E02-1037",
         "pos": 1037,
-        "offset_sec": 3755,
+        "offset_sec": 2669,
         "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
+        "type": "chat",
+        "actor": "ricky",
         "metadata": null,
-        "content": "[~3 mins of missing transcription]",
+        "content": "Yeah, that's pretty libelous, I think he could sue you there.",
         "notable": false
       },
       {
         "id": "ep-bbc2-S1E02-1038",
         "pos": 1038,
-        "offset_sec": 3803,
+        "offset_sec": 2673,
         "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
+        "type": "chat",
+        "actor": "steve",
         "metadata": null,
-        "content": "[~3 mins of missing transcription]",
+        "content": "Okay, well I'll take that back.",
         "notable": false
       },
       {
         "id": "ep-bbc2-S1E02-1039",
         "pos": 1039,
-        "offset_sec": 3851,
+        "offset_sec": 2675,
         "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
+        "type": "chat",
+        "actor": "ricky",
         "metadata": null,
-        "content": "[~3 mins of missing transcription]",
+        "content": "Take that back, he's not a mental case. I mean, let's face it-- before you say anyone is stupid or a mental case, do the old binary sort, are they madder and thicker than Karl? If not, I think you ... you know...",
         "notable": false
       },
       {
         "id": "ep-bbc2-S1E02-1040",
         "pos": 1040,
-        "offset_sec": 3899,
+        "offset_sec": 2688,
         "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
+        "type": "chat",
+        "actor": "steve",
         "metadata": null,
-        "content": "[~3 mins of missing transcription]",
+        "content": "That means I can ever accuse anyone of being stupid.",
         "notable": false
       },
       {
         "id": "ep-bbc2-S1E02-1041",
         "pos": 1041,
-        "offset_sec": 3947,
+        "offset_sec": 2691,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "Ricky laughs",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1042",
+        "pos": 1042,
+        "offset_sec": 2691,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "He was talking about lady Isabella Hervey and he went, I love Lady Isabella Hervey. Because thing is like, she-- she doesn't like books, and I don't like books.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1043",
+        "pos": 1043,
+        "offset_sec": 2703,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Brilliant. They've got so much in common then.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1044",
+        "pos": 1044,
+        "offset_sec": 2706,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Something in common is something that they don't do together.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1045",
+        "pos": 1045,
+        "offset_sec": 2710,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "I love the idea that people were sitting around just praying for a big wind",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1046",
+        "pos": 1046,
+        "offset_sec": 2715,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Just a big wind",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1047",
+        "pos": 1047,
+        "offset_sec": 2716,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "And the only big wind was from Rebecca Loos.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1048",
+        "pos": 1048,
+        "offset_sec": 2719,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "unknown",
+        "metadata": null,
+        "content": "",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1049",
+        "pos": 1049,
+        "offset_sec": 2719,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "In the Ghetto. By Elvis. That's one of the 10 songs that Karl likes.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1050",
+        "pos": 1050,
+        "offset_sec": 2723,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Yes.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1051",
+        "pos": 1051,
+        "offset_sec": 2723,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "I mean, I've never met anyone who is... I don't know, so underwhelmed by music and the plethora of..",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1052",
+        "pos": 1052,
+        "offset_sec": 2728,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "No, I do like it",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1053",
+        "pos": 1053,
+        "offset_sec": 2729,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "But you said about-- when I first got my iPod, which I absolutely love, okay? And I was downloading-- I said I've got 10,000 songs on it, he said: \"What do you need that many for?\"",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1054",
+        "pos": 1054,
+        "offset_sec": 2737,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "rikcy",
+        "metadata": null,
+        "content": "He said, I like a Walkman. He said, you know, you're going for a walk, \"Well, how long's the walk?\" When do you need 10,000 records? And he was trying to work out how many he would put on and he got about 7.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1055",
+        "pos": 1055,
+        "offset_sec": 2747,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "And what do you like? You only like songs with a story?",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1056",
+        "pos": 1056,
+        "offset_sec": 2750,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Mainly. A song that, you know, when you pop it on you go \"Right, I'm going to listen to this for however long it is\" and you've got to check it all out. You can't just turn it off and fade it off, because you've got to hear how the story ends.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1057",
+        "pos": 1057,
+        "offset_sec": 2763,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "But how many times can you hear the same story? I mean, it's a great tune but it's not because it's a story, it's because the lyrical content apart from the story aspect and the beautiful tune, and the way he sings and the production--",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1058",
+        "pos": 1058,
+        "offset_sec": 2776,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "No, it's not about",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1059",
+        "pos": 1059,
+        "offset_sec": 2776,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Otherwise you've got to go: \"Ehm, a bloke, born on the wrong side of the tracks, tries to nick a car, gets shot.\"",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1060",
+        "pos": 1060,
+        "offset_sec": 2783,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Yeah, but think about what you just said. And what I'm saying is, if you get up to \"he was born on the right or wrong side of the tracks\" whatever, I'll turn it off now, you'd be going \"I wonder what happened to him\"",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1061",
+        "pos": 1061,
+        "offset_sec": 2795,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "Ricky sighs",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1062",
+        "pos": 1062,
+        "offset_sec": 2796,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "So you listen to it all",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1063",
+        "pos": 1063,
+        "offset_sec": 2797,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "What other songs are there with a story?",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1064",
+        "pos": 1064,
+        "offset_sec": 2799,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "There's one from Johnny Cash, when his nicking a car from a factory.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1065",
+        "pos": 1065,
+        "offset_sec": 2803,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "What happens there? I don't remember that song.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1066",
+        "pos": 1066,
+        "offset_sec": 2805,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "He works in a car factory and every day he's going \"Right, I'll nick little bolt.\" Right? Then he nicks a wing mirror and thinking, he nicks a gear stick and that.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1067",
+        "pos": 1067,
+        "offset_sec": 2813,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "So if you've got seven songs that you like, I mean it must be-- What's your favorite? What's your favorite song of all time?",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1068",
+        "pos": 1068,
+        "offset_sec": 2819,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "But how could you do that because you haven't heard how it ended now, you see? I've just told you there what he was doing...",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1069",
+        "pos": 1069,
+        "offset_sec": 2824,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Because you probably got it wrong.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1070",
+        "pos": 1070,
+        "offset_sec": 2826,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "I haven't",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1071",
+        "pos": 1071,
+        "offset_sec": 2826,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "I assume everything you say it's probably wrong.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1072",
+        "pos": 1072,
+        "offset_sec": 2829,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "There you go then, you will never know. And that will annoy you now. So... Other songs I like, Rod Stewart: Killing a Georgie",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1073",
+        "pos": 1073,
+        "offset_sec": 2834,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Oh yeah, that's your favorite song isn't it?",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1074",
+        "pos": 1074,
+        "offset_sec": 2836,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "That's good.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1075",
+        "pos": 1075,
+        "offset_sec": 2837,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Cause it's...",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1076",
+        "pos": 1076,
+        "offset_sec": 2837,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "What's the story there?",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1077",
+        "pos": 1077,
+        "offset_sec": 2838,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Just about a little gay fella, goes to New York, because that's like... I think it was in the 70s when like, you know if you were gay and that, New York was brilliant.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1078",
+        "pos": 1078,
+        "offset_sec": 3100,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1079",
+        "pos": 1079,
+        "offset_sec": 3108,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "That was like, you know where they all went and stuff. Had a good life there. His Dad, didn't... I think his dad kicked him out or something.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1080",
+        "pos": 1080,
+        "offset_sec": 3329,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "No, you... I'm sure you're thinking of Smalltown Boy by Bronski Beat. I'm sure you had all these mixed up--, just because it's another little gay fella. As you call them.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1081",
+        "pos": 1081,
+        "offset_sec": 3595,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Anyway, goes he goes to New York",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1082",
+        "pos": 1082,
+        "offset_sec": 3645,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "He goes to New York",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1083",
+        "pos": 1083,
+        "offset_sec": 3675,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -11479,8 +11941,63 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1042",
-        "pos": 1042,
+        "id": "ep-bbc2-S1E02-1084",
+        "pos": 1084,
+        "offset_sec": 3728,
+        "offset_inferred": true,
+        "type": "gap",
+        "actor": "",
+        "metadata": null,
+        "content": "[~3 mins of missing transcription]",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1085",
+        "pos": 1085,
+        "offset_sec": 3781,
+        "offset_inferred": true,
+        "type": "gap",
+        "actor": "",
+        "metadata": null,
+        "content": "[~3 mins of missing transcription]",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1086",
+        "pos": 1086,
+        "offset_sec": 3835,
+        "offset_inferred": true,
+        "type": "gap",
+        "actor": "",
+        "metadata": null,
+        "content": "[~3 mins of missing transcription]",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1087",
+        "pos": 1087,
+        "offset_sec": 3888,
+        "offset_inferred": true,
+        "type": "gap",
+        "actor": "",
+        "metadata": null,
+        "content": "[~3 mins of missing transcription]",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1088",
+        "pos": 1088,
+        "offset_sec": 3941,
+        "offset_inferred": true,
+        "type": "gap",
+        "actor": "",
+        "metadata": null,
+        "content": "[~3 mins of missing transcription]",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1089",
+        "pos": 1089,
         "offset_sec": 3994,
         "offset_inferred": false,
         "type": "chat",
@@ -11490,8 +12007,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1043",
-        "pos": 1043,
+        "id": "ep-bbc2-S1E02-1090",
+        "pos": 1090,
         "offset_sec": 3998,
         "offset_inferred": true,
         "type": "chat",
@@ -11501,8 +12018,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1044",
-        "pos": 1044,
+        "id": "ep-bbc2-S1E02-1091",
+        "pos": 1091,
         "offset_sec": 3999,
         "offset_inferred": true,
         "type": "chat",
@@ -11512,8 +12029,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1045",
-        "pos": 1045,
+        "id": "ep-bbc2-S1E02-1092",
+        "pos": 1092,
         "offset_sec": 4001,
         "offset_inferred": true,
         "type": "chat",
@@ -11523,8 +12040,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1046",
-        "pos": 1046,
+        "id": "ep-bbc2-S1E02-1093",
+        "pos": 1093,
         "offset_sec": 4003,
         "offset_inferred": false,
         "type": "chat",
@@ -11534,8 +12051,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1047",
-        "pos": 1047,
+        "id": "ep-bbc2-S1E02-1094",
+        "pos": 1094,
         "offset_sec": 4005,
         "offset_inferred": true,
         "type": "chat",
@@ -11545,8 +12062,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1048",
-        "pos": 1048,
+        "id": "ep-bbc2-S1E02-1095",
+        "pos": 1095,
         "offset_sec": 4006,
         "offset_inferred": true,
         "type": "chat",
@@ -11556,8 +12073,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1049",
-        "pos": 1049,
+        "id": "ep-bbc2-S1E02-1096",
+        "pos": 1096,
         "offset_sec": 4019,
         "offset_inferred": true,
         "type": "chat",
@@ -11567,8 +12084,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1050",
-        "pos": 1050,
+        "id": "ep-bbc2-S1E02-1097",
+        "pos": 1097,
         "offset_sec": 4020,
         "offset_inferred": true,
         "type": "chat",
@@ -11578,8 +12095,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1051",
-        "pos": 1051,
+        "id": "ep-bbc2-S1E02-1098",
+        "pos": 1098,
         "offset_sec": 4021,
         "offset_inferred": true,
         "type": "chat",
@@ -11589,8 +12106,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1052",
-        "pos": 1052,
+        "id": "ep-bbc2-S1E02-1099",
+        "pos": 1099,
         "offset_sec": 4025,
         "offset_inferred": true,
         "type": "chat",
@@ -11600,8 +12117,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1053",
-        "pos": 1053,
+        "id": "ep-bbc2-S1E02-1100",
+        "pos": 1100,
         "offset_sec": 4033,
         "offset_inferred": false,
         "type": "chat",
@@ -11611,8 +12128,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1054",
-        "pos": 1054,
+        "id": "ep-bbc2-S1E02-1101",
+        "pos": 1101,
         "offset_sec": 4037,
         "offset_inferred": true,
         "type": "chat",
@@ -11622,8 +12139,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1055",
-        "pos": 1055,
+        "id": "ep-bbc2-S1E02-1102",
+        "pos": 1102,
         "offset_sec": 4039,
         "offset_inferred": true,
         "type": "chat",
@@ -11633,8 +12150,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1056",
-        "pos": 1056,
+        "id": "ep-bbc2-S1E02-1103",
+        "pos": 1103,
         "offset_sec": 4040,
         "offset_inferred": true,
         "type": "chat",
@@ -11644,8 +12161,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1057",
-        "pos": 1057,
+        "id": "ep-bbc2-S1E02-1104",
+        "pos": 1104,
         "offset_sec": 4041,
         "offset_inferred": true,
         "type": "chat",
@@ -11655,8 +12172,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1058",
-        "pos": 1058,
+        "id": "ep-bbc2-S1E02-1105",
+        "pos": 1105,
         "offset_sec": 4042,
         "offset_inferred": true,
         "type": "chat",
@@ -11666,8 +12183,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1059",
-        "pos": 1059,
+        "id": "ep-bbc2-S1E02-1106",
+        "pos": 1106,
         "offset_sec": 4046,
         "offset_inferred": true,
         "type": "chat",
@@ -11677,8 +12194,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1060",
-        "pos": 1060,
+        "id": "ep-bbc2-S1E02-1107",
+        "pos": 1107,
         "offset_sec": 4046,
         "offset_inferred": true,
         "type": "chat",
@@ -11688,8 +12205,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1061",
-        "pos": 1061,
+        "id": "ep-bbc2-S1E02-1108",
+        "pos": 1108,
         "offset_sec": 4049,
         "offset_inferred": true,
         "type": "chat",
@@ -11699,8 +12216,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1062",
-        "pos": 1062,
+        "id": "ep-bbc2-S1E02-1109",
+        "pos": 1109,
         "offset_sec": 4051,
         "offset_inferred": true,
         "type": "chat",
@@ -11710,8 +12227,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1063",
-        "pos": 1063,
+        "id": "ep-bbc2-S1E02-1110",
+        "pos": 1110,
         "offset_sec": 4053,
         "offset_inferred": true,
         "type": "chat",
@@ -11721,8 +12238,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1064",
-        "pos": 1064,
+        "id": "ep-bbc2-S1E02-1111",
+        "pos": 1111,
         "offset_sec": 4060,
         "offset_inferred": false,
         "type": "chat",
@@ -11732,8 +12249,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1065",
-        "pos": 1065,
+        "id": "ep-bbc2-S1E02-1112",
+        "pos": 1112,
         "offset_sec": 4066,
         "offset_inferred": true,
         "type": "chat",
@@ -11743,8 +12260,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1066",
-        "pos": 1066,
+        "id": "ep-bbc2-S1E02-1113",
+        "pos": 1113,
         "offset_sec": 4067,
         "offset_inferred": true,
         "type": "chat",
@@ -11754,8 +12271,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1067",
-        "pos": 1067,
+        "id": "ep-bbc2-S1E02-1114",
+        "pos": 1114,
         "offset_sec": 4068,
         "offset_inferred": true,
         "type": "chat",
@@ -11765,8 +12282,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1068",
-        "pos": 1068,
+        "id": "ep-bbc2-S1E02-1115",
+        "pos": 1115,
         "offset_sec": 4068,
         "offset_inferred": true,
         "type": "chat",
@@ -11776,8 +12293,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1069",
-        "pos": 1069,
+        "id": "ep-bbc2-S1E02-1116",
+        "pos": 1116,
         "offset_sec": 4070,
         "offset_inferred": true,
         "type": "chat",
@@ -11787,8 +12304,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1070",
-        "pos": 1070,
+        "id": "ep-bbc2-S1E02-1117",
+        "pos": 1117,
         "offset_sec": 4072,
         "offset_inferred": true,
         "type": "chat",
@@ -11798,8 +12315,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1071",
-        "pos": 1071,
+        "id": "ep-bbc2-S1E02-1118",
+        "pos": 1118,
         "offset_sec": 4076,
         "offset_inferred": true,
         "type": "chat",
@@ -11809,8 +12326,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1072",
-        "pos": 1072,
+        "id": "ep-bbc2-S1E02-1119",
+        "pos": 1119,
         "offset_sec": 4077,
         "offset_inferred": true,
         "type": "chat",
@@ -11820,8 +12337,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1073",
-        "pos": 1073,
+        "id": "ep-bbc2-S1E02-1120",
+        "pos": 1120,
         "offset_sec": 4086,
         "offset_inferred": true,
         "type": "chat",
@@ -11831,8 +12348,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1074",
-        "pos": 1074,
+        "id": "ep-bbc2-S1E02-1121",
+        "pos": 1121,
         "offset_sec": 4089,
         "offset_inferred": true,
         "type": "chat",
@@ -11842,8 +12359,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1075",
-        "pos": 1075,
+        "id": "ep-bbc2-S1E02-1122",
+        "pos": 1122,
         "offset_sec": 4092,
         "offset_inferred": true,
         "type": "chat",
@@ -11853,8 +12370,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1076",
-        "pos": 1076,
+        "id": "ep-bbc2-S1E02-1123",
+        "pos": 1123,
         "offset_sec": 4093,
         "offset_inferred": false,
         "type": "chat",
@@ -11864,8 +12381,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1077",
-        "pos": 1077,
+        "id": "ep-bbc2-S1E02-1124",
+        "pos": 1124,
         "offset_sec": 4094,
         "offset_inferred": true,
         "type": "chat",
@@ -11875,8 +12392,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1078",
-        "pos": 1078,
+        "id": "ep-bbc2-S1E02-1125",
+        "pos": 1125,
         "offset_sec": 4106,
         "offset_inferred": true,
         "type": "chat",
@@ -11886,8 +12403,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1079",
-        "pos": 1079,
+        "id": "ep-bbc2-S1E02-1126",
+        "pos": 1126,
         "offset_sec": 4107,
         "offset_inferred": true,
         "type": "chat",
@@ -11897,8 +12414,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1080",
-        "pos": 1080,
+        "id": "ep-bbc2-S1E02-1127",
+        "pos": 1127,
         "offset_sec": 4109,
         "offset_inferred": true,
         "type": "chat",
@@ -11908,8 +12425,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1081",
-        "pos": 1081,
+        "id": "ep-bbc2-S1E02-1128",
+        "pos": 1128,
         "offset_sec": 4112,
         "offset_inferred": true,
         "type": "chat",
@@ -11919,8 +12436,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1082",
-        "pos": 1082,
+        "id": "ep-bbc2-S1E02-1129",
+        "pos": 1129,
         "offset_sec": 4115,
         "offset_inferred": true,
         "type": "chat",
@@ -11930,8 +12447,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1083",
-        "pos": 1083,
+        "id": "ep-bbc2-S1E02-1130",
+        "pos": 1130,
         "offset_sec": 4115,
         "offset_inferred": false,
         "type": "chat",
@@ -11941,8 +12458,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1084",
-        "pos": 1084,
+        "id": "ep-bbc2-S1E02-1131",
+        "pos": 1131,
         "offset_sec": 4117,
         "offset_inferred": true,
         "type": "chat",
@@ -11952,8 +12469,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1085",
-        "pos": 1085,
+        "id": "ep-bbc2-S1E02-1132",
+        "pos": 1132,
         "offset_sec": 4120,
         "offset_inferred": true,
         "type": "chat",
@@ -11963,8 +12480,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1086",
-        "pos": 1086,
+        "id": "ep-bbc2-S1E02-1133",
+        "pos": 1133,
         "offset_sec": 4123,
         "offset_inferred": true,
         "type": "chat",
@@ -11974,8 +12491,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1087",
-        "pos": 1087,
+        "id": "ep-bbc2-S1E02-1134",
+        "pos": 1134,
         "offset_sec": 4123,
         "offset_inferred": true,
         "type": "chat",
@@ -11985,8 +12502,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1088",
-        "pos": 1088,
+        "id": "ep-bbc2-S1E02-1135",
+        "pos": 1135,
         "offset_sec": 4125,
         "offset_inferred": true,
         "type": "chat",
@@ -11996,8 +12513,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1089",
-        "pos": 1089,
+        "id": "ep-bbc2-S1E02-1136",
+        "pos": 1136,
         "offset_sec": 4128,
         "offset_inferred": true,
         "type": "chat",
@@ -12007,8 +12524,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1090",
-        "pos": 1090,
+        "id": "ep-bbc2-S1E02-1137",
+        "pos": 1137,
         "offset_sec": 4137,
         "offset_inferred": true,
         "type": "chat",
@@ -12018,8 +12535,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1091",
-        "pos": 1091,
+        "id": "ep-bbc2-S1E02-1138",
+        "pos": 1138,
         "offset_sec": 4145,
         "offset_inferred": false,
         "type": "chat",
@@ -12029,8 +12546,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1092",
-        "pos": 1092,
+        "id": "ep-bbc2-S1E02-1139",
+        "pos": 1139,
         "offset_sec": 4376,
         "offset_inferred": true,
         "type": "chat",
@@ -12040,8 +12557,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1093",
-        "pos": 1093,
+        "id": "ep-bbc2-S1E02-1140",
+        "pos": 1140,
         "offset_sec": 4399,
         "offset_inferred": true,
         "type": "chat",
@@ -12051,8 +12568,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1094",
-        "pos": 1094,
+        "id": "ep-bbc2-S1E02-1141",
+        "pos": 1141,
         "offset_sec": 4430,
         "offset_inferred": true,
         "type": "chat",
@@ -12062,8 +12579,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1095",
-        "pos": 1095,
+        "id": "ep-bbc2-S1E02-1142",
+        "pos": 1142,
         "offset_sec": 4489,
         "offset_inferred": true,
         "type": "chat",
@@ -12073,8 +12590,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1096",
-        "pos": 1096,
+        "id": "ep-bbc2-S1E02-1143",
+        "pos": 1143,
         "offset_sec": 4539,
         "offset_inferred": true,
         "type": "chat",
@@ -12084,8 +12601,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1097",
-        "pos": 1097,
+        "id": "ep-bbc2-S1E02-1144",
+        "pos": 1144,
         "offset_sec": 4657,
         "offset_inferred": true,
         "type": "chat",
@@ -12095,8 +12612,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1098",
-        "pos": 1098,
+        "id": "ep-bbc2-S1E02-1145",
+        "pos": 1145,
         "offset_sec": 4705,
         "offset_inferred": true,
         "type": "chat",
@@ -12106,8 +12623,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1099",
-        "pos": 1099,
+        "id": "ep-bbc2-S1E02-1146",
+        "pos": 1146,
         "offset_sec": 4749,
         "offset_inferred": true,
         "type": "chat",
@@ -12117,8 +12634,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1100",
-        "pos": 1100,
+        "id": "ep-bbc2-S1E02-1147",
+        "pos": 1147,
         "offset_sec": 4805,
         "offset_inferred": true,
         "type": "chat",
@@ -12128,8 +12645,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1101",
-        "pos": 1101,
+        "id": "ep-bbc2-S1E02-1148",
+        "pos": 1148,
         "offset_sec": 4930,
         "offset_inferred": true,
         "type": "gap",
@@ -12139,8 +12656,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1102",
-        "pos": 1102,
+        "id": "ep-bbc2-S1E02-1149",
+        "pos": 1149,
         "offset_sec": 4972,
         "offset_inferred": true,
         "type": "gap",
@@ -12150,8 +12667,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1103",
-        "pos": 1103,
+        "id": "ep-bbc2-S1E02-1150",
+        "pos": 1150,
         "offset_sec": 5013,
         "offset_inferred": true,
         "type": "gap",
@@ -12161,8 +12678,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1104",
-        "pos": 1104,
+        "id": "ep-bbc2-S1E02-1151",
+        "pos": 1151,
         "offset_sec": 5055,
         "offset_inferred": true,
         "type": "gap",
@@ -12172,8 +12689,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1105",
-        "pos": 1105,
+        "id": "ep-bbc2-S1E02-1152",
+        "pos": 1152,
         "offset_sec": 5097,
         "offset_inferred": true,
         "type": "gap",
@@ -12183,8 +12700,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1106",
-        "pos": 1106,
+        "id": "ep-bbc2-S1E02-1153",
+        "pos": 1153,
         "offset_sec": 5138,
         "offset_inferred": false,
         "type": "chat",
@@ -12194,8 +12711,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1107",
-        "pos": 1107,
+        "id": "ep-bbc2-S1E02-1154",
+        "pos": 1154,
         "offset_sec": 5141,
         "offset_inferred": true,
         "type": "chat",
@@ -12205,8 +12722,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1108",
-        "pos": 1108,
+        "id": "ep-bbc2-S1E02-1155",
+        "pos": 1155,
         "offset_sec": 5143,
         "offset_inferred": true,
         "type": "chat",
@@ -12216,8 +12733,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1109",
-        "pos": 1109,
+        "id": "ep-bbc2-S1E02-1156",
+        "pos": 1156,
         "offset_sec": 5146,
         "offset_inferred": true,
         "type": "chat",
@@ -12227,8 +12744,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1110",
-        "pos": 1110,
+        "id": "ep-bbc2-S1E02-1157",
+        "pos": 1157,
         "offset_sec": 5147,
         "offset_inferred": true,
         "type": "chat",
@@ -12238,8 +12755,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1111",
-        "pos": 1111,
+        "id": "ep-bbc2-S1E02-1158",
+        "pos": 1158,
         "offset_sec": 5151,
         "offset_inferred": true,
         "type": "chat",
@@ -12249,8 +12766,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1112",
-        "pos": 1112,
+        "id": "ep-bbc2-S1E02-1159",
+        "pos": 1159,
         "offset_sec": 5160,
         "offset_inferred": true,
         "type": "chat",
@@ -12260,8 +12777,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1113",
-        "pos": 1113,
+        "id": "ep-bbc2-S1E02-1160",
+        "pos": 1160,
         "offset_sec": 5162,
         "offset_inferred": true,
         "type": "song",
@@ -12359,39 +12876,40 @@
       },
       {
         "description": "Karl is happier than Einstein",
-        "start_pos": 1043,
-        "end_pos": 1052
+        "start_pos": 1090,
+        "end_pos": 1099
       },
       {
         "description": "Blind people are riding horses now.",
-        "start_pos": 1053,
-        "end_pos": 1075
+        "start_pos": 1100,
+        "end_pos": 1122
       },
       {
         "description": "A farmer frightened a chicken into laying more eggs by putting an axe near it's little house.",
-        "start_pos": 1077,
-        "end_pos": 1090
+        "start_pos": 1124,
+        "end_pos": 1137
       },
       {
         "description": "Karl made the papers slagging off Cornwall.",
-        "start_pos": 1090,
-        "end_pos": 1101
+        "start_pos": 1137,
+        "end_pos": 1148
       }
     ],
     "contributors": [
       "EarthlingCalling",
-      "warmans"
+      "warmans",
+      "wontbemad"
     ],
     "trivia": [
       {
         "description": "Apparently people do use \"guide horses\" but only [very small ones](https://en.wikipedia.org/wiki/Guide_horse) that can fit in Tescos:\n\n![picture](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Guide_horse.jpg/330px-Guide_horse.jpg)\n",
-        "start_pos": 1053,
-        "end_pos": 1075
+        "start_pos": 1100,
+        "end_pos": 1122
       },
       {
         "description": "This could have been the Western Morning News (Sunday edition?)",
-        "start_pos": 1091,
-        "end_pos": 1092
+        "start_pos": 1138,
+        "end_pos": 1139
       }
     ]
   }

@@ -122,7 +122,6 @@
       <div [hidden]="!(activeTab==='edit')">
         <app-editor
           #editor
-
           [contentID]="change ? change.id : transcript?.id"
           [contentVersion]="change ? change.transcriptVersion : transcript?.version"
           [rawTranscript]="initialTranscript || ''"
@@ -154,7 +153,7 @@
       <div *ngIf="(activeTab==='meta')" class="card">
         <div class="card-header"></div>
         <div class="card-body">
-          <app-metadata-editor [transcriptMeta]="metadata" (metadataUpdated)="metadataUpdated($event)"></app-metadata-editor>
+          <app-metadata-editor [allowEdit]="userCanEdit" [transcriptMeta]="metadata" (metadataUpdated)="metadataUpdated($event)"></app-metadata-editor>
         </div>
       </div>
 
