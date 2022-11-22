@@ -49,6 +49,7 @@ func MonthlyRedditReport() *cobra.Command {
 			logger, _ := zap.NewProduction()
 			defer func() {
 				if err := logger.Sync(); err != nil {
+					logger.Debug("Failed to sync", zap.Error(err))
 				}
 			}()
 
