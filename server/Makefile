@@ -187,6 +187,13 @@ endif
 	./bin/rsk-search db merge-transcript-changes --rw-db-dsn=${PROD_DB_DSN} --dry-run=false
 	$(MAKE) dev.refresh-data
 
+.PHONY: report.prod
+report.prod: build
+ifndef PROD_DB_DSN
+	$(error "PROD_DB_DSN required")
+endif
+	./bin/rsk-search report reddit --rw-db-dsn=${PROD_DB_DSN}
+
 .PHONY: dev.infer-offsets
 dev.infer-offsets:
 	./bin/rsk-search data infer-missing-offsets

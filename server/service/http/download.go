@@ -47,6 +47,7 @@ func (c *DownloadService) RegisterHTTP(ctx context.Context, router *mux.Router) 
 	router.Path("/dl/episode/{episode}.txt").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DownloadEpisodePlaintext)))
 
 	router.Path("/dl/media/{media_type}/{id}.mp3").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DownloadMP3)))
+	router.Path("/dl/media/file/{name}").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DownloadFile)))
 }
 
 func (c *DownloadService) DownloadJSONArchive(resp http.ResponseWriter, req *http.Request) {
@@ -84,28 +85,14 @@ func (c *DownloadService) DownloadMP3(resp http.ResponseWriter, req *http.Reques
 
 	filePath := path.Join(c.serviceConfig.MediaBasePath, mediaType, fmt.Sprintf("%s.mp3", fileID))
 
-	f, err := os.Stat(filePath)
+	fileStat, err := os.Stat(filePath)
 	if err != nil {
 		c.logger.Error("Failed to find media file", zap.String("path", filePath))
 		http.Error(resp, "Episode not found", http.StatusNotFound)
 		return
 	}
-	err = c.rwStoreConn.WithStore(func(s *rw.Store) error {
-		_, bytes, err := s.GetMediaStatsForCurrentMonth(req.Context())
-		if err != nil {
-			return err
-		}
 
-		c.httpMetrics.OutboundMediaQuotaRemaining.Set(float64(quota.BandwidthQuotaInMiB - quota.BytesAsMib(bytes)))
-		if quota.BytesAsMib(bytes+f.Size()) > quota.BandwidthQuotaInMiB {
-			return DownloadsOverQuota
-		}
-		if err := s.IncrementMediaAccessLog(req.Context(), mediaType, fileID, f.Size()); err != nil {
-			return err
-		}
-		return nil
-	})
-	if err != nil {
+	if err = c.incrementQuotas(req.Context(), mediaType, fileID, fileStat.Size()); err != nil {
 		c.logger.Error("Download failed processing quota", zap.Error(err))
 		if err == DownloadsOverQuota {
 			http.Error(resp, "Bandwidth quota exhausted", http.StatusTooManyRequests)
@@ -115,7 +102,43 @@ func (c *DownloadService) DownloadMP3(resp http.ResponseWriter, req *http.Reques
 		return
 	}
 
-	c.httpMetrics.OutboundMediaBytesTotal.Set(float64(f.Size()))
+	c.httpMetrics.OutboundMediaBytesTotal.Set(float64(fileStat.Size()))
+	http.ServeFile(resp, req, filePath)
+}
+
+func (c *DownloadService) DownloadFile(resp http.ResponseWriter, req *http.Request) {
+	vars := mux.Vars(req)
+	fileName, ok := vars["name"]
+	if !ok {
+		http.Error(resp, "No episode identifier given", http.StatusBadRequest)
+		return
+	}
+
+	fileName = path.Base(fileName)
+	if fileName == "/" {
+		http.Error(resp, "Invalid filename", http.StatusBadRequest)
+		return
+	}
+
+	filePath := path.Join(c.serviceConfig.MediaBasePath, "file", fileName)
+
+	fileStat, err := os.Stat(filePath)
+	if err != nil {
+		c.logger.Error("Failed to find media file", zap.String("path", filePath))
+		http.Error(resp, "Episode not found", http.StatusNotFound)
+		return
+	}
+
+	if err = c.incrementQuotas(req.Context(), "file", fileName, fileStat.Size()); err != nil {
+		c.logger.Error("Download failed processing quota", zap.Error(err))
+		if err == DownloadsOverQuota {
+			http.Error(resp, "Bandwidth quota exhausted", http.StatusTooManyRequests)
+		} else {
+			http.Error(resp, "Failed to calculate bandwidth quota", http.StatusInternalServerError)
+		}
+		return
+	}
+
 	http.ServeFile(resp, req, filePath)
 }
 
@@ -151,4 +174,21 @@ func (c *DownloadService) DownloadEpisodePlaintext(resp http.ResponseWriter, req
 	resp.Header().Set("Content-Disposition", fmt.Sprintf("attachment; filename=%s", fileName))
 	resp.Header().Set("Content-Type", "text/plain")
 	http.ServeFile(resp, req, path.Join(c.serviceConfig.FilesBasePath, "data", "plaintext", fileName))
+}
+
+func (c *DownloadService) incrementQuotas(ctx context.Context, mediaType string, fileID string, fileBytes int64) error {
+	return c.rwStoreConn.WithStore(func(s *rw.Store) error {
+		_, currentBytes, err := s.GetMediaStatsForCurrentMonth(ctx)
+		if err != nil {
+			return err
+		}
+		c.httpMetrics.OutboundMediaQuotaRemaining.Set(float64(quota.BandwidthQuotaInMiB - quota.BytesAsMib(currentBytes)))
+		if quota.BytesAsMib(currentBytes+fileBytes) > quota.BandwidthQuotaInMiB {
+			return DownloadsOverQuota
+		}
+		if err := s.IncrementMediaAccessLog(ctx, mediaType, fileID, fileBytes); err != nil {
+			return err
+		}
+		return nil
+	})
 }

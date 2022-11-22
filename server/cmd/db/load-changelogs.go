@@ -3,17 +3,11 @@ package db
 import (
 	"context"
 	"fmt"
-	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
-	"github.com/warmans/rsk-search/pkg/models"
+	"github.com/warmans/rsk-search/pkg/changelog"
 	"github.com/warmans/rsk-search/pkg/store/common"
 	"github.com/warmans/rsk-search/pkg/store/ro"
 	"go.uber.org/zap"
-	"io/ioutil"
-	"os"
-	"path"
-	"strings"
-	"time"
 )
 
 func LoadChangelogs() *cobra.Command {
@@ -29,7 +23,7 @@ func LoadChangelogs() *cobra.Command {
 			logger, _ := zap.NewProduction()
 			defer func() {
 				if err := logger.Sync(); err != nil {
-					fmt.Println("WARNING: failed to sync logger: "+err.Error())
+					fmt.Println("WARNING: failed to sync logger: " + err.Error())
 				}
 			}()
 
@@ -59,36 +53,17 @@ func populateChangelog(inputDataPath string, conn *ro.Conn, logger *zap.Logger) 
 
 	logger.Info("Populating DB...")
 
-	dirEntries, err := ioutil.ReadDir(inputDataPath)
+	changeLogs, err := changelog.List(inputDataPath)
 	if err != nil {
 		return err
 	}
-	for _, dirEntry := range dirEntries {
-		if dirEntry.IsDir() {
-			continue
-		}
-		logger.Info("Parsing file...", zap.String("path", dirEntry.Name()))
-
-		date, err := parseDateFromName(dirEntry.Name())
-		if err != nil {
-			return errors.Wrapf(err, "failed to parse filename to YYYY-MM-DD date %s", dirEntry.Name())
-		}
-
-		dat, err := os.ReadFile(path.Join(inputDataPath, dirEntry.Name()))
-		if err != nil {
-			return errors.Wrapf(err, "failed to read %s", dirEntry.Name())
-		}
-
+	for _, log := range changeLogs {
 		if err := conn.WithStore(func(s *ro.Store) error {
-			return s.InsertChangelog(context.Background(), &models.Changelog{Date: date, Content: string(dat)})
+			return s.InsertChangelog(context.Background(), log)
 		}); err != nil {
 			return err
 		}
 	}
 
 	return nil
-}
-
-func parseDateFromName(name string) (time.Time, error) {
-	return time.Parse("2006-01-02", strings.TrimSuffix(name, ".md"))
 }
