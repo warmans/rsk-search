@@ -54,3 +54,8 @@ func (s *StatusService) GetQuotaSummary(ctx context.Context, empty *emptypb.Empt
 	}
 	return res, nil
 }
+
+func (s *StatusService) Health(ctx context.Context, empty *emptypb.Empty) (*emptypb.Empty, error) {
+	// if this endpoint is even available the API is somewhat functional.
+	return &emptypb.Empty{}, nil
+}

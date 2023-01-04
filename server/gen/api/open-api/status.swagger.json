@@ -19,6 +19,7 @@
     "application/json"
   ],
   "paths": {
+    "/api/status/health": {},
     "/api/status/quotas": {
       "get": {
         "summary": "Get summary of the service quotas",

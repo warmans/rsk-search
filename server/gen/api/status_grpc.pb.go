@@ -19,6 +19,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type StatusServiceClient interface {
+	Health(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	GetQuotaSummary(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Quotas, error)
 }
 
@@ -28,6 +29,15 @@ type statusServiceClient struct {
 
 func NewStatusServiceClient(cc grpc.ClientConnInterface) StatusServiceClient {
 	return &statusServiceClient{cc}
+}
+
+func (c *statusServiceClient) Health(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, "/rsk.StatusService/Health", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *statusServiceClient) GetQuotaSummary(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Quotas, error) {
@@ -43,6 +53,7 @@ func (c *statusServiceClient) GetQuotaSummary(ctx context.Context, in *emptypb.E
 // All implementations should embed UnimplementedStatusServiceServer
 // for forward compatibility
 type StatusServiceServer interface {
+	Health(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
 	GetQuotaSummary(context.Context, *emptypb.Empty) (*Quotas, error)
 }
 
@@ -50,6 +61,9 @@ type StatusServiceServer interface {
 type UnimplementedStatusServiceServer struct {
 }
 
+func (UnimplementedStatusServiceServer) Health(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Health not implemented")
+}
 func (UnimplementedStatusServiceServer) GetQuotaSummary(context.Context, *emptypb.Empty) (*Quotas, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetQuotaSummary not implemented")
 }
@@ -63,6 +77,24 @@ type UnsafeStatusServiceServer interface {
 
 func RegisterStatusServiceServer(s grpc.ServiceRegistrar, srv StatusServiceServer) {
 	s.RegisterService(&StatusService_ServiceDesc, srv)
+}
+
+func _StatusService_Health_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(emptypb.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StatusServiceServer).Health(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/rsk.StatusService/Health",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StatusServiceServer).Health(ctx, req.(*emptypb.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _StatusService_GetQuotaSummary_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -90,6 +122,10 @@ var StatusService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "rsk.StatusService",
 	HandlerType: (*StatusServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Health",
+			Handler:    _StatusService_Health_Handler,
+		},
 		{
 			MethodName: "GetQuotaSummary",
 			Handler:    _StatusService_GetQuotaSummary_Handler,

@@ -51,7 +51,7 @@ func LoadChangelogs() *cobra.Command {
 
 func populateChangelog(inputDataPath string, conn *ro.Conn, logger *zap.Logger) error {
 
-	logger.Info("Populating DB...")
+	logger.Info("Populating changelogs...")
 
 	changeLogs, err := changelog.List(inputDataPath)
 	if err != nil {

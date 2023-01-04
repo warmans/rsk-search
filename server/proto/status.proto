@@ -20,6 +20,20 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
 };
 service StatusService {
 
+  rpc Health(google.protobuf.Empty) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      custom: {
+        kind: "HEAD",
+        path: "/api/status/health"
+      }
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "getHealth",
+      summary: "Just return 200 if the API is up"
+      tags: "search"
+    };
+  }
+
   rpc GetQuotaSummary(google.protobuf.Empty) returns (Quotas) {
     option (google.api.http) = {
       get: "/api/status/quotas"
