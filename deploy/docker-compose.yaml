@@ -90,6 +90,7 @@ services:
       - postgres
     volumes:
       - ${PWD}/google-service-key.json:/root/google-service-key.json
+      # Remember to chown dir on host to nobody:nogroup to match containers
       - /mnt/audio:/audio
     environment:
       RSK_SEARCH_RW_DB_DSN: "postgres://scrimpton:insecure@postgres:5432/scrimpton?sslmode=disable"

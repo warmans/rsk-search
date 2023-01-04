@@ -97,7 +97,7 @@ func (q *ImportQueue) DispatchCreateWorkspace(ctx context.Context, tscriptImport
 	if err != nil {
 		return err
 	}
-	q.logger.Debug("Enqueue create workspace...")
+	q.logger.Info("Enqueue create workspace...")
 	_, err = q.client.EnqueueContext(ctx, asynq.NewTask(TaskImportCreateWorkspace, payload), asynq.Timeout(time.Minute*10), asynq.MaxRetry(5))
 	return err
 }
@@ -107,7 +107,7 @@ func (q *ImportQueue) DispatchMachineTranscribe(ctx context.Context, tscriptImpo
 	if err != nil {
 		return err
 	}
-	q.logger.Debug("Enqueue machine transcribe...")
+	q.logger.Info("Enqueue machine transcribe...")
 	_, err = q.client.EnqueueContext(ctx, asynq.NewTask(TaskImportMachineTranscribe, payload, asynq.Timeout(time.Hour*3), asynq.MaxRetry(-1)))
 	return err
 }
@@ -117,7 +117,7 @@ func (q *ImportQueue) DispatchSplitAudioChunks(ctx context.Context, tscriptImpor
 	if err != nil {
 		return err
 	}
-	q.logger.Debug("Enqueue split audio chunks...")
+	q.logger.Info("Enqueue split audio chunks...")
 	_, err = q.client.EnqueueContext(ctx, asynq.NewTask(TaskImportSplitChunks, payload), asynq.Timeout(time.Hour*1), asynq.MaxRetry(5))
 	return err
 }
@@ -127,8 +127,8 @@ func (q *ImportQueue) DispatchPublish(ctx context.Context, tscriptImport *models
 	if err != nil {
 		return err
 	}
-	q.logger.Debug("Enqueue publish...")
-	_, err = q.client.EnqueueContext(ctx, asynq.NewTask(TaskImportPublish, payload))
+	q.logger.Info("Enqueue publish...")
+	_, err = q.client.EnqueueContext(ctx, asynq.NewTask(TaskImportPublish, payload), asynq.Timeout(time.Minute*2), asynq.MaxRetry(2))
 	return err
 }
 
@@ -304,7 +304,7 @@ func (q *ImportQueue) HandleSplitAudioChunks(ctx context.Context, t *asynq.Task)
 			append(args, path.Join(chunkOutputDir, fmt.Sprintf("%s.mp3", chunk.ID)))...,
 		)
 
-		q.logger.Info("Shelling out to ffmpeg to extract Mp3 chunk", zap.String("chunk_id", chunk.ID), zap.Int64("strat", chunk.StartSecond))
+		q.logger.Info("Shelling out to ffmpeg to extract Mp3 chunk", zap.String("chunk_id", chunk.ID), zap.Int64("start_second", chunk.StartSecond))
 		out, err := cmd.CombinedOutput()
 		if err != nil {
 			err = errors.Wrap(err, "failed to exec split-ep.py")
@@ -324,6 +324,8 @@ func (q *ImportQueue) HandlePublish(ctx context.Context, t *asynq.Task) error {
 		return fmt.Errorf("json.Unmarshal failed: %v: %w", err, asynq.SkipRetry)
 	}
 
+	q.logger.Info("Start publish...")
+
 	// upload chunks
 	files, err := afero.ReadDir(q.fs, path.Join(tsImport.WorkingDir(q.cfg.WorkingDir), "chunks"))
 	if err != nil {
@@ -336,10 +338,12 @@ func (q *ImportQueue) HandlePublish(ctx context.Context, t *asynq.Task) error {
 		if !strings.HasSuffix(v.Name(), ".mp3") {
 			continue
 		}
-		if err := q.copyLocalFileMediaDir(
+		destDir := path.Join(q.mediaBasePath, "chunk", v.Name())
+		if err := q.copyLocalFile(
 			path.Join(tsImport.WorkingDir(q.cfg.WorkingDir), "chunks", v.Name()),
-			path.Join("chunk", v.Name()),
+			destDir,
 		); err != nil {
+			q.logger.Error("Failed to copy chunk to public media dir", zap.Error(err), zap.String("dest_dir", destDir))
 			return err
 		}
 		q.logger.Info("Copied chunk to public chunk dir", zap.String("file", v.Name()))
@@ -406,14 +410,14 @@ func (q *ImportQueue) TryUpdateImportLog(ctx context.Context, id string, stage s
 	}
 }
 
-func (q *ImportQueue) copyLocalFileMediaDir(srcPath string, relativeDestPath string) error {
+func (q *ImportQueue) copyLocalFile(srcPath string, destPath string) error {
 	localChunk, err := q.fs.Open(srcPath)
 	if err != nil {
 		return err
 	}
 	defer localChunk.Close()
 
-	destFile, err := q.fs.Create(path.Join(q.mediaBasePath, relativeDestPath))
+	destFile, err := q.fs.Create(destPath)
 	if err != nil {
 		return err
 	}
