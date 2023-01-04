@@ -1,8 +1,6 @@
 package server
 
 import (
-	speech "cloud.google.com/go/speech/apiv1"
-	"cloud.google.com/go/storage"
 	"context"
 	"fmt"
 	"github.com/blugelabs/bluge"
@@ -144,26 +142,14 @@ func ServerCmd() *cobra.Command {
 				return fmt.Errorf("pledge API key was missing")
 			}
 
-			//todo: need to mount credentials in prod env
-			googleStorage, err := storage.NewClient(context.Background())
-			if err != nil {
-				logger.Fatal("Failed to create google storage client", zap.Error(err))
-			}
-
-			googleSpeech, err := speech.NewClient(context.Background())
-			if err != nil {
-				logger.Fatal("Failed to create google speech client", zap.Error(err))
-			}
-
 			// task queue
 			taskQueue := queue.NewImportQueue(
 				logger,
 				afero.NewOsFs(),
 				persistentDBConn,
-				speech2text2.NewGcloud(logger, googleStorage, googleSpeech, speech2TextCfg),
 				assemblyai.NewClient(logger, http.DefaultClient, assemblyAiCfg),
-				googleStorage,
 				importQueueConfig,
+				srvCfg.MediaBasePath,
 			)
 			go func() {
 				if err := taskQueue.Start(); err != nil {

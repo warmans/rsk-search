@@ -1,7 +1,6 @@
 package queue
 
 import (
-	"cloud.google.com/go/storage"
 	"context"
 	"encoding/json"
 	"fmt"
@@ -26,34 +25,23 @@ import (
 
 const (
 	TaskImportCreateWorkspace   = "import:create_workspace"
-	TaskImportCreateWav         = "import:create_wav"
 	TaskImportMachineTranscribe = "import:machine_transcribe"
 	TaskImportSplitChunks       = "import:split_mp3_chunks"
 	TaskImportPublish           = "import:publish"
 )
 
 type ImportQueueConfig struct {
-	Addr                string
-	WorkingDir          string
-	GcloudAudioBucket   string
-	GcloudChunkBucket   string
-	GcloudWavDir        string
-	PythonScriptDir     string
-	KeepFiles           bool
-	AssemblyAIKey       string
-	Speech2TextStrategy string
+	Addr          string
+	WorkingDir    string
+	KeepFiles     bool
+	AssemblyAIKey string
 }
 
 func (c *ImportQueueConfig) RegisterFlags(fs *pflag.FlagSet, prefix string) {
 	flag.StringVarEnv(fs, &c.Addr, prefix, "import-redis-addr", "localhost:6379", "redis address to use for queue backend")
 	flag.StringVarEnv(fs, &c.WorkingDir, prefix, "import-work-dir", "./var/imports", "location to store in progress import artifacts")
-	flag.StringVarEnv(fs, &c.GcloudAudioBucket, prefix, "import-gcloud-audio-bucket", "scrimpton-raw-audio", "bucket to upload data where needed")
-	flag.StringVarEnv(fs, &c.GcloudChunkBucket, prefix, "import-gcloud-chunk-bucket", "scrimpton-chunked-audio", "bucket for storing audio chunks")
-	flag.StringVarEnv(fs, &c.GcloudWavDir, prefix, "import-gcloud-wav-dir", "wav", "bucket to upload data where needed")
-	flag.StringVarEnv(fs, &c.PythonScriptDir, prefix, "import-python-script-dir", "./script/audio-splitter", "location of python scripts used for audio splitting")
 	flag.BoolVarEnv(fs, &c.KeepFiles, prefix, "import-keep-files", false, "do not remove files after publish")
 	flag.StringVarEnv(fs, &c.AssemblyAIKey, prefix, "import-assembly-ai-key", "", "API key for assemblyAI")
-	flag.StringVarEnv(fs, &c.Speech2TextStrategy, prefix, "import-speech-2-text-strategy", "assemblyai", "gclound or assemblyai")
 }
 
 type ImportPipeline interface {
@@ -64,10 +52,9 @@ func NewImportQueue(
 	logger *zap.Logger,
 	filesystem afero.Fs,
 	rw *rw.Conn,
-	speech2text *speech2text.Gcloud,
 	assemblyAi *assemblyai.Client,
-	gcloud *storage.Client,
-	cfg *ImportQueueConfig) *ImportQueue {
+	cfg *ImportQueueConfig,
+	mediaBasePath string) *ImportQueue {
 	a := asynq.NewServer(
 		asynq.RedisClientOpt{Addr: cfg.Addr},
 		asynq.Config{
@@ -76,28 +63,28 @@ func NewImportQueue(
 		},
 	)
 	return &ImportQueue{
-		logger:      logger,
-		cfg:         cfg,
-		srv:         a,
-		client:      asynq.NewClient(asynq.RedisClientOpt{Addr: cfg.Addr}),
-		rw:          rw,
-		fs:          filesystem,
-		gcloud:      gcloud,
-		speech2text: speech2text,
-		assemblyAi:  assemblyAi,
+		logger:        logger,
+		cfg:           cfg,
+		srv:           a,
+		client:        asynq.NewClient(asynq.RedisClientOpt{Addr: cfg.Addr}),
+		rw:            rw,
+		fs:            filesystem,
+		assemblyAi:    assemblyAi,
+		mediaBasePath: mediaBasePath,
 	}
 }
 
 type ImportQueue struct {
-	logger      *zap.Logger
-	cfg         *ImportQueueConfig
-	srv         *asynq.Server
-	client      *asynq.Client
-	rw          *rw.Conn
-	speech2text *speech2text.Gcloud
-	assemblyAi  *assemblyai.Client
-	gcloud      *storage.Client
-	fs          afero.Fs
+	logger     *zap.Logger
+	cfg        *ImportQueueConfig
+	srv        *asynq.Server
+	client     *asynq.Client
+	rw         *rw.Conn
+	assemblyAi *assemblyai.Client
+	fs         afero.Fs
+	// main media directory used for media serving from the HTTP server
+	// we will read from here and write back to the chunks dir
+	mediaBasePath string
 }
 
 // StartNewImport implements a simple interface for the server. It doesn't need to know the steps to run an import.
@@ -112,16 +99,6 @@ func (q *ImportQueue) DispatchCreateWorkspace(ctx context.Context, tscriptImport
 	}
 	q.logger.Debug("Enqueue create workspace...")
 	_, err = q.client.EnqueueContext(ctx, asynq.NewTask(TaskImportCreateWorkspace, payload), asynq.Timeout(time.Minute*10), asynq.MaxRetry(5))
-	return err
-}
-
-func (q *ImportQueue) DispatchCreateWav(ctx context.Context, tscriptImport *models.TscriptImport) error {
-	payload, err := json.Marshal(tscriptImport)
-	if err != nil {
-		return err
-	}
-	q.logger.Debug("Enqueue create WAV...")
-	_, err = q.client.EnqueueContext(ctx, asynq.NewTask(TaskImportCreateWav, payload), asynq.Timeout(time.Hour), asynq.MaxRetry(5))
 	return err
 }
 
@@ -195,14 +172,7 @@ func (q *ImportQueue) HandleCreateWorkspace(ctx context.Context, t *asynq.Task) 
 	q.TryUpdateImportLog(ctx, tsImport.ID, t.Type(), "Workspace created: %s", q.cfg.WorkingDir)
 	// move to next stage
 
-	if q.cfg.Speech2TextStrategy == "assemblyai" {
-		// wav is only needed for gcloud
-		q.logger.Info("Dispatch machine transcribe task (skip WAV)")
-		return q.DispatchMachineTranscribe(ctx, tsImport)
-	} else {
-		q.logger.Info("Dispatch create WAV task")
-		return q.DispatchCreateWav(ctx, tsImport)
-	}
+	return q.DispatchMachineTranscribe(ctx, tsImport)
 }
 
 func (q *ImportQueue) HandleCreateWav(ctx context.Context, t *asynq.Task) error {
@@ -250,24 +220,14 @@ func (q *ImportQueue) HandleCreateMachineTranscription(ctx context.Context, t *a
 	}
 	defer outputFile.Close()
 
-	q.logger.Info("Starting speech 2 text...", zap.String("strategy", q.cfg.Speech2TextStrategy))
-	switch q.cfg.Speech2TextStrategy {
-	case "gcloud":
-		if err := q.speech2text.GenerateText(ctx, path.Join(tsImport.WorkingDir(q.cfg.WorkingDir), tsImport.WAV()), outputFile); err != nil {
-			q.logger.Error("Failed gcloud speech 2 text", zap.Error(err))
-			return err
-		}
-	case "assemblyai":
-		resp, err := q.assemblyAi.Transcribe(ctx, &assemblyai.TranscribeRequest{AudioURL: tsImport.Mp3URI, SpeakerLabels: true})
-		if err != nil {
-			q.logger.Error("Failed assemblyai text", zap.Error(err))
-			return err
-		}
-		if err := assemblyai.ToFlatFile(resp, outputFile); err != nil {
-			return err
-		}
-	default:
-		return fmt.Errorf("unknown speech 2 text strategy: %s", q.cfg.Speech2TextStrategy)
+	q.logger.Info("Starting speech 2 text...")
+	resp, err := q.assemblyAi.Transcribe(ctx, &assemblyai.TranscribeRequest{AudioURL: tsImport.Mp3URI, SpeakerLabels: true})
+	if err != nil {
+		q.logger.Error("Failed assemblyai text", zap.Error(err))
+		return err
+	}
+	if err := assemblyai.ToFlatFile(resp, outputFile); err != nil {
+		return err
 	}
 
 	q.TryUpdateImportLog(ctx, tsImport.ID, t.Type(), "Machine transcription completed: %s", tsImport.WAV())
@@ -324,6 +284,8 @@ func (q *ImportQueue) HandleSplitAudioChunks(ctx context.Context, t *asynq.Task)
 		return err
 	}
 
+	// split file into chunks by shelling out to ffmpeg
+
 	for _, chunk := range tscript.Chunks {
 
 		args := []string{
@@ -351,16 +313,6 @@ func (q *ImportQueue) HandleSplitAudioChunks(ctx context.Context, t *asynq.Task)
 		}
 	}
 
-	//wavPath := path.Join(tsImport.WorkingDir(q.cfg.WorkingDir), tsImport.Mp3())
-	//
-	//cmd := exec.Command(
-	//	"python3",
-	//	path.Join(q.cfg.PythonScriptDir, "split-ep.py"),
-	//	"--meta", chunkMetadataPath,
-	//	"--outpath", chunkOutputDir,
-	//	"--audio", wavPath,
-	//)
-
 	q.TryUpdateImportLog(ctx, tsImport.ID, t.Type(), "Mp3 split complete: %s", chunkOutputDir)
 
 	return q.DispatchPublish(ctx, tsImport)
@@ -384,10 +336,13 @@ func (q *ImportQueue) HandlePublish(ctx context.Context, t *asynq.Task) error {
 		if !strings.HasSuffix(v.Name(), ".mp3") {
 			continue
 		}
-		if err := q.copyLocalFileToBucket(ctx, q.cfg.GcloudChunkBucket, v.Name(), path.Join(tsImport.WorkingDir(q.cfg.WorkingDir), "chunks", v.Name())); err != nil {
+		if err := q.copyLocalFileMediaDir(
+			path.Join(tsImport.WorkingDir(q.cfg.WorkingDir), "chunks", v.Name()),
+			path.Join("chunk", v.Name()),
+		); err != nil {
 			return err
 		}
-		q.logger.Info("Copied chunk to bucket", zap.String("file", v.Name()), zap.String("bucket", q.cfg.GcloudChunkBucket))
+		q.logger.Info("Copied chunk to public chunk dir", zap.String("file", v.Name()))
 	}
 
 	q.logger.Info("Import chunks to DB")
@@ -419,7 +374,6 @@ func (q *ImportQueue) HandlePublish(ctx context.Context, t *asynq.Task) error {
 func (q *ImportQueue) Start() error {
 	mux := asynq.NewServeMux()
 	mux.HandleFunc(TaskImportCreateWorkspace, q.HandleCreateWorkspace)
-	mux.HandleFunc(TaskImportCreateWav, q.HandleCreateWav)
 	mux.HandleFunc(TaskImportMachineTranscribe, q.HandleCreateMachineTranscription)
 	mux.HandleFunc(TaskImportSplitChunks, q.HandleSplitAudioChunks)
 	mux.HandleFunc(TaskImportPublish, q.HandlePublish)
@@ -452,20 +406,22 @@ func (q *ImportQueue) TryUpdateImportLog(ctx context.Context, id string, stage s
 	}
 }
 
-func (q *ImportQueue) copyLocalFileToBucket(ctx context.Context, destBucket string, destName string, srcPath string) error {
+func (q *ImportQueue) copyLocalFileMediaDir(srcPath string, relativeDestPath string) error {
 	localChunk, err := q.fs.Open(srcPath)
 	if err != nil {
 		return err
 	}
 	defer localChunk.Close()
 
-	remoteChunk := q.gcloud.Bucket(q.cfg.GcloudChunkBucket).Object(destName).NewWriter(ctx)
-	defer remoteChunk.Close()
-
-	if _, err := io.Copy(remoteChunk, localChunk); err != nil {
+	destFile, err := q.fs.Create(path.Join(q.mediaBasePath, relativeDestPath))
+	if err != nil {
 		return err
 	}
-	return nil
+	if _, err := io.Copy(destFile, localChunk); err != nil {
+		return err
+	}
+
+	return destFile.Close()
 }
 
 func asynqZapLogger(zap *zap.Logger) asynq.Logger {

@@ -1,5 +1,6 @@
 .envrc.private
-var/rw.sqlite3
-var/data/episodes/incomplete
+var/ro.sqlite3
+var/data/incomplete
 var/data/pending
 var/data/export
+var/imports

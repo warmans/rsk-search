@@ -54,21 +54,8 @@ https://developer.spotify.com/console/get-search-item/ (click GET TOKEN)
 (this is done using github actions)
 
 ### New deployment
+
 1. Build and push docker images with your own namespace.
 2. Update `./deploy/docker-compose.yaml` with correct image names/versions.
 3. Copy docker-compose file to your server.
 4. Run `docker-compose up -d`
-
-## Transcription
-
-To add a new episode to the pending transcriptions: 
-
-1. Create 16bit mono .wav of the audio (if an mp3). E.g. using Audacity or ffmpeg (`ffmpeg -i "xfm-S2E19.mp3" -ac 1 ./wav/xfm-S2E19.wav`)
-2. Upload the raw wav file to google drive.
-3. Use `./bin/rsk-search transcription gcloud` command to auto-transcribe it and redirect the output into a file with a standardized name.
-   * e.g. `GOOGLE_APPLICATION_CREDENTIALS=~/keys/key.json ./bin/rsk-search transcription gcloud "gs://my-bucket-name/raw/Series 4 Episode 2 (4. June 2005).wav" > ./var/data/episodes/incomplete/raw/xfm-S4E02.txt`
-4. Use the `./bin/rsk-search transcription map-chunks` command to create the chunked file.
-5. Create the audio chunks with the python script.
-   * `python3 script/audio-splitter/split-ep.py --meta var/data/incomplete/chunked/xfm-S2E17.txt --outpath ~/audio-chunks/. --audio /path/to/Radio/series-2/xfm-S2E17.mp3`
-6. Upload the chunks to google cloud.
-7. Use the `./bin/rsk-search db load-tscript` command to upload the files to the DB, putting the chunks live.

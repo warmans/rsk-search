@@ -13,9 +13,9 @@ import { takeUntil } from 'rxjs/operators';
 export class ImportComponent implements OnInit, OnDestroy {
 
   importForm: FormGroup = new FormGroup({
-    'epid': new FormControl('sample-S0E0', [Validators.required]),
+    'epid': new FormControl('preview-S1E06', [Validators.required]),
     'epname': new FormControl('', []),
-    'mp3_uri': new FormControl('https://storage.googleapis.com/scrimpton-raw-audio/sample-S0E0.mp3', [Validators.required]),
+    'mp3_uri': new FormControl('https://scrimpton.com/dl/media/episode/preview-S1E06.mp3', [Validators.required]),
   });
 
   tscripts: RskTscriptStats[] = [];
