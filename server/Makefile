@@ -103,6 +103,13 @@ generate.swagger-bundle:
 		-base ./script/swagger-merge/base.swagger.json \
 		-merge ./gen/api/open-api/oauth.swagger.json,./gen/api/open-api/search.swagger.json,./gen/api/open-api/contrib.swagger.json,./gen/api/open-api/admin.swagger.json,./gen/api/open-api/status.swagger.json
 
+.PHONY: generate.artifacts
+generate.artifacts: generate.plaintext generate.zip
+
+.PHONY: generate.plaintext
+generate.plaintext:
+	mkdir -p ./var/gen/plaintext && ./bin/rsk-search data dump-plaintext;
+
 .PHONY: generate.zip
 generate.zip:  generate.json.zip generate.plaintext.zip
 
@@ -112,11 +119,7 @@ generate.json.zip:
 
 .PHONY: generate.plaintext.zip
 generate.plaintext.zip:
-	cd var/data/plaintext; zip -r ../../gen/episodes-plaintext.zip *.txt
-
-.PHONY: generate.plaintext
-generate.plaintext:
-	mkdir -p ./var/data/gen/plaintext && ./bin/rsk-search data dump-plaintext;
+	cd var/gen/plaintext; zip -r ../../gen/episodes-plaintext.zip *.txt
 
 #----------------------------------------------------------------------------------------------
 # Run services
@@ -128,11 +131,11 @@ init.all:
 
 .PHONY: init.db
 init.db:
-	rm ./var/ro.sqlite3; ./bin/rsk-search db load-ro && ./bin/rsk-search db load-changelogs
+	rm ./var/gen/ro.sqlite3; ./bin/rsk-search db load-ro && ./bin/rsk-search db load-changelogs
 
 .PHONY: init.index
 init.index:
-	rm -rf ./var/rsk.bluge; ./bin/rsk-search data populate-bluge-index
+	rm -rf ./var/gen/rsk.bluge; ./bin/rsk-search data populate-bluge-index
 
 .PHONY: init.transcripts
 init.transcripts:

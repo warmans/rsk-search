@@ -43,7 +43,7 @@ jobs:
 
       - name: Generate data
         working-directory: ${{env.working-directory}}
-        run: make init.all generate.plaintext generate.zip
+        run: make init.all generate.artifacts
 
       - name: Store binaries
         uses: actions/upload-artifact@v2
