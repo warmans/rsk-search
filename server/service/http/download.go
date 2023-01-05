@@ -53,13 +53,13 @@ func (c *DownloadService) RegisterHTTP(ctx context.Context, router *mux.Router) 
 func (c *DownloadService) DownloadJSONArchive(resp http.ResponseWriter, req *http.Request) {
 	resp.Header().Set("Content-Disposition", "attachment; filename=episodes-json.zip")
 	resp.Header().Set("Content-Type", "application/zip")
-	http.ServeFile(resp, req, path.Join(c.serviceConfig.FilesBasePath, "episodes-json.zip"))
+	http.ServeFile(resp, req, path.Join(c.serviceConfig.FilesBasePath, "gen", "episodes-json.zip"))
 }
 
 func (c *DownloadService) DownloadPlaintextArchive(resp http.ResponseWriter, req *http.Request) {
 	resp.Header().Set("Content-Disposition", "attachment; filename=episodes-plaintext.zip")
 	resp.Header().Set("Content-Type", "application/zip")
-	http.ServeFile(resp, req, path.Join(c.serviceConfig.FilesBasePath, "episodes-plaintext.zip"))
+	http.ServeFile(resp, req, path.Join(c.serviceConfig.FilesBasePath, "gen", "episodes-plaintext.zip"))
 }
 
 func (c *DownloadService) DownloadMP3(resp http.ResponseWriter, req *http.Request) {
