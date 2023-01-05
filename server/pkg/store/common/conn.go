@@ -14,7 +14,7 @@ import (
 )
 
 type Config struct {
-	DSN    string
+	DSN string
 }
 
 func (c *Config) RegisterFlags(fs *pflag.FlagSet, prefix string, dbName string) {
@@ -23,7 +23,7 @@ func (c *Config) RegisterFlags(fs *pflag.FlagSet, prefix string, dbName string) 
 		&c.DSN,
 		prefix,
 		fmt.Sprintf("%s-db-dsn", dbName),
-		fmt.Sprintf("./var/%s.sqlite3", dbName),
+		fmt.Sprintf("./var/gen/%s.sqlite3", dbName),
 		"DB connection string",
 	)
 }
@@ -123,7 +123,6 @@ func (c *Conn) WithTx(f func(tx *sqlx.Tx) error) error {
 	}
 	return tx.Commit()
 }
-
 
 func (c *Conn) Close() error {
 	return c.db.Close()

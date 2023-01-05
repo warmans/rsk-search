@@ -89,8 +89,7 @@ services:
     depends_on:
       - postgres
     volumes:
-      - ${PWD}/google-service-key.json:/root/google-service-key.json
-      # Remember to chown dir on host to nobody:nogroup to match containers
+      # Remember to chown dir on host to nobody:nogroup to match containers (see script/setup.sh)
       - /mnt/audio:/audio
     environment:
       RSK_SEARCH_RW_DB_DSN: "postgres://scrimpton:insecure@postgres:5432/scrimpton?sslmode=disable"
@@ -104,9 +103,6 @@ services:
       RSK_SEARCH_PLEDGE_DEF_FIRSTNAME: "changeme"
       RSK_SEARCH_PLEDGE_DEF_LASTNAME: "changeme"
       RSK_SEARCH_IMPORT_REDIS_ADDR: "redis:6379"
-      RSK_SEARCH_IMPORT_PYTHON_SCRIPT_DIR: "/opt/rsk/script"
       RSK_SEARCH_BMAC_ACCESS_TOKEN: na
-      GOOGLE_APPLICATION_CREDENTIALS: "/root/google-service-key.json"
       RSK_SEARCH_ASSEMBLY_AI_ACCESS_TOKEN: "changeme"
-
     restart: unless-stopped

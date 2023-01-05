@@ -27,7 +27,7 @@ func LoadCmd() *cobra.Command {
 			logger, _ := zap.NewProduction()
 			defer func() {
 				if err := logger.Sync(); err != nil {
-					fmt.Println("WARNING: failed to sync logger: "+err.Error())
+					fmt.Println("WARNING: failed to sync logger: " + err.Error())
 				}
 			}()
 
@@ -48,7 +48,7 @@ func LoadCmd() *cobra.Command {
 	}
 
 	cmd.Flags().StringVarP(&inputDir, "input-path", "i", "./var/data/episodes", "Path to raw data files")
-	cmd.Flags().StringVarP(&dbDSN, "db-dsn", "d", "./var/ro.sqlite3", "databsae DSN")
+	cmd.Flags().StringVarP(&dbDSN, "db-dsn", "d", "./var/gen/ro.sqlite3", "databsae DSN")
 
 	return cmd
 }

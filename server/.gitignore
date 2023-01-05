@@ -1,14 +1,6 @@
-rsk-search
-/var/*.bleve
-/var/*.bluge
-/var/*.sqlite3
-/var/data/export
-/var/data/plaintext
-/var/data/raw
+/bin
+/var/gen/*
 /var/imports/*
 /vendor
-/bin
-episodes-json.zip
-episodes-plaintext.zip
 .envrc.private
 aai-output-*

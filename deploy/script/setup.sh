@@ -6,6 +6,9 @@ mkdir -p /mnt/volume_fra1_01/swag-config && ln -s /mnt/volume_fra1_01/swag-confi
 mkdir -p /mnt/volume_fra1_01/grafana/data && chown -R 472:472 mnt/volume_fra1_01/grafana && ln -s /mnt/volume_fra1_01/grafana ./grafana
 mkdir -p /mnt/volume_fra1_01/prometheus && chown -R nobody:nobody mnt/volume_fra1_01/prometheus && ln -s /mnt/volume_fra1_01/prometheus ./prometheus
 
+# fix permission on audio dir to allow writing from docker container
+chmod -R nobody:nogroup /mnt/audio
+
 # packages
 apt-get update && sudo apt install -y docker.io docker-compose ufw
 

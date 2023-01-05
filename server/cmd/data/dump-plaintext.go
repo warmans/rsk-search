@@ -71,7 +71,7 @@ func DumpPlaintext() *cobra.Command {
 	}
 
 	cmd.Flags().StringVarP(&inputDir, "input-path", "i", "./var/data/episodes", "Path to JSON files")
-	cmd.Flags().StringVarP(&outputDir, "output-path", "o", "./var/data/plaintext", "Dump to this dir")
+	cmd.Flags().StringVarP(&outputDir, "output-path", "o", "./var/gen/plaintext", "Dump to this dir")
 
 	return cmd
 }

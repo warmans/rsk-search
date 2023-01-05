@@ -108,15 +108,15 @@ generate.zip:  generate.json.zip generate.plaintext.zip
 
 .PHONY: generate.json.zip
 generate.json.zip:
-	cd var/data/episodes; zip -r ../../episodes-json.zip *.json
+	cd var/data/episodes; zip -r ../../gen/episodes-json.zip *.json
 
 .PHONY: generate.plaintext.zip
 generate.plaintext.zip:
-	cd var/data/plaintext; zip -r ../../episodes-plaintext.zip *.txt
+	cd var/data/plaintext; zip -r ../../gen/episodes-plaintext.zip *.txt
 
 .PHONY: generate.plaintext
 generate.plaintext:
-	mkdir -p ./var/data/plaintext && ./bin/rsk-search data dump-plaintext;
+	mkdir -p ./var/data/gen/plaintext && ./bin/rsk-search data dump-plaintext;
 
 #----------------------------------------------------------------------------------------------
 # Run services
@@ -220,7 +220,7 @@ docker.build:
 
 .PHONY: docker.run
 docker.run:
-	docker run -it -p 8888:8888 $(DOCKER_IMAGE_NAME):latest
+	docker run -it -p 8888:8888 warmans/rsk-search-api:latest
 
 .PHONY: docker.publish
 docker.publish:

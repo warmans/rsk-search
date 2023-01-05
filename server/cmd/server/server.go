@@ -16,7 +16,6 @@ import (
 	"github.com/warmans/rsk-search/pkg/reward"
 	v2 "github.com/warmans/rsk-search/pkg/search/v2"
 	"github.com/warmans/rsk-search/pkg/server"
-	speech2text2 "github.com/warmans/rsk-search/pkg/speech2text"
 	"github.com/warmans/rsk-search/pkg/store/common"
 	"github.com/warmans/rsk-search/pkg/store/ro"
 	"github.com/warmans/rsk-search/pkg/store/rw"
@@ -47,7 +46,6 @@ func ServerCmd() *cobra.Command {
 	rewardCfg := reward.Config{}
 	pledgeCfg := pledge.Config{}
 	importQueueConfig := &queue.ImportQueueConfig{}
-	speech2TextCfg := &speech2text2.GcloudConfig{}
 	coffeeCfg := &coffee.Config{}
 	assemblyAiCfg := &assemblyai.Config{}
 
@@ -257,7 +255,6 @@ func ServerCmd() *cobra.Command {
 	rewardCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
 	pledgeCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
 	importQueueConfig.RegisterFlags(cmd.Flags(), ServicePrefix)
-	speech2TextCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
 	coffeeCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
 	assemblyAiCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
 

@@ -22,4 +22,28 @@ services:
     - '4000:8080'
     environment:
       REDIS_ADDR: 'redis:6379'
-
+#  uncomment to test if built image is working
+#  server:
+#    image: "warmans/rsk-search-api:latest"
+#    ports:
+#      - "127.0.0.1:8888:8888"
+#    depends_on:
+#      - postgres
+#    volumes:
+#      # Remember to chown dir on host to nobody:nogroup to match containers
+#      - /mnt/audio:/audio
+#    environment:
+#      RSK_SEARCH_RW_DB_DSN: "postgres://scrimpton:insecure@postgres:5432/scrimpton?sslmode=disable"
+#      RSK_SEARCH_JWT_KEY: ""
+#      RSK_SEARCH_OAUTH_SECRET: ""
+#      RSK_SEARCH_OAUTH_APP_ID: ""
+#      RSK_SEARCH_OAUTH_RETURN_URL: ""
+#      RSK_SEARCH_REWARDS_DISABLED: "true"
+#      RSK_SEARCH_PLEDGE_SECRET: "changeme"
+#      RSK_SEARCH_PLEDGE_DEF_EMAIL: "changeme"
+#      RSK_SEARCH_PLEDGE_DEF_FIRSTNAME: "changeme"
+#      RSK_SEARCH_PLEDGE_DEF_LASTNAME: "changeme"
+#      RSK_SEARCH_IMPORT_REDIS_ADDR: "redis:6379"
+#      RSK_SEARCH_BMAC_ACCESS_TOKEN: na
+#      RSK_SEARCH_ASSEMBLY_AI_ACCESS_TOKEN: "changeme"
+#    restart: unless-stopped

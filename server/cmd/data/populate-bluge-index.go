@@ -47,7 +47,7 @@ func PopulateBlugeIndex() *cobra.Command {
 		},
 	}
 
-	cmd.Flags().StringVarP(&indexPath, "index-path", "i", "./var/rsk.bluge", "Path to index file")
+	cmd.Flags().StringVarP(&indexPath, "index-path", "i", "./var/gen/rsk.bluge", "Path to index file")
 
 	return cmd
 }

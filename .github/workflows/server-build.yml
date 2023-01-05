@@ -23,7 +23,6 @@ jobs:
           args: --timeout=5m
   build:
     runs-on: ubuntu-latest
-    needs: lint
     env:
       working-directory: ./server
     steps:
@@ -42,7 +41,7 @@ jobs:
         working-directory: ${{env.working-directory}}
         run: go test -v ./...
 
-      - name: Generate files
+      - name: Generate data
         working-directory: ${{env.working-directory}}
         run: make init.all generate.plaintext generate.zip
 
@@ -52,23 +51,21 @@ jobs:
           name: server-binaries
           path: ${{env.working-directory}}/bin
 
-      - name: Store data files
+      - name: Store generated data
         uses: actions/upload-artifact@v2
         with:
           name: server-data
-          path: |
-            ${{env.working-directory}}/var
-            !${{env.working-directory}}/var/data/episodes
-            !${{env.working-directory}}/var/data/incomplete
-            !${{env.working-directory}}/var/data/pending
+          path: ${{env.working-directory}}/var/gen
+
   publish:
     runs-on: ubuntu-latest
-    needs: build
+    needs:
+      - build
+      - lint
     if: ${{ github.ref == 'refs/heads/main' }}
     env:
       working-directory: ./server
     steps:
-
       - name: Checkout
         uses: actions/checkout@v2
 
@@ -78,11 +75,11 @@ jobs:
           name: server-binaries
           path: ${{env.working-directory}}/bin
 
-      - name: Download server data
+      - name: Download generated data
         uses: actions/download-artifact@v2
         with:
           name: server-data
-          path: ${{env.working-directory}}/var
+          path: ${{env.working-directory}}/var/gen
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
