@@ -173,7 +173,7 @@ func (c *DownloadService) DownloadEpisodePlaintext(resp http.ResponseWriter, req
 	fileName := fmt.Sprintf("%s.txt", episode)
 	resp.Header().Set("Content-Disposition", fmt.Sprintf("attachment; filename=%s", fileName))
 	resp.Header().Set("Content-Type", "text/plain")
-	http.ServeFile(resp, req, path.Join(c.serviceConfig.FilesBasePath, "data", "plaintext", fileName))
+	http.ServeFile(resp, req, path.Join(c.serviceConfig.FilesBasePath, "gen", "plaintext", fileName))
 }
 
 func (c *DownloadService) incrementQuotas(ctx context.Context, mediaType string, fileID string, fileBytes int64) error {
