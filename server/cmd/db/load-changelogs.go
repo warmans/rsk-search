@@ -8,6 +8,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/store/common"
 	"github.com/warmans/rsk-search/pkg/store/ro"
 	"go.uber.org/zap"
+	"time"
 )
 
 func LoadChangelogs() *cobra.Command {
@@ -44,7 +45,7 @@ func LoadChangelogs() *cobra.Command {
 	}
 
 	cmd.Flags().StringVarP(&inputDir, "input-path", "i", "./var/changelogs", "Path to raw markdown files")
-	cmd.Flags().StringVarP(&dbDSN, "db-dsn", "d", "./var/ro.sqlite3", "readonly database DSN")
+	cmd.Flags().StringVarP(&dbDSN, "db-dsn", "d", "./var/gen/ro.sqlite3", "readonly database DSN")
 
 	return cmd
 }
@@ -57,8 +58,10 @@ func populateChangelog(inputDataPath string, conn *ro.Conn, logger *zap.Logger) 
 	if err != nil {
 		return err
 	}
+
 	for _, log := range changeLogs {
 		if err := conn.WithStore(func(s *ro.Store) error {
+			logger.Info("Changelog added", zap.String("date", log.Date.Format(time.RFC3339)))
 			return s.InsertChangelog(context.Background(), log)
 		}); err != nil {
 			return err
