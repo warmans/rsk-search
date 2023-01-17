@@ -43,12 +43,9 @@ install.golangci:
 
 .PHONY: check.env
 check.env:
-	ifeq (, $(shell which direnv))
-	 $(error "direnv not found in PATH. This tool is required to modify the project env see: https://direnv.net/docs/installation.html (or just apt-get install direnv)")
-	endif
-	ifeq (, $(shell which buf))
-	 $(error "buf not found in PATH. Run setup (make setup)")
-	endif
+ifeq ($(shell which direnv),)
+	$(error "direnv not found in PATH. This tool is required to modify the project env see: https://direnv.net/docs/installation.html (or just apt-get install direnv)")
+endif
 
 #----------------------------------------------------------------------------------------------
 # Linting

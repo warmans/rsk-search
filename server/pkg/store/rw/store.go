@@ -1414,3 +1414,45 @@ func (s *Store) GetMediaStatsForCurrentMonth(ctx context.Context) (int64, int64,
 
 	return totalDownloads, totalBytes, err
 }
+func (s *Store) ListAuthorNotifications(ctx context.Context, authorID string, qm *common.QueryModifier) ([]*models.AuthorNotification, error) {
+
+	fieldMap := map[string]string{
+		"author_id":  "author_id",
+		"kind":       "kind",
+		"created_at": "created_at",
+		"read_at":    "read_at",
+	}
+
+	qm.Filter = filter.And(filter.Eq("author_id", filter.String(authorID)), qm.Filter)
+
+	where, params, order, paging, err := qm.ToSQL(fieldMap, false)
+	if err != nil {
+		return nil, err
+	}
+
+	rows, err := s.tx.QueryxContext(
+		ctx,
+		fmt.Sprintf(`
+		SELECT id, kind, message, click_through_url, read_at, created_at 
+		FROM author_notification
+		%s
+		%s
+		%s
+		`, where, order, paging),
+		params...,
+	)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	out := make([]*models.AuthorNotification, 0)
+	for rows.Next() {
+		cur := &models.AuthorNotification{}
+		if err := rows.Scan(&cur.ID, &cur.Kind, &cur.Message, &cur.ClickThoughURL, &cur.ReadAt, &cur.ReadAt, &cur.CreatedAt); err != nil {
+			return nil, err
+		}
+		out = append(out, cur)
+	}
+	return out, nil
+}

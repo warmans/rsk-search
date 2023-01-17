@@ -12,7 +12,6 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
-// Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
 // AdminServiceClient is the client API for AdminService service.
@@ -89,8 +88,8 @@ type UnsafeAdminServiceServer interface {
 	mustEmbedUnimplementedAdminServiceServer()
 }
 
-func RegisterAdminServiceServer(s grpc.ServiceRegistrar, srv AdminServiceServer) {
-	s.RegisterService(&AdminService_ServiceDesc, srv)
+func RegisterAdminServiceServer(s *grpc.Server, srv AdminServiceServer) {
+	s.RegisterService(&_AdminService_serviceDesc, srv)
 }
 
 func _AdminService_DeleteTscript_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -147,10 +146,7 @@ func _AdminService_ListTscriptImports_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
-// AdminService_ServiceDesc is the grpc.ServiceDesc for AdminService service.
-// It's only intended for direct use with grpc.RegisterService,
-// and not to be introspected or modified (even as a copy)
-var AdminService_ServiceDesc = grpc.ServiceDesc{
+var _AdminService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "rsk.AdminService",
 	HandlerType: (*AdminServiceServer)(nil),
 	Methods: []grpc.MethodDesc{

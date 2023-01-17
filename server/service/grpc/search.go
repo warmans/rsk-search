@@ -12,7 +12,6 @@ import (
 	"github.com/warmans/rsk-search/pkg/meta"
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/search"
-	"github.com/warmans/rsk-search/pkg/store/common"
 	"github.com/warmans/rsk-search/pkg/store/ro"
 	"github.com/warmans/rsk-search/pkg/store/rw"
 	"github.com/warmans/rsk-search/pkg/transcript"
@@ -62,32 +61,6 @@ func (s *SearchService) RegisterHTTP(ctx context.Context, router *mux.Router, mu
 	if err := api.RegisterSearchServiceHandlerFromEndpoint(ctx, mux, endpoint, opts); err != nil {
 		panic(err)
 	}
-}
-
-func NewQueryModifiers(req interface{}) (*common.QueryModifier, error) {
-	q := common.Q()
-	if p, ok := req.(common.Pager); ok {
-		q.Apply(common.WithPaging(p.GetPageSize(), p.GetPage()))
-	}
-	if p, ok := req.(common.Sorter); ok {
-		if p.GetSortField() != "" {
-			givenDirection := common.SortDirection(strings.ToUpper(p.GetSortDirection()))
-			if givenDirection != common.SortAsc && givenDirection != common.SortDesc {
-				return nil, ErrInvalidRequestField("sort_direction", "Must be 'asc' or 'desc'").Err()
-			}
-			q.Apply(common.WithSorting(p.GetSortField(), givenDirection))
-		}
-	}
-	if p, ok := req.(common.Filterer); ok {
-		if strings.TrimSpace(p.GetFilter()) != "" {
-			fil, err := filter.Parse(p.GetFilter())
-			if err != nil {
-				return nil, ErrInvalidRequestField("filter", err.Error()).Err()
-			}
-			q.Apply(common.WithFilter(fil))
-		}
-	}
-	return q, nil
 }
 
 func (s *SearchService) GetMetadata(ctx context.Context, empty *emptypb.Empty) (*api.Metadata, error) {

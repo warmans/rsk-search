@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package rsk;
+
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/warmans/rsk-search/server/gen/api";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    version: "1.0";
+  };
+  external_docs: {
+    url: "https://scrimpton.com";
+    description: "User service has endpoints related to a particular user.";
+  };
+  schemes: HTTP;
+};
+service UserService {
+
+  rpc ListNotifications(ListNotificationsRequest) returns (NotificationsList) {
+    option (google.api.http) = {
+      get: "/api/user/notifications"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "listNotifications",
+      summary: "List most recent notifications."
+      tags: "search"
+    };
+  }
+}
+
+message ListNotificationsRequest {
+  string filter = 1;
+  string sort_field = 2;
+  string sort_direction = 3;
+  int32 page = 4;
+  int32 page_size = 5;
+}
+
+message NotificationsList {
+  repeated Notification notifications = 1;
+}
+
+message Notification {
+
+  enum NotificationKind {
+    UNDEFINED_KIND = 0;
+    CONFIRMATION = 1;
+    INFO = 2;
+    WARNING = 3;
+    SPAM = 4;
+  }
+
+  string id = 1;
+  NotificationKind kind = 2;
+  string message = 3;
+  string click_though_url = 4;
+  string created_at = 5;
+  string read_at = 6;
+}

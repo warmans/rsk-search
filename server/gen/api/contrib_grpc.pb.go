@@ -12,7 +12,6 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
-// Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
 // ContribServiceClient is the client API for ContribService service.
@@ -413,8 +412,8 @@ type UnsafeContribServiceServer interface {
 	mustEmbedUnimplementedContribServiceServer()
 }
 
-func RegisterContribServiceServer(s grpc.ServiceRegistrar, srv ContribServiceServer) {
-	s.RegisterService(&ContribService_ServiceDesc, srv)
+func RegisterContribServiceServer(s *grpc.Server, srv ContribServiceServer) {
+	s.RegisterService(&_ContribService_serviceDesc, srv)
 }
 
 func _ContribService_ListTscripts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -885,10 +884,7 @@ func _ContribService_ListIncomingDonations_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
-// ContribService_ServiceDesc is the grpc.ServiceDesc for ContribService service.
-// It's only intended for direct use with grpc.RegisterService,
-// and not to be introspected or modified (even as a copy)
-var ContribService_ServiceDesc = grpc.ServiceDesc{
+var _ContribService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "rsk.ContribService",
 	HandlerType: (*ContribServiceServer)(nil),
 	Methods: []grpc.MethodDesc{

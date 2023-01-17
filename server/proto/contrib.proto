@@ -13,7 +13,7 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
     version: "1.0";
   };
   external_docs: {
-    url: "http://scrimpton.com";
+    url: "https://scrimpton.com";
     description: "Contribute transcriptions or changes.";
   };
   schemes: HTTP;

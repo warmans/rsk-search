@@ -235,3 +235,39 @@ func (a *AuthorRank) Proto(ranks Ranks) *api.AuthorRank {
 		NextRank:        ranks.ByID(a.NextRankID).Proto(),
 	}
 }
+
+type AuthorNotifications []*AuthorNotification
+
+func (a AuthorNotifications) Proto() *api.NotificationsList {
+	out := &api.NotificationsList{}
+	for _, v := range a {
+		out.Notifications = append(out.Notifications, v.Proto())
+	}
+	return out
+}
+
+type AuthorNotification struct {
+	ID             string     `db:"id"`
+	AuthorID       string     `db:"author_id"`
+	Kind           string     `db:"kind"`
+	Message        string     `db:"message"`
+	ClickThoughURL string     `db:"click_through_url"`
+	CreatedAt      time.Time  `db:"created_at"`
+	ReadAt         *time.Time `db:"read_at"`
+}
+
+func (a *AuthorNotification) Proto() *api.Notification {
+
+	kind, ok := api.Notification_NotificationKind_value[a.Kind]
+	if !ok {
+		kind = int32(api.Notification_UNDEFINED_KIND)
+	}
+	return &api.Notification{
+		Id:             a.ID,
+		Kind:           api.Notification_NotificationKind(kind),
+		Message:        a.Message,
+		ClickThoughUrl: a.ClickThoughURL,
+		CreatedAt:      util.FormatTimeForRPCResponse(&a.CreatedAt),
+		ReadAt:         util.FormatTimeForRPCResponse(a.ReadAt),
+	}
+}
