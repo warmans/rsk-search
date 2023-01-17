@@ -271,3 +271,10 @@ func (a *AuthorNotification) Proto() *api.Notification {
 		ReadAt:         util.FormatTimeForRPCResponse(a.ReadAt),
 	}
 }
+
+type AuthorNotificationCreate struct {
+	AuthorID       string  `db:"author_id"`
+	Kind           string  `db:"kind"`
+	Message        string  `db:"message"`
+	ClickThoughURL *string `db:"click_through_url"`
+}

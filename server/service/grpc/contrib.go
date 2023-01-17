@@ -20,6 +20,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/store/common"
 	"github.com/warmans/rsk-search/pkg/store/rw"
 	"github.com/warmans/rsk-search/pkg/transcript"
+	"github.com/warmans/rsk-search/pkg/util"
 	"github.com/warmans/rsk-search/service/config"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
@@ -249,6 +250,9 @@ func (s *ContribService) UpdateChunkContribution(ctx context.Context, request *a
 		}); err != nil {
 			return err
 		}
+		if err := s.createAuthorNotification(ctx, tx, contrib.Author.ID, request.State, "chunk contribution", ""); err != nil {
+			return err
+		}
 		return tx.UpdateChunkActivity(ctx, contrib.ChunkID, rw.ActivityFromState(contrib.State))
 	})
 	if err != nil {
@@ -286,6 +290,9 @@ func (s *ContribService) RequesChunktContributionState(ctx context.Context, requ
 		contrib.StateComment = request.Comment
 
 		if err := tx.UpdateChunkContributionState(ctx, contrib.ID, contrib.State, contrib.StateComment); err != nil {
+			return err
+		}
+		if err := s.createAuthorNotification(ctx, tx, contrib.Author.ID, request.RequestState, "chunk contribution", ""); err != nil {
 			return err
 		}
 		return tx.UpdateChunkActivity(ctx, contrib.ChunkID, rw.ActivityFromState(contrib.State))
@@ -761,9 +768,13 @@ func (s *ContribService) UpdateTranscriptChange(ctx context.Context, request *ap
 	}
 
 	var updatedChange *models.TranscriptChange
-	err = s.persistentDB.WithStore(func(s *rw.Store) error {
+	err = s.persistentDB.WithStore(func(tx *rw.Store) error {
+
+		if err := s.createAuthorNotification(ctx, tx, oldChange.Author.ID, request.State, "transcript change", ""); err != nil {
+			return err
+		}
 		var err error
-		updatedChange, err = s.UpdateTranscriptChange(ctx, &models.TranscriptChangeUpdate{
+		updatedChange, err = tx.UpdateTranscriptChange(ctx, &models.TranscriptChangeUpdate{
 			ID:            request.Id,
 			Summary:       request.Summary,
 			Transcription: request.Transcript,
@@ -828,8 +839,11 @@ func (s *ContribService) RequestTranscriptChangeState(ctx context.Context, reque
 	if err := s.validateContributionStateUpdate(claims, oldChange.Author.ID, oldChange.State, request.State); err != nil {
 		return nil, err
 	}
-	err = s.persistentDB.WithStore(func(s *rw.Store) error {
-		return s.UpdateTranscriptChangeState(ctx, request.Id, models.ContributionStateFromProto(request.State), request.PointsOnApprove)
+	err = s.persistentDB.WithStore(func(tx *rw.Store) error {
+		if err := s.createAuthorNotification(ctx, tx, oldChange.Author.ID, request.State, "transcript change", ""); err != nil {
+			return err
+		}
+		return tx.UpdateTranscriptChangeState(ctx, request.Id, models.ContributionStateFromProto(request.State), request.PointsOnApprove)
 	})
 	if err != nil {
 		return nil, ErrFromStore(err, request.Id).Err()
@@ -939,6 +953,41 @@ func (s *ContribService) validateLockedState(ctx context.Context, epID string) e
 			}
 		}
 		return err
+	})
+}
+
+func (s *ContribService) createAuthorNotification(
+	ctx context.Context,
+	tx *rw.Store,
+	authorID string,
+	state api.ContributionState,
+	entity string,
+	comment string,
+) error {
+
+	var message string
+	var kind string
+	switch state {
+	case api.ContributionState_STATE_REJECTED:
+		var reason string
+		if comment != "" {
+			reason = fmt.Sprintf("The given reason was: %s", comment)
+		} else {
+			reason = "No reason was given."
+		}
+		message = fmt.Sprintf("Sorry, your %s was rejected. %s If you think was is a mistake you can edit/re-submit the change from your profile page.", entity, reason)
+		kind = api.Notification_WARNING.String()
+	case api.ContributionState_STATE_APPROVED:
+		message = fmt.Sprintf("Great, your %s was accepted and will be merged soon.", entity)
+		kind = api.Notification_CONFIRMATION.String()
+	default:
+		return nil
+	}
+	return tx.CreateAuthorNotification(ctx, models.AuthorNotificationCreate{
+		AuthorID:       authorID,
+		Kind:           kind,
+		Message:        message,
+		ClickThoughURL: util.StringP("/me"),
 	})
 }
 

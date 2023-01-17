@@ -10,6 +10,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/store/rw"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
+	"google.golang.org/protobuf/types/known/emptypb"
 )
 
 func NewUserService(
@@ -65,4 +66,18 @@ func (s *UserService) ListNotifications(ctx context.Context, request *api.ListNo
 		ErrFromStore(err, "")
 	}
 	return notifications.Proto(), err
+}
+
+func (s *UserService) MarkNotificationsRead(ctx context.Context, empty *emptypb.Empty) (*emptypb.Empty, error) {
+	claims, err := GetClaims(ctx, s.auth)
+	if err != nil {
+		return nil, err
+	}
+	err = s.persistentDB.WithStore(func(s *rw.Store) error {
+		return s.MarkAllAuthorNotificationsRead(ctx, claims.AuthorID)
+	})
+	if err != nil {
+		return nil, ErrInternal(err).Err()
+	}
+	return &emptypb.Empty{}, nil
 }

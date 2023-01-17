@@ -75,6 +75,29 @@
           "search"
         ]
       }
+    },
+    "/api/user/notifications/mark-all": {
+      "post": {
+        "summary": "Mark all user's notifications as having been read.",
+        "operationId": "markNotificationsRead",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "search"
+        ]
+      }
     }
   },
   "definitions": {

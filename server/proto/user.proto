@@ -4,6 +4,7 @@ package rsk;
 
 import "google/api/annotations.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
+import "google/protobuf/empty.proto";
 
 option go_package = "github.com/warmans/rsk-search/server/gen/api";
 
@@ -26,6 +27,17 @@ service UserService {
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       operation_id: "listNotifications",
       summary: "List most recent notifications."
+      tags: "search"
+    };
+  }
+
+  rpc MarkNotificationsRead(google.protobuf.Empty) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/api/user/notifications/mark-all"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "markNotificationsRead",
+      summary: "Mark all user's notifications as having been read."
       tags: "search"
     };
   }

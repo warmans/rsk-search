@@ -6,6 +6,7 @@ import (
 	"embed"
 	"encoding/json"
 	"fmt"
+	"github.com/google/uuid"
 	"github.com/jmoiron/sqlx"
 	"github.com/lithammer/shortuuid/v3"
 	"github.com/pkg/errors"
@@ -1455,4 +1456,28 @@ func (s *Store) ListAuthorNotifications(ctx context.Context, authorID string, qm
 		out = append(out, cur)
 	}
 	return out, nil
+}
+
+func (s *Store) MarkAllAuthorNotificationsRead(ctx context.Context, authorID string) error {
+	_, err := s.tx.ExecContext(
+		ctx,
+		`UPDATE author_notification SET read_at=NOW() WHERE author_id=$1`,
+		authorID,
+	)
+	return err
+}
+
+func (s *Store) CreateAuthorNotification(ctx context.Context, not models.AuthorNotificationCreate) error {
+	_, err := s.tx.ExecContext(
+		ctx,
+		`INSERT INTO author_notification 
+    			(id, author_id, kind, message, click_through_url, created_at) 
+				VALUES ($1, $2, $3, $4, $5, NOW())
+		`,
+		uuid.New().String(),
+		not.AuthorID,
+		not.Kind,
+		not.ClickThoughURL,
+	)
+	return err
 }

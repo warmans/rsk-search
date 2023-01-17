@@ -210,6 +210,11 @@ func ServerCmd() *cobra.Command {
 					logger,
 					persistentDBConn,
 				),
+				grpc.NewUserService(
+					logger,
+					persistentDBConn,
+					auth,
+				),
 			}
 
 			httpServices := []server.HTTPService{

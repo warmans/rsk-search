@@ -17,6 +17,13 @@ func PString(s *string) string {
 	return *s
 }
 
+func StringP(s string) *string {
+	if s == "" {
+		return nil
+	}
+	return &s
+}
+
 func PFloat32(f *float32) float32 {
 	if f == nil {
 		return 0
