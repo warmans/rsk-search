@@ -41,7 +41,15 @@ func main() {
 		panic(fmt.Sprintf("failed to parse base file %s reason: %s", *base, err.Error()))
 	}
 
+	fmt.Printf("Paths given: %v\n\n", *merge)
+
 	for _, f := range strings.Split(*merge, ",") {
+		f = strings.TrimSpace(f)
+		if f == "" {
+			continue
+		}
+		fmt.Printf("merging %s...\n", f)
+
 		parsed, err := parseFile(strings.TrimSpace(f))
 		if err != nil {
 			panic(fmt.Sprintf("failed to parse path %s reason: %s", f, err.Error()))

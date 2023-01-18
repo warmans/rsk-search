@@ -282,6 +282,12 @@ pre {
   background-size: contain;
 }
 
+.border-bottom {
+  @include theme() {
+    border-color: theme-get('body-block-standout') !important;
+  }
+}
+
 .pagination {
   .page-link:hover {
     @include theme() {
@@ -316,6 +322,22 @@ pre {
 app-markdown {
   img {
     max-width: 100%;
+  }
+}
+
+app-user-menu {
+
+  .arrow-up {
+    @include theme() {
+      border-bottom-color: theme-get('fg-body-darker') !important;
+    }
+  }
+
+  .menu {
+    @include theme() {
+      color: theme-get('text-color');
+      background-color: theme-get('fg-body-darker');
+    }
   }
 }
 

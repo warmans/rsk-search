@@ -35,6 +35,16 @@ export function isFieldMetaKind(arg: any): arg is models.FieldMetaKind {
   ;
   }
 
+export function isNotificationKind(arg: any): arg is models.NotificationKind {
+  return false
+   || arg === models.NotificationKind.UNDEFINED_KIND
+   || arg === models.NotificationKind.CONFIRMATION
+   || arg === models.NotificationKind.INFO
+   || arg === models.NotificationKind.WARNING
+   || arg === models.NotificationKind.SPAM
+  ;
+  }
+
 export function isRewardKind(arg: any): arg is models.RewardKind {
   return false
    || arg === models.RewardKind.UNKNOWN
@@ -547,6 +557,38 @@ export function isRskMetadata(arg: any): arg is models.RskMetadata {
     ( typeof arg.episodeShortIds === 'undefined' || (Array.isArray(arg.episodeShortIds) && arg.episodeShortIds.every((item: unknown) => typeof item === 'string')) ) &&
     // searchFields?: RskFieldMeta[]
     ( typeof arg.searchFields === 'undefined' || (Array.isArray(arg.searchFields) && arg.searchFields.every((item: unknown) => isRskFieldMeta(item))) ) &&
+
+  true
+  );
+  }
+
+export function isRskNotification(arg: any): arg is models.RskNotification {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // clickThoughUrl?: string
+    ( typeof arg.clickThoughUrl === 'undefined' || typeof arg.clickThoughUrl === 'string' ) &&
+    // createdAt?: string
+    ( typeof arg.createdAt === 'undefined' || typeof arg.createdAt === 'string' ) &&
+    // id?: string
+    ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
+    // kind?: NotificationKind
+    ( typeof arg.kind === 'undefined' || isNotificationKind(arg.kind) ) &&
+    // message?: string
+    ( typeof arg.message === 'undefined' || typeof arg.message === 'string' ) &&
+    // readAt?: string
+    ( typeof arg.readAt === 'undefined' || typeof arg.readAt === 'string' ) &&
+
+  true
+  );
+  }
+
+export function isRskNotificationsList(arg: any): arg is models.RskNotificationsList {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // notifications?: RskNotification[]
+    ( typeof arg.notifications === 'undefined' || (Array.isArray(arg.notifications) && arg.notifications.every((item: unknown) => isRskNotification(item))) ) &&
 
   true
   );

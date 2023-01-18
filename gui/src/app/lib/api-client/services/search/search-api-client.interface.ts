@@ -386,6 +386,27 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  listNotifications(
+    args: {
+      filter?: string,
+      sortField?: string,
+      sortDirection?: string,
+      page?: number,
+      pageSize?: number,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskNotificationsList>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  markNotificationsRead(
+    requestHttpOptions?: HttpOptions
+  ): Observable<object>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   listFieldValues(
     args: {
       field: string,

@@ -2,6 +2,7 @@
 
 export { AuthorContributionType } from './author-contribution-type.enum';
 export { FieldMetaKind } from './field-meta-kind.enum';
+export { NotificationKind } from './notification-kind.enum';
 export { RewardKind } from './reward-kind.enum';
 export { RskAudioQuality } from './rsk-audio-quality.enum';
 export { RskAuthor } from './rsk-author.model';
@@ -38,6 +39,8 @@ export { RskFieldValueList } from './rsk-field-value-list.model';
 export { RskIncomingDonation } from './rsk-incoming-donation.model';
 export { RskIncomingDonationList } from './rsk-incoming-donation-list.model';
 export { RskMetadata } from './rsk-metadata.model';
+export { RskNotification } from './rsk-notification.model';
+export { RskNotificationsList } from './rsk-notifications-list.model';
 export { RskPendingRewardList } from './rsk-pending-reward-list.model';
 export { RskPrediction } from './rsk-prediction.model';
 export { RskQuotas } from './rsk-quotas.model';

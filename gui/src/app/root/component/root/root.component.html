@@ -16,15 +16,10 @@
           <i class="bi-moon-fill" *ngIf="!darkTheme"></i>
           <i class="bi-sun-fill" *ngIf="darkTheme"></i>
         </button>
-        <a class="btn btn-info btn-lg" [routerLink]="['/me']" *ngIf="!loggedInUser?.identity?.icon_img">
+        <a class="btn btn-info btn-lg" [routerLink]="['/me']" *ngIf="!loggedInUser">
           <i class="bi-person"></i>
         </a>
-        <a [routerLink]="['/me']" *ngIf="loggedInUser?.identity?.icon_img">
-          <div
-            class="user-icon"
-            style=" width: 3rem; height: 3rem; background-image: url({{ loggedInUser?.identity?.icon_img }})">
-          </div>
-        </a>
+        <app-user-menu *ngIf="loggedInUser" [loggedInUser]="loggedInUser"></app-user-menu>
       </div>
     </div>
   </nav>

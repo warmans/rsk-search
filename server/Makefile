@@ -98,7 +98,7 @@ generate.swagger-bundle:
 	go run ./script/swagger-merge/main.go \
 		-out ../gui/src/assets/swagger.json \
 		-base ./script/swagger-merge/base.swagger.json \
-		-merge ./gen/api/open-api/oauth.swagger.json,./gen/api/open-api/search.swagger.json,./gen/api/open-api/contrib.swagger.json,./gen/api/open-api/admin.swagger.json,./gen/api/open-api/status.swagger.json
+		-merge "$(shell ls --format=commas ./gen/api/open-api/*)"
 
 .PHONY: generate.artifacts
 generate.artifacts: generate.plaintext generate.zip

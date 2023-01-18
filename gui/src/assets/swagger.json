@@ -1347,6 +1347,86 @@
           ]
         }
       },
+      "/api/user/notifications": {
+        "get": {
+          "summary": "List most recent notifications.",
+          "operationId": "listNotifications",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskNotificationsList"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "filter",
+              "in": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "sortField",
+              "in": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "sortDirection",
+              "in": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "pageSize",
+              "in": "query",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            }
+          ],
+          "tags": [
+            "search"
+          ]
+        }
+      },
+      "/api/user/notifications/mark-all": {
+        "post": {
+          "summary": "Mark all user's notifications as having been read.",
+          "operationId": "markNotificationsRead",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "properties": {}
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "tags": [
+            "search"
+          ]
+        }
+      },
       "/api/values/{field}": {
         "get": {
           "summary": "Get a list of values for the given keyword field",
@@ -1408,6 +1488,17 @@
           "DATE"
         ],
         "default": "UNKNOWN"
+      },
+      "NotificationNotificationKind": {
+        "type": "string",
+        "enum": [
+          "UNDEFINED_KIND",
+          "CONFIRMATION",
+          "INFO",
+          "WARNING",
+          "SPAM"
+        ],
+        "default": "UNDEFINED_KIND"
       },
       "RewardRewardKind": {
         "type": "string",
@@ -1985,6 +2076,40 @@
             "type": "array",
             "items": {
               "type": "string"
+            }
+          }
+        }
+      },
+      "rskNotification": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "kind": {
+            "$ref": "#/definitions/NotificationNotificationKind"
+          },
+          "message": {
+            "type": "string"
+          },
+          "clickThoughUrl": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "readAt": {
+            "type": "string"
+          }
+        }
+      },
+      "rskNotificationsList": {
+        "type": "object",
+        "properties": {
+          "notifications": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/rskNotification"
             }
           }
         }

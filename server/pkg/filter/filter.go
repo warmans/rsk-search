@@ -94,16 +94,36 @@ func (b *BoolFilter) Precedence() int {
 }
 
 func And(lhs, rhs Filter, filters ...Filter) Filter {
+	// this will panic eventually if you pass a nil filter, so might as well get it out of the way early with a meaningful
+	// error message.
+	if lhs == nil {
+		panic("nil lhs filter included in AND")
+	}
+	if rhs == nil {
+		panic("nil rhs filter included in AND")
+	}
 	filter := &BoolFilter{lhs, BoolOpAnd, rhs}
 	for _, f := range filters {
+		if f == nil {
+			panic("nil extra filter included in AND")
+		}
 		filter = &BoolFilter{filter, BoolOpAnd, f}
 	}
 	return filter
 }
 
 func Or(lhs, rhs Filter, filters ...Filter) Filter {
+	if lhs == nil {
+		panic("nil lhs filter included in OR")
+	}
+	if rhs == nil {
+		panic("nil rhs filter included in OR")
+	}
 	filter := &BoolFilter{lhs, BoolOpOr, rhs}
 	for _, f := range filters {
+		if f == nil {
+			panic("nil extra filter included in OR")
+		}
 		filter = &BoolFilter{filter, BoolOpOr, f}
 	}
 	return filter

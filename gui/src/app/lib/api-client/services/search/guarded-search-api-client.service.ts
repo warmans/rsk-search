@@ -399,6 +399,27 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
       .pipe(tap((res: any) => guards.isRskChunkList(res) || console.error(`TypeGuard for response 'RskChunkList' caught inconsistency.`, res)));
   }
 
+  listNotifications(
+    args: {
+      filter?: string,
+      sortField?: string,
+      sortDirection?: string,
+      page?: number,
+      pageSize?: number,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskNotificationsList> {
+    return super.listNotifications(args, requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRskNotificationsList(res) || console.error(`TypeGuard for response 'RskNotificationsList' caught inconsistency.`, res)));
+  }
+
+  markNotificationsRead(
+    requestHttpOptions?: HttpOptions
+  ): Observable<object> {
+    return super.markNotificationsRead(requestHttpOptions)
+      .pipe(tap((res: any) => typeof res === 'object' || console.error(`TypeGuard for response 'object' caught inconsistency.`, res)));
+  }
+
   listFieldValues(
     args: {
       field: string,

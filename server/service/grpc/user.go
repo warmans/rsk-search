@@ -57,10 +57,7 @@ func (s *UserService) ListNotifications(ctx context.Context, request *api.ListNo
 	err = s.persistentDB.WithStore(func(s *rw.Store) error {
 		var storeErr error
 		notifications, storeErr = s.ListAuthorNotifications(ctx, claims.AuthorID, qm)
-		if storeErr != nil {
-			return storeErr
-		}
-		return nil
+		return storeErr
 	})
 	if err != nil {
 		ErrFromStore(err, "")

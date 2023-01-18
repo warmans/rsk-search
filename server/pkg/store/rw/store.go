@@ -1424,9 +1424,13 @@ func (s *Store) ListAuthorNotifications(ctx context.Context, authorID string, qm
 		"read_at":    "read_at",
 	}
 
-	qm.Filter = filter.And(filter.Eq("author_id", filter.String(authorID)), qm.Filter)
+	if qm.Filter == nil {
+		qm.Filter = filter.Eq("author_id", filter.String(authorID))
+	} else {
+		qm.Filter = filter.And(qm.Filter, filter.Eq("author_id", filter.String(authorID)))
+	}
 
-	where, params, order, paging, err := qm.ToSQL(fieldMap, false)
+	where, params, order, paging, err := qm.ToSQL(fieldMap, true)
 	if err != nil {
 		return nil, err
 	}
@@ -1450,7 +1454,13 @@ func (s *Store) ListAuthorNotifications(ctx context.Context, authorID string, qm
 	out := make([]*models.AuthorNotification, 0)
 	for rows.Next() {
 		cur := &models.AuthorNotification{}
-		if err := rows.Scan(&cur.ID, &cur.Kind, &cur.Message, &cur.ClickThoughURL, &cur.ReadAt, &cur.ReadAt, &cur.CreatedAt); err != nil {
+		if err := rows.Scan(
+			&cur.ID,
+			&cur.Kind,
+			&cur.Message,
+			&cur.ClickThoughURL,
+			&cur.ReadAt,
+			&cur.CreatedAt); err != nil {
 			return nil, err
 		}
 		out = append(out, cur)
@@ -1477,6 +1487,7 @@ func (s *Store) CreateAuthorNotification(ctx context.Context, not models.AuthorN
 		uuid.New().String(),
 		not.AuthorID,
 		not.Kind,
+		not.Message,
 		not.ClickThoughURL,
 	)
 	return err

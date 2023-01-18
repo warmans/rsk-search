@@ -25,6 +25,7 @@ import { AudioPlayerFixedComponent } from './component/audio-player-fixed/audio-
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { FindReplaceComponent } from './component/find-replace/find-replace.component';
 import { MetadataEditorComponent } from './component/metadata-editor/metadata-editor.component';
+import { UserMenuComponent } from './component/user-menu/user-menu.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { MetadataEditorComponent } from './component/metadata-editor/metadata-ed
     AudioPlayerFixedComponent,
     FindReplaceComponent,
     MetadataEditorComponent,
+    UserMenuComponent,
   ],
   imports: [
     CommonModule,
@@ -58,28 +60,29 @@ import { MetadataEditorComponent } from './component/metadata-editor/metadata-ed
     NgbPopoverModule,
   ],
   providers: [],
-  exports: [
-    FormErrorsComponent,
-    AlertComponent,
-    LoadingOverlayComponent,
-    SafeUrlPipe,
-    FormatSecondsPipe,
-    TranscriptComponent,
-    SynopsesComponent,
-    TriviaComponent,
-    ContributionStateComponent,
-    RedditLoginComponent,
-    EditorInputComponent,
-    EditorConfigComponent,
-    EditorHelpComponent,
-    EditorComponent,
-    ClaimedRewardsComponent,
-    MarkdownComponent,
-    AudioPlayerV2Component,
-    AudioPlayerFixedComponent,
-    HtmlDiffComponent,
-    MetadataEditorComponent,
-  ]
+    exports: [
+        FormErrorsComponent,
+        AlertComponent,
+        LoadingOverlayComponent,
+        SafeUrlPipe,
+        FormatSecondsPipe,
+        TranscriptComponent,
+        SynopsesComponent,
+        TriviaComponent,
+        ContributionStateComponent,
+        RedditLoginComponent,
+        EditorInputComponent,
+        EditorConfigComponent,
+        EditorHelpComponent,
+        EditorComponent,
+        ClaimedRewardsComponent,
+        MarkdownComponent,
+        AudioPlayerV2Component,
+        AudioPlayerFixedComponent,
+        HtmlDiffComponent,
+        MetadataEditorComponent,
+        UserMenuComponent,
+    ]
 })
 export class SharedModule {
 }

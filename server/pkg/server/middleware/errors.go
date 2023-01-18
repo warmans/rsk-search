@@ -2,6 +2,8 @@ package middleware
 
 import (
 	"context"
+	"github.com/grpc-ecosystem/go-grpc-middleware/logging/zap/ctxzap"
+	"go.uber.org/zap"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -10,22 +12,26 @@ import (
 func UnaryErrorInterceptor() grpc.UnaryServerInterceptor {
 	return func(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (_ interface{}, err error) {
 		resp, err := handler(ctx, req)
-		return resp, handleError(err)
+		return resp, handleError(ctx, err)
 	}
 }
 
 func StreamErrorServerInterceptor() grpc.StreamServerInterceptor {
 	return func(srv interface{}, stream grpc.ServerStream, info *grpc.StreamServerInfo, handler grpc.StreamHandler) (err error) {
-		return handleError(handler(srv, stream))
+		return handleError(stream.Context(), handler(srv, stream))
 	}
 }
 
-func handleError(err error) error {
+func handleError(ctx context.Context, err error) error {
 	if err == nil {
 		return nil
 	}
+	// log original
+	ctxzap.Extract(ctx).Error("Error was returned by the API", zap.String("reason", err.Error()))
+
+	// then obfuscate it to a generic error
 	staErr, ok := status.FromError(err)
-	if !ok || ok &&  staErr.Code() == codes.Internal {
+	if !ok || ok && staErr.Code() == codes.Internal {
 		s := status.New(codes.Internal, "Bauhaus is not working! Internal server error returned.")
 		return s.Err()
 	}

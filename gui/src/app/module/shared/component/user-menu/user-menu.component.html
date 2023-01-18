@@ -1,0 +1,31 @@
+<div *ngIf="loggedInUser" class="menu-container" #componentRoot>
+  <a (click)="toggleMenu()">
+    <div
+      class="user-icon"
+      style=" width: 3rem; height: 3rem; background-image: url({{ loggedInUser?.identity?.icon_img }})">
+      <div class="notification-corner-marker" *ngIf="unreads > 0">{{ unreads }}</div>
+    </div>
+  </a>
+
+  <div *ngIf="menuVisible" class="callout d-flex flex-column">
+  <div class="arrow-up align-self-end mr-4"></div>
+    <div class="menu fg-body">
+      <div class="d-flex justify-content-around py-2 border-bottom">
+        <div>Signed in as: <a [routerLink]="['/me']"><strong>/u/{{ loggedInUser.identity.name }}</strong></a></div>
+      </div>
+      <div class="p-2">
+        <div class="notifications p-3">
+          <div *ngFor="let notif of notifications" class="d-flex mb-3">
+            <div class="mr-3 align-self-top">
+              <i class="bi bi-circle-fill" [ngClass]="{'text-success': notif.kind === notificationKinds.CONFIRMATION, 'text-warning': notif.kind === notificationKinds.WARNING}"></i>
+            </div>
+            <div class="flex-grow-1">
+              <div>{{ notif.message }}</div>
+              <div class="text-muted text-sm">{{ notif.createdAt }} | <a [href]="notif.clickThoughUrl">More...</a> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

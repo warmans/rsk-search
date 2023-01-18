@@ -1,0 +1,42 @@
+@import "src/scss/variables";
+
+.menu-container {
+  position: relative;
+
+  .callout  {
+
+    z-index: 1000 !important;
+    display: block;
+    position: absolute;
+    width: 300px;
+    margin-left: -250px;
+    margin-top: 20px;
+
+    .arrow-up {
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid;
+    }
+
+    .menu {
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  .notification-corner-marker {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 2.5px 5px;
+    border-radius: 100%;
+    background: $primary;
+    color: black;
+    font-size: 0.3rem;
+  }
+
+  .notifications {
+    font-size: 0.9rem;
+  }
+}
