@@ -15,6 +15,9 @@
       </div>
       <div class="p-2">
         <div class="notifications p-3">
+          <div *ngIf="(notifications || []).length === 0" class="text-muted">
+            No Notifications.
+          </div>
           <div *ngFor="let notif of notifications" class="d-flex mb-3">
             <div class="mr-3 align-self-top">
               <i class="bi bi-circle-fill" [ngClass]="{'text-success': notif.kind === notificationKinds.CONFIRMATION, 'text-warning': notif.kind === notificationKinds.WARNING}"></i>

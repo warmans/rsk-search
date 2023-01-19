@@ -45,27 +45,27 @@ export class UserMenuComponent implements OnInit, OnDestroy {
     this
       .apiClient
       .listNotifications({ filter: '', sortField: 'created_at', sortDirection: 'DESC', page: 1, pageSize: 5 })
+      .pipe(takeUntil(this.destroy$))
       .subscribe((res) => {
         this.notifications = res.notifications;
         this.unreads = (res.notifications.filter((n: RskNotification) => !n.readAt) || []).length;
       });
 
-    this.markRead.pipe(takeUntil(this.destroy$), debounceTime(2500)).subscribe(() => {
-      if (this.unreads > 0) {
-        this.apiClient.markNotificationsRead().subscribe(() => {
-          this.unreads = 0;
-        });
-      }
-    });
+    this
+      .markRead
+      .pipe(takeUntil(this.destroy$), debounceTime(1000))
+      .subscribe(() => {
+        if (this.unreads > 0) {
+          this.apiClient.markNotificationsRead().pipe(takeUntil(this.destroy$)).subscribe(() => {
+            this.unreads = 0;
+          });
+        }
+      });
   }
 
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
-  }
-
-  showMenu() {
-    this.menuVisible = true;
   }
 
   toggleMenu() {
