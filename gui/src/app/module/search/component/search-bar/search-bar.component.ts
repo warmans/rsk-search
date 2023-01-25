@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostListener, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, HostListener, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
@@ -46,8 +46,6 @@ export class SearchBarComponent implements OnInit, OnDestroy {
   }
 
   constructor(private apiClient: SearchAPIClient, private route: ActivatedRoute) {
-
-
   }
 
   ngOnInit(): void {
