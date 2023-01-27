@@ -1,17 +1,4 @@
-import {
-  AfterViewInit,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-  Renderer2,
-  ViewChild
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
 import { getOffsetValueFromLine, isOffsetLine } from '../../lib/tscript';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
@@ -33,6 +20,7 @@ export class EditorInputComponent implements OnInit, OnDestroy, AfterViewInit {
       this.updateInnerHtml(this._textContent);
     }
   }
+
   get textContent(): string {
     // do not return the innerText directly. If the div is hidden by the parent
     // before calling this, it will get text with no line breaks.
@@ -65,8 +53,7 @@ export class EditorInputComponent implements OnInit, OnDestroy, AfterViewInit {
     this.textChangeDebouncer.pipe(
       distinctUntilChanged(),
       debounceTime(500),
-      takeUntil(this.destory$)).
-    subscribe((v: string) => {
+      takeUntil(this.destory$)).subscribe((v: string) => {
       this.textContentChange.next(v);
     });
   }

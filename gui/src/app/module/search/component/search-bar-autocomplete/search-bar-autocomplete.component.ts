@@ -95,7 +95,7 @@ export class SearchBarAutocompleteComponent implements OnInit {
             this.selectedAutoCompleteRow = -1;
           }
           if (this.selectedAutoCompleteRow === -1) {
-            this.selectTerm(this.termPrefix, false);
+            this.selectTerm(null, false);
             return;
           }
           this.selectTerm(this.autocompleteVals[this.selectedAutoCompleteRow].line, true );

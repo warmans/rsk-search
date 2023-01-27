@@ -153,13 +153,17 @@ func (s *Search) ListTerms(fieldName string, prefix string) (models.FieldValues,
 	}()
 
 	tfd, err := fieldDict.Next()
-	for err == nil && tfd != nil {
+	for err == nil && tfd != nil && strings.TrimSpace(tfd.Term()) != "" {
 		terms = append(terms, models.FieldValue{Value: tfd.Term(), Count: int32(tfd.Count())})
 		if len(terms) > 500 {
 			return nil, fmt.Errorf("too many terms for field '%s' returned (prefix: %s)", fieldName, prefix)
 		}
 		tfd, err = fieldDict.Next()
 	}
+
+	sort.Slice(terms, func(i, j int) bool {
+		return terms[i].Count > terms[j].Count
+	})
 
 	return terms, nil
 }

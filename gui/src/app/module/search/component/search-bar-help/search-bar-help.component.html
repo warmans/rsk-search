@@ -1,0 +1,18 @@
+<p>By default terms will be matched using the broadest possible search. e.g.  <span class="keyword">man alive</span> will
+  match any line of dialog that contains either <span class="keyword">man</span> or <span class="keyword">alive</span> (or both).</p>
+<strong>Exact Matches</strong>
+<p>To exactly match a section of text, wrap it in double quotes e.g. <span class="keyword">"man alive"</span></p>
+
+<strong>Filter by Speaker</strong>
+<p>To limit the search to a specific speaker you can add a <span class="keyword">@</span> e.g. <span class="keyword"> man alive @steve</span></p>
+
+<strong>Filter by Publication</strong>
+<p>To limit the search to a specific publication you can add a <span class="keyword">~</span> e.g. <span class="keyword"> man alive ~xfm</span></p>
+
+<strong>Mixing conditions</strong>
+<p>You can also mix all these options in a single search e.g. <span class="keyword">@karl ~xfm "plugger" co-management</span>. This is useful
+  for when you know the gist of a quote, but cannot remember the exact structure.</p>
+
+<strong>Limitations</strong>
+<p>If you copy/paste the search it will not be parsed as you expect. The reason is that <span class="keyword">@mentions</span> can contains spaces
+so they must be wrapped in a specific element. This element won't be included in a plain-text copy/paste.</p>

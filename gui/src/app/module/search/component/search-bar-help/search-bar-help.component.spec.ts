@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SearchBarAdvancedComponent } from './search-bar-advanced.component';
+import { SearchBarHelpComponent } from './search-bar-help.component';
 
-describe('SearchBarAdvancedComponent', () => {
-  let component: SearchBarAdvancedComponent;
-  let fixture: ComponentFixture<SearchBarAdvancedComponent>;
+describe('SearchBarHelpComponent', () => {
+  let component: SearchBarHelpComponent;
+  let fixture: ComponentFixture<SearchBarHelpComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SearchBarAdvancedComponent ]
+      declarations: [ SearchBarHelpComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SearchBarAdvancedComponent);
+    fixture = TestBed.createComponent(SearchBarHelpComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

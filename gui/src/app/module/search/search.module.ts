@@ -16,7 +16,8 @@ import { TimecodeAccuracyPipe } from './pipe/timecode-accuracy.pipe';
 import { EmbedModule } from '../embed/embed.module';
 import { SearchBarComponent } from './component/search-bar/search-bar.component';
 import { SearchBarAutocompleteComponent } from './component/search-bar-autocomplete/search-bar-autocomplete.component';
-import { SearchBarAdvancedComponent } from './component/search-bar-advanced/search-bar-advanced.component';
+import { SearchBarMentionComponent } from 'src/app/module/search/component/search-bar-mention/search-bar-mention.component';
+import { SearchBarHelpComponent } from './component/search-bar-help/search-bar-help.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { SearchBarAdvancedComponent } from './component/search-bar-advanced/sear
     TimecodeAccuracyPipe,
     SearchBarComponent,
     SearchBarAutocompleteComponent,
-    SearchBarAdvancedComponent,
+    SearchBarMentionComponent,
+    SearchBarHelpComponent
   ],
   imports: [
     CommonModule,

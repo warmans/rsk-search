@@ -6,11 +6,26 @@
     background-color: #fff;
     border: 1px solid #ccc;
 
-    input {
-      border: none;
+    // prevents first click from activating control. look for a workaround.
+    //[contentEditable=true]:empty:not(:focus):before {
+    //  content: attr(data-ph);
+    //  color: grey;
+    //  font-style: italic;
+    //}
 
+    .term-input {
+      border: none;
+      max-height: 20px;
+      -webkit-appearance: textfield;
+      -moz-appearance: textfield;
+      appearance: textfield;
+
+      span {
+        display: inline;
+      }
     }
-    input:active, input:focus {
+
+    .term-input:active, .term-input:focus {
       outline: none;
       border: none;
     }
@@ -23,6 +38,12 @@
     background-color: #fff;
     width: 100%;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .mention, .publication {
+    background-color: #f6f6f6;
+    border: 1px solid #ccc;
+    border-radius: 2px;
   }
 }
 

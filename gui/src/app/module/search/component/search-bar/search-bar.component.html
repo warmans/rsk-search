@@ -1,41 +1,50 @@
 <div class="search-bar-container" #componentRoot>
-  <form (ngSubmit)="emitQuery()">
-    <div class="d-flex">
-      <div class="bar flex-grow-1 d-flex p-2">
-        <div class="terms">
-          <div *ngFor="let mod of searchModifiers; let idx = index;" class="term badge badge-primary mr-2 clickable" (click)="removeModifier(idx)">
-            <i
-              class="bi"
-              [ngClass]="{'bi-person': mod.field === 'actor', 'bi-collection': mod.field === 'publication', 'bi-justify': mod.field === 'type'}">
-            </i> {{ mod.value.v }}
-            <span>&times;</span>
-          </div>
-        </div>
-        <input
-          autofocus
-          type="text"
-          class="flex-grow-1"
-          [formControl]="termTextInput"
-          (keydown)="onKeydown($event)"
-          placeholder="Enter search terms, double quote terms for a phrase/exact match. See advanced search options on the right."/>
-        <div class="controls pr-2">
-          <i class="bi bi-sliders clickable" title="Advanced options" (click)="searchDropdown = 'advanced'"></i>
-        </div>
-      </div>
-      <div class="buttons">
-        <button class="btn btn-primary" type="submit"><i class="bi-search"></i></button>
+  <div class="d-flex">
+    <div class="bar flex-grow-1 d-flex p-2">
+      <span
+        #termsInput
+        autofocus
+        spellcheck="false"
+        contenteditable="true"
+        class="term-input flex-grow-1"
+        data-ph="Enter search terms, double quote terms for a phrase/exact match. See advanced search options on the right."
+        (keydown)="onKeydown($event)"
+        (keyup)="onKeyup($event)">
+      </span>
+      <div class="controls pr-2">
+        <i class="bi bi-question-circle clickable" title="Help" (click)="toggleHelp()"></i>
       </div>
     </div>
-  </form>
-  <div class="search-dropdown p-3 mt-2" *ngIf="searchDropdown === 'autocomplete'">
+    <div class="buttons">
+      <button class="btn btn-primary" type="submit"><i class="bi-search"></i></button>
+    </div>
+  </div>
+  <div class="search-dropdown p-3 mt-2" *ngIf="caretContainer === 'term' && focusState === 'typing'">
     <app-search-bar-autocomplete
-      [termPrefix]="termText"
+      [termPrefix]="this.getTermText()"
       [keyInput]="keyPress$.asObservable()"
-      [searchModifiers]="searchModifiers"
       (temSelected)="setTermAndEmit($event)">
     </app-search-bar-autocomplete>
   </div>
-  <div class="search-dropdown p-3 mt-2" *ngIf="searchDropdown === 'advanced'">
-    <app-search-bar-advanced [modifiers]="searchModifiers"></app-search-bar-advanced>
+  <div class="search-dropdown p-3 mt-2" *ngIf="caretContainer === 'mention' && focusState === 'typing'">
+    <app-search-bar-mention
+      [dataFn]="mentionsDataFn"
+      [termPrefix]="getAnchorNodeOfCaret().textContent"
+      [keyInput]="keyPress$.asObservable()"
+      [termTypeIdentifier]="'@'"
+      (termSelected)="applyMentionText($event)"
+    ></app-search-bar-mention>
+  </div>
+  <div class="search-dropdown p-3 mt-2" *ngIf="caretContainer === 'publication' && focusState === 'typing'">
+    <app-search-bar-mention
+      [dataFn]="publicationDataFn"
+      [termPrefix]="getAnchorNodeOfCaret().textContent"
+      [termTypeIdentifier]="'~'"
+      [keyInput]="keyPress$.asObservable()"
+      (termSelected)="applyPublicationText($event)"
+    ></app-search-bar-mention>
+  </div>
+  <div class="search-dropdown p-3 mt-2" *ngIf="showHelp">
+    <app-search-bar-help></app-search-bar-help>
   </div>
 </div>
