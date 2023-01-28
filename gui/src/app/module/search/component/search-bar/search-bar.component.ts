@@ -79,6 +79,14 @@ export class SearchBarComponent implements OnDestroy, AfterViewInit {
       }
       this.populateSearchBarFromQuery(params.get('q'));
     });
+
+    const obs = new MutationObserver((records) => {
+      records.forEach((v) => {
+        const target = v.target as CharacterData;
+        this.debugData(`MUTATION OBS ${target?.data}`);
+      })
+    });
+    obs.observe(this.termsInput.nativeElement, { characterData: true, subtree: true });
   }
 
   getTermText(): string {
