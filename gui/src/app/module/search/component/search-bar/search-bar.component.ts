@@ -86,24 +86,22 @@ export class SearchBarComponent implements OnDestroy, AfterViewInit {
   }
 
   onKeyup(key: KeyboardEvent): boolean {
-    this.debugData(`KEYUP ${key.code} (${key.key})`);
+    this.debugData(`KEYUP code: ${key.code || 'EMPTY'} key: ${key.key} keyCode: ${key.keyCode}`);
     this.caretContainer = this.identifyCaretContainer();
     return true;
   }
 
   onKeydown(key: KeyboardEvent): boolean {
-
-    this.debugData(`KEYDOWN ${key.code} (${key.key})`);
+    this.debugData(`KEYDOWN code: ${key.code || 'EMPTY'} key: ${key.key} keyCode: ${key.keyCode}`);
 
     this.caretContainer = this.identifyCaretContainer();
-    this.debugData(`CONTAINER ${this.caretContainer}`);
 
     this.setStateFocussed();
 
     if (this.getTermText() === '') {
       this.setStateIdle();
     } else {
-      if (key.code !== 'Enter') {
+      if ((key.key || key.code) !== 'Enter') {
         this.handleTyping();
       }
     }
@@ -123,17 +121,15 @@ export class SearchBarComponent implements OnDestroy, AfterViewInit {
           case '@':
             this.insertMention();
             this.caretContainer = this.identifyCaretContainer();
-            this.debugData(`CONTAINER ${this.caretContainer}`);
             return false;
           case '~':
             this.insertPublication();
             this.caretContainer = this.identifyCaretContainer();
-            this.debugData(`CONTAINER ${this.caretContainer}`);
             return false;
         }
     }
 
-    switch (key.code) {
+    switch ((key.key || key.code)) {
       case 'ArrowDown':
         this.handleTyping();
         break;
