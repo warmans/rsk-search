@@ -477,7 +477,8 @@ export class SearchBarComponent implements OnDestroy, AfterViewInit {
   }
 
   onInput($event: InputEvent) {
-    this.debugData(`INPUT ${$event.data}`);
+    console.log($event);
+    this.debugData(`INPUT ${$event.data} type: ${$event.inputType}`);
   }
 }
 
