@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="buttons">
-      <button class="btn btn-primary" type="submit"><i class="bi-search"></i></button>
+      <button class="btn btn-primary" (click)="emitQuery()"><i class="bi-search"></i></button>
     </div>
   </div>
   <div class="search-dropdown p-3 mt-2" *ngIf="caretContainer === 'term' && focusState === 'typing'">
@@ -46,5 +46,8 @@
   </div>
   <div class="search-dropdown p-3 mt-2" *ngIf="showHelp">
     <app-search-bar-help></app-search-bar-help>
+  </div>
+  <div class="search-dropdown p-3 mt-2" *ngIf="showDebugger">
+    <div *ngFor="let msg of debug; index as i">{{ msg }}</div>
   </div>
 </div>

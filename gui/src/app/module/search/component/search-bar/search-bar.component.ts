@@ -24,7 +24,12 @@ export class SearchBarComponent implements OnDestroy, AfterViewInit {
 
   showHelp: boolean;
 
+  // android chrome has really weird behavior for key up/down events that is hard to debug
+  showDebugger: boolean = false;
+
   keyPress$: Subject<KeyboardEvent> = new Subject<KeyboardEvent>();
+
+  debug: string[] = [];
 
   destroy$: Subject<void> = new Subject();
 
@@ -59,6 +64,11 @@ export class SearchBarComponent implements OnDestroy, AfterViewInit {
   }
 
   constructor(private apiClient: SearchAPIClient, private route: ActivatedRoute, private renderer: Renderer2) {
+    this.route.queryParamMap.pipe(distinctUntilChanged(), takeUntil(this.destroy$)).subscribe((params: ParamMap) => {
+      if (params.get('debug') === '1') {
+        this.showDebugger = true;
+      }
+    });
   }
 
   ngAfterViewInit() {
@@ -76,13 +86,17 @@ export class SearchBarComponent implements OnDestroy, AfterViewInit {
   }
 
   onKeyup(key: KeyboardEvent): boolean {
+    this.debugData(`KEYUP ${key.code} (${key.key})`);
     this.caretContainer = this.identifyCaretContainer();
     return true;
   }
 
   onKeydown(key: KeyboardEvent): boolean {
 
+    this.debugData(`KEYDOWN ${key.code} (${key.key})`);
+
     this.caretContainer = this.identifyCaretContainer();
+    this.debugData(`CONTAINER ${this.caretContainer}`);
 
     this.setStateFocussed();
 
@@ -109,10 +123,12 @@ export class SearchBarComponent implements OnDestroy, AfterViewInit {
           case '@':
             this.insertMention();
             this.caretContainer = this.identifyCaretContainer();
+            this.debugData(`CONTAINER ${this.caretContainer}`);
             return false;
           case '~':
             this.insertPublication();
             this.caretContainer = this.identifyCaretContainer();
+            this.debugData(`CONTAINER ${this.caretContainer}`);
             return false;
         }
     }
@@ -422,6 +438,7 @@ export class SearchBarComponent implements OnDestroy, AfterViewInit {
 
   // The container of the caret defines what sort of auto-complete would be relevant e.g. a mention, a term, or some other
   // search type.
+
   identifyCaretContainer(): 'mention' | 'term' | 'publication' {
     let node = this.getAnchorNodeOfCaret();
     let htmlNode = node as HTMLElement;
@@ -444,6 +461,15 @@ export class SearchBarComponent implements OnDestroy, AfterViewInit {
 
   toggleHelp() {
     this.showHelp = !this.showHelp;
+  }
+
+  debugData(msg: string) {
+    if (this.showDebugger) {
+      this.debug.unshift(msg);
+      if (this.debug.length > 10) {
+        this.debug.splice(10, this.debug.length-10)
+      }
+    }
   }
 }
 
