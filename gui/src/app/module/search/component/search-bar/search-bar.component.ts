@@ -467,6 +467,12 @@ export class SearchBarComponent implements OnDestroy, AfterViewInit {
       }
     }
   }
+
+  onInput($event: InputEvent) {
+    if ($event.inputType === 'insertText'){
+      this.debugData(`INPUT ${$event.data}`)
+    }
+  }
 }
 
 class FilterExtractor implements Visitor {

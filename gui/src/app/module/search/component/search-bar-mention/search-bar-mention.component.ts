@@ -55,7 +55,7 @@ export class SearchBarMentionComponent implements OnInit {
 
   ngOnInit(): void {
     this.keyInput.pipe(takeUntil(this.destroy$)).subscribe((key) => {
-      switch (key.code) {
+      switch (key.key || key.code) {
         case 'ArrowDown':
           if (this.selectedAutoCompleteRow == this.values.length - 1) {
             this.selectedAutoCompleteRow = -1;
