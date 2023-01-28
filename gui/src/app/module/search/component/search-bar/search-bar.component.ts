@@ -463,15 +463,13 @@ export class SearchBarComponent implements OnDestroy, AfterViewInit {
     if (this.showDebugger) {
       this.debug.unshift(msg);
       if (this.debug.length > 10) {
-        this.debug.splice(10, this.debug.length-10)
+        this.debug.splice(10, this.debug.length - 10);
       }
     }
   }
 
   onInput($event: InputEvent) {
-    if ($event.inputType === 'insertText'){
-      this.debugData(`INPUT ${$event.data}`)
-    }
+    this.debugData(`INPUT ${$event.data}`);
   }
 }
 
