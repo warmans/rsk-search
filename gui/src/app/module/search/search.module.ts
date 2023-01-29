@@ -18,6 +18,8 @@ import { SearchBarComponent } from './component/search-bar/search-bar.component'
 import { SearchBarAutocompleteComponent } from './component/search-bar-autocomplete/search-bar-autocomplete.component';
 import { SearchBarMentionComponent } from 'src/app/module/search/component/search-bar-mention/search-bar-mention.component';
 import { SearchBarHelpComponent } from './component/search-bar-help/search-bar-help.component';
+import { SearchBarCompatComponent } from './component/search-bar-compat/search-bar-compat.component';
+import { SearchBarSuggestionComponent } from 'src/app/module/search/component/search-bar-suggestion/search-bar-suggestion.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { SearchBarHelpComponent } from './component/search-bar-help/search-bar-h
     SearchBarComponent,
     SearchBarAutocompleteComponent,
     SearchBarMentionComponent,
-    SearchBarHelpComponent
+    SearchBarHelpComponent,
+    SearchBarCompatComponent,
+    SearchBarSuggestionComponent
   ],
   imports: [
     CommonModule,
@@ -44,7 +48,7 @@ import { SearchBarHelpComponent } from './component/search-bar-help/search-bar-h
     NgChartsModule,
     EmbedModule,
   ],
-  exports: [SearchBarComponent]
+    exports: [SearchBarComponent, SearchBarCompatComponent]
 })
 export class SearchModule {
 }

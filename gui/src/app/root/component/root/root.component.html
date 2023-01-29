@@ -9,7 +9,8 @@
         <a [routerLink]="['/search']"><img src="/assets/android-chrome-192x192.png" style="height: 3rem"/></a>
       </div>
       <div class="flex-grow-1">
-        <app-search-bar (queryUpdated)="executeSearch($event)"></app-search-bar>
+        <!--app-search-bar (queryUpdated)="executeSearch($event)"></app-search-bar-->
+        <app-search-bar-compat (queryUpdated)="executeSearch($event)"></app-search-bar-compat>
       </div>
       <div class="ml-3 d-flex">
         <button class="btn btn-transparent btn-lg mr-3" (click)="toggleDarkmode()" title="Toggle dark theme.">

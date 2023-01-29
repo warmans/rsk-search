@@ -7,6 +7,7 @@ import { PrintPlainText } from 'src/app/lib/filter-dsl/printer';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ParseAST } from 'src/app/lib/filter-dsl/ast';
 import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
+import { FilterExtractor } from 'src/app/lib/filter-dsl/util';
 
 @Component({
   selector: 'app-search-bar',
@@ -481,18 +482,3 @@ export class SearchBarComponent implements OnDestroy, AfterViewInit {
   }
 }
 
-class FilterExtractor implements Visitor {
-
-  filters: CompFilter[] = [];
-
-  visitBoolFilter(f: BoolFilter): Visitor {
-    f.lhs.accept(this);
-    f.rhs.accept(this);
-    return this;
-  }
-
-  visitCompFilter(f: CompFilter): Visitor {
-    this.filters.push(f);
-    return this;
-  }
-}

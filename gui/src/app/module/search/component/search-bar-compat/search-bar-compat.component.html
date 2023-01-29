@@ -1,0 +1,55 @@
+<div class="search-bar-container" #componentRoot>
+  <div class="d-flex">
+    <div class="bar flex-grow-1 d-flex p-2">
+      <form (ngSubmit)="emitQuery()" class="flex-grow-1 d-flex">
+        <input
+          #termsInput
+          autofocus
+          type="text"
+          class="term-input flex-grow-1"
+          spellcheck="false"
+          placeholder='Enter unquoted terms for a broad search. "Quote" terms for an exact match. Filter by @speaker or ~publication.'
+          [formControl]="inputFormControl"
+          (keydown)="onKeydown($event)"
+          (keyup)="onKeyup($event)" />
+      </form>
+      <div class="controls pr-2">
+        <i class="bi bi-question-circle clickable" title="Help" (click)="toggleHelp()"></i>
+      </div>
+    </div>
+    <div class="buttons">
+      <button class="btn btn-primary" (click)="emitQuery()"><i class="bi-search"></i></button>
+    </div>
+  </div>
+  <div class="search-dropdown p-3 mt-2" *ngIf="focusState === 'typing' && activeTerm?.field === 'actor'">
+    <app-search-bar-suggestion
+      [keyInput]="keyPress$"
+      [termPrefix]="activeTerm?.value || ''"
+      [dataFn]="mentionsDataFn"
+      (emitQuery)="emitQuery()"
+      (termSelected)="applySuggestion($event)">
+    </app-search-bar-suggestion>
+  </div>
+  <div class="search-dropdown p-3 mt-2" *ngIf="focusState === 'typing' && activeTerm?.field === 'publication'">
+    <app-search-bar-suggestion
+      [keyInput]="keyPress$"
+      [termPrefix]="activeTerm?.value || ''"
+      [dataFn]="publicationDataFn"
+      (emitQuery)="emitQuery()"
+      (termSelected)="applySuggestion($event)">
+    </app-search-bar-suggestion>
+  </div>
+  <div class="search-dropdown p-3 mt-2" *ngIf="focusState === 'typing' && activeTerm?.field === 'content'">
+    <app-search-bar-suggestion
+      [keyInput]="keyPress$"
+      [termPrefix]="activeTerm?.value || ''"
+      [dataFn]="contentDataFn"
+      [termFilters]="contentFilters"
+      (emitQuery)="emitQuery()"
+      (termSelected)="applySuggestion($event)">
+    </app-search-bar-suggestion>
+  </div>
+  <div class="search-dropdown p-3 mt-2" *ngIf="showHelp">
+    <app-search-bar-help></app-search-bar-help>
+  </div>
+</div>

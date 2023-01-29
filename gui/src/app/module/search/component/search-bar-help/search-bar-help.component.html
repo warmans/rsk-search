@@ -4,7 +4,8 @@
 <p>To exactly match a section of text, wrap it in double quotes e.g. <span class="keyword">"man alive"</span></p>
 
 <strong>Filter by Speaker</strong>
-<p>To limit the search to a specific speaker you can add a <span class="keyword">@</span> e.g. <span class="keyword"> man alive @steve</span></p>
+<p>To limit the search to a specific speaker you can add a <span class="keyword">@</span> e.g. <span class="keyword"> man alive @steve</span>.<br/>
+  When speakers contain multiple words they must be quoted e.g. <span class="keyword">@"ricky and steve"</span> but if single words you can omit the quotes.</p>
 
 <strong>Filter by Publication</strong>
 <p>To limit the search to a specific publication you can add a <span class="keyword">~</span> e.g. <span class="keyword"> man alive ~xfm</span></p>
@@ -13,6 +14,6 @@
 <p>You can also mix all these options in a single search e.g. <span class="keyword">@karl ~xfm "plugger" co-management</span>. This is useful
   for when you know the gist of a quote, but cannot remember the exact structure.</p>
 
-<strong>Limitations</strong>
-<p>If you copy/paste the search it will not be parsed as you expect. The reason is that <span class="keyword">@mentions</span> can contains spaces
-so they must be wrapped in a specific element. This element won't be included in a plain-text copy/paste.</p>
+<strong>Autocomplete</strong>
+<p>Autocomplete will respect any filters that have already been added e.g.<span class="keyword">@rob</span> will only auto-complete lines like "the thing is, with a student, you're learning".
+So in general you're better off putting filters in first, before terms.</p>

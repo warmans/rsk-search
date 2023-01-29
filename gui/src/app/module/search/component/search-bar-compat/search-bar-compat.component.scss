@@ -1,0 +1,44 @@
+.search-bar-container {
+  color: #333;
+  position: relative;
+
+  .bar {
+    background-color: #fff;
+    border: 1px solid #ccc;
+
+    // prevents first click from activating control. look for a workaround.
+    //[contentEditable=true]:empty:not(:focus):before {
+    //  content: attr(data-ph);
+    //  color: grey;
+    //  font-style: italic;
+    //}
+
+    .term-input {
+      border: none;
+      max-height: 20px;
+      span {
+        display: inline;
+      }
+    }
+
+    .term-input:active, .term-input:focus {
+      outline: none;
+      border: none;
+    }
+  }
+
+  .search-dropdown {
+    z-index: 1000 !important;
+    display: block;
+    position: absolute;
+    background-color: #fff;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+}
+.buttons {
+  .btn {
+    height: 100%;
+  }
+}
