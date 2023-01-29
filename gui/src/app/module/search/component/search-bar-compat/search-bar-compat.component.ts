@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, OnDestroy, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, OnDestroy, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
@@ -74,6 +74,16 @@ export class SearchBarCompatComponent implements OnInit, OnDestroy {
       this.createTermsFromFilter(params.get('q'));
       this.setStateIdle();
     });
+  }
+
+  @HostListener('document:click', ['$event'])
+  clickOut(event) {
+    if (this.componentRootEl.nativeElement.contains(event.target)) {
+      this.setStateFocussed();
+      return;
+    }
+    this.setStateIdle();
+    this.showHelp = false;
   }
 
   ngOnInit(): void {
