@@ -236,5 +236,6 @@ export class SearchBarCompatComponent implements OnInit, OnDestroy {
     this.terms = [];
     this.activeTerm = undefined;
     this.inputFormControl.reset();
+    this.setStateIdle();
   }
 }
