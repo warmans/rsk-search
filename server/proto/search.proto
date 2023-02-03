@@ -283,7 +283,8 @@ message SearchTermPredictions  {
 
 message Prediction {
   string line = 1;
-  repeated WordPosition words = 2;
+  reserved 2;
+  string fragment = 3;
 }
 
 message WordPosition {

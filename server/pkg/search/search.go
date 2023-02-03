@@ -47,8 +47,6 @@ func (d DialogDocument) GetNamedField(name string) interface{} {
 		return d.Position
 	case "content":
 		return d.Content
-	case "autocomplete":
-		return d.Content
 	case "type":
 		return d.ContentType
 	}

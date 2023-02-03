@@ -70,4 +70,3 @@ export { RskTscriptList } from './rsk-tscript-list.model';
 export { RskTscriptStats } from './rsk-tscript-stats.model';
 export { RskUpdateChunkContributionRequest } from './rsk-update-chunk-contribution-request.model';
 export { RskUpdateTranscriptChangeRequest } from './rsk-update-transcript-change-request.model';
-export { RskWordPosition } from './rsk-word-position.model';

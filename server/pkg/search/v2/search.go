@@ -6,6 +6,7 @@ import (
 	"github.com/blugelabs/bluge"
 	search2 "github.com/blugelabs/bluge/search"
 	"github.com/blugelabs/bluge/search/aggregations"
+	"github.com/blugelabs/bluge/search/highlight"
 	"github.com/pkg/errors"
 	"github.com/warmans/rsk-search/gen/api"
 	"github.com/warmans/rsk-search/pkg/data"
@@ -176,7 +177,7 @@ func (s *Search) ListTerms(fieldName string, prefix string) (models.FieldValues,
 func (s *Search) PredictSearchTerms(ctx context.Context, prefix string, exact bool, numPredictions int32, f filter.Filter) (*api.SearchTermPredictions, error) {
 	var q bluge.Query
 	if f != nil {
-		filterQuery, err := bluge_query.FilterToQuery(filter.And(f, filter.Like("autocomplete", filter.String(prefix))))
+		filterQuery, err := bluge_query.FilterToQuery(filter.And(f, filter.Like("content", filter.String(prefix))))
 		if err != nil {
 			return nil, errors.Wrap(err, "failed to create query")
 		}
@@ -184,11 +185,11 @@ func (s *Search) PredictSearchTerms(ctx context.Context, prefix string, exact bo
 	} else {
 		if !exact {
 			matchQuery := bluge.NewMatchQuery(prefix)
-			matchQuery.SetField("autocomplete")
+			matchQuery.SetField("content")
 			q = matchQuery
 		} else {
 			matchQuery := bluge.NewMatchPhraseQuery(prefix)
-			matchQuery.SetField("autocomplete")
+			matchQuery.SetField("content")
 			q = matchQuery
 		}
 	}
@@ -196,6 +197,12 @@ func (s *Search) PredictSearchTerms(ctx context.Context, prefix string, exact bo
 	// fetch extras in case some need to be discarded
 	req := bluge.NewTopNSearch(maxInt(int(numPredictions), 50), q).SetFrom(0)
 	req.IncludeLocations()
+
+	highlighter := highlight.NewSimpleHighlighter(
+		highlight.NewSimpleFragmenterSized(256),
+		NewBracketFragmentFormatter(),
+		"[...]",
+	)
 
 	dmi, err := s.index.Search(ctx, req)
 	if err != nil {
@@ -211,7 +218,7 @@ func (s *Search) PredictSearchTerms(ctx context.Context, prefix string, exact bo
 	for err == nil && next != nil {
 		p := &api.Prediction{}
 		err = next.VisitStoredFields(func(field string, value []byte) bool {
-			if field == "autocomplete" {
+			if field == "content" {
 				p.Line = string(value)
 				return false
 			}
@@ -219,13 +226,6 @@ func (s *Search) PredictSearchTerms(ctx context.Context, prefix string, exact bo
 		})
 		if err != nil {
 			return nil, err
-		}
-		for _, words := range next.Locations {
-			for word, positions := range words {
-				for _, v := range positions {
-					p.Words = append(p.Words, &api.WordPosition{Word: word, StartPos: int32(maxInt(v.Start, 0)), EndPos: int32(v.End)})
-				}
-			}
 		}
 
 		// de-duplicate results
@@ -237,10 +237,11 @@ func (s *Search) PredictSearchTerms(ctx context.Context, prefix string, exact bo
 		}
 
 		if !duplicate && stringsAreNotTooSimilar(prefix, p.Line) && len(p.Line) < 256 {
-			// sort the predictions so they are in order of appearance in the text.
-			sort.SliceStable(p.Words, func(i, j int) bool {
-				return p.Words[i].StartPos < p.Words[j].StartPos
-			})
+			// highlight and fragment result
+			fragments := highlighter.BestFragments(next.Locations["content"], []byte(p.Line), 1)
+			if len(fragments) > 0 {
+				p.Fragment = fragments[0]
+			}
 			predictions.Predictions = append(predictions.Predictions, p)
 		}
 

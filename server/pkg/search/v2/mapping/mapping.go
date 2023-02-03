@@ -19,6 +19,5 @@ var Mapping = map[string]FieldType{
 	"actor":         FieldTypeKeyword,
 	"pos":           FieldTypeNumber,
 	"content":       FieldTypeText,
-	"autocomplete":  FieldTypeShingles,
 	"type":          FieldTypeKeyword,
 }

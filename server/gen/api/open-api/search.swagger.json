@@ -474,11 +474,8 @@
         "line": {
           "type": "string"
         },
-        "words": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/rskWordPosition"
-          }
+        "fragment": {
+          "type": "string"
         }
       }
     },
@@ -752,22 +749,6 @@
       "type": "object",
       "properties": {
         "description": {
-          "type": "string"
-        },
-        "startPos": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "endPos": {
-          "type": "integer",
-          "format": "int32"
-        }
-      }
-    },
-    "rskWordPosition": {
-      "type": "object",
-      "properties": {
-        "word": {
           "type": "string"
         },
         "startPos": {

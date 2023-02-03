@@ -609,10 +609,10 @@ export function isRskPrediction(arg: any): arg is models.RskPrediction {
   return (
   arg != null &&
   typeof arg === 'object' &&
+    // fragment?: string
+    ( typeof arg.fragment === 'undefined' || typeof arg.fragment === 'string' ) &&
     // line?: string
     ( typeof arg.line === 'undefined' || typeof arg.line === 'string' ) &&
-    // words?: RskWordPosition[]
-    ( typeof arg.words === 'undefined' || (Array.isArray(arg.words) && arg.words.every((item: unknown) => isRskWordPosition(item))) ) &&
 
   true
   );
@@ -1118,21 +1118,6 @@ export function isRskUpdateTranscriptChangeRequest(arg: any): arg is models.RskU
     ( typeof arg.summary === 'undefined' || typeof arg.summary === 'string' ) &&
     // transcript?: string
     ( typeof arg.transcript === 'undefined' || typeof arg.transcript === 'string' ) &&
-
-  true
-  );
-  }
-
-export function isRskWordPosition(arg: any): arg is models.RskWordPosition {
-  return (
-  arg != null &&
-  typeof arg === 'object' &&
-    // endPos?: number
-    ( typeof arg.endPos === 'undefined' || typeof arg.endPos === 'number' ) &&
-    // startPos?: number
-    ( typeof arg.startPos === 'undefined' || typeof arg.startPos === 'number' ) &&
-    // word?: string
-    ( typeof arg.word === 'undefined' || typeof arg.word === 'string' ) &&
 
   true
   );

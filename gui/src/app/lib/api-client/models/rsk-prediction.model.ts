@@ -1,9 +1,6 @@
 /* tslint:disable */
-import {
-  RskWordPosition,
-} from '.';
 
 export interface RskPrediction {
+  fragment?: string;
   line?: string;
-  words?: RskWordPosition[];
 }
