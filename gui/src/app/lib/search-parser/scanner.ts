@@ -43,11 +43,10 @@ export class Scanner {
   offset: number = 0;
 
   constructor(str: string) {
-    this.input = str.split('');
+    this.input = (str || '').split('');
   }
 
   next(): Tok {
-    //this.skipWhitespace();
     if (this.atEOF()) {
       return this.emit(Tag.EOF);
     }
@@ -82,7 +81,7 @@ export class Scanner {
   }
 
   private scanWord(): Tok {
-    while (!this.atEOF() && (this.isValidInputChar(this.peekChar())) && !this.isWhitespace(this.peekChar())) {
+    while (!this.atEOF() && this.isValidInputChar(this.peekChar()) && !this.isWhitespace(this.peekChar())) {
       this.nextChar();
     }
     return this.emit(Tag.Word);

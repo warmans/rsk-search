@@ -24,8 +24,6 @@ export class SearchBarCompatComponent implements OnInit, OnDestroy {
 
   focusState: 'idle' | 'focus' | 'typing' = 'idle';
 
-  suggestionsActive: boolean = false;
-
   inputFormControl: FormControl = new FormControl('');
 
   destroy$: Subject<void> = new Subject<void>();
@@ -57,7 +55,7 @@ export class SearchBarCompatComponent implements OnInit, OnDestroy {
     prefix: prefix,
     maxPredictions: 10,
     query: filter ? filter.print() : '',
-  }).pipe(map(res => res.predictions.map((v) => v.line)));
+  }).pipe(map(res => res.predictions));
 
   @ViewChild('componentRoot')
   componentRootEl: any;
@@ -87,9 +85,7 @@ export class SearchBarCompatComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.inputFormControl.valueChanges.pipe(takeUntil(this.destroy$)).subscribe((val: string) => {
-      this.parseAndApplyTermsString(val);
-    });
+
   }
 
   ngOnDestroy(): void {
@@ -105,7 +101,14 @@ export class SearchBarCompatComponent implements OnInit, OnDestroy {
     }
     this.terms = ParseTerms(val).filter((term) => term.value.trim() != '');
     this.query = PrintFilterString(this.terms);
-    this.contentFilters = TermsToFilter(this.terms.filter((t: Term) => t.field !== 'content'))
+    this.activeTerm = undefined;
+    const caretPos = this.getCaretPos();
+    this.terms.forEach((term) => {
+      if (caretPos >= term.tok.start && caretPos <= term.tok.end) {
+        this.activeTerm = term;
+      }
+    });
+    this.contentFilters = TermsToFilter(this.terms.filter((t: Term) => t.value !== (this.activeTerm?.value || '')));
   }
 
   emitQuery() {
@@ -139,14 +142,7 @@ export class SearchBarCompatComponent implements OnInit, OnDestroy {
     if ((ev.key || ev.code) === 'Escape') {
       return;
     }
-    this.activeTerm = undefined;
-    const caretPos = this.getCaretPos();
-    this.terms.forEach((term) => {
-      if (caretPos >= term.tok.start && caretPos <= term.tok.end) {
-        this.activeTerm = term;
-        //this.setStateTyping();
-      }
-    });
+    this.parseAndApplyTermsString(this.inputFormControl.value);
   }
 
   setStateIdle() {
@@ -178,14 +174,20 @@ export class SearchBarCompatComponent implements OnInit, OnDestroy {
     const withoutQuotes = suggestion.replace(/"/g, '');
     switch (this.activeTerm?.field) {
       case 'content':
-        this.activeTerm.value = hasWhitespace ? `"${withoutQuotes}"` : withoutQuotes;
-        this.terms = this.terms.filter((t) => t === this.activeTerm || t.field !== 'content');
+        this.activeTerm = new Term(
+          { start: 0, end: withoutQuotes.length },
+          this.activeTerm.field,
+          withoutQuotes,
+          hasWhitespace ? CompOp.Eq : CompOp.Like,
+        );
+        this.terms = [...this.terms.filter((t) => t === this.activeTerm || t.field !== 'content'), this.activeTerm];
         break;
       default:
-        this.activeTerm.value = hasWhitespace ? `"${withoutQuotes}"` : withoutQuotes;
+        this.activeTerm.value = withoutQuotes;
         break;
     }
     this.renderTerms();
+    this.parseAndApplyTermsString(this.inputFormControl.value);
     this.emitQuery();
     this.setStateIdle();
   }

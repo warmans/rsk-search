@@ -6,6 +6,7 @@ import (
 	"github.com/blugelabs/bluge"
 	search2 "github.com/blugelabs/bluge/search"
 	"github.com/blugelabs/bluge/search/aggregations"
+	"github.com/pkg/errors"
 	"github.com/warmans/rsk-search/gen/api"
 	"github.com/warmans/rsk-search/pkg/data"
 	"github.com/warmans/rsk-search/pkg/filter"
@@ -172,21 +173,24 @@ func (s *Search) ListTerms(fieldName string, prefix string) (models.FieldValues,
 	return terms, nil
 }
 
-func (s *Search) PredictSearchTerms(ctx context.Context, prefix string, numPredictions int32, f filter.Filter) (*api.SearchTermPredictions, error) {
-
+func (s *Search) PredictSearchTerms(ctx context.Context, prefix string, exact bool, numPredictions int32, f filter.Filter) (*api.SearchTermPredictions, error) {
 	var q bluge.Query
 	if f != nil {
-		// filtered autocomplete
 		filterQuery, err := bluge_query.FilterToQuery(filter.And(f, filter.Like("autocomplete", filter.String(prefix))))
 		if err != nil {
-			return nil, err
+			return nil, errors.Wrap(err, "failed to create query")
 		}
 		q = filterQuery
 	} else {
-		// autocomplete by prefix only
-		matchQuery := bluge.NewMatchQuery(prefix)
-		matchQuery.SetField("autocomplete")
-		q = matchQuery
+		if !exact {
+			matchQuery := bluge.NewMatchQuery(prefix)
+			matchQuery.SetField("autocomplete")
+			q = matchQuery
+		} else {
+			matchQuery := bluge.NewMatchPhraseQuery(prefix)
+			matchQuery.SetField("autocomplete")
+			q = matchQuery
+		}
 	}
 
 	// fetch extras in case some need to be discarded
@@ -195,7 +199,7 @@ func (s *Search) PredictSearchTerms(ctx context.Context, prefix string, numPredi
 
 	dmi, err := s.index.Search(ctx, req)
 	if err != nil {
-		return nil, err
+		return nil, errors.Wrap(err, "search failed")
 	}
 
 	predictions := &api.SearchTermPredictions{

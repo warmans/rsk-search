@@ -12,6 +12,7 @@ import (
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
+// Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
 // StatusServiceClient is the client API for StatusService service.
@@ -74,8 +75,8 @@ type UnsafeStatusServiceServer interface {
 	mustEmbedUnimplementedStatusServiceServer()
 }
 
-func RegisterStatusServiceServer(s *grpc.Server, srv StatusServiceServer) {
-	s.RegisterService(&_StatusService_serviceDesc, srv)
+func RegisterStatusServiceServer(s grpc.ServiceRegistrar, srv StatusServiceServer) {
+	s.RegisterService(&StatusService_ServiceDesc, srv)
 }
 
 func _StatusService_Health_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -114,7 +115,10 @@ func _StatusService_GetQuotaSummary_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
-var _StatusService_serviceDesc = grpc.ServiceDesc{
+// StatusService_ServiceDesc is the grpc.ServiceDesc for StatusService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var StatusService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "rsk.StatusService",
 	HandlerType: (*StatusServiceServer)(nil),
 	Methods: []grpc.MethodDesc{

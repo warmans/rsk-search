@@ -1,7 +1,7 @@
 <div class="autocomplete-dropdown">
   <div class="text-muted" *ngIf="(values || []).length === 0">{{ loading ? 'Loading' : 'No exact matches found'}}...</div>
   <div class="line"
-       *ngFor="let line of values; let idx = index"
+       *ngFor="let line of highlightedValues; let idx = index"
        [ngClass]="{'active': idx === selectedAutoCompleteRow}"
        (click)="selectTerm(values[idx])"
        [innerHTML]="line">

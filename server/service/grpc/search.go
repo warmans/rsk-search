@@ -107,7 +107,7 @@ func (s *SearchService) PredictSearchTerm(ctx context.Context, request *api.Pred
 	if strings.TrimSpace(request.Prefix) == "" {
 		return &api.SearchTermPredictions{}, nil
 	}
-	return s.searchBackend.PredictSearchTerms(ctx, request.Prefix, maxPredictions, f)
+	return s.searchBackend.PredictSearchTerms(ctx, request.Prefix, request.Exact, maxPredictions, f)
 }
 
 func (s *SearchService) GetTranscript(ctx context.Context, request *api.GetTranscriptRequest) (*api.Transcript, error) {

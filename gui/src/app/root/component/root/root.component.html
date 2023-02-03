@@ -9,7 +9,6 @@
         <a [routerLink]="['/search']"><img src="/assets/android-chrome-192x192.png" style="height: 3rem"/></a>
       </div>
       <div class="flex-grow-1">
-        <!--app-search-bar (queryUpdated)="executeSearch($event)"></app-search-bar-->
         <app-search-bar-compat (queryUpdated)="executeSearch($event)"></app-search-bar-compat>
       </div>
       <div class="ml-3 d-flex">
@@ -29,7 +28,9 @@
 
   <div class="alert alert-warning" *ngIf="bandwidthQuotaUsedPcnt > 95">
     <strong>Scrimpton has reached {{ bandwidthQuotaUsedPcnt * 100 | number}}% of its bandwidth quota.</strong>
-    <div>This means a bandwidth limit has been reached preventing further file downloads. This may prevent audio files from being played until the quota is reset at the end of the month.</div>
+    <div>This means a bandwidth limit has been reached preventing further file downloads. This may prevent audio files from being played until the quota is reset at the end of the
+      month.
+    </div>
   </div>
 
   <div class="d-flex flex-column justify-content-between vh-100">

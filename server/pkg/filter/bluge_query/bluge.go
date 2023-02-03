@@ -169,7 +169,8 @@ func (j *BlugeQuery) condition(field string, op filter.CompOp, value filter.Valu
 }
 
 func (j *BlugeQuery) eqFilter(field string, value filter.Value) (bluge.Query, error) {
-	if t, ok := mapping.Mapping[field]; ok {
+	t, ok := mapping.Mapping[field]
+	if ok {
 		switch t {
 		case mapping.FieldTypeText:
 			if value.Type() != filter.StringType {
@@ -178,7 +179,7 @@ func (j *BlugeQuery) eqFilter(field string, value filter.Value) (bluge.Query, er
 			q := bluge.NewMatchPhraseQuery(stripQuotes(value.String()))
 			q.SetField(field)
 			return q, nil
-		case mapping.FieldTypeKeyword:
+		case mapping.FieldTypeKeyword, mapping.FieldTypeShingles:
 			if value.Type() != filter.StringType {
 				return nil, fmt.Errorf("could not compare keyword field %s with %s", field, value.Type())
 			}
@@ -211,7 +212,7 @@ func (j *BlugeQuery) eqFilter(field string, value filter.Value) (bluge.Query, er
 			return nil, fmt.Errorf("non-string value given as date")
 		}
 	}
-	return nil, fmt.Errorf("unknown field %s", field)
+	return nil, fmt.Errorf("unknown field type %v", t)
 }
 
 func stripQuotes(v string) string {

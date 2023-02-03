@@ -16,16 +16,22 @@ export function highlightPrediction(pred: RskPrediction): string {
   if ((pred?.words || []).length === 0) {
     return pred.line;
   }
+  // deduplicate words based on the start pos.
+  let words = pred.words.filter((value, index, self) =>
+      index === self.findIndex((t) => (
+        t.startPos === value.startPos
+      ))
+  );
   const out: string[] = [pred.line.slice(0, pred.words[0].startPos)];
-  pred.words.forEach((word: RskWordPosition, idx: number) => {
+  words.forEach((word: RskWordPosition, idx: number) => {
     if (idx > 0) {
-      out.push(`<span class="not-matched">${pred.line.slice(pred?.words[idx-1].endPos, word.startPos)}</span>`);
+      out.push(`<span class="not-matched">${pred.line.slice(pred?.words[idx - 1].endPos, word.startPos)}</span>`);
     }
     out.push(`<span class="matched">${pred.line.slice(word.startPos, word.endPos)}</span>`);
   });
-  out.push(`<span class="not-matched">${pred.line.slice(pred.words[pred.words.length-1].endPos, pred.line.length)}</span>`);
+  out.push(`<span class="not-matched">${pred.line.slice(pred.words[pred.words.length - 1].endPos, pred.line.length)}</span>`);
 
-  return out.join("");
+  return out.join('');
 }
 
 export function shortenStringToNearestWord(line: string, targetLength: number): string {
@@ -33,12 +39,12 @@ export function shortenStringToNearestWord(line: string, targetLength: number): 
     return line;
   }
 
-  let out: string = "";
-  line.split(" ").forEach((word: string) =>  {
+  let out: string = '';
+  line.split(' ').forEach((word: string) => {
     if (out.length > targetLength) {
       return;
     }
-    out += ` ${word}`
+    out += ` ${word}`;
   });
-  return out
+  return out;
 }

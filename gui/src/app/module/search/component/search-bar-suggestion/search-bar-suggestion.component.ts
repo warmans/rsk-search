@@ -2,6 +2,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { Filter } from 'src/app/lib/filter-dsl/filter';
+import { RskPrediction } from 'src/app/lib/api-client/models';
+import { highlightPrediction } from 'src/app/lib/util';
+
 
 @Component({
   selector: 'app-search-bar-suggestion',
@@ -29,7 +32,7 @@ export class SearchBarSuggestionComponent implements OnInit {
   keyInput: Observable<KeyboardEvent> = new Observable<KeyboardEvent>();
 
   @Input()
-  dataFn: (prefix: string, filter: Filter) => Observable<string[]>;
+  dataFn: (prefix: string, filter: Filter) => Observable<string[] | RskPrediction[]>;
 
   @Output()
   termSelected: EventEmitter<string> = new EventEmitter<string>();
@@ -38,6 +41,8 @@ export class SearchBarSuggestionComponent implements OnInit {
   emitQuery: EventEmitter<void> = new EventEmitter<void>();
 
   values: string[] = [];
+
+  highlightedValues: string[] = [];
 
   selectedAutoCompleteRow: number = -1;
 
@@ -50,8 +55,9 @@ export class SearchBarSuggestionComponent implements OnInit {
   constructor() {
     this.prefixChanged$.pipe(debounceTime(100), takeUntil(this.destroy$)).subscribe((termPrefix: string) => {
       this.loading = true;
-      this.dataFn(termPrefix, this.termFilters).pipe(takeUntil(this.destroy$)).subscribe((res: string[]) => {
-        this.values = res;
+      this.dataFn(termPrefix.replace(/"/g, ''), this.termFilters).pipe(takeUntil(this.destroy$)).subscribe((res: string[] | RskPrediction[]) => {
+        this.values = res.map((val: RskPrediction | string) => (typeof val === 'string') ? val : val.line)
+        this.highlightedValues = res.map((val: RskPrediction | string) => (typeof val === 'string') ? val : highlightPrediction(val));
       }).add(() => {
         this.loading = false;
       });

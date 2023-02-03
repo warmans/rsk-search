@@ -59,9 +59,24 @@ export class TermParser {
       case Tag.EOF:
         return null;
       case Tag.QuotedString:
-        return new Term(t, 'content', t.lexeme, CompOp.Eq);
+        return new Term(t, 'content', t.lexeme.replace(/"/g, ''), CompOp.Eq);
       case Tag.Word:
-        return new Term(t, 'content', t.lexeme, CompOp.FuzzyLike);
+        let words: string[] = [t.lexeme];
+        let wordsEndPos = t.end
+        // group neighbouring words into a single term.
+        let next = this.peekNext();
+        while (next.tag === Tag.Word || next.tag === Tag.Whitespace) {
+          next = this.getNext() // advance to peeked value
+          if (next.tag === Tag.Whitespace) {
+            // still track whitespace end pos
+            wordsEndPos = next.end
+          } else {
+            words.push(next.lexeme)
+          }
+          wordsEndPos = next.end
+          next = this.peekNext();
+        }
+        return new Term({start: t.start, end: wordsEndPos}, 'content', words.join(' '), CompOp.FuzzyLike);
       case Tag.Mention:
         const mentionText = this.requireNext(Tag.QuotedString, Tag.Word, Tag.EOF);
         return new Term({start: t.start, end: mentionText.end}, 'actor', mentionText.lexeme, CompOp.Eq);
@@ -73,6 +88,15 @@ export class TermParser {
       default:
         throw new Error(`unexpected token ${t.lexeme}`);
     }
+  }
+
+  private peekNext(): Tok {
+    if (this.peeked !== null) {
+      return this.peeked;
+    }
+    const t = this.getNext();
+    this.peeked = t;
+    return t;
   }
 
   private getNext(): Tok {
