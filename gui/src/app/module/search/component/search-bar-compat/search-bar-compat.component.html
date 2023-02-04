@@ -25,7 +25,7 @@
   <div class="search-dropdown p-3 mt-2" *ngIf="focusState === 'typing' && activeTerm?.field === 'actor'">
     <app-search-bar-suggestion
       [keyInput]="keyPress$"
-      [termPrefix]="activeTerm?.value || ''"
+      [term]="activeTerm"
       [dataFn]="mentionsDataFn"
       (emitQuery)="emitQuery()"
       (termSelected)="applySuggestion($event)">
@@ -34,7 +34,7 @@
   <div class="search-dropdown p-3 mt-2" *ngIf="focusState === 'typing' && activeTerm?.field === 'publication'">
     <app-search-bar-suggestion
       [keyInput]="keyPress$"
-      [termPrefix]="activeTerm?.value || ''"
+      [term]="activeTerm"
       [dataFn]="publicationDataFn"
       (emitQuery)="emitQuery()"
       (termSelected)="applySuggestion($event)">
@@ -43,7 +43,7 @@
   <div class="search-dropdown p-3 mt-2" *ngIf="focusState === 'typing' && activeTerm?.field === 'content'">
     <app-search-bar-suggestion
       [keyInput]="keyPress$"
-      [termPrefix]="activeTerm?.value || ''"
+      [term]="activeTerm"
       [dataFn]="contentDataFn"
       [termFilters]="contentFilters"
       (emitQuery)="emitQuery()"

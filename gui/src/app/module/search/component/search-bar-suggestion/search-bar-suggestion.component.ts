@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
-import { Filter } from 'src/app/lib/filter-dsl/filter';
+import { CompOp, Filter } from 'src/app/lib/filter-dsl/filter';
 import { RskPrediction } from 'src/app/lib/api-client/models';
 import { highlightPrediction } from 'src/app/lib/util';
+import { Term } from 'src/app/lib/search-parser/parser';
 
 
 @Component({
@@ -14,16 +15,16 @@ import { highlightPrediction } from 'src/app/lib/util';
 export class SearchBarSuggestionComponent implements OnInit {
 
   @Input()
-  set termPrefix(value: string) {
-    this._termPrefix = value;
-    this.prefixChanged$.next(value);
+  set term(value: Term) {
+    this._term = value;
+    this.termChanged$.next(value);
   }
 
-  get termPrefix(): string {
-    return this._termPrefix;
+  get term(): Term {
+    return this._term;
   }
 
-  private _termPrefix: string;
+  private _term: Term;
 
   @Input()
   termFilters: Filter;
@@ -32,7 +33,7 @@ export class SearchBarSuggestionComponent implements OnInit {
   keyInput: Observable<KeyboardEvent> = new Observable<KeyboardEvent>();
 
   @Input()
-  dataFn: (prefix: string, filter: Filter) => Observable<string[] | RskPrediction[]>;
+  dataFn: (prefix: string, filter: Filter, exact: boolean) => Observable<string[] | RskPrediction[]>;
 
   @Output()
   termSelected: EventEmitter<string> = new EventEmitter<string>();
@@ -48,20 +49,26 @@ export class SearchBarSuggestionComponent implements OnInit {
 
   loading: boolean = false;
 
-  prefixChanged$: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  termChanged$: BehaviorSubject<Term> = new BehaviorSubject<Term>(undefined);
 
   destroy$: Subject<void> = new Subject();
 
   constructor() {
-    this.prefixChanged$.pipe(debounceTime(100), takeUntil(this.destroy$)).subscribe((termPrefix: string) => {
-      this.loading = true;
-      this.dataFn(termPrefix.replace(/"/g, ''), this.termFilters).pipe(takeUntil(this.destroy$)).subscribe((res: string[] | RskPrediction[]) => {
-        this.values = res.map((val: RskPrediction | string) => (typeof val === 'string') ? val : val.line)
-        this.highlightedValues = res.map((val: RskPrediction | string) => (typeof val === 'string') ? val : highlightPrediction(val));
-      }).add(() => {
-        this.loading = false;
+
+    this.termChanged$.pipe(debounceTime(100), takeUntil(this.destroy$))
+      .subscribe((term: Term) => {
+        this.loading = true;
+        this.dataFn(
+          term.value.replace(/"/g, ''),
+          this.termFilters,
+          term.op === CompOp.Eq)
+          .pipe(takeUntil(this.destroy$)).subscribe((res: string[] | RskPrediction[]) => {
+          this.values = res.map((val: RskPrediction | string) => (typeof val === 'string') ? val : val.line);
+          this.highlightedValues = res.map((val: RskPrediction | string) => (typeof val === 'string') ? val : highlightPrediction(val));
+        }).add(() => {
+          this.loading = false;
+        });
       });
-    });
   }
 
   ngOnInit(): void {

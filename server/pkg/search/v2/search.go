@@ -177,7 +177,13 @@ func (s *Search) ListTerms(fieldName string, prefix string) (models.FieldValues,
 func (s *Search) PredictSearchTerms(ctx context.Context, prefix string, exact bool, numPredictions int32, f filter.Filter) (*api.SearchTermPredictions, error) {
 	var q bluge.Query
 	if f != nil {
-		filterQuery, err := bluge_query.FilterToQuery(filter.And(f, filter.Like("content", filter.String(prefix))))
+		var prefixQuery filter.Filter
+		if exact {
+			prefixQuery = filter.Eq("content", filter.String(prefix))
+		} else {
+			prefixQuery = filter.Like("content", filter.String(prefix))
+		}
+		filterQuery, err := bluge_query.FilterToQuery(filter.And(f, prefixQuery))
 		if err != nil {
 			return nil, errors.Wrap(err, "failed to create query")
 		}

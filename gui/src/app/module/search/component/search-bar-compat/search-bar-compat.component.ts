@@ -40,21 +40,24 @@ export class SearchBarCompatComponent implements OnInit, OnDestroy {
 
   showHelp: boolean;
 
+  lastParsed: string;
+
   // API for mentions
-  mentionsDataFn: (prefix: string, filter: Filter) => Observable<any> = (prefix: string, filter: Filter) => this.apiClient.listFieldValues({
+  mentionsDataFn: (prefix: string, filter: Filter, exact: boolean) => Observable<any> = (prefix: string, filter: Filter, exact: boolean) => this.apiClient.listFieldValues({
     field: 'actor',
     prefix: prefix,
   }).pipe(map(res => res.values.map((v) => v.value)));
 
-  publicationDataFn: (prefix: string, filter: Filter) => Observable<any> = (prefix: string, filter: Filter) => this.apiClient.listFieldValues({
+  publicationDataFn: (prefix: string, filter: Filter, exact: boolean) => Observable<any> = (prefix: string, filter: Filter, exact: boolean) => this.apiClient.listFieldValues({
     field: 'publication',
-    prefix: prefix
+    prefix: prefix,
   }).pipe(map(res => res.values.map((v) => v.value)));
 
-  contentDataFn: (prefix: string, filter: Filter) => Observable<any> = (prefix: string, filter: Filter) => this.apiClient.predictSearchTerm({
+  contentDataFn: (prefix: string, filter: Filter, exact: boolean) => Observable<any> = (prefix: string, filter: Filter, exact: boolean) => this.apiClient.predictSearchTerm({
     prefix: prefix,
     maxPredictions: 10,
     query: filter ? filter.print() : '',
+    exact: exact,
   }).pipe(map(res => res.predictions));
 
   @ViewChild('componentRoot')
@@ -94,6 +97,12 @@ export class SearchBarCompatComponent implements OnInit, OnDestroy {
   }
 
   parseAndApplyTermsString(val: string) {
+    // prevent re-parsing the same string
+    if (this.lastParsed === val) {
+      return;
+    }
+    this.lastParsed = val;
+
     if (!val) {
       this.terms = [];
       this.query = '';
