@@ -192,7 +192,7 @@ export class SearchBarCompatComponent implements OnInit, OnDestroy {
         this.terms = [...this.terms.filter((t) => t === this.activeTerm || t.field !== 'content'), this.activeTerm];
         break;
       default:
-        this.activeTerm.value = withoutQuotes;
+        this.activeTerm.value = hasWhitespace ?  suggestion : withoutQuotes;
         break;
     }
     this.renderTerms();

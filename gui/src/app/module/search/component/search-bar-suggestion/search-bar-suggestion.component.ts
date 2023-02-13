@@ -108,6 +108,6 @@ export class SearchBarSuggestionComponent implements OnInit {
   }
 
   selectTerm(line: string) {
-    this.termSelected.next(`${line}`);
+    this.termSelected.next((/\s/).test(line) ? `"${line}"` : `${line}`);
   }
 }
