@@ -1,6 +1,24 @@
 # rsk-search
 
-## Setup 
+### Introduction
+
+This is the project that powers scrimpton.com. It is split into two areas: 
+
+Backend (`/server`):
+
+- Written in Go 
+- Uses Protobuff/Grpc for the API. 
+- Static data is stored in Sqlite, Bluge (formerly Bleve) or just flat files (see `var/data`).
+- Dynamic data (e.g. in-progress contributions) is stored in Postgres.
+- Audio files are stored on the server file system (no CDN or cloud storage).
+
+Frontend (`/gui`): 
+
+- Written in Typescript (Angular)
+- Styles are based on Bootstrap.
+- Icons are Bootstrap Icons.
+
+There are also some files to give an example of how the service can be deployed in `/deploy`.
 
 ## GUI Development
 
@@ -8,7 +26,7 @@ From the gui directory:
 
 1. Install dependencies `npm install`.
 2. Start the development server with `npm run start-prod`. This will not require any 
-local server and will use the live API instead.
+local server and will use the live scrimpton.com API.
 
 If the local server is running you can use `npm run start` to proxy the 
 API to the local running API.
@@ -24,6 +42,8 @@ From the server directory:
 5. Setup some test data `make dev.populate.chunks` 
 6. Run local server with `make run`.
 
+More info: [server README](server/README.md)
+
 ### How to change the API 
 
 1. Edit proto file e.g. `proto/search.proto`.
@@ -31,14 +51,7 @@ From the server directory:
 3. Update code to reflect changes in proto file e.g. `pkg/service/grpc/search.go`.
 4. In `gui` directory run `npm run generate-api-client` to sync the GUI client with the latest API definitions. 
 
-### How to update transcripts
-
-1. Update data in `./var/data/episodes`
-2. Run `make update.transcriptions SPOTIFY_TOKEN=[my token]`
-3. Re-generate DB/Search index with `make init.all`.
-
-Generating a spotify token. You can just generate one here if you are logged in:
-https://developer.spotify.com/console/get-search-item/ (click GET TOKEN)
+More info: [GUI README](gui/README.md)
 
 ## Deployment
 
