@@ -4,7 +4,7 @@
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a [routerLink]="['/search']">Home</a></li>
       <li class="breadcrumb-item"><a [routerLink]="['/contribute']">Contribute</a></li>
-      <li class="breadcrumb-item" *ngIf="chunk"><a [routerLink]="['/tscript', chunk.tscriptId ]">{{chunk?.tscriptId ||
+      <li class="breadcrumb-item" *ngIf="chunk"><a [routerLink]="['/tscript', chunk.chunkedTranscriptId ]">{{chunk?.chunkedTranscriptId ||
       "loading..."}}</a></li>
       <li class="breadcrumb-item active" aria-current="page">Create</li>
     </ol>

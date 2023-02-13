@@ -5,6 +5,7 @@ package rsk;
 import "google/api/annotations.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 import "google/protobuf/empty.proto";
+import "transcript.proto";
 
 
 option go_package = "github.com/warmans/rsk-search/server/gen/api";
@@ -15,7 +16,7 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   };
   external_docs: {
     url: "https://scrimpton.com";
-    description: "Search Xfm transcriptions";
+    description: "Search transcriptions";
   };
   schemes: HTTP;
 };
@@ -67,30 +68,6 @@ service SearchService {
     };
   }
 
-  // episodes
-
-  rpc GetTranscript(GetTranscriptRequest) returns (Transcript) {
-    option (google.api.http) = {
-      get: "/api/transcript/{epid}"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      operation_id: "getTranscript",
-      summary: "Fetch a transcript and associated metadata."
-      tags: "search"
-    };
-  }
-
-  rpc ListTranscripts(ListTranscriptsRequest) returns (TranscriptList) {
-    option (google.api.http) = {
-      get: "/api/transcript"
-    };
-    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      operation_id: "listTranscripts",
-      summary: "Fetch list of available episodes"
-      tags: "search"
-    };
-  }
-
   // changelogs
   rpc ListChangelogs(ListChangelogsRequest) returns (ChangelogList) {
     option (google.api.http) = {
@@ -102,7 +79,6 @@ service SearchService {
       tags: "search"
     };
   }
-
 }
 
 message SearchRequest {
@@ -126,111 +102,11 @@ message SearchStats  {
   repeated float values = 3;
 }
 
-enum AudioQuality {
-  UNKNOWN = 0;
-  POOR = 1;
-  AVERAGE = 2;
-  GOOD = 3;
-}
 
-message ShortTranscript {
-  string id = 1;
-  string publication = 2;
-  int32 series = 3;
-  int32 episode = 4;
-  bool transcript_available = 5;
-  bool incomplete = 6;
-  string release_date = 7;
-  string summary = 8;
-  repeated Synopsis synopsis = 9;
-  bool trivia_available = 10;
-  repeated string actors = 11;
-  string audio_uri = 12;
-  string short_id = 13;
-  int32 offset_accuracy_pcnt = 14;
-  string name = 15;
-  string version = 16;
-  map<string, string> metadata = 17;
-  bool bestof = 18;
-  bool special = 19;
-  AudioQuality audio_quality = 20;
-}
 
 message DialogResult {
   repeated Dialog transcript = 1;
   float score = 2;
-}
-
-message Dialog {
-  reserved 7; // content_tags
-
-  string id = 1;
-  int32 pos = 2;
-  string type = 3;
-  string actor = 4;
-  string content = 5;
-  map<string, string> metadata = 6;
-  bool is_matched_row = 8;
-  bool notable = 9;
-  int64 offset_sec = 10;
-  bool offset_inferred = 11;
-}
-
-message Synopsis {
-  string description = 1;
-  int32 start_pos = 2;
-  int32 end_pos = 3;
-}
-
-message Trivia {
-  string description = 1;
-  int32 start_pos = 2;
-  int32 end_pos = 3;
-}
-
-message Tag {
-  string name = 1;
-  repeated string kind = 2;
-}
-
-message Transcript {
-  reserved 6; // tags
-
-  string id = 1;
-  string publication = 2;
-  int32 series = 3;
-  int32 episode = 4;
-  map<string, string> metadata = 5;
-  repeated Dialog transcript = 7;
-  string release_date = 8;
-  repeated Synopsis synopses = 9;
-  repeated string contributors = 10;
-  bool incomplete = 11;
-  string raw_transcript = 12;
-  string audio_uri = 13;
-  string short_id = 14;
-  repeated Trivia trivia = 15;
-  repeated string actors = 16;
-  int32 offset_accuracy_pcnt = 17;
-  string name = 18;
-  string version = 19;
-  bool bestof = 20;
-  bool special = 21;
-  bool locked = 22;
-  string summary = 23;
-  AudioQuality audio_quality = 24;
-}
-
-message GetTranscriptRequest {
-  string epid = 1;
-  bool with_raw = 2;
-}
-
-message ListTranscriptsRequest {
-}
-
-message TranscriptList {
-  repeated ShortTranscript episodes = 1;
 }
 
 message Metadata {

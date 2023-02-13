@@ -2,8 +2,8 @@
 
 export interface RskChunk {
   audioClipUri?: string;
+  chunkedTranscriptId?: string;
   id?: string;
   numContributions?: number;
   raw?: string;
-  tscriptId?: string;
 }

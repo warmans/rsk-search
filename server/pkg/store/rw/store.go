@@ -88,8 +88,8 @@ func (s *Store) DeleteTscript(ctx context.Context, id string) error {
 	return nil
 }
 
-func (s *Store) ListTscripts(ctx context.Context) ([]*models.TscriptStats, error) {
-	out := make([]*models.TscriptStats, 0)
+func (s *Store) ListTscripts(ctx context.Context) ([]*models.ChunkedTranscriptStats, error) {
+	out := make([]*models.ChunkedTranscriptStats, 0)
 
 	rows, err := s.tx.QueryxContext(
 		ctx,
@@ -125,7 +125,7 @@ func (s *Store) ListTscripts(ctx context.Context) ([]*models.TscriptStats, error
 	defer rows.Close()
 
 	for rows.Next() {
-		cur := &models.TscriptStats{
+		cur := &models.ChunkedTranscriptStats{
 			ChunkContributionStates: map[string][]models.ContributionState{},
 		}
 		var contribStates string
@@ -153,7 +153,7 @@ func (s *Store) ListTscripts(ctx context.Context) ([]*models.TscriptStats, error
 	return out, nil
 }
 
-func (s *Store) InsertOrIgnoreTscript(ctx context.Context, tscript *models.Tscript) error {
+func (s *Store) InsertOrIgnoreTscript(ctx context.Context, tscript *models.ChunkedTranscript) error {
 
 	_, err := s.tx.ExecContext(
 		ctx,
@@ -516,63 +516,6 @@ func (s *Store) ListNonPendingTscriptContributions(ctx context.Context, tscriptI
 		out = append(out, cur)
 	}
 	return out, nil
-}
-
-func (s *Store) AuthorLeaderboard(ctx context.Context) (*models.AuthorLeaderboard, error) {
-
-	query := `
-        SELECT
-		   ranks.name,
-		   ranks.identity,
-           ranks.approver,
-           ranks.num_approved,
-		   (SELECT COALESCE(SUM(r.claim_value), 0) FROM author_reward r WHERE r.author_id = ranks.id AND r.claimed = TRUE)
-        FROM (
-            SELECT 
-            	a.id,
-                a.name,
-			    COALESCE(a.identity, '{}') as identity,
-                a.approver,
-                a.suporter,
-                COALESCE(SUM(CASE WHEN c.state = 'approved' THEN 1 ELSE 0 END), 0) as num_approved
-            FROM author a
-            LEFT JOIN tscript_contribution c ON c.author_id = a.id
-            GROUP BY a.id, a.name, a.approver) ranks
-		WHERE ranks.num_approved > 0
-		ORDER BY ranks.num_approved DESC
-		LIMIT 25
-	`
-	rows, err := s.tx.QueryxContext(ctx, query)
-	if err != nil {
-		return nil, err
-	}
-	defer rows.Close()
-
-	authors := []*models.AuthorRanking{}
-	for rows.Next() {
-		ranking := &models.AuthorRanking{Author: &models.ShortAuthor{}}
-		var identity string
-		err := rows.Scan(
-			&ranking.Author.Name,
-			&identity,
-			&ranking.Approver,
-			&ranking.Supporter,
-			&ranking.AcceptedContributions,
-			&ranking.AwardValue,
-		)
-		if err != nil {
-			return nil, err
-		}
-
-		ident := &oauth.Identity{}
-		if err := json.Unmarshal([]byte(identity), &ident); err == nil {
-			ranking.Author.IdentityIconImg = ident.Icon
-		}
-
-		authors = append(authors, ranking)
-	}
-
-	return &models.AuthorLeaderboard{Authors: authors}, nil
 }
 
 func (s *Store) ListRanks(ctx context.Context) ([]*models.Rank, error) {

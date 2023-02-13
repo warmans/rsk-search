@@ -186,13 +186,19 @@ func ServerCmd() *cobra.Command {
 					auth,
 					episodeCache,
 				),
-				grpc.NewContribService(
+				grpc.NewTranscriptService(
+					logger,
+					srvCfg,
+					persistentDBConn,
+					episodeCache,
+					auth,
+				),
+				grpc.NewContributionsService(
 					logger,
 					srvCfg,
 					persistentDBConn,
 					auth,
 					pledge.NewClient(pledgeCfg),
-					episodeCache,
 					coffeeClient,
 				),
 				grpc.NewOauthService(

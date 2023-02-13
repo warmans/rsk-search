@@ -49,7 +49,7 @@ const (
 
 const EndSecondEOF = -1
 
-type Tscript struct {
+type ChunkedTranscript struct {
 	Publication string  `json:"publication"`
 	Series      int32   `json:"series"`
 	Episode     int32   `json:"episode"`
@@ -57,11 +57,11 @@ type Tscript struct {
 	Chunks      []Chunk `json:"chunks"`
 }
 
-func (i Tscript) ID() string {
-	return IncompleteTranscriptID(i)
+func (t ChunkedTranscript) ID() string {
+	return IncompleteTranscriptID(t)
 }
 
-type TscriptStats struct {
+type ChunkedTranscriptStats struct {
 	ID                              string
 	Publication                     string
 	Series                          int32
@@ -76,7 +76,7 @@ type TscriptStats struct {
 	NumRejectedContributions        int32
 }
 
-func (c *TscriptStats) AsEpisode() *Transcript {
+func (c *ChunkedTranscriptStats) AsEpisode() *Transcript {
 	return &Transcript{
 		Publication: c.Publication,
 		Series:      c.Series,
@@ -85,11 +85,11 @@ func (c *TscriptStats) AsEpisode() *Transcript {
 	}
 }
 
-func (c *TscriptStats) Proto() *api.TscriptStats {
+func (c *ChunkedTranscriptStats) Proto() *api.ChunkedTranscriptStats {
 	if c == nil {
 		return nil
 	}
-	res := &api.TscriptStats{
+	res := &api.ChunkedTranscriptStats{
 		Id:                              c.ID,
 		Publication:                     c.Publication,
 		Series:                          c.Series,
@@ -129,10 +129,10 @@ func (c *Chunk) Proto() *api.Chunk {
 		return nil
 	}
 	return &api.Chunk{
-		Id:               c.ID,
-		TscriptId:        c.TscriptID,
-		Raw:              c.Raw,
-		NumContributions: c.NumContributions,
+		Id:                  c.ID,
+		ChunkedTranscriptId: c.TscriptID,
+		Raw:                 c.Raw,
+		NumContributions:    c.NumContributions,
 	}
 }
 

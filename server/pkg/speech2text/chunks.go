@@ -61,12 +61,12 @@ func getChunks(scanner *bufio.Scanner) ([]models.Chunk, error) {
 	return chs, scanner.Err()
 }
 
-func getIncompleteTranscriptionModelFromName(epid string, epName string) (*models.Tscript, error) {
+func getIncompleteTranscriptionModelFromName(epid string, epName string) (*models.ChunkedTranscript, error) {
 	publication, series, episode, err := models.ParseEpID(epid)
 	if err != nil {
 		return nil, err
 	}
-	return &models.Tscript{
+	return &models.ChunkedTranscript{
 		Publication: publication,
 		Series:      series,
 		Episode:     episode,

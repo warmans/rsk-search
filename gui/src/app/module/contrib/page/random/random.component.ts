@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchAPIClient } from '../../../../lib/api-client/services/search';
+import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 import { Router } from '@angular/router';
-import { RskChunkStats } from '../../../../lib/api-client/models';
+import { RskChunkStats } from 'src/app/lib/api-client/models';
 
 @Component({
   selector: 'app-random',
@@ -19,7 +19,7 @@ export class RandomComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.apiClient.getChunkStats().subscribe((stats: RskChunkStats) => {
+    this.apiClient.getChunkedTranscriptChunkStats().subscribe((stats: RskChunkStats) => {
       this.chunkStats = stats;
       if (stats.suggestedNextChunkId) {
         this.router.navigate(['/chunk', stats.suggestedNextChunkId]);

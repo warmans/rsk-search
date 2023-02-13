@@ -274,7 +274,7 @@ func (q *ImportQueue) HandleSplitAudioChunks(ctx context.Context, t *asynq.Task)
 
 	chunkMetadataPath := path.Join(tsImport.WorkingDir(q.cfg.WorkingDir), tsImport.ChunkedMachineTranscript())
 
-	var tscript *models.Tscript
+	var tscript *models.ChunkedTranscript
 	if err := util.WithReadJSONFileDecoder(chunkMetadataPath, func(dec *json.Decoder) error {
 		if err := dec.Decode(&tscript); err != nil {
 			return err
@@ -350,7 +350,7 @@ func (q *ImportQueue) HandlePublish(ctx context.Context, t *asynq.Task) error {
 	}
 
 	q.logger.Info("Import chunks to DB")
-	tscript := &models.Tscript{}
+	tscript := &models.ChunkedTranscript{}
 	if err := util.WithReadJSONFileDecoder(path.Join(tsImport.WorkingDir(q.cfg.WorkingDir), tsImport.ChunkedMachineTranscript()), func(dec *json.Decoder) error {
 		return dec.Decode(tscript)
 	}); err != nil {

@@ -51,7 +51,7 @@
           Tscript List
         </div>
           <table class="table">
-            <tr *ngFor="let ts of tscripts">
+            <tr *ngFor="let ts of chunkedTranscripts">
               <td>{{ts.id}}</td>
               <td><button class="btn btn-sm btn-primary" (click)="deleteTscript(ts.id)">Delete</button><td>
             </tr>

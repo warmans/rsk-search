@@ -2,7 +2,6 @@ package grpc
 
 import (
 	"context"
-	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/warmans/rsk-search/gen/api"
@@ -10,11 +9,9 @@ import (
 	"github.com/warmans/rsk-search/pkg/filter"
 	"github.com/warmans/rsk-search/pkg/jwt"
 	"github.com/warmans/rsk-search/pkg/meta"
-	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/search"
 	"github.com/warmans/rsk-search/pkg/store/ro"
 	"github.com/warmans/rsk-search/pkg/store/rw"
-	"github.com/warmans/rsk-search/pkg/transcript"
 	"github.com/warmans/rsk-search/service/config"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
@@ -110,37 +107,6 @@ func (s *SearchService) PredictSearchTerm(ctx context.Context, request *api.Pred
 	return s.searchBackend.PredictSearchTerms(ctx, request.Prefix, request.Exact, maxPredictions, f)
 }
 
-func (s *SearchService) GetTranscript(ctx context.Context, request *api.GetTranscriptRequest) (*api.Transcript, error) {
-	ep, err := s.episodeCache.GetEpisode(request.Epid)
-	if err == data.ErrNotFound || ep == nil {
-		return nil, ErrNotFound(request.Epid).Err()
-	}
-	var rawTranscript string
-	if request.WithRaw {
-		var err error
-		rawTranscript, err = transcript.Export(ep.Transcript, ep.Synopsis, ep.Trivia)
-		if err != nil {
-			return nil, ErrInternal(err).Err()
-		}
-	}
-	lockedEpsiodeIDs, err := s.lockedEpisodeIDs(ctx)
-	if err != nil {
-		return nil, ErrInternal(err).Err()
-	}
-	_, locked := lockedEpsiodeIDs[ep.ID()]
-	return ep.Proto(rawTranscript, fmt.Sprintf(s.srvCfg.AudioUriPattern, ep.ShortID()), locked), nil
-}
-
-func (s *SearchService) ListTranscripts(_ context.Context, _ *api.ListTranscriptsRequest) (*api.TranscriptList, error) {
-	el := &api.TranscriptList{
-		Episodes: []*api.ShortTranscript{},
-	}
-	for _, ep := range s.episodeCache.ListEpisodes() {
-		el.Episodes = append(el.Episodes, ep.ShortProto(fmt.Sprintf(s.srvCfg.AudioUriPattern, ep.ShortID())))
-	}
-	return el, nil
-}
-
 func (s *SearchService) ListChangelogs(ctx context.Context, request *api.ListChangelogsRequest) (*api.ChangelogList, error) {
 	qm, err := NewQueryModifiers(request)
 	if err != nil {
@@ -163,23 +129,6 @@ func (s *SearchService) ListChangelogs(ctx context.Context, request *api.ListCha
 		return nil, err
 	}
 	return result, nil
-}
-
-// if an episode is currently bring transcribed mark it as locked to prevent changes being submitted before
-// all chunks have been completed.
-func (s *SearchService) lockedEpisodeIDs(ctx context.Context) (map[string]struct{}, error) {
-	inProgressTscriptIDs := map[string]struct{}{}
-	err := s.persistentDB.WithStore(func(s *rw.Store) error {
-		inProgressTscripts, err := s.ListTscripts(ctx)
-		if err != nil {
-			return err
-		}
-		for _, v := range inProgressTscripts {
-			inProgressTscriptIDs[models.EpID(v.Publication, v.Series, v.Episode)] = struct{}{}
-		}
-		return err
-	})
-	return inProgressTscriptIDs, err
 }
 
 func checkWhy(f filter.Filter) error {

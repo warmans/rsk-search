@@ -11,12 +11,10 @@ import (
 	"github.com/hexops/gotextdiff/myers"
 	"github.com/hexops/gotextdiff/span"
 	"github.com/warmans/rsk-search/gen/api"
-	"github.com/warmans/rsk-search/pkg/coffee"
 	"github.com/warmans/rsk-search/pkg/data"
 	"github.com/warmans/rsk-search/pkg/filter"
 	"github.com/warmans/rsk-search/pkg/jwt"
 	"github.com/warmans/rsk-search/pkg/models"
-	"github.com/warmans/rsk-search/pkg/pledge"
 	"github.com/warmans/rsk-search/pkg/store/common"
 	"github.com/warmans/rsk-search/pkg/store/rw"
 	"github.com/warmans/rsk-search/pkg/transcript"
@@ -25,68 +23,76 @@ import (
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 	"google.golang.org/protobuf/types/known/emptypb"
-	"strconv"
 )
 
-func NewContribService(
+func NewTranscriptService(
 	logger *zap.Logger,
 	srvCfg config.SearchServiceConfig,
 	persistentDB *rw.Conn,
-	auth *jwt.Auth,
-	pledgeClient *pledge.Client,
 	episodeCache *data.EpisodeCache,
-	coffee *coffee.Client,
-) *ContribService {
-
-	var rankCache models.Ranks
-	err := persistentDB.WithStore(func(s *rw.Store) error {
-		var err error
-		rankCache, err = s.ListRanks(context.Background())
-		if err != nil {
-			return err
-		}
-		return nil
-	})
-	if err != nil {
-		panic(fmt.Sprintf("failed to create rank cache: %s", err.Error()))
-	}
-
-	return &ContribService{
+	auth *jwt.Auth,
+) *TranscriptService {
+	return &TranscriptService{
 		logger:       logger,
 		srvCfg:       srvCfg,
 		persistentDB: persistentDB,
-		auth:         auth,
-		pledgeClient: pledgeClient,
 		episodeCache: episodeCache,
-		rankCache:    rankCache,
-		coffee:       coffee,
+		auth:         auth,
 	}
 }
 
-type ContribService struct {
+type TranscriptService struct {
 	logger       *zap.Logger
 	srvCfg       config.SearchServiceConfig
 	persistentDB *rw.Conn
 	auth         *jwt.Auth
-	pledgeClient *pledge.Client
 	episodeCache *data.EpisodeCache
-	rankCache    models.Ranks
-	coffee       *coffee.Client
 }
 
-func (s *ContribService) RegisterGRPC(server *grpc.Server) {
-	api.RegisterContribServiceServer(server, s)
+func (s *TranscriptService) RegisterGRPC(server *grpc.Server) {
+	api.RegisterTranscriptServiceServer(server, s)
 }
 
-func (s *ContribService) RegisterHTTP(ctx context.Context, router *mux.Router, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) {
-	if err := api.RegisterContribServiceHandlerFromEndpoint(ctx, mux, endpoint, opts); err != nil {
+func (s *TranscriptService) RegisterHTTP(ctx context.Context, router *mux.Router, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) {
+	if err := api.RegisterTranscriptServiceHandlerFromEndpoint(ctx, mux, endpoint, opts); err != nil {
 		panic(err)
 	}
 }
 
-func (s *ContribService) ListTscripts(ctx context.Context, request *api.ListTscriptsRequest) (*api.TscriptList, error) {
-	el := &api.TscriptList{
-		Tscripts: []*api.TscriptStats{},
+func (s *TranscriptService) GetTranscript(ctx context.Context, request *api.GetTranscriptRequest) (*api.Transcript, error) {
+	ep, err := s.episodeCache.GetEpisode(request.Epid)
+	if err == data.ErrNotFound || ep == nil {
+		return nil, ErrNotFound(request.Epid).Err()
+	}
+	var rawTranscript string
+	if request.WithRaw {
+		var err error
+		rawTranscript, err = transcript.Export(ep.Transcript, ep.Synopsis, ep.Trivia)
+		if err != nil {
+			return nil, ErrInternal(err).Err()
+		}
+	}
+	lockedEpsiodeIDs, err := s.lockedEpisodeIDs(ctx)
+	if err != nil {
+		return nil, ErrInternal(err).Err()
+	}
+	_, locked := lockedEpsiodeIDs[ep.ID()]
+	return ep.Proto(rawTranscript, fmt.Sprintf(s.srvCfg.AudioUriPattern, ep.ShortID()), locked), nil
+}
+
+func (s *TranscriptService) ListTranscripts(_ context.Context, _ *api.ListTranscriptsRequest) (*api.TranscriptList, error) {
+	el := &api.TranscriptList{
+		Episodes: []*api.ShortTranscript{},
+	}
+	for _, ep := range s.episodeCache.ListEpisodes() {
+		el.Episodes = append(el.Episodes, ep.ShortProto(fmt.Sprintf(s.srvCfg.AudioUriPattern, ep.ShortID())))
+	}
+	return el, nil
+}
+
+func (s *TranscriptService) ListChunkedTranscripts(ctx context.Context, _ *emptypb.Empty) (*api.ChunkedTranscriptList, error) {
+	el := &api.ChunkedTranscriptList{
+		Chunked: []*api.ChunkedTranscriptStats{},
 	}
 	err := s.persistentDB.WithStore(func(s *rw.Store) error {
 		eps, err := s.ListTscripts(ctx)
@@ -94,7 +100,7 @@ func (s *ContribService) ListTscripts(ctx context.Context, request *api.ListTscr
 			return err
 		}
 		for _, e := range eps {
-			el.Tscripts = append(el.Tscripts, e.Proto())
+			el.Chunked = append(el.Chunked, e.Proto())
 		}
 		return nil
 	})
@@ -104,7 +110,7 @@ func (s *ContribService) ListTscripts(ctx context.Context, request *api.ListTscr
 	return el, nil
 }
 
-func (s *ContribService) GetChunkStats(ctx context.Context, _ *emptypb.Empty) (*api.ChunkStats, error) {
+func (s *TranscriptService) GetChunkedTranscriptChunkStats(ctx context.Context, _ *emptypb.Empty) (*api.ChunkStats, error) {
 	var stats *models.ChunkStats
 	err := s.persistentDB.WithStore(func(s *rw.Store) error {
 		var err error
@@ -120,7 +126,7 @@ func (s *ContribService) GetChunkStats(ctx context.Context, _ *emptypb.Empty) (*
 	return stats.Proto(), nil
 }
 
-func (s *ContribService) GetChunk(ctx context.Context, request *api.GetChunkRequest) (*api.Chunk, error) {
+func (s *TranscriptService) GetTranscriptChunk(ctx context.Context, request *api.GetTranscriptChunkRequest) (*api.Chunk, error) {
 	var chunk *models.Chunk
 	err := s.persistentDB.WithStore(func(s *rw.Store) error {
 		var err error
@@ -139,21 +145,21 @@ func (s *ContribService) GetChunk(ctx context.Context, request *api.GetChunkRequ
 	return chunk.Proto(), nil
 }
 
-func (s *ContribService) ListChunks(ctx context.Context, request *api.ListChunksRequest) (*api.ChunkList, error) {
+func (s *TranscriptService) ListTranscriptChunks(ctx context.Context, request *api.ListTranscriptChunksRequest) (*api.TranscriptChunkList, error) {
 	qm, err := NewQueryModifiers(request)
 	if err != nil {
 		return nil, err
 	}
 	if qm.Filter != nil {
-		qm.Filter = filter.And(filter.Eq("tscript_id", filter.String(request.TscriptId)), qm.Filter)
+		qm.Filter = filter.And(filter.Eq("tscript_id", filter.String(request.ChunkedTranscriptId)), qm.Filter)
 	} else {
-		qm.Filter = filter.Eq("tscript_id", filter.String(request.TscriptId))
+		qm.Filter = filter.Eq("tscript_id", filter.String(request.ChunkedTranscriptId))
 	}
 	if qm.Sorting == nil {
 		qm.Sorting = &common.Sorting{Field: "start_second", Direction: common.SortAsc}
 	}
 
-	out := &api.ChunkList{
+	out := &api.TranscriptChunkList{
 		Chunks: make([]*api.Chunk, 0),
 	}
 	if err := s.persistentDB.WithStore(func(store *rw.Store) error {
@@ -168,7 +174,61 @@ func (s *ContribService) ListChunks(ctx context.Context, request *api.ListChunks
 	return out, nil
 }
 
-func (s *ContribService) CreateChunkContribution(ctx context.Context, request *api.CreateChunkContributionRequest) (*api.ChunkContribution, error) {
+func (s *TranscriptService) ListChunkContributions(ctx context.Context, request *api.ListChunkContributionsRequest) (*api.ChunkContributionList, error) {
+	qm, err := NewQueryModifiers(request)
+	if err != nil {
+		return nil, err
+	}
+
+	if qm.Filter != nil {
+		qm.Filter = filter.And(filter.Neq("state", filter.String("pending")), qm.Filter)
+	} else {
+		qm.Filter = filter.Neq("state", filter.String("pending"))
+	}
+
+	out := &api.ChunkContributionList{
+		Contributions: make([]*api.ChunkContribution, 0),
+	}
+	if err := s.persistentDB.WithStore(func(store *rw.Store) error {
+		contributions, err := store.ListChunkContributions(ctx, qm)
+		for _, v := range contributions {
+			out.Contributions = append(out.Contributions, v.Proto())
+		}
+		return err
+	}); err != nil {
+		return nil, ErrFromStore(err, "").Err()
+	}
+	return out, nil
+}
+
+func (s *TranscriptService) GetChunkContribution(ctx context.Context, request *api.GetChunkContributionRequest) (*api.ChunkContribution, error) {
+
+	claims, err := GetClaims(ctx, s.auth)
+	if err != nil {
+		return nil, err
+	}
+
+	var contrib *models.ChunkContribution
+	err = s.persistentDB.WithStore(func(s *rw.Store) error {
+		var err error
+		contrib, err = s.GetChunkContribution(ctx, request.ContributionId)
+		if err != nil {
+			return err
+		}
+		return nil
+	})
+	if err != nil {
+		return nil, ErrFromStore(err, request.ContributionId).Err()
+	}
+	if !claims.Approver {
+		if contrib.State == models.ContributionStatePending && contrib.Author.ID != claims.AuthorID {
+			return nil, ErrPermissionDenied("you cannot view another author's contribution when it is in the pending state").Err()
+		}
+	}
+	return contrib.Proto(), nil
+}
+
+func (s *TranscriptService) CreateChunkContribution(ctx context.Context, request *api.CreateChunkContributionRequest) (*api.ChunkContribution, error) {
 
 	claims, err := GetClaims(ctx, s.auth)
 	if err != nil {
@@ -208,7 +268,7 @@ func (s *ContribService) CreateChunkContribution(ctx context.Context, request *a
 	return contrib.Proto(), nil
 }
 
-func (s *ContribService) UpdateChunkContribution(ctx context.Context, request *api.UpdateChunkContributionRequest) (*api.ChunkContribution, error) {
+func (s *TranscriptService) UpdateChunkContribution(ctx context.Context, request *api.UpdateChunkContributionRequest) (*api.ChunkContribution, error) {
 
 	claims, err := GetClaims(ctx, s.auth)
 	if err != nil {
@@ -262,7 +322,7 @@ func (s *ContribService) UpdateChunkContribution(ctx context.Context, request *a
 	return contrib.Proto(), nil
 }
 
-func (s *ContribService) RequesChunktContributionState(ctx context.Context, request *api.RequestChunkContributionStateRequest) (*api.ChunkContribution, error) {
+func (s *TranscriptService) RequestChunkContributionState(ctx context.Context, request *api.RequestChunkContributionStateRequest) (*api.ChunkContribution, error) {
 
 	claims, err := GetClaims(ctx, s.auth)
 	if err != nil {
@@ -303,7 +363,7 @@ func (s *ContribService) RequesChunktContributionState(ctx context.Context, requ
 	return contrib.Proto(), nil
 }
 
-func (s *ContribService) DeleteChunkContribution(ctx context.Context, request *api.DeleteChunkContributionRequest) (*emptypb.Empty, error) {
+func (s *TranscriptService) DeleteChunkContribution(ctx context.Context, request *api.DeleteChunkContributionRequest) (*emptypb.Empty, error) {
 	claims, err := GetClaims(ctx, s.auth)
 	if err != nil {
 		return nil, err
@@ -333,241 +393,7 @@ func (s *ContribService) DeleteChunkContribution(ctx context.Context, request *a
 	return &emptypb.Empty{}, nil
 }
 
-func (s *ContribService) ListChunkContributions(ctx context.Context, request *api.ListChunkContributionsRequest) (*api.ChunkContributionList, error) {
-	qm, err := NewQueryModifiers(request)
-	if err != nil {
-		return nil, err
-	}
-
-	if qm.Filter != nil {
-		qm.Filter = filter.And(filter.Neq("state", filter.String("pending")), qm.Filter)
-	} else {
-		qm.Filter = filter.Neq("state", filter.String("pending"))
-	}
-
-	out := &api.ChunkContributionList{
-		Contributions: make([]*api.ChunkContribution, 0),
-	}
-	if err := s.persistentDB.WithStore(func(store *rw.Store) error {
-		contributions, err := store.ListChunkContributions(ctx, qm)
-		for _, v := range contributions {
-			out.Contributions = append(out.Contributions, v.Proto())
-		}
-		return err
-	}); err != nil {
-		return nil, ErrFromStore(err, "").Err()
-	}
-	return out, nil
-}
-
-// GetAuthorLeaderboard deprecated
-func (s *ContribService) GetAuthorLeaderboard(ctx context.Context, empty *emptypb.Empty) (*api.AuthorLeaderboard, error) {
-	var out *api.AuthorLeaderboard
-	err := s.persistentDB.WithStore(func(s *rw.Store) error {
-		lb, err := s.AuthorLeaderboard(ctx)
-		if err != nil {
-			return err
-		}
-		out = lb.Proto()
-		return nil
-	})
-	if err != nil {
-		return nil, ErrFromStore(err, "").Err()
-	}
-	return out, err
-}
-
-func (s *ContribService) ListAuthorRanks(ctx context.Context, request *api.ListAuthorRanksRequest) (*api.AuthorRankList, error) {
-
-	qm, err := NewQueryModifiers(request)
-	if err != nil {
-		return nil, err
-	}
-	qm.Apply(common.WithDefaultSorting("points", common.SortDesc))
-
-	out := &api.AuthorRankList{Rankings: make([]*api.AuthorRank, 0)}
-	err = s.persistentDB.WithStore(func(st *rw.Store) error {
-		lb, err := st.ListAuthorRankings(ctx, qm)
-		if err != nil {
-			return err
-		}
-		for _, v := range lb {
-			out.Rankings = append(out.Rankings, v.Proto(s.rankCache))
-		}
-		return nil
-	})
-	if err != nil {
-		return nil, ErrFromStore(err, "").Err()
-	}
-	return out, err
-}
-
-func (s *ContribService) GetChunkContribution(ctx context.Context, request *api.GetChunkContributionRequest) (*api.ChunkContribution, error) {
-
-	claims, err := GetClaims(ctx, s.auth)
-	if err != nil {
-		return nil, err
-	}
-
-	var contrib *models.ChunkContribution
-	err = s.persistentDB.WithStore(func(s *rw.Store) error {
-		var err error
-		contrib, err = s.GetChunkContribution(ctx, request.ContributionId)
-		if err != nil {
-			return err
-		}
-		return nil
-	})
-	if err != nil {
-		return nil, ErrFromStore(err, request.ContributionId).Err()
-	}
-	if !claims.Approver {
-		if contrib.State == models.ContributionStatePending && contrib.Author.ID != claims.AuthorID {
-			return nil, ErrPermissionDenied("you cannot view another author's contribution when it is in the pending state").Err()
-		}
-	}
-	return contrib.Proto(), nil
-}
-
-func (s *ContribService) ListPendingRewards(ctx context.Context, empty *emptypb.Empty) (*api.PendingRewardList, error) {
-
-	claims, err := GetClaims(ctx, s.auth)
-	if err != nil {
-		return nil, err
-	}
-	if s.srvCfg.RewardsDisabled {
-		return &api.PendingRewardList{
-			Rewards: make([]*api.Reward, 0),
-		}, nil
-	}
-
-	var rewards []*models.AuthorReward
-
-	err = s.persistentDB.WithStore(func(s *rw.Store) error {
-		var err error
-		rewards, err = s.ListPendingRewards(ctx, claims.AuthorID)
-		return err
-	})
-	if err != nil {
-		return nil, ErrFromStore(err, "").Err()
-	}
-
-	result := &api.PendingRewardList{
-		Rewards: []*api.Reward{},
-	}
-	for _, v := range rewards {
-		result.Rewards = append(result.Rewards, getRewardForThreshold(v))
-	}
-
-	return result, nil
-}
-
-func (s *ContribService) ListClaimedRewards(ctx context.Context, empty *emptypb.Empty) (*api.ClaimedRewardList, error) {
-
-	claims, err := GetClaims(ctx, s.auth)
-	if err != nil {
-		return nil, err
-	}
-
-	var rewards []*models.AuthorReward
-	err = s.persistentDB.WithStore(func(s *rw.Store) error {
-		var err error
-		rewards, err = s.ListClaimedRewards(ctx, claims.AuthorID)
-		return err
-	})
-	if err != nil {
-		return nil, ErrFromStore(err, "").Err()
-	}
-
-	result := &api.ClaimedRewardList{
-		Rewards: []*api.ClaimedReward{},
-	}
-	for _, v := range rewards {
-		result.Rewards = append(result.Rewards, v.ClaimedProto())
-	}
-	return result, nil
-}
-
-func (s *ContribService) ClaimReward(ctx context.Context, request *api.ClaimRewardRequest) (*emptypb.Empty, error) {
-
-	if s.srvCfg.RewardsDisabled {
-		return nil, ErrFailedPrecondition("rewards are disabled temporarily").Err()
-	}
-
-	err := s.persistentDB.WithStore(func(store *rw.Store) error {
-
-		reward, err := store.GetRewardForUpdate(ctx, request.Id)
-		if err != nil {
-			return err
-		}
-
-		donationArgs := request.GetDonationArgs()
-		if donationArgs == nil {
-			return ErrInvalidRequestField("args", "exepcted donation details in args").Err()
-		}
-
-		var recipient *api.DonationRecipient
-		for _, v := range getDonationRecipients() {
-			if v.Id == request.GetDonationArgs().Recipient {
-				recipient = v
-			}
-		}
-		if recipient == nil {
-			return ErrInvalidRequestField("args", "unknown recipient").Err()
-		}
-
-		//todo: fetch donations and check metadata for ID
-
-		rewardValue := getRewardForThreshold(reward)
-
-		s.logger.Info(
-			"creating donation",
-			zap.String("reward_id", request.Id),
-			zap.String("cause", recipient.Name),
-			zap.String("cause_id", recipient.Id),
-			zap.Float32("value", rewardValue.Value),
-		)
-		donation, err := s.pledgeClient.CreateAnonymousDonation(pledge.AnonymousDonationRequest{
-			OrganizationID: recipient.Id,
-			Amount:         fmt.Sprintf("%0.2f", rewardValue.Value),
-			Metadata:       reward.ID,
-		})
-		if err != nil {
-			s.logger.Error("Failed to claim reward. Pledge call failed", zap.Error(err))
-			return ErrThirdParty("donation could not be completed").Err()
-		}
-		s.logger.Info(
-			"donation OK",
-			zap.String("id", request.Id),
-			zap.String("cause", recipient.Name),
-			zap.Float32("value", rewardValue.Value),
-			zap.String("donation_id", donation.ID),
-			zap.String("donation_status", donation.Status),
-		)
-		return store.ClaimReward(
-			ctx,
-			reward.ID,
-			rewardValue.Kind.String(),
-			rewardValue.Value,
-			rewardValue.ValueCurrency,
-			donation.ID,
-			recipient.Name,
-		)
-	})
-	if err != nil {
-		return nil, ErrFromStore(err, request.Id).Err()
-	}
-	return &emptypb.Empty{}, nil
-}
-
-func (s *ContribService) ListDonationRecipients(ctx context.Context, request *api.ListDonationRecipientsRequest) (*api.DonationRecipientList, error) {
-	res := &api.DonationRecipientList{
-		Organizations: getDonationRecipients(),
-	}
-	return res, nil
-}
-
-func (s *ContribService) ListTranscriptChanges(ctx context.Context, request *api.ListTranscriptChangesRequest) (*api.TranscriptChangeList, error) {
+func (s *TranscriptService) ListTranscriptChanges(ctx context.Context, request *api.ListTranscriptChangesRequest) (*api.TranscriptChangeList, error) {
 
 	qm, err := NewQueryModifiers(request)
 	if err != nil {
@@ -593,7 +419,7 @@ func (s *ContribService) ListTranscriptChanges(ctx context.Context, request *api
 	return out, nil
 }
 
-func (s *ContribService) GetTranscriptChange(ctx context.Context, request *api.GetTranscriptChangeRequest) (*api.TranscriptChange, error) {
+func (s *TranscriptService) GetTranscriptChange(ctx context.Context, request *api.GetTranscriptChangeRequest) (*api.TranscriptChange, error) {
 
 	var change *models.TranscriptChange
 	err := s.persistentDB.WithStore(func(s *rw.Store) error {
@@ -616,7 +442,7 @@ func (s *ContribService) GetTranscriptChange(ctx context.Context, request *api.G
 	return change.Proto(), nil
 }
 
-func (s *ContribService) GetTranscriptChangeDiff(ctx context.Context, request *api.GetTranscriptChangeDiffRequest) (*api.TranscriptChangeDiff, error) {
+func (s *TranscriptService) GetTranscriptChangeDiff(ctx context.Context, request *api.GetTranscriptChangeDiffRequest) (*api.TranscriptChangeDiff, error) {
 
 	var newTranscript *models.TranscriptChange
 	err := s.persistentDB.WithStore(func(s *rw.Store) error {
@@ -687,7 +513,7 @@ func (s *ContribService) GetTranscriptChangeDiff(ctx context.Context, request *a
 	return &api.TranscriptChangeDiff{Diffs: diffs}, nil
 }
 
-func (s *ContribService) CreateTranscriptChange(ctx context.Context, request *api.CreateTranscriptChangeRequest) (*api.TranscriptChange, error) {
+func (s *TranscriptService) CreateTranscriptChange(ctx context.Context, request *api.CreateTranscriptChangeRequest) (*api.TranscriptChange, error) {
 	claims, err := GetClaims(ctx, s.auth)
 	if err != nil {
 		return nil, err
@@ -734,7 +560,7 @@ func (s *ContribService) CreateTranscriptChange(ctx context.Context, request *ap
 	return change.Proto(), nil
 }
 
-func (s *ContribService) UpdateTranscriptChange(ctx context.Context, request *api.UpdateTranscriptChangeRequest) (*api.TranscriptChange, error) {
+func (s *TranscriptService) UpdateTranscriptChange(ctx context.Context, request *api.UpdateTranscriptChangeRequest) (*api.TranscriptChange, error) {
 
 	claims, err := GetClaims(ctx, s.auth)
 	if err != nil {
@@ -788,7 +614,7 @@ func (s *ContribService) UpdateTranscriptChange(ctx context.Context, request *ap
 	return updatedChange.Proto(), nil
 }
 
-func (s *ContribService) DeleteTranscriptChange(ctx context.Context, request *api.DeleteTranscriptChangeRequest) (*emptypb.Empty, error) {
+func (s *TranscriptService) DeleteTranscriptChange(ctx context.Context, request *api.DeleteTranscriptChangeRequest) (*emptypb.Empty, error) {
 	claims, err := GetClaims(ctx, s.auth)
 	if err != nil {
 		return nil, err
@@ -817,7 +643,7 @@ func (s *ContribService) DeleteTranscriptChange(ctx context.Context, request *ap
 	return &emptypb.Empty{}, nil
 }
 
-func (s *ContribService) RequestTranscriptChangeState(ctx context.Context, request *api.RequestTranscriptChangeStateRequest) (*emptypb.Empty, error) {
+func (s *TranscriptService) RequestTranscriptChangeState(ctx context.Context, request *api.RequestTranscriptChangeStateRequest) (*emptypb.Empty, error) {
 	claims, err := GetClaims(ctx, s.auth)
 	if err != nil {
 		return nil, err
@@ -851,70 +677,41 @@ func (s *ContribService) RequestTranscriptChangeState(ctx context.Context, reque
 	return &emptypb.Empty{}, nil
 }
 
-func (s *ContribService) ListAuthorContributions(ctx context.Context, request *api.ListAuthorContributionsRequest) (*api.AuthorContributionList, error) {
-
-	qm, err := NewQueryModifiers(request)
-	if err != nil {
-		return nil, err
-	}
-
-	out := &api.AuthorContributionList{Contributions: make([]*api.AuthorContribution, 0)}
-
-	err = s.persistentDB.WithStore(func(s *rw.Store) error {
-		cont, err := s.ListAuthorContributions(ctx, qm)
+// if an episode is currently bring transcribed mark it as locked to prevent changes being submitted before
+// all chunks have been completed.
+func (s *TranscriptService) lockedEpisodeIDs(ctx context.Context) (map[string]struct{}, error) {
+	inProgressTscriptIDs := map[string]struct{}{}
+	err := s.persistentDB.WithStore(func(s *rw.Store) error {
+		inProgressTscripts, err := s.ListTscripts(ctx)
 		if err != nil {
 			return err
 		}
-		for _, v := range cont {
-			out.Contributions = append(out.Contributions, v.Proto())
+		for _, v := range inProgressTscripts {
+			inProgressTscriptIDs[models.EpID(v.Publication, v.Series, v.Episode)] = struct{}{}
 		}
-		return nil
-	})
-	if err != nil {
-		return nil, ErrFromStore(err, "").Err()
-	}
-	return out, nil
-}
-
-func (s *ContribService) GetDonationStats(ctx context.Context, empty *emptypb.Empty) (*api.DonationStats, error) {
-	var stats models.DonationRecipientStats
-	if err := s.persistentDB.WithStore(func(s *rw.Store) error {
-		var err error
-		stats, err = s.GetDonationStats(ctx)
 		return err
-	}); err != nil {
-		return nil, ErrFromStore(err, "").Err()
-	}
-	return stats.Proto(), nil
+	})
+	return inProgressTscriptIDs, err
 }
 
-func (s *ContribService) ListIncomingDonations(ctx context.Context, request *api.ListIncomingDonationsRequest) (*api.IncomingDonationList, error) {
-	out := &api.IncomingDonationList{}
-
-	if s.coffee == nil {
-		return out, nil
-	}
-	sups, err := s.coffee.Supporters()
-	if err != nil {
-		return nil, ErrInternal(err).Err()
-	}
-	for _, sup := range sups.Data {
-		priceFloat, err := strconv.ParseFloat(sup.Price, 32)
+// if an episode is currently bring transcribed mark it as locked to prevent changes being submitted before
+// all chunks have been completed.
+func (s *TranscriptService) validateLockedState(ctx context.Context, epID string) error {
+	return s.persistentDB.WithStore(func(s *rw.Store) error {
+		inProgressTscripts, err := s.ListTscripts(ctx)
 		if err != nil {
-			s.logger.Error("failed to parse float", zap.String("val", sup.Price), zap.Error(err))
-			continue
+			return err
 		}
-		out.Donations = append(out.Donations, &api.IncomingDonation{
-			Name:           sup.Name,
-			Amount:         float32(priceFloat) * float32(sup.Qty),
-			AmountCurrency: sup.Currency,
-			Note:           sup.Note,
-		})
-	}
-	return out, nil
+		for _, v := range inProgressTscripts {
+			if epID == models.EpID(v.Publication, v.Series, v.Episode) {
+				return ErrFailedPrecondition("episode is locked").Err()
+			}
+		}
+		return err
+	})
 }
 
-func (s *ContribService) validateContributionStateUpdate(claims *jwt.Claims, currentAuthorID string, currentState models.ContributionState, requestedState api.ContributionState) error {
+func (s *TranscriptService) validateContributionStateUpdate(claims *jwt.Claims, currentAuthorID string, currentState models.ContributionState, requestedState api.ContributionState) error {
 	if !claims.Approver {
 		if currentAuthorID != claims.AuthorID {
 			return ErrPermissionDenied("you are not the author of this contribution").Err()
@@ -939,24 +736,7 @@ func (s *ContribService) validateContributionStateUpdate(claims *jwt.Claims, cur
 	return nil
 }
 
-// if an episode is currently bring transcribed mark it as locked to prevent changes being submitted before
-// all chunks have been completed.
-func (s *ContribService) validateLockedState(ctx context.Context, epID string) error {
-	return s.persistentDB.WithStore(func(s *rw.Store) error {
-		inProgressTscripts, err := s.ListTscripts(ctx)
-		if err != nil {
-			return err
-		}
-		for _, v := range inProgressTscripts {
-			if epID == models.EpID(v.Publication, v.Series, v.Episode) {
-				return ErrFailedPrecondition("episode is locked").Err()
-			}
-		}
-		return err
-	})
-}
-
-func (s *ContribService) createAuthorNotification(
+func (s *TranscriptService) createAuthorNotification(
 	ctx context.Context,
 	tx *rw.Store,
 	authorID string,
@@ -989,86 +769,4 @@ func (s *ContribService) createAuthorNotification(
 		Message:        message,
 		ClickThoughURL: util.StringP("/me"),
 	})
-}
-
-func getDonationRecipients() []*api.DonationRecipient {
-	return []*api.DonationRecipient{
-		{
-			Id:      "b5096382-996f-463d-a531-75b29163a2b2",
-			Name:    "UNICEF - Ukraine Relief",
-			Mission: "UNICEF has been working nonstop in eastern Ukraine, delivering lifesaving programs for affected children and families as fighting has taken an increasingly heavy toll on the civilian population of 3.4 million people — including 510,000 children — living in the Donbas region.",
-			LogoUrl: "/assets/logo/bf20017fbe112e29.jpeg",
-			NgoId:   "13-1760110-006",
-			Url:     "https://www.unicef.org/ukraine/en",
-		},
-		{
-			Id:      "d694d55b-5888-4368-9a88-70acd55f33b0",
-			Name:    "Revived Soldiers Ukraine",
-			Mission: "Aiding with medical help to people of Ukraine, severely wounded soldiers and members of their families.",
-			LogoUrl: "/assets/logo/rsu.jpg",
-			NgoId:   "47-5315018",
-			Url:     "https://www.rsukraine.org/",
-		},
-		{
-			Id:      "e349c52c-73aa-4123-83b2-6466d1aa2d54",
-			Name:    "International Primate Protection League",
-			Mission: "PPL is a grassroots nonprofit organization dedicated to protecting the world’s remaining primates, great and small. Since 1973 we have worked to expose primate abuse and battled international traffickers.",
-			LogoUrl: "/assets/logo/51-0194013.png",
-			NgoId:   "51-0194013",
-			Url:     "https://www.pledge.to/organizations/51-0194013/international-primate-protection-league",
-		},
-		{
-			Id:      "700f6e06-a00d-46fe-a76a-e8271585c2bb",
-			Name:    "World Wildlife Fund",
-			Mission: "As the world’s leading conservation organization, WWF works in nearly 100 countries. At every level, we collaborate with people around the world to develop and deliver innovative solutions that protect communities, wildlife, and the places in which they live.",
-			LogoUrl: "/assets/logo/52-1693387.png",
-			NgoId:   "52-1693387",
-			Url:     "https://www.pledge.to/organizations/52-1693387/world-wildlife-fund",
-		},
-		{
-			Id:      "27547c25-7b00-4cb1-9c21-2834acb37da3",
-			Name:    "Rainforest Rescue",
-			Mission: "Rainforest Rescue is a not-for-profit organisation that has been protecting and restoring rainforests in Australia and internationally since 1998 by providing opportunities for individuals and businesses to Protect Rainforests Forever.",
-			LogoUrl: "/assets/logo/30-0108263-675.svg",
-			NgoId:   "30-0108263-675",
-			Url:     "https://www.pledge.to/organizations/30-0108263-675/rainforest-rescue",
-		},
-		{
-			Id:      "5957dbb1-b979-4b33-b068-ad56aadbe3f8",
-			Name:    "St. John's Ambulance",
-			Mission: "We are the charity that steps forward in the moments that matter, to save lives and keep communities safe.",
-			LogoUrl: "/assets/logo/43-1634280-0504257.png",
-			NgoId:   "43-1634280-0504257",
-			Url:     "https://www.sja.org.uk/",
-			Quote:   "But seriously, All joking aside. I genuinely wanted to give some massive props - give some big-ups - to the St. John's people, because I genuinely, without any joking, and I  genuinely think they they do a brilliant job.",
-		},
-		{
-			Id:      "11034875-b8d5-4653-8558-214ae12a81b7",
-			Name:    "Dogs Trust",
-			Mission: "Our mission is to bring about the day when all dogs can enjoy a happy life, free from the threat of unnecessary destruction.",
-			LogoUrl: "/assets/logo/43-1634280-0279288.jpg",
-			NgoId:   "43-1634280-0279288",
-			Url:     "https://www.dogstrust.org.uk",
-		},
-		{
-			Id:      "40ebb87d-62f4-4297-a808-c5f35ef3719f",
-			Name:    "Rainforest Alliance",
-			Mission: "The Rainforest Alliance works to conserve biodiversity and ensure sustainable livelihoods by transforming land-use practices, business practices and consumer behavior.\n\nWe envision a world where people can thrive and prosper in harmony with the land",
-			LogoUrl: "/assets/logo/13-3377893.png",
-			NgoId:   "13-3377893",
-			Url:     "https://www.pledge.to/organizations/13-3377893/rainforest-alliance",
-		},
-	}
-
-}
-
-func getRewardForThreshold(mod *models.AuthorReward) *api.Reward {
-	return &api.Reward{
-		Id:            mod.ID,
-		Kind:          api.Reward_DONATION,
-		Name:          "Here's some tat in a jiffy bag",
-		Criteria:      fmt.Sprintf("Earn %0.2f Points", mod.PointsSpent),
-		Value:         2,
-		ValueCurrency: "USD",
-	}
 }

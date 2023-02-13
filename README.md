@@ -26,10 +26,10 @@ From the server directory:
 
 ### How to change the API 
 
-1. Edit proto file in `proto/search.proto`.
+1. Edit proto file e.g. `proto/search.proto`.
 2. Run `make generate`.
-3. Update to reflect changes in proto file `pkg/service/grpc/search.go`.
-4. In `gui` directory run `npm run generate-api-client` 
+3. Update code to reflect changes in proto file e.g. `pkg/service/grpc/search.go`.
+4. In `gui` directory run `npm run generate-api-client` to sync the GUI client with the latest API definitions. 
 
 ### How to update transcripts
 
@@ -56,6 +56,6 @@ https://developer.spotify.com/console/get-search-item/ (click GET TOKEN)
 ### New deployment
 
 1. Build and push docker images with your own namespace.
-2. Update `./deploy/docker-compose.yaml` with correct image names/versions.
+2. Update `./deploy/docker-compose.yaml` with correct image names/versions and credentials.
 3. Copy docker-compose file to your server.
 4. Run `docker-compose up -d`

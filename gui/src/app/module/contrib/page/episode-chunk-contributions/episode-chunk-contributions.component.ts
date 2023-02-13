@@ -1,13 +1,13 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
-import { SearchAPIClient } from '../../../../lib/api-client/services/search';
-import { RskChunk, RskChunkContribution, RskChunkContributionList, RskChunkList, RskContributionState } from '../../../../lib/api-client/models';
+import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
+import { RskChunk, RskChunkContribution, RskChunkContributionList, RskContributionState, RskTranscriptChunkList } from 'src/app/lib/api-client/models';
 import { takeUntil } from 'rxjs/operators';
 import { ActivatedRoute, Data } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { parseTranscript, Tscript } from '../../../shared/lib/tscript';
 import { SessionService } from '../../../core/service/session/session.service';
-import { And, Eq } from '../../../../lib/filter-dsl/filter';
-import { Str } from '../../../../lib/filter-dsl/value';
+import { And, Eq } from 'src/app/lib/filter-dsl/filter';
+import { Str } from 'src/app/lib/filter-dsl/value';
 
 @Component({
   selector: 'app-episode-chunk-contributions',
@@ -16,7 +16,7 @@ import { Str } from '../../../../lib/filter-dsl/value';
 })
 export class EpisodeChunkContributions implements OnInit {
 
-  tscriptID: string;
+  chunkedTranscriptID: string;
 
   chunks: RskChunk[] = [];
 
@@ -45,11 +45,11 @@ export class EpisodeChunkContributions implements OnInit {
     });
 
     route.paramMap.pipe(takeUntil(this.destroy$)).subscribe((d: Data) => {
-      this.tscriptID = d.params['tscript_id'];
-      titleService.setTitle(`Contributions for ${this.tscriptID}`);
+      this.chunkedTranscriptID = d.params['tscript_id'];
+      titleService.setTitle(`Contributions for ${this.chunkedTranscriptID}`);
 
       if (d.params['tscript_id']) {
-        this.tscriptID = d.params['tscript_id'];
+        this.chunkedTranscriptID = d.params['tscript_id'];
         this.loadData();
       }
     });
@@ -61,13 +61,18 @@ export class EpisodeChunkContributions implements OnInit {
 
   loadData() {
 
-    let filter = Eq('tscript_id', Str(this.tscriptID));
+    let filter = Eq('tscript_id', Str(this.chunkedTranscriptID));
     if (this.pendingApprovalOnly) {
       filter = And(filter, Eq('state', Str('request_approval')));
     }
 
     this.loading.push(true);
-    this.apiClient.listChunks({ tscriptId: this.tscriptID, sortField: 'start_second', sortDirection: 'asc', pageSize: 200 }).pipe(takeUntil(this.destroy$)).subscribe((resp: RskChunkList) => {
+    this.apiClient.listTranscriptChunks({
+      chunkedTranscriptId: this.chunkedTranscriptID,
+      sortField: 'start_second',
+      sortDirection: 'asc',
+      pageSize: 200
+    }).pipe(takeUntil(this.destroy$)).subscribe((resp: RskTranscriptChunkList) => {
       this.chunks = resp.chunks;
     }).add(() => this.loading.pop());
 

@@ -65,43 +65,6 @@ type AuthorStats struct {
 	RejectedContributions        int32
 }
 
-type AuthorLeaderboard struct {
-	Authors []*AuthorRanking
-}
-
-func (l *AuthorLeaderboard) Proto() *api.AuthorLeaderboard {
-	if l == nil {
-		return nil
-	}
-	out := &api.AuthorLeaderboard{
-		Authors: make([]*api.AuthorRanking, len(l.Authors)),
-	}
-	for k := range l.Authors {
-		out.Authors[k] = l.Authors[k].Proto()
-	}
-	return out
-}
-
-type AuthorRanking struct {
-	Author                *ShortAuthor
-	Approver              bool
-	Supporter             bool
-	AcceptedContributions int32
-	AwardValue            float32
-}
-
-func (l *AuthorRanking) Proto() *api.AuthorRanking {
-	if l == nil {
-		return nil
-	}
-	return &api.AuthorRanking{
-		Author:                l.Author.Proto(),
-		Approver:              l.Approver,
-		AcceptedContributions: l.AcceptedContributions,
-		AwardValue:            l.AwardValue,
-	}
-}
-
 type RequiredReward struct {
 	ID       string  `db:"id"`
 	AuthorID string  `db:"author_id"`

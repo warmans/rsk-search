@@ -170,6 +170,21 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  getAuthorLeaderboard(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskAuthorLeaderboard> {
+    const path = `/api/author/leaderboard`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<models.RskAuthorLeaderboard>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   listAuthorRanks(
     args: {
       filter?: string,
@@ -239,284 +254,6 @@ export class SearchAPIClient implements SearchAPIClientInterface {
       options.params = options.params.set('pageSize', String(args.pageSize));
     }
     return this.sendRequest<models.RskChangelogList>('GET', path, options);
-  }
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  listChunkContributions(
-    args: {
-      filter?: string,
-      sortField?: string,
-      sortDirection?: string,
-      page?: number,
-      pageSize?: number,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskChunkContributionList> {
-    const path = `/api/contrib/chunk`;
-    const options: APIHttpOptions = {
-      ...this.options,
-      ...requestHttpOptions,
-    };
-
-    if ('filter' in args) {
-      options.params = options.params.set('filter', String(args.filter));
-    }
-    if ('sortField' in args) {
-      options.params = options.params.set('sortField', String(args.sortField));
-    }
-    if ('sortDirection' in args) {
-      options.params = options.params.set('sortDirection', String(args.sortDirection));
-    }
-    if ('page' in args) {
-      options.params = options.params.set('page', String(args.page));
-    }
-    if ('pageSize' in args) {
-      options.params = options.params.set('pageSize', String(args.pageSize));
-    }
-    return this.sendRequest<models.RskChunkContributionList>('GET', path, options);
-  }
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  createChunkContribution(
-    args: {
-      chunkId: string,
-      body: models.RskCreateChunkContributionRequest,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskChunkContribution> {
-    const path = `/api/contrib/chunk/${args.chunkId}`;
-    const options: APIHttpOptions = {
-      ...this.options,
-      ...requestHttpOptions,
-    };
-
-    return this.sendRequest<models.RskChunkContribution>('POST', path, options, JSON.stringify(args.body));
-  }
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  getChunkContribution(
-    args: {
-      contributionId: string,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskChunkContribution> {
-    const path = `/api/contrib/chunk/${args.contributionId}`;
-    const options: APIHttpOptions = {
-      ...this.options,
-      ...requestHttpOptions,
-    };
-
-    return this.sendRequest<models.RskChunkContribution>('GET', path, options);
-  }
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  deleteChunkContribution(
-    args: {
-      contributionId: string,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<object> {
-    const path = `/api/contrib/chunk/${args.contributionId}`;
-    const options: APIHttpOptions = {
-      ...this.options,
-      ...requestHttpOptions,
-    };
-
-    return this.sendRequest<object>('DELETE', path, options);
-  }
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  updateChunkContribution(
-    args: {
-      contributionId: string,
-      body: models.RskUpdateChunkContributionRequest,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskChunkContribution> {
-    const path = `/api/contrib/chunk/${args.contributionId}`;
-    const options: APIHttpOptions = {
-      ...this.options,
-      ...requestHttpOptions,
-    };
-
-    return this.sendRequest<models.RskChunkContribution>('PATCH', path, options, JSON.stringify(args.body));
-  }
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  requestChunkContributionState(
-    args: {
-      contributionId: string,
-      body: models.RskRequestChunkContributionStateRequest,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskChunkContribution> {
-    const path = `/api/contrib/chunk/${args.contributionId}/state`;
-    const options: APIHttpOptions = {
-      ...this.options,
-      ...requestHttpOptions,
-    };
-
-    return this.sendRequest<models.RskChunkContribution>('PATCH', path, options, JSON.stringify(args.body));
-  }
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  listTranscriptChanges(
-    args: {
-      filter?: string,
-      sortField?: string,
-      sortDirection?: string,
-      page?: number,
-      pageSize?: number,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskTranscriptChangeList> {
-    const path = `/api/contrib/transcript/change`;
-    const options: APIHttpOptions = {
-      ...this.options,
-      ...requestHttpOptions,
-    };
-
-    if ('filter' in args) {
-      options.params = options.params.set('filter', String(args.filter));
-    }
-    if ('sortField' in args) {
-      options.params = options.params.set('sortField', String(args.sortField));
-    }
-    if ('sortDirection' in args) {
-      options.params = options.params.set('sortDirection', String(args.sortDirection));
-    }
-    if ('page' in args) {
-      options.params = options.params.set('page', String(args.page));
-    }
-    if ('pageSize' in args) {
-      options.params = options.params.set('pageSize', String(args.pageSize));
-    }
-    return this.sendRequest<models.RskTranscriptChangeList>('GET', path, options);
-  }
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  getTranscriptChange(
-    args: {
-      id: string,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskTranscriptChange> {
-    const path = `/api/contrib/transcript/change/${args.id}`;
-    const options: APIHttpOptions = {
-      ...this.options,
-      ...requestHttpOptions,
-    };
-
-    return this.sendRequest<models.RskTranscriptChange>('GET', path, options);
-  }
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  deleteTranscriptChange(
-    args: {
-      id: string,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<object> {
-    const path = `/api/contrib/transcript/change/${args.id}`;
-    const options: APIHttpOptions = {
-      ...this.options,
-      ...requestHttpOptions,
-    };
-
-    return this.sendRequest<object>('DELETE', path, options);
-  }
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  updateTranscriptChange(
-    args: {
-      id: string,
-      body: models.RskUpdateTranscriptChangeRequest,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskTranscriptChange> {
-    const path = `/api/contrib/transcript/change/${args.id}`;
-    const options: APIHttpOptions = {
-      ...this.options,
-      ...requestHttpOptions,
-    };
-
-    return this.sendRequest<models.RskTranscriptChange>('PATCH', path, options, JSON.stringify(args.body));
-  }
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  getTranscriptChangeDiff(
-    args: {
-      id: string,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskTranscriptChangeDiff> {
-    const path = `/api/contrib/transcript/change/${args.id}/diff`;
-    const options: APIHttpOptions = {
-      ...this.options,
-      ...requestHttpOptions,
-    };
-
-    return this.sendRequest<models.RskTranscriptChangeDiff>('GET', path, options);
-  }
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  requestTranscriptChangeState(
-    args: {
-      id: string,
-      body: models.RskRequestTranscriptChangeStateRequest,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<object> {
-    const path = `/api/contrib/transcript/change/${args.id}/state`;
-    const options: APIHttpOptions = {
-      ...this.options,
-      ...requestHttpOptions,
-    };
-
-    return this.sendRequest<object>('PATCH', path, options, JSON.stringify(args.body));
-  }
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  createTranscriptChange(
-    args: {
-      epid: string,
-      body: models.RskCreateTranscriptChangeRequest,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskTranscriptChange> {
-    const path = `/api/contrib/transcript/${args.epid}/change`;
-    const options: APIHttpOptions = {
-      ...this.options,
-      ...requestHttpOptions,
-    };
-
-    return this.sendRequest<models.RskTranscriptChange>('POST', path, options, JSON.stringify(args.body));
   }
 
   /**
@@ -722,6 +459,336 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  listTranscriptChanges(
+    args: {
+      filter?: string,
+      sortField?: string,
+      sortDirection?: string,
+      page?: number,
+      pageSize?: number,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskTranscriptChangeList> {
+    const path = `/api/transcript/change`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    if ('filter' in args) {
+      options.params = options.params.set('filter', String(args.filter));
+    }
+    if ('sortField' in args) {
+      options.params = options.params.set('sortField', String(args.sortField));
+    }
+    if ('sortDirection' in args) {
+      options.params = options.params.set('sortDirection', String(args.sortDirection));
+    }
+    if ('page' in args) {
+      options.params = options.params.set('page', String(args.page));
+    }
+    if ('pageSize' in args) {
+      options.params = options.params.set('pageSize', String(args.pageSize));
+    }
+    return this.sendRequest<models.RskTranscriptChangeList>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  getTranscriptChange(
+    args: {
+      id: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskTranscriptChange> {
+    const path = `/api/transcript/change/${args.id}`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<models.RskTranscriptChange>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  deleteTranscriptChange(
+    args: {
+      id: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<object> {
+    const path = `/api/transcript/change/${args.id}`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<object>('DELETE', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  updateTranscriptChange(
+    args: {
+      id: string,
+      body: models.RskUpdateTranscriptChangeRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskTranscriptChange> {
+    const path = `/api/transcript/change/${args.id}`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<models.RskTranscriptChange>('PATCH', path, options, JSON.stringify(args.body));
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  getTranscriptChangeDiff(
+    args: {
+      id: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskTranscriptChangeDiff> {
+    const path = `/api/transcript/change/${args.id}/diff`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<models.RskTranscriptChangeDiff>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  requestTranscriptChangeState(
+    args: {
+      id: string,
+      body: models.RskRequestTranscriptChangeStateRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<object> {
+    const path = `/api/transcript/change/${args.id}/state`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<object>('PATCH', path, options, JSON.stringify(args.body));
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  listChunkedTranscripts(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskChunkedTranscriptList> {
+    const path = `/api/transcript/chunked`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<models.RskChunkedTranscriptList>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  getChunkContribution(
+    args: {
+      contributionId: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskChunkContribution> {
+    const path = `/api/transcript/chunked/chunk/contribution/${args.contributionId}`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<models.RskChunkContribution>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  deleteChunkContribution(
+    args: {
+      contributionId: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<object> {
+    const path = `/api/transcript/chunked/chunk/contribution/${args.contributionId}`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<object>('DELETE', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  updateChunkContribution(
+    args: {
+      contributionId: string,
+      body: models.RskUpdateChunkContributionRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskChunkContribution> {
+    const path = `/api/transcript/chunked/chunk/contribution/${args.contributionId}`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<models.RskChunkContribution>('PATCH', path, options, JSON.stringify(args.body));
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  requestChunkContributionState(
+    args: {
+      contributionId: string,
+      body: models.RskRequestChunkContributionStateRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskChunkContribution> {
+    const path = `/api/transcript/chunked/chunk/contribution/${args.contributionId}/state`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<models.RskChunkContribution>('PATCH', path, options, JSON.stringify(args.body));
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  listChunkContributions(
+    args: {
+      filter?: string,
+      sortField?: string,
+      sortDirection?: string,
+      page?: number,
+      pageSize?: number,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskChunkContributionList> {
+    const path = `/api/transcript/chunked/chunk/contributions`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    if ('filter' in args) {
+      options.params = options.params.set('filter', String(args.filter));
+    }
+    if ('sortField' in args) {
+      options.params = options.params.set('sortField', String(args.sortField));
+    }
+    if ('sortDirection' in args) {
+      options.params = options.params.set('sortDirection', String(args.sortDirection));
+    }
+    if ('page' in args) {
+      options.params = options.params.set('page', String(args.page));
+    }
+    if ('pageSize' in args) {
+      options.params = options.params.set('pageSize', String(args.pageSize));
+    }
+    return this.sendRequest<models.RskChunkContributionList>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  createChunkContribution(
+    args: {
+      chunkId: string,
+      body: models.RskCreateChunkContributionRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskChunkContribution> {
+    const path = `/api/transcript/chunked/chunk/${args.chunkId}/contribution`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<models.RskChunkContribution>('POST', path, options, JSON.stringify(args.body));
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  getTranscriptChunk(
+    args: {
+      id: string,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskChunk> {
+    const path = `/api/transcript/chunked/chunk/${args.id}`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<models.RskChunk>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  listTranscriptChunks(
+    args: {
+      chunkedTranscriptId: string,
+      filter?: string,
+      sortField?: string,
+      sortDirection?: string,
+      page?: number,
+      pageSize?: number,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskTranscriptChunkList> {
+    const path = `/api/transcript/chunked/${args.chunkedTranscriptId}/chunks`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    if ('filter' in args) {
+      options.params = options.params.set('filter', String(args.filter));
+    }
+    if ('sortField' in args) {
+      options.params = options.params.set('sortField', String(args.sortField));
+    }
+    if ('sortDirection' in args) {
+      options.params = options.params.set('sortDirection', String(args.sortDirection));
+    }
+    if ('page' in args) {
+      options.params = options.params.set('page', String(args.page));
+    }
+    if ('pageSize' in args) {
+      options.params = options.params.set('pageSize', String(args.pageSize));
+    }
+    return this.sendRequest<models.RskTranscriptChunkList>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   getTranscript(
     args: {
       epid: string,
@@ -744,102 +811,35 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  listTscripts(
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskTscriptList> {
-    const path = `/api/tscript`;
-    const options: APIHttpOptions = {
-      ...this.options,
-      ...requestHttpOptions,
-    };
-
-    return this.sendRequest<models.RskTscriptList>('GET', path, options);
-  }
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  getAuthorLeaderboard(
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskAuthorLeaderboard> {
-    const path = `/api/tscript/author/leaderboard`;
-    const options: APIHttpOptions = {
-      ...this.options,
-      ...requestHttpOptions,
-    };
-
-    return this.sendRequest<models.RskAuthorLeaderboard>('GET', path, options);
-  }
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  getChunk(
+  createTranscriptChange(
     args: {
-      id: string,
+      epid: string,
+      body: models.RskCreateTranscriptChangeRequest,
     },
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RskChunk> {
-    const path = `/api/tscript/chunk/${args.id}`;
+  ): Observable<models.RskTranscriptChange> {
+    const path = `/api/transcript/${args.epid}/change`;
     const options: APIHttpOptions = {
       ...this.options,
       ...requestHttpOptions,
     };
 
-    return this.sendRequest<models.RskChunk>('GET', path, options);
+    return this.sendRequest<models.RskTranscriptChange>('POST', path, options, JSON.stringify(args.body));
   }
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  getChunkStats(
+  getChunkedTranscriptChunkStats(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskChunkStats> {
-    const path = `/api/tscript/stats`;
+    const path = `/api/transcripts/chunked/chunk-stats`;
     const options: APIHttpOptions = {
       ...this.options,
       ...requestHttpOptions,
     };
 
     return this.sendRequest<models.RskChunkStats>('GET', path, options);
-  }
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
-  listChunks(
-    args: {
-      tscriptId: string,
-      filter?: string,
-      sortField?: string,
-      sortDirection?: string,
-      page?: number,
-      pageSize?: number,
-    },
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskChunkList> {
-    const path = `/api/tscript/${args.tscriptId}/chunk`;
-    const options: APIHttpOptions = {
-      ...this.options,
-      ...requestHttpOptions,
-    };
-
-    if ('filter' in args) {
-      options.params = options.params.set('filter', String(args.filter));
-    }
-    if ('sortField' in args) {
-      options.params = options.params.set('sortField', String(args.sortField));
-    }
-    if ('sortDirection' in args) {
-      options.params = options.params.set('sortDirection', String(args.sortDirection));
-    }
-    if ('page' in args) {
-      options.params = options.params.set('page', String(args.page));
-    }
-    if ('pageSize' in args) {
-      options.params = options.params.set('pageSize', String(args.pageSize));
-    }
-    return this.sendRequest<models.RskChunkList>('GET', path, options);
   }
 
   /**

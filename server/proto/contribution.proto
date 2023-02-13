@@ -1,0 +1,262 @@
+syntax = "proto3";
+
+package rsk;
+
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+import "google/protobuf/empty.proto";
+import "common.proto";
+
+option go_package = "github.com/warmans/rsk-search/server/gen/api";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    version: "1.0";
+  };
+  external_docs: {
+    url: "https://scrimpton.com";
+    description: "Contribute transcriptions or changes.";
+  };
+  schemes: HTTP;
+};
+service ContributionsService {
+
+  rpc ListAuthorContributions (ListAuthorContributionsRequest) returns (AuthorContributionList) {
+    option (google.api.http) = {
+      get: "/api/author/contribution"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "listAuthorContributions",
+      summary: "Lists all the contributions for a single author"
+      tags: "search"
+    };
+  }
+
+  rpc ListAuthorRanks (ListAuthorRanksRequest) returns (AuthorRankList) {
+    option (google.api.http) = {
+      get: "/api/author/ranks"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "listAuthorRanks",
+      summary: "Lists the rankings of the authors."
+      tags: "search"
+    };
+  }
+
+  //------------------------------------------------
+  // Rewards
+  //------------------------------------------------
+
+  rpc ListPendingRewards (google.protobuf.Empty) returns (PendingRewardList) {
+    option (google.api.http) = {
+      get: "/api/rewards"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "listPendingRewards",
+      summary: "Lists arewards that the logged in user is able to claim."
+      tags: "search"
+    };
+  }
+
+  rpc ListClaimedRewards (google.protobuf.Empty) returns (ClaimedRewardList) {
+    option (google.api.http) = {
+      get: "/api/rewards/claimed"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "listClaimedRewards",
+      summary: "Lists rewards that have been claimed."
+      tags: "search"
+    };
+  }
+
+  rpc ClaimReward (ClaimRewardRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      patch: "/api/rewards/{id}/claim",
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "claimReward",
+      summary: "Claims a reward."
+      tags: "search"
+    };
+  }
+
+  //------------------------------------------------
+  // Donations (in/out)
+  //------------------------------------------------
+
+  rpc ListDonationRecipients (ListDonationRecipientsRequest) returns (DonationRecipientList) {
+    option (google.api.http) = {
+      get: "/api/rewards/{reward_id}/recipients"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "listDonationRecipients",
+      summary: "Lists available recipients for reward."
+      tags: "search"
+    };
+  }
+
+  rpc GetDonationStats (google.protobuf.Empty) returns (DonationStats) {
+    option (google.api.http) = {
+      get: "/api/rewards/stats"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "getDonationStats",
+      summary: "show stats on donations made via rewards system"
+      tags: "search"
+    };
+  }
+
+  rpc ListIncomingDonations (ListIncomingDonationsRequest) returns (IncomingDonationList) {
+    option (google.api.http) = {
+      get: "/api/donations"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "listIncomingDonations",
+      summary: "Lists donations made to scrimpton."
+      tags: "search"
+    };
+  }
+}
+
+// NEW rankings
+message ListAuthorRanksRequest {
+  string filter = 1;
+  string sort_field = 2;
+  string sort_direction = 3;
+  int32 page = 4;
+  int32 page_size = 5;
+}
+
+message AuthorRankList {
+  repeated AuthorRank rankings = 1;
+}
+
+message AuthorRank {
+  Author author = 1;
+  int32 approved_chunks = 2;
+  int32 approved_changes = 3;
+  float reward_value_usd = 4;
+  float points = 5;
+  Rank current_rank = 6;
+  Rank next_rank = 7;
+}
+
+message Rank {
+  string id = 1;
+  string name = 2;
+  float points = 3;
+}
+
+message PendingRewardList {
+  repeated Reward rewards = 1;
+}
+
+message Reward {
+
+  enum RewardKind {
+    UNKNOWN = 0;
+    DONATION = 1;
+  }
+
+  string id = 1;
+  RewardKind kind = 2;
+  string name = 3;
+  string criteria = 4;
+  float value = 5;
+  string value_currency = 6;
+}
+
+message ClaimRewardRequest {
+  string id = 1;
+  oneof args {
+    DonationArgs donation_args = 2;
+  }
+}
+
+message DonationArgs {
+  string recipient = 1;
+}
+
+message ListDonationRecipientsRequest {
+  string reward_id = 1;
+}
+
+message DonationRecipientList {
+  repeated DonationRecipient organizations = 1;
+}
+
+message DonationRecipient {
+  string id = 1;
+  string name = 2;
+  string mission = 3;
+  string logo_url = 4;
+  string ngo_id = 5;
+  string url = 6;
+  string quote = 7;
+}
+
+message ClaimedRewardList {
+  repeated ClaimedReward rewards = 1;
+}
+
+message ClaimedReward {
+  string id = 1;
+  string claim_kind = 2;
+  float claim_value = 3;
+  string claim_currency = 4;
+  string claim_description = 5;
+  string claim_at = 6;
+}
+
+message ListAuthorContributionsRequest {
+  string filter = 1;
+  string sort_field = 2;
+  string sort_direction = 3;
+  int32 page = 4;
+  int32 page_size = 5;
+}
+
+message AuthorContributionList {
+  repeated AuthorContribution contributions = 1;
+}
+
+message AuthorContribution {
+
+  enum ContributionType {
+    CONTRIBUTION_TYPE_UNKNOWN = 0;
+    CHUNK = 1;
+    CHANGE = 2;
+  }
+
+  string id = 1;
+  string episode_id = 2;
+  ContributionType contribution_type = 3;
+  Author author = 7;
+  float points = 8;
+  string created_at = 9;
+}
+
+message DonationStats {
+  repeated RecipientStats stats = 1;
+}
+
+message RecipientStats {
+  string donation_recipient = 1;
+  float points_spent = 2;
+  float donated_amount_usd = 3;
+}
+
+message ListIncomingDonationsRequest {
+}
+
+message IncomingDonationList {
+  repeated IncomingDonation donations = 1;
+}
+
+message IncomingDonation {
+  string name = 1;
+  float amount = 2;
+  string amount_currency = 3;
+  string note = 4;
+}

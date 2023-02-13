@@ -23,8 +23,6 @@ type SearchServiceClient interface {
 	GetMetadata(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Metadata, error)
 	ListFieldValues(ctx context.Context, in *ListFieldValuesRequest, opts ...grpc.CallOption) (*FieldValueList, error)
 	PredictSearchTerm(ctx context.Context, in *PredictSearchTermRequest, opts ...grpc.CallOption) (*SearchTermPredictions, error)
-	GetTranscript(ctx context.Context, in *GetTranscriptRequest, opts ...grpc.CallOption) (*Transcript, error)
-	ListTranscripts(ctx context.Context, in *ListTranscriptsRequest, opts ...grpc.CallOption) (*TranscriptList, error)
 	// changelogs
 	ListChangelogs(ctx context.Context, in *ListChangelogsRequest, opts ...grpc.CallOption) (*ChangelogList, error)
 }
@@ -73,24 +71,6 @@ func (c *searchServiceClient) PredictSearchTerm(ctx context.Context, in *Predict
 	return out, nil
 }
 
-func (c *searchServiceClient) GetTranscript(ctx context.Context, in *GetTranscriptRequest, opts ...grpc.CallOption) (*Transcript, error) {
-	out := new(Transcript)
-	err := c.cc.Invoke(ctx, "/rsk.SearchService/GetTranscript", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *searchServiceClient) ListTranscripts(ctx context.Context, in *ListTranscriptsRequest, opts ...grpc.CallOption) (*TranscriptList, error) {
-	out := new(TranscriptList)
-	err := c.cc.Invoke(ctx, "/rsk.SearchService/ListTranscripts", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *searchServiceClient) ListChangelogs(ctx context.Context, in *ListChangelogsRequest, opts ...grpc.CallOption) (*ChangelogList, error) {
 	out := new(ChangelogList)
 	err := c.cc.Invoke(ctx, "/rsk.SearchService/ListChangelogs", in, out, opts...)
@@ -108,8 +88,6 @@ type SearchServiceServer interface {
 	GetMetadata(context.Context, *emptypb.Empty) (*Metadata, error)
 	ListFieldValues(context.Context, *ListFieldValuesRequest) (*FieldValueList, error)
 	PredictSearchTerm(context.Context, *PredictSearchTermRequest) (*SearchTermPredictions, error)
-	GetTranscript(context.Context, *GetTranscriptRequest) (*Transcript, error)
-	ListTranscripts(context.Context, *ListTranscriptsRequest) (*TranscriptList, error)
 	// changelogs
 	ListChangelogs(context.Context, *ListChangelogsRequest) (*ChangelogList, error)
 }
@@ -129,12 +107,6 @@ func (UnimplementedSearchServiceServer) ListFieldValues(context.Context, *ListFi
 }
 func (UnimplementedSearchServiceServer) PredictSearchTerm(context.Context, *PredictSearchTermRequest) (*SearchTermPredictions, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PredictSearchTerm not implemented")
-}
-func (UnimplementedSearchServiceServer) GetTranscript(context.Context, *GetTranscriptRequest) (*Transcript, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetTranscript not implemented")
-}
-func (UnimplementedSearchServiceServer) ListTranscripts(context.Context, *ListTranscriptsRequest) (*TranscriptList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListTranscripts not implemented")
 }
 func (UnimplementedSearchServiceServer) ListChangelogs(context.Context, *ListChangelogsRequest) (*ChangelogList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListChangelogs not implemented")
@@ -223,42 +195,6 @@ func _SearchService_PredictSearchTerm_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SearchService_GetTranscript_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetTranscriptRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SearchServiceServer).GetTranscript(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/rsk.SearchService/GetTranscript",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SearchServiceServer).GetTranscript(ctx, req.(*GetTranscriptRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _SearchService_ListTranscripts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListTranscriptsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SearchServiceServer).ListTranscripts(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/rsk.SearchService/ListTranscripts",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SearchServiceServer).ListTranscripts(ctx, req.(*ListTranscriptsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _SearchService_ListChangelogs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ListChangelogsRequest)
 	if err := dec(in); err != nil {
@@ -299,14 +235,6 @@ var SearchService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "PredictSearchTerm",
 			Handler:    _SearchService_PredictSearchTerm_Handler,
-		},
-		{
-			MethodName: "GetTranscript",
-			Handler:    _SearchService_GetTranscript_Handler,
-		},
-		{
-			MethodName: "ListTranscripts",
-			Handler:    _SearchService_ListTranscripts_Handler,
 		},
 		{
 			MethodName: "ListChangelogs",

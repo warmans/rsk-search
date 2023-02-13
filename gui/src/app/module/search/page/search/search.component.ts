@@ -3,7 +3,7 @@ import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
-import { RskChangelog, RskSearchResultList, RskShortTranscript } from 'src/app/lib/api-client/models';
+import { RskChangelog, RskChunkedTranscriptList, RskChunkedTranscriptStats, RskSearchResultList, RskShortTranscript } from 'src/app/lib/api-client/models';
 import { AudioService } from '../../../core/service/audio/audio.service';
 
 @Component({
@@ -51,11 +51,11 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.latestChangelog = (res.changelogs || []).pop();
     });
 
-    this.apiClient.listTscripts().pipe(takeUntil(this.unsubscribe$)).subscribe((res) => {
+    this.apiClient.listChunkedTranscripts().pipe(takeUntil(this.unsubscribe$)).subscribe((res: RskChunkedTranscriptList) => {
       this.contributionsNeeded = 0;
-      (res.tscripts || []).forEach((v) => {
+      (res.chunked || []).forEach((v: RskChunkedTranscriptStats) => {
         this.contributionsNeeded += v.numChunks - ((v.numApprovedContributions || 0) + (v.numPendingContributions || 0));
-      })
+      });
     });
   }
 

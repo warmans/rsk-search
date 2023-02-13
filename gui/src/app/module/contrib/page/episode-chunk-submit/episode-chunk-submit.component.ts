@@ -74,7 +74,7 @@ export class EpisodeChunkSubmit implements OnInit, OnDestroy {
         }).add(() => this.loading.shift());
 
         this.loading.push(true);
-        this.apiClient.getChunk({ id: d.params['id'] }).pipe(takeUntil(this.$destroy)).subscribe(
+        this.apiClient.getTranscriptChunk({ id: d.params['id'] }).pipe(takeUntil(this.$destroy)).subscribe(
           (v) => {
             if (!v) {
               return;
@@ -89,7 +89,7 @@ export class EpisodeChunkSubmit implements OnInit, OnDestroy {
         // load everything from the chunk
 
         this.loading.push(true);
-        this.apiClient.getChunk({ id: d.params['id'] }).pipe(takeUntil(this.$destroy)).subscribe(
+        this.apiClient.getTranscriptChunk({ id: d.params['id'] }).pipe(takeUntil(this.$destroy)).subscribe(
           (v) => {
             if (!v) {
               return;
@@ -130,7 +130,7 @@ export class EpisodeChunkSubmit implements OnInit, OnDestroy {
   }
 
   setContribution(res: RskChunkContribution) {
-    this.titleService.setTitle(`contribute :: ${res.chunkId} :: ${res.id}`);
+    this.titleService.setTitle(`Contribute :: ${res.chunkId} :: ${res.id}`);
 
     this.contribution = res;
 

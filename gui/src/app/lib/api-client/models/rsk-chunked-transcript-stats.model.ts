@@ -3,7 +3,7 @@ import {
   RskChunkStates,
 } from '.';
 
-export interface RskTscriptStats {
+export interface RskChunkedTranscriptStats {
   chunkContributions?: { [key: string]: RskChunkStates };
   episode?: number;
   id?: string;

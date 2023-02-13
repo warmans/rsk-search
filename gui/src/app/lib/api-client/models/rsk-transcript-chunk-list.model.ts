@@ -3,6 +3,6 @@ import {
   RskChunk,
 } from '.';
 
-export interface RskChunkList {
+export interface RskTranscriptChunkList {
   chunks?: RskChunk[];
 }

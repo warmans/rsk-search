@@ -202,14 +202,14 @@ export function isRskChunk(arg: any): arg is models.RskChunk {
   typeof arg === 'object' &&
     // audioClipUri?: string
     ( typeof arg.audioClipUri === 'undefined' || typeof arg.audioClipUri === 'string' ) &&
+    // chunkedTranscriptId?: string
+    ( typeof arg.chunkedTranscriptId === 'undefined' || typeof arg.chunkedTranscriptId === 'string' ) &&
     // id?: string
     ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
     // numContributions?: number
     ( typeof arg.numContributions === 'undefined' || typeof arg.numContributions === 'number' ) &&
     // raw?: string
     ( typeof arg.raw === 'undefined' || typeof arg.raw === 'string' ) &&
-    // tscriptId?: string
-    ( typeof arg.tscriptId === 'undefined' || typeof arg.tscriptId === 'string' ) &&
 
   true
   );
@@ -249,12 +249,45 @@ export function isRskChunkContributionList(arg: any): arg is models.RskChunkCont
   );
   }
 
-export function isRskChunkList(arg: any): arg is models.RskChunkList {
+export function isRskChunkedTranscriptList(arg: any): arg is models.RskChunkedTranscriptList {
   return (
   arg != null &&
   typeof arg === 'object' &&
-    // chunks?: RskChunk[]
-    ( typeof arg.chunks === 'undefined' || (Array.isArray(arg.chunks) && arg.chunks.every((item: unknown) => isRskChunk(item))) ) &&
+    // chunked?: RskChunkedTranscriptStats[]
+    ( typeof arg.chunked === 'undefined' || (Array.isArray(arg.chunked) && arg.chunked.every((item: unknown) => isRskChunkedTranscriptStats(item))) ) &&
+
+  true
+  );
+  }
+
+export function isRskChunkedTranscriptStats(arg: any): arg is models.RskChunkedTranscriptStats {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // chunkContributions?: { [key: string]: RskChunkStates }
+    ( typeof arg.chunkContributions === 'undefined' || isRskChunkStates(arg.chunkContributions) ) &&
+    // episode?: number
+    ( typeof arg.episode === 'undefined' || typeof arg.episode === 'number' ) &&
+    // id?: string
+    ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
+    // name?: string
+    ( typeof arg.name === 'undefined' || typeof arg.name === 'string' ) &&
+    // numApprovedContributions?: number
+    ( typeof arg.numApprovedContributions === 'undefined' || typeof arg.numApprovedContributions === 'number' ) &&
+    // numChunks?: number
+    ( typeof arg.numChunks === 'undefined' || typeof arg.numChunks === 'number' ) &&
+    // numContributions?: number
+    ( typeof arg.numContributions === 'undefined' || typeof arg.numContributions === 'number' ) &&
+    // numPendingContributions?: number
+    ( typeof arg.numPendingContributions === 'undefined' || typeof arg.numPendingContributions === 'number' ) &&
+    // numRejectedContributions?: number
+    ( typeof arg.numRejectedContributions === 'undefined' || typeof arg.numRejectedContributions === 'number' ) &&
+    // numRequestApprovalContributions?: number
+    ( typeof arg.numRequestApprovalContributions === 'undefined' || typeof arg.numRequestApprovalContributions === 'number' ) &&
+    // publication?: string
+    ( typeof arg.publication === 'undefined' || typeof arg.publication === 'string' ) &&
+    // series?: number
+    ( typeof arg.series === 'undefined' || typeof arg.series === 'number' ) &&
 
   true
   );
@@ -972,6 +1005,17 @@ export function isRskTranscriptChangeList(arg: any): arg is models.RskTranscript
   );
   }
 
+export function isRskTranscriptChunkList(arg: any): arg is models.RskTranscriptChunkList {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // chunks?: RskChunk[]
+    ( typeof arg.chunks === 'undefined' || (Array.isArray(arg.chunks) && arg.chunks.every((item: unknown) => isRskChunk(item))) ) &&
+
+  true
+  );
+  }
+
 export function isRskTranscriptList(arg: any): arg is models.RskTranscriptList {
   return (
   arg != null &&
@@ -1040,50 +1084,6 @@ export function isRskTscriptImportLog(arg: any): arg is models.RskTscriptImportL
     ( typeof arg.msg === 'undefined' || typeof arg.msg === 'string' ) &&
     // stage?: string
     ( typeof arg.stage === 'undefined' || typeof arg.stage === 'string' ) &&
-
-  true
-  );
-  }
-
-export function isRskTscriptList(arg: any): arg is models.RskTscriptList {
-  return (
-  arg != null &&
-  typeof arg === 'object' &&
-    // tscripts?: RskTscriptStats[]
-    ( typeof arg.tscripts === 'undefined' || (Array.isArray(arg.tscripts) && arg.tscripts.every((item: unknown) => isRskTscriptStats(item))) ) &&
-
-  true
-  );
-  }
-
-export function isRskTscriptStats(arg: any): arg is models.RskTscriptStats {
-  return (
-  arg != null &&
-  typeof arg === 'object' &&
-    // chunkContributions?: { [key: string]: RskChunkStates }
-    ( typeof arg.chunkContributions === 'undefined' || isRskChunkStates(arg.chunkContributions) ) &&
-    // episode?: number
-    ( typeof arg.episode === 'undefined' || typeof arg.episode === 'number' ) &&
-    // id?: string
-    ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
-    // name?: string
-    ( typeof arg.name === 'undefined' || typeof arg.name === 'string' ) &&
-    // numApprovedContributions?: number
-    ( typeof arg.numApprovedContributions === 'undefined' || typeof arg.numApprovedContributions === 'number' ) &&
-    // numChunks?: number
-    ( typeof arg.numChunks === 'undefined' || typeof arg.numChunks === 'number' ) &&
-    // numContributions?: number
-    ( typeof arg.numContributions === 'undefined' || typeof arg.numContributions === 'number' ) &&
-    // numPendingContributions?: number
-    ( typeof arg.numPendingContributions === 'undefined' || typeof arg.numPendingContributions === 'number' ) &&
-    // numRejectedContributions?: number
-    ( typeof arg.numRejectedContributions === 'undefined' || typeof arg.numRejectedContributions === 'number' ) &&
-    // numRequestApprovalContributions?: number
-    ( typeof arg.numRequestApprovalContributions === 'undefined' || typeof arg.numRequestApprovalContributions === 'number' ) &&
-    // publication?: string
-    ( typeof arg.publication === 'undefined' || typeof arg.publication === 'string' ) &&
-    // series?: number
-    ( typeof arg.series === 'undefined' || typeof arg.series === 'number' ) &&
 
   true
   );

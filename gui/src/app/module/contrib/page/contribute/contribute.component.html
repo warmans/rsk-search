@@ -101,7 +101,7 @@
         </div>
       </ng-container>
 
-      <div class="card mb-4" *ngIf="(tscipts || []).length > 0">
+      <div class="card mb-4" *ngIf="(chunkedTranscripts || []).length > 0">
         <div class="card-header">Transcription Progress</div>
         <div class="card-body d-flex">
           <div class="progress mt-1 flex-grow-1">
@@ -130,7 +130,7 @@
                 Progress
               </th>
             </tr>
-            <tr *ngFor="let ep of tscipts">
+            <tr *ngFor="let ep of chunkedTranscripts">
               <td style="width: 150px"><a [routerLink]="['/tscript', ep.id]">{{ep.id}}</a></td>
               <td style="width: 150px"><span title="sections approved to the total">{{ progressMap[ep.id]['complete'] }} / {{ep.numChunks}}
                 <span>({{((progressMap[ep.id]['complete'] || 0) / (progressMap[ep.id]['total'] || 1) * 100) | number:'1.0-0'}}%)</span></span>

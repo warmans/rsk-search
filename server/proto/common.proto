@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package rsk;
+
+option go_package = "github.com/warmans/rsk-search/server/gen/api";
+
+message Author {
+  string id = 1;
+  string name = 2;
+  string identity_icon_img = 3;
+  bool supporter = 4;
+}

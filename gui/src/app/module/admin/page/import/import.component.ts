@@ -1,8 +1,8 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { SearchAPIClient } from '../../../../lib/api-client/services/search';
+import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 import { AlertService } from '../../../core/service/alert/alert.service';
-import { RskTscriptImport, RskTscriptImportList, RskTscriptList, RskTscriptStats } from '../../../../lib/api-client/models';
+import { RskTscriptImport, RskTscriptImportList, RskChunkedTranscriptList, RskChunkedTranscriptStats } from 'src/app/lib/api-client/models';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
@@ -18,7 +18,7 @@ export class ImportComponent implements OnInit, OnDestroy {
     'mp3_uri': new FormControl('https://scrimpton.com/dl/media/episode/preview-S1E06.mp3', [Validators.required]),
   });
 
-  tscripts: RskTscriptStats[] = [];
+  chunkedTranscripts: RskChunkedTranscriptStats[] = [];
   imports: RskTscriptImport[] = [];
 
   private unsubscribe$: EventEmitter<void> = new EventEmitter<void>();
@@ -46,8 +46,8 @@ export class ImportComponent implements OnInit, OnDestroy {
   }
 
   updateTscriptList() {
-    this.apiClient.listTscripts().pipe(takeUntil(this.unsubscribe$)).subscribe((v: RskTscriptList) => {
-      this.tscripts = v.tscripts;
+    this.apiClient.listChunkedTranscripts().pipe(takeUntil(this.unsubscribe$)).subscribe((v: RskChunkedTranscriptList) => {
+      this.chunkedTranscripts = v.chunked;
     });
   }
 
