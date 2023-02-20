@@ -341,5 +341,13 @@ app-user-menu {
   }
 }
 
+
+.illustration {
+  @include theme() {
+    -webkit-filter: invert(theme-get('invert-pcnt')); /* safari 6.0 - 9.0 */
+    filter: invert(theme-get('invert-pcnt'));
+  }
+}
+
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';

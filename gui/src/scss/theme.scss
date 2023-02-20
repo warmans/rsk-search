@@ -16,6 +16,9 @@ $themes: (
 
     'body-block-border': #292d32,
     'body-block-standout': lighten(#343A40, 10%),
+
+    // used for inverting svg colours
+    'invert-pcnt': 90%,
   ),
   light-theme: (
     'text-color': #333333,
@@ -34,6 +37,9 @@ $themes: (
 
     'body-block-border': #dee2e6,
     'body-block-standout': darken(#F7F7F7, 2%),
+
+    // used for inverting svg colours
+    'invert-pcnt': 0%,
   )
 );
 
