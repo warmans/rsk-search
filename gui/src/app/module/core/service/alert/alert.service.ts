@@ -6,7 +6,7 @@ export interface Alert {
   details?: string[];
 }
 
-const AUTO_REMOVE_AFTER_MS: number = 1000 * 10;
+const AUTO_REMOVE_AFTER_MS: number = 1000 * 5;
 
 @Injectable({
   providedIn: 'root'

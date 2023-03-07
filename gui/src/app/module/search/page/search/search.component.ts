@@ -3,8 +3,17 @@ import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
-import { RskChangelog, RskChunkedTranscriptList, RskChunkedTranscriptStats, RskSearchResultList, RskShortTranscript } from 'src/app/lib/api-client/models';
+import {
+  RskChangelog,
+  RskChunkedTranscriptList,
+  RskChunkedTranscriptStats,
+  RskDialog,
+  RskSearchResult,
+  RskSearchResultList,
+  RskShortTranscript
+} from 'src/app/lib/api-client/models';
 import { AudioService } from '../../../core/service/audio/audio.service';
+import { ClipboardService } from 'src/app/module/core/service/clipboard/clipboard.service';
 
 @Component({
   selector: 'app-search',
@@ -31,7 +40,8 @@ export class SearchComponent implements OnInit, OnDestroy {
     private apiClient: SearchAPIClient,
     private route: ActivatedRoute,
     private titleService: Title,
-    private audioService: AudioService) {
+    private audioService: AudioService,
+    private clipboardService: ClipboardService) {
 
     route.queryParamMap.pipe(takeUntil(this.unsubscribe$)).subscribe((params: ParamMap) => {
       this.currentPage = parseInt(params.get('page'), 10) || 0;
@@ -86,5 +96,9 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.audioService.setAudioSrc(ep.shortId, ep.name, ep.audioUri);
     this.audioService.seekAudio(ts);
     this.audioService.playAudio();
+  }
+
+  copyLineToClipboard(line: RskDialog) {
+    this.clipboardService.copyTextToClipboard(line.content);
   }
 }

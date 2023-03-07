@@ -26,6 +26,7 @@ import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { FindReplaceComponent } from './component/find-replace/find-replace.component';
 import { MetadataEditorComponent } from './component/metadata-editor/metadata-editor.component';
 import { UserMenuComponent } from './component/user-menu/user-menu.component';
+import { TranscriptCopyDialogComponent } from './component/transcript-copy-dialog/transcript-copy-dialog.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { UserMenuComponent } from './component/user-menu/user-menu.component';
     FindReplaceComponent,
     MetadataEditorComponent,
     UserMenuComponent,
+    TranscriptCopyDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -82,6 +84,7 @@ import { UserMenuComponent } from './component/user-menu/user-menu.component';
         HtmlDiffComponent,
         MetadataEditorComponent,
         UserMenuComponent,
+        TranscriptCopyDialogComponent,
     ]
 })
 export class SharedModule {

@@ -133,6 +133,7 @@
             [scrollToSeconds]="scrollToSeconds"
             [searchResultMode]="false"
             [enableLineLinking]="true"
+            [enableLineCopy]="true"
             [enableShareLinks]="!episode?.incomplete"
             (emitAudioTimestamp)="onAudioTimestamp($event)"
             (emitShare)="onShare($event?.startPos, $event?.endPos)"

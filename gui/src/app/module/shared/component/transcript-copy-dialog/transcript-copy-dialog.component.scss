@@ -1,0 +1,14 @@
+.copy-container {
+  position: relative;
+
+  .copy-dropdown {
+    z-index: 1000 !important;
+    display: block;
+    position: absolute;
+    background-color: #fff;
+    width: 150px;
+    left: -100px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+  }
+}

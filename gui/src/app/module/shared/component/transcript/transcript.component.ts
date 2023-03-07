@@ -2,6 +2,8 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input,
 import { RskDialog, RskSynopsis, RskTranscript } from '../../../../lib/api-client/models';
 import { ViewportScroller } from '@angular/common';
 import { parseTranscript, Tscript } from '../../lib/tscript';
+import { ClipboardService } from 'src/app/module/core/service/clipboard/clipboard.service';
+import { formatSecondsAsTimestamp } from 'src/app/lib/util';
 
 interface DialogGroup {
   startPos: number;
@@ -98,6 +100,9 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
   enableLineLinking: boolean = false;
 
   @Input()
+  enableLineCopy: boolean = false;
+
+  @Input()
   enableAudioLinks: boolean = true;
 
   @Input()
@@ -128,7 +133,7 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
     'camfield': 'camfield',
   };
 
-  constructor(private viewportScroller: ViewportScroller) {
+  constructor(private viewportScroller: ViewportScroller, private clipboard: ClipboardService) {
     viewportScroller.setOffset([0, window.innerHeight / 2]);
   }
 
@@ -251,5 +256,9 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
 
   emitShareOpts(startPos: number, endPos: number) {
     this.emitShare.next({ epid: this.epid, startPos: startPos, endPos: endPos });
+  }
+
+  copyLineToClipboard(content: string, timestamp?: number) {
+    this.clipboard.copyTextToClipboard(content);
   }
 }

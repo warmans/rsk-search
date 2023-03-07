@@ -8,9 +8,16 @@
     <div class="col">
       <div *ngFor="let res of result?.results" class="result card mb-3 animate__animated animate__fadeIn animate__faster">
         <div class="card-header font-weight-bold">
-          <a [routerLink]="['/ep', res?.episode?.id]" [fragment]="res?.dialogs[0]?.transcript | matchedRowPos">
-            {{ res.episode?.id }}
-          </a>
+          <div class="d-flex justify-content-between">
+            <div>
+              <a [routerLink]="['/ep', res?.episode?.id]" [fragment]="res?.dialogs[0]?.transcript | matchedRowPos">
+                {{ res.episode?.id }}
+              </a>
+            </div>
+            <div>
+              <app-transcript-copy-dialog [payload]="res"></app-transcript-copy-dialog>
+            </div>
+          </div>
         </div>
         <div class="card-body">
           <div *ngFor="let dialog of res.dialogs" class="dialog">
@@ -18,6 +25,7 @@
               [transcript]="dialog"
               [searchResultMode]="true"
               [enableLineLinking]="false"
+              [enableLineCopy]="true"
               (emitAudioTimestamp)="onAudioTimestamp(res.episode,  $event)"></app-transcript>
           </div>
         </div>
@@ -43,7 +51,7 @@
       <div class="card-body">
         <ul>
           <li>If your search is "double quoted" try removing the quotes.</li>
-          <li>To match on multiple exact terms in any order "quote" "each" "term" "separately". </li>
+          <li>To match on multiple exact terms in any order "quote" "each" "term" "separately".</li>
           <li>The episode my not have been fully transcribed. See <a routerLink="/contribute">Contribute</a>.</li>
           <li>Report a bug on <a target="_blank" href="https://reddit.com/r/scrimpton">/r/scrimpton</a></li>
         </ul>
