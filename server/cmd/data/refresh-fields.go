@@ -8,7 +8,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/util"
 	"go.uber.org/zap"
-	"io/ioutil"
+	"os"
 	"path"
 )
 
@@ -31,7 +31,7 @@ func RefreshCmd() *cobra.Command {
 
 			logger.Info("Importing transcript data from...", zap.String("path", inputDir))
 
-			dirEntries, err := ioutil.ReadDir(inputDir)
+			dirEntries, err := os.ReadDir(inputDir)
 			if err != nil {
 				return err
 			}

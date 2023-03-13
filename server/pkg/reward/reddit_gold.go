@@ -8,7 +8,7 @@ import (
 	"github.com/spf13/pflag"
 	"github.com/warmans/rsk-search/pkg/flag"
 	"go.uber.org/zap"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"time"
@@ -90,7 +90,7 @@ func (r *RedditGold) giveGold(redditID string) error {
 	if err != nil {
 		return errors.Wrap(err, "failed to execute request")
 	}
-	respBody, err := ioutil.ReadAll(resp.Body)
+	respBody, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return errors.Wrap(err, "failed to read body")
 	}

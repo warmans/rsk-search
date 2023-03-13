@@ -10,7 +10,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/store/ro"
 	"github.com/warmans/rsk-search/pkg/util"
 	"go.uber.org/zap"
-	"io/ioutil"
+	"os"
 	"path"
 )
 
@@ -57,7 +57,7 @@ func populateDB(inputDataPath string, conn *ro.Conn, logger *zap.Logger) error {
 
 	logger.Info("Populating DB...")
 
-	dirEntries, err := ioutil.ReadDir(inputDataPath)
+	dirEntries, err := os.ReadDir(inputDataPath)
 	if err != nil {
 		return err
 	}

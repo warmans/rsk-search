@@ -12,7 +12,6 @@ import (
 	"github.com/warmans/rsk-search/pkg/search"
 	"github.com/warmans/rsk-search/pkg/search/v2/mapping"
 	"go.uber.org/zap"
-	"io/ioutil"
 	"os"
 	"path"
 	"time"
@@ -54,7 +53,7 @@ func PopulateBlugeIndex() *cobra.Command {
 
 func populateIndex(inputDir string, writer *bluge.Writer, logger *zap.Logger) error {
 
-	dirEntries, err := ioutil.ReadDir(inputDir)
+	dirEntries, err := os.ReadDir(inputDir)
 	if err != nil {
 		return err
 	}

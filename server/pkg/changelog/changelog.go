@@ -3,7 +3,6 @@ package changelog
 import (
 	"github.com/pkg/errors"
 	"github.com/warmans/rsk-search/pkg/models"
-	"io/ioutil"
 	"os"
 	"path"
 	"strings"
@@ -14,7 +13,7 @@ func List(changelogDirPath string) ([]*models.Changelog, error) {
 
 	out := []*models.Changelog{}
 
-	dirEntries, err := ioutil.ReadDir(changelogDirPath)
+	dirEntries, err := os.ReadDir(changelogDirPath)
 	if err != nil {
 		return nil, err
 	}
