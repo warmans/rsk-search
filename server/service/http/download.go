@@ -93,7 +93,12 @@ func (c *DownloadService) DownloadMP3(resp http.ResponseWriter, req *http.Reques
 	}
 
 	if err = c.incrementQuotas(req.Context(), mediaType, fileID, fileStat.Size()); err != nil {
-		c.logger.Error("Download failed processing quota", zap.Error(err))
+		c.logger.Error(
+			"Download failed processing quota",
+			zap.Error(err),
+			zap.String("episode", fileID),
+			zap.Int64("num_bytes", fileStat.Size()),
+		)
 		if err == DownloadsOverQuota {
 			http.Error(resp, "Bandwidth quota exhausted", http.StatusTooManyRequests)
 		} else {
@@ -178,16 +183,19 @@ func (c *DownloadService) DownloadEpisodePlaintext(resp http.ResponseWriter, req
 
 func (c *DownloadService) incrementQuotas(ctx context.Context, mediaType string, fileID string, fileBytes int64) error {
 	return c.rwStoreConn.WithStore(func(s *rw.Store) error {
-		_, currentBytes, err := s.GetMediaStatsForCurrentMonth(ctx)
+
+		fileMib := quota.BytesAsMib(fileBytes)
+
+		_, currentMib, err := s.GetMediaStatsForCurrentMonth(ctx)
 		if err != nil {
-			return err
+			return errors.Wrap(err, "failed to get current usage")
 		}
-		c.httpMetrics.OutboundMediaQuotaRemaining.Set(float64(quota.BandwidthQuotaInMiB - quota.BytesAsMib(currentBytes)))
-		if quota.BytesAsMib(currentBytes+fileBytes) > quota.BandwidthQuotaInMiB {
+		c.httpMetrics.OutboundMediaQuotaRemaining.Set(float64(quota.BandwidthQuotaInMiB - currentMib))
+		if currentMib+fileMib > quota.BandwidthQuotaInMiB {
 			return DownloadsOverQuota
 		}
-		if err := s.IncrementMediaAccessLog(ctx, mediaType, fileID, fileBytes); err != nil {
-			return err
+		if err := s.IncrementMediaAccessLog(ctx, mediaType, fileID, fileMib); err != nil {
+			return errors.Wrap(err, "failed to increment access log bytes")
 		}
 		return nil
 	})

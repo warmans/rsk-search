@@ -41,12 +41,12 @@ func (s *StatusService) GetQuotaSummary(ctx context.Context, empty *emptypb.Empt
 
 	res := &api.Quotas{}
 	err := s.persistentDB.WithStore(func(s *rw.Store) error {
-		_, bytesDownloaded, err := s.GetMediaStatsForCurrentMonth(ctx)
+		_, mibDownloaded, err := s.GetMediaStatsForCurrentMonth(ctx)
 		if err != nil {
 			return err
 		}
-		res.BandwidthTotalMib = quota.BandwidthQuotaInMiB
-		res.BandwidthRemainingMib = quota.BandwidthQuotaInMiB - quota.BytesAsMib(bytesDownloaded)
+		res.BandwidthTotalMib = int32(quota.BandwidthQuotaInMiB)
+		res.BandwidthRemainingMib = int32(quota.BandwidthQuotaInMiB - mibDownloaded)
 		return nil
 	})
 	if err != nil {

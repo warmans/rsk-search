@@ -6,6 +6,7 @@ import (
 )
 
 type SearchServiceConfig struct {
+	Env             string
 	BlugeIndexPath  string
 	Scheme          string
 	Hostname        string
@@ -16,6 +17,7 @@ type SearchServiceConfig struct {
 }
 
 func (c *SearchServiceConfig) RegisterFlags(fs *pflag.FlagSet, prefix string) {
+	flag.StringVarEnv(fs, &c.Env, prefix, "env", "unknown", "set an environment label (used mostly in logging)")
 	flag.StringVarEnv(fs, &c.Scheme, prefix, "scheme", "http://", "scheme to use for absolute links")
 	flag.StringVarEnv(fs, &c.Hostname, prefix, "hostname", "localhost", "hostname to use for absolute links")
 	flag.StringVarEnv(fs, &c.BlugeIndexPath, prefix, "bluge-index-path", "./var/gen/rsk.bluge", "location of bluge search index")

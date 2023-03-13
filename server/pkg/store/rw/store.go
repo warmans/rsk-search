@@ -1323,18 +1323,18 @@ func (s *Store) GetDonationStats(ctx context.Context) (models.DonationRecipientS
 	return recipients, nil
 }
 
-func (s *Store) IncrementMediaAccessLog(ctx context.Context, mediaType string, epid string, bytes int64) error {
+func (s *Store) IncrementMediaAccessLog(ctx context.Context, mediaType string, epid string, mib int64) error {
 	now := time.Now()
 	_, err := s.tx.ExecContext(
 		ctx,
-		`INSERT INTO media_access_log (epid, media_type, time_bucket, num_times_accessed, total_bytes) 
+		`INSERT INTO media_access_log (epid, media_type, time_bucket, num_times_accessed, total_mib) 
 		VALUES ($1, $2, $3, 1, $4) 
 		ON CONFLICT (epid, media_type, time_bucket) DO 
-			UPDATE SET num_times_accessed = media_access_log.num_times_accessed + 1, total_bytes = media_access_log.total_bytes + $4`,
+			UPDATE SET num_times_accessed = media_access_log.num_times_accessed + 1, total_mib = media_access_log.total_mib + $4`,
 		epid,
 		mediaType,
 		time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, time.UTC),
-		bytes,
+		mib,
 	)
 	return err
 }
@@ -1345,18 +1345,18 @@ func (s *Store) GetMediaStatsForCurrentMonth(ctx context.Context) (int64, int64,
 	endOfMonth := startOfMonth.AddDate(0, 1, 0)
 
 	var totalDownloads int64
-	var totalBytes int64
+	var totalMib int64
 	err := s.tx.QueryRowxContext(
 		ctx,
 		`
-			SELECT COALESCE(SUM(num_times_accessed), 0), COALESCE(SUM(total_bytes), 0) 
+			SELECT COALESCE(SUM(num_times_accessed), 0), COALESCE(SUM(total_mib), 0) 
 			FROM media_access_log
 			WHERE time_bucket >= $1 AND time_bucket < $2`,
 		startOfMonth,
 		endOfMonth,
-	).Scan(&totalDownloads, &totalBytes)
+	).Scan(&totalDownloads, &totalMib)
 
-	return totalDownloads, totalBytes, err
+	return totalDownloads, totalMib, err
 }
 func (s *Store) ListAuthorNotifications(ctx context.Context, authorID string, qm *common.QueryModifier) ([]*models.AuthorNotification, error) {
 

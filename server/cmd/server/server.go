@@ -15,6 +15,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/pledge"
 	"github.com/warmans/rsk-search/pkg/reward"
 	v2 "github.com/warmans/rsk-search/pkg/search/v2"
+	"github.com/warmans/rsk-search/pkg/sentry"
 	"github.com/warmans/rsk-search/pkg/server"
 	"github.com/warmans/rsk-search/pkg/store/common"
 	"github.com/warmans/rsk-search/pkg/store/ro"
@@ -25,6 +26,7 @@ import (
 	"github.com/warmans/rsk-search/service/metrics"
 	"github.com/warmans/rsk-search/service/queue"
 	"go.uber.org/zap"
+	"go.uber.org/zap/zapcore"
 	"net/http"
 	"os"
 	"os/signal"
@@ -48,6 +50,7 @@ func ServerCmd() *cobra.Command {
 	importQueueConfig := &queue.ImportQueueConfig{}
 	coffeeCfg := &coffee.Config{}
 	assemblyAiCfg := &assemblyai.Config{}
+	sentryCfg := &sentry.Config{}
 
 	cmd := &cobra.Command{
 		Use:   "server",
@@ -56,16 +59,16 @@ func ServerCmd() *cobra.Command {
 
 			flag.Parse()
 
-			var logger *zap.Logger
-			var loggerErr error
+			var loggerConf zap.Config
 			if os.Getenv("DEBUG") == "false" {
-				conf := zap.NewDevelopmentConfig()
-				conf.DisableStacktrace = true
-				logger, loggerErr = conf.Build()
+				loggerConf = zap.NewDevelopmentConfig()
+				loggerConf.DisableStacktrace = true
 			} else {
-				conf := zap.NewProductionConfig()
-				logger, loggerErr = conf.Build()
+				loggerConf = zap.NewProductionConfig()
 			}
+
+			loggerConf.EncoderConfig.EncodeTime = zapcore.RFC3339TimeEncoder
+			logger, loggerErr := loggerConf.Build()
 			if loggerErr != nil {
 				panic(loggerErr)
 			}
@@ -74,6 +77,11 @@ func ServerCmd() *cobra.Command {
 					fmt.Println("WARNING: failed to sync logger: " + err.Error())
 				}
 			}()
+
+			if err := sentry.InitSentry(sentryCfg); err != nil {
+				logger.Error("Sentry failed to init")
+			}
+			logger = logger.WithOptions(zap.Hooks(sentry.ZapHook(srvCfg.Env)))
 
 			episodeCache, err := data.NewEpisodeStore(path.Join(srvCfg.FilesBasePath, "data", "episodes"))
 			if err != nil {
@@ -268,6 +276,7 @@ func ServerCmd() *cobra.Command {
 	importQueueConfig.RegisterFlags(cmd.Flags(), ServicePrefix)
 	coffeeCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
 	assemblyAiCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
+	sentryCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
 
 	return cmd
 }

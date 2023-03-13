@@ -92,6 +92,7 @@ services:
       # Remember to chown dir on host to nobody:nogroup to match containers (see script/setup.sh)
       - /mnt/audio:/audio
     environment:
+      RSK_SEARCH_ENV: "prod"
       RSK_SEARCH_RW_DB_DSN: "postgres://scrimpton:insecure@postgres:5432/scrimpton?sslmode=disable"
       RSK_SEARCH_JWT_KEY: ""
       RSK_SEARCH_OAUTH_SECRET: ""
@@ -103,6 +104,7 @@ services:
       RSK_SEARCH_PLEDGE_DEF_FIRSTNAME: "changeme"
       RSK_SEARCH_PLEDGE_DEF_LASTNAME: "changeme"
       RSK_SEARCH_IMPORT_REDIS_ADDR: "redis:6379"
-      RSK_SEARCH_BMAC_ACCESS_TOKEN: na
+      RSK_SEARCH_BMAC_ACCESS_TOKEN: "na"
       RSK_SEARCH_ASSEMBLY_AI_ACCESS_TOKEN: "changeme"
+      RSK_SEARCH_SENTRY_DSN: ""
     restart: unless-stopped
