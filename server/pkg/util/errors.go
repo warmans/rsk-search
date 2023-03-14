@@ -10,7 +10,7 @@ type stackTracer interface {
 	StackTrace() errors.StackTrace
 }
 
-func ErrTrace(err error) []string {
+func ErrTrace(err error, maxDepth int) []string {
 	if err == nil {
 		return nil
 	}
@@ -19,6 +19,9 @@ func ErrTrace(err error) []string {
 		for _, f := range errStack.StackTrace() {
 			trace = append(trace, strings.Split(fmt.Sprintf("%+v", f), "\n\t")...)
 		}
+	}
+	if len(trace) > maxDepth {
+		return append(trace[:maxDepth], "...")
 	}
 	return trace
 }

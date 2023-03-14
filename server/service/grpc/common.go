@@ -2,6 +2,7 @@ package grpc
 
 import (
 	"context"
+	"github.com/pkg/errors"
 	"github.com/warmans/rsk-search/pkg/filter"
 	"github.com/warmans/rsk-search/pkg/jwt"
 	"github.com/warmans/rsk-search/pkg/store/common"
@@ -17,7 +18,7 @@ func NewQueryModifiers(req interface{}) (*common.QueryModifier, error) {
 		if p.GetSortField() != "" {
 			givenDirection := common.SortDirection(strings.ToUpper(p.GetSortDirection()))
 			if givenDirection != common.SortAsc && givenDirection != common.SortDesc {
-				return nil, ErrInvalidRequestField("sort_direction", "Must be 'asc' or 'desc'").Err()
+				return nil, ErrInvalidRequestField("sort_direction", errors.New("Must be 'asc' or 'desc'"))
 			}
 			q.Apply(common.WithSorting(p.GetSortField(), givenDirection))
 		}
@@ -26,7 +27,7 @@ func NewQueryModifiers(req interface{}) (*common.QueryModifier, error) {
 		if strings.TrimSpace(p.GetFilter()) != "" {
 			fil, err := filter.Parse(p.GetFilter())
 			if err != nil {
-				return nil, ErrInvalidRequestField("filter", err.Error()).Err()
+				return nil, ErrInvalidRequestField("filter", err)
 			}
 			q.Apply(common.WithFilter(fil))
 		}
@@ -37,11 +38,11 @@ func NewQueryModifiers(req interface{}) (*common.QueryModifier, error) {
 func GetClaims(ctx context.Context, auth *jwt.Auth) (*jwt.Claims, error) {
 	token := jwt.ExtractTokenFromRequestContext(ctx)
 	if token == "" {
-		return nil, ErrUnauthorized("no token provided").Err()
+		return nil, ErrUnauthorized("no token provided")
 	}
 	claims, err := auth.VerifyToken(token)
 	if err != nil {
-		return nil, ErrUnauthorized(err.Error()).Err()
+		return nil, ErrUnauthorized(err.Error())
 	}
 	return claims, nil
 }

@@ -93,6 +93,10 @@ func (c *DownloadService) DownloadMP3(resp http.ResponseWriter, req *http.Reques
 	}
 
 	if err = c.incrementQuotas(req.Context(), mediaType, fileID, fileStat.Size()); err != nil {
+		if err == context.Canceled {
+			// user went away
+			return
+		}
 		c.logger.Error(
 			"Download failed processing quota",
 			zap.Error(err),
@@ -188,6 +192,9 @@ func (c *DownloadService) incrementQuotas(ctx context.Context, mediaType string,
 
 		_, currentMib, err := s.GetMediaStatsForCurrentMonth(ctx)
 		if err != nil {
+			if err == context.Canceled {
+				return err
+			}
 			return errors.Wrap(err, "failed to get current usage")
 		}
 		c.httpMetrics.OutboundMediaQuotaRemaining.Set(float64(quota.BandwidthQuotaInMiB - currentMib))
@@ -195,6 +202,9 @@ func (c *DownloadService) incrementQuotas(ctx context.Context, mediaType string,
 			return DownloadsOverQuota
 		}
 		if err := s.IncrementMediaAccessLog(ctx, mediaType, fileID, fileMib); err != nil {
+			if err == context.Canceled {
+				return err
+			}
 			return errors.Wrap(err, "failed to increment access log bytes")
 		}
 		return nil

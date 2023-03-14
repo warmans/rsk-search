@@ -52,7 +52,7 @@ func (s *AdminService) DeleteTscript(ctx context.Context, request *api.DeleteTsc
 		return nil, err
 	}
 	if !claims.Approver {
-		return nil, ErrUnauthorized("Only approvers may delete incomplete transcripts").Err()
+		return nil, ErrUnauthorized("Only approvers may delete incomplete transcripts")
 	}
 
 	//todo: check there are no outstanding contributions
@@ -71,7 +71,7 @@ func (s *AdminService) CreateTscriptImport(ctx context.Context, request *api.Cre
 		return nil, err
 	}
 	if !claims.Approver {
-		return nil, ErrUnauthorized("Only approvers may create new transcript imports").Err()
+		return nil, ErrUnauthorized("Only approvers may create new transcript imports")
 	}
 	var tscriptImport *models.TscriptImport
 
@@ -83,7 +83,7 @@ func (s *AdminService) CreateTscriptImport(ctx context.Context, request *api.Cre
 		}
 		for _, v := range existingTscripts {
 			if request.Epid == v.AsEpisode().ID() {
-				return ErrFailedPrecondition(fmt.Sprintf("Epid %s already exists as a tscript", request.Epid)).Err()
+				return ErrFailedPrecondition(fmt.Sprintf("Epid %s already exists as a tscript", request.Epid))
 			}
 		}
 
@@ -103,7 +103,7 @@ func (s *AdminService) CreateTscriptImport(ctx context.Context, request *api.Cre
 		return nil
 	})
 	if err != nil {
-		return nil, ErrFromStore(err, "").Err()
+		return nil, ErrFromStore(err, "")
 	}
 	return tscriptImport.Proto(), nil
 }
@@ -114,7 +114,7 @@ func (s *AdminService) ListTscriptImports(ctx context.Context, request *api.List
 		return nil, err
 	}
 	if !claims.Approver {
-		return nil, ErrUnauthorized("Only approvers may view transcript imports").Err()
+		return nil, ErrUnauthorized("Only approvers may view transcript imports")
 	}
 	qm, err := NewQueryModifiers(request)
 	if err != nil {
@@ -144,11 +144,11 @@ func (s *AdminService) ListTscriptImports(ctx context.Context, request *api.List
 func (s *AdminService) getClaims(ctx context.Context) (*jwt.Claims, error) {
 	token := jwt.ExtractTokenFromRequestContext(ctx)
 	if token == "" {
-		return nil, ErrUnauthorized("no token provided").Err()
+		return nil, ErrUnauthorized("no token provided")
 	}
 	claims, err := s.auth.VerifyToken(token)
 	if err != nil {
-		return nil, ErrUnauthorized(err.Error()).Err()
+		return nil, ErrUnauthorized(err.Error())
 	}
 	return claims, nil
 }

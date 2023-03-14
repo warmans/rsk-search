@@ -2,6 +2,7 @@ package grpc
 
 import (
 	"context"
+	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/warmans/rsk-search/gen/api"
@@ -78,7 +79,7 @@ func (s *SearchService) ListFieldValues(ctx context.Context, request *api.ListFi
 func (s *SearchService) Search(ctx context.Context, request *api.SearchRequest) (*api.SearchResultList, error) {
 	f, err := filter.Parse(request.Query)
 	if err != nil {
-		return nil, ErrInvalidRequestField("query", err.Error()).Err()
+		return nil, ErrInvalidRequestField("query", err, fmt.Sprintf("query: %s", request.Query))
 	}
 	if err := checkWhy(f); err != nil {
 		return nil, err
@@ -93,7 +94,7 @@ func (s *SearchService) PredictSearchTerm(ctx context.Context, request *api.Pred
 		var err error
 		f, err = filter.Parse(request.Query)
 		if err != nil {
-			return nil, ErrInvalidRequestField("query", err.Error()).Err()
+			return nil, ErrInvalidRequestField("query", err)
 		}
 	}
 
@@ -139,7 +140,7 @@ func checkWhy(f filter.Filter) error {
 	}
 	for _, v := range filters {
 		if strings.TrimSpace(strings.Trim(v.Value.String(), `"?`)) == "why" {
-			return ErrServerConfused().Err()
+			return ErrServerConfused()
 		}
 	}
 	return nil

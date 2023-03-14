@@ -74,7 +74,7 @@ func (s *UserService) MarkNotificationsRead(ctx context.Context, empty *emptypb.
 		return s.MarkAllAuthorNotificationsRead(ctx, claims.AuthorID)
 	})
 	if err != nil {
-		return nil, ErrInternal(err).Err()
+		return nil, ErrInternal(err)
 	}
 	return &emptypb.Empty{}, nil
 }

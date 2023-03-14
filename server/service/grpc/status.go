@@ -50,7 +50,7 @@ func (s *StatusService) GetQuotaSummary(ctx context.Context, empty *emptypb.Empt
 		return nil
 	})
 	if err != nil {
-		return nil, ErrInternal(err).Err()
+		return nil, ErrInternal(err)
 	}
 	return res, nil
 }

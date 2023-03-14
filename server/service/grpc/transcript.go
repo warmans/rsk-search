@@ -62,19 +62,19 @@ func (s *TranscriptService) RegisterHTTP(ctx context.Context, router *mux.Router
 func (s *TranscriptService) GetTranscript(ctx context.Context, request *api.GetTranscriptRequest) (*api.Transcript, error) {
 	ep, err := s.episodeCache.GetEpisode(request.Epid)
 	if err == data.ErrNotFound || ep == nil {
-		return nil, ErrNotFound(request.Epid).Err()
+		return nil, ErrNotFound(request.Epid)
 	}
 	var rawTranscript string
 	if request.WithRaw {
 		var err error
 		rawTranscript, err = transcript.Export(ep.Transcript, ep.Synopsis, ep.Trivia)
 		if err != nil {
-			return nil, ErrInternal(err).Err()
+			return nil, ErrInternal(err)
 		}
 	}
 	lockedEpsiodeIDs, err := s.lockedEpisodeIDs(ctx)
 	if err != nil {
-		return nil, ErrInternal(err).Err()
+		return nil, ErrInternal(err)
 	}
 	_, locked := lockedEpsiodeIDs[ep.ID()]
 	return ep.Proto(rawTranscript, fmt.Sprintf(s.srvCfg.AudioUriPattern, ep.ShortID()), locked), nil
@@ -105,7 +105,7 @@ func (s *TranscriptService) ListChunkedTranscripts(ctx context.Context, _ *empty
 		return nil
 	})
 	if err != nil {
-		return nil, ErrFromStore(err, "").Err()
+		return nil, ErrFromStore(err, "")
 	}
 	return el, nil
 }
@@ -121,7 +121,7 @@ func (s *TranscriptService) GetChunkedTranscriptChunkStats(ctx context.Context, 
 		return err
 	})
 	if err != nil {
-		return nil, ErrFromStore(err, "").Err()
+		return nil, ErrFromStore(err, "")
 	}
 	return stats.Proto(), nil
 }
@@ -135,12 +135,12 @@ func (s *TranscriptService) GetTranscriptChunk(ctx context.Context, request *api
 			return err
 		}
 		if chunk == nil {
-			return ErrNotFound(request.Id).Err()
+			return ErrNotFound(request.Id)
 		}
 		return err
 	})
 	if err != nil {
-		return nil, ErrFromStore(err, request.Id).Err()
+		return nil, ErrFromStore(err, request.Id)
 	}
 	return chunk.Proto(), nil
 }
@@ -169,7 +169,7 @@ func (s *TranscriptService) ListTranscriptChunks(ctx context.Context, request *a
 		}
 		return err
 	}); err != nil {
-		return nil, ErrFromStore(err, "").Err()
+		return nil, ErrFromStore(err, "")
 	}
 	return out, nil
 }
@@ -196,7 +196,7 @@ func (s *TranscriptService) ListChunkContributions(ctx context.Context, request 
 		}
 		return err
 	}); err != nil {
-		return nil, ErrFromStore(err, "").Err()
+		return nil, ErrFromStore(err, "")
 	}
 	return out, nil
 }
@@ -218,11 +218,11 @@ func (s *TranscriptService) GetChunkContribution(ctx context.Context, request *a
 		return nil
 	})
 	if err != nil {
-		return nil, ErrFromStore(err, request.ContributionId).Err()
+		return nil, ErrFromStore(err, request.ContributionId)
 	}
 	if !claims.Approver {
 		if contrib.State == models.ContributionStatePending && contrib.Author.ID != claims.AuthorID {
-			return nil, ErrPermissionDenied("you cannot view another author's contribution when it is in the pending state").Err()
+			return nil, ErrPermissionDenied("you cannot view another author's contribution when it is in the pending state")
 		}
 	}
 	return contrib.Proto(), nil
@@ -240,16 +240,16 @@ func (s *TranscriptService) CreateChunkContribution(ctx context.Context, request
 			return err
 		}
 		if stats.ContributionsInLastHour > 5 {
-			return ErrRateLimited().Err()
+			return ErrRateLimited()
 		}
 		return nil
 	})
 	if err != nil {
-		return nil, ErrFromStore(err, "").Err()
+		return nil, ErrFromStore(err, "")
 	}
 
 	if err := transcript.Validate(bufio.NewScanner(bytes.NewBufferString(request.Transcript))); err != nil {
-		return nil, ErrInvalidRequestField("transcript", err.Error()).Err()
+		return nil, ErrInvalidRequestField("transcript", err)
 	}
 
 	var contrib *models.ChunkContribution
@@ -263,7 +263,7 @@ func (s *TranscriptService) CreateChunkContribution(ctx context.Context, request
 		return err
 	})
 	if err != nil {
-		return nil, ErrFromStore(err, "").Err()
+		return nil, ErrFromStore(err, "")
 	}
 	return contrib.Proto(), nil
 }
@@ -282,7 +282,7 @@ func (s *TranscriptService) UpdateChunkContribution(ctx context.Context, request
 		return err
 	})
 	if err != nil {
-		return nil, ErrFromStore(err, request.ContributionId).Err()
+		return nil, ErrFromStore(err, request.ContributionId)
 	}
 
 	// validate change is allowed
@@ -293,7 +293,7 @@ func (s *TranscriptService) UpdateChunkContribution(ctx context.Context, request
 	// allow invalid transcript while the contribution is still pending.
 	if request.State != api.ContributionState_STATE_PENDING {
 		if err := transcript.Validate(bufio.NewScanner(bytes.NewBufferString(request.Transcript))); err != nil {
-			return nil, ErrInvalidRequestField("transcript", err.Error()).Err()
+			return nil, ErrInvalidRequestField("transcript", err)
 		}
 	}
 
@@ -316,7 +316,7 @@ func (s *TranscriptService) UpdateChunkContribution(ctx context.Context, request
 		return tx.UpdateChunkActivity(ctx, contrib.ChunkID, rw.ActivityFromState(contrib.State))
 	})
 	if err != nil {
-		return nil, ErrFromStore(err, contrib.ID).Err()
+		return nil, ErrFromStore(err, contrib.ID)
 	}
 
 	return contrib.Proto(), nil
@@ -336,13 +336,13 @@ func (s *TranscriptService) RequestChunkContributionState(ctx context.Context, r
 		return err
 	})
 	if err != nil {
-		return nil, ErrFromStore(err, request.ContributionId).Err()
+		return nil, ErrFromStore(err, request.ContributionId)
 	}
 	if err := s.validateContributionStateUpdate(claims, contrib.Author.ID, contrib.State, request.RequestState); err != nil {
 		return nil, err
 	}
 	if request.Comment != "" && !claims.Approver {
-		return nil, ErrPermissionDenied("Only an approver can set a state comment.").Err()
+		return nil, ErrPermissionDenied("Only an approver can set a state comment.")
 	}
 	err = s.persistentDB.WithStore(func(tx *rw.Store) error {
 
@@ -358,7 +358,7 @@ func (s *TranscriptService) RequestChunkContributionState(ctx context.Context, r
 		return tx.UpdateChunkActivity(ctx, contrib.ChunkID, rw.ActivityFromState(contrib.State))
 	})
 	if err != nil {
-		return nil, ErrFromStore(err, request.ContributionId).Err()
+		return nil, ErrFromStore(err, request.ContributionId)
 	}
 	return contrib.Proto(), nil
 }
@@ -376,19 +376,19 @@ func (s *TranscriptService) DeleteChunkContribution(ctx context.Context, request
 		return err
 	})
 	if err != nil {
-		return nil, ErrFromStore(err, request.ContributionId).Err()
+		return nil, ErrFromStore(err, request.ContributionId)
 	}
 	if claims.AuthorID != contrib.Author.ID {
-		return nil, ErrPermissionDenied("you are not the author of this contribution").Err()
+		return nil, ErrPermissionDenied("you are not the author of this contribution")
 	}
 	if contrib.State != models.ContributionStatePending {
-		return nil, ErrFailedPrecondition(fmt.Sprintf("Only pending contributions can be deleted. Actual state was: %s", contrib.State)).Err()
+		return nil, ErrFailedPrecondition(fmt.Sprintf("Only pending contributions can be deleted. Actual state was: %s", contrib.State))
 	}
 	err = s.persistentDB.WithStore(func(s *rw.Store) error {
 		return s.DeleteContribution(ctx, request.ContributionId)
 	})
 	if err != nil {
-		return nil, ErrFromStore(err, "").Err()
+		return nil, ErrFromStore(err, "")
 	}
 	return &emptypb.Empty{}, nil
 }
@@ -414,7 +414,7 @@ func (s *TranscriptService) ListTranscriptChanges(ctx context.Context, request *
 		}
 		return err
 	}); err != nil {
-		return nil, ErrFromStore(err, "").Err()
+		return nil, ErrFromStore(err, "")
 	}
 	return out, nil
 }
@@ -431,11 +431,11 @@ func (s *TranscriptService) GetTranscriptChange(ctx context.Context, request *ap
 		return nil
 	})
 	if err != nil {
-		return nil, ErrFromStore(err, request.Id).Err()
+		return nil, ErrFromStore(err, request.Id)
 	}
 	if !IsApprover(ctx, s.auth) {
 		if change.State == models.ContributionStatePending && !IsAuthor(ctx, s.auth, change.Author.ID) {
-			return nil, ErrPermissionDenied("you cannot view another author's contribution when it is in the pending state").Err()
+			return nil, ErrPermissionDenied("you cannot view another author's contribution when it is in the pending state")
 		}
 	}
 
@@ -454,17 +454,17 @@ func (s *TranscriptService) GetTranscriptChangeDiff(ctx context.Context, request
 		return nil
 	})
 	if err != nil {
-		return nil, ErrFromStore(err, request.Id).Err()
+		return nil, ErrFromStore(err, request.Id)
 	}
 	if !IsApprover(ctx, s.auth) {
 		if newTranscript.State == models.ContributionStatePending && IsAuthor(ctx, s.auth, newTranscript.Author.ID) {
-			return nil, ErrPermissionDenied("you cannot view another author's contribution diff when it is in the pending state").Err()
+			return nil, ErrPermissionDenied("you cannot view another author's contribution diff when it is in the pending state")
 		}
 	}
 
 	oldTranscript, err := s.episodeCache.GetEpisode(newTranscript.EpID)
 	if err != nil {
-		return nil, ErrNotFound(newTranscript.EpID).Err()
+		return nil, ErrNotFound(newTranscript.EpID)
 	}
 
 	oldTranscriptRaw, err := transcript.Export(oldTranscript.Transcript, oldTranscript.Synopsis, oldTranscript.Trivia)
@@ -543,7 +543,7 @@ func (s *TranscriptService) CreateTranscriptChange(ctx context.Context, request 
 			return err
 		}
 		if len(changes) > 0 {
-			return ErrFailedPrecondition("multiple changes cannot exist at once. Try again once the current change has been processed.").Err()
+			return ErrFailedPrecondition("multiple changes cannot exist at once. Try again once the current change has been processed.")
 		}
 		change, err = s.CreateTranscriptChange(ctx, &models.TranscriptChangeCreate{
 			AuthorID:          claims.AuthorID,
@@ -555,7 +555,7 @@ func (s *TranscriptService) CreateTranscriptChange(ctx context.Context, request 
 		return err
 	})
 	if err != nil {
-		return nil, ErrFromStore(err, "").Err()
+		return nil, ErrFromStore(err, "")
 	}
 	return change.Proto(), nil
 }
@@ -574,7 +574,7 @@ func (s *TranscriptService) UpdateTranscriptChange(ctx context.Context, request 
 		return err
 	})
 	if err != nil {
-		return nil, ErrFromStore(err, request.Id).Err()
+		return nil, ErrFromStore(err, request.Id)
 	}
 
 	if err := s.validateLockedState(ctx, oldChange.EpID); err != nil {
@@ -589,7 +589,7 @@ func (s *TranscriptService) UpdateTranscriptChange(ctx context.Context, request 
 	// allow invalid transcript while the contribution is still pending.
 	if request.State != api.ContributionState_STATE_PENDING {
 		if err := transcript.Validate(bufio.NewScanner(bytes.NewBufferString(request.Transcript))); err != nil {
-			return nil, ErrInvalidRequestField("transcript", err.Error()).Err()
+			return nil, ErrInvalidRequestField("transcript", err)
 		}
 	}
 
@@ -609,7 +609,7 @@ func (s *TranscriptService) UpdateTranscriptChange(ctx context.Context, request 
 		return err
 	})
 	if err != nil {
-		return nil, ErrFromStore(err, "").Err()
+		return nil, ErrFromStore(err, "")
 	}
 	return updatedChange.Proto(), nil
 }
@@ -626,19 +626,19 @@ func (s *TranscriptService) DeleteTranscriptChange(ctx context.Context, request 
 		return err
 	})
 	if err != nil {
-		return nil, ErrFromStore(err, request.Id).Err()
+		return nil, ErrFromStore(err, request.Id)
 	}
 	if change.Author.ID != claims.AuthorID {
-		return nil, ErrNotFound(request.Id).Err()
+		return nil, ErrNotFound(request.Id)
 	}
 	if change.State != models.ContributionStatePending {
-		return nil, ErrFailedPrecondition("change must be in pending state").Err()
+		return nil, ErrFailedPrecondition("change must be in pending state")
 	}
 	err = s.persistentDB.WithStore(func(s *rw.Store) error {
 		return s.DeleteTranscriptChange(ctx, request.Id)
 	})
 	if err != nil {
-		return nil, ErrFromStore(err, request.Id).Err()
+		return nil, ErrFromStore(err, request.Id)
 	}
 	return &emptypb.Empty{}, nil
 }
@@ -655,7 +655,7 @@ func (s *TranscriptService) RequestTranscriptChangeState(ctx context.Context, re
 		return err
 	})
 	if err != nil {
-		return nil, ErrFromStore(err, request.Id).Err()
+		return nil, ErrFromStore(err, request.Id)
 	}
 
 	if err := s.validateLockedState(ctx, oldChange.EpID); err != nil {
@@ -672,7 +672,7 @@ func (s *TranscriptService) RequestTranscriptChangeState(ctx context.Context, re
 		return tx.UpdateTranscriptChangeState(ctx, request.Id, models.ContributionStateFromProto(request.State), request.PointsOnApprove)
 	})
 	if err != nil {
-		return nil, ErrFromStore(err, request.Id).Err()
+		return nil, ErrFromStore(err, request.Id)
 	}
 	return &emptypb.Empty{}, nil
 }
@@ -704,7 +704,7 @@ func (s *TranscriptService) validateLockedState(ctx context.Context, epID string
 		}
 		for _, v := range inProgressTscripts {
 			if epID == models.EpID(v.Publication, v.Series, v.Episode) {
-				return ErrFailedPrecondition("episode is locked").Err()
+				return ErrFailedPrecondition("episode is locked")
 			}
 		}
 		return err
@@ -714,23 +714,23 @@ func (s *TranscriptService) validateLockedState(ctx context.Context, epID string
 func (s *TranscriptService) validateContributionStateUpdate(claims *jwt.Claims, currentAuthorID string, currentState models.ContributionState, requestedState api.ContributionState) error {
 	if !claims.Approver {
 		if currentAuthorID != claims.AuthorID {
-			return ErrPermissionDenied("you are not the author of this contribution").Err()
+			return ErrPermissionDenied("you are not the author of this contribution")
 		}
 		if requestedState == api.ContributionState_STATE_APPROVED || requestedState == api.ContributionState_STATE_REJECTED {
-			return ErrPermissionDenied("You are not allowed to approve/reject contributions.").Err()
+			return ErrPermissionDenied("You are not allowed to approve/reject contributions.")
 		}
 	}
 	// if the contribution has been rejected allow the author to return it to pending.
 	if currentState == models.ContributionStateRejected {
 		if requestedState != api.ContributionState_STATE_PENDING {
-			return ErrFailedPrecondition(fmt.Sprintf("Only rejected contributions can be reverted to pending. Actual state was: %s (requested: %s)", currentState, requestedState)).Err()
+			return ErrFailedPrecondition(fmt.Sprintf("Only rejected contributions can be reverted to pending. Actual state was: %s (requested: %s)", currentState, requestedState))
 		}
 	} else if currentState == models.ContributionStateApproved {
 
 	} else {
 		/// otherwise only allow it to be updated if it's in the pending or approval requested state.
 		if currentState != models.ContributionStatePending && currentState != models.ContributionStateApprovalRequested {
-			return ErrFailedPrecondition(fmt.Sprintf("Only pending contributions can be edited. Actual state was: %s", currentState)).Err()
+			return ErrFailedPrecondition(fmt.Sprintf("Only pending contributions can be edited. Actual state was: %s", currentState))
 		}
 	}
 	return nil

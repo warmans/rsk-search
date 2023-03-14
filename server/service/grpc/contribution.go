@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
+	"github.com/pkg/errors"
 	"github.com/warmans/rsk-search/gen/api"
 	"github.com/warmans/rsk-search/pkg/coffee"
 	"github.com/warmans/rsk-search/pkg/jwt"
@@ -92,7 +93,7 @@ func (s *ContributionsService) ListAuthorRanks(ctx context.Context, request *api
 		return nil
 	})
 	if err != nil {
-		return nil, ErrFromStore(err, "").Err()
+		return nil, ErrFromStore(err, "")
 	}
 	return out, err
 }
@@ -117,7 +118,7 @@ func (s *ContributionsService) ListPendingRewards(ctx context.Context, empty *em
 		return err
 	})
 	if err != nil {
-		return nil, ErrFromStore(err, "").Err()
+		return nil, ErrFromStore(err, "")
 	}
 
 	result := &api.PendingRewardList{
@@ -144,7 +145,7 @@ func (s *ContributionsService) ListClaimedRewards(ctx context.Context, empty *em
 		return err
 	})
 	if err != nil {
-		return nil, ErrFromStore(err, "").Err()
+		return nil, ErrFromStore(err, "")
 	}
 
 	result := &api.ClaimedRewardList{
@@ -159,7 +160,7 @@ func (s *ContributionsService) ListClaimedRewards(ctx context.Context, empty *em
 func (s *ContributionsService) ClaimReward(ctx context.Context, request *api.ClaimRewardRequest) (*emptypb.Empty, error) {
 
 	if s.srvCfg.RewardsDisabled {
-		return nil, ErrFailedPrecondition("rewards are disabled temporarily").Err()
+		return nil, ErrFailedPrecondition("rewards are disabled temporarily")
 	}
 
 	err := s.persistentDB.WithStore(func(store *rw.Store) error {
@@ -171,7 +172,7 @@ func (s *ContributionsService) ClaimReward(ctx context.Context, request *api.Cla
 
 		donationArgs := request.GetDonationArgs()
 		if donationArgs == nil {
-			return ErrInvalidRequestField("args", "exepcted donation details in args").Err()
+			return ErrInvalidRequestField("args", errors.New("exepcted donation details in args"))
 		}
 
 		var recipient *api.DonationRecipient
@@ -181,7 +182,7 @@ func (s *ContributionsService) ClaimReward(ctx context.Context, request *api.Cla
 			}
 		}
 		if recipient == nil {
-			return ErrInvalidRequestField("args", "unknown recipient").Err()
+			return ErrInvalidRequestField("args", errors.New("unknown recipient"))
 		}
 
 		//todo: fetch donations and check metadata for ID
@@ -202,7 +203,7 @@ func (s *ContributionsService) ClaimReward(ctx context.Context, request *api.Cla
 		})
 		if err != nil {
 			s.logger.Error("Failed to claim reward. Pledge call failed", zap.Error(err))
-			return ErrThirdParty("donation could not be completed").Err()
+			return ErrThirdParty("donation could not be completed")
 		}
 		s.logger.Info(
 			"donation OK",
@@ -223,7 +224,7 @@ func (s *ContributionsService) ClaimReward(ctx context.Context, request *api.Cla
 		)
 	})
 	if err != nil {
-		return nil, ErrFromStore(err, request.Id).Err()
+		return nil, ErrFromStore(err, request.Id)
 	}
 	return &emptypb.Empty{}, nil
 }
@@ -255,7 +256,7 @@ func (s *ContributionsService) ListAuthorContributions(ctx context.Context, requ
 		return nil
 	})
 	if err != nil {
-		return nil, ErrFromStore(err, "").Err()
+		return nil, ErrFromStore(err, "")
 	}
 	return out, nil
 }
@@ -267,7 +268,7 @@ func (s *ContributionsService) GetDonationStats(ctx context.Context, empty *empt
 		stats, err = s.GetDonationStats(ctx)
 		return err
 	}); err != nil {
-		return nil, ErrFromStore(err, "").Err()
+		return nil, ErrFromStore(err, "")
 	}
 	return stats.Proto(), nil
 }
@@ -280,7 +281,7 @@ func (s *ContributionsService) ListIncomingDonations(ctx context.Context, reques
 	}
 	sups, err := s.coffee.Supporters()
 	if err != nil {
-		return nil, ErrInternal(err).Err()
+		return nil, ErrInternal(err)
 	}
 	for _, sup := range sups.Data {
 		priceFloat, err := strconv.ParseFloat(sup.Price, 32)
