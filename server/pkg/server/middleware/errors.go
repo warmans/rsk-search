@@ -7,14 +7,14 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-func UnaryErrorInterceptor() googleGrpc.UnaryServerInterceptor {
+func UnaryErrorObfuscatorInterceptor() googleGrpc.UnaryServerInterceptor {
 	return func(ctx context.Context, req interface{}, info *googleGrpc.UnaryServerInfo, handler googleGrpc.UnaryHandler) (_ interface{}, err error) {
 		resp, err := handler(ctx, req)
 		return resp, handleError(ctx, err)
 	}
 }
 
-func StreamErrorServerInterceptor() googleGrpc.StreamServerInterceptor {
+func StreamErrorObfuscatorInterceptor() googleGrpc.StreamServerInterceptor {
 	return func(srv interface{}, stream googleGrpc.ServerStream, info *googleGrpc.StreamServerInfo, handler googleGrpc.StreamHandler) (err error) {
 		return handleError(stream.Context(), handler(srv, stream))
 	}

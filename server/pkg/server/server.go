@@ -55,7 +55,7 @@ func NewServer(logger *zap.Logger, cfg GrpcServerConfig, grpcServices []GRPCServ
 
 	grpcServer := grpc.NewServer(
 		grpc.UnaryInterceptor(grpc_middleware.ChainUnaryServer(
-			middleware.UnaryErrorInterceptor(),
+			middleware.UnaryErrorObfuscatorInterceptor(),
 			grpc_zap.UnaryServerInterceptor(
 				logger,
 				grpc_zap.WithMessageProducer(middleware.LogMessageProducer()),
@@ -68,7 +68,7 @@ func NewServer(logger *zap.Logger, cfg GrpcServerConfig, grpcServices []GRPCServ
 			grpc_prometheus.UnaryServerInterceptor,
 		)),
 		grpc.StreamInterceptor(grpc_middleware.ChainStreamServer(
-			middleware.StreamErrorServerInterceptor(),
+			middleware.StreamErrorObfuscatorInterceptor(),
 			grpc_zap.StreamServerInterceptor(
 				logger,
 				grpc_zap.WithMessageProducer(middleware.LogMessageProducer()),
