@@ -19,6 +19,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/server/middleware"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 	"net"
 	"net/http"
 )
@@ -124,7 +125,7 @@ func (s *Server) StartHTTP() error {
 	router := mux.NewRouter()
 	gwmux := runtime.NewServeMux()
 	ctx := context.Background()
-	opts := []grpc.DialOption{grpc.WithInsecure()}
+	opts := []grpc.DialOption{grpc.WithTransportCredentials(insecure.NewCredentials())}
 
 	for _, srv := range s.httpServices {
 		srv.RegisterHTTP(ctx, router)
