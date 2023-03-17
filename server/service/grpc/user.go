@@ -60,7 +60,7 @@ func (s *UserService) ListNotifications(ctx context.Context, request *api.ListNo
 		return storeErr
 	})
 	if err != nil {
-		ErrFromStore(err, "")
+		return nil, ErrFromStore(err, "")
 	}
 	return notifications.Proto(), err
 }

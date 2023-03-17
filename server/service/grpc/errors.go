@@ -3,7 +3,6 @@ package grpc
 import (
 	"database/sql"
 	"fmt"
-	"github.com/golang/protobuf/proto"
 	"github.com/pkg/errors"
 	"github.com/warmans/rsk-search/pkg/store/rw"
 	"github.com/warmans/rsk-search/pkg/util"
@@ -15,27 +14,18 @@ import (
 
 func ErrInvalidRequestField(field string, err error, moreDetails ...string) error {
 
-	details := []proto.Message{
-		&errdetails.BadRequest{
-			FieldViolations: []*errdetails.BadRequest_FieldViolation{
-				{Field: field, Description: err.Error()},
-			},
+	// todo: moreDetails need to be appended dynamically but it's blocked by:
+	// https://github.com/grpc/grpc-go/issues/6133
+
+	s, err := status.New(codes.InvalidArgument, http.StatusText(http.StatusBadRequest)).WithDetails(&errdetails.BadRequest{
+		FieldViolations: []*errdetails.BadRequest_FieldViolation{
+			{Field: field, Description: err.Error()},
 		},
+	},
 		&errdetails.DebugInfo{
 			Detail:       err.Error(),
 			StackEntries: util.ErrTrace(err, 7),
-		},
-	}
-	for _, v := range moreDetails {
-		details = append(
-			details,
-			&errdetails.DebugInfo{
-				Detail: v,
-			},
-		)
-	}
-
-	s, err := status.New(codes.InvalidArgument, http.StatusText(http.StatusBadRequest)).WithDetails(details...)
+		})
 	if err != nil {
 		return fmt.Errorf("failed to create error")
 	}
