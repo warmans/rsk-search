@@ -1,6 +1,7 @@
 package sentry
 
 import (
+	"github.com/TheZeroSlave/zapsentry"
 	sentryGo "github.com/getsentry/sentry-go"
 	"github.com/spf13/pflag"
 	"github.com/warmans/rsk-search/pkg/flag"
@@ -18,19 +19,14 @@ func (c *Config) RegisterFlags(fs *pflag.FlagSet, prefix string) {
 	flag.StringVarEnv(fs, &c.DSN, prefix, "sentry-dsn", "", "Sentry DSN")
 }
 
-func InitSentry(cfg *Config) error {
-	if cfg.DSN == "" {
-		return nil
-	}
-	err := sentryGo.Init(sentryGo.ClientOptions{
+func NewClient(cfg *Config) (*sentryGo.Client, error) {
+	sentryClient, err := sentryGo.NewClient(sentryGo.ClientOptions{
 		Dsn: cfg.DSN,
-		// Set TracesSampleRate to 1.0 to capture 100%
-		// of transactions for performance monitoring.
-		// We recommend adjusting this value in production,
-		TracesSampleRate: 1.0,
 	})
-	sentryInitialized = true
-	return err
+	if err != nil {
+		return nil, err
+	}
+	return sentryClient, nil
 }
 
 func ZapHook(env string) func(zapcore.Entry) error {
@@ -71,4 +67,26 @@ func zapLevelToSentry(level zapcore.Level) sentryGo.Level {
 	default:
 		return sentryGo.LevelInfo
 	}
+}
+
+func LoggerWithSentry(log *zap.Logger, client *sentryGo.Client, env string) *zap.Logger {
+
+	cfg := zapsentry.Configuration{
+		Level:             zapcore.ErrorLevel, //when to send message to sentry
+		EnableBreadcrumbs: true,               // enable sending breadcrumbs to Sentry
+		BreadcrumbLevel:   zapcore.InfoLevel,  // at what level should we sent breadcrumbs to sentry
+		Tags: map[string]string{
+			"component":   "server",
+			"environment": env,
+		},
+	}
+	core, err := zapsentry.NewCore(cfg, zapsentry.NewSentryClientFromClient(client))
+
+	if err != nil {
+		//in case of err it will return noop core. so we can safely attach it
+		log.Warn("failed to init zap", zap.Error(err))
+	}
+
+	log = zapsentry.AttachCoreToLogger(core, log)
+	return log.With(zapsentry.NewScope())
 }

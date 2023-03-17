@@ -2,9 +2,6 @@ package middleware
 
 import (
 	"context"
-	"github.com/grpc-ecosystem/go-grpc-middleware/logging/zap/ctxzap"
-	"github.com/warmans/rsk-search/service/grpc"
-	"go.uber.org/zap"
 	googleGrpc "google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -27,11 +24,8 @@ func handleError(ctx context.Context, err error) error {
 	if err == nil {
 		return nil
 	}
-
-	staErr, ok := err.(*grpc.Status)
-	if !ok || ok && staErr.Sta.Code() == codes.Internal {
-		ctxzap.Extract(ctx).Error("Internal error was returned by the API", zap.String("reason", err.Error()))
-
+	staErr, ok := status.FromError(err)
+	if !ok || ok && staErr.Code() == codes.Internal {
 		// obfuscate internal errors
 		s := status.New(codes.Internal, "Bauhaus is not working! Internal server error returned.")
 		return s.Err()

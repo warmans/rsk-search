@@ -62,10 +62,10 @@ func ServerCmd() *cobra.Command {
 			var loggerConf zap.Config
 			if os.Getenv("DEBUG") == "false" {
 				loggerConf = zap.NewDevelopmentConfig()
-				loggerConf.DisableStacktrace = true
 			} else {
 				loggerConf = zap.NewProductionConfig()
 			}
+			loggerConf.DisableStacktrace = true
 
 			loggerConf.EncoderConfig.EncodeTime = zapcore.RFC3339TimeEncoder
 			logger, loggerErr := loggerConf.Build()
@@ -78,10 +78,17 @@ func ServerCmd() *cobra.Command {
 				}
 			}()
 
-			if err := sentry.InitSentry(sentryCfg); err != nil {
-				logger.Error("Sentry failed to init")
+			// optionally enable sentry
+			if sentryCfg.DSN != "" {
+				sentryClient, err := sentry.NewClient(sentryCfg)
+				if err != nil {
+					logger.Fatal("failed to create sentry client", zap.Error(err))
+				}
+				defer sentryClient.Flush(2 * time.Second)
+
+				// integrate sentry and zap
+				logger = sentry.LoggerWithSentry(logger, sentryClient, srvCfg.Env)
 			}
-			logger = logger.WithOptions(zap.Hooks(sentry.ZapHook(srvCfg.Env)))
 
 			episodeCache, err := data.NewEpisodeStore(path.Join(srvCfg.FilesBasePath, "data", "episodes"))
 			if err != nil {
@@ -279,4 +286,5 @@ func ServerCmd() *cobra.Command {
 	sentryCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
 
 	return cmd
+
 }

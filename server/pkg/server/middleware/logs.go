@@ -6,11 +6,11 @@ import (
 	grpc_zap "github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"
 	"github.com/grpc-ecosystem/go-grpc-middleware/logging/zap/ctxzap"
 	"github.com/pkg/errors"
-	"github.com/warmans/rsk-search/service/grpc"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"google.golang.org/genproto/googleapis/rpc/errdetails"
 	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 )
 
 func CodeToLevel() grpc_zap.CodeToLevel {
@@ -46,9 +46,10 @@ func LogMessageProducer() grpc_zap.MessageProducer {
 			fields = append(fields, zap.String("error", err.Error()))
 			fields = append(fields, zap.String("error.cause", errors.Cause(err).Error()))
 		}
-		if sta, ok := err.(*grpc.Status); ok && sta.Sta != nil {
-			fields = append(fields, zap.String("grpc.code", sta.Sta.Code().String()))
-			for _, detail := range sta.Sta.Details() {
+
+		if sta, ok := status.FromError(err); ok {
+			fields = append(fields, zap.String("grpc.code", sta.Code().String()))
+			for _, detail := range sta.Details() {
 				switch t := detail.(type) {
 				case *errdetails.DebugInfo:
 					fields = append(fields, zap.String("err.debug.detail", t.Detail))

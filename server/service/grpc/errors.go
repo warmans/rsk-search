@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"github.com/golang/protobuf/proto"
+	"github.com/pkg/errors"
 	"github.com/warmans/rsk-search/pkg/store/rw"
 	"github.com/warmans/rsk-search/pkg/util"
 	"google.golang.org/genproto/googleapis/rpc/errdetails"
@@ -12,19 +13,7 @@ import (
 	"net/http"
 )
 
-func NewStatus(grpcStatus *status.Status) *Status {
-	return &Status{Sta: grpcStatus}
-}
-
-type Status struct {
-	Sta *status.Status
-}
-
-func (sta *Status) Error() string {
-	return sta.Sta.Err().Error()
-}
-
-func ErrInvalidRequestField(field string, err error, moreDetails ...string) *Status {
+func ErrInvalidRequestField(field string, err error, moreDetails ...string) error {
 
 	details := []proto.Message{
 		&errdetails.BadRequest{
@@ -34,7 +23,7 @@ func ErrInvalidRequestField(field string, err error, moreDetails ...string) *Sta
 		},
 		&errdetails.DebugInfo{
 			Detail:       err.Error(),
-			StackEntries: util.ErrTrace(err, 5),
+			StackEntries: util.ErrTrace(err, 7),
 		},
 	}
 	for _, v := range moreDetails {
@@ -48,14 +37,14 @@ func ErrInvalidRequestField(field string, err error, moreDetails ...string) *Sta
 
 	s, err := status.New(codes.InvalidArgument, http.StatusText(http.StatusBadRequest)).WithDetails(details...)
 	if err != nil {
-		return NewStatus(status.New(codes.Internal, "failed to create error"))
+		return fmt.Errorf("failed to create error")
 	}
-	return NewStatus(s)
+	return s.Err()
 }
 
-func ErrFromStore(err error, id string) *Status {
+func ErrFromStore(err error, id string) error {
 	if staErr, ok := status.FromError(err); ok {
-		return NewStatus(staErr)
+		return staErr.Err()
 	}
 	if err == sql.ErrNoRows {
 		return ErrNotFound(id)
@@ -66,13 +55,15 @@ func ErrFromStore(err error, id string) *Status {
 	return ErrInternal(err)
 }
 
-func ErrInternal(err error) *Status {
+func ErrInternal(err error) error {
 	if err == nil {
-		return NewStatus(status.New(codes.Internal, http.StatusText(http.StatusInternalServerError)))
+		return status.New(codes.Internal, http.StatusText(http.StatusInternalServerError)).Err()
 	}
+	err = errors.WithStack(err)
+
 	// do not wrap existing grpc errors
 	if sta, ok := status.FromError(err); ok {
-		return NewStatus(sta)
+		return sta.Err()
 	}
 	s, errErr := status.New(codes.Internal, http.StatusText(http.StatusInternalServerError)).WithDetails(
 		&errdetails.DebugInfo{
@@ -82,107 +73,107 @@ func ErrInternal(err error) *Status {
 		&errdetails.ErrorInfo{Reason: err.Error()},
 	)
 	if errErr != nil {
-		return NewStatus(status.New(codes.Internal, "failed to create error"))
+		return status.New(codes.Internal, "failed to create error").Err()
 	}
-	return NewStatus(s)
+	return s.Err()
 }
 
-func ErrNotFound(id string) *Status {
+func ErrNotFound(id string) error {
 	s, err := status.New(codes.NotFound, http.StatusText(http.StatusNotFound)).WithDetails(
 		&errdetails.DebugInfo{
 			Detail: fmt.Sprintf("no record found with ID: %s", id),
 		},
 	)
 	if err != nil {
-		return NewStatus(status.New(codes.Internal, "failed to create error"))
+		return status.New(codes.Internal, "failed to create error").Err()
 	}
-	return NewStatus(s)
+	return s.Err()
 }
 
-func ErrServerConfused() *Status {
+func ErrServerConfused() error {
 	s, err := status.New(codes.InvalidArgument, http.StatusText(http.StatusBadRequest)).WithDetails(
 		&errdetails.DebugInfo{
 			Detail: "Server was confused by request",
 		},
 	)
 	if err != nil {
-		return NewStatus(status.New(codes.Internal, "failed to create error"))
+		return status.New(codes.Internal, "failed to create error").Err()
 	}
-	return NewStatus(s)
+	return s.Err()
 }
 
-func ErrAuthFailed() *Status {
+func ErrAuthFailed() error {
 	s, err := status.New(codes.Unauthenticated, http.StatusText(http.StatusUnauthorized)).WithDetails(
 		&errdetails.DebugInfo{
 			Detail: "Authorization request failed as the verification code did not match. It may have already expired.",
 		},
 	)
 	if err != nil {
-		return NewStatus(status.New(codes.Internal, "failed to create error"))
+		return status.New(codes.Internal, "failed to create error").Err()
 	}
-	return NewStatus(s)
+	return s.Err()
 }
 
-func ErrUnauthorized(reason string) *Status {
+func ErrUnauthorized(reason string) error {
 	s, err := status.New(codes.Unauthenticated, http.StatusText(http.StatusUnauthorized)).WithDetails(
 		&errdetails.DebugInfo{
 			Detail: fmt.Sprintf("Authorization failed with reason: %s", reason),
 		},
 	)
 	if err != nil {
-		return NewStatus(status.New(codes.Internal, "failed to create error"))
+		return status.New(codes.Internal, "failed to create error").Err()
 	}
-	return NewStatus(s)
+	return s.Err()
 }
 
-func ErrPermissionDenied(reason string) *Status {
+func ErrPermissionDenied(reason string) error {
 	s, err := status.New(codes.PermissionDenied, http.StatusText(http.StatusForbidden)).WithDetails(
 		&errdetails.DebugInfo{
 			Detail: fmt.Sprintf("Permission was denied for action: %s", reason),
 		},
 	)
 	if err != nil {
-		return NewStatus(status.New(codes.Internal, "failed to create error"))
+		return status.New(codes.Internal, "failed to create error").Err()
 	}
-	return NewStatus(s)
+	return s.Err()
 }
 
-func ErrFailedPrecondition(reason string) *Status {
+func ErrFailedPrecondition(reason string) error {
 	s, err := status.New(codes.FailedPrecondition, http.StatusText(http.StatusBadRequest)).WithDetails(
 		&errdetails.DebugInfo{
 			Detail: fmt.Sprintf("Precondition failed: %s", reason),
 		},
 	)
 	if err != nil {
-		return NewStatus(status.New(codes.Internal, "failed to create error"))
+		return status.New(codes.Internal, "failed to create error").Err()
 	}
-	return NewStatus(s)
+	return s.Err()
 }
 
-func ErrNotImplemented() *Status {
-	return NewStatus(status.New(codes.Unimplemented, http.StatusText(http.StatusNotImplemented)))
+func ErrNotImplemented() error {
+	return status.New(codes.Unimplemented, http.StatusText(http.StatusNotImplemented)).Err()
 }
 
-func ErrRateLimited() *Status {
+func ErrRateLimited() error {
 	s, err := status.New(codes.Unavailable, http.StatusText(http.StatusServiceUnavailable)).WithDetails(
 		&errdetails.DebugInfo{
 			Detail: "Too many requests",
 		},
 	)
 	if err != nil {
-		return NewStatus(status.New(codes.Internal, "failed to create error"))
+		return status.New(codes.Internal, "failed to create error").Err()
 	}
-	return NewStatus(s)
+	return s.Err()
 }
 
-func ErrThirdParty(reason string) *Status {
+func ErrThirdParty(reason string) error {
 	s, err := status.New(codes.Unavailable, http.StatusText(http.StatusServiceUnavailable)).WithDetails(
 		&errdetails.DebugInfo{
 			Detail: fmt.Sprintf("External service was unable to process request: %s", reason),
 		},
 	)
 	if err != nil {
-		return NewStatus(status.New(codes.Internal, "failed to create error"))
+		return status.New(codes.Internal, "failed to create error").Err()
 	}
-	return NewStatus(s)
+	return s.Err()
 }

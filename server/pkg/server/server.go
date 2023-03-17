@@ -55,21 +55,26 @@ func NewServer(logger *zap.Logger, cfg GrpcServerConfig, grpcServices []GRPCServ
 
 	grpcServer := grpc.NewServer(
 		grpc.UnaryInterceptor(grpc_middleware.ChainUnaryServer(
+			middleware.UnaryErrorInterceptor(),
 			grpc_zap.UnaryServerInterceptor(
 				logger,
 				grpc_zap.WithMessageProducer(middleware.LogMessageProducer()),
 				grpc_zap.WithLevels(middleware.CodeToLevel()),
 			),
 			grpc_recovery.UnaryServerInterceptor(panicHandler),
-			middleware.UnaryErrorInterceptor(),
+
 			grpc_ctxtags.UnaryServerInterceptor(),
 			grpc_validator.UnaryServerInterceptor(),
 			grpc_prometheus.UnaryServerInterceptor,
 		)),
 		grpc.StreamInterceptor(grpc_middleware.ChainStreamServer(
-			grpc_zap.StreamServerInterceptor(logger, grpc_zap.WithMessageProducer(middleware.LogMessageProducer())),
-			grpc_recovery.StreamServerInterceptor(panicHandler),
 			middleware.StreamErrorServerInterceptor(),
+			grpc_zap.StreamServerInterceptor(
+				logger,
+				grpc_zap.WithMessageProducer(middleware.LogMessageProducer()),
+				grpc_zap.WithLevels(middleware.CodeToLevel()),
+			),
+			grpc_recovery.StreamServerInterceptor(panicHandler),
 			grpc_ctxtags.StreamServerInterceptor(),
 			grpc_validator.StreamServerInterceptor(),
 			grpc_prometheus.StreamServerInterceptor,

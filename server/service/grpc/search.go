@@ -81,6 +81,7 @@ func (s *SearchService) Search(ctx context.Context, request *api.SearchRequest) 
 	if err != nil {
 		return nil, ErrInvalidRequestField("query", err, fmt.Sprintf("query: %s", request.Query))
 	}
+
 	if err := checkWhy(f); err != nil {
 		return nil, err
 	}
@@ -133,6 +134,9 @@ func (s *SearchService) ListChangelogs(ctx context.Context, request *api.ListCha
 }
 
 func checkWhy(f filter.Filter) error {
+	if f == nil {
+		return nil
+	}
 	visitor := filter.NewExtractFilterVisitor(f)
 	filters, err := visitor.ExtractCompFilters("content")
 	if err != nil {
