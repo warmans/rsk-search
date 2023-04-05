@@ -250,7 +250,7 @@ func (q *ImportQueue) HandleCreateMachineTranscription(ctx context.Context, t *a
 	}
 	defer outFile.Close()
 
-	if err := speech2text.MapChunksFromGoogleTranscript(tsImport.EpID, tsImport.EpName, outputFile, outFile); err != nil {
+	if err := speech2text.MapChunksFromRawTranscript(tsImport.EpID, tsImport.EpName, outputFile, outFile); err != nil {
 		return err
 	}
 

@@ -12,7 +12,7 @@ import (
 
 const targetChunkDuration = 180
 
-func MapChunksFromGoogleTranscript(epid string, epName string, inFile io.Reader, outputWriter io.Writer) error {
+func MapChunksFromRawTranscript(epid string, epName string, inFile io.Reader, outputWriter io.Writer) error {
 
 	ts, err := getIncompleteTranscriptionModelFromName(epid, epName)
 	if err != nil {
