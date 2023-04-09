@@ -92,12 +92,12 @@ func (c *OauthService) RedditReturnHandler(resp http.ResponseWriter, req *http.R
 
 	// verify identity is in good standing
 	if c.oauthCfg.KarmaLimit > 0 && ident.TotalKarma < c.oauthCfg.KarmaLimit {
-		returnParams.Add("error", "Account did not meet minimum karma requirements.")
+		returnParams.Add("error", fmt.Sprintf("Account did not meet minimum karma requirements. You must have at least %d karma to authenticate.", c.oauthCfg.KarmaLimit))
 		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
 		return
 	}
 	if c.oauthCfg.MinAccountAgeDays > 0 && time.Unix(int64(ident.CreatedUTC), 0).Add(0-(time.Hour*24*time.Duration(c.oauthCfg.MinAccountAgeDays))).Before(time.Now().UTC()) {
-		returnParams.Add("error", "Account did not meet minimum age requirements.")
+		returnParams.Add("error", fmt.Sprintf("Account did not meet minimum age requirements. Your account must be at least %d days old to authenticate.", c.oauthCfg.MinAccountAgeDays))
 		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
 		return
 	}

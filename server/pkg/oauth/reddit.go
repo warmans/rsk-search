@@ -17,8 +17,8 @@ func (c *Config) RegisterFlags(fs *pflag.FlagSet, prefix string) {
 	flag.StringVarEnv(fs, &c.Secret, prefix, "oauth-secret", "", "reddit oauth secret")
 	flag.StringVarEnv(fs, &c.AppID, prefix, "oauth-app-id", "PytL99OIbkuUKw", "reddit application id")
 	flag.StringVarEnv(fs, &c.ReturnURL, prefix, "oauth-return-url", "http://localhost:4200/oauth/reddit/return", "return url must match reddit config")
-	flag.Int64VarEnv(fs, &c.KarmaLimit, prefix, "oath-karma-limit", 0, "only allow accounts with at least this much karma")
-	flag.Int64VarEnv(fs, &c.MinAccountAgeDays, prefix, "oath-account-minage", 0, "only allow accounts at least this many days old")
+	flag.Int64VarEnv(fs, &c.KarmaLimit, prefix, "oath-karma-limit", 10, "only allow accounts with at least this much karma")
+	flag.Int64VarEnv(fs, &c.MinAccountAgeDays, prefix, "oath-account-minage", 1, "only allow accounts at least this many days old")
 }
 
 type Identity struct {
