@@ -96,10 +96,14 @@ func (c *OauthService) RedditReturnHandler(resp http.ResponseWriter, req *http.R
 		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
 		return
 	}
-	if c.oauthCfg.MinAccountAgeDays > 0 && time.Unix(int64(ident.CreatedUTC), 0).Add(0-(time.Hour*24*time.Duration(c.oauthCfg.MinAccountAgeDays))).Before(time.Now().UTC()) {
-		returnParams.Add("error", fmt.Sprintf("Account did not meet minimum age requirements. Your account must be at least %d days old to authenticate.", c.oauthCfg.MinAccountAgeDays))
-		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
-		return
+	if c.oauthCfg.MinAccountAgeDays > 0 {
+		accountCreatedDate := time.Unix(int64(ident.CreatedUTC), 0)
+		c.logger.Debug("Check account age", zap.Time("account_created", accountCreatedDate), zap.Time("current_time", time.Now().UTC()))
+		if accountCreatedDate.After(time.Now().UTC().Add(0 - (time.Hour * 24 * time.Duration(c.oauthCfg.MinAccountAgeDays)))) {
+			returnParams.Add("error", fmt.Sprintf("Account did not meet minimum age requirements. Your account must be at least %d days old to authenticate.", c.oauthCfg.MinAccountAgeDays))
+			http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
+			return
+		}
 	}
 	if !ident.HasVerifiedEmail || ident.IsSuspended {
 		returnParams.Add("error", "Account is unverified or suspended.")
