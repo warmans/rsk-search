@@ -22,9 +22,14 @@
           </div>
           <div class="sub-title font-weight-light">
             <a (click)="toggleEpisode(episode)">
-              <i class="clickable mr-2" [ngClass]="{'bi-play-circle-fill': !played, 'bi-play-circle': played, 'text-success': playing}"></i>
-              {{episode.shortId}}
+              <i class="clickable mr-1" [ngClass]="{'bi-play-circle-fill': !played, 'bi-play-circle': played, 'text-success': playing}"></i>
             </a> |
+            <a *ngIf="loggedIn" [href]="episode.audioUri" target="_blank">
+              {{episode.shortId}}
+            </a>
+            <span *ngIf="!loggedIn">
+              {{episode.shortId}}
+            </span> |
             {{ ( episode.metadata["duration_ms"] | formatSeconds: true ) || "Duration Unknown" }} |
             {{ (episode.releaseDate | date) || "Date Unknown" }}
 

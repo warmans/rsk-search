@@ -19,7 +19,7 @@ export class RootComponent implements OnInit, OnDestroy {
 
   darkTheme: boolean = true;
 
-  destory$: EventEmitter<boolean> = new EventEmitter<boolean>();
+  destroy$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   quotas: RskQuotas;
   bandwidthQuotaUsedPcnt: number = 0;
@@ -32,19 +32,19 @@ export class RootComponent implements OnInit, OnDestroy {
     private apiClient: SearchAPIClient,
     private quotaService: QuotaService,
   ) {
-    session.onTokenChange.pipe(takeUntil(this.destory$)).subscribe((token) => {
+    session.onTokenChange.pipe(takeUntil(this.destroy$)).subscribe((token) => {
       if (token) {
         this.loggedInUser = this.session.getClaims();
       } else {
         this.loggedInUser = undefined;
       }
     });
-    this.router.events.pipe(takeUntil(this.destory$)).subscribe((event) => {
+    this.router.events.pipe(takeUntil(this.destroy$)).subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.embedMode = event.url.startsWith('/embed');
       }
     });
-    quotaService.quotas$.pipe(takeUntil(this.destory$)).subscribe((res: RskQuotas) => {
+    quotaService.quotas$.pipe(takeUntil(this.destroy$)).subscribe((res: RskQuotas) => {
       this.quotas = res;
       this.bandwidthQuotaUsedPcnt = (1 - (res.bandwidthRemainingMib / res.bandwidthTotalMib));
     });
@@ -61,8 +61,8 @@ export class RootComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.destory$.next(true);
-    this.destory$.complete();
+    this.destroy$.next(true);
+    this.destroy$.complete();
   }
 
   toggleDarkmode() {

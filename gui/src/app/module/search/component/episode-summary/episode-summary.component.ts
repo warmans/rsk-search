@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, In
 import { RskShortTranscript } from '../../../../lib/api-client/models';
 import { AudioService, Status } from '../../../core/service/audio/audio.service';
 import { takeUntil } from 'rxjs/operators';
+import { SessionService } from 'src/app/module/core/service/session/session.service';
 
 @Component({
   selector: 'app-episode-summary',
@@ -21,6 +22,8 @@ export class EpisodeSummaryComponent implements OnInit, OnDestroy {
     return this._episode;
   }
 
+  loggedIn: boolean = false;
+
   private _episode: RskShortTranscript;
 
   episodeImage: string;
@@ -31,7 +34,14 @@ export class EpisodeSummaryComponent implements OnInit, OnDestroy {
 
   private destroy$ = new EventEmitter<void>();
 
-  constructor(private audioService: AudioService, private cdr: ChangeDetectorRef) {
+  constructor(private audioService: AudioService, private cdr: ChangeDetectorRef, private session: SessionService,) {
+    session.onTokenChange.pipe(takeUntil(this.destroy$)).subscribe((token) => {
+      if (token) {
+        this.loggedIn = !!this.session.getClaims();
+      } else {
+        this.loggedIn = false;
+      }
+    });
   }
 
   ngOnInit(): void {
