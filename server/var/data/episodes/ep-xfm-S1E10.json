@@ -4,7 +4,7 @@
     "episode": 10,
     "name": "",
     "summary": "",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "release_date": "2002-01-26T00:00:00Z",
     "incomplete": false,
     "bestof": false,
@@ -9776,11 +9776,6 @@
     ],
     "synopsis": [
       {
-        "description": "The show begins with inarticulation and a general go at Ricky",
-        "start_pos": 0,
-        "end_pos": 15
-      },
-      {
         "description": "Steve spends several hours trying to get the best deal on a PS2",
         "start_pos": 15,
         "end_pos": 33
@@ -9887,7 +9882,14 @@
       }
     ],
     "contributors": [
-      "EarthlingCalling"
+      "EarthlingCalling",
+      "warmans"
     ],
-    "trivia": null
+    "trivia": [
+      {
+        "description": "![tiger skin](/dl/media/file/tiger-skin.jpg)",
+        "start_pos": 337,
+        "end_pos": 395
+      }
+    ]
   }
