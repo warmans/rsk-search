@@ -5,7 +5,6 @@ import { EpisodeComponent } from './page/episode/episode.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgSelectModule } from '@ng-select/ng-select';
 import { NgChartsModule } from 'ng2-charts';
 import { SearchStatsComponent } from './component/search-stats/search-stats.component';
 import { MatchedRowPosPipe } from './pipe/match-row-pos.pipe';
@@ -38,7 +37,6 @@ import { SearchBarSuggestionComponent } from 'src/app/module/search/component/se
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    NgSelectModule,
     NgChartsModule,
     EmbedModule,
   ],
