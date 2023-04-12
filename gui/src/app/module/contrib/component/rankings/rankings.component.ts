@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { RskAuthorRank, RskAuthorRankList } from 'src/app/lib/api-client/models';
 import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { Like } from 'src/app/lib/filter-dsl/filter';
 import { Str } from 'src/app/lib/filter-dsl/value';
 
@@ -17,7 +17,7 @@ export class RankingsComponent implements OnInit, OnDestroy {
 
   ranking: RskAuthorRank[] = [];
 
-  searchInput: FormControl = new FormControl('');
+  searchInput: UntypedFormControl = new UntypedFormControl('');
 
   loading: boolean = false;
   showMoreInfo: boolean;

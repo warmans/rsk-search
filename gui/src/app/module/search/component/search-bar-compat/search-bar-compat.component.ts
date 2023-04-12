@@ -1,5 +1,5 @@
 import { Component, ElementRef, EventEmitter, HostListener, OnDestroy, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
 import { ParseTerms, Term } from 'src/app/lib/search-parser/parser';
@@ -24,7 +24,7 @@ export class SearchBarCompatComponent implements OnInit, OnDestroy {
 
   focusState: 'idle' | 'focus' | 'typing' = 'idle';
 
-  inputFormControl: FormControl = new FormControl('');
+  inputFormControl: UntypedFormControl = new UntypedFormControl('');
 
   destroy$: Subject<void> = new Subject<void>();
 

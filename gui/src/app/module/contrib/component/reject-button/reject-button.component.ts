@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 import { AlertService } from '../../../core/service/alert/alert.service';
 
@@ -21,7 +21,7 @@ export class RejectButtonComponent implements OnInit, OnDestroy {
 
   loading: boolean = false;
 
-  reasonInput: FormControl = new FormControl();
+  reasonInput: UntypedFormControl = new UntypedFormControl();
 
   destroy$: EventEmitter<boolean> = new EventEmitter<boolean>();
 

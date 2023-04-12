@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { KeyPressEventCodes } from '../../../../lib/keys';
 
 @Component({
@@ -17,17 +17,17 @@ export class EditorConfigComponent implements OnInit {
   @Output()
   configUpdated: EventEmitter<EditorConfig> = new EventEmitter<EditorConfig>();
 
-  configForm: FormGroup = new FormGroup({
-    'playPauseKey': new FormControl(),
-    'playbackRate': new FormControl(),
-    'backtrack': new FormControl(),
-    'fastForwardKey': new FormControl(),
-    'rewindKey': new FormControl(),
-    'insertOffsetKey': new FormControl(),
-    'insertOffsetBacktrack': new FormControl(),
-    'insertSynKey': new FormControl(),
-    'autoSeek': new FormControl(),
-    'wrapText': new FormControl(),
+  configForm: UntypedFormGroup = new UntypedFormGroup({
+    'playPauseKey': new UntypedFormControl(),
+    'playbackRate': new UntypedFormControl(),
+    'backtrack': new UntypedFormControl(),
+    'fastForwardKey': new UntypedFormControl(),
+    'rewindKey': new UntypedFormControl(),
+    'insertOffsetKey': new UntypedFormControl(),
+    'insertOffsetBacktrack': new UntypedFormControl(),
+    'insertSynKey': new UntypedFormControl(),
+    'autoSeek': new UntypedFormControl(),
+    'wrapText': new UntypedFormControl(),
   });
 
   keyCodes = KeyPressEventCodes;
@@ -50,7 +50,7 @@ export class EditorConfigComponent implements OnInit {
   }
 
   validateKeyBindings(): ValidatorFn {
-    return (group: FormGroup): ValidationErrors => {
+    return (group: UntypedFormGroup): ValidationErrors => {
       const boundKeys: { [index: string]: boolean } = {};
 
       for (let ctrlName in group.controls) {

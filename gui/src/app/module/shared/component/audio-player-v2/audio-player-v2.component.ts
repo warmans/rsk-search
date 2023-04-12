@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit } from '@angular/core';
 import { AudioService, PlayerState, Status } from '../../../core/service/audio/audio.service';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
@@ -17,9 +17,9 @@ export class AudioPlayerV2Component implements OnInit, OnDestroy {
 
   states = PlayerState;
 
-  volumeControl: FormControl = new FormControl(100);
+  volumeControl: UntypedFormControl = new UntypedFormControl(100);
 
-  playerProgressControl: FormControl = new FormControl(0);
+  playerProgressControl: UntypedFormControl = new UntypedFormControl(0);
 
   private unsubscribe$: EventEmitter<void> = new EventEmitter<void>();
 

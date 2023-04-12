@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AbstractControl, FormGroup } from '@angular/forms';
+import { AbstractControl, UntypedFormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-form-errors',
@@ -9,7 +9,7 @@ import { AbstractControl, FormGroup } from '@angular/forms';
 export class FormErrorsComponent implements OnInit {
 
   @Input()
-  form: FormGroup;
+  form: UntypedFormGroup;
 
   @Input()
   fieldName: string;

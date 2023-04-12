@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 
@@ -46,9 +46,9 @@ export class PreviewModalComponent implements OnInit, OnDestroy {
   @Output()
   closed: EventEmitter<boolean> = new EventEmitter();
 
-  sharePropertiesForm = new FormGroup({
-    startPos: new FormControl(),
-    endPos: new FormControl(),
+  sharePropertiesForm = new UntypedFormGroup({
+    startPos: new UntypedFormControl(),
+    endPos: new UntypedFormControl(),
   });
 
   embedURL: string;

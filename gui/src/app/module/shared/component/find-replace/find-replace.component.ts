@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 
 export interface FindReplace {
   find: string;
@@ -17,9 +17,9 @@ export class FindReplaceComponent {
   @Output()
   onSubmit: EventEmitter<FindReplace> = new EventEmitter<FindReplace>();
 
-  form: FormGroup = new FormGroup({
-    'find': new FormControl('', [Validators.required]),
-    'replace': new FormControl(),
+  form: UntypedFormGroup = new UntypedFormGroup({
+    'find': new UntypedFormControl('', [Validators.required]),
+    'replace': new UntypedFormControl(),
   });
 
   constructor() {

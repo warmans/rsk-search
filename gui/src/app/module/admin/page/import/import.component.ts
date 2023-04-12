@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 import { AlertService } from '../../../core/service/alert/alert.service';
 import { RskTscriptImport, RskTscriptImportList, RskChunkedTranscriptList, RskChunkedTranscriptStats } from 'src/app/lib/api-client/models';
@@ -12,10 +12,10 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class ImportComponent implements OnInit, OnDestroy {
 
-  importForm: FormGroup = new FormGroup({
-    'epid': new FormControl('preview-S1E06', [Validators.required]),
-    'epname': new FormControl('', []),
-    'mp3_uri': new FormControl('https://scrimpton.com/dl/media/episode/preview-S1E06.mp3', [Validators.required]),
+  importForm: UntypedFormGroup = new UntypedFormGroup({
+    'epid': new UntypedFormControl('preview-S1E06', [Validators.required]),
+    'epname': new UntypedFormControl('', []),
+    'mp3_uri': new UntypedFormControl('https://scrimpton.com/dl/media/episode/preview-S1E06.mp3', [Validators.required]),
   });
 
   chunkedTranscripts: RskChunkedTranscriptStats[] = [];

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 
@@ -31,8 +31,8 @@ export class MetadataEditorComponent implements OnInit, OnDestroy {
   @Output()
   metadataUpdated: EventEmitter<TranscriptMetadata> = new EventEmitter<TranscriptMetadata>();
 
-  form: FormGroup = new FormGroup({
-    summary: new FormControl()
+  form: UntypedFormGroup = new UntypedFormGroup({
+    summary: new UntypedFormControl()
   });
 
   destroy$: Subject<void> = new Subject<void>();

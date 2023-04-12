@@ -1,6 +1,6 @@
 import { Component, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { RskSearchResult } from 'src/app/lib/api-client/models';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ClipboardService } from 'src/app/module/core/service/clipboard/clipboard.service';
 
 @Component({
@@ -18,9 +18,9 @@ export class TranscriptCopyDialogComponent implements OnInit {
 
   optionsOpen: boolean = false;
 
-  options: FormGroup = new FormGroup({
-    markdown: new FormControl(),
-    includeTimestamps: new FormControl()
+  options: UntypedFormGroup = new UntypedFormGroup({
+    markdown: new UntypedFormControl(),
+    includeTimestamps: new UntypedFormControl()
   });
 
   @HostListener('document:click', ['$event'])

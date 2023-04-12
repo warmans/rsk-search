@@ -8,7 +8,7 @@ import { AlertService } from '../../../core/service/alert/alert.service';
 import { RskContributionState, RskTranscript, RskTranscriptChange, RskTranscriptChangeDiff } from 'src/app/lib/api-client/models';
 import { EditorComponent } from '../../../shared/component/editor/editor.component';
 import { Observable, Subject } from 'rxjs';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { TranscriptMetadata } from 'src/app/module/shared/component/metadata-editor/metadata-editor.component';
 
 const DISMISS_HELP_KEY: string = 'contribute.change.help.hide';
@@ -30,7 +30,7 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
 
   metadata: TranscriptMetadata;
 
-  approvalPoints: FormControl = new FormControl(0.2);
+  approvalPoints: UntypedFormControl = new UntypedFormControl(0.2);
 
   versionMismatchError = false;
   readOnly: boolean = true;

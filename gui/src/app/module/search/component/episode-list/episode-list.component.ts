@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { RskShortTranscript, RskTranscriptList } from 'src/app/lib/api-client/models';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 type tabState = 'xfm' | 'guide' | 'special' | 'other' | 'karl' | 'preview';
@@ -22,7 +22,7 @@ export class EpisodeListComponent implements OnInit, OnDestroy {
 
   showDownloadDialog: boolean = false;
 
-  searchInput: FormControl = new FormControl('');
+  searchInput: UntypedFormControl = new UntypedFormControl('');
 
   private _activePublication: tabState = 'xfm';
 

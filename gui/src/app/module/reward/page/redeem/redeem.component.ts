@@ -4,7 +4,7 @@ import { takeUntil } from 'rxjs/operators';
 import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { AlertService } from '../../../core/service/alert/alert.service';
 
 @Component({
@@ -18,8 +18,8 @@ export class RedeemComponent implements OnInit {
 
   reward: RskReward;
 
-  form: FormGroup = new FormGroup({
-    cause: new FormControl('', [Validators.required]),
+  form: UntypedFormGroup = new UntypedFormGroup({
+    cause: new UntypedFormControl('', [Validators.required]),
   });
 
   loading: boolean[] = [];
