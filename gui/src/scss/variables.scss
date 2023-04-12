@@ -28,8 +28,8 @@ $pagination-bg: transparent;
 $pagination-border-color: transparent;
 $pagination-hover-border-color: transparent;
 
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
 
 $color-steve: rgba(63, 247, 39, 0.1);
 $color-steve-saturated: rgb(63, 247, 39);
