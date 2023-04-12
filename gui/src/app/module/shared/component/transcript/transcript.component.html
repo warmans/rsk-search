@@ -1,15 +1,23 @@
 <div *ngFor="let group of groupedDialog" class="group d-flex">
   <div class="flex-grow-1">
 
-    <div  *ngFor="let line of group?.tscript?.transcript">
-      <div class="line d-flex mb-2 p-2 section-title pt-3 pb-3"  *ngIf="synopsisPos[line.pos]?.description">
+    <div *ngFor="let line of group?.tscript?.transcript">
+      <div class="line d-flex mb-2 p-2 section-title pt-3 pb-3" *ngIf="synopsisPos[line.pos]?.description">
         <strong><i class="bi bi-card-list mr-2"></i>{{synopsisPos[line.pos].description}}</strong>
-        <a
+        <!--a
           *ngIf="epid && enableShareLinks"
           class="ml-3 clickable"
           (click)="emitShareOpts(synopsisPos[line.pos].startPos-1, synopsisPos[line.pos].endPos-1)">
             <i class="bi bi-share"></i>
-        </a>
+        </a-->
+        <span *ngIf="enableLineLinking" class="ml-2">
+            <a
+              class="clickable text-muted"
+              title="Link to this line. Hold shift and click another line to select multiple."
+              (click)="selectRange(synopsisPos[line.pos].startPos, synopsisPos[line.pos].endPos-1)">
+              <i class="bi-link"></i>
+            </a>
+        </span>
       </div>
       <div class="d-flex">
         <div
@@ -49,7 +57,8 @@
         </div>
         <div class="mb-2 ml-2 d-flex flex-column justify-content-center" *ngIf="enableLineLinking">
           <span>
-            <a class="clickable text-muted" *ngIf="scrollToPosStart != line.pos" title="Link to this line. Hold shift and click another line to select multiple." (click)="selectPosition(line.pos, $event)">
+            <a class="clickable text-muted" *ngIf="scrollToPosStart != line.pos" title="Link to this line. Hold shift and click another line to select multiple."
+               (click)="selectPosition(line.pos, $event)">
               <i class="bi-link"></i>
             </a>
           </span>

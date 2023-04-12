@@ -197,6 +197,11 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
     return true;
   }
 
+  selectRange(startLine: number, endLine: number): boolean {
+    this.emitSelection.next({ startPos: startLine, endPos: endLine, epid: this.epid });
+    return true;
+  }
+
   preProcessTranscript(episode: Tscript | RskTranscript) {
 
     if (!episode) {
