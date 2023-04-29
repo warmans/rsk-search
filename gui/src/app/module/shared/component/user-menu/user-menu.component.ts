@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 import { NotificationKind, RskNotification } from 'src/app/lib/api-client/models';
 import { debounceTime, takeUntil } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-menu',
@@ -30,7 +31,7 @@ export class UserMenuComponent implements OnInit, OnDestroy {
 
   markRead: Subject<void> = new Subject<void>();
 
-  constructor(private apiClient: SearchAPIClient) {
+  constructor(private apiClient: SearchAPIClient, private router: Router) {
   }
 
   @HostListener('document:click', ['$event'])
@@ -68,12 +69,19 @@ export class UserMenuComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  toggleMenu() {
+  toggleMenu(): void {
     this.menuVisible = !this.menuVisible;
   }
 
-  hideMenu() {
+  hideMenu(): void {
     this.menuVisible = false;
     this.markRead.next();
   }
+
+  navigateToUrl(event: MouseEvent, url: string): void {
+    event.preventDefault();
+    this.router.navigate([url]);
+    this.hideMenu();
+  }
+
 }

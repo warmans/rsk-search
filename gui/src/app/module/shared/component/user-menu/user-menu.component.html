@@ -11,7 +11,7 @@
   <div class="arrow-up align-self-end mr-4"></div>
     <div class="menu fg-body">
       <div class="d-flex justify-content-around py-2 border-bottom">
-        <div>Signed in as: <a [routerLink]="['/me']"><strong>/u/{{ loggedInUser.identity.name }}</strong></a></div>
+        <div>Signed in as: <a href="#" (click)="navigateToUrl($event, '/me')"><strong>/u/{{ loggedInUser.identity.name }}</strong></a></div>
       </div>
       <div class="p-2">
         <div class="notifications p-3">
@@ -24,7 +24,7 @@
             </div>
             <div class="flex-grow-1">
               <div>{{ notif.message }}</div>
-              <div class="text-muted text-sm">{{ notif.createdAt }} | <a [href]="notif.clickThoughUrl">More...</a> </div>
+              <div class="text-muted text-sm">{{ notif.createdAt }} | <a href="#" (click)="navigateToUrl($event, notif.clickThroughUrl)">More...</a> </div>
             </div>
           </div>
         </div>
