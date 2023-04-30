@@ -3,7 +3,8 @@ import { Claims } from 'src/app/module/core/service/session/session.service';
 import { Subject } from 'rxjs';
 import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 import { NotificationKind, RskNotification } from 'src/app/lib/api-client/models';
-import { debounceTime, takeUntil } from 'rxjs/operators';
+import { debounceTime, filter, takeUntil } from 'rxjs/operators';
+import { NavigationStart, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-menu',
@@ -30,7 +31,7 @@ export class UserMenuComponent implements OnInit, OnDestroy {
 
   markRead: Subject<void> = new Subject<void>();
 
-  constructor(private apiClient: SearchAPIClient) {
+  constructor(private apiClient: SearchAPIClient, private router: Router) {
   }
 
   @HostListener('document:click', ['$event'])
@@ -61,6 +62,15 @@ export class UserMenuComponent implements OnInit, OnDestroy {
           });
         }
       });
+
+    this.router.events.pipe(
+      filter((routeEvent) => routeEvent instanceof NavigationStart),
+      takeUntil(this.destroy$)
+    ).subscribe(() => {
+      if (this.menuVisible) {
+        this.hideMenu();
+      }
+    });
   }
 
   ngOnDestroy(): void {
