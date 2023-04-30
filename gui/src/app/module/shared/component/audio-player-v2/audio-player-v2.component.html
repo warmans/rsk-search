@@ -39,7 +39,8 @@
   </div>
   <div class="error-overlay d-flex align-items-center" *ngIf="audioStatus?.state === states.failed">
     <div class="font-weight-bold flex-grow-1 d-flex align-items-center justify-content-center">
-      <span class="bg-danger text-white px-2 mr-2">FAILED! Audio couldn't be loaded.</span>
+      <span *ngIf="bandwidthQuotaUsedPcnt < 99" class="bg-danger text-white px-2 mr-2">FAILED! Audio couldn't be loaded.</span>
+      <span *ngIf="bandwidthQuotaUsedPcnt >= 99" class="bg-danger text-white px-2 mr-2">SORRY! Quota reached. Audio will become available again in {{timeTillQuotaRefreshed}}.</span>
       <a class="btn btn-sm btn-secondary" (click)="closeAudio()">Close player</a>
     </div>
   </div>

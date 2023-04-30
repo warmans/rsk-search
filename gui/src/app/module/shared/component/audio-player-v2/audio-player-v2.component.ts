@@ -2,6 +2,9 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit } from '@angular/core
 import { AudioService, PlayerState, Status } from '../../../core/service/audio/audio.service';
 import { UntypedFormControl } from '@angular/forms';
 import { takeUntil } from 'rxjs/operators';
+import { QuotaService } from 'src/app/module/core/service/quota/quota.service';
+import { RskQuotas } from 'src/app/lib/api-client/models';
+import { addMonths, intervalToDuration, startOfMonth } from 'date-fns';
 
 @Component({
   selector: 'app-audio-player-v2',
@@ -21,9 +24,21 @@ export class AudioPlayerV2Component implements OnInit, OnDestroy {
 
   playerProgressControl: UntypedFormControl = new UntypedFormControl(0);
 
+  timeTillQuotaRefreshed: string = "unknown";
+  bandwidthQuotaUsedPcnt: number = 0;
+
   private unsubscribe$: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor(private audioService: AudioService) {
+  constructor(private audioService: AudioService, private quotaService: QuotaService) {
+    const interval = intervalToDuration({
+      start: new Date(),
+      end: startOfMonth(addMonths(new Date(), 1)),
+    })
+    this.timeTillQuotaRefreshed = (interval.days > 0)  ? `${interval.days} days` : (interval.hours > 0 ? `${interval.hours} hours` : `${interval.minutes} minutes`)
+
+    quotaService.quotas$.pipe(takeUntil(this.unsubscribe$)).subscribe((res: RskQuotas) => {
+      this.bandwidthQuotaUsedPcnt = (1 - (res.bandwidthRemainingMib / res.bandwidthTotalMib)) * 100;
+    });
   }
 
   ngOnInit(): void {
