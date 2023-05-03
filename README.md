@@ -35,12 +35,20 @@ API to the local running API.
 
 From the server directory: 
 
+Prerequisites: 
+
+1. docker.io, docker-compose (`apt install docker.io docker-compose`)
+2. direnv (`apt install direnv` - remember to install shell hook e.g. `direnv hook bash > ~/.bashrc`)
+
+Setup:
+
 1. Install tools `make setup`
-2. Build CLI with `make vendor build`.
+2. Build CLI with `make build`.
 3. Create the DB and index with `make init.all` (only needs to be done once, or after the raw data is changed)
 4. Start a local postgres instance `make dev.services.start`
-5. Setup some test data `make dev.populate.chunks` 
 6. Run local server with `make run`.
+
+Note that invalid API keys will be used (see .envrc). These may cause some things not to work correctly.
 
 More info: [server README](server/README.md)
 

@@ -71,7 +71,7 @@ func (c *DownloadService) DownloadMP3(resp http.ResponseWriter, req *http.Reques
 		return
 	}
 	mediaType, ok := vars["media_type"]
-	if !ok || (mediaType != "episode" && mediaType != "chunk") {
+	if !ok || (mediaType != "episode" && mediaType != "chunk" && mediaType != "clip") {
 		http.Error(resp, "No/unknown media type given", http.StatusBadRequest)
 		return
 	}
