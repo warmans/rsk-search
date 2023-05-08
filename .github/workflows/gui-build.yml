@@ -36,6 +36,8 @@ jobs:
         with:
           name: gui-dist
           path: ${{env.working-directory}}/dist
+          retention-days: 1
+          
   publish:
     runs-on: ubuntu-latest
     needs: build
