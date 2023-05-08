@@ -51,12 +51,14 @@ jobs:
         with:
           name: server-binaries
           path: ${{env.working-directory}}/bin
+          retention-days: 1
 
       - name: Store generated data
         uses: actions/upload-artifact@v3
         with:
           name: server-data
           path: ${{env.working-directory}}/var/gen
+          retention-days: 1
 
   publish:
     runs-on: ubuntu-latest
