@@ -242,7 +242,7 @@ func (s *Search) PredictSearchTerms(ctx context.Context, prefix string, exact bo
 			}
 		}
 
-		if !duplicate && stringsAreNotTooSimilar(prefix, p.Line) && len(p.Line) < 256 {
+		if !duplicate && stringsAreNotTooSimilar(prefix, p.Line) && len(p.Line) < 1024 {
 			// highlight and fragment result
 			fragments := highlighter.BestFragments(next.Locations["content"], []byte(p.Line), 1)
 			if len(fragments) > 0 {
