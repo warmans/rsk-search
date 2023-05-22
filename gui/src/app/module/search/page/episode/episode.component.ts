@@ -44,6 +44,8 @@ export class EpisodeComponent implements OnInit, OnDestroy {
 
   quotes: RskDialog[] = [];
 
+  songs: RskDialog[] = [];
+
   authenticated: boolean = false;
 
   previousEpisodeId: string;
@@ -118,9 +120,14 @@ export class EpisodeComponent implements OnInit, OnDestroy {
         this.episodeImage = ep.metadata['cover_art_url'] ? ep.metadata['cover_art_url'] : `/assets/cover/${ep.publication}-s${ep.series}.jpg`;
         this.audioLink = ep.audioUri;
 
+        this.quotes = [];
+        this.songs = [];
         ep.transcript.forEach((r: RskDialog) => {
           if (r.notable) {
             this.quotes.push(r);
+          }
+          if (r.type === "song") {
+            this.songs.push(r);
           }
         });
 

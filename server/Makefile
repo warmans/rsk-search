@@ -209,7 +209,7 @@ update.spotify-links:
 ifndef SPOTIFY_TOKEN
 	$(error "SPOTIFY TOKEN was not defined, consider using dev.refresh-data")
 endif
- 	SPOTIFY_TOKEN=${SPOTIFY_TOKEN} ./bin/rsk-search data spotifize
+	./bin/rsk-search data spotifize
 
 #----------------------------------------------------------------------------------------------
 # Packaging
