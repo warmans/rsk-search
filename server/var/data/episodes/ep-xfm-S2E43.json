@@ -5033,7 +5033,7 @@
           "song_album": "Sleeping With Ghosts",
           "song_artist": "Placebo",
           "song_track": "This Picture",
-          "spotify_uri": "spotify:track:5he7AYCR3MGloRnuWEMroT"
+          "spotify_uri": "spotify:track:7pmahAnqScI4MjbQiZZqei"
         },
         "content": "Placebo - This Picture",
         "notable": false
@@ -8054,7 +8054,7 @@
         "type": "song",
         "actor": "",
         "metadata": {
-          "song_album": "Think Tank [Special Edition]",
+          "song_album": "Think Tank (Special Edition)",
           "song_artist": "Blur",
           "song_track": "Out of Time",
           "spotify_uri": "spotify:track:79PrPZu9zWyc1qwUwXchVl"
@@ -9708,7 +9708,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Fallen",
+          "song_artist": "Evanescence",
+          "song_track": "Bring Me To Life",
+          "spotify_uri": "spotify:track:0COqiPhxzoWICwFCS4eZcp"
+        },
         "content": "Evanescence - Out of Time",
         "notable": false
       },

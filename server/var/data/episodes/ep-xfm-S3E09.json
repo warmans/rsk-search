@@ -1301,7 +1301,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Waking Up The Neighbours",
+          "song_artist": "Bryan Adams",
+          "song_track": "(Everything I Do) I Do It For You",
+          "spotify_uri": "spotify:track:1Eb90nmqTrxylKFhcUzW8P"
+        },
         "content": "Bryan Adams - Wonderwall",
         "notable": false
       },
@@ -2137,7 +2142,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Think Tank (Special Edition)",
+          "song_artist": "Blur",
+          "song_track": "Out of Time",
+          "spotify_uri": "spotify:track:79PrPZu9zWyc1qwUwXchVl"
+        },
         "content": "Blur - Out Of Time",
         "notable": false
       },
@@ -2236,7 +2246,12 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Sleeping With Ghosts",
+          "song_artist": "Placebo",
+          "song_track": "The Bitter End",
+          "spotify_uri": "spotify:track:2yYASbXnAV71CLbNY1HCWf"
+        },
         "content": "Placebo - Bitter End.",
         "notable": false
       },

@@ -12028,7 +12028,12 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "This Is The Life (eDeluxe)",
+          "song_artist": "Amy Macdonald",
+          "song_track": "This Is The Life",
+          "spotify_uri": "spotify:track:2T3jgoAMbBXiMMD8pSc6QL"
+        },
         "content": "Amy Mann - No Choice in the Matter",
         "notable": false
       },
@@ -12128,7 +12133,7 @@
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "Chimpancy that.",
+        "content": "Chimpanzee that.",
         "notable": false
       },
       {
@@ -12139,7 +12144,7 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "Oh yeah - Chimpancy that, monkey news.",
+        "content": "Oh yeah - Chimpanzee that, monkey news.",
         "notable": false
       },
       {

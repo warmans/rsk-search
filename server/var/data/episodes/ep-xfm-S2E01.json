@@ -26,7 +26,12 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Comfort in Sound",
+          "song_artist": "Feeder",
+          "song_track": "Come Back Around",
+          "spotify_uri": "spotify:track:3pob1hu5fZ2S1atm0BWEvb"
+        },
         "content": "Feeder - “Come Back Around”",
         "notable": false
       },
@@ -10326,7 +10331,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Holes In The Wall",
+          "song_artist": "The Electric Soft Parade",
+          "song_track": "Biting The Soles Of My Feet (Same Way Every Day)",
+          "spotify_uri": "spotify:track:3oWlURZiK3Lab6M2DXgCqm"
+        },
         "content": "Electric Soft Parade – Biting the Soles of My Feet (Same Way Every Day)",
         "notable": false
       },

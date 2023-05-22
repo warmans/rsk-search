@@ -4166,7 +4166,11 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Things Fall Apart",
+          "song_track": "You Got Me",
+          "spotify_uri": "spotify:track:4pdLZsxq0y5oJDb6Cxlokw"
+        },
         "content": "The Roots feat. Erykah Badu - You Got Me",
         "notable": false
       },
@@ -16125,7 +16129,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Combat Rock (Remastered)",
+          "song_artist": "The Clash",
+          "song_track": "Rock the Casbah - Remastered",
+          "spotify_uri": "spotify:track:56KqaFSGTb7ifpt16t5Y1N"
+        },
         "content": "The Clash - Rocking the Casbah",
         "notable": false
       },

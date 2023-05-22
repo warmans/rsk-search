@@ -10911,7 +10911,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "These Foolish Things",
+          "song_artist": "Bryan Ferry",
+          "song_track": "A Hard Rain's A-Gonna Fall",
+          "spotify_uri": "spotify:track:2O1FP6A66cqXt4nj7qnmdJ"
+        },
         "content": "Bryan Ferry - A Hard Rain's A-Gonna Fall",
         "notable": false
       },

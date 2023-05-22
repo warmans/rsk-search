@@ -1060,7 +1060,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "The Queen Is Dead",
+          "song_artist": "The Smiths",
+          "song_track": "Cemetry Gates - 2011 Remaster",
+          "spotify_uri": "spotify:track:03yOjwHoOPDlTUg0NRxN6t"
+        },
         "content": "The Smiths - Cemetery Gates",
         "notable": false
       },
@@ -2501,7 +2506,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Applecore",
+          "song_artist": "The Weather Machine",
+          "song_track": "Protection",
+          "spotify_uri": "spotify:track:3T6vHHjD0E5HTAWTdWO6b0"
+        },
         "content": "Go Home Productions - The Weather Episode",
         "notable": false
       },

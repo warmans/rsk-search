@@ -2533,7 +2533,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Urban Hymns (Deluxe / Remastered 2016)",
+          "song_artist": "The Verve",
+          "song_track": "Lucky Man",
+          "spotify_uri": "spotify:track:2mxPSHEwjJWOQS7lGw6btF"
+        },
         "content": "Verve – Lucky Man.",
         "notable": false
       },
@@ -8493,7 +8498,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "The Festivals Album",
+          "song_artist": "Turin Brakes",
+          "song_track": "Painkiller",
+          "spotify_uri": "spotify:track:3PSan6KB8u2Gtkmc0iG8vk"
+        },
         "content": "Turin Brakes - Painkiller",
         "notable": false
       },
@@ -11434,7 +11444,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "By the Way (Deluxe Edition)",
+          "song_artist": "Red Hot Chili Peppers",
+          "song_track": "Can't Stop",
+          "spotify_uri": "spotify:track:3ZOEytgrvLwQaqXreDs2Jx"
+        },
         "content": "The Red Hot Chili Peppers - Can't Stop",
         "notable": false
       },

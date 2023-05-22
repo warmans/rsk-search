@@ -2180,7 +2180,12 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Greatest Hits",
+          "song_artist": "The Cure",
+          "song_track": "Lullaby",
+          "spotify_uri": "spotify:track:09OpntwPHuNICsyEt1ETpE"
+        },
         "content": "The Cure - Lullaby",
         "notable": false
       },

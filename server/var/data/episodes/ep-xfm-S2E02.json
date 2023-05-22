@@ -4,7 +4,7 @@
     "episode": 2,
     "name": "",
     "summary": "In this episode Ricky and Steve re-introduce Karl with a Q\u0026A. They discuss some interesting stories Karl has found on the internet and Karl debut's his new music quiz with the working title \"What is karl thinking of?\". This quiz was a sort of proto-rockbusters that was more difficult and more confusing that Rockbusters would become. The end of the show has some talk of Ricky's boxing match.",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "release_date": "2002-08-31T00:00:00Z",
     "incomplete": false,
     "bestof": false,
@@ -26,7 +26,12 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Heathen Chemistry",
+          "song_artist": "Oasis",
+          "song_track": "Little By Little",
+          "spotify_uri": "spotify:track:45AQ5zbSJ0j1nM9daSWeq8"
+        },
         "content": "Oasis - Little By Little",
         "notable": false
       },
@@ -3638,7 +3643,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Comfort in Sound",
+          "song_artist": "Feeder",
+          "song_track": "Come Back Around",
+          "spotify_uri": "spotify:track:3pob1hu5fZ2S1atm0BWEvb"
+        },
         "content": "Feeder - Come back around.",
         "notable": false
       },
@@ -7795,7 +7805,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Mona Bone Jakon (Remastered 2020)",
+          "song_artist": "Yusuf / Cat Stevens",
+          "song_track": "Trouble",
+          "spotify_uri": "spotify:track:2mEVBiiVvOAYjvzM3OED0T"
+        },
         "content": "Cat Stevens - Trouble",
         "notable": false
       },
@@ -10946,7 +10961,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Second Helping (Expanded Edition)",
+          "song_artist": "Lynyrd Skynyrd",
+          "song_track": "Sweet Home Alabama",
+          "spotify_uri": "spotify:track:7e89621JPkKaeDSTQ3avtg"
+        },
         "content": "Lynyrd Skynyrd- Sweet Home Alabama",
         "notable": false
       },
@@ -11914,7 +11934,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Greatest Hits: 40 Trips Around The Sun",
+          "song_artist": "TOTO",
+          "song_track": "Hold the Line",
+          "spotify_uri": "spotify:track:1Cr0L9EsOePPOAoXRTxo1p"
+        },
         "content": "Toto- Hold the Line begins to play",
         "notable": false
       },
@@ -11947,7 +11972,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Toto",
+          "song_artist": "TOTO",
+          "song_track": "Hold the Line",
+          "spotify_uri": "spotify:track:4aVuWgvD0X63hcOCnZtNFA"
+        },
         "content": "Toto- Hold the Line stops abruptly.",
         "notable": false
       },
@@ -12277,7 +12307,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Original Pirate Material",
+          "song_artist": "The Streets",
+          "song_track": "Weak Become Heroes",
+          "spotify_uri": "spotify:track:4H45wRMStWCWwCLQ8TEz1z"
+        },
         "content": "The Streets - Weak Becomes Heroes",
         "notable": false
       },
@@ -12288,7 +12323,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "White Blood Cells",
+          "song_artist": "The White Stripes",
+          "song_track": "Dead Leaves and the Dirty Ground",
+          "spotify_uri": "spotify:track:2ewjgFhHDTE8BkV8kzpiX2"
+        },
         "content": "The White Stripes- Dead Leaves and the Dirty Ground",
         "notable": false
       },
@@ -13894,7 +13934,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Veni Vidi Vicious",
+          "song_artist": "The Hives",
+          "song_track": "Hate To Say I Told You So",
+          "spotify_uri": "spotify:track:20j7B6mL9gnNvG3ic6Vwh5"
+        },
         "content": "The Hives: Hate to Say I Told You So",
         "notable": false
       },
@@ -14300,7 +14345,7 @@
         "end_pos": 328
       },
       {
-        "description": "This is somehow now completely made up by karl: https://www.thevintagenews.com/2018/08/09/parrots-blood/",
+        "description": "This is somehow not completely made up by karl: https://www.thevintagenews.com/2018/08/09/parrots-blood/",
         "start_pos": 333,
         "end_pos": 334
       },

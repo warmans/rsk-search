@@ -10719,7 +10719,12 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Don't Look Back into the Sun",
+          "song_artist": "The Libertines",
+          "song_track": "Don't Look Back into the Sun",
+          "spotify_uri": "spotify:track:4KspXoCVJXGY1VrvEe1Hdm"
+        },
         "content": "Libertines - Don't look back into the sun",
         "notable": false
       },

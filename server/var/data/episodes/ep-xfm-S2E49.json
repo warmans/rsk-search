@@ -5124,7 +5124,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Silence Is Easy",
+          "song_artist": "Starsailor",
+          "song_track": "Silence Is Easy",
+          "spotify_uri": "spotify:track:1oPuQTM7LExPzaFrF0DXzD"
+        },
         "content": "Starsailor - Silence Is Easy",
         "notable": false
       },

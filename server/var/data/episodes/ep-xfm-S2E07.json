@@ -10022,7 +10022,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Acme (Deluxe)",
+          "song_artist": "The Jon Spencer Blues Explosion",
+          "song_track": "Right Place, Wrong Time",
+          "spotify_uri": "spotify:track:5WQ66ZPaaXRyor3dhylial"
+        },
         "content": "John Spencer Blues Explosion- Right Place, Wrong Time",
         "notable": false
       },

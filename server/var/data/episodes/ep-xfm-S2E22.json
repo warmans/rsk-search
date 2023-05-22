@@ -1186,7 +1186,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Can You Dig It?",
+          "song_artist": "The Mock Turtles",
+          "song_track": "Can You Dig It?",
+          "spotify_uri": "spotify:track:1qrVwgQAatH3xRFtw4XZ8j"
+        },
         "content": "Mock Turtles - Can You Dig It remixed by Fat Boy Slim",
         "notable": false
       },
@@ -5178,7 +5183,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Comfort in Sound",
+          "song_artist": "Feeder",
+          "song_track": "Just The Way I'm Feeling",
+          "spotify_uri": "spotify:track:1zg4NCQ3vHLn3MeaDBPm3s"
+        },
         "content": "Feeder - Just the Way I'm Feelin'",
         "notable": false
       },
@@ -12298,7 +12308,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Runtime Error Remix EP",
+          "song_artist": "Disk Space",
+          "song_track": "Syntax Error - Original Mix",
+          "spotify_uri": "spotify:track:0Nt3coiew7LCfOPxbBCuNB"
+        },
         "content": "Syntax - Pray",
         "notable": false
       },
@@ -14415,7 +14430,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Nocturama",
+          "song_artist": "Nick Cave \u0026 The Bad Seeds",
+          "song_track": "He Wants You",
+          "spotify_uri": "spotify:track:3zoNKNRKGZ8oF53Zum0JSx"
+        },
         "content": "Nick Cave and the Bad Seeds - He Wants You",
         "notable": false
       }

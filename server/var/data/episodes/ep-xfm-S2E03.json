@@ -1857,7 +1857,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Pissing in the Wind",
+          "song_artist": "Badly Drawn Boy",
+          "song_track": "Spitting in the Wind - George Drakoulias Mix",
+          "spotify_uri": "spotify:track:3tKsoLoRvtFPyTutpNfRzo"
+        },
         "content": "Song: Badly Drawn Boy- Spitting in the Wind",
         "notable": false
       },
@@ -5988,10 +5993,10 @@
         "type": "song",
         "actor": "",
         "metadata": {
-          "song_album": "Electronic (Special Edition)",
+          "song_album": "Get The Message - The Best Of Electronic",
           "song_artist": "Electronic",
-          "song_track": "Getting Away with It - 2013 Remaster",
-          "spotify_uri": "spotify:track:1cZcQDZzx940vWz9PFRY20"
+          "song_track": "Getting Away with It",
+          "spotify_uri": "spotify:track:4e23vKHDVQXHvoqzXiYqUm"
         },
         "content": "Electronic- Getting Away With It",
         "notable": false

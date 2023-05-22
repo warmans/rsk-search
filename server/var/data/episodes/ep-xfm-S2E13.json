@@ -1489,7 +1489,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "The Smiths",
+          "song_artist": "The Smiths",
+          "song_track": "I Don't Owe You Anything - 2011 Remaster",
+          "spotify_uri": "spotify:track:4WKdgb3xzbTSU7WT3kK3na"
+        },
         "content": "Smiths - I Don't Owe You Anything",
         "notable": false
       },
@@ -7093,7 +7098,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "The Boy With the Arab Strap",
+          "song_artist": "Belle and Sebastian",
+          "song_track": "The Boy With the Arab Strap",
+          "spotify_uri": "spotify:track:5GPPI3rnZDptLYRN4vTUoZ"
+        },
         "content": "Belle and Sebastian – The Boy with the Arab Strap - STARTS",
         "notable": false
       },
@@ -7148,7 +7158,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "The Boy With the Arab Strap",
+          "song_artist": "Belle and Sebastian",
+          "song_track": "The Boy With the Arab Strap",
+          "spotify_uri": "spotify:track:5GPPI3rnZDptLYRN4vTUoZ"
+        },
         "content": "Belle and Sebastian – The Boy with the Arab Strap - ENDS",
         "notable": false
       },

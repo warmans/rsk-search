@@ -1005,7 +1005,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Every Picture Tells A Story",
+          "song_artist": "Rod Stewart",
+          "song_track": "Maggie May",
+          "spotify_uri": "spotify:track:6rovOdp3HgK1DeAMYDzoA7"
+        },
         "content": "Rod Stewart- Maggie May begins",
         "notable": false
       },
@@ -2485,10 +2490,10 @@
         "type": "song",
         "actor": "",
         "metadata": {
-          "song_album": "Unstoppable Rock",
+          "song_album": "Permission to Land",
           "song_artist": "The Darkness",
-          "song_track": "Growing On Me",
-          "spotify_uri": "spotify:track:5U7rnLMzb78sTieeArXQai"
+          "song_track": "Growing on Me",
+          "spotify_uri": "spotify:track:77asYwewm0lXvz76inosJm"
         },
         "content": "The Darkness- Growing on Me",
         "notable": false
@@ -7306,7 +7311,11 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "The Jump Off (feat. Mr. Cheeks) [Remixes]",
+          "song_track": "The Jump Off (feat. Mr. Cheeks) - Remix",
+          "spotify_uri": "spotify:track:3CZlTOyNnKVMb021IYEY6r"
+        },
         "content": "Lil’ Kim featuring Mr. Cheeks- The Jump Off",
         "notable": false
       },

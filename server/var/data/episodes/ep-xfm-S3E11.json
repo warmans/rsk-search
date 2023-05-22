@@ -4,7 +4,7 @@
     "episode": 11,
     "name": "",
     "summary": "",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "release_date": "2004-01-10T00:00:00Z",
     "incomplete": false,
     "bestof": false,
@@ -1350,7 +1350,12 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "White Ladder",
+          "song_artist": "David Gray",
+          "song_track": "This Year's Love",
+          "spotify_uri": "spotify:track:4X6F9xoYUyJh4OhnXbAZv2"
+        },
         "content": "David Grey, \"This Year's Love\"",
         "notable": false
       },
@@ -1835,7 +1840,7 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "Well one mistakes one too far, because that's one person -  you, you might send out 30, but that one person, that's the first time they've won a competition.",
+        "content": "Well one mistakes one too far, because that's one person - you, you might send out 30, but that one person, that's the first time they've won a competition.",
         "notable": false
       },
       {
@@ -3240,7 +3245,12 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Holy Roller Novocaine",
+          "song_artist": "Kings of Leon",
+          "song_track": "California Waiting",
+          "spotify_uri": "spotify:track:0txCPGqVRdntoHGc1ZcF6t"
+        },
         "content": "Kings of Leon - California Waiting",
         "notable": false
       },
@@ -7321,7 +7331,7 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "If it's all about ass, then why don't gays like tit? If it's all about ass, then why don't gays like tit?  \"Just call in with your- thanks very much for tuning in, this has been Children's TV, if it's all about ass, why don't gays like tit?",
+        "content": "If it's all about ass, then why don't gays like tit? If it's all about ass, then why don't gays like tit? \"Just call in with your- thanks very much for tuning in, this has been Children's TV, if it's all about ass, why don't gays like tit?",
         "notable": false
       },
       {
@@ -7722,7 +7732,7 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "To probably... to look more fierce... probably residue of, like, the erectile tissue with the you know umm, would make you look... apes and that  would make you look slightly bigger. Your outline bigger.",
+        "content": "To probably... to look more fierce... probably residue of, like, the erectile tissue with the you know umm, would make you look... apes and that would make you look slightly bigger. Your outline bigger.",
         "notable": false
       },
       {
@@ -10439,7 +10449,7 @@
       {
         "id": "ep-xfm-S3E11-945",
         "pos": 945,
-        "offset_sec": 3020,
+        "offset_sec": 3021,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -10477,7 +10487,7 @@
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "They got another rope, right -  didn't work.",
+        "content": "They got another rope, right - didn't work.",
         "notable": false
       },
       {
@@ -10532,7 +10542,7 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "Oh it's brilliant.  Shall we play it later? Lets play a record now. And we'll talk more a bit later.",
+        "content": "Oh it's brilliant. Shall we play it later? Lets play a record now. And we'll talk more a bit later.",
         "notable": false
       },
       {
@@ -11261,6 +11271,11 @@
         "description": "Have you heard about Ung?",
         "start_pos": 923,
         "end_pos": 950
+      },
+      {
+        "description": "Monkey News: Alright Kirsty...",
+        "start_pos": 964,
+        "end_pos": 1015
       }
     ],
     "contributors": [

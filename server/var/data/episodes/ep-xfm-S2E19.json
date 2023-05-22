@@ -3007,7 +3007,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "The Queen Is Dead",
+          "song_artist": "The Smiths",
+          "song_track": "Bigmouth Strikes Again - 2011 Remaster",
+          "spotify_uri": "spotify:track:2OErSh4oVVAUll0vHxdr6p"
+        },
         "content": "The Smiths - Bigmouth Strikes Again",
         "notable": false
       },
@@ -4536,7 +4541,11 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "The Velvet Underground \u0026 Nico 45th Anniversary",
+          "song_track": "I'm Waiting For The Man",
+          "spotify_uri": "spotify:track:3fElupNRLRJ0tbUDahPrAb"
+        },
         "content": "The Velvet Underground, Nico - I'm Waiting For The Man",
         "notable": false
       },
@@ -8364,7 +8373,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "White Noise",
+          "song_artist": "Alpinestars",
+          "song_track": "Carbon Kid",
+          "spotify_uri": "spotify:track:4IhUOGUYCeFt104QSlqoCa"
+        },
         "content": "Alpinestars - Carbon Kid",
         "notable": false
       },
@@ -10575,7 +10589,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Up the Bracket",
+          "song_artist": "The Libertines",
+          "song_track": "Time for Heroes",
+          "spotify_uri": "spotify:track:4J4LjEe33yN6gLmPib0nqz"
+        },
         "content": "The Libertines - Time for Heroes",
         "notable": false
       },
@@ -13215,7 +13234,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Comfort in Sound",
+          "song_artist": "Feeder",
+          "song_track": "Just The Way I'm Feeling",
+          "spotify_uri": "spotify:track:1zg4NCQ3vHLn3MeaDBPm3s"
+        },
         "content": "Feeder - Just The Way I'm Feeling",
         "notable": false
       },

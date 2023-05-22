@@ -1126,7 +1126,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Youth And Young Manhood",
+          "song_artist": "Kings of Leon",
+          "song_track": "Molly's Chambers",
+          "spotify_uri": "spotify:track:0nCAVzknkzRXRgB6LhRv04"
+        },
         "content": "Molly's Chambers - Kings of Leon",
         "notable": false
       },
@@ -12953,7 +12958,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Yankee Hotel Foxtrot",
+          "song_artist": "Wilco",
+          "song_track": "I'm the Man Who Loves You",
+          "spotify_uri": "spotify:track:70gsdxSzE5lCKCCYj2F1Yr"
+        },
         "content": "Wilko - I'm a man who loves you",
         "notable": false
       },

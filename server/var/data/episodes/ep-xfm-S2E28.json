@@ -1555,7 +1555,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Vehicles \u0026 Animals",
+          "song_artist": "Athlete",
+          "song_track": "You Got the Style",
+          "spotify_uri": "spotify:track:117HTqcCgGXFsXwnP3jfDW"
+        },
         "content": "Athlete - You've Got the Style",
         "notable": false
       },
@@ -2572,7 +2577,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "A Song For You",
+          "song_artist": "Carpenters",
+          "song_track": "A Song For You",
+          "spotify_uri": "spotify:track:6q2TZbqEnDh5elzJlQEWwv"
+        },
         "content": "The Carpenters - For What It's Worth",
         "notable": false
       },
@@ -2704,7 +2714,12 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Appetite For Destruction",
+          "song_artist": "Guns N' Roses",
+          "song_track": "Sweet Child O' Mine",
+          "spotify_uri": "spotify:track:7snQQk1zcKl8gZ92AnueZW"
+        },
         "content": "Guns 'N' Roses - Sweet Child O' Mine",
         "notable": false
       },
@@ -3925,7 +3940,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "White Blood Cells",
+          "song_artist": "The White Stripes",
+          "song_track": "Dead Leaves and the Dirty Ground",
+          "spotify_uri": "spotify:track:2ewjgFhHDTE8BkV8kzpiX2"
+        },
         "content": "White Stripes - Dead Leaves And The Dirty Ground",
         "notable": false
       },
@@ -5052,7 +5072,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "The Last Broadcast",
+          "song_artist": "Doves",
+          "song_track": "Caught By The River",
+          "spotify_uri": "spotify:track:0vh34aajBcJCIuhgpamgoq"
+        },
         "content": "Doves - Caught By The River",
         "notable": false
       },
@@ -6047,7 +6072,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Greatest Hits",
+          "song_artist": "The Cure",
+          "song_track": "Lovesong",
+          "spotify_uri": "spotify:track:49edirvFZwWjxAMZJRg1hN"
+        },
         "content": "The Cure - I Will Always Love You",
         "notable": false
       },
@@ -6058,7 +6088,11 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Under Construction",
+          "song_track": "Gossip Folks (feat. Ludacris)",
+          "spotify_uri": "spotify:track:75DjPjiIp2fvJDjtt41Jfs"
+        },
         "content": "Missy Elliot - Gossip Folks (Fat Boy Slim Radio Edit)",
         "notable": false
       },

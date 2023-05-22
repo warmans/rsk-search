@@ -8905,7 +8905,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Thirteen",
+          "song_artist": "Teenage Fanclub",
+          "song_track": "Radio",
+          "spotify_uri": "spotify:track:2gIGppPpSUenbbrhTpLVZ0"
+        },
         "content": "Teenage Fan Club - Radio",
         "notable": false
       },
@@ -8916,7 +8921,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Thirteen",
+          "song_artist": "Teenage Fanclub",
+          "song_track": "Radio",
+          "spotify_uri": "spotify:track:2gIGppPpSUenbbrhTpLVZ0"
+        },
         "content": "Teenage Fan Club - Radio",
         "notable": false
       },
@@ -14418,7 +14428,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Magnolia (Music from the Motion Picture)",
+          "song_artist": "Aimee Mann",
+          "song_track": "One",
+          "spotify_uri": "spotify:track:5e7OZ8PyDJYQdGAiidCPad"
+        },
         "content": "Aimee Mann - Driving With One Hand On the Wheel",
         "notable": false
       }

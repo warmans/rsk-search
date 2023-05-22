@@ -646,7 +646,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "The Stone Roses",
+          "song_artist": "The Stone Roses",
+          "song_track": "I Wanna Be Adored - Remastered",
+          "spotify_uri": "spotify:track:758wEKVqfYopJIHYWdLVd4"
+        },
         "content": "The Stone Roses - I Wanna Be Adored",
         "notable": false
       },
@@ -3537,7 +3542,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Thirteen Tales From Urban Bohemia",
+          "song_artist": "The Dandy Warhols",
+          "song_track": "Get Off",
+          "spotify_uri": "spotify:track:1bpo7csRNPoW01SGPbGclM"
+        },
         "content": "Dandy Warhols - Get Off",
         "notable": false
       },
@@ -6198,7 +6208,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Handcream for a Generation",
+          "song_artist": "Cornershop",
+          "song_track": "Lessons Learned from Rocky I to Rocky III",
+          "spotify_uri": "spotify:track:3w6yfyM9ND1Y8XOoCZiOWD"
+        },
         "content": "Cornershop - Lessons Learned From Rocky I To Rocky III",
         "notable": false
       },
@@ -6209,7 +6224,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Angels With Dirty Faces",
+          "song_artist": "Sugababes",
+          "song_track": "Freak Like Me",
+          "spotify_uri": "spotify:track:3P7FZtdmydBC3YahuDoiGF"
+        },
         "content": "Sugababes - Are Freaks Electric",
         "notable": false
       },

@@ -57,7 +57,11 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Signature Box",
+          "song_track": "Happy Xmas (War Is Over) - Remastered 2010",
+          "spotify_uri": "spotify:track:27RYrbL6S02LNVhDWVl38b"
+        },
         "content": "John Lennon, “Happy Xmas (War Is Over)”.",
         "notable": false
       },
@@ -530,7 +534,12 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Santa Claus Is Comin' to Town (Live at C.W. Post College, Greenvale, NY - December 1975)",
+          "song_artist": "Bruce Springsteen",
+          "song_track": "Santa Claus Is Comin' to Town - Live at C.W. Post College, Greenvale, NY - December 1975",
+          "spotify_uri": "spotify:track:6s2wpWPFPAgKg2LXxi1Oee"
+        },
         "content": "Bruce Springsteen, “Santa Claus is Coming to Town”",
         "notable": false
       },
@@ -1718,7 +1727,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Ol' Blue Eyes Is Back",
+          "song_artist": "Frank Sinatra",
+          "song_track": "Let Me Try Again (Laisse Moi le Temps)",
+          "spotify_uri": "spotify:track:3unwkk28BubxXKFNzVGHMY"
+        },
         "content": "Frank Sinatra - Let Me Try Again",
         "notable": false
       },
@@ -2158,7 +2172,12 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Christmas Bop",
+          "song_artist": "T. Rex",
+          "song_track": "Christmas Bop",
+          "spotify_uri": "spotify:track:1vgh3sVlsbImKYLXCanrR4"
+        },
         "content": "T-Rex - Christmas Bop",
         "notable": false
       },
@@ -2202,7 +2221,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "X\u0026Y",
+          "song_artist": "Coldplay",
+          "song_track": "Talk",
+          "spotify_uri": "spotify:track:4wzt5Rrk3W98pHXAqutuJw"
+        },
         "content": "Coldplay - Talk",
         "notable": false
       },

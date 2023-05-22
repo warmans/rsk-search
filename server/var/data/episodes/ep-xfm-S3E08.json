@@ -2082,7 +2082,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "The Decline of British Sea Power",
+          "song_artist": "Sea Power",
+          "song_track": "Carrion",
+          "spotify_uri": "spotify:track:5EbBzsb6CPIjzNUCZSVFGk"
+        },
         "content": "British Sea Power - Carry On",
         "notable": false
       },

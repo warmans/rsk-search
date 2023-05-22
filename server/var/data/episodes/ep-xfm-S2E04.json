@@ -102,7 +102,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "The Eminem Show",
+          "song_artist": "Eminem",
+          "song_track": "Cleanin' Out My Closet",
+          "spotify_uri": "spotify:track:7BMO7O7ImjV8HNTH74Tshv"
+        },
         "content": "Eminem – Cleaning out my closet (Clean A Capella version)",
         "notable": false
       },

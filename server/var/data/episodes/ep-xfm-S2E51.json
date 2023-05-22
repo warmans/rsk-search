@@ -1367,7 +1367,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Comfort in Sound",
+          "song_artist": "Feeder",
+          "song_track": "Forget About Tomorrow",
+          "spotify_uri": "spotify:track:0Su9Yckp5Z681af31yXtRc"
+        },
         "content": "Feeder - Forget about tomorrow",
         "notable": false
       }

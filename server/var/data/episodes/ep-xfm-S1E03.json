@@ -3943,7 +3943,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Coming Up - 20th Anniversary Edition (Audio Version)",
+          "song_artist": "Suede",
+          "song_track": "Beautiful Ones",
+          "spotify_uri": "spotify:track:5yWVfYEeQRPuFtytvkOgU1"
+        },
         "content": "Song: Suede – Beautiful Ones",
         "notable": false
       },

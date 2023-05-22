@@ -1164,7 +1164,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Transformer",
+          "song_artist": "Lou Reed",
+          "song_track": "Satellite of Love",
+          "spotify_uri": "spotify:track:5WyuRWUcOOhAic0tj9Pl28"
+        },
         "content": "Lou Reed featuring David Bowie – Satellite of Love",
         "notable": false
       },
@@ -10984,7 +10989,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Comfort in Sound",
+          "song_artist": "Feeder",
+          "song_track": "Forget About Tomorrow",
+          "spotify_uri": "spotify:track:0Su9Yckp5Z681af31yXtRc"
+        },
         "content": "Feeder- Forget About Tomorrow",
         "notable": false
       },
@@ -13112,7 +13122,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Born To Run",
+          "song_artist": "Bruce Springsteen",
+          "song_track": "Thunder Road",
+          "spotify_uri": "spotify:track:56lhDZNQ5J47aog6mGKeGk"
+        },
         "content": "Badly Drawn Boy – Thunder Road",
         "notable": false
       },

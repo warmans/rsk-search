@@ -5671,7 +5671,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Let It Bleed",
+          "song_artist": "The Rolling Stones",
+          "song_track": "Monkey Man",
+          "spotify_uri": "spotify:track:5m6livL7ccIS92wq16n52r"
+        },
         "content": "The Rolling Stones - Monkey Man",
         "notable": false
       },
@@ -8353,7 +8358,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Science (Live)",
+          "song_artist": "Ricky Gervais",
+          "song_track": "Supermarkets - Live",
+          "spotify_uri": "spotify:track:1NMDNVHxOtifXV0nnPumSW"
+        },
         "content": "Ricky Gervais - Don’t Cry it’s Christmas",
         "notable": false
       },
@@ -10254,7 +10264,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Happy Sad",
+          "song_artist": "Tim Buckley",
+          "song_track": "Buzzin' Fly",
+          "spotify_uri": "spotify:track:3Xy16SYnhBiSBL5yUXaHG1"
+        },
         "content": "Tim Buckley - Buzzing Fly",
         "notable": false
       }

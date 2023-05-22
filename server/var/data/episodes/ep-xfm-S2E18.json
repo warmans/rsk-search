@@ -3918,7 +3918,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Don't Bring Me Down",
+          "song_artist": "Goldrush",
+          "song_track": "Let You Down",
+          "spotify_uri": "spotify:track:66C7V8No0fkCt0pz0lTEOV"
+        },
         "content": "Goldrush - I Let You Down",
         "notable": false
       },
@@ -5733,7 +5738,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "IT'S A COOL, COOL CHRISTMAS",
+          "song_artist": "Teenage Fanclub",
+          "song_track": "Christmas Eve",
+          "spotify_uri": "spotify:track:1X3AAjxXUmoXGHqIVoOYhB"
+        },
         "content": "Teenage Fanclub - Christmas Eve",
         "notable": false
       },
@@ -10317,7 +10327,11 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "If I Should Fall from Grace with God (Expanded Edition)",
+          "song_track": "Fairytale of New York (feat. Kirsty MacColl)",
+          "spotify_uri": "spotify:track:3VTNVsTTu05dmTsVFrmGpK"
+        },
         "content": "The Pogues feat. Kirsty McCall - Fairytale of New York",
         "notable": false
       },

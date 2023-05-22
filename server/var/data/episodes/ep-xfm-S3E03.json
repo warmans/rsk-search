@@ -2528,7 +2528,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Face to Face (Deluxe)",
+          "song_artist": "The Kinks",
+          "song_track": "Sunny Afternoon",
+          "spotify_uri": "spotify:track:0DQqzCHlPyKQXfF8uL01SI"
+        },
         "content": "The Kinks - Girl I Want To Be With You",
         "notable": false
       },

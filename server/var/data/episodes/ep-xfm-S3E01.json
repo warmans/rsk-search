@@ -5260,7 +5260,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "In Time: The Best Of R.E.M. 1988-2003",
+          "song_artist": "R.E.M.",
+          "song_track": "What's The Frequency, Kenneth?",
+          "spotify_uri": "spotify:track:3IDVS2WpABQtu0oARiphxA"
+        },
         "content": "R.E.M. - What's the Frequency Kenneth?",
         "notable": false
       },

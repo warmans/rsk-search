@@ -3484,7 +3484,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Girlfriend",
+          "song_artist": "Matthew Sweet",
+          "song_track": "Girlfriend",
+          "spotify_uri": "spotify:track:4ZFb9hUWOfdpq0JmbHDLyE"
+        },
         "content": "Matthew Sweet - In My Time",
         "notable": false
       },

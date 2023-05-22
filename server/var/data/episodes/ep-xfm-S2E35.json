@@ -698,7 +698,7 @@
         "type": "song",
         "actor": "",
         "metadata": {
-          "song_album": "Think Tank [Special Edition]",
+          "song_album": "Think Tank (Special Edition)",
           "song_artist": "Blur",
           "song_track": "Out of Time",
           "spotify_uri": "spotify:track:79PrPZu9zWyc1qwUwXchVl"
@@ -11073,7 +11073,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "The Smiths",
+          "song_artist": "The Smiths",
+          "song_track": "Reel Around the Fountain - 2011 Remaster",
+          "spotify_uri": "spotify:track:5bSASu4W0HJx6CuG8rbRcA"
+        },
         "content": "The Smiths - Reel Around the Foutain.",
         "notable": false
       },
@@ -12750,7 +12755,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "From Every Sphere",
+          "song_artist": "Ed Harcourt",
+          "song_track": "The Birds Will Sing for Us",
+          "spotify_uri": "spotify:track:2SMQmA1i0qdjT1GOTWWEg5"
+        },
         "content": "Ed Harcourt - The Birds Will Sing For Us",
         "notable": false
       }

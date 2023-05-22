@@ -5616,7 +5616,12 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Paris 1989",
+          "song_artist": "Neil Young",
+          "song_track": "My My, Hey Hey (Out Of The Blue)",
+          "spotify_uri": "spotify:track:4cdMZfZe8bI0dj41Q7rJ0N"
+        },
         "content": "Neil Young, \"My My, Hey Hey (Out of the Blue)\"",
         "notable": false
       },
@@ -6947,7 +6952,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Sleeping With Ghosts",
+          "song_artist": "Placebo",
+          "song_track": "This Picture",
+          "spotify_uri": "spotify:track:7pmahAnqScI4MjbQiZZqei"
+        },
         "content": "Placebo - This Picture",
         "notable": false
       },

@@ -449,7 +449,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Johnny The Fox",
+          "song_artist": "Thin Lizzy",
+          "song_track": "Don't Believe A Word",
+          "spotify_uri": "spotify:track:19Db89BvpKxmuT4S31OkRX"
+        },
         "content": "Thin Lizzy - Don't believe a word",
         "notable": false
       },

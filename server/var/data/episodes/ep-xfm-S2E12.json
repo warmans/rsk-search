@@ -14130,7 +14130,11 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "The \"Angry\" Young Them! (feat. Van Morrison)",
+          "song_track": "Gloria (feat. Van Morrison) - Mono Version",
+          "spotify_uri": "spotify:track:2aH5Pqq1F0sqZN1NFmWNvL"
+        },
         "content": "Van Morrison and Them – Gloria",
         "notable": false
       },

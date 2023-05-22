@@ -246,7 +246,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "The Queen Is Dead",
+          "song_artist": "The Smiths",
+          "song_track": "There Is a Light That Never Goes Out - 2011 Remaster",
+          "spotify_uri": "spotify:track:0WQiDwKJclirSYG9v5tayI"
+        },
         "content": "The Smiths - There Is a Light That Never Goes Out",
         "notable": false
       },
@@ -1698,7 +1703,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Comfort in Sound",
+          "song_artist": "Feeder",
+          "song_track": "Just The Way I'm Feeling",
+          "spotify_uri": "spotify:track:1zg4NCQ3vHLn3MeaDBPm3s"
+        },
         "content": "Feeder - Just The Way I'm Feeling",
         "notable": false
       },
@@ -5971,7 +5981,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Scary Monsters (And Super Creeps) [2017 Remaster]",
+          "song_artist": "David Bowie",
+          "song_track": "Ashes to Ashes - 2017 Remaster",
+          "spotify_uri": "spotify:track:37CRPk0L5ZpfPeePEPwE0t"
+        },
         "content": "David Bowie - Ashes to Ashes",
         "notable": false
       },
@@ -9787,7 +9802,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Pretenders (Expanded \u0026 Remastered)",
+          "song_artist": "Pretenders",
+          "song_track": "Brass in Pocket - 2006 Remaster",
+          "spotify_uri": "spotify:track:2hvOsGJc6qll4WzW8Ljqc3"
+        },
         "content": "The Pretenders - Brass In Pocket",
         "notable": false
       },

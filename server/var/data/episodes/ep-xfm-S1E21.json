@@ -17199,7 +17199,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Blood On The Tracks",
+          "song_artist": "Bob Dylan",
+          "song_track": "If You See Her, Say Hello",
+          "spotify_uri": "spotify:track:3xNO6JUk9ySYjxuqzcZYRB"
+        },
         "content": "If You See Her, Say Hello by Bob Dylan. Episode ends.",
         "notable": false
       }

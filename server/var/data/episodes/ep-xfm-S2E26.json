@@ -2247,7 +2247,11 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Ghetto Heisman",
+          "song_track": "The Streets - Re-Twist",
+          "spotify_uri": "spotify:track:628oXeFNeQUQnq0NUF6zJ3"
+        },
         "content": "WC featuring Snoop Dogg- The Streets",
         "notable": false
       },
@@ -4386,7 +4390,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Have You Fed The Fish",
+          "song_artist": "Badly Drawn Boy",
+          "song_track": "Born Again",
+          "spotify_uri": "spotify:track:6OjUn77gFwnYFZdXEylaLe"
+        },
         "content": "Born Again- Badly Drawn Boy",
         "notable": false
       },
@@ -11573,7 +11582,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "David Bowie (aka Space Oddity) [2015 Remaster]",
+          "song_artist": "David Bowie",
+          "song_track": "Letter to Hermione - 2015 Remaster",
+          "spotify_uri": "spotify:track:44tvF7bl639TEqkz56pu5D"
+        },
         "content": "David Bowie- Letter to Hermione",
         "notable": false
       },
@@ -12563,7 +12577,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "In Search Of...",
+          "song_artist": "N.E.R.D",
+          "song_track": "Provider",
+          "spotify_uri": "spotify:track:0W0eLsePQodsOy3IwY04BS"
+        },
         "content": "N.E.R.D.- The Provider starts",
         "notable": false
       },

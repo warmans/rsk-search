@@ -5167,7 +5167,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Home Invasion",
+          "song_artist": "ICE-T",
+          "song_track": "That's How I'm Livin'",
+          "spotify_uri": "spotify:track:7BemqBHyj1A5gRPimf05dl"
+        },
         "content": "Ice-T - That's How I'm Living",
         "notable": false
       },

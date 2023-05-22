@@ -2462,7 +2462,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Demolition",
+          "song_artist": "Ryan Adams",
+          "song_track": "Nuclear",
+          "spotify_uri": "spotify:track:3rZtJBEvgcG2yZlkaTH9TD"
+        },
         "content": "Byan Adams - Nuclear",
         "notable": false
       },
@@ -3926,10 +3931,10 @@
         "type": "song",
         "actor": "",
         "metadata": {
-          "song_album": "Nevermind (Deluxe Edition)",
+          "song_album": "Nevermind (Remastered)",
           "song_artist": "Nirvana",
           "song_track": "Come As You Are",
-          "spotify_uri": "spotify:track:0MKGH8UMfCnq5w7nG06oM5"
+          "spotify_uri": "spotify:track:2RsAajgo0g7bMCHxwH3Sk0"
         },
         "content": "Nirvana - Come As You Are",
         "notable": false
@@ -8428,7 +8433,11 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Fragments",
+          "song_track": "Tomorrow will be better",
+          "spotify_uri": "spotify:track:1yrJZrqNq9w3quDZwB9yqq"
+        },
         "content": "Money Mark – Tomorrow Will Be Like Today",
         "notable": false
       },

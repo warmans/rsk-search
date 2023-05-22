@@ -28,7 +28,7 @@ func ImportSpotifyData() *cobra.Command {
 			logger, _ := zap.NewProduction()
 			defer func() {
 				if err := logger.Sync(); err != nil {
-					fmt.Println("WARNING: failed to sync logger: "+err.Error())
+					fmt.Println("WARNING: failed to sync logger: " + err.Error())
 				}
 			}()
 
@@ -38,7 +38,7 @@ func ImportSpotifyData() *cobra.Command {
 			}
 
 			if err := addTinPotRadioLinks(tinPotRadioData, logger.With(zap.String("stage", "tinpotradio"))); err != nil {
-				return err
+				fmt.Println("Failed to add tinpot radio links (try running script first): ", err.Error())
 			}
 
 			return addSongMeta(logger.With(zap.String("stage", "songs")), spotifyToken, spotifyDataPath)

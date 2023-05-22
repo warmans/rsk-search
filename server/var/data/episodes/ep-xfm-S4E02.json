@@ -5231,7 +5231,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Midnight Mover: The Bobby Womack Story",
+          "song_artist": "Bobby Womack",
+          "song_track": "Across 110th Street",
+          "spotify_uri": "spotify:track:2zyTP97uGsIc1C4KNNEkyn"
+        },
         "content": "“Across 110th Street”, Bobby Womack",
         "notable": false
       },

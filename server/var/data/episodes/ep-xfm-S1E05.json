@@ -1884,7 +1884,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Fake Sound Of Progress",
+          "song_artist": "lostprophets",
+          "song_track": "Shinobi vs. Dragon Ninja",
+          "spotify_uri": "spotify:track:7yRgSV2m5olaVSPv8g0atA"
+        },
         "content": "Lostprophets - Shinobi vs. Dragon Ninja",
         "notable": false
       },
@@ -3913,7 +3918,11 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "AOI: Bionix",
+          "song_track": "Watch Out",
+          "spotify_uri": "spotify:track:5lCD67Kng4LpdkAEOPKA1S"
+        },
         "content": "De La Soul - Watch Out",
         "notable": false
       },
@@ -6651,7 +6660,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "My Rap Playlist",
+          "song_artist": "Wu-Tang Clan",
+          "song_track": "Gravel Pit",
+          "spotify_uri": "spotify:track:5YqfFaGZz1sstoo7BFAVqP"
+        },
         "content": "Woo Tang Clan – Gravel Pit",
         "notable": false
       },

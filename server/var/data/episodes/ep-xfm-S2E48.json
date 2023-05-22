@@ -6842,7 +6842,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "The Best of The Monkees",
+          "song_artist": "The Monkees",
+          "song_track": "Pleasant Valley Sunday",
+          "spotify_uri": "spotify:track:0O0ccjfbxoW3FBCXznYDJJ"
+        },
         "content": "The Monkees - Pleasant Valley Sunday.",
         "notable": false
       },

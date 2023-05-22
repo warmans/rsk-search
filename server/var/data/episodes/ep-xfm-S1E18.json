@@ -680,7 +680,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Greatest Hits",
+          "song_artist": "Happy Mondays",
+          "song_track": "Kinky Afro",
+          "spotify_uri": "spotify:track:2ItPID4dgSL1t1ZbZCrg5S"
+        },
         "content": "Happy Mondays - Kinky Afro",
         "notable": false
       },
@@ -5758,7 +5763,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Push Barman to Open Old Wounds",
+          "song_artist": "Belle and Sebastian",
+          "song_track": "Legal Man",
+          "spotify_uri": "spotify:track:7bs26A9QpVsAfYuE3MQfLC"
+        },
         "content": "Belle and Sebastian – Legal Man",
         "notable": false
       },
@@ -7941,7 +7951,12 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "The Last Broadcast",
+          "song_artist": "Doves",
+          "song_track": "There Goes The Fear",
+          "spotify_uri": "spotify:track:2wzTHuw8nhFSXUU27x0PFa"
+        },
         "content": "Doves - There Goes the Fear",
         "notable": false
       },

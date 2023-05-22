@@ -5749,7 +5749,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Left Of The Middle",
+          "song_artist": "Natalie Imbruglia",
+          "song_track": "Torn",
+          "spotify_uri": "spotify:track:1Jaah2tmN9Hv81A87KZ1MU"
+        },
         "content": "Papa Garcia - Natelie and Lucy",
         "notable": false
       },

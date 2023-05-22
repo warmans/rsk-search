@@ -12809,7 +12809,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Holy Roller Novocaine",
+          "song_artist": "Kings of Leon",
+          "song_track": "California Waiting",
+          "spotify_uri": "spotify:track:0txCPGqVRdntoHGc1ZcF6t"
+        },
         "content": "Kings of Leon - California Waiting",
         "notable": false
       },

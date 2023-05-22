@@ -2263,7 +2263,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Gorillaz",
+          "song_artist": "Gorillaz",
+          "song_track": "Rock the House",
+          "spotify_uri": "spotify:track:0UQNHlrHiz19Htk7YTLVe5"
+        },
         "content": "Gorillaz - Rock The House",
         "notable": false
       },
@@ -3709,7 +3714,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Rocky IV",
+          "song_artist": "Survivor",
+          "song_track": "Eye of the Tiger",
+          "spotify_uri": "spotify:track:2KH16WveTQWT6KOG9Rg6e2"
+        },
         "content": "Snippet of “Eye of the Tiger”",
         "notable": false
       },
@@ -3797,7 +3807,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Rocky IV",
+          "song_artist": "Survivor",
+          "song_track": "Eye of the Tiger",
+          "spotify_uri": "spotify:track:2KH16WveTQWT6KOG9Rg6e2"
+        },
         "content": "Snippet of “Eye of the Tiger”",
         "notable": false
       },
@@ -5231,7 +5246,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Simon Says",
+          "song_artist": "Pharoahe Monch",
+          "song_track": "Simon Says",
+          "spotify_uri": "spotify:track:67IvfvAMYQzJEeHopvwMMW"
+        },
         "content": "Pharoahe Monch - Got You.",
         "notable": false
       },
@@ -7620,7 +7640,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Greatest Hits",
+          "song_artist": "Happy Mondays",
+          "song_track": "Step On",
+          "spotify_uri": "spotify:track:1GfVc3sAQnGSZ8J5ngH5ys"
+        },
         "content": "Happy Mondays - Step On",
         "notable": false
       },
@@ -7966,7 +7991,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Saturnalia",
+          "song_artist": "The Wedding Present",
+          "song_track": "Dreamworld",
+          "spotify_uri": "spotify:track:47WlfNtx7nishEEdjaM8od"
+        },
         "content": "Wedding Present - Dream World",
         "notable": false
       }

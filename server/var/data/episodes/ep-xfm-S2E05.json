@@ -488,7 +488,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "The Last Broadcast",
+          "song_artist": "Doves",
+          "song_track": "Caught By The River",
+          "spotify_uri": "spotify:track:0vh34aajBcJCIuhgpamgoq"
+        },
         "content": "Doves- Caught by the River",
         "notable": false
       },
@@ -3441,7 +3446,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Heathen Chemistry",
+          "song_artist": "Oasis",
+          "song_track": "Little By Little",
+          "spotify_uri": "spotify:track:45AQ5zbSJ0j1nM9daSWeq8"
+        },
         "content": "Oasis- Little By Little",
         "notable": false
       },
@@ -6581,7 +6591,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Intergalactic Sonic Sevens",
+          "song_artist": "Ash",
+          "song_track": "Envy",
+          "spotify_uri": "spotify:track:2OUykB2hSKjw2ueY1uaU4n"
+        },
         "content": "Ash- Envy",
         "notable": false
       },
@@ -10282,7 +10297,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Urban Hymns (Deluxe / Remastered 2016)",
+          "song_artist": "The Verve",
+          "song_track": "Lucky Man",
+          "spotify_uri": "spotify:track:2mxPSHEwjJWOQS7lGw6btF"
+        },
         "content": "The Verve- Lucky Man",
         "notable": false
       },
@@ -14412,7 +14432,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Aqualung",
+          "song_artist": "Aqualung",
+          "song_track": "Strange and Beautiful (I'll Put a Spell on You)",
+          "spotify_uri": "spotify:track:5Ko8SrPu87Xm6WAt97ncUM"
+        },
         "content": "Aqualung- Strange and Beautiful",
         "notable": false
       }

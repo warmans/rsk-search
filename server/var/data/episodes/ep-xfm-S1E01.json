@@ -768,7 +768,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Strangeways, Here We Come",
+          "song_artist": "The Smiths",
+          "song_track": "Last Night I Dreamt That Somebody Loved Me - 2011 Remaster",
+          "spotify_uri": "spotify:track:17zN523CEjJWBGXrUb3xex"
+        },
         "content": "The Smiths - Last Night I Dreamt That Somebody Loved Me begins to play",
         "notable": false
       },
@@ -4467,7 +4472,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Goodbye Country (Hello Nightclub)",
+          "song_artist": "Groove Armada",
+          "song_track": "Superstylin'",
+          "spotify_uri": "spotify:track:2yWyFT6bW1Rd9cjVvYi4v8"
+        },
         "content": "Groove Armada – Super Stylin'",
         "notable": false
       },

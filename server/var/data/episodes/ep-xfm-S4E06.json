@@ -25,7 +25,12 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Rockin' The Suburbs",
+          "song_artist": "Ben Folds",
+          "song_track": "Rockin' the Suburbs",
+          "spotify_uri": "spotify:track:5zsePddkJkLpwUzP4YBGMK"
+        },
         "content": "Ben Folds, \"One Day\"",
         "notable": false
       },
@@ -2246,7 +2251,12 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Automatic For The People",
+          "song_artist": "R.E.M.",
+          "song_track": "Nightswimming",
+          "spotify_uri": "spotify:track:6G0NzOx2jEPFsSmhr9N8Ys"
+        },
         "content": "R.E.M., “Nightswimming”",
         "notable": false
       },
@@ -7162,7 +7172,11 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Painted From Memory",
+          "song_track": "I Still Have That Other Girl",
+          "spotify_uri": "spotify:track:0Dp7bRXdRXFqAMJRmW6MfV"
+        },
         "content": "Elvis Costello and Burt Bacharach - I still have that other girl In My Head",
         "notable": false
       },

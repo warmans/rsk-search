@@ -7292,7 +7292,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Veni Vidi Vicious",
+          "song_artist": "The Hives",
+          "song_track": "Hate To Say I Told You So",
+          "spotify_uri": "spotify:track:20j7B6mL9gnNvG3ic6Vwh5"
+        },
         "content": "The Hives - Hate To Say I Told You So",
         "notable": false
       },
