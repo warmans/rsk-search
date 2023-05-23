@@ -170,21 +170,6 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  getAuthorLeaderboard(
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskAuthorLeaderboard> {
-    const path = `/api/author/leaderboard`;
-    const options: APIHttpOptions = {
-      ...this.options,
-      ...requestHttpOptions,
-    };
-
-    return this.sendRequest<models.RskAuthorLeaderboard>('GET', path, options);
-  }
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
   listAuthorRanks(
     args: {
       filter?: string,
@@ -402,6 +387,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
       maxPredictions?: number,
       query?: string,
       exact?: boolean,
+      regexp?: boolean,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskSearchTermPredictions> {
@@ -422,6 +408,9 @@ export class SearchAPIClient implements SearchAPIClientInterface {
     }
     if ('exact' in args) {
       options.params = options.params.set('exact', String(args.exact));
+    }
+    if ('regexp' in args) {
+      options.params = options.params.set('regexp', String(args.regexp));
     }
     return this.sendRequest<models.RskSearchTermPredictions>('GET', path, options);
   }

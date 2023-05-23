@@ -604,6 +604,12 @@
               "in": "query",
               "required": false,
               "type": "boolean"
+            },
+            {
+              "name": "regexp",
+              "in": "query",
+              "required": false,
+              "type": "boolean"
             }
           ],
           "tags": [

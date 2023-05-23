@@ -64,13 +64,6 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  getAuthorLeaderboard(
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskAuthorLeaderboard>;
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
   listAuthorRanks(
     args: {
       filter?: string,
@@ -172,6 +165,7 @@ export interface SearchAPIClientInterface {
       maxPredictions?: number,
       query?: string,
       exact?: boolean,
+      regexp?: boolean,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskSearchTermPredictions>;

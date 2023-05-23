@@ -174,7 +174,7 @@ func (s *Search) ListTerms(fieldName string, prefix string) (models.FieldValues,
 	return terms, nil
 }
 
-func (s *Search) PredictSearchTerms(ctx context.Context, prefix string, exact bool, numPredictions int32, f filter.Filter) (*api.SearchTermPredictions, error) {
+func (s *Search) PredictSearchTerms(ctx context.Context, prefix string, exact bool, numPredictions int32, f filter.Filter, regexp bool) (*api.SearchTermPredictions, error) {
 	var q bluge.Query
 	if f != nil {
 		var prefixQuery filter.Filter
@@ -189,14 +189,20 @@ func (s *Search) PredictSearchTerms(ctx context.Context, prefix string, exact bo
 		}
 		q = filterQuery
 	} else {
-		if !exact {
-			matchQuery := bluge.NewMatchQuery(prefix)
+		if regexp {
+			matchQuery := bluge.NewRegexpQuery(prefix)
 			matchQuery.SetField("content")
 			q = matchQuery
 		} else {
-			matchQuery := bluge.NewMatchPhraseQuery(prefix)
-			matchQuery.SetField("content")
-			q = matchQuery
+			if !exact {
+				matchQuery := bluge.NewMatchQuery(prefix)
+				matchQuery.SetField("content")
+				q = matchQuery
+			} else {
+				matchQuery := bluge.NewMatchPhraseQuery(prefix)
+				matchQuery.SetField("content")
+				q = matchQuery
+			}
 		}
 	}
 

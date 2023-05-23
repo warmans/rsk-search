@@ -24,6 +24,7 @@ export enum Tag {
   Float = 'FLOAT',
   Bool = 'BOOL',
   String = 'STRING',
+  Regexp = 'REGEXP',
   Null = 'NULL',
 
   Whitespace = 'WHITESPACE',
@@ -87,7 +88,7 @@ export class Scanner {
     if (this.atEOF()) {
       return this.emit(Tag.EOF);
     }
-    const c = this.nextChar();
+    const c: string = this.nextChar();
     switch (c) {
       case '(':
         return this.emit(Tag.LParen);
@@ -117,6 +118,8 @@ export class Scanner {
         return this.emit(Tag.Lt);
       case '"':
         return this.scanString();
+      case '/':
+        return this.scanRegexp();
       default:
         if (this.isWhitespace(c)) {
           return this.emit(Tag.Whitespace);
@@ -175,6 +178,17 @@ export class Scanner {
       this.nextChar();
     }
     return this.emit(Tag.String);
+  }
+
+
+  private scanRegexp(): Tok {
+    while (!this.matchNextChar('/')) {
+      if (this.atEOF()) {
+        return this.emitError('unclosed regexp');
+      }
+      this.nextChar();
+    }
+    return this.emit(Tag.Regexp);
   }
 
   private nextChar(): string {

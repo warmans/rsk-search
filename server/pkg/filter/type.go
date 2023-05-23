@@ -3,11 +3,12 @@ package filter
 type Type string
 
 const (
-	NullType    Type = "null"
-	IntType     Type = "int"
-	FloatType   Type = "float"
-	StringType  Type = "string"
-	BoolType    Type = "bool"
+	NullType   Type = "null"
+	IntType    Type = "int"
+	FloatType  Type = "float"
+	StringType Type = "string"
+	RegexpType Type = "regexp"
+	BoolType   Type = "bool"
 )
 
 func (t Type) Kind() Type {

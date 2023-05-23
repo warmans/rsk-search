@@ -13,6 +13,28 @@ type Value interface {
 	String() string
 }
 
+func Regexp(s string) RegexpValue {
+	return RegexpValue(s)
+}
+
+type RegexpValue string
+
+func (s RegexpValue) Type() Type {
+	return RegexpType
+}
+
+func (s RegexpValue) IsNull() bool {
+	return false
+}
+
+func (s RegexpValue) Value() interface{} {
+	return string(s)
+}
+
+func (s RegexpValue) String() string {
+	return fmt.Sprintf(`/%s/`, string(s))
+}
+
 func String(s string) StringValue {
 	return StringValue(s)
 }

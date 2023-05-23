@@ -6,6 +6,7 @@ export enum Tag {
 
   QuotedString = 'QUOTED_STRING',
   Word = 'WORD',
+  Regexp = 'REGEXP',
 
   Whitespace = 'WHITESPACE',
   Error = 'ERROR',
@@ -24,10 +25,10 @@ export class Tok {
 }
 
 export function Scan(str: string): Tok[] {
-  const scanner = new Scanner(str);
-  let tokens = [];
+  const scanner: Scanner = new Scanner(str);
+  let tokens: Tok[] = [];
   while (true) {
-    const tok = scanner.next();
+    const tok: Tok = scanner.next();
     tokens.push(tok);
     if (tok.tag === Tag.EOF) {
       break;
@@ -58,6 +59,8 @@ export class Scanner {
         return this.emit(Tag.Publication);
       case '"':
         return this.scanQuotedString();
+      case '/':
+        return this.scanRegexp();
       default:
         if (this.isWhitespace(c)) {
           return this.emit(Tag.Whitespace);
@@ -96,6 +99,17 @@ export class Scanner {
       this.nextChar();
     }
     return this.emit(Tag.QuotedString);
+  }
+
+  private scanRegexp(): Tok {
+    while (!this.matchNextChar('/')) {
+      if (this.atEOF()) {
+        // implicit quote close on EOF
+        return this.emit(Tag.Regexp);
+      }
+      this.nextChar();
+    }
+    return this.emit(Tag.Regexp);
   }
 
   private nextChar(): string {

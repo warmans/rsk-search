@@ -1,21 +1,30 @@
-import { CompOp, Filter, NewCompFilter } from 'src/app/lib/filter-dsl/filter';
-import { Scanner, Tag, Tok } from 'src/app/lib/search-parser/scanner';
-import { Str } from 'src/app/lib/filter-dsl/value';
+import {CompOp, Filter, NewCompFilter} from 'src/app/lib/filter-dsl/filter';
+import {Scanner, Tag, Tok} from 'src/app/lib/search-parser/scanner';
+import {Regexp, Str} from 'src/app/lib/filter-dsl/value';
 
 
-export class Pos {
+export interface Pos {
   start: number;
   end: number;
+  tag: Tag;
 }
 
 export class Term {
-  constructor(public tok: Pos, public field: string, public value: string, public op?: CompOp) {
+  constructor(
+    public tok: Pos,
+    public field: string,
+    public value: string,
+    public op?: CompOp,
+  ) {
     if (!op) {
       this.op = CompOp.Eq;
     }
   }
 
   public toFilter(): Filter {
+    if (this.tok.tag === Tag.Regexp) {
+      return NewCompFilter(this.field, this.op, Regexp((this.value || '').replace(/\//g, '')));
+    }
     return NewCompFilter(this.field, this.op, Str((this.value || '').replace(/"/g, '')));
   }
 }
@@ -54,17 +63,19 @@ export class TermParser {
   }
 
   private parseInner(): Term | null {
-    const t = this.getNext();
+    const t: Tok = this.getNext();
     switch (t.tag) {
       case Tag.EOF:
         return null;
       case Tag.QuotedString:
         return new Term(t, 'content', t.lexeme.replace(/"/g, ''), CompOp.Eq);
+      case Tag.Regexp:
+        return new Term(t, 'content', t.lexeme.replace(/\//g, ''), CompOp.Eq);
       case Tag.Word:
         let words: string[] = [t.lexeme];
         let wordsEndPos = t.end
         // group neighbouring words into a single term.
-        let next = this.peekNext();
+        let next: Tok = this.peekNext();
         while (next.tag === Tag.Word || next.tag === Tag.Whitespace) {
           next = this.getNext() // advance to peeked value
           if (next.tag === Tag.Whitespace) {
@@ -76,13 +87,13 @@ export class TermParser {
           wordsEndPos = next.end
           next = this.peekNext();
         }
-        return new Term({start: t.start, end: wordsEndPos}, 'content', words.join(' '), CompOp.FuzzyLike);
+        return new Term({tag: t.tag, start: t.start, end: wordsEndPos}, 'content', words.join(' '), CompOp.FuzzyLike);
       case Tag.Mention:
         const mentionText = this.requireNext(Tag.QuotedString, Tag.Word, Tag.EOF);
-        return new Term({start: t.start, end: mentionText.end}, 'actor', mentionText.lexeme, CompOp.Eq);
+        return new Term({tag: t.tag, start: t.start, end: mentionText.end}, 'actor', mentionText.lexeme, CompOp.Eq);
       case Tag.Publication:
         const pubText = this.requireNext(Tag.QuotedString, Tag.Word, Tag.EOF);
-        return new Term({start: t.start, end: pubText.end}, 'publication', pubText.lexeme, CompOp.Eq);
+        return new Term({tag: t.tag, start: t.start, end: pubText.end}, 'publication', pubText.lexeme, CompOp.Eq);
       case Tag.Whitespace:
         return new Term(t, 'content', t.lexeme, CompOp.FuzzyLike);
       default:

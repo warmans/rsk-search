@@ -31,6 +31,7 @@ const (
 	tagFloat  tag = "FLOAT"
 	tagBool   tag = "BOOL"
 	tagString tag = "STRING"
+	tagRegexp tag = "REGEXP"
 	tagNull   tag = "NULL"
 )
 
@@ -84,7 +85,7 @@ type scanner struct {
 	offset int
 }
 
-// Gets the next token, advancing the scanner.
+// Next Gets the next token, advancing the scanner.
 func (s *scanner) Next() (token, error) {
 	return s.next()
 }
@@ -125,6 +126,8 @@ func (s *scanner) next() (token, error) {
 		return s.emit(tagLt), nil
 	case '"':
 		return s.scanString()
+	case '/':
+		return s.scanRegexp()
 	default:
 		if isValidFieldRune(r) {
 			field, err := s.scanField()
@@ -192,7 +195,17 @@ func (s *scanner) scanString() (token, error) {
 		}
 		s.nextRune()
 	}
-	return trimTokenLexeme(s.emit(tagString), `""`), nil
+	return trimTokenLexeme(s.emit(tagString), `"`), nil
+}
+
+func (s *scanner) scanRegexp() (token, error) {
+	for !s.matchNextRune('/') {
+		if s.atEOF() {
+			return s.error("unclosed regex")
+		}
+		s.nextRune()
+	}
+	return trimTokenLexeme(s.emit(tagRegexp), `/`), nil
 }
 
 func (s *scanner) atEOF() bool {

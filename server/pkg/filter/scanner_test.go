@@ -162,7 +162,18 @@ func TestScan(t *testing.T) {
 		`foo = "bar`: {
 			expectError: true, // unclosed quote
 		},
-
+		// regexp
+		`foo = /.*/`: {
+			expectTokens: []token{
+				{tag: tagField, lexeme: "foo"},
+				{tag: tagEq, lexeme: "="},
+				{tag: tagRegexp, lexeme: ".*"},
+				{tag: tagEOF},
+			},
+		},
+		`foo = /.*`: {
+			expectError: true, // unclosed quote
+		},
 	}
 
 	for str, test := range tests {

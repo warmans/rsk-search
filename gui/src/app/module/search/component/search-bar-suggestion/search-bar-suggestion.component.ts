@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { debounceTime, takeUntil } from 'rxjs/operators';
-import { CompOp, Filter } from 'src/app/lib/filter-dsl/filter';
-import { RskPrediction } from 'src/app/lib/api-client/models';
-import { highlightPrediction } from 'src/app/lib/util';
-import { Term } from 'src/app/lib/search-parser/parser';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
+import {debounceTime, takeUntil} from 'rxjs/operators';
+import {CompOp, Filter} from 'src/app/lib/filter-dsl/filter';
+import {RskPrediction} from 'src/app/lib/api-client/models';
+import {highlightPrediction} from 'src/app/lib/util';
+import {Term} from 'src/app/lib/search-parser/parser';
+import {Tag} from "../../../../lib/search-parser/scanner";
 
 
 @Component({
@@ -33,7 +34,7 @@ export class SearchBarSuggestionComponent implements OnInit {
   keyInput: Observable<KeyboardEvent> = new Observable<KeyboardEvent>();
 
   @Input()
-  dataFn: (prefix: string, filter: Filter, exact: boolean) => Observable<string[] | RskPrediction[]>;
+  dataFn: (prefix: string, filter: Filter, exact: boolean, regexp: boolean) => Observable<string[] | RskPrediction[]>;
 
   @Output()
   termSelected: EventEmitter<string> = new EventEmitter<string>();
@@ -61,7 +62,9 @@ export class SearchBarSuggestionComponent implements OnInit {
         this.dataFn(
           term.value.replace(/"/g, ''),
           this.termFilters,
-          term.op === CompOp.Eq)
+          term.op === CompOp.Eq,
+          term.tok.tag === Tag.Regexp
+        )
           .pipe(takeUntil(this.destroy$)).subscribe((res: string[] | RskPrediction[]) => {
           this.values = res.map((val: RskPrediction | string) => (typeof val === 'string') ? val : val.line);
           this.highlightedValues = res.map((val: RskPrediction | string) => (typeof val === 'string') ? val : highlightPrediction(val));

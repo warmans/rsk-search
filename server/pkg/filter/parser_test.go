@@ -21,6 +21,9 @@ func TestParseCompFilter(t *testing.T) {
 		`foo = "bar"`: {
 			expectFilter: Eq("foo", String("bar")),
 		},
+		`foo = /.*/`: {
+			expectFilter: Eq("foo", Regexp(".*")),
+		},
 		`foo = 1`: {
 			expectFilter: Eq("foo", Int(1)),
 		},

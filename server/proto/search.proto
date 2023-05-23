@@ -150,6 +150,7 @@ message PredictSearchTermRequest {
   int32 max_predictions = 2;
   string query = 3;
   bool exact = 4;
+  bool regexp = 5;
 }
 
 message SearchTermPredictions  {

@@ -1,6 +1,6 @@
-import { BoolFilter, CompFilter, Filter, Visitor } from './filter';
-import { Renderer2 } from '@angular/core';
-import { ValueKind } from './value';
+import {BoolFilter, CompFilter, Filter, Visitor} from './filter';
+import {Renderer2} from '@angular/core';
+import {ValueKind} from './value';
 
 export function PrintPlainText(f: Filter): string {
   const p = new PlainTextPrinter();
@@ -45,6 +45,8 @@ export class PlainTextPrinter implements Visitor {
   visitCompFilter(f: CompFilter): Visitor {
     if (f.value.kind === ValueKind.String) {
       this.buff.push(f.field, f.op, `"${f.value.v}"`);
+    } else if (f.value.kind === ValueKind.Regexp) {
+      this.buff.push(f.field, f.op, `/${f.value.v}/`);
     } else {
       this.buff.push(f.field, f.op, '' + f.value.v);
     }

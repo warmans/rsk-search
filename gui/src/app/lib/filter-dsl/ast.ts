@@ -1,7 +1,7 @@
-import { Scanner, Tag, tagPrecedence, Tok } from './scanner';
-import { And, Eq, Filter, FuzzyLike, Ge, Gt, isBoolOp, Le, Like, Lt, Neq, Or } from './filter';
-import { trimChars } from '../util';
-import { Bool, Float, Int, Str, Value } from './value';
+import {Scanner, Tag, tagPrecedence, Tok} from './scanner';
+import {And, Eq, Filter, FuzzyLike, Ge, Gt, isBoolOp, Le, Like, Lt, Neq, Or} from './filter';
+import {trimChars} from '../util';
+import {Bool, Float, Int, Regexp, Str, Value} from './value';
 
 export function ParseAST(str: string): Filter {
   return (new ASTParser(new Scanner(str, false))).parse();
@@ -79,7 +79,7 @@ export class ASTParser {
   }
 
   private parseValue(): Value {
-    let token = this.getNext();
+    let token: Tok = this.getNext();
     switch (token.tag) {
       case Tag.Null:
         return null;
@@ -97,6 +97,8 @@ export class ASTParser {
         throw new Error(`Could not parse bool from value: ${token.lexeme}`);
       case Tag.String:
         return Str(trimChars(token.lexeme, '"'));
+      case Tag.Regexp:
+        return Regexp(trimChars(token.lexeme, '/'));
     }
     throw new Error(`Unexpected value ${token.lexeme}`);
   }

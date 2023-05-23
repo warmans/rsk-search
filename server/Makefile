@@ -72,7 +72,7 @@ vendor:
 	echo "=> Installing go deps..."
 	go mod download
 	echo "=> Installing proto deps..."
-	./bin/buf mod update
+	./.env/bin/buf mod update
 
 .PHONY: build
 build:

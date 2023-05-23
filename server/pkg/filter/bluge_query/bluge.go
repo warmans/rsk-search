@@ -173,19 +173,33 @@ func (j *BlugeQuery) eqFilter(field string, value filter.Value) (bluge.Query, er
 	if ok {
 		switch t {
 		case mapping.FieldTypeText:
-			if value.Type() != filter.StringType {
+			if value.Type() != filter.StringType && value.Type() != filter.RegexpType {
 				return nil, fmt.Errorf("could not compare text field %s with %s", field, value.Type())
 			}
-			q := bluge.NewMatchPhraseQuery(stripQuotes(value.String()))
-			q.SetField(field)
-			return q, nil
+			switch value.Type() {
+			case filter.RegexpType:
+				q := bluge.NewRegexpQuery(value.String())
+				q.SetField(field)
+				return q, nil
+			default:
+				q := bluge.NewMatchPhraseQuery(stripQuotes(value.String()))
+				q.SetField(field)
+				return q, nil
+			}
 		case mapping.FieldTypeKeyword, mapping.FieldTypeShingles:
-			if value.Type() != filter.StringType {
+			if value.Type() != filter.StringType && value.Type() != filter.RegexpType {
 				return nil, fmt.Errorf("could not compare keyword field %s with %s", field, value.Type())
 			}
-			q := bluge.NewTermQuery(stripQuotes(value.String()))
-			q.SetField(field)
-			return q, nil
+			switch value.Type() {
+			case filter.RegexpType:
+				q := bluge.NewRegexpQuery(value.String())
+				q.SetField(field)
+				return q, nil
+			default:
+				q := bluge.NewTermQuery(stripQuotes(value.String()))
+				q.SetField(field)
+				return q, nil
+			}
 		case mapping.FieldTypeNumber:
 			switch value.Type() {
 			case filter.IntType:

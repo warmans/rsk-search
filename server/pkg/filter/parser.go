@@ -151,6 +151,8 @@ func (p *parser) parseValue() (Value, error) {
 		return Bool(false), nil
 	case tagString:
 		return String(token.lexeme), nil
+	case tagRegexp:
+		return Regexp(token.lexeme), nil
 	case tagFloat:
 		f, err := strconv.ParseFloat(token.lexeme, 64)
 		if err != nil {
