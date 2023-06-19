@@ -113,7 +113,7 @@ func ServerCmd() *cobra.Command {
 			if err != nil {
 				return err
 			}
-			search := v2.NewSearch(rskIndex, readOnlyStoreConn, episodeCache, srvCfg.AudioUriPattern)
+			search := v2.NewSearch(rskIndex, readOnlyStoreConn, episodeCache, srvCfg.AudioUriPattern, logger)
 
 			// DB is persistent and will retain data between deployments
 			logger.Info("Init persistent DB...")

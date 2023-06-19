@@ -77,13 +77,6 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
       .pipe(tap((res: any) => guards.isRskAuthorContributionList(res) || console.error(`TypeGuard for response 'RskAuthorContributionList' caught inconsistency.`, res)));
   }
 
-  getAuthorLeaderboard(
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskAuthorLeaderboard> {
-    return super.getAuthorLeaderboard(requestHttpOptions)
-      .pipe(tap((res: any) => guards.isRskAuthorLeaderboard(res) || console.error(`TypeGuard for response 'RskAuthorLeaderboard' caught inconsistency.`, res)));
-  }
-
   listAuthorRanks(
     args: {
       filter?: string,

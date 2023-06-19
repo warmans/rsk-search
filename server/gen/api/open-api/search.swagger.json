@@ -416,6 +416,13 @@
         },
         "fragment": {
           "type": "string"
+        },
+        "epid": {
+          "type": "string"
+        },
+        "pos": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },

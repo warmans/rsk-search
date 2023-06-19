@@ -16,21 +16,36 @@ import (
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/search"
 	"github.com/warmans/rsk-search/pkg/store/ro"
+	"go.uber.org/zap"
 	"sort"
+	"strconv"
 	"strings"
 )
 
 const ResultContextLines = 3
 const PageSize = 10
 
-func NewSearch(index *bluge.Reader, readOnlyDB *ro.Conn, episodeCache *data.EpisodeCache, audioUriPattern string) search.Searcher {
-	return &Search{index: index, readOnlyDB: readOnlyDB, episodeCache: episodeCache, audioUriPattern: audioUriPattern}
+func NewSearch(
+	index *bluge.Reader,
+	readOnlyDB *ro.Conn,
+	episodeCache *data.EpisodeCache,
+	audioUriPattern string,
+	logger *zap.Logger,
+) search.Searcher {
+	return &Search{
+		index:           index,
+		readOnlyDB:      readOnlyDB,
+		episodeCache:    episodeCache,
+		logger:          logger,
+		audioUriPattern: audioUriPattern,
+	}
 }
 
 type Search struct {
 	index           *bluge.Reader
 	readOnlyDB      *ro.Conn
 	episodeCache    *data.EpisodeCache
+	logger          *zap.Logger
 	audioUriPattern string
 }
 
@@ -228,6 +243,15 @@ func (s *Search) PredictSearchTerms(ctx context.Context, prefix string, exact bo
 				p.Line = string(value)
 				return false
 			}
+			// id is in the format [epid]-[pos] e.g. ep-xfm-S1E06-347
+			if field == "_id" {
+				var err error
+				p.Epid, p.Pos, err = extractEpidAndPos(string(value))
+				if err != nil {
+					s.logger.Error("error extracting data from index ID", zap.Error(err))
+					return false
+				}
+			}
 			return true
 		})
 		if err != nil {
@@ -272,4 +296,20 @@ func maxInt(a, b int) int {
 
 func stringsAreNotTooSimilar(search, found string) bool {
 	return strings.Trim(strings.ToLower(search), ".?,!") != strings.Trim(strings.ToLower(found), ".?,!")
+}
+
+// index id is in the format [epid]-[pos] e.g. ep-xfm-S1E06-347
+func extractEpidAndPos(indexID string) (string, int32, error) {
+	segments := strings.Split(indexID, "-")
+	if len(segments) < 4 {
+		return "", 0, fmt.Errorf("failed to extract data from index ID: %s", indexID)
+	}
+	posStr := segments[len(segments)-1]
+	epid := strings.Join(segments[:len(segments)-1], "-")
+
+	posInt, err := strconv.ParseInt(posStr, 10, 32)
+	if err != nil {
+		return "", 0, errors.Wrapf(err, "failed to parse pos int from ID: %s", indexID)
+	}
+	return epid, int32(posInt), nil
 }

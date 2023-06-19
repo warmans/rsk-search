@@ -1,16 +1,27 @@
-import { Component, ElementRef, EventEmitter, HostListener, OnDestroy, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
-import { Observable, Subject } from 'rxjs';
-import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
-import { ParseTerms, Term } from 'src/app/lib/search-parser/parser';
-import { PrintFilterString, PrintPlaintext } from 'src/app/lib/search-parser/printer';
-import { getInputSelection } from 'src/app/lib/caret';
-import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { CompFilter, CompOp, Filter } from 'src/app/lib/filter-dsl/filter';
-import { ParseAST } from 'src/app/lib/filter-dsl/ast';
-import { FilterExtractor } from 'src/app/lib/filter-dsl/util';
-import { TermsToFilter } from 'src/app/lib/search-parser/util';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  HostListener,
+  OnDestroy,
+  OnInit,
+  Output,
+  Renderer2,
+  ViewChild
+} from '@angular/core';
+import {UntypedFormControl} from '@angular/forms';
+import {Observable, Subject} from 'rxjs';
+import {distinctUntilChanged, map, takeUntil} from 'rxjs/operators';
+import {ParseTerms, Term} from 'src/app/lib/search-parser/parser';
+import {PrintFilterString, PrintPlaintext} from 'src/app/lib/search-parser/printer';
+import {getInputSelection} from 'src/app/lib/caret';
+import {SearchAPIClient} from 'src/app/lib/api-client/services/search';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {CompFilter, CompOp, Filter} from 'src/app/lib/filter-dsl/filter';
+import {ParseAST} from 'src/app/lib/filter-dsl/ast';
+import {FilterExtractor} from 'src/app/lib/filter-dsl/util';
+import {TermsToFilter} from 'src/app/lib/search-parser/util';
+import {Suggestion, SuggestionType} from "../search-bar-suggestion/search-bar-suggestion.component";
 
 @Component({
   selector: 'app-search-bar-compat',
@@ -66,7 +77,12 @@ export class SearchBarCompatComponent implements OnInit, OnDestroy {
   @ViewChild('termsInput')
   termsInput: ElementRef;
 
-  constructor(private renderer: Renderer2, private apiClient: SearchAPIClient, private route: ActivatedRoute) {
+  constructor(
+    private renderer: Renderer2,
+    private apiClient: SearchAPIClient,
+    private route: ActivatedRoute,
+    private router: Router,
+  ) {
     this.route.queryParamMap.pipe(distinctUntilChanged(), takeUntil(this.destroy$)).subscribe((params: ParamMap) => {
       if (params.get('q') === null || params.get('q').trim() === '') {
         this.reset();
@@ -178,13 +194,17 @@ export class SearchBarCompatComponent implements OnInit, OnDestroy {
     return getInputSelection(this.termsInput.nativeElement).end;
   }
 
-  applySuggestion(suggestion: string) {
-    const hasWhitespace = (/\s/).test(suggestion);
-    const withoutQuotes = suggestion.replace(/"/g, '');
+  applySuggestion(suggestion: Suggestion) {
+    if (suggestion.type === SuggestionType.Dialog) {
+      this.router.navigate(['/ep', suggestion.epid], {fragment: `pos-${suggestion.pos}`});
+      return;
+    }
+    const hasWhitespace: boolean = (/\s/).test(suggestion.term);
+    const withoutQuotes: string = suggestion.term.replace(/"/g, '');
     switch (this.activeTerm?.field) {
       case 'content':
         this.activeTerm = new Term(
-          { start: 0, end: withoutQuotes.length },
+          {start: 0, end: withoutQuotes.length},
           this.activeTerm.field,
           withoutQuotes,
           hasWhitespace ? CompOp.Eq : CompOp.Like,
@@ -192,7 +212,7 @@ export class SearchBarCompatComponent implements OnInit, OnDestroy {
         this.terms = [...this.terms.filter((t) => t === this.activeTerm || t.field !== 'content'), this.activeTerm];
         break;
       default:
-        this.activeTerm.value = hasWhitespace ?  suggestion : withoutQuotes;
+        this.activeTerm.value = hasWhitespace ? suggestion.term : withoutQuotes;
         break;
     }
     this.renderTerms();

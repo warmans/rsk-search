@@ -110,17 +110,6 @@ export function isRskAuthorContributionList(arg: any): arg is models.RskAuthorCo
   );
   }
 
-export function isRskAuthorLeaderboard(arg: any): arg is models.RskAuthorLeaderboard {
-  return (
-  arg != null &&
-  typeof arg === 'object' &&
-    // authors?: RskAuthorRanking[]
-    ( typeof arg.authors === 'undefined' || (Array.isArray(arg.authors) && arg.authors.every((item: unknown) => isRskAuthorRanking(item))) ) &&
-
-  true
-  );
-  }
-
 export function isRskAuthorRank(arg: any): arg is models.RskAuthorRank {
   return (
   arg != null &&
@@ -139,23 +128,6 @@ export function isRskAuthorRank(arg: any): arg is models.RskAuthorRank {
     ( typeof arg.points === 'undefined' || typeof arg.points === 'number' ) &&
     // rewardValueUsd?: number
     ( typeof arg.rewardValueUsd === 'undefined' || typeof arg.rewardValueUsd === 'number' ) &&
-
-  true
-  );
-  }
-
-export function isRskAuthorRanking(arg: any): arg is models.RskAuthorRanking {
-  return (
-  arg != null &&
-  typeof arg === 'object' &&
-    // acceptedContributions?: number
-    ( typeof arg.acceptedContributions === 'undefined' || typeof arg.acceptedContributions === 'number' ) &&
-    // approver?: boolean
-    ( typeof arg.approver === 'undefined' || typeof arg.approver === 'boolean' ) &&
-    // author?: RskAuthor
-    ( typeof arg.author === 'undefined' || isRskAuthor(arg.author) ) &&
-    // awardValue?: number
-    ( typeof arg.awardValue === 'undefined' || typeof arg.awardValue === 'number' ) &&
 
   true
   );
@@ -642,10 +614,14 @@ export function isRskPrediction(arg: any): arg is models.RskPrediction {
   return (
   arg != null &&
   typeof arg === 'object' &&
+    // epid?: string
+    ( typeof arg.epid === 'undefined' || typeof arg.epid === 'string' ) &&
     // fragment?: string
     ( typeof arg.fragment === 'undefined' || typeof arg.fragment === 'string' ) &&
     // line?: string
     ( typeof arg.line === 'undefined' || typeof arg.line === 'string' ) &&
+    // pos?: number
+    ( typeof arg.pos === 'undefined' || typeof arg.pos === 'number' ) &&
 
   true
   );

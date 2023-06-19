@@ -161,6 +161,8 @@ message Prediction {
   string line = 1;
   reserved 2;
   string fragment = 3;
+  string epid = 4;
+  int32 pos = 5;
 }
 
 message WordPosition {

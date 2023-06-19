@@ -9,10 +9,11 @@
       <div *ngFor="let res of result?.results" class="result card mb-3 animate__animated animate__fadeIn animate__faster">
         <div class="card-header font-weight-bold">
           <div class="d-flex justify-content-between">
-            <div>
+            <div class="d-flex align-items-center">
               <a [routerLink]="['/ep', res?.episode?.id]" [fragment]="res?.dialogs[0]?.transcript | matchedRowPos">
                 {{ res.episode?.id }}
               </a>
+              <span *ngIf="res.episode?.bestof" class="badge badge-secondary ml-2">Bestof</span>
             </div>
             <div>
               <app-transcript-copy-dialog [payload]="res"></app-transcript-copy-dialog>

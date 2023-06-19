@@ -1,11 +1,22 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { debounceTime, takeUntil } from 'rxjs/operators';
-import { CompOp, Filter } from 'src/app/lib/filter-dsl/filter';
-import { RskPrediction } from 'src/app/lib/api-client/models';
-import { highlightPrediction } from 'src/app/lib/util';
-import { Term } from 'src/app/lib/search-parser/parser';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
+import {debounceTime, takeUntil} from 'rxjs/operators';
+import {CompOp, Filter} from 'src/app/lib/filter-dsl/filter';
+import {RskPrediction} from 'src/app/lib/api-client/models';
+import {highlightPrediction} from 'src/app/lib/util';
+import {Term} from 'src/app/lib/search-parser/parser';
 
+export enum SuggestionType {
+  Dialog = "dialog",
+  Any = "any"
+}
+
+export interface Suggestion {
+  type: SuggestionType;
+  term: string;
+  epid?: string;
+  pos?: number;
+}
 
 @Component({
   selector: 'app-search-bar-suggestion',
@@ -36,12 +47,15 @@ export class SearchBarSuggestionComponent implements OnInit {
   dataFn: (prefix: string, filter: Filter, exact: boolean) => Observable<string[] | RskPrediction[]>;
 
   @Output()
-  termSelected: EventEmitter<string> = new EventEmitter<string>();
+  termSelected: EventEmitter<Suggestion> = new EventEmitter<Suggestion>();
+
+  @Output()
+  predicationSelected: EventEmitter<RskPrediction> = new EventEmitter<RskPrediction>();
 
   @Output()
   emitQuery: EventEmitter<void> = new EventEmitter<void>();
 
-  values: string[] = [];
+  values: Suggestion[] = [];
 
   highlightedValues: string[] = [];
 
@@ -63,7 +77,14 @@ export class SearchBarSuggestionComponent implements OnInit {
           this.termFilters,
           term.op === CompOp.Eq)
           .pipe(takeUntil(this.destroy$)).subscribe((res: string[] | RskPrediction[]) => {
-          this.values = res.map((val: RskPrediction | string) => (typeof val === 'string') ? val : val.line);
+          this.values = res.map((val: RskPrediction | string): Suggestion => {
+            return (typeof val === 'string') ? {type: SuggestionType.Any, term: val} : {
+              type: SuggestionType.Dialog,
+              term: val.line,
+              epid: val.epid,
+              pos: val.pos
+            }
+          });
           this.highlightedValues = res.map((val: RskPrediction | string) => (typeof val === 'string') ? val : highlightPrediction(val));
         }).add(() => {
           this.loading = false;
@@ -107,7 +128,12 @@ export class SearchBarSuggestionComponent implements OnInit {
     });
   }
 
-  selectTerm(line: string) {
-    this.termSelected.next((/\s/).test(line) ? `"${line}"` : `${line}`);
+  selectTerm(line: Suggestion) {
+    this.termSelected.next({
+      type: line.type,
+      term: (/\s/).test(line.term) ? `"${line.term}"` : `${line.term}`,
+      epid: line.epid,
+      pos: line.pos
+    });
   }
 }

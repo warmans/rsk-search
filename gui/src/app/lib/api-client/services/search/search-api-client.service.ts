@@ -170,21 +170,6 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  getAuthorLeaderboard(
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskAuthorLeaderboard> {
-    const path = `/api/author/leaderboard`;
-    const options: APIHttpOptions = {
-      ...this.options,
-      ...requestHttpOptions,
-    };
-
-    return this.sendRequest<models.RskAuthorLeaderboard>('GET', path, options);
-  }
-
-  /**
-   * Response generated for [ 200 ] HTTP response code.
-   */
   listAuthorRanks(
     args: {
       filter?: string,
