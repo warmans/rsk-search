@@ -267,6 +267,11 @@ export class EditorComponent implements OnInit, OnDestroy {
           localStorage.removeItem(key);
         }
       }
+      // clear legacy items from storage.
+      // todo: this can be removed later
+      if (key.startsWith("chunk-backup")) {
+        localStorage.removeItem(key);
+      }
     }
   }
 
