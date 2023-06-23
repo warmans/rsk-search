@@ -155,6 +155,7 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
   discardChange() {
     if (confirm('Really discard change?')) {
       this.loading.push(true);
+      this.transcriber.clearBackup();
       this.apiClient.deleteTranscriptChange({ id: this.change.id }).pipe(takeUntil(this.destroy$)).subscribe((res) => {
         this.router.navigate(['/ep', this.transcript.id, 'change']);
       }).add(() => this.loading.shift());

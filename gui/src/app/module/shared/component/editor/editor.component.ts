@@ -14,10 +14,12 @@ import {EditorConfig, EditorConfigComponent} from '../editor-config/editor-confi
 import {Subject} from 'rxjs';
 import {getFirstOffset} from '../../lib/tscript';
 import {distinctUntilChanged, takeUntil} from 'rxjs/operators';
-import {formatDistance} from 'date-fns';
+import {formatDistance, fromUnixTime, getUnixTime, isBefore, subDays} from 'date-fns';
 import {EditorInputComponent} from '../editor-input/editor-input.component';
 import {AudioService, PlayerState, Status} from '../../../core/service/audio/audio.service';
 import {FindReplace} from '../find-replace/find-replace.component';
+
+const LOCAL_STORAGE_PREFIX = 'content-backup';
 
 @Component({
   selector: 'app-editor',
@@ -163,6 +165,13 @@ export class EditorComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+
+    try {
+      this.cleanBackups();
+    } catch (e) {
+      console.error("failed to cleanup local storage");
+    }
+
     this.contentUpdated.pipe(distinctUntilChanged(), takeUntil(this.$destroy)).subscribe((v) => {
       if (!v) {
         return;
@@ -170,7 +179,8 @@ export class EditorComponent implements OnInit, OnDestroy {
       try {
         this.backupContent(v);
       } catch (e) {
-        console.error("cannot write to local storage", e);
+        console.error("cannot write to local storage, storage will be cleared.", e);
+        localStorage.clear();
       }
       this.save();
     });
@@ -236,7 +246,28 @@ export class EditorComponent implements OnInit, OnDestroy {
   }
 
   localBackupKey(): string {
-    return `content-backup-${this.contentID}${this.contentVersion ? '-' + this.contentVersion : ''}`;
+    return `${LOCAL_STORAGE_PREFIX}-${getUnixTime(new Date())}-${this.contentID}${this.contentVersion ? '-' + this.contentVersion : ''}`;
+  }
+
+  // local storage cannot be allowed to fill up.
+  // Remove backups if they're either an old format, or older than 1 week.
+  cleanBackups() {
+    for (let i = 0; i < localStorage.length; i++) {
+      const key: string = localStorage.key(i);
+      if (key.startsWith(LOCAL_STORAGE_PREFIX)) {
+        const parts: string[] = key.replace(LOCAL_STORAGE_PREFIX + "-", "").split("-");
+        if (parts.length > 0 && (/^[0-9]+/).test(parts[0])) {
+          const itemDate = fromUnixTime(parseInt(parts[0]));
+          if (isBefore(itemDate, subDays(new Date(), 7))) {
+            // remove backups older than a week
+            localStorage.removeItem(key);
+          }
+        } else {
+          // remove legacy backups
+          localStorage.removeItem(key);
+        }
+      }
+    }
   }
 
   resetToRaw() {
