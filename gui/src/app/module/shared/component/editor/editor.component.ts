@@ -1,12 +1,23 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
-import { EditorConfig, EditorConfigComponent } from '../editor-config/editor-config.component';
-import { Subject } from 'rxjs';
-import { getFirstOffset } from '../../lib/tscript';
-import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
-import { formatDistance } from 'date-fns';
-import { EditorInputComponent } from '../editor-input/editor-input.component';
-import { AudioService, PlayerState, Status } from '../../../core/service/audio/audio.service';
-import { FindReplace } from '../find-replace/find-replace.component';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
+import {EditorConfig, EditorConfigComponent} from '../editor-config/editor-config.component';
+import {Subject} from 'rxjs';
+import {getFirstOffset} from '../../lib/tscript';
+import {distinctUntilChanged, takeUntil} from 'rxjs/operators';
+import {formatDistance} from 'date-fns';
+import {EditorInputComponent} from '../editor-input/editor-input.component';
+import {AudioService, PlayerState, Status} from '../../../core/service/audio/audio.service';
+import {FindReplace} from '../find-replace/find-replace.component';
 
 @Component({
   selector: 'app-editor',
@@ -156,7 +167,11 @@ export class EditorComponent implements OnInit, OnDestroy {
       if (!v) {
         return;
       }
-      this.backupContent(v);
+      try {
+        this.backupContent(v);
+      } catch (e) {
+        console.error("cannot write to local storage", e);
+      }
       this.save();
     });
   }
