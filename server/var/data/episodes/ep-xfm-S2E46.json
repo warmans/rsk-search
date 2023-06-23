@@ -10,7 +10,7 @@
     "bestof": false,
     "special": false,
     "locked": false,
-    "offset_accuracy": 79,
+    "offset_accuracy": 74,
     "audio_quality": "",
     "metadata": {
       "duration_ms": "3022550",
@@ -2596,29 +2596,843 @@
       {
         "id": "ep-xfm-S2E46-235",
         "pos": 235,
-        "offset_sec": 841,
-        "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
+        "offset_sec": 545,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
         "metadata": null,
-        "content": "[~3 mins of missing transcription]",
+        "content": "When you say you got caught? How-- What was it? You were right behind the bike shed having a swear?",
         "notable": false
       },
       {
         "id": "ep-xfm-S2E46-236",
         "pos": 236,
-        "offset_sec": 943,
-        "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
+        "offset_sec": 551,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
         "metadata": null,
-        "content": "[~3 mins of missing transcription]",
+        "content": "\"You got any MFs?\" \"No, I've only got one 'C' left it's for dad's.\" \"Oh, come on, let's have a go on it! Let's say \"-unt\".",
         "notable": false
       },
       {
         "id": "ep-xfm-S2E46-237",
         "pos": 237,
-        "offset_sec": 1045,
+        "offset_sec": 559,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Yeah",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-238",
+        "pos": 238,
+        "offset_sec": 559,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Let me say the \"-unt\".",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-239",
+        "pos": 239,
+        "offset_sec": 560,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Can you go to older kids to buy you some swearing?",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-240",
+        "pos": 240,
+        "offset_sec": 562,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Just smoke it down to the \"cu-\"",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-241",
+        "pos": 241,
+        "offset_sec": 564,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Yeah. So you're riding your bike, having a swear",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-242",
+        "pos": 242,
+        "offset_sec": 567,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-243",
+        "pos": 243,
+        "offset_sec": 568,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "And teacher hears him say the 'S' word.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-244",
+        "pos": 244,
+        "offset_sec": 571,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "The 'S' word",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-245",
+        "pos": 245,
+        "offset_sec": 572,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "The 'S' word?",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-246",
+        "pos": 246,
+        "offset_sec": 574,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Yeah. So the way this teacher dealt with it, he said, \"Right, it's not a clever word to use\" And he tried to make him get sick of using it by he had to write an essay using that word 300 times. Right?",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-247",
+        "pos": 247,
+        "offset_sec": 593,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah. I would have loved that.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-248",
+        "pos": 248,
+        "offset_sec": 594,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "But that's just practice for a kid",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-249",
+        "pos": 249,
+        "offset_sec": 596,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "But that is like that is like the the father catching the kid with a cigar.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-250",
+        "pos": 250,
+        "offset_sec": 600,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "And make him smoke it",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-251",
+        "pos": 251,
+        "offset_sec": 601,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "And make him smoke it, yeah, yeah. Doesn't work with heroin, if you've got a young teenager who's jacked up for the first time, it can be dangerous!",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-252",
+        "pos": 252,
+        "offset_sec": 607,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "The funny thing is though, right, his mom found his textbook",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-253",
+        "pos": 253,
+        "offset_sec": 611,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Of course!",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-254",
+        "pos": 254,
+        "offset_sec": 611,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Thought he was depressed and wanted to take him counseling. Because everything was 'S'. He was writing down this is--",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-255",
+        "pos": 255,
+        "offset_sec": 618,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "And did it work? Did it wean him out of it?",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-256",
+        "pos": 256,
+        "offset_sec": 620,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "No it didn't. The teacher I mean, he disappeared. He got kicked out for hitting a kid on the head with a bit of wood.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-257",
+        "pos": 257,
+        "offset_sec": 630,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "It wasn't you, was it? That would explain a lot.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-258",
+        "pos": 258,
+        "offset_sec": 634,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "Ricky laughs",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-259",
+        "pos": 259,
+        "offset_sec": 635,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "Song fades in",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-260",
+        "pos": 260,
+        "offset_sec": 635,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Longview - 'Further'. That's great, that.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-261",
+        "pos": 261,
+        "offset_sec": 637,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Good tune. Can I just say a big shout out, Rick",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-262",
+        "pos": 262,
+        "offset_sec": 639,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Go on",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-263",
+        "pos": 263,
+        "offset_sec": 640,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "To John K. He's listening online in Los Angeles. City of Angels.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-264",
+        "pos": 264,
+        "offset_sec": 644,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Brilliant.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-265",
+        "pos": 265,
+        "offset_sec": 645,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "It's his first time listening to the show. Who knows what he's making of it. I wonder if we should explain what Karl is to him.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-266",
+        "pos": 266,
+        "offset_sec": 650,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "He's up early.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-267",
+        "pos": 267,
+        "offset_sec": 651,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Well, he's got up apparently to record it and then he's gone back to bed.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-268",
+        "pos": 268,
+        "offset_sec": 654,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "All right, so he can listen it any time. Oh, yeah",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-269",
+        "pos": 269,
+        "offset_sec": 658,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Exactly.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-270",
+        "pos": 270,
+        "offset_sec": 659,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Karl...",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-271",
+        "pos": 271,
+        "offset_sec": 660,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Can you explain what he is?",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-272",
+        "pos": 272,
+        "offset_sec": 662,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "He's a little bit of a grumpy, spoiled, lazy prat at the moment, but usually he's quite a funny, nice, sort of genuine guy who's in awe of the world if it's furry and doesn't really care if it isn't.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-273",
+        "pos": 273,
+        "offset_sec": 677,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Anyway, we're all one big happy family.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-274",
+        "pos": 274,
+        "offset_sec": 679,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Come on, Karl. Attitude up. Happy! If we're happy, the listener is happy.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-275",
+        "pos": 275,
+        "offset_sec": 683,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "We were talking about schools. Swearing. Kids at school. I just remember at school, a lot of my friends now are becoming teachers. And I just can't imagine what it must be like in an environment with kids. Because when we were at school-- I mean, not particularly me, but lots of people in the class, and you'd all end up doing it, we would just treat teachers like they weren't humans, like they were just creatures from another planet",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-276",
+        "pos": 276,
+        "offset_sec": 703,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Well, kids are cruel, because-- Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-277",
+        "pos": 277,
+        "offset_sec": 705,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "They were allowed to be tormented.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-278",
+        "pos": 278,
+        "offset_sec": 706,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "It's a game, isn't it? To see if I can wind someone up to distraction.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-279",
+        "pos": 279,
+        "offset_sec": 711,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "But is it because--",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-280",
+        "pos": 280,
+        "offset_sec": 712,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Unless you grow out of that (laughs)",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-281",
+        "pos": 281,
+        "offset_sec": 714,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Not everyone.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-282",
+        "pos": 282,
+        "offset_sec": 714,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Especially if they got a bit cash in their pocket now and a little bit of success, they tend to think that that gives them license to treat people badly, it's terrible.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-283",
+        "pos": 283,
+        "offset_sec": 722,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "Ricky is giggling",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-284",
+        "pos": 284,
+        "offset_sec": 723,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "But I remember there was a guy, - this is such a terrible story - There was a teacher, he came in and he was teaching us, and one kid, one of the hard nuts, he'd found out that this this guy, he lived on his own and he had a cat, and the cat got run over. And so we got in early, like everyone was in early and before the teacher came in, and this kid drew a picture of a cat being run over by a car in chalk on the blackboard, a huge picture of it. And the teacher just came in, saw it burst into tears and ran out. And the thing is, that was like the beginning of term, so he could never get us back back after that. There was never going to be any respect for him",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-285",
+        "pos": 285,
+        "offset_sec": 751,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Because he cried, I know yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-286",
+        "pos": 286,
+        "offset_sec": 753,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "It's just like-- I just remembered now, thinking about it, just thinking-- I mean, at the time I remember thinking it was bad, but now it's just heartbreaking. It's devastating.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-287",
+        "pos": 287,
+        "offset_sec": 760,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "I know. They just forget, they'd let their guard down a little bit.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-288",
+        "pos": 288,
+        "offset_sec": 767,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Did you ever do the one where you just... (hums). Just humming.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-289",
+        "pos": 289,
+        "offset_sec": 768,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "Ricky \u0026 Steve hums",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-290",
+        "pos": 290,
+        "offset_sec": 768,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-291",
+        "pos": 291,
+        "offset_sec": 769,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "And he'd tell us to stop it. And then everyone would just... (hums)",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-292",
+        "pos": 292,
+        "offset_sec": 770,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "There was one teacher me and my mate used to go up to, and when he was just talking to another one, just sort of sniff him slightly and then sort of like he goes \"What?\" I go \"Nothing!\"  And he'd just walk away sniffing his armpit.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-293",
+        "pos": 293,
+        "offset_sec": 782,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "But those kind of mind games! It's like",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-294",
+        "pos": 294,
+        "offset_sec": 784,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "I know.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-295",
+        "pos": 295,
+        "offset_sec": 784,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Once, right? I was talking about this in the week actually, we had this teacher and he must have been sort of like sort of 60 then, and we're all about sort of like twelve. We had to do French. You had to put your thing on the booth. And it was-- I told you this haven't I? \"Le chats sur...\" (mumbles in French)",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-296",
+        "pos": 296,
+        "offset_sec": 802,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "What does that mean?",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-297",
+        "pos": 297,
+        "offset_sec": 803,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "\"Cats on the wall\", right? And you'd repeat it in French. And of course everyone was going: F.C. Just like-- just for fun. And he heard this and he listened back to all of them and he realized, and he went mental. He went \"I don't believe this! Do you know how much these cost?\" He was going mad, he was going red and bursting like Karl was earlier. And it was like \"I just I can't stand this anymore!\" And he picked up an exercise, and he said, \"Look at this exercise book! Look!\" And I won't say the kids name, he went \"So and so, Look! Oh, look! Oh, look! He's put...\" and I'll change his name. 'Smithers'. \"Oh, look, he's put Smithers is shit! Oh! Oh! He's got clever on this side! He's put 'Smithers' is a lump of shit, that's good!\" Right? And he went berserk. He went \"Oh, look, he's drawn a picture of a penis with wings and he's written underneath 'Dicky Bird'\". He went \"Is that clever?!\" He went \"You want me to put a piece of paper up so you can come and write swear words and draw ladies genitals all day?\" And I went (laughs) laughing. He went \"I'm glad you think it's funny, Mr. Gervais!\" And he stormed out.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-298",
+        "pos": 298,
+        "offset_sec": 876,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Oh, god!",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-299",
+        "pos": 299,
+        "offset_sec": 876,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-300",
+        "pos": 300,
+        "offset_sec": 876,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "And did he ever come back?",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-301",
+        "pos": 301,
+        "offset_sec": 877,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "No, but we put the bit of paper up for him and said, look what we've done you Sir: \"That's a fanny. There's some knobs\" Yeah?",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-302",
+        "pos": 302,
+        "offset_sec": 884,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Was it biology?.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-303",
+        "pos": 303,
+        "offset_sec": 885,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "No, it was French.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-304",
+        "pos": 304,
+        "offset_sec": 886,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Oh, French, of course. I just remember things like games. Like there was some covers at the back of the math class, and one kid just got in the cupboard before the teacher came and then sat in there for like, you know, 45 minutes and just towards the end of the thing, just came out.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-305",
+        "pos": 305,
+        "offset_sec": 904,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Brilliant.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-306",
+        "pos": 306,
+        "offset_sec": 905,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Just came out and just went, \"Ohhh\" And sat down and just things like that, which just kind of-- I don't know what it is. It's just an utter lack of respect.",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-307",
+        "pos": 307,
+        "offset_sec": 913,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "I played a trick like that once in my first year at college. This is pathetic, right? On a hall of residence, right? And there was this woman, sort of middle aged woman, come around in a twinset, and I think she was from a bank, where she's doing students going to do a bank account. And she was coming down the corridor and she's knocked, right? And so my mate got in my wardrobe in this little room, right? Just sat there. She came in and... (mumbles) ...and there was a knock on the wardrobe, I went: \"Come in!\" And he just came out, I went \"Alright?\" And he left. And she just looked at me and I started laughing. I went \"Sorry\" She went \"You're not interested?\" I went \"No\"",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-308",
+        "pos": 308,
+        "offset_sec": 1106,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "Steve laughs",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-309",
+        "pos": 309,
+        "offset_sec": 1110,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "But she just fell flat. She fell flat (laughing)",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-310",
+        "pos": 310,
+        "offset_sec": 1123,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Oh, dear. Oh, dear. Karl, a little bit happier now?",
+        "notable": false
+      },
+      {
+        "id": "ep-xfm-S2E46-311",
+        "pos": 311,
+        "offset_sec": 1138,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -2627,8 +3441,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-238",
-        "pos": 238,
+        "id": "ep-xfm-S2E46-312",
+        "pos": 312,
         "offset_sec": 1147,
         "offset_inferred": false,
         "type": "chat",
@@ -2638,8 +3452,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-239",
-        "pos": 239,
+        "id": "ep-xfm-S2E46-313",
+        "pos": 313,
         "offset_sec": 1150,
         "offset_inferred": false,
         "type": "chat",
@@ -2649,8 +3463,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-240",
-        "pos": 240,
+        "id": "ep-xfm-S2E46-314",
+        "pos": 314,
         "offset_sec": 1164,
         "offset_inferred": false,
         "type": "chat",
@@ -2660,8 +3474,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-241",
-        "pos": 241,
+        "id": "ep-xfm-S2E46-315",
+        "pos": 315,
         "offset_sec": 1167,
         "offset_inferred": false,
         "type": "chat",
@@ -2671,8 +3485,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-242",
-        "pos": 242,
+        "id": "ep-xfm-S2E46-316",
+        "pos": 316,
         "offset_sec": 1168,
         "offset_inferred": false,
         "type": "chat",
@@ -2682,8 +3496,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-243",
-        "pos": 243,
+        "id": "ep-xfm-S2E46-317",
+        "pos": 317,
         "offset_sec": 1171,
         "offset_inferred": true,
         "type": "chat",
@@ -2693,8 +3507,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-244",
-        "pos": 244,
+        "id": "ep-xfm-S2E46-318",
+        "pos": 318,
         "offset_sec": 1175,
         "offset_inferred": false,
         "type": "chat",
@@ -2704,8 +3518,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-245",
-        "pos": 245,
+        "id": "ep-xfm-S2E46-319",
+        "pos": 319,
         "offset_sec": 1178,
         "offset_inferred": false,
         "type": "chat",
@@ -2715,8 +3529,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-246",
-        "pos": 246,
+        "id": "ep-xfm-S2E46-320",
+        "pos": 320,
         "offset_sec": 1179,
         "offset_inferred": false,
         "type": "chat",
@@ -2726,8 +3540,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-247",
-        "pos": 247,
+        "id": "ep-xfm-S2E46-321",
+        "pos": 321,
         "offset_sec": 1181,
         "offset_inferred": false,
         "type": "chat",
@@ -2737,8 +3551,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-248",
-        "pos": 248,
+        "id": "ep-xfm-S2E46-322",
+        "pos": 322,
         "offset_sec": 1186,
         "offset_inferred": false,
         "type": "chat",
@@ -2748,8 +3562,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-249",
-        "pos": 249,
+        "id": "ep-xfm-S2E46-323",
+        "pos": 323,
         "offset_sec": 1188,
         "offset_inferred": false,
         "type": "chat",
@@ -2759,8 +3573,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-250",
-        "pos": 250,
+        "id": "ep-xfm-S2E46-324",
+        "pos": 324,
         "offset_sec": 1191,
         "offset_inferred": false,
         "type": "chat",
@@ -2770,8 +3584,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-251",
-        "pos": 251,
+        "id": "ep-xfm-S2E46-325",
+        "pos": 325,
         "offset_sec": 1194,
         "offset_inferred": false,
         "type": "chat",
@@ -2781,8 +3595,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-252",
-        "pos": 252,
+        "id": "ep-xfm-S2E46-326",
+        "pos": 326,
         "offset_sec": 1202,
         "offset_inferred": true,
         "type": "chat",
@@ -2792,8 +3606,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-253",
-        "pos": 253,
+        "id": "ep-xfm-S2E46-327",
+        "pos": 327,
         "offset_sec": 1202,
         "offset_inferred": false,
         "type": "chat",
@@ -2803,8 +3617,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-254",
-        "pos": 254,
+        "id": "ep-xfm-S2E46-328",
+        "pos": 328,
         "offset_sec": 1205,
         "offset_inferred": false,
         "type": "chat",
@@ -2814,8 +3628,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-255",
-        "pos": 255,
+        "id": "ep-xfm-S2E46-329",
+        "pos": 329,
         "offset_sec": 1208,
         "offset_inferred": true,
         "type": "chat",
@@ -2825,8 +3639,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-256",
-        "pos": 256,
+        "id": "ep-xfm-S2E46-330",
+        "pos": 330,
         "offset_sec": 1208,
         "offset_inferred": false,
         "type": "chat",
@@ -2836,8 +3650,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-257",
-        "pos": 257,
+        "id": "ep-xfm-S2E46-331",
+        "pos": 331,
         "offset_sec": 1214,
         "offset_inferred": false,
         "type": "chat",
@@ -2847,8 +3661,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-258",
-        "pos": 258,
+        "id": "ep-xfm-S2E46-332",
+        "pos": 332,
         "offset_sec": 1224,
         "offset_inferred": false,
         "type": "chat",
@@ -2858,8 +3672,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-259",
-        "pos": 259,
+        "id": "ep-xfm-S2E46-333",
+        "pos": 333,
         "offset_sec": 1232,
         "offset_inferred": true,
         "type": "chat",
@@ -2869,8 +3683,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-260",
-        "pos": 260,
+        "id": "ep-xfm-S2E46-334",
+        "pos": 334,
         "offset_sec": 1233,
         "offset_inferred": true,
         "type": "chat",
@@ -2880,8 +3694,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-261",
-        "pos": 261,
+        "id": "ep-xfm-S2E46-335",
+        "pos": 335,
         "offset_sec": 1234,
         "offset_inferred": false,
         "type": "chat",
@@ -2891,8 +3705,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-262",
-        "pos": 262,
+        "id": "ep-xfm-S2E46-336",
+        "pos": 336,
         "offset_sec": 1239,
         "offset_inferred": true,
         "type": "chat",
@@ -2902,8 +3716,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-263",
-        "pos": 263,
+        "id": "ep-xfm-S2E46-337",
+        "pos": 337,
         "offset_sec": 1239,
         "offset_inferred": false,
         "type": "chat",
@@ -2913,8 +3727,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-264",
-        "pos": 264,
+        "id": "ep-xfm-S2E46-338",
+        "pos": 338,
         "offset_sec": 1241,
         "offset_inferred": false,
         "type": "chat",
@@ -2924,8 +3738,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-265",
-        "pos": 265,
+        "id": "ep-xfm-S2E46-339",
+        "pos": 339,
         "offset_sec": 1243,
         "offset_inferred": true,
         "type": "chat",
@@ -2935,8 +3749,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-266",
-        "pos": 266,
+        "id": "ep-xfm-S2E46-340",
+        "pos": 340,
         "offset_sec": 1243,
         "offset_inferred": false,
         "type": "chat",
@@ -2946,8 +3760,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-267",
-        "pos": 267,
+        "id": "ep-xfm-S2E46-341",
+        "pos": 341,
         "offset_sec": 1248,
         "offset_inferred": false,
         "type": "chat",
@@ -2957,8 +3771,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-268",
-        "pos": 268,
+        "id": "ep-xfm-S2E46-342",
+        "pos": 342,
         "offset_sec": 1250,
         "offset_inferred": false,
         "type": "chat",
@@ -2968,8 +3782,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-269",
-        "pos": 269,
+        "id": "ep-xfm-S2E46-343",
+        "pos": 343,
         "offset_sec": 1268,
         "offset_inferred": false,
         "type": "chat",
@@ -2979,8 +3793,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-270",
-        "pos": 270,
+        "id": "ep-xfm-S2E46-344",
+        "pos": 344,
         "offset_sec": 1272,
         "offset_inferred": false,
         "type": "chat",
@@ -2990,8 +3804,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-271",
-        "pos": 271,
+        "id": "ep-xfm-S2E46-345",
+        "pos": 345,
         "offset_sec": 1274,
         "offset_inferred": false,
         "type": "chat",
@@ -3001,8 +3815,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-272",
-        "pos": 272,
+        "id": "ep-xfm-S2E46-346",
+        "pos": 346,
         "offset_sec": 1292,
         "offset_inferred": false,
         "type": "chat",
@@ -3012,8 +3826,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-273",
-        "pos": 273,
+        "id": "ep-xfm-S2E46-347",
+        "pos": 347,
         "offset_sec": 1294,
         "offset_inferred": false,
         "type": "chat",
@@ -3023,8 +3837,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-274",
-        "pos": 274,
+        "id": "ep-xfm-S2E46-348",
+        "pos": 348,
         "offset_sec": 1303,
         "offset_inferred": false,
         "type": "chat",
@@ -3034,8 +3848,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-275",
-        "pos": 275,
+        "id": "ep-xfm-S2E46-349",
+        "pos": 349,
         "offset_sec": 1305,
         "offset_inferred": false,
         "type": "chat",
@@ -3045,8 +3859,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-276",
-        "pos": 276,
+        "id": "ep-xfm-S2E46-350",
+        "pos": 350,
         "offset_sec": 1307,
         "offset_inferred": false,
         "type": "chat",
@@ -3056,8 +3870,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-277",
-        "pos": 277,
+        "id": "ep-xfm-S2E46-351",
+        "pos": 351,
         "offset_sec": 1308,
         "offset_inferred": false,
         "type": "chat",
@@ -3067,8 +3881,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-278",
-        "pos": 278,
+        "id": "ep-xfm-S2E46-352",
+        "pos": 352,
         "offset_sec": 1310,
         "offset_inferred": false,
         "type": "chat",
@@ -3078,8 +3892,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-279",
-        "pos": 279,
+        "id": "ep-xfm-S2E46-353",
+        "pos": 353,
         "offset_sec": 1311,
         "offset_inferred": true,
         "type": "chat",
@@ -3089,8 +3903,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-280",
-        "pos": 280,
+        "id": "ep-xfm-S2E46-354",
+        "pos": 354,
         "offset_sec": 1314,
         "offset_inferred": false,
         "type": "chat",
@@ -3100,8 +3914,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-281",
-        "pos": 281,
+        "id": "ep-xfm-S2E46-355",
+        "pos": 355,
         "offset_sec": 1316,
         "offset_inferred": true,
         "type": "chat",
@@ -3111,8 +3925,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-282",
-        "pos": 282,
+        "id": "ep-xfm-S2E46-356",
+        "pos": 356,
         "offset_sec": 1320,
         "offset_inferred": false,
         "type": "chat",
@@ -3122,8 +3936,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-283",
-        "pos": 283,
+        "id": "ep-xfm-S2E46-357",
+        "pos": 357,
         "offset_sec": 1571,
         "offset_inferred": true,
         "type": "chat",
@@ -3133,8 +3947,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-284",
-        "pos": 284,
+        "id": "ep-xfm-S2E46-358",
+        "pos": 358,
         "offset_sec": 1698,
         "offset_inferred": true,
         "type": "song",
@@ -3149,8 +3963,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-285",
-        "pos": 285,
+        "id": "ep-xfm-S2E46-359",
+        "pos": 359,
         "offset_sec": 1698,
         "offset_inferred": true,
         "type": "chat",
@@ -3160,8 +3974,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-286",
-        "pos": 286,
+        "id": "ep-xfm-S2E46-360",
+        "pos": 360,
         "offset_sec": 1789,
         "offset_inferred": true,
         "type": "gap",
@@ -3171,8 +3985,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-287",
-        "pos": 287,
+        "id": "ep-xfm-S2E46-361",
+        "pos": 361,
         "offset_sec": 1912,
         "offset_inferred": true,
         "type": "gap",
@@ -3182,8 +3996,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-288",
-        "pos": 288,
+        "id": "ep-xfm-S2E46-362",
+        "pos": 362,
         "offset_sec": 2035,
         "offset_inferred": true,
         "type": "gap",
@@ -3193,8 +4007,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-289",
-        "pos": 289,
+        "id": "ep-xfm-S2E46-363",
+        "pos": 363,
         "offset_sec": 2159,
         "offset_inferred": true,
         "type": "gap",
@@ -3204,8 +4018,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-290",
-        "pos": 290,
+        "id": "ep-xfm-S2E46-364",
+        "pos": 364,
         "offset_sec": 2282,
         "offset_inferred": true,
         "type": "gap",
@@ -3215,8 +4029,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-291",
-        "pos": 291,
+        "id": "ep-xfm-S2E46-365",
+        "pos": 365,
         "offset_sec": 2406,
         "offset_inferred": true,
         "type": "gap",
@@ -3226,8 +4040,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-292",
-        "pos": 292,
+        "id": "ep-xfm-S2E46-366",
+        "pos": 366,
         "offset_sec": 2529,
         "offset_inferred": true,
         "type": "gap",
@@ -3237,8 +4051,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-293",
-        "pos": 293,
+        "id": "ep-xfm-S2E46-367",
+        "pos": 367,
         "offset_sec": 2652,
         "offset_inferred": true,
         "type": "gap",
@@ -3248,8 +4062,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-294",
-        "pos": 294,
+        "id": "ep-xfm-S2E46-368",
+        "pos": 368,
         "offset_sec": 2776,
         "offset_inferred": true,
         "type": "gap",
@@ -3259,8 +4073,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S2E46-295",
-        "pos": 295,
+        "id": "ep-xfm-S2E46-369",
+        "pos": 369,
         "offset_sec": 2899,
         "offset_inferred": true,
         "type": "gap",
@@ -3274,7 +4088,8 @@
     "contributors": [
       "LittleBigMooseEater",
       "TheFatHeffer",
-      "warmans"
+      "warmans",
+      "wontbemad"
     ],
     "trivia": null
   }
