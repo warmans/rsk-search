@@ -179,8 +179,7 @@ export class EditorComponent implements OnInit, OnDestroy {
       try {
         this.backupContent(v);
       } catch (e) {
-        console.error("cannot write to local storage, storage will be cleared.", e);
-        localStorage.clear();
+        console.error("cannot write to local storage", e);
       }
       this.save();
     });
