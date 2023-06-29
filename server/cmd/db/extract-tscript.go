@@ -45,6 +45,8 @@ func ExtractTscriptCmd() *cobra.Command {
 			if dbCfg.DSN == "" {
 				panic("dsn not set")
 			}
+
+			logger.Info("Connecting...")
 			conn, err := rw.NewConn(dbCfg)
 			if err != nil {
 				return err
