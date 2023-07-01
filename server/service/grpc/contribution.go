@@ -273,7 +273,7 @@ func (s *ContributionsService) GetDonationStats(ctx context.Context, empty *empt
 	return stats.Proto(), nil
 }
 
-func (s *ContributionsService) ListIncomingDonations(ctx context.Context, request *api.ListIncomingDonationsRequest) (*api.IncomingDonationList, error) {
+func (s *ContributionsService) ListIncomingDonations(ctx context.Context, _ *api.ListIncomingDonationsRequest) (*api.IncomingDonationList, error) {
 	out := &api.IncomingDonationList{}
 
 	if s.coffee == nil {
