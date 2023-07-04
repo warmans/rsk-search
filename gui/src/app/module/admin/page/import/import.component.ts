@@ -1,9 +1,14 @@
-import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
-import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
-import { AlertService } from '../../../core/service/alert/alert.service';
-import { RskTscriptImport, RskTscriptImportList, RskChunkedTranscriptList, RskChunkedTranscriptStats } from 'src/app/lib/api-client/models';
-import { takeUntil } from 'rxjs/operators';
+import {Component, EventEmitter, OnDestroy, OnInit} from '@angular/core';
+import {UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
+import {SearchAPIClient} from 'src/app/lib/api-client/services/search';
+import {AlertService} from '../../../core/service/alert/alert.service';
+import {
+  RskChunkedTranscriptList,
+  RskChunkedTranscriptStats,
+  RskTscriptImport,
+  RskTscriptImportList
+} from 'src/app/lib/api-client/models';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'app-import',
@@ -52,7 +57,10 @@ export class ImportComponent implements OnInit, OnDestroy {
   }
 
   updateTscriptImportList() {
-    this.apiClient.listTscriptImports({ sortField: 'created_at', sortDirection: 'desc' }).pipe(takeUntil(this.unsubscribe$)).subscribe((v: RskTscriptImportList) => {
+    this.apiClient.listTscriptImports({
+      sortField: 'created_at',
+      sortDirection: 'desc'
+    }).pipe(takeUntil(this.unsubscribe$)).subscribe((v: RskTscriptImportList) => {
       this.imports = v.imports;
     });
   }
@@ -73,9 +81,11 @@ export class ImportComponent implements OnInit, OnDestroy {
   }
 
   deleteTscript(id: string) {
-    this.apiClient.deleteTscript({ id: id }).pipe(takeUntil(this.unsubscribe$)).subscribe(() => {
-      this.alerts.success('Deleted');
-      this.updateTscriptList();
-    });
+    if (confirm("Really?")) {
+      this.apiClient.deleteTscript({id: id}).pipe(takeUntil(this.unsubscribe$)).subscribe(() => {
+        this.alerts.success('Deleted');
+        this.updateTscriptList();
+      });
+    }
   }
 }

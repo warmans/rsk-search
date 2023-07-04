@@ -376,7 +376,7 @@ func getRewardForThreshold(mod *models.AuthorReward) *api.Reward {
 		Kind:          api.Reward_DONATION,
 		Name:          "Here's some tat in a jiffy bag",
 		Criteria:      fmt.Sprintf("Earn %0.2f Points", mod.PointsSpent),
-		Value:         2,
+		Value:         1,
 		ValueCurrency: "USD",
 	}
 }
