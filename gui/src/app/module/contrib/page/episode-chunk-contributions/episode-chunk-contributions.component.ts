@@ -105,10 +105,10 @@ export class EpisodeChunkContributions implements OnInit {
           return;
         }
         // do not replace the current value if it is already approved.
-        if (approvalMap[chunkId] === RskContributionState.STATE_APPROVED) {
+        if (approvalMap[chunkId].state === RskContributionState.STATE_APPROVED) {
           return;
         }
-        if (approvalMap[chunkId] === RskContributionState.STATE_REJECTED && co.state !== RskContributionState.STATE_REJECTED) {
+        if (approvalMap[chunkId].state === RskContributionState.STATE_REJECTED && co.state !== RskContributionState.STATE_REJECTED) {
           approvalMap[chunkId] = co;
         }
         if (co.state === RskContributionState.STATE_APPROVED) {
