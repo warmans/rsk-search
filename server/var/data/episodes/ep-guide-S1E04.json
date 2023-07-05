@@ -10,7 +10,7 @@
     "bestof": false,
     "special": false,
     "locked": false,
-    "offset_accuracy": 77,
+    "offset_accuracy": 67,
     "audio_quality": "",
     "metadata": {
       "cover_art_url": "/assets/cover/guide.jpg",
@@ -724,95 +724,392 @@
       {
         "id": "ep-guide-S1E04-65",
         "pos": 65,
-        "offset_sec": 1499,
-        "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
+        "offset_sec": 404,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
         "metadata": null,
-        "content": "[~3 mins of missing transcription]",
+        "content": "So what's happening when I'm sort of having a packet of Munchies?",
         "notable": false
       },
       {
         "id": "ep-guide-S1E04-66",
         "pos": 66,
-        "offset_sec": 1561,
+        "offset_sec": 408,
         "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
+        "type": "chat",
+        "actor": "ricky",
         "metadata": null,
-        "content": "[~3 mins of missing transcription]",
+        "content": "Yeah",
         "notable": false
       },
       {
         "id": "ep-guide-S1E04-67",
         "pos": 67,
-        "offset_sec": 1623,
+        "offset_sec": 408,
         "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
+        "type": "chat",
+        "actor": "karl",
         "metadata": null,
-        "content": "[~3 mins of missing transcription]",
+        "content": "Am I having them or are they imaginary?",
         "notable": false
       },
       {
         "id": "ep-guide-S1E04-68",
         "pos": 68,
-        "offset_sec": 1686,
-        "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
+        "offset_sec": 410,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
         "metadata": null,
-        "content": "[~3 mins of missing transcription]",
+        "content": "They're imaginary, but you can't tell the difference, it's the best packet of Munchies you've ever had. I love the fact that you went into the flotation tank and your one proviso was \"Are munchies as good?\"",
         "notable": false
       },
       {
         "id": "ep-guide-S1E04-69",
         "pos": 69,
-        "offset_sec": 1748,
-        "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
+        "offset_sec": 422,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
         "metadata": null,
-        "content": "[~3 mins of missing transcription]",
+        "content": "Yeah. Absolutely",
         "notable": false
       },
       {
         "id": "ep-guide-S1E04-70",
         "pos": 70,
-        "offset_sec": 1811,
-        "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
+        "offset_sec": 423,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
         "metadata": null,
-        "content": "[~3 mins of missing transcription]",
+        "content": "No, I'm just taking it back to basics.",
         "notable": false
       },
       {
         "id": "ep-guide-S1E04-71",
         "pos": 71,
-        "offset_sec": 1873,
-        "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
+        "offset_sec": 425,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
         "metadata": null,
-        "content": "[~3 mins of missing transcription]",
+        "content": "That is basic.",
         "notable": false
       },
       {
         "id": "ep-guide-S1E04-72",
         "pos": 72,
-        "offset_sec": 1936,
-        "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
+        "offset_sec": 426,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
         "metadata": null,
-        "content": "[~3 mins of missing transcription]",
+        "content": "Right, you've got to pre-program your life, that's where you'd start, is it? Munchies must always taste magnificent.",
         "notable": false
       },
       {
         "id": "ep-guide-S1E04-73",
         "pos": 73,
-        "offset_sec": 1998,
+        "offset_sec": 431,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Well, if you can still enjoy the basic things in life, then that's when you can't go wrong.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-74",
+        "pos": 74,
+        "offset_sec": 435,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "You do. You enjoy them. It's the life you'd ever want to live, and you're living it.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-75",
+        "pos": 75,
+        "offset_sec": 450,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Bit dangerous that.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-76",
+        "pos": 76,
+        "offset_sec": 451,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Bit dangerous? Why?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-77",
+        "pos": 77,
+        "offset_sec": 452,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Sorry? Why, go on, why?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-78",
+        "pos": 78,
+        "offset_sec": 453,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Just, uh, I don't know, because sometimes I think things don't happen for the best, right? Sometimes you can sort of think, oh, I'll enjoy that if that happens. And then it doesn't happen, and you've had time to think about what would have happened-",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-79",
+        "pos": 79,
+        "offset_sec": 464,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Oh but this is perfect. No, this is built in. Because whatever happens is for the best. So not only when you're in this floatation tank are you enjoying yourself, that things just keep getting better or staying as good -",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-80",
+        "pos": 80,
+        "offset_sec": 477,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "So you never have a bad day?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-81",
+        "pos": 81,
+        "offset_sec": 479,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "You never have a bad day.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-82",
+        "pos": 82,
+        "offset_sec": 480,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "But how long would that last for before you go, \"I'm fed up with this\"?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-83",
+        "pos": 83,
+        "offset_sec": 482,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Well, why would you get fed up with it? Because you do something else. It's the perfect life.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-84",
+        "pos": 84,
+        "offset_sec": 485,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Bear in mind, you're not aware that you're in the flotation tank. You've made that deal but then once you're in there, you're not aware of being in the flotation tank. You're living your life, and it's perfect. You're happy. Well, we don't know how you would be happy. You'd just have munches every day and...",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-85",
+        "pos": 85,
+        "offset_sec": 499,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Well, get in it then, get in it. If you don't know you've got in this tank, if I somehow go to bed at night, someone injects me in the head, and then they go, \"Right, stick him in the tank now.\" And then I wake up, packet of munchies there, sun's out. Uh, Suzanne goes, \"It's a nice day. You want to go and do something nice?\"",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-86",
+        "pos": 86,
+        "offset_sec": 516,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Right-",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-87",
+        "pos": 87,
+        "offset_sec": 516,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "I'll go, \"You're meant to be at work.\" She goes, \"No, I don't have to go in today, I'll be, \"All right, let's go out then.\"",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-88",
+        "pos": 88,
+        "offset_sec": 522,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Right, now what's interesting there is that, within this scenario, I gave you any life, you could do anything, and you chose the exact life you've got now, except Suzanne's got a day off. Now, I both love that and-",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-89",
+        "pos": 89,
+        "offset_sec": 538,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Well, I was a bit suspicious, though, that she's just taking a day off willy-nillyly.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-90",
+        "pos": 90,
+        "offset_sec": 540,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "No, wait. It's not happening now. It's not happening, really happening. You can do anything you like. But I like the fact now you're even question it. You're not in the tank. And why has Suzanne got a day off? Right? Now, I love that because that suggests to me that you're a nice, happy, satisfied, whatever you want to do it, contented person, who's got the perfect life. However, it's almost like you haven't fully understood the possibilities. For example, you wake up, there's the Munchies, sunny day, Suzanne's not at work. You go, \"Why aren't you at work?\"",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-91",
+        "pos": 91,
+        "offset_sec": 566,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Eh, half a day off.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-92",
+        "pos": 92,
+        "offset_sec": 567,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "She goes to you, \"Oh, hold on, why are you flying?\" And you go, \"I just can.\" But you hadn't even thought of that maybe you could fly, or swim, or hold your breath.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-93",
+        "pos": 93,
+        "offset_sec": 574,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "He's just going to have some Munchies for breakfast.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-94",
+        "pos": 94,
+        "offset_sec": 577,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Hold on a minute. This is day one.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-95",
+        "pos": 95,
+        "offset_sec": 578,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Oh, okay.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-96",
+        "pos": 96,
+        "offset_sec": 578,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "When you go on holiday.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-97",
+        "pos": 97,
+        "offset_sec": 579,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-98",
+        "pos": 98,
+        "offset_sec": 579,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Like I said before, you don't turn up and go, right, it's 01:00. Jet ski for half an hour, bungee jump in 40 minutes after that, let's have a nice Roti, and try a little cocktail.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-99",
+        "pos": 99,
+        "offset_sec": 999,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-100",
+        "pos": 100,
+        "offset_sec": 1009,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -821,8 +1118,514 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-74",
-        "pos": 74,
+        "id": "ep-guide-S1E04-101",
+        "pos": 101,
+        "offset_sec": 1088,
+        "offset_inferred": true,
+        "type": "gap",
+        "actor": "",
+        "metadata": null,
+        "content": "[~3 mins of missing transcription]",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-102",
+        "pos": 102,
+        "offset_sec": 1168,
+        "offset_inferred": true,
+        "type": "gap",
+        "actor": "",
+        "metadata": null,
+        "content": "[~3 mins of missing transcription]",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-103",
+        "pos": 103,
+        "offset_sec": 1248,
+        "offset_inferred": true,
+        "type": "gap",
+        "actor": "",
+        "metadata": null,
+        "content": "[~3 mins of missing transcription]",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-104",
+        "pos": 104,
+        "offset_sec": 1327,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Alright?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-105",
+        "pos": 105,
+        "offset_sec": 1328,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Why? You didn't want to see the ants burned? That's sweet. They're dear.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-106",
+        "pos": 106,
+        "offset_sec": 1331,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Yeah. They might be causing a problem, but I don't want to see this, this, mess. Now, the thing is, she went out, she poured the hot water on it. I left it a few minutes. I went out. I had a cup of tea, I thought, it's a waste of electrical as well. So I took me cup of tea out there, and I'm sat there and then I just saw one come back from wherever it had been. One ant. He looked devastated. Because that had been away, as far as that was concerned. It had been out to get a leaf or whatever, came back, devastation. It's that- what- That's the thing, it summed up death for me, that. The ants are dead, they didn't know anything. Suddenly they were there, next minute, load of water, dead. It's the people who are still living in life, that are the saddest, aren't they, after death.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-107",
+        "pos": 107,
+        "offset_sec": 1381,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-108",
+        "pos": 108,
+        "offset_sec": 1381,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "And that summed it up.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-109",
+        "pos": 109,
+        "offset_sec": 1382,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "What do you think do you-",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-110",
+        "pos": 110,
+        "offset_sec": 1383,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "That ant would have been better off being there when it happened.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-111",
+        "pos": 111,
+        "offset_sec": 1385,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "How could you tell the ant was devastated?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-112",
+        "pos": 112,
+        "offset_sec": 1387,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "I mean, they run around in circles anyway, don't they? But this was just kind of going, \"What's going on?\"",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-113",
+        "pos": 113,
+        "offset_sec": 1391,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "And what, did it slow down when it got nearer the nest? Did it drop the leaf, and then you see it run the last few inches?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-114",
+        "pos": 114,
+        "offset_sec": 1397,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "It just kind of got close and it was like, a double take almost, almost like, it got near the hole and then it was like, \"Wait a minute this can't be it, because no one's around.\" Then it walked on and went, \"No, it is the hole\", and it went back and it just sort of stopped for a minute.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-115",
+        "pos": 115,
+        "offset_sec": 1414,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Ohh",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-116",
+        "pos": 116,
+        "offset_sec": 1414,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "And that for me, that's the sort of thoughts Descartes should have been having.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-117",
+        "pos": 117,
+        "offset_sec": 1419,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "What...",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-118",
+        "pos": 118,
+        "offset_sec": 1419,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Things that you can look at as a human and appreciate it, and understand it and go, \"Yeah, that's true. That is like life.\" Instead of, \"Oh, am I awake? Am I asleep or what?\" Well, you may as well be asleep because you're doing nothing else.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-119",
+        "pos": 119,
+        "offset_sec": 1433,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Oh, God! Descartes, Winehouse, Allen -",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-120",
+        "pos": 120,
+        "offset_sec": 1439,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Slammed",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-121",
+        "pos": 121,
+        "offset_sec": 1440,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Slammed",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-122",
+        "pos": 122,
+        "offset_sec": 1440,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "What do you do towards enjoying your life?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-123",
+        "pos": 123,
+        "offset_sec": 1443,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "I don't normally enjoy the thing when I'm doing it, it's after. It's like that holiday, when I was on holiday.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-124",
+        "pos": 124,
+        "offset_sec": 1448,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "What do you mean, \"You don't enjoy the thing when you're doing it, it's after\"? What's an example of not enjoying the thing at the moment but you do after?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-125",
+        "pos": 125,
+        "offset_sec": 1454,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "You didn't enjoy the holiday?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-126",
+        "pos": 126,
+        "offset_sec": 1455,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Say like the holiday, I've just been away -",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-127",
+        "pos": 127,
+        "offset_sec": 1457,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "So you've enjoyed coming off holiday.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-128",
+        "pos": 128,
+        "offset_sec": 1458,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "I want to hear it, you enjoyed the holiday, you didn't enjoy the holiday?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-129",
+        "pos": 129,
+        "offset_sec": 1460,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "When I'm there, I had fleas biting me.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-130",
+        "pos": 130,
+        "offset_sec": 1462,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Yeah",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-131",
+        "pos": 131,
+        "offset_sec": 1462,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "I had mosquitoes biting me.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-132",
+        "pos": 132,
+        "offset_sec": 1463,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Yep",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-133",
+        "pos": 133,
+        "offset_sec": 1464,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "There was a funny smell of damp in the bathroom. I was worrying, getting in the sea, thinking, is there stone fish in here? Right? Now you've got all that going on. When you get back, you forget about the damp smell -",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-134",
+        "pos": 134,
+        "offset_sec": 1473,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Well you haven't.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-135",
+        "pos": 135,
+        "offset_sec": 1474,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "You forget about the fleas because the bites have gone, they're not as much of a problem. So then your brain starts going, \"Well, hang on, what did I enjoy?\" And you go, \"I enjoyed the dorado fish I had, that I've never eaten. That's an experience.\" At the time I wasn't enjoying it because I'm thinking, \"When I get back, I'm gonna have fleas on me again.\"",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-136",
+        "pos": 136,
+        "offset_sec": 1489,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Yeah",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-137",
+        "pos": 137,
+        "offset_sec": 1489,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "So you remember all the good stuff. It's like an old person, when they're dying and they go, \"I'm having flashbacks.\" They don't say, \"I'm remembering the time me shoes were too tight.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-138",
+        "pos": 138,
+        "offset_sec": 1497,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "What did they say?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-139",
+        "pos": 139,
+        "offset_sec": 1499,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "They're having nice, they're going, \"Oh, I loved the time with that...",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-140",
+        "pos": 140,
+        "offset_sec": 1502,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "...I was wearing flipflops.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-141",
+        "pos": 141,
+        "offset_sec": 1503,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "No, they enjoy, they have flashbacks of their nice holidays.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-142",
+        "pos": 142,
+        "offset_sec": 1622,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "About what? What do you think you'll look back on?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-143",
+        "pos": 143,
+        "offset_sec": 1721,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "The holidays, and that, they'll go \"Oh, The lovely hot summer of '79.\"",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-144",
+        "pos": 144,
+        "offset_sec": 1859,
+        "offset_inferred": true,
+        "type": "gap",
+        "actor": "",
+        "metadata": null,
+        "content": "[~3 mins of missing transcription]",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-145",
+        "pos": 145,
+        "offset_sec": 1926,
+        "offset_inferred": true,
+        "type": "gap",
+        "actor": "",
+        "metadata": null,
+        "content": "[~3 mins of missing transcription]",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-146",
+        "pos": 146,
+        "offset_sec": 1993,
+        "offset_inferred": true,
+        "type": "gap",
+        "actor": "",
+        "metadata": null,
+        "content": "[~3 mins of missing transcription]",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S1E04-147",
+        "pos": 147,
         "offset_sec": 2060,
         "offset_inferred": false,
         "type": "chat",
@@ -832,8 +1635,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-75",
-        "pos": 75,
+        "id": "ep-guide-S1E04-148",
+        "pos": 148,
         "offset_sec": 2061,
         "offset_inferred": true,
         "type": "chat",
@@ -843,8 +1646,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-76",
-        "pos": 76,
+        "id": "ep-guide-S1E04-149",
+        "pos": 149,
         "offset_sec": 2067,
         "offset_inferred": false,
         "type": "chat",
@@ -854,8 +1657,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-77",
-        "pos": 77,
+        "id": "ep-guide-S1E04-150",
+        "pos": 150,
         "offset_sec": 2069,
         "offset_inferred": false,
         "type": "chat",
@@ -865,8 +1668,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-78",
-        "pos": 78,
+        "id": "ep-guide-S1E04-151",
+        "pos": 151,
         "offset_sec": 2071,
         "offset_inferred": false,
         "type": "chat",
@@ -876,8 +1679,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-79",
-        "pos": 79,
+        "id": "ep-guide-S1E04-152",
+        "pos": 152,
         "offset_sec": 2075,
         "offset_inferred": false,
         "type": "chat",
@@ -887,8 +1690,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-80",
-        "pos": 80,
+        "id": "ep-guide-S1E04-153",
+        "pos": 153,
         "offset_sec": 2077,
         "offset_inferred": false,
         "type": "chat",
@@ -898,8 +1701,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-81",
-        "pos": 81,
+        "id": "ep-guide-S1E04-154",
+        "pos": 154,
         "offset_sec": 2087,
         "offset_inferred": false,
         "type": "chat",
@@ -909,8 +1712,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-82",
-        "pos": 82,
+        "id": "ep-guide-S1E04-155",
+        "pos": 155,
         "offset_sec": 2088,
         "offset_inferred": false,
         "type": "chat",
@@ -920,8 +1723,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-83",
-        "pos": 83,
+        "id": "ep-guide-S1E04-156",
+        "pos": 156,
         "offset_sec": 2091,
         "offset_inferred": false,
         "type": "chat",
@@ -931,8 +1734,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-84",
-        "pos": 84,
+        "id": "ep-guide-S1E04-157",
+        "pos": 157,
         "offset_sec": 2100,
         "offset_inferred": false,
         "type": "chat",
@@ -942,8 +1745,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-85",
-        "pos": 85,
+        "id": "ep-guide-S1E04-158",
+        "pos": 158,
         "offset_sec": 2113,
         "offset_inferred": false,
         "type": "chat",
@@ -953,8 +1756,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-86",
-        "pos": 86,
+        "id": "ep-guide-S1E04-159",
+        "pos": 159,
         "offset_sec": 2119,
         "offset_inferred": false,
         "type": "chat",
@@ -964,8 +1767,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-87",
-        "pos": 87,
+        "id": "ep-guide-S1E04-160",
+        "pos": 160,
         "offset_sec": 2120,
         "offset_inferred": false,
         "type": "chat",
@@ -975,8 +1778,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-88",
-        "pos": 88,
+        "id": "ep-guide-S1E04-161",
+        "pos": 161,
         "offset_sec": 2123,
         "offset_inferred": false,
         "type": "chat",
@@ -986,8 +1789,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-89",
-        "pos": 89,
+        "id": "ep-guide-S1E04-162",
+        "pos": 162,
         "offset_sec": 2127,
         "offset_inferred": false,
         "type": "chat",
@@ -997,8 +1800,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-90",
-        "pos": 90,
+        "id": "ep-guide-S1E04-163",
+        "pos": 163,
         "offset_sec": 2137,
         "offset_inferred": false,
         "type": "chat",
@@ -1008,8 +1811,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-91",
-        "pos": 91,
+        "id": "ep-guide-S1E04-164",
+        "pos": 164,
         "offset_sec": 2142,
         "offset_inferred": false,
         "type": "chat",
@@ -1019,8 +1822,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-92",
-        "pos": 92,
+        "id": "ep-guide-S1E04-165",
+        "pos": 165,
         "offset_sec": 2149,
         "offset_inferred": false,
         "type": "chat",
@@ -1030,8 +1833,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-93",
-        "pos": 93,
+        "id": "ep-guide-S1E04-166",
+        "pos": 166,
         "offset_sec": 2150,
         "offset_inferred": false,
         "type": "chat",
@@ -1041,8 +1844,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-94",
-        "pos": 94,
+        "id": "ep-guide-S1E04-167",
+        "pos": 167,
         "offset_sec": 2153,
         "offset_inferred": false,
         "type": "chat",
@@ -1052,8 +1855,8 @@
         "notable": true
       },
       {
-        "id": "ep-guide-S1E04-95",
-        "pos": 95,
+        "id": "ep-guide-S1E04-168",
+        "pos": 168,
         "offset_sec": 2155,
         "offset_inferred": false,
         "type": "chat",
@@ -1063,8 +1866,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-96",
-        "pos": 96,
+        "id": "ep-guide-S1E04-169",
+        "pos": 169,
         "offset_sec": 2160,
         "offset_inferred": false,
         "type": "chat",
@@ -1074,8 +1877,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-97",
-        "pos": 97,
+        "id": "ep-guide-S1E04-170",
+        "pos": 170,
         "offset_sec": 2165,
         "offset_inferred": false,
         "type": "chat",
@@ -1085,8 +1888,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-98",
-        "pos": 98,
+        "id": "ep-guide-S1E04-171",
+        "pos": 171,
         "offset_sec": 2166,
         "offset_inferred": false,
         "type": "chat",
@@ -1096,8 +1899,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-99",
-        "pos": 99,
+        "id": "ep-guide-S1E04-172",
+        "pos": 172,
         "offset_sec": 2169,
         "offset_inferred": false,
         "type": "chat",
@@ -1107,8 +1910,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-100",
-        "pos": 100,
+        "id": "ep-guide-S1E04-173",
+        "pos": 173,
         "offset_sec": 2172,
         "offset_inferred": false,
         "type": "chat",
@@ -1118,8 +1921,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-101",
-        "pos": 101,
+        "id": "ep-guide-S1E04-174",
+        "pos": 174,
         "offset_sec": 2173,
         "offset_inferred": false,
         "type": "chat",
@@ -1129,8 +1932,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-102",
-        "pos": 102,
+        "id": "ep-guide-S1E04-175",
+        "pos": 175,
         "offset_sec": 2174,
         "offset_inferred": false,
         "type": "chat",
@@ -1140,8 +1943,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-103",
-        "pos": 103,
+        "id": "ep-guide-S1E04-176",
+        "pos": 176,
         "offset_sec": 2175,
         "offset_inferred": false,
         "type": "chat",
@@ -1151,8 +1954,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-104",
-        "pos": 104,
+        "id": "ep-guide-S1E04-177",
+        "pos": 177,
         "offset_sec": 2176,
         "offset_inferred": false,
         "type": "chat",
@@ -1162,8 +1965,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-105",
-        "pos": 105,
+        "id": "ep-guide-S1E04-178",
+        "pos": 178,
         "offset_sec": 2179,
         "offset_inferred": false,
         "type": "chat",
@@ -1173,8 +1976,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-106",
-        "pos": 106,
+        "id": "ep-guide-S1E04-179",
+        "pos": 179,
         "offset_sec": 2187,
         "offset_inferred": false,
         "type": "chat",
@@ -1184,8 +1987,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-107",
-        "pos": 107,
+        "id": "ep-guide-S1E04-180",
+        "pos": 180,
         "offset_sec": 2189,
         "offset_inferred": false,
         "type": "chat",
@@ -1195,8 +1998,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-108",
-        "pos": 108,
+        "id": "ep-guide-S1E04-181",
+        "pos": 181,
         "offset_sec": 2190,
         "offset_inferred": true,
         "type": "chat",
@@ -1206,8 +2009,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-109",
-        "pos": 109,
+        "id": "ep-guide-S1E04-182",
+        "pos": 182,
         "offset_sec": 2194,
         "offset_inferred": false,
         "type": "chat",
@@ -1217,8 +2020,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-110",
-        "pos": 110,
+        "id": "ep-guide-S1E04-183",
+        "pos": 183,
         "offset_sec": 2202,
         "offset_inferred": true,
         "type": "chat",
@@ -1228,8 +2031,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-111",
-        "pos": 111,
+        "id": "ep-guide-S1E04-184",
+        "pos": 184,
         "offset_sec": 2202,
         "offset_inferred": false,
         "type": "chat",
@@ -1239,8 +2042,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-112",
-        "pos": 112,
+        "id": "ep-guide-S1E04-185",
+        "pos": 185,
         "offset_sec": 2203,
         "offset_inferred": false,
         "type": "chat",
@@ -1250,8 +2053,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-113",
-        "pos": 113,
+        "id": "ep-guide-S1E04-186",
+        "pos": 186,
         "offset_sec": 2205,
         "offset_inferred": false,
         "type": "chat",
@@ -1261,8 +2064,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-114",
-        "pos": 114,
+        "id": "ep-guide-S1E04-187",
+        "pos": 187,
         "offset_sec": 2215,
         "offset_inferred": true,
         "type": "chat",
@@ -1272,8 +2075,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-115",
-        "pos": 115,
+        "id": "ep-guide-S1E04-188",
+        "pos": 188,
         "offset_sec": 2216,
         "offset_inferred": false,
         "type": "chat",
@@ -1283,8 +2086,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-116",
-        "pos": 116,
+        "id": "ep-guide-S1E04-189",
+        "pos": 189,
         "offset_sec": 2244,
         "offset_inferred": false,
         "type": "chat",
@@ -1294,8 +2097,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-117",
-        "pos": 117,
+        "id": "ep-guide-S1E04-190",
+        "pos": 190,
         "offset_sec": 2324,
         "offset_inferred": true,
         "type": "gap",
@@ -1305,8 +2108,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-118",
-        "pos": 118,
+        "id": "ep-guide-S1E04-191",
+        "pos": 191,
         "offset_sec": 2494,
         "offset_inferred": true,
         "type": "gap",
@@ -1316,8 +2119,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-119",
-        "pos": 119,
+        "id": "ep-guide-S1E04-192",
+        "pos": 192,
         "offset_sec": 2664,
         "offset_inferred": true,
         "type": "gap",
@@ -1327,8 +2130,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-120",
-        "pos": 120,
+        "id": "ep-guide-S1E04-193",
+        "pos": 193,
         "offset_sec": 2833,
         "offset_inferred": true,
         "type": "gap",
@@ -1338,8 +2141,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S1E04-121",
-        "pos": 121,
+        "id": "ep-guide-S1E04-194",
+        "pos": 194,
         "offset_sec": 3003,
         "offset_inferred": true,
         "type": "gap",
@@ -1357,14 +2160,15 @@
       }
     ],
     "contributors": [
+      "MchlPtrsn",
       "RevTheThird",
       "T2880"
     ],
     "trivia": [
       {
         "description": "",
-        "start_pos": 94,
-        "end_pos": 117
+        "start_pos": 167,
+        "end_pos": 190
       }
     ]
   }
