@@ -728,7 +728,7 @@ func (s *TranscriptService) validateContributionStateUpdate(claims *jwt.Claims, 
 	} else if currentState == models.ContributionStateApproved {
 
 	} else {
-		/// otherwise only allow it to be updated if it's in the pending or approval requested state.
+		// otherwise only allow it to be updated if it's in the pending or approval requested state.
 		if currentState != models.ContributionStatePending && currentState != models.ContributionStateApprovalRequested {
 			return ErrFailedPrecondition(fmt.Sprintf("Only pending contributions can be edited. Actual state was: %s", currentState))
 		}

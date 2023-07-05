@@ -1,27 +1,35 @@
-<div class="d-flex justify-content-between">
-  <ul class="nav nav-tabs font-weight-bold">
-    <li class="nav-item mr-2">
-      <a class="nav-link" [ngClass]="{'active': activePublication === 'xfm'}" (click)="loadPublicationTab('xfm')">Xfm</a>
-    </li>
-    <li class="nav-item mr-2">
-      <a class="nav-link" [ngClass]="{'active': activePublication === 'guide'}" (click)="loadPublicationTab('guide')">Guides</a>
-    </li>
-    <li class="nav-item mr-2">
-      <a class="nav-link" [ngClass]="{'active': activePublication === 'special'}" (click)="loadPublicationTab('special')">Specials</a>
-    </li>
-    <li class="nav-item mr-2">
-      <a class="nav-link" [ngClass]="{'active': activePublication === 'other'}" (click)="loadPublicationTab('other')">Other</a>
-    </li>
-    <li class="nav-item mr-2">
-      <a class="nav-link" [ngClass]="{'active': activePublication === 'karl'}" (click)="loadPublicationTab('karl')">Karl</a>
-    </li>
-    <li class="nav-item mr-2">
-      <a class="nav-link" [ngClass]="{'active': activePublication === 'preview'}" (click)="loadPublicationTab('preview')">Preview</a>
-    </li>
-  </ul>
-  <button class="btn btn-sm btn-link mr-1" (click)="showDownloadDialog = !showDownloadDialog">
-    <i class="bi-cloud-download mr-2"></i> Export
-  </button>
+<div class="d-flex justify-content-between flex-row-reverse flex-nowrap">
+  <div>
+    <button class="btn btn-sm btn-link mr-1" (click)="showDownloadDialog = !showDownloadDialog">
+      Export
+    </button>
+  </div>
+  <div>
+    <ul class="nav nav-tabs font-weight-bold">
+      <li class="nav-item mr-1">
+        <a class="nav-link" [ngClass]="{'active': activePublication === 'xfm'}"
+           (click)="loadPublicationTab('xfm')">Xfm</a>
+      </li>
+      <li class="nav-item mr-1">
+        <a class="nav-link" [ngClass]="{'active': activePublication === 'guide'}" (click)="loadPublicationTab('guide')">Guides</a>
+      </li>
+      <li class="nav-item mr-1">
+        <a class="nav-link" [ngClass]="{'active': activePublication === 'special'}"
+           (click)="loadPublicationTab('special')">Specials</a>
+      </li>
+      <li class="nav-item mr-1">
+        <a class="nav-link" [ngClass]="{'active': activePublication === 'other'}" (click)="loadPublicationTab('other')">Other</a>
+      </li>
+      <li class="nav-item mr-1">
+        <a class="nav-link" [ngClass]="{'active': activePublication === 'karl'}" (click)="loadPublicationTab('karl')">Karl</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [ngClass]="{'active': activePublication === 'preview'}"
+           (click)="loadPublicationTab('preview')">Preview</a>
+      </li>
+    </ul>
+  </div>
+
 </div>
 
 <div class="card episode-list">
@@ -33,12 +41,13 @@
     </div>
   </div>
   <div class="card-body">
-    <div *ngFor="let ep of filteredTranscriptList" class="mb-2 episode-container animate__animated animate__fadeIn animate__faster">
+    <div *ngFor="let ep of filteredTranscriptList"
+         class="mb-2 episode-container animate__animated animate__fadeIn animate__faster">
       <app-episode-summary [episode]="ep"></app-episode-summary>
     </div>
   </div>
 </div>
-<div class="download-modal modal"[ngClass]="{'open': showDownloadDialog}">
+<div class="download-modal modal" [ngClass]="{'open': showDownloadDialog}">
   <div class="modal-dialog  modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -48,7 +57,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>Various formats are available for download.</p>
+        <p>Various formats are available for download. No audio is included in the export, only transcript data.</p>
         <table class="table">
           <tr>
             <td style="width: 200px"><a href="/dl/archive/episodes-json.zip" target="_blank">episodes-json.zip</a></td>

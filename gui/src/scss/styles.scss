@@ -11,7 +11,8 @@ html {
   min-height: 100%;
 }
 
-@media (max-width: 576px) {
+// start scaling everything proportionally below this value.
+@media (max-width: 650px) {
   html {
     font-size: 2.5vw;
   }

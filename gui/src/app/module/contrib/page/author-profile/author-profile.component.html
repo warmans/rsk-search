@@ -9,7 +9,8 @@
 
         <div class="d-flex">
           <div class="flex-shrink-1">
-            <img class="img-thumbnail bg-transparent border-0" [src]="claims.identity.icon_img" style="max-width: 100px"/>
+            <img class="img-thumbnail bg-transparent border-0" [src]="claims.identity.icon_img"
+                 style="max-width: 100px"/>
           </div>
           <div class="flex-grow-1">
             <table class="table mb-0">
@@ -32,48 +33,78 @@
 
       <app-claimed-rewards [rewards]="rewards"></app-claimed-rewards>
 
-      <div class="card mb-3">
-        <div class="card-header">My Contributions</div>
-        <table class="table mb-0">
-          <tr *ngFor="let row of contributions">
-            <td style="width: 300px;">
-              <a *ngIf="row.state === states.STATE_PENDING || row.state === states.STATE_REQUEST_APPROVAL || row.state === states.STATE_REJECTED"
-                 [routerLink]="['/chunk', row.chunkId, 'contrib', row.id]">{{row.id}}</a>
-              <span *ngIf="row.state !== states.STATE_PENDING && row.state !== states.STATE_REQUEST_APPROVAL && row.state !== states.STATE_REJECTED ">{{row.id}}</span>
-            </td>
-            <td style="width: 300px;"><app-contribution-state [state]="row.state"></app-contribution-state></td>
-            <td>{{ row.stateComment }}</td>
-
-            <td style="width: 50px"><button class="btn btn-danger btn-sm" (click)="discardDraft(row.chunkId, row.id)" [disabled]="row.state != states.STATE_PENDING">Discard</button></td>
-          </tr>
-        </table>
-      </div>
-
-      <div class="card mb-3">
-        <div class="card-header">My Edits</div>
-            <table class="table p-0">
-              <tr>
-                <th>Episode</th>
-                <th>State</th>
-                <th>Created At</th>
-                <th>Points Awarded</th>
-                <th></th>
-                <th></th>
-              </tr>
-              <tr *ngFor="let change of changes">
-                <td>{{change.episodeId}}</td>
-                <td>
-                  <app-contribution-state [state]="change.state"></app-contribution-state>
-                </td>
-                <td>{{change.createdAt}}</td>
-                <td>{{change.pointsAwarded || 'NA'}}</td>
-                <td>
-                  <a *ngIf="change.state === states.STATE_PENDING || change.state === states.STATE_REQUEST_APPROVAL || change.state === states.STATE_REJECTED" class="btn btn-sm btn-info" [routerLink]="['/ep', change.episodeId, 'change', change.id]">View</a>
-                  <span *ngIf="change.state !== states.STATE_PENDING && change.state !== states.STATE_REQUEST_APPROVAL && change.state !== states.STATE_REJECTED ">-</span>
-                </td>
-                <td></td>
-              </tr>
-            </table>
+      <div class="row">
+        <div class="col">
+          <ul class="nav nav-tabs font-weight-bold">
+            <li class="nav-item mr-2">
+              <a class="nav-link" (click)="activeInfoPanel='contributions'"
+                 [ngClass]="{'active': activeInfoPanel === 'contributions'}">My Contributions</a>
+            </li>
+            <li class="nav-item mr-2">
+              <a class="nav-link" (click)="activeInfoPanel='edits'" [ngClass]="{'active': activeInfoPanel === 'edits'}">My
+                Edits</a>
+            </li>
+          </ul>
+          <div class="card mb-4" *ngIf="activeInfoPanel === 'contributions'">
+            <div class="card-header text-paragraph">Contributions are new chunks submitted for untranscribed media.
+            </div>
+            <div class="card-body p-0">
+              <div *ngIf="contributions?.length === 0" class="m-4">No contributions yet.</div>
+              <table class="table mb-0">
+                <tr *ngFor="let row of contributions">
+                  <td style="width: 300px;">
+                    <a
+                      *ngIf="row.state === states.STATE_PENDING || row.state === states.STATE_REQUEST_APPROVAL || row.state === states.STATE_REJECTED"
+                      [routerLink]="['/chunk', row.chunkId, 'contrib', row.id]">{{row.id}}</a>
+                    <span
+                      *ngIf="row.state !== states.STATE_PENDING && row.state !== states.STATE_REQUEST_APPROVAL && row.state !== states.STATE_REJECTED ">{{row.id}}</span>
+                  </td>
+                  <td style="width: 300px;">
+                    <app-contribution-state [state]="row.state"></app-contribution-state>
+                  </td>
+                  <td>{{ row.stateComment }}</td>
+                  <td style="width: 50px">
+                    <button class="btn btn-danger btn-sm" (click)="discardDraft(row.chunkId, row.id)"
+                            [disabled]="row.state != states.STATE_PENDING">Discard
+                    </button>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="card mb-4" *ngIf="activeInfoPanel === 'edits'">
+            <div class="card-header text-paragraph">Edits are changes made to existing transcripts.</div>
+            <div class="card-body p-0">
+              <div *ngIf="changes?.length === 0" class="m-4">No edits yet.</div>
+              <table class="table p-0" *ngIf="changes?.length > 0">
+                <tr>
+                  <th>Episode</th>
+                  <th>State</th>
+                  <th>Created At</th>
+                  <th>Points Awarded</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+                <tr *ngFor="let change of changes">
+                  <td>{{change.episodeId}}</td>
+                  <td>
+                    <app-contribution-state [state]="change.state"></app-contribution-state>
+                  </td>
+                  <td>{{change.createdAt}}</td>
+                  <td>{{change.pointsAwarded || 'NA'}}</td>
+                  <td>
+                    <a
+                      *ngIf="change.state === states.STATE_PENDING || change.state === states.STATE_REQUEST_APPROVAL || change.state === states.STATE_REJECTED"
+                      class="btn btn-sm btn-info" [routerLink]="['/ep', change.episodeId, 'change', change.id]">View</a>
+                    <span
+                      *ngIf="change.state !== states.STATE_PENDING && change.state !== states.STATE_REQUEST_APPROVAL && change.state !== states.STATE_REJECTED ">-</span>
+                  </td>
+                  <td></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
