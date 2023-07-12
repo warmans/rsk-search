@@ -1,1 +1,3 @@
-User-agent: * Disallow: /
+User-agent: *
+Disallow: /chunk/*
+Disallow: /tscript/*
