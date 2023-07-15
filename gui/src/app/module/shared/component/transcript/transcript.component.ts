@@ -1,9 +1,8 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { RskDialog, RskSynopsis, RskTranscript } from '../../../../lib/api-client/models';
-import { ViewportScroller } from '@angular/common';
-import { parseTranscript, Tscript } from '../../lib/tscript';
-import { ClipboardService } from 'src/app/module/core/service/clipboard/clipboard.service';
-import { formatSecondsAsTimestamp } from 'src/app/lib/util';
+import {AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {RskDialog, RskSynopsis, RskTranscript, RskTrivia} from '../../../../lib/api-client/models';
+import {ViewportScroller} from '@angular/common';
+import {parseTranscript, Tscript} from '../../lib/tscript';
+import {ClipboardService} from 'src/app/module/core/service/clipboard/clipboard.service';
 
 interface DialogGroup {
   startPos: number;
@@ -190,15 +189,15 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
     if (ev.shiftKey && this.scrollToPosStart) {
       const start = this.scrollToPosStart > pos ? pos : this.scrollToPosStart;
       const end = this.scrollToPosStart > pos ? this.scrollToPosStart : pos;
-      this.emitSelection.next({ startPos: start, endPos: end, epid: this.epid });
+      this.emitSelection.next({startPos: start, endPos: end, epid: this.epid});
       return false;
     }
-    this.emitSelection.next({ startPos: pos, endPos: pos, epid: this.epid });
+    this.emitSelection.next({startPos: pos, endPos: pos, epid: this.epid});
     return true;
   }
 
   selectRange(startLine: number, endLine: number): boolean {
-    this.emitSelection.next({ startPos: startLine, endPos: endLine, epid: this.epid });
+    this.emitSelection.next({startPos: startLine, endPos: endLine, epid: this.epid});
     return true;
   }
 
@@ -219,7 +218,7 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
     let currentGroup: DialogGroup = {
       startPos: 1,
       endPos: undefined,
-      tscript: { synopses: [], trivia: [], transcript: [] }
+      tscript: {synopses: [], trivia: [], transcript: []}
     };
     for (let i = (this.startLine || 0); i < (this.endLine && this.endLine < episode?.transcript.length ? this.endLine : episode?.transcript.length); i++) {
 
@@ -231,26 +230,43 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
 
       currentGroup.tscript.transcript.push(episode.transcript[i]);
 
-      const foundIntersectingTrivia = (episode?.trivia || []).find((s: RskSynopsis) => episode.transcript[i].pos === s.startPos - 1 || episode.transcript[i].pos === s.endPos);
-      if (foundIntersectingTrivia) {
-        if (episode.transcript[i].pos === foundIntersectingTrivia.startPos - 1) {
-          currentGroup.endPos = episode.transcript[i].pos;
-          this.groupedDialog.push(currentGroup);
-          currentGroup = {
-            startPos: episode.transcript[i].pos,
-            endPos: undefined,
-            tscript: { synopses: [], trivia: [foundIntersectingTrivia], transcript: [] }
-          };
-        }
-        if (episode.transcript[i].pos === foundIntersectingTrivia.endPos) {
-          currentGroup.endPos = episode.transcript[i].pos;
-          this.groupedDialog.push(currentGroup);
-          currentGroup = {
-            startPos: episode.transcript[i].pos,
-            endPos: undefined,
-            tscript: { synopses: [], trivia: [], transcript: [] }
-          };
-        }
+      // there may be multiple trivias which intersect this line. So find them all and then,
+      // append them as required.
+      const foundIntersectingTrivia: RskTrivia[] = (episode?.trivia || []).filter((s: RskSynopsis) => episode.transcript[i].pos === s.startPos - 1 || episode.transcript[i].pos === s.endPos);
+
+      if ((foundIntersectingTrivia || []).length > 0) {
+        foundIntersectingTrivia.forEach((trivia: RskTrivia) => {
+          if (episode.transcript[i].pos === trivia.startPos - 1) {
+
+            // flush current group
+            currentGroup.endPos = episode.transcript[i].pos;
+            this.groupedDialog.push(currentGroup);
+
+            // start a new group
+            currentGroup = {
+              startPos: episode.transcript[i].pos,
+              endPos: undefined,
+              tscript: {synopses: [], trivia: [], transcript: []}
+            };
+            if ((currentGroup?.tscript?.trivia || []).length === 0) {
+              currentGroup.tscript.trivia = [trivia];
+            } else {
+              currentGroup.tscript.trivia.push(trivia);
+            }
+          }
+          if (episode.transcript[i].pos === trivia.endPos) {
+            // flush current group
+            currentGroup.endPos = episode.transcript[i].pos;
+            this.groupedDialog.push(currentGroup);
+
+            // start a new group
+            currentGroup = {
+              startPos: episode.transcript[i].pos,
+              endPos: undefined,
+              tscript: {synopses: [], trivia: [], transcript: []}
+            };
+          }
+        })
       }
     }
     if (currentGroup.endPos === undefined && (episode.transcript || []).length > 0) {
@@ -260,7 +276,7 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
   }
 
   emitShareOpts(startPos: number, endPos: number) {
-    this.emitShare.next({ epid: this.epid, startPos: startPos, endPos: endPos });
+    this.emitShare.next({epid: this.epid, startPos: startPos, endPos: endPos});
   }
 
   copyLineToClipboard(content: string, timestamp?: number) {

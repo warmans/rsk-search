@@ -1,4 +1,4 @@
-import { RskDialog, RskSynopsis, RskTrivia } from '../../../lib/api-client/models';
+import {RskDialog, RskSynopsis, RskTrivia} from '../../../lib/api-client/models';
 
 export function lineHasActorPrefix(line: string): boolean {
   return line.length > 1 && line.indexOf(':') > -1;
@@ -87,7 +87,7 @@ export function parseTranscript(transcript: string): Tscript {
       return;
     }
     if (isStartSynopsisLine(line)) {
-      currentSynopsis = { description: getSynopsis(line), startPos: pos };
+      currentSynopsis = {description: getSynopsis(line), startPos: pos};
       return;
     }
     if (isEndSynopsisLine(line) && currentSynopsis) {
@@ -97,7 +97,7 @@ export function parseTranscript(transcript: string): Tscript {
       return;
     }
     if (isStartTriviaLine(line)) {
-      currentTrivia = { description: getTrivia(line), startPos: pos };
+      currentTrivia = {description: getTrivia(line), startPos: pos};
       return;
     }
     if (isEndTriviaLine(line) && currentTrivia) {
