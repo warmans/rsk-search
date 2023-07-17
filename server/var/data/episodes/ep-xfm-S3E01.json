@@ -4,7 +4,7 @@
     "episode": 1,
     "name": "",
     "summary": "",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "release_date": "2003-11-01T00:00:00Z",
     "incomplete": false,
     "bestof": false,
@@ -6349,7 +6349,7 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "Sorry what did you say you...  so, so when your girlfriend walked through the door after she had her hair done And you said I don't like it, alright?.",
+        "content": "Sorry what did you say you... so, so when your girlfriend walked through the door after she had her hair done And you said I don't like it, alright?.",
         "notable": false
       },
       {
@@ -6426,7 +6426,7 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "Yeah, you had that you had the, well officially from a barber in Manchester above a railway station in a shack. It was two pounds a cut told you have the hair of a Chinaman. Well you wish you had the hair of a Chinaman now you got no hair,  you're a little bald manc with your mouth open so don't... Is she listening to this Suzanne? sitting at home with a woolly hat on",
+        "content": "Yeah, you had that you had the, well officially from a barber in Manchester above a railway station in a shack. It was two pounds a cut told you have the hair of a Chinaman. Well you wish you had the hair of a Chinaman now you got no hair, you're a little bald manc with your mouth open so don't... Is she listening to this Suzanne? sitting at home with a woolly hat on",
         "notable": false
       },
       {
@@ -7119,7 +7119,7 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "X-ray vision, no.  What would you have? It can be.. it can be conceptual. It could be world peace. It doesn't have to be, you know, a new watch.",
+        "content": "X-ray vision, no. What would you have? It can be.. it can be conceptual. It could be world peace. It doesn't have to be, you know, a new watch.",
         "notable": false
       },
       {
@@ -9858,7 +9858,7 @@
       {
         "id": "ep-xfm-S3E01-893",
         "pos": 893,
-        "offset_sec": 2338,
+        "offset_sec": 2339,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -9896,7 +9896,7 @@
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "Anyway, so they've said...he said, \"You know, will you be able to  sort me a little knob out?\"",
+        "content": "Anyway, so they've said...he said, \"You know, will you be able to sort me a little knob out?\"",
         "notable": false
       },
       {
@@ -14526,7 +14526,7 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "Yeah  go on...",
+        "content": "Yeah go on...",
         "notable": false
       },
       {
@@ -14690,12 +14690,7 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": {
-          "song_album": "I'm The Man",
-          "song_artist": "Joe Jackson",
-          "song_track": "It's Different For Girls",
-          "spotify_uri": "spotify:track:5F3yVP8jINFHyxSCCbnjgi"
-        },
+        "metadata": null,
         "content": "Jo Jackson - Different for Girls",
         "notable": false
       },
@@ -15580,5 +15575,11 @@
       "wanyesullo",
       "warmans"
     ],
-    "trivia": null
+    "trivia": [
+      {
+        "description": "![every boy's fantasy](/dl/media/file/every-boys-fantasy.jpg)",
+        "start_pos": 226,
+        "end_pos": 232
+      }
+    ]
   }

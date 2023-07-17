@@ -4,7 +4,7 @@
     "episode": 25,
     "name": "",
     "summary": "",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "release_date": "2003-02-08T00:00:00Z",
     "incomplete": false,
     "bestof": false,
@@ -2500,12 +2500,7 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": {
-          "song_album": "Pretenders (Expanded \u0026 Remastered)",
-          "song_artist": "Pretenders",
-          "song_track": "Brass in Pocket - 2006 Remaster",
-          "spotify_uri": "spotify:track:2hvOsGJc6qll4WzW8Ljqc3"
-        },
+        "metadata": null,
         "content": "The Pretenders - Brass in Pocket",
         "notable": false
       },
@@ -3858,12 +3853,7 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": {
-          "song_album": "The Eminem Show",
-          "song_artist": "Eminem",
-          "song_track": "Sing For The Moment",
-          "spotify_uri": "spotify:track:3CpoeW0cZSDzIRv5z34F87"
-        },
+        "metadata": null,
         "content": "Eminem - Sing for the Moment (Dream On)",
         "notable": false
       },
@@ -3874,12 +3864,7 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": {
-          "song_album": "Comfort in Sound",
-          "song_artist": "Feeder",
-          "song_track": "Just The Way I'm Feeling",
-          "spotify_uri": "spotify:track:1zg4NCQ3vHLn3MeaDBPm3s"
-        },
+        "metadata": null,
         "content": "Feeder - Just The Way I'm Feelin'",
         "notable": false
       },
@@ -15386,6 +15371,11 @@
     ],
     "synopsis": [
       {
+        "description": "Karl in \"The Graduate\"",
+        "start_pos": 353,
+        "end_pos": 389
+      },
+      {
         "description": "Monkey News: Chimp Burglar",
         "start_pos": 1223,
         "end_pos": 1321
@@ -15394,5 +15384,11 @@
     "contributors": [
       "warmans"
     ],
-    "trivia": null
+    "trivia": [
+      {
+        "description": "![the graduate](/dl/media/file/the-graduate.png)",
+        "start_pos": 353,
+        "end_pos": 389
+      }
+    ]
   }
