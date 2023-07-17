@@ -10,7 +10,7 @@
     "bestof": false,
     "special": false,
     "locked": false,
-    "offset_accuracy": 42,
+    "offset_accuracy": 52,
     "audio_quality": "",
     "metadata": {
       "cover_art_url": "/assets/cover/guide.jpg",
@@ -394,7 +394,7 @@
       {
         "id": "ep-guide-S2E02-35",
         "pos": 35,
-        "offset_sec": 1378,
+        "offset_sec": 1295,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -405,7 +405,7 @@
       {
         "id": "ep-guide-S2E02-36",
         "pos": 36,
-        "offset_sec": 1459,
+        "offset_sec": 1370,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -416,7 +416,7 @@
       {
         "id": "ep-guide-S2E02-37",
         "pos": 37,
-        "offset_sec": 1540,
+        "offset_sec": 1445,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -427,7 +427,7 @@
       {
         "id": "ep-guide-S2E02-38",
         "pos": 38,
-        "offset_sec": 1620,
+        "offset_sec": 1520,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -438,7 +438,7 @@
       {
         "id": "ep-guide-S2E02-39",
         "pos": 39,
-        "offset_sec": 1701,
+        "offset_sec": 1595,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -449,7 +449,7 @@
       {
         "id": "ep-guide-S2E02-40",
         "pos": 40,
-        "offset_sec": 1782,
+        "offset_sec": 1670,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -460,7 +460,7 @@
       {
         "id": "ep-guide-S2E02-41",
         "pos": 41,
-        "offset_sec": 1863,
+        "offset_sec": 1745,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -471,7 +471,7 @@
       {
         "id": "ep-guide-S2E02-42",
         "pos": 42,
-        "offset_sec": 1943,
+        "offset_sec": 1820,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -482,7 +482,7 @@
       {
         "id": "ep-guide-S2E02-43",
         "pos": 43,
-        "offset_sec": 2024,
+        "offset_sec": 1895,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -493,17 +493,193 @@
       {
         "id": "ep-guide-S2E02-44",
         "pos": 44,
-        "offset_sec": 2105,
-        "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
+        "offset_sec": 1970,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
         "metadata": null,
-        "content": "[~3 mins of missing transcription]",
+        "content": "Where is gold bullion kept?",
         "notable": false
       },
       {
         "id": "ep-guide-S2E02-45",
         "pos": 45,
+        "offset_sec": 1971,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "I don't know. I suppose you go and get it from a, vault somewhere and take it away and take delivery of it. I don't know if it literally changes hands, or not. So what they need is obviously my passport. So they got the people. So it was going to go to court. I didn't have to go to court, but I had to meet with the CID for all the details and take that - it wasn't me - and all that. So the funny thing was, I'm there with the CID man and I said, well, how did they think they were going to get away with it? And they said, well, they turn up with them a fake passport of yours, show the ID, and I walk away. I went \"right, okay\". And they said \"they get a passport from either a dead man or they steal one and they replace it with your details and your picture\". And the CID man started smirking. The picture they used was this one. And he showed me this fake passport. And I'll tell you what, I was laughing. Then he started chuckling and we laughed about ten minutes, because all they did was, they cut out the picture on the first series of The Office from the DVD. So it's a picture of David Brent sitting behind the desk with that little smug look on his face. That's my passport in this thing. So, I mean, they might have got caught. Anyway.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-46",
+        "pos": 46,
+        "offset_sec": 2053,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "It's nice to know that even such elaborate operations as this, it still comes down to just Idiocy criminal incompetence who.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-47",
+        "pos": 47,
+        "offset_sec": 2061,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Was left in charge, where they go, Dave, you're doing so and so. Julie, you're on the inside. Bertie, can you get a picture?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-48",
+        "pos": 48,
+        "offset_sec": 2074,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "bertie",
+        "metadata": null,
+        "content": "Yes.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-49",
+        "pos": 49,
+        "offset_sec": 2075,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "You can get a photograph of Bricky jails, can you?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-50",
+        "pos": 50,
+        "offset_sec": 2078,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "bertie",
+        "metadata": null,
+        "content": "Yes.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-51",
+        "pos": 51,
+        "offset_sec": 2079,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Right, okay. What are you going to HMV for? What are you going to HMV for?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-52",
+        "pos": 52,
+        "offset_sec": 2083,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "I knew we shouldn't have recruited someone who looks exactly like Bernard Bresslaw.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-53",
+        "pos": 53,
+        "offset_sec": 2088,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Karl have you ever been conned?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-54",
+        "pos": 54,
+        "offset_sec": 2090,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "There's always someone doing well on me. There's always someone - if I go - if they're a little bit short, go round to Pilkington's.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-55",
+        "pos": 55,
+        "offset_sec": 2095,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "But three or four times a day, sometimes I call him up and he goes, Right, the washing machine's broke and they came around, they've done this right, they couldn't fix it, but they would call it charged 90 quid. I called them back and they said, no, they can't do that. Turns out they can't do it. It's like a string of things where it looks like Karl's handing out money like the end of a comic book. He goes, and that's for the broken window and there's for my sausages. It's like a queue of people just making money off Karl.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-56",
+        "pos": 56,
+        "offset_sec": 2116,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "They're normally all right if I'm face to face with them.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-57",
+        "pos": 57,
+        "offset_sec": 2120,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Really?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-58",
+        "pos": 58,
+        "offset_sec": 2121,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Yeah. I can go in a place where a lot of stuff now is done on the phone. It's all phone innit? Because no one's - it's all over the world where you're speaking to these people.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-59",
+        "pos": 59,
+        "offset_sec": 2130,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-60",
+        "pos": 60,
+        "offset_sec": 2131,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "I was talking to someone the other day about the alarm system in the flat, called them up, thought, I will be good to get this going again. Have an alarm system. Haven't had one for years. I might as well use it, it's there. So I called them up and said, yeah, there's an alarm system in this flat I bought. When I get it going again, what's the situation? So they took a load of details and stuff and they said, Right, what you have to do, it's 400 quid a year - I said \"what?\" - It's a 400 quid a year. I said \"What's that for?\" - he said, \"if the alarm goes off, we can guarantee that a copper will be there in, like, a minute and a half\". I said, \"I don't want that, I'm just happy with the alarm just going off. I'll give the key to the neighbour\". No, you can't do that. You've got to have this way. I said \"400...\" - I said \"I thought alarms are meant to stop you being robbed\". \"You what sir?\" - doesn't understand sarcasm.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-61",
+        "pos": 61,
         "offset_sec": 2185,
         "offset_inferred": false,
         "type": "chat",
@@ -513,8 +689,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-46",
-        "pos": 46,
+        "id": "ep-guide-S2E02-62",
+        "pos": 62,
         "offset_sec": 2285,
         "offset_inferred": true,
         "type": "chat",
@@ -524,8 +700,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-47",
-        "pos": 47,
+        "id": "ep-guide-S2E02-63",
+        "pos": 63,
         "offset_sec": 2286,
         "offset_inferred": true,
         "type": "chat",
@@ -535,8 +711,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-48",
-        "pos": 48,
+        "id": "ep-guide-S2E02-64",
+        "pos": 64,
         "offset_sec": 2295,
         "offset_inferred": true,
         "type": "chat",
@@ -546,8 +722,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-49",
-        "pos": 49,
+        "id": "ep-guide-S2E02-65",
+        "pos": 65,
         "offset_sec": 2295,
         "offset_inferred": true,
         "type": "chat",
@@ -557,8 +733,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-50",
-        "pos": 50,
+        "id": "ep-guide-S2E02-66",
+        "pos": 66,
         "offset_sec": 2305,
         "offset_inferred": true,
         "type": "chat",
@@ -568,8 +744,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-51",
-        "pos": 51,
+        "id": "ep-guide-S2E02-67",
+        "pos": 67,
         "offset_sec": 2307,
         "offset_inferred": true,
         "type": "chat",
@@ -579,8 +755,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-52",
-        "pos": 52,
+        "id": "ep-guide-S2E02-68",
+        "pos": 68,
         "offset_sec": 2496,
         "offset_inferred": true,
         "type": "chat",
@@ -590,8 +766,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-53",
-        "pos": 53,
+        "id": "ep-guide-S2E02-69",
+        "pos": 69,
         "offset_sec": 2498,
         "offset_inferred": true,
         "type": "chat",
@@ -601,8 +777,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-54",
-        "pos": 54,
+        "id": "ep-guide-S2E02-70",
+        "pos": 70,
         "offset_sec": 2511,
         "offset_inferred": true,
         "type": "chat",
@@ -612,8 +788,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-55",
-        "pos": 55,
+        "id": "ep-guide-S2E02-71",
+        "pos": 71,
         "offset_sec": 2514,
         "offset_inferred": true,
         "type": "chat",
@@ -623,8 +799,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-56",
-        "pos": 56,
+        "id": "ep-guide-S2E02-72",
+        "pos": 72,
         "offset_sec": 2548,
         "offset_inferred": true,
         "type": "chat",
@@ -634,8 +810,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-57",
-        "pos": 57,
+        "id": "ep-guide-S2E02-73",
+        "pos": 73,
         "offset_sec": 2551,
         "offset_inferred": true,
         "type": "chat",
@@ -645,8 +821,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-58",
-        "pos": 58,
+        "id": "ep-guide-S2E02-74",
+        "pos": 74,
         "offset_sec": 2601,
         "offset_inferred": true,
         "type": "chat",
@@ -656,8 +832,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-59",
-        "pos": 59,
+        "id": "ep-guide-S2E02-75",
+        "pos": 75,
         "offset_sec": 2602,
         "offset_inferred": true,
         "type": "chat",
@@ -667,8 +843,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-60",
-        "pos": 60,
+        "id": "ep-guide-S2E02-76",
+        "pos": 76,
         "offset_sec": 2620,
         "offset_inferred": true,
         "type": "chat",
@@ -678,8 +854,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-61",
-        "pos": 61,
+        "id": "ep-guide-S2E02-77",
+        "pos": 77,
         "offset_sec": 2622,
         "offset_inferred": true,
         "type": "chat",
@@ -689,8 +865,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-62",
-        "pos": 62,
+        "id": "ep-guide-S2E02-78",
+        "pos": 78,
         "offset_sec": 2859,
         "offset_inferred": true,
         "type": "chat",
@@ -700,8 +876,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-63",
-        "pos": 63,
+        "id": "ep-guide-S2E02-79",
+        "pos": 79,
         "offset_sec": 2862,
         "offset_inferred": true,
         "type": "chat",
@@ -711,8 +887,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-64",
-        "pos": 64,
+        "id": "ep-guide-S2E02-80",
+        "pos": 80,
         "offset_sec": 3071,
         "offset_inferred": true,
         "type": "chat",
@@ -722,8 +898,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-65",
-        "pos": 65,
+        "id": "ep-guide-S2E02-81",
+        "pos": 81,
         "offset_sec": 3072,
         "offset_inferred": true,
         "type": "chat",
@@ -733,8 +909,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-66",
-        "pos": 66,
+        "id": "ep-guide-S2E02-82",
+        "pos": 82,
         "offset_sec": 3105,
         "offset_inferred": true,
         "type": "gap",
@@ -744,8 +920,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-67",
-        "pos": 67,
+        "id": "ep-guide-S2E02-83",
+        "pos": 83,
         "offset_sec": 3111,
         "offset_inferred": true,
         "type": "gap",
@@ -755,8 +931,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-68",
-        "pos": 68,
+        "id": "ep-guide-S2E02-84",
+        "pos": 84,
         "offset_sec": 3117,
         "offset_inferred": true,
         "type": "gap",
@@ -766,8 +942,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-69",
-        "pos": 69,
+        "id": "ep-guide-S2E02-85",
+        "pos": 85,
         "offset_sec": 3123,
         "offset_inferred": true,
         "type": "gap",
@@ -788,5 +964,11 @@
       "Weird-Map7114",
       "warmans"
     ],
-    "trivia": null
+    "trivia": [
+      {
+        "description": "Bernard Bresslaw was a British actor and comedian. He was best known as a member of the Carry On film franchise.",
+        "start_pos": 52,
+        "end_pos": 53
+      }
+    ]
   }

@@ -1,10 +1,29 @@
 <div class="row">
   <div class="col">
+    <div class="text-right clickable px-4" (click)="showMoreStats = !showMoreStats">More stats...</div>
     <canvas baseChart
             height="200"
             [data]="episodeCountData"
             [options]="lineChartOptions"
             [type]="'line'">
+    </canvas>
+  </div>
+</div>
+<div class="row" *ngIf="showMoreStats">
+  <div class="col-lg-6">
+    <canvas baseChart
+            height="200"
+            [data]="actorCountData"
+            [options]="barChartOptions"
+            [type]="'bar'">
+    </canvas>
+  </div>
+  <div class="col-lg-6">
+    <canvas baseChart
+            height="200"
+            [data]="publicationCountData"
+            [options]="barChartOptions"
+            [type]="'bar'">
     </canvas>
   </div>
 </div>
