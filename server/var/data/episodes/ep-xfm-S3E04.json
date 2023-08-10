@@ -4,7 +4,7 @@
     "episode": 4,
     "name": "",
     "summary": "",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "release_date": "2003-11-22T00:00:00Z",
     "incomplete": false,
     "bestof": false,
@@ -26,12 +26,7 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": {
-          "song_album": "Youth And Young Manhood",
-          "song_artist": "Kings of Leon",
-          "song_track": "Molly's Chambers",
-          "spotify_uri": "spotify:track:0nCAVzknkzRXRgB6LhRv04"
-        },
+        "metadata": null,
         "content": "Kings of Leon – Molly’s Chambers",
         "notable": false
       },
@@ -1423,7 +1418,7 @@
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "Yeah well, I just thought you’d know her already. I should of known it was a woman. So… I should of known.",
+        "content": "Yeah well, I just thought you’d know her already. I should've known it was a woman. So… I should've known.",
         "notable": false
       },
       {
@@ -3693,12 +3688,7 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": {
-          "song_album": "Think Tank [Special Edition]",
-          "song_artist": "Blur",
-          "song_track": "Out of Time",
-          "spotify_uri": "spotify:track:79PrPZu9zWyc1qwUwXchVl"
-        },
+        "metadata": null,
         "content": "Blur – Out of Time",
         "notable": false
       },
@@ -5777,12 +5767,7 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": {
-          "song_album": "The Smiths",
-          "song_artist": "The Smiths",
-          "song_track": "I Don't Owe You Anything - 2011 Remaster",
-          "spotify_uri": "spotify:track:4WKdgb3xzbTSU7WT3kK3na"
-        },
+        "metadata": null,
         "content": "The Smiths – I Don’t Owe You Anything",
         "notable": false
       },
@@ -10989,12 +10974,7 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": {
-          "song_album": "Comfort in Sound",
-          "song_artist": "Feeder",
-          "song_track": "Forget About Tomorrow",
-          "spotify_uri": "spotify:track:0Su9Yckp5Z681af31yXtRc"
-        },
+        "metadata": null,
         "content": "Feeder- Forget About Tomorrow",
         "notable": false
       },
@@ -13122,12 +13102,7 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": {
-          "song_album": "Born To Run",
-          "song_artist": "Bruce Springsteen",
-          "song_track": "Thunder Road",
-          "spotify_uri": "spotify:track:56lhDZNQ5J47aog6mGKeGk"
-        },
+        "metadata": null,
         "content": "Badly Drawn Boy – Thunder Road",
         "notable": false
       },
@@ -13915,6 +13890,7 @@
       }
     ],
     "contributors": [
+      "wagu666",
       "warmans"
     ],
     "trivia": null
