@@ -10,7 +10,7 @@
     "bestof": false,
     "special": false,
     "locked": false,
-    "offset_accuracy": 52,
+    "offset_accuracy": 54,
     "audio_quality": "",
     "metadata": {
       "cover_art_url": "/assets/cover/guide.jpg",
@@ -2297,12 +2297,89 @@
       {
         "id": "ep-guide-S2E02-208",
         "pos": 208,
-        "offset_sec": 3101,
-        "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
+        "offset_sec": 3052,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
         "metadata": null,
-        "content": "[~3 mins of missing transcription]",
+        "content": "Well, I'm going to shoot you if you come near the window. You dopey prat.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-209",
+        "pos": 209,
+        "offset_sec": 3055,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Well why? I thought we were getting somewhere here.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-210",
+        "pos": 210,
+        "offset_sec": 3056,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "No, I'm going to shoot you. I've conned you. I've negotiated you to come near the window and I'm going to shoot you in the head. You prat.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-211",
+        "pos": 211,
+        "offset_sec": 3062,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "I'll just leave, then.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-212",
+        "pos": 212,
+        "offset_sec": 3076,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Well, that's about it. I hope you enjoyed the Ricky Gera's Guide to Law and Order. And the next one in the series is The Ricky Gervais's Guide to the Future, which is out on the 29 December. So, look forward to that. Anyway, it's goodbye from me, Ricky Gervais, Steven Merchant.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-213",
+        "pos": 213,
+        "offset_sec": 3096,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Goodbye.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-214",
+        "pos": 214,
+        "offset_sec": 3097,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "And Karl Pilkington.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-215",
+        "pos": 215,
+        "offset_sec": 3121,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Aight.",
         "notable": false
       }
     ],
@@ -2317,6 +2394,7 @@
       "Bowmann01",
       "MchlPtrsn",
       "Weird-Map7114",
+      "the_duckington",
       "warmans"
     ],
     "trivia": [
