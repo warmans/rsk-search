@@ -1170,6 +1170,9 @@ func (s *Store) ListAuthorContributions(ctx context.Context, q *common.QueryModi
 	if err != nil {
 		return nil, err
 	}
+	if where != "" {
+		where = fmt.Sprintf("AND %s", where)
+	}
 
 	rows, err := s.tx.QueryxContext(
 		ctx,
@@ -1178,7 +1181,7 @@ func (s *Store) ListAuthorContributions(ctx context.Context, q *common.QueryModi
 		FROM author_contribution c
 		LEFT JOIN author a ON c.author_id = a.id
 		WHERE a.id IS NOT NULL AND a.banned = false
-		AND %s
+		%s
 		%s
 		%s
 		`, where, order, paging),

@@ -16,7 +16,6 @@ export class ContributeComponent implements OnInit, OnDestroy {
   loading: boolean[] = [];
 
   chunkedTranscripts: RskChunkedTranscriptStats[] = [];
-  transcriptChanges: RskTranscriptChange[] = [];
 
   // map of tscript_id => { 'approved' => 1, 'pending_approval' => 2 ...}
   progressMap: { [index: string]: { [index: string]: number } } = {};
@@ -74,18 +73,7 @@ export class ContributeComponent implements OnInit, OnDestroy {
       this.loading.pop();
     });
 
-    this.loading.push(true);
-    this.apiClient.listTranscriptChanges({
-      filter: And(
-        Eq('merged', Bool(false)),
-        Neq('state', Str('pending')),
-        Neq('state', Str('rejected')),
-      ).print()
-    }).pipe(takeUntil(this.unsubscribe$)).subscribe((res) => {
-      this.transcriptChanges = res.changes;
-    }).add(() => {
-      this.loading.pop();
-    });
+
   }
 
   ngOnDestroy(): void {

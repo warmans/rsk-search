@@ -1,0 +1,65 @@
+<div class="mb-4">
+  <ul class="nav nav-tabs font-weight-bold">
+    <li *ngIf="pendingChanges.length > 0" class="nav-item mr-2">
+      <a class="nav-link" [ngClass]="{'active': activeTab === 'pending'}" (click)="activeTab = 'pending'">Pending
+        Edits</a>
+    </li>
+    <li class="nav-item mr-2">
+      <a class="nav-link" [ngClass]="{'active': activeTab === 'recent'}" (click)="activeTab = 'recent'">Recent
+        Contributions</a>
+    </li>
+  </ul>
+  <div class="card" *ngIf="activeTab === 'pending'">
+    <div class="card-header text-paragraph">
+      After an edit is approved it must be merged. This means the content is extracted and added to the JSON archive.
+      Until this happens you will not see your changes reflected. This will happen within days of the edit bring
+      submitted.
+    </div>
+    <div class="card-body p-0">
+      <table class="table table-borderless p-0 m-0">
+        <tr>
+          <th>Episode</th>
+          <th>State</th>
+          <th>Author</th>
+          <th>Created</th>
+          <th>Points Awarded</th>
+          <th></th>
+        </tr>
+        <tr *ngFor="let change of pendingChanges">
+          <td>{{change.episodeId}}</td>
+          <td>
+            <app-contribution-state [state]="change.state"></app-contribution-state>
+          </td>
+          <td>{{change.author.name}}</td>
+          <td [title]="change.createdAt">{{change.createdAt | date}}</td>
+          <td>{{change.pointsAwarded || 'NA'}}</td>
+          <td><a class="btn btn-sm btn-info" [routerLink]="['/ep', change.episodeId, 'change', change.id]"
+                 [queryParams]="{'readonly': '1'}">View</a></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="card" *ngIf="activeTab === 'recent'">
+    <div class="card-header text-paragraph">
+      Recently merged contributions.
+    </div>
+    <div class="card-body p-0">
+      <table class="table table-borderless p-0 m-0">
+        <tr>
+          <th>Episode</th>
+          <th>Type</th>
+          <th>Author</th>
+          <th>Created</th>
+          <th>Points Awarded</th>
+        </tr>
+        <tr *ngFor="let contribution of recentContributions">
+          <td>{{contribution.episodeId}}</td>
+          <td>{{contribution.contributionType}}</td>
+          <td>{{contribution.author.name}}</td>
+          <td [title]="contribution.createdAt">{{contribution.createdAt | date}}</td>
+          <td>{{contribution.points || 'NA'}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
