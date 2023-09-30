@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RankingsComponent } from './component/rankings/rankings.component';
 import { CausesComponent } from './component/causes/causes.component';
 import { DonationsComponent } from './component/donations/donations.component';
+import { ChangesComponent } from './component/changes/changes.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { DonationsComponent } from './component/donations/donations.component';
     RejectButtonComponent,
     RankingsComponent,
     CausesComponent,
-    DonationsComponent
+    DonationsComponent,
+    ChangesComponent
   ],
   imports: [
     CommonModule,
