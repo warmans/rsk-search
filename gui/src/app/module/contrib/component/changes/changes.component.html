@@ -1,4 +1,4 @@
-<div class="mb-4">
+<div class="mb-4 position-relative">
   <ul class="nav nav-tabs font-weight-bold">
     <li *ngIf="pendingChanges.length > 0" class="nav-item mr-2">
       <a class="nav-link" [ngClass]="{'active': activeTab === 'pending'}" (click)="activeTab = 'pending'">Pending
@@ -62,4 +62,6 @@
       </table>
     </div>
   </div>
+  <app-loading-overlay [loading]="loading.length > 0" [fullScreen]="false"></app-loading-overlay>
 </div>
+
