@@ -10,7 +10,7 @@
     "bestof": false,
     "special": true,
     "locked": false,
-    "offset_accuracy": 13,
+    "offset_accuracy": 29,
     "audio_quality": "",
     "metadata": {
       "cover_art_url": "/assets/cover/special.jpg",
@@ -1670,7 +1670,7 @@
       {
         "id": "ep-nme-S1E01-151",
         "pos": 151,
-        "offset_sec": 970,
+        "offset_sec": 920,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -1681,7 +1681,7 @@
       {
         "id": "ep-nme-S1E01-152",
         "pos": 152,
-        "offset_sec": 988,
+        "offset_sec": 921,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -1692,7 +1692,7 @@
       {
         "id": "ep-nme-S1E01-153",
         "pos": 153,
-        "offset_sec": 1001,
+        "offset_sec": 921,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -1703,7 +1703,7 @@
       {
         "id": "ep-nme-S1E01-154",
         "pos": 154,
-        "offset_sec": 1073,
+        "offset_sec": 925,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -1714,7 +1714,7 @@
       {
         "id": "ep-nme-S1E01-155",
         "pos": 155,
-        "offset_sec": 1196,
+        "offset_sec": 930,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -1725,7 +1725,7 @@
       {
         "id": "ep-nme-S1E01-156",
         "pos": 156,
-        "offset_sec": 1343,
+        "offset_sec": 937,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -1736,7 +1736,7 @@
       {
         "id": "ep-nme-S1E01-157",
         "pos": 157,
-        "offset_sec": 1355,
+        "offset_sec": 937,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -1747,40 +1747,771 @@
       {
         "id": "ep-nme-S1E01-158",
         "pos": 158,
-        "offset_sec": 1553,
-        "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
+        "offset_sec": 946,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
         "metadata": null,
-        "content": "[~3 mins of missing transcription]",
+        "content": "Have um, amputees having perfectly working, dextrous limbs?",
         "notable": false
       },
       {
         "id": "ep-nme-S1E01-159",
         "pos": 159,
-        "offset_sec": 1592,
-        "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
+        "offset_sec": 951,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
         "metadata": null,
-        "content": "[~3 mins of missing transcription]",
+        "content": "And your response to that is?",
         "notable": false
       },
       {
         "id": "ep-nme-S1E01-160",
         "pos": 160,
-        "offset_sec": 1631,
+        "offset_sec": 953,
         "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
+        "type": "chat",
+        "actor": "karl",
         "metadata": null,
-        "content": "[~3 mins of missing transcription]",
+        "content": "I'd just say-",
         "notable": false
       },
       {
         "id": "ep-nme-S1E01-161",
         "pos": 161,
-        "offset_sec": 1670,
+        "offset_sec": 953,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "(mocking tone) Give it to a worm!",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-162",
+        "pos": 162,
+        "offset_sec": 954,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "I'd just say, I'd be more, I'd-I'd sort of be fascinated about seeing it more, if they said, \"look at what the worms wants to do with an arm, if it had one.\"",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-163",
+        "pos": 163,
+        "offset_sec": 961,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "(Ricky and Steve laugh)",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-164",
+        "pos": 164,
+        "offset_sec": 962,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Oh, Karl!",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-165",
+        "pos": 165,
+        "offset_sec": 963,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "The w-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-166",
+        "pos": 166,
+        "offset_sec": 963,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "I honestly don't know-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-167",
+        "pos": 167,
+        "offset_sec": 964,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "But how-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-168",
+        "pos": 168,
+        "offset_sec": 964,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "-how your brain wor- I think we should give it to you and see what you do with the arm.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-169",
+        "pos": 169,
+        "offset_sec": 967,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "What? I tell you what I've read. H-here we go-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-170",
+        "pos": 170,
+        "offset_sec": 968,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "How would a worm, how would a worm, how could a worm have an arm Karl? It would-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-171",
+        "pos": 171,
+        "offset_sec": 972,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "It wouldn't have an arm! The monkey didn't have an arm, it was a robot arm, that they'd setup on-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-172",
+        "pos": 172,
+        "offset_sec": 975,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Right. Let's, let me p- explain it like this. I wish they'd've picked something else. Maybe not a worm, but they always seem to do the tests on the wrong animals.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-173",
+        "pos": 173,
+        "offset_sec": 983,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "No, they do it on the thi- closest thing to the human being it, th-they can.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-174",
+        "pos": 174,
+        "offset_sec": 986,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "They've done- I'll tell you what I read. D'y'know how I say, \"I like to learn something every, every-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-175",
+        "pos": 175,
+        "offset_sec": 990,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-176",
+        "pos": 176,
+        "offset_sec": 990,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "- day\" and what have ya?",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-177",
+        "pos": 177,
+        "offset_sec": 992,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-178",
+        "pos": 178,
+        "offset_sec": 992,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "A few weeks ago, it was about how a worm, th-they've given it anti-aging cream.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-179",
+        "pos": 179,
+        "offset_sec": 996,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Right?",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-180",
+        "pos": 180,
+        "offset_sec": 997,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "When have you ever seen an old worm?",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-181",
+        "pos": 181,
+        "offset_sec": 999,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "(Ricky bursts out laughing)",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-182",
+        "pos": 182,
+        "offset_sec": 1000,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "How do we know if it's any good?",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-183",
+        "pos": 183,
+        "offset_sec": 1001,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "(Ricky keeps laughing)",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-184",
+        "pos": 184,
+        "offset_sec": 1001,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "I could not tell you the age of a worm. I've seen loads of 'em.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-185",
+        "pos": 185,
+        "offset_sec": 1004,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "(Ricky and Steve laugh)",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-186",
+        "pos": 186,
+        "offset_sec": 1005,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Give it t' a tortoise.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-187",
+        "pos": 187,
+        "offset_sec": 1016,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Play a record.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-188",
+        "pos": 188,
+        "offset_sec": 1022,
+        "offset_inferred": true,
+        "type": "song",
+        "actor": "",
+        "metadata": null,
+        "content": "",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-189",
+        "pos": 189,
+        "offset_sec": 1022,
+        "offset_inferred": true,
+        "type": "song",
+        "actor": "",
+        "metadata": {
+          "song_album": "The Essential Bob Dylan",
+          "song_artist": "Bob Dylan",
+          "song_track": "Positively 4th Street - Single Version",
+          "spotify_uri": "spotify:track:4heMx0OAwfILu13Lf0VbBM"
+        },
+        "content": "Bob Dylan - Positively 4th Street",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-190",
+        "pos": 190,
+        "offset_sec": 1022,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Bob Dylan - Positively 4th Street.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-191",
+        "pos": 191,
+        "offset_sec": 1024,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "I actually um, Rick, was in uh, Vietnam a couple of weeks ago.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-192",
+        "pos": 192,
+        "offset_sec": 1029,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Oh, yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-193",
+        "pos": 193,
+        "offset_sec": 1029,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "And I know you- I don't know if this was thanks to your campaign, but I did pass somewhere- It was admittedly a European person, but as I passed they went, \"Oi, oi! Karl Pilkington's got a head like a (bleep)fucking(/bleep) orange!\"",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-194",
+        "pos": 194,
+        "offset_sec": 1039,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "That's amazing.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-195",
+        "pos": 195,
+        "offset_sec": 1040,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Which is lovely to see-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-196",
+        "pos": 196,
+        "offset_sec": 1041,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "And that's in-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-197",
+        "pos": 197,
+        "offset_sec": 1041,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "I've had it all the way 'round the world.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-198",
+        "pos": 198,
+        "offset_sec": 1043,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "-that's in Vietnam. What were you doing in Vietnam?",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-199",
+        "pos": 199,
+        "offset_sec": 1045,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Ehhhh, y'know, just a- heard there was a war. Went over to see if that was uh, wrapped up. They finished that a while ago.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-200",
+        "pos": 200,
+        "offset_sec": 1052,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "So you've been to Vietnam. You went to a-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-201",
+        "pos": 201,
+        "offset_sec": 1054,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Popped down to Cambodia at the same time.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-202",
+        "pos": 202,
+        "offset_sec": 1056,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Cuba, yeah. Cambodia. Uh, Kenya. Wh-wh-wh- well I was wondering, would you ever consider going to a holiday destination where you didn't have to have injections in the stomach to get in?",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-203",
+        "pos": 203,
+        "offset_sec": 1065,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Well, you know what? I am an adventurer, by spirit. I'm a sort of Indiana Jones figure and um, plus someone was paying for it.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-204",
+        "pos": 204,
+        "offset_sec": 1073,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "(Ricky laughs)",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-205",
+        "pos": 205,
+        "offset_sec": 1074,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "(chuckles) A-and we did it-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-206",
+        "pos": 206,
+        "offset_sec": 1075,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "(Steve clears throat)",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-207",
+        "pos": 207,
+        "offset_sec": 1076,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Pardon me. We did in, uh high class luxury.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-208",
+        "pos": 208,
+        "offset_sec": 1079,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Didya?",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-209",
+        "pos": 209,
+        "offset_sec": 1079,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "There was no slumming it. I felt a bit bad because I was worried that I wouldn't see the real Vietnam. But I did, I did see the real Vietnam, from the air-conditioned 4x4 that I was being driven to my five-star hotel, in.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-210",
+        "pos": 210,
+        "offset_sec": 1091,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "And what's it like?",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-211",
+        "pos": 211,
+        "offset_sec": 1091,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "It's great; it's really good! I mean, obviously, y'know, the war was long time ago, so they've got back on the uh, y'know back on their- Uppers? I don't know what I mean by that. But anyway-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-212",
+        "pos": 212,
+        "offset_sec": 1099,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "No, that's the other way around. If you're on your uppers, innit- Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-213",
+        "pos": 213,
+        "offset_sec": 1102,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Back on? Anyway, n-no it's doing well. A lot of nice people, uh, generous people. Y'know, obviously there's poverty.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-214",
+        "pos": 214,
+        "offset_sec": 1106,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-215",
+        "pos": 215,
+        "offset_sec": 1106,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Um- there's a couple of things over there, I think, which would really intrigue you Karl.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-216",
+        "pos": 216,
+        "offset_sec": 1109,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "(Ricky laughs through his nose)",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-217",
+        "pos": 217,
+        "offset_sec": 1110,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "And I think it's a great shame that you're not more adventurous as a traveler, because I think it would really open your eyes.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-218",
+        "pos": 218,
+        "offset_sec": 1114,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "You're having a laugh. He has about nine holidays a year.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-219",
+        "pos": 219,
+        "offset_sec": 1117,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Yeah, but he goes to the same place, doesn't he? Some rock in the Mediterranean.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-220",
+        "pos": 220,
+        "offset_sec": 1120,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Yeah, it's safe. I know Vietnam's there-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-221",
+        "pos": 221,
+        "offset_sec": 1122,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "There's nothing there!",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-222",
+        "pos": 222,
+        "offset_sec": 1123,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "I know but, but I don't sort of, what I've seen of Vietnam- I had a mate who went to somewhere like that. He showed me a picture. He had a picture of him-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-223",
+        "pos": 223,
+        "offset_sec": 1375,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "(Ricky beginning to laugh)",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-224",
+        "pos": 224,
+        "offset_sec": 1418,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "-uh, walking 'round with a bag of locust-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-225",
+        "pos": 225,
+        "offset_sec": 1485,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "(Ricky laughs)",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-226",
+        "pos": 226,
+        "offset_sec": 1508,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "-that he'd been sold.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-227",
+        "pos": 227,
+        "offset_sec": 1542,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -1789,8 +2520,30 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-162",
-        "pos": 162,
+        "id": "ep-nme-S1E01-228",
+        "pos": 228,
+        "offset_sec": 1597,
+        "offset_inferred": true,
+        "type": "gap",
+        "actor": "",
+        "metadata": null,
+        "content": "[~3 mins of missing transcription]",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-229",
+        "pos": 229,
+        "offset_sec": 1653,
+        "offset_inferred": true,
+        "type": "gap",
+        "actor": "",
+        "metadata": null,
+        "content": "[~3 mins of missing transcription]",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-230",
+        "pos": 230,
         "offset_sec": 1708,
         "offset_inferred": false,
         "type": "chat",
@@ -1800,8 +2553,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-163",
-        "pos": 163,
+        "id": "ep-nme-S1E01-231",
+        "pos": 231,
         "offset_sec": 1709,
         "offset_inferred": true,
         "type": "chat",
@@ -1811,8 +2564,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-164",
-        "pos": 164,
+        "id": "ep-nme-S1E01-232",
+        "pos": 232,
         "offset_sec": 1710,
         "offset_inferred": true,
         "type": "chat",
@@ -1822,8 +2575,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-165",
-        "pos": 165,
+        "id": "ep-nme-S1E01-233",
+        "pos": 233,
         "offset_sec": 1724,
         "offset_inferred": true,
         "type": "chat",
@@ -1833,8 +2586,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-166",
-        "pos": 166,
+        "id": "ep-nme-S1E01-234",
+        "pos": 234,
         "offset_sec": 1728,
         "offset_inferred": true,
         "type": "chat",
@@ -1844,8 +2597,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-167",
-        "pos": 167,
+        "id": "ep-nme-S1E01-235",
+        "pos": 235,
         "offset_sec": 1728,
         "offset_inferred": true,
         "type": "chat",
@@ -1855,8 +2608,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-168",
-        "pos": 168,
+        "id": "ep-nme-S1E01-236",
+        "pos": 236,
         "offset_sec": 1731,
         "offset_inferred": false,
         "type": "chat",
@@ -1866,8 +2619,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-169",
-        "pos": 169,
+        "id": "ep-nme-S1E01-237",
+        "pos": 237,
         "offset_sec": 1734,
         "offset_inferred": true,
         "type": "chat",
@@ -1877,8 +2630,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-170",
-        "pos": 170,
+        "id": "ep-nme-S1E01-238",
+        "pos": 238,
         "offset_sec": 1737,
         "offset_inferred": true,
         "type": "chat",
@@ -1888,8 +2641,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-171",
-        "pos": 171,
+        "id": "ep-nme-S1E01-239",
+        "pos": 239,
         "offset_sec": 1742,
         "offset_inferred": true,
         "type": "chat",
@@ -1899,8 +2652,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-172",
-        "pos": 172,
+        "id": "ep-nme-S1E01-240",
+        "pos": 240,
         "offset_sec": 1756,
         "offset_inferred": true,
         "type": "chat",
@@ -1910,8 +2663,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-173",
-        "pos": 173,
+        "id": "ep-nme-S1E01-241",
+        "pos": 241,
         "offset_sec": 1757,
         "offset_inferred": false,
         "type": "chat",
@@ -1921,8 +2674,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-174",
-        "pos": 174,
+        "id": "ep-nme-S1E01-242",
+        "pos": 242,
         "offset_sec": 1765,
         "offset_inferred": false,
         "type": "chat",
@@ -1932,8 +2685,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-175",
-        "pos": 175,
+        "id": "ep-nme-S1E01-243",
+        "pos": 243,
         "offset_sec": 1776,
         "offset_inferred": false,
         "type": "chat",
@@ -1943,8 +2696,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-176",
-        "pos": 176,
+        "id": "ep-nme-S1E01-244",
+        "pos": 244,
         "offset_sec": 1777,
         "offset_inferred": true,
         "type": "chat",
@@ -1954,8 +2707,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-177",
-        "pos": 177,
+        "id": "ep-nme-S1E01-245",
+        "pos": 245,
         "offset_sec": 1777,
         "offset_inferred": true,
         "type": "chat",
@@ -1965,8 +2718,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-178",
-        "pos": 178,
+        "id": "ep-nme-S1E01-246",
+        "pos": 246,
         "offset_sec": 1778,
         "offset_inferred": true,
         "type": "chat",
@@ -1976,8 +2729,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-179",
-        "pos": 179,
+        "id": "ep-nme-S1E01-247",
+        "pos": 247,
         "offset_sec": 1779,
         "offset_inferred": true,
         "type": "chat",
@@ -1987,8 +2740,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-180",
-        "pos": 180,
+        "id": "ep-nme-S1E01-248",
+        "pos": 248,
         "offset_sec": 1781,
         "offset_inferred": true,
         "type": "chat",
@@ -1998,8 +2751,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-181",
-        "pos": 181,
+        "id": "ep-nme-S1E01-249",
+        "pos": 249,
         "offset_sec": 1782,
         "offset_inferred": true,
         "type": "chat",
@@ -2009,8 +2762,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-182",
-        "pos": 182,
+        "id": "ep-nme-S1E01-250",
+        "pos": 250,
         "offset_sec": 1786,
         "offset_inferred": true,
         "type": "chat",
@@ -2020,8 +2773,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-183",
-        "pos": 183,
+        "id": "ep-nme-S1E01-251",
+        "pos": 251,
         "offset_sec": 1786,
         "offset_inferred": true,
         "type": "chat",
@@ -2031,8 +2784,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-184",
-        "pos": 184,
+        "id": "ep-nme-S1E01-252",
+        "pos": 252,
         "offset_sec": 1787,
         "offset_inferred": true,
         "type": "chat",
@@ -2042,8 +2795,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-185",
-        "pos": 185,
+        "id": "ep-nme-S1E01-253",
+        "pos": 253,
         "offset_sec": 1791,
         "offset_inferred": true,
         "type": "chat",
@@ -2053,8 +2806,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-186",
-        "pos": 186,
+        "id": "ep-nme-S1E01-254",
+        "pos": 254,
         "offset_sec": 1792,
         "offset_inferred": true,
         "type": "chat",
@@ -2064,8 +2817,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-187",
-        "pos": 187,
+        "id": "ep-nme-S1E01-255",
+        "pos": 255,
         "offset_sec": 1794,
         "offset_inferred": true,
         "type": "chat",
@@ -2075,8 +2828,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-188",
-        "pos": 188,
+        "id": "ep-nme-S1E01-256",
+        "pos": 256,
         "offset_sec": 1802,
         "offset_inferred": true,
         "type": "chat",
@@ -2086,8 +2839,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-189",
-        "pos": 189,
+        "id": "ep-nme-S1E01-257",
+        "pos": 257,
         "offset_sec": 1804,
         "offset_inferred": true,
         "type": "chat",
@@ -2097,8 +2850,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-190",
-        "pos": 190,
+        "id": "ep-nme-S1E01-258",
+        "pos": 258,
         "offset_sec": 1806,
         "offset_inferred": false,
         "type": "chat",
@@ -2108,8 +2861,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-191",
-        "pos": 191,
+        "id": "ep-nme-S1E01-259",
+        "pos": 259,
         "offset_sec": 1824,
         "offset_inferred": true,
         "type": "chat",
@@ -2119,8 +2872,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-192",
-        "pos": 192,
+        "id": "ep-nme-S1E01-260",
+        "pos": 260,
         "offset_sec": 1825,
         "offset_inferred": true,
         "type": "chat",
@@ -2130,8 +2883,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-193",
-        "pos": 193,
+        "id": "ep-nme-S1E01-261",
+        "pos": 261,
         "offset_sec": 1828,
         "offset_inferred": true,
         "type": "chat",
@@ -2141,8 +2894,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-194",
-        "pos": 194,
+        "id": "ep-nme-S1E01-262",
+        "pos": 262,
         "offset_sec": 1829,
         "offset_inferred": true,
         "type": "chat",
@@ -2152,8 +2905,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-195",
-        "pos": 195,
+        "id": "ep-nme-S1E01-263",
+        "pos": 263,
         "offset_sec": 1832,
         "offset_inferred": true,
         "type": "chat",
@@ -2163,8 +2916,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-196",
-        "pos": 196,
+        "id": "ep-nme-S1E01-264",
+        "pos": 264,
         "offset_sec": 1835,
         "offset_inferred": true,
         "type": "chat",
@@ -2174,8 +2927,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-197",
-        "pos": 197,
+        "id": "ep-nme-S1E01-265",
+        "pos": 265,
         "offset_sec": 1835,
         "offset_inferred": false,
         "type": "song",
@@ -2190,8 +2943,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-198",
-        "pos": 198,
+        "id": "ep-nme-S1E01-266",
+        "pos": 266,
         "offset_sec": 1835,
         "offset_inferred": false,
         "type": "chat",
@@ -2201,8 +2954,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-199",
-        "pos": 199,
+        "id": "ep-nme-S1E01-267",
+        "pos": 267,
         "offset_sec": 1842,
         "offset_inferred": true,
         "type": "chat",
@@ -2212,8 +2965,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-200",
-        "pos": 200,
+        "id": "ep-nme-S1E01-268",
+        "pos": 268,
         "offset_sec": 1844,
         "offset_inferred": true,
         "type": "chat",
@@ -2223,8 +2976,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-201",
-        "pos": 201,
+        "id": "ep-nme-S1E01-269",
+        "pos": 269,
         "offset_sec": 1845,
         "offset_inferred": true,
         "type": "chat",
@@ -2234,8 +2987,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-202",
-        "pos": 202,
+        "id": "ep-nme-S1E01-270",
+        "pos": 270,
         "offset_sec": 1845,
         "offset_inferred": false,
         "type": "chat",
@@ -2245,8 +2998,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-203",
-        "pos": 203,
+        "id": "ep-nme-S1E01-271",
+        "pos": 271,
         "offset_sec": 1854,
         "offset_inferred": true,
         "type": "chat",
@@ -2256,8 +3009,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-204",
-        "pos": 204,
+        "id": "ep-nme-S1E01-272",
+        "pos": 272,
         "offset_sec": 1855,
         "offset_inferred": true,
         "type": "chat",
@@ -2267,8 +3020,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-205",
-        "pos": 205,
+        "id": "ep-nme-S1E01-273",
+        "pos": 273,
         "offset_sec": 1858,
         "offset_inferred": true,
         "type": "chat",
@@ -2278,8 +3031,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-206",
-        "pos": 206,
+        "id": "ep-nme-S1E01-274",
+        "pos": 274,
         "offset_sec": 1858,
         "offset_inferred": true,
         "type": "chat",
@@ -2289,8 +3042,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-207",
-        "pos": 207,
+        "id": "ep-nme-S1E01-275",
+        "pos": 275,
         "offset_sec": 1859,
         "offset_inferred": false,
         "type": "chat",
@@ -2300,9 +3053,9 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-208",
-        "pos": 208,
-        "offset_sec": 2036,
+        "id": "ep-nme-S1E01-276",
+        "pos": 276,
+        "offset_sec": 1933,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -2311,9 +3064,9 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-209",
-        "pos": 209,
-        "offset_sec": 2177,
+        "id": "ep-nme-S1E01-277",
+        "pos": 277,
+        "offset_sec": 1993,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -2322,9 +3075,9 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-210",
-        "pos": 210,
-        "offset_sec": 2611,
+        "id": "ep-nme-S1E01-278",
+        "pos": 278,
+        "offset_sec": 2175,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -2333,9 +3086,9 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-211",
-        "pos": 211,
-        "offset_sec": 2634,
+        "id": "ep-nme-S1E01-279",
+        "pos": 279,
+        "offset_sec": 2184,
         "offset_inferred": true,
         "type": "chat",
         "actor": "karl",
@@ -2344,9 +3097,9 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-212",
-        "pos": 212,
-        "offset_sec": 3019,
+        "id": "ep-nme-S1E01-280",
+        "pos": 280,
+        "offset_sec": 2345,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -2355,9 +3108,9 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-213",
-        "pos": 213,
-        "offset_sec": 3068,
+        "id": "ep-nme-S1E01-281",
+        "pos": 281,
+        "offset_sec": 2366,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -2366,9 +3119,9 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-214",
-        "pos": 214,
-        "offset_sec": 3138,
+        "id": "ep-nme-S1E01-282",
+        "pos": 282,
+        "offset_sec": 2395,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -2377,9 +3130,9 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-215",
-        "pos": 215,
-        "offset_sec": 3207,
+        "id": "ep-nme-S1E01-283",
+        "pos": 283,
+        "offset_sec": 2424,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -2388,9 +3141,779 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-216",
-        "pos": 216,
-        "offset_sec": 3277,
+        "id": "ep-nme-S1E01-284",
+        "pos": 284,
+        "offset_sec": 2453,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Sure.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-285",
+        "pos": 285,
+        "offset_sec": 2454,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Uh, but this time I thought I'd embrace this and I've brought you something, as to show you. It's not really going to be very helpful on the uh, on the NME radio. But I've, I'll start- I decided to wear a hat.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-286",
+        "pos": 286,
+        "offset_sec": 2463,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Oh God.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-287",
+        "pos": 287,
+        "offset_sec": 2464,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "I thought I'd buy a hat.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-288",
+        "pos": 288,
+        "offset_sec": 2465,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Oh God.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-289",
+        "pos": 289,
+        "offset_sec": 2465,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "And wear a hat. And I thought that- I bought this last minute, as I was just, before we got on the plane, I was doing some shopping. I thought I need to, you know, cos you can-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-290",
+        "pos": 290,
+        "offset_sec": 2471,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "You think, you think you'd be summat like from a Graham Greene novel.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-291",
+        "pos": 291,
+        "offset_sec": 2474,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Right. Exactly.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-292",
+        "pos": 292,
+        "offset_sec": 2474,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "They'd go um, (in a vague accent) \"They call him the Englishman.\"",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-293",
+        "pos": 293,
+        "offset_sec": 2477,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Exactly.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-294",
+        "pos": 294,
+        "offset_sec": 2477,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "\"He's the wisest-\". And yeah, exactly.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-295",
+        "pos": 295,
+        "offset_sec": 2478,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Exactly. So I thought I- cos you can kind of reinvent yourself when you're abroad in some way-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-296",
+        "pos": 296,
+        "offset_sec": 2483,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-297",
+        "pos": 297,
+        "offset_sec": 2483,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "-can't ya, you know-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-298",
+        "pos": 298,
+        "offset_sec": 2484,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-299",
+        "pos": 299,
+        "offset_sec": 2484,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "And um, so this is the hat I got.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-300",
+        "pos": 300,
+        "offset_sec": 2485,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Christ.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-301",
+        "pos": 301,
+        "offset_sec": 2486,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "(plastic bag ruffling)",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-302",
+        "pos": 302,
+        "offset_sec": 2487,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Maybe you should look away for a second and I'll put it on.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-303",
+        "pos": 303,
+        "offset_sec": 2489,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Okay.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-304",
+        "pos": 304,
+        "offset_sec": 2490,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "And then you can uh... Now, bear in mind, it is a bit battered because it's been in bags and stuff.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-305",
+        "pos": 305,
+        "offset_sec": 2496,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Sure.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-306",
+        "pos": 306,
+        "offset_sec": 2497,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "(Ricky laughs)",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-307",
+        "pos": 307,
+        "offset_sec": 2497,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Steve, what are you thinking? Right.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-308",
+        "pos": 308,
+        "offset_sec": 2499,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "No, it is a bit battered and damaged, I admit.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-309",
+        "pos": 309,
+        "offset_sec": 2500,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Right, okay. How can I um? Right. I uh- It looks like a cross between summat Miss Marple would wear-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-310",
+        "pos": 310,
+        "offset_sec": 2505,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "(Steve laughs)",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-311",
+        "pos": 311,
+        "offset_sec": 2506,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "That's nonsense!",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-312",
+        "pos": 312,
+        "offset_sec": 2506,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "No, it does. It looks a bit like that. Um, and there's a beer, with a bloke drinking- What's that called? Moretti beer?",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-313",
+        "pos": 313,
+        "offset_sec": 2514,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "I think you're thinking of the Hofmeister bear.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-314",
+        "pos": 314,
+        "offset_sec": 2517,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "No, I'm not. It uh- it looks like Miss Marple's hat.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-315",
+        "pos": 315,
+        "offset_sec": 2520,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "It doesn't look like Miss Marple's hat!",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-316",
+        "pos": 316,
+        "offset_sec": 2522,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "It does.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-317",
+        "pos": 317,
+        "offset_sec": 2523,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "It's kind of moddy, isn't it? It's, it's a bit mod-ish.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-318",
+        "pos": 318,
+        "offset_sec": 2524,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "It's not. It's a tweed thing that comes down that-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-319",
+        "pos": 319,
+        "offset_sec": 2526,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "(Steve laughs)",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-320",
+        "pos": 320,
+        "offset_sec": 2527,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "-an old lady would wear.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-321",
+        "pos": 321,
+        "offset_sec": 2527,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "(while chuckling) It's not tweed. What're you talking about?",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-322",
+        "pos": 322,
+        "offset_sec": 2531,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "It was a librar- a librarian lady would wear in the 1930s.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-323",
+        "pos": 323,
+        "offset_sec": 2533,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "It's not tweed.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-324",
+        "pos": 324,
+        "offset_sec": 2534,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "I have never seen any-, tha- you didn't really buy that, did you, to wear?",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-325",
+        "pos": 325,
+        "offset_sec": 2537,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "I did.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-326",
+        "pos": 326,
+        "offset_sec": 2537,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "No, you didn't.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-327",
+        "pos": 327,
+        "offset_sec": 2538,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Yes I did.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-328",
+        "pos": 328,
+        "offset_sec": 2538,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Right. Um, can I take a picture of this, and I'll put it on my website? Right. I am now taping this on a camcorder. I will put this up on rickygervais.com.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-329",
+        "pos": 329,
+        "offset_sec": 2546,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "I disagree. I think this genuinely looks good. I think it makes me look a bit like, say Tom Waits, or um, Farmer Barleymow. The point is this, right? I'm wearing the hat; I'm looking good, okay? But people, obviously, they can sense that I'm a moneyed tourist. They can see how good I look, and they know I got a little bit of money in me pocket. Can afford to buy hats, you know, and everything.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-330",
+        "pos": 330,
+        "offset_sec": 2570,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "(Ricky suppresses laughter)",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-331",
+        "pos": 331,
+        "offset_sec": 2571,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "So, obviously, I'm always a target for people trying to get money from me, stuff like that, which is always a-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-332",
+        "pos": 332,
+        "offset_sec": 2577,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Mm, then they knew.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-333",
+        "pos": 333,
+        "offset_sec": 2577,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "-a hassle, innit? Now I find it very difficult tipping when I'm abroad. I don't really understand what the rules are with tipping. And that's a big anxiety, for me. And also I have problems with the conversion, y'know, because obviously when you go abroad- so um, the Vietnamese dong-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-334",
+        "pos": 334,
+        "offset_sec": 2594,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "(Ricky giggles)",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-335",
+        "pos": 335,
+        "offset_sec": 2594,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Come on. There's nothin- that, there's nothing funny about that. That's just what it's called, right? For 63 US dollars, you can get a million dong, right? That's a lot of dong.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-336",
+        "pos": 336,
+        "offset_sec": 2604,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "(Ricky nervously laughs)",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-337",
+        "pos": 337,
+        "offset_sec": 2605,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "So um, I'm packing like-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-338",
+        "pos": 338,
+        "offset_sec": 2607,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "A huge dong.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-339",
+        "pos": 339,
+        "offset_sec": 2608,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "(Steve laughs)",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-340",
+        "pos": 340,
+        "offset_sec": 2608,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "I-I- I got like, you know, two million dong, like in me money belt under me shirt, right?",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-341",
+        "pos": 341,
+        "offset_sec": 2614,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah you- you to- so, so let me get this image right. You were wearing that hat and a bum bag?",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-342",
+        "pos": 342,
+        "offset_sec": 2618,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Yes but, well no I-, no I-, no-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-343",
+        "pos": 343,
+        "offset_sec": 2619,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "You must've looked pretty cool.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-344",
+        "pos": 344,
+        "offset_sec": 2620,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "I don't have a bum bag. I have a, I have a um, I have a money belt that I wear underneath the t-shirt-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-345",
+        "pos": 345,
+        "offset_sec": 2625,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Right.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-346",
+        "pos": 346,
+        "offset_sec": 2625,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "So as not to see, y'know, so people don't think I've got any money on me.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-347",
+        "pos": 347,
+        "offset_sec": 2628,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-348",
+        "pos": 348,
+        "offset_sec": 2628,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "And if I get mugged I can just go, \"I haven't got any money on me\". Because they would never think to look-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-349",
+        "pos": 349,
+        "offset_sec": 2632,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Under the t-shirt?",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-350",
+        "pos": 350,
+        "offset_sec": 2632,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "-underneath the shirt and see the money belt.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-351",
+        "pos": 351,
+        "offset_sec": 2633,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "But that's still out of reach, innit? Over there?",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-352",
+        "pos": 352,
+        "offset_sec": 2722,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "(Ricky laughs)",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-353",
+        "pos": 353,
+        "offset_sec": 2747,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-354",
+        "pos": 354,
+        "offset_sec": 2756,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -2399,9 +3922,537 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-217",
-        "pos": 217,
-        "offset_sec": 3347,
+        "id": "ep-nme-S1E01-355",
+        "pos": 355,
+        "offset_sec": 2817,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "I was a bit worried so, I-I- was thinking of asking for the money, you know, for some change. But I didn't think that was appropriate. So um, but then I was worried because I was thinking, what if all the other drivers within his organization find out that I've given him like 20 dollars? They're all going to be expecting a big tip.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-356",
+        "pos": 356,
+        "offset_sec": 2831,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-357",
+        "pos": 357,
+        "offset_sec": 2832,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "So that was a big worry. But more than that we also had a guide with us so he was bound to find out, how that is. Right now I don't have any dollars left. And I thought, well, I've given that by 20, I gotta give the guy who's been talking English to us, showing us round, helping us out, I got give him even more-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-358",
+        "pos": 358,
+        "offset_sec": 2845,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "50.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-359",
+        "pos": 359,
+        "offset_sec": 2846,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "-right. I ended up giving him a million dong.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-360",
+        "pos": 360,
+        "offset_sec": 2848,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "And how much is that?",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-361",
+        "pos": 361,
+        "offset_sec": 2850,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "$63. I tipped someone a million dollars.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-362",
+        "pos": 362,
+        "offset_sec": 2853,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "So he's a millionaire now.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-363",
+        "pos": 363,
+        "offset_sec": 2854,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-364",
+        "pos": 364,
+        "offset_sec": 2855,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "(Steve chuckles)",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-365",
+        "pos": 365,
+        "offset_sec": 2855,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "I-I- made someone a millionaire through my generosity.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-366",
+        "pos": 366,
+        "offset_sec": 2857,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Well, so well, so did I; he's sitting over there.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-367",
+        "pos": 367,
+        "offset_sec": 2860,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "(Steve chuckles)",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-368",
+        "pos": 368,
+        "offset_sec": 2860,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "That's absolutely right.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-369",
+        "pos": 369,
+        "offset_sec": 2863,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "But he doesn't want to give anything back. So I know how you feel mate.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-370",
+        "pos": 370,
+        "offset_sec": 2870,
+        "offset_inferred": true,
+        "type": "song",
+        "actor": "",
+        "metadata": null,
+        "content": "Neil Young - Old Man",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-371",
+        "pos": 371,
+        "offset_sec": 2870,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Neil Young - Old Man. Karl. Now you know traditionally at the zoo they have to, um, dart a dangerous animal. A lion, or, or a gorilla, or whatever--",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-372",
+        "pos": 372,
+        "offset_sec": 2883,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "They have to what?",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-373",
+        "pos": 373,
+        "offset_sec": 2884,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "They have to dart it.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-374",
+        "pos": 374,
+        "offset_sec": 2886,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Oh yeah. Yeah, yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-375",
+        "pos": 375,
+        "offset_sec": 2886,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "To um, to um, take blood samples and check its health and stuff. So it's very stressful for the animal and quite dangerous to give it an anesthetic like that. So what they've started doing now, there's a bug, right? Like a type of beetle and uh, it's a bloodsucker. It's a little vampire bug, okay? It's about 3 cm long. What they do is they tie piece of string around it. They let it go into the cage, on the chimp. It sucks the chimp's blood without the chimp even knowing. They pull it back and they take the blood sample from it.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-376",
+        "pos": 376,
+        "offset_sec": 2926,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "They've taught it to do that?",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-377",
+        "pos": 377,
+        "offset_sec": 2928,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Well, they've not taught it to do anything; that's its nature. You put it near a warm blooded mammal, it will suck its blood. So they've just tied a string to it so they can get it back.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-378",
+        "pos": 378,
+        "offset_sec": 2939,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "And how often does it have to do that a day?",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-379",
+        "pos": 379,
+        "offset_sec": 2941,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Well, I don't know, I don't know, uh-- Why are these the important questions?",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-380",
+        "pos": 380,
+        "offset_sec": 2944,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "(Steve laughs)",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-381",
+        "pos": 381,
+        "offset_sec": 2944,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Just because, just because-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-382",
+        "pos": 382,
+        "offset_sec": 2946,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Isn't that incredible? That they've got, they've got this amazing symbiotic relationship with a bug because that's what-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-383",
+        "pos": 383,
+        "offset_sec": 2950,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Is it the same one? Say if there's eight chimps-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-384",
+        "pos": 384,
+        "offset_sec": 2952,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "No- oh, Jesus. Karl! Listen to me!",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-385",
+        "pos": 385,
+        "offset_sec": 2955,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "No, let him- I wanna here these questions.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-386",
+        "pos": 386,
+        "offset_sec": 2956,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "I'm just sayin' if there's eight chimps in there-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-387",
+        "pos": 387,
+        "offset_sec": 2958,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-388",
+        "pos": 388,
+        "offset_sec": 2958,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Eh, one beetle. By about number five, that's going to be sick of eating.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-389",
+        "pos": 389,
+        "offset_sec": 2963,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Well then they probably have different beetles and they let it, and-- Karl! I don't know why this is the, the avenue of questioning.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-390",
+        "pos": 390,
+        "offset_sec": 2969,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "It just, I'll tell ya why it annoys me, because-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-391",
+        "pos": 391,
+        "offset_sec": 2970,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "It annoys him.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-392",
+        "pos": 392,
+        "offset_sec": 2971,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "The other concern is, uh that beetle. It might be enjoyin', y'know, getting the blood and what have ya. What happens if-if- one of them's got, got AIDS?",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-393",
+        "pos": 393,
+        "offset_sec": 2981,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "What, one of the-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-394",
+        "pos": 394,
+        "offset_sec": 2982,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "One of the chimps. That's where it came from. So say if there's a-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-395",
+        "pos": 395,
+        "offset_sec": 2985,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Well then, then they'll know. And they'll say, \"oh, this chimp's got AIDS. Let's\"-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-396",
+        "pos": 396,
+        "offset_sec": 2988,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "But what about the beetle?",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-397",
+        "pos": 397,
+        "offset_sec": 2990,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "What? Are you saying you're worried that the beetle will contract AIDS?",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-398",
+        "pos": 398,
+        "offset_sec": 2993,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Well, I-I don't know if that's how it works. But all I'm saying is you get a dirty chimp in there, eh-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-399",
+        "pos": 399,
+        "offset_sec": 2999,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "(Ricky giggles)",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-400",
+        "pos": 400,
+        "offset_sec": 2999,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "It's got, it's got a touch of that. And, and, and, and the, and the, the beetle gets it. And all I'm sayin' is it seems a bit unfair. He's-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-401",
+        "pos": 401,
+        "offset_sec": 3006,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "What are you worried about? The beetle? Working hard? It's eating what it likes.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-402",
+        "pos": 402,
+        "offset_sec": 3010,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Because this, because this is the same as getting in foreigners to make cheap trainers, to me. They, y'know, let the beetle do what it wants. I mean, beetl- How long do they live? I read the other day about some elephant beet-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-403",
+        "pos": 403,
+        "offset_sec": 3481,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -2410,9 +4461,9 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-218",
-        "pos": 218,
-        "offset_sec": 3416,
+        "id": "ep-nme-S1E01-404",
+        "pos": 404,
+        "offset_sec": 3552,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -2421,9 +4472,9 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-219",
-        "pos": 219,
-        "offset_sec": 3486,
+        "id": "ep-nme-S1E01-405",
+        "pos": 405,
+        "offset_sec": 3623,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -2432,9 +4483,9 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-220",
-        "pos": 220,
-        "offset_sec": 3556,
+        "id": "ep-nme-S1E01-406",
+        "pos": 406,
+        "offset_sec": 3694,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -2443,30 +4494,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-221",
-        "pos": 221,
-        "offset_sec": 3625,
-        "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
-        "metadata": null,
-        "content": "[~3 mins of missing transcription]",
-        "notable": false
-      },
-      {
-        "id": "ep-nme-S1E01-222",
-        "pos": 222,
-        "offset_sec": 3695,
-        "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
-        "metadata": null,
-        "content": "[~3 mins of missing transcription]",
-        "notable": false
-      },
-      {
-        "id": "ep-nme-S1E01-223",
-        "pos": 223,
+        "id": "ep-nme-S1E01-407",
+        "pos": 407,
         "offset_sec": 3764,
         "offset_inferred": false,
         "type": "chat",
@@ -2476,8 +4505,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-224",
-        "pos": 224,
+        "id": "ep-nme-S1E01-408",
+        "pos": 408,
         "offset_sec": 3774,
         "offset_inferred": true,
         "type": "chat",
@@ -2487,8 +4516,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-225",
-        "pos": 225,
+        "id": "ep-nme-S1E01-409",
+        "pos": 409,
         "offset_sec": 3775,
         "offset_inferred": true,
         "type": "chat",
@@ -2498,8 +4527,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-226",
-        "pos": 226,
+        "id": "ep-nme-S1E01-410",
+        "pos": 410,
         "offset_sec": 3776,
         "offset_inferred": true,
         "type": "chat",
@@ -2509,8 +4538,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-227",
-        "pos": 227,
+        "id": "ep-nme-S1E01-411",
+        "pos": 411,
         "offset_sec": 3777,
         "offset_inferred": true,
         "type": "chat",
@@ -2520,8 +4549,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-228",
-        "pos": 228,
+        "id": "ep-nme-S1E01-412",
+        "pos": 412,
         "offset_sec": 3783,
         "offset_inferred": true,
         "type": "chat",
@@ -2531,8 +4560,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-229",
-        "pos": 229,
+        "id": "ep-nme-S1E01-413",
+        "pos": 413,
         "offset_sec": 3784,
         "offset_inferred": true,
         "type": "chat",
@@ -2542,8 +4571,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-230",
-        "pos": 230,
+        "id": "ep-nme-S1E01-414",
+        "pos": 414,
         "offset_sec": 3791,
         "offset_inferred": false,
         "type": "chat",
@@ -2553,8 +4582,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-231",
-        "pos": 231,
+        "id": "ep-nme-S1E01-415",
+        "pos": 415,
         "offset_sec": 3800,
         "offset_inferred": true,
         "type": "chat",
@@ -2564,8 +4593,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-232",
-        "pos": 232,
+        "id": "ep-nme-S1E01-416",
+        "pos": 416,
         "offset_sec": 3803,
         "offset_inferred": true,
         "type": "chat",
@@ -2575,8 +4604,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-233",
-        "pos": 233,
+        "id": "ep-nme-S1E01-417",
+        "pos": 417,
         "offset_sec": 3804,
         "offset_inferred": true,
         "type": "chat",
@@ -2586,8 +4615,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-234",
-        "pos": 234,
+        "id": "ep-nme-S1E01-418",
+        "pos": 418,
         "offset_sec": 3809,
         "offset_inferred": true,
         "type": "chat",
@@ -2597,8 +4626,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-235",
-        "pos": 235,
+        "id": "ep-nme-S1E01-419",
+        "pos": 419,
         "offset_sec": 3809,
         "offset_inferred": true,
         "type": "chat",
@@ -2608,8 +4637,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-236",
-        "pos": 236,
+        "id": "ep-nme-S1E01-420",
+        "pos": 420,
         "offset_sec": 3811,
         "offset_inferred": true,
         "type": "chat",
@@ -2619,8 +4648,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-237",
-        "pos": 237,
+        "id": "ep-nme-S1E01-421",
+        "pos": 421,
         "offset_sec": 3813,
         "offset_inferred": true,
         "type": "chat",
@@ -2630,8 +4659,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-238",
-        "pos": 238,
+        "id": "ep-nme-S1E01-422",
+        "pos": 422,
         "offset_sec": 3814,
         "offset_inferred": true,
         "type": "chat",
@@ -2641,8 +4670,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-239",
-        "pos": 239,
+        "id": "ep-nme-S1E01-423",
+        "pos": 423,
         "offset_sec": 3822,
         "offset_inferred": false,
         "type": "chat",
@@ -2652,8 +4681,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-240",
-        "pos": 240,
+        "id": "ep-nme-S1E01-424",
+        "pos": 424,
         "offset_sec": 3827,
         "offset_inferred": true,
         "type": "chat",
@@ -2663,8 +4692,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-241",
-        "pos": 241,
+        "id": "ep-nme-S1E01-425",
+        "pos": 425,
         "offset_sec": 3830,
         "offset_inferred": true,
         "type": "chat",
@@ -2674,8 +4703,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-242",
-        "pos": 242,
+        "id": "ep-nme-S1E01-426",
+        "pos": 426,
         "offset_sec": 3831,
         "offset_inferred": true,
         "type": "chat",
@@ -2685,8 +4714,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-243",
-        "pos": 243,
+        "id": "ep-nme-S1E01-427",
+        "pos": 427,
         "offset_sec": 3836,
         "offset_inferred": true,
         "type": "chat",
@@ -2696,8 +4725,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-244",
-        "pos": 244,
+        "id": "ep-nme-S1E01-428",
+        "pos": 428,
         "offset_sec": 3839,
         "offset_inferred": true,
         "type": "chat",
@@ -2707,8 +4736,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-245",
-        "pos": 245,
+        "id": "ep-nme-S1E01-429",
+        "pos": 429,
         "offset_sec": 3839,
         "offset_inferred": true,
         "type": "chat",
@@ -2718,8 +4747,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-246",
-        "pos": 246,
+        "id": "ep-nme-S1E01-430",
+        "pos": 430,
         "offset_sec": 3842,
         "offset_inferred": true,
         "type": "chat",
@@ -2729,8 +4758,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-247",
-        "pos": 247,
+        "id": "ep-nme-S1E01-431",
+        "pos": 431,
         "offset_sec": 3844,
         "offset_inferred": true,
         "type": "chat",
@@ -2740,8 +4769,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-248",
-        "pos": 248,
+        "id": "ep-nme-S1E01-432",
+        "pos": 432,
         "offset_sec": 3845,
         "offset_inferred": true,
         "type": "chat",
@@ -2751,8 +4780,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-249",
-        "pos": 249,
+        "id": "ep-nme-S1E01-433",
+        "pos": 433,
         "offset_sec": 3845,
         "offset_inferred": true,
         "type": "chat",
@@ -2762,8 +4791,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-250",
-        "pos": 250,
+        "id": "ep-nme-S1E01-434",
+        "pos": 434,
         "offset_sec": 3846,
         "offset_inferred": true,
         "type": "chat",
@@ -2773,8 +4802,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-251",
-        "pos": 251,
+        "id": "ep-nme-S1E01-435",
+        "pos": 435,
         "offset_sec": 3847,
         "offset_inferred": true,
         "type": "chat",
@@ -2787,20 +4816,21 @@
     "synopsis": [
       {
         "description": "Does anyone have anything to plug?",
-        "start_pos": 223,
-        "end_pos": 245
+        "start_pos": 407,
+        "end_pos": 429
       }
     ],
     "contributors": [
       "EarthlingCalling",
+      "linksauce_1",
       "warmans",
       "wontbemad"
     ],
     "trivia": [
       {
         "description": "Nme.com is indeed the address of the NME website.",
-        "start_pos": 248,
-        "end_pos": 249
+        "start_pos": 432,
+        "end_pos": 433
       }
     ]
   }
