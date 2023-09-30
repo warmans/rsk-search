@@ -37,9 +37,6 @@ export class ChangesComponent {
       sortDirection: 'DESC'
     }).pipe(takeUntil(this.unsubscribe$)).subscribe((res) => {
       this.recentContributions = res.contributions;
-      if (res.contributions.length > 0) {
-        this.activeTab = 'pending';
-      }
     }).add(() => {
       this.loading.pop();
     });
@@ -55,6 +52,9 @@ export class ChangesComponent {
       ).print()
     }).pipe(takeUntil(this.unsubscribe$)).subscribe((res) => {
       this.pendingChanges = res.changes;
+      if (res.changes.length > 0) {
+        this.activeTab = 'pending';
+      }
     }).add(() => {
       this.loading.pop();
     });
