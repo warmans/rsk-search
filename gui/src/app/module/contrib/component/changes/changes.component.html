@@ -1,14 +1,70 @@
 <div class="mb-4 position-relative">
   <ul class="nav nav-tabs font-weight-bold">
+    <li *ngIf="(chunks || []).length > 0" class="nav-item mr-2">
+      <a class="nav-link" [ngClass]="{'active': activeTab === 'progress'}" (click)="activeTab = 'progress'">New Transcriptions</a>
+    </li>
     <li *ngIf="pendingChanges.length > 0" class="nav-item mr-2">
-      <a class="nav-link" [ngClass]="{'active': activeTab === 'pending'}" (click)="activeTab = 'pending'">Pending
-        Edits</a>
+      <a class="nav-link" [ngClass]="{'active': activeTab === 'pending'}" (click)="activeTab = 'pending'">Edits</a>
     </li>
     <li class="nav-item mr-2">
-      <a class="nav-link" [ngClass]="{'active': activeTab === 'recent'}" (click)="activeTab = 'recent'">Recent
-        Contributions</a>
+      <a class="nav-link" [ngClass]="{'active': activeTab === 'recent'}" (click)="activeTab = 'recent'">Recently Approved</a>
     </li>
   </ul>
+  <div class="card" *ngIf="activeTab === 'progress'">
+    <div class="card-header text-paragraph"></div>
+    <div class="card-body d-flex">
+      <div class="progress mt-1 flex-grow-1">
+        <div
+          class="progress-bar bg-success"
+          role="progressbar"
+          title="Approved."
+          [style.width]="(this.overallComplete / (this.overallTotal || 1) * 100)+'%'">
+        </div>
+        <div
+          class="progress-bar bg-secondary"
+          role="progressbar"
+          title="Awaiting approval."
+          [style.width]="(this.overallPendingApproval / (this.overallTotal || 1) * 100)+'%'">
+        </div>
+      </div>
+      <div class="pl-4 font-weight-bold">{{ (this.overallComplete / (this.overallTotal || 1) * 100) | number:'1.0-0'
+        }}%
+      </div>
+    </div>
+    <div class="card-body p-0">
+      <table class="table">
+        <tr>
+          <th>ID</th>
+          <th colspan="2" title="Once transcriptions for all chunks have been approved the episode is complete">
+            Progress
+          </th>
+        </tr>
+        <tr *ngFor="let ep of chunks">
+          <td style="width: 150px"><a [routerLink]="['/tscript', ep.id]">{{ep.id}}</a></td>
+          <td style="width: 150px"><span title="sections approved to the total">{{ progressMap[ep.id]['complete'] }} / {{ep.numChunks}}
+            <span>({{((progressMap[ep.id]['complete'] || 0) / (progressMap[ep.id]['total'] || 1) * 100) | number:'1.0-0'}}%)</span></span>
+          </td>
+          <td>
+            <div class="progress">
+              <div
+                class="progress-bar bg-success"
+                role="progressbar"
+                title="{{progressMap[ep.id]['complete']}} completed"
+                [style.width]="((progressMap[ep.id]['complete'] || 0) / (progressMap[ep.id]['total'] || 1)  * 100)+'%'">
+              </div>
+              <div
+                class="progress-bar bg-secondary"
+                role="progressbar"
+                title="{{progressMap[ep.id]['pending_approval']}} awaiting approval"
+                [style.width]="((progressMap[ep.id]['pending_approval'] || 0) / (progressMap[ep.id]['total'] || 1)  * 100)+'%'">
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
   <div class="card" *ngIf="activeTab === 'pending'">
     <div class="card-header text-paragraph">
       After an edit is approved it must be merged. This means the content is extracted and added to the JSON archive.
@@ -40,9 +96,7 @@
     </div>
   </div>
   <div class="card" *ngIf="activeTab === 'recent'">
-    <div class="card-header text-paragraph">
-      Recently merged contributions.
-    </div>
+    <div class="card-header text-paragraph"></div>
     <div class="card-body p-0">
       <table class="table table-borderless p-0 m-0">
         <tr>
