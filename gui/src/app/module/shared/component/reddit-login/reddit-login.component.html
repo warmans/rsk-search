@@ -9,11 +9,11 @@
           <div><strong>Authorization failed - please try again</strong></div>
           <div>Server responded with: {{authError}}</div>
         </div>
-        <p>To submit a transcript you must authenticate with a valid Reddit account (Oauth2).</p>
+        <p>To submit a transcript you must authenticate with a valid Reddit/Discord account (Oauth2).</p>
         <p>This app will never see your secret data (password etc.) will only be allowed to see only your public
           identity.
           This will be stored against your submission.</p>
-        <p>If you reddit account is not in good standing (e.g. suspended, negative karma) or very new your request
+        <p>If your account is not in good standing (e.g. suspended, negative karma) or very new your request
           will fail.</p>
         <p><a class="text-primary" (click)="showMoreAuthInformation = !showMoreAuthInformation">I'm not convinced, can
           you explain like I'm karl pilkington?</a></p>
@@ -30,10 +30,10 @@
             borrow a specific book for a specific amount of time? That way your friend would be limited to only
             accessing the information
             you have agreed to and you wouldn't need to share your secret card number.</p>
-          <p>That is effectively how oauth works. The reddit authorization screen is you telling the reddit to allow
+          <p>That is effectively how oauth works. The reddit/discord authorization screen is you telling the service to allow
             this website to read
             some very specific information (in this case your public identity). Since you never provide any of your
-            reddit credentials directly
+            reddit/discord credentials directly
             to this website, it is limited to accessing only what you have allowed.</p>
           <p>Here is an example of the sort of data reddit considers your <a
             href="https://github.com/reddit-archive/reddit/wiki/OAuth2-Quick-Start-Example"
