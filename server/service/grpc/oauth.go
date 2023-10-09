@@ -6,6 +6,7 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/warmans/rsk-search/gen/api"
+	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/oauth"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
@@ -48,8 +49,8 @@ func (s *OauthService) GetAuthURL(ctx context.Context, request *api.GetAuthURLRe
 			returnURL = parsed.String()
 		}
 	}
-	switch request.Provider {
-	case "reddit":
+	switch models.OauthProvider(request.Provider) {
+	case models.OauthProviderReddit:
 		return &api.AuthURL{
 			Url: fmt.Sprintf(
 				"https://www.reddit.com/api/v1/authorize?client_id=%s&response_type=code&state=%s&redirect_uri=%s&duration=temporary&scope=identity",
@@ -58,7 +59,7 @@ func (s *OauthService) GetAuthURL(ctx context.Context, request *api.GetAuthURLRe
 				s.oauthCfg.ProviderReturnURL(request.Provider),
 			),
 		}, nil
-	case "discord":
+	case models.OauthProviderDiscord:
 		return &api.AuthURL{
 			Url: fmt.Sprintf(
 				"https://discord.com/api/oauth2/authorize?client_id=%s&response_type=code&state=%s&redirect_uri=%s&scope=identify",

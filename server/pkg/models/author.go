@@ -3,7 +3,6 @@ package models
 import (
 	"encoding/json"
 	"github.com/warmans/rsk-search/gen/api"
-	"github.com/warmans/rsk-search/pkg/oauth"
 	"github.com/warmans/rsk-search/pkg/util"
 	"time"
 )
@@ -43,8 +42,8 @@ func (a *Author) ShortAuthor() *ShortAuthor {
 	return sa
 }
 
-func (a *Author) DecodeIdentity() (*oauth.RedditIdentity, error) {
-	ident := &oauth.RedditIdentity{}
+func (a *Author) DecodeIdentity() (*Identity, error) {
+	ident := &Identity{}
 	if err := json.Unmarshal([]byte(a.Identity), ident); err != nil {
 		return nil, err
 	}

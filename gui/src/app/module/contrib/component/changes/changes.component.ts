@@ -111,6 +111,7 @@ export class ChangesComponent {
       ).print()
     }).pipe(takeUntil(this.unsubscribe$)).subscribe((res: RskTranscriptChangeList) => {
       this.pendingChanges = res.changes;
+      this.unapprovedPendingChanges = 0;
       (res.changes || []).forEach((ch: RskShortTranscriptChange) => {
         if (ch.state === RskContributionState.STATE_REQUEST_APPROVAL) {
           this.unapprovedPendingChanges += 1;

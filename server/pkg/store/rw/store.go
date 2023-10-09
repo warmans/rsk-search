@@ -12,7 +12,6 @@ import (
 	"github.com/pkg/errors"
 	"github.com/warmans/rsk-search/pkg/filter"
 	"github.com/warmans/rsk-search/pkg/models"
-	"github.com/warmans/rsk-search/pkg/oauth"
 	"github.com/warmans/rsk-search/pkg/points"
 	"github.com/warmans/rsk-search/pkg/store/common"
 	"github.com/warmans/rsk-search/pkg/util"
@@ -606,7 +605,7 @@ func (s *Store) ListAuthorRankings(ctx context.Context, qm *common.QueryModifier
 		); err != nil {
 			return nil, err
 		}
-		decodedIdent := &oauth.RedditIdentity{}
+		decodedIdent := &models.Identity{}
 		if err := json.Unmarshal([]byte(ident), &decodedIdent); err == nil {
 			cur.Author.IdentityIconImg = decodedIdent.Icon
 		}
