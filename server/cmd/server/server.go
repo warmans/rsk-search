@@ -242,7 +242,7 @@ func ServerCmd() *cobra.Command {
 				httpsrv.NewMetricsService(),
 				httpsrv.NewDownloadService(logger, srvCfg, persistentDBConn, metrics.NewHTTPMetrics()),
 			}
-			if oauthCfg.Secret != "" {
+			if oauthCfg.RedditSecret != "" {
 				httpServices = append(httpServices, httpsrv.NewOauthService(logger, tokenCache, persistentDBConn, auth, oauthCfg, srvCfg))
 			} else {
 				logger.Info("OAUTH SECRET WAS MISSING - OAUTH ENDPOINTS WILL NOT BE REGISTERED!")

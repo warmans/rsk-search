@@ -7,7 +7,6 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -18,7 +17,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type OauthServiceClient interface {
-	GetRedditAuthURL(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*RedditAuthURL, error)
+	GetAuthURL(ctx context.Context, in *GetAuthURLRequest, opts ...grpc.CallOption) (*AuthURL, error)
 }
 
 type oauthServiceClient struct {
@@ -29,9 +28,9 @@ func NewOauthServiceClient(cc grpc.ClientConnInterface) OauthServiceClient {
 	return &oauthServiceClient{cc}
 }
 
-func (c *oauthServiceClient) GetRedditAuthURL(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*RedditAuthURL, error) {
-	out := new(RedditAuthURL)
-	err := c.cc.Invoke(ctx, "/rsk.OauthService/GetRedditAuthURL", in, out, opts...)
+func (c *oauthServiceClient) GetAuthURL(ctx context.Context, in *GetAuthURLRequest, opts ...grpc.CallOption) (*AuthURL, error) {
+	out := new(AuthURL)
+	err := c.cc.Invoke(ctx, "/rsk.OauthService/GetAuthURL", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -42,15 +41,15 @@ func (c *oauthServiceClient) GetRedditAuthURL(ctx context.Context, in *emptypb.E
 // All implementations should embed UnimplementedOauthServiceServer
 // for forward compatibility
 type OauthServiceServer interface {
-	GetRedditAuthURL(context.Context, *emptypb.Empty) (*RedditAuthURL, error)
+	GetAuthURL(context.Context, *GetAuthURLRequest) (*AuthURL, error)
 }
 
 // UnimplementedOauthServiceServer should be embedded to have forward compatible implementations.
 type UnimplementedOauthServiceServer struct {
 }
 
-func (UnimplementedOauthServiceServer) GetRedditAuthURL(context.Context, *emptypb.Empty) (*RedditAuthURL, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetRedditAuthURL not implemented")
+func (UnimplementedOauthServiceServer) GetAuthURL(context.Context, *GetAuthURLRequest) (*AuthURL, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAuthURL not implemented")
 }
 
 // UnsafeOauthServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -64,20 +63,20 @@ func RegisterOauthServiceServer(s *grpc.Server, srv OauthServiceServer) {
 	s.RegisterService(&_OauthService_serviceDesc, srv)
 }
 
-func _OauthService_GetRedditAuthURL_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+func _OauthService_GetAuthURL_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAuthURLRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(OauthServiceServer).GetRedditAuthURL(ctx, in)
+		return srv.(OauthServiceServer).GetAuthURL(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/rsk.OauthService/GetRedditAuthURL",
+		FullMethod: "/rsk.OauthService/GetAuthURL",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OauthServiceServer).GetRedditAuthURL(ctx, req.(*emptypb.Empty))
+		return srv.(OauthServiceServer).GetAuthURL(ctx, req.(*GetAuthURLRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -87,8 +86,8 @@ var _OauthService_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*OauthServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetRedditAuthURL",
-			Handler:    _OauthService_GetRedditAuthURL_Handler,
+			MethodName: "GetAuthURL",
+			Handler:    _OauthService_GetAuthURL_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

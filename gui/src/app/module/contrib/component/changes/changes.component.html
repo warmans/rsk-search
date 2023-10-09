@@ -4,7 +4,7 @@
       <a class="nav-link" [ngClass]="{'active': activeTab === 'progress'}" (click)="activeTab = 'progress'">New Transcriptions</a>
     </li>
     <li *ngIf="pendingChanges.length > 0" class="nav-item mr-2">
-      <a class="nav-link" [ngClass]="{'active': activeTab === 'pending'}" (click)="activeTab = 'pending'">Edits</a>
+      <a class="nav-link" [ngClass]="{'active': activeTab === 'pending'}" (click)="activeTab = 'pending'">Edits <span *ngIf="unapprovedPendingChanges >0">({{unapprovedPendingChanges}})</span></a>
     </li>
     <li class="nav-item mr-2">
       <a class="nav-link" [ngClass]="{'active': activeTab === 'recent'}" (click)="activeTab = 'recent'">Recently Approved</a>

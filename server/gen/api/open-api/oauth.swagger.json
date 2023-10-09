@@ -19,15 +19,15 @@
     "application/json"
   ],
   "paths": {
-    "/api/auth/reddit-url": {
+    "/api/auth/url": {
       "get": {
-        "summary": "Redirects user to reddit oauth confirmation page",
-        "operationId": "getRedditAuthURL",
+        "summary": "Redirects user to oauth confirmation page",
+        "operationId": "getAuthUrl",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/rskRedditAuthURL"
+              "$ref": "#/definitions/rskAuthURL"
             }
           },
           "default": {
@@ -37,6 +37,14 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
         "tags": [
           "search"
         ]
@@ -74,7 +82,7 @@
         }
       }
     },
-    "rskRedditAuthURL": {
+    "rskAuthURL": {
       "type": "object",
       "properties": {
         "url": {
@@ -84,7 +92,7 @@
     }
   },
   "externalDocs": {
-    "description": "Search Xfm transcriptions",
+    "description": "Oauth endpoints",
     "url": "https://scrimpton.com"
   }
 }

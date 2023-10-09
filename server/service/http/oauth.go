@@ -14,6 +14,7 @@ import (
 	"github.com/warmans/rsk-search/service/config"
 	"go.uber.org/zap"
 	"html"
+	"io"
 	"net/http"
 	"net/url"
 	"time"
@@ -51,6 +52,8 @@ func (c *OauthService) RegisterHTTP(ctx context.Context, router *mux.Router) {
 }
 
 func (c *OauthService) RedditReturnHandler(resp http.ResponseWriter, req *http.Request) {
+
+	fmt.Println("URL", req.URL.String())
 
 	returnURL := fmt.Sprintf("%s%s/search", c.serviceConfig.Scheme, c.serviceConfig.Hostname)
 	returnParams := url.Values{}
@@ -160,7 +163,7 @@ func (c *OauthService) getRedditBearerToken(code string) (string, error) {
 		return "", fmt.Errorf("unknown error")
 	}
 	req.Header.Set("User-Agent", "scrimpton-bot (by /u/warmans)")
-	req.SetBasicAuth(c.oauthCfg.AppID, c.oauthCfg.Secret)
+	req.SetBasicAuth(c.oauthCfg.RedditAppID, c.oauthCfg.RedditSecret)
 
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
@@ -169,12 +172,22 @@ func (c *OauthService) getRedditBearerToken(code string) (string, error) {
 	}
 	defer resp.Body.Close()
 
+	if resp.StatusCode != http.StatusOK {
+		c.logger.Error("reddit request failed", zap.Error(err), zap.String("code", code))
+		return "", fmt.Errorf("reddit responded with unexpected status: %s", resp.Status)
+	}
+
+	buff := &bytes.Buffer{}
+	if _, err := io.Copy(buff, resp.Body); err != nil {
+		return "", fmt.Errorf("failed read reddit response")
+	}
+
 	response := struct {
 		Error       string `json:"error"`
 		AccessToken string `json:"access_token"`
 	}{}
-	if err := json.NewDecoder(resp.Body).Decode(&response); err != nil {
-		c.logger.Error("failed to decode bearer token", zap.Error(err))
+	if err := json.NewDecoder(buff).Decode(&response); err != nil {
+		c.logger.Error("failed to decode bearer token", zap.Error(err), zap.String("response", buff.String()), zap.String("code", code))
 		return "", fmt.Errorf("failed to request reddit token")
 	}
 	if response.Error != "" {

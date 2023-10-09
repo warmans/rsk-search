@@ -56,11 +56,14 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
       .pipe(tap((res: any) => typeof res === 'object' || console.error(`TypeGuard for response 'object' caught inconsistency.`, res)));
   }
 
-  getRedditAuthURL(
+  getAuthUrl(
+    args: {
+      provider?: string,
+    },
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RskRedditAuthURL> {
-    return super.getRedditAuthURL(requestHttpOptions)
-      .pipe(tap((res: any) => guards.isRskRedditAuthURL(res) || console.error(`TypeGuard for response 'RskRedditAuthURL' caught inconsistency.`, res)));
+  ): Observable<models.RskAuthURL> {
+    return super.getAuthUrl(args, requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRskAuthURL(res) || console.error(`TypeGuard for response 'RskAuthURL' caught inconsistency.`, res)));
   }
 
   listAuthorContributions(

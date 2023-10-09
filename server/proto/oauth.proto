@@ -14,23 +14,27 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   };
   external_docs: {
     url: "https://scrimpton.com";
-    description: "Search Xfm transcriptions";
+    description: "Oauth endpoints";
   };
   schemes: HTTP;
 };
 service OauthService {
-  rpc GetRedditAuthURL(google.protobuf.Empty) returns (RedditAuthURL) {
+  rpc GetAuthURL(GetAuthURLRequest) returns (AuthURL) {
     option (google.api.http) = {
-      get: "/api/auth/reddit-url"
+      get: "/api/auth/url"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-      operation_id: "getRedditAuthURL",
-      summary: "Redirects user to reddit oauth confirmation page"
+      operation_id: "getAuthUrl",
+      summary: "Redirects user to oauth confirmation page"
       tags: "search"
     };
   }
 }
 
-message RedditAuthURL {
+message GetAuthURLRequest {
+  string provider = 1;
+}
+
+message AuthURL {
   string url = 1;
 }

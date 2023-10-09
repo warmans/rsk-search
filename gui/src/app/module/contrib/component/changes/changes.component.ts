@@ -3,7 +3,7 @@ import {
   RskAuthorContribution,
   RskAuthorContributionList,
   RskChunkedTranscriptStats,
-  RskContributionState,
+  RskContributionState, RskShortTranscriptChange,
   RskTranscriptChange,
   RskTranscriptChangeList
 } from "../../../../lib/api-client/models";
@@ -25,6 +25,8 @@ export class ChangesComponent {
   loading: boolean[] = [];
 
   pendingChanges: RskTranscriptChange[] = [];
+  unapprovedPendingChanges: number = 0;
+
   recentContributions: RskAuthorContribution[] = [];
 
   activeTab: 'progress' | 'pending' | 'recent' = 'recent';
@@ -109,6 +111,11 @@ export class ChangesComponent {
       ).print()
     }).pipe(takeUntil(this.unsubscribe$)).subscribe((res: RskTranscriptChangeList) => {
       this.pendingChanges = res.changes;
+      (res.changes || []).forEach((ch: RskShortTranscriptChange) => {
+        if (ch.state === RskContributionState.STATE_REQUEST_APPROVAL) {
+          this.unapprovedPendingChanges += 1;
+        }
+      });
       if (this.pendingChanges.length > 0 && (this._chunks || []).length === 0) {
         this.activeTab = 'pending';
       }

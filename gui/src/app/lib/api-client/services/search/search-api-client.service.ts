@@ -118,16 +118,22 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  getRedditAuthURL(
+  getAuthUrl(
+    args: {
+      provider?: string,
+    },
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RskRedditAuthURL> {
-    const path = `/api/auth/reddit-url`;
+  ): Observable<models.RskAuthURL> {
+    const path = `/api/auth/url`;
     const options: APIHttpOptions = {
       ...this.options,
       ...requestHttpOptions,
     };
 
-    return this.sendRequest<models.RskRedditAuthURL>('GET', path, options);
+    if ('provider' in args) {
+      options.params = options.params.set('provider', String(args.provider));
+    }
+    return this.sendRequest<models.RskAuthURL>('GET', path, options);
   }
 
   /**

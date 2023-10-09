@@ -239,9 +239,13 @@ func (s *Search) PredictSearchTerms(ctx context.Context, prefix string, exact bo
 	for err == nil && next != nil {
 		p := &api.Prediction{}
 		err = next.VisitStoredFields(func(field string, value []byte) bool {
-			if field == "content" {
+			switch field {
+			case "content":
 				p.Line = string(value)
 				return false
+			case "actor":
+				p.Actor = string(value)
+				return true
 			}
 			// id is in the format [epid]-[pos] e.g. ep-xfm-S1E06-347
 			if field == "_id" {

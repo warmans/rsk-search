@@ -144,6 +144,17 @@ export function isRskAuthorRankList(arg: any): arg is models.RskAuthorRankList {
   );
   }
 
+export function isRskAuthURL(arg: any): arg is models.RskAuthURL {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // url?: string
+    ( typeof arg.url === 'undefined' || typeof arg.url === 'string' ) &&
+
+  true
+  );
+  }
+
 export function isRskChangelog(arg: any): arg is models.RskChangelog {
   return (
   arg != null &&
@@ -614,6 +625,8 @@ export function isRskPrediction(arg: any): arg is models.RskPrediction {
   return (
   arg != null &&
   typeof arg === 'object' &&
+    // actor?: string
+    ( typeof arg.actor === 'undefined' || typeof arg.actor === 'string' ) &&
     // epid?: string
     ( typeof arg.epid === 'undefined' || typeof arg.epid === 'string' ) &&
     // fragment?: string
@@ -665,17 +678,6 @@ export function isRskRecipientStats(arg: any): arg is models.RskRecipientStats {
     ( typeof arg.donationRecipient === 'undefined' || typeof arg.donationRecipient === 'string' ) &&
     // pointsSpent?: number
     ( typeof arg.pointsSpent === 'undefined' || typeof arg.pointsSpent === 'number' ) &&
-
-  true
-  );
-  }
-
-export function isRskRedditAuthURL(arg: any): arg is models.RskRedditAuthURL {
-  return (
-  arg != null &&
-  typeof arg === 'object' &&
-    // url?: string
-    ( typeof arg.url === 'undefined' || typeof arg.url === 'string' ) &&
 
   true
   );
