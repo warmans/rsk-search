@@ -421,6 +421,7 @@ func (s *Store) ListChunkContributions(ctx context.Context, q *common.QueryModif
 			c.tscript_chunk_id,
        		c.author_id, 
        		COALESCE(a.name, 'unknown'), 
+       		COALESCE(a.oauth_provider, 'unknown'), 
        		c.transcription, 
        		COALESCE(c.state, 'unknown'),
        		COALESCE(c.state_comment, ''),
@@ -449,6 +450,7 @@ func (s *Store) ListChunkContributions(ctx context.Context, q *common.QueryModif
 			&cur.ChunkID,
 			&cur.Author.ID,
 			&cur.Author.Name,
+			&cur.Author.OauthProvider,
 			&cur.Transcription,
 			&cur.State,
 			&cur.StateComment,
@@ -491,6 +493,7 @@ func (s *Store) ListNonPendingTscriptContributions(ctx context.Context, tscriptI
 				COALESCE(co.id, ''), 
 				COALESCE(co.author_id, ''), 
 				COALESCE(a.name, ''),
+				COALESCE(a.oauth_provider, ''),
 				ch.id, 
 				COALESCE(co.transcription, ''), 
 				COALESCE(co.state, 'unknown') 
@@ -510,7 +513,7 @@ func (s *Store) ListNonPendingTscriptContributions(ctx context.Context, tscriptI
 
 	for rows.Next() {
 		cur := &models.ChunkContribution{Author: &models.ShortAuthor{}}
-		if err := rows.Scan(&cur.ID, &cur.Author.ID, &cur.Author.Name, &cur.ChunkID, &cur.Transcription, &cur.State); err != nil {
+		if err := rows.Scan(&cur.ID, &cur.Author.ID, &cur.Author.Name, &cur.Author.OauthProvider, &cur.ChunkID, &cur.Transcription, &cur.State); err != nil {
 			return nil, err
 		}
 		out = append(out, cur)
@@ -555,6 +558,7 @@ func (s *Store) ListAuthorRankings(ctx context.Context, qm *common.QueryModifier
 		SELECT 
 			a.id,
 			a.name,
+			a.oauth_provider,
 			a.supporter,
  			COALESCE(a.identity, '{}'),
 			COALESCE((SELECT SUM(points) AS points FROM author_contribution where author_id=a.id), 0) as points,
@@ -587,10 +591,22 @@ func (s *Store) ListAuthorRankings(ctx context.Context, qm *common.QueryModifier
 	for rows.Next() {
 		cur := &models.AuthorRank{Author: &models.ShortAuthor{}}
 		var ident string
-		if err := rows.Scan(&cur.Author.ID, &cur.Author.Name, &cur.Author.Supporter, &ident, &cur.Points, &cur.CurrentRankID, &cur.NextRankID, &cur.RewardValueUSD, &cur.ApprovedChunks, &cur.ApprovedChanges); err != nil {
+		if err := rows.Scan(
+			&cur.Author.ID,
+			&cur.Author.Name,
+			&cur.Author.OauthProvider,
+			&cur.Author.Supporter,
+			&ident,
+			&cur.Points,
+			&cur.CurrentRankID,
+			&cur.NextRankID,
+			&cur.RewardValueUSD,
+			&cur.ApprovedChunks,
+			&cur.ApprovedChanges,
+		); err != nil {
 			return nil, err
 		}
-		decodedIdent := &oauth.Identity{}
+		decodedIdent := &oauth.RedditIdentity{}
 		if err := json.Unmarshal([]byte(ident), &decodedIdent); err == nil {
 			cur.Author.IdentityIconImg = decodedIdent.Icon
 		}
@@ -664,10 +680,11 @@ func (s *Store) UpsertAuthor(ctx context.Context, author *models.Author) error {
 	}
 	row := s.tx.QueryRowxContext(
 		ctx,
-		"INSERT INTO author (id, name, identity, created_at) VALUES ($1, $2, $3, NOW()) ON CONFLICT(name) DO UPDATE SET identity=$3 RETURNING id, banned, approver",
+		"INSERT INTO author (id, name, identity, created_at, oauth_provider) VALUES ($1, $2, $3, NOW(), $4) ON CONFLICT(name, oauth_provider) DO UPDATE SET identity=$3 RETURNING id, banned, approver",
 		author.ID,
 		author.Name,
 		author.Identity,
+		author.OauthProvider,
 	)
 	return row.Scan(&author.ID, &author.Banned, &author.Approver)
 }
@@ -1177,7 +1194,7 @@ func (s *Store) ListAuthorContributions(ctx context.Context, q *common.QueryModi
 	rows, err := s.tx.QueryxContext(
 		ctx,
 		fmt.Sprintf(`
-		SELECT c.id, c.epid, c.contribution_type, COALESCE(c.points, 0), c.created_at, a.id, a.name
+		SELECT c.id, c.epid, c.contribution_type, COALESCE(c.points, 0), c.created_at, a.id, a.name, a.oauth_provider
 		FROM author_contribution c
 		LEFT JOIN author a ON c.author_id = a.id
 		WHERE a.id IS NOT NULL AND a.banned = false
@@ -1202,7 +1219,8 @@ func (s *Store) ListAuthorContributions(ctx context.Context, q *common.QueryModi
 			&cur.Points,
 			&cur.CreatedAt,
 			&cur.Author.ID,
-			&cur.Author.Name); err != nil {
+			&cur.Author.Name,
+			&cur.Author.OauthProvider); err != nil {
 			return nil, err
 		}
 		out = append(out, cur)

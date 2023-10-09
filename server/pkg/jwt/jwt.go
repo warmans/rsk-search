@@ -7,7 +7,6 @@ import (
 	"github.com/spf13/pflag"
 	"github.com/warmans/rsk-search/pkg/flag"
 	"github.com/warmans/rsk-search/pkg/models"
-	"github.com/warmans/rsk-search/pkg/oauth"
 	"google.golang.org/grpc/metadata"
 	"strings"
 	"time"
@@ -17,29 +16,25 @@ const Issuer string = "scrimpton"
 
 type Claims struct {
 	jwt.StandardClaims
-	AuthorID string          `json:"author_id"`
-	Approver bool            `json:"approver"`
-	Identity *oauth.Identity `json:"identity"`
+	AuthorID      string           `json:"author_id"`
+	Approver      bool             `json:"approver"`
+	Identity      *models.Identity `json:"identity"`
+	OauthProvider string           `json:"oauth_provider"`
 }
 
 func (c *Claims) FromMap(claims jwt.MapClaims) {
 	c.StandardClaims.Issuer, _ = claims["iss"].(string)
 	c.StandardClaims.ExpiresAt, _ = claims["exp"].(int64)
+	c.OauthProvider, _ = claims["oauth_provider"].(string)
 
 	identityMap, ok := claims["identity"].(map[string]interface{})
 	if !ok {
 		return
 	}
-	c.Identity = &oauth.Identity{
-		ID:               identityMap["id"].(string),
-		Name:             identityMap["name"].(string),
-		HasVerifiedEmail: identityMap["has_verified_email"].(bool),
-		Icon:             identityMap["icon_img"].(string),
-		IsSuspended:      identityMap["is_suspended"].(bool),
-		Created:          identityMap["created"].(float64),
-		CreatedUTC:       identityMap["created_utc"].(float64),
-		TotalKarma:       int64(identityMap["total_karma"].(float64)),
-		Over18:           identityMap["over_18"].(bool),
+	c.Identity = &models.Identity{
+		ID:   identityMap["id"].(string),
+		Name: identityMap["name"].(string),
+		Icon: identityMap["icon_img"].(string),
 	}
 }
 
@@ -61,15 +56,16 @@ type Auth struct {
 	cfg *Config
 }
 
-func (a *Auth) NewJWTForIdentity(author *models.Author, ident *oauth.Identity) (string, error) {
+func (a *Auth) NewJWTForIdentity(author *models.Author, ident *models.Identity) (string, error) {
 	claims := &Claims{
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: time.Now().Unix() + a.cfg.ExpireTime,
 			Issuer:    Issuer,
 		},
-		AuthorID: author.ID,
-		Approver: author.Approver,
-		Identity: ident,
+		AuthorID:      author.ID,
+		Approver:      author.Approver,
+		Identity:      ident,
+		OauthProvider: author.OauthProvider,
 	}
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
@@ -84,13 +80,6 @@ func (a *Auth) VerifyToken(tokenString string) (*Claims, error) {
 		return []byte(a.cfg.SigningKey), nil
 	})
 	if token != nil && token.Valid {
-
-		//claimMap, ok := token.Claims.(jwt.MapClaims)
-		//if !ok {
-		//	return nil, fmt.Errorf("token claims were malformed")
-		//}
-		//claims := &Claims{}
-		//claims.FromMap(claimMap)
 		return claims, nil
 	}
 	if err == nil {

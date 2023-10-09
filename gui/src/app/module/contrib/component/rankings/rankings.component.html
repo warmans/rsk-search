@@ -1,9 +1,13 @@
 <div class="card">
   <div class="card-header text-paragraph">
-    Authors can rank up by submitting more contributions. <a class="text-primary clickable" (click)="showMoreInfo = !showMoreInfo"><span *ngIf="!showMoreInfo">more</span><span *ngIf="showMoreInfo">less</span>...</a>
+    Authors can rank up by submitting more contributions. <a class="text-primary clickable"
+                                                             (click)="showMoreInfo = !showMoreInfo"><span
+    *ngIf="!showMoreInfo">more</span><span *ngIf="showMoreInfo">less</span>...</a>
     <div *ngIf="showMoreInfo" class="pt-2">
-      <p>Each time a contribution is <strong>accepted</strong> some points are awarded to the author. The number of points can vary depending on the type of contribution.<br />
-        The more points the author gains the higher their rank. While all contributions are valuable, ranks are intended as a way to recognize contributors that have gone above and beyond.
+      <p>Each time a contribution is <strong>accepted</strong> some points are awarded to the author. The number of
+        points can vary depending on the type of contribution.<br/>
+        The more points the author gains the higher their rank. While all contributions are valuable, ranks are intended
+        as a way to recognize contributors that have gone above and beyond.
       </p>
     </div>
   </div>
@@ -17,7 +21,8 @@
         <th>Next Rank</th>
         <th>Edits</th>
         <th>Chunks</th>
-        <th title="Rewards were given in the form of charitable donations for transcribing audio.">Raised <i class="bi-question-circle"></i></th>
+        <th title="Rewards were given in the form of charitable donations for transcribing audio.">Raised <i
+          class="bi-question-circle"></i></th>
       </tr>
       <tr *ngFor="let a of ranking; let i = index">
         <td style="width: 34px">
@@ -31,14 +36,17 @@
           <div class="d-flex justify-content-between align-items-center">
             <div>
               <div class="font-weight-bold">
+                <span *ngIf="a.author.oauthProvider === 'discord'" class="bi bi-discord"></span>
                 {{ a.author.name }}
               </div>
               <div class="font-weight-light">
-                <span title="Rank unlocked at {{a.currentRank.points}} points, next rank at {{a.nextRank.points}}">{{a.currentRank.name}}</span>
+                <span
+                  title="Rank unlocked at {{a.currentRank.points}} points, next rank at {{a.nextRank.points}}">{{a.currentRank.name}}</span>
               </div>
             </div>
             <div class="align-items-center">
-              <span *ngIf="a.author?.supporter"><i class="bi bi-award-fill ml-2 gold" title="This user has supported Scrimpton with a donation."></i></span>
+              <span *ngIf="a.author?.supporter"><i class="bi bi-award-fill ml-2 gold"
+                                                   title="This user has supported Scrimpton with a donation."></i></span>
             </div>
           </div>
         </td>

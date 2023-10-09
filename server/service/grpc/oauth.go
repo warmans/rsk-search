@@ -38,7 +38,6 @@ func (s *OauthService) RegisterHTTP(ctx context.Context, router *mux.Router, mux
 }
 
 func (s *OauthService) GetAuthURL(ctx context.Context, request *api.GetAuthURLRequest) (*api.AuthURL, error) {
-
 	returnURL := ""
 	md, ok := metadata.FromIncomingContext(ctx)
 	if ok && len(md["grpcgateway-referer"]) > 0 {
@@ -56,14 +55,15 @@ func (s *OauthService) GetAuthURL(ctx context.Context, request *api.GetAuthURLRe
 				"https://www.reddit.com/api/v1/authorize?client_id=%s&response_type=code&state=%s&redirect_uri=%s&duration=temporary&scope=identity",
 				s.oauthCfg.RedditAppID,
 				s.csrfCache.NewCSRFToken(returnURL),
-				url.QueryEscape(fmt.Sprintf(s.oauthCfg.ReturnURL, request.Provider)),
+				s.oauthCfg.ProviderReturnURL(request.Provider),
 			),
 		}, nil
 	case "discord":
 		return &api.AuthURL{
 			Url: fmt.Sprintf(
-				"https://discord.com/api/oauth2/authorize?client_id=%s&redirect_uri=%s&response_type=code&scope=identify",
+				"https://discord.com/api/oauth2/authorize?client_id=%s&response_type=code&state=%s&redirect_uri=%s&scope=identify",
 				s.oauthCfg.DiscordAppID,
+				s.csrfCache.NewCSRFToken(returnURL),
 				url.QueryEscape(fmt.Sprintf(s.oauthCfg.ReturnURL, request.Provider)),
 			),
 		}, nil

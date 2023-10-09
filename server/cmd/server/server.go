@@ -245,7 +245,7 @@ func ServerCmd() *cobra.Command {
 			if oauthCfg.RedditSecret != "" {
 				httpServices = append(httpServices, httpsrv.NewOauthService(logger, tokenCache, persistentDBConn, auth, oauthCfg, srvCfg))
 			} else {
-				logger.Info("OAUTH SECRET WAS MISSING - OAUTH ENDPOINTS WILL NOT BE REGISTERED!")
+				logger.Info("REDDIT OAUTH SECRET WAS MISSING - OAUTH ENDPOINTS WILL NOT BE REGISTERED!")
 			}
 
 			srv, err := server.NewServer(logger, grpcCfg, grpcServices, httpServices)

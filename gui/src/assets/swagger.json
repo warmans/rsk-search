@@ -1561,6 +1561,9 @@
           },
           "supporter": {
             "type": "boolean"
+          },
+          "oauthProvider": {
+            "type": "string"
           }
         }
       },

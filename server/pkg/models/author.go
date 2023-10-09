@@ -8,21 +8,29 @@ import (
 	"time"
 )
 
+type Identity struct {
+	ID   string `json:"id"`
+	Name string `json:"name"`
+	Icon string `json:"icon_img"`
+}
+
 type Author struct {
-	ID        string    `db:"id"`
-	Name      string    `db:"name"`
-	Identity  string    `db:"identity"`
-	CreatedAt time.Time `db:"created_at"`
-	Banned    bool      `db:"banned"`
-	Approver  bool      `db:"approver"`
-	Supporter bool      `db:"supporter"`
+	ID            string    `db:"id"`
+	Name          string    `db:"name"`
+	Identity      string    `db:"identity"`
+	CreatedAt     time.Time `db:"created_at"`
+	Banned        bool      `db:"banned"`
+	Approver      bool      `db:"approver"`
+	Supporter     bool      `db:"supporter"`
+	OauthProvider string    `db:"oauth_provider"`
 }
 
 func (a *Author) ShortAuthor() *ShortAuthor {
 	sa := &ShortAuthor{
-		ID:        a.ID,
-		Name:      a.Name,
-		Supporter: a.Supporter,
+		ID:            a.ID,
+		Name:          a.Name,
+		Supporter:     a.Supporter,
+		OauthProvider: a.OauthProvider,
 	}
 	if ident, err := a.DecodeIdentity(); err == nil {
 		sa.IdentityIconImg = ident.Icon
@@ -30,8 +38,8 @@ func (a *Author) ShortAuthor() *ShortAuthor {
 	return sa
 }
 
-func (a *Author) DecodeIdentity() (*oauth.Identity, error) {
-	ident := &oauth.Identity{}
+func (a *Author) DecodeIdentity() (*oauth.RedditIdentity, error) {
+	ident := &oauth.RedditIdentity{}
 	if err := json.Unmarshal([]byte(a.Identity), ident); err != nil {
 		return nil, err
 	}
@@ -43,6 +51,7 @@ type ShortAuthor struct {
 	Name            string `db:"name"`
 	IdentityIconImg string `db:"-"`
 	Supporter       bool   `db:"supporter"`
+	OauthProvider   string `db:"oauth_provider"`
 }
 
 func (a *ShortAuthor) Proto() *api.Author {
@@ -54,6 +63,7 @@ func (a *ShortAuthor) Proto() *api.Author {
 		Name:            a.Name,
 		IdentityIconImg: a.IdentityIconImg,
 		Supporter:       a.Supporter,
+		OauthProvider:   a.OauthProvider,
 	}
 }
 

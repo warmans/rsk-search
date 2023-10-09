@@ -71,6 +71,8 @@ export function isRskAuthor(arg: any): arg is models.RskAuthor {
     ( typeof arg.identityIconImg === 'undefined' || typeof arg.identityIconImg === 'string' ) &&
     // name?: string
     ( typeof arg.name === 'undefined' || typeof arg.name === 'string' ) &&
+    // oauthProvider?: string
+    ( typeof arg.oauthProvider === 'undefined' || typeof arg.oauthProvider === 'string' ) &&
     // supporter?: boolean
     ( typeof arg.supporter === 'undefined' || typeof arg.supporter === 'boolean' ) &&
 
