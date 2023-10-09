@@ -75,7 +75,7 @@ func (c *OauthService) RedditReturnHandler(resp http.ResponseWriter, req *http.R
 		return
 	}
 
-	bearerToken, err := c.getBearerToken("reddit", "https://www.reddit.com/api/v1/access_token", code, c.oauthCfg.RedditAppID, c.oauthCfg.RedditSecret, state)
+	bearerToken, err := c.getBearerToken(models.OauthProviderReddit, "https://www.reddit.com/api/v1/access_token", code, c.oauthCfg.RedditAppID, c.oauthCfg.RedditSecret, state)
 	if err != nil {
 		returnParams.Add("error", err.Error())
 		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
@@ -128,7 +128,7 @@ func (c *OauthService) RedditReturnHandler(resp http.ResponseWriter, req *http.R
 	author := &models.Author{
 		Name:          ident.Name,
 		Identity:      string(encodedIdentity),
-		OauthProvider: "reddit",
+		OauthProvider: models.OauthProviderReddit,
 	}
 	err = c.rwStore.WithStore(func(s *rw.Store) error {
 		return s.UpsertAuthor(req.Context(), author)
@@ -157,19 +157,17 @@ func (c *OauthService) RedditReturnHandler(resp http.ResponseWriter, req *http.R
 	http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
 }
 
-func (c *OauthService) getBearerToken(provider string, tokenEndpoint string, code string, appID string, appSecret string, state string) (string, error) {
+func (c *OauthService) getBearerToken(provider models.OauthProvider, tokenEndpoint string, code string, appID string, appSecret string, state string) (string, error) {
 
 	reqBody := url.Values{}
-	if provider == "discord" {
+	if provider == models.OauthProviderDiscord {
 		reqBody.Set("client_id", appID)
 		reqBody.Set("client_secret", appSecret)
 		reqBody.Set("scope", "identity")
 	}
 	reqBody.Set("grant_type", "authorization_code")
 	reqBody.Set("code", code)
-	reqBody.Set("redirect_uri", c.oauthCfg.ProviderReturnURL(provider))
-
-	fmt.Println("URL", reqBody.Encode())
+	reqBody.Set("redirect_uri", c.oauthCfg.ProviderReturnURL(string(provider)))
 
 	req, err := http.NewRequest(http.MethodPost, tokenEndpoint, bytes.NewBufferString(reqBody.Encode()))
 	if err != nil {
@@ -178,7 +176,7 @@ func (c *OauthService) getBearerToken(provider string, tokenEndpoint string, cod
 	}
 	req.Header.Set("User-Agent", "scrimpton-bot (by /u/warmans)")
 	req.Header.Set("Content-type", "application/x-www-form-urlencoded")
-	if provider == "reddit" {
+	if provider == models.OauthProviderReddit {
 		req.SetBasicAuth(appID, appSecret)
 	}
 
@@ -199,7 +197,7 @@ func (c *OauthService) getBearerToken(provider string, tokenEndpoint string, cod
 			"token request failed",
 			zap.Error(err),
 			zap.String("code", code),
-			zap.String("provider", provider),
+			zap.String("provider", string(provider)),
 			zap.String("status", resp.Status),
 			zap.String("body", respBody.String()),
 		)
@@ -210,8 +208,6 @@ func (c *OauthService) getBearerToken(provider string, tokenEndpoint string, cod
 	if _, err := io.Copy(buff, respBody); err != nil {
 		return "", fmt.Errorf("failed read oauth response")
 	}
-
-	fmt.Println("RESP", buff.String())
 
 	response := struct {
 		Error       string `json:"error"`
@@ -300,8 +296,6 @@ func (c *OauthService) getDiscordIdentity(bearerToken string) (*oauth.DiscordIde
 		return nil, "", fmt.Errorf("failed to parse identity")
 	}
 
-	fmt.Println("TOKEN", buff.String())
-
 	responseBytes := buff.Bytes()
 
 	ident := &oauth.DiscordIdentity{}
@@ -335,15 +329,15 @@ func (c *OauthService) DiscordReturnHandler(resp http.ResponseWriter, req *http.
 		return
 	}
 
-	bearerToken, err := c.getBearerToken("discord", "https://discord.com/api/oauth2/token", code, c.oauthCfg.DiscordAppID, c.oauthCfg.DiscordSecret, state)
+	bearerToken, err := c.getBearerToken(models.OauthProviderDiscord, "https://discord.com/api/oauth2/token", code, c.oauthCfg.DiscordAppID, c.oauthCfg.DiscordSecret, state)
 	if err != nil {
 		returnParams.Add("error", err.Error())
 		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
 		return
 	}
 
-	// reddit is surprisingly strict about how many requests you can send per second.
-	time.Sleep(time.Second * 2)
+	// slow down logins to avoid rate limiting
+	time.Sleep(time.Second * 1)
 
 	ident, _, err := c.getDiscordIdentity(bearerToken)
 	if err != nil {
@@ -367,7 +361,7 @@ func (c *OauthService) DiscordReturnHandler(resp http.ResponseWriter, req *http.
 	author := &models.Author{
 		Name:          ident.Username,
 		Identity:      string(encodedIdentity),
-		OauthProvider: "discord",
+		OauthProvider: models.OauthProviderDiscord,
 	}
 	err = c.rwStore.WithStore(func(s *rw.Store) error {
 		return s.UpsertAuthor(req.Context(), author)

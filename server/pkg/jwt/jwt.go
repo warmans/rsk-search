@@ -65,7 +65,7 @@ func (a *Auth) NewJWTForIdentity(author *models.Author, ident *models.Identity) 
 		AuthorID:      author.ID,
 		Approver:      author.Approver,
 		Identity:      ident,
-		OauthProvider: author.OauthProvider,
+		OauthProvider: string(author.OauthProvider),
 	}
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)

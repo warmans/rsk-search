@@ -8,6 +8,11 @@ import (
 	"time"
 )
 
+type OauthProvider string
+
+const OauthProviderReddit OauthProvider = "reddit"
+const OauthProviderDiscord OauthProvider = "discord"
+
 type Identity struct {
 	ID   string `json:"id"`
 	Name string `json:"name"`
@@ -15,14 +20,14 @@ type Identity struct {
 }
 
 type Author struct {
-	ID            string    `db:"id"`
-	Name          string    `db:"name"`
-	Identity      string    `db:"identity"`
-	CreatedAt     time.Time `db:"created_at"`
-	Banned        bool      `db:"banned"`
-	Approver      bool      `db:"approver"`
-	Supporter     bool      `db:"supporter"`
-	OauthProvider string    `db:"oauth_provider"`
+	ID            string        `db:"id"`
+	Name          string        `db:"name"`
+	Identity      string        `db:"identity"`
+	CreatedAt     time.Time     `db:"created_at"`
+	Banned        bool          `db:"banned"`
+	Approver      bool          `db:"approver"`
+	Supporter     bool          `db:"supporter"`
+	OauthProvider OauthProvider `db:"oauth_provider"`
 }
 
 func (a *Author) ShortAuthor() *ShortAuthor {
@@ -47,11 +52,11 @@ func (a *Author) DecodeIdentity() (*oauth.RedditIdentity, error) {
 }
 
 type ShortAuthor struct {
-	ID              string `db:"id"`
-	Name            string `db:"name"`
-	IdentityIconImg string `db:"-"`
-	Supporter       bool   `db:"supporter"`
-	OauthProvider   string `db:"oauth_provider"`
+	ID              string        `db:"id"`
+	Name            string        `db:"name"`
+	IdentityIconImg string        `db:"-"`
+	Supporter       bool          `db:"supporter"`
+	OauthProvider   OauthProvider `db:"oauth_provider"`
 }
 
 func (a *ShortAuthor) Proto() *api.Author {
@@ -63,7 +68,7 @@ func (a *ShortAuthor) Proto() *api.Author {
 		Name:            a.Name,
 		IdentityIconImg: a.IdentityIconImg,
 		Supporter:       a.Supporter,
-		OauthProvider:   a.OauthProvider,
+		OauthProvider:   string(a.OauthProvider),
 	}
 }
 
