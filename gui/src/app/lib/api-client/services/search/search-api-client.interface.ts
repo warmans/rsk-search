@@ -43,9 +43,12 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  getRedditAuthURL(
+  getAuthUrl(
+    args: {
+      provider?: string,
+    },
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RskRedditAuthURL>;
+  ): Observable<models.RskAuthURL>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.

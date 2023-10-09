@@ -14,6 +14,7 @@ import (
 	"github.com/warmans/rsk-search/service/config"
 	"go.uber.org/zap"
 	"html"
+	"io"
 	"net/http"
 	"net/url"
 	"time"
@@ -48,6 +49,7 @@ type OauthService struct {
 
 func (c *OauthService) RegisterHTTP(ctx context.Context, router *mux.Router) {
 	router.Path("/oauth/reddit/return").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.RedditReturnHandler)))
+	router.Path("/oauth/discord/return").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DiscordReturnHandler)))
 }
 
 func (c *OauthService) RedditReturnHandler(resp http.ResponseWriter, req *http.Request) {
@@ -73,7 +75,7 @@ func (c *OauthService) RedditReturnHandler(resp http.ResponseWriter, req *http.R
 		return
 	}
 
-	bearerToken, err := c.getRedditBearerToken(code)
+	bearerToken, err := c.getBearerToken(models.OauthProviderReddit, "https://www.reddit.com/api/v1/access_token", code, c.oauthCfg.RedditAppID, c.oauthCfg.RedditSecret, state)
 	if err != nil {
 		returnParams.Add("error", err.Error())
 		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
@@ -111,7 +113,12 @@ func (c *OauthService) RedditReturnHandler(resp http.ResponseWriter, req *http.R
 		return
 	}
 
-	encodedIdentity, err := json.Marshal(ident)
+	authorIdentity := &models.Identity{
+		ID:   ident.ID,
+		Name: ident.Name,
+		Icon: ident.Icon,
+	}
+	encodedIdentity, err := json.Marshal(authorIdentity)
 	if err != nil {
 		returnParams.Add("error", "Failed to decode response. Please report this on the scrimpton bug tracker.")
 		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
@@ -119,8 +126,9 @@ func (c *OauthService) RedditReturnHandler(resp http.ResponseWriter, req *http.R
 	}
 
 	author := &models.Author{
-		Name:     ident.Name,
-		Identity: string(encodedIdentity),
+		Name:          ident.Name,
+		Identity:      string(encodedIdentity),
+		OauthProvider: models.OauthProviderReddit,
 	}
 	err = c.rwStore.WithStore(func(s *rw.Store) error {
 		return s.UpsertAuthor(req.Context(), author)
@@ -137,7 +145,7 @@ func (c *OauthService) RedditReturnHandler(resp http.ResponseWriter, req *http.R
 		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
 	}
 
-	token, err := c.auth.NewJWTForIdentity(author, ident)
+	token, err := c.auth.NewJWTForIdentity(author, authorIdentity)
 	if err != nil {
 		c.logger.Error("failed to create token", zap.Error(err))
 		returnParams.Add("error", "failed to create token")
@@ -149,43 +157,75 @@ func (c *OauthService) RedditReturnHandler(resp http.ResponseWriter, req *http.R
 	http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
 }
 
-func (c *OauthService) getRedditBearerToken(code string) (string, error) {
-	requestBody := bytes.NewBufferString(
-		fmt.Sprintf("grant_type=authorization_code&code=%s&redirect_uri=%s", code, c.oauthCfg.ReturnURL),
-	)
+func (c *OauthService) getBearerToken(provider models.OauthProvider, tokenEndpoint string, code string, appID string, appSecret string, state string) (string, error) {
 
-	req, err := http.NewRequest(http.MethodPost, "https://www.reddit.com/api/v1/access_token", requestBody)
+	reqBody := url.Values{}
+	if provider == models.OauthProviderDiscord {
+		reqBody.Set("client_id", appID)
+		reqBody.Set("client_secret", appSecret)
+		reqBody.Set("scope", "identity")
+	}
+	reqBody.Set("grant_type", "authorization_code")
+	reqBody.Set("code", code)
+	reqBody.Set("redirect_uri", c.oauthCfg.ProviderReturnURL(string(provider)))
+
+	req, err := http.NewRequest(http.MethodPost, tokenEndpoint, bytes.NewBufferString(reqBody.Encode()))
 	if err != nil {
 		c.logger.Error("failed to create access token request", zap.Error(err))
 		return "", fmt.Errorf("unknown error")
 	}
 	req.Header.Set("User-Agent", "scrimpton-bot (by /u/warmans)")
-	req.SetBasicAuth(c.oauthCfg.AppID, c.oauthCfg.Secret)
+	req.Header.Set("Content-type", "application/x-www-form-urlencoded")
+	if provider == models.OauthProviderReddit {
+		req.SetBasicAuth(appID, appSecret)
+	}
 
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
 		c.logger.Error("failed to request bearer token", zap.Error(err))
-		return "", fmt.Errorf("failed to request reddit token")
+		return "", fmt.Errorf("failed to request bearer token")
 	}
 	defer resp.Body.Close()
+
+	respBody := &bytes.Buffer{}
+	if _, err := io.Copy(respBody, resp.Body); err != nil {
+		return "", fmt.Errorf("failed to copy response body")
+	}
+
+	if resp.StatusCode != http.StatusOK {
+		c.logger.Error(
+			"token request failed",
+			zap.Error(err),
+			zap.String("code", code),
+			zap.String("provider", string(provider)),
+			zap.String("status", resp.Status),
+			zap.String("body", respBody.String()),
+		)
+		return "", fmt.Errorf("ouath responded with unexpected status: %s", resp.Status)
+	}
+
+	buff := &bytes.Buffer{}
+	if _, err := io.Copy(buff, respBody); err != nil {
+		return "", fmt.Errorf("failed read oauth response")
+	}
 
 	response := struct {
 		Error       string `json:"error"`
 		AccessToken string `json:"access_token"`
 	}{}
-	if err := json.NewDecoder(resp.Body).Decode(&response); err != nil {
-		c.logger.Error("failed to decode bearer token", zap.Error(err))
-		return "", fmt.Errorf("failed to request reddit token")
+	if err := json.NewDecoder(buff).Decode(&response); err != nil {
+		c.logger.Error("failed to decode bearer token", zap.Error(err), zap.String("response", buff.String()), zap.String("code", code))
+		return "", fmt.Errorf("failed to request token")
 	}
 	if response.Error != "" {
 		c.logger.Error("bearer token was an error", zap.String("error", response.Error))
-		return "", fmt.Errorf("failed to authorize:  was the token already used")
+		return "", fmt.Errorf("failed to authorize: was the token already used")
 	}
 
 	return response.AccessToken, nil
 }
 
-func (c *OauthService) getRedditIdentity(bearerToken string) (*oauth.Identity, string, error) {
+func (c *OauthService) getRedditIdentity(bearerToken string) (*oauth.RedditIdentity, string, error) {
 
 	if bearerToken == "" {
 		c.logger.Error("blank bearer token, authorize must have failed")
@@ -215,7 +255,7 @@ func (c *OauthService) getRedditIdentity(bearerToken string) (*oauth.Identity, s
 	}
 	responseBytes := buff.Bytes()
 
-	ident := &oauth.Identity{}
+	ident := &oauth.RedditIdentity{}
 	if err := json.Unmarshal(responseBytes, ident); err != nil {
 		c.logger.Error("failed to decode identity", zap.Error(err))
 		return nil, "", fmt.Errorf("failed to parse identity")
@@ -225,4 +265,128 @@ func (c *OauthService) getRedditIdentity(bearerToken string) (*oauth.Identity, s
 	ident.Icon = html.UnescapeString(ident.Icon)
 
 	return ident, string(responseBytes), nil
+}
+
+func (c *OauthService) getDiscordIdentity(bearerToken string) (*oauth.DiscordIdentity, string, error) {
+
+	if bearerToken == "" {
+		c.logger.Error("blank bearer token, authorize must have failed")
+		return nil, "", fmt.Errorf("authorization failed")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, "https://discord.com/api/users/@me", bytes.NewBufferString(""))
+	if err != nil {
+		c.logger.Error("failed to create identity request", zap.Error(err))
+		return nil, "", fmt.Errorf("failed to request identity")
+	}
+
+	req.Header.Set("User-Agent", "scrimpton-bot (by /u/warmans)")
+	req.Header.Set("authorization", fmt.Sprintf("Bearer %s", bearerToken))
+
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		c.logger.Error("failed to execute identity request", zap.Error(err))
+		return nil, "", fmt.Errorf("failed to request identity")
+	}
+	defer resp.Body.Close()
+
+	buff := &bytes.Buffer{}
+	if _, err := buff.ReadFrom(resp.Body); err != nil {
+		c.logger.Error("failed to copy response body", zap.Error(err))
+		return nil, "", fmt.Errorf("failed to parse identity")
+	}
+
+	responseBytes := buff.Bytes()
+
+	ident := &oauth.DiscordIdentity{}
+	if err := json.Unmarshal(responseBytes, ident); err != nil {
+		c.logger.Error("failed to decode identity", zap.Error(err))
+		return nil, "", fmt.Errorf("failed to parse identity")
+	}
+
+	return ident, string(responseBytes), nil
+}
+
+func (c *OauthService) DiscordReturnHandler(resp http.ResponseWriter, req *http.Request) {
+	errMessage := req.URL.Query().Get("error")
+	code := req.URL.Query().Get("code")
+	state := req.URL.Query().Get("state")
+
+	returnURL := fmt.Sprintf("%s%s/search", c.serviceConfig.Scheme, c.serviceConfig.Hostname)
+	returnParams := url.Values{}
+
+	if errMessage != "" {
+		returnParams.Add("error", fmt.Sprintf("Auth failed with reason: %s", errMessage))
+		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
+		return
+	}
+
+	var ok bool
+	returnURL, ok = c.oauthCache.VerifyCSRFToken(state)
+	if !ok {
+		returnParams.Add("error", "Request has invalid state, the request may have expired")
+		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
+		return
+	}
+
+	bearerToken, err := c.getBearerToken(models.OauthProviderDiscord, "https://discord.com/api/oauth2/token", code, c.oauthCfg.DiscordAppID, c.oauthCfg.DiscordSecret, state)
+	if err != nil {
+		returnParams.Add("error", err.Error())
+		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
+		return
+	}
+
+	// slow down logins to avoid rate limiting
+	time.Sleep(time.Second * 1)
+
+	ident, _, err := c.getDiscordIdentity(bearerToken)
+	if err != nil {
+		returnParams.Add("error", err.Error())
+		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
+		return
+	}
+
+	authorIdentity := &models.Identity{
+		ID:   ident.ID,
+		Name: ident.Username,
+		Icon: fmt.Sprintf("https://cdn.discordapp.com/avatars/%s/%s.jpg", ident.ID, ident.Avatar),
+	}
+	encodedIdentity, err := json.Marshal(authorIdentity)
+	if err != nil {
+		returnParams.Add("error", "Failed to decode response. Please report this on the scrimpton bug tracker.")
+		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
+		return
+	}
+
+	author := &models.Author{
+		Name:          ident.Username,
+		Identity:      string(encodedIdentity),
+		OauthProvider: models.OauthProviderDiscord,
+	}
+	err = c.rwStore.WithStore(func(s *rw.Store) error {
+		return s.UpsertAuthor(req.Context(), author)
+	})
+	if err != nil {
+		c.logger.Error("failed to create local user", zap.Error(err))
+		returnParams.Add("error", "failed to create local user")
+		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
+		return
+	}
+
+	if author.Banned {
+		returnParams.Add("error", "Account is not allowed.")
+		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
+	}
+
+	token, err := c.auth.NewJWTForIdentity(author, authorIdentity)
+	if err != nil {
+		c.logger.Error("failed to create token", zap.Error(err))
+		returnParams.Add("error", "failed to create token")
+		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
+		return
+	}
+
+	returnParams.Add("token", token)
+
+	http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
 }

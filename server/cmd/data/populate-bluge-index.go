@@ -87,7 +87,7 @@ func populateIndex(inputDir string, writer *bluge.Writer, logger *zap.Logger) er
 func getMappedField(fieldName string, t mapping.FieldType, d search.DialogDocument) (bluge.Field, bool) {
 	switch t {
 	case mapping.FieldTypeKeyword:
-		return bluge.NewKeywordField(fieldName, d.GetNamedField(fieldName).(string)).Aggregatable(), true
+		return bluge.NewKeywordField(fieldName, d.GetNamedField(fieldName).(string)).StoreValue().Aggregatable(), true
 	case mapping.FieldTypeDate:
 		dateField := d.GetNamedField(fieldName).(*time.Time)
 		if dateField == nil {

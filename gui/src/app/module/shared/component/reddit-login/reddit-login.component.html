@@ -10,7 +10,8 @@
           <div>Server responded with: {{authError}}</div>
         </div>
         <p>To submit a transcript you must authenticate with a valid Reddit account (Oauth2).</p>
-        <p>This app will never see your secret data (password etc.) will only be allowed to see only your public identity.
+        <p>This app will never see your secret data (password etc.) will only be allowed to see only your public
+          identity.
           This will be stored against your submission.</p>
         <p>If you reddit account is not in good standing (e.g. suspended, negative karma) or very new your request
           will fail.</p>
@@ -37,10 +38,20 @@
           <p>Here is an example of the sort of data reddit considers your <a
             href="https://github.com/reddit-archive/reddit/wiki/OAuth2-Quick-Start-Example"
             target="_blank">identity</a>.</p>
+          <p>Discord has a similar
+            <a href="https://discord.com/developers/docs/resources/user#user-object" target="_blank">identity</a>.
+          </p>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="requestAuth()">Authorize</button>
+
+        <div class="d-flex">
+          <select class="form-control" [formControl]="authMethod">
+            <option value="reddit">Reddit</option>
+            <option value="discord">Discord</option>
+          </select>
+          <button type="button" class="btn btn-primary" (click)="requestAuth()">Authorize</button>
+        </div>
         <a [routerLink]="['/search']" class="btn btn-secondary">No Thanks</a>
       </div>
     </div>

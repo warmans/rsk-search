@@ -16,6 +16,7 @@ export interface Suggestion {
   term: string;
   epid?: string;
   pos?: number;
+  actor?: string;
 }
 
 @Component({
@@ -82,7 +83,8 @@ export class SearchBarSuggestionComponent implements OnInit {
               type: SuggestionType.Dialog,
               term: val.line,
               epid: val.epid,
-              pos: val.pos
+              pos: val.pos,
+              actor: val.actor,
             }
           });
           this.highlightedValues = res.map((val: RskPrediction | string) => (typeof val === 'string') ? val : highlightPrediction(val));

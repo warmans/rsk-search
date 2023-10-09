@@ -15,11 +15,15 @@
           <div class="flex-grow-1">
             <table class="table mb-0">
               <tr>
-                <th style="width: 100px;">ID</th>
+                <th style="width: 100px;">Oauth</th>
+                <td>{{claims.oauth_provider}}</td>
+              </tr>
+              <tr>
+                <th>ID</th>
                 <td>{{claims.identity.id}}</td>
               </tr>
               <tr>
-                <th style="width: 100px;">Name</th>
+                <th>Name</th>
                 <td>{{claims.identity.name}}</td>
               </tr>
             </table>

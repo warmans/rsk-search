@@ -1,5 +1,5 @@
 /* tslint:disable */
 
-export interface RskRedditAuthURL {
+export interface RskAuthURL {
   url?: string;
 }

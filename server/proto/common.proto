@@ -9,4 +9,5 @@ message Author {
   string name = 2;
   string identity_icon_img = 3;
   bool supporter = 4;
+  string oauth_provider = 5;
 }

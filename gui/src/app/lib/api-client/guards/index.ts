@@ -71,6 +71,8 @@ export function isRskAuthor(arg: any): arg is models.RskAuthor {
     ( typeof arg.identityIconImg === 'undefined' || typeof arg.identityIconImg === 'string' ) &&
     // name?: string
     ( typeof arg.name === 'undefined' || typeof arg.name === 'string' ) &&
+    // oauthProvider?: string
+    ( typeof arg.oauthProvider === 'undefined' || typeof arg.oauthProvider === 'string' ) &&
     // supporter?: boolean
     ( typeof arg.supporter === 'undefined' || typeof arg.supporter === 'boolean' ) &&
 
@@ -139,6 +141,17 @@ export function isRskAuthorRankList(arg: any): arg is models.RskAuthorRankList {
   typeof arg === 'object' &&
     // rankings?: RskAuthorRank[]
     ( typeof arg.rankings === 'undefined' || (Array.isArray(arg.rankings) && arg.rankings.every((item: unknown) => isRskAuthorRank(item))) ) &&
+
+  true
+  );
+  }
+
+export function isRskAuthURL(arg: any): arg is models.RskAuthURL {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // url?: string
+    ( typeof arg.url === 'undefined' || typeof arg.url === 'string' ) &&
 
   true
   );
@@ -614,6 +627,8 @@ export function isRskPrediction(arg: any): arg is models.RskPrediction {
   return (
   arg != null &&
   typeof arg === 'object' &&
+    // actor?: string
+    ( typeof arg.actor === 'undefined' || typeof arg.actor === 'string' ) &&
     // epid?: string
     ( typeof arg.epid === 'undefined' || typeof arg.epid === 'string' ) &&
     // fragment?: string
@@ -665,17 +680,6 @@ export function isRskRecipientStats(arg: any): arg is models.RskRecipientStats {
     ( typeof arg.donationRecipient === 'undefined' || typeof arg.donationRecipient === 'string' ) &&
     // pointsSpent?: number
     ( typeof arg.pointsSpent === 'undefined' || typeof arg.pointsSpent === 'number' ) &&
-
-  true
-  );
-  }
-
-export function isRskRedditAuthURL(arg: any): arg is models.RskRedditAuthURL {
-  return (
-  arg != null &&
-  typeof arg === 'object' &&
-    // url?: string
-    ( typeof arg.url === 'undefined' || typeof arg.url === 'string' ) &&
 
   true
   );

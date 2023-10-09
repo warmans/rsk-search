@@ -143,7 +143,8 @@ init.transcripts:
 run: build
 	DEBUG=true ./bin/rsk-search server \
 		--rw-db-dsn=${DEV_DB_DSN} \
-		--oauth-secret=${REDDIT_SECRET} \
+		--oauth-reddit-secret=${REDDIT_SECRET} \
+		--oauth-discord-secret=${DISCORD_SECRET} \
 		--pledge-secret=${PLEDGE_SECRET} \
 		--pledge-def-email=${PLEDGE_EMAIL} \
 		--pledge-def-firstname=${PLEDGE_FNAME} \

@@ -1,8 +1,10 @@
-import { Component, EventEmitter, Input, OnDestroy } from '@angular/core';
-import { takeUntil } from 'rxjs/operators';
-import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
-import { ActivatedRoute, Data, Router } from '@angular/router';
-import { SessionService } from 'src/app/module/core/service/session/session.service';
+import {Component, EventEmitter, Input, OnDestroy} from '@angular/core';
+import {takeUntil} from 'rxjs/operators';
+import {SearchAPIClient} from 'src/app/lib/api-client/services/search';
+import {ActivatedRoute, Data, Router} from '@angular/router';
+import {SessionService} from 'src/app/module/core/service/session/session.service';
+import {FormControl} from "@angular/forms";
+import {RskAuthURL} from "../../../../lib/api-client/models";
 
 @Component({
   selector: 'app-reddit-login',
@@ -13,6 +15,8 @@ export class RedditLoginComponent implements OnDestroy {
 
   @Input()
   open: boolean = false;
+
+  authMethod: FormControl<string> = new FormControl<string>("reddit");
 
   showMoreAuthInformation: boolean = false;
 
@@ -53,9 +57,9 @@ export class RedditLoginComponent implements OnDestroy {
 
   requestAuth() {
     this.loading = true;
-    this.apiClient.getRedditAuthURL().pipe(takeUntil(this.destroy$)).subscribe((res) => {
+    this.apiClient.getAuthUrl({provider: this.authMethod.value}).pipe(takeUntil(this.destroy$)).subscribe((res: RskAuthURL) => {
       document.location.href = res.url;
-    }).add(() => this.loading = false);
+    }).add((): boolean => this.loading = false);
   }
 
   ngOnDestroy(): void {

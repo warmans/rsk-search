@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -53,7 +53,7 @@ export class SessionService {
       this.destroySession();
       return;
     }
-    this.claims = new Claims(claims.author_id, claims.approver || false, claims.identity as Identity);
+    this.claims = new Claims(claims.author_id, claims.approver || false, claims.identity as Identity, claims.oauth_provider);
     return this.claims;
   }
 
@@ -70,7 +70,7 @@ export class SessionService {
 
 
 export class Claims {
-  constructor(readonly author_id: string, readonly approver: boolean, readonly identity: Identity) {
+  constructor(readonly author_id: string, readonly approver: boolean, readonly identity: Identity, readonly oauth_provider: string) {
   }
 }
 
