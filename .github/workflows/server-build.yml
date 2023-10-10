@@ -25,9 +25,11 @@ jobs:
           args: --timeout=5m
 
   test:
-    - name: Go tests
-      working-directory: ${{env.working-directory}}
-      run: go test -v ./...
+    runs-on: ubuntu-latest
+    steps:
+      - name: Go tests
+        working-directory: ${{env.working-directory}}
+        run: go test -v ./...
 
   build:
     runs-on: ubuntu-latest
