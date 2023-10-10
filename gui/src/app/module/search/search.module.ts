@@ -12,7 +12,6 @@ import { EpisodeListComponent } from './component/episode-list/episode-list.comp
 import { EpisodeSummaryComponent } from './component/episode-summary/episode-summary.component';
 import { ChangelogComponent } from './page/changelog/changelog.component';
 import { TimecodeAccuracyPipe } from './pipe/timecode-accuracy.pipe';
-import { EmbedModule } from '../embed/embed.module';
 import { SearchBarHelpComponent } from './component/search-bar-help/search-bar-help.component';
 import { SearchBarCompatComponent } from './component/search-bar-compat/search-bar-compat.component';
 import { SearchBarSuggestionComponent } from 'src/app/module/search/component/search-bar-suggestion/search-bar-suggestion.component';
@@ -38,7 +37,6 @@ import { SearchBarSuggestionComponent } from 'src/app/module/search/component/se
     FormsModule,
     ReactiveFormsModule,
     NgChartsModule,
-    EmbedModule,
   ],
   exports: [SearchBarCompatComponent]
 })

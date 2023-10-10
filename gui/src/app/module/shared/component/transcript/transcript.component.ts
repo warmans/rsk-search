@@ -117,9 +117,6 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
   emitAudioTimestamp: EventEmitter<number> = new EventEmitter();
 
   @Output()
-  emitShare: EventEmitter<Section> = new EventEmitter();
-
-  @Output()
   emitSelection: EventEmitter<Section> = new EventEmitter();
 
   audioOffsetsAvailable: boolean = false;
@@ -273,10 +270,6 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
       currentGroup.endPos = episode.transcript[episode.transcript.length - 1].pos;
       this.groupedDialog.push(currentGroup);
     }
-  }
-
-  emitShareOpts(startPos: number, endPos: number) {
-    this.emitShare.next({epid: this.epid, startPos: startPos, endPos: endPos});
   }
 
   copyLineToClipboard(content: string, timestamp?: number) {

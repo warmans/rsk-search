@@ -9,7 +9,7 @@ import { TranscriptComponent } from './component/transcript/transcript.component
 import { RouterModule } from '@angular/router';
 import { SynopsesComponent } from './component/synopses/synopses.component';
 import { ContributionStateComponent } from './component/contribution-state/contribution-state.component';
-import { RedditLoginComponent } from './component/reddit-login/reddit-login.component';
+import { OauthLoginComponent } from './component/oauth-login/oauth-login.component';
 import { EditorInputComponent } from './component/editor-input/editor-input.component';
 import { EditorConfigComponent } from './component/editor-config/editor-config.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -40,7 +40,7 @@ import { TranscriptCopyDialogComponent } from './component/transcript-copy-dialo
     SynopsesComponent,
     TriviaComponent,
     ContributionStateComponent,
-    RedditLoginComponent,
+    OauthLoginComponent,
     EditorInputComponent,
     EditorConfigComponent,
     EditorHelpComponent,
@@ -72,7 +72,7 @@ import { TranscriptCopyDialogComponent } from './component/transcript-copy-dialo
         SynopsesComponent,
         TriviaComponent,
         ContributionStateComponent,
-        RedditLoginComponent,
+        OauthLoginComponent,
         EditorInputComponent,
         EditorConfigComponent,
         EditorHelpComponent,

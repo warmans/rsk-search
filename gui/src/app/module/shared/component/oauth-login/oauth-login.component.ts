@@ -7,11 +7,11 @@ import {FormControl} from "@angular/forms";
 import {RskAuthURL} from "../../../../lib/api-client/models";
 
 @Component({
-  selector: 'app-reddit-login',
-  templateUrl: './reddit-login.component.html',
-  styleUrls: ['./reddit-login.component.scss']
+  selector: 'app-oauth-login',
+  templateUrl: './oauth-login.component.html',
+  styleUrls: ['./oauth-login.component.scss']
 })
-export class RedditLoginComponent implements OnDestroy {
+export class OauthLoginComponent implements OnDestroy {
 
   @Input()
   open: boolean = false;

@@ -1,55 +1,48 @@
-<ng-container *ngIf="embedMode === true">
-  <router-outlet></router-outlet>
-</ng-container>
-
-<ng-container *ngIf="embedMode === false">
-  <nav class="navbar navbar-light bg-light">
-    <div class="d-flex w-100 align-items-center">
-      <div class="mr-3">
-        <a [routerLink]="['/search']"><img src="/assets/android-chrome-192x192.png" style="height: 3rem"/></a>
-      </div>
-      <div class="flex-grow-1">
-        <app-search-bar-compat (queryUpdated)="executeSearch($event)"></app-search-bar-compat>
-      </div>
-      <div class="ml-3 d-flex">
-        <button class="btn btn-transparent btn-lg mr-3" (click)="toggleDarkmode()" title="Toggle dark theme.">
-          <i class="bi-moon-fill" *ngIf="!darkTheme"></i>
-          <i class="bi-sun-fill" *ngIf="darkTheme"></i>
-        </button>
-        <a class="btn btn-info btn-lg" [routerLink]="['/me']" *ngIf="!loggedInUser">
-          <i class="bi-person"></i>
-        </a>
-        <app-user-menu *ngIf="loggedInUser" [loggedInUser]="loggedInUser"></app-user-menu>
-      </div>
+<nav class="navbar navbar-light bg-light">
+  <div class="d-flex w-100 align-items-center">
+    <div class="mr-3">
+      <a [routerLink]="['/search']"><img src="/assets/android-chrome-192x192.png" style="height: 3rem"/></a>
     </div>
-  </nav>
-
-  <app-alert></app-alert>
-
-  <div class="alert alert-warning" *ngIf="bandwidthQuotaUsedPcnt > 95">
-    <strong>Scrimpton has reached {{ bandwidthQuotaUsedPcnt * 100 | number}}% of its bandwidth quota.</strong>
-    <div>This means a bandwidth limit has been reached preventing further file downloads. This may prevent audio files from being played until the quota is reset at the end of the
-      month.
+    <div class="flex-grow-1">
+      <app-search-bar-compat (queryUpdated)="executeSearch($event)"></app-search-bar-compat>
+    </div>
+    <div class="ml-3 d-flex">
+      <button class="btn btn-transparent btn-lg mr-3" (click)="toggleDarkmode()" title="Toggle dark theme.">
+        <i class="bi-moon-fill" *ngIf="!darkTheme"></i>
+        <i class="bi-sun-fill" *ngIf="darkTheme"></i>
+      </button>
+      <a class="btn btn-info btn-lg" [routerLink]="['/me']" *ngIf="!loggedInUser">
+        <i class="bi-person"></i>
+      </a>
+      <app-user-menu *ngIf="loggedInUser" [loggedInUser]="loggedInUser"></app-user-menu>
     </div>
   </div>
+</nav>
 
-  <div class="d-flex flex-column justify-content-between vh-100">
-    <div>
-      <router-outlet></router-outlet>
-    </div>
-    <footer class="footer">
-      <div class="container">
-        <div class="text-center text-muted mt-4 mb-4 p-2">
-          <a href="https://www.buymeacoffee.com/scrimptonsite" target="_blank">Donate</a> |
-          <a href="https://reddit.com/r/scrimpton" target="_blank">Report Issue on /r/scrimpton</a> |
-          <a href="https://github.com/warmans/rsk-search" target="_blank">Contribute Code</a>
-        </div>
-      </div>
-    </footer>
+<app-alert></app-alert>
+
+<div class="alert alert-warning" *ngIf="bandwidthQuotaUsedPcnt > 95">
+  <strong>Scrimpton has reached {{ bandwidthQuotaUsedPcnt * 100 | number}}% of its bandwidth quota.</strong>
+  <div>This means a bandwidth limit has been reached preventing further file downloads. This may prevent audio files
+    from being played until the quota is reset at the end of the
+    month.
   </div>
-  <app-audio-player-fixed></app-audio-player-fixed>
+</div>
 
-  <app-pending-rewards></app-pending-rewards>
+<div class="d-flex flex-column justify-content-between vh-100">
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+  <footer class="footer">
+    <div class="container">
+      <div class="text-center text-muted mt-4 mb-4 p-2">
+        <a href="https://www.buymeacoffee.com/scrimptonsite" target="_blank">Donate</a> |
+        <a href="https://reddit.com/r/scrimpton" target="_blank">Report Issue on /r/scrimpton</a> |
+        <a href="https://github.com/warmans/rsk-search" target="_blank">Contribute Code</a>
+      </div>
+    </div>
+  </footer>
+</div>
+<app-audio-player-fixed></app-audio-player-fixed>
 
-
-</ng-container>
+<app-pending-rewards></app-pending-rewards>

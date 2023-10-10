@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RedditLoginComponent } from './reddit-login.component';
+import { OauthLoginComponent } from './oauth-login.component';
 
 describe('RedditLoginComponent', () => {
-  let component: RedditLoginComponent;
-  let fixture: ComponentFixture<RedditLoginComponent>;
+  let component: OauthLoginComponent;
+  let fixture: ComponentFixture<OauthLoginComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RedditLoginComponent ]
+      declarations: [ OauthLoginComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RedditLoginComponent);
+    fixture = TestBed.createComponent(OauthLoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

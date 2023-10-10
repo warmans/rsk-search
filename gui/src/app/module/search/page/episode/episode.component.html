@@ -21,7 +21,10 @@
       <div class="card" *ngIf="episode">
         <div class="card-header d-flex justify-content-between">
           <div>{{ shortID }}<span *ngIf="episode.name"> - "{{episode.name}}"</span></div>
-          <div><a *ngIf="previousEpisodeId" class="mr-2" [routerLink]="['/ep', previousEpisodeId]"><i class="bi bi-arrow-left"></i> Previous</a> <a *ngIf="nextEpisodeId" class="ml-2" [routerLink]="['/ep', nextEpisodeId]">Next <i class="bi bi-arrow-right"></i></a></div>
+          <div><a *ngIf="previousEpisodeId" class="mr-2" [routerLink]="['/ep', previousEpisodeId]"><i
+            class="bi bi-arrow-left"></i> Previous</a> <a *ngIf="nextEpisodeId" class="ml-2"
+                                                          [routerLink]="['/ep', nextEpisodeId]">Next <i
+            class="bi bi-arrow-right"></i></a></div>
         </div>
         <div class="card-body">
           <div class="row">
@@ -38,7 +41,8 @@
                 <tr>
                   <th>Transcript Data</th>
                   <td>
-                    <a target="_blank" href="/dl/episode/{{episode.id}}.json">{{episode.id}}.json</a> (or <a target="_blank" href="/dl/episode/{{episode.id}}.txt">plaintext</a>)
+                    <a target="_blank" href="/dl/episode/{{episode.id}}.json">{{episode.id}}.json</a> (or <a
+                    target="_blank" href="/dl/episode/{{episode.id}}.txt">plaintext</a>)
                   </td>
                 </tr>
                 <tr>
@@ -53,7 +57,8 @@
                   <th>Tags</th>
                   <td>
                     <span *ngIf="episode.bestof" class="badge badge-secondary">Bestof</span>
-                    <span *ngIf="episode.locked" class="badge badge-warning" title="Changes cannot be submitted for this transcript because it is in the process of being transcribed.">Locked</span>
+                    <span *ngIf="episode.locked" class="badge badge-warning"
+                          title="Changes cannot be submitted for this transcript because it is in the process of being transcribed.">Locked</span>
                   </td>
                 </tr>
                 <tr>
@@ -69,15 +74,20 @@
                 <tr>
                   <th>Audio</th>
                   <td>
-                    <button *ngIf="!audioStatus || audioStatus?.state !== audioStates.playing" class="btn btn-sm btn-primary" (click)="playAudio()"><i class="bi bi-play"></i> Play</button>
-                    <button *ngIf="audioStatus?.state === audioStates.playing" class="btn btn-sm btn-primary" (click)="pauseAudio()"><i class="bi bi-pause"></i> Pause</button>
-                    <span class="muted ml-3">({{episode.offsetAccuracyPcnt | timecodeAccuracy}} Timecode Accuracy)</span>
+                    <button *ngIf="!audioStatus || audioStatus?.state !== audioStates.playing"
+                            class="btn btn-sm btn-primary" (click)="playAudio()"><i class="bi bi-play"></i> Play
+                    </button>
+                    <button *ngIf="audioStatus?.state === audioStates.playing" class="btn btn-sm btn-primary"
+                            (click)="pauseAudio()"><i class="bi bi-pause"></i> Pause
+                    </button>
+                    <span class="muted ml-3">({{episode.offsetAccuracyPcnt | timecodeAccuracy}}
+                      Timecode Accuracy)</span>
                   </td>
                 </tr>
               </table>
             </div>
             <div class="col-lg-2 d-flex align-items-center justify-content-around">
-              <img class="d-none d-lg-block series-image" [src]="episodeImage" />
+              <img class="d-none d-lg-block series-image" [src]="episodeImage"/>
             </div>
           </div>
         </div>
@@ -98,13 +108,13 @@
             </div>
           </div>
           <div class="card-body p-3">
-              <div class="mb-1" *ngFor="let quote of quotes">
-                <i class="bi-quote mr-2 text-primary"></i>
-                <span class="font-italic">
+            <div class="mb-1" *ngFor="let quote of quotes">
+              <i class="bi-quote mr-2 text-primary"></i>
+              <span class="font-italic">
                   "{{quote.content}}" -{{quote.actor}}
-                  (<a [routerLink]="['/ep', episode?.id]" [fragment]="'pos-'+(quote?.pos)">context</a>)
+                (<a [routerLink]="['/ep', episode?.id]" [fragment]="'pos-'+(quote?.pos)">context</a>)
                 </span>
-              </div>
+            </div>
           </div>
         </div>
         <div *ngIf="songs && songs.length > 0">
@@ -138,7 +148,9 @@
               </div>
               <div class="d-flex">
                 <button class="btn btn-sm btn-primary" (click)="scrollToTop()">Top</button>
-                <button class="btn btn-sm btn-primary ml-2" *ngIf="scrollToID || scrollToSeconds" (click)="clearSelection()">Clear Selection</button>
+                <button class="btn btn-sm btn-primary ml-2" *ngIf="scrollToID || scrollToSeconds"
+                        (click)="clearSelection()">Clear Selection
+                </button>
                 <!--button class="btn btn-sm btn-primary ml-2" *ngIf="scrollToID || scrollToSeconds" (click)="shareSelection()">Share Selection</button-->
                 <div class="ml-2" *ngIf="pendingChanges?.length === 0 && !episode.locked">
                   <a class="btn btn-sm btn-info" [routerLink]="['/ep', id, 'change']">Submit Correction</a>
@@ -158,8 +170,7 @@
             [enableLineCopy]="true"
             [enableShareLinks]="!episode?.incomplete"
             (emitAudioTimestamp)="onAudioTimestamp($event)"
-            (emitShare)="onShare($event?.startPos, $event?.endPos)"
-          (emitSelection)="selectSection($event)"></app-transcript>
+            (emitSelection)="selectSection($event)"></app-transcript>
           <div *ngIf="!episode?.transcript?.length" class="text-center p-4">No transcript available.</div>
         </div>
       </div>
@@ -185,7 +196,3 @@
 </div>
 
 <app-loading-overlay [loading]="loading"></app-loading-overlay>
-
-<ng-container *ngIf="episode && shareOpen">
-  <app-preview-modal [epid]="episode?.id" [startPos]="shareStart" [endPos]="shareEnd" (closed)="shareOpen = false"></app-preview-modal>
-</ng-container>

@@ -1,17 +1,17 @@
-import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Data, Router } from '@angular/router';
-import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
-import { RskDialog, RskTranscript, RskTranscriptChange, RskTranscriptChangeList } from 'src/app/lib/api-client/models';
-import { ViewportScroller } from '@angular/common';
-import { takeUntil } from 'rxjs/operators';
-import { Title } from '@angular/platform-browser';
-import { SessionService } from '../../../core/service/session/session.service';
-import { And, Eq, Neq } from 'src/app/lib/filter-dsl/filter';
-import { Bool, Str } from 'src/app/lib/filter-dsl/value';
-import { MetaService } from '../../../core/service/meta/meta.service';
-import { AudioService, PlayerState, Status } from '../../../core/service/audio/audio.service';
-import { Section } from '../../../shared/component/transcript/transcript.component';
-import { combineLatest } from 'rxjs';
+import {Component, EventEmitter, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, Data, Router} from '@angular/router';
+import {SearchAPIClient} from 'src/app/lib/api-client/services/search';
+import {RskDialog, RskTranscript, RskTranscriptChange, RskTranscriptChangeList} from 'src/app/lib/api-client/models';
+import {ViewportScroller} from '@angular/common';
+import {takeUntil} from 'rxjs/operators';
+import {Title} from '@angular/platform-browser';
+import {SessionService} from '../../../core/service/session/session.service';
+import {And, Eq, Neq} from 'src/app/lib/filter-dsl/filter';
+import {Bool, Str} from 'src/app/lib/filter-dsl/value';
+import {MetaService} from '../../../core/service/meta/meta.service';
+import {AudioService, PlayerState, Status} from '../../../core/service/audio/audio.service';
+import {Section} from '../../../shared/component/transcript/transcript.component';
+import {combineLatest} from 'rxjs';
 
 @Component({
   selector: 'app-episode',
@@ -55,10 +55,6 @@ export class EpisodeComponent implements OnInit, OnDestroy {
   audioStatus: Status;
 
   audioStates = PlayerState;
-
-  shareOpen: boolean = false;
-  shareStart: number;
-  shareEnd: number;
 
   unsubscribe$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -108,7 +104,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
     this.error = undefined;
 
     combineLatest([
-      this.apiClient.getTranscript({ epid: this.id }),
+      this.apiClient.getTranscript({epid: this.id}),
       this.meta.getMeta(),
     ]).pipe(takeUntil(this.unsubscribe$)).subscribe(
       ([ep, metadata]) => {
@@ -183,24 +179,8 @@ export class EpisodeComponent implements OnInit, OnDestroy {
     this.audioService.pauseAudio();
   }
 
-  shareSelection() {
-    let parts = this.scrollToID.split('-');
-    if (parts.length === 2) {
-      this.onShare(parseInt(parts[1]), parseInt(parts[1]) + 1);
-    } else if (parts.length === 3) {
-      this.onShare(parseInt(parts[1]) - 1, parseInt(parts[2]));
-    }
-  }
-
-  onShare(shareStart: number, shareEnd: number) {
-    // force it to run change detection.
-    this.shareStart = shareStart;
-    this.shareEnd = shareEnd;
-    this.shareOpen = true;
-  }
-
   selectSection(sel: Section) {
-    this.router.navigate([], { fragment: `pos-${sel.startPos}-${sel.endPos}` });
+    this.router.navigate([], {fragment: `pos-${sel.startPos}-${sel.endPos}`});
   }
 
   clearSelection() {

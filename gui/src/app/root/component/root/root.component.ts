@@ -1,10 +1,10 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Renderer2 } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { Claims, SessionService } from 'src/app/module/core/service/session/session.service';
-import { takeUntil } from 'rxjs/operators';
-import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
-import { RskQuotas } from 'src/app/lib/api-client/models';
-import { QuotaService } from 'src/app/module/core/service/quota/quota.service';
+import {Component, EventEmitter, OnDestroy, OnInit, Renderer2} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Claims, SessionService} from 'src/app/module/core/service/session/session.service';
+import {takeUntil} from 'rxjs/operators';
+import {SearchAPIClient} from 'src/app/lib/api-client/services/search';
+import {RskQuotas} from 'src/app/lib/api-client/models';
+import {QuotaService} from 'src/app/module/core/service/quota/quota.service';
 
 @Component({
   selector: 'app-root',
@@ -12,8 +12,6 @@ import { QuotaService } from 'src/app/module/core/service/quota/quota.service';
   styleUrls: ['./root.component.scss']
 })
 export class RootComponent implements OnInit, OnDestroy {
-
-  embedMode: boolean;
 
   loggedInUser: Claims;
 
@@ -32,16 +30,11 @@ export class RootComponent implements OnInit, OnDestroy {
     private apiClient: SearchAPIClient,
     private quotaService: QuotaService,
   ) {
-    session.onTokenChange.pipe(takeUntil(this.destroy$)).subscribe((token) => {
+    session.onTokenChange.pipe(takeUntil(this.destroy$)).subscribe((token: string) => {
       if (token) {
         this.loggedInUser = this.session.getClaims();
       } else {
         this.loggedInUser = undefined;
-      }
-    });
-    this.router.events.pipe(takeUntil(this.destroy$)).subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.embedMode = event.url.startsWith('/embed');
       }
     });
     quotaService.quotas$.pipe(takeUntil(this.destroy$)).subscribe((res: RskQuotas) => {
@@ -51,7 +44,7 @@ export class RootComponent implements OnInit, OnDestroy {
   }
 
   executeSearch(query: string) {
-    this.router.navigate(['/search'], { queryParams: { q: query } });
+    this.router.navigate(['/search'], {queryParams: {q: query}});
   }
 
   logout() {
