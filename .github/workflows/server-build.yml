@@ -31,6 +31,8 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    env:
+      working-directory: ./server
     steps:
       - uses: actions/checkout@v3
 
