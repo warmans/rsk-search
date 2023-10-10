@@ -10,7 +10,7 @@
     "bestof": false,
     "special": true,
     "locked": false,
-    "offset_accuracy": 29,
+    "offset_accuracy": 30,
     "audio_quality": "",
     "metadata": {
       "cover_art_url": "/assets/cover/special.jpg",
@@ -4452,7 +4452,7 @@
       {
         "id": "ep-nme-S1E01-403",
         "pos": 403,
-        "offset_sec": 3481,
+        "offset_sec": 3187,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -4463,29 +4463,645 @@
       {
         "id": "ep-nme-S1E01-404",
         "pos": 404,
-        "offset_sec": 3552,
-        "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
+        "offset_sec": 3213,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
         "metadata": null,
-        "content": "[~3 mins of missing transcription]",
+        "content": "The problem is they haven't got any of these beetles here.",
         "notable": false
       },
       {
         "id": "ep-nme-S1E01-405",
         "pos": 405,
-        "offset_sec": 3623,
+        "offset_sec": 3216,
         "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
+        "type": "chat",
+        "actor": "ricky",
         "metadata": null,
-        "content": "[~3 mins of missing transcription]",
+        "content": "Right?",
         "notable": false
       },
       {
         "id": "ep-nme-S1E01-406",
         "pos": 406,
-        "offset_sec": 3694,
+        "offset_sec": 3216,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "So they've had to-, instead of, uh, flying it back out-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-407",
+        "pos": 407,
+        "offset_sec": 3220,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-408",
+        "pos": 408,
+        "offset_sec": 3220,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "-they've gone over there to try and find one to bring it back. Because of the stress an' that, that it's had and it's older.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-409",
+        "pos": 409,
+        "offset_sec": 3227,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Couldn't you put a gerbil in a beetle outfit?",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-410",
+        "pos": 410,
+        "offset_sec": 3230,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "(Steve laughs)",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-411",
+        "pos": 411,
+        "offset_sec": 3230,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Hang on a minute!",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-412",
+        "pos": 412,
+        "offset_sec": 3231,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "I don't mean, I don't mean a little wig, holding a guitar.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-413",
+        "pos": 413,
+        "offset_sec": 3233,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "But I don't know the full story an' that. I just know that they found this beetle that-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-414",
+        "pos": 414,
+        "offset_sec": 3235,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "It just sounds unlikely that people would become this concerned about one beetle-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-415",
+        "pos": 415,
+        "offset_sec": 3239,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "(laughing) I don't- I agree.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-416",
+        "pos": 416,
+        "offset_sec": 3240,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "(laughing) -and it's only got half a month left.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-417",
+        "pos": 417,
+        "offset_sec": 3242,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-418",
+        "pos": 418,
+        "offset_sec": 3242,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "It's got two weeks left, it's got to have some sex! We have got to give this beetle some sex because, God damn it, it's a beetle. What was found on a boat with some bananas?",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-419",
+        "pos": 419,
+        "offset_sec": 3249,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah, I don't know why-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-420",
+        "pos": 420,
+        "offset_sec": 3250,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "It deserves sex before it dies.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-421",
+        "pos": 421,
+        "offset_sec": 3251,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "I don't know why he cares more than a blood sucking beetle than a chimpanzee that's underneath!",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-422",
+        "pos": 422,
+        "offset_sec": 3254,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "I just can't believe people are flying out to Japan and where have they come from?",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-423",
+        "pos": 423,
+        "offset_sec": 3256,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Why d'you-, why d'you care so much about beetles all of a sudden?",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-424",
+        "pos": 424,
+        "offset_sec": 3260,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Only because they were mentioned. And I just thought, y'know whilst we're on the beetle tip, let's y'know, let's, discuss 'em.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-425",
+        "pos": 425,
+        "offset_sec": 3267,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "What d'you mean its legs were going as well?",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-426",
+        "pos": 426,
+        "offset_sec": 3269,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "That's what they do. That shows signs of like it needs, it needs a, uh a woman. Ehh, it's never had one before, which is weird. That's, that's, that's what I was gonna say, uhh-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-427",
+        "pos": 427,
+        "offset_sec": 3278,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Go on.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-428",
+        "pos": 428,
+        "offset_sec": 3279,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "It knew even though it didn't.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-429",
+        "pos": 429,
+        "offset_sec": 3282,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "(Ricky laughs)",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-430",
+        "pos": 430,
+        "offset_sec": 3283,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "And you're talking about me brain and me ears and all that. There's an example-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-431",
+        "pos": 431,
+        "offset_sec": 3286,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Go on.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-432",
+        "pos": 432,
+        "offset_sec": 3287,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "-of how the beetle's not in charge. There's something else going on in its body.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-433",
+        "pos": 433,
+        "offset_sec": 3289,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Well that's called instinct.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-434",
+        "pos": 434,
+        "offset_sec": 3291,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-435",
+        "pos": 435,
+        "offset_sec": 3292,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "But that's true in a beetle but it shouldn't be true in a human bein'.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-436",
+        "pos": 436,
+        "offset_sec": 3294,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "But it is though, innit? Otherwise how did the first baby survive? How did, how did, how are we here now? Because you look at babies and they're spoiled rotten. I'm sick of it, the way they don't do anything for ages. They wouldn't survive.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-437",
+        "pos": 437,
+        "offset_sec": 3304,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "(Ricky laughs through his mouth)",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-438",
+        "pos": 438,
+        "offset_sec": 3305,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "A kangaroo comes out, it's hopping around in about two hours. Babies, they sit there for months.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-439",
+        "pos": 439,
+        "offset_sec": 3310,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "But there's a very good reason for that. I've told you that.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-440",
+        "pos": 440,
+        "offset_sec": 3312,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "It needs its mother.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-441",
+        "pos": 441,
+        "offset_sec": 3313,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-442",
+        "pos": 442,
+        "offset_sec": 3314,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "If that was in a banana crate, it would have given up after about a week. What I'm saying is-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-443",
+        "pos": 443,
+        "offset_sec": 3317,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "No, a couple of days.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-444",
+        "pos": 444,
+        "offset_sec": 3318,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Mmmmm-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-445",
+        "pos": 445,
+        "offset_sec": 3319,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "It would've died in a couple of days, probably.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-446",
+        "pos": 446,
+        "offset_sec": 3320,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Yeah. Where as this beetle, he didn't know the outcome. He didn't know if he's ever going to see this partner. Yet even though it's been in this crate with bananas, for three and a half months, it still wants to have it away! Now if I was that, I'd be like, \"I'm not in the mood anyway\".",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-447",
+        "pos": 447,
+        "offset_sec": 3336,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "(Ricky laughs)",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-448",
+        "pos": 448,
+        "offset_sec": 3336,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Why do you keep- and why do you equate yourself with a beetle? This is what I don't understand.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-449",
+        "pos": 449,
+        "offset_sec": 3341,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "No, I'm not. I'm just saying how that's where nature's good. And I think th-the beetles are better than us, in a way.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-450",
+        "pos": 450,
+        "offset_sec": 3347,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "We have got our brain. We've got our creativity. We've got our cognition. We've got all those things. That's, that's, that's our forte. That's where we kick in. Thought. Introspection. Art. I agree, wha- I could not live in a crate full of bananas for t-two-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-451",
+        "pos": 451,
+        "offset_sec": 3362,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Mmm.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-452",
+        "pos": 452,
+        "offset_sec": 3362,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "-and a ha-. I-I uh admit that. I admit that if my mum, uh gave birth to me and then dropped me immediately in a bin, I wouldn't have survived.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-453",
+        "pos": 453,
+        "offset_sec": 3370,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-454",
+        "pos": 454,
+        "offset_sec": 3371,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "But I don't see your point.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-455",
+        "pos": 455,
+        "offset_sec": 3372,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "I just-",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-456",
+        "pos": 456,
+        "offset_sec": 3373,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "And I understand that beetles can do that and I can't.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-457",
+        "pos": 457,
+        "offset_sec": 3375,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Mm.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-458",
+        "pos": 458,
+        "offset_sec": 3375,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "But d'y'know what? The beetles- they couldn't have (starts to laugh) written and directed The Office. So let's call it even.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-459",
+        "pos": 459,
+        "offset_sec": 3381,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Hey! All this talk of The Beatles, right, has suggested to me, let's have some more music. Here's the Rolling Stones.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-460",
+        "pos": 460,
+        "offset_sec": 3598,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Oohhhhh. Doesn't work.",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-461",
+        "pos": 461,
+        "offset_sec": 3639,
+        "offset_inferred": true,
+        "type": "song",
+        "actor": "",
+        "metadata": null,
+        "content": "",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-462",
+        "pos": 462,
+        "offset_sec": 3639,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -4494,8 +5110,19 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-407",
-        "pos": 407,
+        "id": "ep-nme-S1E01-463",
+        "pos": 463,
+        "offset_sec": 3702,
+        "offset_inferred": true,
+        "type": "gap",
+        "actor": "",
+        "metadata": null,
+        "content": "[~3 mins of missing transcription]",
+        "notable": false
+      },
+      {
+        "id": "ep-nme-S1E01-464",
+        "pos": 464,
         "offset_sec": 3764,
         "offset_inferred": false,
         "type": "chat",
@@ -4505,8 +5132,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-408",
-        "pos": 408,
+        "id": "ep-nme-S1E01-465",
+        "pos": 465,
         "offset_sec": 3774,
         "offset_inferred": true,
         "type": "chat",
@@ -4516,8 +5143,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-409",
-        "pos": 409,
+        "id": "ep-nme-S1E01-466",
+        "pos": 466,
         "offset_sec": 3775,
         "offset_inferred": true,
         "type": "chat",
@@ -4527,8 +5154,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-410",
-        "pos": 410,
+        "id": "ep-nme-S1E01-467",
+        "pos": 467,
         "offset_sec": 3776,
         "offset_inferred": true,
         "type": "chat",
@@ -4538,8 +5165,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-411",
-        "pos": 411,
+        "id": "ep-nme-S1E01-468",
+        "pos": 468,
         "offset_sec": 3777,
         "offset_inferred": true,
         "type": "chat",
@@ -4549,8 +5176,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-412",
-        "pos": 412,
+        "id": "ep-nme-S1E01-469",
+        "pos": 469,
         "offset_sec": 3783,
         "offset_inferred": true,
         "type": "chat",
@@ -4560,8 +5187,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-413",
-        "pos": 413,
+        "id": "ep-nme-S1E01-470",
+        "pos": 470,
         "offset_sec": 3784,
         "offset_inferred": true,
         "type": "chat",
@@ -4571,8 +5198,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-414",
-        "pos": 414,
+        "id": "ep-nme-S1E01-471",
+        "pos": 471,
         "offset_sec": 3791,
         "offset_inferred": false,
         "type": "chat",
@@ -4582,8 +5209,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-415",
-        "pos": 415,
+        "id": "ep-nme-S1E01-472",
+        "pos": 472,
         "offset_sec": 3800,
         "offset_inferred": true,
         "type": "chat",
@@ -4593,8 +5220,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-416",
-        "pos": 416,
+        "id": "ep-nme-S1E01-473",
+        "pos": 473,
         "offset_sec": 3803,
         "offset_inferred": true,
         "type": "chat",
@@ -4604,8 +5231,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-417",
-        "pos": 417,
+        "id": "ep-nme-S1E01-474",
+        "pos": 474,
         "offset_sec": 3804,
         "offset_inferred": true,
         "type": "chat",
@@ -4615,8 +5242,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-418",
-        "pos": 418,
+        "id": "ep-nme-S1E01-475",
+        "pos": 475,
         "offset_sec": 3809,
         "offset_inferred": true,
         "type": "chat",
@@ -4626,8 +5253,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-419",
-        "pos": 419,
+        "id": "ep-nme-S1E01-476",
+        "pos": 476,
         "offset_sec": 3809,
         "offset_inferred": true,
         "type": "chat",
@@ -4637,8 +5264,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-420",
-        "pos": 420,
+        "id": "ep-nme-S1E01-477",
+        "pos": 477,
         "offset_sec": 3811,
         "offset_inferred": true,
         "type": "chat",
@@ -4648,8 +5275,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-421",
-        "pos": 421,
+        "id": "ep-nme-S1E01-478",
+        "pos": 478,
         "offset_sec": 3813,
         "offset_inferred": true,
         "type": "chat",
@@ -4659,8 +5286,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-422",
-        "pos": 422,
+        "id": "ep-nme-S1E01-479",
+        "pos": 479,
         "offset_sec": 3814,
         "offset_inferred": true,
         "type": "chat",
@@ -4670,8 +5297,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-423",
-        "pos": 423,
+        "id": "ep-nme-S1E01-480",
+        "pos": 480,
         "offset_sec": 3822,
         "offset_inferred": false,
         "type": "chat",
@@ -4681,8 +5308,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-424",
-        "pos": 424,
+        "id": "ep-nme-S1E01-481",
+        "pos": 481,
         "offset_sec": 3827,
         "offset_inferred": true,
         "type": "chat",
@@ -4692,8 +5319,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-425",
-        "pos": 425,
+        "id": "ep-nme-S1E01-482",
+        "pos": 482,
         "offset_sec": 3830,
         "offset_inferred": true,
         "type": "chat",
@@ -4703,8 +5330,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-426",
-        "pos": 426,
+        "id": "ep-nme-S1E01-483",
+        "pos": 483,
         "offset_sec": 3831,
         "offset_inferred": true,
         "type": "chat",
@@ -4714,8 +5341,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-427",
-        "pos": 427,
+        "id": "ep-nme-S1E01-484",
+        "pos": 484,
         "offset_sec": 3836,
         "offset_inferred": true,
         "type": "chat",
@@ -4725,8 +5352,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-428",
-        "pos": 428,
+        "id": "ep-nme-S1E01-485",
+        "pos": 485,
         "offset_sec": 3839,
         "offset_inferred": true,
         "type": "chat",
@@ -4736,8 +5363,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-429",
-        "pos": 429,
+        "id": "ep-nme-S1E01-486",
+        "pos": 486,
         "offset_sec": 3839,
         "offset_inferred": true,
         "type": "chat",
@@ -4747,8 +5374,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-430",
-        "pos": 430,
+        "id": "ep-nme-S1E01-487",
+        "pos": 487,
         "offset_sec": 3842,
         "offset_inferred": true,
         "type": "chat",
@@ -4758,8 +5385,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-431",
-        "pos": 431,
+        "id": "ep-nme-S1E01-488",
+        "pos": 488,
         "offset_sec": 3844,
         "offset_inferred": true,
         "type": "chat",
@@ -4769,8 +5396,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-432",
-        "pos": 432,
+        "id": "ep-nme-S1E01-489",
+        "pos": 489,
         "offset_sec": 3845,
         "offset_inferred": true,
         "type": "chat",
@@ -4780,8 +5407,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-433",
-        "pos": 433,
+        "id": "ep-nme-S1E01-490",
+        "pos": 490,
         "offset_sec": 3845,
         "offset_inferred": true,
         "type": "chat",
@@ -4791,8 +5418,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-434",
-        "pos": 434,
+        "id": "ep-nme-S1E01-491",
+        "pos": 491,
         "offset_sec": 3846,
         "offset_inferred": true,
         "type": "chat",
@@ -4802,8 +5429,8 @@
         "notable": false
       },
       {
-        "id": "ep-nme-S1E01-435",
-        "pos": 435,
+        "id": "ep-nme-S1E01-492",
+        "pos": 492,
         "offset_sec": 3847,
         "offset_inferred": true,
         "type": "chat",
@@ -4816,8 +5443,8 @@
     "synopsis": [
       {
         "description": "Does anyone have anything to plug?",
-        "start_pos": 407,
-        "end_pos": 429
+        "start_pos": 464,
+        "end_pos": 486
       }
     ],
     "contributors": [
@@ -4829,8 +5456,8 @@
     "trivia": [
       {
         "description": "Nme.com is indeed the address of the NME website.",
-        "start_pos": 432,
-        "end_pos": 433
+        "start_pos": 489,
+        "end_pos": 490
       }
     ]
   }

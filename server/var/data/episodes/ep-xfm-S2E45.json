@@ -4,7 +4,7 @@
     "episode": 45,
     "name": "",
     "summary": "",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "release_date": "2003-07-05T00:00:00Z",
     "incomplete": false,
     "bestof": false,
@@ -878,12 +878,7 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": {
-          "song_album": "Sounds Of Silence",
-          "song_artist": "Simon \u0026 Garfunkel",
-          "song_track": "April Come She Will",
-          "spotify_uri": "spotify:track:0djZ2ndRfAL69WYNra5jRC"
-        },
+        "metadata": null,
         "content": "Simon \u0026 Garfunkel - April Come She Will",
         "notable": false
       },
@@ -4001,7 +3996,7 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "Yeah. Yeah. 'Hello.', 'Hiya.',  'Alright, we're the local lads, the cool local lads. We smoke. We got tattoos. Um, do you want to come and play with some puppies in the disused mine?'",
+        "content": "Yeah. Yeah. 'Hello.', 'Hiya.', 'Alright, we're the local lads, the cool local lads. We smoke. We got tattoos. Um, do you want to come and play with some puppies in the disused mine?'",
         "notable": false
       },
       {
@@ -14038,7 +14033,7 @@
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "This came... This came through literally... You know, pretty late, late on.  So...",
+        "content": "This came... This came through literally... You know, pretty late, late on. So...",
         "notable": false
       },
       {
@@ -14380,14 +14375,19 @@
         "end_pos": 641
       },
       {
-        "description": "Rockbusters - Daniel Bedingfield (Dan-yell-bed-in-field)",
-        "start_pos": 1042,
-        "end_pos": 1049
+        "description": "Rockbusters Answer - Blazin' Squad (all the police cars are on fire)",
+        "start_pos": 1028,
+        "end_pos": 1035
       },
       {
-        "description": "Rockbusters - Beyoncé (be-on-see)",
-        "start_pos": 1049,
-        "end_pos": 1075
+        "description": "Rockbusters Answer - Daniel Bedingfield (Dan-yell-bed-in-field)",
+        "start_pos": 1037,
+        "end_pos": 1050
+      },
+      {
+        "description": "Rockbusters Answer - Beyoncé (be-on-see)",
+        "start_pos": 1050,
+        "end_pos": 1055
       },
       {
         "description": "'Wish You Were Here...?'",
@@ -14408,7 +14408,8 @@
       "aspen599",
       "bodyloadhater69",
       "cunter2021",
-      "spookfefe"
+      "spookfefe",
+      "warmans"
     ],
     "trivia": null
   }

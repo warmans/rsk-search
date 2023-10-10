@@ -4,7 +4,7 @@
     "episode": 9,
     "name": "",
     "summary": "",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "release_date": "2002-01-19T00:00:00Z",
     "incomplete": false,
     "bestof": false,
@@ -3880,12 +3880,7 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": {
-          "song_album": "The Definitive Collection",
-          "song_artist": "Stevie Wonder",
-          "song_track": "Living For The City",
-          "spotify_uri": "spotify:track:1O1mCVN5hue4lOOqd5EysZ"
-        },
+        "metadata": null,
         "content": "Stevie Wonder - Livin For The City",
         "notable": false
       },
@@ -6829,25 +6824,14 @@
         "offset_sec": 2034,
         "offset_inferred": true,
         "type": "chat",
-        "actor": "#syn",
-        "metadata": null,
-        "content": "",
-        "notable": false
-      },
-      {
-        "id": "ep-xfm-S1E09-617",
-        "pos": 617,
-        "offset_sec": 2034,
-        "offset_inferred": true,
-        "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Now, what about this, now you know the answer to this, I've done this before, there is one London station...",
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-618",
-        "pos": 618,
+        "id": "ep-xfm-S1E09-617",
+        "pos": 617,
         "offset_sec": 2040,
         "offset_inferred": true,
         "type": "chat",
@@ -6857,8 +6841,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-619",
-        "pos": 619,
+        "id": "ep-xfm-S1E09-618",
+        "pos": 618,
         "offset_sec": 2042,
         "offset_inferred": true,
         "type": "chat",
@@ -6868,8 +6852,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-620",
-        "pos": 620,
+        "id": "ep-xfm-S1E09-619",
+        "pos": 619,
         "offset_sec": 2045,
         "offset_inferred": true,
         "type": "chat",
@@ -6879,8 +6863,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-621",
-        "pos": 621,
+        "id": "ep-xfm-S1E09-620",
+        "pos": 620,
         "offset_sec": 2045,
         "offset_inferred": true,
         "type": "chat",
@@ -6890,8 +6874,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-622",
-        "pos": 622,
+        "id": "ep-xfm-S1E09-621",
+        "pos": 621,
         "offset_sec": 2048,
         "offset_inferred": true,
         "type": "chat",
@@ -6901,8 +6885,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-623",
-        "pos": 623,
+        "id": "ep-xfm-S1E09-622",
+        "pos": 622,
         "offset_sec": 2049,
         "offset_inferred": true,
         "type": "chat",
@@ -6912,8 +6896,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-624",
-        "pos": 624,
+        "id": "ep-xfm-S1E09-623",
+        "pos": 623,
         "offset_sec": 2049,
         "offset_inferred": true,
         "type": "chat",
@@ -6923,8 +6907,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-625",
-        "pos": 625,
+        "id": "ep-xfm-S1E09-624",
+        "pos": 624,
         "offset_sec": 2050,
         "offset_inferred": true,
         "type": "chat",
@@ -6934,8 +6918,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-626",
-        "pos": 626,
+        "id": "ep-xfm-S1E09-625",
+        "pos": 625,
         "offset_sec": 2052,
         "offset_inferred": true,
         "type": "chat",
@@ -6945,8 +6929,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-627",
-        "pos": 627,
+        "id": "ep-xfm-S1E09-626",
+        "pos": 626,
         "offset_sec": 2055,
         "offset_inferred": true,
         "type": "chat",
@@ -6956,8 +6940,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-628",
-        "pos": 628,
+        "id": "ep-xfm-S1E09-627",
+        "pos": 627,
         "offset_sec": 2057,
         "offset_inferred": true,
         "type": "chat",
@@ -6967,8 +6951,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-629",
-        "pos": 629,
+        "id": "ep-xfm-S1E09-628",
+        "pos": 628,
         "offset_sec": 2059,
         "offset_inferred": true,
         "type": "chat",
@@ -6978,8 +6962,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-630",
-        "pos": 630,
+        "id": "ep-xfm-S1E09-629",
+        "pos": 629,
         "offset_sec": 2059,
         "offset_inferred": true,
         "type": "chat",
@@ -6989,8 +6973,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-631",
-        "pos": 631,
+        "id": "ep-xfm-S1E09-630",
+        "pos": 630,
         "offset_sec": 2066,
         "offset_inferred": true,
         "type": "chat",
@@ -7000,8 +6984,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-632",
-        "pos": 632,
+        "id": "ep-xfm-S1E09-631",
+        "pos": 631,
         "offset_sec": 2068,
         "offset_inferred": true,
         "type": "chat",
@@ -7011,8 +6995,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-633",
-        "pos": 633,
+        "id": "ep-xfm-S1E09-632",
+        "pos": 632,
         "offset_sec": 2068,
         "offset_inferred": true,
         "type": "chat",
@@ -7022,8 +7006,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-634",
-        "pos": 634,
+        "id": "ep-xfm-S1E09-633",
+        "pos": 633,
         "offset_sec": 2071,
         "offset_inferred": true,
         "type": "chat",
@@ -7033,8 +7017,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-635",
-        "pos": 635,
+        "id": "ep-xfm-S1E09-634",
+        "pos": 634,
         "offset_sec": 2072,
         "offset_inferred": true,
         "type": "chat",
@@ -7044,8 +7028,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-636",
-        "pos": 636,
+        "id": "ep-xfm-S1E09-635",
+        "pos": 635,
         "offset_sec": 2082,
         "offset_inferred": true,
         "type": "chat",
@@ -7055,8 +7039,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-637",
-        "pos": 637,
+        "id": "ep-xfm-S1E09-636",
+        "pos": 636,
         "offset_sec": 2089,
         "offset_inferred": true,
         "type": "chat",
@@ -7066,8 +7050,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-638",
-        "pos": 638,
+        "id": "ep-xfm-S1E09-637",
+        "pos": 637,
         "offset_sec": 2090,
         "offset_inferred": true,
         "type": "chat",
@@ -7077,8 +7061,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-639",
-        "pos": 639,
+        "id": "ep-xfm-S1E09-638",
+        "pos": 638,
         "offset_sec": 2095,
         "offset_inferred": true,
         "type": "chat",
@@ -7088,8 +7072,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-640",
-        "pos": 640,
+        "id": "ep-xfm-S1E09-639",
+        "pos": 639,
         "offset_sec": 2098,
         "offset_inferred": true,
         "type": "chat",
@@ -7099,8 +7083,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-641",
-        "pos": 641,
+        "id": "ep-xfm-S1E09-640",
+        "pos": 640,
         "offset_sec": 2099,
         "offset_inferred": true,
         "type": "chat",
@@ -7110,8 +7094,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-642",
-        "pos": 642,
+        "id": "ep-xfm-S1E09-641",
+        "pos": 641,
         "offset_sec": 2100,
         "offset_inferred": true,
         "type": "chat",
@@ -7121,8 +7105,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-643",
-        "pos": 643,
+        "id": "ep-xfm-S1E09-642",
+        "pos": 642,
         "offset_sec": 2101,
         "offset_inferred": true,
         "type": "chat",
@@ -7132,8 +7116,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-644",
-        "pos": 644,
+        "id": "ep-xfm-S1E09-643",
+        "pos": 643,
         "offset_sec": 2103,
         "offset_inferred": true,
         "type": "chat",
@@ -7143,8 +7127,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-645",
-        "pos": 645,
+        "id": "ep-xfm-S1E09-644",
+        "pos": 644,
         "offset_sec": 2104,
         "offset_inferred": true,
         "type": "chat",
@@ -7154,8 +7138,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-646",
-        "pos": 646,
+        "id": "ep-xfm-S1E09-645",
+        "pos": 645,
         "offset_sec": 2105,
         "offset_inferred": true,
         "type": "chat",
@@ -7165,8 +7149,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-647",
-        "pos": 647,
+        "id": "ep-xfm-S1E09-646",
+        "pos": 646,
         "offset_sec": 2106,
         "offset_inferred": true,
         "type": "chat",
@@ -7176,8 +7160,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-648",
-        "pos": 648,
+        "id": "ep-xfm-S1E09-647",
+        "pos": 647,
         "offset_sec": 2110,
         "offset_inferred": true,
         "type": "chat",
@@ -7187,8 +7171,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-649",
-        "pos": 649,
+        "id": "ep-xfm-S1E09-648",
+        "pos": 648,
         "offset_sec": 2111,
         "offset_inferred": true,
         "type": "chat",
@@ -7198,8 +7182,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-650",
-        "pos": 650,
+        "id": "ep-xfm-S1E09-649",
+        "pos": 649,
         "offset_sec": 2112,
         "offset_inferred": true,
         "type": "chat",
@@ -7209,8 +7193,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-651",
-        "pos": 651,
+        "id": "ep-xfm-S1E09-650",
+        "pos": 650,
         "offset_sec": 2118,
         "offset_inferred": true,
         "type": "chat",
@@ -7220,8 +7204,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-652",
-        "pos": 652,
+        "id": "ep-xfm-S1E09-651",
+        "pos": 651,
         "offset_sec": 2120,
         "offset_inferred": true,
         "type": "chat",
@@ -7231,8 +7215,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-653",
-        "pos": 653,
+        "id": "ep-xfm-S1E09-652",
+        "pos": 652,
         "offset_sec": 2121,
         "offset_inferred": true,
         "type": "chat",
@@ -7242,8 +7226,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-654",
-        "pos": 654,
+        "id": "ep-xfm-S1E09-653",
+        "pos": 653,
         "offset_sec": 2122,
         "offset_inferred": true,
         "type": "chat",
@@ -7253,8 +7237,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-655",
-        "pos": 655,
+        "id": "ep-xfm-S1E09-654",
+        "pos": 654,
         "offset_sec": 2124,
         "offset_inferred": true,
         "type": "chat",
@@ -7264,8 +7248,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-656",
-        "pos": 656,
+        "id": "ep-xfm-S1E09-655",
+        "pos": 655,
         "offset_sec": 2125,
         "offset_inferred": true,
         "type": "chat",
@@ -7275,8 +7259,8 @@
         "notable": true
       },
       {
-        "id": "ep-xfm-S1E09-657",
-        "pos": 657,
+        "id": "ep-xfm-S1E09-656",
+        "pos": 656,
         "offset_sec": 2125,
         "offset_inferred": true,
         "type": "chat",
@@ -7286,24 +7270,19 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-658",
-        "pos": 658,
+        "id": "ep-xfm-S1E09-657",
+        "pos": 657,
         "offset_sec": 2126,
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": {
-          "song_album": "Veni Vidi Vicious",
-          "song_artist": "The Hives",
-          "song_track": "Hate To Say I Told You So",
-          "spotify_uri": "spotify:track:20j7B6mL9gnNvG3ic6Vwh5"
-        },
+        "metadata": null,
         "content": "The Hives - Hate To Say I Told You So",
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-659",
-        "pos": 659,
+        "id": "ep-xfm-S1E09-658",
+        "pos": 658,
         "offset_sec": 2126,
         "offset_inferred": true,
         "type": "chat",
@@ -7313,8 +7292,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-660",
-        "pos": 660,
+        "id": "ep-xfm-S1E09-659",
+        "pos": 659,
         "offset_sec": 2132,
         "offset_inferred": true,
         "type": "chat",
@@ -7324,8 +7303,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-661",
-        "pos": 661,
+        "id": "ep-xfm-S1E09-660",
+        "pos": 660,
         "offset_sec": 2135,
         "offset_inferred": true,
         "type": "chat",
@@ -7335,8 +7314,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-662",
-        "pos": 662,
+        "id": "ep-xfm-S1E09-661",
+        "pos": 661,
         "offset_sec": 2137,
         "offset_inferred": true,
         "type": "chat",
@@ -7346,8 +7325,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-663",
-        "pos": 663,
+        "id": "ep-xfm-S1E09-662",
+        "pos": 662,
         "offset_sec": 2155,
         "offset_inferred": true,
         "type": "chat",
@@ -7357,8 +7336,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-664",
-        "pos": 664,
+        "id": "ep-xfm-S1E09-663",
+        "pos": 663,
         "offset_sec": 2156,
         "offset_inferred": true,
         "type": "chat",
@@ -7368,8 +7347,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-665",
-        "pos": 665,
+        "id": "ep-xfm-S1E09-664",
+        "pos": 664,
         "offset_sec": 2157,
         "offset_inferred": true,
         "type": "chat",
@@ -7379,8 +7358,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-666",
-        "pos": 666,
+        "id": "ep-xfm-S1E09-665",
+        "pos": 665,
         "offset_sec": 2158,
         "offset_inferred": true,
         "type": "chat",
@@ -7390,8 +7369,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-667",
-        "pos": 667,
+        "id": "ep-xfm-S1E09-666",
+        "pos": 666,
         "offset_sec": 2163,
         "offset_inferred": true,
         "type": "chat",
@@ -7401,8 +7380,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-668",
-        "pos": 668,
+        "id": "ep-xfm-S1E09-667",
+        "pos": 667,
         "offset_sec": 2164,
         "offset_inferred": true,
         "type": "chat",
@@ -7412,8 +7391,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-669",
-        "pos": 669,
+        "id": "ep-xfm-S1E09-668",
+        "pos": 668,
         "offset_sec": 2170,
         "offset_inferred": true,
         "type": "chat",
@@ -7423,8 +7402,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-670",
-        "pos": 670,
+        "id": "ep-xfm-S1E09-669",
+        "pos": 669,
         "offset_sec": 2178,
         "offset_inferred": true,
         "type": "chat",
@@ -7434,8 +7413,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-671",
-        "pos": 671,
+        "id": "ep-xfm-S1E09-670",
+        "pos": 670,
         "offset_sec": 2178,
         "offset_inferred": true,
         "type": "chat",
@@ -7445,8 +7424,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-672",
-        "pos": 672,
+        "id": "ep-xfm-S1E09-671",
+        "pos": 671,
         "offset_sec": 2179,
         "offset_inferred": true,
         "type": "chat",
@@ -7456,8 +7435,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-673",
-        "pos": 673,
+        "id": "ep-xfm-S1E09-672",
+        "pos": 672,
         "offset_sec": 2181,
         "offset_inferred": true,
         "type": "chat",
@@ -7467,8 +7446,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-674",
-        "pos": 674,
+        "id": "ep-xfm-S1E09-673",
+        "pos": 673,
         "offset_sec": 2186,
         "offset_inferred": true,
         "type": "chat",
@@ -7478,8 +7457,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-675",
-        "pos": 675,
+        "id": "ep-xfm-S1E09-674",
+        "pos": 674,
         "offset_sec": 2186,
         "offset_inferred": true,
         "type": "chat",
@@ -7489,8 +7468,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-676",
-        "pos": 676,
+        "id": "ep-xfm-S1E09-675",
+        "pos": 675,
         "offset_sec": 2187,
         "offset_inferred": true,
         "type": "chat",
@@ -7500,8 +7479,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-677",
-        "pos": 677,
+        "id": "ep-xfm-S1E09-676",
+        "pos": 676,
         "offset_sec": 2188,
         "offset_inferred": true,
         "type": "chat",
@@ -7511,8 +7490,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-678",
-        "pos": 678,
+        "id": "ep-xfm-S1E09-677",
+        "pos": 677,
         "offset_sec": 2188,
         "offset_inferred": true,
         "type": "chat",
@@ -7522,8 +7501,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-679",
-        "pos": 679,
+        "id": "ep-xfm-S1E09-678",
+        "pos": 678,
         "offset_sec": 2189,
         "offset_inferred": true,
         "type": "chat",
@@ -7533,8 +7512,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-680",
-        "pos": 680,
+        "id": "ep-xfm-S1E09-679",
+        "pos": 679,
         "offset_sec": 2190,
         "offset_inferred": true,
         "type": "chat",
@@ -7544,8 +7523,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-681",
-        "pos": 681,
+        "id": "ep-xfm-S1E09-680",
+        "pos": 680,
         "offset_sec": 2191,
         "offset_inferred": true,
         "type": "chat",
@@ -7555,8 +7534,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-682",
-        "pos": 682,
+        "id": "ep-xfm-S1E09-681",
+        "pos": 681,
         "offset_sec": 2193,
         "offset_inferred": true,
         "type": "chat",
@@ -7566,8 +7545,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-683",
-        "pos": 683,
+        "id": "ep-xfm-S1E09-682",
+        "pos": 682,
         "offset_sec": 2194,
         "offset_inferred": true,
         "type": "chat",
@@ -7577,8 +7556,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-684",
-        "pos": 684,
+        "id": "ep-xfm-S1E09-683",
+        "pos": 683,
         "offset_sec": 2196,
         "offset_inferred": true,
         "type": "chat",
@@ -7588,8 +7567,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-685",
-        "pos": 685,
+        "id": "ep-xfm-S1E09-684",
+        "pos": 684,
         "offset_sec": 2197,
         "offset_inferred": true,
         "type": "chat",
@@ -7599,8 +7578,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-686",
-        "pos": 686,
+        "id": "ep-xfm-S1E09-685",
+        "pos": 685,
         "offset_sec": 2197,
         "offset_inferred": true,
         "type": "chat",
@@ -7610,8 +7589,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-687",
-        "pos": 687,
+        "id": "ep-xfm-S1E09-686",
+        "pos": 686,
         "offset_sec": 2198,
         "offset_inferred": true,
         "type": "chat",
@@ -7621,8 +7600,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-688",
-        "pos": 688,
+        "id": "ep-xfm-S1E09-687",
+        "pos": 687,
         "offset_sec": 2199,
         "offset_inferred": true,
         "type": "chat",
@@ -7632,8 +7611,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-689",
-        "pos": 689,
+        "id": "ep-xfm-S1E09-688",
+        "pos": 688,
         "offset_sec": 2203,
         "offset_inferred": true,
         "type": "chat",
@@ -7643,8 +7622,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-690",
-        "pos": 690,
+        "id": "ep-xfm-S1E09-689",
+        "pos": 689,
         "offset_sec": 2203,
         "offset_inferred": true,
         "type": "chat",
@@ -7654,8 +7633,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-691",
-        "pos": 691,
+        "id": "ep-xfm-S1E09-690",
+        "pos": 690,
         "offset_sec": 2209,
         "offset_inferred": true,
         "type": "chat",
@@ -7665,8 +7644,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-692",
-        "pos": 692,
+        "id": "ep-xfm-S1E09-691",
+        "pos": 691,
         "offset_sec": 2213,
         "offset_inferred": true,
         "type": "chat",
@@ -7676,8 +7655,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-693",
-        "pos": 693,
+        "id": "ep-xfm-S1E09-692",
+        "pos": 692,
         "offset_sec": 2216,
         "offset_inferred": true,
         "type": "chat",
@@ -7687,8 +7666,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-694",
-        "pos": 694,
+        "id": "ep-xfm-S1E09-693",
+        "pos": 693,
         "offset_sec": 2218,
         "offset_inferred": true,
         "type": "chat",
@@ -7698,8 +7677,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-695",
-        "pos": 695,
+        "id": "ep-xfm-S1E09-694",
+        "pos": 694,
         "offset_sec": 2219,
         "offset_inferred": true,
         "type": "chat",
@@ -7709,8 +7688,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-696",
-        "pos": 696,
+        "id": "ep-xfm-S1E09-695",
+        "pos": 695,
         "offset_sec": 2221,
         "offset_inferred": true,
         "type": "chat",
@@ -7720,8 +7699,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-697",
-        "pos": 697,
+        "id": "ep-xfm-S1E09-696",
+        "pos": 696,
         "offset_sec": 2223,
         "offset_inferred": true,
         "type": "chat",
@@ -7731,8 +7710,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-698",
-        "pos": 698,
+        "id": "ep-xfm-S1E09-697",
+        "pos": 697,
         "offset_sec": 2230,
         "offset_inferred": true,
         "type": "chat",
@@ -7742,8 +7721,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-699",
-        "pos": 699,
+        "id": "ep-xfm-S1E09-698",
+        "pos": 698,
         "offset_sec": 2231,
         "offset_inferred": true,
         "type": "chat",
@@ -7753,8 +7732,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-700",
-        "pos": 700,
+        "id": "ep-xfm-S1E09-699",
+        "pos": 699,
         "offset_sec": 2235,
         "offset_inferred": true,
         "type": "chat",
@@ -7764,8 +7743,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-701",
-        "pos": 701,
+        "id": "ep-xfm-S1E09-700",
+        "pos": 700,
         "offset_sec": 2236,
         "offset_inferred": true,
         "type": "chat",
@@ -7775,8 +7754,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-702",
-        "pos": 702,
+        "id": "ep-xfm-S1E09-701",
+        "pos": 701,
         "offset_sec": 2240,
         "offset_inferred": true,
         "type": "chat",
@@ -7786,8 +7765,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-703",
-        "pos": 703,
+        "id": "ep-xfm-S1E09-702",
+        "pos": 702,
         "offset_sec": 2247,
         "offset_inferred": true,
         "type": "chat",
@@ -7797,8 +7776,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-704",
-        "pos": 704,
+        "id": "ep-xfm-S1E09-703",
+        "pos": 703,
         "offset_sec": 2252,
         "offset_inferred": true,
         "type": "chat",
@@ -7808,8 +7787,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-705",
-        "pos": 705,
+        "id": "ep-xfm-S1E09-704",
+        "pos": 704,
         "offset_sec": 2254,
         "offset_inferred": true,
         "type": "chat",
@@ -7819,8 +7798,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-706",
-        "pos": 706,
+        "id": "ep-xfm-S1E09-705",
+        "pos": 705,
         "offset_sec": 2260,
         "offset_inferred": true,
         "type": "chat",
@@ -7830,8 +7809,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-707",
-        "pos": 707,
+        "id": "ep-xfm-S1E09-706",
+        "pos": 706,
         "offset_sec": 2261,
         "offset_inferred": true,
         "type": "chat",
@@ -7841,8 +7820,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-708",
-        "pos": 708,
+        "id": "ep-xfm-S1E09-707",
+        "pos": 707,
         "offset_sec": 2262,
         "offset_inferred": true,
         "type": "chat",
@@ -7852,8 +7831,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-709",
-        "pos": 709,
+        "id": "ep-xfm-S1E09-708",
+        "pos": 708,
         "offset_sec": 2264,
         "offset_inferred": true,
         "type": "chat",
@@ -7863,8 +7842,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-710",
-        "pos": 710,
+        "id": "ep-xfm-S1E09-709",
+        "pos": 709,
         "offset_sec": 2265,
         "offset_inferred": true,
         "type": "chat",
@@ -7874,8 +7853,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-711",
-        "pos": 711,
+        "id": "ep-xfm-S1E09-710",
+        "pos": 710,
         "offset_sec": 2267,
         "offset_inferred": true,
         "type": "chat",
@@ -7885,8 +7864,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-712",
-        "pos": 712,
+        "id": "ep-xfm-S1E09-711",
+        "pos": 711,
         "offset_sec": 2268,
         "offset_inferred": true,
         "type": "chat",
@@ -7896,8 +7875,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-713",
-        "pos": 713,
+        "id": "ep-xfm-S1E09-712",
+        "pos": 712,
         "offset_sec": 2270,
         "offset_inferred": true,
         "type": "chat",
@@ -7907,8 +7886,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-714",
-        "pos": 714,
+        "id": "ep-xfm-S1E09-713",
+        "pos": 713,
         "offset_sec": 2271,
         "offset_inferred": true,
         "type": "chat",
@@ -7918,8 +7897,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-715",
-        "pos": 715,
+        "id": "ep-xfm-S1E09-714",
+        "pos": 714,
         "offset_sec": 2277,
         "offset_inferred": true,
         "type": "chat",
@@ -7929,8 +7908,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-716",
-        "pos": 716,
+        "id": "ep-xfm-S1E09-715",
+        "pos": 715,
         "offset_sec": 2279,
         "offset_inferred": true,
         "type": "chat",
@@ -7940,8 +7919,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-717",
-        "pos": 717,
+        "id": "ep-xfm-S1E09-716",
+        "pos": 716,
         "offset_sec": 2281,
         "offset_inferred": true,
         "type": "chat",
@@ -7951,8 +7930,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-718",
-        "pos": 718,
+        "id": "ep-xfm-S1E09-717",
+        "pos": 717,
         "offset_sec": 2282,
         "offset_inferred": true,
         "type": "chat",
@@ -7962,8 +7941,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-719",
-        "pos": 719,
+        "id": "ep-xfm-S1E09-718",
+        "pos": 718,
         "offset_sec": 2284,
         "offset_inferred": true,
         "type": "chat",
@@ -7973,8 +7952,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-720",
-        "pos": 720,
+        "id": "ep-xfm-S1E09-719",
+        "pos": 719,
         "offset_sec": 2288,
         "offset_inferred": true,
         "type": "chat",
@@ -7984,8 +7963,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-721",
-        "pos": 721,
+        "id": "ep-xfm-S1E09-720",
+        "pos": 720,
         "offset_sec": 2289,
         "offset_inferred": true,
         "type": "chat",
@@ -7995,8 +7974,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-722",
-        "pos": 722,
+        "id": "ep-xfm-S1E09-721",
+        "pos": 721,
         "offset_sec": 2290,
         "offset_inferred": true,
         "type": "chat",
@@ -8006,8 +7985,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-723",
-        "pos": 723,
+        "id": "ep-xfm-S1E09-722",
+        "pos": 722,
         "offset_sec": 2299,
         "offset_inferred": true,
         "type": "chat",
@@ -8017,8 +7996,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-724",
-        "pos": 724,
+        "id": "ep-xfm-S1E09-723",
+        "pos": 723,
         "offset_sec": 2311,
         "offset_inferred": true,
         "type": "chat",
@@ -8028,8 +8007,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-725",
-        "pos": 725,
+        "id": "ep-xfm-S1E09-724",
+        "pos": 724,
         "offset_sec": 2312,
         "offset_inferred": true,
         "type": "chat",
@@ -8039,8 +8018,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-726",
-        "pos": 726,
+        "id": "ep-xfm-S1E09-725",
+        "pos": 725,
         "offset_sec": 2313,
         "offset_inferred": true,
         "type": "chat",
@@ -8050,8 +8029,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-727",
-        "pos": 727,
+        "id": "ep-xfm-S1E09-726",
+        "pos": 726,
         "offset_sec": 2314,
         "offset_inferred": true,
         "type": "chat",
@@ -8061,8 +8040,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-728",
-        "pos": 728,
+        "id": "ep-xfm-S1E09-727",
+        "pos": 727,
         "offset_sec": 2315,
         "offset_inferred": true,
         "type": "chat",
@@ -8072,8 +8051,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-729",
-        "pos": 729,
+        "id": "ep-xfm-S1E09-728",
+        "pos": 728,
         "offset_sec": 2316,
         "offset_inferred": true,
         "type": "chat",
@@ -8083,8 +8062,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-730",
-        "pos": 730,
+        "id": "ep-xfm-S1E09-729",
+        "pos": 729,
         "offset_sec": 2317,
         "offset_inferred": true,
         "type": "chat",
@@ -8094,8 +8073,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-731",
-        "pos": 731,
+        "id": "ep-xfm-S1E09-730",
+        "pos": 730,
         "offset_sec": 2317,
         "offset_inferred": true,
         "type": "chat",
@@ -8105,8 +8084,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-732",
-        "pos": 732,
+        "id": "ep-xfm-S1E09-731",
+        "pos": 731,
         "offset_sec": 2318,
         "offset_inferred": true,
         "type": "chat",
@@ -8116,8 +8095,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-733",
-        "pos": 733,
+        "id": "ep-xfm-S1E09-732",
+        "pos": 732,
         "offset_sec": 2319,
         "offset_inferred": true,
         "type": "chat",
@@ -8127,8 +8106,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-734",
-        "pos": 734,
+        "id": "ep-xfm-S1E09-733",
+        "pos": 733,
         "offset_sec": 2320,
         "offset_inferred": true,
         "type": "chat",
@@ -8138,8 +8117,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-735",
-        "pos": 735,
+        "id": "ep-xfm-S1E09-734",
+        "pos": 734,
         "offset_sec": 2320,
         "offset_inferred": true,
         "type": "chat",
@@ -8149,8 +8128,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-736",
-        "pos": 736,
+        "id": "ep-xfm-S1E09-735",
+        "pos": 735,
         "offset_sec": 2321,
         "offset_inferred": true,
         "type": "chat",
@@ -8160,8 +8139,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-737",
-        "pos": 737,
+        "id": "ep-xfm-S1E09-736",
+        "pos": 736,
         "offset_sec": 2321,
         "offset_inferred": true,
         "type": "chat",
@@ -8171,8 +8150,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-738",
-        "pos": 738,
+        "id": "ep-xfm-S1E09-737",
+        "pos": 737,
         "offset_sec": 2322,
         "offset_inferred": true,
         "type": "chat",
@@ -8182,8 +8161,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-739",
-        "pos": 739,
+        "id": "ep-xfm-S1E09-738",
+        "pos": 738,
         "offset_sec": 2322,
         "offset_inferred": true,
         "type": "chat",
@@ -8193,8 +8172,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-740",
-        "pos": 740,
+        "id": "ep-xfm-S1E09-739",
+        "pos": 739,
         "offset_sec": 2323,
         "offset_inferred": true,
         "type": "chat",
@@ -8204,8 +8183,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-741",
-        "pos": 741,
+        "id": "ep-xfm-S1E09-740",
+        "pos": 740,
         "offset_sec": 2324,
         "offset_inferred": true,
         "type": "chat",
@@ -8215,8 +8194,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-742",
-        "pos": 742,
+        "id": "ep-xfm-S1E09-741",
+        "pos": 741,
         "offset_sec": 2325,
         "offset_inferred": true,
         "type": "chat",
@@ -8226,8 +8205,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-743",
-        "pos": 743,
+        "id": "ep-xfm-S1E09-742",
+        "pos": 742,
         "offset_sec": 2330,
         "offset_inferred": true,
         "type": "chat",
@@ -8237,8 +8216,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-744",
-        "pos": 744,
+        "id": "ep-xfm-S1E09-743",
+        "pos": 743,
         "offset_sec": 2331,
         "offset_inferred": true,
         "type": "chat",
@@ -8248,8 +8227,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-745",
-        "pos": 745,
+        "id": "ep-xfm-S1E09-744",
+        "pos": 744,
         "offset_sec": 2334,
         "offset_inferred": true,
         "type": "chat",
@@ -8259,8 +8238,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-746",
-        "pos": 746,
+        "id": "ep-xfm-S1E09-745",
+        "pos": 745,
         "offset_sec": 2339,
         "offset_inferred": true,
         "type": "chat",
@@ -8270,8 +8249,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-747",
-        "pos": 747,
+        "id": "ep-xfm-S1E09-746",
+        "pos": 746,
         "offset_sec": 2340,
         "offset_inferred": true,
         "type": "chat",
@@ -8281,8 +8260,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-748",
-        "pos": 748,
+        "id": "ep-xfm-S1E09-747",
+        "pos": 747,
         "offset_sec": 2341,
         "offset_inferred": true,
         "type": "chat",
@@ -8292,8 +8271,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-749",
-        "pos": 749,
+        "id": "ep-xfm-S1E09-748",
+        "pos": 748,
         "offset_sec": 2342,
         "offset_inferred": true,
         "type": "chat",
@@ -8303,8 +8282,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-750",
-        "pos": 750,
+        "id": "ep-xfm-S1E09-749",
+        "pos": 749,
         "offset_sec": 2343,
         "offset_inferred": true,
         "type": "chat",
@@ -8314,8 +8293,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-751",
-        "pos": 751,
+        "id": "ep-xfm-S1E09-750",
+        "pos": 750,
         "offset_sec": 2347,
         "offset_inferred": true,
         "type": "chat",
@@ -8325,8 +8304,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-752",
-        "pos": 752,
+        "id": "ep-xfm-S1E09-751",
+        "pos": 751,
         "offset_sec": 2349,
         "offset_inferred": true,
         "type": "chat",
@@ -8336,8 +8315,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-753",
-        "pos": 753,
+        "id": "ep-xfm-S1E09-752",
+        "pos": 752,
         "offset_sec": 2349,
         "offset_inferred": true,
         "type": "chat",
@@ -8347,8 +8326,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-754",
-        "pos": 754,
+        "id": "ep-xfm-S1E09-753",
+        "pos": 753,
         "offset_sec": 2350,
         "offset_inferred": true,
         "type": "chat",
@@ -8358,8 +8337,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-755",
-        "pos": 755,
+        "id": "ep-xfm-S1E09-754",
+        "pos": 754,
         "offset_sec": 2351,
         "offset_inferred": true,
         "type": "chat",
@@ -8369,8 +8348,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-756",
-        "pos": 756,
+        "id": "ep-xfm-S1E09-755",
+        "pos": 755,
         "offset_sec": 2352,
         "offset_inferred": true,
         "type": "chat",
@@ -8380,8 +8359,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-757",
-        "pos": 757,
+        "id": "ep-xfm-S1E09-756",
+        "pos": 756,
         "offset_sec": 2356,
         "offset_inferred": true,
         "type": "chat",
@@ -8391,8 +8370,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-758",
-        "pos": 758,
+        "id": "ep-xfm-S1E09-757",
+        "pos": 757,
         "offset_sec": 2357,
         "offset_inferred": true,
         "type": "chat",
@@ -8402,8 +8381,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-759",
-        "pos": 759,
+        "id": "ep-xfm-S1E09-758",
+        "pos": 758,
         "offset_sec": 2358,
         "offset_inferred": true,
         "type": "chat",
@@ -8413,8 +8392,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-760",
-        "pos": 760,
+        "id": "ep-xfm-S1E09-759",
+        "pos": 759,
         "offset_sec": 2359,
         "offset_inferred": true,
         "type": "chat",
@@ -8424,8 +8403,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-761",
-        "pos": 761,
+        "id": "ep-xfm-S1E09-760",
+        "pos": 760,
         "offset_sec": 2359,
         "offset_inferred": true,
         "type": "chat",
@@ -8435,8 +8414,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-762",
-        "pos": 762,
+        "id": "ep-xfm-S1E09-761",
+        "pos": 761,
         "offset_sec": 2360,
         "offset_inferred": true,
         "type": "chat",
@@ -8446,8 +8425,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-763",
-        "pos": 763,
+        "id": "ep-xfm-S1E09-762",
+        "pos": 762,
         "offset_sec": 2360,
         "offset_inferred": true,
         "type": "song",
@@ -8462,8 +8441,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-764",
-        "pos": 764,
+        "id": "ep-xfm-S1E09-763",
+        "pos": 763,
         "offset_sec": 2360,
         "offset_inferred": true,
         "type": "song",
@@ -8478,8 +8457,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-765",
-        "pos": 765,
+        "id": "ep-xfm-S1E09-764",
+        "pos": 764,
         "offset_sec": 2360,
         "offset_inferred": true,
         "type": "chat",
@@ -8489,8 +8468,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-766",
-        "pos": 766,
+        "id": "ep-xfm-S1E09-765",
+        "pos": 765,
         "offset_sec": 2374,
         "offset_inferred": true,
         "type": "chat",
@@ -8500,8 +8479,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-767",
-        "pos": 767,
+        "id": "ep-xfm-S1E09-766",
+        "pos": 766,
         "offset_sec": 2375,
         "offset_inferred": true,
         "type": "chat",
@@ -8511,8 +8490,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-768",
-        "pos": 768,
+        "id": "ep-xfm-S1E09-767",
+        "pos": 767,
         "offset_sec": 2377,
         "offset_inferred": true,
         "type": "chat",
@@ -8522,8 +8501,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-769",
-        "pos": 769,
+        "id": "ep-xfm-S1E09-768",
+        "pos": 768,
         "offset_sec": 2378,
         "offset_inferred": true,
         "type": "chat",
@@ -8533,8 +8512,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-770",
-        "pos": 770,
+        "id": "ep-xfm-S1E09-769",
+        "pos": 769,
         "offset_sec": 2380,
         "offset_inferred": true,
         "type": "chat",
@@ -8544,8 +8523,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-771",
-        "pos": 771,
+        "id": "ep-xfm-S1E09-770",
+        "pos": 770,
         "offset_sec": 2380,
         "offset_inferred": true,
         "type": "chat",
@@ -8555,8 +8534,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-772",
-        "pos": 772,
+        "id": "ep-xfm-S1E09-771",
+        "pos": 771,
         "offset_sec": 2382,
         "offset_inferred": true,
         "type": "chat",
@@ -8566,8 +8545,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-773",
-        "pos": 773,
+        "id": "ep-xfm-S1E09-772",
+        "pos": 772,
         "offset_sec": 2386,
         "offset_inferred": true,
         "type": "chat",
@@ -8577,8 +8556,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-774",
-        "pos": 774,
+        "id": "ep-xfm-S1E09-773",
+        "pos": 773,
         "offset_sec": 2394,
         "offset_inferred": true,
         "type": "chat",
@@ -8588,8 +8567,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-775",
-        "pos": 775,
+        "id": "ep-xfm-S1E09-774",
+        "pos": 774,
         "offset_sec": 2394,
         "offset_inferred": true,
         "type": "chat",
@@ -8599,8 +8578,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-776",
-        "pos": 776,
+        "id": "ep-xfm-S1E09-775",
+        "pos": 775,
         "offset_sec": 2395,
         "offset_inferred": true,
         "type": "chat",
@@ -8610,8 +8589,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-777",
-        "pos": 777,
+        "id": "ep-xfm-S1E09-776",
+        "pos": 776,
         "offset_sec": 2395,
         "offset_inferred": true,
         "type": "chat",
@@ -8621,8 +8600,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-778",
-        "pos": 778,
+        "id": "ep-xfm-S1E09-777",
+        "pos": 777,
         "offset_sec": 2396,
         "offset_inferred": true,
         "type": "chat",
@@ -8632,8 +8611,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-779",
-        "pos": 779,
+        "id": "ep-xfm-S1E09-778",
+        "pos": 778,
         "offset_sec": 2400,
         "offset_inferred": true,
         "type": "chat",
@@ -8643,8 +8622,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-780",
-        "pos": 780,
+        "id": "ep-xfm-S1E09-779",
+        "pos": 779,
         "offset_sec": 2415,
         "offset_inferred": true,
         "type": "chat",
@@ -8654,8 +8633,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-781",
-        "pos": 781,
+        "id": "ep-xfm-S1E09-780",
+        "pos": 780,
         "offset_sec": 2416,
         "offset_inferred": true,
         "type": "chat",
@@ -8665,8 +8644,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-782",
-        "pos": 782,
+        "id": "ep-xfm-S1E09-781",
+        "pos": 781,
         "offset_sec": 2439,
         "offset_inferred": true,
         "type": "chat",
@@ -8676,8 +8655,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-783",
-        "pos": 783,
+        "id": "ep-xfm-S1E09-782",
+        "pos": 782,
         "offset_sec": 2440,
         "offset_inferred": true,
         "type": "chat",
@@ -8687,8 +8666,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-784",
-        "pos": 784,
+        "id": "ep-xfm-S1E09-783",
+        "pos": 783,
         "offset_sec": 2443,
         "offset_inferred": true,
         "type": "chat",
@@ -8698,8 +8677,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-785",
-        "pos": 785,
+        "id": "ep-xfm-S1E09-784",
+        "pos": 784,
         "offset_sec": 2445,
         "offset_inferred": true,
         "type": "chat",
@@ -8709,8 +8688,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-786",
-        "pos": 786,
+        "id": "ep-xfm-S1E09-785",
+        "pos": 785,
         "offset_sec": 2446,
         "offset_inferred": true,
         "type": "chat",
@@ -8720,8 +8699,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-787",
-        "pos": 787,
+        "id": "ep-xfm-S1E09-786",
+        "pos": 786,
         "offset_sec": 2447,
         "offset_inferred": true,
         "type": "chat",
@@ -8731,8 +8710,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-788",
-        "pos": 788,
+        "id": "ep-xfm-S1E09-787",
+        "pos": 787,
         "offset_sec": 2449,
         "offset_inferred": true,
         "type": "chat",
@@ -8742,8 +8721,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-789",
-        "pos": 789,
+        "id": "ep-xfm-S1E09-788",
+        "pos": 788,
         "offset_sec": 2451,
         "offset_inferred": true,
         "type": "chat",
@@ -8753,8 +8732,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-790",
-        "pos": 790,
+        "id": "ep-xfm-S1E09-789",
+        "pos": 789,
         "offset_sec": 2468,
         "offset_inferred": true,
         "type": "chat",
@@ -8764,8 +8743,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-791",
-        "pos": 791,
+        "id": "ep-xfm-S1E09-790",
+        "pos": 790,
         "offset_sec": 2469,
         "offset_inferred": true,
         "type": "chat",
@@ -8775,8 +8754,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-792",
-        "pos": 792,
+        "id": "ep-xfm-S1E09-791",
+        "pos": 791,
         "offset_sec": 2480,
         "offset_inferred": true,
         "type": "chat",
@@ -8786,8 +8765,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-793",
-        "pos": 793,
+        "id": "ep-xfm-S1E09-792",
+        "pos": 792,
         "offset_sec": 2481,
         "offset_inferred": true,
         "type": "chat",
@@ -8797,8 +8776,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-794",
-        "pos": 794,
+        "id": "ep-xfm-S1E09-793",
+        "pos": 793,
         "offset_sec": 2497,
         "offset_inferred": true,
         "type": "chat",
@@ -8808,8 +8787,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-795",
-        "pos": 795,
+        "id": "ep-xfm-S1E09-794",
+        "pos": 794,
         "offset_sec": 2500,
         "offset_inferred": true,
         "type": "chat",
@@ -8819,8 +8798,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-796",
-        "pos": 796,
+        "id": "ep-xfm-S1E09-795",
+        "pos": 795,
         "offset_sec": 2501,
         "offset_inferred": true,
         "type": "chat",
@@ -8830,8 +8809,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-797",
-        "pos": 797,
+        "id": "ep-xfm-S1E09-796",
+        "pos": 796,
         "offset_sec": 2505,
         "offset_inferred": true,
         "type": "chat",
@@ -8841,8 +8820,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-798",
-        "pos": 798,
+        "id": "ep-xfm-S1E09-797",
+        "pos": 797,
         "offset_sec": 2550,
         "offset_inferred": true,
         "type": "chat",
@@ -8852,8 +8831,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-799",
-        "pos": 799,
+        "id": "ep-xfm-S1E09-798",
+        "pos": 798,
         "offset_sec": 2559,
         "offset_inferred": true,
         "type": "chat",
@@ -8863,8 +8842,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-800",
-        "pos": 800,
+        "id": "ep-xfm-S1E09-799",
+        "pos": 799,
         "offset_sec": 2570,
         "offset_inferred": true,
         "type": "chat",
@@ -8874,8 +8853,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-801",
-        "pos": 801,
+        "id": "ep-xfm-S1E09-800",
+        "pos": 800,
         "offset_sec": 2571,
         "offset_inferred": true,
         "type": "chat",
@@ -8885,8 +8864,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-802",
-        "pos": 802,
+        "id": "ep-xfm-S1E09-801",
+        "pos": 801,
         "offset_sec": 2576,
         "offset_inferred": true,
         "type": "chat",
@@ -8896,8 +8875,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-803",
-        "pos": 803,
+        "id": "ep-xfm-S1E09-802",
+        "pos": 802,
         "offset_sec": 2578,
         "offset_inferred": true,
         "type": "chat",
@@ -8907,8 +8886,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-804",
-        "pos": 804,
+        "id": "ep-xfm-S1E09-803",
+        "pos": 803,
         "offset_sec": 2581,
         "offset_inferred": true,
         "type": "chat",
@@ -8918,8 +8897,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-805",
-        "pos": 805,
+        "id": "ep-xfm-S1E09-804",
+        "pos": 804,
         "offset_sec": 2583,
         "offset_inferred": true,
         "type": "chat",
@@ -8929,8 +8908,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-806",
-        "pos": 806,
+        "id": "ep-xfm-S1E09-805",
+        "pos": 805,
         "offset_sec": 2587,
         "offset_inferred": true,
         "type": "chat",
@@ -8940,8 +8919,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-807",
-        "pos": 807,
+        "id": "ep-xfm-S1E09-806",
+        "pos": 806,
         "offset_sec": 2588,
         "offset_inferred": true,
         "type": "chat",
@@ -8951,8 +8930,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-808",
-        "pos": 808,
+        "id": "ep-xfm-S1E09-807",
+        "pos": 807,
         "offset_sec": 2591,
         "offset_inferred": true,
         "type": "chat",
@@ -8962,8 +8941,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-809",
-        "pos": 809,
+        "id": "ep-xfm-S1E09-808",
+        "pos": 808,
         "offset_sec": 2596,
         "offset_inferred": true,
         "type": "chat",
@@ -8973,8 +8952,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-810",
-        "pos": 810,
+        "id": "ep-xfm-S1E09-809",
+        "pos": 809,
         "offset_sec": 2635,
         "offset_inferred": true,
         "type": "chat",
@@ -8984,8 +8963,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-811",
-        "pos": 811,
+        "id": "ep-xfm-S1E09-810",
+        "pos": 810,
         "offset_sec": 2638,
         "offset_inferred": true,
         "type": "chat",
@@ -8995,8 +8974,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-812",
-        "pos": 812,
+        "id": "ep-xfm-S1E09-811",
+        "pos": 811,
         "offset_sec": 2641,
         "offset_inferred": true,
         "type": "chat",
@@ -9006,8 +8985,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-813",
-        "pos": 813,
+        "id": "ep-xfm-S1E09-812",
+        "pos": 812,
         "offset_sec": 2647,
         "offset_inferred": true,
         "type": "chat",
@@ -9017,8 +8996,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-814",
-        "pos": 814,
+        "id": "ep-xfm-S1E09-813",
+        "pos": 813,
         "offset_sec": 2648,
         "offset_inferred": true,
         "type": "chat",
@@ -9028,8 +9007,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-815",
-        "pos": 815,
+        "id": "ep-xfm-S1E09-814",
+        "pos": 814,
         "offset_sec": 2649,
         "offset_inferred": true,
         "type": "chat",
@@ -9039,8 +9018,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-816",
-        "pos": 816,
+        "id": "ep-xfm-S1E09-815",
+        "pos": 815,
         "offset_sec": 2653,
         "offset_inferred": true,
         "type": "chat",
@@ -9050,8 +9029,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-817",
-        "pos": 817,
+        "id": "ep-xfm-S1E09-816",
+        "pos": 816,
         "offset_sec": 2658,
         "offset_inferred": true,
         "type": "chat",
@@ -9061,8 +9040,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-818",
-        "pos": 818,
+        "id": "ep-xfm-S1E09-817",
+        "pos": 817,
         "offset_sec": 2659,
         "offset_inferred": true,
         "type": "chat",
@@ -9072,8 +9051,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-819",
-        "pos": 819,
+        "id": "ep-xfm-S1E09-818",
+        "pos": 818,
         "offset_sec": 2675,
         "offset_inferred": true,
         "type": "chat",
@@ -9083,8 +9062,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-820",
-        "pos": 820,
+        "id": "ep-xfm-S1E09-819",
+        "pos": 819,
         "offset_sec": 2676,
         "offset_inferred": true,
         "type": "chat",
@@ -9094,8 +9073,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-821",
-        "pos": 821,
+        "id": "ep-xfm-S1E09-820",
+        "pos": 820,
         "offset_sec": 2683,
         "offset_inferred": true,
         "type": "chat",
@@ -9105,8 +9084,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-822",
-        "pos": 822,
+        "id": "ep-xfm-S1E09-821",
+        "pos": 821,
         "offset_sec": 2685,
         "offset_inferred": true,
         "type": "chat",
@@ -9116,8 +9095,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-823",
-        "pos": 823,
+        "id": "ep-xfm-S1E09-822",
+        "pos": 822,
         "offset_sec": 2687,
         "offset_inferred": true,
         "type": "chat",
@@ -9127,8 +9106,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-824",
-        "pos": 824,
+        "id": "ep-xfm-S1E09-823",
+        "pos": 823,
         "offset_sec": 2692,
         "offset_inferred": true,
         "type": "chat",
@@ -9138,8 +9117,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-825",
-        "pos": 825,
+        "id": "ep-xfm-S1E09-824",
+        "pos": 824,
         "offset_sec": 2697,
         "offset_inferred": true,
         "type": "chat",
@@ -9149,8 +9128,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-826",
-        "pos": 826,
+        "id": "ep-xfm-S1E09-825",
+        "pos": 825,
         "offset_sec": 2700,
         "offset_inferred": true,
         "type": "chat",
@@ -9160,8 +9139,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-827",
-        "pos": 827,
+        "id": "ep-xfm-S1E09-826",
+        "pos": 826,
         "offset_sec": 2705,
         "offset_inferred": true,
         "type": "chat",
@@ -9171,8 +9150,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-828",
-        "pos": 828,
+        "id": "ep-xfm-S1E09-827",
+        "pos": 827,
         "offset_sec": 2709,
         "offset_inferred": true,
         "type": "chat",
@@ -9182,8 +9161,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-829",
-        "pos": 829,
+        "id": "ep-xfm-S1E09-828",
+        "pos": 828,
         "offset_sec": 2710,
         "offset_inferred": true,
         "type": "chat",
@@ -9193,8 +9172,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-830",
-        "pos": 830,
+        "id": "ep-xfm-S1E09-829",
+        "pos": 829,
         "offset_sec": 2710,
         "offset_inferred": true,
         "type": "chat",
@@ -9204,8 +9183,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-831",
-        "pos": 831,
+        "id": "ep-xfm-S1E09-830",
+        "pos": 830,
         "offset_sec": 2711,
         "offset_inferred": true,
         "type": "chat",
@@ -9215,8 +9194,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-832",
-        "pos": 832,
+        "id": "ep-xfm-S1E09-831",
+        "pos": 831,
         "offset_sec": 2712,
         "offset_inferred": true,
         "type": "chat",
@@ -9226,8 +9205,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-833",
-        "pos": 833,
+        "id": "ep-xfm-S1E09-832",
+        "pos": 832,
         "offset_sec": 2714,
         "offset_inferred": true,
         "type": "chat",
@@ -9237,8 +9216,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-834",
-        "pos": 834,
+        "id": "ep-xfm-S1E09-833",
+        "pos": 833,
         "offset_sec": 2716,
         "offset_inferred": true,
         "type": "chat",
@@ -9248,8 +9227,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-835",
-        "pos": 835,
+        "id": "ep-xfm-S1E09-834",
+        "pos": 834,
         "offset_sec": 2740,
         "offset_inferred": true,
         "type": "chat",
@@ -9259,8 +9238,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-836",
-        "pos": 836,
+        "id": "ep-xfm-S1E09-835",
+        "pos": 835,
         "offset_sec": 2740,
         "offset_inferred": true,
         "type": "chat",
@@ -9270,8 +9249,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-837",
-        "pos": 837,
+        "id": "ep-xfm-S1E09-836",
+        "pos": 836,
         "offset_sec": 2742,
         "offset_inferred": true,
         "type": "chat",
@@ -9281,8 +9260,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-838",
-        "pos": 838,
+        "id": "ep-xfm-S1E09-837",
+        "pos": 837,
         "offset_sec": 2743,
         "offset_inferred": true,
         "type": "chat",
@@ -9292,8 +9271,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-839",
-        "pos": 839,
+        "id": "ep-xfm-S1E09-838",
+        "pos": 838,
         "offset_sec": 2752,
         "offset_inferred": true,
         "type": "chat",
@@ -9303,8 +9282,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-840",
-        "pos": 840,
+        "id": "ep-xfm-S1E09-839",
+        "pos": 839,
         "offset_sec": 2754,
         "offset_inferred": true,
         "type": "chat",
@@ -9314,8 +9293,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-841",
-        "pos": 841,
+        "id": "ep-xfm-S1E09-840",
+        "pos": 840,
         "offset_sec": 2756,
         "offset_inferred": true,
         "type": "chat",
@@ -9325,8 +9304,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-842",
-        "pos": 842,
+        "id": "ep-xfm-S1E09-841",
+        "pos": 841,
         "offset_sec": 2760,
         "offset_inferred": true,
         "type": "chat",
@@ -9336,8 +9315,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-843",
-        "pos": 843,
+        "id": "ep-xfm-S1E09-842",
+        "pos": 842,
         "offset_sec": 2761,
         "offset_inferred": true,
         "type": "chat",
@@ -9347,8 +9326,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-844",
-        "pos": 844,
+        "id": "ep-xfm-S1E09-843",
+        "pos": 843,
         "offset_sec": 2763,
         "offset_inferred": true,
         "type": "chat",
@@ -9358,8 +9337,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-845",
-        "pos": 845,
+        "id": "ep-xfm-S1E09-844",
+        "pos": 844,
         "offset_sec": 2764,
         "offset_inferred": true,
         "type": "chat",
@@ -9369,8 +9348,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-846",
-        "pos": 846,
+        "id": "ep-xfm-S1E09-845",
+        "pos": 845,
         "offset_sec": 2766,
         "offset_inferred": true,
         "type": "chat",
@@ -9380,8 +9359,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-847",
-        "pos": 847,
+        "id": "ep-xfm-S1E09-846",
+        "pos": 846,
         "offset_sec": 2767,
         "offset_inferred": true,
         "type": "chat",
@@ -9391,8 +9370,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-848",
-        "pos": 848,
+        "id": "ep-xfm-S1E09-847",
+        "pos": 847,
         "offset_sec": 2770,
         "offset_inferred": true,
         "type": "chat",
@@ -9402,8 +9381,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-849",
-        "pos": 849,
+        "id": "ep-xfm-S1E09-848",
+        "pos": 848,
         "offset_sec": 2770,
         "offset_inferred": true,
         "type": "chat",
@@ -9413,8 +9392,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-850",
-        "pos": 850,
+        "id": "ep-xfm-S1E09-849",
+        "pos": 849,
         "offset_sec": 2780,
         "offset_inferred": true,
         "type": "chat",
@@ -9424,8 +9403,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-851",
-        "pos": 851,
+        "id": "ep-xfm-S1E09-850",
+        "pos": 850,
         "offset_sec": 2781,
         "offset_inferred": true,
         "type": "song",
@@ -9440,8 +9419,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-852",
-        "pos": 852,
+        "id": "ep-xfm-S1E09-851",
+        "pos": 851,
         "offset_sec": 2781,
         "offset_inferred": true,
         "type": "chat",
@@ -9451,8 +9430,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-853",
-        "pos": 853,
+        "id": "ep-xfm-S1E09-852",
+        "pos": 852,
         "offset_sec": 2784,
         "offset_inferred": true,
         "type": "chat",
@@ -9462,8 +9441,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-854",
-        "pos": 854,
+        "id": "ep-xfm-S1E09-853",
+        "pos": 853,
         "offset_sec": 2788,
         "offset_inferred": true,
         "type": "chat",
@@ -9473,8 +9452,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-855",
-        "pos": 855,
+        "id": "ep-xfm-S1E09-854",
+        "pos": 854,
         "offset_sec": 2797,
         "offset_inferred": true,
         "type": "chat",
@@ -9484,8 +9463,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-856",
-        "pos": 856,
+        "id": "ep-xfm-S1E09-855",
+        "pos": 855,
         "offset_sec": 2797,
         "offset_inferred": true,
         "type": "chat",
@@ -9495,8 +9474,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-857",
-        "pos": 857,
+        "id": "ep-xfm-S1E09-856",
+        "pos": 856,
         "offset_sec": 2799,
         "offset_inferred": true,
         "type": "chat",
@@ -9506,8 +9485,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-858",
-        "pos": 858,
+        "id": "ep-xfm-S1E09-857",
+        "pos": 857,
         "offset_sec": 2800,
         "offset_inferred": true,
         "type": "chat",
@@ -9517,8 +9496,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-859",
-        "pos": 859,
+        "id": "ep-xfm-S1E09-858",
+        "pos": 858,
         "offset_sec": 2801,
         "offset_inferred": true,
         "type": "chat",
@@ -9528,8 +9507,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-860",
-        "pos": 860,
+        "id": "ep-xfm-S1E09-859",
+        "pos": 859,
         "offset_sec": 2803,
         "offset_inferred": true,
         "type": "chat",
@@ -9539,8 +9518,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-861",
-        "pos": 861,
+        "id": "ep-xfm-S1E09-860",
+        "pos": 860,
         "offset_sec": 2805,
         "offset_inferred": true,
         "type": "chat",
@@ -9550,8 +9529,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-862",
-        "pos": 862,
+        "id": "ep-xfm-S1E09-861",
+        "pos": 861,
         "offset_sec": 2806,
         "offset_inferred": true,
         "type": "chat",
@@ -9561,8 +9540,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-863",
-        "pos": 863,
+        "id": "ep-xfm-S1E09-862",
+        "pos": 862,
         "offset_sec": 2808,
         "offset_inferred": true,
         "type": "chat",
@@ -9572,8 +9551,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-864",
-        "pos": 864,
+        "id": "ep-xfm-S1E09-863",
+        "pos": 863,
         "offset_sec": 2810,
         "offset_inferred": true,
         "type": "chat",
@@ -9583,8 +9562,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-865",
-        "pos": 865,
+        "id": "ep-xfm-S1E09-864",
+        "pos": 864,
         "offset_sec": 2811,
         "offset_inferred": true,
         "type": "chat",
@@ -9594,8 +9573,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-866",
-        "pos": 866,
+        "id": "ep-xfm-S1E09-865",
+        "pos": 865,
         "offset_sec": 2812,
         "offset_inferred": true,
         "type": "chat",
@@ -9605,8 +9584,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-867",
-        "pos": 867,
+        "id": "ep-xfm-S1E09-866",
+        "pos": 866,
         "offset_sec": 2825,
         "offset_inferred": true,
         "type": "chat",
@@ -9616,8 +9595,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-868",
-        "pos": 868,
+        "id": "ep-xfm-S1E09-867",
+        "pos": 867,
         "offset_sec": 2826,
         "offset_inferred": true,
         "type": "chat",
@@ -9627,8 +9606,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-869",
-        "pos": 869,
+        "id": "ep-xfm-S1E09-868",
+        "pos": 868,
         "offset_sec": 2828,
         "offset_inferred": true,
         "type": "chat",
@@ -9638,8 +9617,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-870",
-        "pos": 870,
+        "id": "ep-xfm-S1E09-869",
+        "pos": 869,
         "offset_sec": 2831,
         "offset_inferred": true,
         "type": "chat",
@@ -9649,8 +9628,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-871",
-        "pos": 871,
+        "id": "ep-xfm-S1E09-870",
+        "pos": 870,
         "offset_sec": 2833,
         "offset_inferred": true,
         "type": "chat",
@@ -9660,8 +9639,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-872",
-        "pos": 872,
+        "id": "ep-xfm-S1E09-871",
+        "pos": 871,
         "offset_sec": 2834,
         "offset_inferred": true,
         "type": "chat",
@@ -9671,8 +9650,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-873",
-        "pos": 873,
+        "id": "ep-xfm-S1E09-872",
+        "pos": 872,
         "offset_sec": 2835,
         "offset_inferred": true,
         "type": "chat",
@@ -9682,8 +9661,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-874",
-        "pos": 874,
+        "id": "ep-xfm-S1E09-873",
+        "pos": 873,
         "offset_sec": 2841,
         "offset_inferred": true,
         "type": "chat",
@@ -9693,8 +9672,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-875",
-        "pos": 875,
+        "id": "ep-xfm-S1E09-874",
+        "pos": 874,
         "offset_sec": 2845,
         "offset_inferred": true,
         "type": "chat",
@@ -9704,8 +9683,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-876",
-        "pos": 876,
+        "id": "ep-xfm-S1E09-875",
+        "pos": 875,
         "offset_sec": 2846,
         "offset_inferred": true,
         "type": "chat",
@@ -9715,8 +9694,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-877",
-        "pos": 877,
+        "id": "ep-xfm-S1E09-876",
+        "pos": 876,
         "offset_sec": 2849,
         "offset_inferred": true,
         "type": "chat",
@@ -9726,8 +9705,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-878",
-        "pos": 878,
+        "id": "ep-xfm-S1E09-877",
+        "pos": 877,
         "offset_sec": 2849,
         "offset_inferred": true,
         "type": "chat",
@@ -9737,8 +9716,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-879",
-        "pos": 879,
+        "id": "ep-xfm-S1E09-878",
+        "pos": 878,
         "offset_sec": 2852,
         "offset_inferred": true,
         "type": "chat",
@@ -9748,8 +9727,8 @@
         "notable": true
       },
       {
-        "id": "ep-xfm-S1E09-880",
-        "pos": 880,
+        "id": "ep-xfm-S1E09-879",
+        "pos": 879,
         "offset_sec": 2857,
         "offset_inferred": true,
         "type": "chat",
@@ -9759,8 +9738,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-881",
-        "pos": 881,
+        "id": "ep-xfm-S1E09-880",
+        "pos": 880,
         "offset_sec": 2866,
         "offset_inferred": true,
         "type": "chat",
@@ -9770,8 +9749,8 @@
         "notable": false
       },
       {
-        "id": "ep-xfm-S1E09-882",
-        "pos": 882,
+        "id": "ep-xfm-S1E09-881",
+        "pos": 881,
         "offset_sec": 2866,
         "offset_inferred": true,
         "type": "song",
@@ -9860,47 +9839,53 @@
       {
         "description": "There's one London station without vowels",
         "start_pos": 616,
-        "end_pos": 630
+        "end_pos": 629
       },
       {
         "description": "Dr Fox is a bit of a knob",
-        "start_pos": 630,
-        "end_pos": 649
+        "start_pos": 629,
+        "end_pos": 648
       },
       {
         "description": "The lads have finally come up with a competition question and have a phone-in",
-        "start_pos": 658,
-        "end_pos": 762
+        "start_pos": 657,
+        "end_pos": 761
       },
       {
         "description": "Steve's anecdote about a train flap",
-        "start_pos": 772,
-        "end_pos": 795
+        "start_pos": 771,
+        "end_pos": 794
       },
       {
         "description": "Steve's anecdote about an unattended bag",
-        "start_pos": 795,
-        "end_pos": 815
+        "start_pos": 794,
+        "end_pos": 814
       },
       {
         "description": "Ricky was caught by the fashion police in his youth",
-        "start_pos": 815,
-        "end_pos": 831
+        "start_pos": 814,
+        "end_pos": 830
       },
       {
         "description": "Ricky's embarrassing anecdote about a fireman",
-        "start_pos": 831,
-        "end_pos": 847
+        "start_pos": 830,
+        "end_pos": 846
       },
       {
         "description": "RSK sum up the show with some swearing",
-        "start_pos": 851,
-        "end_pos": 882
+        "start_pos": 850,
+        "end_pos": 881
       }
     ],
     "contributors": [
       "EarthlingCalling",
       "warmans"
     ],
-    "trivia": null
+    "trivia": [
+      {
+        "description": "The question should be \"Which London underground station has only ONE vowel in the name\", not \"no vowels\".",
+        "start_pos": 616,
+        "end_pos": 629
+      }
+    ]
   }

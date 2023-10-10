@@ -115,9 +115,14 @@ func (s *Search) Search(ctx context.Context, f filter.Filter, page int32) (*api.
 						innerErr = err
 						return false
 					}
+					// it's possible the episode won't be found, if so skip this result
+					if episodeID == "" {
+						s.logger.Warn("failed to find dialog line, is the DB out of sync with the index?", zap.String("dialog_id", string(value)))
+						return true
+					}
 					ep, err := s.episodeCache.GetEpisode(episodeID)
 					if err != nil {
-						innerErr = err
+						innerErr = errors.Wrapf(err, "episode ID: %s", episodeID)
 						return false
 					}
 					result.Episode = ep.ShortProto(fmt.Sprintf(s.audioUriPattern, ep.ShortID()))
@@ -135,14 +140,16 @@ func (s *Search) Search(ctx context.Context, f filter.Filter, page int32) (*api.
 				return fmt.Errorf("error accessing stored fields: %v", err)
 			}
 			if innerErr != nil {
-				return fmt.Errorf("error processing result: %v", err)
+				return fmt.Errorf("error processing result: %v", innerErr)
 			}
 			return nil
 		})
 		if err != nil {
 			return nil, err
 		}
-		res.Results = append(res.Results, result)
+		if result.Episode != nil {
+			res.Results = append(res.Results, result)
+		}
 
 		if next, err = dmi.Next(); err != nil {
 			return nil, err
