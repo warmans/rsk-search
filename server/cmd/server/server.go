@@ -14,6 +14,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/oauth"
 	"github.com/warmans/rsk-search/pkg/pledge"
 	"github.com/warmans/rsk-search/pkg/reward"
+	"github.com/warmans/rsk-search/pkg/search"
 	v2 "github.com/warmans/rsk-search/pkg/search/v2"
 	"github.com/warmans/rsk-search/pkg/sentry"
 	"github.com/warmans/rsk-search/pkg/server"
@@ -113,7 +114,8 @@ func ServerCmd() *cobra.Command {
 			if err != nil {
 				return err
 			}
-			search := v2.NewSearch(rskIndex, readOnlyStoreConn, episodeCache, srvCfg.AudioUriPattern, logger)
+			searcher := v2.NewSearch(rskIndex, readOnlyStoreConn, episodeCache, srvCfg.AudioUriPattern, logger)
+			searcher = search.InstrumentSearcher(searcher, logger)
 
 			// DB is persistent and will retain data between deployments
 			logger.Info("Init persistent DB...")
@@ -131,7 +133,7 @@ func ServerCmd() *cobra.Command {
 				return err
 			}
 
-			/// setup rewards worker
+			// setup rewards worker
 			worker := reward.NewWorker(persistentDBConn, logger, rewardCfg)
 			go func() {
 				if err := worker.Start(); err != nil {
@@ -195,7 +197,7 @@ func ServerCmd() *cobra.Command {
 				grpc.NewSearchService(
 					logger,
 					srvCfg,
-					search,
+					searcher,
 					readOnlyStoreConn,
 					persistentDBConn,
 					auth,

@@ -7,6 +7,9 @@ import (
 )
 
 func MustPrint(f Filter) string {
+	if f == nil {
+		return ""
+	}
 	s, err := Print(f)
 	if err != nil {
 		panic(err)
