@@ -38,5 +38,8 @@ func RootCmd() *cobra.Command {
 	root.AddCommand(TranscribeAssemblyAICmd())
 	root.AddCommand(AssemblyAI2Dialog())
 
+	//misc
+	root.AddCommand(CountWords())
+
 	return root
 }

@@ -14,48 +14,8 @@ const SlowQueryThresholdSeconds float64 = 1
 
 var stdBuckets = []float64{0.1, 0.25, 0.5, 1, 2, 5, 10, 20}
 
-type metrics struct {
-	queryDurationSeconds      prometheus.Histogram
-	predictionDurationSeconds prometheus.Histogram
-	listTermsDurationSeconds  prometheus.Histogram
-}
-
-func newMetrics() *metrics {
-	m := &metrics{
-		queryDurationSeconds: prometheus.NewHistogram(
-			prometheus.HistogramOpts{
-				Namespace: "search",
-				Subsystem: "searcher",
-				Name:      "query_duration_seconds",
-				Help:      "Num seconds taken to execute search",
-				Buckets:   stdBuckets,
-			},
-		),
-		predictionDurationSeconds: prometheus.NewHistogram(
-			prometheus.HistogramOpts{
-				Namespace: "search",
-				Subsystem: "searcher",
-				Name:      "prediction_duration_seconds",
-				Help:      "Num seconds taken to execute query prediction",
-				Buckets:   stdBuckets,
-			},
-		),
-		listTermsDurationSeconds: prometheus.NewHistogram(
-			prometheus.HistogramOpts{
-				Namespace: "search",
-				Subsystem: "searcher",
-				Name:      "list_terms_duration_seconds",
-				Help:      "Num seconds taken to execute term list",
-				Buckets:   stdBuckets,
-			},
-		),
-	}
-	prometheus.DefaultRegisterer.MustRegister(
-		m.queryDurationSeconds,
-		m.predictionDurationSeconds,
-		m.listTermsDurationSeconds,
-	)
-	return m
+func InstrumentSearcher(s Searcher, logger *zap.Logger) Searcher {
+	return &InstrumentedSearcher{s: s, m: newMetrics(), logger: logger}
 }
 
 type InstrumentedSearcher struct {
@@ -110,6 +70,46 @@ func (i *InstrumentedSearcher) ListTerms(fieldName string, prefix string) (model
 	return i.s.ListTerms(fieldName, prefix)
 }
 
-func InstrumentSearcher(s Searcher, logger *zap.Logger) Searcher {
-	return &InstrumentedSearcher{s: s, m: newMetrics(), logger: logger}
+type metrics struct {
+	queryDurationSeconds      prometheus.Histogram
+	predictionDurationSeconds prometheus.Histogram
+	listTermsDurationSeconds  prometheus.Histogram
+}
+
+func newMetrics() *metrics {
+	m := &metrics{
+		queryDurationSeconds: prometheus.NewHistogram(
+			prometheus.HistogramOpts{
+				Namespace: "search",
+				Subsystem: "searcher",
+				Name:      "query_duration_seconds",
+				Help:      "Num seconds taken to execute search",
+				Buckets:   stdBuckets,
+			},
+		),
+		predictionDurationSeconds: prometheus.NewHistogram(
+			prometheus.HistogramOpts{
+				Namespace: "search",
+				Subsystem: "searcher",
+				Name:      "prediction_duration_seconds",
+				Help:      "Num seconds taken to execute query prediction",
+				Buckets:   stdBuckets,
+			},
+		),
+		listTermsDurationSeconds: prometheus.NewHistogram(
+			prometheus.HistogramOpts{
+				Namespace: "search",
+				Subsystem: "searcher",
+				Name:      "list_terms_duration_seconds",
+				Help:      "Num seconds taken to execute term list",
+				Buckets:   stdBuckets,
+			},
+		),
+	}
+	prometheus.DefaultRegisterer.MustRegister(
+		m.queryDurationSeconds,
+		m.predictionDurationSeconds,
+		m.listTermsDurationSeconds,
+	)
+	return m
 }
