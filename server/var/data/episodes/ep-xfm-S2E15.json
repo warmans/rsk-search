@@ -4,7 +4,7 @@
     "episode": 15,
     "name": "",
     "summary": "",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "release_date": "2002-11-30T00:00:00Z",
     "incomplete": false,
     "bestof": false,
@@ -1747,12 +1747,7 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": {
-          "song_album": "Comfort in Sound",
-          "song_artist": "Feeder",
-          "song_track": "Just The Way I'm Feeling",
-          "spotify_uri": "spotify:track:1zg4NCQ3vHLn3MeaDBPm3s"
-        },
+        "metadata": null,
         "content": "Feeder - Just the Way I'm Feeling",
         "notable": false
       },
@@ -18011,9 +18006,9 @@
     ],
     "trivia": [
       {
-        "description": "![the poster](/dl/media/file/poster-campaign.jpg)",
+        "description": "![the poster](/dl/media/file/poster-campaign.jpg)\n![the poster](/dl/media/file/7pc1lhf5gi241.png)",
         "start_pos": 19,
-        "end_pos": 33
+        "end_pos": 42
       },
       {
         "description": "![Body Yoga](/dl/media/file/prize-body-yoga.jpg)",

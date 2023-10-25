@@ -4,7 +4,7 @@
     "episode": 8,
     "name": "",
     "summary": "",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "release_date": "2002-10-12T00:00:00Z",
     "incomplete": false,
     "bestof": false,
@@ -3391,12 +3391,7 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": {
-          "song_album": "The Coral",
-          "song_artist": "The Coral",
-          "song_track": "Dreaming of You",
-          "spotify_uri": "spotify:track:6ebxt3Iylxe0GcEuUGlIvb"
-        },
+        "metadata": null,
         "content": "The Coral - Dreaming Of You",
         "notable": false
       },
@@ -7404,12 +7399,7 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": {
-          "song_album": "Kiss Me, Kiss Me, Kiss Me",
-          "song_artist": "The Cure",
-          "song_track": "Just Like Heaven",
-          "spotify_uri": "spotify:track:4NnWuGQujzWUEg0uZokO5M"
-        },
+        "metadata": null,
         "content": "The Cure - Just Like Heaven",
         "notable": false
       },
@@ -9504,12 +9494,7 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": {
-          "song_album": "Comfort in Sound",
-          "song_artist": "Feeder",
-          "song_track": "Come Back Around",
-          "spotify_uri": "spotify:track:3pob1hu5fZ2S1atm0BWEvb"
-        },
+        "metadata": null,
         "content": "Feeder - Come Back Around",
         "notable": false
       },
@@ -18514,5 +18499,11 @@
     "contributors": [
       "warmans"
     ],
-    "trivia": null
+    "trivia": [
+      {
+        "description": "![pork chop article](/dl/media/file/hairy-chinese-kid.jpg)",
+        "start_pos": 1073,
+        "end_pos": 1088
+      }
+    ]
   }
