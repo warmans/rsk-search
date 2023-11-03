@@ -36,7 +36,14 @@
           <li *ngFor="let i of pages" class="page-item" [ngClass]="{'active': i === currentPage}">
             <a class="page-link" [routerLink]="['/search']" [queryParams]="{'page': i}" [queryParamsHandling]="'merge'">{{i}}</a>
           </li>
-          <li *ngIf="morePages" class="page-item"><span class="page-link">More...</span></li>
+          <ng-container *ngIf="morePages">
+            <li  class="page-item active" *ngIf="currentPage >= pages.length">
+              <a class="page-link " [routerLink]="['/search']" [queryParams]="{'page': currentPage}" [queryParamsHandling]="'merge'">{{currentPage}}</a>
+            </li>
+            <li  class="page-item">
+              <a [routerLink]="['/search']" [queryParams]="{'page': currentPage+1}" [queryParamsHandling]="'merge'" class="page-link">More...</a>
+            </li>
+          </ng-container>
         </ul>
       </nav>
     </div>
