@@ -22,8 +22,11 @@ import (
 	"strings"
 )
 
-const ResultContextLines = 3
-const PageSize = 10
+const (
+	ResultContextLines        = 3
+	PageSize                  = 10
+	MaxAutocompleteLineLength = 4096
+)
 
 func NewSearch(
 	index *bluge.Reader,
@@ -277,7 +280,7 @@ func (s *Search) PredictSearchTerms(ctx context.Context, prefix string, exact bo
 			}
 		}
 
-		if !duplicate && stringsAreNotTooSimilar(prefix, p.Line) && len(p.Line) < 1024 {
+		if !duplicate && stringsAreNotTooSimilar(prefix, p.Line) && len(p.Line) < MaxAutocompleteLineLength {
 			// highlight and fragment result
 			fragments := highlighter.BestFragments(next.Locations["content"], []byte(p.Line), 1)
 			if len(fragments) > 0 {
