@@ -6,6 +6,6 @@
        [ngClass]="{'active': idx === selectedAutoCompleteRow}"
        (click)="selectTerm(values[idx])">
     <span class="flex-grow-1" [innerHTML]="line"></span>
-    <span class="text-muted text-nowrap ml-2">@{{values[idx].actor || "NA"}} | {{values[idx].epid}}</span>
+    <span class="text-muted text-nowrap ml-2">&#64;{{values[idx].actor || "NA"}} | {{values[idx].epid}}</span>
   </div>
 </div>
