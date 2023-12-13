@@ -10,7 +10,7 @@
     "bestof": false,
     "special": false,
     "locked": false,
-    "offset_accuracy": 49,
+    "offset_accuracy": 58,
     "audio_quality": "",
     "metadata": {
       "cover_art_url": "/assets/cover/guide.jpg",
@@ -394,7 +394,7 @@
       {
         "id": "ep-guide-S2E02-35",
         "pos": 35,
-        "offset_sec": 829,
+        "offset_sec": 534,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -405,7 +405,7 @@
       {
         "id": "ep-guide-S2E02-36",
         "pos": 36,
-        "offset_sec": 872,
+        "offset_sec": 558,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -416,18 +416,590 @@
       {
         "id": "ep-guide-S2E02-37",
         "pos": 37,
-        "offset_sec": 916,
-        "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
+        "offset_sec": 581,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
         "metadata": null,
-        "content": "[~3 mins of missing transcription]",
+        "content": "Yeah, that's true.",
         "notable": false
       },
       {
         "id": "ep-guide-S2E02-38",
         "pos": 38,
-        "offset_sec": 959,
+        "offset_sec": 582,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "So for them, at the end of the scale, you've got the chair and you stick the wires on their head and we'll fry your head. And they go \"Oh, God. I don't want that\".",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-39",
+        "pos": 39,
+        "offset_sec": 589,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "That-that-that-that doesn't always work does it? With-with being put to death, because as a deterrent, most of the crimes aren't just crimes of gain with that. Some of them are crimes of passion, where a deterrent doesn't count because you see red and you go crazy and you're angry and you kill someone. I-I think a lot of those crimes, the deterrent isn't relevant. You know? Things like armed robbery, maybe, where it's a risk, what can I get versus what my crime -- maybe then it might be a deterrent. But then, of course, if you start to get a capital punishment for crimes that aren't murdering someone, then that thing brings in, you might as well murder them, because then you've got more chance of getting away with it. So it's very delicate what you make people be killed for, um.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-40",
+        "pos": 40,
+        "offset_sec": 631,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "You've made an interesting and reasoned argument there, Rick. I'm looking forward to hearing the Rapost.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-41",
+        "pos": 41,
+        "offset_sec": 636,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Right. When I was younger, I used to nick Mars bars.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-42",
+        "pos": 42,
+        "offset_sec": 642,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "Ricky and Steve giggle",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-43",
+        "pos": 43,
+        "offset_sec": 643,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Okay.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-44",
+        "pos": 44,
+        "offset_sec": 644,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "All right? Now, I did that, then, and I knew that even if I get caught, what's the worst that's going to happen?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-45",
+        "pos": 45,
+        "offset_sec": 651,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-46",
+        "pos": 46,
+        "offset_sec": 652,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "It's not gonna -- I'm not going to go to prison over that, but it was worth nicking because a Mars bar they were like 45 pence.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-47",
+        "pos": 47,
+        "offset_sec": 658,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Sure.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-48",
+        "pos": 48,
+        "offset_sec": 659,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "When you're a kid, you can get a lot of chewing nuts for that.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-49",
+        "pos": 49,
+        "offset_sec": 661,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Chewing nuts?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-50",
+        "pos": 50,
+        "offset_sec": 662,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "I don't know what he is talking about.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-51",
+        "pos": 51,
+        "offset_sec": 663,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Yeah they are like caramel covered in chocolate, last ages, quite hard.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-52",
+        "pos": 52,
+        "offset_sec": 667,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Oh, I know. Yeah, you suck the chocolate off and then you got to chew-",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-53",
+        "pos": 53,
+        "offset_sec": 669,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Caramel",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-54",
+        "pos": 54,
+        "offset_sec": 670,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "-them until they're -- yeah I know yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-55",
+        "pos": 55,
+        "offset_sec": 672,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Now, I could afford them at ten pence a bag they're -- they'd last me sort of a morning. Umm, a Mars bar was a proper treat. There's a lot going on in there.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-56",
+        "pos": 56,
+        "offset_sec": 681,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-57",
+        "pos": 57,
+        "offset_sec": 682,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "A lot of chocolate, a lot of caramel.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-58",
+        "pos": 58,
+        "offset_sec": 683,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-59",
+        "pos": 59,
+        "offset_sec": 684,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Like for I say 45 pence.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-60",
+        "pos": 60,
+        "offset_sec": 684,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-61",
+        "pos": 61,
+        "offset_sec": 685,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "So to me --",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-62",
+        "pos": 62,
+        "offset_sec": 686,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "So that was like an advert that went wrong just at the end.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-63",
+        "pos": 63,
+        "offset_sec": 689,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "Steve laughs",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-64",
+        "pos": 64,
+        "offset_sec": 689,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "They started off good. They go, this guy's good -- he's uh -- Yeah get on there. \"Mars bars a lot in it\", - oh good, keep going. Yeah. - \"It's got caramel.\" - Yeah, yeah, yeah, yeah, yeah - \"but it's 45 pence, which is too fucking much. So fucking nick it you cunt.\"",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-65",
+        "pos": 65,
+        "offset_sec": 699,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "But, I was younger, that was worth a risk because I knew that I'd be getting something worth 45 pence-",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-66",
+        "pos": 66,
+        "offset_sec": 705,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Yeah",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-67",
+        "pos": 67,
+        "offset_sec": 706,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "-for free.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-68",
+        "pos": 68,
+        "offset_sec": 706,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "You weren't going to get the electric chair.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-69",
+        "pos": 69,
+        "offset_sec": 709,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "And I wasn't going to get done. So the stakes were high. The risk were low.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-70",
+        "pos": 70,
+        "offset_sec": 714,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "No, wait wait wait wait. You mean the stakes were high. The risks are low.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-71",
+        "pos": 71,
+        "offset_sec": 719,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "I think he's just trying to sound cool.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-72",
+        "pos": 72,
+        "offset_sec": 722,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "The stakes weren't high. The stakes are what can happen to you, and the risk. The stakes and the risks are the same. The risk is the stake. Okay? Unless you're nicking meat from a butcher's, then the stakes are high and the risk is low. I don't know what the fuck you talking about, but what you meant was-",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-73",
+        "pos": 73,
+        "offset_sec": 739,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "It was worth a risk",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-74",
+        "pos": 74,
+        "offset_sec": 740,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "-the gain was high",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-75",
+        "pos": 75,
+        "offset_sec": 740,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "The game was high.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-76",
+        "pos": 76,
+        "offset_sec": 741,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-77",
+        "pos": 77,
+        "offset_sec": 742,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "The game was high.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-78",
+        "pos": 78,
+        "offset_sec": 742,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah, the risk was low-",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-79",
+        "pos": 79,
+        "offset_sec": 743,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Yeah",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-80",
+        "pos": 80,
+        "offset_sec": 744,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "-but it's not wasn't - it wasn't was it. Because 45p isn't a lot unless you are a kid.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-81",
+        "pos": 81,
+        "offset_sec": 747,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "It is when you're a kid.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-82",
+        "pos": 82,
+        "offset_sec": 748,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "It is when you're a kid.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-83",
+        "pos": 83,
+        "offset_sec": 749,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Because I was getting 50 pence.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-84",
+        "pos": 84,
+        "offset_sec": 749,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "But then surely getting caught for nicking a Mars bar is higher when you're a kid.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-85",
+        "pos": 85,
+        "offset_sec": 754,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "No, it's not, look. You see, most of the time I didn't want to say which shop it was that I nicked it from, but it's where I did my paper round.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-86",
+        "pos": 86,
+        "offset_sec": 760,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "Ricky gasps",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-87",
+        "pos": 87,
+        "offset_sec": 761,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Now, the thing is-",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-88",
+        "pos": 88,
+        "offset_sec": 761,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "So it's nicking from your own boss?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-89",
+        "pos": 89,
+        "offset_sec": 762,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Ah But listen",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-90",
+        "pos": 90,
+        "offset_sec": 829,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -436,8 +1008,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-39",
-        "pos": 39,
+        "id": "ep-guide-S2E02-91",
+        "pos": 91,
         "offset_sec": 1002,
         "offset_inferred": false,
         "type": "chat",
@@ -447,8 +1019,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-40",
-        "pos": 40,
+        "id": "ep-guide-S2E02-92",
+        "pos": 92,
         "offset_sec": 1003,
         "offset_inferred": true,
         "type": "chat",
@@ -458,8 +1030,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-41",
-        "pos": 41,
+        "id": "ep-guide-S2E02-93",
+        "pos": 93,
         "offset_sec": 1005,
         "offset_inferred": false,
         "type": "chat",
@@ -469,8 +1041,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-42",
-        "pos": 42,
+        "id": "ep-guide-S2E02-94",
+        "pos": 94,
         "offset_sec": 1006,
         "offset_inferred": true,
         "type": "chat",
@@ -480,8 +1052,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-43",
-        "pos": 43,
+        "id": "ep-guide-S2E02-95",
+        "pos": 95,
         "offset_sec": 1008,
         "offset_inferred": true,
         "type": "chat",
@@ -491,8 +1063,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-44",
-        "pos": 44,
+        "id": "ep-guide-S2E02-96",
+        "pos": 96,
         "offset_sec": 1018,
         "offset_inferred": true,
         "type": "chat",
@@ -502,8 +1074,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-45",
-        "pos": 45,
+        "id": "ep-guide-S2E02-97",
+        "pos": 97,
         "offset_sec": 1018,
         "offset_inferred": false,
         "type": "chat",
@@ -513,8 +1085,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-46",
-        "pos": 46,
+        "id": "ep-guide-S2E02-98",
+        "pos": 98,
         "offset_sec": 1035,
         "offset_inferred": false,
         "type": "chat",
@@ -524,8 +1096,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-47",
-        "pos": 47,
+        "id": "ep-guide-S2E02-99",
+        "pos": 99,
         "offset_sec": 1040,
         "offset_inferred": true,
         "type": "chat",
@@ -535,8 +1107,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-48",
-        "pos": 48,
+        "id": "ep-guide-S2E02-100",
+        "pos": 100,
         "offset_sec": 1041,
         "offset_inferred": false,
         "type": "chat",
@@ -546,8 +1118,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-49",
-        "pos": 49,
+        "id": "ep-guide-S2E02-101",
+        "pos": 101,
         "offset_sec": 1065,
         "offset_inferred": false,
         "type": "chat",
@@ -557,8 +1129,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-50",
-        "pos": 50,
+        "id": "ep-guide-S2E02-102",
+        "pos": 102,
         "offset_sec": 1094,
         "offset_inferred": true,
         "type": "chat",
@@ -568,8 +1140,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-51",
-        "pos": 51,
+        "id": "ep-guide-S2E02-103",
+        "pos": 103,
         "offset_sec": 1094,
         "offset_inferred": false,
         "type": "chat",
@@ -579,8 +1151,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-52",
-        "pos": 52,
+        "id": "ep-guide-S2E02-104",
+        "pos": 104,
         "offset_sec": 1113,
         "offset_inferred": true,
         "type": "chat",
@@ -590,8 +1162,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-53",
-        "pos": 53,
+        "id": "ep-guide-S2E02-105",
+        "pos": 105,
         "offset_sec": 1128,
         "offset_inferred": false,
         "type": "chat",
@@ -601,8 +1173,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-54",
-        "pos": 54,
+        "id": "ep-guide-S2E02-106",
+        "pos": 106,
         "offset_sec": 1130,
         "offset_inferred": true,
         "type": "chat",
@@ -612,8 +1184,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-55",
-        "pos": 55,
+        "id": "ep-guide-S2E02-107",
+        "pos": 107,
         "offset_sec": 1133,
         "offset_inferred": true,
         "type": "chat",
@@ -623,8 +1195,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-56",
-        "pos": 56,
+        "id": "ep-guide-S2E02-108",
+        "pos": 108,
         "offset_sec": 1134,
         "offset_inferred": true,
         "type": "chat",
@@ -634,8 +1206,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-57",
-        "pos": 57,
+        "id": "ep-guide-S2E02-109",
+        "pos": 109,
         "offset_sec": 1135,
         "offset_inferred": true,
         "type": "chat",
@@ -645,8 +1217,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-58",
-        "pos": 58,
+        "id": "ep-guide-S2E02-110",
+        "pos": 110,
         "offset_sec": 1138,
         "offset_inferred": true,
         "type": "chat",
@@ -656,8 +1228,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-59",
-        "pos": 59,
+        "id": "ep-guide-S2E02-111",
+        "pos": 111,
         "offset_sec": 1156,
         "offset_inferred": false,
         "type": "chat",
@@ -667,8 +1239,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-60",
-        "pos": 60,
+        "id": "ep-guide-S2E02-112",
+        "pos": 112,
         "offset_sec": 1157,
         "offset_inferred": false,
         "type": "chat",
@@ -678,8 +1250,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-61",
-        "pos": 61,
+        "id": "ep-guide-S2E02-113",
+        "pos": 113,
         "offset_sec": 1168,
         "offset_inferred": false,
         "type": "chat",
@@ -689,8 +1261,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-62",
-        "pos": 62,
+        "id": "ep-guide-S2E02-114",
+        "pos": 114,
         "offset_sec": 1169,
         "offset_inferred": true,
         "type": "chat",
@@ -700,8 +1272,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-63",
-        "pos": 63,
+        "id": "ep-guide-S2E02-115",
+        "pos": 115,
         "offset_sec": 1181,
         "offset_inferred": true,
         "type": "chat",
@@ -711,8 +1283,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-64",
-        "pos": 64,
+        "id": "ep-guide-S2E02-116",
+        "pos": 116,
         "offset_sec": 1182,
         "offset_inferred": true,
         "type": "chat",
@@ -722,8 +1294,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-65",
-        "pos": 65,
+        "id": "ep-guide-S2E02-117",
+        "pos": 117,
         "offset_sec": 1204,
         "offset_inferred": true,
         "type": "chat",
@@ -733,8 +1305,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-66",
-        "pos": 66,
+        "id": "ep-guide-S2E02-118",
+        "pos": 118,
         "offset_sec": 1204,
         "offset_inferred": true,
         "type": "chat",
@@ -744,8 +1316,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-67",
-        "pos": 67,
+        "id": "ep-guide-S2E02-119",
+        "pos": 119,
         "offset_sec": 1220,
         "offset_inferred": true,
         "type": "chat",
@@ -755,8 +1327,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-68",
-        "pos": 68,
+        "id": "ep-guide-S2E02-120",
+        "pos": 120,
         "offset_sec": 1221,
         "offset_inferred": true,
         "type": "chat",
@@ -766,8 +1338,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-69",
-        "pos": 69,
+        "id": "ep-guide-S2E02-121",
+        "pos": 121,
         "offset_sec": 1223,
         "offset_inferred": false,
         "type": "chat",
@@ -777,8 +1349,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-70",
-        "pos": 70,
+        "id": "ep-guide-S2E02-122",
+        "pos": 122,
         "offset_sec": 1224,
         "offset_inferred": false,
         "type": "chat",
@@ -788,8 +1360,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-71",
-        "pos": 71,
+        "id": "ep-guide-S2E02-123",
+        "pos": 123,
         "offset_sec": 1234,
         "offset_inferred": true,
         "type": "chat",
@@ -799,8 +1371,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-72",
-        "pos": 72,
+        "id": "ep-guide-S2E02-124",
+        "pos": 124,
         "offset_sec": 1236,
         "offset_inferred": true,
         "type": "chat",
@@ -810,8 +1382,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-73",
-        "pos": 73,
+        "id": "ep-guide-S2E02-125",
+        "pos": 125,
         "offset_sec": 1240,
         "offset_inferred": true,
         "type": "chat",
@@ -821,8 +1393,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-74",
-        "pos": 74,
+        "id": "ep-guide-S2E02-126",
+        "pos": 126,
         "offset_sec": 1244,
         "offset_inferred": true,
         "type": "chat",
@@ -832,8 +1404,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-75",
-        "pos": 75,
+        "id": "ep-guide-S2E02-127",
+        "pos": 127,
         "offset_sec": 1245,
         "offset_inferred": true,
         "type": "chat",
@@ -843,8 +1415,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-76",
-        "pos": 76,
+        "id": "ep-guide-S2E02-128",
+        "pos": 128,
         "offset_sec": 1249,
         "offset_inferred": true,
         "type": "chat",
@@ -854,8 +1426,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-77",
-        "pos": 77,
+        "id": "ep-guide-S2E02-129",
+        "pos": 129,
         "offset_sec": 1250,
         "offset_inferred": true,
         "type": "chat",
@@ -865,8 +1437,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-78",
-        "pos": 78,
+        "id": "ep-guide-S2E02-130",
+        "pos": 130,
         "offset_sec": 1254,
         "offset_inferred": false,
         "type": "chat",
@@ -876,8 +1448,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-79",
-        "pos": 79,
+        "id": "ep-guide-S2E02-131",
+        "pos": 131,
         "offset_sec": 1260,
         "offset_inferred": true,
         "type": "chat",
@@ -887,8 +1459,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-80",
-        "pos": 80,
+        "id": "ep-guide-S2E02-132",
+        "pos": 132,
         "offset_sec": 1261,
         "offset_inferred": true,
         "type": "chat",
@@ -898,8 +1470,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-81",
-        "pos": 81,
+        "id": "ep-guide-S2E02-133",
+        "pos": 133,
         "offset_sec": 1262,
         "offset_inferred": false,
         "type": "chat",
@@ -909,8 +1481,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-82",
-        "pos": 82,
+        "id": "ep-guide-S2E02-134",
+        "pos": 134,
         "offset_sec": 1263,
         "offset_inferred": true,
         "type": "chat",
@@ -920,8 +1492,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-83",
-        "pos": 83,
+        "id": "ep-guide-S2E02-135",
+        "pos": 135,
         "offset_sec": 1264,
         "offset_inferred": true,
         "type": "chat",
@@ -931,8 +1503,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-84",
-        "pos": 84,
+        "id": "ep-guide-S2E02-136",
+        "pos": 136,
         "offset_sec": 1271,
         "offset_inferred": false,
         "type": "chat",
@@ -942,8 +1514,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-85",
-        "pos": 85,
+        "id": "ep-guide-S2E02-137",
+        "pos": 137,
         "offset_sec": 1275,
         "offset_inferred": false,
         "type": "chat",
@@ -953,8 +1525,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-86",
-        "pos": 86,
+        "id": "ep-guide-S2E02-138",
+        "pos": 138,
         "offset_sec": 1276,
         "offset_inferred": true,
         "type": "chat",
@@ -964,8 +1536,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-87",
-        "pos": 87,
+        "id": "ep-guide-S2E02-139",
+        "pos": 139,
         "offset_sec": 1277,
         "offset_inferred": true,
         "type": "chat",
@@ -975,8 +1547,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-88",
-        "pos": 88,
+        "id": "ep-guide-S2E02-140",
+        "pos": 140,
         "offset_sec": 1277,
         "offset_inferred": false,
         "type": "chat",
@@ -986,8 +1558,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-89",
-        "pos": 89,
+        "id": "ep-guide-S2E02-141",
+        "pos": 141,
         "offset_sec": 1282,
         "offset_inferred": false,
         "type": "chat",
@@ -997,8 +1569,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-90",
-        "pos": 90,
+        "id": "ep-guide-S2E02-142",
+        "pos": 142,
         "offset_sec": 1283,
         "offset_inferred": false,
         "type": "chat",
@@ -1008,8 +1580,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-91",
-        "pos": 91,
+        "id": "ep-guide-S2E02-143",
+        "pos": 143,
         "offset_sec": 1286,
         "offset_inferred": true,
         "type": "chat",
@@ -1019,8 +1591,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-92",
-        "pos": 92,
+        "id": "ep-guide-S2E02-144",
+        "pos": 144,
         "offset_sec": 1286,
         "offset_inferred": true,
         "type": "chat",
@@ -1030,8 +1602,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-93",
-        "pos": 93,
+        "id": "ep-guide-S2E02-145",
+        "pos": 145,
         "offset_sec": 1292,
         "offset_inferred": true,
         "type": "chat",
@@ -1041,8 +1613,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-94",
-        "pos": 94,
+        "id": "ep-guide-S2E02-146",
+        "pos": 146,
         "offset_sec": 1295,
         "offset_inferred": true,
         "type": "chat",
@@ -1052,8 +1624,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-95",
-        "pos": 95,
+        "id": "ep-guide-S2E02-147",
+        "pos": 147,
         "offset_sec": 1301,
         "offset_inferred": true,
         "type": "chat",
@@ -1063,8 +1635,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-96",
-        "pos": 96,
+        "id": "ep-guide-S2E02-148",
+        "pos": 148,
         "offset_sec": 1301,
         "offset_inferred": true,
         "type": "chat",
@@ -1074,8 +1646,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-97",
-        "pos": 97,
+        "id": "ep-guide-S2E02-149",
+        "pos": 149,
         "offset_sec": 1303,
         "offset_inferred": true,
         "type": "chat",
@@ -1085,8 +1657,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-98",
-        "pos": 98,
+        "id": "ep-guide-S2E02-150",
+        "pos": 150,
         "offset_sec": 1304,
         "offset_inferred": true,
         "type": "chat",
@@ -1096,8 +1668,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-99",
-        "pos": 99,
+        "id": "ep-guide-S2E02-151",
+        "pos": 151,
         "offset_sec": 1307,
         "offset_inferred": false,
         "type": "chat",
@@ -1107,8 +1679,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-100",
-        "pos": 100,
+        "id": "ep-guide-S2E02-152",
+        "pos": 152,
         "offset_sec": 1308,
         "offset_inferred": false,
         "type": "chat",
@@ -1118,8 +1690,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-101",
-        "pos": 101,
+        "id": "ep-guide-S2E02-153",
+        "pos": 153,
         "offset_sec": 1310,
         "offset_inferred": true,
         "type": "chat",
@@ -1129,8 +1701,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-102",
-        "pos": 102,
+        "id": "ep-guide-S2E02-154",
+        "pos": 154,
         "offset_sec": 1313,
         "offset_inferred": true,
         "type": "chat",
@@ -1140,8 +1712,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-103",
-        "pos": 103,
+        "id": "ep-guide-S2E02-155",
+        "pos": 155,
         "offset_sec": 1322,
         "offset_inferred": true,
         "type": "chat",
@@ -1151,8 +1723,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-104",
-        "pos": 104,
+        "id": "ep-guide-S2E02-156",
+        "pos": 156,
         "offset_sec": 1323,
         "offset_inferred": true,
         "type": "chat",
@@ -1162,8 +1734,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-105",
-        "pos": 105,
+        "id": "ep-guide-S2E02-157",
+        "pos": 157,
         "offset_sec": 1326,
         "offset_inferred": true,
         "type": "chat",
@@ -1173,8 +1745,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-106",
-        "pos": 106,
+        "id": "ep-guide-S2E02-158",
+        "pos": 158,
         "offset_sec": 1328,
         "offset_inferred": false,
         "type": "chat",
@@ -1184,8 +1756,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-107",
-        "pos": 107,
+        "id": "ep-guide-S2E02-159",
+        "pos": 159,
         "offset_sec": 1331,
         "offset_inferred": true,
         "type": "chat",
@@ -1195,8 +1767,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-108",
-        "pos": 108,
+        "id": "ep-guide-S2E02-160",
+        "pos": 160,
         "offset_sec": 1331,
         "offset_inferred": true,
         "type": "chat",
@@ -1206,8 +1778,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-109",
-        "pos": 109,
+        "id": "ep-guide-S2E02-161",
+        "pos": 161,
         "offset_sec": 1332,
         "offset_inferred": false,
         "type": "chat",
@@ -1217,8 +1789,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-110",
-        "pos": 110,
+        "id": "ep-guide-S2E02-162",
+        "pos": 162,
         "offset_sec": 1334,
         "offset_inferred": true,
         "type": "chat",
@@ -1228,8 +1800,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-111",
-        "pos": 111,
+        "id": "ep-guide-S2E02-163",
+        "pos": 163,
         "offset_sec": 1337,
         "offset_inferred": true,
         "type": "chat",
@@ -1239,8 +1811,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-112",
-        "pos": 112,
+        "id": "ep-guide-S2E02-164",
+        "pos": 164,
         "offset_sec": 1342,
         "offset_inferred": true,
         "type": "chat",
@@ -1250,8 +1822,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-113",
-        "pos": 113,
+        "id": "ep-guide-S2E02-165",
+        "pos": 165,
         "offset_sec": 1343,
         "offset_inferred": true,
         "type": "chat",
@@ -1261,8 +1833,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-114",
-        "pos": 114,
+        "id": "ep-guide-S2E02-166",
+        "pos": 166,
         "offset_sec": 1353,
         "offset_inferred": true,
         "type": "chat",
@@ -1272,8 +1844,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-115",
-        "pos": 115,
+        "id": "ep-guide-S2E02-167",
+        "pos": 167,
         "offset_sec": 1354,
         "offset_inferred": true,
         "type": "chat",
@@ -1283,8 +1855,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-116",
-        "pos": 116,
+        "id": "ep-guide-S2E02-168",
+        "pos": 168,
         "offset_sec": 1366,
         "offset_inferred": true,
         "type": "chat",
@@ -1294,8 +1866,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-117",
-        "pos": 117,
+        "id": "ep-guide-S2E02-169",
+        "pos": 169,
         "offset_sec": 1367,
         "offset_inferred": true,
         "type": "chat",
@@ -1305,8 +1877,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-118",
-        "pos": 118,
+        "id": "ep-guide-S2E02-170",
+        "pos": 170,
         "offset_sec": 1368,
         "offset_inferred": true,
         "type": "chat",
@@ -1316,8 +1888,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-119",
-        "pos": 119,
+        "id": "ep-guide-S2E02-171",
+        "pos": 171,
         "offset_sec": 1383,
         "offset_inferred": true,
         "type": "chat",
@@ -1327,8 +1899,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-120",
-        "pos": 120,
+        "id": "ep-guide-S2E02-172",
+        "pos": 172,
         "offset_sec": 1384,
         "offset_inferred": true,
         "type": "chat",
@@ -1338,8 +1910,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-121",
-        "pos": 121,
+        "id": "ep-guide-S2E02-173",
+        "pos": 173,
         "offset_sec": 1391,
         "offset_inferred": true,
         "type": "chat",
@@ -1349,8 +1921,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-122",
-        "pos": 122,
+        "id": "ep-guide-S2E02-174",
+        "pos": 174,
         "offset_sec": 1391,
         "offset_inferred": true,
         "type": "chat",
@@ -1360,8 +1932,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-123",
-        "pos": 123,
+        "id": "ep-guide-S2E02-175",
+        "pos": 175,
         "offset_sec": 1398,
         "offset_inferred": false,
         "type": "chat",
@@ -1371,8 +1943,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-124",
-        "pos": 124,
+        "id": "ep-guide-S2E02-176",
+        "pos": 176,
         "offset_sec": 1400,
         "offset_inferred": true,
         "type": "chat",
@@ -1382,8 +1954,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-125",
-        "pos": 125,
+        "id": "ep-guide-S2E02-177",
+        "pos": 177,
         "offset_sec": 1401,
         "offset_inferred": false,
         "type": "chat",
@@ -1393,9 +1965,9 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-126",
-        "pos": 126,
-        "offset_sec": 1698,
+        "id": "ep-guide-S2E02-178",
+        "pos": 178,
+        "offset_sec": 1643,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -1404,9 +1976,9 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-127",
-        "pos": 127,
-        "offset_sec": 1789,
+        "id": "ep-guide-S2E02-179",
+        "pos": 179,
+        "offset_sec": 1717,
         "offset_inferred": true,
         "type": "gap",
         "actor": "",
@@ -1415,19 +1987,371 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-128",
-        "pos": 128,
-        "offset_sec": 1880,
-        "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
+        "id": "ep-guide-S2E02-180",
+        "pos": 180,
+        "offset_sec": 1790,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
         "metadata": null,
-        "content": "[~3 mins of missing transcription]",
+        "content": "I was always terrified of being mugged, when I first moved to London.",
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-129",
-        "pos": 129,
+        "id": "ep-guide-S2E02-181",
+        "pos": 181,
+        "offset_sec": 1793,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Um, and you remember, Rick, I had, uh, a wallet with all my stuff in, and then I took to carrying a fake wallet-",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-182",
+        "pos": 182,
+        "offset_sec": 1798,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "It's lovely.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-183",
+        "pos": 183,
+        "offset_sec": 1799,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "-which had some sort of old library cards and DVD cards - you know - video shop cards and stuff, and like I put a fiver in there, you know. And then I got really anxious because I thought, what if I hand over my fake wallet? And he goes, well, it's a fake wallet, okay? Then I got hand over the real wallet, but maybe he also punishes me, you know. He takes it out on me because he's angry. So then I took to carrying a second fake wallet. So I spent about two months carrying three wallets around.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-184",
+        "pos": 184,
+        "offset_sec": 1820,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "Ricky wheezes and giggles",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-185",
+        "pos": 185,
+        "offset_sec": 1821,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Two of which were fake. Right? And then, do you know the reason I stopped? Because I thought, what if he-I give him both fake wallets? I give him one fake wallet, he opens it, he goes, well, this is fake wallet. I give him the second fake wallet. He's now, he's going to be twice as angry as he would have been if he only had the one fake wallet. And then I was thinking, what-but what if I do give him the fake wallet? And then he just starts using the library cards and the video cards, you know, you could run up a huge fine.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-186",
+        "pos": 186,
+        "offset_sec": 1842,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-187",
+        "pos": 187,
+        "offset_sec": 1843,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "I'd be-",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-188",
+        "pos": 188,
+        "offset_sec": 1844,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-189",
+        "pos": 189,
+        "offset_sec": 1844,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "I'm in the same position-",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-190",
+        "pos": 190,
+        "offset_sec": 1845,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "You're worse off-",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-191",
+        "pos": 191,
+        "offset_sec": 1845,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "-were it have been I had given him the money.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-192",
+        "pos": 192,
+        "offset_sec": 1845,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah I also, I don't believe you'd ever put a fiver in the fake wallet-",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-193",
+        "pos": 193,
+        "offset_sec": 1848,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Nonononono.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-194",
+        "pos": 194,
+        "offset_sec": 1849,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "-you'll be willing to -- yeah, yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-195",
+        "pos": 195,
+        "offset_sec": 1850,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "I had a run-in with crime. I was, uh, ripped off-",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-196",
+        "pos": 196,
+        "offset_sec": 1854,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Really?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-197",
+        "pos": 197,
+        "offset_sec": 1855,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "-in a- in a big sting operation, a few years ago. Um, I was at home and I was just - I was rushing out and uh, the phone went, and it was my bank.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-198",
+        "pos": 198,
+        "offset_sec": 1864,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-199",
+        "pos": 199,
+        "offset_sec": 1865,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "And they went \"Is that Mr. Gervais?\" And I went \"Yeah\", He went um, \"Have you recently bought £200,000 worth of gold bullion?\"",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-200",
+        "pos": 200,
+        "offset_sec": 1873,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "Steve giggles",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-201",
+        "pos": 201,
+        "offset_sec": 1874,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "And I went um, I went \"Jane! Have we, have we 'de-bought, are we bought 200-\" She went, \"What?\", \"Have we bought £200,000 worth of gold bullion?\", \"No course not.\" I went \"No.\"",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-202",
+        "pos": 202,
+        "offset_sec": 1884,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "\"Oh um, well someone's uh, taking that money out of your bank account, uh, fraudulently, and uh, they've purchased gold.\"",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-203",
+        "pos": 203,
+        "offset_sec": 1890,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "And I went, \"Right. Okay.\" They went um, \"We'd like your permission to get the CID involved.\" I went \"well, yeah.\" I said, \"of course\". I said, \"but hold on, you know, it wasn't me then, um, so do I get the money back?\"",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-204",
+        "pos": 204,
+        "offset_sec": 1902,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "And they went, \"Yeah, y- all the money will be, um, put back into your bank account.\"",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-205",
+        "pos": 205,
+        "offset_sec": 1907,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "I went \"Fine.\" I said \"Yeah.\" I basically went \"Yeah. Fill your boots.\"",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-206",
+        "pos": 206,
+        "offset_sec": 1910,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "And they went, \"Um and can you come down? I went, \"Oh, yes.\", so I arranged the time. I went down to the bank, there was the CID there, waiting. And uh, what it turned out it was sort of an inside job, someone who did some sort of random, um, checking of facts. You know when they phone you up, and say are you happy with the service. They put down the phone and went, \"Oh, you'll never guess who I spoke to, that, Ricky Gervais.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-207",
+        "pos": 207,
+        "offset_sec": 1930,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Right, right.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-208",
+        "pos": 208,
+        "offset_sec": 1931,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "And um, someone overheard. They were involved. They've got a payoff from Mr. Big somewhere, that was out of the country.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-209",
+        "pos": 209,
+        "offset_sec": 1937,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "But that- Isn't there more, I mean you can't just- even if you work in a bank, you can't just walk off with cash. Can you? There must've been a more elaborate-",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-210",
+        "pos": 210,
+        "offset_sec": 1943,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah. They did a transaction, didn't they? They okayed the transaction like it was me, for these people, and then these people bought gold with it, and now all they have to do is go and collect the gold. Now this is the tricky bit. So, what they don't know is now the bank know, that it's not me collecting it. So whoever turns up for the gold, they said they're probably just be- they might even be innocent couriers.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-211",
+        "pos": 211,
+        "offset_sec": 1966,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Yes.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-212",
+        "pos": 212,
+        "offset_sec": 1967,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "But then we get, you know the go, the go-betweens or whatever.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-213",
+        "pos": 213,
         "offset_sec": 1970,
         "offset_inferred": false,
         "type": "chat",
@@ -1437,8 +2361,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-130",
-        "pos": 130,
+        "id": "ep-guide-S2E02-214",
+        "pos": 214,
         "offset_sec": 1971,
         "offset_inferred": false,
         "type": "chat",
@@ -1448,8 +2372,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-131",
-        "pos": 131,
+        "id": "ep-guide-S2E02-215",
+        "pos": 215,
         "offset_sec": 2053,
         "offset_inferred": false,
         "type": "chat",
@@ -1459,8 +2383,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-132",
-        "pos": 132,
+        "id": "ep-guide-S2E02-216",
+        "pos": 216,
         "offset_sec": 2061,
         "offset_inferred": false,
         "type": "chat",
@@ -1470,8 +2394,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-133",
-        "pos": 133,
+        "id": "ep-guide-S2E02-217",
+        "pos": 217,
         "offset_sec": 2074,
         "offset_inferred": false,
         "type": "chat",
@@ -1481,8 +2405,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-134",
-        "pos": 134,
+        "id": "ep-guide-S2E02-218",
+        "pos": 218,
         "offset_sec": 2075,
         "offset_inferred": false,
         "type": "chat",
@@ -1492,8 +2416,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-135",
-        "pos": 135,
+        "id": "ep-guide-S2E02-219",
+        "pos": 219,
         "offset_sec": 2078,
         "offset_inferred": false,
         "type": "chat",
@@ -1503,8 +2427,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-136",
-        "pos": 136,
+        "id": "ep-guide-S2E02-220",
+        "pos": 220,
         "offset_sec": 2079,
         "offset_inferred": false,
         "type": "chat",
@@ -1514,8 +2438,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-137",
-        "pos": 137,
+        "id": "ep-guide-S2E02-221",
+        "pos": 221,
         "offset_sec": 2083,
         "offset_inferred": false,
         "type": "chat",
@@ -1525,8 +2449,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-138",
-        "pos": 138,
+        "id": "ep-guide-S2E02-222",
+        "pos": 222,
         "offset_sec": 2088,
         "offset_inferred": false,
         "type": "chat",
@@ -1536,8 +2460,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-139",
-        "pos": 139,
+        "id": "ep-guide-S2E02-223",
+        "pos": 223,
         "offset_sec": 2090,
         "offset_inferred": false,
         "type": "chat",
@@ -1547,8 +2471,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-140",
-        "pos": 140,
+        "id": "ep-guide-S2E02-224",
+        "pos": 224,
         "offset_sec": 2095,
         "offset_inferred": false,
         "type": "chat",
@@ -1558,8 +2482,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-141",
-        "pos": 141,
+        "id": "ep-guide-S2E02-225",
+        "pos": 225,
         "offset_sec": 2116,
         "offset_inferred": false,
         "type": "chat",
@@ -1569,8 +2493,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-142",
-        "pos": 142,
+        "id": "ep-guide-S2E02-226",
+        "pos": 226,
         "offset_sec": 2120,
         "offset_inferred": false,
         "type": "chat",
@@ -1580,8 +2504,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-143",
-        "pos": 143,
+        "id": "ep-guide-S2E02-227",
+        "pos": 227,
         "offset_sec": 2121,
         "offset_inferred": true,
         "type": "chat",
@@ -1591,8 +2515,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-144",
-        "pos": 144,
+        "id": "ep-guide-S2E02-228",
+        "pos": 228,
         "offset_sec": 2130,
         "offset_inferred": false,
         "type": "chat",
@@ -1602,8 +2526,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-145",
-        "pos": 145,
+        "id": "ep-guide-S2E02-229",
+        "pos": 229,
         "offset_sec": 2131,
         "offset_inferred": false,
         "type": "chat",
@@ -1613,8 +2537,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-146",
-        "pos": 146,
+        "id": "ep-guide-S2E02-230",
+        "pos": 230,
         "offset_sec": 2185,
         "offset_inferred": false,
         "type": "chat",
@@ -1624,9 +2548,9 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-147",
-        "pos": 147,
-        "offset_sec": 2239,
+        "id": "ep-guide-S2E02-231",
+        "pos": 231,
+        "offset_sec": 2218,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -1635,9 +2559,9 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-148",
-        "pos": 148,
-        "offset_sec": 2239,
+        "id": "ep-guide-S2E02-232",
+        "pos": 232,
+        "offset_sec": 2218,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -1646,9 +2570,9 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-149",
-        "pos": 149,
-        "offset_sec": 2244,
+        "id": "ep-guide-S2E02-233",
+        "pos": 233,
+        "offset_sec": 2221,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -1657,9 +2581,9 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-150",
-        "pos": 150,
-        "offset_sec": 2245,
+        "id": "ep-guide-S2E02-234",
+        "pos": 234,
+        "offset_sec": 2221,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -1668,9 +2592,9 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-151",
-        "pos": 151,
-        "offset_sec": 2250,
+        "id": "ep-guide-S2E02-235",
+        "pos": 235,
+        "offset_sec": 2224,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -1679,9 +2603,9 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-152",
-        "pos": 152,
-        "offset_sec": 2251,
+        "id": "ep-guide-S2E02-236",
+        "pos": 236,
+        "offset_sec": 2225,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -1690,9 +2614,9 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-153",
-        "pos": 153,
-        "offset_sec": 2353,
+        "id": "ep-guide-S2E02-237",
+        "pos": 237,
+        "offset_sec": 2286,
         "offset_inferred": true,
         "type": "chat",
         "actor": "",
@@ -1701,9 +2625,9 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-154",
-        "pos": 154,
-        "offset_sec": 2354,
+        "id": "ep-guide-S2E02-238",
+        "pos": 238,
+        "offset_sec": 2287,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -1712,9 +2636,9 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-155",
-        "pos": 155,
-        "offset_sec": 2361,
+        "id": "ep-guide-S2E02-239",
+        "pos": 239,
+        "offset_sec": 2291,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -1723,9 +2647,9 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-156",
-        "pos": 156,
-        "offset_sec": 2362,
+        "id": "ep-guide-S2E02-240",
+        "pos": 240,
+        "offset_sec": 2292,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -1734,9 +2658,9 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-157",
-        "pos": 157,
-        "offset_sec": 2381,
+        "id": "ep-guide-S2E02-241",
+        "pos": 241,
+        "offset_sec": 2303,
         "offset_inferred": true,
         "type": "chat",
         "actor": "",
@@ -1745,9 +2669,9 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-158",
-        "pos": 158,
-        "offset_sec": 2382,
+        "id": "ep-guide-S2E02-242",
+        "pos": 242,
+        "offset_sec": 2304,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -1756,9 +2680,9 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-159",
-        "pos": 159,
-        "offset_sec": 2409,
+        "id": "ep-guide-S2E02-243",
+        "pos": 243,
+        "offset_sec": 2320,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -1767,9 +2691,9 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-160",
-        "pos": 160,
-        "offset_sec": 2409,
+        "id": "ep-guide-S2E02-244",
+        "pos": 244,
+        "offset_sec": 2320,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -1778,9 +2702,9 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-161",
-        "pos": 161,
-        "offset_sec": 2419,
+        "id": "ep-guide-S2E02-245",
+        "pos": 245,
+        "offset_sec": 2326,
         "offset_inferred": true,
         "type": "chat",
         "actor": "",
@@ -1789,9 +2713,9 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-162",
-        "pos": 162,
-        "offset_sec": 2421,
+        "id": "ep-guide-S2E02-246",
+        "pos": 246,
+        "offset_sec": 2327,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -1800,9 +2724,9 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-163",
-        "pos": 163,
-        "offset_sec": 2548,
+        "id": "ep-guide-S2E02-247",
+        "pos": 247,
+        "offset_sec": 2404,
         "offset_inferred": true,
         "type": "chat",
         "actor": "",
@@ -1811,9 +2735,9 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-164",
-        "pos": 164,
-        "offset_sec": 2549,
+        "id": "ep-guide-S2E02-248",
+        "pos": 248,
+        "offset_sec": 2405,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -1822,9 +2746,9 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-165",
-        "pos": 165,
-        "offset_sec": 2662,
+        "id": "ep-guide-S2E02-249",
+        "pos": 249,
+        "offset_sec": 2473,
         "offset_inferred": true,
         "type": "chat",
         "actor": "steve",
@@ -1833,9 +2757,9 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-166",
-        "pos": 166,
-        "offset_sec": 2662,
+        "id": "ep-guide-S2E02-250",
+        "pos": 250,
+        "offset_sec": 2473,
         "offset_inferred": true,
         "type": "chat",
         "actor": "ricky",
@@ -1844,19 +2768,448 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-167",
-        "pos": 167,
-        "offset_sec": 2680,
-        "offset_inferred": true,
-        "type": "gap",
-        "actor": "",
+        "id": "ep-guide-S2E02-251",
+        "pos": 251,
+        "offset_sec": 2483,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
         "metadata": null,
-        "content": "[~3 mins of missing transcription]",
+        "content": "What?",
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-168",
-        "pos": 168,
+        "id": "ep-guide-S2E02-252",
+        "pos": 252,
+        "offset_sec": 2484,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "So now he's an armed security guard. Who's in LAPD, a special SWAT, and he's one of nine negotiators, in LA. We're in LA now. We'd come from Toronto. We went via New York, in LA.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-253",
+        "pos": 253,
+        "offset_sec": 2495,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "So I went, oh my God. And I just asked him questions-",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-254",
+        "pos": 254,
+        "offset_sec": 2499,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Mmm.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-255",
+        "pos": 255,
+        "offset_sec": 2500,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "-for 2 hours.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-256",
+        "pos": 256,
+        "offset_sec": 2500,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Um, so first thing that happens is, so someone runs in with a hostage. This guy who's just a kid who was 19. He'd done a robbery, he panicked and he'd ran away. The police were after him, he ran in and he took his-his kid with him. It was just a three-year-old kid, okay? Um, that often happens. Uh most hostages that people take are their family 'cause it's all they've got. And they go, I want to kill my wife or my kid, and that. And they don't mean it. They're not going to. But they need, they need a hostage. They've got a gun.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-257",
+        "pos": 257,
+        "offset_sec": 2531,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "So he talks to them and he says things to him like, \"You know, you didn't mean this to happen, did you?\" And they went \"No no, I just-\" he said \"they got out of hand. It just got out of hand.\" And he has to let them trust him because they-they've got hatred for the police, of course. They don't trust the police and that.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-258",
+        "pos": 258,
+        "offset_sec": 2544,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "And um.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-259",
+        "pos": 259,
+        "offset_sec": 2546,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "The first thing he does, is call the phone company and say, \"What's the number of this address?\", he goes, \"Change it by one digit.\"",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-260",
+        "pos": 260,
+        "offset_sec": 2553,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "So now only he can call that number, 'cause of course, you can't have an engaged signal. If they haven't got a phone, they have to throw a phone through a window. So they've got to have contact with this guy.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-261",
+        "pos": 261,
+        "offset_sec": 2565,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Mmm.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-262",
+        "pos": 262,
+        "offset_sec": 2566,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "You know? I said um, what happens if uh this guy says, \"Ah you're never going to get me out. I'm going to kill all the hostages\"? He said, \"Then my sole purpose is to get him to stand near a window.\"",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-263",
+        "pos": 263,
+        "offset_sec": 2582,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "And I went, \"Wow\". Now apparently there's a police marksman ready of course. If they think they've lost him, the important thing is you've got to take him out because he's got to protect the innocent. So how they shoot 'em is they shoot 'em in the top lip and it takes out the brain stem so there's no reflex and I'm just being absolutely-",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-264",
+        "pos": 264,
+        "offset_sec": 2605,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Mmm.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-265",
+        "pos": 265,
+        "offset_sec": 2606,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "-I'm captivated. What do you think of that Karl, as a job? It's amazing, isn't it?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-266",
+        "pos": 266,
+        "offset_sec": 2611,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Uhm…",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-267",
+        "pos": 267,
+        "offset_sec": 2616,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Yeah. I mean, once you've done one, though, it's like any job, innit I 'spose?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-268",
+        "pos": 268,
+        "offset_sec": 2620,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-269",
+        "pos": 269,
+        "offset_sec": 2621,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Once you've done one.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-270",
+        "pos": 270,
+        "offset_sec": 2621,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-271",
+        "pos": 271,
+        "offset_sec": 2621,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Bor--",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-272",
+        "pos": 272,
+        "offset_sec": 2622,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Not impressed?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-273",
+        "pos": 273,
+        "offset_sec": 2622,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Boring.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-274",
+        "pos": 274,
+        "offset_sec": 2623,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "No, it's good and uh--",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-275",
+        "pos": 275,
+        "offset_sec": 2624,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Could you do it? Do you reckon you could do it? Do you reckon you could negotiate someone out of a hostage situation?",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-276",
+        "pos": 276,
+        "offset_sec": 2628,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Well, I think in one of them things. There's nothing you can do. It's like - it doesn't matter if it goes wrong because-",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-277",
+        "pos": 277,
+        "offset_sec": 2634,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Well, it does.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-278",
+        "pos": 278,
+        "offset_sec": 2635,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "-you did your bit. No, it's like being a vet innit.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-279",
+        "pos": 279,
+        "offset_sec": 2637,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Not really, not really, 'cause - that's a ridiculous thing to say",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-280",
+        "pos": 280,
+        "offset_sec": 2641,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "No, it's nothing, it's nothing like being a vet.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-281",
+        "pos": 281,
+        "offset_sec": 2643,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "No, it is. What I mean is, you're-you're expected to-",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-282",
+        "pos": 282,
+        "offset_sec": 2645,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "No no no.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-283",
+        "pos": 283,
+        "offset_sec": 2646,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "-make a little kitten live.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-284",
+        "pos": 284,
+        "offset_sec": 2648,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "No no no. There's loads of -- because I was saying. So he says, I need a car by five o'clock or I'm going to kill someone. He then makes sure that he doesn't kill anyone, but he makes sure that car doesn't come till quarter past five.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-285",
+        "pos": 285,
+        "offset_sec": 2662,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Mmm.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-286",
+        "pos": 286,
+        "offset_sec": 2663,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Even if it's there. He keeps going, it's on its way because then the hostage knows that, he's not in control, really. Even if it's as easy as saying, I want my wife here, and you can get her there at five-",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-287",
+        "pos": 287,
+        "offset_sec": 2672,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "(unintelligible)",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-288",
+        "pos": 288,
+        "offset_sec": 2673,
+        "offset_inferred": true,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "-you make sure she doesn't turn up till twenty past five.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-289",
+        "pos": 289,
+        "offset_sec": 2675,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-290",
+        "pos": 290,
+        "offset_sec": 2676,
+        "offset_inferred": false,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "It's just little things like that that's just absolutely fascinating. The psychology of it is just amazing.",
+        "notable": false
+      },
+      {
+        "id": "ep-guide-S2E02-291",
+        "pos": 291,
         "offset_sec": 2683,
         "offset_inferred": false,
         "type": "chat",
@@ -1866,8 +3219,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-169",
-        "pos": 169,
+        "id": "ep-guide-S2E02-292",
+        "pos": 292,
         "offset_sec": 2687,
         "offset_inferred": false,
         "type": "chat",
@@ -1877,8 +3230,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-170",
-        "pos": 170,
+        "id": "ep-guide-S2E02-293",
+        "pos": 293,
         "offset_sec": 2691,
         "offset_inferred": false,
         "type": "chat",
@@ -1888,8 +3241,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-171",
-        "pos": 171,
+        "id": "ep-guide-S2E02-294",
+        "pos": 294,
         "offset_sec": 2693,
         "offset_inferred": true,
         "type": "chat",
@@ -1899,8 +3252,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-172",
-        "pos": 172,
+        "id": "ep-guide-S2E02-295",
+        "pos": 295,
         "offset_sec": 2694,
         "offset_inferred": true,
         "type": "chat",
@@ -1910,8 +3263,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-173",
-        "pos": 173,
+        "id": "ep-guide-S2E02-296",
+        "pos": 296,
         "offset_sec": 2697,
         "offset_inferred": false,
         "type": "chat",
@@ -1921,8 +3274,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-174",
-        "pos": 174,
+        "id": "ep-guide-S2E02-297",
+        "pos": 297,
         "offset_sec": 2700,
         "offset_inferred": true,
         "type": "chat",
@@ -1932,8 +3285,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-175",
-        "pos": 175,
+        "id": "ep-guide-S2E02-298",
+        "pos": 298,
         "offset_sec": 2700,
         "offset_inferred": false,
         "type": "chat",
@@ -1943,8 +3296,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-176",
-        "pos": 176,
+        "id": "ep-guide-S2E02-299",
+        "pos": 299,
         "offset_sec": 2701,
         "offset_inferred": true,
         "type": "chat",
@@ -1954,8 +3307,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-177",
-        "pos": 177,
+        "id": "ep-guide-S2E02-300",
+        "pos": 300,
         "offset_sec": 2702,
         "offset_inferred": true,
         "type": "chat",
@@ -1965,8 +3318,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-178",
-        "pos": 178,
+        "id": "ep-guide-S2E02-301",
+        "pos": 301,
         "offset_sec": 2703,
         "offset_inferred": true,
         "type": "chat",
@@ -1976,8 +3329,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-179",
-        "pos": 179,
+        "id": "ep-guide-S2E02-302",
+        "pos": 302,
         "offset_sec": 2703,
         "offset_inferred": true,
         "type": "chat",
@@ -1987,8 +3340,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-180",
-        "pos": 180,
+        "id": "ep-guide-S2E02-303",
+        "pos": 303,
         "offset_sec": 2705,
         "offset_inferred": false,
         "type": "chat",
@@ -1998,8 +3351,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-181",
-        "pos": 181,
+        "id": "ep-guide-S2E02-304",
+        "pos": 304,
         "offset_sec": 2715,
         "offset_inferred": false,
         "type": "chat",
@@ -2009,8 +3362,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-182",
-        "pos": 182,
+        "id": "ep-guide-S2E02-305",
+        "pos": 305,
         "offset_sec": 2753,
         "offset_inferred": false,
         "type": "chat",
@@ -2020,8 +3373,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-183",
-        "pos": 183,
+        "id": "ep-guide-S2E02-306",
+        "pos": 306,
         "offset_sec": 2755,
         "offset_inferred": false,
         "type": "chat",
@@ -2031,8 +3384,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-184",
-        "pos": 184,
+        "id": "ep-guide-S2E02-307",
+        "pos": 307,
         "offset_sec": 2769,
         "offset_inferred": false,
         "type": "chat",
@@ -2042,8 +3395,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-185",
-        "pos": 185,
+        "id": "ep-guide-S2E02-308",
+        "pos": 308,
         "offset_sec": 2771,
         "offset_inferred": true,
         "type": "chat",
@@ -2053,8 +3406,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-186",
-        "pos": 186,
+        "id": "ep-guide-S2E02-309",
+        "pos": 309,
         "offset_sec": 2773,
         "offset_inferred": true,
         "type": "chat",
@@ -2064,8 +3417,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-187",
-        "pos": 187,
+        "id": "ep-guide-S2E02-310",
+        "pos": 310,
         "offset_sec": 2782,
         "offset_inferred": false,
         "type": "chat",
@@ -2075,8 +3428,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-188",
-        "pos": 188,
+        "id": "ep-guide-S2E02-311",
+        "pos": 311,
         "offset_sec": 2783,
         "offset_inferred": false,
         "type": "chat",
@@ -2086,8 +3439,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-189",
-        "pos": 189,
+        "id": "ep-guide-S2E02-312",
+        "pos": 312,
         "offset_sec": 2785,
         "offset_inferred": true,
         "type": "chat",
@@ -2097,8 +3450,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-190",
-        "pos": 190,
+        "id": "ep-guide-S2E02-313",
+        "pos": 313,
         "offset_sec": 2791,
         "offset_inferred": true,
         "type": "chat",
@@ -2108,8 +3461,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-191",
-        "pos": 191,
+        "id": "ep-guide-S2E02-314",
+        "pos": 314,
         "offset_sec": 2793,
         "offset_inferred": true,
         "type": "chat",
@@ -2119,8 +3472,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-192",
-        "pos": 192,
+        "id": "ep-guide-S2E02-315",
+        "pos": 315,
         "offset_sec": 2795,
         "offset_inferred": true,
         "type": "chat",
@@ -2130,8 +3483,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-193",
-        "pos": 193,
+        "id": "ep-guide-S2E02-316",
+        "pos": 316,
         "offset_sec": 2796,
         "offset_inferred": true,
         "type": "chat",
@@ -2141,8 +3494,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-194",
-        "pos": 194,
+        "id": "ep-guide-S2E02-317",
+        "pos": 317,
         "offset_sec": 2799,
         "offset_inferred": true,
         "type": "chat",
@@ -2152,8 +3505,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-195",
-        "pos": 195,
+        "id": "ep-guide-S2E02-318",
+        "pos": 318,
         "offset_sec": 2800,
         "offset_inferred": false,
         "type": "chat",
@@ -2163,8 +3516,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-196",
-        "pos": 196,
+        "id": "ep-guide-S2E02-319",
+        "pos": 319,
         "offset_sec": 2803,
         "offset_inferred": false,
         "type": "chat",
@@ -2174,8 +3527,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-197",
-        "pos": 197,
+        "id": "ep-guide-S2E02-320",
+        "pos": 320,
         "offset_sec": 2812,
         "offset_inferred": false,
         "type": "chat",
@@ -2185,8 +3538,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-198",
-        "pos": 198,
+        "id": "ep-guide-S2E02-321",
+        "pos": 321,
         "offset_sec": 2813,
         "offset_inferred": true,
         "type": "chat",
@@ -2196,8 +3549,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-199",
-        "pos": 199,
+        "id": "ep-guide-S2E02-322",
+        "pos": 322,
         "offset_sec": 2817,
         "offset_inferred": true,
         "type": "chat",
@@ -2207,8 +3560,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-200",
-        "pos": 200,
+        "id": "ep-guide-S2E02-323",
+        "pos": 323,
         "offset_sec": 2818,
         "offset_inferred": true,
         "type": "chat",
@@ -2218,8 +3571,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-201",
-        "pos": 201,
+        "id": "ep-guide-S2E02-324",
+        "pos": 324,
         "offset_sec": 2819,
         "offset_inferred": false,
         "type": "chat",
@@ -2229,8 +3582,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-202",
-        "pos": 202,
+        "id": "ep-guide-S2E02-325",
+        "pos": 325,
         "offset_sec": 2820,
         "offset_inferred": true,
         "type": "chat",
@@ -2240,8 +3593,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-203",
-        "pos": 203,
+        "id": "ep-guide-S2E02-326",
+        "pos": 326,
         "offset_sec": 2823,
         "offset_inferred": false,
         "type": "chat",
@@ -2251,8 +3604,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-204",
-        "pos": 204,
+        "id": "ep-guide-S2E02-327",
+        "pos": 327,
         "offset_sec": 2824,
         "offset_inferred": false,
         "type": "chat",
@@ -2262,8 +3615,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-205",
-        "pos": 205,
+        "id": "ep-guide-S2E02-328",
+        "pos": 328,
         "offset_sec": 2830,
         "offset_inferred": false,
         "type": "chat",
@@ -2273,8 +3626,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-206",
-        "pos": 206,
+        "id": "ep-guide-S2E02-329",
+        "pos": 329,
         "offset_sec": 2832,
         "offset_inferred": false,
         "type": "chat",
@@ -2284,8 +3637,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-207",
-        "pos": 207,
+        "id": "ep-guide-S2E02-330",
+        "pos": 330,
         "offset_sec": 2834,
         "offset_inferred": false,
         "type": "chat",
@@ -2295,8 +3648,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-208",
-        "pos": 208,
+        "id": "ep-guide-S2E02-331",
+        "pos": 331,
         "offset_sec": 2836,
         "offset_inferred": true,
         "type": "chat",
@@ -2306,8 +3659,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-209",
-        "pos": 209,
+        "id": "ep-guide-S2E02-332",
+        "pos": 332,
         "offset_sec": 2836,
         "offset_inferred": false,
         "type": "chat",
@@ -2317,8 +3670,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-210",
-        "pos": 210,
+        "id": "ep-guide-S2E02-333",
+        "pos": 333,
         "offset_sec": 2839,
         "offset_inferred": true,
         "type": "chat",
@@ -2328,8 +3681,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-211",
-        "pos": 211,
+        "id": "ep-guide-S2E02-334",
+        "pos": 334,
         "offset_sec": 2839,
         "offset_inferred": true,
         "type": "chat",
@@ -2339,8 +3692,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-212",
-        "pos": 212,
+        "id": "ep-guide-S2E02-335",
+        "pos": 335,
         "offset_sec": 2840,
         "offset_inferred": true,
         "type": "chat",
@@ -2350,8 +3703,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-213",
-        "pos": 213,
+        "id": "ep-guide-S2E02-336",
+        "pos": 336,
         "offset_sec": 2841,
         "offset_inferred": true,
         "type": "chat",
@@ -2361,8 +3714,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-214",
-        "pos": 214,
+        "id": "ep-guide-S2E02-337",
+        "pos": 337,
         "offset_sec": 2843,
         "offset_inferred": false,
         "type": "chat",
@@ -2372,8 +3725,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-215",
-        "pos": 215,
+        "id": "ep-guide-S2E02-338",
+        "pos": 338,
         "offset_sec": 2844,
         "offset_inferred": false,
         "type": "chat",
@@ -2383,8 +3736,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-216",
-        "pos": 216,
+        "id": "ep-guide-S2E02-339",
+        "pos": 339,
         "offset_sec": 2845,
         "offset_inferred": true,
         "type": "chat",
@@ -2394,8 +3747,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-217",
-        "pos": 217,
+        "id": "ep-guide-S2E02-340",
+        "pos": 340,
         "offset_sec": 2847,
         "offset_inferred": true,
         "type": "chat",
@@ -2405,8 +3758,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-218",
-        "pos": 218,
+        "id": "ep-guide-S2E02-341",
+        "pos": 341,
         "offset_sec": 2852,
         "offset_inferred": false,
         "type": "chat",
@@ -2416,8 +3769,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-219",
-        "pos": 219,
+        "id": "ep-guide-S2E02-342",
+        "pos": 342,
         "offset_sec": 2855,
         "offset_inferred": false,
         "type": "chat",
@@ -2427,8 +3780,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-220",
-        "pos": 220,
+        "id": "ep-guide-S2E02-343",
+        "pos": 343,
         "offset_sec": 2863,
         "offset_inferred": true,
         "type": "chat",
@@ -2438,8 +3791,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-221",
-        "pos": 221,
+        "id": "ep-guide-S2E02-344",
+        "pos": 344,
         "offset_sec": 2864,
         "offset_inferred": true,
         "type": "chat",
@@ -2449,8 +3802,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-222",
-        "pos": 222,
+        "id": "ep-guide-S2E02-345",
+        "pos": 345,
         "offset_sec": 2866,
         "offset_inferred": false,
         "type": "chat",
@@ -2460,8 +3813,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-223",
-        "pos": 223,
+        "id": "ep-guide-S2E02-346",
+        "pos": 346,
         "offset_sec": 2867,
         "offset_inferred": false,
         "type": "chat",
@@ -2471,8 +3824,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-224",
-        "pos": 224,
+        "id": "ep-guide-S2E02-347",
+        "pos": 347,
         "offset_sec": 2870,
         "offset_inferred": true,
         "type": "chat",
@@ -2482,8 +3835,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-225",
-        "pos": 225,
+        "id": "ep-guide-S2E02-348",
+        "pos": 348,
         "offset_sec": 2870,
         "offset_inferred": false,
         "type": "chat",
@@ -2493,8 +3846,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-226",
-        "pos": 226,
+        "id": "ep-guide-S2E02-349",
+        "pos": 349,
         "offset_sec": 2871,
         "offset_inferred": false,
         "type": "chat",
@@ -2504,8 +3857,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-227",
-        "pos": 227,
+        "id": "ep-guide-S2E02-350",
+        "pos": 350,
         "offset_sec": 2876,
         "offset_inferred": false,
         "type": "chat",
@@ -2515,8 +3868,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-228",
-        "pos": 228,
+        "id": "ep-guide-S2E02-351",
+        "pos": 351,
         "offset_sec": 2877,
         "offset_inferred": false,
         "type": "chat",
@@ -2526,8 +3879,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-229",
-        "pos": 229,
+        "id": "ep-guide-S2E02-352",
+        "pos": 352,
         "offset_sec": 2879,
         "offset_inferred": false,
         "type": "chat",
@@ -2537,8 +3890,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-230",
-        "pos": 230,
+        "id": "ep-guide-S2E02-353",
+        "pos": 353,
         "offset_sec": 2883,
         "offset_inferred": true,
         "type": "chat",
@@ -2548,8 +3901,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-231",
-        "pos": 231,
+        "id": "ep-guide-S2E02-354",
+        "pos": 354,
         "offset_sec": 2885,
         "offset_inferred": false,
         "type": "chat",
@@ -2559,8 +3912,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-232",
-        "pos": 232,
+        "id": "ep-guide-S2E02-355",
+        "pos": 355,
         "offset_sec": 2886,
         "offset_inferred": true,
         "type": "chat",
@@ -2570,8 +3923,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-233",
-        "pos": 233,
+        "id": "ep-guide-S2E02-356",
+        "pos": 356,
         "offset_sec": 2889,
         "offset_inferred": true,
         "type": "chat",
@@ -2581,8 +3934,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-234",
-        "pos": 234,
+        "id": "ep-guide-S2E02-357",
+        "pos": 357,
         "offset_sec": 2890,
         "offset_inferred": true,
         "type": "chat",
@@ -2592,8 +3945,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-235",
-        "pos": 235,
+        "id": "ep-guide-S2E02-358",
+        "pos": 358,
         "offset_sec": 2899,
         "offset_inferred": false,
         "type": "chat",
@@ -2603,8 +3956,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-236",
-        "pos": 236,
+        "id": "ep-guide-S2E02-359",
+        "pos": 359,
         "offset_sec": 2910,
         "offset_inferred": false,
         "type": "chat",
@@ -2614,8 +3967,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-237",
-        "pos": 237,
+        "id": "ep-guide-S2E02-360",
+        "pos": 360,
         "offset_sec": 2917,
         "offset_inferred": false,
         "type": "chat",
@@ -2625,8 +3978,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-238",
-        "pos": 238,
+        "id": "ep-guide-S2E02-361",
+        "pos": 361,
         "offset_sec": 2920,
         "offset_inferred": true,
         "type": "chat",
@@ -2636,8 +3989,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-239",
-        "pos": 239,
+        "id": "ep-guide-S2E02-362",
+        "pos": 362,
         "offset_sec": 2923,
         "offset_inferred": false,
         "type": "chat",
@@ -2647,8 +4000,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-240",
-        "pos": 240,
+        "id": "ep-guide-S2E02-363",
+        "pos": 363,
         "offset_sec": 2926,
         "offset_inferred": false,
         "type": "chat",
@@ -2658,8 +4011,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-241",
-        "pos": 241,
+        "id": "ep-guide-S2E02-364",
+        "pos": 364,
         "offset_sec": 2931,
         "offset_inferred": false,
         "type": "chat",
@@ -2669,8 +4022,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-242",
-        "pos": 242,
+        "id": "ep-guide-S2E02-365",
+        "pos": 365,
         "offset_sec": 2933,
         "offset_inferred": false,
         "type": "chat",
@@ -2680,8 +4033,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-243",
-        "pos": 243,
+        "id": "ep-guide-S2E02-366",
+        "pos": 366,
         "offset_sec": 2935,
         "offset_inferred": false,
         "type": "chat",
@@ -2691,8 +4044,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-244",
-        "pos": 244,
+        "id": "ep-guide-S2E02-367",
+        "pos": 367,
         "offset_sec": 2938,
         "offset_inferred": false,
         "type": "chat",
@@ -2702,8 +4055,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-245",
-        "pos": 245,
+        "id": "ep-guide-S2E02-368",
+        "pos": 368,
         "offset_sec": 2942,
         "offset_inferred": true,
         "type": "chat",
@@ -2713,8 +4066,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-246",
-        "pos": 246,
+        "id": "ep-guide-S2E02-369",
+        "pos": 369,
         "offset_sec": 2942,
         "offset_inferred": true,
         "type": "chat",
@@ -2724,8 +4077,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-247",
-        "pos": 247,
+        "id": "ep-guide-S2E02-370",
+        "pos": 370,
         "offset_sec": 2949,
         "offset_inferred": false,
         "type": "chat",
@@ -2735,8 +4088,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-248",
-        "pos": 248,
+        "id": "ep-guide-S2E02-371",
+        "pos": 371,
         "offset_sec": 2978,
         "offset_inferred": false,
         "type": "chat",
@@ -2746,8 +4099,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-249",
-        "pos": 249,
+        "id": "ep-guide-S2E02-372",
+        "pos": 372,
         "offset_sec": 2987,
         "offset_inferred": false,
         "type": "chat",
@@ -2757,8 +4110,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-250",
-        "pos": 250,
+        "id": "ep-guide-S2E02-373",
+        "pos": 373,
         "offset_sec": 2988,
         "offset_inferred": true,
         "type": "chat",
@@ -2768,8 +4121,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-251",
-        "pos": 251,
+        "id": "ep-guide-S2E02-374",
+        "pos": 374,
         "offset_sec": 2993,
         "offset_inferred": false,
         "type": "chat",
@@ -2779,8 +4132,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-252",
-        "pos": 252,
+        "id": "ep-guide-S2E02-375",
+        "pos": 375,
         "offset_sec": 2997,
         "offset_inferred": false,
         "type": "chat",
@@ -2790,8 +4143,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-253",
-        "pos": 253,
+        "id": "ep-guide-S2E02-376",
+        "pos": 376,
         "offset_sec": 2999,
         "offset_inferred": false,
         "type": "chat",
@@ -2801,8 +4154,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-254",
-        "pos": 254,
+        "id": "ep-guide-S2E02-377",
+        "pos": 377,
         "offset_sec": 3003,
         "offset_inferred": true,
         "type": "chat",
@@ -2812,8 +4165,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-255",
-        "pos": 255,
+        "id": "ep-guide-S2E02-378",
+        "pos": 378,
         "offset_sec": 3006,
         "offset_inferred": true,
         "type": "chat",
@@ -2823,8 +4176,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-256",
-        "pos": 256,
+        "id": "ep-guide-S2E02-379",
+        "pos": 379,
         "offset_sec": 3011,
         "offset_inferred": true,
         "type": "chat",
@@ -2834,8 +4187,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-257",
-        "pos": 257,
+        "id": "ep-guide-S2E02-380",
+        "pos": 380,
         "offset_sec": 3018,
         "offset_inferred": false,
         "type": "chat",
@@ -2845,8 +4198,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-258",
-        "pos": 258,
+        "id": "ep-guide-S2E02-381",
+        "pos": 381,
         "offset_sec": 3022,
         "offset_inferred": false,
         "type": "chat",
@@ -2856,8 +4209,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-259",
-        "pos": 259,
+        "id": "ep-guide-S2E02-382",
+        "pos": 382,
         "offset_sec": 3024,
         "offset_inferred": true,
         "type": "chat",
@@ -2867,8 +4220,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-260",
-        "pos": 260,
+        "id": "ep-guide-S2E02-383",
+        "pos": 383,
         "offset_sec": 3025,
         "offset_inferred": true,
         "type": "chat",
@@ -2878,8 +4231,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-261",
-        "pos": 261,
+        "id": "ep-guide-S2E02-384",
+        "pos": 384,
         "offset_sec": 3029,
         "offset_inferred": false,
         "type": "chat",
@@ -2889,8 +4242,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-262",
-        "pos": 262,
+        "id": "ep-guide-S2E02-385",
+        "pos": 385,
         "offset_sec": 3033,
         "offset_inferred": false,
         "type": "chat",
@@ -2900,8 +4253,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-263",
-        "pos": 263,
+        "id": "ep-guide-S2E02-386",
+        "pos": 386,
         "offset_sec": 3044,
         "offset_inferred": false,
         "type": "chat",
@@ -2911,8 +4264,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-264",
-        "pos": 264,
+        "id": "ep-guide-S2E02-387",
+        "pos": 387,
         "offset_sec": 3052,
         "offset_inferred": false,
         "type": "chat",
@@ -2922,8 +4275,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-265",
-        "pos": 265,
+        "id": "ep-guide-S2E02-388",
+        "pos": 388,
         "offset_sec": 3055,
         "offset_inferred": false,
         "type": "chat",
@@ -2933,8 +4286,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-266",
-        "pos": 266,
+        "id": "ep-guide-S2E02-389",
+        "pos": 389,
         "offset_sec": 3056,
         "offset_inferred": false,
         "type": "chat",
@@ -2944,8 +4297,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-267",
-        "pos": 267,
+        "id": "ep-guide-S2E02-390",
+        "pos": 390,
         "offset_sec": 3062,
         "offset_inferred": false,
         "type": "chat",
@@ -2955,8 +4308,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-268",
-        "pos": 268,
+        "id": "ep-guide-S2E02-391",
+        "pos": 391,
         "offset_sec": 3076,
         "offset_inferred": false,
         "type": "chat",
@@ -2966,8 +4319,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-269",
-        "pos": 269,
+        "id": "ep-guide-S2E02-392",
+        "pos": 392,
         "offset_sec": 3096,
         "offset_inferred": false,
         "type": "chat",
@@ -2977,8 +4330,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-270",
-        "pos": 270,
+        "id": "ep-guide-S2E02-393",
+        "pos": 393,
         "offset_sec": 3097,
         "offset_inferred": false,
         "type": "chat",
@@ -2988,8 +4341,8 @@
         "notable": false
       },
       {
-        "id": "ep-guide-S2E02-271",
-        "pos": 271,
+        "id": "ep-guide-S2E02-394",
+        "pos": 394,
         "offset_sec": 3121,
         "offset_inferred": false,
         "type": "chat",
@@ -3011,14 +4364,15 @@
       "MchlPtrsn",
       "Oversteer_",
       "Weird-Map7114",
+      "aidann.",
       "the_duckington",
       "warmans"
     ],
     "trivia": [
       {
         "description": "Bernard Bresslaw was a British actor and comedian. He was best known as a member of the Carry On film franchise.",
-        "start_pos": 137,
-        "end_pos": 138
+        "start_pos": 221,
+        "end_pos": 222
       }
     ]
   }

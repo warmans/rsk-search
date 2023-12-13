@@ -4,7 +4,7 @@
     "episode": 19,
     "name": "",
     "summary": "",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "release_date": "2002-04-06T00:00:00Z",
     "incomplete": false,
     "bestof": false,
@@ -12286,11 +12286,7 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": {
-          "song_album": "The Velvet Underground \u0026 Nico 45th Anniversary",
-          "song_track": "I'm Waiting For The Man",
-          "spotify_uri": "spotify:track:3fElupNRLRJ0tbUDahPrAb"
-        },
+        "metadata": null,
         "content": "Velvet Underground – Waiting for the Man",
         "notable": false
       },
@@ -16293,5 +16289,11 @@
     "contributors": [
       "warmans"
     ],
-    "trivia": null
+    "trivia": [
+      {
+        "description": "Some people believe Ricky is saying \"So are Air\" here - a reference to another French band.",
+        "start_pos": 89,
+        "end_pos": 90
+      }
+    ]
   }
