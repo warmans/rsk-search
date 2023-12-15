@@ -20,7 +20,17 @@ Frontend (`/gui`):
 
 There are also some files to give an example of how the service can be deployed in `/deploy`.
 
-## GUI Development
+## Development Prerequisites
+
+1. tilt https://docs.tilt.dev/ (recommended)
+2. docker.io, docker-compose (`apt install docker.io docker-compose`)
+3. direnv (`apt install direnv` - remember to install shell hook e.g. `direnv hook bash > ~/.bashrc`)
+4. npm/nodejs 18.x
+5. go 1.20
+
+## Running services manually
+
+### GUI Development
 
 From the gui directory:
 
@@ -31,14 +41,9 @@ local server and will use the live scrimpton.com API.
 If the local server is running you can use `npm run start` to proxy the 
 API to the local running API.
 
-## Server development
+### Server development
 
 From the server directory: 
-
-Prerequisites: 
-
-1. docker.io, docker-compose (`apt install docker.io docker-compose`)
-2. direnv (`apt install direnv` - remember to install shell hook e.g. `direnv hook bash > ~/.bashrc`)
 
 Setup:
 
@@ -52,7 +57,7 @@ Note that invalid API keys will be used (see .envrc). These may cause some thing
 
 More info: [server README](server/README.md)
 
-### How to change the API 
+#### How to change the API 
 
 1. Edit proto file e.g. `proto/search.proto`.
 2. Run `make generate`.
@@ -60,6 +65,12 @@ More info: [server README](server/README.md)
 4. In `gui` directory run `npm run generate-api-client` to sync the GUI client with the latest API definitions. 
 
 More info: [GUI README](gui/README.md)
+
+## Running services with Tilt
+
+Once everything is set up, you can then switch to using tilt to run all the services.
+
+With nothing running you can run `tilt up` from the root directory, and it will start everything for the API and UI.
 
 ## Deployment
 

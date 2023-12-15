@@ -19,6 +19,7 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
   };
   schemes: HTTP;
 };
+
 service TranscriptService {
 
   rpc GetTranscript(GetTranscriptRequest) returns (Transcript) {

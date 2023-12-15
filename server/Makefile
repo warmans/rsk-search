@@ -62,7 +62,6 @@ lint.go:
 lint.proto:
 	buf lint
 
-
 #----------------------------------------------------------------------------------------------
 # build/test
 #----------------------------------------------------------------------------------------------
@@ -140,7 +139,7 @@ init.transcripts:
 	./bin/rsk-search data init
 
 .PHONY: run
-run: build
+run:
 	DEBUG=true ./bin/rsk-search server \
 		--rw-db-dsn=${DEV_DB_DSN} \
 		--oauth-reddit-secret=${REDDIT_SECRET} \
