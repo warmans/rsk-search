@@ -34,7 +34,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   private unsubscribe$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  activeInfoPanel: 'contribute' | 'changelog' = 'contribute';
+  activeInfoPanel: 'contribute' | 'changelog' | 'randomQuote' = 'contribute';
 
   constructor(
     private apiClient: SearchAPIClient,

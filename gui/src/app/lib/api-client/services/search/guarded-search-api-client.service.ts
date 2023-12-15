@@ -188,6 +188,13 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
       .pipe(tap((res: any) => guards.isRskSearchTermPredictions(res) || console.error(`TypeGuard for response 'RskSearchTermPredictions' caught inconsistency.`, res)));
   }
 
+  getRandomQuote(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskRandomQuote> {
+    return super.getRandomQuote(requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRskRandomQuote(res) || console.error(`TypeGuard for response 'RskRandomQuote' caught inconsistency.`, res)));
+  }
+
   getQuotaSummary(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskQuotas> {

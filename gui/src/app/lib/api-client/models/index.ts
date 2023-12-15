@@ -44,6 +44,7 @@ export { RskNotificationsList } from './rsk-notifications-list.model';
 export { RskPendingRewardList } from './rsk-pending-reward-list.model';
 export { RskPrediction } from './rsk-prediction.model';
 export { RskQuotas } from './rsk-quotas.model';
+export { RskRandomQuote } from './rsk-random-quote.model';
 export { RskRank } from './rsk-rank.model';
 export { RskRecipientStats } from './rsk-recipient-stats.model';
 export { RskRequestChunkContributionStateRequest } from './rsk-request-chunk-contribution-state-request.model';

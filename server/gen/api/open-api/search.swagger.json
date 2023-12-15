@@ -187,6 +187,29 @@
         ]
       }
     },
+    "/api/search/random-quote": {
+      "get": {
+        "summary": "Gets a random quote from the transcripts",
+        "operationId": "getRandomQuote",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskRandomQuote"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "search"
+        ]
+      }
+    },
     "/api/values/{field}": {
       "get": {
         "summary": "Get a list of values for the given keyword field",
@@ -426,6 +449,24 @@
         },
         "actor": {
           "type": "string"
+        }
+      }
+    },
+    "rskRandomQuote": {
+      "type": "object",
+      "properties": {
+        "quote": {
+          "type": "string"
+        },
+        "actor": {
+          "type": "string"
+        },
+        "epid": {
+          "type": "string"
+        },
+        "pos": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },

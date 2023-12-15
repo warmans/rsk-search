@@ -420,6 +420,21 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  getRandomQuote(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskRandomQuote> {
+    const path = `/api/search/random-quote`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<models.RskRandomQuote>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   getQuotaSummary(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskQuotas> {

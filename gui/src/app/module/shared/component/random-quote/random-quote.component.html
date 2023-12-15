@@ -1,0 +1,5 @@
+<div class="quote d-flex flex-column justify-content-around" [style.background-image]="'url(assets/quote-'+quote?.actor+'.png)'">
+  <div class="w-75 mx-3 text-center font-italic content">
+    <a class="text-paragraph" [routerLink]="['/ep', quote?.epid]" [fragment]="'pos-'+(quote?.pos)">{{quote?.quote}}</a>
+  </div>
+</div>

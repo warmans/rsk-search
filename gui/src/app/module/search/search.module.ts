@@ -30,14 +30,14 @@ import { SearchBarSuggestionComponent } from 'src/app/module/search/component/se
     SearchBarCompatComponent,
     SearchBarSuggestionComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    SharedModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgChartsModule,
-  ],
+    imports: [
+        CommonModule,
+        RouterModule,
+        SharedModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgChartsModule,
+    ],
   exports: [SearchBarCompatComponent]
 })
 export class SearchModule {

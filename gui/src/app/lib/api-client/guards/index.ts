@@ -655,6 +655,23 @@ export function isRskQuotas(arg: any): arg is models.RskQuotas {
   );
   }
 
+export function isRskRandomQuote(arg: any): arg is models.RskRandomQuote {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // actor?: string
+    ( typeof arg.actor === 'undefined' || typeof arg.actor === 'string' ) &&
+    // epid?: string
+    ( typeof arg.epid === 'undefined' || typeof arg.epid === 'string' ) &&
+    // pos?: number
+    ( typeof arg.pos === 'undefined' || typeof arg.pos === 'number' ) &&
+    // quote?: string
+    ( typeof arg.quote === 'undefined' || typeof arg.quote === 'string' ) &&
+
+  true
+  );
+  }
+
 export function isRskRank(arg: any): arg is models.RskRank {
   return (
   arg != null &&

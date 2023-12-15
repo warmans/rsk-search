@@ -69,6 +69,18 @@ service SearchService {
   }
 
   // changelogs
+  rpc GetRandomQuote(GetRandomQuoteRequest) returns (RandomQuote) {
+    option (google.api.http) = {
+      get: "/api/search/random-quote"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "getRandomQuote",
+      summary: "Gets a random quote from the transcripts"
+      tags: "search"
+    };
+  }
+
+  // changelogs
   rpc ListChangelogs(ListChangelogsRequest) returns (ChangelogList) {
     option (google.api.http) = {
       get: "/api/changelog"
@@ -187,4 +199,14 @@ message ChangelogList {
 message Changelog {
   string date = 1;
   string content = 2;
+}
+
+message GetRandomQuoteRequest {
+}
+
+message RandomQuote {
+  string quote = 1;
+  string actor = 2;
+  string epid = 3;
+  int32 pos = 4;
 }

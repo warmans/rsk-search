@@ -1,0 +1,12 @@
+@import 'src/scss/variables';
+
+.quote {
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-size: contain;
+  min-height: 300px;
+  .content {
+    font-size: 1.5rem;
+  }
+}
+

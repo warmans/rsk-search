@@ -133,6 +133,16 @@ func (s *SearchService) ListChangelogs(ctx context.Context, request *api.ListCha
 	return result, nil
 }
 
+func (s *SearchService) GetRandomQuote(ctx context.Context, request *api.GetRandomQuoteRequest) (*api.RandomQuote, error) {
+	quote := s.episodeCache.RandomQuote()
+	return &api.RandomQuote{
+		Quote: quote.Dialog.Content,
+		Actor: quote.Dialog.Actor,
+		Epid:  quote.EpID,
+		Pos:   int32(quote.Dialog.Position),
+	}, nil
+}
+
 func checkWhy(f filter.Filter) error {
 	if f == nil {
 		return nil

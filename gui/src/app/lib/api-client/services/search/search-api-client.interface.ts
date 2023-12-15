@@ -175,6 +175,13 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  getRandomQuote(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskRandomQuote>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   getQuotaSummary(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskQuotas>;

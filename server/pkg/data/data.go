@@ -7,6 +7,7 @@ import (
 	"github.com/pkg/errors"
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/util"
+	"math/rand"
 	"os"
 	"path"
 	"sort"
@@ -108,8 +109,18 @@ func NewEpisodeStore(dataDir string) (*EpisodeCache, error) {
 	for k, ep := range episodes {
 		store.episodeMap[ep.ID()] = *ep
 		store.episodeList[k] = *ep
+		for _, d := range ep.Transcript {
+			if d.Notable {
+				store.quoteList = append(store.quoteList, Quote{EpID: ep.ID(), Dialog: d})
+			}
+		}
 	}
 	return store, nil
+}
+
+type Quote struct {
+	EpID   string
+	Dialog models.Dialog
 }
 
 var ErrNotFound = errors.New("not found")
@@ -117,6 +128,7 @@ var ErrNotFound = errors.New("not found")
 type EpisodeCache struct {
 	episodeMap  map[string]models.Transcript
 	episodeList []models.Transcript
+	quoteList   []Quote
 	lock        sync.RWMutex
 }
 
@@ -141,6 +153,10 @@ func (s *EpisodeCache) ListEpisodes() []*models.Transcript {
 		list[k] = transcriptP(v)
 	}
 	return list
+}
+
+func (s *EpisodeCache) RandomQuote() Quote {
+	return s.quoteList[rand.Intn(len(s.quoteList)-1)]
 }
 
 func transcriptP(transcript models.Transcript) *models.Transcript {
