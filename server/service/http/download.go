@@ -15,6 +15,7 @@ import (
 	"net/http"
 	"os"
 	"path"
+	"strings"
 )
 
 var DownloadsOverQuota = errors.New("download quota exceeded")
@@ -192,8 +193,8 @@ func (c *DownloadService) incrementQuotas(ctx context.Context, mediaType string,
 
 		_, currentMib, err := s.GetMediaStatsForCurrentMonth(ctx)
 		if err != nil {
-			if err == context.Canceled {
-				return err
+			if err == context.Canceled || strings.HasSuffix(err.Error(), "driver: bad connection") {
+				return nil
 			}
 			return errors.Wrap(err, "failed to get current usage")
 		}
@@ -203,7 +204,7 @@ func (c *DownloadService) incrementQuotas(ctx context.Context, mediaType string,
 		}
 		if err := s.IncrementMediaAccessLog(ctx, mediaType, fileID, fileMib); err != nil {
 			if err == context.Canceled {
-				return err
+				return nil
 			}
 			return errors.Wrap(err, "failed to increment access log bytes")
 		}

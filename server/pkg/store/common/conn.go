@@ -89,9 +89,9 @@ func (c *Conn) Migrate(migrations embed.FS) error {
 			if err != nil {
 				return fmt.Errorf("failed to read file %s: %w", migrationPath, err)
 			}
-			defer f.Close()
 
 			bytes, err := io.ReadAll(f)
+			f.Close()
 			if err != nil {
 				return err
 			}
