@@ -19,6 +19,12 @@
   </div>
 </nav>
 
+<nav class="sub-nav p-2">
+  <a [routerLink]="['/search']" [routerLinkActive]="['active']" class="mr-1">Transcript Directory</a> |
+  <a [routerLink]="['/contribute']" [routerLinkActive]="['active']" class="mx-1">Contribute</a> |
+  <a [routerLink]="['/more-shite']" [routerLinkActive]="['active']" class="ml-1">More Shoddy Shite</a>
+</nav>
+
 <app-alert></app-alert>
 
 <div class="alert alert-warning" *ngIf="bandwidthQuotaUsedPcnt > 95">

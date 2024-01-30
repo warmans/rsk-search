@@ -15,6 +15,7 @@ import {ChangelogComponent} from '../module/search/page/changelog/changelog.comp
 import {ImportComponent} from '../module/admin/page/import/import.component';
 import {CanActivateAdmin} from '../module/admin/can-activate-admin';
 import {QuotasComponent} from 'src/app/module/admin/page/quotas/quotas.component';
+import {IndexComponent} from "../module/more-shite/page/index/index.component";
 
 const routes: Routes = [
   {
@@ -83,6 +84,10 @@ const routes: Routes = [
     data: {
       disableRewardPopup: true
     }
+  },
+  {
+    path: 'more-shite',
+    component: IndexComponent,
   },
   {path: '', redirectTo: '/search', pathMatch: 'full'},
 ];

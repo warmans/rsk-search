@@ -76,9 +76,6 @@
           <a class="nav-link" (click)="activeInfoPanel='contribute'" [ngClass]="{'active': activeInfoPanel === 'contribute'}">Contribute</a>
         </li>
         <li class="nav-item mr-2">
-          <a class="nav-link" (click)="activeInfoPanel='randomQuote'" [ngClass]="{'active': activeInfoPanel === 'randomQuote'}">Random Quote</a>
-        </li>
-        <li class="nav-item mr-2">
           <a class="nav-link" (click)="activeInfoPanel='changelog'" [ngClass]="{'active': activeInfoPanel === 'changelog'}">Changelog</a>
         </li>
       </ul>
@@ -94,10 +91,6 @@
           <button class="btn btn-primary" [routerLink]="['/contribute']">Contribute</button>
         </div>
       </div>
-      <div class="card mb-4" *ngIf="activeInfoPanel === 'randomQuote'">
-        <div class="card-header"></div>
-        <app-random-quote></app-random-quote>
-      </div>
       <div class="card mb-4" *ngIf="activeInfoPanel === 'changelog'">
         <div class="card-header"></div>
         <div class="card-body">
@@ -108,13 +101,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col mb-4">
-      <a href="https://chimpancy-that.com" target="_blank">
-        <img style="max-width: 100%" src="/assets/chimpancy-that-banner.jpg" />
-      </a>
     </div>
   </div>
   <div class="row">

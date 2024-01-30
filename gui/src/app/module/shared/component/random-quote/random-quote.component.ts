@@ -19,6 +19,10 @@ export class RandomQuoteComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.getQuote();
+  }
+
+  getQuote() {
     this.apiClient.getRandomQuote().pipe(takeUntil(this.destroy$)).subscribe((res: RskRandomQuote) => {
       this.quote = res
     })

@@ -12,6 +12,7 @@ import {RewardModule} from '../module/reward/reward.module';
 import {ContribModule} from '../module/contrib/contrib.module';
 import {AdminModule} from '../module/admin/admin.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {MoreShiteModule} from "../module/more-shite/more-shite.module";
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     RewardModule,
     ContribModule,
     AdminModule,
+    MoreShiteModule,
     NgbModule,
   ],
   providers: [Title],

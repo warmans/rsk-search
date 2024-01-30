@@ -1,11 +1,16 @@
 @import 'src/scss/variables';
 
 .quote {
-  background-repeat: no-repeat;
-  background-position-x: right;
-  background-size: contain;
-  min-height: 300px;
-  .content {
+
+  .speaker-image {
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: bottom;
+    background-size: contain;
+    min-width: 35%;
+    height: 300px;
+  }
+  .quote-text {
     font-size: 1.5rem;
   }
 }
