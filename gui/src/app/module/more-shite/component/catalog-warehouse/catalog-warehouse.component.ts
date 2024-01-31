@@ -22,7 +22,7 @@ export class CatalogWarehouseComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    let startDate = new Date(2003, 1, 25, 12, 10, 0, 0)
+    let startDate = new Date(2003, 0, 25, 12, 10, 0, 0)
     this.valueInPence = INITIAL_PENCE_OWED + (differenceInSeconds(new Date(), startDate) * PENCE_PER_SECOND);
     this.inDebtDays = differenceInDays(new Date(), startDate);
 
