@@ -151,7 +151,7 @@
                 <button class="btn btn-sm btn-primary ml-2" *ngIf="scrollToID || scrollToSeconds"
                         (click)="clearSelection()">Clear Selection
                 </button>
-                <button class="btn btn-sm btn-success ml-2" *ngIf="selection"
+                <button class="btn btn-sm btn-success ml-2" *ngIf="scrollToID && selection"
                         (click)="copySelection()">Copy Selection
                 </button>
                 <!--button class="btn btn-sm btn-primary ml-2" *ngIf="scrollToID || scrollToSeconds" (click)="shareSelection()">Share Selection</button-->
