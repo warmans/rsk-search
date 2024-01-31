@@ -11,9 +11,9 @@ interface DialogGroup {
 }
 
 export interface Section {
-  epid: string;
+  epid?: string;
   startPos: number;
-  endPos: number;
+  endPos?: number;
 }
 
 @Component({
@@ -183,14 +183,17 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
   }
 
   selectPosition(pos: number, ev: any): boolean {
-    if (ev.shiftKey && this.scrollToPosStart) {
+    this.emitSelection.next({startPos: pos, endPos: pos, epid: this.epid});
+    return true;
+  }
+
+  addToSelection(pos: number): boolean {
+    if (this.scrollToPosStart) {
       const start = this.scrollToPosStart > pos ? pos : this.scrollToPosStart;
       const end = this.scrollToPosStart > pos ? this.scrollToPosStart : pos;
       this.emitSelection.next({startPos: start, endPos: end, epid: this.epid});
-      return false;
     }
-    this.emitSelection.next({startPos: pos, endPos: pos, epid: this.epid});
-    return true;
+    return false;
   }
 
   selectRange(startLine: number, endLine: number): boolean {

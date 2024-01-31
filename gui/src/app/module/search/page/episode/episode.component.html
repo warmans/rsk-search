@@ -151,6 +151,9 @@
                 <button class="btn btn-sm btn-primary ml-2" *ngIf="scrollToID || scrollToSeconds"
                         (click)="clearSelection()">Clear Selection
                 </button>
+                <button class="btn btn-sm btn-success ml-2" *ngIf="selection"
+                        (click)="copySelection()">Copy Selection
+                </button>
                 <!--button class="btn btn-sm btn-primary ml-2" *ngIf="scrollToID || scrollToSeconds" (click)="shareSelection()">Share Selection</button-->
                 <div class="ml-2" *ngIf="pendingChanges?.length === 0 && !episode.locked">
                   <a class="btn btn-sm btn-info" [routerLink]="['/ep', id, 'change']">Submit Correction</a>

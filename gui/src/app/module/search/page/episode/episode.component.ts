@@ -12,6 +12,8 @@ import {MetaService} from '../../../core/service/meta/meta.service';
 import {AudioService, PlayerState, Status} from '../../../core/service/audio/audio.service';
 import {Section} from '../../../shared/component/transcript/transcript.component';
 import {combineLatest} from 'rxjs';
+import {parseSection} from "../../../shared/lib/fragment";
+import {ClipboardService} from "../../../core/service/clipboard/clipboard.service";
 
 @Component({
   selector: 'app-episode',
@@ -56,6 +58,8 @@ export class EpisodeComponent implements OnInit, OnDestroy {
 
   audioStates = PlayerState;
 
+  selection: Section;
+
   unsubscribe$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(
@@ -67,6 +71,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
     private sessionService: SessionService,
     private meta: MetaService,
     private audioService: AudioService,
+    private clipboard: ClipboardService,
   ) {
     route.paramMap.pipe(takeUntil(this.unsubscribe$)).subscribe((d: Data) => {
       this.loadEpisode(d.params['id']);
@@ -79,6 +84,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
       }
       if (f.startsWith('pos-')) {
         this.scrollToID = f;
+        this.selection = parseSection(f);
       }
       if (f.startsWith('sec-')) {
         this.scrollToSeconds = parseInt(f.replace('sec-', ''));
@@ -185,5 +191,13 @@ export class EpisodeComponent implements OnInit, OnDestroy {
 
   clearSelection() {
     this.router.navigate([], {});
+  }
+
+  copySelection(){
+    this.clipboard.copyTextToClipboard(
+      (this.episode.transcript.slice(this.selection.startPos-1, this.selection.endPos) || [])
+        .map((d:RskDialog): string => d.actor ? `__${d.actor}:__ ${d.content}` : `*${d.content}*`)
+        .join("\n")
+    );
   }
 }
