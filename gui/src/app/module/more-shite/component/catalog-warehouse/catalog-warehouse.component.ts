@@ -4,7 +4,7 @@ import {takeUntil, timeInterval} from "rxjs/operators";
 import {differenceInDays, differenceInSeconds, formatDistanceToNow} from "date-fns";
 
 const PENCE_PER_SECOND: number = 26 / (24 * 60 * 60)
-const INITIAL_PENCE_OWED: number = 620;
+const INITIAL_PENCE_OWED: number = 720;
 
 @Component({
   selector: 'app-catalog-warehouse',
