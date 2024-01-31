@@ -196,7 +196,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
   copySelection(){
     this.clipboard.copyTextToClipboard(
       (this.episode.transcript.slice(this.selection.startPos-1, this.selection.endPos) || [])
-        .map((d:RskDialog): string => d.actor ? `__${d.actor}:__ ${d.content}` : `*${d.content}*`)
+        .map((d:RskDialog): string => d.actor ? `**${d.actor}:** ${d.content}` : `*${d.content}*`)
         .join("\n")
     );
   }
