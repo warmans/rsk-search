@@ -9,7 +9,7 @@
     <p class="mb-0">Not accounting for interest this debt is currently worth:</p>
   <hr>
     <div class="debt-clock text-center mb-2">
-      {{ valueInPence | currency:"£":"symbol":"1.2-5" }}
+      {{ (valueInPence/100) | currency:"£":"symbol":"1.2-5" }}
     </div>
   </div>
   <div class="card-footer text-muted text-right">
