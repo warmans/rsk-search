@@ -121,33 +121,31 @@ export class EditorComponent implements OnInit, OnDestroy {
 
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent): boolean {
-    if (this._editorConfig.autoSeek === undefined ? true : this._editorConfig.autoSeek) {
-      if (this._editorConfig?.playPauseKey && event.key === (this._editorConfig?.playPauseKey)) {
-        this.audioService.toggleAudio(0 - (this._editorConfig?.backtrack || 3));
-        return false;
-      }
-      if (this._editorConfig?.rewindKey && event.key === (this._editorConfig?.rewindKey)) {
-        this.skipBackwards();
-        return false;
-      }
-      if (this._editorConfig?.fastForwardKey && event.key === (this._editorConfig?.fastForwardKey)) {
-        this.skipForward();
-        return false;
-      }
-      if (this._editorConfig?.fastForwardKey && event.key === (this._editorConfig?.fastForwardKey)) {
-        this.skipForward();
-        return false;
-      }
-      if (this._editorConfig?.insertOffsetKey && event.key === (this._editorConfig?.insertOffsetKey)) {
-        this.insertOffsetAboveCaret();
-        return false;
-      }
-      if (this._editorConfig?.insertSynKey && event.key === (this._editorConfig?.insertSynKey)) {
-        this.insertSynAboveCaret();
-        return false;
-      }
-      return true;
+    if (this._editorConfig?.playPauseKey && event.key === (this._editorConfig?.playPauseKey)) {
+      this.audioService.toggleAudio(0 - (this._editorConfig?.backtrack || 3));
+      return false;
     }
+    if (this._editorConfig?.rewindKey && event.key === (this._editorConfig?.rewindKey)) {
+      this.skipBackwards();
+      return false;
+    }
+    if (this._editorConfig?.fastForwardKey && event.key === (this._editorConfig?.fastForwardKey)) {
+      this.skipForward();
+      return false;
+    }
+    if (this._editorConfig?.fastForwardKey && event.key === (this._editorConfig?.fastForwardKey)) {
+      this.skipForward();
+      return false;
+    }
+    if (this._editorConfig?.insertOffsetKey && event.key === (this._editorConfig?.insertOffsetKey)) {
+      this.insertOffsetAboveCaret();
+      return false;
+    }
+    if (this._editorConfig?.insertSynKey && event.key === (this._editorConfig?.insertSynKey)) {
+      this.insertSynAboveCaret();
+      return false;
+    }
+    return true;
   }
 
   constructor(private audioService: AudioService, private cdr: ChangeDetectorRef) {
