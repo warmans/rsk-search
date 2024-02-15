@@ -4,7 +4,7 @@
     "episode": 11,
     "name": "",
     "summary": "",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "release_date": "2002-11-02T00:00:00Z",
     "incomplete": false,
     "bestof": false,
@@ -3137,12 +3137,7 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": {
-          "song_album": "Human Conditions",
-          "song_artist": "Richard Ashcroft",
-          "song_track": "Check The Meaning",
-          "spotify_uri": "spotify:track:27lBtZlEualAWVi6Ilttla"
-        },
+        "metadata": null,
         "content": "Richard Ashcroft - Check The Meaning",
         "notable": false
       },
@@ -9322,7 +9317,7 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "Can't they put an IFTN line just for the day?",
+        "content": "Can't they put an ISDN line just for the day?",
         "notable": false
       },
       {
@@ -15524,6 +15519,7 @@
     ],
     "synopsis": null,
     "contributors": [
+      "JamieEC",
       "PerturbedMousse"
     ],
     "trivia": null
