@@ -3,7 +3,7 @@ package jwt
 import (
 	"context"
 	"fmt"
-	"github.com/dgrijalva/jwt-go"
+	"github.com/golang-jwt/jwt/v5"
 	"github.com/spf13/pflag"
 	"github.com/warmans/rsk-search/pkg/flag"
 	"github.com/warmans/rsk-search/pkg/models"
@@ -15,7 +15,7 @@ import (
 const Issuer string = "scrimpton"
 
 type Claims struct {
-	jwt.StandardClaims
+	jwt.RegisteredClaims
 	AuthorID      string           `json:"author_id"`
 	Approver      bool             `json:"approver"`
 	Identity      *models.Identity `json:"identity"`
@@ -23,8 +23,8 @@ type Claims struct {
 }
 
 func (c *Claims) FromMap(claims jwt.MapClaims) {
-	c.StandardClaims.Issuer, _ = claims["iss"].(string)
-	c.StandardClaims.ExpiresAt, _ = claims["exp"].(int64)
+	c.RegisteredClaims.Issuer, _ = claims["iss"].(string)
+	c.RegisteredClaims.ExpiresAt = jwt.NewNumericDate(time.Unix(claims["exp"].(int64), 0))
 	c.OauthProvider, _ = claims["oauth_provider"].(string)
 
 	identityMap, ok := claims["identity"].(map[string]interface{})
@@ -58,8 +58,8 @@ type Auth struct {
 
 func (a *Auth) NewJWTForIdentity(author *models.Author, ident *models.Identity) (string, error) {
 	claims := &Claims{
-		StandardClaims: jwt.StandardClaims{
-			ExpiresAt: time.Now().Unix() + a.cfg.ExpireTime,
+		RegisteredClaims: jwt.RegisteredClaims{
+			ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Duration(a.cfg.ExpireTime) * time.Second)),
 			Issuer:    Issuer,
 		},
 		AuthorID:      author.ID,
@@ -84,15 +84,6 @@ func (a *Auth) VerifyToken(tokenString string) (*Claims, error) {
 	}
 	if err == nil {
 		return nil, fmt.Errorf("no error occured, but token was not generated succesfully")
-	}
-	if ve, ok := err.(*jwt.ValidationError); ok {
-		if ve.Errors&jwt.ValidationErrorMalformed != 0 {
-			return nil, fmt.Errorf("token was malformed")
-		} else if ve.Errors&(jwt.ValidationErrorExpired|jwt.ValidationErrorNotValidYet) != 0 {
-			return nil, fmt.Errorf("token is either expired or not yet active")
-		} else {
-			return nil, fmt.Errorf("failed to verify token: %s", err)
-		}
 	}
 	return nil, fmt.Errorf("failed to verify token: %s", err)
 }
