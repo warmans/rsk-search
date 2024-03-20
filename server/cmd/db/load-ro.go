@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/spf13/cobra"
+	"github.com/warmans/rsk-search/pkg/meta"
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/store/common"
 	"github.com/warmans/rsk-search/pkg/store/ro"
@@ -56,6 +57,7 @@ func LoadCmd() *cobra.Command {
 func populateDB(inputDataPath string, conn *ro.Conn, logger *zap.Logger) error {
 
 	logger.Info("Populating DB...")
+	ctx := context.Background()
 
 	dirEntries, err := os.ReadDir(inputDataPath)
 	if err != nil {
@@ -75,11 +77,23 @@ func populateDB(inputDataPath string, conn *ro.Conn, logger *zap.Logger) error {
 		}
 
 		if err := conn.WithStore(func(s *ro.Store) error {
-			return s.InsertEpisodeWithTranscript(context.Background(), episode)
+			return s.InsertEpisodeWithTranscript(ctx, episode)
 		}); err != nil {
 			return err
 		}
 	}
 
+	logger.Info("Loading songs...")
+	err = conn.WithStore(func(s *ro.Store) error {
+		for _, v := range meta.GetSongMeta().ExtractSorted() {
+			if err := s.InsertSong(ctx, v); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	if err != nil {
+		return fmt.Errorf("failed to load songs: %w", err)
+	}
 	return nil
 }

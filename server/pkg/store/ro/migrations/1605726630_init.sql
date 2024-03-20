@@ -32,3 +32,16 @@ CREATE TABLE "changelog"
 );
 
 CREATE INDEX changelog_date ON changelog ("date");
+
+CREATE TABLE "song"
+(
+    "spotify_uri" TEXT,
+    "artist"      TEXT,
+    "title"       TEXT,
+    "album"       TEXT,
+    "episode_ids" JSONB
+);
+
+CREATE INDEX song_title ON song ("title");
+CREATE INDEX song_artist ON song ("artist");
+CREATE INDEX song_album ON song ("album");

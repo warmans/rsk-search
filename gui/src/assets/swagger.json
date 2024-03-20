@@ -642,6 +642,63 @@
           ]
         }
       },
+      "/api/search/songs": {
+        "get": {
+          "summary": "Fetch a list of all songs played",
+          "operationId": "listSongs",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskSongList"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "filter",
+              "in": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "sortField",
+              "in": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "sortDirection",
+              "in": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "pageSize",
+              "in": "query",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            }
+          ],
+          "tags": [
+            "search"
+          ]
+        }
+      },
       "/api/status/health": {},
       "/api/status/quotas": {
         "get": {
@@ -2478,6 +2535,40 @@
           },
           "transcriptVersion": {
             "type": "string"
+          }
+        }
+      },
+      "rskSong": {
+        "type": "object",
+        "properties": {
+          "spotifyUri": {
+            "type": "string"
+          },
+          "artist": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "album": {
+            "type": "string"
+          },
+          "episodeIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "rskSongList": {
+        "type": "object",
+        "properties": {
+          "songs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/rskSong"
+            }
           }
         }
       },

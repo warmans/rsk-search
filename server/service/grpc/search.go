@@ -143,6 +143,23 @@ func (s *SearchService) GetRandomQuote(ctx context.Context, request *api.GetRand
 	}, nil
 }
 
+func (s *SearchService) ListSongs(ctx context.Context, request *api.ListSongsRequest) (*api.SongList, error) {
+	qm, err := NewQueryModifiers(request)
+	if err != nil {
+		return nil, err
+	}
+	out := &api.SongList{}
+	err = s.staticDB.WithStore(func(s *ro.Store) error {
+		songs, err := s.ListSongs(ctx, qm)
+		for _, v := range songs {
+			out.Songs = append(out.Songs, v.Proto())
+		}
+		return err
+	})
+
+	return out, err
+}
+
 func checkWhy(f filter.Filter) error {
 	if f == nil {
 		return nil

@@ -1,6 +1,6 @@
 module github.com/warmans/rsk-search
 
-go 1.20
+go 1.22
 
 require (
 	facette.io/natsort v0.0.0-20181210072756-2cd4dd1e2dcb
@@ -34,7 +34,7 @@ require (
 	go.uber.org/zap v1.24.0
 	google.golang.org/genproto v0.0.0-20230110181048-76db0878b65f
 	google.golang.org/grpc v1.53.0
-	google.golang.org/grpc/cmd/protoc-gen-go-grpc v1.0.0
+	google.golang.org/grpc/cmd/protoc-gen-go-grpc v1.3.0
 	google.golang.org/protobuf v1.32.0
 )
 

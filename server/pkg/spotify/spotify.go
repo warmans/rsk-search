@@ -45,6 +45,16 @@ type Track struct {
 	TrackURI string
 }
 
+func (t Track) Artist() string {
+	if len(t.Artists) == 1 {
+		return t.Artists[0].Name
+	}
+	if len(t.Artists) > 1 {
+		return "Various Artists"
+	}
+	return "Unknown"
+}
+
 func NewSearch(token string) *Search {
 	return &Search{client: http.DefaultClient, token: token}
 }

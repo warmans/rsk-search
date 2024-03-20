@@ -104,8 +104,8 @@ func addSongMeta(logger *zap.Logger, token string, metadataPath string) error {
 	}
 	defer f.Close()
 
-	songCache := &meta.Songs{}
-	if err := json.NewDecoder(f).Decode(songCache); err != nil {
+	songCache := meta.Songs{}
+	if err := json.NewDecoder(f).Decode(&songCache); err != nil {
 		return err
 	}
 	if _, err := f.Seek(0, 0); err != nil {

@@ -68,7 +68,6 @@ service SearchService {
     };
   }
 
-  // changelogs
   rpc GetRandomQuote(GetRandomQuoteRequest) returns (RandomQuote) {
     option (google.api.http) = {
       get: "/api/search/random-quote"
@@ -80,7 +79,17 @@ service SearchService {
     };
   }
 
-  // changelogs
+  rpc ListSongs(ListSongsRequest) returns (SongList) {
+    option (google.api.http) = {
+      get: "/api/search/songs"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "listSongs",
+      summary: "Fetch a list of all songs played"
+      tags: "search"
+    };
+  }
+
   rpc ListChangelogs(ListChangelogsRequest) returns (ChangelogList) {
     option (google.api.http) = {
       get: "/api/changelog"
@@ -209,4 +218,24 @@ message RandomQuote {
   string actor = 2;
   string epid = 3;
   int32 pos = 4;
+}
+
+message ListSongsRequest {
+  string filter = 1;
+  string sort_field = 2;
+  string sort_direction = 3;
+  int32 page = 4;
+  int32 page_size = 5;
+}
+
+message SongList {
+  repeated Song songs = 1;
+}
+
+message Song  {
+  string spotify_uri = 1;
+  string artist = 2;
+  string title = 3;
+  string album = 4;
+  repeated string episode_ids = 5;
 }

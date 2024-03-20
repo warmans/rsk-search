@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"github.com/jmoiron/sqlx"
 	"github.com/pkg/errors"
+	"github.com/warmans/rsk-search/pkg/meta"
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/store/common"
 	"github.com/warmans/rsk-search/pkg/util"
@@ -143,7 +144,6 @@ func (s *Store) ListChangelogs(ctx context.Context, q *common.QueryModifier) ([]
 		out = append(out, row)
 	}
 	return out, nil
-
 }
 
 func (s *Store) getTranscriptForQuery(ctx context.Context, query string, params ...interface{}) ([]models.Dialog, string, error) {
@@ -175,6 +175,65 @@ func (s *Store) getTranscriptForQuery(ctx context.Context, query string, params 
 		results = append(results, result)
 	}
 	return results, epID, nil
+}
+
+func (s *Store) InsertSong(ctx context.Context, song meta.Song) error {
+	episodeIds, err := json.Marshal(song.EpisodeIDs)
+	if err != nil {
+		return err
+	}
+	_, err = s.tx.ExecContext(
+		ctx,
+		`INSERT INTO song ("spotify_uri", "artist", "title", "album", "episode_ids") VALUES ($1, $2, $3, $4, $5)`,
+		song.Track.TrackURI,
+		song.Track.Artist(),
+		song.Track.Name,
+		song.Track.AlbumName,
+		string(episodeIds),
+	)
+	return err
+}
+
+func (s *Store) ListSongs(ctx context.Context, q *common.QueryModifier) ([]*models.Song, error) {
+	fieldMap := map[string]string{
+		"artist":      "artist",
+		"title":       "title",
+		"album":       "album",
+		"episode_ids": "episode_ids",
+	}
+
+	q.Apply(common.WithDefaultSorting("title", common.SortAsc))
+
+	where, params, order, paging, err := q.ToSQL(fieldMap, true)
+	if err != nil {
+		return nil, err
+	}
+
+	rows, err := s.tx.QueryxContext(
+		ctx,
+		fmt.Sprintf(`SELECT spotify_uri, artist, title, album, episode_ids FROM song %s %s %s`, where, order, paging),
+		params...,
+	)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	out := make([]*models.Song, 0)
+	for rows.Next() {
+		row := &models.Song{}
+		var episodeIDRaw []byte
+		if err := rows.Scan(&row.SpotifyURI, &row.Artist, &row.Title, &row.Album, &episodeIDRaw); err != nil {
+			return nil, err
+		}
+		if len(episodeIDRaw) > 0 {
+			if err := json.Unmarshal(episodeIDRaw, &row.EpisodeIDs); err != nil {
+				return nil, fmt.Errorf("failed to unmarshal episode IDs: %w", err)
+			}
+		}
+		out = append(out, row)
+	}
+	return out, nil
 }
 
 func metaToString(metadata models.Metadata) (string, error) {
