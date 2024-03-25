@@ -11,6 +11,7 @@ import {takeUntil} from "rxjs/operators";
 export class RandomQuoteComponent implements OnInit, OnDestroy {
 
   quote: RskRandomQuote;
+  quoteImage: string;
 
   destroy$: EventEmitter<void> = new EventEmitter<void>();
 
@@ -25,6 +26,20 @@ export class RandomQuoteComponent implements OnInit, OnDestroy {
   getQuote() {
     this.apiClient.getRandomQuote().pipe(takeUntil(this.destroy$)).subscribe((res: RskRandomQuote) => {
       this.quote = res
+      switch (res.actor) {
+        case "ricky":
+          this.quoteImage = "ricky-seated.svg";
+          break;
+        case "steve":
+          this.quoteImage = "steve-club.svg";
+          break;
+        case "karl":
+          this.quoteImage = ["rgs-pointer.svg", "rgs-pointer-2.svg"][Math.floor(Math.random() * 2)];
+          break;
+        default:
+          this.quoteImage = "rgs-pointer-2.svg";
+          break;
+      }
     })
   }
 

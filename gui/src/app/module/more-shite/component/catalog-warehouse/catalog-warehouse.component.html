@@ -1,18 +1,23 @@
-<div class="card mb-4" xmlns="http://www.w3.org/1999/html">
-  <div class="card-header">
-      The Catalogue Company Bill
-  </div>
-  <div class="card-body pb-0 mb-0">
-    <p><a href="/ep/ep-xfm-S2E23#pos-166-192">In 2003 Karl's dad took possession of a catalogue.</a> The catalog specified that it would always remain
-    the property of the catalogue company. Karl's dad recognising that his house was being treated as a
-    warehouse instigated a rolling 26p daily charge for this service.</p>
-    <p class="mb-0">Not accounting for interest this debt is currently worth:</p>
-  <hr>
-    <div class="debt-clock text-center mb-2">
-      {{ (valueInPence/100) | currency:"£":"symbol":"1.2-5" }}
+<div class="w-100 h-100 d-flex flex-column align-items-center">
+  <div class="h-100 d-flex flex-row align-items-center">
+    <div class="card mb-4" xmlns="http://www.w3.org/1999/html">
+      <div class="card-header">
+        The Catalogue Company Bill
+      </div>
+      <div class="card-body pb-0 mb-0">
+        <p><a href="/ep/ep-xfm-S2E23#pos-166-192">In 2003 Karl's dad took possession of a catalogue.</a> The catalog
+          specified that it would always remain
+          the property of the catalogue company. Karl's dad recognising that his house was being treated as a
+          warehouse instigated a rolling 26p daily charge for this service.</p>
+        <p class="mb-0">Not accounting for interest this debt is currently worth:</p>
+        <hr>
+        <div class="debt-clock text-center mb-2">
+          {{ (valueInPence / 100) | currency:"£":"symbol":"1.2-5" }}
+        </div>
+      </div>
+      <div class="card-footer text-muted text-right">
+        Daily Rate: 26p | Days in debt: {{inDebtDays | number}}
+      </div>
     </div>
-  </div>
-  <div class="card-footer text-muted text-right">
-    Daily Rate: 26p | Days in debt: {{inDebtDays | number}}
   </div>
 </div>

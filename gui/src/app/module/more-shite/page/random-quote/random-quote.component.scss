@@ -1,0 +1,35 @@
+@import 'src/scss/variables';
+
+.cover-background {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.speaker-image {
+  z-index: 10;
+  background-size: 300px;
+  background-position-x: right;
+  background-position-y: bottom;
+  opacity: 10%;
+}
+
+.quote {
+
+  min-height: 100%;
+  z-index: 100;
+
+  .quote-text {
+    font-size: 2rem;
+    font-style: italic;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .quote-footer {
+    font-size: 1rem;
+  }
+}
+

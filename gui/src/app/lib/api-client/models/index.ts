@@ -56,6 +56,8 @@ export { RskSearchStats } from './rsk-search-stats.model';
 export { RskSearchTermPredictions } from './rsk-search-term-predictions.model';
 export { RskShortTranscript } from './rsk-short-transcript.model';
 export { RskShortTranscriptChange } from './rsk-short-transcript-change.model';
+export { RskSong } from './rsk-song.model';
+export { RskSongList } from './rsk-song-list.model';
 export { RskSynopsis } from './rsk-synopsis.model';
 export { RskTranscript } from './rsk-transcript.model';
 export { RskTranscriptChange } from './rsk-transcript-change.model';

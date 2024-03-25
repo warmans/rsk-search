@@ -881,6 +881,36 @@ export function isRskShortTranscriptChange(arg: any): arg is models.RskShortTran
   );
   }
 
+export function isRskSong(arg: any): arg is models.RskSong {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // album?: string
+    ( typeof arg.album === 'undefined' || typeof arg.album === 'string' ) &&
+    // artist?: string
+    ( typeof arg.artist === 'undefined' || typeof arg.artist === 'string' ) &&
+    // episodeIds?: string[]
+    ( typeof arg.episodeIds === 'undefined' || (Array.isArray(arg.episodeIds) && arg.episodeIds.every((item: unknown) => typeof item === 'string')) ) &&
+    // spotifyUri?: string
+    ( typeof arg.spotifyUri === 'undefined' || typeof arg.spotifyUri === 'string' ) &&
+    // title?: string
+    ( typeof arg.title === 'undefined' || typeof arg.title === 'string' ) &&
+
+  true
+  );
+  }
+
+export function isRskSongList(arg: any): arg is models.RskSongList {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // songs?: RskSong[]
+    ( typeof arg.songs === 'undefined' || (Array.isArray(arg.songs) && arg.songs.every((item: unknown) => isRskSong(item))) ) &&
+
+  true
+  );
+  }
+
 export function isRskSynopsis(arg: any): arg is models.RskSynopsis {
   return (
   arg != null &&

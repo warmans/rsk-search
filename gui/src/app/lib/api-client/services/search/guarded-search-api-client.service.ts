@@ -195,6 +195,20 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
       .pipe(tap((res: any) => guards.isRskRandomQuote(res) || console.error(`TypeGuard for response 'RskRandomQuote' caught inconsistency.`, res)));
   }
 
+  listSongs(
+    args: {
+      filter?: string,
+      sortField?: string,
+      sortDirection?: string,
+      page?: number,
+      pageSize?: number,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskSongList> {
+    return super.listSongs(args, requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRskSongList(res) || console.error(`TypeGuard for response 'RskSongList' caught inconsistency.`, res)));
+  }
+
   getQuotaSummary(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskQuotas> {

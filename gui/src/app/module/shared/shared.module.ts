@@ -27,7 +27,7 @@ import {FindReplaceComponent} from './component/find-replace/find-replace.compon
 import {MetadataEditorComponent} from './component/metadata-editor/metadata-editor.component';
 import {UserMenuComponent} from './component/user-menu/user-menu.component';
 import {TranscriptCopyDialogComponent} from './component/transcript-copy-dialog/transcript-copy-dialog.component';
-import {RandomQuoteComponent} from "./component/random-quote/random-quote.component";
+import {RandomQuoteComponent} from "../more-shite/page/random-quote/random-quote.component";
 
 @NgModule({
   declarations: [

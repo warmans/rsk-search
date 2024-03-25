@@ -16,6 +16,8 @@ import {ImportComponent} from '../module/admin/page/import/import.component';
 import {CanActivateAdmin} from '../module/admin/can-activate-admin';
 import {QuotasComponent} from 'src/app/module/admin/page/quotas/quotas.component';
 import {IndexComponent} from "../module/more-shite/page/index/index.component";
+import {CatalogWarehouseComponent} from "../module/more-shite/component/catalog-warehouse/catalog-warehouse.component";
+import {RandomQuoteComponent} from "../module/more-shite/page/random-quote/random-quote.component";
 
 const routes: Routes = [
   {
@@ -88,6 +90,21 @@ const routes: Routes = [
   {
     path: 'more-shite',
     component: IndexComponent,
+    children: [
+      {
+        path: "catalog-warehouse",
+        component: CatalogWarehouseComponent,
+      },
+      {
+        path: "random-quote",
+        component: RandomQuoteComponent,
+      },
+      {
+        path: '',
+        redirectTo: '/more-shite/random-quote',
+        pathMatch: 'full',
+      },
+    ],
   },
   {path: '', redirectTo: '/search', pathMatch: 'full'},
 ];

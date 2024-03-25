@@ -22,6 +22,8 @@ export class RootComponent implements OnInit, OnDestroy {
   quotas: RskQuotas;
   bandwidthQuotaUsedPcnt: number = 0;
 
+  show
+
   constructor(
     private renderer: Renderer2,
     private router: Router,
