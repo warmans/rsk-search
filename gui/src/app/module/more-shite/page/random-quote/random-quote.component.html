@@ -3,6 +3,7 @@
        [style.background-image]="'url(/assets/illustration/'+quoteImage+')'"></div>
   <div class="quote text-center d-flex flex-row align-items-center foreground" *ngIf="quote">
     <div class="px-3 px-xl-5 px-lg-5">
+      <!--button class="btn btn-primary btn-sm float-right" (click)="getQuote()">Generate</button-->
       <a class="text-paragraph quote-text text-block-bg px-3" [routerLink]="['/ep', quote?.epid]"
          [fragment]="'pos-'+(quote?.pos)">
         {{quote?.quote}}
@@ -13,18 +14,3 @@
     </div>
   </div>
 </div>
-
-<!--<div class="card mb-4">-->
-<!--  <div class="card-header">-->
-<!--    Random Quote Generator-->
-<!--    <button class="btn btn-primary btn-sm float-right" (click)="getQuote()">Generate</button>-->
-<!--  </div>-->
-<!--  <div class="card-body p-0">-->
-<!--    <div class="quote d-flex flex-row" *ngIf="quote">-->
-<!--      <div class="mx-3 text-center font-italic flex-grow-1 d-flex flex-column justify-content-around ">-->
-<!--          <a class="text-paragraph quote-text" [routerLink]="['/ep', quote?.epid]" [fragment]="'pos-'+(quote?.pos)">{{quote?.quote}}</a>-->
-<!--      </div>-->
-<!--      <div class="speaker-image hidden-sm" [style.background-image]="'url(assets/quote-'+quote?.actor+'.png)'"></div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->

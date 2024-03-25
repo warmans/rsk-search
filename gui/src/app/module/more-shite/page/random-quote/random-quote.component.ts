@@ -31,7 +31,7 @@ export class RandomQuoteComponent implements OnInit, OnDestroy {
           this.quoteImage = "ricky-seated.svg";
           break;
         case "steve":
-          this.quoteImage = "steve-club.svg";
+          this.quoteImage = "steve-front.svg";
           break;
         case "karl":
           this.quoteImage = ["rgs-pointer.svg", "rgs-pointer-2.svg"][Math.floor(Math.random() * 2)];
