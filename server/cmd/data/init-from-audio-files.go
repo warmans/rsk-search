@@ -30,11 +30,13 @@ type audioFile struct {
 func InitFromAudioFilesCmd() *cobra.Command {
 
 	var publication string
+	var series int32
+	var episodeOffset int32
 	var dryRun bool
 
 	cmd := &cobra.Command{
 		Use:   "init-from-audio",
-		Short: "Generate metadata files from audio files (by their name).",
+		Short: "Generate metadata files from audio files (by name).",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			logger, _ := zap.NewProduction()
 			defer func() {
@@ -87,7 +89,7 @@ func InitFromAudioFilesCmd() *cobra.Command {
 				return err
 			}
 			for k, f := range audioFiles {
-				ep, err := initEpisodeFileFromAudio(logger, f, int32(k)+1, cfg.dataDir)
+				ep, err := initEpisodeFileFromAudio(logger, f, series, episodeOffset+int32(k)+1, cfg.dataDir)
 				if err != nil {
 					return fmt.Errorf("failed to init file for file %s date: %s name: %s: %w", f.path, f.date, f.name, err)
 				}
@@ -100,8 +102,9 @@ func InitFromAudioFilesCmd() *cobra.Command {
 	}
 
 	cmd.Flags().StringVarP(&publication, "publication", "p", "other", "Publication to give episodes")
-	cmd.Flags().BoolVarP(&dryRun, "dry-run", "x", false, "don't write any files ")
-
+	cmd.Flags().BoolVarP(&dryRun, "dry-run", "x", false, "don't write any files, just log")
+	cmd.Flags().Int32VarP(&series, "series", "s", 1, "use this as the series number in meta/renamed file")
+	cmd.Flags().Int32VarP(&episodeOffset, "episode-num-offset", "e", 0, "use this as the first episode number in meta/renamed file")
 	return cmd
 }
 
@@ -223,13 +226,14 @@ func timePointer(ts time.Time) *time.Time {
 func initEpisodeFileFromAudio(
 	logger *zap.Logger,
 	f audioFile,
+	series int32,
 	episode int32,
 	dataDir string,
 ) (*models.Transcript, error) {
 
 	ep := &models.Transcript{
 		Publication: f.publication,
-		Series:      1,
+		Series:      series,
 		Episode:     episode,
 		ReleaseDate: f.date,
 		Name:        f.name,
