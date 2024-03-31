@@ -1,19 +1,18 @@
-import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
-import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { takeUntil } from 'rxjs/operators';
-import { Title } from '@angular/platform-browser';
+import {Component, EventEmitter, OnDestroy, OnInit} from '@angular/core';
+import {SearchAPIClient} from 'src/app/lib/api-client/services/search';
+import {ActivatedRoute, ParamMap} from '@angular/router';
+import {takeUntil} from 'rxjs/operators';
+import {Title} from '@angular/platform-browser';
 import {
   RskChangelog,
   RskChunkedTranscriptList,
   RskChunkedTranscriptStats,
   RskDialog,
-  RskSearchResult,
   RskSearchResultList,
   RskShortTranscript
 } from 'src/app/lib/api-client/models';
-import { AudioService } from '../../../core/service/audio/audio.service';
-import { ClipboardService } from 'src/app/module/core/service/clipboard/clipboard.service';
+import {AudioService} from '../../../core/service/audio/audio.service';
+import {ClipboardService} from 'src/app/module/core/service/clipboard/clipboard.service';
 
 @Component({
   selector: 'app-search',
@@ -57,14 +56,14 @@ export class SearchComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.titleService.setTitle('Scrimpton Search');
 
-    this.apiClient.listChangelogs({ pageSize: 1 }).pipe(takeUntil(this.unsubscribe$)).subscribe((res) => {
+    this.apiClient.listChangelogs({pageSize: 1}).pipe(takeUntil(this.unsubscribe$)).subscribe((res) => {
       this.latestChangelog = (res.changelogs || []).pop();
     });
 
     this.apiClient.listChunkedTranscripts().pipe(takeUntil(this.unsubscribe$)).subscribe((res: RskChunkedTranscriptList) => {
       this.contributionsNeeded = 0;
       (res.chunked || []).forEach((v: RskChunkedTranscriptStats) => {
-        this.contributionsNeeded += v.numChunks - ((v.numApprovedContributions || 0) + (v.numPendingContributions || 0));
+        this.contributionsNeeded += v.numChunks - (v.numApprovedContributions || 0);
       });
     });
   }
