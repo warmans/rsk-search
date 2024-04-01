@@ -123,8 +123,6 @@ message SearchStats  {
   repeated float values = 3;
 }
 
-
-
 message DialogResult {
   repeated Dialog transcript = 1;
   float score = 2;
@@ -230,6 +228,7 @@ message ListSongsRequest {
 
 message SongList {
   repeated Song songs = 1;
+  int32 result_count = 2;
 }
 
 message Song  {
@@ -238,4 +237,5 @@ message Song  {
   string title = 3;
   string album = 4;
   repeated string episode_ids = 5;
+  string album_image_url = 6;
 }

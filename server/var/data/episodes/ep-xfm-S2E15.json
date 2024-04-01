@@ -1747,7 +1747,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Comfort in Sound",
+          "song_artist": "Feeder",
+          "song_track": "Just the Way I'm Feeling",
+          "spotify_uri": "spotify:track:08DO757dzPTgeHSwOQvnIS"
+        },
         "content": "Feeder - Just the Way I'm Feeling",
         "notable": false
       },
@@ -10055,10 +10060,10 @@
         "type": "song",
         "actor": "",
         "metadata": {
-          "song_album": "Just Lose It",
+          "song_album": "Curtain Call: The Hits (Deluxe Edition)",
           "song_artist": "Eminem",
-          "song_track": "Lose Yourself - From \"8 Mile\" Soundtrack",
-          "spotify_uri": "spotify:track:1v7L65Lzy0j0vdpRjJewt1"
+          "song_track": "Lose Yourself",
+          "spotify_uri": "spotify:track:5Z01UMMf7V1o0MzF86s6WJ"
         },
         "content": "Eminem - “Lose Yourself”",
         "notable": false
@@ -13178,10 +13183,10 @@
         "type": "song",
         "actor": "",
         "metadata": {
-          "song_album": "Aqualung",
+          "song_album": "Strange \u0026 Beautiful",
           "song_artist": "Aqualung",
           "song_track": "Good Times Gonna Come",
-          "spotify_uri": "spotify:track:7n6z2KJ2mXWXu5WnpqdCDe"
+          "spotify_uri": "spotify:track:4Pb8B4tYKgeiXE5Q3OOarr"
         },
         "content": "Aqualung - “Good Times Gonna Come”",
         "notable": false
@@ -15042,9 +15047,10 @@
         "type": "song",
         "actor": "",
         "metadata": {
-          "song_album": "Certified Lover Boy",
-          "song_track": "Fair Trade (with Travis Scott)",
-          "spotify_uri": "spotify:track:40iJIUlhi6renaREYGeIDS"
+          "song_album": "ASTROWORLD",
+          "song_artist": "Travis Scott",
+          "song_track": "SICKO MODE",
+          "spotify_uri": "spotify:track:2xLMifQCjDGFmkHkpNLD9h"
         },
         "content": "Travis -",
         "notable": false

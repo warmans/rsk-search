@@ -3391,7 +3391,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "The Coral",
+          "song_artist": "The Coral",
+          "song_track": "Dreaming of You",
+          "spotify_uri": "spotify:track:6ebxt3Iylxe0GcEuUGlIvb"
+        },
         "content": "The Coral - Dreaming Of You",
         "notable": false
       },
@@ -7399,7 +7404,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Kiss Me, Kiss Me, Kiss Me",
+          "song_artist": "The Cure",
+          "song_track": "Just like Heaven",
+          "spotify_uri": "spotify:track:76GlO5H5RT6g7y0gev86Nk"
+        },
         "content": "The Cure - Just Like Heaven",
         "notable": false
       },
@@ -9494,7 +9504,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Comfort in Sound",
+          "song_artist": "Feeder",
+          "song_track": "Come Back Around",
+          "spotify_uri": "spotify:track:4fT8jBmL1EZxPwdWT07l1s"
+        },
         "content": "Feeder - Come Back Around",
         "notable": false
       },
@@ -11623,10 +11638,10 @@
         "type": "song",
         "actor": "",
         "metadata": {
-          "song_album": "Best of Bowie",
+          "song_album": "Heathen",
           "song_artist": "David Bowie",
-          "song_track": "Slow Burn - Edit",
-          "spotify_uri": "spotify:track:1MKVZkvW2HnWUhXNCmPeS8"
+          "song_track": "Slow Burn",
+          "spotify_uri": "spotify:track:4qgVZRu9oHg6e96cTRaaCP"
         },
         "content": "David Bowie - Slow Burn fading out",
         "notable": false
@@ -15466,10 +15481,10 @@
         "type": "song",
         "actor": "",
         "metadata": {
-          "song_album": "The Last Broadcast",
+          "song_album": "Ctrl (Deluxe)",
           "song_artist": "Doves",
-          "song_track": "Caught By The River",
-          "spotify_uri": "spotify:track:0vh34aajBcJCIuhgpamgoq"
+          "song_track": "Doves In The Wind (feat. Kendrick Lamar)",
+          "spotify_uri": "spotify:track:0JijvZALkvx7uonQdvXXpH"
         },
         "content": "Doves - Caught By The River fades out",
         "notable": false
@@ -17649,10 +17664,10 @@
         "type": "song",
         "actor": "",
         "metadata": {
-          "song_album": "Hot Rocks (1964-1971)",
+          "song_album": "Sticky Fingers (Remastered)",
           "song_artist": "The Rolling Stones",
-          "song_track": "Brown Sugar",
-          "spotify_uri": "spotify:track:34K7nU8EWQIRI93RfqhdRJ"
+          "song_track": "Brown Sugar - Remastered 2009",
+          "spotify_uri": "spotify:track:61UuPxxYUvacEH6SHIK3sU"
         },
         "content": "Rolling Stones - Brown Sugar",
         "notable": false

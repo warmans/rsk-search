@@ -1,0 +1,62 @@
+<div class="container pt-4">
+  <div class="w-100 d-flex flex-row align-items-center">
+    <div class="card w-100 mb-4">
+      <div class="card-header">
+        <div class="mb-2">Song Search</div>
+        <div class="w-100 d-flex justify-content-between">
+          <div class="flex-grow-1 mr-2">
+            <input class="form-control" placeholder="Search by artist or song title" [formControl]="searchInput"/>
+          </div>
+        </div>
+      </div>
+      <div class="card-body pb-0 mb-0">
+        <table class="table songs-table">
+          <tr *ngFor="let song of songs">
+            <td>
+              <img *ngIf="song.albumImageUrl" [src]="song.albumImageUrl" style="width: 75px; height: 75px" />
+            </td>
+            <td>
+              <a class="text-paragraph align-self-center" [href]="song.spotifyUri">
+                <i class="bi-spotify text-primary mr-2"></i> <span class="text-paragraph">{{song.title}}</span>
+              </a>
+            </td>
+            <td>{{song.artist}}</td>
+            <td>
+              <a
+                class="badge badge-secondary mr-2"
+                *ngFor="let epid of song.episodeIds"
+                [routerLink]="['/ep', 'ep-'+epid]">{{epid}}</a>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="card-footer text-muted text-right">
+        <nav aria-label="pages">
+          <ul class="pagination">
+            <li *ngFor="let i of pages" class="page-item" [ngClass]="{'active': i === currentPage}">
+              <a class="page-link"
+                 [routerLink]="['/more-shite', 'song-search']"
+                 [queryParams]="{'page': i}"
+                 [queryParamsHandling]="'merge'">{{i}}
+              </a>
+            </li>
+            <ng-container *ngIf="morePages">
+              <li class="page-item active" *ngIf="currentPage > pages.length">
+                <a class="page-link " [routerLink]="['/more-shite', 'song-search']"
+                   [queryParams]="{'page': currentPage}"
+                   [queryParamsHandling]="'merge'">{{currentPage}}
+                </a>
+              </li>
+              <li class="page-item">
+                <a [routerLink]="['/more-shite', 'song-search']"
+                   [queryParams]="{'page': currentPage >= maxPages ? currentPage+1 : maxPages+1}"
+                   [queryParamsHandling]="'merge'" class="page-link">Next...
+                </a>
+              </li>
+            </ng-container>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>

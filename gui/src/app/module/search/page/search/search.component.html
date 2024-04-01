@@ -41,7 +41,7 @@
               <a class="page-link " [routerLink]="['/search']" [queryParams]="{'page': currentPage}" [queryParamsHandling]="'merge'">{{currentPage}}</a>
             </li>
             <li  class="page-item">
-              <a [routerLink]="['/search']" [queryParams]="{'page': currentPage+1}" [queryParamsHandling]="'merge'" class="page-link">More...</a>
+              <a [routerLink]="['/search']" [queryParams]="{'page': currentPage >=10 ? currentPage+1 : 10}" [queryParamsHandling]="'merge'" class="page-link">Next...</a>
             </li>
           </ng-container>
         </ul>

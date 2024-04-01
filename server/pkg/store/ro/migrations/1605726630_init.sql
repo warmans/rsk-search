@@ -39,7 +39,8 @@ CREATE TABLE "song"
     "artist"      TEXT,
     "title"       TEXT,
     "album"       TEXT,
-    "episode_ids" JSONB
+    "episode_ids" JSONB,
+    "album_image_url" TEXT
 );
 
 CREATE INDEX song_title ON song ("title");

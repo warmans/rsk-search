@@ -10,15 +10,22 @@ import (
 	"github.com/warmans/rsk-search/pkg/spotify"
 	"github.com/warmans/rsk-search/pkg/util"
 	"go.uber.org/zap"
+	"net/http"
 	"os"
 	"strings"
 )
+
+type accessToken struct {
+	AccessToken string `json:"access_token"`
+	TokenType   string `json:"token_type"`
+	ExpiresIn   int    `json:"expires_in"`
+}
 
 func ImportSpotifyData() *cobra.Command {
 
 	var tinPotRadioData string
 	var spotifyDataPath string
-	var spotifyToken string
+	var forceCacheRefresh bool
 
 	cmd := &cobra.Command{
 		Use:   "spotifize",
@@ -32,21 +39,43 @@ func ImportSpotifyData() *cobra.Command {
 				}
 			}()
 
-			spotifyToken = os.Getenv("SPOTIFY_TOKEN")
-			if spotifyToken == "" {
-				logger.Warn("No spotify token configured. Local cache will be used instead.")
+			spotifyClientID := os.Getenv("SPOTIFY_CLIENT_ID")
+			spotifyClientSecret := os.Getenv("SPOTIFY_CLIENT_SECRET")
+
+			var spotifyToken string
+			if spotifyClientID == "" || spotifyClientSecret == "" {
+				logger.Warn("No spotify client ID or secret configured. Local cache will be used instead.")
+			} else {
+				resp, err := http.Post(
+					"https://accounts.spotify.com/api/token",
+					"application/x-www-form-urlencoded",
+					strings.NewReader(fmt.Sprintf("grant_type=client_credentials&client_id=%s&client_secret=%s", spotifyClientID, spotifyClientSecret)),
+				)
+				if err != nil {
+					logger.Error("Failed to get spotify token", zap.Error(err))
+					return err
+				}
+				defer resp.Body.Close()
+
+				token := accessToken{}
+				if err := json.NewDecoder(resp.Body).Decode(&token); err != nil {
+					return err
+				}
+				spotifyToken = token.AccessToken
+				logger.Info("Spotify token was created...")
 			}
 
 			if err := addTinPotRadioLinks(tinPotRadioData, logger.With(zap.String("stage", "tinpotradio"))); err != nil {
 				fmt.Println("Failed to add tinpot radio links (try running script first): ", err.Error())
 			}
 
-			return addSongMeta(logger.With(zap.String("stage", "songs")), spotifyToken, spotifyDataPath)
+			return addSongMeta(logger.With(zap.String("stage", "songs")), spotifyToken, spotifyDataPath, forceCacheRefresh)
 		},
 	}
 
 	cmd.Flags().StringVarP(&tinPotRadioData, "tinpotradio-episodes", "i", "./script/tinpotradio/raw/xfm-spotify-meta.json", "Path to tinpot radio data (episode links)")
 	cmd.Flags().StringVarP(&spotifyDataPath, "spotify-data", "s", "./pkg/meta/data/songs.json", "Path to tinpot radio data (episode links)")
+	cmd.Flags().BoolVarP(&forceCacheRefresh, "force-cache-refresh", "f", false, "if true cache will be ignored and all data refetched from spotify")
 
 	return cmd
 }
@@ -94,7 +123,7 @@ func addTinPotRadioLinks(tinPotRadioData string, logger *zap.Logger) error {
 	return nil
 }
 
-func addSongMeta(logger *zap.Logger, token string, metadataPath string) error {
+func addSongMeta(logger *zap.Logger, token string, metadataPath string, forceCacheRefresh bool) error {
 
 	search := spotify.NewSearch(token)
 
@@ -135,7 +164,7 @@ func addSongMeta(logger *zap.Logger, token string, metadataPath string) error {
 				var track *spotify.Track
 
 				cachedId, ok := songCache.FindKeyByTerm(searchTerm)
-				if !ok {
+				if !ok || forceCacheRefresh {
 					if token == "" {
 						lg.Warn("No spotify token given. Using cache only...", zap.String("term", searchTerm))
 						continue

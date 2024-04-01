@@ -1098,7 +1098,11 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Wu-Tang Iron Flag",
+          "song_track": "Uzi (Pinky Ring) (feat. U-God, Raekwon, Ghostface Killah, RZA, Method Man, Inspectah Deck, Masta Killa \u0026 GZA)",
+          "spotify_uri": "spotify:track:1fCs3LuvVDSnLss2Dy7vt8"
+        },
         "content": "Wu Tang Clan – Uzi",
         "notable": false
       },
@@ -5218,10 +5222,10 @@
         "type": "song",
         "actor": "",
         "metadata": {
-          "song_album": "Karaoke Playbacks, Vol. 13 (Sing the Songs of the Stars)",
-          "song_artist": "Karaoke Diamonds",
-          "song_track": "Mighty Quinn (Quinn the Eskimo) (Karaoke Version) (Originally Performed By Manfred Mann)",
-          "spotify_uri": "spotify:track:1SOGdrrki6tmGbHJYYoWfh"
+          "song_album": "The Karaoke Channel - Sing Mighty Quinn (Quinn the Eskimo) Like Manfred Mann",
+          "song_artist": "The Karaoke Channel",
+          "song_track": "Mighty Quinn (Quinn the Eskimo)",
+          "spotify_uri": "spotify:track:3wvdLrANaJmronIPEWzzph"
         },
         "content": "Manfred Mann - Quinn the Eskimo",
         "notable": false
@@ -5233,7 +5237,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Comfort in Sound",
+          "song_artist": "Feeder",
+          "song_track": "Just the Way I'm Feeling",
+          "spotify_uri": "spotify:track:08DO757dzPTgeHSwOQvnIS"
+        },
         "content": "Feeder - Just the Way I'm Feeling",
         "notable": false
       },
@@ -5740,10 +5749,10 @@
         "type": "song",
         "actor": "",
         "metadata": {
-          "song_album": "Left Of The Middle",
-          "song_artist": "Natalie Imbruglia",
-          "song_track": "Torn",
-          "spotify_uri": "spotify:track:1Jaah2tmN9Hv81A87KZ1MU"
+          "song_album": "Star Time",
+          "song_artist": "James Brown",
+          "song_track": "Papa's Got A Brand New Bag",
+          "spotify_uri": "spotify:track:00pGV4EInVd77cnOIwPTCv"
         },
         "content": "Papa Garcia - Natelie and Lucy",
         "notable": false
@@ -7911,7 +7920,7 @@
         "type": "song",
         "actor": "",
         "metadata": {
-          "song_album": "Howdy!",
+          "song_album": "Howdy! (Remastered)",
           "song_artist": "Teenage Fanclub",
           "song_track": "I Need Direction",
           "spotify_uri": "spotify:track:4j8jOZ7CzRT6YZ7jsQn6Bw"
@@ -9008,7 +9017,7 @@
           "song_album": "The Fine Art of Self-Destruction",
           "song_artist": "Jesse Malin",
           "song_track": "Brooklyn",
-          "spotify_uri": "spotify:track:2xEzRu9qCdw3eYxsCqAWW8"
+          "spotify_uri": "spotify:track:53IfrjS0WFtyocnXFdrlEo"
         },
         "content": "Jesse Malin - Brooklyn",
         "notable": false

@@ -691,6 +691,9 @@
           "items": {
             "type": "string"
           }
+        },
+        "albumImageUrl": {
+          "type": "string"
         }
       }
     },
@@ -702,6 +705,10 @@
           "items": {
             "$ref": "#/definitions/rskSong"
           }
+        },
+        "resultCount": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },

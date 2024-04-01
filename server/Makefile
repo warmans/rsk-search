@@ -207,8 +207,11 @@ dev.refresh-data:
 
 .PHONY: update.spotify-links
 update.spotify-links:
-ifndef SPOTIFY_TOKEN
-	$(error "SPOTIFY TOKEN was not defined, consider using dev.refresh-data")
+ifndef SPOTIFY_CLIENT_ID
+	$(error "SPOTIFY_CLIENT_ID was not defined in environment")
+endif
+ifndef SPOTIFY_CLIENT_SECRET
+	$(error "SPOTIFY_CLIENT_SECRET was not defined in environment")
 endif
 	./bin/rsk-search data spotifize
 

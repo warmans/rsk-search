@@ -150,13 +150,13 @@ func (s *SearchService) ListSongs(ctx context.Context, request *api.ListSongsReq
 	}
 	out := &api.SongList{}
 	err = s.staticDB.WithStore(func(s *ro.Store) error {
-		songs, err := s.ListSongs(ctx, qm)
+		songs, resultCount, err := s.ListSongs(ctx, qm)
+		out.ResultCount = int32(resultCount)
 		for _, v := range songs {
 			out.Songs = append(out.Songs, v.Proto())
 		}
 		return err
 	})
-
 	return out, err
 }
 

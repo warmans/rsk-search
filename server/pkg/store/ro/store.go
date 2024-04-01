@@ -184,17 +184,18 @@ func (s *Store) InsertSong(ctx context.Context, song meta.Song) error {
 	}
 	_, err = s.tx.ExecContext(
 		ctx,
-		`INSERT INTO song ("spotify_uri", "artist", "title", "album", "episode_ids") VALUES ($1, $2, $3, $4, $5)`,
+		`INSERT INTO song ("spotify_uri", "artist", "title", "album", "episode_ids", "album_image_url") VALUES ($1, $2, $3, $4, $5, $6)`,
 		song.Track.TrackURI,
 		song.Track.Artist(),
 		song.Track.Name,
 		song.Track.AlbumName,
 		string(episodeIds),
+		song.Track.AlbumImageUrl,
 	)
 	return err
 }
 
-func (s *Store) ListSongs(ctx context.Context, q *common.QueryModifier) ([]*models.Song, error) {
+func (s *Store) ListSongs(ctx context.Context, q *common.QueryModifier) ([]*models.Song, int64, error) {
 	fieldMap := map[string]string{
 		"artist":      "artist",
 		"title":       "title",
@@ -206,34 +207,35 @@ func (s *Store) ListSongs(ctx context.Context, q *common.QueryModifier) ([]*mode
 
 	where, params, order, paging, err := q.ToSQL(fieldMap, true)
 	if err != nil {
-		return nil, err
+		return nil, 0, err
 	}
 
 	rows, err := s.tx.QueryxContext(
 		ctx,
-		fmt.Sprintf(`SELECT spotify_uri, artist, title, album, episode_ids FROM song %s %s %s`, where, order, paging),
+		fmt.Sprintf(`SELECT spotify_uri, artist, title, album, episode_ids, album_image_url, COUNT() OVER() as total_rows FROM song %s %s %s`, where, order, paging),
 		params...,
 	)
 	if err != nil {
-		return nil, err
+		return nil, 0, err
 	}
 	defer rows.Close()
 
+	var totalRows int64 //identical for every row
 	out := make([]*models.Song, 0)
 	for rows.Next() {
 		row := &models.Song{}
 		var episodeIDRaw []byte
-		if err := rows.Scan(&row.SpotifyURI, &row.Artist, &row.Title, &row.Album, &episodeIDRaw); err != nil {
-			return nil, err
+		if err := rows.Scan(&row.SpotifyURI, &row.Artist, &row.Title, &row.Album, &episodeIDRaw, &row.AlbumImageURL, &totalRows); err != nil {
+			return nil, 0, err
 		}
 		if len(episodeIDRaw) > 0 {
 			if err := json.Unmarshal(episodeIDRaw, &row.EpisodeIDs); err != nil {
-				return nil, fmt.Errorf("failed to unmarshal episode IDs: %w", err)
+				return nil, 0, fmt.Errorf("failed to unmarshal episode IDs: %w", err)
 			}
 		}
 		out = append(out, row)
 	}
-	return out, nil
+	return out, totalRows, nil
 }
 
 func metaToString(metadata models.Metadata) (string, error) {

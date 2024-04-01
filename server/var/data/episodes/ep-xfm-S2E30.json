@@ -2797,7 +2797,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Human Conditions",
+          "song_artist": "Richard Ashcroft",
+          "song_track": "Buy It In Bottles",
+          "spotify_uri": "spotify:track:1E8EyTt6pGVCzlD0z3JbkE"
+        },
         "content": "Richard Ashcroft - Buy It In Bottles",
         "notable": false
       },
@@ -7262,7 +7267,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Led Zeppelin IV (Deluxe Edition)",
+          "song_artist": "Led Zeppelin",
+          "song_track": "Rock and Roll - Remaster",
+          "spotify_uri": "spotify:track:4PRGxHpCpF2yoOHYKQIEwD"
+        },
         "content": "Led Zeppelin - Rock and Roll",
         "notable": false
       },
@@ -9378,7 +9388,7 @@
           "song_album": "Is This It",
           "song_artist": "The Strokes",
           "song_track": "Someday",
-          "spotify_uri": "spotify:track:56NkIxSZZiMpFP5ZNSxtnT"
+          "spotify_uri": "spotify:track:7hm4HTk9encxT0LYC0J6oI"
         },
         "content": "The Strokes - Someday",
         "notable": false
@@ -12352,7 +12362,7 @@
           "song_album": "White Noise",
           "song_artist": "Alpinestars",
           "song_track": "Burning Up",
-          "spotify_uri": "spotify:track:5AI1TN1wwfFuHHbbVr91HR"
+          "spotify_uri": "spotify:track:6t0sXmGfX5zeyO4MvsvakV"
         },
         "content": "Alpinestars - Burning Up",
         "notable": false
@@ -15207,7 +15217,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Comfort in Sound",
+          "song_artist": "Feeder",
+          "song_track": "Come Back Around",
+          "spotify_uri": "spotify:track:4fT8jBmL1EZxPwdWT07l1s"
+        },
         "content": "Feeder - Come Back Around",
         "notable": false
       },
@@ -16066,9 +16081,9 @@
         "type": "song",
         "actor": "",
         "metadata": {
-          "song_album": "Karneval Anno dazumal: Heidewitzka, Herr Kapitän – Karl Berbuer (Original Recordings 1934-1955)",
-          "song_track": "Trizonesien-Song",
-          "spotify_uri": "spotify:track:7nrqWIfnPoEHT1tNkwfUJo"
+          "song_album": "We Sing of Christ: The Songs of Zion",
+          "song_track": "I Stand All Amazed (arr. R. Staheli for choir)",
+          "spotify_uri": "spotify:track:70Do8UZ13F9nnM1x7NpmGj"
         },
         "content": "Unknown Artist - Unknown Song",
         "notable": false

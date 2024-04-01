@@ -972,7 +972,12 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "So Much For The City",
+          "song_artist": "The Thrills",
+          "song_track": "Big Sur",
+          "spotify_uri": "spotify:track:56Zm2mXUv5UJgybEqATQ2t"
+        },
         "content": "Thrills - Big Sur",
         "notable": false
       },
@@ -1665,7 +1670,12 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Pretenders",
+          "song_artist": "Pretenders",
+          "song_track": "Kid - 2006 Remaster",
+          "spotify_uri": "spotify:track:3UAmMPmXGMn28YRQkgS4tz"
+        },
         "content": "Pretenders - Kid",
         "notable": false
       },
@@ -4647,10 +4657,10 @@
         "type": "song",
         "actor": "",
         "metadata": {
-          "song_album": "Unstoppable Rock",
+          "song_album": "Permission to Land",
           "song_artist": "The Darkness",
-          "song_track": "Growing On Me",
-          "spotify_uri": "spotify:track:5U7rnLMzb78sTieeArXQai"
+          "song_track": "Growing on Me",
+          "spotify_uri": "spotify:track:77asYwewm0lXvz76inosJm"
         },
         "content": "The Darkness - Growing on Me",
         "notable": false

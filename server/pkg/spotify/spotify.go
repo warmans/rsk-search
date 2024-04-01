@@ -9,7 +9,6 @@ import (
 	"time"
 )
 
-// result of
 type EpisodeList struct {
 	Items []Episode `json:"items"`
 	Next  *string   `json:"next"`
@@ -38,8 +37,9 @@ type Artist struct {
 type Track struct {
 	Artists []Artist
 
-	AlbumName string
-	AlbumURI  string
+	AlbumName     string
+	AlbumURI      string
+	AlbumImageUrl string
 
 	Name     string
 	TrackURI string
@@ -117,6 +117,9 @@ func (s *Search) FindTrack(term string) (*Track, error) {
 	if bestMatch.Album != nil {
 		track.AlbumName = bestMatch.Album.Name
 		track.AlbumURI = bestMatch.Album.URI
+		if len(bestMatch.Album.Images) > 0 {
+			track.AlbumImageUrl = bestMatch.Album.Images[0].Url
+		}
 	}
 
 	for _, a := range bestMatch.Artists {
@@ -141,8 +144,15 @@ type item struct {
 }
 
 type album struct {
-	Name string `json:"name"`
-	URI  string `json:"uri"`
+	Name   string  `json:"name"`
+	URI    string  `json:"uri"`
+	Images []image `json:"images"`
+}
+
+type image struct {
+	Url    string `json:"url"`
+	Height int    `json:"height"`
+	Width  int    `json:"width"`
 }
 
 type artist struct {

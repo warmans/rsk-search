@@ -2952,7 +2952,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "The Beatles 1967 - 1970 (Remastered)",
+          "song_artist": "The Beatles",
+          "song_track": "Revolution - Remastered 2009",
+          "spotify_uri": "spotify:track:3UDmHZcBTQp8Iu8droNtUl"
+        },
         "content": "The Beatles - Revolution",
         "notable": false
       },
@@ -4184,7 +4189,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Asleep In The Back",
+          "song_artist": "Elbow",
+          "song_track": "Asleep In The Back",
+          "spotify_uri": "spotify:track:2fXyhBKWxMX9cB4E9CGtRp"
+        },
         "content": "Elbow - Asleep in the Back",
         "notable": false
       },
@@ -5482,7 +5492,12 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "My Aim Is True",
+          "song_artist": "Elvis Costello",
+          "song_track": "(The Angels Wanna Wear My) Red Shoes",
+          "spotify_uri": "spotify:track:0GmLrYUBXDC5vti77zBZfJ"
+        },
         "content": "Elvis Costello - Red Shoes",
         "notable": false
       },
@@ -5493,7 +5508,12 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Some Rap Songs",
+          "song_artist": "Earl Sweatshirt",
+          "song_track": "Riot!",
+          "spotify_uri": "spotify:track:6cmt9CRoK0KGcNg9Tpje53"
+        },
         "content": "Earl Zinger Meats Spry - Song 2WO",
         "notable": false
       },
@@ -7044,7 +7064,12 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Is a Woman (Deluxe Reissue)",
+          "song_artist": "Lambchop",
+          "song_track": "Backstreet Girl - Bonus Track",
+          "spotify_uri": "spotify:track:4oyqIR3HBPW1SpSqrcK9Xc"
+        },
         "content": "Lambchop - Backstreet Girl",
         "notable": false
       },
@@ -7055,7 +7080,12 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Thirteen Tales From Urban Bohemia",
+          "song_artist": "The Dandy Warhols",
+          "song_track": "Get Off",
+          "spotify_uri": "spotify:track:3vNuiCB9OirYFeO79MNQqZ"
+        },
         "content": "The Dandy Warhols - Get Off",
         "notable": false
       },
@@ -8299,10 +8329,10 @@
         "type": "song",
         "actor": "",
         "metadata": {
-          "song_album": "Simon Says",
+          "song_album": "Internal Affairs",
           "song_artist": "Pharoahe Monch",
           "song_track": "Simon Says",
-          "spotify_uri": "spotify:track:67IvfvAMYQzJEeHopvwMMW"
+          "spotify_uri": "spotify:track:62l1ZGNoUlJlVwhwMKu2T6"
         },
         "content": "Pharoahe Monch - Got You",
         "notable": false
@@ -9491,7 +9521,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Transformer",
+          "song_artist": "Lou Reed",
+          "song_track": "Satellite of Love",
+          "spotify_uri": "spotify:track:5WyuRWUcOOhAic0tj9Pl28"
+        },
         "content": "Lou Reed - Satellite of Love",
         "notable": false
       },
@@ -10361,7 +10396,7 @@
         "type": "song",
         "actor": "",
         "metadata": {
-          "song_album": "Who's Next",
+          "song_album": "Who's Next (Deluxe Edition)",
           "song_artist": "The Who",
           "song_track": "Won't Get Fooled Again - Original Album Version",
           "spotify_uri": "spotify:track:0cJPLFrlV7TTCyPLupHzcH"
@@ -12301,7 +12336,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Special View",
+          "song_artist": "The Only Ones",
+          "song_track": "Another Girl, Another Planet",
+          "spotify_uri": "spotify:track:6GmmlnmSuQ0lQa1ntMb2KN"
+        },
         "content": "The Only Ones - Special View",
         "notable": false
       }

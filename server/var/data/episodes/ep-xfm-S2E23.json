@@ -26,7 +26,12 @@
         "offset_inferred": false,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Comfort in Sound",
+          "song_artist": "Feeder",
+          "song_track": "Just the Way I'm Feeling",
+          "spotify_uri": "spotify:track:08DO757dzPTgeHSwOQvnIS"
+        },
         "content": "Feeder - Just the Way I'm Feelin'",
         "notable": false
       },
@@ -2220,7 +2225,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Nocturama",
+          "song_artist": "Nick Cave \u0026 The Bad Seeds",
+          "song_track": "Bring It On",
+          "spotify_uri": "spotify:track:5FTLq5peyS2QEPwjiXivNk"
+        },
         "content": "Nick Cave - Bring It On",
         "notable": false
       },
@@ -3067,7 +3077,12 @@
         "offset_inferred": true,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Back In Black",
+          "song_artist": "AC/DC",
+          "song_track": "You Shook Me All Night Long",
+          "spotify_uri": "spotify:track:2SiXAy7TuUkycRVbbWDEpo"
+        },
         "content": "AC/DC - Shook Me All Night Long",
         "notable": false
       },
@@ -4578,7 +4593,7 @@
           "song_album": "Ether Song",
           "song_artist": "Turin Brakes",
           "song_track": "Pain Killer (Summer Rain)",
-          "spotify_uri": "spotify:track:1yenUKkJQJFRCS0F5bh6CB"
+          "spotify_uri": "spotify:track:6FTs6cAI5O4V9VbiUAXYOU"
         },
         "content": "Turin Brakes - Pain Killer (Summer Rain)",
         "notable": false
@@ -5375,7 +5390,7 @@
           "song_album": "Stick Around For Joy",
           "song_artist": "The Sugarcubes",
           "song_track": "Hit",
-          "spotify_uri": "spotify:track:6YkpmWq5D3PL8wediqF7S1"
+          "spotify_uri": "spotify:track:2Q2CZbdsJ75Ev1IUmcJmvu"
         },
         "content": "The Sugarcubes - Hit",
         "notable": false
@@ -10110,10 +10125,10 @@
         "type": "song",
         "actor": "",
         "metadata": {
-          "song_album": "La Cliqua (Double H Production présente)",
+          "song_album": "GraveDigger",
           "song_artist": "Gravediggaz",
-          "song_track": "1-1800 Suicide",
-          "spotify_uri": "spotify:track:7HMVSoaSs8GXNinVhysfZW"
+          "song_track": "GraveDigger",
+          "spotify_uri": "spotify:track:5X1XAZPqI8ALLorNg9NLeF"
         },
         "content": "Gravediggaz - 1-800-suicide",
         "notable": false

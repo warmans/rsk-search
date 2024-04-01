@@ -887,6 +887,8 @@ export function isRskSong(arg: any): arg is models.RskSong {
   typeof arg === 'object' &&
     // album?: string
     ( typeof arg.album === 'undefined' || typeof arg.album === 'string' ) &&
+    // albumImageUrl?: string
+    ( typeof arg.albumImageUrl === 'undefined' || typeof arg.albumImageUrl === 'string' ) &&
     // artist?: string
     ( typeof arg.artist === 'undefined' || typeof arg.artist === 'string' ) &&
     // episodeIds?: string[]
@@ -904,6 +906,8 @@ export function isRskSongList(arg: any): arg is models.RskSongList {
   return (
   arg != null &&
   typeof arg === 'object' &&
+    // resultCount?: number
+    ( typeof arg.resultCount === 'undefined' || typeof arg.resultCount === 'number' ) &&
     // songs?: RskSong[]
     ( typeof arg.songs === 'undefined' || (Array.isArray(arg.songs) && arg.songs.every((item: unknown) => isRskSong(item))) ) &&
 

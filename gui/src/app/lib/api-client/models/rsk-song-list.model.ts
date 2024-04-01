@@ -4,5 +4,6 @@ import {
 } from '.';
 
 export interface RskSongList {
+  resultCount?: number;
   songs?: RskSong[];
 }
