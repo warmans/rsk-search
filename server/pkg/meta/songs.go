@@ -53,7 +53,7 @@ func (s Songs) FindKeyByTerm(term string) (string, bool) {
 }
 
 func (s SongMetaMap) ExtractSorted() Songs {
-	songSlice := []Song{}
+	songSlice := Songs{}
 	for _, v := range s.Songs {
 		if v == nil || v.Track == nil {
 			continue
