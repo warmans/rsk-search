@@ -134,7 +134,7 @@ func addSongMeta(logger *zap.Logger, token string, metadataPath string, forceCac
 	}
 	defer f.Close()
 
-	songCache := meta.Songs{}
+	songCache := meta.SongMetaMap{}
 	if err := json.NewDecoder(f).Decode(&songCache); err != nil {
 		return err
 	}
@@ -142,6 +142,7 @@ func addSongMeta(logger *zap.Logger, token string, metadataPath string, forceCac
 		return err
 	}
 
+	sortedSongCache := songCache.ExtractSorted()
 	for _, shortId := range meta.EpisodeDates() {
 
 		lg := logger.With(zap.String("name", shortId))
@@ -164,7 +165,8 @@ func addSongMeta(logger *zap.Logger, token string, metadataPath string, forceCac
 
 				var track *spotify.Track
 
-				cachedId, ok := songCache.FindKeyByTerm(searchTerm)
+				// ensure that this is a stable update as terms may match many items in the cache
+				cachedId, ok := sortedSongCache.FindKeyByTerm(searchTerm)
 				if !ok || forceCacheRefresh {
 					if token == "" {
 						lg.Warn("No spotify token given. Using cache only...", zap.String("term", searchTerm))

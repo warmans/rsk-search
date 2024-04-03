@@ -10,7 +10,7 @@ import (
 //go:embed data/songs.json
 var songs embed.FS
 
-var songMeta = Songs{}
+var songMeta = SongMetaMap{}
 
 func init() {
 	f, err := songs.Open("data/songs.json")
@@ -25,7 +25,7 @@ func init() {
 	}
 }
 
-func GetSongMeta() Songs {
+func GetSongMeta() SongMetaMap {
 	return songMeta
 }
 
@@ -35,11 +35,24 @@ type Song struct {
 	Track      *spotify.Track
 }
 
-type Songs struct {
+type SongMetaMap struct {
 	Songs map[string]*Song
 }
 
-func (s Songs) ExtractSorted() []Song {
+type Songs []Song
+
+func (s Songs) FindKeyByTerm(term string) (string, bool) {
+	for _, v := range s {
+		for _, t := range v.Terms {
+			if term == t {
+				return v.Track.TrackURI, true
+			}
+		}
+	}
+	return "", false
+}
+
+func (s SongMetaMap) ExtractSorted() Songs {
 	songSlice := []Song{}
 	for _, v := range s.Songs {
 		if v == nil || v.Track == nil {
@@ -54,15 +67,4 @@ func (s Songs) ExtractSorted() []Song {
 		return -1
 	})
 	return songSlice
-}
-
-func (s Songs) FindKeyByTerm(term string) (string, bool) {
-	for k, v := range s.Songs {
-		for _, t := range v.Terms {
-			if term == t {
-				return k, true
-			}
-		}
-	}
-	return "", false
 }
