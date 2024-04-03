@@ -4,7 +4,7 @@
     "episode": 2,
     "name": "",
     "summary": "",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "release_date": "2005-06-04T00:00:00Z",
     "incomplete": false,
     "bestof": false,
@@ -1721,11 +1721,10 @@
         "type": "song",
         "actor": "",
         "metadata": {
-          "song_album": "Songs For Silverman",
-          "song_album_art": "https://i.scdn.co/image/ab67616d0000b273bcc5ac396e0ec45ccb1181bb",
+          "song_album": "Landed",
           "song_artist": "Ben Folds",
           "song_track": "Landed",
-          "spotify_uri": "spotify:track:4mrVwQQiv8AkXoJWehbWsK"
+          "spotify_uri": "spotify:track:229LTjv0rnjloX6uQ1Kpsf"
         },
         "content": "Ben Folds - Landed",
         "notable": false
@@ -6476,10 +6475,9 @@
         "actor": "",
         "metadata": {
           "song_album": "I Am A Bird Now",
-          "song_album_art": "https://i.scdn.co/image/ab67616d0000b273181f6c66090a4c0747d1bbd8",
           "song_artist": "Antony and the Johnsons",
           "song_track": "Hope There's Someone",
-          "spotify_uri": "spotify:track:6hNOgftznEOoTrermrc30D"
+          "spotify_uri": "spotify:track:1AHPsqF3EtHeWpOM06Y3Y4"
         },
         "content": "Anthony and the Johnsons, “Hope There’s Someone”",
         "notable": false
@@ -10530,5 +10528,11 @@
       "wanyesullo",
       "warmans"
     ],
-    "trivia": null
+    "trivia": [
+      {
+        "description": "![](https://www.youtube.com/watch?v=J_F0mK4fwb8)",
+        "start_pos": 25,
+        "end_pos": 28
+      }
+    ]
   }
