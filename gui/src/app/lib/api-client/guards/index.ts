@@ -22,6 +22,16 @@ export function isAuthorContributionType(arg: any): arg is models.AuthorContribu
   ;
   }
 
+export function isDialogType(arg: any): arg is models.DialogType {
+  return false
+   || arg === models.DialogType.UNKNOWN
+   || arg === models.DialogType.SONG
+   || arg === models.DialogType.CHAT
+   || arg === models.DialogType.NONE
+   || arg === models.DialogType.GAP
+  ;
+  }
+
 export function isFieldMetaKind(arg: any): arg is models.FieldMetaKind {
   return false
    || arg === models.FieldMetaKind.UNKNOWN
@@ -426,8 +436,8 @@ export function isRskDialog(arg: any): arg is models.RskDialog {
     ( typeof arg.offsetSec === 'undefined' || typeof arg.offsetSec === 'string' ) &&
     // pos?: number
     ( typeof arg.pos === 'undefined' || typeof arg.pos === 'number' ) &&
-    // type?: string
-    ( typeof arg.type === 'undefined' || typeof arg.type === 'string' ) &&
+    // type?: DialogType
+    ( typeof arg.type === 'undefined' || isDialogType(arg.type) ) &&
 
   true
   );

@@ -1,5 +1,14 @@
 .songs-table {
   td {
     vertical-align: middle;
+
+    .album-image {
+      width: 75px;
+      height: 75px;
+    }
+
+    .missing-album-image {
+      border: 1px dashed;
+    }
   }
 }

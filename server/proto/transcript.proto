@@ -315,11 +315,19 @@ message ShortTranscript {
 }
 
 message Dialog {
+  enum DialogType {
+    UNKNOWN = 0;
+    SONG = 1;
+    CHAT = 2;
+    NONE = 3;
+    GAP = 4;
+  }
+
   reserved 7; // content_tags
 
   string id = 1;
   int32 pos = 2;
-  string type = 3;
+  DialogType type = 3;
   string actor = 4;
   string content = 5;
   map<string, string> metadata = 6;

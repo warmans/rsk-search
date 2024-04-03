@@ -9,12 +9,26 @@ import (
 
 type DialogType string
 
+func (d DialogType) Proto() api.Dialog_DialogType {
+	switch d {
+	case DialogTypeSong:
+		return api.Dialog_SONG
+	case DialogTypeChat:
+		return api.Dialog_CHAT
+	case DialogTypeNone:
+		return api.Dialog_NONE
+	case DialogTypeGap:
+		return api.Dialog_GAP
+	}
+	return api.Dialog_UNKNOWN
+}
+
 const (
-	DialogTypeUnkown = DialogType("unknown")
-	DialogTypeSong   = DialogType("song")
-	DialogTypeChat   = DialogType("chat")
-	DialogTypeNone   = DialogType("none")
-	DialogTypeGap    = DialogType("gap")
+	DialogTypeUnknown = DialogType("unknown")
+	DialogTypeSong    = DialogType("song")
+	DialogTypeChat    = DialogType("chat")
+	DialogTypeNone    = DialogType("none")
+	DialogTypeGap     = DialogType("gap")
 )
 
 type AudioQuality string
@@ -47,9 +61,10 @@ const (
 	MetadataTypeDurationMs        = MetadataType("duration_ms")
 	CoverArtURL                   = MetadataType("cover_art_url")
 
-	MetadataSongArtist = MetadataType("song_artist")
-	MetadataSongTrack  = MetadataType("song_track")
-	MetadataSongAlbum  = MetadataType("song_album")
+	MetadataSongArtist   = MetadataType("song_artist")
+	MetadataSongTrack    = MetadataType("song_track")
+	MetadataSongAlbum    = MetadataType("song_album")
+	MetadataSongAlbumArt = MetadataType("song_album_art")
 )
 
 type Metadata map[MetadataType]string
@@ -80,7 +95,7 @@ func (d Dialog) Proto(bestMatch bool) *api.Dialog {
 		Pos:            int32(d.Position),
 		OffsetSec:      d.OffsetSec,
 		OffsetInferred: d.OffsetInferred,
-		Type:           string(d.Type),
+		Type:           d.Type.Proto(),
 		Actor:          d.Actor,
 		Content:        d.Content,
 		Metadata:       d.Meta.Proto(),

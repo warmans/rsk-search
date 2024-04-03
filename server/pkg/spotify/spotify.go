@@ -113,7 +113,6 @@ func (s *Search) FindTrack(term string) (*Track, error) {
 		Name:     bestMatch.Name,
 		TrackURI: bestMatch.URI,
 	}
-
 	if bestMatch.Album != nil {
 		track.AlbumName = bestMatch.Album.Name
 		track.AlbumURI = bestMatch.Album.URI
@@ -121,9 +120,12 @@ func (s *Search) FindTrack(term string) (*Track, error) {
 			track.AlbumImageUrl = bestMatch.Album.Images[0].Url
 		}
 	}
-
 	for _, a := range bestMatch.Artists {
-		track.Artists = append(track.Artists, Artist(a))
+		track.Artists = append(track.Artists, Artist{Name: a.Name, URI: a.URI})
+	}
+	// no album image was found so use the artist image where available.
+	if track.AlbumImageUrl == "" && len(bestMatch.Artists) > 0 && len(bestMatch.Artists[0].Images) > 0 {
+		track.AlbumImageUrl = bestMatch.Artists[0].Images[0].Url
 	}
 
 	return track, nil
@@ -156,6 +158,7 @@ type image struct {
 }
 
 type artist struct {
-	Name string `json:"name"`
-	URI  string `json:"uri"`
+	Name   string  `json:"name"`
+	URI    string  `json:"uri"`
+	Images []image `json:"images"`
 }

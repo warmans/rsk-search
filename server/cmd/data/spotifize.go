@@ -220,6 +220,9 @@ func addSongMeta(logger *zap.Logger, token string, metadataPath string, forceCac
 				if track.AlbumName != "" {
 					ep.Transcript[k].Meta[models.MetadataSongAlbum] = track.AlbumName
 				}
+				if track.AlbumImageUrl != "" {
+					ep.Transcript[k].Meta[models.MetadataSongAlbumArt] = track.AlbumImageUrl
+				}
 			}
 		}
 

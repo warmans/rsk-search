@@ -1,6 +1,7 @@
 /* tslint:disable */
 
 export { AuthorContributionType } from './author-contribution-type.enum';
+export { DialogType } from './dialog-type.enum';
 export { FieldMetaKind } from './field-meta-kind.enum';
 export { NotificationKind } from './notification-kind.enum';
 export { RewardKind } from './reward-kind.enum';

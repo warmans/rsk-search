@@ -216,7 +216,7 @@ func ParseDialog(el *colly.HTMLElement) (*models.Dialog, error) {
 		dialog = &models.Dialog{
 			ID:      shortuuid.New(),
 			Actor:   strings.ToLower(strings.TrimSuffix(strings.TrimSpace(pTag.ChildText("span")), ":")),
-			Type:    models.DialogTypeUnkown,
+			Type:    models.DialogTypeUnknown,
 			Content: content,
 		}
 		if contentPrefix == "song" {

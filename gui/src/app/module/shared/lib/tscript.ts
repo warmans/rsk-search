@@ -1,4 +1,4 @@
-import {RskDialog, RskSynopsis, RskTrivia} from '../../../lib/api-client/models';
+import {DialogType, RskDialog, RskSynopsis, RskTrivia} from '../../../lib/api-client/models';
 
 export function lineHasActorPrefix(line: string): boolean {
   return line.length > 1 && line.indexOf(':') > -1;
@@ -116,7 +116,7 @@ export function parseTranscript(transcript: string): Tscript {
     const parts = line.split(':');
     if (parts.length < 2) {
       tscript.transcript.push({
-        type: 'unknown',
+        type: DialogType.UNKNOWN,
         content: parts.join(':'),
         notable: notable,
         pos: pos,
@@ -124,7 +124,7 @@ export function parseTranscript(transcript: string): Tscript {
     } else {
       const actor = parts.shift();
       tscript.transcript.push({
-        type: actor.toLowerCase() == 'song' ? 'song' : 'chat',
+        type: actor.toLowerCase() == 'song' ? DialogType.SONG : DialogType.CHAT,
         actor: actor.toLowerCase() === 'none' ? '' : actor,
         content: parts.join(':'),
         notable: notable,

@@ -1546,6 +1546,17 @@
         ],
         "default": "CONTRIBUTION_TYPE_UNKNOWN"
       },
+      "DialogDialogType": {
+        "type": "string",
+        "enum": [
+          "UNKNOWN",
+          "SONG",
+          "CHAT",
+          "NONE",
+          "GAP"
+        ],
+        "default": "UNKNOWN"
+      },
       "FieldMetaKind": {
         "type": "string",
         "enum": [
@@ -2003,7 +2014,7 @@
             "format": "int32"
           },
           "type": {
-            "type": "string"
+            "$ref": "#/definitions/DialogDialogType"
           },
           "actor": {
             "type": "string"

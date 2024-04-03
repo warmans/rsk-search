@@ -1,4 +1,7 @@
 /* tslint:disable */
+import {
+  DialogType,
+} from '.';
 
 export interface RskDialog {
   actor?: string;
@@ -10,5 +13,5 @@ export interface RskDialog {
   offsetInferred?: boolean;
   offsetSec?: string;
   pos?: number;
-  type?: string;
+  type?: DialogType;
 }

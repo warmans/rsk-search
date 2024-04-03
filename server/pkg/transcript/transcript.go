@@ -109,7 +109,7 @@ func Import(scanner *bufio.Scanner, episodeID string, startPos int64) ([]models.
 
 		di := models.Dialog{
 			ID:             models.DialogID(episodeID, position),
-			Type:           models.DialogTypeUnkown,
+			Type:           models.DialogTypeUnknown,
 			Position:       position,
 			Notable:        notable,
 			OffsetInferred: true,

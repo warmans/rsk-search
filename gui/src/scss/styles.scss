@@ -303,6 +303,18 @@ pre {
   }
 }
 
+.border-body-block-standout {
+  @include theme() {
+    border-color: theme-get('body-block-standout') !important;
+  }
+}
+
+.text-body-block-standout {
+  @include theme() {
+    color: theme-get('body-block-standout') !important;
+  }
+}
+
 .pagination {
   .page-link:hover {
     @include theme() {

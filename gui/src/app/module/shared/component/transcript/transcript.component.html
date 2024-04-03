@@ -37,15 +37,14 @@
         <div class="line d-flex mb-2 p-2 {{actorClass(line)}}"
              [ngClass]="{'matched': searchResultMode && line.isMatchedRow, 'not-matched': searchResultMode && !line.isMatchedRow, 'font-italic': line.notable, 'focus': line.pos  >= scrollToPosStart || line.pos <= scrollToPosEnd, 'mute': (scrollToPosStart > 0 && !searchResultMode ? (line.pos < scrollToPosStart || line.pos > scrollToPosEnd) : false) }"
              id="pos-{{line.pos}}">
-          <div class="actor mr-2 text-capitalize">{{line.type === "chat" ? line.actor : (line.type === 'unknown' ? '' :
-            line.type)}}
+          <div class="actor mr-2 text-capitalize">{{line.type === dialogTypes.CHAT ? line.actor : (line.type === dialogTypes.UNKNOWN ? '' : line.type)}}
           </div>
           <div class="col">
-            <span *ngIf="line.type === 'song'">
+            <span *ngIf="line.type === dialogTypes.SONG">
               {{line.content}} <a class="badge badge-success" [href]="line?.metadata['spotify_uri'] | safeUrl"
                                   *ngIf="line?.metadata && line?.metadata['spotify_uri']">spotify</a>
             </span>
-            <span *ngIf="line.type !== 'song'">{{line.content}}</span>
+            <span *ngIf="line.type !== dialogTypes.SONG">{{line.content}}</span>
           </div>
         </div>
         <div class="mb-2 ml-2 d-flex flex-column justify-content-center" *ngIf="enableLineCopy">

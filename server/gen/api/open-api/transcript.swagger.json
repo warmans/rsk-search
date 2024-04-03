@@ -716,6 +716,17 @@
     }
   },
   "definitions": {
+    "DialogDialogType": {
+      "type": "string",
+      "enum": [
+        "UNKNOWN",
+        "SONG",
+        "CHAT",
+        "NONE",
+        "GAP"
+      ],
+      "default": "UNKNOWN"
+    },
     "protobufAny": {
       "type": "object",
       "properties": {
@@ -974,7 +985,7 @@
           "format": "int32"
         },
         "type": {
-          "type": "string"
+          "$ref": "#/definitions/DialogDialogType"
         },
         "actor": {
           "type": "string"

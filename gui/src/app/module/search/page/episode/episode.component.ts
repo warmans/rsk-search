@@ -1,7 +1,13 @@
 import {Component, EventEmitter, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Data, Router} from '@angular/router';
 import {SearchAPIClient} from 'src/app/lib/api-client/services/search';
-import {RskDialog, RskTranscript, RskTranscriptChange, RskTranscriptChangeList} from 'src/app/lib/api-client/models';
+import {
+  DialogType,
+  RskDialog,
+  RskTranscript,
+  RskTranscriptChange,
+  RskTranscriptChangeList
+} from 'src/app/lib/api-client/models';
 import {ViewportScroller} from '@angular/common';
 import {takeUntil} from 'rxjs/operators';
 import {Title} from '@angular/platform-browser';
@@ -128,7 +134,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
           if (r.notable) {
             this.quotes.push(r);
           }
-          if (r.type === "song") {
+          if (r.type === DialogType.SONG) {
             this.songs.push(r);
           }
         });

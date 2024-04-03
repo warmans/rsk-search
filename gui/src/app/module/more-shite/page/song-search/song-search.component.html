@@ -11,9 +11,20 @@
       </div>
       <div class="card-body pb-0 mb-0">
         <table class="table songs-table">
+          <tr>
+            <th></th>
+            <th>Song Title</th>
+            <th>Artist</th>
+            <th>Episodes</th>
+          </tr>
           <tr *ngFor="let song of songs">
             <td>
-              <img *ngIf="song.albumImageUrl" [src]="song.albumImageUrl" style="width: 75px; height: 75px" />
+              <div class="album-image missing-album-image d-flex flex-row align-items-center border-body-block-standout text-body-block-standout" *ngIf="!song.albumImageUrl">
+                <span class="w-100 text-center">
+                  <i class="bi-file-music"></i>
+                </span>
+              </div>
+              <img class="album-image" *ngIf="song.albumImageUrl" [src]="song.albumImageUrl"/>
             </td>
             <td>
               <a class="text-paragraph align-self-center" [href]="song.spotifyUri">

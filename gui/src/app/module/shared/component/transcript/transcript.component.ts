@@ -1,5 +1,5 @@
 import {AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {RskDialog, RskSynopsis, RskTranscript, RskTrivia} from '../../../../lib/api-client/models';
+import {DialogType, RskDialog, RskSynopsis, RskTranscript, RskTrivia} from '../../../../lib/api-client/models';
 import {ViewportScroller} from '@angular/common';
 import {parseTranscript, Tscript} from '../../lib/tscript';
 import {ClipboardService} from 'src/app/module/core/service/clipboard/clipboard.service';
@@ -55,6 +55,8 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
   private _rawTranscript: string;
 
   groupedDialog: DialogGroup[];
+
+  dialogTypes = DialogType;
 
   lineInSynopsisMap: { [index: number]: boolean } = {};
   synopsisPos: { [index: number]: RskSynopsis } = {};
@@ -212,6 +214,18 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
       this.synopsisPos[s.startPos] = s;
     });
 
+    // add a fake trivia for song information
+    episode.transcript.forEach((dialog) => {
+      if (dialog.type == DialogType.SONG && dialog.metadata["song_album_art"] != "") {
+        episode.trivia.push({
+          description: `<img src="${dialog.metadata["song_album_art"]}" alt="${dialog.metadata["song_album"]}" width="300px"/>`,
+          startPos: dialog.pos,
+          endPos: Math.min(dialog.pos + 5, episode.transcript.length),
+        })
+      }
+    });
+
+
     this.lineInSynopsisMap = {};
     this.audioOffsetsAvailable = false;
     this.groupedDialog = [];
@@ -220,19 +234,19 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
       endPos: undefined,
       tscript: {synopses: [], trivia: [], transcript: []}
     };
-    for (let i = (this.startLine || 0); i < (this.endLine && this.endLine < episode?.transcript.length ? this.endLine : episode?.transcript.length); i++) {
+    for (let i: number = (this.startLine || 0); i < (this.endLine && this.endLine < episode?.transcript.length ? this.endLine : episode?.transcript.length); i++) {
 
       if (parseInt(episode.transcript[i].offsetSec) > 0) {
         this.audioOffsetsAvailable = true;
       }
 
-      this.lineInSynopsisMap[episode.transcript[i].pos] = !!(episode?.synopses || []).find((s: RskSynopsis) => episode.transcript[i].pos >= s.startPos && i < s.endPos);
+      this.lineInSynopsisMap[episode.transcript[i].pos] = !!(episode?.synopses || []).find((s: RskSynopsis): boolean => episode.transcript[i].pos >= s.startPos && i < s.endPos);
 
       currentGroup.tscript.transcript.push(episode.transcript[i]);
 
       // there may be multiple trivias which intersect this line. So find them all and then,
       // append them as required.
-      const foundIntersectingTrivia: RskTrivia[] = (episode?.trivia || []).filter((s: RskSynopsis) => episode.transcript[i].pos === s.startPos - 1 || episode.transcript[i].pos === s.endPos);
+      const foundIntersectingTrivia: RskTrivia[] = (episode?.trivia || []).filter((s: RskTrivia) => episode.transcript[i].pos === s.startPos - 1 || episode.transcript[i].pos === s.endPos);
 
       if ((foundIntersectingTrivia || []).length > 0) {
         foundIntersectingTrivia.forEach((trivia: RskTrivia) => {
