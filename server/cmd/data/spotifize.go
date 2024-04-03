@@ -195,35 +195,18 @@ func addSongMeta(logger *zap.Logger, token string, metadataPath string, forceCac
 					}
 				} else {
 					lg.Info("Cached...", zap.String("term", searchTerm))
-
 					track = songCache.Songs[cachedId].Track
-					var found bool
-					for _, epID := range songCache.Songs[cachedId].EpisodeIDs {
-						if epID == shortId {
-							found = true
-						}
-					}
-					if !found {
+					if slices.Index(songCache.Songs[cachedId].EpisodeIDs, shortId) == -1 {
 						songCache.Songs[cachedId].EpisodeIDs = append(songCache.Songs[cachedId].EpisodeIDs, shortId)
 					}
-
-					found = false
-					for _, term := range songCache.Songs[cachedId].Terms {
-						if term == searchTerm {
-							found = true
-						}
-					}
-					if !found {
+					if slices.Index(songCache.Songs[cachedId].Terms, searchTerm) == -1 {
 						songCache.Songs[cachedId].Terms = append(songCache.Songs[cachedId].Terms, searchTerm)
 					}
 				}
 
-				if v.Meta == nil {
-					ep.Transcript[k].Meta = models.Metadata{}
-				}
+				ep.Transcript[k].Meta = models.Metadata{}
 				ep.Transcript[k].Meta[models.MetadataSongTrack] = track.Name
 				ep.Transcript[k].Meta[models.MetadataTypeSpotifyURI] = track.TrackURI
-
 				if len(track.Artists) == 1 {
 					ep.Transcript[k].Meta[models.MetadataSongArtist] = track.Artists[0].Name
 				}
