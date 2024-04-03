@@ -24,8 +24,10 @@ export interface Section {
 })
 export class TranscriptComponent implements OnInit, AfterViewInit {
 
+
   @Input()
   epid: string;
+
 
   @Input()
   set transcript(value: Tscript | RskTranscript) {
@@ -136,6 +138,7 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.preProcessTranscript(this._transcript);
   }
 
   actorClass(d: RskDialog): string {
@@ -215,16 +218,20 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
     });
 
     // add a fake trivia for song information
-    episode.transcript.forEach((dialog) => {
-      if (dialog.type == DialogType.SONG && dialog.metadata["song_album_art"] != "") {
-        episode.trivia.push({
-          description: `<img src="${dialog.metadata["song_album_art"]}" alt="${dialog.metadata["song_album"]}" width="300px"/>`,
-          startPos: dialog.pos,
-          endPos: Math.min(dialog.pos + 5, episode.transcript.length),
-        })
-      }
-    });
-
+    if (this.searchResultMode === false) {
+      episode.transcript.forEach((dialog) => {
+        if (dialog.type == DialogType.SONG && dialog.metadata && dialog.metadata["song_album_art"]) {
+          if (!episode.trivia){
+            episode.trivia = [];
+          }
+          episode.trivia.push({
+            description: `<img src="${dialog.metadata["song_album_art"]}" alt="${dialog.metadata["song_album"]}" width="300px"/>`,
+            startPos: dialog.pos,
+            endPos: Math.min(dialog.pos + 5, episode.transcript.length),
+          })
+        }
+      });
+    }
 
     this.lineInSynopsisMap = {};
     this.audioOffsetsAvailable = false;
