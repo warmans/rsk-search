@@ -12,6 +12,7 @@ import (
 	"go.uber.org/zap"
 	"net/http"
 	"os"
+	"slices"
 	"strings"
 )
 
@@ -178,10 +179,19 @@ func addSongMeta(logger *zap.Logger, token string, metadataPath string, forceCac
 					if songCache.Songs == nil {
 						songCache.Songs = make(map[string]*meta.Song)
 					}
-					songCache.Songs[track.TrackURI] = &meta.Song{
-						Terms:      []string{searchTerm},
-						EpisodeIDs: []string{shortId},
-						Track:      track,
+					if _, ok := songCache.Songs[track.TrackURI]; ok {
+						if slices.Index(songCache.Songs[track.TrackURI].Terms, searchTerm) == -1 {
+							songCache.Songs[track.TrackURI].Terms = append(songCache.Songs[track.TrackURI].Terms, searchTerm)
+						}
+						if slices.Index(songCache.Songs[track.TrackURI].EpisodeIDs, shortId) == -1 {
+							songCache.Songs[track.TrackURI].EpisodeIDs = append(songCache.Songs[track.TrackURI].EpisodeIDs, shortId)
+						}
+					} else {
+						songCache.Songs[track.TrackURI] = &meta.Song{
+							Terms:      []string{searchTerm},
+							EpisodeIDs: []string{shortId},
+							Track:      track,
+						}
 					}
 				} else {
 					lg.Info("Cached...", zap.String("term", searchTerm))
