@@ -3,6 +3,8 @@ import {DialogType, RskDialog, RskSynopsis, RskTranscript, RskTrivia} from '../.
 import {ViewportScroller} from '@angular/common';
 import {parseTranscript, Tscript} from '../../lib/tscript';
 import {ClipboardService} from 'src/app/module/core/service/clipboard/clipboard.service';
+import {BehaviorSubject, Subject} from "rxjs";
+import {takeUntil} from "rxjs/operators";
 
 interface DialogGroup {
   startPos: number;
@@ -34,15 +36,14 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
     if (!value) {
       return;
     }
-    this._transcript = value;
-    this.preProcessTranscript(value);
+    this._transcript.next(value);
   }
 
   get transcript(): Tscript | RskTranscript {
-    return this._transcript;
+    return this._transcript.value;
   }
 
-  private _transcript: Tscript | RskTranscript;
+  private _transcript: BehaviorSubject<Tscript | RskTranscript> = new BehaviorSubject<Tscript | RskTranscript>(null);
 
   @Input()
   set rawTranscript(value: string) {
@@ -133,12 +134,19 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
     'camfield': 'camfield',
   };
 
+  destroy$: Subject<void> = new Subject<void>();
+
   constructor(private viewportScroller: ViewportScroller, private clipboard: ClipboardService) {
     viewportScroller.setOffset([0, window.innerHeight / 2]);
   }
 
   ngOnInit(): void {
-    this.preProcessTranscript(this._transcript);
+    this._transcript.pipe(takeUntil(this.destroy$)).subscribe((transcript) => {
+      if (transcript === null) {
+        return
+      }
+      this.preProcessTranscript(transcript);
+    });
   }
 
   actorClass(d: RskDialog): string {
@@ -221,7 +229,7 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
     if (this.searchResultMode === false) {
       episode.transcript.forEach((dialog) => {
         if (dialog.type == DialogType.SONG && dialog.metadata && dialog.metadata["song_album_art"]) {
-          if (!episode.trivia){
+          if (!episode.trivia) {
             episode.trivia = [];
           }
           episode.trivia.push({

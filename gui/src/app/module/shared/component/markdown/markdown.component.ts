@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
-import {marked, parse} from 'marked';
+import {marked} from 'marked';
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-markdown',
@@ -21,20 +22,94 @@ export class MarkdownComponent implements OnInit {
 
   private _raw: string;
 
-  renderedHTML: string | Promise<string>;
+  renderedHTML: any;
 
-  constructor() {
+  constructor(public sanitizer: DomSanitizer) {
   }
 
   ngOnInit(): void {
   }
 
   render() {
-    this.renderedHTML = parse(this.raw);
+
+    const renderer = new marked.Renderer();
+
+    /**
+     * Make Marked support specifying image size in pixels in this format:
+     *
+     * ![alt](src = x WIDTH)
+     * ![alt](src = HEIGHT x)
+     * ![alt](src = HEIGHT x WIDTH)
+     * ![alt](src = x WIDTH "title")
+     * ![alt](src = HEIGHT x "title")
+     * ![alt](src = HEIGHT x WIDTH "title")
+     *
+     * Note: whitespace from the equals sign to the title/end of image is all
+     * optional. Each of the above examples are equivalent to these below,
+     * respectively:
+     *
+     * ![alt](src =xWIDTH)
+     * ![alt](src =HEIGHTx)
+     * ![alt](src =HEIGHTxWIDTH)
+     * ![alt](src =xWIDTH "title")
+     * ![alt](src =HEIGHTx "title")
+     * ![alt](src =HEIGHTxWIDTH "title")
+     *
+     * Example usage:
+     *
+     * ![my image](https://example.com/my-image.png =400x600 "My image")
+     * ![](https://example.com/my-image.png =400x "My image")
+     * ![](https://example.com/my-image.png =400x)
+     */
+    renderer.image = function (src, title, alt) {
+      const parts = /(.*)\s+=\s*(\d*)\s*x\s*(\d*)\s*$/.exec(src)
+      var url = src
+      var height = undefined
+      var width = undefined
+      if (parts) {
+        url = parts[1]
+        height = parts[2]
+        width = parts[3]
+      }
+      var YouTube = mediaParseIdFromUrl('youtube', url);
+      var Vimeo = mediaParseIdFromUrl('vimeo', url);
+      var Viddler = mediaParseIdFromUrl('viddler', url);
+      var DailyMotion = mediaParseIdFromUrl('dailymotion', url);
+      var Html5 = mediaParseIdFromUrl('html5', url);
+      let res = ''
+      if (YouTube !== undefined) {
+        res = create_iframe('//www.youtube.com/embed/' + YouTube, title, alt, height, width);
+      } else if (Vimeo !== undefined) {
+        res = create_iframe('//player.vimeo.com/video/' + Vimeo + '?api=1', title, alt, height, width);
+      } else if (Viddler !== undefined) {
+        res = create_iframe('//www.viddler.com/player/' + Viddler, title, alt, height, width);
+      } else if (DailyMotion !== undefined) {
+        res = create_iframe('//www.dailymotion.com/embed/video/' + DailyMotion, title, alt, height, width);
+      } else if (Html5) {
+        res = '<video';
+        if (height) res += ' height="' + height + '"'
+        if (width) res += ' width="' + width + '"'
+        res += ' controls><source src="' + Html5['link'] + '" type="video/' + Html5['extension'] + '">'
+        if (alt) res += sanitize(alt)
+        res += '</video>';
+      } else {
+        res = '<img '
+        if (height) res += ' height="' + height + '"'
+        if (width) res += ' width="' + width + '"'
+        res += 'src="' + sanitize(url) + '"'
+        if (alt) res += ' alt="' + sanitize(alt) + '"'
+        if (title) res += ' title="' + sanitize(title) + '"'
+        res += '>'
+      }
+      return res
+    }
+    let markd = marked.setOptions({
+      renderer: renderer
+    })
+    this.renderedHTML = markd(this.raw);
   }
 }
 
-const renderer = new marked.Renderer();
 
 function sanitize(str) {
   return str.replace(/&<"/g, function (m) {
@@ -119,77 +194,3 @@ function create_iframe(src, title, alt, height, width) {
   return res;
 }
 
-/**
- * Make Marked support specifying image size in pixels in this format:
- *
- * ![alt](src = x WIDTH)
- * ![alt](src = HEIGHT x)
- * ![alt](src = HEIGHT x WIDTH)
- * ![alt](src = x WIDTH "title")
- * ![alt](src = HEIGHT x "title")
- * ![alt](src = HEIGHT x WIDTH "title")
- *
- * Note: whitespace from the equals sign to the title/end of image is all
- * optional. Each of the above examples are equivalent to these below,
- * respectively:
- *
- * ![alt](src =xWIDTH)
- * ![alt](src =HEIGHTx)
- * ![alt](src =HEIGHTxWIDTH)
- * ![alt](src =xWIDTH "title")
- * ![alt](src =HEIGHTx "title")
- * ![alt](src =HEIGHTxWIDTH "title")
- *
- * Example usage:
- *
- * ![my image](https://example.com/my-image.png =400x600 "My image")
- * ![](https://example.com/my-image.png =400x "My image")
- * ![](https://example.com/my-image.png =400x)
- */
-renderer.image = function (src, title, alt) {
-  const parts = /(.*)\s+=\s*(\d*)\s*x\s*(\d*)\s*$/.exec(src)
-  var url = src
-  var height = undefined
-  var width = undefined
-  if (parts) {
-    url = parts[1]
-    height = parts[2]
-    width = parts[3]
-  }
-  var YouTube = mediaParseIdFromUrl('youtube', url);
-  var Vimeo = mediaParseIdFromUrl('vimeo', url);
-  var Viddler = mediaParseIdFromUrl('viddler', url);
-  var DailyMotion = mediaParseIdFromUrl('dailymotion', url);
-  var Html5 = mediaParseIdFromUrl('html5', url);
-  let res = ''
-  if (YouTube !== undefined) {
-    res = create_iframe('//www.youtube.com/embed/' + YouTube, title, alt, height, width);
-  } else if (Vimeo !== undefined) {
-    res = create_iframe('//player.vimeo.com/video/' + Vimeo + '?api=1', title, alt, height, width);
-  } else if (Viddler !== undefined) {
-    res = create_iframe('//www.viddler.com/player/' + Viddler, title, alt, height, width);
-  } else if (DailyMotion !== undefined) {
-    res = create_iframe('//www.dailymotion.com/embed/video/' + DailyMotion, title, alt, height, width);
-  } else if (Html5) {
-    res = '<video';
-    if (height) res += ' height="' + height + '"'
-    if (width) res += ' width="' + width + '"'
-    res += ' controls><source src="' + Html5['link'] + '" type="video/' + Html5['extension'] + '">'
-    if (alt) res += sanitize(alt)
-    res += '</video>';
-  } else {
-    res = '<img '
-    if (height) res += ' height="' + height + '"'
-    if (width) res += ' width="' + width + '"'
-    res += 'src="' + sanitize(url) + '"'
-    if (alt) res += ' alt="' + sanitize(alt) + '"'
-    if (title) res += ' title="' + sanitize(title) + '"'
-    res += '>'
-  }
-
-  return res
-}
-
-marked.setOptions({
-  renderer: renderer
-})
