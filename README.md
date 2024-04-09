@@ -74,17 +74,6 @@ With nothing running you can run `tilt up` from the root directory, and it will 
 
 ## Deployment
 
-### Update scrimpton.com
-
-(requires access to `warmans` docker hub account)
-
-1. Create a new git tag `git tag x.x.x`.
-2. `cd gui && npm run release`.
-3. `cd server && make release`.
-3. Re-up docker compose file on server.
-
-(this is done using github actions)
-
 ### New deployment
 
 1. Build and push docker images with your own namespace.
