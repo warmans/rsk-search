@@ -7,7 +7,7 @@ This is the project that powers scrimpton.com. It is split into two areas:
 Backend (`/server`):
 
 - Written in Go 
-- Uses Protobuff/Grpc for the API. 
+- Uses Protobuf/Grpc for the API. 
 - Static data is stored in Sqlite, Bluge (formerly Bleve) or just flat files (see `var/data`).
 - Dynamic data (e.g. in-progress contributions) is stored in Postgres.
 - Audio files are stored on the server file system (no CDN or cloud storage).
@@ -26,7 +26,7 @@ There are also some files to give an example of how the service can be deployed 
 2. docker.io, docker-compose (`apt install docker.io docker-compose`)
 3. direnv (`apt install direnv` - remember to install shell hook e.g. `direnv hook bash > ~/.bashrc`)
 4. npm/nodejs 18.x
-5. go 1.20
+5. go (latest)
 
 ## Running services manually
 
