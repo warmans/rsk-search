@@ -249,6 +249,14 @@ pre {
   }
 }
 
+.card .nav-tabs li {
+  border: 1px solid;
+  @include theme() {
+    border-color: theme-get('header-block-border');
+    border-bottom: none;
+  }
+}
+
 .text-sm {
   font-size: 0.8rem;
 }

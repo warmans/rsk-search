@@ -2,17 +2,17 @@
 
 ### Introduction
 
-This is the project that powers scrimpton.com. It is split into two areas: 
+This is the project that powers scrimpton.com. It is split into two areas:
 
 Backend (`/server`):
 
-- Written in Go 
-- Uses Protobuff/Grpc for the API. 
+- Written in Go
+- Uses Protobuff/Grpc for the API.
 - Static data is stored in Sqlite, Bluge (formerly Bleve) or just flat files (see `var/data`).
 - Dynamic data (e.g. in-progress contributions) is stored in Postgres.
 - Audio files are stored on the server file system (no CDN or cloud storage).
 
-Frontend (`/gui`): 
+Frontend (`/gui`):
 
 - Written in Typescript (Angular)
 - Styles are based on Bootstrap.
@@ -35,15 +35,15 @@ There are also some files to give an example of how the service can be deployed 
 From the gui directory:
 
 1. Install dependencies `npm install`.
-2. Start the development server with `npm run start-prod`. This will not require any 
-local server and will use the live scrimpton.com API.
+2. Start the development server with `npm run start-prod`. This will not require any
+   local server and will use the live scrimpton.com API.
 
-If the local server is running you can use `npm run start` to proxy the 
+If the local server is running you can use `npm run start` to proxy the
 API to the local running API.
 
 ### Server development
 
-From the server directory: 
+From the server directory:
 
 Setup:
 
@@ -57,12 +57,12 @@ Note that invalid API keys will be used (see .envrc). These may cause some thing
 
 More info: [server README](server/README.md)
 
-#### How to change the API 
+#### How to change the API
 
 1. Edit proto file e.g. `proto/search.proto`.
 2. Run `make generate`.
 3. Update code to reflect changes in proto file e.g. `pkg/service/grpc/search.go`.
-4. In `gui` directory run `npm run generate-api-client` to sync the GUI client with the latest API definitions. 
+4. In `gui` directory run `npm run generate-api-client` to sync the GUI client with the latest API definitions.
 
 More info: [GUI README](gui/README.md)
 
@@ -71,6 +71,9 @@ More info: [GUI README](gui/README.md)
 Once everything is set up, you can then switch to using tilt to run all the services.
 
 With nothing running you can run `tilt up` from the root directory, and it will start everything for the API and UI.
+
+Tilt has its own UI to show the services' status, but you can access the scrimpton UI on the normal
+port: http://localhost:4200
 
 ## Deployment
 

@@ -31,11 +31,11 @@
             <div class="col-lg-10">
               <table class="table m-0">
                 <tr>
-                  <th style="width: 200px" class="border-top-0">Transcript Version</th>
-                  <td class="border-top-0">{{episode.version}}</td>
+                  <th class="border-top-0">Transcript Version</th>
+                  <td class="border-top-0 w-100">{{episode.version}}</td>
                 </tr>
                 <tr>
-                  <th style="width: 200px">Broadcast</th>
+                  <th>Broadcast</th>
                   <td>{{episode.releaseDate | date}}</td>
                 </tr>
                 <tr>
@@ -91,38 +91,43 @@
             </div>
           </div>
         </div>
-        <div *ngIf="episode?.synopses?.length > 0">
-          <div class="card-header border-top">
-            <div class="d-flex">
-              <div class="flex-grow-1 font-weight-bold"><i class="bi bi-card-list mr-1"></i> Synopsis</div>
-            </div>
-          </div>
+        <ul class="nav nav-tabs font-weight-bold ml-2" *ngIf="activeInfoPanel !== undefined">
+          <li class="nav-item mr-2 with-border" *ngIf="episode?.synopses?.length > 0">
+            <a class="nav-link" (click)="activeInfoPanel='synopsis'"
+               [ngClass]="{'active': activeInfoPanel === 'synopsis'}"><i class="bi bi-card-list mr-1"></i> Synopsis
+            </a>
+          </li>
+          <li class="nav-item mr-2" *ngIf="quotes && quotes.length > 0">
+            <a class="nav-link" (click)="activeInfoPanel='quotes'" [ngClass]="{'active': activeInfoPanel === 'quotes'}">
+              <i class="bi bi-chat-left-quote mr-1"></i> Quotes
+            </a>
+          </li>
+          <li class="nav-item mr-2" *ngIf="songs && songs.length > 0">
+            <a class="nav-link" (click)="activeInfoPanel='songs'" [ngClass]="{'active': activeInfoPanel === 'songs'}">
+              <i class="bi bi-speaker mr-1"></i> Songs
+            </a>
+          </li>
+        </ul>
+        <div *ngIf="activeInfoPanel === 'synopsis'">
+          <div class="card-header border-top"></div>
           <div class="card-body">
             <app-synopses [synopses]="episode?.synopses" [episodeID]="episode.id"></app-synopses>
           </div>
         </div>
-        <div *ngIf="quotes && quotes.length > 0">
-          <div class="card-header border-top">
-            <div class="d-flex">
-              <div class="flex-grow-1 font-weight-bold"><i class="bi bi-chat-left-quote mr-1"></i> Quotes</div>
-            </div>
-          </div>
+        <div *ngIf="activeInfoPanel === 'quotes'">
+          <div class="card-header border-top"></div>
           <div class="card-body p-3">
             <div class="mb-1" *ngFor="let quote of quotes">
               <i class="bi-quote mr-2 text-primary"></i>
               <span class="font-italic">
-                  "{{quote.content}}" -{{quote.actor}}
+                    "{{quote.content}}" -{{quote.actor}}
                 (<a [routerLink]="['/ep', episode?.id]" [fragment]="'pos-'+(quote?.pos)">context</a>)
-                </span>
+                  </span>
             </div>
           </div>
         </div>
-        <div *ngIf="songs && songs.length > 0">
-          <div class="card-header border-top">
-            <div class="d-flex">
-              <div class="flex-grow-1 font-weight-bold"><i class="bi bi-speaker mr-1"></i> Songs</div>
-            </div>
-          </div>
+        <div *ngIf="activeInfoPanel === 'songs'">
+          <div class="card-header border-top"></div>
           <div class="card-body p-3">
             <div class="mb-1" *ngFor="let song of songs">
               <div *ngIf="song.metadata['spotify_uri']">

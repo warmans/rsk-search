@@ -68,6 +68,8 @@ export class EpisodeComponent implements OnInit, OnDestroy {
 
   unsubscribe$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+  activeInfoPanel: 'synopsis' | 'songs' | 'quotes' = 'synopsis';
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -125,7 +127,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
         this.shortID = ep.shortId;
         this.titleService.setTitle(ep.id);
         this.transcribers = ep.contributors.join(', ');
-        this.episodeImage = ep.metadata['cover_art_url'] ? ep.metadata['cover_art_url'] : `/assets/cover/${ep.publication}-s${ep.series}.jpg`;
+        this.episodeImage = ep.metadata['cover_art_url'] ? ep.metadata['cover_art_url'] : `/assets/cover/${ep.publication}-s${ep.series}-lg.jpeg`;
         this.audioLink = ep.audioUri;
 
         this.quotes = [];
@@ -151,6 +153,18 @@ export class EpisodeComponent implements OnInit, OnDestroy {
         if (curIndex < ((metadata.episodeShortIds || []).length - 1)) {
           this.nextEpisodeId = `ep-${metadata.episodeShortIds[curIndex + 1]}`;
         }
+
+        const availableInfoPanels = [];
+        if (this.episode?.synopses && this.episode?.synopses.length > 0) {
+          availableInfoPanels.push("synopsis");
+        }
+        if (this.quotes && this.episode?.synopses.length > 0) {
+          availableInfoPanels.push("quotes");
+        }
+        if (this.songs && this.songs.length > 0) {
+          availableInfoPanels.push("songs");
+        }
+        this.activeInfoPanel = (availableInfoPanels.length > 0) ? availableInfoPanels[0] : undefined;
       },
       (err) => {
         this.error = 'Failed to fetch episode';
@@ -199,10 +213,10 @@ export class EpisodeComponent implements OnInit, OnDestroy {
     this.router.navigate([], {});
   }
 
-  copySelection(){
+  copySelection() {
     this.clipboard.copyTextToClipboard(
-      (this.episode.transcript.slice(this.selection.startPos-1, this.selection.endPos) || [])
-        .map((d:RskDialog): string => d.actor ? `**${d.actor}:** ${d.content}` : `*${d.content}*`)
+      (this.episode.transcript.slice(this.selection.startPos - 1, this.selection.endPos) || [])
+        .map((d: RskDialog): string => d.actor ? `**${d.actor}:** ${d.content}` : `*${d.content}*`)
         .join("\n")
     );
   }
