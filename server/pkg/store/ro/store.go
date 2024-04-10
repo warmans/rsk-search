@@ -238,6 +238,55 @@ func (s *Store) ListSongs(ctx context.Context, q *common.QueryModifier) ([]*mode
 	return out, totalRows, nil
 }
 
+func (s *Store) InsertCommunityProject(ctx context.Context, proj models.CommunityProject) error {
+	_, err := s.tx.ExecContext(
+		ctx,
+		`INSERT INTO community_project ("id", "name", "summary", "content", "url", "created_at") VALUES ($1, $2, $3, $4, $5, $6)`,
+		proj.ID,
+		proj.Name,
+		proj.Summary,
+		proj.Content,
+		proj.URL,
+		proj.CreatedAt,
+	)
+	return err
+}
+
+func (s *Store) ListCommunityProjects(ctx context.Context, q *common.QueryModifier) (models.CommunityProjects, int64, error) {
+	fieldMap := map[string]string{
+		"id":         "id",
+		"name":       "name",
+		"created_at": "created_at",
+	}
+	q.Apply(common.WithDefaultSorting("created_at", common.SortAsc))
+
+	where, params, order, paging, err := q.ToSQL(fieldMap, true)
+	if err != nil {
+		return nil, 0, err
+	}
+
+	rows, err := s.tx.QueryxContext(
+		ctx,
+		fmt.Sprintf(`SELECT id, name, summary, content, url, created_at, COUNT() OVER() as total_rows FROM community_project %s %s %s`, where, order, paging),
+		params...,
+	)
+	if err != nil {
+		return nil, 0, err
+	}
+	defer rows.Close()
+
+	var totalRows int64 //identical for every row
+	out := make([]models.CommunityProject, 0)
+	for rows.Next() {
+		row := models.CommunityProject{}
+		if err := rows.Scan(&row.ID, &row.Name, &row.Summary, &row.Content, &row.URL, &row.CreatedAt, &totalRows); err != nil {
+			return nil, 0, err
+		}
+		out = append(out, row)
+	}
+	return out, totalRows, nil
+}
+
 func metaToString(metadata models.Metadata) (string, error) {
 	if metadata == nil {
 		return "", nil

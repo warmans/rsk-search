@@ -1,0 +1,66 @@
+<div class="container pt-4">
+  <div class="w-100 d-flex flex-row align-items-center">
+    <div class="card w-100 mb-4">
+      <div class="card-header">
+        <div class="mb-2">Community Project Directory</div>
+        <div class="w-100 d-flex justify-content-between">
+          <div class="flex-grow-1 mr-2">
+            <input class="form-control" placeholder="Search by project name" [formControl]="searchInput"/>
+          </div>
+        </div>
+      </div>
+      <div class="card-body pb-0 mb-0">
+        <table class="table songs-table">
+          <tr>
+            <th>Name</th>
+            <th>Summary</th>
+            <th>URL</th>
+          </tr>
+          <ng-container *ngFor="let proj of projects">
+            <tr>
+              <td>
+                {{proj.name}}
+              </td>
+              <td>
+                {{proj.summary}}
+                <div><a *ngIf="proj.content" class="clickable" (click)="proj.expand = !proj.expand">More info...</a></div>
+              </td>
+              <td><a [href]="proj.url" target="_blank">{{proj.url}} <i class="bi-arrow-up-right"></i></a></td>
+            </tr>
+            <tr *ngIf="proj.expand && proj.content">
+              <td class="border-top-0" colspan="3">{{proj.content}}</td>
+            </tr>
+          </ng-container>
+        </table>
+      </div>
+      <div class="card-footer text-muted text-right">
+        <nav aria-label="pages">
+          <ul class="pagination">
+            <li *ngFor="let i of pages" class="page-item" [ngClass]="{'active': i === currentPage}">
+              <a class="page-link"
+                 [routerLink]="['/more-shite', 'community-projects']"
+                 [queryParams]="{'page': i}"
+                 [queryParamsHandling]="'merge'">{{i}}
+              </a>
+            </li>
+            <ng-container *ngIf="morePages">
+              <li class="page-item active" *ngIf="currentPage > pages.length">
+                <a class="page-link"
+                   [routerLink]="['/more-shite', 'community-projects']"
+                   [queryParams]="{'page': currentPage}"
+                   [queryParamsHandling]="'merge'">{{currentPage}}
+                </a>
+              </li>
+              <li class="page-item">
+                <a [routerLink]="['/more-shite', 'community-projects']"
+                   [queryParams]="{'page': currentPage >= maxPages ? currentPage+1 : maxPages+1}"
+                   [queryParamsHandling]="'merge'" class="page-link">Next...
+                </a>
+              </li>
+            </ng-container>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>

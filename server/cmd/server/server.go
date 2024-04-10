@@ -238,6 +238,10 @@ func ServerCmd() *cobra.Command {
 					persistentDBConn,
 					auth,
 				),
+				grpc.NewCommunityService(
+					logger,
+					readOnlyStoreConn,
+				),
 			}
 
 			httpServices := []server.HTTPService{

@@ -48,18 +48,18 @@ func LoadCmd() *cobra.Command {
 		},
 	}
 
-	cmd.Flags().StringVarP(&inputDir, "input-path", "i", "./var/data/episodes", "Path to raw data files")
+	cmd.Flags().StringVarP(&inputDir, "data-dir", "i", "./var/data", "Path to data dir")
 	cmd.Flags().StringVarP(&dbDSN, "db-dsn", "d", "./var/gen/ro.sqlite3", "databsae DSN")
 
 	return cmd
 }
 
-func populateDB(inputDataPath string, conn *ro.Conn, logger *zap.Logger) error {
+func populateDB(dataDir string, conn *ro.Conn, logger *zap.Logger) error {
 
 	logger.Info("Populating DB...")
 	ctx := context.Background()
 
-	dirEntries, err := os.ReadDir(inputDataPath)
+	dirEntries, err := os.ReadDir(path.Join(dataDir, "episodes"))
 	if err != nil {
 		return err
 	}
@@ -70,7 +70,7 @@ func populateDB(inputDataPath string, conn *ro.Conn, logger *zap.Logger) error {
 		logger.Info("Parsing file...", zap.String("path", dirEntry.Name()))
 
 		episode := &models.Transcript{}
-		if err := util.WithReadJSONFileDecoder(path.Join(inputDataPath, dirEntry.Name()), func(dec *json.Decoder) error {
+		if err := util.WithReadJSONFileDecoder(path.Join(dataDir, "episodes", dirEntry.Name()), func(dec *json.Decoder) error {
 			return dec.Decode(episode)
 		}); err != nil {
 			return err
@@ -95,5 +95,25 @@ func populateDB(inputDataPath string, conn *ro.Conn, logger *zap.Logger) error {
 	if err != nil {
 		return fmt.Errorf("failed to load songs: %w", err)
 	}
+
+	logger.Info("Loading community projects...")
+	err = conn.WithStore(func(s *ro.Store) error {
+		projects := []models.CommunityProject{}
+		if err := util.WithReadJSONFileDecoder(path.Join(dataDir, "community", "projects.json"), func(dec *json.Decoder) error {
+			return dec.Decode(&projects)
+		}); err != nil {
+			return fmt.Errorf("failed to decode project JSON: %w", err)
+		}
+		for _, v := range projects {
+			if err := s.InsertCommunityProject(ctx, v); err != nil {
+				return fmt.Errorf("failed to insert project JSON: %w", err)
+			}
+		}
+		return nil
+	})
+	if err != nil {
+		return fmt.Errorf("failed to load community projects: %w", err)
+	}
+
 	return nil
 }

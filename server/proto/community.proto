@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package rsk;
+
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+import "google/protobuf/empty.proto";
+
+option go_package = "github.com/warmans/rsk-search/server/gen/api";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    version: "1.0";
+  };
+  external_docs: {
+    url: "https://scrimpton.com";
+    description: "Community functions.";
+  };
+  schemes: HTTP;
+};
+service CommunityService {
+
+  rpc ListProjects (ListCommunityProjectsRequest) returns (CommunityProjectList) {
+    option (google.api.http) = {
+      get: "/api/community/project"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "listCommunityProjects",
+      summary: "Lists community projects."
+      tags: "community"
+    };
+  }
+}
+
+
+message CommunityProject {
+  string id = 1;
+  string name = 2;
+  string summary = 3;
+  string content = 4;
+  string url = 5;
+  string created_at = 6;
+}
+
+
+message ListCommunityProjectsRequest{
+  string filter = 1;
+  string sort_field = 2;
+  string sort_direction = 3;
+  int32 page = 4;
+  int32 page_size = 5;
+}
+
+message CommunityProjectList {
+  repeated CommunityProject projects = 1;
+  int32 result_count = 2;
+}

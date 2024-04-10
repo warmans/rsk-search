@@ -359,6 +359,40 @@ export function isRskClaimRewardRequest(arg: any): arg is models.RskClaimRewardR
   );
   }
 
+export function isRskCommunityProject(arg: any): arg is models.RskCommunityProject {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // content?: string
+    ( typeof arg.content === 'undefined' || typeof arg.content === 'string' ) &&
+    // createdAt?: string
+    ( typeof arg.createdAt === 'undefined' || typeof arg.createdAt === 'string' ) &&
+    // id?: string
+    ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
+    // name?: string
+    ( typeof arg.name === 'undefined' || typeof arg.name === 'string' ) &&
+    // summary?: string
+    ( typeof arg.summary === 'undefined' || typeof arg.summary === 'string' ) &&
+    // url?: string
+    ( typeof arg.url === 'undefined' || typeof arg.url === 'string' ) &&
+
+  true
+  );
+  }
+
+export function isRskCommunityProjectList(arg: any): arg is models.RskCommunityProjectList {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // projects?: RskCommunityProject[]
+    ( typeof arg.projects === 'undefined' || (Array.isArray(arg.projects) && arg.projects.every((item: unknown) => isRskCommunityProject(item))) ) &&
+    // resultCount?: number
+    ( typeof arg.resultCount === 'undefined' || typeof arg.resultCount === 'number' ) &&
+
+  true
+  );
+  }
+
 export function isRskContributionState(arg: any): arg is models.RskContributionState {
   return false
    || arg === models.RskContributionState.STATE_UNDEFINED

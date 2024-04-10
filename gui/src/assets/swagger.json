@@ -346,6 +346,63 @@
           ]
         }
       },
+      "/api/community/project": {
+        "get": {
+          "summary": "Lists community projects.",
+          "operationId": "listCommunityProjects",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskCommunityProjectList"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "filter",
+              "in": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "sortField",
+              "in": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "sortDirection",
+              "in": "query",
+              "required": false,
+              "type": "string"
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            },
+            {
+              "name": "pageSize",
+              "in": "query",
+              "required": false,
+              "type": "integer",
+              "format": "int32"
+            }
+          ],
+          "tags": [
+            "community"
+          ]
+        }
+      },
       "/api/donations": {
         "get": {
           "summary": "Lists donations made to scrimpton.",
@@ -1947,6 +2004,44 @@
             "items": {
               "$ref": "#/definitions/rskClaimedReward"
             }
+          }
+        }
+      },
+      "rskCommunityProject": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          }
+        }
+      },
+      "rskCommunityProjectList": {
+        "type": "object",
+        "properties": {
+          "projects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/rskCommunityProject"
+            }
+          },
+          "resultCount": {
+            "type": "integer",
+            "format": "int32"
           }
         }
       },

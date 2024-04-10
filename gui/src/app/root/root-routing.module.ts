@@ -19,6 +19,7 @@ import {IndexComponent} from "../module/more-shite/page/index/index.component";
 import {CatalogWarehouseComponent} from "../module/more-shite/component/catalog-warehouse/catalog-warehouse.component";
 import {RandomQuoteComponent} from "../module/more-shite/page/random-quote/random-quote.component";
 import {SongSearchComponent} from "../module/more-shite/page/song-search/song-search.component";
+import {CommunityProjectsComponent} from "../module/more-shite/page/community-projects/community-projects.component";
 
 const routes: Routes = [
   {
@@ -103,6 +104,10 @@ const routes: Routes = [
       {
         path: "catalog-warehouse",
         component: CatalogWarehouseComponent,
+      },
+      {
+        path: "community-projects",
+        component: CommunityProjectsComponent,
       },
       {
         path: '',

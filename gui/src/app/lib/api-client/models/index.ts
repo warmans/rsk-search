@@ -24,6 +24,8 @@ export { RskChunkStats } from './rsk-chunk-stats.model';
 export { RskClaimedReward } from './rsk-claimed-reward.model';
 export { RskClaimedRewardList } from './rsk-claimed-reward-list.model';
 export { RskClaimRewardRequest } from './rsk-claim-reward-request.model';
+export { RskCommunityProject } from './rsk-community-project.model';
+export { RskCommunityProjectList } from './rsk-community-project-list.model';
 export { RskContributionState } from './rsk-contribution-state.enum';
 export { RskCreateChunkContributionRequest } from './rsk-create-chunk-contribution-request.model';
 export { RskCreateTranscriptChangeRequest } from './rsk-create-transcript-change-request.model';

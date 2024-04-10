@@ -13,6 +13,7 @@ import {ContribModule} from '../module/contrib/contrib.module';
 import {AdminModule} from '../module/admin/admin.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {MoreShiteModule} from "../module/more-shite/more-shite.module";
+import {CommunityAPIClientModule} from "../lib/api-client/services/community";
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import {MoreShiteModule} from "../module/more-shite/more-shite.module";
     RootRoutingModule,
     HttpClientModule,
     SearchAPIClientModule.forRoot(),
+    CommunityAPIClientModule.forRoot(),
     SharedModule,
     SearchModule,
     RewardModule,

@@ -6,12 +6,15 @@ import {SharedModule} from "../shared/shared.module";
 import {CatalogWarehouseComponent} from "./component/catalog-warehouse/catalog-warehouse.component";
 import {SongSearchComponent} from "./page/song-search/song-search.component";
 import {ReactiveFormsModule} from "@angular/forms";
+import {CommunityProjectsComponent} from "./page/community-projects/community-projects.component";
+import {CommunityAPIClient} from "../../lib/api-client/services/community";
 
 @NgModule({
   declarations: [
     IndexComponent,
     CatalogWarehouseComponent,
     SongSearchComponent,
+    CommunityProjectsComponent,
   ],
   imports: [
     CommonModule,

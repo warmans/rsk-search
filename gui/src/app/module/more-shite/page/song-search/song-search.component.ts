@@ -9,6 +9,7 @@ import {Like, Or} from "../../../../lib/filter-dsl/filter";
 import {Str} from "../../../../lib/filter-dsl/value";
 
 const PAGE_SIZE = 25;
+const MAX_PAGINATION_LINKS = 10;
 
 @Component({
   selector: 'app-song-search',
@@ -26,7 +27,7 @@ export class SongSearchComponent implements OnInit, OnDestroy {
   public songs: RskSong[] = [];
   public pages: number[] = [];
   public morePages: boolean = false;
-  public maxPages: number = 10;
+  public maxPages: number = MAX_PAGINATION_LINKS;
 
   constructor(private apiClient: SearchAPIClient, private route: ActivatedRoute, private router: Router) {
   }
@@ -56,8 +57,8 @@ export class SongSearchComponent implements OnInit, OnDestroy {
     }).pipe(takeUntil(this.destroy$)).subscribe((res: RskSongList) => {
       this.songs = res.songs;
       let totalPages: number = Math.ceil(res.resultCount / PAGE_SIZE);
-      this.pages = Array(Math.min(totalPages, this.maxPages)).fill(0).map((x, i) => i + 1);
-      this.morePages = totalPages > this.maxPages;
+      this.pages = Array(Math.min(totalPages, MAX_PAGINATION_LINKS)).fill(0).map((x, i) => i + 1);
+      this.morePages = totalPages > MAX_PAGINATION_LINKS;
     })
   }
 }
