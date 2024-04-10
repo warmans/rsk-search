@@ -14,7 +14,7 @@
           <tr>
             <th>Name</th>
             <th>Summary</th>
-            <th>URL</th>
+            <th></th>
           </tr>
           <ng-container *ngFor="let proj of projects">
             <tr>
@@ -25,7 +25,7 @@
                 {{proj.summary}}
                 <div><a *ngIf="proj.content" class="clickable" (click)="proj.expand = !proj.expand">More info...</a></div>
               </td>
-              <td><a [href]="proj.url" target="_blank">{{proj.url}} <i class="bi-arrow-up-right"></i></a></td>
+              <td><a [href]="proj.url" target="_blank" class="text-nowrap">Visit <i class="bi-arrow-up-right"></i></a></td>
             </tr>
             <tr *ngIf="proj.expand && proj.content">
               <td class="border-top-0" colspan="3">{{proj.content}}</td>
