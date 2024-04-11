@@ -1,8 +1,11 @@
 package models
 
 import (
+	"fmt"
+	"github.com/pkg/errors"
 	"github.com/warmans/rsk-search/gen/api"
 	"github.com/warmans/rsk-search/pkg/util"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -143,7 +146,7 @@ func (e *Transcript) ShortID() string {
 	return strings.TrimPrefix(EpIDFromTranscript(e), "ep-")
 }
 
-func (e Transcript) Actors() []string {
+func (e *Transcript) Actors() []string {
 	actorMap := map[string]struct{}{}
 	for _, v := range e.Transcript {
 		if strings.TrimSpace(v.Actor) == "" {
@@ -160,6 +163,62 @@ func (e Transcript) Actors() []string {
 		actorList = append(actorList, k)
 	}
 	return actorList
+}
+
+// GetTimestampRange will convert a position specification e.g. 20-30 into a timestamp range.
+// if the range exceeds the total episode length it will just return the total episode length as the end timestamp.
+func (e *Transcript) GetTimestampRange(pos string) (int64, int64, error) {
+	if len(e.Transcript) == 0 {
+		return 0, 0, fmt.Errorf("no dialog to extract")
+	}
+	startPos, endPos, err := parsePositionRange(pos)
+	if err != nil {
+		return 0, 0, err
+	}
+	maximumPossibleOffset, err := e.GetEpisodeLengthInSeconds()
+	if err != nil {
+		return 0, 0, err
+	}
+	lastLine := e.Transcript[len(e.Transcript)-1]
+	if startPos > lastLine.Position {
+		return 0, 0, fmt.Errorf("start position was out of bounds: %d > %d", startPos, lastLine.Position)
+	}
+
+	// get from the start of the last line to the end of the episode
+	if startPos == lastLine.Position {
+		return lastLine.OffsetSec, maximumPossibleOffset, nil
+	}
+	var startOffset int64
+	for _, v := range e.Transcript {
+		if startPos == v.Position {
+			startOffset = v.OffsetSec
+			break
+		}
+	}
+	if endPos >= lastLine.Position {
+		return startOffset, maximumPossibleOffset, nil
+	}
+	var endOffset int64
+	for _, v := range e.Transcript {
+		if endPos == v.Position {
+			endOffset = v.OffsetSec
+			break
+		}
+	}
+	// always add an extra second if possible as often the last timestamp is a floored value which should be ceiled
+	return max(0, startOffset), min(maximumPossibleOffset, endOffset+1), nil
+}
+
+// GetEpisodeLengthInSeconds extracts the episode length and converts it to seconds.
+func (e *Transcript) GetEpisodeLengthInSeconds() (int64, error) {
+	if _, ok := e.Meta[MetadataTypeDurationMs]; !ok {
+		return 0, errors.New("no episode length in metadata")
+	}
+	totalLengthMs, err := strconv.ParseInt(e.Meta[MetadataTypeDurationMs], 10, 64)
+	if err != nil {
+		return 0, fmt.Errorf("failed to get episode length from metadata: %w", err)
+	}
+	return totalLengthMs / 1000, nil
 }
 
 func (e *Transcript) ShortProto(audioURI string) *api.ShortTranscript {
@@ -285,4 +344,36 @@ func (f Trivia) Proto() *api.Trivia {
 		StartPos:    int32(f.StartPos),
 		EndPos:      int32(f.EndPos),
 	}
+}
+
+func parsePositionRange(pos string) (int64, int64, error) {
+	pos = strings.TrimSpace(pos)
+	if pos == "" {
+		return 0, 0, fmt.Errorf("empty position specified")
+	}
+
+	parts := strings.Split(pos, "-")
+	var startPos, endPos int64
+
+	var err error
+	startPos, err = strconv.ParseInt(parts[0], 10, 64)
+	if err != nil {
+		return 0, 0, fmt.Errorf("invalid single position specification %s: %w", pos, err)
+	}
+
+	if len(parts) == 1 {
+		return startPos, startPos + 1, nil
+	}
+	if len(parts) == 2 {
+		var err error
+		endPos, err = strconv.ParseInt(parts[1], 10, 64)
+		if err != nil {
+			return 0, 0, fmt.Errorf("invalid position range specification %s: %w", pos, err)
+		}
+		if startPos == endPos {
+			return startPos, startPos + 1, nil
+		}
+		return startPos, endPos, nil
+	}
+	return 0, 0, fmt.Errorf("unexpected position format %s", pos)
 }

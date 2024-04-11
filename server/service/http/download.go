@@ -6,6 +6,8 @@ import (
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	"github.com/pkg/errors"
+	"github.com/warmans/rsk-search/pkg/data"
+	extract_audio "github.com/warmans/rsk-search/pkg/extract-audio"
 	"github.com/warmans/rsk-search/pkg/meta"
 	"github.com/warmans/rsk-search/pkg/quota"
 	"github.com/warmans/rsk-search/pkg/store/rw"
@@ -20,17 +22,25 @@ import (
 
 var DownloadsOverQuota = errors.New("download quota exceeded")
 
+const (
+	MediaTypeEpisode = "episode"
+	MediaTypeChunk   = "chunk"
+	MediaTypeClip    = "clip"
+)
+
 func NewDownloadService(
 	logger *zap.Logger,
 	serviceConfig config.SearchServiceConfig,
 	rwStoreConn *rw.Conn,
 	httpMetrics *metrics.HTTPMetrics,
+	episodeCache *data.EpisodeCache,
 ) *DownloadService {
 	return &DownloadService{
 		logger:        logger.With(zap.String("component", "downloads-http-server")),
 		serviceConfig: serviceConfig,
 		rwStoreConn:   rwStoreConn,
 		httpMetrics:   httpMetrics,
+		episodeCache:  episodeCache,
 	}
 }
 
@@ -39,6 +49,7 @@ type DownloadService struct {
 	serviceConfig config.SearchServiceConfig
 	rwStoreConn   *rw.Conn
 	httpMetrics   *metrics.HTTPMetrics
+	episodeCache  *data.EpisodeCache
 }
 
 func (c *DownloadService) RegisterHTTP(ctx context.Context, router *mux.Router) {
@@ -72,12 +83,12 @@ func (c *DownloadService) DownloadMP3(resp http.ResponseWriter, req *http.Reques
 		return
 	}
 	mediaType, ok := vars["media_type"]
-	if !ok || (mediaType != "episode" && mediaType != "chunk" && mediaType != "clip") {
+	if !ok || (mediaType != MediaTypeEpisode && mediaType != MediaTypeChunk && mediaType != MediaTypeClip) {
 		http.Error(resp, "No/unknown media type given", http.StatusBadRequest)
 		return
 	}
 
-	if mediaType == "episode" {
+	if mediaType == MediaTypeEpisode {
 		if !meta.IsValidEpisodeID(fileID) {
 			http.Error(resp, "Episode not found", http.StatusNotFound)
 			return
@@ -85,6 +96,18 @@ func (c *DownloadService) DownloadMP3(resp http.ResponseWriter, req *http.Reques
 	}
 
 	filePath := path.Join(c.serviceConfig.MediaBasePath, mediaType, fmt.Sprintf("%s.mp3", fileID))
+
+	if pos := req.URL.Query().Get("pos"); pos != "" {
+		if mediaType != MediaTypeEpisode {
+			http.Error(resp, "Offsets only supported for episodes", http.StatusNotImplemented)
+			return
+		}
+		err := c.servePartialAudioFile(resp, fileID, filePath, pos)
+		if err != nil {
+			c.logger.Error("Failed to serve partial audio file", zap.Error(err))
+		}
+		return
+	}
 
 	fileStat, err := os.Stat(filePath)
 	if err != nil {
@@ -114,6 +137,34 @@ func (c *DownloadService) DownloadMP3(resp http.ResponseWriter, req *http.Reques
 
 	c.httpMetrics.OutboundMediaBytesTotal.Set(float64(fileStat.Size()))
 	http.ServeFile(resp, req, filePath)
+}
+
+func (c *DownloadService) servePartialAudioFile(
+	resp http.ResponseWriter,
+	episodeID string,
+	mp3Path string,
+	positionSpec string,
+) error {
+
+	ep, err := c.episodeCache.GetEpisode(fmt.Sprintf("ep-%s", episodeID))
+	if err == data.ErrNotFound || ep == nil {
+		http.Error(resp, "unknown episode ID", http.StatusNotFound)
+		return fmt.Errorf("unknown episode ID: %s", episodeID)
+	}
+	if err != nil {
+		http.Error(resp, "failed to fetch episode metadata", http.StatusInternalServerError)
+		return fmt.Errorf("unexpected error: %w", err)
+	}
+
+	startTimestamp, endTimestamp, err := ep.GetTimestampRange(positionSpec)
+	if err != nil {
+		http.Error(resp, "invalid position specification", http.StatusInternalServerError)
+		return fmt.Errorf("unexpected error extracting timestamps: %w", err)
+	}
+
+	resp.Header().Set("Content-Type", "audio/mpeg")
+	resp.Header().Set("Content-Disposition", fmt.Sprintf("attachment; filename=%s-%d-%d.mp3", ep.ID(), startTimestamp, endTimestamp))
+	return extract_audio.ExtractAudio(resp, mp3Path, startTimestamp, endTimestamp)
 }
 
 func (c *DownloadService) DownloadFile(resp http.ResponseWriter, req *http.Request) {

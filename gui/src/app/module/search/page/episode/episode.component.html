@@ -153,12 +153,22 @@
               </div>
               <div class="d-flex">
                 <button class="btn btn-sm btn-primary" (click)="scrollToTop()">Top</button>
-                <button class="btn btn-sm btn-primary ml-2" *ngIf="scrollToID || scrollToSeconds"
-                        (click)="clearSelection()">Clear Selection
+                <button class="btn btn-sm btn-info ml-2" *ngIf="scrollToID && selection"
+                        (click)="copySelection()"><i class="bi-clipboard"></i> Copy Selection
                 </button>
-                <button class="btn btn-sm btn-success ml-2" *ngIf="scrollToID && selection"
-                        (click)="copySelection()">Copy Selection
-                </button>
+                <ng-container *ngIf="scrollToID || scrollToSeconds">
+                  <button class="btn btn-sm btn-info ml-2"
+                          (click)="clearSelection()"><i class="bi-escape"></i> Clear Selection
+                  </button>
+                  <a
+                    *ngIf="authenticated && episode.offsetAccuracyPcnt > 30"
+                    title="Audio export is provided on a best-effort basis. Since the audio timestamps are not 100% accurate, it's possible you won't get exactly the audio you expect."
+                    class="btn btn-sm btn-info ml-2"
+                    target="_blank"
+                    [href]="episode.audioUri+ '?pos='+selection.startPos+'-'+selection.endPos">
+                    <i class="bi-download"></i> Export selection audio
+                  </a>
+                </ng-container>
                 <!--button class="btn btn-sm btn-primary ml-2" *ngIf="scrollToID || scrollToSeconds" (click)="shareSelection()">Share Selection</button-->
                 <div class="ml-2" *ngIf="pendingChanges?.length === 0 && !episode.locked">
                   <a class="btn btn-sm btn-info" [routerLink]="['/ep', id, 'change']">Submit Correction</a>

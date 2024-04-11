@@ -246,7 +246,7 @@ func ServerCmd() *cobra.Command {
 
 			httpServices := []server.HTTPService{
 				httpsrv.NewMetricsService(),
-				httpsrv.NewDownloadService(logger, srvCfg, persistentDBConn, metrics.NewHTTPMetrics()),
+				httpsrv.NewDownloadService(logger, srvCfg, persistentDBConn, metrics.NewHTTPMetrics(), episodeCache),
 			}
 			if oauthCfg.RedditSecret != "" {
 				httpServices = append(httpServices, httpsrv.NewOauthService(logger, tokenCache, persistentDBConn, auth, oauthCfg, srvCfg))
