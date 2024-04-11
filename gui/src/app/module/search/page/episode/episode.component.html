@@ -161,7 +161,7 @@
                           (click)="clearSelection()"><i class="bi-escape"></i> Clear Selection
                   </button>
                   <a
-                    *ngIf="authenticated && episode.offsetAccuracyPcnt > 30"
+                    *ngIf="authenticated && episode.offsetAccuracyPcnt > 10"
                     title="Audio export is provided on a best-effort basis. Since the audio timestamps are not 100% accurate, it's possible you won't get exactly the audio you expect."
                     class="btn btn-sm btn-info ml-2"
                     target="_blank"
