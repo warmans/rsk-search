@@ -70,11 +70,23 @@ func InferMissingOffsetsCmd() *cobra.Command {
 
 				numAccurateOffsets := float64(0)
 				for lineNum := range episode.Transcript {
+					// calculate the missing offsets
 					episode.Transcript[lineNum].OffsetSec, episode.Transcript[lineNum].OffsetInferred = wpm.getSecondOffset(int64(lineNum))
 					if !episode.Transcript[lineNum].OffsetInferred {
 						numAccurateOffsets++
 					}
+
+					// calculate the distance to the closest non-inferred offset
+					episode.Transcript[lineNum].OffsetDistance = wpm.getOffsetDistance(int64(lineNum))
+
+					//calculate the duration of the previous line
+					if lineNum >= 1 {
+						episode.Transcript[lineNum-1].DurationSec = episode.Transcript[lineNum].OffsetSec - episode.Transcript[lineNum-1].OffsetSec
+					}
 				}
+				// the final line's duration must be calculated based on the episode duration
+				episode.Transcript[len(episode.Transcript)-1].DurationSec = episodeDuration - episode.Transcript[len(episode.Transcript)-1].OffsetSec
+
 				episode.OffsetAccuracy = int32(numAccurateOffsets / float64(len(episode.Transcript)) * 100)
 
 				if err := data.ReplaceEpisodeFile(inputDir, episode); err != nil {
@@ -111,6 +123,16 @@ func (w speechVelocity) getSecondOffset(lineNum int64) (int64, bool) {
 		return int64(math.Ceil(totalOffset)), true
 	}
 	return -1, true
+}
+
+// returns the distance to the nearest offset from the given line number
+func (w speechVelocity) getOffsetDistance(lineNum int64) int64 {
+	if r, ok := w.rangeIndex(lineNum); ok {
+		distanceToPreviousOffset := lineNum - w.ranges[r].firstLineNum
+		distanceToNextOffset := w.ranges[r].lastLineNum - distanceToPreviousOffset
+		return min(distanceToNextOffset, distanceToPreviousOffset)
+	}
+	return math.MaxInt64
 }
 
 func (w speechVelocity) rangeIndex(lineNum int64) (int, bool) {

@@ -163,7 +163,7 @@ func (c *DownloadService) servePartialAudioFile(
 	}
 
 	resp.Header().Set("Content-Type", "audio/mpeg")
-	resp.Header().Set("Content-Disposition", fmt.Sprintf("attachment; filename=%s-%d-%d.mp3", ep.ID(), startTimestamp, endTimestamp))
+	//resp.Header().Set("Content-Disposition", fmt.Sprintf("attachment; filename=%s-%d-%d.mp3", ep.ID(), startTimestamp, endTimestamp))
 	return extract_audio.ExtractAudio(resp, mp3Path, startTimestamp, endTimestamp)
 }
 

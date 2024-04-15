@@ -1452,6 +1452,44 @@
           ]
         }
       },
+      "/api/transcript/{epid}/dialog/{pos}": {
+        "get": {
+          "summary": "Fetch a single line of dialog by position.",
+          "operationId": "getTranscriptDialog",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskTranscriptDialog"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "epid",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "pos",
+              "in": "path",
+              "required": true,
+              "type": "integer",
+              "format": "int32"
+            }
+          ],
+          "tags": [
+            "search"
+          ]
+        }
+      },
       "/api/transcripts/chunked/chunk-stats": {
         "get": {
           "summary": "Get details about the current chunk backlog",
@@ -2135,6 +2173,10 @@
           },
           "offsetInferred": {
             "type": "boolean"
+          },
+          "offsetDistance": {
+            "type": "string",
+            "format": "int64"
           }
         }
       },
@@ -2862,6 +2904,17 @@
             "items": {
               "$ref": "#/definitions/rskChunk"
             }
+          }
+        }
+      },
+      "rskTranscriptDialog": {
+        "type": "object",
+        "properties": {
+          "epid": {
+            "type": "string"
+          },
+          "dialog": {
+            "$ref": "#/definitions/rskDialog"
           }
         }
       },

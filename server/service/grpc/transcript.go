@@ -80,6 +80,20 @@ func (s *TranscriptService) GetTranscript(ctx context.Context, request *api.GetT
 	return ep.Proto(rawTranscript, fmt.Sprintf(s.srvCfg.AudioUriPattern, ep.ShortID()), locked), nil
 }
 
+func (s *TranscriptService) GetTranscriptDialog(ctx context.Context, request *api.GetTranscriptDialogRequest) (*api.TranscriptDialog, error) {
+	ep, err := s.episodeCache.GetEpisode(request.Epid)
+	if err == data.ErrNotFound || ep == nil {
+		return nil, ErrNotFound(request.Epid)
+	}
+
+	for _, d := range ep.Transcript {
+		if d.Position == int64(request.Pos) {
+			return &api.TranscriptDialog{Epid: request.Epid, Dialog: d.Proto(true)}, nil
+		}
+	}
+	return nil, ErrNotFound(request.Epid)
+}
+
 func (s *TranscriptService) ListTranscripts(_ context.Context, _ *api.ListTranscriptsRequest) (*api.TranscriptList, error) {
 	el := &api.TranscriptList{
 		Episodes: []*api.ShortTranscript{},

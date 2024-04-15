@@ -430,6 +430,10 @@
         },
         "offsetInferred": {
           "type": "boolean"
+        },
+        "offsetDistance": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },

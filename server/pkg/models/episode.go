@@ -85,6 +85,8 @@ type Dialog struct {
 	Position       int64      `json:"pos"`
 	OffsetSec      int64      `json:"offset_sec"` // second offset from start of episode
 	OffsetInferred bool       `json:"offset_inferred"`
+	OffsetDistance int64      `json:"offset_distance"` //distance to nearest non-inferred offset
+	DurationSec    int64      `json:"duration_sec"`    // duration of line in seconds
 	Type           DialogType `json:"type"`
 	Actor          string     `json:"actor"`
 	Meta           Metadata   `json:"metadata"`
@@ -98,6 +100,7 @@ func (d Dialog) Proto(bestMatch bool) *api.Dialog {
 		Pos:            int32(d.Position),
 		OffsetSec:      d.OffsetSec,
 		OffsetInferred: d.OffsetInferred,
+		OffsetDistance: d.OffsetDistance,
 		Type:           d.Type.Proto(),
 		Actor:          d.Actor,
 		Content:        d.Content,

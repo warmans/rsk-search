@@ -33,6 +33,18 @@ service TranscriptService {
     };
   }
 
+  rpc GetTranscriptDialog(GetTranscriptDialogRequest) returns (TranscriptDialog) {
+    option (google.api.http) = {
+      get: "/api/transcript/{epid}/dialog/{pos}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "getTranscriptDialog",
+      summary: "Fetch a single line of dialog by position."
+      tags: "search"
+    };
+  }
+
+
   rpc ListTranscripts(ListTranscriptsRequest) returns (TranscriptList) {
     option (google.api.http) = {
       get: "/api/transcript"
@@ -335,6 +347,7 @@ message Dialog {
   bool notable = 9;
   int64 offset_sec = 10;
   bool offset_inferred = 11;
+  int64 offset_distance = 12;
 }
 
 message Synopsis {
@@ -359,13 +372,17 @@ message GetTranscriptRequest {
   bool with_raw = 2;
 }
 
+message GetTranscriptDialogRequest {
+  string epid = 1;
+  int32 pos = 2;
+}
+
 message ListTranscriptsRequest {
 }
 
 message TranscriptList {
   repeated ShortTranscript episodes = 1;
 }
-
 
 // -----------------------------------------------------------------------------------------
 // Chunked transcripts
@@ -562,4 +579,9 @@ message GetTranscriptChangeDiffRequest {
 
 message TranscriptChangeDiff {
   repeated string diffs = 2;
+}
+
+message TranscriptDialog {
+  string epid = 1;
+  Dialog dialog = 2;
 }

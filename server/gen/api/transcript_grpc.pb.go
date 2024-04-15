@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion7
 
 const (
 	TranscriptService_GetTranscript_FullMethodName                  = "/rsk.TranscriptService/GetTranscript"
+	TranscriptService_GetTranscriptDialog_FullMethodName            = "/rsk.TranscriptService/GetTranscriptDialog"
 	TranscriptService_ListTranscripts_FullMethodName                = "/rsk.TranscriptService/ListTranscripts"
 	TranscriptService_ListChunkedTranscripts_FullMethodName         = "/rsk.TranscriptService/ListChunkedTranscripts"
 	TranscriptService_GetChunkedTranscriptChunkStats_FullMethodName = "/rsk.TranscriptService/GetChunkedTranscriptChunkStats"
@@ -46,6 +47,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TranscriptServiceClient interface {
 	GetTranscript(ctx context.Context, in *GetTranscriptRequest, opts ...grpc.CallOption) (*Transcript, error)
+	GetTranscriptDialog(ctx context.Context, in *GetTranscriptDialogRequest, opts ...grpc.CallOption) (*TranscriptDialog, error)
 	ListTranscripts(ctx context.Context, in *ListTranscriptsRequest, opts ...grpc.CallOption) (*TranscriptList, error)
 	ListChunkedTranscripts(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ChunkedTranscriptList, error)
 	GetChunkedTranscriptChunkStats(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*ChunkStats, error)
@@ -77,6 +79,15 @@ func NewTranscriptServiceClient(cc grpc.ClientConnInterface) TranscriptServiceCl
 func (c *transcriptServiceClient) GetTranscript(ctx context.Context, in *GetTranscriptRequest, opts ...grpc.CallOption) (*Transcript, error) {
 	out := new(Transcript)
 	err := c.cc.Invoke(ctx, TranscriptService_GetTranscript_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *transcriptServiceClient) GetTranscriptDialog(ctx context.Context, in *GetTranscriptDialogRequest, opts ...grpc.CallOption) (*TranscriptDialog, error) {
+	out := new(TranscriptDialog)
+	err := c.cc.Invoke(ctx, TranscriptService_GetTranscriptDialog_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -250,6 +261,7 @@ func (c *transcriptServiceClient) RequestTranscriptChangeState(ctx context.Conte
 // for forward compatibility
 type TranscriptServiceServer interface {
 	GetTranscript(context.Context, *GetTranscriptRequest) (*Transcript, error)
+	GetTranscriptDialog(context.Context, *GetTranscriptDialogRequest) (*TranscriptDialog, error)
 	ListTranscripts(context.Context, *ListTranscriptsRequest) (*TranscriptList, error)
 	ListChunkedTranscripts(context.Context, *emptypb.Empty) (*ChunkedTranscriptList, error)
 	GetChunkedTranscriptChunkStats(context.Context, *emptypb.Empty) (*ChunkStats, error)
@@ -276,6 +288,9 @@ type UnimplementedTranscriptServiceServer struct {
 
 func (UnimplementedTranscriptServiceServer) GetTranscript(context.Context, *GetTranscriptRequest) (*Transcript, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTranscript not implemented")
+}
+func (UnimplementedTranscriptServiceServer) GetTranscriptDialog(context.Context, *GetTranscriptDialogRequest) (*TranscriptDialog, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTranscriptDialog not implemented")
 }
 func (UnimplementedTranscriptServiceServer) ListTranscripts(context.Context, *ListTranscriptsRequest) (*TranscriptList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTranscripts not implemented")
@@ -357,6 +372,24 @@ func _TranscriptService_GetTranscript_Handler(srv interface{}, ctx context.Conte
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(TranscriptServiceServer).GetTranscript(ctx, req.(*GetTranscriptRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TranscriptService_GetTranscriptDialog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTranscriptDialogRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TranscriptServiceServer).GetTranscriptDialog(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TranscriptService_GetTranscriptDialog_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TranscriptServiceServer).GetTranscriptDialog(ctx, req.(*GetTranscriptDialogRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -695,6 +728,10 @@ var TranscriptService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetTranscript",
 			Handler:    _TranscriptService_GetTranscript_Handler,
+		},
+		{
+			MethodName: "GetTranscriptDialog",
+			Handler:    _TranscriptService_GetTranscriptDialog_Handler,
 		},
 		{
 			MethodName: "ListTranscripts",
