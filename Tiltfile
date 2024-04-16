@@ -26,6 +26,18 @@ local_resource(
 )
 
 local_resource(
+    'scrimpton-bot',
+    dir='./server',
+    serve_dir='./server',
+    cmd='make build',
+    serve_cmd='make run.discord-bot',
+    ignore=['./server/bin', './server/proto', './server/var'],
+    deps='./server',
+    labels=['Bots'],
+    resource_deps=['scrimpton-api'],
+)
+
+local_resource(
     'generate',
     auto_init=False,
     dir='./server',
@@ -43,4 +55,3 @@ local_resource(
     deps=['scrimpton-api'],
     labels=['UI'],
 )
-

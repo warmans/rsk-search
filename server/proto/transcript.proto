@@ -375,6 +375,7 @@ message GetTranscriptRequest {
 message GetTranscriptDialogRequest {
   string epid = 1;
   int32 pos = 2;
+  int32 num_context_lines = 3;
 }
 
 message ListTranscriptsRequest {
@@ -582,6 +583,6 @@ message TranscriptChangeDiff {
 }
 
 message TranscriptDialog {
-  string epid = 1;
-  Dialog dialog = 2;
+  ShortTranscript transcript_meta = 1;
+  repeated Dialog dialog = 2;
 }

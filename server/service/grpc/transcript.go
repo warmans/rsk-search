@@ -85,13 +85,22 @@ func (s *TranscriptService) GetTranscriptDialog(ctx context.Context, request *ap
 	if err == data.ErrNotFound || ep == nil {
 		return nil, ErrNotFound(request.Epid)
 	}
-
+	dialog := []*api.Dialog{}
 	for _, d := range ep.Transcript {
-		if d.Position == int64(request.Pos) {
-			return &api.TranscriptDialog{Epid: request.Epid, Dialog: d.Proto(true)}, nil
+		if d.Position >= int64(request.Pos-request.NumContextLines) && d.Position <= int64(request.Pos+request.NumContextLines) {
+			dialog = append(dialog, d.Proto(request.Pos == int32(d.Position)))
+		}
+		if d.Position > int64(request.Pos+request.NumContextLines) {
+			break
 		}
 	}
-	return nil, ErrNotFound(request.Epid)
+	if len(dialog) == 0 {
+		return nil, ErrNotFound(request.Epid)
+	}
+	return &api.TranscriptDialog{
+		TranscriptMeta: ep.ShortProto(fmt.Sprintf(s.srvCfg.AudioUriPattern, ep.ShortID())),
+		Dialog:         dialog,
+	}, nil
 }
 
 func (s *TranscriptService) ListTranscripts(_ context.Context, _ *api.ListTranscriptsRequest) (*api.TranscriptList, error) {

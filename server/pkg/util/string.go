@@ -20,3 +20,10 @@ func LastSegment(str string, sep string) string {
 	split := strings.Split(str, sep)
 	return split[len(split)-1]
 }
+
+func TrimToN(line string, maxLength int) string {
+	if len(line) <= maxLength {
+		return line
+	}
+	return line[:maxLength-4] + "..."
+}

@@ -6,6 +6,8 @@ require (
 	facette.io/natsort v0.0.0-20181210072756-2cd4dd1e2dcb
 	github.com/TheZeroSlave/zapsentry v1.14.0
 	github.com/blugelabs/bluge v0.2.2
+	github.com/bwmarrin/discordgo v0.28.1
+	github.com/bwmarrin/snowflake v0.3.0
 	github.com/dhowden/tag v0.0.0-20220618230019-adf36e896086
 	github.com/getsentry/sentry-go v0.19.0
 	github.com/gocolly/colly/v2 v2.1.0
@@ -72,6 +74,7 @@ require (
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
+	github.com/gorilla/websocket v1.4.2 // indirect
 	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
 	github.com/kennygrant/sanitize v1.2.4 // indirect
@@ -88,6 +91,7 @@ require (
 	github.com/u2takey/go-utils v0.3.1 // indirect
 	go.uber.org/atomic v1.7.0 // indirect
 	go.uber.org/multierr v1.6.0 // indirect
+	golang.org/x/crypto v0.18.0 // indirect
 	golang.org/x/net v0.20.0 // indirect
 	golang.org/x/sys v0.16.0 // indirect
 	golang.org/x/text v0.14.0 // indirect

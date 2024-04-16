@@ -722,6 +722,13 @@
             "required": true,
             "type": "integer",
             "format": "int32"
+          },
+          {
+            "name": "numContextLines",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
           }
         ],
         "tags": [
@@ -1375,11 +1382,14 @@
     "rskTranscriptDialog": {
       "type": "object",
       "properties": {
-        "epid": {
-          "type": "string"
+        "transcriptMeta": {
+          "$ref": "#/definitions/rskShortTranscript"
         },
         "dialog": {
-          "$ref": "#/definitions/rskDialog"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rskDialog"
+          }
         }
       }
     },

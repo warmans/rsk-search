@@ -94,7 +94,7 @@ type Dialog struct {
 	Notable        bool       `json:"notable"` // note-worthy line of dialog.
 }
 
-func (d Dialog) Proto(bestMatch bool) *api.Dialog {
+func (d Dialog) Proto(matchedRow bool) *api.Dialog {
 	dialog := &api.Dialog{
 		Id:             d.ID,
 		Pos:            int32(d.Position),
@@ -105,7 +105,7 @@ func (d Dialog) Proto(bestMatch bool) *api.Dialog {
 		Actor:          d.Actor,
 		Content:        d.Content,
 		Metadata:       d.Meta.Proto(),
-		IsMatchedRow:   bestMatch,
+		IsMatchedRow:   matchedRow,
 		Notable:        d.Notable,
 	}
 	return dialog

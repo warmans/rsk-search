@@ -3,6 +3,7 @@ package cmd
 import (
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/spf13/cobra"
+	"github.com/warmans/rsk-search/cmd/bot"
 	"github.com/warmans/rsk-search/cmd/data"
 	"github.com/warmans/rsk-search/cmd/db"
 	"github.com/warmans/rsk-search/cmd/report"
@@ -20,6 +21,7 @@ func RootCmd() *cobra.Command {
 	root.AddCommand(server.ServerCmd())
 	root.AddCommand(db.RootCmd())
 	root.AddCommand(report.RootCmd())
+	root.AddCommand(bot.RootCommand())
 
 	return root
 }

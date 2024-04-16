@@ -154,6 +154,10 @@ run:
 		--assembly-ai-access-token=${ASSEMBLY_AI_ACCESS_TOKEN} \
 		--media-base-path=${MEDIA_BASE_PATH}
 
+.PHONY: run.discord-bot
+run.discord-bot:
+	DEBUG=true ./bin/rsk-search discord-bot
+
 .PHONY: dev.services.start
 dev.services.start:
 	docker-compose -f dev/docker-compose.yaml up
