@@ -1,9 +1,12 @@
 package transcript
 
 import (
+	"bufio"
 	"github.com/stretchr/testify/require"
 	"github.com/warmans/rsk-search/pkg/models"
+	"strings"
 	"testing"
+	"time"
 )
 
 func TestCorrectContent(t *testing.T) {
@@ -48,24 +51,24 @@ func TestExport(t *testing.T) {
 				dialog: []models.Dialog{
 					{
 						Position:  1,
-						Timestamp: 1,
+						Timestamp: 0,
 						Type:      models.DialogTypeChat,
 						Actor:     "ricky",
-						Content:   "foo",
+						Content:   "Foo",
 					},
 					{
 						Position:  2,
-						Timestamp: 2,
+						Timestamp: 0,
 						Type:      models.DialogTypeChat,
 						Actor:     "karl",
-						Content:   "bar",
+						Content:   "Bar",
 					},
 					{
 						Position:  3,
-						Timestamp: 3,
+						Timestamp: 0,
 						Type:      models.DialogTypeChat,
 						Actor:     "steve",
-						Content:   "baz",
+						Content:   "Baz",
 					},
 				},
 				synopsis: []models.Synopsis{
@@ -84,9 +87,9 @@ func TestExport(t *testing.T) {
 				},
 				opts: []ExportOption{WithStripMetadata()},
 			},
-			want: `ricky: foo
-karl: bar
-steve: baz
+			want: `ricky: Foo
+karl: Bar
+steve: Baz
 `,
 			wantErr: false,
 		},
@@ -96,42 +99,42 @@ steve: baz
 				dialog: []models.Dialog{
 					{
 						Position:  1,
-						Timestamp: 1,
+						Timestamp: time.Second * 1,
 						Type:      models.DialogTypeChat,
 						Actor:     "ricky",
-						Content:   "foo",
+						Content:   "Foo",
 					},
 					{
 						Position:  2,
-						Timestamp: 2,
+						Timestamp: time.Second * 2,
 						Type:      models.DialogTypeChat,
 						Actor:     "karl",
-						Content:   "bar",
+						Content:   "Bar",
 					},
 					{
 						Position:  3,
-						Timestamp: 3,
+						Timestamp: time.Second * 3,
 						Type:      models.DialogTypeChat,
 						Actor:     "steve",
-						Content:   "baz",
+						Content:   "Baz",
 					},
 				},
 				trivia: []models.Trivia{
 					{
-						Description: "single line of trivia",
+						Description: "Single line of trivia",
 						StartPos:    1,
 						EndPos:      3,
 					},
 				},
 			},
-			want: `#OFFSET: 1
-#TRIVIA: single line of trivia
-ricky: foo
-#OFFSET: 2
-karl: bar
-#OFFSET: 3
+			want: `#OFFSET: 1.00
+#TRIVIA: Single line of trivia
+ricky: Foo
+#OFFSET: 2.00
+karl: Bar
+#OFFSET: 3.00
 #/TRIVIA
-steve: baz
+steve: Baz
 `,
 			wantErr: false,
 		}, {
@@ -140,44 +143,44 @@ steve: baz
 				dialog: []models.Dialog{
 					{
 						Position:  1,
-						Timestamp: 1,
+						Timestamp: time.Second * 1,
 						Type:      models.DialogTypeChat,
 						Actor:     "ricky",
-						Content:   "foo",
+						Content:   "Foo",
 					},
 					{
 						Position:  2,
-						Timestamp: 2,
+						Timestamp: time.Second * 2,
 						Type:      models.DialogTypeChat,
 						Actor:     "karl",
-						Content:   "bar",
+						Content:   "Bar",
 					},
 					{
 						Position:  3,
-						Timestamp: 3,
+						Timestamp: time.Second * 3,
 						Type:      models.DialogTypeChat,
 						Actor:     "steve",
-						Content:   "baz",
+						Content:   "Baz",
 					},
 				},
 				trivia: []models.Trivia{
 					{
-						Description: "many\nlines of\n trivia",
+						Description: "Many\nlines of\ntrivia",
 						StartPos:    1,
 						EndPos:      3,
 					},
 				},
 			},
-			want: `#OFFSET: 1
-#TRIVIA: many
+			want: `#OFFSET: 1.00
+#TRIVIA: Many
 # lines of
 # trivia
-ricky: foo
-#OFFSET: 2
-karl: bar
-#OFFSET: 3
+ricky: Foo
+#OFFSET: 2.00
+karl: Bar
+#OFFSET: 3.00
 #/TRIVIA
-steve: baz
+steve: Baz
 `,
 			wantErr: false,
 		},
@@ -190,6 +193,21 @@ steve: baz
 				return
 			}
 			require.EqualValues(t, tt.want, got)
+
+			// also check that importing the exported content works as expected
+			dialog, synopsis, trivia, err := Import(bufio.NewScanner(strings.NewReader(got)), "", 0)
+			require.NoError(t, err)
+			for k := range dialog {
+				require.EqualValues(t, tt.args.dialog[k].Timestamp, dialog[k].Timestamp)
+				require.EqualValues(t, tt.args.dialog[k].Content, dialog[k].Content)
+				require.EqualValues(t, tt.args.dialog[k].Actor, dialog[k].Actor)
+			}
+			for k := range trivia {
+				require.EqualValues(t, tt.args.trivia[k].Description, trivia[k].Description)
+			}
+			for k := range synopsis {
+				require.EqualValues(t, tt.args.synopsis[k].Description, synopsis[k].Description)
+			}
 		})
 	}
 }

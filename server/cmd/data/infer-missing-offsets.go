@@ -108,7 +108,7 @@ type speechVelocity struct {
 	ranges []offsetRange
 }
 
-// returns the offset + true if it was inferred (false if it is an real/accurate offset)
+// returns the offset + true if it was inferred (false if it is a real/accurate offset)
 func (w speechVelocity) getSecondOffset(lineNum int64) (time.Duration, bool) {
 	if r, ok := w.rangeIndex(lineNum); ok {
 		totalOffset := w.ranges[r].startTimestamp

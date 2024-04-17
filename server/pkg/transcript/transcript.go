@@ -40,7 +40,7 @@ func Import(scanner *bufio.Scanner, episodeID string, startPos int64) ([]models.
 
 	output := make([]models.Dialog, 0)
 	position := startPos
-	lastOffset := int64(0)
+	lastOffset := 0.0
 	numOffsets := 0
 
 	synopsies := make([]models.Synopsis, 0)
@@ -116,7 +116,7 @@ func Import(scanner *bufio.Scanner, episodeID string, startPos int64) ([]models.
 			TimestampInferred: true,
 		}
 		if lastOffset > 0 {
-			di.Timestamp = time.Duration(lastOffset) * time.Second
+			di.Timestamp = time.Duration(lastOffset*1000) * time.Millisecond
 			di.TimestampInferred = false
 			lastOffset = 0
 		}
@@ -229,10 +229,10 @@ func IsOffsetTag(line string) bool {
 	return strings.HasPrefix(line, "#OFFSET:")
 }
 
-func ScanOffset(line string) (int64, bool) {
+func ScanOffset(line string) (float64, bool) {
 	offsetStr := strings.TrimSpace(strings.TrimPrefix(line, "#OFFSET:"))
 	if off, err := strconv.ParseFloat(offsetStr, 64); err == nil {
-		return int64(off), true
+		return off, true
 	}
 	return 0, false
 }
