@@ -12,6 +12,9 @@ export class ContributionStateComponent implements OnInit {
   @Input()
   state: RskContributionState;
 
+  @Input()
+  merged: boolean;
+
   states = RskContributionState;
 
   constructor() {

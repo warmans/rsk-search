@@ -77,7 +77,10 @@
             </div>
           </div>
           <div class="card mb-4" *ngIf="activeInfoPanel === 'edits'">
-            <div class="card-header text-paragraph">Edits are changes made to existing transcripts.</div>
+            <div class="card-header text-paragraph">Edits are changes made to existing transcripts. Note that your
+              changes will not be visible in the
+              transcript until they have been fully merged.
+            </div>
             <div class="card-body p-0">
               <div *ngIf="changes?.length === 0" class="m-4">No edits yet.</div>
               <table class="table p-0" *ngIf="changes?.length > 0">
@@ -90,9 +93,16 @@
                   <th></th>
                 </tr>
                 <tr *ngFor="let change of changes">
-                  <td>{{change.episodeId}}</td>
                   <td>
-                    <app-contribution-state [state]="change.state"></app-contribution-state>
+                    <ng-container *ngIf="change.merged">
+                      <a
+                        title="Note that your changes will not be shown here until the change has been fully merged"
+                        [routerLink]="['/ep', change.episodeId]">{{change.episodeId}}</a>
+                    </ng-container>
+                    <ng-container *ngIf="!change.merged">{{change.episodeId}}</ng-container>
+                  </td>
+                  <td>
+                    <app-contribution-state [state]="change.state" [merged]="change.merged"></app-contribution-state>
                   </td>
                   <td>{{change.createdAt}}</td>
                   <td>{{change.pointsAwarded || 'NA'}}</td>

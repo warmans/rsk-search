@@ -116,12 +116,12 @@ func (c *ChunkedTranscriptStats) Proto() *api.ChunkedTranscriptStats {
 }
 
 type Chunk struct {
-	ID               string `json:"id" db:"id"`
-	TscriptID        string `json:"tscript_id" db:"tscript_id"`
-	Raw              string `json:"raw" db:"raw"`
-	StartSecond      int64  `json:"start_second" db:"start_second"`
-	EndSecond        int64  `json:"end_second" db:"end_second"`
-	NumContributions int32  `json:"num_contributions" db:"num_contributions"`
+	ID               string        `json:"id" db:"id"`
+	TscriptID        string        `json:"tscript_id" db:"tscript_id"`
+	Raw              string        `json:"raw" db:"raw"`
+	StartSecond      time.Duration `json:"start_second" db:"start_second"`
+	EndSecond        time.Duration `json:"end_second" db:"end_second"`
+	NumContributions int32         `json:"num_contributions" db:"num_contributions"`
 }
 
 func (c *Chunk) Proto() *api.Chunk {

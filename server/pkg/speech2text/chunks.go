@@ -8,9 +8,10 @@ import (
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/transcript"
 	"io"
+	"time"
 )
 
-const targetChunkDuration = 180
+const targetChunkDuration time.Duration = 180 * time.Second
 
 func MapChunksFromRawTranscript(epid string, epName string, inFile io.Reader, outputWriter io.Writer) error {
 
@@ -34,17 +35,17 @@ func getChunks(scanner *bufio.Scanner) ([]models.Chunk, error) {
 		line := scanner.Text()
 
 		if transcript.IsOffsetTag(line) {
-			offsetSeconds, ok := transcript.ScanOffset(line)
+			offset, ok := transcript.ScanOffset(line)
 			if !ok {
 				return nil, fmt.Errorf("failed to get valid offset from line: %s", line)
 			}
 			if curentChunk == nil {
-				curentChunk = &models.Chunk{ID: shortuuid.New(), StartSecond: offsetSeconds}
+				curentChunk = &models.Chunk{ID: shortuuid.New(), StartSecond: offset}
 			}
-			if offsetSeconds-curentChunk.StartSecond >= targetChunkDuration {
-				curentChunk.EndSecond = offsetSeconds
+			if offset-curentChunk.StartSecond >= targetChunkDuration {
+				curentChunk.EndSecond = offset
 				chs = append(chs, *curentChunk)
-				curentChunk = &models.Chunk{ID: shortuuid.New(), StartSecond: offsetSeconds}
+				curentChunk = &models.Chunk{ID: shortuuid.New(), StartSecond: offset}
 			}
 		} else {
 			if curentChunk == nil {

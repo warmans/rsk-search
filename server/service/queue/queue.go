@@ -292,7 +292,7 @@ func (q *ImportQueue) HandleSplitAudioChunks(ctx context.Context, t *asynq.Task)
 			"-i", path.Join(tsImport.WorkingDir(q.cfg.WorkingDir), tsImport.Mp3()),
 			"-vcodec", "copy",
 			"-acodec", "copy",
-			"-ss", fmt.Sprintf("%d", chunk.StartSecond),
+			"-ss", fmt.Sprintf("%0.2f", chunk.StartSecond.Seconds()),
 		}
 		if chunk.EndSecond > -1 {
 			args = append(args, "-to", fmt.Sprintf("%d", chunk.EndSecond))
@@ -304,7 +304,7 @@ func (q *ImportQueue) HandleSplitAudioChunks(ctx context.Context, t *asynq.Task)
 			append(args, path.Join(chunkOutputDir, fmt.Sprintf("%s.mp3", chunk.ID)))...,
 		)
 
-		q.logger.Info("Shelling out to ffmpeg to extract Mp3 chunk", zap.String("chunk_id", chunk.ID), zap.Int64("start_second", chunk.StartSecond))
+		q.logger.Info("Shelling out to ffmpeg to extract Mp3 chunk", zap.String("chunk_id", chunk.ID), zap.Duration("start_second", chunk.StartSecond))
 		out, err := cmd.CombinedOutput()
 		if err != nil {
 			err = errors.Wrap(err, "failed to exec split-ep.py")
