@@ -48,8 +48,8 @@ export function isEndTriviaLine(line: string): boolean {
 }
 
 export function getOffsetValueFromLine(line: string): number {
-  const match = line.match(/^#OFFSET:\s([0-9]+)/);
-  return match?.length == 2 ? parseInt(match[1], 10) : -1;
+  const match = line.match(/^#OFFSET:\s([0-9\.]+)/);
+  return match?.length == 2 ? parseFloat(match[1]) : -1;
 }
 
 export function getFirstOffset(transcript: string): number {

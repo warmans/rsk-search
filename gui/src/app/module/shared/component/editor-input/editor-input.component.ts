@@ -61,7 +61,6 @@ export class EditorInputComponent implements OnInit, OnDestroy, AfterViewInit {
   onKeypress() {
     this.contentChanged();
     this.tryEmitOffset();
-    //this.tryShowAutocomplete();
   }
 
   contentChanged() {
@@ -147,26 +146,6 @@ export class EditorInputComponent implements OnInit, OnDestroy, AfterViewInit {
       this.atOffsetMarker.next(getOffsetValueFromLine(caretFocus.line));
     }
   }
-
-  // private activeAutocomplete: {el: HTMLElement, parent: any};
-  //
-  // private tryShowAutocomplete() {
-  //   const caretFocus = this.getCaretFocus();
-  //   if (!caretFocus) {
-  //     return;
-  //   }
-  //   if (this.activeAutocomplete) {
-  //     this.renderer.removeChild(this.activeAutocomplete.parent, this.activeAutocomplete.el);
-  //     this.activeAutocomplete = undefined;
-  //   }
-  //   if (!lineHasActorPrefix(caretFocus.line)) {
-  //     let sel = document.getSelection();
-  //     let nd = sel.anchorNode;
-  //     let newNode = this.newAutocomplete(["foo", "bar"]);
-  //     this.renderer.appendChild(nd, newNode);
-  //     this.activeAutocomplete = {el: newNode, parent: nd};
-  //   }
-  // }
 
   insertOffsetAboveCaret(seconds: number): void {
     let sel = document.getSelection();
