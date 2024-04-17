@@ -354,13 +354,16 @@ func (q *ImportQueue) HandlePublish(ctx context.Context, t *asynq.Task) error {
 	if err := util.WithReadJSONFileDecoder(path.Join(tsImport.WorkingDir(q.cfg.WorkingDir), tsImport.ChunkedMachineTranscript()), func(dec *json.Decoder) error {
 		return dec.Decode(tscript)
 	}); err != nil {
+		q.logger.Error("failed to read JSON file", zap.Error(err))
 		return err
 	}
 	if err := q.rw.WithStore(func(s *rw.Store) error {
 		if err := s.InsertOrIgnoreTscript(context.Background(), tscript); err != nil {
+			q.logger.Error("failed insert tscript", zap.Error(err))
 			return err
 		}
 		if err := s.CompleteTscriptImport(ctx, tsImport.ID); err != nil {
+			q.logger.Error("failed to complete tscript import", zap.Error(err))
 			return err
 		}
 		if q.cfg.KeepFiles {
