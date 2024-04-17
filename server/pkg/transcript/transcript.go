@@ -116,7 +116,7 @@ func Import(scanner *bufio.Scanner, episodeID string, startPos int64) ([]models.
 			TimestampInferred: true,
 		}
 		if lastOffset > 0 {
-			di.Timestamp = time.Duration(lastOffset*1000) * time.Millisecond
+			di.Timestamp = lastOffset
 			di.TimestampInferred = false
 			lastOffset = 0
 		}
