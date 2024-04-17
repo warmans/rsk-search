@@ -27,7 +27,7 @@ func Int64VarEnv(flagsSet *pflag.FlagSet, s *int64, prefix string, name string, 
 
 func stringFromEnv(p *string, prefix, name string) {
 	if prefix != "" {
-		prefix = "_" + strings.ToUpper(prefix)
+		prefix = strings.ToUpper(prefix) + "_"
 	}
 	val := os.Getenv(fmt.Sprintf("%s%s", prefix, strings.ToUpper(strings.Replace(name, "-", "_", -1))))
 	if val == "" {
