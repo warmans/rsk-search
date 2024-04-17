@@ -12,6 +12,7 @@ import (
 	"os"
 	"path"
 	"strconv"
+	"time"
 )
 
 func InferMissingOffsetsCmd() *cobra.Command {
@@ -71,21 +72,21 @@ func InferMissingOffsetsCmd() *cobra.Command {
 				numAccurateOffsets := float64(0)
 				for lineNum := range episode.Transcript {
 					// calculate the missing offsets
-					episode.Transcript[lineNum].OffsetSec, episode.Transcript[lineNum].OffsetInferred = wpm.getSecondOffset(int64(lineNum))
-					if !episode.Transcript[lineNum].OffsetInferred {
+					episode.Transcript[lineNum].Timestamp, episode.Transcript[lineNum].TimestampInferred = wpm.getSecondOffset(int64(lineNum))
+					if !episode.Transcript[lineNum].TimestampInferred {
 						numAccurateOffsets++
 					}
 
 					// calculate the distance to the closest non-inferred offset
-					episode.Transcript[lineNum].OffsetDistance = wpm.getOffsetDistance(int64(lineNum))
+					episode.Transcript[lineNum].TimestampDistance = wpm.getOffsetDistance(int64(lineNum))
 
 					//calculate the duration of the previous line
 					if lineNum >= 1 {
-						episode.Transcript[lineNum-1].DurationSec = episode.Transcript[lineNum].OffsetSec - episode.Transcript[lineNum-1].OffsetSec
+						episode.Transcript[lineNum-1].Duration = episode.Transcript[lineNum].Timestamp - episode.Transcript[lineNum-1].Timestamp
 					}
 				}
 				// the final line's duration must be calculated based on the episode duration
-				episode.Transcript[len(episode.Transcript)-1].DurationSec = episodeDuration - episode.Transcript[len(episode.Transcript)-1].OffsetSec
+				episode.Transcript[len(episode.Transcript)-1].Duration = episodeDuration - episode.Transcript[len(episode.Transcript)-1].Timestamp
 
 				episode.OffsetAccuracy = int32(numAccurateOffsets / float64(len(episode.Transcript)) * 100)
 
@@ -108,19 +109,19 @@ type speechVelocity struct {
 }
 
 // returns the offset + true if it was inferred (false if it is an real/accurate offset)
-func (w speechVelocity) getSecondOffset(lineNum int64) (int64, bool) {
+func (w speechVelocity) getSecondOffset(lineNum int64) (time.Duration, bool) {
 	if r, ok := w.rangeIndex(lineNum); ok {
-		totalOffset := float64(w.ranges[r].startSecond)
+		totalOffset := w.ranges[r].startTimestamp
 		relativeLineNum := lineNum - w.ranges[r].firstLineNum
 		for k, v := range w.ranges[r].lineDurations {
 			if int64(k) < relativeLineNum {
 				totalOffset += v
 			}
 		}
-		if totalOffset == float64(w.ranges[r].startSecond) {
-			return int64(math.Round(totalOffset)), false
+		if totalOffset == w.ranges[r].startTimestamp {
+			return totalOffset, false
 		}
-		return int64(math.Ceil(totalOffset)), true
+		return totalOffset, true
 	}
 	return -1, true
 }
@@ -144,58 +145,58 @@ func (w speechVelocity) rangeIndex(lineNum int64) (int, bool) {
 	return 0, false
 }
 
-func (w speechVelocity) currentStartSecond() int64 {
+func (w speechVelocity) currentStartSecond() time.Duration {
 	if len(w.ranges) == 0 {
 		return 0
 	}
-	return w.ranges[len(w.ranges)-1].startSecond
+	return w.ranges[len(w.ranges)-1].startTimestamp
 }
 
 type offsetRange struct {
-	startSecond     int64
-	firstLineNum    int64
-	lastLineNum     int64
-	durationSeconds int64
-	totalChars      int64
-	lineDurations   []float64
+	startTimestamp time.Duration
+	firstLineNum   int64
+	lastLineNum    int64
+	duration       time.Duration
+	totalChars     int64
+	lineDurations  []time.Duration
 }
 
-func getEpisodeDuration(ep *models.Transcript) int64 {
+func getEpisodeDuration(ep *models.Transcript) time.Duration {
 	if durationMsStr, ok := ep.Meta["duration_ms"]; ok {
 		ms, err := strconv.Atoi(durationMsStr)
 		if err != nil {
 			return 0
 		}
-		return int64(ms / 1000)
+		return time.Duration(ms) * time.Millisecond
 	}
 	return 0
 }
 
-func calculateWordsPerSecond(totalLengthSeconds int64, dialog []models.Dialog) speechVelocity {
+func calculateWordsPerSecond(totalLength time.Duration, dialog []models.Dialog) speechVelocity {
 	vel := speechVelocity{
 		ranges: []offsetRange{
 			{
-				startSecond:     dialog[0].OffsetSec, //sometimes there is an offset at the start of the dialog
-				firstLineNum:    0,
-				lastLineNum:     0,
-				durationSeconds: 0,
-				lineDurations:   []float64{},
+				startTimestamp: dialog[0].Timestamp, //sometimes there is an offset at the start of the dialog
+				firstLineNum:   0,
+				lastLineNum:    0,
+				duration:       0,
+				lineDurations:  []time.Duration{},
 			},
 		},
 	}
 	for lineNum, line := range dialog {
-		if line.OffsetSec != 0 && line.OffsetSec != vel.currentStartSecond() && !line.OffsetInferred {
+		if line.Timestamp != 0 && line.Timestamp != vel.currentStartSecond() && !line.TimestampInferred {
 
 			// finalize current range
 			vel.ranges[len(vel.ranges)-1].lastLineNum = int64(lineNum) - 1
-			vel.ranges[len(vel.ranges)-1].durationSeconds = line.OffsetSec - vel.currentStartSecond()
+			vel.ranges[len(vel.ranges)-1].duration = line.Timestamp - vel.currentStartSecond()
 
 			// start a new range
 			vel.ranges = append(
 				vel.ranges,
 				offsetRange{
-					startSecond:  line.OffsetSec,
-					firstLineNum: int64(lineNum),
+					startTimestamp: line.Timestamp,
+					firstLineNum:   int64(lineNum),
 				},
 			)
 		}
@@ -208,7 +209,7 @@ func calculateWordsPerSecond(totalLengthSeconds int64, dialog []models.Dialog) s
 		// last line should always close the range.
 		if lineNum == len(dialog)-1 {
 			vel.ranges[len(vel.ranges)-1].lastLineNum = int64(lineNum)
-			vel.ranges[len(vel.ranges)-1].durationSeconds = totalLengthSeconds - vel.ranges[len(vel.ranges)-1].startSecond
+			vel.ranges[len(vel.ranges)-1].duration = totalLength - vel.ranges[len(vel.ranges)-1].startTimestamp
 		}
 	}
 
@@ -224,7 +225,8 @@ func calculateWordsPerSecond(totalLengthSeconds int64, dialog []models.Dialog) s
 
 		charCount := float64(len(line.Content))
 		lineProportion := charCount / float64(vel.ranges[rangeIdx].totalChars)
-		vel.ranges[rangeIdx].lineDurations = append(vel.ranges[rangeIdx].lineDurations, float64(vel.ranges[rangeIdx].durationSeconds)*lineProportion)
+		lineDuration := float64(vel.ranges[rangeIdx].duration.Milliseconds()) * lineProportion
+		vel.ranges[rangeIdx].lineDurations = append(vel.ranges[rangeIdx].lineDurations, time.Duration(lineDuration)*time.Millisecond)
 	}
 
 	return vel

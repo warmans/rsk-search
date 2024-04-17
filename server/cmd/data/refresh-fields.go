@@ -77,6 +77,7 @@ func RefreshCmd() *cobra.Command {
 				// ensure IDs are correct
 				for k := range episode.Transcript {
 					episode.Transcript[k].ID = models.DialogID(episode.ID(), episode.Transcript[k].Position)
+					fmt.Printf("%d %d %s\n", episode.Transcript[k].Position, episode.Transcript[k].Timestamp, episode.Transcript[k].Timestamp.String())
 				}
 
 				if err := data.ReplaceEpisodeFile(inputDir, episode); err != nil {

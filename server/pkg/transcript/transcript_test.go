@@ -48,21 +48,21 @@ func TestExport(t *testing.T) {
 				dialog: []models.Dialog{
 					{
 						Position:  1,
-						OffsetSec: 1,
+						Timestamp: 1,
 						Type:      models.DialogTypeChat,
 						Actor:     "ricky",
 						Content:   "foo",
 					},
 					{
 						Position:  2,
-						OffsetSec: 2,
+						Timestamp: 2,
 						Type:      models.DialogTypeChat,
 						Actor:     "karl",
 						Content:   "bar",
 					},
 					{
 						Position:  3,
-						OffsetSec: 3,
+						Timestamp: 3,
 						Type:      models.DialogTypeChat,
 						Actor:     "steve",
 						Content:   "baz",
@@ -96,21 +96,21 @@ steve: baz
 				dialog: []models.Dialog{
 					{
 						Position:  1,
-						OffsetSec: 1,
+						Timestamp: 1,
 						Type:      models.DialogTypeChat,
 						Actor:     "ricky",
 						Content:   "foo",
 					},
 					{
 						Position:  2,
-						OffsetSec: 2,
+						Timestamp: 2,
 						Type:      models.DialogTypeChat,
 						Actor:     "karl",
 						Content:   "bar",
 					},
 					{
 						Position:  3,
-						OffsetSec: 3,
+						Timestamp: 3,
 						Type:      models.DialogTypeChat,
 						Actor:     "steve",
 						Content:   "baz",
@@ -140,21 +140,21 @@ steve: baz
 				dialog: []models.Dialog{
 					{
 						Position:  1,
-						OffsetSec: 1,
+						Timestamp: 1,
 						Type:      models.DialogTypeChat,
 						Actor:     "ricky",
 						Content:   "foo",
 					},
 					{
 						Position:  2,
-						OffsetSec: 2,
+						Timestamp: 2,
 						Type:      models.DialogTypeChat,
 						Actor:     "karl",
 						Content:   "bar",
 					},
 					{
 						Position:  3,
-						OffsetSec: 3,
+						Timestamp: 3,
 						Type:      models.DialogTypeChat,
 						Actor:     "steve",
 						Content:   "baz",

@@ -81,26 +81,26 @@ func (m Metadata) Proto() map[string]string {
 }
 
 type Dialog struct {
-	ID             string     `json:"id"`
-	Position       int64      `json:"pos"`
-	OffsetSec      int64      `json:"offset_sec"` // second offset from start of episode
-	OffsetInferred bool       `json:"offset_inferred"`
-	OffsetDistance int64      `json:"offset_distance"` //distance to nearest non-inferred offset
-	DurationSec    int64      `json:"duration_sec"`    // duration of line in seconds
-	Type           DialogType `json:"type"`
-	Actor          string     `json:"actor"`
-	Meta           Metadata   `json:"metadata"`
-	Content        string     `json:"content"`
-	Notable        bool       `json:"notable"` // note-worthy line of dialog.
+	ID                string        `json:"id"`
+	Position          int64         `json:"pos"`
+	Timestamp         time.Duration `json:"timestamp"`
+	Duration          time.Duration `json:"duration"`
+	TimestampInferred bool          `json:"timestamp_inferred"`
+	TimestampDistance int64         `json:"timestamp_distance"` //distance to nearest non-inferred offset
+	Type              DialogType    `json:"type"`
+	Actor             string        `json:"actor"`
+	Meta              Metadata      `json:"metadata"`
+	Content           string        `json:"content"`
+	Notable           bool          `json:"notable"` // note-worthy line of dialog.
 }
 
 func (d Dialog) Proto(matchedRow bool) *api.Dialog {
 	dialog := &api.Dialog{
 		Id:             d.ID,
 		Pos:            int32(d.Position),
-		OffsetSec:      d.OffsetSec,
-		OffsetInferred: d.OffsetInferred,
-		OffsetDistance: d.OffsetDistance,
+		OffsetSec:      int64(d.Timestamp.Seconds()),
+		OffsetInferred: d.TimestampInferred,
+		OffsetDistance: d.TimestampDistance,
 		Type:           d.Type.Proto(),
 		Actor:          d.Actor,
 		Content:        d.Content,
@@ -170,7 +170,7 @@ func (e *Transcript) Actors() []string {
 
 // GetTimestampRange will convert a position specification e.g. 20-30 into a timestamp range.
 // if the range exceeds the total episode length it will just return the total episode length as the end timestamp.
-func (e *Transcript) GetTimestampRange(pos string) (int64, int64, error) {
+func (e *Transcript) GetTimestampRange(pos string) (time.Duration, time.Duration, error) {
 	if len(e.Transcript) == 0 {
 		return 0, 0, fmt.Errorf("no dialog to extract")
 	}
@@ -178,7 +178,7 @@ func (e *Transcript) GetTimestampRange(pos string) (int64, int64, error) {
 	if err != nil {
 		return 0, 0, err
 	}
-	maximumPossibleOffset, err := e.GetEpisodeLengthInSeconds()
+	maximumPossibleOffset, err := e.GetEpisodeLength()
 	if err != nil {
 		return 0, 0, err
 	}
@@ -189,22 +189,22 @@ func (e *Transcript) GetTimestampRange(pos string) (int64, int64, error) {
 
 	// get from the start of the last line to the end of the episode
 	if startPos == lastLine.Position {
-		return lastLine.OffsetSec, maximumPossibleOffset, nil
+		return lastLine.Timestamp, maximumPossibleOffset, nil
 	}
-	var startOffset int64
+	var startOffset time.Duration
 	for _, v := range e.Transcript {
 		if startPos == v.Position {
-			startOffset = v.OffsetSec
+			startOffset = v.Timestamp
 			break
 		}
 	}
 	if endPos >= lastLine.Position {
 		return startOffset, maximumPossibleOffset, nil
 	}
-	var endOffset int64
+	var endOffset time.Duration
 	for _, v := range e.Transcript {
 		if endPos == v.Position {
-			endOffset = v.OffsetSec
+			endOffset = v.Timestamp
 			break
 		}
 	}
@@ -212,8 +212,8 @@ func (e *Transcript) GetTimestampRange(pos string) (int64, int64, error) {
 	return max(0, startOffset), min(maximumPossibleOffset, endOffset+1), nil
 }
 
-// GetEpisodeLengthInSeconds extracts the episode length and converts it to seconds.
-func (e *Transcript) GetEpisodeLengthInSeconds() (int64, error) {
+// GetEpisodeLength extracts the episode length
+func (e *Transcript) GetEpisodeLength() (time.Duration, error) {
 	if _, ok := e.Meta[MetadataTypeDurationMs]; !ok {
 		return 0, errors.New("no episode length in metadata")
 	}
@@ -221,7 +221,7 @@ func (e *Transcript) GetEpisodeLengthInSeconds() (int64, error) {
 	if err != nil {
 		return 0, fmt.Errorf("failed to get episode length from metadata: %w", err)
 	}
-	return totalLengthMs / 1000, nil
+	return time.Duration(totalLengthMs) * time.Millisecond, nil
 }
 
 func (e *Transcript) ShortProto(audioURI string) *api.ShortTranscript {

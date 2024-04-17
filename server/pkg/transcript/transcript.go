@@ -6,6 +6,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/models"
 	"strconv"
 	"strings"
+	"time"
 	"unicode"
 )
 
@@ -108,15 +109,15 @@ func Import(scanner *bufio.Scanner, episodeID string, startPos int64) ([]models.
 		}
 
 		di := models.Dialog{
-			ID:             models.DialogID(episodeID, position),
-			Type:           models.DialogTypeUnknown,
-			Position:       position,
-			Notable:        notable,
-			OffsetInferred: true,
+			ID:                models.DialogID(episodeID, position),
+			Type:              models.DialogTypeUnknown,
+			Position:          position,
+			Notable:           notable,
+			TimestampInferred: true,
 		}
 		if lastOffset > 0 {
-			di.OffsetSec = lastOffset
-			di.OffsetInferred = false
+			di.Timestamp = time.Duration(lastOffset) * time.Second
+			di.TimestampInferred = false
 			lastOffset = 0
 		}
 
@@ -170,8 +171,8 @@ func Export(dialog []models.Dialog, synopsis []models.Synopsis, trivia []models.
 	output := strings.Builder{}
 	for _, d := range dialog {
 		if !options.stripMetadata {
-			if d.OffsetSec > 0 && !d.OffsetInferred {
-				output.WriteString(fmt.Sprintf("#OFFSET: %d\n", d.OffsetSec))
+			if d.Timestamp > 0 && !d.TimestampInferred {
+				output.WriteString(fmt.Sprintf("#OFFSET: %d\n", d.Timestamp))
 			}
 			for _, syn := range synopsis {
 				if d.Position == syn.StartPos {

@@ -159,7 +159,7 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 						models.Dialog{
 							ID:        models.DialogID(episodeOnDisk.ID(), currentPos+transcript.PosSpacing),
 							Position:  currentPos + transcript.PosSpacing,
-							OffsetSec: 0,
+							Timestamp: 0,
 							Type:      "gap",
 							Actor:     "",
 							Meta:      nil,

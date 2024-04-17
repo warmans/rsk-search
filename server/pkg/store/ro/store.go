@@ -74,8 +74,8 @@ func (s *Store) InsertEpisodeWithTranscript(ctx context.Context, ep *models.Tran
 			v.ID,
 			ep.ID(),
 			v.Position,
-			v.OffsetSec,
-			v.OffsetInferred,
+			v.Timestamp,
+			v.TimestampInferred,
 			string(v.Type),
 			v.Actor,
 			v.Content,
@@ -164,7 +164,7 @@ func (s *Store) getTranscriptForQuery(ctx context.Context, query string, params 
 		}
 		var meta string
 
-		if err := res.Scan(&result.ID, &epID, &result.Position, &result.OffsetSec, &result.OffsetInferred, &result.Type, &result.Actor, &result.Content, &meta, &result.Notable); err != nil {
+		if err := res.Scan(&result.ID, &epID, &result.Position, &result.Timestamp, &result.TimestampInferred, &result.Type, &result.Actor, &result.Content, &meta, &result.Notable); err != nil {
 			return nil, "", err
 		}
 		if meta != "" {
