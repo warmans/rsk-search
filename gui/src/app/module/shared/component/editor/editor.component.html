@@ -2,7 +2,7 @@
   <div class="card-header sticky-top d-flex justify-content-between" *ngIf="allowEdit">
     <div>
       <button class="btn btn-success btn-sm mr-3" (click)="insertOffsetAboveCaret()" title="Add an #OFFSET tag above the cursor to the current audio timestamp. See hotkey in config.">
-        #OFFSET ({{(audioStatus?.currentTime || 0) | number:'1.0-0'}}) <span class="badge" *ngIf="editorConfig?.insertOffsetKey"><i class="bi-keyboard-fill mr-1"></i> {{editorConfig?.insertOffsetKey}}</span>
+        #OFFSET ({{(audioStatus?.currentTime || 0) | number:'1.0-2'}}) <span class="badge" *ngIf="editorConfig?.insertOffsetKey"><i class="bi-keyboard-fill mr-1"></i> {{editorConfig?.insertOffsetKey}}</span>
       </button>
       <button class="btn btn-success btn-sm mr-3" (click)="insertSynAboveCaret()" title="Add an opening #SYN:  tag above the cursor">
         #SYN <span class="badge" *ngIf="editorConfig?.insertSynKey"><i class="bi-keyboard-fill mr-1"></i>{{editorConfig?.insertSynKey || 'NONE'}}</span>

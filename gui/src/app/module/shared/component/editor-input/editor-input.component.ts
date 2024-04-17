@@ -175,7 +175,7 @@ export class EditorInputComponent implements OnInit, OnDestroy, AfterViewInit {
     if (!this.nodeIsChildOfEditor(nd.parentElement)) {
       return;
     }
-    this.renderer.insertBefore(nd.parentNode, this.newOffsetElement(`#OFFSET: ${seconds}`), nd);
+    this.renderer.insertBefore(nd.parentNode, this.newOffsetElement(`#OFFSET: ${seconds.toFixed(2)}`), nd);
     this.contentChanged();
   }
 

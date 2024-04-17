@@ -311,7 +311,7 @@ export class EditorComponent implements OnInit, OnDestroy {
 
   insertOffsetAboveCaret() {
     let startOffset = this.firstOffset > -1 ? this.firstOffset : 0;
-    this.editorComponent.insertOffsetAboveCaret(Math.floor(startOffset + (this.audioStatus?.currentTime || 0) - (this._editorConfig.insertOffsetBacktrack || 0)));
+    this.editorComponent.insertOffsetAboveCaret(startOffset + (this.audioStatus?.currentTime || 0) - (this._editorConfig.insertOffsetBacktrack || 0));
   }
 
   insertSynAboveCaret() {

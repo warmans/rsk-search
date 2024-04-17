@@ -172,7 +172,7 @@ func Export(dialog []models.Dialog, synopsis []models.Synopsis, trivia []models.
 	for _, d := range dialog {
 		if !options.stripMetadata {
 			if d.Timestamp > 0 && !d.TimestampInferred {
-				output.WriteString(fmt.Sprintf("#OFFSET: %d\n", d.Timestamp))
+				output.WriteString(fmt.Sprintf("#OFFSET: %0.2f\n", d.Timestamp.Seconds()))
 			}
 			for _, syn := range synopsis {
 				if d.Position == syn.StartPos {
@@ -231,7 +231,7 @@ func IsOffsetTag(line string) bool {
 
 func ScanOffset(line string) (int64, bool) {
 	offsetStr := strings.TrimSpace(strings.TrimPrefix(line, "#OFFSET:"))
-	if off, err := strconv.Atoi(offsetStr); err == nil {
+	if off, err := strconv.ParseFloat(offsetStr, 64); err == nil {
 		return int64(off), true
 	}
 	return 0, false
