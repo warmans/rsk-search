@@ -73,15 +73,8 @@ type Store struct {
 }
 
 func (s *Store) DeleteTscript(ctx context.Context, id string) error {
-	// leave the contributions in the DB in case they need to be recovered later.
-	// although possibly clean them up later...
-	//if _, err := s.tx.ExecContext(ctx, `DELETE FROM tscript_contribution WHERE tscript_chunk_id IN (SELECT * id FROM tscript_chunk WHERE tscript_id = $1)`, id); err != nil {
-	//	return err
-	//}
-	if _, err := s.tx.ExecContext(ctx, `DELETE FROM tscript_chunk WHERE tscript_id = $1`, id); err != nil {
-		return err
-	}
-	if _, err := s.tx.ExecContext(ctx, `DELETE FROM tscript WHERE id = $1`, id); err != nil {
+	// soft delete so changes can be retrieved later if needed.
+	if _, err := s.tx.ExecContext(ctx, `UPDATE tscript SET "deleted_at" = NOW() WHERE id = $1`, id); err != nil {
 		return err
 	}
 	return nil
@@ -114,6 +107,7 @@ func (s *Store) ListTscripts(ctx context.Context) ([]*models.ChunkedTranscriptSt
                 FROM tscript_contribution 
                 LEFT JOIN tscript_chunk ON tscript_contribution.tscript_chunk_id = tscript_chunk.id 
                 GROUP BY tscript_chunk_id) as contribution_states ON ch.id = contribution_states.tscript_chunk_id
+			WHERE deleted_at IS NULL			
 			GROUP BY ts.id
 			ORDER BY ts.publication, ts.series, ts.episode ASC
 		`,

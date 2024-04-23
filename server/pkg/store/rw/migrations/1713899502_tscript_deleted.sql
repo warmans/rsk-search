@@ -1,0 +1,1 @@
+ALTER TABLE tscript ADD COLUMN deleted_at TIMESTAMP;

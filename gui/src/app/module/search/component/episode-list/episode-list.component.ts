@@ -46,9 +46,10 @@ export class EpisodeListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.listEpisodes();
     this.searchInput.valueChanges.pipe(takeUntil(this.destroy$), debounceTime(100)).subscribe((val) => {
+      val = val.trim().toLowerCase();
       if (val !== '') {
         this.filteredTranscriptList = this.activePublicationTranscripts().filter((t: RskShortTranscript) => {
-          return t.shortId.toLowerCase().indexOf(val.toLowerCase()) > 0 || t.name.toLowerCase().indexOf(val.toLowerCase()) > 0;
+          return t.shortId.toLowerCase().indexOf(val) > 0 || t.name.toLowerCase().indexOf(val) > 0;
         });
       } else {
         this.resetEpisodeList();
