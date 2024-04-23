@@ -264,14 +264,14 @@ export class AudioService {
   }
 
   private clearPersistentPlayerState() {
-    localStorage.removeItem(`audio_service_status${this.standaloneMode ? '-' + this.audioID : ''}`);
+    localStorage.removeItem(this.statusStorageKey());
   }
 
   private persistPlayerState(s: Status) {
     if (!s.audioFile || !s.audioID) {
       return;
     }
-    localStorage.setItem(`audio_service_status${this.standaloneMode ? '-' + this.audioID : ''}`, JSON.stringify(s));
+    localStorage.setItem(this.statusStorageKey(), JSON.stringify(s));
   }
 
   private persistEpisodeListened(audioID: string) {
@@ -301,7 +301,7 @@ export class AudioService {
   }
 
   private tryLoadPlayerState() {
-    const storedJSON = localStorage.getItem(`audio_service_status${this.standaloneMode ? '-' + this.audioID : ''}`);
+    const storedJSON = localStorage.getItem(this.statusStorageKey());
     if (storedJSON) {
       let state: Status;
       try {
@@ -332,5 +332,9 @@ export class AudioService {
       }
     }
     this.audio.volume = vol || 1;
+  }
+
+  private statusStorageKey() {
+    return `audio_service_status${this.standaloneMode ? '-temp' : ''}`
   }
 }

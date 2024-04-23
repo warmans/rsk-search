@@ -14,7 +14,7 @@ import {EditorConfig, EditorConfigComponent} from '../editor-config/editor-confi
 import {Subject} from 'rxjs';
 import {getFirstOffset} from '../../lib/tscript';
 import {distinctUntilChanged, takeUntil} from 'rxjs/operators';
-import {formatDistance, fromUnixTime, getUnixTime, isBefore, subDays} from 'date-fns';
+import {formatDistance, fromUnixTime, getUnixTime, isBefore, startOfDay, subDays} from 'date-fns';
 import {EditorInputComponent} from '../editor-input/editor-input.component';
 import {AudioService, PlayerState, Status} from '../../../core/service/audio/audio.service';
 import {FindReplace} from '../find-replace/find-replace.component';
@@ -243,7 +243,7 @@ export class EditorComponent implements OnInit, OnDestroy {
   }
 
   localBackupKey(): string {
-    return `${LOCAL_STORAGE_PREFIX}-${getUnixTime(new Date())}-${this.contentID}${this.contentVersion ? '-' + this.contentVersion : ''}`;
+    return `${LOCAL_STORAGE_PREFIX}-${getUnixTime(startOfDay(new Date()))}-${this.contentID}${this.contentVersion ? '-' + this.contentVersion : ''}`;
   }
 
   // local storage cannot be allowed to fill up.
@@ -255,7 +255,7 @@ export class EditorComponent implements OnInit, OnDestroy {
         const parts: string[] = key.replace(LOCAL_STORAGE_PREFIX + "-", "").split("-");
         if (parts.length > 0 && (/^[0-9]+/).test(parts[0])) {
           const itemDate = fromUnixTime(parseInt(parts[0]));
-          if (isBefore(itemDate, subDays(new Date(), 7))) {
+          if (isBefore(itemDate, subDays(new Date(), 3))) {
             // remove backups older than a week
             localStorage.removeItem(key);
           }
