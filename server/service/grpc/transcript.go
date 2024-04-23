@@ -262,7 +262,7 @@ func (s *TranscriptService) CreateChunkContribution(ctx context.Context, request
 		if err != nil {
 			return err
 		}
-		if stats.ContributionsInLastHour > 5 {
+		if stats.ContributionsInLastHour > 10 {
 			return ErrRateLimited()
 		}
 		return nil
