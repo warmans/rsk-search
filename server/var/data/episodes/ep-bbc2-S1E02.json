@@ -6,11 +6,11 @@
     "summary": "",
     "version": "0.0.0",
     "release_date": "2005-12-31T10:00:00Z",
-    "incomplete": true,
+    "incomplete": false,
     "bestof": false,
     "special": true,
     "locked": false,
-    "offset_accuracy": 10,
+    "offset_accuracy": 9,
     "audio_quality": "",
     "metadata": {
       "cover_art_url": "/assets/cover/special.jpg",
@@ -18481,7 +18481,7 @@
         "id": "ep-bbc2-S1E02-1416",
         "pos": 1416,
         "timestamp": 3784000000000,
-        "duration": 14602000000,
+        "duration": 2210000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
@@ -18493,8 +18493,8 @@
       {
         "id": "ep-bbc2-S1E02-1417",
         "pos": 1417,
-        "timestamp": 3798602000000,
-        "duration": 84834000000,
+        "timestamp": 3786210000000,
+        "duration": 12842000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
         "type": "chat",
@@ -18506,8 +18506,8 @@
       {
         "id": "ep-bbc2-S1E02-1418",
         "pos": 1418,
-        "timestamp": 3883436000000,
-        "duration": 1738000000,
+        "timestamp": 3799052000000,
+        "duration": 263000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
         "type": "chat",
@@ -18519,8 +18519,8 @@
       {
         "id": "ep-bbc2-S1E02-1419",
         "pos": 1419,
-        "timestamp": 3885174000000,
-        "duration": 36854000000,
+        "timestamp": 3799315000000,
+        "duration": 5578000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
         "type": "chat",
@@ -18532,7 +18532,7 @@
       {
         "id": "ep-bbc2-S1E02-1420",
         "pos": 1420,
-        "timestamp": 3922028000000,
+        "timestamp": 3804893000000,
         "duration": 0,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
@@ -18551,8 +18551,8 @@
       {
         "id": "ep-bbc2-S1E02-1421",
         "pos": 1421,
-        "timestamp": 3922028000000,
-        "duration": 34768000000,
+        "timestamp": 3804893000000,
+        "duration": 5263000000,
         "timestamp_inferred": true,
         "timestamp_distance": 5,
         "type": "chat",
@@ -18564,8 +18564,8 @@
       {
         "id": "ep-bbc2-S1E02-1422",
         "pos": 1422,
-        "timestamp": 3956796000000,
-        "duration": 2781000000,
+        "timestamp": 3810156000000,
+        "duration": 421000000,
         "timestamp_inferred": true,
         "timestamp_distance": 6,
         "type": "chat",
@@ -18577,8 +18577,8 @@
       {
         "id": "ep-bbc2-S1E02-1423",
         "pos": 1423,
-        "timestamp": 3959577000000,
-        "duration": 4867000000,
+        "timestamp": 3810577000000,
+        "duration": 736000000,
         "timestamp_inferred": true,
         "timestamp_distance": 7,
         "type": "chat",
@@ -18590,8 +18590,8 @@
       {
         "id": "ep-bbc2-S1E02-1424",
         "pos": 1424,
-        "timestamp": 3964444000000,
-        "duration": 8692000000,
+        "timestamp": 3811313000000,
+        "duration": 1315000000,
         "timestamp_inferred": true,
         "timestamp_distance": 8,
         "type": "chat",
@@ -18603,8 +18603,8 @@
       {
         "id": "ep-bbc2-S1E02-1425",
         "pos": 1425,
-        "timestamp": 3973136000000,
-        "duration": 9039000000,
+        "timestamp": 3812628000000,
+        "duration": 1372000000,
         "timestamp_inferred": true,
         "timestamp_distance": 9,
         "type": "chat",
@@ -18616,19 +18616,1007 @@
       {
         "id": "ep-bbc2-S1E02-1426",
         "pos": 1426,
-        "timestamp": 3982175000000,
-        "duration": 11825000000,
-        "timestamp_inferred": true,
-        "timestamp_distance": 10,
-        "type": "gap",
-        "actor": "",
+        "timestamp": 3814000000000,
+        "duration": 580000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "type": "chat",
+        "actor": "ricky",
         "metadata": null,
-        "content": "[~3 mins of missing transcription]",
+        "content": "Forgot about",
         "notable": false
       },
       {
         "id": "ep-bbc2-S1E02-1427",
         "pos": 1427,
+        "timestamp": 3814580000000,
+        "duration": 2419000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 1,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "How are you-- How can you even call yourself a DJ?",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1428",
+        "pos": 1428,
+        "timestamp": 3816999000000,
+        "duration": 387000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 2,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "I don't!",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1429",
+        "pos": 1429,
+        "timestamp": 3817386000000,
+        "duration": 2419000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 3,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "But well... No, clearly. I mean, they're probably-",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1430",
+        "pos": 1430,
+        "timestamp": 3819805000000,
+        "duration": 1258000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 4,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "I'm a broadcaster (laughs)",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1431",
+        "pos": 1431,
+        "timestamp": 3821063000000,
+        "duration": 241000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 5,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Hmmmm",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1432",
+        "pos": 1432,
+        "timestamp": 3821304000000,
+        "duration": 3725000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 6,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "We got this, we got this Red Hot Chili Peppers platinum disc to give away and",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1433",
+        "pos": 1433,
+        "timestamp": 3825029000000,
+        "duration": 2564000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 7,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Or what about that one? What do you call your little-",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1434",
+        "pos": 1434,
+        "timestamp": 3827593000000,
+        "duration": 4983000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 8,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "That's your quiz question on Radio 2, on New Year's Eve, your question is, what do you call your thing?",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1435",
+        "pos": 1435,
+        "timestamp": 3832576000000,
+        "duration": 4838000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 9,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "If you're a man, what you call a little Dinkle if you are a lady, would you call you thing in front?",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1436",
+        "pos": 1436,
+        "timestamp": 3837414000000,
+        "duration": 967000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 10,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "That's unbelievable.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1437",
+        "pos": 1437,
+        "timestamp": 3838381000000,
+        "duration": 5619000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 11,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Well I don't know, do I?! It's as arbitrary as anything. So that people and have funny names. Nothing- Nothing nasty",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1438",
+        "pos": 1438,
+        "timestamp": 3844000000000,
+        "duration": 9017000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Remember, we won't read it out if it's nasty. But what's- what's the f- You know, what, what did you do- You know, you call your little... What's your little...",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1439",
+        "pos": 1439,
+        "timestamp": 3853017000000,
+        "duration": 732000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 1,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Unbelievable!",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1440",
+        "pos": 1440,
+        "timestamp": 3853749000000,
+        "duration": 338000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 2,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "What?!",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1441",
+        "pos": 1441,
+        "timestamp": 3854087000000,
+        "duration": 1521000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 3,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "I mean, it's BBC Radio 2...",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1442",
+        "pos": 1442,
+        "timestamp": 3855608000000,
+        "duration": 169000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 4,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "So?",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1443",
+        "pos": 1443,
+        "timestamp": 3855777000000,
+        "duration": 2028000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 5,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "And that's the best you come up with",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1444",
+        "pos": 1444,
+        "timestamp": 3857805000000,
+        "duration": 5636000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 6,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Have you seen the dregs they put on these shows? I mean people who couldn't get a job anywhere else!",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1445",
+        "pos": 1445,
+        "timestamp": 3863441000000,
+        "duration": 4170000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 7,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "What are you talking about? It's top caliber broadcasters on this station!",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1446",
+        "pos": 1446,
+        "timestamp": 3867611000000,
+        "duration": 225000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 8,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Who?",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1447",
+        "pos": 1447,
+        "timestamp": 3867836000000,
+        "duration": 2085000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 9,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "I can't name them off top of my head!",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1448",
+        "pos": 1448,
+        "timestamp": 3869921000000,
+        "duration": 676000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 10,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "Ricky laughs",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1449",
+        "pos": 1449,
+        "timestamp": 3870597000000,
+        "duration": 2930000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 11,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "It's people who- They don't want on Radio 1 anymore.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1450",
+        "pos": 1450,
+        "timestamp": 3873527000000,
+        "duration": 1239000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 12,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "That's true, isn't it?",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1451",
+        "pos": 1451,
+        "timestamp": 3874766000000,
+        "duration": 4234000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 13,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Alright, well 828 291- 0500 288 291 or you can email Gervais [at] bbc.co.uk",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1452",
+        "pos": 1452,
+        "timestamp": 3879000000000,
+        "duration": 4236000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "And what- I'm not even mentioning it, I'm not even sulling my mouth with this quiz question",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1453",
+        "pos": 1453,
+        "timestamp": 3883236000000,
+        "duration": 3212000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 1,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "What do you call your little... Dingdong? Your little Willy-Wanky-Woo",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1454",
+        "pos": 1454,
+        "timestamp": 3886448000000,
+        "duration": 558000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 2,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "Steve laughs",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1455",
+        "pos": 1455,
+        "timestamp": 3887006000000,
+        "duration": 931000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 3,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "What do you call it?",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1456",
+        "pos": 1456,
+        "timestamp": 3887937000000,
+        "duration": 605000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 4,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Unbelievable.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1457",
+        "pos": 1457,
+        "timestamp": 3888542000000,
+        "duration": 2094000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 5,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Well. There's some-- We've learned something.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1458",
+        "pos": 1458,
+        "timestamp": 3890636000000,
+        "duration": 6657000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 6,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "And we're-- Yeah. And we'll give away this, this platinum disc to whoever's got the- What? The most droll? The most amusing? The most charming?",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1459",
+        "pos": 1459,
+        "timestamp": 3897293000000,
+        "duration": 2560000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 7,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "After \"What do you call yours?\", another Bible reading.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1460",
+        "pos": 1460,
+        "timestamp": 3899853000000,
+        "duration": 4147000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 8,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "One of my songs of the year: It's 'Emily' by Stephen Fretwell, I really enjoyed that one.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1461",
+        "pos": 1461,
+        "timestamp": 3904000000000,
+        "duration": 386000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Beautiful.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1462",
+        "pos": 1462,
+        "timestamp": 3904386000000,
+        "duration": 5257000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 1,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "We are looking back at some of the big news stories of the year, -still to come of course I should just point out- we got Monkey News...",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1463",
+        "pos": 1463,
+        "timestamp": 3909643000000,
+        "duration": 889000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 2,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Oh, that's the big one!",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1464",
+        "pos": 1464,
+        "timestamp": 3910532000000,
+        "duration": 1353000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 3,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "We've got the final part-- (laughs)",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1465",
+        "pos": 1465,
+        "timestamp": 3911885000000,
+        "duration": 618000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 4,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "It certainly is!",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1466",
+        "pos": 1466,
+        "timestamp": 3912503000000,
+        "duration": 6224000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 5,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "We've got the final part of Karl's sermon, and we haven't even got to Jesus Christ yet, so you know, it's going to be dynamite when that guy makes an appearance.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1467",
+        "pos": 1467,
+        "timestamp": 3918727000000,
+        "duration": 193000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 6,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1468",
+        "pos": 1468,
+        "timestamp": 3918920000000,
+        "duration": 1430000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 7,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "So we're all looking forward to that.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1469",
+        "pos": 1469,
+        "timestamp": 3920350000000,
+        "duration": 3247000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 8,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "He'd better! Because if he doesn't, you missed out quite a big thing.. In the Bible.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1470",
+        "pos": 1470,
+        "timestamp": 3923597000000,
+        "duration": 541000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 9,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Anyway, go on.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1471",
+        "pos": 1471,
+        "timestamp": 3924138000000,
+        "duration": 4523000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 10,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Plus, of course you've just set this... Possibly the worst quiz question I've ever heard on any radio station ever...",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1472",
+        "pos": 1472,
+        "timestamp": 3928661000000,
+        "duration": 579000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 11,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Well, I just...",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1473",
+        "pos": 1473,
+        "timestamp": 3929240000000,
+        "duration": 811000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 12,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Do you want to recap?",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1474",
+        "pos": 1474,
+        "timestamp": 3930051000000,
+        "duration": 1353000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 13,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "What you call your... Um, little...",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1475",
+        "pos": 1475,
+        "timestamp": 3931404000000,
+        "duration": 1507000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 14,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Your little Fella or your little Madam?",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1476",
+        "pos": 1476,
+        "timestamp": 3932911000000,
+        "duration": 811000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 15,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "Ricky laughs silently",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1477",
+        "pos": 1477,
+        "timestamp": 3933722000000,
+        "duration": 278000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 16,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Exactly",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1478",
+        "pos": 1478,
+        "timestamp": 3934000000000,
+        "duration": 486000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Yeah, sure.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1479",
+        "pos": 1479,
+        "timestamp": 3934486000000,
+        "duration": 1325000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 1,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "And you can win the-- (laughs)",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1480",
+        "pos": 1480,
+        "timestamp": 3935811000000,
+        "duration": 927000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 2,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Be rewarded for that!",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1481",
+        "pos": 1481,
+        "timestamp": 3936738000000,
+        "duration": 1458000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 3,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "And you can win the platinum disc",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1482",
+        "pos": 1482,
+        "timestamp": 3938196000000,
+        "duration": 3313000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 4,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Be rewarded with sharing with the nation, what you call your little thingy.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1483",
+        "pos": 1483,
+        "timestamp": 3941509000000,
+        "duration": 2164000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 5,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Red Hot Chili Peppers platinum disc to give away.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1484",
+        "pos": 1484,
+        "timestamp": 3943673000000,
+        "duration": 3446000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 6,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Karl, what have been some of the big news stories that have hit you this year?",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1485",
+        "pos": 1485,
+        "timestamp": 3947119000000,
+        "duration": 1237000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 7,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Oh this is going to be good!",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1486",
+        "pos": 1486,
+        "timestamp": 3948356000000,
+        "duration": 530000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 8,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "Steve laughs",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1487",
+        "pos": 1487,
+        "timestamp": 3948886000000,
+        "duration": 2827000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 9,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Well I don't really watch the news, do I, it gets me down a bit.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1488",
+        "pos": 1488,
+        "timestamp": 3951713000000,
+        "duration": 265000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 10,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Ahh...",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1489",
+        "pos": 1489,
+        "timestamp": 3951978000000,
+        "duration": 220000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 11,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Sure.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1490",
+        "pos": 1490,
+        "timestamp": 3952198000000,
+        "duration": 11802000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 12,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Sometimes you know, you're better off not knowing. I sometimes wonder about, you know, the way we've got satellites and stuff... And you know what's going on on the other side of the world. Should we know? You know what I mean? Is it-- Is it-- Does it do us any good?",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1491",
+        "pos": 1491,
+        "timestamp": 3964000000000,
+        "duration": 302000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Right.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1492",
+        "pos": 1492,
+        "timestamp": 3964302000000,
+        "duration": 1310000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 1,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Knowing stuff. So I mean--",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1493",
+        "pos": 1493,
+        "timestamp": 3965612000000,
+        "duration": 1815000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 2,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "That is brilliant, coming from Karl!",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1494",
+        "pos": 1494,
+        "timestamp": 3967427000000,
+        "duration": 201000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 3,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Yeah",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1495",
+        "pos": 1495,
+        "timestamp": 3967628000000,
+        "duration": 5092000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 4,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "I mean, that's an amazing quote, isn't it? I mean it's not \"We will fight them on the beaches\" but...",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1496",
+        "pos": 1496,
+        "timestamp": 3972720000000,
+        "duration": 2016000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 5,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "\"Does it do you any good knowing stuff?\"",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1497",
+        "pos": 1497,
+        "timestamp": 3974736000000,
+        "duration": 605000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 6,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "Steve laughs",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1498",
+        "pos": 1498,
+        "timestamp": 3975341000000,
+        "duration": 5142000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 7,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "...is pretty much what sums you up. I thought your New Year's resolution was to learn one thing a day.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1499",
+        "pos": 1499,
+        "timestamp": 3980483000000,
+        "duration": 5546000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 8,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "No. All I'm saying is, normally, when you see people who are brainy, they never look like, they're that happy.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1500",
+        "pos": 1500,
+        "timestamp": 3986029000000,
+        "duration": 453000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 9,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Like who?",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1501",
+        "pos": 1501,
+        "timestamp": 3986482000000,
+        "duration": 4789000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 10,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Einstein. Hawking. They're all look a bit like fed up and that, they've got loads of knowledge.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1502",
+        "pos": 1502,
+        "timestamp": 3991271000000,
+        "duration": 2729000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 11,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Well, let's leave Hawking aside, and the way he looks.",
+        "notable": false
+      },
+      {
+        "id": "ep-bbc2-S1E02-1503",
+        "pos": 1503,
         "timestamp": 3994000000000,
         "duration": 3418000000,
         "timestamp_inferred": false,
@@ -18640,8 +19628,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1428",
-        "pos": 1428,
+        "id": "ep-bbc2-S1E02-1504",
+        "pos": 1504,
         "timestamp": 3997418000000,
         "duration": 1534000000,
         "timestamp_inferred": true,
@@ -18653,8 +19641,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1429",
-        "pos": 1429,
+        "id": "ep-bbc2-S1E02-1505",
+        "pos": 1505,
         "timestamp": 3998952000000,
         "duration": 1674000000,
         "timestamp_inferred": true,
@@ -18666,8 +19654,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1430",
-        "pos": 1430,
+        "id": "ep-bbc2-S1E02-1506",
+        "pos": 1506,
         "timestamp": 4000626000000,
         "duration": 2374000000,
         "timestamp_inferred": true,
@@ -18679,8 +19667,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1431",
-        "pos": 1431,
+        "id": "ep-bbc2-S1E02-1507",
+        "pos": 1507,
         "timestamp": 4003000000000,
         "duration": 1856000000,
         "timestamp_inferred": false,
@@ -18692,8 +19680,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1432",
-        "pos": 1432,
+        "id": "ep-bbc2-S1E02-1508",
+        "pos": 1508,
         "timestamp": 4004856000000,
         "duration": 522000000,
         "timestamp_inferred": true,
@@ -18705,8 +19693,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1433",
-        "pos": 1433,
+        "id": "ep-bbc2-S1E02-1509",
+        "pos": 1509,
         "timestamp": 4005378000000,
         "duration": 12707000000,
         "timestamp_inferred": true,
@@ -18718,8 +19706,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1434",
-        "pos": 1434,
+        "id": "ep-bbc2-S1E02-1510",
+        "pos": 1510,
         "timestamp": 4018085000000,
         "duration": 1044000000,
         "timestamp_inferred": true,
@@ -18731,8 +19719,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1435",
-        "pos": 1435,
+        "id": "ep-bbc2-S1E02-1511",
+        "pos": 1511,
         "timestamp": 4019129000000,
         "duration": 1450000000,
         "timestamp_inferred": true,
@@ -18744,8 +19732,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1436",
-        "pos": 1436,
+        "id": "ep-bbc2-S1E02-1512",
+        "pos": 1512,
         "timestamp": 4020579000000,
         "duration": 4410000000,
         "timestamp_inferred": true,
@@ -18757,8 +19745,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1437",
-        "pos": 1437,
+        "id": "ep-bbc2-S1E02-1513",
+        "pos": 1513,
         "timestamp": 4024989000000,
         "duration": 8011000000,
         "timestamp_inferred": true,
@@ -18770,8 +19758,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1438",
-        "pos": 1438,
+        "id": "ep-bbc2-S1E02-1514",
+        "pos": 1514,
         "timestamp": 4033000000000,
         "duration": 3186000000,
         "timestamp_inferred": false,
@@ -18783,8 +19771,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1439",
-        "pos": 1439,
+        "id": "ep-bbc2-S1E02-1515",
+        "pos": 1515,
         "timestamp": 4036186000000,
         "duration": 2052000000,
         "timestamp_inferred": true,
@@ -18796,8 +19784,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1440",
-        "pos": 1440,
+        "id": "ep-bbc2-S1E02-1516",
+        "pos": 1516,
         "timestamp": 4038238000000,
         "duration": 1458000000,
         "timestamp_inferred": true,
@@ -18809,8 +19797,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1441",
-        "pos": 1441,
+        "id": "ep-bbc2-S1E02-1517",
+        "pos": 1517,
         "timestamp": 4039696000000,
         "duration": 594000000,
         "timestamp_inferred": true,
@@ -18822,8 +19810,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1442",
-        "pos": 1442,
+        "id": "ep-bbc2-S1E02-1518",
+        "pos": 1518,
         "timestamp": 4040290000000,
         "duration": 918000000,
         "timestamp_inferred": true,
@@ -18835,8 +19823,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1443",
-        "pos": 1443,
+        "id": "ep-bbc2-S1E02-1519",
+        "pos": 1519,
         "timestamp": 4041208000000,
         "duration": 3833000000,
         "timestamp_inferred": true,
@@ -18848,8 +19836,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1444",
-        "pos": 1444,
+        "id": "ep-bbc2-S1E02-1520",
+        "pos": 1520,
         "timestamp": 4045041000000,
         "duration": 216000000,
         "timestamp_inferred": true,
@@ -18861,8 +19849,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1445",
-        "pos": 1445,
+        "id": "ep-bbc2-S1E02-1521",
+        "pos": 1521,
         "timestamp": 4045257000000,
         "duration": 3348000000,
         "timestamp_inferred": true,
@@ -18874,8 +19862,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1446",
-        "pos": 1446,
+        "id": "ep-bbc2-S1E02-1522",
+        "pos": 1522,
         "timestamp": 4048605000000,
         "duration": 2160000000,
         "timestamp_inferred": true,
@@ -18887,8 +19875,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1447",
-        "pos": 1447,
+        "id": "ep-bbc2-S1E02-1523",
+        "pos": 1523,
         "timestamp": 4050765000000,
         "duration": 1998000000,
         "timestamp_inferred": true,
@@ -18900,8 +19888,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1448",
-        "pos": 1448,
+        "id": "ep-bbc2-S1E02-1524",
+        "pos": 1524,
         "timestamp": 4052763000000,
         "duration": 7237000000,
         "timestamp_inferred": true,
@@ -18913,8 +19901,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1449",
-        "pos": 1449,
+        "id": "ep-bbc2-S1E02-1525",
+        "pos": 1525,
         "timestamp": 4060000000000,
         "duration": 5101000000,
         "timestamp_inferred": false,
@@ -18926,8 +19914,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1450",
-        "pos": 1450,
+        "id": "ep-bbc2-S1E02-1526",
+        "pos": 1526,
         "timestamp": 4065101000000,
         "duration": 1011000000,
         "timestamp_inferred": true,
@@ -18939,8 +19927,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1451",
-        "pos": 1451,
+        "id": "ep-bbc2-S1E02-1527",
+        "pos": 1527,
         "timestamp": 4066112000000,
         "duration": 1149000000,
         "timestamp_inferred": true,
@@ -18952,8 +19940,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1452",
-        "pos": 1452,
+        "id": "ep-bbc2-S1E02-1528",
+        "pos": 1528,
         "timestamp": 4067261000000,
         "duration": 597000000,
         "timestamp_inferred": true,
@@ -18965,8 +19953,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1453",
-        "pos": 1453,
+        "id": "ep-bbc2-S1E02-1529",
+        "pos": 1529,
         "timestamp": 4067858000000,
         "duration": 1378000000,
         "timestamp_inferred": true,
@@ -18978,8 +19966,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1454",
-        "pos": 1454,
+        "id": "ep-bbc2-S1E02-1530",
+        "pos": 1530,
         "timestamp": 4069236000000,
         "duration": 2068000000,
         "timestamp_inferred": true,
@@ -18991,8 +19979,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1455",
-        "pos": 1455,
+        "id": "ep-bbc2-S1E02-1531",
+        "pos": 1531,
         "timestamp": 4071304000000,
         "duration": 4136000000,
         "timestamp_inferred": true,
@@ -19004,8 +19992,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1456",
-        "pos": 1456,
+        "id": "ep-bbc2-S1E02-1532",
+        "pos": 1532,
         "timestamp": 4075440000000,
         "duration": 1470000000,
         "timestamp_inferred": true,
@@ -19017,8 +20005,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1457",
-        "pos": 1457,
+        "id": "ep-bbc2-S1E02-1533",
+        "pos": 1533,
         "timestamp": 4076910000000,
         "duration": 8870000000,
         "timestamp_inferred": true,
@@ -19030,8 +20018,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1458",
-        "pos": 1458,
+        "id": "ep-bbc2-S1E02-1534",
+        "pos": 1534,
         "timestamp": 4085780000000,
         "duration": 2757000000,
         "timestamp_inferred": true,
@@ -19043,8 +20031,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1459",
-        "pos": 1459,
+        "id": "ep-bbc2-S1E02-1535",
+        "pos": 1535,
         "timestamp": 4088537000000,
         "duration": 2895000000,
         "timestamp_inferred": true,
@@ -19056,8 +20044,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1460",
-        "pos": 1460,
+        "id": "ep-bbc2-S1E02-1536",
+        "pos": 1536,
         "timestamp": 4091432000000,
         "duration": 1568000000,
         "timestamp_inferred": true,
@@ -19069,8 +20057,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1461",
-        "pos": 1461,
+        "id": "ep-bbc2-S1E02-1537",
+        "pos": 1537,
         "timestamp": 4093000000000,
         "duration": 525000000,
         "timestamp_inferred": false,
@@ -19082,8 +20070,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1462",
-        "pos": 1462,
+        "id": "ep-bbc2-S1E02-1538",
+        "pos": 1538,
         "timestamp": 4093525000000,
         "duration": 11952000000,
         "timestamp_inferred": true,
@@ -19095,8 +20083,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1463",
-        "pos": 1463,
+        "id": "ep-bbc2-S1E02-1539",
+        "pos": 1539,
         "timestamp": 4105477000000,
         "duration": 788000000,
         "timestamp_inferred": true,
@@ -19108,8 +20096,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1464",
-        "pos": 1464,
+        "id": "ep-bbc2-S1E02-1540",
+        "pos": 1540,
         "timestamp": 4106265000000,
         "duration": 2035000000,
         "timestamp_inferred": true,
@@ -19121,8 +20109,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1465",
-        "pos": 1465,
+        "id": "ep-bbc2-S1E02-1541",
+        "pos": 1541,
         "timestamp": 4108300000000,
         "duration": 3283000000,
         "timestamp_inferred": true,
@@ -19134,8 +20122,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1466",
-        "pos": 1466,
+        "id": "ep-bbc2-S1E02-1542",
+        "pos": 1542,
         "timestamp": 4111583000000,
         "duration": 3086000000,
         "timestamp_inferred": true,
@@ -19147,8 +20135,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1467",
-        "pos": 1467,
+        "id": "ep-bbc2-S1E02-1543",
+        "pos": 1543,
         "timestamp": 4114669000000,
         "duration": 331000000,
         "timestamp_inferred": true,
@@ -19160,8 +20148,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1468",
-        "pos": 1468,
+        "id": "ep-bbc2-S1E02-1544",
+        "pos": 1544,
         "timestamp": 4115000000000,
         "duration": 1759000000,
         "timestamp_inferred": false,
@@ -19173,8 +20161,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1469",
-        "pos": 1469,
+        "id": "ep-bbc2-S1E02-1545",
+        "pos": 1545,
         "timestamp": 4116759000000,
         "duration": 2513000000,
         "timestamp_inferred": true,
@@ -19186,8 +20174,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1470",
-        "pos": 1470,
+        "id": "ep-bbc2-S1E02-1546",
+        "pos": 1546,
         "timestamp": 4119272000000,
         "duration": 3310000000,
         "timestamp_inferred": true,
@@ -19199,8 +20187,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1471",
-        "pos": 1471,
+        "id": "ep-bbc2-S1E02-1547",
+        "pos": 1547,
         "timestamp": 4122582000000,
         "duration": 209000000,
         "timestamp_inferred": true,
@@ -19212,8 +20200,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1472",
-        "pos": 1472,
+        "id": "ep-bbc2-S1E02-1548",
+        "pos": 1548,
         "timestamp": 4122791000000,
         "duration": 1550000000,
         "timestamp_inferred": true,
@@ -19225,8 +20213,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1473",
-        "pos": 1473,
+        "id": "ep-bbc2-S1E02-1549",
+        "pos": 1549,
         "timestamp": 4124341000000,
         "duration": 3184000000,
         "timestamp_inferred": true,
@@ -19238,8 +20226,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1474",
-        "pos": 1474,
+        "id": "ep-bbc2-S1E02-1550",
+        "pos": 1550,
         "timestamp": 4127525000000,
         "duration": 9217000000,
         "timestamp_inferred": true,
@@ -19251,8 +20239,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1475",
-        "pos": 1475,
+        "id": "ep-bbc2-S1E02-1551",
+        "pos": 1551,
         "timestamp": 4136742000000,
         "duration": 8258000000,
         "timestamp_inferred": true,
@@ -19264,8 +20252,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1476",
-        "pos": 1476,
+        "id": "ep-bbc2-S1E02-1552",
+        "pos": 1552,
         "timestamp": 4145000000000,
         "duration": 8812000000,
         "timestamp_inferred": false,
@@ -19277,8 +20265,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1477",
-        "pos": 1477,
+        "id": "ep-bbc2-S1E02-1553",
+        "pos": 1553,
         "timestamp": 4153812000000,
         "duration": 890000000,
         "timestamp_inferred": true,
@@ -19290,8 +20278,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1478",
-        "pos": 1478,
+        "id": "ep-bbc2-S1E02-1554",
+        "pos": 1554,
         "timestamp": 4154702000000,
         "duration": 1171000000,
         "timestamp_inferred": true,
@@ -19303,8 +20291,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1479",
-        "pos": 1479,
+        "id": "ep-bbc2-S1E02-1555",
+        "pos": 1555,
         "timestamp": 4155873000000,
         "duration": 2250000000,
         "timestamp_inferred": true,
@@ -19316,8 +20304,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1480",
-        "pos": 1480,
+        "id": "ep-bbc2-S1E02-1556",
+        "pos": 1556,
         "timestamp": 4158123000000,
         "duration": 1921000000,
         "timestamp_inferred": true,
@@ -19329,8 +20317,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1481",
-        "pos": 1481,
+        "id": "ep-bbc2-S1E02-1557",
+        "pos": 1557,
         "timestamp": 4160044000000,
         "duration": 4500000000,
         "timestamp_inferred": true,
@@ -19342,8 +20330,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1482",
-        "pos": 1482,
+        "id": "ep-bbc2-S1E02-1558",
+        "pos": 1558,
         "timestamp": 4164544000000,
         "duration": 1828000000,
         "timestamp_inferred": true,
@@ -19355,8 +20343,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1483",
-        "pos": 1483,
+        "id": "ep-bbc2-S1E02-1559",
+        "pos": 1559,
         "timestamp": 4166372000000,
         "duration": 1687000000,
         "timestamp_inferred": true,
@@ -19368,8 +20356,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1484",
-        "pos": 1484,
+        "id": "ep-bbc2-S1E02-1560",
+        "pos": 1560,
         "timestamp": 4168059000000,
         "duration": 2156000000,
         "timestamp_inferred": true,
@@ -19381,8 +20369,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1485",
-        "pos": 1485,
+        "id": "ep-bbc2-S1E02-1561",
+        "pos": 1561,
         "timestamp": 4170215000000,
         "duration": 4785000000,
         "timestamp_inferred": true,
@@ -19394,8 +20382,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1486",
-        "pos": 1486,
+        "id": "ep-bbc2-S1E02-1562",
+        "pos": 1562,
         "timestamp": 4175000000000,
         "duration": 158000000,
         "timestamp_inferred": false,
@@ -19407,8 +20395,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1487",
-        "pos": 1487,
+        "id": "ep-bbc2-S1E02-1563",
+        "pos": 1563,
         "timestamp": 4175158000000,
         "duration": 6317000000,
         "timestamp_inferred": true,
@@ -19420,8 +20408,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1488",
-        "pos": 1488,
+        "id": "ep-bbc2-S1E02-1564",
+        "pos": 1564,
         "timestamp": 4181475000000,
         "duration": 198000000,
         "timestamp_inferred": true,
@@ -19433,8 +20421,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1489",
-        "pos": 1489,
+        "id": "ep-bbc2-S1E02-1565",
+        "pos": 1565,
         "timestamp": 4181673000000,
         "duration": 1192000000,
         "timestamp_inferred": true,
@@ -19446,8 +20434,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1490",
-        "pos": 1490,
+        "id": "ep-bbc2-S1E02-1566",
+        "pos": 1566,
         "timestamp": 4182865000000,
         "duration": 476000000,
         "timestamp_inferred": true,
@@ -19459,8 +20447,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1491",
-        "pos": 1491,
+        "id": "ep-bbc2-S1E02-1567",
+        "pos": 1567,
         "timestamp": 4183341000000,
         "duration": 3659000000,
         "timestamp_inferred": true,
@@ -19472,8 +20460,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1492",
-        "pos": 1492,
+        "id": "ep-bbc2-S1E02-1568",
+        "pos": 1568,
         "timestamp": 4187000000000,
         "duration": 758000000,
         "timestamp_inferred": false,
@@ -19485,8 +20473,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1493",
-        "pos": 1493,
+        "id": "ep-bbc2-S1E02-1569",
+        "pos": 1569,
         "timestamp": 4187758000000,
         "duration": 31612000000,
         "timestamp_inferred": true,
@@ -19498,8 +20486,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1494",
-        "pos": 1494,
+        "id": "ep-bbc2-S1E02-1570",
+        "pos": 1570,
         "timestamp": 4219370000000,
         "duration": 2630000000,
         "timestamp_inferred": true,
@@ -19511,8 +20499,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1495",
-        "pos": 1495,
+        "id": "ep-bbc2-S1E02-1571",
+        "pos": 1571,
         "timestamp": 4222000000000,
         "duration": 2225000000,
         "timestamp_inferred": true,
@@ -19524,8 +20512,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1496",
-        "pos": 1496,
+        "id": "ep-bbc2-S1E02-1572",
+        "pos": 1572,
         "timestamp": 4224225000000,
         "duration": 4451000000,
         "timestamp_inferred": true,
@@ -19537,8 +20525,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1497",
-        "pos": 1497,
+        "id": "ep-bbc2-S1E02-1573",
+        "pos": 1573,
         "timestamp": 4228676000000,
         "duration": 252000000,
         "timestamp_inferred": true,
@@ -19550,8 +20538,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1498",
-        "pos": 1498,
+        "id": "ep-bbc2-S1E02-1574",
+        "pos": 1574,
         "timestamp": 4228928000000,
         "duration": 6072000000,
         "timestamp_inferred": true,
@@ -19563,8 +20551,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1499",
-        "pos": 1499,
+        "id": "ep-bbc2-S1E02-1575",
+        "pos": 1575,
         "timestamp": 4235000000000,
         "duration": 673000000,
         "timestamp_inferred": false,
@@ -19576,8 +20564,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1500",
-        "pos": 1500,
+        "id": "ep-bbc2-S1E02-1576",
+        "pos": 1576,
         "timestamp": 4235673000000,
         "duration": 26619000000,
         "timestamp_inferred": true,
@@ -19589,8 +20577,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1501",
-        "pos": 1501,
+        "id": "ep-bbc2-S1E02-1577",
+        "pos": 1577,
         "timestamp": 4262292000000,
         "duration": 1395000000,
         "timestamp_inferred": true,
@@ -19602,8 +20590,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1502",
-        "pos": 1502,
+        "id": "ep-bbc2-S1E02-1578",
+        "pos": 1578,
         "timestamp": 4263687000000,
         "duration": 2313000000,
         "timestamp_inferred": true,
@@ -19615,8 +20603,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1503",
-        "pos": 1503,
+        "id": "ep-bbc2-S1E02-1579",
+        "pos": 1579,
         "timestamp": 4266000000000,
         "duration": 2835000000,
         "timestamp_inferred": false,
@@ -19628,8 +20616,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1504",
-        "pos": 1504,
+        "id": "ep-bbc2-S1E02-1580",
+        "pos": 1580,
         "timestamp": 4268835000000,
         "duration": 7045000000,
         "timestamp_inferred": true,
@@ -19641,8 +20629,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1505",
-        "pos": 1505,
+        "id": "ep-bbc2-S1E02-1581",
+        "pos": 1581,
         "timestamp": 4275880000000,
         "duration": 1718000000,
         "timestamp_inferred": true,
@@ -19654,8 +20642,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1506",
-        "pos": 1506,
+        "id": "ep-bbc2-S1E02-1582",
+        "pos": 1582,
         "timestamp": 4277598000000,
         "duration": 11471000000,
         "timestamp_inferred": true,
@@ -19667,8 +20655,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1507",
-        "pos": 1507,
+        "id": "ep-bbc2-S1E02-1583",
+        "pos": 1583,
         "timestamp": 4289069000000,
         "duration": 214000000,
         "timestamp_inferred": true,
@@ -19680,8 +20668,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1508",
-        "pos": 1508,
+        "id": "ep-bbc2-S1E02-1584",
+        "pos": 1584,
         "timestamp": 4289283000000,
         "duration": 5717000000,
         "timestamp_inferred": true,
@@ -19693,8 +20681,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1509",
-        "pos": 1509,
+        "id": "ep-bbc2-S1E02-1585",
+        "pos": 1585,
         "timestamp": 4295000000000,
         "duration": 3662000000,
         "timestamp_inferred": false,
@@ -19706,8 +20694,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1510",
-        "pos": 1510,
+        "id": "ep-bbc2-S1E02-1586",
+        "pos": 1586,
         "timestamp": 4298662000000,
         "duration": 2369000000,
         "timestamp_inferred": true,
@@ -19719,8 +20707,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1511",
-        "pos": 1511,
+        "id": "ep-bbc2-S1E02-1587",
+        "pos": 1587,
         "timestamp": 4301031000000,
         "duration": 3447000000,
         "timestamp_inferred": true,
@@ -19732,8 +20720,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1512",
-        "pos": 1512,
+        "id": "ep-bbc2-S1E02-1588",
+        "pos": 1588,
         "timestamp": 4304478000000,
         "duration": 323000000,
         "timestamp_inferred": true,
@@ -19745,8 +20733,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1513",
-        "pos": 1513,
+        "id": "ep-bbc2-S1E02-1589",
+        "pos": 1589,
         "timestamp": 4304801000000,
         "duration": 14542000000,
         "timestamp_inferred": true,
@@ -19758,8 +20746,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1514",
-        "pos": 1514,
+        "id": "ep-bbc2-S1E02-1590",
+        "pos": 1590,
         "timestamp": 4319343000000,
         "duration": 269000000,
         "timestamp_inferred": true,
@@ -19771,8 +20759,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1515",
-        "pos": 1515,
+        "id": "ep-bbc2-S1E02-1591",
+        "pos": 1591,
         "timestamp": 4319612000000,
         "duration": 5116000000,
         "timestamp_inferred": true,
@@ -19784,8 +20772,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1516",
-        "pos": 1516,
+        "id": "ep-bbc2-S1E02-1592",
+        "pos": 1592,
         "timestamp": 4324728000000,
         "duration": 272000000,
         "timestamp_inferred": true,
@@ -19797,8 +20785,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1517",
-        "pos": 1517,
+        "id": "ep-bbc2-S1E02-1593",
+        "pos": 1593,
         "timestamp": 4325000000000,
         "duration": 19078000000,
         "timestamp_inferred": false,
@@ -19810,8 +20798,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1518",
-        "pos": 1518,
+        "id": "ep-bbc2-S1E02-1594",
+        "pos": 1594,
         "timestamp": 4344078000000,
         "duration": 741000000,
         "timestamp_inferred": true,
@@ -19823,8 +20811,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1519",
-        "pos": 1519,
+        "id": "ep-bbc2-S1E02-1595",
+        "pos": 1595,
         "timestamp": 4344819000000,
         "duration": 6943000000,
         "timestamp_inferred": true,
@@ -19836,8 +20824,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1520",
-        "pos": 1520,
+        "id": "ep-bbc2-S1E02-1596",
+        "pos": 1596,
         "timestamp": 4351762000000,
         "duration": 1820000000,
         "timestamp_inferred": true,
@@ -19849,8 +20837,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1521",
-        "pos": 1521,
+        "id": "ep-bbc2-S1E02-1597",
+        "pos": 1597,
         "timestamp": 4353582000000,
         "duration": 1418000000,
         "timestamp_inferred": true,
@@ -19862,8 +20850,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1522",
-        "pos": 1522,
+        "id": "ep-bbc2-S1E02-1598",
+        "pos": 1598,
         "timestamp": 4355000000000,
         "duration": 127000000,
         "timestamp_inferred": false,
@@ -19875,8 +20863,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1523",
-        "pos": 1523,
+        "id": "ep-bbc2-S1E02-1599",
+        "pos": 1599,
         "timestamp": 4355127000000,
         "duration": 317000000,
         "timestamp_inferred": true,
@@ -19888,8 +20876,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1524",
-        "pos": 1524,
+        "id": "ep-bbc2-S1E02-1600",
+        "pos": 1600,
         "timestamp": 4355444000000,
         "duration": 2669000000,
         "timestamp_inferred": true,
@@ -19901,8 +20889,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1525",
-        "pos": 1525,
+        "id": "ep-bbc2-S1E02-1601",
+        "pos": 1601,
         "timestamp": 4358113000000,
         "duration": 1652000000,
         "timestamp_inferred": true,
@@ -19914,8 +20902,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1526",
-        "pos": 1526,
+        "id": "ep-bbc2-S1E02-1602",
+        "pos": 1602,
         "timestamp": 4359765000000,
         "duration": 889000000,
         "timestamp_inferred": true,
@@ -19927,8 +20915,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1527",
-        "pos": 1527,
+        "id": "ep-bbc2-S1E02-1603",
+        "pos": 1603,
         "timestamp": 4360654000000,
         "duration": 3559000000,
         "timestamp_inferred": true,
@@ -19940,8 +20928,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1528",
-        "pos": 1528,
+        "id": "ep-bbc2-S1E02-1604",
+        "pos": 1604,
         "timestamp": 4364213000000,
         "duration": 2733000000,
         "timestamp_inferred": true,
@@ -19953,8 +20941,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1529",
-        "pos": 1529,
+        "id": "ep-bbc2-S1E02-1605",
+        "pos": 1605,
         "timestamp": 4366946000000,
         "duration": 2860000000,
         "timestamp_inferred": true,
@@ -19966,8 +20954,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1530",
-        "pos": 1530,
+        "id": "ep-bbc2-S1E02-1606",
+        "pos": 1606,
         "timestamp": 4369806000000,
         "duration": 2542000000,
         "timestamp_inferred": true,
@@ -19979,8 +20967,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1531",
-        "pos": 1531,
+        "id": "ep-bbc2-S1E02-1607",
+        "pos": 1607,
         "timestamp": 4372348000000,
         "duration": 10868000000,
         "timestamp_inferred": true,
@@ -19992,8 +20980,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1532",
-        "pos": 1532,
+        "id": "ep-bbc2-S1E02-1608",
+        "pos": 1608,
         "timestamp": 4383216000000,
         "duration": 635000000,
         "timestamp_inferred": true,
@@ -20005,8 +20993,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1533",
-        "pos": 1533,
+        "id": "ep-bbc2-S1E02-1609",
+        "pos": 1609,
         "timestamp": 4383851000000,
         "duration": 1149000000,
         "timestamp_inferred": true,
@@ -20018,8 +21006,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1534",
-        "pos": 1534,
+        "id": "ep-bbc2-S1E02-1610",
+        "pos": 1610,
         "timestamp": 4385000000000,
         "duration": 2004000000,
         "timestamp_inferred": false,
@@ -20031,8 +21019,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1535",
-        "pos": 1535,
+        "id": "ep-bbc2-S1E02-1611",
+        "pos": 1611,
         "timestamp": 4387004000000,
         "duration": 1593000000,
         "timestamp_inferred": true,
@@ -20044,8 +21032,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1536",
-        "pos": 1536,
+        "id": "ep-bbc2-S1E02-1612",
+        "pos": 1612,
         "timestamp": 4388597000000,
         "duration": 2209000000,
         "timestamp_inferred": true,
@@ -20057,8 +21045,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1537",
-        "pos": 1537,
+        "id": "ep-bbc2-S1E02-1613",
+        "pos": 1613,
         "timestamp": 4390806000000,
         "duration": 1336000000,
         "timestamp_inferred": true,
@@ -20070,8 +21058,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1538",
-        "pos": 1538,
+        "id": "ep-bbc2-S1E02-1614",
+        "pos": 1614,
         "timestamp": 4392142000000,
         "duration": 8685000000,
         "timestamp_inferred": true,
@@ -20083,8 +21071,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1539",
-        "pos": 1539,
+        "id": "ep-bbc2-S1E02-1615",
+        "pos": 1615,
         "timestamp": 4400827000000,
         "duration": 256000000,
         "timestamp_inferred": true,
@@ -20096,8 +21084,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1540",
-        "pos": 1540,
+        "id": "ep-bbc2-S1E02-1616",
+        "pos": 1616,
         "timestamp": 4401083000000,
         "duration": 1747000000,
         "timestamp_inferred": true,
@@ -20109,8 +21097,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1541",
-        "pos": 1541,
+        "id": "ep-bbc2-S1E02-1617",
+        "pos": 1617,
         "timestamp": 4402830000000,
         "duration": 6170000000,
         "timestamp_inferred": true,
@@ -20122,8 +21110,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1542",
-        "pos": 1542,
+        "id": "ep-bbc2-S1E02-1618",
+        "pos": 1618,
         "timestamp": 4409000000000,
         "duration": 2250000000,
         "timestamp_inferred": false,
@@ -20135,8 +21123,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1543",
-        "pos": 1543,
+        "id": "ep-bbc2-S1E02-1619",
+        "pos": 1619,
         "timestamp": 4411250000000,
         "duration": 6291000000,
         "timestamp_inferred": true,
@@ -20148,8 +21136,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1544",
-        "pos": 1544,
+        "id": "ep-bbc2-S1E02-1620",
+        "pos": 1620,
         "timestamp": 4417541000000,
         "duration": 208000000,
         "timestamp_inferred": true,
@@ -20161,8 +21149,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1545",
-        "pos": 1545,
+        "id": "ep-bbc2-S1E02-1621",
+        "pos": 1621,
         "timestamp": 4417749000000,
         "duration": 666000000,
         "timestamp_inferred": true,
@@ -20174,8 +21162,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1546",
-        "pos": 1546,
+        "id": "ep-bbc2-S1E02-1622",
+        "pos": 1622,
         "timestamp": 4418415000000,
         "duration": 9708000000,
         "timestamp_inferred": true,
@@ -20187,8 +21175,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1547",
-        "pos": 1547,
+        "id": "ep-bbc2-S1E02-1623",
+        "pos": 1623,
         "timestamp": 4428123000000,
         "duration": 1208000000,
         "timestamp_inferred": true,
@@ -20200,8 +21188,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1548",
-        "pos": 1548,
+        "id": "ep-bbc2-S1E02-1624",
+        "pos": 1624,
         "timestamp": 4429331000000,
         "duration": 875000000,
         "timestamp_inferred": true,
@@ -20213,8 +21201,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1549",
-        "pos": 1549,
+        "id": "ep-bbc2-S1E02-1625",
+        "pos": 1625,
         "timestamp": 4430206000000,
         "duration": 791000000,
         "timestamp_inferred": true,
@@ -20226,8 +21214,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1550",
-        "pos": 1550,
+        "id": "ep-bbc2-S1E02-1626",
+        "pos": 1626,
         "timestamp": 4430997000000,
         "duration": 2083000000,
         "timestamp_inferred": true,
@@ -20239,8 +21227,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1551",
-        "pos": 1551,
+        "id": "ep-bbc2-S1E02-1627",
+        "pos": 1627,
         "timestamp": 4433080000000,
         "duration": 2333000000,
         "timestamp_inferred": true,
@@ -20252,8 +21240,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1552",
-        "pos": 1552,
+        "id": "ep-bbc2-S1E02-1628",
+        "pos": 1628,
         "timestamp": 4435413000000,
         "duration": 1587000000,
         "timestamp_inferred": true,
@@ -20265,8 +21253,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1553",
-        "pos": 1553,
+        "id": "ep-bbc2-S1E02-1629",
+        "pos": 1629,
         "timestamp": 4437000000000,
         "duration": 1412000000,
         "timestamp_inferred": false,
@@ -20278,8 +21266,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1554",
-        "pos": 1554,
+        "id": "ep-bbc2-S1E02-1630",
+        "pos": 1630,
         "timestamp": 4438412000000,
         "duration": 984000000,
         "timestamp_inferred": true,
@@ -20291,8 +21279,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1555",
-        "pos": 1555,
+        "id": "ep-bbc2-S1E02-1631",
+        "pos": 1631,
         "timestamp": 4439396000000,
         "duration": 3937000000,
         "timestamp_inferred": true,
@@ -20304,8 +21292,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1556",
-        "pos": 1556,
+        "id": "ep-bbc2-S1E02-1632",
+        "pos": 1632,
         "timestamp": 4443333000000,
         "duration": 1155000000,
         "timestamp_inferred": true,
@@ -20317,8 +21305,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1557",
-        "pos": 1557,
+        "id": "ep-bbc2-S1E02-1633",
+        "pos": 1633,
         "timestamp": 4444488000000,
         "duration": 2910000000,
         "timestamp_inferred": true,
@@ -20330,8 +21318,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1558",
-        "pos": 1558,
+        "id": "ep-bbc2-S1E02-1634",
+        "pos": 1634,
         "timestamp": 4447398000000,
         "duration": 10998000000,
         "timestamp_inferred": true,
@@ -20343,8 +21331,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1559",
-        "pos": 1559,
+        "id": "ep-bbc2-S1E02-1635",
+        "pos": 1635,
         "timestamp": 4458396000000,
         "duration": 2867000000,
         "timestamp_inferred": true,
@@ -20356,8 +21344,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1560",
-        "pos": 1560,
+        "id": "ep-bbc2-S1E02-1636",
+        "pos": 1636,
         "timestamp": 4461263000000,
         "duration": 2439000000,
         "timestamp_inferred": true,
@@ -20369,8 +21357,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1561",
-        "pos": 1561,
+        "id": "ep-bbc2-S1E02-1637",
+        "pos": 1637,
         "timestamp": 4463702000000,
         "duration": 342000000,
         "timestamp_inferred": true,
@@ -20382,8 +21370,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1562",
-        "pos": 1562,
+        "id": "ep-bbc2-S1E02-1638",
+        "pos": 1638,
         "timestamp": 4464044000000,
         "duration": 684000000,
         "timestamp_inferred": true,
@@ -20395,8 +21383,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1563",
-        "pos": 1563,
+        "id": "ep-bbc2-S1E02-1639",
+        "pos": 1639,
         "timestamp": 4464728000000,
         "duration": 2272000000,
         "timestamp_inferred": true,
@@ -20408,8 +21396,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1564",
-        "pos": 1564,
+        "id": "ep-bbc2-S1E02-1640",
+        "pos": 1640,
         "timestamp": 4467000000000,
         "duration": 6135000000,
         "timestamp_inferred": false,
@@ -20421,8 +21409,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1565",
-        "pos": 1565,
+        "id": "ep-bbc2-S1E02-1641",
+        "pos": 1641,
         "timestamp": 4473135000000,
         "duration": 1014000000,
         "timestamp_inferred": true,
@@ -20434,8 +21422,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1566",
-        "pos": 1566,
+        "id": "ep-bbc2-S1E02-1642",
+        "pos": 1642,
         "timestamp": 4474149000000,
         "duration": 7149000000,
         "timestamp_inferred": true,
@@ -20447,8 +21435,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1567",
-        "pos": 1567,
+        "id": "ep-bbc2-S1E02-1643",
+        "pos": 1643,
         "timestamp": 4481298000000,
         "duration": 5169000000,
         "timestamp_inferred": true,
@@ -20460,8 +21448,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1568",
-        "pos": 1568,
+        "id": "ep-bbc2-S1E02-1644",
+        "pos": 1644,
         "timestamp": 4486467000000,
         "duration": 4396000000,
         "timestamp_inferred": true,
@@ -20473,8 +21461,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1569",
-        "pos": 1569,
+        "id": "ep-bbc2-S1E02-1645",
+        "pos": 1645,
         "timestamp": 4490863000000,
         "duration": 2995000000,
         "timestamp_inferred": true,
@@ -20486,8 +21474,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1570",
-        "pos": 1570,
+        "id": "ep-bbc2-S1E02-1646",
+        "pos": 1646,
         "timestamp": 4493858000000,
         "duration": 676000000,
         "timestamp_inferred": true,
@@ -20499,8 +21487,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1571",
-        "pos": 1571,
+        "id": "ep-bbc2-S1E02-1647",
+        "pos": 1647,
         "timestamp": 4494534000000,
         "duration": 1207000000,
         "timestamp_inferred": true,
@@ -20512,8 +21500,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1572",
-        "pos": 1572,
+        "id": "ep-bbc2-S1E02-1648",
+        "pos": 1648,
         "timestamp": 4495741000000,
         "duration": 628000000,
         "timestamp_inferred": true,
@@ -20525,8 +21513,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1573",
-        "pos": 1573,
+        "id": "ep-bbc2-S1E02-1649",
+        "pos": 1649,
         "timestamp": 4496369000000,
         "duration": 631000000,
         "timestamp_inferred": true,
@@ -20538,8 +21526,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1574",
-        "pos": 1574,
+        "id": "ep-bbc2-S1E02-1650",
+        "pos": 1650,
         "timestamp": 4497000000000,
         "duration": 3750000000,
         "timestamp_inferred": false,
@@ -20551,8 +21539,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1575",
-        "pos": 1575,
+        "id": "ep-bbc2-S1E02-1651",
+        "pos": 1651,
         "timestamp": 4500750000000,
         "duration": 1071000000,
         "timestamp_inferred": true,
@@ -20564,8 +21552,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1576",
-        "pos": 1576,
+        "id": "ep-bbc2-S1E02-1652",
+        "pos": 1652,
         "timestamp": 4501821000000,
         "duration": 267000000,
         "timestamp_inferred": true,
@@ -20577,8 +21565,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1577",
-        "pos": 1577,
+        "id": "ep-bbc2-S1E02-1653",
+        "pos": 1653,
         "timestamp": 4502088000000,
         "duration": 2571000000,
         "timestamp_inferred": true,
@@ -20590,8 +21578,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1578",
-        "pos": 1578,
+        "id": "ep-bbc2-S1E02-1654",
+        "pos": 1654,
         "timestamp": 4504659000000,
         "duration": 964000000,
         "timestamp_inferred": true,
@@ -20603,8 +21591,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1579",
-        "pos": 1579,
+        "id": "ep-bbc2-S1E02-1655",
+        "pos": 1655,
         "timestamp": 4505623000000,
         "duration": 4767000000,
         "timestamp_inferred": true,
@@ -20616,8 +21604,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1580",
-        "pos": 1580,
+        "id": "ep-bbc2-S1E02-1656",
+        "pos": 1656,
         "timestamp": 4510390000000,
         "duration": 5089000000,
         "timestamp_inferred": true,
@@ -20629,8 +21617,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1581",
-        "pos": 1581,
+        "id": "ep-bbc2-S1E02-1657",
+        "pos": 1657,
         "timestamp": 4515479000000,
         "duration": 267000000,
         "timestamp_inferred": true,
@@ -20642,8 +21630,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1582",
-        "pos": 1582,
+        "id": "ep-bbc2-S1E02-1658",
+        "pos": 1658,
         "timestamp": 4515746000000,
         "duration": 1982000000,
         "timestamp_inferred": true,
@@ -20655,8 +21643,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1583",
-        "pos": 1583,
+        "id": "ep-bbc2-S1E02-1659",
+        "pos": 1659,
         "timestamp": 4517728000000,
         "duration": 267000000,
         "timestamp_inferred": true,
@@ -20668,8 +21656,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1584",
-        "pos": 1584,
+        "id": "ep-bbc2-S1E02-1660",
+        "pos": 1660,
         "timestamp": 4517995000000,
         "duration": 857000000,
         "timestamp_inferred": true,
@@ -20681,8 +21669,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1585",
-        "pos": 1585,
+        "id": "ep-bbc2-S1E02-1661",
+        "pos": 1661,
         "timestamp": 4518852000000,
         "duration": 2678000000,
         "timestamp_inferred": true,
@@ -20694,8 +21682,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1586",
-        "pos": 1586,
+        "id": "ep-bbc2-S1E02-1662",
+        "pos": 1662,
         "timestamp": 4521530000000,
         "duration": 3267000000,
         "timestamp_inferred": true,
@@ -20707,8 +21695,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1587",
-        "pos": 1587,
+        "id": "ep-bbc2-S1E02-1663",
+        "pos": 1663,
         "timestamp": 4524797000000,
         "duration": 214000000,
         "timestamp_inferred": true,
@@ -20720,8 +21708,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1588",
-        "pos": 1588,
+        "id": "ep-bbc2-S1E02-1664",
+        "pos": 1664,
         "timestamp": 4525011000000,
         "duration": 375000000,
         "timestamp_inferred": true,
@@ -20733,8 +21721,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1589",
-        "pos": 1589,
+        "id": "ep-bbc2-S1E02-1665",
+        "pos": 1665,
         "timestamp": 4525386000000,
         "duration": 1614000000,
         "timestamp_inferred": true,
@@ -20746,8 +21734,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1590",
-        "pos": 1590,
+        "id": "ep-bbc2-S1E02-1666",
+        "pos": 1666,
         "timestamp": 4527000000000,
         "duration": 7879000000,
         "timestamp_inferred": false,
@@ -20759,8 +21747,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1591",
-        "pos": 1591,
+        "id": "ep-bbc2-S1E02-1667",
+        "pos": 1667,
         "timestamp": 4534879000000,
         "duration": 195000000,
         "timestamp_inferred": true,
@@ -20772,8 +21760,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1592",
-        "pos": 1592,
+        "id": "ep-bbc2-S1E02-1668",
+        "pos": 1668,
         "timestamp": 4535074000000,
         "duration": 6264000000,
         "timestamp_inferred": true,
@@ -20785,8 +21773,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1593",
-        "pos": 1593,
+        "id": "ep-bbc2-S1E02-1669",
+        "pos": 1669,
         "timestamp": 4541338000000,
         "duration": 2887000000,
         "timestamp_inferred": true,
@@ -20798,8 +21786,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1594",
-        "pos": 1594,
+        "id": "ep-bbc2-S1E02-1670",
+        "pos": 1670,
         "timestamp": 4544225000000,
         "duration": 3230000000,
         "timestamp_inferred": true,
@@ -20811,8 +21799,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1595",
-        "pos": 1595,
+        "id": "ep-bbc2-S1E02-1671",
+        "pos": 1671,
         "timestamp": 4547455000000,
         "duration": 587000000,
         "timestamp_inferred": true,
@@ -20824,8 +21812,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1596",
-        "pos": 1596,
+        "id": "ep-bbc2-S1E02-1672",
+        "pos": 1672,
         "timestamp": 4548042000000,
         "duration": 1517000000,
         "timestamp_inferred": true,
@@ -20837,8 +21825,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1597",
-        "pos": 1597,
+        "id": "ep-bbc2-S1E02-1673",
+        "pos": 1673,
         "timestamp": 4549559000000,
         "duration": 929000000,
         "timestamp_inferred": true,
@@ -20850,8 +21838,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1598",
-        "pos": 1598,
+        "id": "ep-bbc2-S1E02-1674",
+        "pos": 1674,
         "timestamp": 4550488000000,
         "duration": 3327000000,
         "timestamp_inferred": true,
@@ -20863,8 +21851,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1599",
-        "pos": 1599,
+        "id": "ep-bbc2-S1E02-1675",
+        "pos": 1675,
         "timestamp": 4553815000000,
         "duration": 831000000,
         "timestamp_inferred": true,
@@ -20876,8 +21864,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1600",
-        "pos": 1600,
+        "id": "ep-bbc2-S1E02-1676",
+        "pos": 1676,
         "timestamp": 4554646000000,
         "duration": 1468000000,
         "timestamp_inferred": true,
@@ -20889,8 +21877,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1601",
-        "pos": 1601,
+        "id": "ep-bbc2-S1E02-1677",
+        "pos": 1677,
         "timestamp": 4556114000000,
         "duration": 886000000,
         "timestamp_inferred": true,
@@ -20902,8 +21890,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1602",
-        "pos": 1602,
+        "id": "ep-bbc2-S1E02-1678",
+        "pos": 1678,
         "timestamp": 4557000000000,
         "duration": 15000000000,
         "timestamp_inferred": false,
@@ -20915,8 +21903,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1603",
-        "pos": 1603,
+        "id": "ep-bbc2-S1E02-1679",
+        "pos": 1679,
         "timestamp": 4572000000000,
         "duration": 1744000000,
         "timestamp_inferred": true,
@@ -20928,8 +21916,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1604",
-        "pos": 1604,
+        "id": "ep-bbc2-S1E02-1680",
+        "pos": 1680,
         "timestamp": 4573744000000,
         "duration": 3256000000,
         "timestamp_inferred": true,
@@ -20941,8 +21929,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1605",
-        "pos": 1605,
+        "id": "ep-bbc2-S1E02-1681",
+        "pos": 1681,
         "timestamp": 4577000000000,
         "duration": 4966000000,
         "timestamp_inferred": false,
@@ -20954,8 +21942,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1606",
-        "pos": 1606,
+        "id": "ep-bbc2-S1E02-1682",
+        "pos": 1682,
         "timestamp": 4581966000000,
         "duration": 318000000,
         "timestamp_inferred": true,
@@ -20967,8 +21955,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1607",
-        "pos": 1607,
+        "id": "ep-bbc2-S1E02-1683",
+        "pos": 1683,
         "timestamp": 4582284000000,
         "duration": 7450000000,
         "timestamp_inferred": true,
@@ -20980,8 +21968,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1608",
-        "pos": 1608,
+        "id": "ep-bbc2-S1E02-1684",
+        "pos": 1684,
         "timestamp": 4589734000000,
         "duration": 318000000,
         "timestamp_inferred": true,
@@ -20993,8 +21981,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1609",
-        "pos": 1609,
+        "id": "ep-bbc2-S1E02-1685",
+        "pos": 1685,
         "timestamp": 4590052000000,
         "duration": 6304000000,
         "timestamp_inferred": true,
@@ -21006,8 +21994,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1610",
-        "pos": 1610,
+        "id": "ep-bbc2-S1E02-1686",
+        "pos": 1686,
         "timestamp": 4596356000000,
         "duration": 6558000000,
         "timestamp_inferred": true,
@@ -21019,8 +22007,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1611",
-        "pos": 1611,
+        "id": "ep-bbc2-S1E02-1687",
+        "pos": 1687,
         "timestamp": 4602914000000,
         "duration": 1086000000,
         "timestamp_inferred": true,
@@ -21032,8 +22020,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1612",
-        "pos": 1612,
+        "id": "ep-bbc2-S1E02-1688",
+        "pos": 1688,
         "timestamp": 4604000000000,
         "duration": 23155000000,
         "timestamp_inferred": false,
@@ -21045,8 +22033,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1613",
-        "pos": 1613,
+        "id": "ep-bbc2-S1E02-1689",
+        "pos": 1689,
         "timestamp": 4627155000000,
         "duration": 3787000000,
         "timestamp_inferred": true,
@@ -21058,8 +22046,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1614",
-        "pos": 1614,
+        "id": "ep-bbc2-S1E02-1690",
+        "pos": 1690,
         "timestamp": 4630942000000,
         "duration": 3624000000,
         "timestamp_inferred": true,
@@ -21071,8 +22059,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1615",
-        "pos": 1615,
+        "id": "ep-bbc2-S1E02-1691",
+        "pos": 1691,
         "timestamp": 4634566000000,
         "duration": 432000000,
         "timestamp_inferred": true,
@@ -21084,8 +22072,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1616",
-        "pos": 1616,
+        "id": "ep-bbc2-S1E02-1692",
+        "pos": 1692,
         "timestamp": 4634998000000,
         "duration": 2000000,
         "timestamp_inferred": true,
@@ -21103,8 +22091,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1617",
-        "pos": 1617,
+        "id": "ep-bbc2-S1E02-1693",
+        "pos": 1693,
         "timestamp": 4635000000000,
         "duration": 8907000000,
         "timestamp_inferred": false,
@@ -21116,8 +22104,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1618",
-        "pos": 1618,
+        "id": "ep-bbc2-S1E02-1694",
+        "pos": 1694,
         "timestamp": 4643907000000,
         "duration": 13997000000,
         "timestamp_inferred": true,
@@ -21129,8 +22117,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1619",
-        "pos": 1619,
+        "id": "ep-bbc2-S1E02-1695",
+        "pos": 1695,
         "timestamp": 4657904000000,
         "duration": 276000000,
         "timestamp_inferred": true,
@@ -21142,8 +22130,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1620",
-        "pos": 1620,
+        "id": "ep-bbc2-S1E02-1696",
+        "pos": 1696,
         "timestamp": 4658180000000,
         "duration": 2489000000,
         "timestamp_inferred": true,
@@ -21155,8 +22143,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1621",
-        "pos": 1621,
+        "id": "ep-bbc2-S1E02-1697",
+        "pos": 1697,
         "timestamp": 4660669000000,
         "duration": 1331000000,
         "timestamp_inferred": true,
@@ -21168,8 +22156,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1622",
-        "pos": 1622,
+        "id": "ep-bbc2-S1E02-1698",
+        "pos": 1698,
         "timestamp": 4662000000000,
         "duration": 29202000000,
         "timestamp_inferred": false,
@@ -21181,8 +22169,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1623",
-        "pos": 1623,
+        "id": "ep-bbc2-S1E02-1699",
+        "pos": 1699,
         "timestamp": 4691202000000,
         "duration": 2200000000,
         "timestamp_inferred": true,
@@ -21194,8 +22182,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1624",
-        "pos": 1624,
+        "id": "ep-bbc2-S1E02-1700",
+        "pos": 1700,
         "timestamp": 4693402000000,
         "duration": 3598000000,
         "timestamp_inferred": true,
@@ -21207,8 +22195,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1625",
-        "pos": 1625,
+        "id": "ep-bbc2-S1E02-1701",
+        "pos": 1701,
         "timestamp": 4697000000000,
         "duration": 5737000000,
         "timestamp_inferred": false,
@@ -21220,8 +22208,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1626",
-        "pos": 1626,
+        "id": "ep-bbc2-S1E02-1702",
+        "pos": 1702,
         "timestamp": 4702737000000,
         "duration": 289000000,
         "timestamp_inferred": true,
@@ -21233,8 +22221,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1627",
-        "pos": 1627,
+        "id": "ep-bbc2-S1E02-1703",
+        "pos": 1703,
         "timestamp": 4703026000000,
         "duration": 867000000,
         "timestamp_inferred": true,
@@ -21246,8 +22234,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1628",
-        "pos": 1628,
+        "id": "ep-bbc2-S1E02-1704",
+        "pos": 1704,
         "timestamp": 4703893000000,
         "duration": 819000000,
         "timestamp_inferred": true,
@@ -21259,8 +22247,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1629",
-        "pos": 1629,
+        "id": "ep-bbc2-S1E02-1705",
+        "pos": 1705,
         "timestamp": 4704712000000,
         "duration": 10606000000,
         "timestamp_inferred": true,
@@ -21272,8 +22260,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1630",
-        "pos": 1630,
+        "id": "ep-bbc2-S1E02-1706",
+        "pos": 1706,
         "timestamp": 4715318000000,
         "duration": 6363000000,
         "timestamp_inferred": true,
@@ -21285,8 +22273,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1631",
-        "pos": 1631,
+        "id": "ep-bbc2-S1E02-1707",
+        "pos": 1707,
         "timestamp": 4721681000000,
         "duration": 6319000000,
         "timestamp_inferred": true,
@@ -21298,8 +22286,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1632",
-        "pos": 1632,
+        "id": "ep-bbc2-S1E02-1708",
+        "pos": 1708,
         "timestamp": 4728000000000,
         "duration": 4841000000,
         "timestamp_inferred": false,
@@ -21311,8 +22299,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1633",
-        "pos": 1633,
+        "id": "ep-bbc2-S1E02-1709",
+        "pos": 1709,
         "timestamp": 4732841000000,
         "duration": 1471000000,
         "timestamp_inferred": true,
@@ -21324,8 +22312,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1634",
-        "pos": 1634,
+        "id": "ep-bbc2-S1E02-1710",
+        "pos": 1710,
         "timestamp": 4734312000000,
         "duration": 7024000000,
         "timestamp_inferred": true,
@@ -21337,8 +22325,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1635",
-        "pos": 1635,
+        "id": "ep-bbc2-S1E02-1711",
+        "pos": 1711,
         "timestamp": 4741336000000,
         "duration": 1281000000,
         "timestamp_inferred": true,
@@ -21350,8 +22338,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1636",
-        "pos": 1636,
+        "id": "ep-bbc2-S1E02-1712",
+        "pos": 1712,
         "timestamp": 4742617000000,
         "duration": 237000000,
         "timestamp_inferred": true,
@@ -21363,8 +22351,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1637",
-        "pos": 1637,
+        "id": "ep-bbc2-S1E02-1713",
+        "pos": 1713,
         "timestamp": 4742854000000,
         "duration": 4509000000,
         "timestamp_inferred": true,
@@ -21376,8 +22364,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1638",
-        "pos": 1638,
+        "id": "ep-bbc2-S1E02-1714",
+        "pos": 1714,
         "timestamp": 4747363000000,
         "duration": 617000000,
         "timestamp_inferred": true,
@@ -21389,8 +22377,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1639",
-        "pos": 1639,
+        "id": "ep-bbc2-S1E02-1715",
+        "pos": 1715,
         "timestamp": 4747980000000,
         "duration": 1471000000,
         "timestamp_inferred": true,
@@ -21402,8 +22390,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1640",
-        "pos": 1640,
+        "id": "ep-bbc2-S1E02-1716",
+        "pos": 1716,
         "timestamp": 4749451000000,
         "duration": 142000000,
         "timestamp_inferred": true,
@@ -21415,8 +22403,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1641",
-        "pos": 1641,
+        "id": "ep-bbc2-S1E02-1717",
+        "pos": 1717,
         "timestamp": 4749593000000,
         "duration": 7407000000,
         "timestamp_inferred": true,
@@ -21428,8 +22416,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1642",
-        "pos": 1642,
+        "id": "ep-bbc2-S1E02-1718",
+        "pos": 1718,
         "timestamp": 4757000000000,
         "duration": 2149000000,
         "timestamp_inferred": false,
@@ -21441,8 +22429,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1643",
-        "pos": 1643,
+        "id": "ep-bbc2-S1E02-1719",
+        "pos": 1719,
         "timestamp": 4759149000000,
         "duration": 263000000,
         "timestamp_inferred": true,
@@ -21454,8 +22442,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1644",
-        "pos": 1644,
+        "id": "ep-bbc2-S1E02-1720",
+        "pos": 1720,
         "timestamp": 4759412000000,
         "duration": 3333000000,
         "timestamp_inferred": true,
@@ -21467,8 +22455,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1645",
-        "pos": 1645,
+        "id": "ep-bbc2-S1E02-1721",
+        "pos": 1721,
         "timestamp": 4762745000000,
         "duration": 4649000000,
         "timestamp_inferred": true,
@@ -21480,8 +22468,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1646",
-        "pos": 1646,
+        "id": "ep-bbc2-S1E02-1722",
+        "pos": 1722,
         "timestamp": 4767394000000,
         "duration": 307000000,
         "timestamp_inferred": true,
@@ -21493,8 +22481,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1647",
-        "pos": 1647,
+        "id": "ep-bbc2-S1E02-1723",
+        "pos": 1723,
         "timestamp": 4767701000000,
         "duration": 263000000,
         "timestamp_inferred": true,
@@ -21506,8 +22494,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1648",
-        "pos": 1648,
+        "id": "ep-bbc2-S1E02-1724",
+        "pos": 1724,
         "timestamp": 4767964000000,
         "duration": 4517000000,
         "timestamp_inferred": true,
@@ -21519,8 +22507,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1649",
-        "pos": 1649,
+        "id": "ep-bbc2-S1E02-1725",
+        "pos": 1725,
         "timestamp": 4772481000000,
         "duration": 219000000,
         "timestamp_inferred": true,
@@ -21532,8 +22520,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1650",
-        "pos": 1650,
+        "id": "ep-bbc2-S1E02-1726",
+        "pos": 1726,
         "timestamp": 4772700000000,
         "duration": 1578000000,
         "timestamp_inferred": true,
@@ -21545,8 +22533,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1651",
-        "pos": 1651,
+        "id": "ep-bbc2-S1E02-1727",
+        "pos": 1727,
         "timestamp": 4774278000000,
         "duration": 1666000000,
         "timestamp_inferred": true,
@@ -21558,8 +22546,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1652",
-        "pos": 1652,
+        "id": "ep-bbc2-S1E02-1728",
+        "pos": 1728,
         "timestamp": 4775944000000,
         "duration": 6535000000,
         "timestamp_inferred": true,
@@ -21571,8 +22559,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1653",
-        "pos": 1653,
+        "id": "ep-bbc2-S1E02-1729",
+        "pos": 1729,
         "timestamp": 4782479000000,
         "duration": 2982000000,
         "timestamp_inferred": true,
@@ -21584,8 +22572,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1654",
-        "pos": 1654,
+        "id": "ep-bbc2-S1E02-1730",
+        "pos": 1730,
         "timestamp": 4785461000000,
         "duration": 877000000,
         "timestamp_inferred": true,
@@ -21597,8 +22585,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1655",
-        "pos": 1655,
+        "id": "ep-bbc2-S1E02-1731",
+        "pos": 1731,
         "timestamp": 4786338000000,
         "duration": 662000000,
         "timestamp_inferred": true,
@@ -21610,8 +22598,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1656",
-        "pos": 1656,
+        "id": "ep-bbc2-S1E02-1732",
+        "pos": 1732,
         "timestamp": 4787000000000,
         "duration": 961000000,
         "timestamp_inferred": false,
@@ -21623,8 +22611,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1657",
-        "pos": 1657,
+        "id": "ep-bbc2-S1E02-1733",
+        "pos": 1733,
         "timestamp": 4787961000000,
         "duration": 458000000,
         "timestamp_inferred": true,
@@ -21636,8 +22624,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1658",
-        "pos": 1658,
+        "id": "ep-bbc2-S1E02-1734",
+        "pos": 1734,
         "timestamp": 4788419000000,
         "duration": 4396000000,
         "timestamp_inferred": true,
@@ -21649,8 +22637,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1659",
-        "pos": 1659,
+        "id": "ep-bbc2-S1E02-1735",
+        "pos": 1735,
         "timestamp": 4792815000000,
         "duration": 4854000000,
         "timestamp_inferred": true,
@@ -21662,8 +22650,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1660",
-        "pos": 1660,
+        "id": "ep-bbc2-S1E02-1736",
+        "pos": 1736,
         "timestamp": 4797669000000,
         "duration": 412000000,
         "timestamp_inferred": true,
@@ -21675,8 +22663,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1661",
-        "pos": 1661,
+        "id": "ep-bbc2-S1E02-1737",
+        "pos": 1737,
         "timestamp": 4798081000000,
         "duration": 183000000,
         "timestamp_inferred": true,
@@ -21688,8 +22676,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1662",
-        "pos": 1662,
+        "id": "ep-bbc2-S1E02-1738",
+        "pos": 1738,
         "timestamp": 4798264000000,
         "duration": 12091000000,
         "timestamp_inferred": true,
@@ -21701,8 +22689,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1663",
-        "pos": 1663,
+        "id": "ep-bbc2-S1E02-1739",
+        "pos": 1739,
         "timestamp": 4810355000000,
         "duration": 183000000,
         "timestamp_inferred": true,
@@ -21714,8 +22702,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1664",
-        "pos": 1664,
+        "id": "ep-bbc2-S1E02-1740",
+        "pos": 1740,
         "timestamp": 4810538000000,
         "duration": 6462000000,
         "timestamp_inferred": true,
@@ -21727,8 +22715,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1665",
-        "pos": 1665,
+        "id": "ep-bbc2-S1E02-1741",
+        "pos": 1741,
         "timestamp": 4817000000000,
         "duration": 2990000000,
         "timestamp_inferred": false,
@@ -21740,8 +22728,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1666",
-        "pos": 1666,
+        "id": "ep-bbc2-S1E02-1742",
+        "pos": 1742,
         "timestamp": 4819990000000,
         "duration": 2156000000,
         "timestamp_inferred": true,
@@ -21753,8 +22741,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1667",
-        "pos": 1667,
+        "id": "ep-bbc2-S1E02-1743",
+        "pos": 1743,
         "timestamp": 4822146000000,
         "duration": 2500000000,
         "timestamp_inferred": true,
@@ -21766,8 +22754,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1668",
-        "pos": 1668,
+        "id": "ep-bbc2-S1E02-1744",
+        "pos": 1744,
         "timestamp": 4824646000000,
         "duration": 294000000,
         "timestamp_inferred": true,
@@ -21779,8 +22767,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1669",
-        "pos": 1669,
+        "id": "ep-bbc2-S1E02-1745",
+        "pos": 1745,
         "timestamp": 4824940000000,
         "duration": 1274000000,
         "timestamp_inferred": true,
@@ -21792,8 +22780,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1670",
-        "pos": 1670,
+        "id": "ep-bbc2-S1E02-1746",
+        "pos": 1746,
         "timestamp": 4826214000000,
         "duration": 245000000,
         "timestamp_inferred": true,
@@ -21805,8 +22793,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1671",
-        "pos": 1671,
+        "id": "ep-bbc2-S1E02-1747",
+        "pos": 1747,
         "timestamp": 4826459000000,
         "duration": 2500000000,
         "timestamp_inferred": true,
@@ -21818,8 +22806,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1672",
-        "pos": 1672,
+        "id": "ep-bbc2-S1E02-1748",
+        "pos": 1748,
         "timestamp": 4828959000000,
         "duration": 245000000,
         "timestamp_inferred": true,
@@ -21831,8 +22819,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1673",
-        "pos": 1673,
+        "id": "ep-bbc2-S1E02-1749",
+        "pos": 1749,
         "timestamp": 4829204000000,
         "duration": 9068000000,
         "timestamp_inferred": true,
@@ -21844,8 +22832,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1674",
-        "pos": 1674,
+        "id": "ep-bbc2-S1E02-1750",
+        "pos": 1750,
         "timestamp": 4838272000000,
         "duration": 245000000,
         "timestamp_inferred": true,
@@ -21857,8 +22845,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1675",
-        "pos": 1675,
+        "id": "ep-bbc2-S1E02-1751",
+        "pos": 1751,
         "timestamp": 4838517000000,
         "duration": 5000000000,
         "timestamp_inferred": true,
@@ -21870,8 +22858,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1676",
-        "pos": 1676,
+        "id": "ep-bbc2-S1E02-1752",
+        "pos": 1752,
         "timestamp": 4843517000000,
         "duration": 2156000000,
         "timestamp_inferred": true,
@@ -21883,8 +22871,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1677",
-        "pos": 1677,
+        "id": "ep-bbc2-S1E02-1753",
+        "pos": 1753,
         "timestamp": 4845673000000,
         "duration": 1327000000,
         "timestamp_inferred": true,
@@ -21896,8 +22884,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1678",
-        "pos": 1678,
+        "id": "ep-bbc2-S1E02-1754",
+        "pos": 1754,
         "timestamp": 4847000000000,
         "duration": 8983000000,
         "timestamp_inferred": false,
@@ -21909,8 +22897,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1679",
-        "pos": 1679,
+        "id": "ep-bbc2-S1E02-1755",
+        "pos": 1755,
         "timestamp": 4855983000000,
         "duration": 903000000,
         "timestamp_inferred": true,
@@ -21922,8 +22910,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1680",
-        "pos": 1680,
+        "id": "ep-bbc2-S1E02-1756",
+        "pos": 1756,
         "timestamp": 4856886000000,
         "duration": 150000000,
         "timestamp_inferred": true,
@@ -21935,8 +22923,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1681",
-        "pos": 1681,
+        "id": "ep-bbc2-S1E02-1757",
+        "pos": 1757,
         "timestamp": 4857036000000,
         "duration": 4165000000,
         "timestamp_inferred": true,
@@ -21948,8 +22936,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1682",
-        "pos": 1682,
+        "id": "ep-bbc2-S1E02-1758",
+        "pos": 1758,
         "timestamp": 4861201000000,
         "duration": 351000000,
         "timestamp_inferred": true,
@@ -21961,8 +22949,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1683",
-        "pos": 1683,
+        "id": "ep-bbc2-S1E02-1759",
+        "pos": 1759,
         "timestamp": 4861552000000,
         "duration": 5369000000,
         "timestamp_inferred": true,
@@ -21974,8 +22962,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1684",
-        "pos": 1684,
+        "id": "ep-bbc2-S1E02-1760",
+        "pos": 1760,
         "timestamp": 4866921000000,
         "duration": 6925000000,
         "timestamp_inferred": true,
@@ -21987,8 +22975,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1685",
-        "pos": 1685,
+        "id": "ep-bbc2-S1E02-1761",
+        "pos": 1761,
         "timestamp": 4873846000000,
         "duration": 154000000,
         "timestamp_inferred": true,
@@ -22000,8 +22988,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1686",
-        "pos": 1686,
+        "id": "ep-bbc2-S1E02-1762",
+        "pos": 1762,
         "timestamp": 4874000000000,
         "duration": 3311000000,
         "timestamp_inferred": false,
@@ -22013,8 +23001,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1687",
-        "pos": 1687,
+        "id": "ep-bbc2-S1E02-1763",
+        "pos": 1763,
         "timestamp": 4877311000000,
         "duration": 148000000,
         "timestamp_inferred": true,
@@ -22026,8 +23014,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1688",
-        "pos": 1688,
+        "id": "ep-bbc2-S1E02-1764",
+        "pos": 1764,
         "timestamp": 4877459000000,
         "duration": 3904000000,
         "timestamp_inferred": true,
@@ -22039,8 +23027,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1689",
-        "pos": 1689,
+        "id": "ep-bbc2-S1E02-1765",
+        "pos": 1765,
         "timestamp": 4881363000000,
         "duration": 741000000,
         "timestamp_inferred": true,
@@ -22052,8 +23040,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1690",
-        "pos": 1690,
+        "id": "ep-bbc2-S1E02-1766",
+        "pos": 1766,
         "timestamp": 4882104000000,
         "duration": 5831000000,
         "timestamp_inferred": true,
@@ -22065,8 +23053,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1691",
-        "pos": 1691,
+        "id": "ep-bbc2-S1E02-1767",
+        "pos": 1767,
         "timestamp": 4887935000000,
         "duration": 2273000000,
         "timestamp_inferred": true,
@@ -22078,8 +23066,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1692",
-        "pos": 1692,
+        "id": "ep-bbc2-S1E02-1768",
+        "pos": 1768,
         "timestamp": 4890208000000,
         "duration": 296000000,
         "timestamp_inferred": true,
@@ -22091,8 +23079,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1693",
-        "pos": 1693,
+        "id": "ep-bbc2-S1E02-1769",
+        "pos": 1769,
         "timestamp": 4890504000000,
         "duration": 1532000000,
         "timestamp_inferred": true,
@@ -22104,8 +23092,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1694",
-        "pos": 1694,
+        "id": "ep-bbc2-S1E02-1770",
+        "pos": 1770,
         "timestamp": 4892036000000,
         "duration": 5535000000,
         "timestamp_inferred": true,
@@ -22117,8 +23105,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1695",
-        "pos": 1695,
+        "id": "ep-bbc2-S1E02-1771",
+        "pos": 1771,
         "timestamp": 4897571000000,
         "duration": 6429000000,
         "timestamp_inferred": true,
@@ -22130,8 +23118,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1696",
-        "pos": 1696,
+        "id": "ep-bbc2-S1E02-1772",
+        "pos": 1772,
         "timestamp": 4904000000000,
         "duration": 2974000000,
         "timestamp_inferred": false,
@@ -22143,8 +23131,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1697",
-        "pos": 1697,
+        "id": "ep-bbc2-S1E02-1773",
+        "pos": 1773,
         "timestamp": 4906974000000,
         "duration": 2423000000,
         "timestamp_inferred": true,
@@ -22156,8 +23144,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1698",
-        "pos": 1698,
+        "id": "ep-bbc2-S1E02-1774",
+        "pos": 1774,
         "timestamp": 4909397000000,
         "duration": 2974000000,
         "timestamp_inferred": true,
@@ -22169,8 +23157,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1699",
-        "pos": 1699,
+        "id": "ep-bbc2-S1E02-1775",
+        "pos": 1775,
         "timestamp": 4912371000000,
         "duration": 4186000000,
         "timestamp_inferred": true,
@@ -22182,8 +23170,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1700",
-        "pos": 1700,
+        "id": "ep-bbc2-S1E02-1776",
+        "pos": 1776,
         "timestamp": 4916557000000,
         "duration": 443000000,
         "timestamp_inferred": true,
@@ -22195,8 +23183,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1701",
-        "pos": 1701,
+        "id": "ep-bbc2-S1E02-1777",
+        "pos": 1777,
         "timestamp": 4917000000000,
         "duration": 0,
         "timestamp_inferred": false,
@@ -22214,8 +23202,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1702",
-        "pos": 1702,
+        "id": "ep-bbc2-S1E02-1778",
+        "pos": 1778,
         "timestamp": 4917000000000,
         "duration": 7437000000,
         "timestamp_inferred": false,
@@ -22227,8 +23215,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1703",
-        "pos": 1703,
+        "id": "ep-bbc2-S1E02-1779",
+        "pos": 1779,
         "timestamp": 4924437000000,
         "duration": 194000000,
         "timestamp_inferred": true,
@@ -22240,8 +23228,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1704",
-        "pos": 1704,
+        "id": "ep-bbc2-S1E02-1780",
+        "pos": 1780,
         "timestamp": 4924631000000,
         "duration": 2004000000,
         "timestamp_inferred": true,
@@ -22253,8 +23241,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1705",
-        "pos": 1705,
+        "id": "ep-bbc2-S1E02-1781",
+        "pos": 1781,
         "timestamp": 4926635000000,
         "duration": 8860000000,
         "timestamp_inferred": true,
@@ -22266,8 +23254,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1706",
-        "pos": 1706,
+        "id": "ep-bbc2-S1E02-1782",
+        "pos": 1782,
         "timestamp": 4935495000000,
         "duration": 1422000000,
         "timestamp_inferred": true,
@@ -22279,8 +23267,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1707",
-        "pos": 1707,
+        "id": "ep-bbc2-S1E02-1783",
+        "pos": 1783,
         "timestamp": 4936917000000,
         "duration": 5626000000,
         "timestamp_inferred": true,
@@ -22292,8 +23280,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1708",
-        "pos": 1708,
+        "id": "ep-bbc2-S1E02-1784",
+        "pos": 1784,
         "timestamp": 4942543000000,
         "duration": 457000000,
         "timestamp_inferred": true,
@@ -22305,8 +23293,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1709",
-        "pos": 1709,
+        "id": "ep-bbc2-S1E02-1785",
+        "pos": 1785,
         "timestamp": 4943000000000,
         "duration": 5696000000,
         "timestamp_inferred": false,
@@ -22318,8 +23306,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1710",
-        "pos": 1710,
+        "id": "ep-bbc2-S1E02-1786",
+        "pos": 1786,
         "timestamp": 4948696000000,
         "duration": 3384000000,
         "timestamp_inferred": true,
@@ -22331,8 +23319,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1711",
-        "pos": 1711,
+        "id": "ep-bbc2-S1E02-1787",
+        "pos": 1787,
         "timestamp": 4952080000000,
         "duration": 733000000,
         "timestamp_inferred": true,
@@ -22344,8 +23332,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1712",
-        "pos": 1712,
+        "id": "ep-bbc2-S1E02-1788",
+        "pos": 1788,
         "timestamp": 4952813000000,
         "duration": 733000000,
         "timestamp_inferred": true,
@@ -22357,8 +23345,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1713",
-        "pos": 1713,
+        "id": "ep-bbc2-S1E02-1789",
+        "pos": 1789,
         "timestamp": 4953546000000,
         "duration": 9927000000,
         "timestamp_inferred": true,
@@ -22370,8 +23358,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1714",
-        "pos": 1714,
+        "id": "ep-bbc2-S1E02-1790",
+        "pos": 1790,
         "timestamp": 4963473000000,
         "duration": 1917000000,
         "timestamp_inferred": true,
@@ -22383,8 +23371,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1715",
-        "pos": 1715,
+        "id": "ep-bbc2-S1E02-1791",
+        "pos": 1791,
         "timestamp": 4965390000000,
         "duration": 902000000,
         "timestamp_inferred": true,
@@ -22396,8 +23384,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1716",
-        "pos": 1716,
+        "id": "ep-bbc2-S1E02-1792",
+        "pos": 1792,
         "timestamp": 4966292000000,
         "duration": 2481000000,
         "timestamp_inferred": true,
@@ -22409,8 +23397,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1717",
-        "pos": 1717,
+        "id": "ep-bbc2-S1E02-1793",
+        "pos": 1793,
         "timestamp": 4968773000000,
         "duration": 733000000,
         "timestamp_inferred": true,
@@ -22422,8 +23410,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1718",
-        "pos": 1718,
+        "id": "ep-bbc2-S1E02-1794",
+        "pos": 1794,
         "timestamp": 4969506000000,
         "duration": 794000000,
         "timestamp_inferred": true,
@@ -22435,8 +23423,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1719",
-        "pos": 1719,
+        "id": "ep-bbc2-S1E02-1795",
+        "pos": 1795,
         "timestamp": 4970300000000,
         "duration": 3794000000,
         "timestamp_inferred": false,
@@ -22448,8 +23436,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1720",
-        "pos": 1720,
+        "id": "ep-bbc2-S1E02-1796",
+        "pos": 1796,
         "timestamp": 4974094000000,
         "duration": 2017000000,
         "timestamp_inferred": true,
@@ -22461,8 +23449,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1721",
-        "pos": 1721,
+        "id": "ep-bbc2-S1E02-1797",
+        "pos": 1797,
         "timestamp": 4976111000000,
         "duration": 3554000000,
         "timestamp_inferred": true,
@@ -22474,8 +23462,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1722",
-        "pos": 1722,
+        "id": "ep-bbc2-S1E02-1798",
+        "pos": 1798,
         "timestamp": 4979665000000,
         "duration": 1104000000,
         "timestamp_inferred": true,
@@ -22487,8 +23475,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1723",
-        "pos": 1723,
+        "id": "ep-bbc2-S1E02-1799",
+        "pos": 1799,
         "timestamp": 4980769000000,
         "duration": 576000000,
         "timestamp_inferred": true,
@@ -22500,8 +23488,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1724",
-        "pos": 1724,
+        "id": "ep-bbc2-S1E02-1800",
+        "pos": 1800,
         "timestamp": 4981345000000,
         "duration": 2017000000,
         "timestamp_inferred": true,
@@ -22513,8 +23501,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1725",
-        "pos": 1725,
+        "id": "ep-bbc2-S1E02-1801",
+        "pos": 1801,
         "timestamp": 4983362000000,
         "duration": 480000000,
         "timestamp_inferred": true,
@@ -22526,8 +23514,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1726",
-        "pos": 1726,
+        "id": "ep-bbc2-S1E02-1802",
+        "pos": 1802,
         "timestamp": 4983842000000,
         "duration": 4227000000,
         "timestamp_inferred": true,
@@ -22539,8 +23527,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1727",
-        "pos": 1727,
+        "id": "ep-bbc2-S1E02-1803",
+        "pos": 1803,
         "timestamp": 4988069000000,
         "duration": 7877000000,
         "timestamp_inferred": true,
@@ -22552,8 +23540,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1728",
-        "pos": 1728,
+        "id": "ep-bbc2-S1E02-1804",
+        "pos": 1804,
         "timestamp": 4995946000000,
         "duration": 576000000,
         "timestamp_inferred": true,
@@ -22565,8 +23553,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1729",
-        "pos": 1729,
+        "id": "ep-bbc2-S1E02-1805",
+        "pos": 1805,
         "timestamp": 4996522000000,
         "duration": 3890000000,
         "timestamp_inferred": true,
@@ -22578,8 +23566,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1730",
-        "pos": 1730,
+        "id": "ep-bbc2-S1E02-1806",
+        "pos": 1806,
         "timestamp": 5000412000000,
         "duration": 2113000000,
         "timestamp_inferred": true,
@@ -22591,8 +23579,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1731",
-        "pos": 1731,
+        "id": "ep-bbc2-S1E02-1807",
+        "pos": 1807,
         "timestamp": 5002525000000,
         "duration": 775000000,
         "timestamp_inferred": true,
@@ -22604,8 +23592,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1732",
-        "pos": 1732,
+        "id": "ep-bbc2-S1E02-1808",
+        "pos": 1808,
         "timestamp": 5003300000000,
         "duration": 4141000000,
         "timestamp_inferred": false,
@@ -22617,8 +23605,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1733",
-        "pos": 1733,
+        "id": "ep-bbc2-S1E02-1809",
+        "pos": 1809,
         "timestamp": 5007441000000,
         "duration": 1967000000,
         "timestamp_inferred": true,
@@ -22630,8 +23618,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1734",
-        "pos": 1734,
+        "id": "ep-bbc2-S1E02-1810",
+        "pos": 1810,
         "timestamp": 5009408000000,
         "duration": 673000000,
         "timestamp_inferred": true,
@@ -22643,8 +23631,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1735",
-        "pos": 1735,
+        "id": "ep-bbc2-S1E02-1811",
+        "pos": 1811,
         "timestamp": 5010081000000,
         "duration": 2381000000,
         "timestamp_inferred": true,
@@ -22656,8 +23644,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1736",
-        "pos": 1736,
+        "id": "ep-bbc2-S1E02-1812",
+        "pos": 1812,
         "timestamp": 5012462000000,
         "duration": 1035000000,
         "timestamp_inferred": true,
@@ -22669,8 +23657,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1737",
-        "pos": 1737,
+        "id": "ep-bbc2-S1E02-1813",
+        "pos": 1813,
         "timestamp": 5013497000000,
         "duration": 7610000000,
         "timestamp_inferred": true,
@@ -22682,8 +23670,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1738",
-        "pos": 1738,
+        "id": "ep-bbc2-S1E02-1814",
+        "pos": 1814,
         "timestamp": 5021107000000,
         "duration": 1501000000,
         "timestamp_inferred": true,
@@ -22695,8 +23683,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1739",
-        "pos": 1739,
+        "id": "ep-bbc2-S1E02-1815",
+        "pos": 1815,
         "timestamp": 5022608000000,
         "duration": 1915000000,
         "timestamp_inferred": true,
@@ -22708,8 +23696,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1740",
-        "pos": 1740,
+        "id": "ep-bbc2-S1E02-1816",
+        "pos": 1816,
         "timestamp": 5024523000000,
         "duration": 1915000000,
         "timestamp_inferred": true,
@@ -22721,8 +23709,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1741",
-        "pos": 1741,
+        "id": "ep-bbc2-S1E02-1817",
+        "pos": 1817,
         "timestamp": 5026438000000,
         "duration": 5953000000,
         "timestamp_inferred": true,
@@ -22734,8 +23722,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1742",
-        "pos": 1742,
+        "id": "ep-bbc2-S1E02-1818",
+        "pos": 1818,
         "timestamp": 5032391000000,
         "duration": 1294000000,
         "timestamp_inferred": true,
@@ -22747,8 +23735,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1743",
-        "pos": 1743,
+        "id": "ep-bbc2-S1E02-1819",
+        "pos": 1819,
         "timestamp": 5033685000000,
         "duration": 315000000,
         "timestamp_inferred": true,
@@ -22760,8 +23748,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1744",
-        "pos": 1744,
+        "id": "ep-bbc2-S1E02-1820",
+        "pos": 1820,
         "timestamp": 5034000000000,
         "duration": 3984000000,
         "timestamp_inferred": false,
@@ -22773,8 +23761,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1745",
-        "pos": 1745,
+        "id": "ep-bbc2-S1E02-1821",
+        "pos": 1821,
         "timestamp": 5037984000000,
         "duration": 925000000,
         "timestamp_inferred": true,
@@ -22786,8 +23774,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1746",
-        "pos": 1746,
+        "id": "ep-bbc2-S1E02-1822",
+        "pos": 1822,
         "timestamp": 5038909000000,
         "duration": 1408000000,
         "timestamp_inferred": true,
@@ -22799,8 +23787,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1747",
-        "pos": 1747,
+        "id": "ep-bbc2-S1E02-1823",
+        "pos": 1823,
         "timestamp": 5040317000000,
         "duration": 1851000000,
         "timestamp_inferred": true,
@@ -22812,8 +23800,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1748",
-        "pos": 1748,
+        "id": "ep-bbc2-S1E02-1824",
+        "pos": 1824,
         "timestamp": 5042168000000,
         "duration": 1368000000,
         "timestamp_inferred": true,
@@ -22825,8 +23813,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1749",
-        "pos": 1749,
+        "id": "ep-bbc2-S1E02-1825",
+        "pos": 1825,
         "timestamp": 5043536000000,
         "duration": 6197000000,
         "timestamp_inferred": true,
@@ -22838,8 +23826,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1750",
-        "pos": 1750,
+        "id": "ep-bbc2-S1E02-1826",
+        "pos": 1826,
         "timestamp": 5049733000000,
         "duration": 281000000,
         "timestamp_inferred": true,
@@ -22851,8 +23839,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1751",
-        "pos": 1751,
+        "id": "ep-bbc2-S1E02-1827",
+        "pos": 1827,
         "timestamp": 5050014000000,
         "duration": 486000000,
         "timestamp_inferred": true,
@@ -22864,8 +23852,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1752",
-        "pos": 1752,
+        "id": "ep-bbc2-S1E02-1828",
+        "pos": 1828,
         "timestamp": 5050500000000,
         "duration": 212000000,
         "timestamp_inferred": false,
@@ -22877,8 +23865,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1753",
-        "pos": 1753,
+        "id": "ep-bbc2-S1E02-1829",
+        "pos": 1829,
         "timestamp": 5050712000000,
         "duration": 1540000000,
         "timestamp_inferred": true,
@@ -22890,8 +23878,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1754",
-        "pos": 1754,
+        "id": "ep-bbc2-S1E02-1830",
+        "pos": 1830,
         "timestamp": 5052252000000,
         "duration": 849000000,
         "timestamp_inferred": true,
@@ -22903,8 +23891,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1755",
-        "pos": 1755,
+        "id": "ep-bbc2-S1E02-1831",
+        "pos": 1831,
         "timestamp": 5053101000000,
         "duration": 690000000,
         "timestamp_inferred": true,
@@ -22916,8 +23904,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1756",
-        "pos": 1756,
+        "id": "ep-bbc2-S1E02-1832",
+        "pos": 1832,
         "timestamp": 5053791000000,
         "duration": 265000000,
         "timestamp_inferred": true,
@@ -22929,8 +23917,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1757",
-        "pos": 1757,
+        "id": "ep-bbc2-S1E02-1833",
+        "pos": 1833,
         "timestamp": 5054056000000,
         "duration": 2867000000,
         "timestamp_inferred": true,
@@ -22942,8 +23930,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1758",
-        "pos": 1758,
+        "id": "ep-bbc2-S1E02-1834",
+        "pos": 1834,
         "timestamp": 5056923000000,
         "duration": 265000000,
         "timestamp_inferred": true,
@@ -22955,8 +23943,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1759",
-        "pos": 1759,
+        "id": "ep-bbc2-S1E02-1835",
+        "pos": 1835,
         "timestamp": 5057188000000,
         "duration": 849000000,
         "timestamp_inferred": true,
@@ -22968,8 +23956,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1760",
-        "pos": 1760,
+        "id": "ep-bbc2-S1E02-1836",
+        "pos": 1836,
         "timestamp": 5058037000000,
         "duration": 1964000000,
         "timestamp_inferred": true,
@@ -22981,8 +23969,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1761",
-        "pos": 1761,
+        "id": "ep-bbc2-S1E02-1837",
+        "pos": 1837,
         "timestamp": 5060001000000,
         "duration": 902000000,
         "timestamp_inferred": true,
@@ -22994,8 +23982,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1762",
-        "pos": 1762,
+        "id": "ep-bbc2-S1E02-1838",
+        "pos": 1838,
         "timestamp": 5060903000000,
         "duration": 1115000000,
         "timestamp_inferred": true,
@@ -23007,8 +23995,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1763",
-        "pos": 1763,
+        "id": "ep-bbc2-S1E02-1839",
+        "pos": 1839,
         "timestamp": 5062018000000,
         "duration": 6638000000,
         "timestamp_inferred": true,
@@ -23020,8 +24008,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1764",
-        "pos": 1764,
+        "id": "ep-bbc2-S1E02-1840",
+        "pos": 1840,
         "timestamp": 5068656000000,
         "duration": 849000000,
         "timestamp_inferred": true,
@@ -23033,8 +24021,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1765",
-        "pos": 1765,
+        "id": "ep-bbc2-S1E02-1841",
+        "pos": 1841,
         "timestamp": 5069505000000,
         "duration": 531000000,
         "timestamp_inferred": true,
@@ -23046,8 +24034,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1766",
-        "pos": 1766,
+        "id": "ep-bbc2-S1E02-1842",
+        "pos": 1842,
         "timestamp": 5070036000000,
         "duration": 1486000000,
         "timestamp_inferred": true,
@@ -23059,8 +24047,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1767",
-        "pos": 1767,
+        "id": "ep-bbc2-S1E02-1843",
+        "pos": 1843,
         "timestamp": 5071522000000,
         "duration": 10780000000,
         "timestamp_inferred": true,
@@ -23072,8 +24060,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1768",
-        "pos": 1768,
+        "id": "ep-bbc2-S1E02-1844",
+        "pos": 1844,
         "timestamp": 5082302000000,
         "duration": 698000000,
         "timestamp_inferred": true,
@@ -23085,8 +24073,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1769",
-        "pos": 1769,
+        "id": "ep-bbc2-S1E02-1845",
+        "pos": 1845,
         "timestamp": 5083000000000,
         "duration": 519000000,
         "timestamp_inferred": false,
@@ -23098,8 +24086,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1770",
-        "pos": 1770,
+        "id": "ep-bbc2-S1E02-1846",
+        "pos": 1846,
         "timestamp": 5083519000000,
         "duration": 2251000000,
         "timestamp_inferred": true,
@@ -23111,8 +24099,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1771",
-        "pos": 1771,
+        "id": "ep-bbc2-S1E02-1847",
+        "pos": 1847,
         "timestamp": 5085770000000,
         "duration": 4041000000,
         "timestamp_inferred": true,
@@ -23124,8 +24112,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1772",
-        "pos": 1772,
+        "id": "ep-bbc2-S1E02-1848",
+        "pos": 1848,
         "timestamp": 5089811000000,
         "duration": 1847000000,
         "timestamp_inferred": true,
@@ -23137,8 +24125,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1773",
-        "pos": 1773,
+        "id": "ep-bbc2-S1E02-1849",
+        "pos": 1849,
         "timestamp": 5091658000000,
         "duration": 15876000000,
         "timestamp_inferred": true,
@@ -23150,8 +24138,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1774",
-        "pos": 1774,
+        "id": "ep-bbc2-S1E02-1850",
+        "pos": 1850,
         "timestamp": 5107534000000,
         "duration": 346000000,
         "timestamp_inferred": true,
@@ -23163,8 +24151,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1775",
-        "pos": 1775,
+        "id": "ep-bbc2-S1E02-1851",
+        "pos": 1851,
         "timestamp": 5107880000000,
         "duration": 2424000000,
         "timestamp_inferred": true,
@@ -23176,8 +24164,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1776",
-        "pos": 1776,
+        "id": "ep-bbc2-S1E02-1852",
+        "pos": 1852,
         "timestamp": 5110304000000,
         "duration": 696000000,
         "timestamp_inferred": true,
@@ -23189,8 +24177,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1777",
-        "pos": 1777,
+        "id": "ep-bbc2-S1E02-1853",
+        "pos": 1853,
         "timestamp": 5111000000000,
         "duration": 2497000000,
         "timestamp_inferred": false,
@@ -23202,8 +24190,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1778",
-        "pos": 1778,
+        "id": "ep-bbc2-S1E02-1854",
+        "pos": 1854,
         "timestamp": 5113497000000,
         "duration": 260000000,
         "timestamp_inferred": true,
@@ -23215,8 +24203,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1779",
-        "pos": 1779,
+        "id": "ep-bbc2-S1E02-1855",
+        "pos": 1855,
         "timestamp": 5113757000000,
         "duration": 2601000000,
         "timestamp_inferred": true,
@@ -23228,8 +24216,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1780",
-        "pos": 1780,
+        "id": "ep-bbc2-S1E02-1856",
+        "pos": 1856,
         "timestamp": 5116358000000,
         "duration": 1248000000,
         "timestamp_inferred": true,
@@ -23241,8 +24229,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1781",
-        "pos": 1781,
+        "id": "ep-bbc2-S1E02-1857",
+        "pos": 1857,
         "timestamp": 5117606000000,
         "duration": 312000000,
         "timestamp_inferred": true,
@@ -23254,8 +24242,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1782",
-        "pos": 1782,
+        "id": "ep-bbc2-S1E02-1858",
+        "pos": 1858,
         "timestamp": 5117918000000,
         "duration": 1768000000,
         "timestamp_inferred": true,
@@ -23267,8 +24255,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1783",
-        "pos": 1783,
+        "id": "ep-bbc2-S1E02-1859",
+        "pos": 1859,
         "timestamp": 5119686000000,
         "duration": 3381000000,
         "timestamp_inferred": true,
@@ -23280,8 +24268,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1784",
-        "pos": 1784,
+        "id": "ep-bbc2-S1E02-1860",
+        "pos": 1860,
         "timestamp": 5123067000000,
         "duration": 2341000000,
         "timestamp_inferred": true,
@@ -23293,8 +24281,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1785",
-        "pos": 1785,
+        "id": "ep-bbc2-S1E02-1861",
+        "pos": 1861,
         "timestamp": 5125408000000,
         "duration": 884000000,
         "timestamp_inferred": true,
@@ -23306,8 +24294,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1786",
-        "pos": 1786,
+        "id": "ep-bbc2-S1E02-1862",
+        "pos": 1862,
         "timestamp": 5126292000000,
         "duration": 3537000000,
         "timestamp_inferred": true,
@@ -23319,8 +24307,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1787",
-        "pos": 1787,
+        "id": "ep-bbc2-S1E02-1863",
+        "pos": 1863,
         "timestamp": 5129829000000,
         "duration": 312000000,
         "timestamp_inferred": true,
@@ -23332,8 +24320,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1788",
-        "pos": 1788,
+        "id": "ep-bbc2-S1E02-1864",
+        "pos": 1864,
         "timestamp": 5130141000000,
         "duration": 5982000000,
         "timestamp_inferred": true,
@@ -23345,8 +24333,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1789",
-        "pos": 1789,
+        "id": "ep-bbc2-S1E02-1865",
+        "pos": 1865,
         "timestamp": 5136123000000,
         "duration": 624000000,
         "timestamp_inferred": true,
@@ -23358,8 +24346,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1790",
-        "pos": 1790,
+        "id": "ep-bbc2-S1E02-1866",
+        "pos": 1866,
         "timestamp": 5136747000000,
         "duration": 1253000000,
         "timestamp_inferred": true,
@@ -23371,8 +24359,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1791",
-        "pos": 1791,
+        "id": "ep-bbc2-S1E02-1867",
+        "pos": 1867,
         "timestamp": 5138000000000,
         "duration": 2789000000,
         "timestamp_inferred": false,
@@ -23384,8 +24372,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1792",
-        "pos": 1792,
+        "id": "ep-bbc2-S1E02-1868",
+        "pos": 1868,
         "timestamp": 5140789000000,
         "duration": 1331000000,
         "timestamp_inferred": true,
@@ -23397,8 +24385,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1793",
-        "pos": 1793,
+        "id": "ep-bbc2-S1E02-1869",
+        "pos": 1869,
         "timestamp": 5142120000000,
         "duration": 3106000000,
         "timestamp_inferred": true,
@@ -23410,8 +24398,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1794",
-        "pos": 1794,
+        "id": "ep-bbc2-S1E02-1870",
+        "pos": 1870,
         "timestamp": 5145226000000,
         "duration": 1648000000,
         "timestamp_inferred": true,
@@ -23423,8 +24411,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1795",
-        "pos": 1795,
+        "id": "ep-bbc2-S1E02-1871",
+        "pos": 1871,
         "timestamp": 5146874000000,
         "duration": 4183000000,
         "timestamp_inferred": true,
@@ -23436,8 +24424,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1796",
-        "pos": 1796,
+        "id": "ep-bbc2-S1E02-1872",
+        "pos": 1872,
         "timestamp": 5151057000000,
         "duration": 8810000000,
         "timestamp_inferred": true,
@@ -23449,8 +24437,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1797",
-        "pos": 1797,
+        "id": "ep-bbc2-S1E02-1873",
+        "pos": 1873,
         "timestamp": 5159867000000,
         "duration": 1331000000,
         "timestamp_inferred": true,
@@ -23462,8 +24450,8 @@
         "notable": false
       },
       {
-        "id": "ep-bbc2-S1E02-1798",
-        "pos": 1798,
+        "id": "ep-bbc2-S1E02-1874",
+        "pos": 1874,
         "timestamp": 5161198000000,
         "duration": 2000000,
         "timestamp_inferred": true,
@@ -23578,28 +24566,28 @@
       },
       {
         "description": "Karl is happier than Einstein",
-        "start_pos": 1428,
-        "end_pos": 1437
+        "start_pos": 1504,
+        "end_pos": 1513
       },
       {
         "description": "Blind people are riding horses now.",
-        "start_pos": 1438,
-        "end_pos": 1460
+        "start_pos": 1514,
+        "end_pos": 1536
       },
       {
         "description": "A farmer frightened a chicken into laying more eggs by putting an axe near it's little house.",
-        "start_pos": 1462,
-        "end_pos": 1475
+        "start_pos": 1538,
+        "end_pos": 1551
       },
       {
         "description": "Karl made the papers slagging off Cornwall.",
-        "start_pos": 1475,
-        "end_pos": 1486
+        "start_pos": 1551,
+        "end_pos": 1562
       },
       {
         "description": "Crime fighting monkey get the key to the city.",
-        "start_pos": 1709,
-        "end_pos": 1791
+        "start_pos": 1785,
+        "end_pos": 1867
       }
     ],
     "contributors": [
@@ -23608,19 +24596,20 @@
       "MchlPtrsn",
       "Oversteer_",
       "cwizzy",
+      "szmark777",
       "warmans",
       "wontbemad"
     ],
     "trivia": [
       {
         "description": "Apparently people do use \"guide horses\" but only [very small ones](https://en.wikipedia.org/wiki/Guide_horse) that can fit in Tescos:\n\n![picture](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Guide_horse.jpg/330px-Guide_horse.jpg)\n",
-        "start_pos": 1438,
-        "end_pos": 1460
+        "start_pos": 1514,
+        "end_pos": 1536
       },
       {
         "description": "This could have been the Western Morning News (Sunday edition?)",
-        "start_pos": 1476,
-        "end_pos": 1477
+        "start_pos": 1552,
+        "end_pos": 1553
       }
     ]
   }

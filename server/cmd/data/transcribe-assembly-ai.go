@@ -30,9 +30,9 @@ func TranscribeAssemblyAICmd() *cobra.Command {
 				}
 			}()
 
-			apiKey := os.Getenv("ASSEMBLY_AI_KEY")
+			apiKey := os.Getenv("ASSEMBLY_AI_ACCESS_TOKEN")
 			if apiKey == "" {
-				logger.Fatal("Assembly AI API key was not in environment: ASSEMBLY_AI_KEY")
+				logger.Fatal("Assembly AI API key was not in environment: ASSEMBLY_AI_ACCESS_TOKEN")
 			}
 
 			logger.Info("Creating output file", zap.String("output-file", outputPath))
@@ -60,7 +60,7 @@ func TranscribeAssemblyAICmd() *cobra.Command {
 		},
 	}
 
-	cmd.Flags().StringVarP(&inputURL, "input-audio-url", "i", "https://storage.googleapis.com/scrimpton-raw-audio/sample-S0E0.mp3", "Input audio file.")
+	cmd.Flags().StringVarP(&inputURL, "input-audio-url", "i", "https://scrimpton.com/dl/media/episode/xfm-S2E01.mp3", "Input audio file.")
 	cmd.Flags().StringVarP(&outputPath, "output-path", "o", "./var/aai-output-"+shortuuid.New()+".json", "Dump output to given path.")
 
 	return cmd
