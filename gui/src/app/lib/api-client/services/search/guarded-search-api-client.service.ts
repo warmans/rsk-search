@@ -410,6 +410,18 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
       .pipe(tap((res: any) => guards.isRskTranscriptChange(res) || console.error(`TypeGuard for response 'RskTranscriptChange' caught inconsistency.`, res)));
   }
 
+  getTranscriptDialog(
+    args: {
+      epid: string,
+      pos: number,
+      numContextLines?: number,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskTranscriptDialog> {
+    return super.getTranscriptDialog(args, requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRskTranscriptDialog(res) || console.error(`TypeGuard for response 'RskTranscriptDialog' caught inconsistency.`, res)));
+  }
+
   getChunkedTranscriptChunkStats(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskChunkStats> {

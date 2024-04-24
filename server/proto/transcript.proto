@@ -345,9 +345,10 @@ message Dialog {
   map<string, string> metadata = 6;
   bool is_matched_row = 8;
   bool notable = 9;
-  int64 offset_sec = 10;
+  int64 offset_sec = 10; //deprecated
   bool offset_inferred = 11;
   int64 offset_distance = 12;
+  int64 offset_ms = 13;
 }
 
 message Synopsis {

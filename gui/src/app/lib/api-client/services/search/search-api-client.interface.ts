@@ -397,6 +397,18 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  getTranscriptDialog(
+    args: {
+      epid: string,
+      pos: number,
+      numContextLines?: number,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskTranscriptDialog>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   getChunkedTranscriptChunkStats(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskChunkStats>;

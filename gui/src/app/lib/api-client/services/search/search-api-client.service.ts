@@ -873,6 +873,29 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  getTranscriptDialog(
+    args: {
+      epid: string,
+      pos: number,
+      numContextLines?: number,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskTranscriptDialog> {
+    const path = `/api/transcript/${args.epid}/dialog/${args.pos}`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    if ('numContextLines' in args) {
+      options.params = options.params.set('numContextLines', String(args.numContextLines));
+    }
+    return this.sendRequest<models.RskTranscriptDialog>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   getChunkedTranscriptChunkStats(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskChunkStats> {

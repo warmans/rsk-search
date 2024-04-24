@@ -15,7 +15,7 @@ local_resource(
     serve_dir='./server',
     cmd='make build',
     serve_cmd='make run',
-    ignore=['./server/bin', './server/proto', './server/var'],
+    ignore=['./server/bin', './server/proto'],
     deps='./server',
     labels=['API'],
     resource_deps=['postgres', 'redis', 'asynqmon'],

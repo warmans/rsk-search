@@ -464,8 +464,12 @@ export function isRskDialog(arg: any): arg is models.RskDialog {
     ( typeof arg.metadata === 'undefined' || typeof arg.metadata === 'string' ) &&
     // notable?: boolean
     ( typeof arg.notable === 'undefined' || typeof arg.notable === 'boolean' ) &&
+    // offsetDistance?: string
+    ( typeof arg.offsetDistance === 'undefined' || typeof arg.offsetDistance === 'string' ) &&
     // offsetInferred?: boolean
     ( typeof arg.offsetInferred === 'undefined' || typeof arg.offsetInferred === 'boolean' ) &&
+    // offsetMs?: string
+    ( typeof arg.offsetMs === 'undefined' || typeof arg.offsetMs === 'string' ) &&
     // offsetSec?: string
     ( typeof arg.offsetSec === 'undefined' || typeof arg.offsetSec === 'string' ) &&
     // pos?: number
@@ -1086,6 +1090,19 @@ export function isRskTranscriptChunkList(arg: any): arg is models.RskTranscriptC
   typeof arg === 'object' &&
     // chunks?: RskChunk[]
     ( typeof arg.chunks === 'undefined' || (Array.isArray(arg.chunks) && arg.chunks.every((item: unknown) => isRskChunk(item))) ) &&
+
+  true
+  );
+  }
+
+export function isRskTranscriptDialog(arg: any): arg is models.RskTranscriptDialog {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // dialog?: RskDialog[]
+    ( typeof arg.dialog === 'undefined' || (Array.isArray(arg.dialog) && arg.dialog.every((item: unknown) => isRskDialog(item))) ) &&
+    // transcriptMeta?: RskShortTranscript
+    ( typeof arg.transcriptMeta === 'undefined' || isRskShortTranscript(arg.transcriptMeta) ) &&
 
   true
   );

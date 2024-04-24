@@ -29,8 +29,8 @@
              class="text-sm timestamp mb-2 py-2 flex-shrink-0 d-flex flex-column justify-content-center" style="width: 4rem">
           <div
             title="Timestamps are inferred and may not be accurate. These can be improved using the corrections feature."
-            [ngClass]="{'text-muted': line.offsetInferred}" *ngIf="line.offsetSec > 0" (click)="emitTimestamp(line.offsetSec)"
-            class="clickable"><i class="bi-caret-right"></i>{{line.offsetSec | formatSeconds}}
+            [ngClass]="{'text-muted': line.offsetInferred}" *ngIf="line.offsetMs > 0" (click)="emitTimestamp(line.offsetMs)"
+            class="clickable"><i class="bi-caret-right"></i>{{line.offsetMs | formatSeconds:true}}
           </div>
         </div>
 

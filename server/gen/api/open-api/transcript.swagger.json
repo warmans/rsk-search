@@ -1060,6 +1060,10 @@
         "offsetDistance": {
           "type": "string",
           "format": "int64"
+        },
+        "offsetMs": {
+          "type": "string",
+          "format": "int64"
         }
       }
     },

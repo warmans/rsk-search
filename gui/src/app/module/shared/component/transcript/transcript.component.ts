@@ -180,7 +180,7 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
 
   private _scrollToSecondOffset(seconds: number) {
     for (let i = 0; i < this.transcript.transcript.length; i++) {
-      if (parseInt(this.transcript.transcript[i].offsetSec) >= seconds) {
+      if (parseInt(this.transcript.transcript[i].offsetMs)/1000 >= seconds) {
         this.scrollToID = `pos-${this.transcript.transcript[i].pos}`;
         return;
       }
@@ -251,7 +251,7 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
     };
     for (let i: number = (this.startLine || 0); i < (this.endLine && this.endLine < episode?.transcript.length ? this.endLine : episode?.transcript.length); i++) {
 
-      if (parseInt(episode.transcript[i].offsetSec) > 0) {
+      if (parseInt(episode.transcript[i].offsetMs) > 0) {
         this.audioOffsetsAvailable = true;
       }
 

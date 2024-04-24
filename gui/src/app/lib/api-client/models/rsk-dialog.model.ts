@@ -10,7 +10,9 @@ export interface RskDialog {
   isMatchedRow?: boolean;
   metadata?: { [key: string]: string };
   notable?: boolean;
+  offsetDistance?: string;
   offsetInferred?: boolean;
+  offsetMs?: string;
   offsetSec?: string;
   pos?: number;
   type?: DialogType;

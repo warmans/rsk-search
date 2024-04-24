@@ -4,12 +4,13 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/lithammer/shortuuid/v3"
 	"github.com/spf13/cobra"
 	"github.com/warmans/rsk-search/pkg/assemblyai"
 	"go.uber.org/zap"
 	"net/http"
 	"os"
+	"path"
+	"strings"
 	"time"
 )
 
@@ -35,6 +36,7 @@ func TranscribeAssemblyAICmd() *cobra.Command {
 				logger.Fatal("Assembly AI API key was not in environment: ASSEMBLY_AI_ACCESS_TOKEN")
 			}
 
+			outputPath = fmt.Sprintf(outputPath, strings.TrimSuffix(path.Base(inputURL), ".mp3"))
 			logger.Info("Creating output file", zap.String("output-file", outputPath))
 			outputFile, err := os.Create(outputPath)
 			if err != nil {
@@ -60,8 +62,8 @@ func TranscribeAssemblyAICmd() *cobra.Command {
 		},
 	}
 
-	cmd.Flags().StringVarP(&inputURL, "input-audio-url", "i", "https://scrimpton.com/dl/media/episode/xfm-S2E01.mp3", "Input audio file.")
-	cmd.Flags().StringVarP(&outputPath, "output-path", "o", "./var/aai-output-"+shortuuid.New()+".json", "Dump output to given path.")
+	cmd.Flags().StringVarP(&inputURL, "input-audio-url", "i", "https://scrimpton.com/dl/media/episode/xfm-S2E02.mp3", "Input audio file.")
+	cmd.Flags().StringVarP(&outputPath, "output-path", "o", "./var/aai-transcripts/%s.json", "Dump output to given path.")
 
 	return cmd
 }
@@ -85,7 +87,7 @@ func AssemblyAI2Dialog() *cobra.Command {
 				return err
 			}
 
-			outFile, err := os.Create(outputPath)
+			outFile, err := os.Create(fmt.Sprintf(outputPath, strings.TrimSuffix(path.Base(inFile.Name()), ".json")))
 			if err != nil {
 				return err
 			}
@@ -101,7 +103,7 @@ func AssemblyAI2Dialog() *cobra.Command {
 	}
 
 	cmd.Flags().StringVarP(&intputPath, "input-path", "i", "", "raw file created with transcribe-assembly-ai")
-	cmd.Flags().StringVarP(&outputPath, "output-path", "o", "./var/aai-output-"+shortuuid.New()+".tscript.txt", "Dump output to given path.")
+	cmd.Flags().StringVarP(&outputPath, "output-path", "o", "./var/aai-transcripts/%s.tscript.txt", "Dump output to given path.")
 
 	return cmd
 }

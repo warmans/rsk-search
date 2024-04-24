@@ -67,6 +67,7 @@ export { RskTranscriptChange } from './rsk-transcript-change.model';
 export { RskTranscriptChangeDiff } from './rsk-transcript-change-diff.model';
 export { RskTranscriptChangeList } from './rsk-transcript-change-list.model';
 export { RskTranscriptChunkList } from './rsk-transcript-chunk-list.model';
+export { RskTranscriptDialog } from './rsk-transcript-dialog.model';
 export { RskTranscriptList } from './rsk-transcript-list.model';
 export { RskTrivia } from './rsk-trivia.model';
 export { RskTscriptImport } from './rsk-tscript-import.model';

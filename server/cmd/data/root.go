@@ -43,6 +43,7 @@ func RootCmd() *cobra.Command {
 
 	//misc
 	root.AddCommand(CountWords())
+	root.AddCommand(MergeTimestampsAAICommand())
 
 	return root
 }

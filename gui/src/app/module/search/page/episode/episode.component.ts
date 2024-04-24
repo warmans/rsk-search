@@ -190,9 +190,9 @@ export class EpisodeComponent implements OnInit, OnDestroy {
     this.unsubscribe$.complete();
   }
 
-  onAudioTimestamp(ts: number) {
+  onAudioTimestamp(offsetMs: number) {
     this.audioService.setAudioSrc(this.episode.shortId, this.episode.name, this.episode.audioUri);
-    this.audioService.seekAudio(ts);
+    this.audioService.seekAudio(offsetMs/1000);
     this.audioService.playAudio();
   }
 

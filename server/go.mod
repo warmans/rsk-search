@@ -5,9 +5,10 @@ go 1.22
 require (
 	facette.io/natsort v0.0.0-20181210072756-2cd4dd1e2dcb
 	github.com/TheZeroSlave/zapsentry v1.14.0
+	github.com/adrg/strutil v0.3.1
+	github.com/bbalet/stopwords v1.0.0
 	github.com/blugelabs/bluge v0.2.2
 	github.com/bwmarrin/discordgo v0.28.1
-	github.com/bwmarrin/snowflake v0.3.0
 	github.com/dhowden/tag v0.0.0-20220618230019-adf36e896086
 	github.com/getsentry/sentry-go v0.19.0
 	github.com/gocolly/colly/v2 v2.1.0
