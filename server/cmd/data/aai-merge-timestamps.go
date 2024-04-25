@@ -132,21 +132,21 @@ func mergeTimestampsTo(target []models.Dialog, compare []models.Dialog, debugPos
 			distance := math.Abs(distancePcnt(targetPos, comparePos, len(target)) - distanceModifier)
 			var matched bool
 			var similarity float64
-			maxDistance := 0.015
+			standardMaxDistance := 0.025
 			if numTargetWords <= 3 {
 				// compare the original text instead
 				similarity = calculateSimilarity(targetLine.Content, compare[comparePos].Content)
-				matched = similarity >= 0.60 && distance < maxDistance
+				matched = similarity >= 0.60 && distance < 0.010 // use lower distance for short matches
 			} else {
 				compareText = makeComparisonSameLengthAsTarget(targetText, compareText, peekNextWords(compare, comparePos, numTargetWords)...)
 				if numTargetWords > numCompareWords {
 					// extend comparison with following lines to match target length
 					similarity = calculateSimilarity(targetText, compareText)
-					matched = similarity >= 0.65 && distance < maxDistance
+					matched = similarity >= 0.65 && distance < standardMaxDistance
 				} else {
 					//truncate comparison to same length as target
 					similarity = calculateSimilarity(targetText, compareText)
-					matched = similarity >= 0.60 && distance < maxDistance
+					matched = similarity >= 0.60 && distance < standardMaxDistance
 				}
 			}
 
@@ -184,7 +184,7 @@ func cleanString(raw string) string {
 	raw = strings.Replace(raw, "carl", "karl", -1)
 	raw = punctuation.ReplaceAllString(raw, "")
 	raw = stopwords.CleanString(strings.ToLower(raw), "en", false)
-	raw = withoutWords(raw, "yeah", "sure", "hello", "alright", "dont", "know", "i")
+	raw = withoutWords(raw, "yeah", "sure", "hello", "alright", "dont", "know", "i", "uh", "huh")
 	return strings.TrimSpace(raw)
 }
 
