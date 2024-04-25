@@ -132,7 +132,8 @@ func mergeTimestampsTo(target []models.Dialog, compare []models.Dialog, debugPos
 			distance := math.Abs(distancePcnt(targetPos, comparePos, len(target)) - distanceModifier)
 			var matched bool
 			var similarity float64
-			standardMaxDistance := 0.025
+			standardMaxDistance := 0.040
+			
 			if numTargetWords <= 3 {
 				// compare the original text instead
 				similarity = calculateSimilarity(targetLine.Content, compare[comparePos].Content)
