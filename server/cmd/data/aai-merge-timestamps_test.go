@@ -4,9 +4,10 @@ import "testing"
 
 func Test_withinNPcnt(t *testing.T) {
 	type args struct {
-		x    int
-		y    int
-		pcnt float64
+		x     int
+		y     int
+		total int
+		pcnt  float64
 	}
 	tests := []struct {
 		name string
@@ -16,61 +17,77 @@ func Test_withinNPcnt(t *testing.T) {
 		{
 			name: "within 10 percent over",
 			args: args{
-				x:    100,
-				y:    109,
-				pcnt: 0.1,
+				x:     90,
+				y:     99,
+				total: 100,
+				pcnt:  0.1,
 			},
 			want: true,
 		},
 		{
 			name: "exactly 10 percent over",
 			args: args{
-				x:    100,
-				y:    110,
-				pcnt: 0.1,
+				x:     90,
+				y:     100,
+				total: 100,
+				pcnt:  0.1,
 			},
 			want: true,
 		},
 		{
 			name: "more than 10 percent over",
 			args: args{
-				x:    100,
-				y:    120,
-				pcnt: 0.1,
+				x:     80,
+				y:     100,
+				total: 100,
+				pcnt:  0.1,
 			},
 			want: false,
 		},
 		{
 			name: "within 10 percent under",
 			args: args{
-				x:    100,
-				y:    91,
-				pcnt: 0.1,
+				x:     100,
+				y:     91,
+				total: 100,
+				pcnt:  0.1,
 			},
 			want: true,
 		},
 		{
 			name: "exactly 10 percent under",
 			args: args{
-				x:    100,
-				y:    90,
-				pcnt: 0.1,
+				x:     100,
+				y:     90,
+				total: 100,
+				pcnt:  0.1,
 			},
 			want: true,
 		},
 		{
 			name: "more than 10 percent under",
 			args: args{
-				x:    100,
-				y:    80,
-				pcnt: 0.1,
+				x:     100,
+				y:     80,
+				total: 100,
+				pcnt:  0.1,
 			},
 			want: false,
+		},
+		{
+			name: "percentages are accurate with low numbers",
+			args: args{
+				x:     1,
+				y:     2,
+				total: 100,
+				pcnt:  0.01,
+			},
+			want: true,
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := distanceWithinNPcnt(tt.args.x, tt.args.y, tt.args.pcnt); got != tt.want {
+			if got := distanceWithinNPcnt(tt.args.x, tt.args.y, tt.args.total, tt.args.pcnt); got != tt.want {
 				t.Errorf("distanceWithinNPcnt() = %v, want %v", got, tt.want)
 			}
 		})

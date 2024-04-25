@@ -26,7 +26,6 @@ func MergeTimestampsAAICommand() *cobra.Command {
 	var timestampSourceFile string
 	var targetTranscriptName string
 	var outputPath string
-	var verbose bool
 	var replace bool
 	var debugPos int64
 	var debugComparePos int64
@@ -53,7 +52,7 @@ func MergeTimestampsAAICommand() *cobra.Command {
 				outputPath = path.Join(cfg.dataDir, targetTranscriptName)
 			}
 
-			target.Transcript = mergeTimestampsTo(target.Transcript, assemblyAiToDialog(timestampSource.Utterances), verbose, debugPos, debugComparePos)
+			target.Transcript = mergeTimestampsTo(target.Transcript, assemblyAiToDialog(timestampSource.Utterances), debugPos, debugComparePos)
 			if replace {
 				err = data.ReplaceEpisodeFile(cfg.dataDir, target)
 			} else {
@@ -72,7 +71,6 @@ func MergeTimestampsAAICommand() *cobra.Command {
 	cmd.Flags().StringVarP(&timestampSourceFile, "timestamp-source", "s", "", "Source of timestamp data from assembly-ai")
 	cmd.Flags().StringVarP(&targetTranscriptName, "target-transcript", "t", "", "Target transcript")
 	cmd.Flags().StringVarP(&outputPath, "output", "o", "", "Output result to (defaults to target)")
-	cmd.Flags().BoolVarP(&verbose, "verbose", "v", false, "Show possible matches")
 	cmd.Flags().BoolVarP(&replace, "replace", "r", false, "replace source file")
 	cmd.Flags().Int64VarP(&debugPos, "debug-pos", "p", 0, "Dump debug info for this position in the target transcript")
 	cmd.Flags().Int64VarP(&debugComparePos, "debug-compare-pos", "c", 0, "Limit debug output to comparison lines with this position in the comparison transcript")
@@ -80,11 +78,14 @@ func MergeTimestampsAAICommand() *cobra.Command {
 	return cmd
 }
 
-func mergeTimestampsTo(target []models.Dialog, compare []models.Dialog, verbose bool, debugPos int64, debugComparePos int64) []models.Dialog {
+func mergeTimestampsTo(target []models.Dialog, compare []models.Dialog, debugPos int64, debugComparePos int64) []models.Dialog {
 
 	// clear all non-chat data
 	transcript := []models.Dialog{}
-	for _, v := range target {
+	for k, v := range target {
+		//reset all timestamps
+		target[k].Timestamp = 0
+		target[k].TimestampInferred = true
 		if v.Type == models.DialogTypeChat && v.Actor != "" {
 			transcript = append(transcript, v)
 		}
@@ -110,7 +111,7 @@ func mergeTimestampsTo(target []models.Dialog, compare []models.Dialog, verbose 
 			compareText := cleanString(compare[comparePos].Content)
 			compareTimestamp := compare[comparePos].Timestamp
 			numCompareWords := len(strings.Split(compareText, " "))
-			debug := (debugPos > 0 && debugPos == int64(targetPos)) && (debugComparePos == 0 || int64(comparePos) == debugComparePos)
+			debug := (debugPos > 0 && debugPos == int64(targetPos)) && (debugComparePos == 0 || int64(comparePos) == debugComparePos-1)
 
 			// do not backtrack
 			if compareTimestamp < lastMatchedTimestamp {
@@ -127,39 +128,37 @@ func mergeTimestampsTo(target []models.Dialog, compare []models.Dialog, verbose 
 				}
 				continue
 			}
-			if verbose && distanceWithinNPcnt(targetPos, comparePos, 0.1) {
-				fmt.Printf("\tCOMPARE %d: %s (%s)\n", comparePos, compare[comparePos].Content, compareText)
-			}
 
-			distance := max(distancePcnt(targetPos, comparePos)-distanceModifier, 0)
+			distance := math.Abs(distancePcnt(targetPos, comparePos, len(target)) - distanceModifier)
 			var matched bool
 			var similarity float64
+			maxDistance := 0.05
 			if numTargetWords <= 3 {
 				// compare the original text instead
 				similarity = calculateSimilarity(targetLine.Content, compare[comparePos].Content)
-				matched = similarity >= 0.50 && distance < 0.2
+				matched = similarity >= 0.60 && distance < maxDistance
 			} else {
 				compareText = makeComparisonSameLengthAsTarget(targetText, compareText, peekNextWords(compare, comparePos, numTargetWords)...)
 				if numTargetWords > numCompareWords {
 					// extend comparison with following lines to match target length
 					similarity = calculateSimilarity(targetText, compareText)
-					matched = similarity >= 0.65 && distance < 0.2
+					matched = similarity >= 0.65 && distance < maxDistance
 				} else {
 					//truncate comparison to same length as target
 					similarity = calculateSimilarity(targetText, compareText)
-					matched = similarity >= 0.60 && distance < 0.2
+					matched = similarity >= 0.60 && distance < maxDistance
 				}
 			}
 
 			if matched || debug {
-				fmt.Printf("\tFROM %d: %s (%s)\n\tSIMILARITY: %0.2f\n\tDISTANCE: %0.2f\n\tTIMESTAMP: %s\n\n", comparePos, compare[comparePos].Content, compareText, similarity, distance, compareTimestamp)
+				fmt.Printf("\tFROM %d: %s (%s)\n\tSIMILARITY: %0.2f\n\tDISTANCE: %0.3f/%0.3f\n\tTIMESTAMP: %s\n\n", comparePos, compare[comparePos].Content, compareText, similarity, distance, distanceModifier, compareTimestamp)
 			}
 			if matched {
 				target[targetLine.Position-1].Timestamp = compareTimestamp
 				target[targetLine.Position-1].TimestampInferred = false
 				lastMatchedTimestamp = compareTimestamp
 				numMatched++
-				distanceModifier = distancePcnt(targetPos, comparePos)
+				distanceModifier = distancePcnt(targetPos, comparePos, len(target))
 				break
 			}
 		}
@@ -169,19 +168,20 @@ func mergeTimestampsTo(target []models.Dialog, compare []models.Dialog, verbose 
 	return target
 }
 
-func distanceWithinNPcnt(x int, y int, pcnt float64) bool {
-	return distancePcnt(x, y) <= pcnt
+func distanceWithinNPcnt(x int, y int, total int, pcnt float64) bool {
+	return distancePcnt(x, y, total) <= pcnt
 }
 
-func distancePcnt(x int, y int) float64 {
+func distancePcnt(x int, y int, total int) float64 {
 	distance := math.Abs(float64(x - y))
-	return distance / float64(x)
+	return distance / float64(total)
 }
 
 func cleanString(raw string) string {
 	raw = strings.Replace(raw, "'s", "", -1)
 	raw = strings.Replace(raw, "’s", "", -1)
 	raw = strings.Replace(raw, "-", " ", -1)
+	raw = strings.Replace(raw, "carl", "karl", -1)
 	raw = punctuation.ReplaceAllString(raw, "")
 	raw = stopwords.CleanString(strings.ToLower(raw), "en", false)
 	raw = withoutWords(raw, "yeah", "sure", "hello", "alright", "dont", "know", "i")

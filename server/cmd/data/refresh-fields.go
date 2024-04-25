@@ -61,17 +61,16 @@ func RefreshCmd() *cobra.Command {
 
 				logger.Info("Processing file...", zap.String("path", dirEntry.Name()))
 
-				// identify gaps
+				// identify gaps and fix positions
 				hasGaps := false
-				for _, v := range episode.Transcript {
+				for k, v := range episode.Transcript {
+					episode.Transcript[k].Position = int64(k + 1)
 					if v.Type == models.DialogTypeGap {
 						hasGaps = true
 					}
 				}
 				if hasGaps {
 					episode.Incomplete = true
-				} else {
-					episode.Incomplete = false
 				}
 
 				// ensure IDs are correct
