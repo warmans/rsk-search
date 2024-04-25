@@ -76,3 +76,105 @@ func Test_withinNPcnt(t *testing.T) {
 		})
 	}
 }
+
+func Test_makeComparisonSameLength(t *testing.T) {
+	type args struct {
+		targetString  string
+		compareString string
+		padding       []string
+	}
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			name: "correct length already",
+			args: args{
+				targetString:  "foo",
+				compareString: "foo",
+				padding:       []string{"bar", "baz"},
+			},
+			want: "foo",
+		},
+		{
+			name: "target shorter than compare shortens compare",
+			args: args{
+				targetString:  "foo",
+				compareString: "foo bar",
+				padding:       []string{"bar", "baz"},
+			},
+			want: "foo",
+		},
+		{
+			name: "needs padding",
+			args: args{
+				targetString:  "foo bar",
+				compareString: "foo",
+				padding:       []string{"bar", "baz", "quix"},
+			},
+			want: "foo bar",
+		},
+		{
+			name: "needs more padding",
+			args: args{
+				targetString:  "foo bar bar bar",
+				compareString: "foo",
+				padding:       []string{"bar", "baz", "quix"},
+			},
+			want: "foo bar baz quix",
+		},
+		{
+			name: "too many spaces",
+			args: args{
+				targetString:  "foo   bar bar    bar",
+				compareString: "foo",
+				padding:       []string{"bar", "baz", "quix"},
+			},
+			want: "foo bar baz quix",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := makeComparisonSameLengthAsTarget(tt.args.targetString, tt.args.compareString, tt.args.padding...); got != tt.want {
+				t.Errorf("makeComparisonSameLengthAsTarget() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
+
+func Test_withoutWords(t *testing.T) {
+	type args struct {
+		str   string
+		words []string
+	}
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			name: "remove words",
+			args: args{
+				str:   "yeah sure okay",
+				words: []string{"okay", "sure"},
+			},
+			want: "yeah",
+		},
+		{
+			name: "remove no words",
+			args: args{
+				str:   "yeah sure okay",
+				words: []string{"foo", "bar"},
+			},
+			want: "yeah sure okay",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := withoutWords(tt.args.str, tt.args.words...); got != tt.want {
+				t.Errorf("withoutWords() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}

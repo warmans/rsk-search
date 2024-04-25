@@ -62,7 +62,7 @@ func TranscribeAssemblyAICmd() *cobra.Command {
 		},
 	}
 
-	cmd.Flags().StringVarP(&inputURL, "input-audio-url", "i", "https://scrimpton.com/dl/media/episode/xfm-S2E02.mp3", "Input audio file.")
+	cmd.Flags().StringVarP(&inputURL, "input-audio-url", "i", "https://scrimpton.com/dl/media/episode/xfm-S2E03.mp3", "Input audio file.")
 	cmd.Flags().StringVarP(&outputPath, "output-path", "o", "./var/aai-transcripts/%s.json", "Dump output to given path.")
 
 	return cmd

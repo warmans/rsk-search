@@ -27,6 +27,7 @@ type TranscriptWord struct {
 }
 
 type TranscriptUtterance struct {
+	Pos        int64   `json:"pos"`
 	Speaker    string  `json:"speaker"`
 	Text       string  `json:"text"`
 	Start      int64   `json:"start"`
@@ -141,6 +142,11 @@ func (c *Client) getStatus(jobID string) (*TranscriptionStatusResponse, error) {
 	status := &TranscriptionStatusResponse{}
 	if err := json.NewDecoder(resp.Body).Decode(status); err != nil {
 		return nil, err
+	}
+
+	// add a position property to assist in debugging other scripts
+	for k := range status.Utterances {
+		status.Utterances[k].Pos = int64(k) + 1
 	}
 
 	return status, nil
