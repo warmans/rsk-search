@@ -19,7 +19,7 @@ import (
 	"time"
 )
 
-var punctuation = regexp.MustCompile("[^a-zA-Z0-9\\s]+")
+var punctuation = regexp.MustCompile(`[^a-zA-Z0-9\s]+`)
 
 func MergeTimestampsAAICommand() *cobra.Command {
 
@@ -133,7 +133,7 @@ func mergeTimestampsTo(target []models.Dialog, compare []models.Dialog, debugPos
 			var matched bool
 			var similarity float64
 			standardMaxDistance := 0.040
-			
+
 			if numTargetWords <= 3 {
 				// compare the original text instead
 				similarity = calculateSimilarity(targetLine.Content, compare[comparePos].Content)
