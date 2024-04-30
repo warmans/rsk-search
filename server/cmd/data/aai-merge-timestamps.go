@@ -27,6 +27,7 @@ func MergeTimestampsAAICommand() *cobra.Command {
 	var targetTranscriptName string
 	var outputPath string
 	var replace bool
+	var preserveTimestamps bool
 	var debugPos int64
 	var debugComparePos int64
 	var skipPositions []int
@@ -53,7 +54,7 @@ func MergeTimestampsAAICommand() *cobra.Command {
 				outputPath = path.Join(cfg.dataDir, targetTranscriptName)
 			}
 
-			target.Transcript = mergeTimestampsTo(target.Transcript, assemblyAiToDialog(timestampSource.Utterances), debugPos, debugComparePos, skipPositions)
+			target.Transcript = mergeTimestampsTo(target.Transcript, assemblyAiToDialog(timestampSource.Utterances), debugPos, debugComparePos, skipPositions, preserveTimestamps)
 			if replace {
 				err = data.ReplaceEpisodeFile(cfg.dataDir, target)
 			} else {
@@ -77,17 +78,22 @@ func MergeTimestampsAAICommand() *cobra.Command {
 	cmd.Flags().Int64VarP(&debugPos, "debug-pos", "p", 0, "Dump debug info for this position in the target transcript")
 	cmd.Flags().Int64VarP(&debugComparePos, "debug-compare-pos", "c", 0, "Limit debug output to comparison lines with this position in the comparison transcript")
 
+	// this option doesn't really work, needs looking at
+	cmd.Flags().BoolVarP(&preserveTimestamps, "preserve-timestamps", "", false, "keep existing timestamps")
+
 	return cmd
 }
 
-func mergeTimestampsTo(target []models.Dialog, compare []models.Dialog, debugPos int64, debugComparePos int64, skip []int) []models.Dialog {
+func mergeTimestampsTo(target []models.Dialog, compare []models.Dialog, debugPos int64, debugComparePos int64, skip []int, preserveTimestamps bool) []models.Dialog {
 
 	// clear all non-chat data
 	transcript := []models.Dialog{}
 	for k, v := range target {
 		//reset all timestamps
-		target[k].Timestamp = 0
-		target[k].TimestampInferred = true
+		if !preserveTimestamps {
+			target[k].Timestamp = 0
+			target[k].TimestampInferred = true
+		}
 		if v.Type == models.DialogTypeChat && v.Actor != "" {
 			transcript = append(transcript, v)
 		}
