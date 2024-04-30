@@ -29,6 +29,7 @@ func MergeTimestampsAAICommand() *cobra.Command {
 	var replace bool
 	var debugPos int64
 	var debugComparePos int64
+	var skipPositions []int
 
 	cmd := &cobra.Command{
 		Use:   "merge-timestamps-aai",
@@ -52,7 +53,7 @@ func MergeTimestampsAAICommand() *cobra.Command {
 				outputPath = path.Join(cfg.dataDir, targetTranscriptName)
 			}
 
-			target.Transcript = mergeTimestampsTo(target.Transcript, assemblyAiToDialog(timestampSource.Utterances), debugPos, debugComparePos)
+			target.Transcript = mergeTimestampsTo(target.Transcript, assemblyAiToDialog(timestampSource.Utterances), debugPos, debugComparePos, skipPositions)
 			if replace {
 				err = data.ReplaceEpisodeFile(cfg.dataDir, target)
 			} else {
@@ -71,6 +72,7 @@ func MergeTimestampsAAICommand() *cobra.Command {
 	cmd.Flags().StringVarP(&timestampSourceFile, "timestamp-source", "s", "", "Source of timestamp data from assembly-ai")
 	cmd.Flags().StringVarP(&targetTranscriptName, "target-transcript", "t", "", "Target transcript")
 	cmd.Flags().StringVarP(&outputPath, "output", "o", "", "Output result to (defaults to target)")
+	cmd.Flags().IntSliceVarP(&skipPositions, "skip-positions", "x", []int{}, "Skips the given offsets e.g. 1,2,3")
 	cmd.Flags().BoolVarP(&replace, "replace", "r", false, "replace source file")
 	cmd.Flags().Int64VarP(&debugPos, "debug-pos", "p", 0, "Dump debug info for this position in the target transcript")
 	cmd.Flags().Int64VarP(&debugComparePos, "debug-compare-pos", "c", 0, "Limit debug output to comparison lines with this position in the comparison transcript")
@@ -78,7 +80,7 @@ func MergeTimestampsAAICommand() *cobra.Command {
 	return cmd
 }
 
-func mergeTimestampsTo(target []models.Dialog, compare []models.Dialog, debugPos int64, debugComparePos int64) []models.Dialog {
+func mergeTimestampsTo(target []models.Dialog, compare []models.Dialog, debugPos int64, debugComparePos int64, skip []int) []models.Dialog {
 
 	// clear all non-chat data
 	transcript := []models.Dialog{}
@@ -103,6 +105,10 @@ func mergeTimestampsTo(target []models.Dialog, compare []models.Dialog, debugPos
 			if debugPos > 0 && debugPos == int64(targetPos) {
 				fmt.Printf("\tSKIP (too few target words %d)\n", numTargetWords)
 			}
+			continue
+		}
+		if slices.Index(skip, targetPos) > -1 {
+			fmt.Printf("\tSKIP (manually skipped)\n")
 			continue
 		}
 
