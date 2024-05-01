@@ -77,9 +77,7 @@ func MergeTimestampsAAICommand() *cobra.Command {
 	cmd.Flags().BoolVarP(&replace, "replace", "r", false, "replace source file")
 	cmd.Flags().Int64VarP(&debugPos, "debug-pos", "p", 0, "Dump debug info for this position in the target transcript")
 	cmd.Flags().Int64VarP(&debugComparePos, "debug-compare-pos", "c", 0, "Limit debug output to comparison lines with this position in the comparison transcript")
-
-	// this option doesn't really work, needs looking at
-	cmd.Flags().BoolVarP(&preserveTimestamps, "preserve-timestamps", "", false, "keep existing timestamps")
+	cmd.Flags().BoolVarP(&preserveTimestamps, "preserve-timestamps", "", true, "keep existing timestamps")
 
 	return cmd
 }
@@ -88,12 +86,14 @@ func mergeTimestampsTo(target []models.Dialog, compare []models.Dialog, debugPos
 
 	// clear all non-chat data
 	transcript := []models.Dialog{}
+	preservedTimestamps := map[int]time.Duration{}
 	for k, v := range target {
 		//reset all timestamps
 		if !preserveTimestamps {
-			target[k].Timestamp = 0
-			target[k].TimestampInferred = true
+			preservedTimestamps[k] = target[k].Timestamp
 		}
+		target[k].Timestamp = 0
+		target[k].TimestampInferred = true
 		if v.Type == models.DialogTypeChat && v.Actor != "" {
 			transcript = append(transcript, v)
 		}
@@ -174,6 +174,14 @@ func mergeTimestampsTo(target []models.Dialog, compare []models.Dialog, debugPos
 				distanceModifier = distancePcnt(targetPos, comparePos, len(target))
 				break
 			}
+		}
+	}
+
+	// re-add old timestamps
+	for pos, ts := range preservedTimestamps {
+		if target[pos].TimestampInferred {
+			target[pos].Timestamp = ts
+			target[pos].TimestampInferred = false
 		}
 	}
 	fmt.Printf("\nCOMPLETED with %d matched of %d (%0.2f%%)\n", numMatched, len(transcript), float64(numMatched)/float64(len(transcript))*100)
