@@ -61,7 +61,7 @@ func ServerCmd() *cobra.Command {
 			flag.Parse()
 
 			var loggerConf zap.Config
-			if os.Getenv("DEBUG") == "false" {
+			if os.Getenv("DEBUG") == "true" {
 				loggerConf = zap.NewDevelopmentConfig()
 			} else {
 				loggerConf = zap.NewProductionConfig()

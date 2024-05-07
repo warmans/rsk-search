@@ -9,6 +9,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/data"
 	extract_audio "github.com/warmans/rsk-search/pkg/extract-audio"
 	"github.com/warmans/rsk-search/pkg/meta"
+	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/quota"
 	"github.com/warmans/rsk-search/pkg/store/rw"
 	"github.com/warmans/rsk-search/service/config"
@@ -17,7 +18,9 @@ import (
 	"net/http"
 	"os"
 	"path"
+	"strconv"
 	"strings"
+	"time"
 )
 
 var DownloadsOverQuota = errors.New("download quota exceeded")
@@ -97,71 +100,88 @@ func (c *DownloadService) DownloadMP3(resp http.ResponseWriter, req *http.Reques
 
 	filePath := path.Join(c.serviceConfig.MediaBasePath, mediaType, fmt.Sprintf("%s.mp3", fileID))
 
+	// partial file
+
 	if pos := req.URL.Query().Get("pos"); pos != "" {
 		if mediaType != MediaTypeEpisode {
 			http.Error(resp, "Offsets only supported for episodes", http.StatusNotImplemented)
 			return
 		}
-		err := c.servePartialAudioFile(resp, fileID, filePath, pos)
+
+		ep, err := c.episodeCache.GetEpisode(fileID)
+		if errors.Is(err, data.ErrNotFound) || ep == nil {
+			http.Error(resp, fmt.Sprintf("unknown episode ID: %s", fileID), http.StatusNotFound)
+			return
+		}
 		if err != nil {
+			http.Error(resp, "failed to fetch episode metadata", http.StatusInternalServerError)
+			return
+		}
+		startTimestamp, endTimestamp, err := ep.GetTimestampRange(pos)
+		if err != nil {
+			http.Error(resp, "invalid position specification", http.StatusInternalServerError)
+			return
+		}
+		if err := c.incrementDownloadQuotas(req.Context(), mediaType, fileID, calculateDownloadQuotaUsage(ep, endTimestamp-startTimestamp)); err != nil {
+			if errors.Is(err, DownloadsOverQuota) {
+				http.Error(resp, "Bandwidth quota exhausted", http.StatusTooManyRequests)
+			} else {
+				http.Error(resp, "Failed to calculate bandwidth quota", http.StatusInternalServerError)
+			}
+			return
+		}
+		if err = c.servePartialAudioFile(resp, ep, filePath, startTimestamp, endTimestamp); err != nil {
 			c.logger.Error("Failed to serve partial audio file", zap.Error(err))
 		}
 		return
 	}
 
+	// whole file
 	fileStat, err := os.Stat(filePath)
 	if err != nil {
 		c.logger.Error("Failed to find media file", zap.String("path", filePath))
 		http.Error(resp, "Episode not found", http.StatusNotFound)
 		return
 	}
-
-	if err = c.incrementQuotas(req.Context(), mediaType, fileID, fileStat.Size()); err != nil {
-		if err == context.Canceled {
-			// user went away
-			return
-		}
-		c.logger.Error(
-			"Download failed processing quota",
-			zap.Error(err),
-			zap.String("episode", fileID),
-			zap.Int64("num_bytes", fileStat.Size()),
-		)
-		if err == DownloadsOverQuota {
+	if err := c.incrementDownloadQuotas(req.Context(), mediaType, fileID, fileStat.Size()); err != nil {
+		if errors.Is(err, DownloadsOverQuota) {
 			http.Error(resp, "Bandwidth quota exhausted", http.StatusTooManyRequests)
 		} else {
 			http.Error(resp, "Failed to calculate bandwidth quota", http.StatusInternalServerError)
 		}
 		return
 	}
-
-	c.httpMetrics.OutboundMediaBytesTotal.Set(float64(fileStat.Size()))
 	http.ServeFile(resp, req, filePath)
+}
+
+func (c *DownloadService) incrementDownloadQuotas(ctx context.Context, mediaType string, fileID string, fileBytes int64) error {
+
+	c.logger.Debug("Incrementing download quotas", zap.String("media_type", mediaType), zap.String("file_id", fileID), zap.Int64("bytes", fileBytes))
+
+	if err := c.incrementQuotas(ctx, mediaType, fileID, fileBytes); err != nil {
+		if errors.Is(err, context.Canceled) {
+			// user went away
+			return nil
+		}
+		c.logger.Error(
+			"Download failed processing quota",
+			zap.Error(err),
+			zap.String("episode", fileID),
+			zap.Int64("num_bytes", fileBytes),
+		)
+		return err
+	}
+	c.httpMetrics.OutboundMediaBytesTotal.Set(float64(fileBytes))
+	return nil
 }
 
 func (c *DownloadService) servePartialAudioFile(
 	resp http.ResponseWriter,
-	episodeID string,
+	episode *models.Transcript,
 	mp3Path string,
-	positionSpec string,
+	startTimestamp time.Duration,
+	endTimestamp time.Duration,
 ) error {
-
-	ep, err := c.episodeCache.GetEpisode(fmt.Sprintf("ep-%s", episodeID))
-	if err == data.ErrNotFound || ep == nil {
-		http.Error(resp, "unknown episode ID", http.StatusNotFound)
-		return fmt.Errorf("unknown episode ID: %s", episodeID)
-	}
-	if err != nil {
-		http.Error(resp, "failed to fetch episode metadata", http.StatusInternalServerError)
-		return fmt.Errorf("unexpected error: %w", err)
-	}
-
-	startTimestamp, endTimestamp, err := ep.GetTimestampRange(positionSpec)
-	if err != nil {
-		http.Error(resp, "invalid position specification", http.StatusInternalServerError)
-		return fmt.Errorf("unexpected error extracting timestamps: %w", err)
-	}
-
 	resp.Header().Set("Content-Type", "audio/mpeg")
 	//resp.Header().Set("Content-Disposition", fmt.Sprintf("attachment; filename=%s-%d-%d.mp3", ep.ID(), startTimestamp, endTimestamp))
 	return extract_audio.ExtractAudio(resp, mp3Path, startTimestamp, endTimestamp)
@@ -192,7 +212,7 @@ func (c *DownloadService) DownloadFile(resp http.ResponseWriter, req *http.Reque
 
 	if err = c.incrementQuotas(req.Context(), "file", fileName, fileStat.Size()); err != nil {
 		c.logger.Error("Download failed processing quota", zap.Error(err))
-		if err == DownloadsOverQuota {
+		if errors.Is(err, DownloadsOverQuota) {
 			http.Error(resp, "Bandwidth quota exhausted", http.StatusTooManyRequests)
 		} else {
 			http.Error(resp, "Failed to calculate bandwidth quota", http.StatusInternalServerError)
@@ -261,4 +281,15 @@ func (c *DownloadService) incrementQuotas(ctx context.Context, mediaType string,
 		}
 		return nil
 	})
+}
+
+func calculateDownloadQuotaUsage(ep *models.Transcript, duration time.Duration) int64 {
+	var bitrate = 320.00 // default to a high bitrate
+	if bitrateStr, ok := ep.Meta[models.MetadataTypeBitrateKbps]; ok {
+		if bitrateFloat, err := strconv.ParseFloat(bitrateStr, 64); err == nil {
+			bitrate = bitrateFloat
+		}
+	}
+	// bit rate needs to be converted into bytes
+	return int64((bitrate * duration.Seconds()) / 8)
 }

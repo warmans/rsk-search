@@ -133,6 +133,9 @@ type EpisodeCache struct {
 }
 
 func (s *EpisodeCache) GetEpisode(id string) (*models.Transcript, error) {
+	if !strings.HasPrefix(id, "ep-") {
+		id = fmt.Sprintf("ep-%s", id)
+	}
 	s.lock.RLock()
 	defer s.lock.RUnlock()
 	ep, ok := s.episodeMap[id]

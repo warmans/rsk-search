@@ -35,6 +35,7 @@ local_resource(
     deps='./server',
     labels=['Bots'],
     resource_deps=['scrimpton-api'],
+    env={"DEBUG": "true"},
 )
 
 local_resource(

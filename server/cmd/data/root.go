@@ -44,6 +44,7 @@ func RootCmd() *cobra.Command {
 	//misc
 	root.AddCommand(CountWords())
 	root.AddCommand(MergeTimestampsAAICommand())
+	root.AddCommand(RefreshAudioMetadataCmd())
 
 	return root
 }

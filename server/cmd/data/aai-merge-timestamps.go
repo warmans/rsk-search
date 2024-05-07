@@ -21,6 +21,8 @@ import (
 
 var punctuation = regexp.MustCompile(`[^a-zA-Z0-9\s]+`)
 
+// MergeTimestampsAAICommand
+// e.g. export EP=S2E08; ./bin/rsk-search data transcribe-assembly-ai -i https://scrimpton.com/dl/media/episode/xfm-${EP}.mp3 && ./bin/rsk-search data merge-timestamps-aai -s var/aai-transcripts/xfm-${EP}.json -t ep-xfm-${EP}.json
 func MergeTimestampsAAICommand() *cobra.Command {
 
 	var timestampSourceFile string

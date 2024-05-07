@@ -62,6 +62,7 @@ const (
 	MetadataTypeSpotifyPreviewURL = MetadataType("spotify_player_url")
 	MetadataTypeSpotifyURI        = MetadataType("spotify_uri")
 	MetadataTypeDurationMs        = MetadataType("duration_ms")
+	MetadataTypeBitrateKbps       = MetadataType("bitrate_kbps")
 	CoverArtURL                   = MetadataType("cover_art_url")
 
 	MetadataSongArtist   = MetadataType("song_artist")
