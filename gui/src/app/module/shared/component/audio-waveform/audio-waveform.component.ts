@@ -73,6 +73,7 @@ export class AudioWaveformComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   generateWaveform(): void {
+    this.loading = true;
     Promise.resolve(null).then(() => {
       this.wave = WaveSurfer.create({
         container: '#waveform',
@@ -107,7 +108,6 @@ export class AudioWaveformComponent implements OnInit, AfterViewInit, OnDestroy 
       })
 
       this.wave.on('decode', () => {
-        this.loading = true;
         this.region = wsRegions.addRegion({
           start: this.startContext / 1000,
           end: this.wave.getDuration() - (this.endContext / 1000),
@@ -120,7 +120,6 @@ export class AudioWaveformComponent implements OnInit, AfterViewInit, OnDestroy 
         const path: string = this._url.split("?")[0];
         this.exportURL = `${path}?${this.getExportQuerystring()}`;
       });
-
 
       this.wave.on('ready', () => {
         this.loading = false;
