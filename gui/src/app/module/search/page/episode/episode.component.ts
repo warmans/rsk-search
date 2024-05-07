@@ -227,5 +227,10 @@ export class EpisodeComponent implements OnInit, OnDestroy {
     );
   }
 
+  toggleDownloadDialog() {
+    this.audioService.pauseAudio();
+    this.showDownloadDialog = !this.showDownloadDialog;
+  }
+
   protected readonly Math = Math;
 }

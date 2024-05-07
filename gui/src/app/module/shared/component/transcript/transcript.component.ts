@@ -64,13 +64,32 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
   lineInSynopsisMap: { [index: number]: boolean } = {};
   synopsisPos: { [index: number]: RskSynopsis } = {};
 
+  idScrollerSubject: Subject<string | null> = new BehaviorSubject(null)
+  scrollAnchor: string;
+
   @Input()
   set scrollToID(value: string | null) {
     if (value === null) {
       return;
     }
     this._scrollToID = value;
-    this.scrollToAnchor();
+
+    if (!this._scrollToID) {
+      this.scrollToPosStart = undefined;
+      this.scrollToPosEnd = undefined;
+      return;
+    }
+    let parts = this._scrollToID.split('-');
+    if (parts.length === 2) {
+      this.scrollAnchor = this._scrollToID;
+      this.scrollToPosStart = parseInt(parts[1]);
+      this.scrollToPosEnd = this.scrollToPosStart;
+    } else if (parts.length === 3) {
+      this.scrollAnchor = `${parts[0]}-${parts[1]}`;
+      this.scrollToPosStart = parseInt(parts[1]);
+      this.scrollToPosEnd = parseInt(parts[2]);
+    }
+    this.idScrollerSubject.next(value);
   }
 
   get scrollToID(): string {
@@ -154,25 +173,16 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.scrollToAnchor();
+    this.idScrollerSubject.pipe(takeUntil(this.destroy$)).subscribe((id: string) => {
+      if (id == null) {
+        return;
+      }
+      this.scrollToAnchor();
+    })
   }
 
   scrollToAnchor() {
-    if (!this._scrollToID) {
-      this.scrollToPosStart = undefined;
-      this.scrollToPosEnd = undefined;
-      return;
-    }
-    let parts = this._scrollToID.split('-');
-    if (parts.length === 2) {
-      this.viewportScroller.scrollToAnchor(this._scrollToID);
-      this.scrollToPosStart = parseInt(parts[1]);
-      this.scrollToPosEnd = this.scrollToPosStart;
-    } else if (parts.length === 3) {
-      this.viewportScroller.scrollToAnchor(`${parts[0]}-${parts[1]}`);
-      this.scrollToPosStart = parseInt(parts[1]);
-      this.scrollToPosEnd = parseInt(parts[2]);
-    }
+    this.viewportScroller.scrollToAnchor(this.scrollAnchor);
   }
 
   private _scrollToSecondOffset(seconds: number) {

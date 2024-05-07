@@ -48,8 +48,6 @@ export class AudioWaveformComponent implements OnInit, AfterViewInit, OnDestroy 
 
   exportURL: string;
 
-  selection: any;
-
   constructor(private cdr: ChangeDetectorRef, private router: Router) {
   }
 

@@ -171,7 +171,7 @@
                   <button
                     *ngIf="authenticated && episode.offsetAccuracyPcnt > 0"
                     title="Audio export is provided on a best-effort basis. Since the audio timestamps are not 100% accurate, it's possible you won't get exactly the audio you expect."
-                    class="btn btn-sm btn-info ml-2" (click)="showDownloadDialog = !showDownloadDialog">
+                    class="btn btn-sm btn-info ml-2" (click)="toggleDownloadDialog()">
                     <i class="bi-download"></i> Export Selected Audio
                   </button>
                 </ng-container>
@@ -221,7 +221,7 @@
 
 <div class="download-modal modal" [ngClass]="{'open': showDownloadDialog}"
      *ngIf="showDownloadDialog && episode && selection">
-  <div class="modal-dialog  modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <i class="bi-cloud-download mr-2"></i> Export audio section
