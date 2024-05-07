@@ -4,12 +4,6 @@
     <div *ngFor="let line of group?.tscript?.transcript">
       <div class="line d-flex mb-2 p-2 section-title pt-3 pb-3" *ngIf="synopsisPos[line.pos]?.description">
         <strong><i class="bi bi-card-list mr-2"></i>{{synopsisPos[line.pos].description}}</strong>
-        <!--a
-          *ngIf="epid && enableShareLinks"
-          class="ml-3 clickable"
-          (click)="emitShareOpts(synopsisPos[line.pos].startPos-1, synopsisPos[line.pos].endPos-1)">
-            <i class="bi bi-share"></i>
-        </a-->
         <span *ngIf="enableLineLinking" class="ml-2">
             <a
               class="clickable text-muted"
@@ -57,7 +51,7 @@
         <div class="mb-2 ml-2 d-flex flex-column justify-content-center" *ngIf="enableLineLinking">
           <span>
             <a class="clickable text-muted" *ngIf="scrollToPosStart != line.pos" title="Link to this line (or set selection start)"
-               (click)="selectPosition(line.pos, $event)">
+               (click)="selectPosition(line, $event)">
               <i class="bi-bookmark-fill"></i>
             </a>
           </span>
@@ -65,7 +59,7 @@
         <div class="mb-2 ml-2 d-flex flex-column justify-content-center" *ngIf="enableLineLinking && scrollToPosStart && scrollToPosStart < line.pos">
           <a class="clickable text-muted"
              title="Set selection end"
-             (click)="addToSelection(line.pos)">
+             (click)="addToSelection(line)">
             <i class="bi-bookmark-plus"></i>
           </a>
         </div>

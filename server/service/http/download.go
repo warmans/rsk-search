@@ -101,13 +101,13 @@ func (c *DownloadService) DownloadMP3(resp http.ResponseWriter, req *http.Reques
 	filePath := path.Join(c.serviceConfig.MediaBasePath, mediaType, fmt.Sprintf("%s.mp3", fileID))
 
 	// partial file
+	// todo: this should also support exporting by specific timestamps
+	if req.URL.Query().Get("pos") != "" || req.URL.Query().Get("ts") != "" {
 
-	if pos := req.URL.Query().Get("pos"); pos != "" {
 		if mediaType != MediaTypeEpisode {
-			http.Error(resp, "Offsets only supported for episodes", http.StatusNotImplemented)
+			http.Error(resp, "Section exports only supported for episodes", http.StatusNotImplemented)
 			return
 		}
-
 		ep, err := c.episodeCache.GetEpisode(fileID)
 		if errors.Is(err, data.ErrNotFound) || ep == nil {
 			http.Error(resp, fmt.Sprintf("unknown episode ID: %s", fileID), http.StatusNotFound)
@@ -117,11 +117,26 @@ func (c *DownloadService) DownloadMP3(resp http.ResponseWriter, req *http.Reques
 			http.Error(resp, "failed to fetch episode metadata", http.StatusInternalServerError)
 			return
 		}
-		startTimestamp, endTimestamp, err := ep.GetTimestampRange(pos)
-		if err != nil {
-			http.Error(resp, "invalid position specification", http.StatusInternalServerError)
-			return
+
+		var startTimestamp, endTimestamp time.Duration
+		if pos := req.URL.Query().Get("pos"); pos != "" {
+			startTimestamp, endTimestamp, err = ep.GetTimestampRange(pos)
+			if err != nil {
+				http.Error(resp, "invalid position specification", http.StatusBadRequest)
+				return
+			}
+		} else {
+			if ts := req.URL.Query().Get("ts"); ts != "" {
+				startTimestamp, endTimestamp, err = parseTsParam(ts)
+				if err != nil {
+					http.Error(resp, fmt.Sprintf("invalid timestamp specification: %s", ts), http.StatusBadRequest)
+				}
+			} else {
+				http.Error(resp, "either position range (pos) or timestamp range (ts) must be specified", http.StatusBadRequest)
+				return
+			}
 		}
+
 		if err := c.incrementDownloadQuotas(req.Context(), mediaType, fileID, calculateDownloadQuotaUsage(ep, endTimestamp-startTimestamp)); err != nil {
 			if errors.Is(err, DownloadsOverQuota) {
 				http.Error(resp, "Bandwidth quota exhausted", http.StatusTooManyRequests)
@@ -183,7 +198,7 @@ func (c *DownloadService) servePartialAudioFile(
 	endTimestamp time.Duration,
 ) error {
 	resp.Header().Set("Content-Type", "audio/mpeg")
-	//resp.Header().Set("Content-Disposition", fmt.Sprintf("attachment; filename=%s-%d-%d.mp3", ep.ID(), startTimestamp, endTimestamp))
+	resp.Header().Set("Content-Disposition", fmt.Sprintf("attachment; filename=%s-%s-%s.mp3", episode.ID(), startTimestamp.String(), endTimestamp.String()))
 	return extract_audio.ExtractAudio(resp, mp3Path, startTimestamp, endTimestamp)
 }
 
@@ -292,4 +307,20 @@ func calculateDownloadQuotaUsage(ep *models.Transcript, duration time.Duration) 
 	}
 	// bit rate needs to be converted into bytes
 	return int64((bitrate * duration.Seconds()) / 8)
+}
+
+func parseTsParam(ts string) (time.Duration, time.Duration, error) {
+	parts := strings.Split(ts, "-")
+	if len(parts) != 2 {
+		return 0, 0, fmt.Errorf("invalid timestamp range: %s", ts)
+	}
+	startTs, err := strconv.ParseInt(parts[0], 10, 64)
+	if err != nil {
+		return 0, 0, fmt.Errorf("invalid start timestamp %s: %w", ts, err)
+	}
+	endTs, err := strconv.ParseInt(parts[1], 10, 64)
+	if err != nil {
+		return 0, 0, fmt.Errorf("invalid end timestamp %s: %w", ts, err)
+	}
+	return time.Duration(startTs) * time.Millisecond, time.Duration(endTs) * time.Millisecond, nil
 }

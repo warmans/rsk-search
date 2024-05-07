@@ -70,6 +70,10 @@ export class EpisodeComponent implements OnInit, OnDestroy {
 
   activeInfoPanel: 'synopsis' | 'songs' | 'quotes' = 'synopsis';
 
+  showDownloadDialog: boolean = false;
+
+  episodeDurationMs: number = 0;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -92,7 +96,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
       }
       if (f.startsWith('pos-')) {
         this.scrollToID = f;
-        this.selection = parseSection(f);
+        this.selection = parseSection(f, (this.episode?.transcript || []));
       }
       if (f.startsWith('sec-')) {
         this.scrollToSeconds = parseInt(f.replace('sec-', ''));
@@ -129,6 +133,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
         this.transcribers = ep.contributors.join(', ');
         this.episodeImage = ep.metadata['cover_art_url'] ? ep.metadata['cover_art_url'] : `/assets/cover/${ep.publication}-s${ep.series}-lg.jpeg`;
         this.audioLink = ep.audioUri;
+        this.episodeDurationMs = parseInt(ep.metadata['duration_ms']);
 
         this.quotes = [];
         this.songs = [];
@@ -165,6 +170,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
           availableInfoPanels.push("songs");
         }
         this.activeInfoPanel = (availableInfoPanels.length > 0) ? availableInfoPanels[0] : undefined;
+        this.selection = parseSection(this.scrollToID, (this.episode?.transcript || []));
       },
       (err) => {
         this.error = 'Failed to fetch episode';
@@ -192,7 +198,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
 
   onAudioTimestamp(offsetMs: number) {
     this.audioService.setAudioSrc(this.episode.shortId, this.episode.name, this.episode.audioUri);
-    this.audioService.seekAudio(offsetMs/1000);
+    this.audioService.seekAudio(offsetMs / 1000);
     this.audioService.playAudio();
   }
 
@@ -220,4 +226,6 @@ export class EpisodeComponent implements OnInit, OnDestroy {
         .join("\n")
     );
   }
+
+  protected readonly Math = Math;
 }

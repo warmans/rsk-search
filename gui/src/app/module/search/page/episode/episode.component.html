@@ -3,7 +3,7 @@
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a [routerLink]="['/search']">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page">{{shortID}}</li>
+      <li class="breadcrumb-item active" aria-current="page">{{ shortID }}</li>
     </ol>
   </nav>
 
@@ -20,7 +20,7 @@
     <div class="col">
       <div class="card" *ngIf="episode">
         <div class="card-header d-flex justify-content-between">
-          <div>{{ shortID }}<span *ngIf="episode.name"> - "{{episode.name}}"</span></div>
+          <div>{{ shortID }}<span *ngIf="episode.name"> - "{{ episode.name }}"</span></div>
           <div><a *ngIf="previousEpisodeId" class="mr-2" [routerLink]="['/ep', previousEpisodeId]"><i
             class="bi bi-arrow-left"></i> Previous</a> <a *ngIf="nextEpisodeId" class="ml-2"
                                                           [routerLink]="['/ep', nextEpisodeId]">Next <i
@@ -32,22 +32,22 @@
               <table class="table m-0">
                 <tr>
                   <th class="border-top-0">Transcript Version</th>
-                  <td class="border-top-0 w-100">{{episode.version}}</td>
+                  <td class="border-top-0 w-100">{{ episode.version }}</td>
                 </tr>
                 <tr>
                   <th>Broadcast</th>
-                  <td>{{episode.releaseDate | date}}</td>
+                  <td>{{ episode.releaseDate | date }}</td>
                 </tr>
                 <tr>
                   <th>Transcript Data</th>
                   <td>
-                    <a target="_blank" href="/dl/episode/{{episode.id}}.json">{{episode.id}}.json</a> (or <a
+                    <a target="_blank" href="/dl/episode/{{episode.id}}.json">{{ episode.id }}.json</a> (or <a
                     target="_blank" href="/dl/episode/{{episode.id}}.txt">plaintext</a>)
                   </td>
                 </tr>
                 <tr>
                   <th>Presenters</th>
-                  <td>{{episode.actors.join(', ')}}</td>
+                  <td>{{ episode.actors.join(', ') }}</td>
                 </tr>
                 <tr *ngIf="episode.summary">
                   <th>Summary</th>
@@ -80,7 +80,7 @@
                     <button *ngIf="audioStatus?.state === audioStates.playing" class="btn btn-sm btn-primary"
                             (click)="pauseAudio()"><i class="bi bi-pause"></i> Pause
                     </button>
-                    <span class="muted ml-3">({{episode.offsetAccuracyPcnt | timecodeAccuracy}}
+                    <span class="muted ml-3">({{ episode.offsetAccuracyPcnt | timecodeAccuracy }}
                       Timecode Accuracy)</span>
                   </td>
                 </tr>
@@ -120,7 +120,7 @@
             <div class="mb-1" *ngFor="let quote of quotes">
               <i class="bi-quote mr-2 text-primary"></i>
               <span class="font-italic">
-                    "{{quote.content}}" -{{quote.actor}}
+                    "{{ quote.content }}" -{{ quote.actor }}
                 (<a [routerLink]="['/ep', episode?.id]" [fragment]="'pos-'+(quote?.pos)">context</a>)
                   </span>
             </div>
@@ -132,12 +132,12 @@
             <div class="mb-1" *ngFor="let song of songs">
               <div *ngIf="song.metadata['spotify_uri']">
                 <a class="text-paragraph" [href]="song.metadata['spotify_uri']">
-                  <i class="bi-spotify text-primary mr-2"></i> <span class="text-paragraph">{{song.content}}</span>
+                  <i class="bi-spotify text-primary mr-2"></i> <span class="text-paragraph">{{ song.content }}</span>
                 </a>
                 (<a [routerLink]="['/ep', episode?.id]" [fragment]="'pos-'+(song?.pos)">context</a>)
               </div>
               <div *ngIf="!song.metadata['spotify_uri']">
-                <i class="bi-spotify text-muted mr-2"></i> <span class="text-paragraph">{{song.content}}</span>
+                <i class="bi-spotify text-muted mr-2"></i> <span class="text-paragraph">{{ song.content }}</span>
                 (<a [routerLink]="['/ep', episode?.id]" [fragment]="'pos-'+(song?.pos)">context</a>)
               </div>
             </div>
@@ -160,18 +160,25 @@
                   <button class="btn btn-sm btn-info ml-2"
                           (click)="clearSelection()"><i class="bi-escape"></i> Clear Selection
                   </button>
-                  <a
+                  <!--a
                     *ngIf="authenticated && episode.offsetAccuracyPcnt > 0"
                     title="Audio export is provided on a best-effort basis. Since the audio timestamps are not 100% accurate, it's possible you won't get exactly the audio you expect."
                     class="btn btn-sm btn-info ml-2"
                     target="_blank"
-                    [href]="episode.audioUri+ '?pos='+(selection.endPos ? selection.startPos+'-'+selection.endPos : selection.startPos)">
+                    [href]="episode.audioUri+ '?ts='+selection.startTimestampMs+'-'+selection.endTimestampMs">
                     <i class="bi-download"></i> Export selection audio
-                  </a>
+                  </a-->
+                  <button
+                    *ngIf="authenticated && episode.offsetAccuracyPcnt > 0"
+                    title="Audio export is provided on a best-effort basis. Since the audio timestamps are not 100% accurate, it's possible you won't get exactly the audio you expect."
+                    class="btn btn-sm btn-info ml-2" (click)="showDownloadDialog = !showDownloadDialog">
+                    <i class="bi-download"></i> Export Selected Audio
+                  </button>
                 </ng-container>
                 <!--button class="btn btn-sm btn-primary ml-2" *ngIf="scrollToID || scrollToSeconds" (click)="shareSelection()">Share Selection</button-->
                 <div class="ml-2" *ngIf="pendingChanges?.length === 0 && !episode.locked">
-                  <a class="btn btn-sm btn-info" [routerLink]="['/ep', id, 'change']"><i class="bi-pencil"></i> Submit Correction</a>
+                  <a class="btn btn-sm btn-info" [routerLink]="['/ep', id, 'change']"><i class="bi-pencil"></i> Submit
+                    Correction</a>
                 </div>
               </div>
             </div>
@@ -186,7 +193,6 @@
             [searchResultMode]="false"
             [enableLineLinking]="true"
             [enableLineCopy]="true"
-            [enableShareLinks]="!episode?.incomplete"
             (emitAudioTimestamp)="onAudioTimestamp($event)"
             (emitSelection)="selectSection($event)"></app-transcript>
           <div *ngIf="!episode?.transcript?.length" class="text-center p-4">No transcript available.</div>
@@ -204,12 +210,35 @@
             <div>
               <img src="/assets/illustration/pixeltrue-error-1.svg" style="width: 300px"/>
             </div>
-            <div class="pb-2"><strong>{{error}}</strong></div>
+            <div class="pb-2"><strong>{{ error }}</strong></div>
             <div>Alright, lets see your little website then. Sick of ya...</div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="download-modal modal" [ngClass]="{'open': showDownloadDialog}"
+     *ngIf="showDownloadDialog && episode && selection">
+  <div class="modal-dialog  modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <i class="bi-cloud-download mr-2"></i> Export audio section
+        <button type="button" class="close" (click)="showDownloadDialog = false" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-audio-waveform
+          [url]="episode.audioUri"
+          [startTimestampMs]="selection.startTimestampMs"
+          [endTimestampMs]="selection.endTimestampMs"
+          [episodeDurationMs]="episodeDurationMs">
+        </app-audio-waveform>
+      </div>
+    </div>
+
   </div>
 </div>
 

@@ -6,13 +6,14 @@ import {
 export interface RskDialog {
   actor?: string;
   content?: string;
+  durationMs?: number;
   id?: string;
   isMatchedRow?: boolean;
   metadata?: { [key: string]: string };
   notable?: boolean;
-  offsetDistance?: string;
+  offsetDistance?: number;
   offsetInferred?: boolean;
-  offsetMs?: string;
+  offsetMs?: number;
   offsetSec?: string;
   pos?: number;
   type?: DialogType;

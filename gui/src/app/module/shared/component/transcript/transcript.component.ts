@@ -15,7 +15,9 @@ interface DialogGroup {
 export interface Section {
   epid?: string;
   startPos: number;
+  startTimestampMs?: number;
   endPos?: number;
+  endTimestampMs?: number;
 }
 
 @Component({
@@ -26,10 +28,8 @@ export interface Section {
 })
 export class TranscriptComponent implements OnInit, AfterViewInit {
 
-
   @Input()
   epid: string;
-
 
   @Input()
   set transcript(value: Tscript | RskTranscript) {
@@ -110,9 +110,6 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
   enableAudioLinks: boolean = true;
 
   @Input()
-  enableShareLinks: boolean = true;
-
-  @Input()
   startLine: number;
 
   @Input()
@@ -180,37 +177,51 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
 
   private _scrollToSecondOffset(seconds: number) {
     for (let i = 0; i < this.transcript.transcript.length; i++) {
-      if (parseInt(this.transcript.transcript[i].offsetMs)/1000 >= seconds) {
+      if (this.transcript.transcript[i].offsetMs / 1000 >= seconds) {
         this.scrollToID = `pos-${this.transcript.transcript[i].pos}`;
         return;
       }
     }
   }
 
-  emitTimestamp(ts: string) {
-    const tsInt = parseInt(ts);
-    if (!tsInt) {
-      return;
-    }
-    this.emitAudioTimestamp.next(tsInt);
+  emitTimestamp(ts: number) {
+    this.emitAudioTimestamp.next(ts);
   }
 
-  selectPosition(pos: number, ev: any): boolean {
-    this.emitSelection.next({startPos: pos, endPos: pos, epid: this.epid});
+  selectPosition(line: RskDialog, ev: any): boolean {
+    this.emitSelection.next({
+      startPos: line.pos,
+      startTimestampMs: line.offsetMs,
+      endPos: line.pos,
+      endTimestampMs: (line.offsetMs + line.durationMs),
+      epid: this.epid,
+    });
     return true;
   }
 
-  addToSelection(pos: number): boolean {
+  addToSelection(line: RskDialog): boolean {
     if (this.scrollToPosStart) {
-      const start = this.scrollToPosStart > pos ? pos : this.scrollToPosStart;
-      const end = this.scrollToPosStart > pos ? this.scrollToPosStart : pos;
-      this.emitSelection.next({startPos: start, endPos: end, epid: this.epid});
+      const start = this.scrollToPosStart > line.pos ? line.pos : this.scrollToPosStart;
+      const end = this.scrollToPosStart > line.pos ? this.scrollToPosStart : line.pos;
+      this.emitSelection.next({
+        startPos: start,
+        startTimestampMs: line.offsetMs,
+        endPos: end,
+        endTimestampMs: line.offsetMs + line.durationMs,
+        epid: this.epid,
+      });
     }
     return false;
   }
 
-  selectRange(startLine: number, endLine: number): boolean {
-    this.emitSelection.next({startPos: startLine, endPos: endLine, epid: this.epid});
+  selectRange(startPos: number, endPos: number): boolean {
+    this.emitSelection.next({
+      startPos: startPos,
+      startTimestampMs: this.transcript.transcript[startPos - 1].durationMs,
+      endPos: endPos,
+      endTimestampMs: this.transcript.transcript[endPos - 1]?.offsetMs + this.transcript.transcript[endPos - 1]?.durationMs,
+      epid: this.epid,
+    });
     return true;
   }
 
@@ -251,7 +262,7 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
     };
     for (let i: number = (this.startLine || 0); i < (this.endLine && this.endLine < episode?.transcript.length ? this.endLine : episode?.transcript.length); i++) {
 
-      if (parseInt(episode.transcript[i].offsetMs) > 0) {
+      if (episode.transcript[i].offsetMs > 0) {
         this.audioOffsetsAvailable = true;
       }
 

@@ -347,8 +347,9 @@ message Dialog {
   bool notable = 9;
   int64 offset_sec = 10; //deprecated
   bool offset_inferred = 11;
-  int64 offset_distance = 12;
-  int64 offset_ms = 13;
+  int32 offset_distance = 12;
+  int32 offset_ms = 13;
+  int32 duration_ms = 14;
 }
 
 message Synopsis {

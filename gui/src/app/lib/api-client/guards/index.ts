@@ -456,6 +456,8 @@ export function isRskDialog(arg: any): arg is models.RskDialog {
     ( typeof arg.actor === 'undefined' || typeof arg.actor === 'string' ) &&
     // content?: string
     ( typeof arg.content === 'undefined' || typeof arg.content === 'string' ) &&
+    // durationMs?: number
+    ( typeof arg.durationMs === 'undefined' || typeof arg.durationMs === 'number' ) &&
     // id?: string
     ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
     // isMatchedRow?: boolean
@@ -464,12 +466,12 @@ export function isRskDialog(arg: any): arg is models.RskDialog {
     ( typeof arg.metadata === 'undefined' || typeof arg.metadata === 'string' ) &&
     // notable?: boolean
     ( typeof arg.notable === 'undefined' || typeof arg.notable === 'boolean' ) &&
-    // offsetDistance?: string
-    ( typeof arg.offsetDistance === 'undefined' || typeof arg.offsetDistance === 'string' ) &&
+    // offsetDistance?: number
+    ( typeof arg.offsetDistance === 'undefined' || typeof arg.offsetDistance === 'number' ) &&
     // offsetInferred?: boolean
     ( typeof arg.offsetInferred === 'undefined' || typeof arg.offsetInferred === 'boolean' ) &&
-    // offsetMs?: string
-    ( typeof arg.offsetMs === 'undefined' || typeof arg.offsetMs === 'string' ) &&
+    // offsetMs?: number
+    ( typeof arg.offsetMs === 'undefined' || typeof arg.offsetMs === 'number' ) &&
     // offsetSec?: string
     ( typeof arg.offsetSec === 'undefined' || typeof arg.offsetSec === 'string' ) &&
     // pos?: number

@@ -100,15 +100,16 @@ func (d Dialog) Proto(matchedRow bool) *api.Dialog {
 		Id:             d.ID,
 		Pos:            int32(d.Position),
 		OffsetSec:      int64(d.Timestamp.Seconds()),
-		OffsetMs:       d.Timestamp.Milliseconds(),
+		OffsetMs:       int32(d.Timestamp.Milliseconds()),
 		OffsetInferred: d.TimestampInferred,
-		OffsetDistance: d.TimestampDistance,
+		OffsetDistance: int32(d.TimestampDistance),
 		Type:           d.Type.Proto(),
 		Actor:          d.Actor,
 		Content:        d.Content,
 		Metadata:       d.Meta.Proto(),
 		IsMatchedRow:   matchedRow,
 		Notable:        d.Notable,
+		DurationMs:     int32(d.Duration.Milliseconds()),
 	}
 	return dialog
 }

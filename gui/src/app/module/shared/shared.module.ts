@@ -28,6 +28,7 @@ import {MetadataEditorComponent} from './component/metadata-editor/metadata-edit
 import {UserMenuComponent} from './component/user-menu/user-menu.component';
 import {TranscriptCopyDialogComponent} from './component/transcript-copy-dialog/transcript-copy-dialog.component';
 import {RandomQuoteComponent} from "../more-shite/page/random-quote/random-quote.component";
+import {AudioWaveformComponent} from "./component/audio-waveform/audio-waveform.component";
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import {RandomQuoteComponent} from "../more-shite/page/random-quote/random-quote
     UserMenuComponent,
     TranscriptCopyDialogComponent,
     RandomQuoteComponent,
+    AudioWaveformComponent,
   ],
   imports: [
     CommonModule,
@@ -64,31 +66,32 @@ import {RandomQuoteComponent} from "../more-shite/page/random-quote/random-quote
     NgbPopoverModule,
   ],
   providers: [],
-    exports: [
-        FormErrorsComponent,
-        AlertComponent,
-        LoadingOverlayComponent,
-        SafeUrlPipe,
-        FormatSecondsPipe,
-        TranscriptComponent,
-        SynopsesComponent,
-        TriviaComponent,
-        ContributionStateComponent,
-        OauthLoginComponent,
-        EditorInputComponent,
-        EditorConfigComponent,
-        EditorHelpComponent,
-        EditorComponent,
-        ClaimedRewardsComponent,
-        MarkdownComponent,
-        AudioPlayerV2Component,
-        AudioPlayerFixedComponent,
-        HtmlDiffComponent,
-        MetadataEditorComponent,
-        UserMenuComponent,
-        TranscriptCopyDialogComponent,
-        RandomQuoteComponent,
-    ]
+  exports: [
+    FormErrorsComponent,
+    AlertComponent,
+    LoadingOverlayComponent,
+    SafeUrlPipe,
+    FormatSecondsPipe,
+    TranscriptComponent,
+    SynopsesComponent,
+    TriviaComponent,
+    ContributionStateComponent,
+    OauthLoginComponent,
+    EditorInputComponent,
+    EditorConfigComponent,
+    EditorHelpComponent,
+    EditorComponent,
+    ClaimedRewardsComponent,
+    MarkdownComponent,
+    AudioPlayerV2Component,
+    AudioPlayerFixedComponent,
+    HtmlDiffComponent,
+    MetadataEditorComponent,
+    UserMenuComponent,
+    TranscriptCopyDialogComponent,
+    RandomQuoteComponent,
+    AudioWaveformComponent,
+  ]
 })
 export class SharedModule {
 }

@@ -2182,12 +2182,16 @@
             "type": "boolean"
           },
           "offsetDistance": {
-            "type": "string",
-            "format": "int64"
+            "type": "integer",
+            "format": "int32"
           },
           "offsetMs": {
-            "type": "string",
-            "format": "int64"
+            "type": "integer",
+            "format": "int32"
+          },
+          "durationMs": {
+            "type": "integer",
+            "format": "int32"
           }
         }
       },
