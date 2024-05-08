@@ -2,6 +2,7 @@ package discord
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"github.com/bwmarrin/discordgo"
 	"github.com/warmans/rsk-search/gen/api"
@@ -13,6 +14,13 @@ import (
 	"strings"
 	"time"
 )
+
+type CustomID struct {
+	EpisodeID string `json:"e,omitempty"`
+	Position  int    `json:"p,omitempty"`
+	Username  string `json:"u,omitempty"`
+	TextOnly  int8   `json:"t,omitempty"`
+}
 
 func NewBot(
 	logger *zap.Logger,
@@ -65,7 +73,7 @@ type Bot struct {
 	searchApiClient     api.SearchServiceClient
 	commands            []*discordgo.ApplicationCommand
 	commandHandlers     map[string]func(s *discordgo.Session, i *discordgo.InteractionCreate)
-	buttonHandlers      map[string]func(s *discordgo.Session, i *discordgo.InteractionCreate, customIdSuffix string)
+	buttonHandlers      map[string]func(s *discordgo.Session, i *discordgo.InteractionCreate, customIdPayload string)
 	createdCommands     []*discordgo.ApplicationCommand
 }
 
@@ -88,8 +96,12 @@ func (b *Bot) Start() error {
 		case discordgo.InteractionMessageComponent:
 			// prefix match buttons to allow additional data in the customID
 			for k, h := range b.buttonHandlers {
-				if strings.HasPrefix(i.MessageComponentData().CustomID, fmt.Sprintf("%s:", k)) {
-					h(s, i, strings.TrimPrefix(i.MessageComponentData().CustomID, fmt.Sprintf("%s:", k)))
+				actionPrefix := fmt.Sprintf("%s:", k)
+				if strings.HasPrefix(i.MessageComponentData().CustomID, actionPrefix) {
+					h(s, i, strings.TrimPrefix(i.MessageComponentData().CustomID, actionPrefix))
+				} else {
+					b.respondError(s, i, fmt.Errorf("invalid customID format: %s", k))
+					return
 				}
 			}
 		}
@@ -135,14 +147,27 @@ func (b *Bot) scrimptonQueryBegin(s *discordgo.Session, i *discordgo.Interaction
 			b.respondError(s, i, fmt.Errorf("internal error, unknown selection"))
 			return
 		}
-
-		interactionResponse, err, cleanup := b.queryInteractionResponse(ids[0], pos, false)
+		username := "unknown"
+		if i.Member != nil {
+			username = i.Member.DisplayName()
+		}
+		interactionResponse, err, cleanup := b.queryInteractionResponse(ids[0], pos, false, username)
 		if err != nil {
 			b.respondError(s, i, err)
 			return
 		}
 		defer cleanup()
 
+		withAudioID, err := encodeCustomID("scrimp_confirm", ids[0], pos, username, 0)
+		if err != nil {
+			b.logger.Error("failed to marshal customID", zap.Error(err))
+			b.respondError(s, i, fmt.Errorf("failed to create interaction ID"))
+		}
+		withoutAudioID, err := encodeCustomID("scrimp_confirm", ids[0], pos, username, 1)
+		if err != nil {
+			b.logger.Error("failed to marshal customID", zap.Error(err))
+			b.respondError(s, i, fmt.Errorf("failed to create interaction ID"))
+		}
 		interactionResponse.Data.Flags = discordgo.MessageFlagsEphemeral
 		interactionResponse.Data.Components = []discordgo.MessageComponent{
 			// ActionRow is a container of all buttons within the same row.
@@ -156,7 +181,7 @@ func (b *Bot) scrimptonQueryBegin(s *discordgo.Session, i *discordgo.Interaction
 						// Disabled allows bot to disable some buttons for users.
 						Disabled: false,
 						// CustomID is a thing telling Discord which data to send when this button will be pressed.
-						CustomID: fmt.Sprintf("scrimp_confirm:%s", selection),
+						CustomID: withAudioID,
 					},
 					discordgo.Button{
 						// Label is what the user will see on the button.
@@ -166,7 +191,7 @@ func (b *Bot) scrimptonQueryBegin(s *discordgo.Session, i *discordgo.Interaction
 						// Disabled allows bot to disable some buttons for users.
 						Disabled: false,
 						// CustomID is a thing telling Discord which data to send when this button will be pressed.
-						CustomID: fmt.Sprintf("scrimp_confirm:%s:textonly", selection),
+						CustomID: withoutAudioID,
 					},
 				},
 			},
@@ -223,44 +248,38 @@ func (b *Bot) scrimptonQueryBegin(s *discordgo.Session, i *discordgo.Interaction
 	b.respondError(s, i, fmt.Errorf("unknown command type"))
 }
 
-func (b *Bot) scrimptonQueryComplete(s *discordgo.Session, i *discordgo.InteractionCreate, commandSuffix string) {
+func (b *Bot) scrimptonQueryComplete(s *discordgo.Session, i *discordgo.InteractionCreate, customIDPayload string) {
 	if i.Type != discordgo.InteractionMessageComponent {
 		return
 	}
-	if commandSuffix == "" {
+	if customIDPayload == "" {
 		return
 	}
-	state := strings.Split(commandSuffix, ":")
-	if len(state) < 2 {
-		b.logger.Error("unexpected selection format", zap.String("id_suffix", commandSuffix))
-		b.respondError(s, i, fmt.Errorf("invalid selection"))
-		return
-	}
-	pos, err := strconv.Atoi(state[1])
+
+	customID, err := decodeCustomIDPayload(customIDPayload)
 	if err != nil {
-		b.logger.Error("failed to parse position", zap.String("pos", state[1]), zap.Error(err))
-		b.respondError(s, i, fmt.Errorf("internal error, unknown selection"))
-		return
+		b.logger.Error("failed to decode customID", zap.Error(err))
+		b.respondError(s, i, fmt.Errorf("failed to decode customID"))
 	}
-	var omitAudio bool
-	if len(state) > 2 && state[2] == "textonly" {
-		omitAudio = true
+
+	username := "unknown"
+	if i.Member != nil {
+		username = i.Member.DisplayName()
 	}
-	interactionResponse, err, cleanup := b.queryInteractionResponse(state[0], pos, omitAudio)
+	interactionResponse, err, cleanup := b.queryInteractionResponse(customID.EpisodeID, customID.Position, customID.TextOnly == 1, username)
 	if err != nil {
 		b.respondError(s, i, err)
 		return
 	}
 	defer cleanup()
 
-	err = s.InteractionRespond(i.Interaction, interactionResponse)
-	if err != nil {
+	if err = s.InteractionRespond(i.Interaction, interactionResponse); err != nil {
 		b.logger.Error("failed to respond", zap.Error(err))
 		b.respondError(s, i, fmt.Errorf("unknown command type"))
 	}
 }
 
-func (b *Bot) queryInteractionResponse(episodeId string, pos int, omitAudio bool) (*discordgo.InteractionResponse, error, func()) {
+func (b *Bot) queryInteractionResponse(episodeId string, pos int, omitAudio bool, username string) (*discordgo.InteractionResponse, error, func()) {
 	dialog, err := b.transcriptApiClient.GetTranscriptDialog(context.Background(), &api.GetTranscriptDialogRequest{
 		Epid:            episodeId,
 		Pos:             int32(pos),
@@ -293,6 +312,9 @@ func (b *Bot) queryInteractionResponse(episodeId string, pos int, omitAudio bool
 			matchedDialogRow = dialog.Dialog[k]
 		}
 	}
+	if matchedDialogRow == nil {
+		return nil, fmt.Errorf("no line was matched"), func() {}
+	}
 
 	var files []*discordgo.File
 	cancelFunc := func() {}
@@ -318,11 +340,12 @@ func (b *Bot) queryInteractionResponse(episodeId string, pos int, omitAudio bool
 				"%s\n\n %s",
 				dialogFormatted.String(),
 				fmt.Sprintf(
-					"`%s` @ `%s` | [%s](%s)",
+					"`%s` @ `%s` | [%s](%s) | Posted by %s",
 					dialog.TranscriptMeta.Id,
-					(time.Second*time.Duration(matchedDialogRow.OffsetSec)).String(),
+					(time.Millisecond*time.Duration(matchedDialogRow.OffsetMs)).String(),
 					strings.TrimPrefix(b.webUrl, "https://"),
-					b.webUrl,
+					fmt.Sprintf("%s/ep/%s#pos-%d", b.webUrl, episodeId, pos),
+					username,
 				),
 			),
 			Files: files,
@@ -331,6 +354,7 @@ func (b *Bot) queryInteractionResponse(episodeId string, pos int, omitAudio bool
 }
 
 func (b *Bot) respondError(s *discordgo.Session, i *discordgo.InteractionCreate, err error) {
+	b.logger.Error("Error response was sent", zap.Error(err))
 	err = s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
 		Type: discordgo.InteractionResponseChannelMessageWithSource,
 		Data: &discordgo.InteractionResponseData{
@@ -342,4 +366,19 @@ func (b *Bot) respondError(s *discordgo.Session, i *discordgo.InteractionCreate,
 		b.logger.Error("failed to respond", zap.Error(err))
 		return
 	}
+}
+
+func encodeCustomID(action string, episodeID string, position int, username string, textOnly int8) (string, error) {
+	encoded, err := json.Marshal(&CustomID{
+		EpisodeID: episodeID,
+		Position:  position,
+		//Username:  username,
+		TextOnly: textOnly,
+	})
+	return fmt.Sprintf("%s:%s", action, string(encoded)), err
+}
+
+func decodeCustomIDPayload(data string) (*CustomID, error) {
+	decoded := &CustomID{}
+	return decoded, json.Unmarshal([]byte(data), decoded)
 }
