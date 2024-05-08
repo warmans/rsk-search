@@ -275,10 +275,14 @@ func (b *Bot) queryInteractionResponse(episodeId string, pos int, omitAudio bool
 	for k, d := range dialog.Dialog {
 		switch d.Type {
 		case api.Dialog_CHAT:
-			if d.IsMatchedRow {
-				dialogFormatted.WriteString(fmt.Sprintf("\n> **%s: %s**", d.Actor, d.Content))
+			if d.Actor == "" {
+				dialogFormatted.WriteString(fmt.Sprintf("\n> *%s*", d.Content))
 			} else {
-				dialogFormatted.WriteString(fmt.Sprintf("\n> %s: %s", d.Actor, d.Content))
+				if d.IsMatchedRow {
+					dialogFormatted.WriteString(fmt.Sprintf("\n> **%s: %s**", d.Actor, d.Content))
+				} else {
+					dialogFormatted.WriteString(fmt.Sprintf("\n> %s: %s", d.Actor, d.Content))
+				}
 			}
 		case api.Dialog_NONE:
 			dialogFormatted.WriteString(fmt.Sprintf("\n> *%s*", d.Content))
