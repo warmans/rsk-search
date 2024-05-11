@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"github.com/bwmarrin/discordgo"
 	"github.com/warmans/rsk-search/gen/api"
+	"github.com/warmans/rsk-search/pkg/filter"
+	"github.com/warmans/rsk-search/pkg/searchterms"
 	"github.com/warmans/rsk-search/pkg/util"
 	"go.uber.org/zap"
 	"log"
@@ -230,20 +232,35 @@ func (b *Bot) scrimptonQueryBegin(s *discordgo.Session, i *discordgo.Interaction
 	case discordgo.InteractionApplicationCommandAutocomplete:
 		data := i.ApplicationCommandData()
 
-		prefixTerm := strings.TrimSpace(data.Options[0].StringValue())
-		exactMatch := false
+		rawTerms := strings.TrimSpace(data.Options[0].StringValue())
 
-		// looks like a quoted string =
-		if strings.HasPrefix(prefixTerm, `"`) {
-			exactMatch = true
+		terms, err := searchterms.Parse(rawTerms)
+		if err != nil {
+			b.respondError(s, i, fmt.Errorf("invalid search terms: %w", err))
+			return
+		}
+		if len(terms) == 0 {
+			if err = s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
+				Type: discordgo.InteractionApplicationCommandAutocompleteResult,
+				Data: &discordgo.InteractionResponseData{
+					Choices: []*discordgo.ApplicationCommandOptionChoice{},
+				},
+			}); err != nil {
+				b.logger.Error("Failed to respond with autocomplete options", zap.Error(err))
+			}
+			return
 		}
 
+		filterString, err := filter.Print(searchterms.TermsToFilter(terms))
+		if err != nil {
+			b.respondError(s, i, fmt.Errorf("failed to create filter: %w", err))
+			return
+		}
 		res, err := b.searchApiClient.PredictSearchTerm(
 			context.Background(),
 			&api.PredictSearchTermRequest{
-				Prefix:         data.Options[0].StringValue(),
+				Query:          filterString,
 				MaxPredictions: 25,
-				Exact:          exactMatch,
 			},
 		)
 		if err != nil {

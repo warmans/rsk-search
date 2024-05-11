@@ -199,28 +199,41 @@ func (s *Search) ListTerms(fieldName string, prefix string) (models.FieldValues,
 }
 
 func (s *Search) PredictSearchTerms(ctx context.Context, prefix string, exact bool, numPredictions int32, f filter.Filter) (*api.SearchTermPredictions, error) {
-	var q bluge.Query
-	if f != nil {
-		var prefixQuery filter.Filter
+
+	prefix = strings.TrimSpace(prefix)
+	if f == nil && prefix == "" {
+		return &api.SearchTermPredictions{}, nil
+	}
+	var prefixFilter filter.Filter
+	if prefix != "" {
 		if exact {
-			prefixQuery = filter.Eq("content", filter.String(prefix))
+			prefixFilter = filter.Eq("content", filter.String(prefix))
 		} else {
-			prefixQuery = filter.Like("content", filter.String(prefix))
+			prefixFilter = filter.Like("content", filter.String(prefix))
 		}
-		filterQuery, err := bluge_query.FilterToQuery(filter.And(f, prefixQuery))
+	}
+
+	var q bluge.Query
+	if prefixFilter != nil {
+		var err error
+		q, err = bluge_query.FilterToQuery(prefixFilter)
 		if err != nil {
 			return nil, errors.Wrap(err, "failed to create query")
 		}
-		q = filterQuery
-	} else {
-		if !exact {
-			matchQuery := bluge.NewMatchQuery(prefix)
-			matchQuery.SetField("content")
-			q = matchQuery
+	}
+	if f != nil {
+		if prefixFilter == nil {
+			filterQuery, err := bluge_query.FilterToQuery(f)
+			if err != nil {
+				return nil, errors.Wrap(err, "failed to create query")
+			}
+			q = filterQuery
 		} else {
-			matchQuery := bluge.NewMatchPhraseQuery(prefix)
-			matchQuery.SetField("content")
-			q = matchQuery
+			filterQuery, err := bluge_query.FilterToQuery(filter.And(f, prefixFilter))
+			if err != nil {
+				return nil, errors.Wrap(err, "failed to create query")
+			}
+			q = filterQuery
 		}
 	}
 

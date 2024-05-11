@@ -64,7 +64,6 @@ func NewServer(logger *zap.Logger, cfg GrpcServerConfig, grpcServices []GRPCServ
 				grpc_zap.WithLevels(middleware.CodeToLevel()),
 			),
 			grpc_recovery.UnaryServerInterceptor(),
-
 			grpc_ctxtags.UnaryServerInterceptor(),
 			grpc_validator.UnaryServerInterceptor(),
 			grpc_prometheus.UnaryServerInterceptor,

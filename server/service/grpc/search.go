@@ -103,7 +103,7 @@ func (s *SearchService) PredictSearchTerm(ctx context.Context, request *api.Pred
 	if request.MaxPredictions < maxPredictions {
 		maxPredictions = request.MaxPredictions
 	}
-	if strings.TrimSpace(request.Prefix) == "" {
+	if strings.TrimSpace(request.Prefix) == "" && f == nil {
 		return &api.SearchTermPredictions{}, nil
 	}
 	return s.searchBackend.PredictSearchTerms(ctx, request.Prefix, request.Exact, maxPredictions, f)
