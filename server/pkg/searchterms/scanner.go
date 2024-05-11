@@ -16,8 +16,6 @@ const (
 
 	tagQuotedString = "QUOTED_STRING"
 	tagWord         = "WORD"
-	tagWhitespace   = "WHITESPACE"
-	tagError        = "ERROR"
 )
 
 type token struct {
@@ -68,10 +66,10 @@ func (s *scanner) Next() (token, error) {
 }
 
 func (s *scanner) next() (token, error) {
+	s.skipWhitespace()
 	if s.atEOF() {
 		return s.emit(tagEOF), nil
 	}
-
 	switch r := s.nextRune(); r {
 	case '@':
 		return s.emit(tagMention), nil
@@ -80,9 +78,6 @@ func (s *scanner) next() (token, error) {
 	case '"':
 		return s.scanString()
 	default:
-		if isWhitespace(r) {
-			return s.emit(tagWhitespace), nil
-		}
 		if isValidInputRune(r) {
 			return s.scanWord()
 		}
@@ -145,18 +140,6 @@ func (s *scanner) emit(tag tag) token {
 
 func (s *scanner) error(reason string) (token, error) {
 	return token{}, fmt.Errorf("failed to scan string at position %d ('%s'): %s", s.pos, string(s.input[s.offset:s.pos]), reason)
-}
-
-func isStartOfNumber(r rune) bool {
-	return isNumber(r) || r == '-'
-}
-
-func isNumber(r rune) bool {
-	return r >= '0' && r <= '9'
-}
-
-func isValidFieldRune(r rune) bool {
-	return (r >= 'a' && r <= 'z') || (r >= 'A' && r <= 'Z') || r == '_'
 }
 
 func isWhitespace(r rune) bool {

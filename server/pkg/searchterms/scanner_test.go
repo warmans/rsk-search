@@ -30,9 +30,7 @@ func TestScan(t *testing.T) {
 			},
 			want: []token{
 				{tag: tagWord, lexeme: "foo"},
-				{tag: tagWhitespace, lexeme: " "},
 				{tag: tagWord, lexeme: "bar"},
-				{tag: tagWhitespace, lexeme: " "},
 				{tag: tagWord, lexeme: "baz"},
 				{tag: tagEOF},
 			},
@@ -69,13 +67,10 @@ func TestScan(t *testing.T) {
 			},
 			want: []token{
 				{tag: tagQuotedString, lexeme: "man alive"},
-				{tag: tagWhitespace, lexeme: " "},
 				{tag: tagMention, lexeme: "@"},
 				{tag: tagWord, lexeme: "steve"},
-				{tag: tagWhitespace, lexeme: " "},
 				{tag: tagPublication, lexeme: "~"},
 				{tag: tagWord, lexeme: "xfm"},
-				{tag: tagWhitespace, lexeme: " "},
 				{tag: tagWord, lexeme: "foo"},
 				{tag: tagEOF}},
 			wantErr: false,

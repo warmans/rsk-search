@@ -54,9 +54,7 @@ func (p *parser) parseOuter() ([]Term, error) {
 		return nil, err
 	}
 	for term != nil {
-		if strings.TrimSpace(term.Value) != "" {
-			terms = append(terms, *term)
-		}
+		terms = append(terms, *term)
 		term, err = p.parseInner()
 		if err != nil {
 			return nil, err
@@ -85,7 +83,7 @@ func (p *parser) parseInner() (*Term, error) {
 		if err != nil {
 			return nil, err
 		}
-		for next.tag == tagWord || next.tag == tagWhitespace {
+		for next.tag == tagWord {
 			next, err = p.getNext()
 			if err != nil {
 				return nil, err
@@ -110,7 +108,7 @@ func (p *parser) parseInner() (*Term, error) {
 		}
 		return &Term{
 			Field: "actor",
-			Value: mentionText.lexeme,
+			Value: strings.ToLower(mentionText.lexeme),
 			Op:    filter.CompOpEq,
 		}, nil
 	case tagPublication:
@@ -120,13 +118,7 @@ func (p *parser) parseInner() (*Term, error) {
 		}
 		return &Term{
 			Field: "publication",
-			Value: mentionText.lexeme,
-			Op:    filter.CompOpEq,
-		}, nil
-	case tagWhitespace:
-		return &Term{
-			Field: "content",
-			Value: tok.lexeme,
+			Value: strings.ToLower(mentionText.lexeme),
 			Op:    filter.CompOpEq,
 		}, nil
 	default:
