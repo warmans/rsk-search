@@ -342,16 +342,30 @@ pre {
 }
 
 // autocomplete styled globally to avoid angular encapulation of innerHtml
-.autocomplete-dropdown {
-  .line {
-    .matched {
-      background: rgba(255, 255, 0, 0.2);
-    }
 
-    .not-matched {
-      color: #444;
+.search-dropdown {
+  @include theme() {
+    background-color: theme-get('header-block-bg') !important;
+    color: theme-get('header-block-text') !important;
+  }
+
+  .autocomplete-dropdown {
+    .line:hover, .line.active {
+      @include theme() {
+        background-color: theme-get('header-block-bg-highlight') !important;
+      }
+    }
+    .line {
+      .matched {
+        background: transparentize($primary, 0.5);
+      }
+
+      .not-matched {
+        color: #444;
+      }
     }
   }
+
 }
 
 app-markdown {
@@ -396,6 +410,8 @@ app-user-menu {
     color: theme-get('header-block-bg');
   }
 }
+
+
 
 /* Importing Bootstrap SCSS file. */
 @import "node_modules/bootstrap/scss/bootstrap";

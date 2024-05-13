@@ -13,6 +13,7 @@ $themes: (
     'header-block-bg': #2A2E33,
     'header-block-border': darken(#2A2E33, 5%),
     'header-block-text': #f7f7ff,
+    'header-block-bg-highlight': lighten(#2A2E33, 10%),
 
     'body-block-border': #292d32,
     'body-block-standout': lighten(#343A40, 10%),
@@ -34,6 +35,7 @@ $themes: (
     'header-block-bg': #F7F7F7,
     'header-block-border': #dee2e6,
     'header-block-text': #333333,
+    'header-block-bg-highlight': darken(#F7F7F7, 10%),
 
     'body-block-border': #dee2e6,
     'body-block-standout': darken(#F7F7F7, 10%),
