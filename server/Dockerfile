@@ -11,10 +11,15 @@ RUN apt update && apt install -y gcc libfreetype-dev ffmpeg
 
 RUN mkdir -p /opt/rsk/persistent && mkdir -p /opt/rsk/script && mkdir -p /opt/rsk/imports && chown -R nobody /opt/rsk
 
+RUN addgroup nobody
+
+ARG USER=nobody
+USER nobody
+
 WORKDIR /opt/rsk
 
-COPY var var
-COPY bin/rsk-search .
+COPY --chown=nobody var var
+COPY --chown=nobody bin/rsk-search .
 
 RUN chmod +x rsk-search
 
