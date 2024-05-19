@@ -10,6 +10,23 @@ import (
 	"time"
 )
 
+type MediaType string
+
+const (
+	MediaTypeAudio = MediaType("audio")
+	MediaTypeVideo = MediaType("video")
+)
+
+func (m MediaType) Proto() api.MediaType {
+	switch m {
+	case MediaTypeAudio:
+		return api.MediaType_AUDIO
+	case MediaTypeVideo:
+		return api.MediaType_VIDEO
+	}
+	return api.MediaType_MEDIA_TYPE_UNKNOWN
+}
+
 type DialogType string
 
 func (d DialogType) Proto() api.Dialog_DialogType {
@@ -45,7 +62,7 @@ func (q AudioQuality) Proto() api.AudioQuality {
 	case AudioQualityGood:
 		return api.AudioQuality_GOOD
 	}
-	return api.AudioQuality_UNKNOWN
+	return api.AudioQuality_AUDIO_QUALITY_UNKNOWN
 }
 
 const (
@@ -115,9 +132,10 @@ func (d Dialog) Proto(matchedRow bool) *api.Dialog {
 }
 
 type Transcript struct {
-	Publication string `json:"publication"`
-	Series      int32  `json:"series"`
-	Episode     int32  `json:"episode"`
+	MediaType   MediaType `json:"media_type"`
+	Publication string    `json:"publication"`
+	Series      int32     `json:"series"`
+	Episode     int32     `json:"episode"`
 	// some episodes don't really have a proper series/episode and need to be identified by a name e.g. Radio 2 special
 	Name        string     `json:"name"`
 	Summary     string     `json:"summary"`
@@ -252,6 +270,7 @@ func (e *Transcript) ShortProto(audioURI string) *api.ShortTranscript {
 		Bestof:              e.Bestof,
 		Special:             e.Special,
 		AudioQuality:        e.AudioQuality.Proto(),
+		MediaType:           e.MediaType.Proto(),
 	}
 	for k, s := range e.Synopsis {
 		ep.Synopsis[k] = s.Proto()
@@ -284,6 +303,7 @@ func (e *Transcript) Proto(withRawTranscript string, audioURI string, forceLocke
 		Locked:             e.Locked || forceLockedOn,
 		Summary:            e.Summary,
 		AudioQuality:       e.AudioQuality.Proto(),
+		MediaType:          e.MediaType.Proto(),
 	}
 	for _, d := range e.Transcript {
 		ep.Transcript = append(ep.Transcript, d.Proto(false))

@@ -269,10 +269,17 @@ enum ContributionState {
 
 
 enum AudioQuality {
-  UNKNOWN = 0;
+  AUDIO_QUALITY_UNKNOWN = 0;
   POOR = 1;
   AVERAGE = 2;
   GOOD = 3;
+}
+
+
+enum MediaType {
+  MEDIA_TYPE_UNKNOWN = 0;
+  AUDIO = 1;
+  VIDEO = 2;
 }
 
 message Transcript {
@@ -301,6 +308,7 @@ message Transcript {
   bool locked = 22;
   string summary = 23;
   AudioQuality audio_quality = 24;
+  MediaType media_type = 25;
 }
 
 message ShortTranscript {
@@ -324,6 +332,7 @@ message ShortTranscript {
   bool bestof = 18;
   bool special = 19;
   AudioQuality audio_quality = 20;
+  MediaType media_type = 21;
 }
 
 message Dialog {

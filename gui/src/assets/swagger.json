@@ -1725,12 +1725,12 @@
       "rskAudioQuality": {
         "type": "string",
         "enum": [
-          "UNKNOWN",
+          "AUDIO_QUALITY_UNKNOWN",
           "POOR",
           "AVERAGE",
           "GOOD"
         ],
-        "default": "UNKNOWN"
+        "default": "AUDIO_QUALITY_UNKNOWN"
       },
       "rskAuthURL": {
         "type": "object",
@@ -2329,6 +2329,15 @@
           }
         }
       },
+      "rskMediaType": {
+        "type": "string",
+        "enum": [
+          "MEDIA_TYPE_UNKNOWN",
+          "AUDIO",
+          "VIDEO"
+        ],
+        "default": "MEDIA_TYPE_UNKNOWN"
+      },
       "rskMetadata": {
         "type": "object",
         "properties": {
@@ -2668,6 +2677,9 @@
           },
           "audioQuality": {
             "$ref": "#/definitions/rskAudioQuality"
+          },
+          "mediaType": {
+            "$ref": "#/definitions/rskMediaType"
           }
         }
       },
@@ -2850,6 +2862,9 @@
           },
           "audioQuality": {
             "$ref": "#/definitions/rskAudioQuality"
+          },
+          "mediaType": {
+            "$ref": "#/definitions/rskMediaType"
           }
         }
       },
