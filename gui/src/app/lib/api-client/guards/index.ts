@@ -64,7 +64,7 @@ export function isRewardKind(arg: any): arg is models.RewardKind {
 
 export function isRskAudioQuality(arg: any): arg is models.RskAudioQuality {
   return false
-   || arg === models.RskAudioQuality.UNKNOWN
+   || arg === models.RskAudioQuality.AUDIO_QUALITY_UNKNOWN
    || arg === models.RskAudioQuality.POOR
    || arg === models.RskAudioQuality.AVERAGE
    || arg === models.RskAudioQuality.GOOD
@@ -617,6 +617,14 @@ export function isRskIncomingDonationList(arg: any): arg is models.RskIncomingDo
   );
   }
 
+export function isRskMediaType(arg: any): arg is models.RskMediaType {
+  return false
+   || arg === models.RskMediaType.MEDIA_TYPE_UNKNOWN
+   || arg === models.RskMediaType.AUDIO
+   || arg === models.RskMediaType.VIDEO
+  ;
+  }
+
 export function isRskMetadata(arg: any): arg is models.RskMetadata {
   return (
   arg != null &&
@@ -875,6 +883,8 @@ export function isRskShortTranscript(arg: any): arg is models.RskShortTranscript
     ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
     // incomplete?: boolean
     ( typeof arg.incomplete === 'undefined' || typeof arg.incomplete === 'boolean' ) &&
+    // mediaType?: RskMediaType
+    ( typeof arg.mediaType === 'undefined' || isRskMediaType(arg.mediaType) ) &&
     // metadata?: { [key: string]: string }
     ( typeof arg.metadata === 'undefined' || typeof arg.metadata === 'string' ) &&
     // name?: string
@@ -1002,6 +1012,8 @@ export function isRskTranscript(arg: any): arg is models.RskTranscript {
     ( typeof arg.incomplete === 'undefined' || typeof arg.incomplete === 'boolean' ) &&
     // locked?: boolean
     ( typeof arg.locked === 'undefined' || typeof arg.locked === 'boolean' ) &&
+    // mediaType?: RskMediaType
+    ( typeof arg.mediaType === 'undefined' || isRskMediaType(arg.mediaType) ) &&
     // metadata?: { [key: string]: string }
     ( typeof arg.metadata === 'undefined' || typeof arg.metadata === 'string' ) &&
     // name?: string

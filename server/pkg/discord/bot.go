@@ -164,24 +164,74 @@ func (b *Bot) scrimptonQueryBegin(s *discordgo.Session, i *discordgo.Interaction
 		if i.Member != nil {
 			username = i.Member.DisplayName()
 		}
-		interactionResponse, err, cleanup := b.queryInteractionResponse(ids[0], pos, ContentModifierNone, username)
+		dialog, err := b.transcriptApiClient.GetTranscriptDialog(context.Background(), &api.GetTranscriptDialogRequest{
+			Epid:            ids[0],
+			Pos:             int32(pos),
+			NumContextLines: 2,
+		})
+		if err != nil {
+			b.respondError(s, i, fmt.Errorf("failed to fetch selected line"))
+			return
+		}
+
+		// videos will respond with a gif instead of audio
+		if dialog.TranscriptMeta.MediaType == api.MediaType_VIDEO {
+			interactionResponse, err, cleanup := b.videoFileResponse(dialog, ids[0], pos, username)
+			if err != nil {
+				b.respondError(s, i, err)
+				return
+			}
+			defer cleanup()
+			interactionResponse.Data.Flags = discordgo.MessageFlagsEphemeral
+
+			noModifier, err := encodeCustomID("scrimp_confirm", ids[0], pos, ContentModifierNone)
+			if err != nil {
+				b.logger.Error("failed to marshal customID", zap.Error(err))
+				b.respondError(s, i, fmt.Errorf("failed to create interaction ID"))
+			}
+			interactionResponse.Data.Components = []discordgo.MessageComponent{
+				// ActionRow is a container of all buttons within the same row.
+				discordgo.ActionsRow{
+					Components: []discordgo.MessageComponent{
+						discordgo.Button{
+							// Label is what the user will see on the button.
+							Label: "Post",
+							// Style provides coloring of the button. There are not so many styles tho.
+							Style: discordgo.SuccessButton,
+							// Disabled allows bot to disable some buttons for users.
+							Disabled: false,
+							// CustomID is a thing telling Discord which data to send when this button will be pressed.
+							CustomID: noModifier,
+						},
+					},
+				},
+			}
+			if err = s.InteractionRespond(i.Interaction, interactionResponse); err != nil {
+				b.logger.Error("failed to respond", zap.Error(err))
+			}
+			return
+		}
+
+		// normal audio response...
+
+		interactionResponse, err, cleanup := b.audioFileResponse(dialog, ids[0], pos, ContentModifierNone, username)
 		if err != nil {
 			b.respondError(s, i, err)
 			return
 		}
 		defer cleanup()
 
-		withAudioID, err := encodeCustomID("scrimp_confirm", ids[0], pos, username, ContentModifierNone)
+		withAudioID, err := encodeCustomID("scrimp_confirm", ids[0], pos, ContentModifierNone)
 		if err != nil {
 			b.logger.Error("failed to marshal customID", zap.Error(err))
 			b.respondError(s, i, fmt.Errorf("failed to create interaction ID"))
 		}
-		withoutAudioID, err := encodeCustomID("scrimp_confirm", ids[0], pos, username, ContentModifierTextOnly)
+		withoutAudioID, err := encodeCustomID("scrimp_confirm", ids[0], pos, ContentModifierTextOnly)
 		if err != nil {
 			b.logger.Error("failed to marshal customID", zap.Error(err))
 			b.respondError(s, i, fmt.Errorf("failed to create interaction ID"))
 		}
-		withoutTextID, err := encodeCustomID("scrimp_confirm", ids[0], pos, username, ContentModifierAudioOnly)
+		withoutTextID, err := encodeCustomID("scrimp_confirm", ids[0], pos, ContentModifierAudioOnly)
 		if err != nil {
 			b.logger.Error("failed to marshal customID", zap.Error(err))
 			b.respondError(s, i, fmt.Errorf("failed to create interaction ID"))
@@ -309,7 +359,34 @@ func (b *Bot) scrimptonQueryComplete(s *discordgo.Session, i *discordgo.Interact
 	if i.Member != nil {
 		username = i.Member.DisplayName()
 	}
-	interactionResponse, err, cleanup := b.queryInteractionResponse(customID.EpisodeID, customID.Position, customID.ContentModifier, username)
+	dialog, err := b.transcriptApiClient.GetTranscriptDialog(context.Background(), &api.GetTranscriptDialogRequest{
+		Epid:            customID.EpisodeID,
+		Pos:             int32(customID.Position),
+		NumContextLines: 2,
+	})
+	if err != nil {
+		b.respondError(s, i, fmt.Errorf("failed to fetch selected line"))
+		return
+	}
+
+	// respond gif
+	if dialog.TranscriptMeta.MediaType == api.MediaType_VIDEO {
+		interactionResponse, err, cleanup := b.videoFileResponse(dialog, customID.EpisodeID, customID.Position, username)
+		if err != nil {
+			b.respondError(s, i, err)
+			return
+		}
+		defer cleanup()
+
+		err = s.InteractionRespond(i.Interaction, interactionResponse)
+		if err != nil {
+			b.logger.Error("failed to respond", zap.Error(err))
+		}
+		return
+	}
+
+	// respond audio
+	interactionResponse, err, cleanup := b.audioFileResponse(dialog, customID.EpisodeID, customID.Position, customID.ContentModifier, username)
 	if err != nil {
 		b.respondError(s, i, err)
 		return
@@ -322,15 +399,7 @@ func (b *Bot) scrimptonQueryComplete(s *discordgo.Session, i *discordgo.Interact
 	}
 }
 
-func (b *Bot) queryInteractionResponse(episodeId string, pos int, contentModifier ContentModifier, username string) (*discordgo.InteractionResponse, error, func()) {
-	dialog, err := b.transcriptApiClient.GetTranscriptDialog(context.Background(), &api.GetTranscriptDialogRequest{
-		Epid:            episodeId,
-		Pos:             int32(pos),
-		NumContextLines: 2,
-	})
-	if err != nil {
-		return nil, fmt.Errorf("failed to fetch selected line"), func() {}
-	}
+func (b *Bot) audioFileResponse(dialog *api.TranscriptDialog, episodeId string, pos int, contentModifier ContentModifier, username string) (*discordgo.InteractionResponse, error, func()) {
 
 	dialogFormatted := strings.Builder{}
 	var matchedDialogRow *api.Dialog
@@ -368,8 +437,12 @@ func (b *Bot) queryInteractionResponse(episodeId string, pos int, contentModifie
 		if err != nil {
 			return nil, fmt.Errorf("failed to fetch selected line"), func() {}
 		}
+		if resp.StatusCode != http.StatusOK {
+			b.logger.Error("failed to fetch audio", zap.Error(err), zap.String("url", audioFileURL), zap.Int("status_code", resp.StatusCode))
+			return nil, fmt.Errorf("failed to fetch audio: %s", resp.Status), func() {}
+		}
 		files = append(files, &discordgo.File{
-			Name:        createAudioFileName(dialog, matchedDialogRow),
+			Name:        createFileName(dialog, matchedDialogRow, "mp3"),
 			ContentType: "audio/mpeg",
 			Reader:      resp.Body,
 		})
@@ -403,6 +476,59 @@ func (b *Bot) queryInteractionResponse(episodeId string, pos int, contentModifie
 	}, nil, cancelFunc
 }
 
+func (b *Bot) videoFileResponse(dialog *api.TranscriptDialog, episodeId string, pos int, username string) (*discordgo.InteractionResponse, error, func()) {
+
+	var matchedDialogRow *api.Dialog
+	for k, d := range dialog.Dialog {
+		if d.IsMatchedRow {
+			matchedDialogRow = dialog.Dialog[k]
+			break
+		}
+	}
+	if matchedDialogRow == nil {
+		return nil, fmt.Errorf("no line was matched"), func() {}
+	}
+
+	var files []*discordgo.File
+	cancelFunc := func() {}
+
+	fileURL := fmt.Sprintf("%s/dl/media/gif/%s?pos=%d", b.webUrl, dialog.TranscriptMeta.Id, matchedDialogRow.Pos)
+
+	b.logger.Info("Fetching GIF", zap.String("url", fileURL))
+	resp, err := http.Get(fileURL)
+	if err != nil {
+		b.logger.Error("failed to fetch GIF", zap.Error(err), zap.String("url", fileURL))
+		return nil, fmt.Errorf("failed to fetch GIF: %w", err), func() {}
+	}
+	if resp.StatusCode != http.StatusOK {
+		b.logger.Error("failed to fetch GIF", zap.Error(err), zap.String("url", fileURL), zap.Int("status_code", resp.StatusCode))
+		return nil, fmt.Errorf("failed to fetch GIF: %s", resp.Status), func() {}
+	}
+
+	files = append(files, &discordgo.File{
+		Name:        createFileName(dialog, matchedDialogRow, "gif"),
+		ContentType: "image/gif",
+		Reader:      resp.Body,
+	})
+	cancelFunc = func() {
+		resp.Body.Close()
+	}
+	return &discordgo.InteractionResponse{
+		Type: discordgo.InteractionResponseChannelMessageWithSource,
+		Data: &discordgo.InteractionResponseData{
+			Content: fmt.Sprintf(
+				"`%s` @ `%s` | [%s](%s) | Posted by %s",
+				dialog.TranscriptMeta.Id,
+				(time.Millisecond * time.Duration(matchedDialogRow.OffsetMs)).String(),
+				strings.TrimPrefix(b.webUrl, "https://"),
+				fmt.Sprintf("%s/ep/%s#pos-%d", b.webUrl, episodeId, pos),
+				username,
+			),
+			Files: files,
+		},
+	}, nil, cancelFunc
+}
+
 func (b *Bot) respondError(s *discordgo.Session, i *discordgo.InteractionCreate, err error) {
 	b.logger.Error("Error response was sent", zap.Error(err))
 	err = s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
@@ -418,7 +544,7 @@ func (b *Bot) respondError(s *discordgo.Session, i *discordgo.InteractionCreate,
 	}
 }
 
-func encodeCustomID(action string, episodeID string, position int, username string, contentModifier ContentModifier) (string, error) {
+func encodeCustomID(action string, episodeID string, position int, contentModifier ContentModifier) (string, error) {
 	encoded, err := json.Marshal(&CustomID{
 		EpisodeID:       episodeID,
 		Position:        position,
@@ -432,11 +558,11 @@ func decodeCustomIDPayload(data string) (*CustomID, error) {
 	return decoded, json.Unmarshal([]byte(data), decoded)
 }
 
-func createAudioFileName(dialog *api.TranscriptDialog, matchedDialogRow *api.Dialog) string {
+func createFileName(dialog *api.TranscriptDialog, matchedDialogRow *api.Dialog, suffix string) string {
 	if contentFilename := contentToFilename(matchedDialogRow.Content); contentFilename != "" {
-		return fmt.Sprintf("%s.mp3", contentFilename)
+		return fmt.Sprintf("%s.%s", contentFilename, suffix)
 	}
-	return fmt.Sprintf("%s-%d.mp3", dialog.TranscriptMeta.Id, matchedDialogRow.Pos)
+	return fmt.Sprintf("%s-%d.%s", dialog.TranscriptMeta.Id, matchedDialogRow.Pos, suffix)
 }
 
 func contentToFilename(rawContent string) string {

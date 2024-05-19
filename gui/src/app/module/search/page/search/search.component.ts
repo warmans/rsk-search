@@ -4,12 +4,12 @@ import {ActivatedRoute, ParamMap} from '@angular/router';
 import {takeUntil} from 'rxjs/operators';
 import {Title} from '@angular/platform-browser';
 import {
-  RskChangelog,
-  RskChunkedTranscriptList,
-  RskChunkedTranscriptStats,
-  RskDialog,
-  RskSearchResultList,
-  RskShortTranscript
+    RskChangelog,
+    RskChunkedTranscriptList,
+    RskChunkedTranscriptStats,
+    RskDialog, RskMediaType,
+    RskSearchResultList,
+    RskShortTranscript
 } from 'src/app/lib/api-client/models';
 import {AudioService} from '../../../core/service/audio/audio.service';
 import {ClipboardService} from 'src/app/module/core/service/clipboard/clipboard.service';
@@ -100,4 +100,6 @@ export class SearchComponent implements OnInit, OnDestroy {
   copyLineToClipboard(line: RskDialog) {
     this.clipboardService.copyTextToClipboard(line.content);
   }
+
+    protected readonly RskMediaType = RskMediaType;
 }

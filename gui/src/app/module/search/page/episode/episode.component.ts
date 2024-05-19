@@ -3,7 +3,7 @@ import {ActivatedRoute, Data, Router} from '@angular/router';
 import {SearchAPIClient} from 'src/app/lib/api-client/services/search';
 import {
   DialogType,
-  RskDialog,
+  RskDialog, RskMediaType,
   RskTranscript,
   RskTranscriptChange,
   RskTranscriptChangeList
@@ -233,4 +233,5 @@ export class EpisodeComponent implements OnInit, OnDestroy {
   }
 
   protected readonly Math = Math;
+  protected readonly RskMediaType = RskMediaType;
 }

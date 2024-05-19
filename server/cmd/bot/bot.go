@@ -81,7 +81,7 @@ func RootCommand() *cobra.Command {
 	flag.StringVarEnv(cmd.Flags(), &botToken, "", "discord-token", "", "discord token")
 	flag.StringVarEnv(cmd.Flags(), &guildID, "", "discord-guild-id", "", "discord guild/server ID")
 	flag.StringVarEnv(cmd.Flags(), &apiTarget, "", "api-target", "127.0.0.1:9090", "gRPC API target")
-	flag.StringVarEnv(cmd.Flags(), &webUrl, "", "web-url", "https://scrimpton.com", "Base web address used for links")
+	flag.StringVarEnv(cmd.Flags(), &webUrl, "", "web-url", "http://127.0.0.1:4200", "Base web address used for links")
 	flag.Parse()
 
 	return cmd

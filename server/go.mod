@@ -24,6 +24,7 @@ require (
 	github.com/hibiken/asynq v0.23.0
 	github.com/jmoiron/sqlx v1.3.1
 	github.com/karlseguin/ccache/v2 v2.0.8
+	github.com/konifar/go-srt v1.0.0
 	github.com/lib/pq v1.10.0
 	github.com/lithammer/shortuuid/v3 v3.0.6
 	github.com/mattn/go-sqlite3 v1.14.6

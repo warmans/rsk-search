@@ -21,7 +21,7 @@
             </span>
           </div>
           <div class="sub-title font-weight-light">
-            <a *ngIf="loggedIn" [href]="episode.audioUri" target="_blank">
+            <a *ngIf="loggedIn && episode.audioUri" [href]="episode.audioUri" target="_blank">
               {{episode.shortId}}
             </a>
             <span *ngIf="!loggedIn">

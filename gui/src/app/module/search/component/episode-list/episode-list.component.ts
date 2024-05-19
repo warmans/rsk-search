@@ -5,7 +5,7 @@ import { RskShortTranscript, RskTranscriptList } from 'src/app/lib/api-client/mo
 import { UntypedFormControl } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
-type tabState = 'xfm' | 'guide' | 'special' | 'other' | 'karl' | 'preview';
+type tabState = 'xfm' | 'guide' | 'special' | 'other' | 'karl' | 'preview' | 'office';
 
 @Component({
   selector: 'app-episode-list',

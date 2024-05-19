@@ -6,6 +6,7 @@ import (
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	"github.com/pkg/errors"
+	ffmpeg_go "github.com/u2takey/ffmpeg-go"
 	"github.com/warmans/rsk-search/pkg/data"
 	extract_audio "github.com/warmans/rsk-search/pkg/extract-audio"
 	"github.com/warmans/rsk-search/pkg/meta"
@@ -15,6 +16,7 @@ import (
 	"github.com/warmans/rsk-search/service/config"
 	"github.com/warmans/rsk-search/service/metrics"
 	"go.uber.org/zap"
+	"io"
 	"net/http"
 	"os"
 	"path"
@@ -63,6 +65,7 @@ func (c *DownloadService) RegisterHTTP(ctx context.Context, router *mux.Router) 
 
 	router.Path("/dl/media/{media_type}/{id}.mp3").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DownloadMP3)))
 	router.Path("/dl/media/file/{name}").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DownloadFile)))
+	router.Path("/dl/media/gif/{id}").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DownloadGif)))
 }
 
 func (c *DownloadService) DownloadJSONArchive(resp http.ResponseWriter, req *http.Request) {
@@ -101,7 +104,6 @@ func (c *DownloadService) DownloadMP3(resp http.ResponseWriter, req *http.Reques
 	filePath := path.Join(c.serviceConfig.MediaBasePath, mediaType, fmt.Sprintf("%s.mp3", fileID))
 
 	// partial file
-	// todo: this should also support exporting by specific timestamps
 	if req.URL.Query().Get("pos") != "" || req.URL.Query().Get("ts") != "" {
 
 		if mediaType != MediaTypeEpisode {
@@ -120,7 +122,7 @@ func (c *DownloadService) DownloadMP3(resp http.ResponseWriter, req *http.Reques
 
 		var startTimestamp, endTimestamp time.Duration
 		if pos := req.URL.Query().Get("pos"); pos != "" {
-			startTimestamp, endTimestamp, err = ep.GetTimestampRange(pos)
+			startTimestamp, endTimestamp, _, err = ep.GetTimestampRange(pos)
 			if err != nil {
 				http.Error(resp, "invalid position specification", http.StatusBadRequest)
 				return
@@ -238,6 +240,81 @@ func (c *DownloadService) DownloadFile(resp http.ResponseWriter, req *http.Reque
 	http.ServeFile(resp, req, filePath)
 }
 
+func (c *DownloadService) DownloadGif(resp http.ResponseWriter, req *http.Request) {
+	vars := mux.Vars(req)
+	fileID, ok := vars["id"]
+	if !ok {
+		http.Error(resp, "No episode identifier given", http.StatusBadRequest)
+		return
+	}
+	ep, err := c.episodeCache.GetEpisode(fileID)
+	if errors.Is(err, data.ErrNotFound) || ep == nil {
+		http.Error(resp, fmt.Sprintf("unknown episode ID: %s", fileID), http.StatusNotFound)
+		return
+	}
+	if ep.MediaType != models.MediaTypeVideo {
+		http.Error(resp, fmt.Sprintf("episode is not a video: %s", fileID), http.StatusBadRequest)
+		return
+	}
+	if ep.MediaFileName == "" {
+		http.Error(resp, fmt.Sprintf("no media found for given file: %s", fileID), http.StatusNotFound)
+		return
+	}
+	if err := c.checkQuotas(req.Context()); err != nil {
+		if errors.Is(err, DownloadsOverQuota) {
+			http.Error(resp, "Bandwidth quota exhausted", http.StatusTooManyRequests)
+		} else {
+			http.Error(resp, "Failed to calculate bandwidth quota", http.StatusInternalServerError)
+		}
+		return
+	}
+
+	pos := req.URL.Query().Get("pos")
+	if pos == "" {
+		http.Error(resp, "position not given", http.StatusBadRequest)
+		return
+	}
+
+	startTimestamp, endTimestamp, dialog, err := ep.GetTimestampRange(pos)
+	if err != nil {
+		c.logger.Error("invalid position", zap.Error(err))
+		http.Error(resp, "invalid position specification", http.StatusBadRequest)
+		return
+	}
+	clipDuration := endTimestamp - startTimestamp
+	if clipDuration > time.Second*10 {
+		http.Error(resp, fmt.Sprintf("gifs cannot be more than 10 seconds. Given range was %s", clipDuration), http.StatusBadRequest)
+		return
+	}
+
+	filePath := path.Join(c.serviceConfig.MediaBasePath, "video", ep.MediaFileName)
+
+	writer := NewCountingWriter(resp)
+
+	startTime := time.Now()
+	err = ffmpeg_go.
+		Input(filePath).
+		Output("pipe:",
+			ffmpeg_go.KwArgs{
+				"format": "gif",
+				"ss":     fmt.Sprintf("%0.2f", startTimestamp.Seconds()),
+				"to":     fmt.Sprintf("%0.2f", endTimestamp.Seconds()),
+				"filter_complex": fmt.Sprintf(
+					"[0:v]drawtext=text='%s':fontcolor=white:fontsize=16:box=1:boxcolor=black@0.5:boxborderw=5:x=(w-text_w)/2:y=(h-(text_h+10))",
+					strings.Replace(strings.Join(dialog, " "), "'", "", -1),
+				),
+			},
+		).WithOutput(writer, os.Stderr).Run()
+	if err != nil {
+		c.logger.Error("ffmpeg failed", zap.Error(err))
+		http.Error(resp, fmt.Sprintf("failed to export gif"), http.StatusInternalServerError)
+	}
+	if err := c.incrementQuotas(req.Context(), "gif", fileID, int64(writer.BytesWritten())); err != nil {
+		c.logger.Error("Failed to increment quotas", zap.Error(err))
+	}
+	c.logger.Info("Gif rendered", zap.Duration("time taken", time.Since(startTime)))
+}
+
 func (c *DownloadService) DownloadEpisodeJSON(resp http.ResponseWriter, req *http.Request) {
 	vars := mux.Vars(req)
 	episode, ok := vars["episode"]
@@ -270,6 +347,22 @@ func (c *DownloadService) DownloadEpisodePlaintext(resp http.ResponseWriter, req
 	resp.Header().Set("Content-Disposition", fmt.Sprintf("attachment; filename=%s", fileName))
 	resp.Header().Set("Content-Type", "text/plain")
 	http.ServeFile(resp, req, path.Join(c.serviceConfig.FilesBasePath, "gen", "plaintext", fileName))
+}
+
+func (c *DownloadService) checkQuotas(ctx context.Context) error {
+	return c.rwStoreConn.WithStore(func(s *rw.Store) error {
+		_, currentMib, err := s.GetMediaStatsForCurrentMonth(ctx)
+		if err != nil {
+			if err == context.Canceled || strings.HasSuffix(err.Error(), "driver: bad connection") {
+				return nil
+			}
+			return errors.Wrap(err, "failed to get current usage")
+		}
+		if currentMib > quota.BandwidthQuotaInMiB {
+			return DownloadsOverQuota
+		}
+		return nil
+	})
 }
 
 func (c *DownloadService) incrementQuotas(ctx context.Context, mediaType string, fileID string, fileBytes int64) error {
@@ -323,4 +416,28 @@ func parseTsParam(ts string) (time.Duration, time.Duration, error) {
 		return 0, 0, fmt.Errorf("invalid end timestamp %s: %w", ts, err)
 	}
 	return time.Duration(startTs) * time.Millisecond, time.Duration(endTs) * time.Millisecond, nil
+}
+
+// CountingWriter via https://github.com/jeanfric/goembed/blob/master/countingwriter/countingwriter.go
+type CountingWriter struct {
+	writer       io.Writer
+	bytesWritten int
+}
+
+func NewCountingWriter(w io.Writer) *CountingWriter {
+	return &CountingWriter{
+		writer:       w,
+		bytesWritten: 0,
+	}
+}
+
+func (w *CountingWriter) Write(b []byte) (int, error) {
+	n, err := w.writer.Write(b)
+	w.bytesWritten += n
+	return n, err
+}
+
+// BytesWritten returns the number of bytes that were written to the wrapped writer.
+func (w *CountingWriter) BytesWritten() int {
+	return w.bytesWritten
 }

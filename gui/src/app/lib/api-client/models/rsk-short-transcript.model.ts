@@ -1,6 +1,7 @@
 /* tslint:disable */
 import {
   RskAudioQuality,
+  RskMediaType,
   RskSynopsis,
 } from '.';
 
@@ -12,6 +13,7 @@ export interface RskShortTranscript {
   episode?: number;
   id?: string;
   incomplete?: boolean;
+  mediaType?: RskMediaType;
   metadata?: { [key: string]: string };
   name?: string;
   offsetAccuracyPcnt?: number;

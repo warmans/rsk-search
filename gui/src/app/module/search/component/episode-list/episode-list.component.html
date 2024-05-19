@@ -27,6 +27,10 @@
         <a class="nav-link" [ngClass]="{'active': activePublication === 'preview'}"
            (click)="loadPublicationTab('preview')">Preview</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" [ngClass]="{'active': activePublication === 'office'}"
+           (click)="loadPublicationTab('office')">Office</a>
+      </li>
     </ul>
   </div>
 

@@ -132,10 +132,12 @@ func (d Dialog) Proto(matchedRow bool) *api.Dialog {
 }
 
 type Transcript struct {
-	MediaType   MediaType `json:"media_type"`
-	Publication string    `json:"publication"`
-	Series      int32     `json:"series"`
-	Episode     int32     `json:"episode"`
+	MediaType     MediaType `json:"media_type"`
+	MediaFileName string    `json:"media_file_name"`
+
+	Publication string `json:"publication"`
+	Series      int32  `json:"series"`
+	Episode     int32  `json:"episode"`
 	// some episodes don't really have a proper series/episode and need to be identified by a name e.g. Radio 2 special
 	Name        string     `json:"name"`
 	Summary     string     `json:"summary"`
@@ -191,26 +193,26 @@ func (e *Transcript) Actors() []string {
 
 // GetTimestampRange will convert a position specification e.g. 20-30 into a timestamp range.
 // if the range exceeds the total episode length it will just return the total episode length as the end timestamp.
-func (e *Transcript) GetTimestampRange(pos string) (time.Duration, time.Duration, error) {
+func (e *Transcript) GetTimestampRange(pos string) (time.Duration, time.Duration, []string, error) {
 	if len(e.Transcript) == 0 {
-		return 0, 0, fmt.Errorf("no dialog to extract")
+		return 0, 0, []string{}, fmt.Errorf("no dialog to extract")
 	}
 	startPos, endPos, err := parsePositionRange(pos)
 	if err != nil {
-		return 0, 0, err
+		return 0, 0, []string{}, err
 	}
 	maximumPossibleOffset, err := e.GetEpisodeLength()
 	if err != nil {
-		return 0, 0, err
+		return 0, 0, []string{}, err
 	}
 	lastLine := e.Transcript[len(e.Transcript)-1]
 	if startPos > lastLine.Position {
-		return 0, 0, fmt.Errorf("start position was out of bounds: %d > %d", startPos, lastLine.Position)
+		return 0, 0, []string{}, fmt.Errorf("start position was out of bounds: %d > %d", startPos, lastLine.Position)
 	}
 
 	// get from the start of the last line to the end of the episode
 	if startPos == lastLine.Position {
-		return lastLine.Timestamp, maximumPossibleOffset, nil
+		return lastLine.Timestamp, maximumPossibleOffset, []string{lastLine.Content}, nil
 	}
 	var startOffset time.Duration
 	for _, v := range e.Transcript {
@@ -220,17 +222,28 @@ func (e *Transcript) GetTimestampRange(pos string) (time.Duration, time.Duration
 		}
 	}
 	if endPos >= lastLine.Position {
-		return startOffset, maximumPossibleOffset, nil
+		dialog := []string{}
+		for _, d := range e.Transcript {
+			if d.Position >= startPos {
+				dialog = append(dialog, d.Content)
+			}
+		}
+		return startOffset, maximumPossibleOffset, dialog, nil
 	}
+
 	var endOffset time.Duration
+	dialog := []string{}
 	for _, v := range e.Transcript {
 		if endPos == v.Position {
 			endOffset = v.Timestamp
 			break
 		}
+		if v.Position >= startPos {
+			dialog = append(dialog, v.Content)
+		}
 	}
 	// always add an extra second if possible as often the last timestamp is a floored value which should be ceiled
-	return max(0, startOffset), min(maximumPossibleOffset, endOffset+1), nil
+	return max(0, startOffset), min(maximumPossibleOffset, endOffset+1), dialog, nil
 }
 
 // GetEpisodeLength extracts the episode length
