@@ -6,9 +6,10 @@ RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/s
 
 RUN wget -q -O /tmp/ffmpeg.tar.xz https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz && \
     cd /tmp && \
-    tar xvf ffmpeg.tar.xz && \
-    cd ffmpeg-7.0-amd64-static && \
-    mv ffmpeg /usr/bin/ffmpeg && mv ffprobe /usr/bin/ffprobe \
+    mkdir ffmpeg-static && \
+    tar xvf ffmpeg.tar.xz -C /tmp/ffmpeg-static --strip-components=1 && \
+    cd ffmpeg-static && \
+    mv ffmpeg /usr/bin/ffmpeg && mv ffprobe /usr/bin/ffprobe
 
 RUN mkdir -p /opt/rsk/persistent && mkdir -p /opt/rsk/script && mkdir -p /opt/rsk/imports && chown -R nobody /opt/rsk
 
