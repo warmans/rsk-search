@@ -307,7 +307,7 @@ func (c *DownloadService) DownloadGif(resp http.ResponseWriter, req *http.Reques
 		).WithOutput(writer, os.Stderr).Run()
 	if err != nil {
 		c.logger.Error("ffmpeg failed", zap.Error(err))
-		http.Error(resp, fmt.Sprintf("failed to export gif"), http.StatusInternalServerError)
+		http.Error(resp, "failed to export gif", http.StatusInternalServerError)
 	}
 	if err := c.incrementQuotas(req.Context(), "gif", fileID, int64(writer.BytesWritten())); err != nil {
 		c.logger.Error("Failed to increment quotas", zap.Error(err))

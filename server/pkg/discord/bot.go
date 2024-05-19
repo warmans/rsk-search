@@ -490,7 +490,6 @@ func (b *Bot) videoFileResponse(dialog *api.TranscriptDialog, episodeId string, 
 	}
 
 	var files []*discordgo.File
-	cancelFunc := func() {}
 
 	fileURL := fmt.Sprintf("%s/dl/media/gif/%s?pos=%d", b.webUrl, dialog.TranscriptMeta.Id, matchedDialogRow.Pos)
 
@@ -510,7 +509,7 @@ func (b *Bot) videoFileResponse(dialog *api.TranscriptDialog, episodeId string, 
 		ContentType: "image/gif",
 		Reader:      resp.Body,
 	})
-	cancelFunc = func() {
+	cancelFunc := func() {
 		resp.Body.Close()
 	}
 	return &discordgo.InteractionResponse{
