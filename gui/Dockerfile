@@ -1,4 +1,4 @@
-FROM nginx
+FROM nginx:1.25
 
 COPY dist/gui /usr/share/nginx/html/
 COPY deploy/default.conf /etc/nginx/conf.d/
