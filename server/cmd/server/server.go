@@ -11,6 +11,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/data"
 	"github.com/warmans/rsk-search/pkg/flag"
 	"github.com/warmans/rsk-search/pkg/jwt"
+	"github.com/warmans/rsk-search/pkg/mediacache"
 	"github.com/warmans/rsk-search/pkg/oauth"
 	"github.com/warmans/rsk-search/pkg/pledge"
 	"github.com/warmans/rsk-search/pkg/reward"
@@ -52,6 +53,7 @@ func ServerCmd() *cobra.Command {
 	coffeeCfg := &coffee.Config{}
 	assemblyAiCfg := &assemblyai.Config{}
 	sentryCfg := &sentry.Config{}
+	mediaCacheCfg := &mediacache.Config{}
 
 	cmd := &cobra.Command{
 		Use:   "server",
@@ -193,6 +195,11 @@ func ServerCmd() *cobra.Command {
 				logger.Info("Coffee client disabled (no access token)")
 			}
 
+			mediaCache, err := mediacache.NewCache(*mediaCacheCfg, logger)
+			if err != nil {
+				logger.Fatal("failed to create media cache", zap.Error(err))
+			}
+
 			grpcServices := []server.GRPCService{
 				grpc.NewSearchService(
 					logger,
@@ -246,7 +253,14 @@ func ServerCmd() *cobra.Command {
 
 			httpServices := []server.HTTPService{
 				httpsrv.NewMetricsService(),
-				httpsrv.NewDownloadService(logger, srvCfg, persistentDBConn, metrics.NewHTTPMetrics(), episodeCache),
+				httpsrv.NewDownloadService(
+					logger,
+					srvCfg,
+					persistentDBConn,
+					metrics.NewHTTPMetrics(),
+					episodeCache,
+					mediaCache,
+				),
 			}
 			if oauthCfg.RedditSecret != "" {
 				httpServices = append(httpServices, httpsrv.NewOauthService(logger, tokenCache, persistentDBConn, auth, oauthCfg, srvCfg))
@@ -290,6 +304,7 @@ func ServerCmd() *cobra.Command {
 	coffeeCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
 	assemblyAiCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
 	sentryCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
+	mediaCacheCfg.RegisterFlags(cmd.Flags(), ServicePrefix)
 
 	return cmd
 

@@ -9,6 +9,7 @@ import (
 	ffmpeg_go "github.com/u2takey/ffmpeg-go"
 	"github.com/warmans/rsk-search/pkg/data"
 	extract_audio "github.com/warmans/rsk-search/pkg/extract-audio"
+	"github.com/warmans/rsk-search/pkg/mediacache"
 	"github.com/warmans/rsk-search/pkg/meta"
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/quota"
@@ -39,6 +40,7 @@ func NewDownloadService(
 	rwStoreConn *rw.Conn,
 	httpMetrics *metrics.HTTPMetrics,
 	episodeCache *data.EpisodeCache,
+	mediaCache *mediacache.Cache,
 ) *DownloadService {
 	return &DownloadService{
 		logger:        logger.With(zap.String("component", "downloads-http-server")),
@@ -46,6 +48,7 @@ func NewDownloadService(
 		rwStoreConn:   rwStoreConn,
 		httpMetrics:   httpMetrics,
 		episodeCache:  episodeCache,
+		mediaCache:    mediaCache,
 	}
 }
 
@@ -55,6 +58,7 @@ type DownloadService struct {
 	rwStoreConn   *rw.Conn
 	httpMetrics   *metrics.HTTPMetrics
 	episodeCache  *data.EpisodeCache
+	mediaCache    *mediacache.Cache
 }
 
 func (c *DownloadService) RegisterHTTP(ctx context.Context, router *mux.Router) {
@@ -282,48 +286,56 @@ func (c *DownloadService) DownloadGif(resp http.ResponseWriter, req *http.Reques
 		return
 	}
 	clipDuration := endTimestamp - startTimestamp
-	if clipDuration > time.Second*10 {
-		http.Error(resp, fmt.Sprintf("gifs cannot be more than 10 seconds. Given range was %s", clipDuration), http.StatusBadRequest)
+	if clipDuration > time.Second*15 {
+		http.Error(resp, fmt.Sprintf("gifs cannot be more than 15 seconds. Given range was %s", clipDuration), http.StatusBadRequest)
 		return
 	}
-
-	filePath := path.Join(c.serviceConfig.MediaBasePath, "video", ep.MediaFileName)
-
-	writer := NewCountingWriter(resp)
-
-	text := []string{}
-	for k, v := range strings.Split(strings.Replace(strings.Join(dialog, " "), "'", "", -1), " ") {
-		if k%12 == 0 {
-			text = append(text, "\n", v)
-			continue
-		}
-		text = append(text, " ", v)
-	}
-
+	cacheKey := fmt.Sprintf("%s-%s.gif", fileID, pos)
 	startTime := time.Now()
-	err = ffmpeg_go.
-		Input(filePath,
-			ffmpeg_go.KwArgs{
-				"ss": fmt.Sprintf("%0.2f", startTimestamp.Seconds()),
-				"to": fmt.Sprintf("%0.2f", endTimestamp.Seconds()),
-			}).
-		Output("pipe:",
-			ffmpeg_go.KwArgs{
-				"format": "gif",
-				"filter_complex": fmt.Sprintf(
-					"[0:v]drawtext=text='%s':fontcolor=white:fontsize=16:box=1:boxcolor=black@0.5:boxborderw=5:x=(w-text_w)/2:y=(h-(text_h+10))",
-					strings.TrimSpace(strings.Join(text, "")),
-				),
-			},
-		).WithOutput(writer, os.Stderr).Run()
+
+	cacheHit, err := c.mediaCache.Get(cacheKey, resp, func(writer io.Writer) error {
+		text := []string{}
+		for k, v := range strings.Split(strings.Replace(strings.Join(dialog, " "), "'", "", -1), " ") {
+			if k%12 == 0 {
+				text = append(text, "\n", v)
+				continue
+			}
+			text = append(text, " ", v)
+		}
+		countingWriter := NewCountingWriter(writer)
+		err = ffmpeg_go.
+			Input(path.Join(c.serviceConfig.MediaBasePath, "video", ep.MediaFileName),
+				ffmpeg_go.KwArgs{
+					"ss": fmt.Sprintf("%0.2f", startTimestamp.Seconds()),
+					"to": fmt.Sprintf("%0.2f", endTimestamp.Seconds()),
+				}).
+			Output("pipe:",
+				ffmpeg_go.KwArgs{
+					"format": "gif",
+					"filter_complex": fmt.Sprintf(
+						"[0:v]drawtext=text='%s':fontcolor=white:fontsize=16:box=1:boxcolor=black@0.5:boxborderw=5:x=(w-text_w)/2:y=(h-(text_h+10))",
+						strings.TrimSpace(strings.Join(text, "")),
+					),
+				},
+			).WithOutput(countingWriter, os.Stderr).Run()
+		if err != nil {
+			c.logger.Error("ffmpeg failed", zap.Error(err))
+		}
+		if err := c.incrementQuotas(req.Context(), "gif", fileID, int64(countingWriter.BytesWritten())); err != nil {
+			c.logger.Error("Failed to increment quotas", zap.Error(err))
+		}
+		return nil
+	})
 	if err != nil {
-		c.logger.Error("ffmpeg failed", zap.Error(err))
-		http.Error(resp, "failed to export gif", http.StatusInternalServerError)
+		http.Error(resp, err.Error(), http.StatusInternalServerError)
+		c.logger.Error("cache fetch failed", zap.Error(err))
+		return
 	}
-	if err := c.incrementQuotas(req.Context(), "gif", fileID, int64(writer.BytesWritten())); err != nil {
-		c.logger.Error("Failed to increment quotas", zap.Error(err))
+	if cacheHit {
+		c.logger.Info("Cache hit", zap.Duration("time taken", time.Since(startTime)), zap.String("cache_key", cacheKey))
+	} else {
+		c.logger.Info("Cache miss", zap.Duration("time taken", time.Since(startTime)), zap.String("cache_key", cacheKey))
 	}
-	c.logger.Info("Gif rendered", zap.Duration("time taken", time.Since(startTime)))
 }
 
 func (c *DownloadService) DownloadEpisodeJSON(resp http.ResponseWriter, req *http.Request) {

@@ -658,7 +658,7 @@ func (b *Bot) buildVideoResponse(dialog *api.TranscriptDialog, customID CustomID
 		})
 
 	} else {
-		bodyText = ":timer Rendering gif..."
+		bodyText = ":timer: Rendering gif..."
 	}
 	return &discordgo.InteractionResponse{
 		Type: discordgo.InteractionResponseChannelMessageWithSource,
