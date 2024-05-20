@@ -23,6 +23,7 @@ import (
 
 var punctuation = regexp.MustCompile(`[^a-zA-Z0-9\s]+`)
 var spaces = regexp.MustCompile(`[\s]{2,}`)
+var metaWhitespace = regexp.MustCompile(`[\n\r\t]+`)
 
 var rendersInProgress = map[string]string{}
 var renderMutex = sync.RWMutex{}
@@ -716,10 +717,11 @@ func createFileName(dialog *api.TranscriptDialog, matchedDialogRow *api.Dialog, 
 func contentToFilename(rawContent string) string {
 	rawContent = punctuation.ReplaceAllString(rawContent, "")
 	rawContent = spaces.ReplaceAllString(rawContent, " ")
-	rawContent = strings.TrimSpace(rawContent)
+	rawContent = metaWhitespace.ReplaceAllString(rawContent, " ")
+	rawContent = strings.ToLower(strings.TrimSpace(rawContent))
 	split := strings.Split(rawContent, " ")
-	if len(split) > 6 {
-		split = split[:5]
+	if len(split) > 9 {
+		split = split[:8]
 	}
 	return strings.Join(split, "-")
 }
