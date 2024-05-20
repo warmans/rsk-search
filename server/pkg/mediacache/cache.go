@@ -54,25 +54,38 @@ func (c *Cache) Get(key string, writeTo io.Writer, fetchFn func(writer io.Writer
 	}
 
 	// cached file doesn't exist
-
-	newFile, err := os.OpenFile(filePath, os.O_RDWR|os.O_CREATE|os.O_EXCL, 0666)
+	err = func() error {
+		newFile, err := os.OpenFile(filePath, os.O_RDWR|os.O_CREATE|os.O_EXCL, 0666)
+		if err != nil {
+			c.logger.Error("failed to create cached file", zap.String("file_path", filePath), zap.Error(err))
+			return fetchFn(writeTo)
+		}
+		defer func() {
+			if err := newFile.Close(); err != nil {
+				panic(fmt.Sprintf("failed to close file after write: %s", err.Error()))
+			}
+		}()
+		if err = syscall.Flock(int(newFile.Fd()), syscall.LOCK_EX); err != nil {
+			c.logger.Error("failed to lock file for writing", zap.String("file_path", filePath), zap.Error(err))
+			return fetchFn(writeTo)
+		}
+		defer func() {
+			if err := syscall.Flock(int(newFile.Fd()), syscall.LOCK_UN); err != nil {
+				panic(fmt.Sprintf("failed to unlock file after write: %s", err.Error()))
+			}
+		}()
+		err = fetchFn(io.MultiWriter(writeTo, newFile))
+		if err != nil {
+			if rmErr := os.Remove(filePath); rmErr != nil {
+				c.logger.Error("failed to remove cached file after write error", zap.String("file_path", filePath), zap.Error(rmErr))
+			}
+		}
+		return err
+	}()
 	if err != nil {
-		c.logger.Error("failed to create cached file", zap.String("file_path", filePath), zap.Error(err))
-		return false, fetchFn(writeTo)
-	}
-	defer func() {
-		if err := newFile.Close(); err != nil {
-			panic(fmt.Sprintf("failed to close file after write: %s", err.Error()))
+		if err := os.Remove(filePath); err != nil {
+			c.logger.Error("failed to remove cached file after write error", zap.String("file_path", filePath), zap.Error(err))
 		}
-	}()
-	if err = syscall.Flock(int(newFile.Fd()), syscall.LOCK_EX); err != nil {
-		c.logger.Error("failed to lock file for writing", zap.String("file_path", filePath), zap.Error(err))
-		return false, fetchFn(writeTo)
 	}
-	defer func() {
-		if err := syscall.Flock(int(newFile.Fd()), syscall.LOCK_UN); err != nil {
-			panic(fmt.Sprintf("failed to unlock file after write: %s", err.Error()))
-		}
-	}()
-	return false, fetchFn(io.MultiWriter(writeTo, newFile))
+	return false, err
 }
