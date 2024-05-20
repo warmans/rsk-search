@@ -314,7 +314,7 @@ func (c *DownloadService) DownloadGif(resp http.ResponseWriter, req *http.Reques
 					"format": "gif",
 					"filter_complex": fmt.Sprintf(
 						"[0:v]drawtext=text='%s':fontcolor=white:fontsize=16:box=1:boxcolor=black@0.5:boxborderw=5:x=(w-text_w)/2:y=(h-(text_h+10))",
-						strings.TrimSpace(strings.Join(text, "")),
+						sanitizeDrawtext(strings.TrimSpace(strings.Join(text, ""))),
 					),
 				},
 			).WithOutput(countingWriter, os.Stderr).Run()
@@ -463,4 +463,9 @@ func (w *CountingWriter) Write(b []byte) (int, error) {
 // BytesWritten returns the number of bytes that were written to the wrapped writer.
 func (w *CountingWriter) BytesWritten() int {
 	return w.bytesWritten
+}
+func sanitizeDrawtext(text string) string {
+	text = strings.Replace(text, ":", `\:`, -1)
+	text = strings.Replace(text, "'", `\'`, -1)
+	return text
 }
