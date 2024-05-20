@@ -21,6 +21,10 @@ import (
 
 var htmlTag = regexp.MustCompile(`<[^<>]+>`)
 
+// InitFromSrtCmd
+// Examples:
+// for i in $(seq 1 1); do sed -i '1s/^\xEF\xBB\xBF//' ~/audio-src/source/scrimpton-audio/video/extras-S01E0${i}.srt; ./bin/rsk-search data init-from-srt --srt-path ~/audio-src/source/scrimpton-audio/video/extras-S01E0${i}.srt -p extras -s 1 -e ${i} -m ~/audio-src/source/scrimpton-audio/video/extras-S01E0${i}.mp4; done
+
 func InitFromSrtCmd() *cobra.Command {
 
 	var srtPath string
@@ -95,6 +99,7 @@ func initEpisodeFileFromSRT(
 	}
 
 	scanner := gosrt.NewScanner(srtFile)
+	scanned := 0
 	for scanner.Scan() {
 		sub := scanner.Subtitle()
 		ep.Transcript = append(ep.Transcript, models.Dialog{
@@ -106,9 +111,10 @@ func initEpisodeFileFromSRT(
 			Timestamp: sub.Start,
 			Duration:  sub.End - sub.Start,
 		})
+		scanned++
 	}
 	if err := scanner.Err(); err != nil {
-		return fmt.Errorf("scanner failed: %w", err)
+		return fmt.Errorf("scanner failed after %d lines: %w", scanned, err)
 	}
 
 	filePath := data.EpisodeFileName(dataDir, ep)

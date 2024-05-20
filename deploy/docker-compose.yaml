@@ -109,4 +109,5 @@ services:
       RSK_SEARCH_BMAC_ACCESS_TOKEN: "na"
       RSK_SEARCH_ASSEMBLY_AI_ACCESS_TOKEN: "changeme"
       RSK_SEARCH_SENTRY_DSN: ""
+      RSK_SEARCH_MEDIA_CACHE_DATA_DIR: "./cache/media"
     restart: unless-stopped

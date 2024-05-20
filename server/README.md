@@ -37,3 +37,27 @@ This is where all the "business logic" of the API is (including the proto servic
 ### `var`
 
 Various files. This is where all the raw JSON for all the transcripts live.
+
+## Importing video transcripts
+
+### 1. If the videos are mp4s with embedded subtitles extract the subs: 
+
+```
+for i in $(seq 1 6); do ffmpeg -i orig/example-S01E0${i}.mkv example-S01E0${i}.srt; done;
+```
+
+### 2. Resize video so gifs need less processing
+
+```
+for i in $(seq 1 6); do ffmpeg -i orig/example-S01E0${i}.mp4 -filter_complex "[0:v]fps=10,scale=598:-1" example-S01E0${i}.mp4; done;
+```
+
+Note that this can fail due to the resolution not being divisible by two. Just change it slightly and retry.
+
+### 3. Extract create transcripts from the subs: 
+
+Note that BOMs are stripped just in case with sed.
+
+```
+ for i in $(seq 1 6); do sed -i '1s/^\xEF\xBB\xBF//' path/to/example-S01E0${i}.srt; ./bin/rsk-search data init-from-srt --srt-path path/to/example-S01E0${i}.srt -p example -s 1 -e ${i} -m path/to/example-S01E0${i}.mp4; done
+```
