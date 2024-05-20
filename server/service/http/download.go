@@ -291,17 +291,28 @@ func (c *DownloadService) DownloadGif(resp http.ResponseWriter, req *http.Reques
 
 	writer := NewCountingWriter(resp)
 
+	text := []string{}
+	for k, v := range strings.Split(strings.Replace(strings.Join(dialog, " "), "'", "", -1), " ") {
+		if k%12 == 0 {
+			text = append(text, "\n", v)
+			continue
+		}
+		text = append(text, " ", v)
+	}
+
 	startTime := time.Now()
 	err = ffmpeg_go.
-		Input(filePath).
+		Input(filePath,
+			ffmpeg_go.KwArgs{
+				"ss": fmt.Sprintf("%0.2f", startTimestamp.Seconds()),
+				"to": fmt.Sprintf("%0.2f", endTimestamp.Seconds()),
+			}).
 		Output("pipe:",
 			ffmpeg_go.KwArgs{
 				"format": "gif",
-				"ss":     fmt.Sprintf("%0.2f", startTimestamp.Seconds()),
-				"to":     fmt.Sprintf("%0.2f", endTimestamp.Seconds()),
 				"filter_complex": fmt.Sprintf(
 					"[0:v]drawtext=text='%s':fontcolor=white:fontsize=16:box=1:boxcolor=black@0.5:boxborderw=5:x=(w-text_w)/2:y=(h-(text_h+10))",
-					strings.Replace(strings.Join(dialog, " "), "'", "", -1),
+					strings.TrimSpace(strings.Join(text, "")),
 				),
 			},
 		).WithOutput(writer, os.Stderr).Run()
