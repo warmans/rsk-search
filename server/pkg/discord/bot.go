@@ -718,8 +718,8 @@ func contentToFilename(rawContent string) string {
 	rawContent = spaces.ReplaceAllString(rawContent, " ")
 	rawContent = strings.TrimSpace(rawContent)
 	split := strings.Split(rawContent, " ")
-	if len(split) > 9 {
-		split = split[:8]
+	if len(split) > 6 {
+		split = split[:5]
 	}
 	return strings.Join(split, "-")
 }
