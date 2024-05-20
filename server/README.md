@@ -40,6 +40,12 @@ Various files. This is where all the raw JSON for all the transcripts live.
 
 ## Importing video transcripts
 
+Rename the files first to make life easier e.g.
+
+```
+for ep in *; do mv "${ep}" "example-$(echo ${ep} | awk '{print $5}').mp4"; done;
+```
+
 ### 1. If the videos are mp4s with embedded subtitles extract the subs: 
 
 ```
