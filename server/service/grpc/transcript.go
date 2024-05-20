@@ -77,7 +77,11 @@ func (s *TranscriptService) GetTranscript(ctx context.Context, request *api.GetT
 		return nil, ErrInternal(err)
 	}
 	_, locked := lockedEpsiodeIDs[ep.ID()]
-	return ep.Proto(rawTranscript, fmt.Sprintf(s.srvCfg.AudioUriPattern, ep.ShortID()), locked), nil
+	var audioURL string
+	if ep.MediaType == models.MediaTypeAudio {
+		audioURL = fmt.Sprintf(s.srvCfg.AudioUriPattern, ep.ShortID())
+	}
+	return ep.Proto(rawTranscript, audioURL, locked), nil
 }
 
 func (s *TranscriptService) GetTranscriptDialog(ctx context.Context, request *api.GetTranscriptDialogRequest) (*api.TranscriptDialog, error) {

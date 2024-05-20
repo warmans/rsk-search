@@ -52,6 +52,9 @@ export class EditorComponent implements OnInit, OnDestroy {
 
   @Input()
   set audioPlayerURL(value: string) {
+    if (!value) {
+      return
+    }
     this._audioPlayerURL = value;
     this.loadAudio();
   }

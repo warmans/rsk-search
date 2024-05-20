@@ -1,8 +1,16 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit } from '@angular/core';
-import { RskShortTranscript } from '../../../../lib/api-client/models';
-import { AudioService, Status } from '../../../core/service/audio/audio.service';
-import { takeUntil } from 'rxjs/operators';
-import { SessionService } from 'src/app/module/core/service/session/session.service';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit
+} from '@angular/core';
+import {RskMediaType, RskShortTranscript} from '../../../../lib/api-client/models';
+import {AudioService, Status} from '../../../core/service/audio/audio.service';
+import {takeUntil} from 'rxjs/operators';
+import {SessionService} from 'src/app/module/core/service/session/session.service';
 
 @Component({
   selector: 'app-episode-summary',
@@ -68,7 +76,12 @@ export class EpisodeSummaryComponent implements OnInit, OnDestroy {
   }
 
   toggleEpisode(episode: RskShortTranscript) {
+    if (episode.mediaType !== RskMediaType.AUDIO) {
+      return;
+    }
     this.audioService.setAudioSrc(episode.shortId, episode.name, episode.audioUri);
     this.audioService.toggleAudio();
   }
+
+  protected readonly RskMediaType = RskMediaType;
 }
