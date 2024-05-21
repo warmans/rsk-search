@@ -56,7 +56,7 @@ func ExtractVideoImages() *cobra.Command {
 				logger.Info("Processing file...", zap.String("path", dirEntry.Name()))
 
 				for _, t := range episode.Transcript {
-					if t.Position&5 == 0 {
+					if t.Position%5 == 0 {
 						if err := dumpImageIfNotExists(cfg.imageDir, t, path.Join(cfg.videoDir, episode.MediaFileName)); err != nil {
 							//todo: don't fail
 							logger.Fatal("failed to dump image", zap.String("id", t.ID), zap.Error(err))
