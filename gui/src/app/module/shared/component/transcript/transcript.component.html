@@ -32,7 +32,7 @@
             <div style="width: 164px; height:5px;"></div>
           </div>
           <div *ngIf="line.pos % 5 === 0">
-            <div [style.background-position-x]="(0-(line.pos/5 * 164))+'px'" [style.background-image]="'url(/dl/media/sprite/'+epid+'.jpg)'" style="width: 164px; height:92px; background-repeat: no-repeat;"></div>
+            <div [style.background-position-x]="(164-(line.pos/5 * 164))+'px'" [style.background-image]="'url(/dl/media/sprite/'+epid+'.jpg)'" style="width: 164px; height:92px; background-repeat: no-repeat;"></div>
           </div>
       </div>
         <div class="line d-flex mb-2 p-2 {{actorClass(line)}}"
