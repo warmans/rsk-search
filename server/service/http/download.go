@@ -294,6 +294,10 @@ func (c *DownloadService) DownloadGif(resp http.ResponseWriter, req *http.Reques
 	}
 	customText := req.URL.Query().Get("custom_text")
 	if customText != "" {
+		if len(customText) > 200 {
+			http.Error(resp, "custom_text cannot be more than 200 characters", http.StatusBadRequest)
+			return
+		}
 		c.logger.Info("custom text used", zap.String("custom_text", customText))
 		dialog = []string{customText}
 		noCache = true
