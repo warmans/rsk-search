@@ -292,7 +292,7 @@ func (c *DownloadService) DownloadGif(resp http.ResponseWriter, req *http.Reques
 		http.Error(resp, "invalid position specification", http.StatusBadRequest)
 		return
 	}
-	customText := req.URL.Query().Get("custom_text")
+	customText := strings.TrimSpace(req.URL.Query().Get("custom_text"))
 	if customText != "" {
 		if len(customText) > 200 {
 			http.Error(resp, "custom_text cannot be more than 200 characters", http.StatusBadRequest)
