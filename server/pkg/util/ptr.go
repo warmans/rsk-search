@@ -37,3 +37,7 @@ func PTime(t *time.Time) time.Time {
 	}
 	return *t
 }
+
+func ToPtr[T any](v T) *T {
+	return &v
+}

@@ -258,6 +258,13 @@ func (e *Transcript) GetEpisodeLength() (time.Duration, error) {
 	return time.Duration(totalLengthMs) * time.Millisecond, nil
 }
 
+func (e *Transcript) GetDialogByPosition(pos int64) (*Dialog, error) {
+	if len(e.Transcript) < int(pos) {
+		return nil, errors.New("invalid position")
+	}
+	return util.ToPtr(e.Transcript[pos-1]), nil
+}
+
 func (e *Transcript) ShortProto(audioURI string) *api.ShortTranscript {
 	if e == nil {
 		return nil
@@ -415,4 +422,14 @@ func parsePositionRange(pos string) (int64, int64, error) {
 		return startPos, endPos, nil
 	}
 	return 0, 0, fmt.Errorf("unexpected position format %s", pos)
+}
+
+func ParseDialogID(id string) (string, int64, error) {
+	//e.g ep-guide-S2E04-1
+	posStr := util.LastSegment(id, "-")
+	posInt, err := strconv.Atoi(posStr)
+	if err != nil {
+		return "", 0, fmt.Errorf("failed to decode position %s: %w", posStr, err)
+	}
+	return strings.TrimSuffix(id, fmt.Sprintf("-%s", posStr)), int64(posInt), nil
 }

@@ -8,6 +8,7 @@ type dataConfig struct {
 	dataDir  string
 	audioDir string
 	videoDir string
+	imageDir string
 }
 
 var cfg = dataConfig{}
@@ -21,6 +22,7 @@ func RootCmd() *cobra.Command {
 	root.PersistentFlags().StringVarP(&cfg.dataDir, "data-dir", "d", "./var/data/episodes", "Path to the raw data files")
 	root.PersistentFlags().StringVarP(&cfg.audioDir, "audio-dir", "a", "", "Path to the audio files")
 	root.PersistentFlags().StringVarP(&cfg.videoDir, "video-dir", "v", "", "Path to the video files")
+	root.PersistentFlags().StringVarP(&cfg.imageDir, "image-dir", "i", "./var/images", "Path to generated images")
 
 	root.AddCommand(InitCmd())
 	root.AddCommand(InitFromAudioFilesCmd())
@@ -48,6 +50,9 @@ func RootCmd() *cobra.Command {
 	root.AddCommand(CountWords())
 	root.AddCommand(MergeTimestampsAAICommand())
 	root.AddCommand(RefreshAudioMetadataCmd())
+
+	//video
+	root.AddCommand(ExtractVideoImages())
 
 	return root
 }

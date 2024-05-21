@@ -14,6 +14,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/quota"
 	"github.com/warmans/rsk-search/pkg/store/rw"
+	"github.com/warmans/rsk-search/pkg/util"
 	"github.com/warmans/rsk-search/service/config"
 	"github.com/warmans/rsk-search/service/metrics"
 	"go.uber.org/zap"
@@ -69,7 +70,10 @@ func (c *DownloadService) RegisterHTTP(ctx context.Context, router *mux.Router) 
 
 	router.Path("/dl/media/{media_type}/{id}.mp3").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DownloadMP3)))
 	router.Path("/dl/media/file/{name}").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DownloadFile)))
+
+	//video stuff
 	router.Path("/dl/media/gif/{id}").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DownloadGif)))
+	router.Path("/dl/media/sprite/{episode_id}.jpg").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DownloadVideoSprite)))
 }
 
 func (c *DownloadService) DownloadJSONArchive(resp http.ResponseWriter, req *http.Request) {
@@ -314,7 +318,7 @@ func (c *DownloadService) DownloadGif(resp http.ResponseWriter, req *http.Reques
 					"format": "gif",
 					"filter_complex": fmt.Sprintf(
 						"[0:v]drawtext=text='%s':fontcolor=white:fontsize=16:box=1:boxcolor=black@0.5:boxborderw=5:x=(w-text_w)/2:y=(h-(text_h+10))",
-						sanitizeDrawtext(strings.TrimSpace(strings.Join(text, ""))),
+						util.FfmpegSanitizeDrawtext(strings.TrimSpace(strings.Join(text, ""))),
 					),
 				},
 			).WithOutput(countingWriter, os.Stderr).Run()
@@ -337,6 +341,44 @@ func (c *DownloadService) DownloadGif(resp http.ResponseWriter, req *http.Reques
 	} else {
 		c.logger.Info("Cache miss", zap.Duration("time taken", time.Since(startTime)), zap.String("cache_key", cacheKey))
 	}
+}
+
+// DownloadVideoSprite returns a sprite containing a single frame for each position stitched together into a
+// single image.
+func (c *DownloadService) DownloadVideoSprite(resp http.ResponseWriter, req *http.Request) {
+	vars := mux.Vars(req)
+	episodeID, ok := vars["episode_id"]
+	if !ok {
+		http.Error(resp, "No dialog identifier given", http.StatusBadRequest)
+		return
+	}
+	ep, err := c.episodeCache.GetEpisode(episodeID)
+	if errors.Is(err, data.ErrNotFound) || ep == nil {
+		http.Error(resp, fmt.Sprintf("unknown episode ID: %s", episodeID), http.StatusNotFound)
+		return
+	}
+	if ep.MediaType != models.MediaTypeVideo {
+		http.Error(resp, fmt.Sprintf("episode is not a video: %s", episodeID), http.StatusBadRequest)
+		return
+	}
+	filePath := path.Join(c.serviceConfig.MediaBasePath, "image", "sprite", episodeID+".jpg")
+	fileStat, err := os.Stat(filePath)
+	if err != nil {
+		c.logger.Error("Failed to find media file", zap.String("path", filePath))
+		http.Error(resp, "Episode not found", http.StatusNotFound)
+		return
+	}
+
+	if err = c.incrementQuotas(req.Context(), "sprite", path.Base(filePath), fileStat.Size()); err != nil {
+		c.logger.Error("Download failed processing quota", zap.Error(err))
+		if errors.Is(err, DownloadsOverQuota) {
+			http.Error(resp, "Bandwidth quota exhausted", http.StatusTooManyRequests)
+		} else {
+			http.Error(resp, "Failed to calculate bandwidth quota", http.StatusInternalServerError)
+		}
+		return
+	}
+	http.ServeFile(resp, req, filePath)
 }
 
 func (c *DownloadService) DownloadEpisodeJSON(resp http.ResponseWriter, req *http.Request) {
@@ -464,9 +506,4 @@ func (w *CountingWriter) Write(b []byte) (int, error) {
 // BytesWritten returns the number of bytes that were written to the wrapped writer.
 func (w *CountingWriter) BytesWritten() int {
 	return w.bytesWritten
-}
-func sanitizeDrawtext(text string) string {
-	text = strings.Replace(text, ":", `\:`, -1)
-	text = strings.Replace(text, "'", `\'`, -1)
-	return text
 }

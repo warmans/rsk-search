@@ -1,5 +1,12 @@
 import {AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {DialogType, RskDialog, RskSynopsis, RskTranscript, RskTrivia} from '../../../../lib/api-client/models';
+import {
+  DialogType,
+  RskDialog,
+  RskMediaType,
+  RskSynopsis,
+  RskTranscript,
+  RskTrivia
+} from '../../../../lib/api-client/models';
 import {ViewportScroller} from '@angular/common';
 import {parseTranscript, Tscript} from '../../lib/tscript';
 import {ClipboardService} from 'src/app/module/core/service/clipboard/clipboard.service';
@@ -56,6 +63,9 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
   }
 
   private _rawTranscript: string;
+
+  @Input()
+  mediaType: RskMediaType = RskMediaType.AUDIO;
 
   groupedDialog: DialogGroup[];
 
@@ -328,4 +338,6 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
   copyLineToClipboard(content: string, timestamp?: number) {
     this.clipboard.copyTextToClipboard(content);
   }
+
+  protected readonly RskMediaType = RskMediaType;
 }

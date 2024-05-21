@@ -201,6 +201,7 @@
             [enableLineLinking]="true"
             [enableLineCopy]="true"
             [enableAudioLinks]="episode.mediaType === RskMediaType.AUDIO"
+            [mediaType]="episode.mediaType"
             (emitAudioTimestamp)="onAudioTimestamp($event)"
             (emitSelection)="selectSection($event)"></app-transcript>
           <div *ngIf="!episode?.transcript?.length" class="text-center p-4">No transcript available.</div>

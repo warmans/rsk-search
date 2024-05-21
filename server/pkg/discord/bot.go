@@ -319,7 +319,7 @@ func (b *Bot) beginVideoResponse(
 			_, err := s.InteractionResponseEdit(
 				i.Interaction,
 				&discordgo.WebhookEdit{
-					Content: toPtr(fmt.Sprintf("Failed (%s)...", err.Error())),
+					Content: util.ToPtr(fmt.Sprintf("Failed (%s)...", err.Error())),
 				},
 			)
 			if err != nil {
@@ -334,8 +334,8 @@ func (b *Bot) beginVideoResponse(
 			return
 		}
 		_, err = s.InteractionResponseEdit(i.Interaction, &discordgo.WebhookEdit{
-			Content: toPtr("Complete!" + interactionResponse.Data.Content),
-			Components: toPtr([]discordgo.MessageComponent{
+			Content: util.ToPtr("Complete!" + interactionResponse.Data.Content),
+			Components: util.ToPtr([]discordgo.MessageComponent{
 				// ActionRow is a container of all buttons within the same row.
 				discordgo.ActionsRow{
 					Components: []discordgo.MessageComponent{
@@ -509,14 +509,14 @@ func (b *Bot) completeVideoResponse(s *discordgo.Session, i *discordgo.Interacti
 				return
 			}
 			b.logger.Error("interaction failed", zap.Error(err))
-			_, err := s.InteractionResponseEdit(i.Interaction, &discordgo.WebhookEdit{Content: toPtr("Failed....")})
+			_, err := s.InteractionResponseEdit(i.Interaction, &discordgo.WebhookEdit{Content: util.ToPtr("Failed....")})
 			if err != nil {
 				b.logger.Error("edit failed", zap.Error(err))
 			}
 			return
 		}
 		_, err = s.InteractionResponseEdit(i.Interaction, &discordgo.WebhookEdit{
-			Content: toPtr(interactionResponse.Data.Content),
+			Content: util.ToPtr(interactionResponse.Data.Content),
 			Files:   interactionResponse.Data.Files,
 		})
 		if err != nil {
@@ -724,8 +724,4 @@ func contentToFilename(rawContent string) string {
 		split = split[:8]
 	}
 	return strings.Join(split, "-")
-}
-
-func toPtr[T any](v T) *T {
-	return &v
 }
