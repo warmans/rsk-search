@@ -6,6 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/bwmarrin/discordgo"
+	"github.com/davecgh/go-spew/spew"
 	"github.com/warmans/rsk-search/gen/api"
 	"github.com/warmans/rsk-search/pkg/filter"
 	"github.com/warmans/rsk-search/pkg/searchterms"
@@ -14,6 +15,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"net/url"
 	"regexp"
 	"strconv"
 	"strings"
@@ -102,6 +104,10 @@ func NewBot(
 	}
 	bot.buttonHandlers = map[string]func(s *discordgo.Session, i *discordgo.InteractionCreate, suffix string){
 		"scrimp_confirm": bot.scrimptonQueryComplete,
+		"scrimp_custom":  bot.editModal,
+	}
+	bot.modalHandlers = map[string]func(s *discordgo.Session, i *discordgo.InteractionCreate, suffix string){
+		"scrimp_confirm": bot.scrimptonQueryCompleteCustom,
 	}
 
 	return bot
@@ -117,6 +123,7 @@ type Bot struct {
 	commands            []*discordgo.ApplicationCommand
 	commandHandlers     map[string]func(s *discordgo.Session, i *discordgo.InteractionCreate)
 	buttonHandlers      map[string]func(s *discordgo.Session, i *discordgo.InteractionCreate, customIdPayload string)
+	modalHandlers       map[string]func(s *discordgo.Session, i *discordgo.InteractionCreate, customIdPayload string)
 	createdCommands     []*discordgo.ApplicationCommand
 }
 
@@ -136,17 +143,28 @@ func (b *Bot) Start() error {
 			if h, ok := b.commandHandlers[i.ApplicationCommandData().Name]; ok {
 				h(s, i)
 			}
+		case discordgo.InteractionModalSubmit:
+			// prefix match buttons to allow additional data in the customID
+			for k, h := range b.modalHandlers {
+				actionPrefix := fmt.Sprintf("%s:", k)
+				if strings.HasPrefix(i.ModalSubmitData().CustomID, actionPrefix) {
+					h(s, i, strings.TrimPrefix(i.ModalSubmitData().CustomID, actionPrefix))
+					return
+				}
+			}
+			b.respondError(s, i, fmt.Errorf("unknown customID format: %s", i.MessageComponentData().CustomID))
+			return
 		case discordgo.InteractionMessageComponent:
 			// prefix match buttons to allow additional data in the customID
 			for k, h := range b.buttonHandlers {
 				actionPrefix := fmt.Sprintf("%s:", k)
 				if strings.HasPrefix(i.MessageComponentData().CustomID, actionPrefix) {
 					h(s, i, strings.TrimPrefix(i.MessageComponentData().CustomID, actionPrefix))
-				} else {
-					b.respondError(s, i, fmt.Errorf("invalid customID format: %s", k))
 					return
 				}
 			}
+			b.respondError(s, i, fmt.Errorf("unknown customID format: %s", i.MessageComponentData().CustomID))
+			return
 		}
 	})
 	if err := b.session.Open(); err != nil {
@@ -178,21 +196,10 @@ func (b *Bot) scrimptonQueryBegin(s *discordgo.Session, i *discordgo.Interaction
 		if selection == "" {
 			return
 		}
-		ids := strings.Split(selection, ":")
-		if len(ids) < 2 {
-			b.logger.Error("unexpected selection format", zap.String("selection", selection))
-			b.respondError(s, i, fmt.Errorf("invalid selection"))
-			return
-		}
-		pos, err := strconv.Atoi(ids[1])
+		customID, err := parseCustomID(selection)
 		if err != nil {
-			b.logger.Error("failed to parse position", zap.String("pos", ids[1]), zap.Error(err))
-			b.respondError(s, i, fmt.Errorf("internal error, unknown selection"))
+			b.respondError(s, i, err)
 			return
-		}
-		customID := CustomID{
-			EpisodeID: ids[0],
-			Position:  pos,
 		}
 		username := "unknown"
 		if i.Member != nil {
@@ -200,8 +207,8 @@ func (b *Bot) scrimptonQueryBegin(s *discordgo.Session, i *discordgo.Interaction
 		}
 
 		dialog, err := b.transcriptApiClient.GetTranscriptDialog(context.Background(), &api.GetTranscriptDialogRequest{
-			Epid:            ids[0],
-			Pos:             int32(pos),
+			Epid:            customID.EpisodeID,
+			Pos:             int32(customID.Position),
 			NumContextLines: 2,
 		})
 		if err != nil {
@@ -211,12 +218,12 @@ func (b *Bot) scrimptonQueryBegin(s *discordgo.Session, i *discordgo.Interaction
 
 		switch dialog.TranscriptMeta.MediaType {
 		case api.MediaType_VIDEO:
-			if err := b.beginVideoResponse(s, i, dialog, customID, username); err != nil {
+			if err := b.beginVideoResponse(s, i, dialog, *customID, username); err != nil {
 				b.logger.Error("Failed to begin video response", zap.Error(err))
 			}
 			return
 		case api.MediaType_AUDIO:
-			if err := b.beginAudioResponse(s, i, dialog, customID, username); err != nil {
+			if err := b.beginAudioResponse(s, i, dialog, *customID, username); err != nil {
 				b.logger.Error("Failed to begin video response", zap.Error(err))
 			}
 			return
@@ -291,7 +298,7 @@ func (b *Bot) beginVideoResponse(
 	username string,
 ) error {
 	// send a placeholder
-	interactionResponse, cleanup, err := b.buildVideoResponse(dialog, customID, username, true)
+	interactionResponse, cleanup, err := b.buildVideoResponse(dialog, customID, username, true, nil)
 	defer cleanup()
 	if err != nil {
 		if errors.Is(err, errDuplicateInteraction) {
@@ -309,7 +316,7 @@ func (b *Bot) beginVideoResponse(
 
 	// update with the gif
 	go func() {
-		interactionResponse, cleanup, err = b.buildVideoResponse(dialog, customID, username, false)
+		interactionResponse, cleanup, err = b.buildVideoResponse(dialog, customID, username, false, nil)
 		defer cleanup()
 		if err != nil {
 			if errors.Is(err, errDuplicateInteraction) {
@@ -333,6 +340,11 @@ func (b *Bot) beginVideoResponse(
 			b.logger.Error("edit failed", zap.Error(fmt.Errorf("failed to marshal customID: %w", err)))
 			return
 		}
+		customise, err := encodeCustomID("scrimp_custom", customID.EpisodeID, customID.Position, ContentModifierNone)
+		if err != nil {
+			b.logger.Error("edit failed", zap.Error(fmt.Errorf("failed to marshal customID: %w", err)))
+			return
+		}
 		_, err = s.InteractionResponseEdit(i.Interaction, &discordgo.WebhookEdit{
 			Content: util.ToPtr("Complete!" + interactionResponse.Data.Content),
 			Components: util.ToPtr([]discordgo.MessageComponent{
@@ -343,11 +355,21 @@ func (b *Bot) beginVideoResponse(
 							// Label is what the user will see on the button.
 							Label: "Post",
 							// Style provides coloring of the button. There are not so many styles tho.
-							Style: discordgo.SuccessButton,
+							Style: discordgo.PrimaryButton,
 							// Disabled allows bot to disable some buttons for users.
 							Disabled: false,
 							// CustomID is a thing telling Discord which data to send when this button will be pressed.
 							CustomID: noModifier,
+						},
+						discordgo.Button{
+							// Label is what the user will see on the button.
+							Label: "Post Custom",
+							// Style provides coloring of the button. There are not so many styles tho.
+							Style: discordgo.SecondaryButton,
+							// Disabled allows bot to disable some buttons for users.
+							Disabled: false,
+							// CustomID is a thing telling Discord which data to send when this button will be pressed.
+							CustomID: customise,
 						},
 					},
 				},
@@ -360,6 +382,44 @@ func (b *Bot) beginVideoResponse(
 		}
 	}()
 	return nil
+}
+
+func (b *Bot) editModal(s *discordgo.Session, i *discordgo.InteractionCreate, customIDPayload string) {
+
+	customID, err := decodeCustomIDPayload(customIDPayload)
+	if err != nil {
+		b.respondError(s, i, fmt.Errorf("failed to decode customID: %w", err))
+		return
+	}
+
+	noModifier, err := encodeCustomID("scrimp_confirm", customID.EpisodeID, customID.Position, ContentModifierNone)
+	if err != nil {
+		b.logger.Error("edit failed", zap.Error(fmt.Errorf("failed to marshal customID: %w", err)))
+		return
+	}
+	err = s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
+		Type: discordgo.InteractionResponseModal,
+		Data: &discordgo.InteractionResponseData{
+			CustomID: noModifier,
+			Title:    "Edit Gif",
+			Components: []discordgo.MessageComponent{
+				discordgo.ActionsRow{
+					Components: []discordgo.MessageComponent{
+						discordgo.TextInput{
+							CustomID:  "custom_text",
+							Label:     "Gif Text",
+							Style:     discordgo.TextInputParagraph,
+							Required:  true,
+							MaxLength: 128,
+						},
+					},
+				},
+			},
+		},
+	})
+	if err != nil {
+		b.respondError(s, i, err)
+	}
 }
 
 func (b *Bot) beginAudioResponse(
@@ -437,10 +497,45 @@ func (b *Bot) beginAudioResponse(
 	return nil
 }
 
+func (b *Bot) scrimptonQueryCompleteCustom(s *discordgo.Session, i *discordgo.InteractionCreate, customIDPayload string) {
+	if customIDPayload == "" {
+		b.respondError(s, i, fmt.Errorf("missing customID"))
+		return
+	}
+	customID, err := decodeCustomIDPayload(customIDPayload)
+	if err != nil {
+		b.respondError(s, i, fmt.Errorf("failed to decode customID: %w", err))
+		return
+	}
+
+	username := "unknown"
+	if i.Member != nil {
+		username = i.Member.DisplayName()
+	}
+	dialog, err := b.transcriptApiClient.GetTranscriptDialog(context.Background(), &api.GetTranscriptDialogRequest{
+		Epid:            customID.EpisodeID,
+		Pos:             int32(customID.Position),
+		NumContextLines: 2,
+	})
+	if err != nil {
+		b.respondError(s, i, fmt.Errorf("failed to fetch selected line"))
+		return
+	}
+	customText := i.Interaction.ModalSubmitData().Components[0].(*discordgo.ActionsRow).Components[0].(*discordgo.TextInput).Value
+
+	if err = b.completeVideoResponse(s, i, dialog, username, *customID, util.ToPtr(customText)); err != nil {
+		b.respondError(s, i, err)
+	}
+}
+
 func (b *Bot) scrimptonQueryComplete(s *discordgo.Session, i *discordgo.InteractionCreate, customIDPayload string) {
+
 	if i.Type != discordgo.InteractionMessageComponent {
 		return
 	}
+
+	spew.Dump(customIDPayload, i)
+
 	if customIDPayload == "" {
 		b.respondError(s, i, fmt.Errorf("missing customID"))
 		return
@@ -467,7 +562,7 @@ func (b *Bot) scrimptonQueryComplete(s *discordgo.Session, i *discordgo.Interact
 
 	switch dialog.TranscriptMeta.MediaType {
 	case api.MediaType_VIDEO:
-		if err := b.completeVideoResponse(s, i, dialog, username, *customID); err != nil {
+		if err := b.completeVideoResponse(s, i, dialog, username, *customID, nil); err != nil {
 			b.logger.Error("Failed to complete video response", zap.Error(err))
 		}
 	case api.MediaType_AUDIO:
@@ -484,8 +579,9 @@ func (b *Bot) scrimptonQueryComplete(s *discordgo.Session, i *discordgo.Interact
 	}
 }
 
-func (b *Bot) completeVideoResponse(s *discordgo.Session, i *discordgo.InteractionCreate, dialog *api.TranscriptDialog, username string, customID CustomID) error {
-	interactionResponse, cleanup, err := b.buildVideoResponse(dialog, customID, username, true)
+func (b *Bot) completeVideoResponse(s *discordgo.Session, i *discordgo.InteractionCreate, dialog *api.TranscriptDialog, username string, customID CustomID, customText *string) error {
+
+	interactionResponse, cleanup, err := b.buildVideoResponse(dialog, customID, username, true, nil)
 	defer cleanup()
 	if err != nil {
 		if errors.Is(err, errDuplicateInteraction) {
@@ -502,7 +598,7 @@ func (b *Bot) completeVideoResponse(s *discordgo.Session, i *discordgo.Interacti
 		return fmt.Errorf("failed to respond: %w", err)
 	}
 	go func() {
-		interactionResponse, cleanup, err = b.buildVideoResponse(dialog, customID, username, false)
+		interactionResponse, cleanup, err = b.buildVideoResponse(dialog, customID, username, false, customText)
 		defer cleanup()
 		if err != nil {
 			if errors.Is(err, errDuplicateInteraction) {
@@ -604,7 +700,7 @@ func (b *Bot) audioFileResponse(dialog *api.TranscriptDialog, customID CustomID,
 	}, nil, cancelFunc
 }
 
-func (b *Bot) buildVideoResponse(dialog *api.TranscriptDialog, customID CustomID, username string, placeholder bool) (*discordgo.InteractionResponse, func(), error) {
+func (b *Bot) buildVideoResponse(dialog *api.TranscriptDialog, customID CustomID, username string, placeholder bool, customText *string) (*discordgo.InteractionResponse, func(), error) {
 	cleanup, err := lockRenderer(username, customID.String())
 	defer cleanup()
 	if err != nil {
@@ -630,7 +726,11 @@ func (b *Bot) buildVideoResponse(dialog *api.TranscriptDialog, customID CustomID
 
 	var files []*discordgo.File
 
-	fileURL := fmt.Sprintf("%s/dl/media/gif/%s?pos=%d", b.webUrl, dialog.TranscriptMeta.Id, matchedDialogRow.Pos)
+	customTextParam := ""
+	if customText != nil {
+		customTextParam = fmt.Sprintf("&custom_text=%s", url.QueryEscape(*customText))
+	}
+	fileURL := fmt.Sprintf("%s/dl/media/gif/%s?pos=%d%s", b.webUrl, dialog.TranscriptMeta.Id, matchedDialogRow.Pos, customTextParam)
 	cancelFunc := func() {}
 	bodyText := ""
 
@@ -661,14 +761,19 @@ func (b *Bot) buildVideoResponse(dialog *api.TranscriptDialog, customID CustomID
 	} else {
 		bodyText = ":timer: Rendering gif..."
 	}
+	editLabel := ""
+	if customText != nil {
+		editLabel = " (edited)"
+	}
 	return &discordgo.InteractionResponse{
 		Type: discordgo.InteractionResponseChannelMessageWithSource,
 		Data: &discordgo.InteractionResponseData{
 			Content: fmt.Sprintf(
-				"%s\n\n`%s` @ `%s` | [%s](%s) | Posted by %s",
+				"%s\n\n`%s` @ `%s`%s | [%s](%s) | Posted by %s",
 				bodyText,
 				dialog.TranscriptMeta.Id,
 				(time.Millisecond * time.Duration(matchedDialogRow.OffsetMs)).String(),
+				editLabel,
 				strings.TrimPrefix(b.webUrl, "https://"),
 				fmt.Sprintf("%s/ep/%s#pos-%d", b.webUrl, customID.EpisodeID, customID.Position),
 				username,
@@ -700,6 +805,21 @@ func encodeCustomID(action string, episodeID string, position int, contentModifi
 		ContentModifier: contentModifier,
 	})
 	return fmt.Sprintf("%s:%s", action, string(encoded)), err
+}
+
+func parseCustomID(raw string) (*CustomID, error) {
+	ids := strings.Split(raw, ":")
+	if len(ids) < 2 {
+		return nil, fmt.Errorf("invalid selection")
+	}
+	pos, err := strconv.Atoi(ids[1])
+	if err != nil {
+		return nil, fmt.Errorf("invalid position %s: %w", ids[1], err)
+	}
+	return &CustomID{
+		EpisodeID: ids[0],
+		Position:  pos,
+	}, nil
 }
 
 func decodeCustomIDPayload(data string) (*CustomID, error) {

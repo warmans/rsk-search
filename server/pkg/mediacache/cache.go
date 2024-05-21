@@ -34,8 +34,8 @@ func NewCache(cfg Config, log *zap.Logger) (*Cache, error) {
 	return &Cache{cfg: cfg, logger: log.With(zap.String("component", "media_cache"))}, nil
 }
 
-func (c *Cache) Get(key string, writeTo io.Writer, fetchFn func(writer io.Writer) error) (bool, error) {
-	if c.cfg.Disabled {
+func (c *Cache) Get(key string, writeTo io.Writer, noCache bool, fetchFn func(writer io.Writer) error) (bool, error) {
+	if c.cfg.Disabled || noCache {
 		return false, fetchFn(writeTo)
 	}
 	filePath := path.Join(c.cfg.DataPath, key)

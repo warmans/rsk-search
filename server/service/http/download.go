@@ -283,11 +283,20 @@ func (c *DownloadService) DownloadGif(resp http.ResponseWriter, req *http.Reques
 		return
 	}
 
+	// disable caching for custom text
+	noCache := false
+
 	startTimestamp, endTimestamp, dialog, err := ep.GetTimestampRange(pos)
 	if err != nil {
 		c.logger.Error("invalid position", zap.Error(err))
 		http.Error(resp, "invalid position specification", http.StatusBadRequest)
 		return
+	}
+	customText := req.URL.Query().Get("custom_text")
+	if customText != "" {
+		c.logger.Info("custom text used", zap.String("custom_text", customText))
+		dialog = []string{customText}
+		noCache = true
 	}
 	clipDuration := endTimestamp - startTimestamp
 	if clipDuration > time.Second*15 {
@@ -297,7 +306,7 @@ func (c *DownloadService) DownloadGif(resp http.ResponseWriter, req *http.Reques
 	cacheKey := fmt.Sprintf("%s-%s.gif", fileID, pos)
 	startTime := time.Now()
 
-	cacheHit, err := c.mediaCache.Get(cacheKey, resp, func(writer io.Writer) error {
+	cacheHit, err := c.mediaCache.Get(cacheKey, resp, noCache, func(writer io.Writer) error {
 		text := []string{}
 		for k, v := range strings.Split(strings.Replace(strings.Join(dialog, " "), "'", "", -1), " ") {
 			if k%12 == 0 {
