@@ -107,3 +107,43 @@ func AssemblyAI2Dialog() *cobra.Command {
 
 	return cmd
 }
+
+func AssemblyAI2Srt() *cobra.Command {
+
+	var intputPath string
+	var outputPath string
+
+	cmd := &cobra.Command{
+		Use:   "assembly-ai-srt",
+		Short: "create an srt from an assembly ai transcript",
+		RunE: func(cmd *cobra.Command, args []string) error {
+
+			if intputPath == "" {
+				return fmt.Errorf("input path not set")
+			}
+
+			inFile, err := os.Open(intputPath)
+			if err != nil {
+				return err
+			}
+
+			outFile, err := os.Create(fmt.Sprintf(outputPath, strings.TrimSuffix(path.Base(inFile.Name()), ".json")))
+			if err != nil {
+				return err
+			}
+			defer outFile.Close()
+
+			resp := &assemblyai.TranscriptionStatusResponse{}
+			if err := json.NewDecoder(inFile).Decode(resp); err != nil {
+				return err
+			}
+
+			return assemblyai.ToSrt(resp, outFile)
+		},
+	}
+
+	cmd.Flags().StringVarP(&intputPath, "input-path", "i", "", "raw file created with transcribe-assembly-ai")
+	cmd.Flags().StringVarP(&outputPath, "output-path", "o", "./var/aai-transcripts/%s.srt", "Dump output to given path.")
+
+	return cmd
+}

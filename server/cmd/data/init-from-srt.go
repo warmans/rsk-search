@@ -16,10 +16,12 @@ import (
 	"path"
 	"regexp"
 	"strconv"
+	"strings"
 	"time"
 )
 
 var htmlTag = regexp.MustCompile(`<[^<>]+>`)
+var lineWithActor = regexp.MustCompile(`[a-zA-Z0-9]+:.+`)
 
 // InitFromSrtCmd
 // Examples:
@@ -102,12 +104,17 @@ func initEpisodeFileFromSRT(
 	scanned := 0
 	for scanner.Scan() {
 		sub := scanner.Subtitle()
+		actor := "Unknown"
+		if lineWithActor.MatchString(sub.Text) {
+			lineParts := strings.SplitN(sub.Text, ":", 2)
+			actor = lineParts[0]
+		}
 		ep.Transcript = append(ep.Transcript, models.Dialog{
 			ID:        fmt.Sprintf("ep-%s-%d", ep.ShortID(), sub.Number),
 			Type:      models.DialogTypeChat,
 			Position:  int64(sub.Number),
-			Actor:     "Unknown",
-			Content:   stripTags(sub.Text),
+			Actor:     actor,
+			Content:   strings.TrimSpace(strings.TrimPrefix(stripTags(sub.Text), fmt.Sprintf("%s:", actor))),
 			Timestamp: sub.Start,
 			Duration:  sub.End - sub.Start,
 		})

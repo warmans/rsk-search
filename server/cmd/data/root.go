@@ -42,6 +42,7 @@ func RootCmd() *cobra.Command {
 	// assembly ai testing
 	root.AddCommand(TranscribeAssemblyAICmd())
 	root.AddCommand(AssemblyAI2Dialog())
+	root.AddCommand(AssemblyAI2Srt())
 
 	//openai testing
 	root.AddCommand(TranscribeOpenAICommand())

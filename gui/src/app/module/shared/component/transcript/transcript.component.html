@@ -27,7 +27,7 @@
             class="clickable"><i class="bi-caret-right"></i>{{line.offsetMs | formatSeconds:true}}
           </div>
         </div>
-        <div *ngIf="mediaType === RskMediaType.VIDEO">
+        <div *ngIf="mediaType === RskMediaType.VIDEO" class="mr-3">
           <div *ngIf="line.pos % 5 !== 0">
             <div style="width: 164px; height:5px;"></div>
           </div>
