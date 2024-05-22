@@ -292,16 +292,21 @@ func (c *DownloadService) DownloadGif(resp http.ResponseWriter, req *http.Reques
 		http.Error(resp, "invalid position specification", http.StatusBadRequest)
 		return
 	}
-	customText := strings.TrimSpace(req.URL.Query().Get("custom_text"))
-	if customText != "" {
-		if len(customText) > 200 {
-			http.Error(resp, "custom_text cannot be more than 200 characters", http.StatusBadRequest)
-			return
+	if req.URL.Query().Has("custom_text") {
+		customText := strings.TrimSpace(req.URL.Query().Get("custom_text"))
+		if customText != "" {
+			if len(customText) > 200 {
+				http.Error(resp, "custom_text cannot be more than 200 characters", http.StatusBadRequest)
+				return
+			}
+			c.logger.Info("custom text used", zap.String("custom_text", customText))
+			dialog = []string{customText}
+		} else {
+			dialog = []string{}
 		}
-		c.logger.Info("custom text used", zap.String("custom_text", customText))
-		dialog = []string{customText}
 		noCache = true
 	}
+
 	clipDuration := endTimestamp - startTimestamp
 	if clipDuration > time.Second*15 {
 		http.Error(resp, fmt.Sprintf("gifs cannot be more than 15 seconds. Given range was %s", clipDuration), http.StatusBadRequest)

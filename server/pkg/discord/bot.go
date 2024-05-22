@@ -409,7 +409,7 @@ func (b *Bot) editModal(s *discordgo.Session, i *discordgo.InteractionCreate, cu
 							CustomID:  "custom_text",
 							Label:     "Gif Text",
 							Style:     discordgo.TextInputParagraph,
-							Required:  true,
+							Required:  false,
 							MaxLength: 128,
 						},
 					},
