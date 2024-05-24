@@ -21,6 +21,12 @@ import {FindReplace} from '../find-replace/find-replace.component';
 
 const LOCAL_STORAGE_PREFIX = 'content-backup';
 
+export interface AudioConfig {
+  episodeId: string;
+  startMs?: number,
+  endMs?: number,
+}
+
 @Component({
   selector: 'app-editor',
   templateUrl: './editor.component.html',
@@ -51,19 +57,22 @@ export class EditorComponent implements OnInit, OnDestroy {
   lastUpdateDate: Date;
 
   @Input()
-  set audioPlayerURL(value: string) {
+  set audioConfig(value: AudioConfig) {
+    if (!value) {
+      return;
+    }
+    this._audioConfig = value;
     if (!value) {
       return
     }
-    this._audioPlayerURL = value;
     this.loadAudio();
   }
 
-  get audioPlayerURL(): string {
-    return this._audioPlayerURL;
+  get audioConfig(): AudioConfig {
+    return this._audioConfig;
   }
 
-  private _audioPlayerURL: string = '';
+  private _audioConfig: AudioConfig;
 
   @Input()
   set allowEdit(value: boolean) {
@@ -187,13 +196,12 @@ export class EditorComponent implements OnInit, OnDestroy {
   }
 
   loadAudio(andPlay?: boolean) {
-    const parts = (this._audioPlayerURL || '').split('/');
-    const name = parts[parts.length - 1] ? parts[parts.length - 1] : null;
-    if (name) {
-      this.audioService.setAudioSrc(name, null, this._audioPlayerURL, true);
-      if (andPlay) {
-        this.audioService.playAudio();
-      }
+    if (!this.audioConfig.episodeId) {
+      return;
+    }
+    this.audioService.setAudioSrc(this.audioConfig.episodeId, null, true, this.audioConfig.startMs, this.audioConfig.endMs);
+    if (andPlay) {
+      this.audioService.playAudio();
     }
   }
 

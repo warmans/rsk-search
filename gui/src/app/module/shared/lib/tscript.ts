@@ -5,7 +5,7 @@ export function lineHasActorPrefix(line: string): boolean {
 }
 
 export function isOffsetLine(line: string): boolean {
-  return getOffsetValueFromLine(line) > -1;
+  return getOffsetValueFromLineInSeconds(line) > -1;
 }
 
 export function isSynopsisLine(line: string): boolean {
@@ -47,14 +47,14 @@ export function isEndTriviaLine(line: string): boolean {
   return !!line.match(/^#[/]TRIVIA.*/g);
 }
 
-export function getOffsetValueFromLine(line: string): number {
+export function getOffsetValueFromLineInSeconds(line: string): number {
   const match = line.match(/^#OFFSET:\s([0-9\.]+)/);
   return match?.length == 2 ? parseFloat(match[1]) : -1;
 }
 
 export function getFirstOffset(transcript: string): number {
   for (let line of transcript.split('\n')) {
-    let offset = getOffsetValueFromLine(line);
+    let offset = getOffsetValueFromLineInSeconds(line);
     if (offset > -1) {
       return offset;
     }
@@ -73,6 +73,7 @@ export function parseTranscript(transcript: string): Tscript {
   let currentTrivia: RskSynopsis;
 
   let pos = 1;
+  let lastTimestampMs: number;
   transcript.split('\n').forEach((line) => {
     line = line.trim();
     let notable: boolean = false;
@@ -83,8 +84,10 @@ export function parseTranscript(transcript: string): Tscript {
       line = line.slice(1);
       notable = true;
     }
+
     if (isOffsetLine(line)) {
-      return;
+      lastTimestampMs = getOffsetValueFromLineInSeconds(line)*1000
+      return
     }
     if (isStartSynopsisLine(line)) {
       currentSynopsis = {description: getSynopsis(line), startPos: pos};
@@ -120,6 +123,7 @@ export function parseTranscript(transcript: string): Tscript {
         content: parts.join(':'),
         notable: notable,
         pos: pos,
+        offsetMs: lastTimestampMs,
       });
     } else {
       const actor = parts.shift();
@@ -129,8 +133,12 @@ export function parseTranscript(transcript: string): Tscript {
         content: parts.join(':'),
         notable: notable,
         pos: pos,
+        offsetMs: lastTimestampMs,
       });
     }
+
+    //clear offset until a new one is scanned
+    lastTimestampMs = undefined
 
     pos++;
   });

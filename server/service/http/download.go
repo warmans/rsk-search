@@ -8,7 +8,6 @@ import (
 	"github.com/pkg/errors"
 	ffmpeg_go "github.com/u2takey/ffmpeg-go"
 	"github.com/warmans/rsk-search/pkg/data"
-	extract_audio "github.com/warmans/rsk-search/pkg/extract-audio"
 	"github.com/warmans/rsk-search/pkg/mediacache"
 	"github.com/warmans/rsk-search/pkg/meta"
 	"github.com/warmans/rsk-search/pkg/models"
@@ -68,12 +67,15 @@ func (c *DownloadService) RegisterHTTP(ctx context.Context, router *mux.Router) 
 	router.Path("/dl/episode/{episode}.json").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DownloadEpisodeJSON)))
 	router.Path("/dl/episode/{episode}.txt").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DownloadEpisodePlaintext)))
 
+	//deprecated
 	router.Path("/dl/media/{media_type}/{id}.mp3").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DownloadMP3)))
 	router.Path("/dl/media/file/{name}").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DownloadFile)))
-
-	//video stuff
 	router.Path("/dl/media/gif/{id}").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DownloadGif)))
 	router.Path("/dl/media/sprite/{episode_id}.jpg").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DownloadVideoSprite)))
+
+	// media_type is one of audio, video, sprite, gif
+	router.Path("/dl/media/{episode_id}.{format}").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DownloadEpisodeMedia)))
+	router.Path("/dl/sprite/{episode_id}.jpg").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DownloadVideoSprite)))
 }
 
 func (c *DownloadService) DownloadJSONArchive(resp http.ResponseWriter, req *http.Request) {
@@ -130,7 +132,7 @@ func (c *DownloadService) DownloadMP3(resp http.ResponseWriter, req *http.Reques
 
 		var startTimestamp, endTimestamp time.Duration
 		if pos := req.URL.Query().Get("pos"); pos != "" {
-			startTimestamp, endTimestamp, _, err = ep.GetTimestampRange(pos)
+			startTimestamp, endTimestamp, _, err = ep.GetDialogAtPosition(pos)
 			if err != nil {
 				http.Error(resp, "invalid position specification", http.StatusBadRequest)
 				return
@@ -138,7 +140,7 @@ func (c *DownloadService) DownloadMP3(resp http.ResponseWriter, req *http.Reques
 		} else {
 			if ts := req.URL.Query().Get("ts"); ts != "" {
 				startTimestamp, endTimestamp, err = parseTsParam(ts)
-				if err != nil {
+				if err != nil || endTimestamp == 0 {
 					http.Error(resp, fmt.Sprintf("invalid timestamp specification: %s", ts), http.StatusBadRequest)
 				}
 			} else {
@@ -155,7 +157,7 @@ func (c *DownloadService) DownloadMP3(resp http.ResponseWriter, req *http.Reques
 			}
 			return
 		}
-		if err = c.servePartialAudioFile(resp, ep, filePath, startTimestamp, endTimestamp); err != nil {
+		if err = c.servePartialAudioFile(req, resp, ep, filePath, startTimestamp, endTimestamp); err != nil {
 			c.logger.Error("Failed to serve partial audio file", zap.Error(err))
 		}
 		return
@@ -201,15 +203,217 @@ func (c *DownloadService) incrementDownloadQuotas(ctx context.Context, mediaType
 }
 
 func (c *DownloadService) servePartialAudioFile(
+	req *http.Request,
 	resp http.ResponseWriter,
 	episode *models.Transcript,
 	mp3Path string,
 	startTimestamp time.Duration,
 	endTimestamp time.Duration,
 ) error {
+	writeData := func(ss time.Duration, to time.Duration, w io.Writer) error {
+		return ffmpeg_go.
+			Input(mp3Path,
+				ffmpeg_go.KwArgs{
+					"ss": fmt.Sprintf("%0.2f", ss.Seconds()),
+					"to": fmt.Sprintf("%0.2f", to.Seconds()),
+				}).
+			Output("pipe:",
+				ffmpeg_go.KwArgs{
+					"format": "mp3",
+					"vcodec": "copy",
+					"acodec": "copy",
+				},
+			).WithOutput(w, os.Stderr).Run()
+	}
+	if req.Header.Get("Range") == "" {
+		// just return the whole file
+		resp.WriteHeader(http.StatusOK)
+		resp.Header().Set("Content-Type", "audio/mpeg")
+		resp.Header().Set("Content-Disposition", fmt.Sprintf("attachment; filename=%s-%s-%s.mp3", episode.ID(), startTimestamp.String(), endTimestamp.String()))
+		return writeData(startTimestamp, endTimestamp, resp)
+	}
+
+	// If they client is asking for a range, there doesn't seem to be a way to efficiently stream the data.
+	// Most solutions just buffer in memory to get a ReadSeeker. A temp file seems preferable since memory is
+	// more scarce than disk.
+
+	partial, err := os.CreateTemp(os.TempDir(), "partial-*.mp3")
+	if err != nil {
+		return fmt.Errorf("failed to create temp file: %w", err)
+	}
+	defer func() {
+		if err := os.Remove(path.Join(partial.Name())); err != nil {
+			c.logger.Error("failed to remove temporary file", zap.Error(err), zap.String("path", partial.Name()))
+		}
+	}()
+	defer partial.Close()
+
+	if err := writeData(startTimestamp, endTimestamp, partial); err != nil {
+		partial.Close()
+		return fmt.Errorf("failed to extract mp3 data: %w", err)
+	}
+
 	resp.Header().Set("Content-Type", "audio/mpeg")
 	resp.Header().Set("Content-Disposition", fmt.Sprintf("attachment; filename=%s-%s-%s.mp3", episode.ID(), startTimestamp.String(), endTimestamp.String()))
-	return extract_audio.ExtractAudio(resp, mp3Path, startTimestamp, endTimestamp)
+	http.ServeContent(resp, req, path.Base(partial.Name()), time.Now(), partial)
+	return nil
+}
+
+func (c *DownloadService) DownloadEpisodeMedia(resp http.ResponseWriter, req *http.Request) {
+	vars := mux.Vars(req)
+	episodeID, ok := vars["episode_id"]
+	if !ok {
+		http.Error(resp, "No episode identifier given", http.StatusBadRequest)
+		return
+	}
+	wantFormat, ok := vars["format"]
+	if !ok || (wantFormat != "mp3" && wantFormat != "gif") {
+		http.Error(resp, "only mp3 and gif are supported", http.StatusBadRequest)
+		return
+	}
+
+	episode, err := c.episodeCache.GetEpisode(episodeID)
+	if err != nil {
+		if errors.Is(err, data.ErrNotFound) {
+			http.Error(resp, "Episode not found", http.StatusNotFound)
+			return
+		}
+		http.Error(resp, "Failed to fetch episode metadata", http.StatusInternalServerError)
+		return
+	}
+	if wantFormat == "mp3" && episode.Media.AudioFileName == "" {
+		http.Error(resp, "this episode doesn't have audio available", http.StatusNotFound)
+		return
+	}
+	if wantFormat == "gif" && episode.Media.VideoFileName == "" {
+		http.Error(resp, "this episode doesn't have video available", http.StatusNotFound)
+		return
+	}
+
+	// partial file download
+	if req.URL.Query().Has("pos") || req.URL.Query().Has("ts") {
+
+		//determine the time range to export
+		var startTimestamp, endTimestamp time.Duration
+		if pos := req.URL.Query().Get("pos"); pos != "" {
+			startTimestamp, endTimestamp, _, err = episode.GetDialogAtPosition(pos)
+			if err != nil {
+				http.Error(resp, "invalid position specification", http.StatusBadRequest)
+				return
+			}
+		} else {
+			if ts := req.URL.Query().Get("ts"); ts != "" {
+				startTimestamp, endTimestamp, err = parseTsParam(ts)
+				if err != nil {
+					http.Error(resp, fmt.Sprintf("invalid timestamp specification: %s", ts), http.StatusBadRequest)
+					return
+				}
+				if endTimestamp == 0 {
+					if episode.Media.AudioDurationMs > 0 {
+						endTimestamp = time.Duration(episode.Media.AudioDurationMs) * time.Millisecond
+					} else {
+						http.Error(resp, fmt.Sprintf("end timestamp must be specified"), http.StatusBadRequest)
+						return
+					}
+				}
+			} else {
+				http.Error(resp, "either position range (pos) or timestamp range (ts) must be specified", http.StatusBadRequest)
+				return
+			}
+		}
+		var customText *string
+		if req.URL.Query().Has("custom_text") {
+			customTextParam := strings.TrimSpace(req.URL.Query().Get("custom_text"))
+			if customTextParam != "" {
+				if len(customTextParam) > 200 {
+					http.Error(resp, "custom_text cannot be more than 200 characters", http.StatusBadRequest)
+					return
+				}
+				customText = util.ToPtr(customTextParam)
+			} else {
+				customText = util.ToPtr("")
+			}
+		}
+
+		c.logger.Debug(
+			"Exporting partial file",
+			zap.String("episode_id", episode.ShortID()),
+			zap.String("format", wantFormat),
+			zap.Duration("start", startTimestamp),
+			zap.Duration("end", endTimestamp),
+			zap.Stringp("custom_text", customText),
+		)
+
+		switch wantFormat {
+		// serve partial video
+		case "gif":
+			c.downloadGif(req.Context(), resp, episode, startTimestamp, endTimestamp, customText)
+			return
+		// serve partial audio
+		case "mp3":
+
+			// todo: this is wrong because the Range header may prevent the full file being returned,
+			// note sure if it's worth just using a counting response writer.
+			if err := c.incrementDownloadQuotas(
+				req.Context(),
+				wantFormat,
+				episode.ShortID(),
+				calculateDownloadQuotaUsage(episode, endTimestamp-startTimestamp),
+			); err != nil {
+				if errors.Is(err, DownloadsOverQuota) {
+					http.Error(resp, "Bandwidth quota exhausted", http.StatusTooManyRequests)
+				} else {
+					http.Error(resp, "Failed to calculate bandwidth quota", http.StatusInternalServerError)
+				}
+				return
+			}
+			if err = c.servePartialAudioFile(
+				req,
+				resp,
+				episode,
+				path.Join(c.serviceConfig.MediaBasePath, "episode", episode.Media.AudioFileName),
+				startTimestamp,
+				endTimestamp,
+			); err != nil {
+				c.logger.Error("Failed to serve partial audio file", zap.Error(err))
+				return
+			}
+			return
+		default:
+			http.Error(resp, "Unknown format requested. Supported formats are gif and mp3", http.StatusBadRequest)
+			return
+		}
+	} else {
+		if wantFormat != "mp3" {
+			http.Error(resp, "Only audio can be exported without either pos or ts specified", http.StatusBadRequest)
+			return
+		}
+	}
+
+	// whole audio file
+
+	c.logger.Debug(
+		"Exporting full file",
+		zap.String("format", wantFormat),
+		zap.String("episode_id", episode.ShortID()),
+	)
+
+	filePath := path.Join(c.serviceConfig.MediaBasePath, "episode", episode.Media.AudioFileName)
+	fileStat, err := os.Stat(filePath)
+	if err != nil {
+		c.logger.Error("Failed to find media file", zap.String("path", filePath))
+		http.Error(resp, "Episode not found", http.StatusNotFound)
+		return
+	}
+	if err := c.incrementDownloadQuotas(req.Context(), wantFormat, episode.ShortID(), fileStat.Size()); err != nil {
+		if errors.Is(err, DownloadsOverQuota) {
+			http.Error(resp, "Bandwidth quota exhausted", http.StatusTooManyRequests)
+		} else {
+			http.Error(resp, "Failed to calculate bandwidth quota", http.StatusInternalServerError)
+		}
+		return
+	}
+	http.ServeFile(resp, req, filePath)
 }
 
 func (c *DownloadService) DownloadFile(resp http.ResponseWriter, req *http.Request) {
@@ -283,50 +487,67 @@ func (c *DownloadService) DownloadGif(resp http.ResponseWriter, req *http.Reques
 		return
 	}
 
-	// disable caching for custom text
-	noCache := false
-
-	startTimestamp, endTimestamp, dialog, err := ep.GetTimestampRange(pos)
+	startTimestamp, endTimestamp, _, err := ep.GetDialogAtPosition(pos)
 	if err != nil {
 		c.logger.Error("invalid position", zap.Error(err))
 		http.Error(resp, "invalid position specification", http.StatusBadRequest)
 		return
 	}
+	var customText *string
 	if req.URL.Query().Has("custom_text") {
-		customText := strings.TrimSpace(req.URL.Query().Get("custom_text"))
-		if customText != "" {
-			if len(customText) > 200 {
+		customTextParam := strings.TrimSpace(req.URL.Query().Get("custom_text"))
+		if customTextParam != "" {
+			if len(customTextParam) > 200 {
 				http.Error(resp, "custom_text cannot be more than 200 characters", http.StatusBadRequest)
 				return
 			}
-			c.logger.Info("custom text used", zap.String("custom_text", customText))
-			dialog = []string{customText}
+			customText = util.ToPtr(customTextParam)
 		} else {
-			dialog = []string{}
+			customText = util.ToPtr("")
 		}
-		noCache = true
 	}
+
+	c.downloadGif(req.Context(), resp, ep, startTimestamp, endTimestamp, customText)
+}
+
+func (c *DownloadService) downloadGif(ctx context.Context, resp http.ResponseWriter, episode *models.Transcript, startTimestamp time.Duration, endTimestamp time.Duration, customText *string) {
+
+	c.logger.Debug("Exporting gif", zap.Duration("start", startTimestamp), zap.Duration("end", endTimestamp), zap.Stringp("custom_text", customText))
 
 	clipDuration := endTimestamp - startTimestamp
 	if clipDuration > time.Second*15 {
 		http.Error(resp, fmt.Sprintf("gifs cannot be more than 15 seconds. Given range was %s", clipDuration), http.StatusBadRequest)
 		return
 	}
-	cacheKey := fmt.Sprintf("%s-%s.gif", fileID, pos)
+	cacheKey := fmt.Sprintf("%s-%s-%s.gif", episode.ShortID(), startTimestamp.String(), endTimestamp.String())
 	startTime := time.Now()
 
-	cacheHit, err := c.mediaCache.Get(cacheKey, resp, noCache, func(writer io.Writer) error {
+	disableCaching := true //todo enable
+	dialog := episode.GetDialogAtTimestampRange(startTimestamp, endTimestamp)
+	if customText != nil {
+		disableCaching = true
+		if *customText == "" {
+			dialog = []string{}
+		} else {
+			dialog = []string{*customText}
+		}
+	}
+
+	cacheHit, err := c.mediaCache.Get(cacheKey, resp, disableCaching, func(writer io.Writer) error {
 		text := []string{}
 		for k, v := range strings.Split(strings.Replace(strings.Join(dialog, " "), "'", "", -1), " ") {
-			if k%12 == 0 {
+			if k%8 == 0 {
 				text = append(text, "\n", v)
 				continue
 			}
 			text = append(text, " ", v)
 		}
+
+		//todo: write content type headers?
+
 		countingWriter := NewCountingWriter(writer)
-		err = ffmpeg_go.
-			Input(path.Join(c.serviceConfig.MediaBasePath, "video", ep.MediaFileName),
+		err := ffmpeg_go.
+			Input(path.Join(c.serviceConfig.MediaBasePath, "video", episode.Media.VideoFileName),
 				ffmpeg_go.KwArgs{
 					"ss": fmt.Sprintf("%0.2f", startTimestamp.Seconds()),
 					"to": fmt.Sprintf("%0.2f", endTimestamp.Seconds()),
@@ -344,7 +565,7 @@ func (c *DownloadService) DownloadGif(resp http.ResponseWriter, req *http.Reques
 			c.logger.Error("ffmpeg failed", zap.Error(err))
 			return err
 		}
-		if err := c.incrementQuotas(req.Context(), "gif", fileID, int64(countingWriter.BytesWritten())); err != nil {
+		if err := c.incrementQuotas(ctx, "gif", episode.ShortID(), int64(countingWriter.BytesWritten())); err != nil {
 			c.logger.Error("Failed to increment quotas", zap.Error(err))
 		}
 		return nil
@@ -488,16 +709,20 @@ func calculateDownloadQuotaUsage(ep *models.Transcript, duration time.Duration) 
 
 func parseTsParam(ts string) (time.Duration, time.Duration, error) {
 	parts := strings.Split(ts, "-")
-	if len(parts) != 2 {
-		return 0, 0, fmt.Errorf("invalid timestamp range: %s", ts)
+	var startTs int64
+	var endTs int64
+	var err error
+	if len(parts) > 0 {
+		startTs, err = strconv.ParseInt(parts[0], 10, 64)
+		if err != nil {
+			return 0, 0, fmt.Errorf("invalid start timestamp %s: %w", ts, err)
+		}
 	}
-	startTs, err := strconv.ParseInt(parts[0], 10, 64)
-	if err != nil {
-		return 0, 0, fmt.Errorf("invalid start timestamp %s: %w", ts, err)
-	}
-	endTs, err := strconv.ParseInt(parts[1], 10, 64)
-	if err != nil {
-		return 0, 0, fmt.Errorf("invalid end timestamp %s: %w", ts, err)
+	if len(parts) > 1 {
+		endTs, err = strconv.ParseInt(parts[1], 10, 64)
+		if err != nil {
+			return 0, 0, fmt.Errorf("invalid end timestamp %s: %w", ts, err)
+		}
 	}
 	return time.Duration(startTs) * time.Millisecond, time.Duration(endTs) * time.Millisecond, nil
 }

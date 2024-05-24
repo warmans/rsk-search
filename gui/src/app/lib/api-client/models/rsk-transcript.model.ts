@@ -2,6 +2,7 @@
 import {
   RskAudioQuality,
   RskDialog,
+  RskMedia,
   RskMediaType,
   RskSynopsis,
   RskTrivia,
@@ -17,6 +18,7 @@ export interface RskTranscript {
   id?: string;
   incomplete?: boolean;
   locked?: boolean;
+  media?: RskMedia;
   mediaType?: RskMediaType;
   metadata?: { [key: string]: string };
   name?: string;

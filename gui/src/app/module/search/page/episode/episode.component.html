@@ -61,7 +61,7 @@
                           title="Changes cannot be submitted for this transcript because it is in the process of being transcribed.">Locked</span>
                   </td>
                 </tr>
-                <tr>
+                <tr *ngIf="transcribers">
                   <th>Transcribers</th>
                   <td>
                     <span *ngIf="episode.metadata['pilkipedia_url']">
@@ -71,7 +71,7 @@
                     <span>{{ transcribers }}</span>
                   </td>
                 </tr>
-                <tr *ngIf="episode.mediaType === RskMediaType.AUDIO">
+                <tr *ngIf="episode.media.audio">
                   <th>Audio</th>
                   <td>
                     <button *ngIf="!audioStatus || audioStatus?.state !== audioStates.playing"
@@ -169,16 +169,16 @@
                     <i class="bi-download"></i> Export selection audio
                   </a-->
                   <button
-                    *ngIf="authenticated && episode.offsetAccuracyPcnt > 0 &&  episode.mediaType === RskMediaType.AUDIO"
+                    *ngIf="authenticated && episode.offsetAccuracyPcnt > 0 &&  episode.media.audio"
                     title="Audio export is provided on a best-effort basis. Since the audio timestamps are not 100% accurate, it's possible you won't get exactly the audio you expect."
                     class="btn btn-sm btn-info ml-2" (click)="toggleDownloadDialog()">
                     <i class="bi-download"></i> Export Selected Audio
                   </button>
                   <a
-                    *ngIf="authenticated && episode.mediaType === RskMediaType.VIDEO"
+                    *ngIf="authenticated && episode.media.video"
                     class="btn btn-sm btn-info ml-2"
                     target="_blank"
-                    [href]="'/dl/media/gif/'+ episode.id+ '?pos='+selection.startPos+'-'+selection.endPos">
+                    [href]="'/dl/media/'+episode.id+'.gif'+'?ts='+selection.startTimestampMs+'-'+selection.endTimestampMs">
                     <i class="bi-download"></i> Export GIF
                   </a>
                 </ng-container>
@@ -200,8 +200,8 @@
             [searchResultMode]="false"
             [enableLineLinking]="true"
             [enableLineCopy]="true"
-            [enableAudioLinks]="episode.mediaType === RskMediaType.AUDIO"
-            [mediaType]="episode.mediaType"
+            [enableAudioLinks]="true"
+            [media]="episode.media"
             (emitAudioTimestamp)="onAudioTimestamp($event)"
             (emitSelection)="selectSection($event)"></app-transcript>
           <div *ngIf="!episode?.transcript?.length" class="text-center p-4">No transcript available.</div>
@@ -240,7 +240,7 @@
       </div>
       <div class="modal-body">
         <app-audio-waveform
-          [url]="episode.audioUri"
+          [url]="'/dl/media/'+episode.id+'.mp3'"
           [startTimestampMs]="selection.startTimestampMs"
           [endTimestampMs]="selection.endTimestampMs"
           [episodeDurationMs]="episodeDurationMs">

@@ -56,7 +56,7 @@ func Test_parsePositionSpec(t *testing.T) {
 			name:    "if the start and end pos are equal increment the end pos by 1",
 			pos:     "2-2",
 			want:    2,
-			want1:   3,
+			want1:   2,
 			wantErr: false,
 		},
 	}

@@ -131,9 +131,23 @@ func (d Dialog) Proto(matchedRow bool) *api.Dialog {
 	return dialog
 }
 
+type Media struct {
+	VideoFileName   string `json:"video_file_name"`
+	VideoDurationMs int64  `json:"video_duration_ms"`
+	AudioFileName   string `json:"audio_file_name"`
+	AudioDurationMs int64  `json:"audio_duration_ms"`
+}
+
+func (m Media) Proto() *api.Media {
+	return &api.Media{
+		Video: m.VideoFileName != "",
+		Audio: m.AudioFileName != "",
+	}
+}
+
 type Transcript struct {
 	MediaType     MediaType `json:"media_type"`
-	MediaFileName string    `json:"media_file_name"`
+	MediaFileName string    `json:"media_file_name"` //deprecated
 
 	Publication string `json:"publication"`
 	Series      int32  `json:"series"`
@@ -162,6 +176,7 @@ type Transcript struct {
 	Synopsis     []Synopsis `json:"synopsis"`
 	Contributors []string   `json:"contributors"`
 	Trivia       []Trivia   `json:"trivia"`
+	Media        Media      `json:"media"`
 }
 
 func (e *Transcript) ID() string {
@@ -191,9 +206,22 @@ func (e *Transcript) Actors() []string {
 	return actorList
 }
 
-// GetTimestampRange will convert a position specification e.g. 20-30 into a timestamp range.
+func (e *Transcript) GetDialogAtTimestampRange(startTimestamp time.Duration, endTimestamp time.Duration) []string {
+	dialog := []string{}
+	for _, d := range e.Transcript {
+		if d.Timestamp >= endTimestamp {
+			break
+		}
+		if d.Timestamp >= startTimestamp {
+			dialog = append(dialog, d.Content)
+		}
+	}
+	return dialog
+}
+
+// GetDialogAtPosition will convert a position specification e.g. 20-30 into a timestamp range.
 // if the range exceeds the total episode length it will just return the total episode length as the end timestamp.
-func (e *Transcript) GetTimestampRange(pos string) (time.Duration, time.Duration, []string, error) {
+func (e *Transcript) GetDialogAtPosition(pos string) (time.Duration, time.Duration, []string, error) {
 	if len(e.Transcript) == 0 {
 		return 0, 0, []string{}, fmt.Errorf("no dialog to extract")
 	}
@@ -233,17 +261,16 @@ func (e *Transcript) GetTimestampRange(pos string) (time.Duration, time.Duration
 
 	var endOffset time.Duration
 	dialog := []string{}
-	for _, v := range e.Transcript {
-		if endPos == v.Position {
-			endOffset = v.Timestamp
+	for _, d := range e.Transcript {
+		if d.Position == endPos {
+			endOffset = d.Timestamp + d.Duration
 			break
 		}
-		if v.Position >= startPos {
-			dialog = append(dialog, v.Content)
+		if d.Position >= startPos {
+			dialog = append(dialog, d.Content)
 		}
 	}
-	// always add an extra second if possible as often the last timestamp is a floored value which should be ceiled
-	return max(0, startOffset), min(maximumPossibleOffset, endOffset+1), dialog, nil
+	return max(0, startOffset), min(maximumPossibleOffset, endOffset), dialog, nil
 }
 
 // GetEpisodeLength extracts the episode length
@@ -282,7 +309,7 @@ func (e *Transcript) ShortProto(audioURI string) *api.ShortTranscript {
 		TriviaAvailable:     len(e.Trivia) > 0,
 		Actors:              e.Actors(),
 		ShortId:             e.ShortID(),
-		AudioUri:            audioURI,
+		AudioUri:            audioURI, //deprecated
 		OffsetAccuracyPcnt:  e.OffsetAccuracy,
 		Name:                e.Name,
 		Version:             e.Version,
@@ -291,6 +318,7 @@ func (e *Transcript) ShortProto(audioURI string) *api.ShortTranscript {
 		Special:             e.Special,
 		AudioQuality:        e.AudioQuality.Proto(),
 		MediaType:           e.MediaType.Proto(),
+		Media:               e.Media.Proto(),
 	}
 	for k, s := range e.Synopsis {
 		ep.Synopsis[k] = s.Proto()
@@ -324,6 +352,7 @@ func (e *Transcript) Proto(withRawTranscript string, audioURI string, forceLocke
 		Summary:            e.Summary,
 		AudioQuality:       e.AudioQuality.Proto(),
 		MediaType:          e.MediaType.Proto(),
+		Media:              e.Media.Proto(),
 	}
 	for _, d := range e.Transcript {
 		ep.Transcript = append(ep.Transcript, d.Proto(false))
@@ -408,7 +437,7 @@ func parsePositionRange(pos string) (int64, int64, error) {
 	}
 
 	if len(parts) == 1 {
-		return startPos, startPos + 1, nil
+		return startPos, startPos, nil
 	}
 	if len(parts) == 2 {
 		var err error
@@ -417,11 +446,27 @@ func parsePositionRange(pos string) (int64, int64, error) {
 			return 0, 0, fmt.Errorf("invalid position range specification %s: %w", pos, err)
 		}
 		if startPos == endPos {
-			return startPos, startPos + 1, nil
+			return startPos, startPos, nil
 		}
 		return startPos, endPos, nil
 	}
 	return 0, 0, fmt.Errorf("unexpected position format %s", pos)
+}
+
+func parseTsRange(ts string) (time.Duration, time.Duration, error) {
+	parts := strings.Split(ts, "-")
+	if len(parts) != 2 {
+		return 0, 0, fmt.Errorf("invalid timestamp range: %s", ts)
+	}
+	startTs, err := strconv.ParseInt(parts[0], 10, 64)
+	if err != nil {
+		return 0, 0, fmt.Errorf("invalid start timestamp %s: %w", ts, err)
+	}
+	endTs, err := strconv.ParseInt(parts[1], 10, 64)
+	if err != nil {
+		return 0, 0, fmt.Errorf("invalid end timestamp %s: %w", ts, err)
+	}
+	return time.Duration(startTs) * time.Millisecond, time.Duration(endTs) * time.Millisecond, nil
 }
 
 func ParseDialogID(id string) (string, int64, error) {

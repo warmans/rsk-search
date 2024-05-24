@@ -1,7 +1,7 @@
 import {AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {
   DialogType,
-  RskDialog,
+  RskDialog, RskMedia,
   RskMediaType,
   RskSynopsis,
   RskTranscript,
@@ -65,7 +65,7 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
   private _rawTranscript: string;
 
   @Input()
-  mediaType: RskMediaType = RskMediaType.AUDIO;
+  media: RskMedia;
 
   groupedDialog: DialogGroup[];
 
@@ -338,6 +338,4 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
   copyLineToClipboard(content: string, timestamp?: number) {
     this.clipboard.copyTextToClipboard(content);
   }
-
-  protected readonly RskMediaType = RskMediaType;
 }

@@ -216,18 +216,19 @@ func (b *Bot) scrimptonQueryBegin(s *discordgo.Session, i *discordgo.Interaction
 			return
 		}
 
-		switch dialog.TranscriptMeta.MediaType {
-		case api.MediaType_VIDEO:
+		if dialog.TranscriptMeta.Media.Video {
 			if err := b.beginVideoResponse(s, i, dialog, *customID, username); err != nil {
 				b.logger.Error("Failed to begin video response", zap.Error(err))
 			}
 			return
-		case api.MediaType_AUDIO:
+		}
+		if dialog.TranscriptMeta.Media.Video {
 			if err := b.beginAudioResponse(s, i, dialog, *customID, username); err != nil {
 				b.logger.Error("Failed to begin video response", zap.Error(err))
 			}
 			return
 		}
+		b.respondError(s, i, fmt.Errorf("no media associated with the selected quote. Request a text-only response feature"))
 		return
 	case discordgo.InteractionApplicationCommandAutocomplete:
 		data := i.ApplicationCommandData()
@@ -656,7 +657,7 @@ func (b *Bot) audioFileResponse(dialog *api.TranscriptDialog, customID CustomID,
 	cancelFunc := func() {}
 
 	if customID.ContentModifier != ContentModifierTextOnly {
-		audioFileURL := fmt.Sprintf("%s%s?pos=%d", b.webUrl, dialog.TranscriptMeta.AudioUri, matchedDialogRow.Pos)
+		audioFileURL := fmt.Sprintf("%s/dl/media/%s.mp3?pos=%d", b.webUrl, dialog.TranscriptMeta.ShortId, matchedDialogRow.Pos)
 		resp, err := http.Get(audioFileURL)
 		if err != nil {
 			return nil, fmt.Errorf("failed to fetch selected line"), func() {}
@@ -730,7 +731,7 @@ func (b *Bot) buildVideoResponse(dialog *api.TranscriptDialog, customID CustomID
 	if customText != nil {
 		customTextParam = fmt.Sprintf("&custom_text=%s", url.QueryEscape(*customText))
 	}
-	fileURL := fmt.Sprintf("%s/dl/media/gif/%s?pos=%d%s", b.webUrl, dialog.TranscriptMeta.Id, matchedDialogRow.Pos, customTextParam)
+	fileURL := fmt.Sprintf("%s/dl/media/%s.gif?pos=%d%s", b.webUrl, dialog.TranscriptMeta.ShortId, matchedDialogRow.Pos, customTextParam)
 	cancelFunc := func() {}
 	bodyText := ""
 

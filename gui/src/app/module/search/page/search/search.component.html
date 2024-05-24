@@ -24,10 +24,11 @@
           <div *ngFor="let dialog of res.dialogs" class="dialog">
             <app-transcript
               [transcript]="dialog"
+              [media]="res.episode.media"
               [searchResultMode]="true"
               [enableLineLinking]="false"
               [enableLineCopy]="true"
-              [enableAudioLinks]="res.episode?.mediaType === RskMediaType.AUDIO"
+              [enableAudioLinks]="res.episode?.media.audio"
               (emitAudioTimestamp)="onAudioTimestamp(res.episode,  $event)"></app-transcript>
           </div>
         </div>

@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, combineLatest, Observable} from 'rxjs';
 
 const STORAGE_KEY_LISTENLOG = 'audio_service_listen_log';
 const STORAGE_KEY_VOLUME = 'audio_service_volume';
@@ -15,10 +15,6 @@ export interface Status {
   percentElapsed: number;
   percentLoaded: number;
   listened: boolean;
-
-  // play only a section of the audio.
-  startSecond?: number;
-  endSecond?: number;
 }
 
 export interface TimeStatus {
@@ -32,10 +28,6 @@ export interface FileStatus {
   audioName: string,
   audioFile: string;
   standalone: boolean;
-
-  // play only a section of the audio.
-  startSecond?: number;
-  endSecond?: number;
 }
 
 export enum PlayerState {
@@ -82,7 +74,12 @@ export class AudioService {
 
   private playerStatusSub: BehaviorSubject<PlayerState> = new BehaviorSubject(PlayerState.paused);
   private percentLoadedSub: BehaviorSubject<number> = new BehaviorSubject(0);
-  private audioSourceSub: BehaviorSubject<FileStatus> = new BehaviorSubject<FileStatus>({ audioFile: '', audioID: '', audioName: '', standalone: false });
+  private audioSourceSub: BehaviorSubject<FileStatus> = new BehaviorSubject<FileStatus>({
+    audioFile: '',
+    audioID: '',
+    audioName: '',
+    standalone: false
+  });
   private audioHistoryLogSub: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(this.getListenLog());
   private errorsSub: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(this.getListenLog());
 
@@ -111,8 +108,6 @@ export class AudioService {
         totalTime: timeState.totalTime,
         percentElapsed: timeState.percentElapsed,
         percentLoaded: pcntLoaded,
-        startSecond: file.startSecond,
-        endSecond: file.endSecond,
         listened: history.indexOf(file.audioID) > -1,
       };
       this.statusSub.next(status);
@@ -173,20 +168,22 @@ export class AudioService {
 
   public reset() {
     this.pauseAudio();
-    this.setAudioSrc(null, '', '', false);
+    this.setAudioSrc(null, '', false);
     this.clearPersistentPlayerState();
   }
 
-  public setAudioSrc(id: string | null, name: string | null, src: string, standalone?: boolean, startSecond?: number, endSecond?: number): void {
+  public setAudioSrc(id: string | null, name: string | null, standalone?: boolean, startMs?: number, endMs?: number): void {
     if (this.audioID === id) {
       return;
     }
     this.pauseAudio();
 
+    let audioUri: string = `/dl/media/${id}.mp3` + ((startMs || endMs) ? `?ts=${startMs}${endMs ? "-" + endMs : ""}` : ``);
+
     this.audioID = id;
-    this.audio.src = src + ((startSecond || endSecond) ? `#t=${startSecond},${endSecond}` : ``);
+    this.audio.src = audioUri
     this.standaloneMode = standalone;
-    this.audioSourceSub.next({ audioFile: src, audioID: id, audioName: name, standalone: standalone, startSecond: startSecond, endSecond: endSecond });
+    this.audioSourceSub.next({audioFile: audioUri, audioID: id, audioName: name, standalone: standalone});
   }
 
   public playAudio(withOffset?: number): void {
@@ -195,6 +192,10 @@ export class AudioService {
     }
     if (withOffset !== undefined) {
       this.audio.currentTime = this.audio.currentTime + withOffset > 0 ? this.audio.currentTime + withOffset : 0;
+    }
+    // if this is a regular player always use the full playback rate
+    if (!this.standaloneMode) {
+      this.setPlaybackRate(1);
     }
     this.audio.play();
   }
@@ -250,7 +251,6 @@ export class AudioService {
   private calculateTime = (evt) => {
     const ct = this.audio.currentTime;
     const d = this.audio.duration;
-
     this.timeStatusSub.next({
       currentTime: ct,
       totalTime: d,
@@ -309,8 +309,9 @@ export class AudioService {
       } catch (e) {
         console.error(`failed to load audio service state: ${e}`);
       }
-      if (state) {
-        this.setAudioSrc(state.audioID, state.audioName, state.audioFile);
+
+      if (state && state.standalone !== true) {
+        this.setAudioSrc(state.audioID, state.audioName);
         this.audio.load();
         this.seekAudio(state.currentTime);
       }

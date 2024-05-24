@@ -280,6 +280,7 @@ enum MediaType {
   MEDIA_TYPE_UNKNOWN = 0;
   AUDIO = 1;
   VIDEO = 2;
+  MULTI = 3;
 }
 
 message Transcript {
@@ -296,7 +297,7 @@ message Transcript {
   repeated string contributors = 10;
   bool incomplete = 11;
   string raw_transcript = 12;
-  string audio_uri = 13;
+  string audio_uri = 13 [deprecated = true];
   string short_id = 14;
   repeated Trivia trivia = 15;
   repeated string actors = 16;
@@ -308,7 +309,13 @@ message Transcript {
   bool locked = 22;
   string summary = 23;
   AudioQuality audio_quality = 24;
-  MediaType media_type = 25;
+  MediaType media_type = 25 [deprecated = true];
+  Media media = 26;
+}
+
+message Media {
+  bool video = 1;
+  bool audio = 2;
 }
 
 message ShortTranscript {
@@ -323,7 +330,7 @@ message ShortTranscript {
   repeated Synopsis synopsis = 9;
   bool trivia_available = 10;
   repeated string actors = 11;
-  string audio_uri = 12;
+  string audio_uri = 12 [deprecated = true];
   string short_id = 13;
   int32 offset_accuracy_pcnt = 14;
   string name = 15;
@@ -332,7 +339,8 @@ message ShortTranscript {
   bool bestof = 18;
   bool special = 19;
   AudioQuality audio_quality = 20;
-  MediaType media_type = 21;
+  MediaType media_type = 21 [deprecated = true];
+  Media media = 22;
 }
 
 message Dialog {
@@ -437,8 +445,11 @@ message Chunk {
   string id = 1;
   string chunked_transcript_id = 2;
   string raw = 3;
-  string audio_clip_uri = 4;
+  string audio_clip_uri = 4 [deprecated = true];
   int32 num_contributions = 5;
+  string episodeId = 6;
+  int32 start_time_ms = 7;
+  int32 end_time_ms = 8;
 }
 
 message ListTranscriptChunksRequest {

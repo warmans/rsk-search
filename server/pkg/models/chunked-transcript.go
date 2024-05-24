@@ -6,6 +6,7 @@ import (
 	"github.com/warmans/rsk-search/gen/api"
 	"github.com/warmans/rsk-search/pkg/util"
 	"path"
+	"strings"
 	"time"
 )
 
@@ -133,6 +134,11 @@ func (c *Chunk) Proto() *api.Chunk {
 		ChunkedTranscriptId: c.TscriptID,
 		Raw:                 c.Raw,
 		NumContributions:    c.NumContributions,
+		// this is hacky. It's annoying, the DB should really just have the episode id.
+		// the good thing is the transcript IS the episode id with a different prefix...
+		EpisodeId:   strings.Replace(c.TscriptID, "ts-", "ep-", 1),
+		StartTimeMs: int32(c.StartSecond.Milliseconds()),
+		EndTimeMs:   int32(c.EndSecond.Milliseconds()),
 	}
 }
 

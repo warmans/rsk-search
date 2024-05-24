@@ -10,6 +10,7 @@ import (
 	"go.uber.org/zap"
 	"os"
 	"path"
+	"strconv"
 )
 
 func RefreshCmd() *cobra.Command {
@@ -60,6 +61,22 @@ func RefreshCmd() *cobra.Command {
 				}
 
 				logger.Info("Processing file...", zap.String("path", dirEntry.Name()))
+
+				if episode.MediaType != models.MediaTypeVideo && episode.MediaType != models.MediaTypeAudio {
+					episode.MediaType = models.MediaTypeAudio
+				}
+				if episode.MediaType == models.MediaTypeAudio {
+					episode.Media.AudioFileName = fmt.Sprintf("%s.mp3", episode.ShortID())
+				}
+				if episode.MediaFileName != "" {
+					episode.Media.VideoFileName = episode.MediaFileName
+				}
+
+				if durationMsStr, ok := episode.Meta[models.MetadataTypeDurationMs]; ok {
+					if duration, err := strconv.ParseInt(durationMsStr, 10, 64); err == nil {
+						episode.Media.AudioDurationMs = duration
+					}
+				}
 
 				// identify gaps and fix positions
 				hasGaps := false

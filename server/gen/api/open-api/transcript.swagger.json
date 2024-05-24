@@ -850,6 +850,17 @@
         "numContributions": {
           "type": "integer",
           "format": "int32"
+        },
+        "episodeId": {
+          "type": "string"
+        },
+        "startTimeMs": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "endTimeMs": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },
@@ -1071,12 +1082,24 @@
         }
       }
     },
+    "rskMedia": {
+      "type": "object",
+      "properties": {
+        "video": {
+          "type": "boolean"
+        },
+        "audio": {
+          "type": "boolean"
+        }
+      }
+    },
     "rskMediaType": {
       "type": "string",
       "enum": [
         "MEDIA_TYPE_UNKNOWN",
         "AUDIO",
-        "VIDEO"
+        "VIDEO",
+        "MULTI"
       ],
       "default": "MEDIA_TYPE_UNKNOWN"
     },
@@ -1186,6 +1209,9 @@
         },
         "mediaType": {
           "$ref": "#/definitions/rskMediaType"
+        },
+        "media": {
+          "$ref": "#/definitions/rskMedia"
         }
       }
     },
@@ -1330,6 +1356,9 @@
         },
         "mediaType": {
           "$ref": "#/definitions/rskMediaType"
+        },
+        "media": {
+          "$ref": "#/definitions/rskMedia"
         }
       }
     },

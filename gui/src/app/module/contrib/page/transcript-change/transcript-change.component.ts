@@ -63,10 +63,10 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
   transcriber: EditorComponent;
 
   constructor(
-    private route: ActivatedRoute,
+    route: ActivatedRoute,
     private router: Router,
     private apiClient: SearchAPIClient,
-    private titleService: Title,
+    titleService: Title,
     private sessionService: SessionService,
     private alertService: AlertService,
   ) {

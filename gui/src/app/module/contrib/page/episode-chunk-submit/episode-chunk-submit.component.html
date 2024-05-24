@@ -4,8 +4,10 @@
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a [routerLink]="['/search']">Home</a></li>
       <li class="breadcrumb-item"><a [routerLink]="['/contribute']">Contribute</a></li>
-      <li class="breadcrumb-item" *ngIf="chunk"><a [routerLink]="['/tscript', chunk.chunkedTranscriptId ]">{{chunk?.chunkedTranscriptId ||
-      "loading..."}}</a></li>
+      <li class="breadcrumb-item" *ngIf="chunk"><a [routerLink]="['/tscript', chunk.chunkedTranscriptId ]">{{
+          chunk?.chunkedTranscriptId ||
+          "loading..."
+        }}</a></li>
       <li class="breadcrumb-item active" aria-current="page">Create</li>
     </ol>
   </nav>
@@ -20,7 +22,7 @@
         not the owner or because is has already been accepted or rejected
       </div>
       <div class="alert alert-warning" *ngIf="!contribution && chunk?.numContributions > 0">
-        There are already {{chunk.numContributions}} approved or proposed contributions for this section of audio.
+        There are already {{ chunk.numContributions }} approved or proposed contributions for this section of audio.
         You can start a different one by clicking <a [routerLink]="['/chunk', 'next']">here</a>.
       </div>
     </div>
@@ -61,7 +63,8 @@
                   <div *ngIf="userIsApprover" class="d-flex">
                     <button class="btn btn-success mt-2 ml-3" (click)="markApproved()">Approve</button>
                     <div class="mt-2 ml-3">
-                      <app-reject-button [contributionId]="contribution.id" [rejectAction]="rejectCallback"></app-reject-button>
+                      <app-reject-button [contributionId]="contribution.id"
+                                         [rejectAction]="rejectCallback"></app-reject-button>
                     </div>
                   </div>
                 </div>
@@ -104,8 +107,8 @@
           [contentVersion]="'chunk'"
           [rawTranscript]="initialTranscript"
           [lastUpdateDate]="lastUpdateTimestamp"
-          [audioPlayerURL]="audioPlayerURL"
           [allowEdit]="userCanEdit"
+          [audioConfig]="{episodeId: (chunk?.chunkedTranscriptId.replace('ts-', 'ep-')), startMs: chunk?.startTimeMs, endMs: chunk?.endTimeMs}"
           [isSaved]="contribution ? true : false"
           [chunkMode]="true"
           (handleSave)="handleSave($event)">

@@ -4,7 +4,7 @@
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a [routerLink]="['/search']">Home</a></li>
       <li class="breadcrumb-item"><a [routerLink]="['/contribute']">Contribute</a></li>
-      <li class="breadcrumb-item active" aria-current="page">{{epID}}</li>
+      <li class="breadcrumb-item active" aria-current="page">{{ epID }}</li>
     </ol>
   </nav>
 
@@ -12,16 +12,21 @@
     <div class="col-12">
       <div class="alert alert-danger" *ngIf="userCanEdit && change && this.versionMismatchError">
         <strong>Version Mismatch</strong>
-        <p>Your change was created with transcript version {{change?.transcriptVersion || 'NONE'}} but the transcript is now at
-          version {{transcript?.version || 'NONE'}}. This means merging your change will revert someone else's contribution.
+        <p>Your change was created with transcript version {{ change?.transcriptVersion || 'NONE' }} but the transcript
+          is now at
+          version {{ transcript?.version || 'NONE' }}. This means merging your change will revert someone else's
+          contribution.
           Unfortunately all you can do is discard the change and start again.</p>
-        <p>You may also be able to copy your current change to notepad, discard it and copy/paste the relevant sections into a new change.</p>
+        <p>You may also be able to copy your current change to notepad, discard it and copy/paste the relevant sections
+          into a new change.</p>
       </div>
 
       <div class="card">
         <div class="card-header d-flex align-items-center justify-content-between">
           Submit Transcript Change
-          <button *ngIf="instructionsHidden" class="btn btn-link btn-sm text-sm" (click)="undoHideInstructions()">Show Instructions</button>
+          <button *ngIf="instructionsHidden" class="btn btn-link btn-sm text-sm" (click)="undoHideInstructions()">Show
+            Instructions
+          </button>
         </div>
         <div class="card" *ngIf="!change">
           <div class="card-body">
@@ -50,7 +55,9 @@
                   <button class="btn btn-warning mt-2" (click)="markIncomplete()">Revert to incomplete <i
                     class="bi-pen"></i></button>
                   <div *ngIf="userIsApprover" class="d-flex pt-2">
-                    <button class="btn btn-success ml-3" (click)="markApproved()">Approve ({{this.approvalPoints.value}})</button>
+                    <button class="btn btn-success ml-3" (click)="markApproved()">Approve
+                      ({{ this.approvalPoints.value }})
+                    </button>
                     <div>
                       <select class="form-control" [formControl]="approvalPoints">
                         <option value="0.2">Typo 0.2</option>
@@ -89,10 +96,16 @@
             <strong class="mb-2">Objectives:</strong>
             <p>In order of importance here are things you should consider adding to the transcript:</p>
             <ul>
-              <li><strong>OFFSETS</strong> - Add timestamp offsets as often as possible. This improves accuracy of timecodes.</li>
-              <li><strong>SYN</strong> - Adding synopses to sections of text to summarise what happened in the episode.</li>
-              <li><strong>Cleanup</strong> - General cleanup of transcript, especially when it was created from multiple chunks.</li>
-              <li><strong>TRIVIA</strong> - Adding trivia tags are useful if you want to make a note about the dialog e.g. "karl did not win the lottery, the actual numbers were
+              <li><strong>OFFSETS</strong> - Add timestamp offsets as often as possible. This improves accuracy of
+                timecodes.
+              </li>
+              <li><strong>SYN</strong> - Adding synopses to sections of text to summarise what happened in the episode.
+              </li>
+              <li><strong>Cleanup</strong> - General cleanup of transcript, especially when it was created from multiple
+                chunks.
+              </li>
+              <li><strong>TRIVIA</strong> - Adding trivia tags are useful if you want to make a note about the dialog
+                e.g. "karl did not win the lottery, the actual numbers were
                 517952".
               </li>
             </ul>
@@ -126,7 +139,7 @@
           [contentVersion]="change ? change.transcriptVersion : transcript?.version"
           [rawTranscript]="initialTranscript || ''"
           [lastUpdateDate]="lastUpdateTimestamp"
-          [audioPlayerURL]="transcript?.audioUri"
+          [audioConfig]="{episodeId: change ? change.episodeId : transcript?.id}"
           [allowEdit]="userCanEdit"
           [isSaved]="!!change?.id"
           [chunkMode]="false"
@@ -137,7 +150,14 @@
       <div class="card" *ngIf="(activeTab==='preview')">
         <div class="card-header"></div>
         <div class="card-body preview-window">
-          <app-transcript [rawTranscript]="transcriber.getContentSnapshot() || initialTranscript" [searchResultMode]="false" [enableLineLinking]="false"></app-transcript>
+          <!--todo: audio links should work, but there needs to be a new instance of the audio service to seek the audio on click -->
+          <app-transcript
+            [media]="transcript?.media"
+            [epid]="change ? change.episodeId : transcript?.id"
+            [rawTranscript]="transcriber.getContentSnapshot() || initialTranscript"
+            [searchResultMode]="false"
+            [enableAudioLinks]="false"
+            [enableLineLinking]="false"></app-transcript>
         </div>
       </div>
 

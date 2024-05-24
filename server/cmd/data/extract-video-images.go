@@ -49,7 +49,7 @@ func ExtractVideoImages() *cobra.Command {
 				}); err != nil {
 					return err
 				}
-				if episode.MediaType != models.MediaTypeVideo || episode.MediaFileName == "" {
+				if episode.Media.VideoFileName == "" {
 					continue
 				}
 

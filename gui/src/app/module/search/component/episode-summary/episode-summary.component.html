@@ -5,8 +5,8 @@
         (click)="toggleEpisode(episode)"
         class="icon d-flex align-items-center justify-content-around album-art"
         [style.background-image]="'url('+episodeImage+')'">
-        <i class="bi-play-circle-fill text-body" *ngIf="episode.mediaType === RskMediaType.AUDIO"></i>
-        <div class="played-corner-marker" *ngIf="!played && episode.mediaType === RskMediaType.AUDIO"></div>
+        <i class="bi-play-circle-fill text-body" *ngIf="episode.media.audio"></i>
+        <div class="played-corner-marker" *ngIf="!played && episode.media.audio"></div>
       </div>
       <div class="pl-3 d-flex flex-column justify-content-around">
         <div>
@@ -21,10 +21,10 @@
             </span>
           </div>
           <div class="sub-title font-weight-light">
-            <a *ngIf="loggedIn && episode.audioUri && episode.mediaType === RskMediaType.AUDIO" [href]="episode.audioUri" target="_blank">
+            <a *ngIf="loggedIn && episode.media.audio" [href]="'/dl/media/'+episode.shortId+'.mp3'" target="_blank">
               {{episode.shortId}}
             </a>
-            <span *ngIf="!loggedIn || episode.mediaType !== RskMediaType.AUDIO">
+            <span *ngIf="!loggedIn || !episode.media.audio">
               {{episode.shortId}}
             </span> |
             {{ ( episode.metadata["duration_ms"] | formatSeconds: true ) || "Duration Unknown" }} |

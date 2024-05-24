@@ -80,7 +80,6 @@ export class EpisodeChunkSubmit implements OnInit, OnDestroy {
               return;
             }
             this.chunk = v;
-            this.audioPlayerURL = `/dl/media/chunk/${v.id}.mp3`;
           }
         ).add(() => this.loading.shift());
 
@@ -97,7 +96,6 @@ export class EpisodeChunkSubmit implements OnInit, OnDestroy {
             titleService.setTitle(`Contribute :: ${v.id}`);
 
             this.chunk = v;
-            this.audioPlayerURL = `/dl/media/chunk/${v.id}.mp3`;
 
             this.setInitialTranscript(this.chunk.raw);
           }

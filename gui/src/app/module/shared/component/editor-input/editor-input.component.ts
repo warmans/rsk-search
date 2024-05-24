@@ -1,5 +1,5 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
-import { getOffsetValueFromLine, isOffsetLine } from '../../lib/tscript';
+import { getOffsetValueFromLineInSeconds, isOffsetLine } from '../../lib/tscript';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
@@ -143,7 +143,7 @@ export class EditorInputComponent implements OnInit, OnDestroy, AfterViewInit {
   private tryEmitOffset() {
     const caretFocus = this.getCaretFocus();
     if (caretFocus && isOffsetLine(caretFocus.line)) {
-      this.atOffsetMarker.next(getOffsetValueFromLine(caretFocus.line));
+      this.atOffsetMarker.next(getOffsetValueFromLineInSeconds(caretFocus.line));
     }
   }
 
