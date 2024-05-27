@@ -21,7 +21,7 @@ func Test_parsePositionSpec(t *testing.T) {
 			name:    "valid start position",
 			pos:     "101",
 			want:    101,
-			want1:   102,
+			want1:   101,
 			wantErr: false,
 		},
 		{

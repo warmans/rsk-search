@@ -41,9 +41,15 @@ jobs:
         with:
           go-version: ${{env.GO_VERSION}}
 
-      - name: Go tests
+      - name: Set up gotestfmt
+        run: go install github.com/gotesttools/gotestfmt/v2/cmd/gotestfmt@latest
+
+
+      - name: Run tests
         working-directory: ${{env.working-directory}}
-        run: go test -v ./...
+        run: |
+          set -euo pipefail
+          go test -json -v ./... 2>&1 | tee /tmp/gotest.log | gotestfmt
 
   build:
     runs-on: ubuntu-latest
