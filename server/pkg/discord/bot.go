@@ -222,13 +222,14 @@ func (b *Bot) scrimptonQueryBegin(s *discordgo.Session, i *discordgo.Interaction
 			}
 			return
 		}
-		if dialog.TranscriptMeta.Media.Video {
+		if dialog.TranscriptMeta.Media.Audio {
 			if err := b.beginAudioResponse(s, i, dialog, *customID, username); err != nil {
-				b.logger.Error("Failed to begin video response", zap.Error(err))
+				b.logger.Error("Failed to begin audio response", zap.Error(err))
 			}
 			return
 		}
-		b.respondError(s, i, fmt.Errorf("no media associated with the selected quote. Request a text-only response feature"))
+		//todo: do a text response instead then...
+		b.respondError(s, i, fmt.Errorf("no media associated with the selected dialog"))
 		return
 	case discordgo.InteractionApplicationCommandAutocomplete:
 		data := i.ApplicationCommandData()
