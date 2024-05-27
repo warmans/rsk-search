@@ -8,36 +8,40 @@
     <ul class="nav nav-tabs font-weight-bold">
       <li class="nav-item mr-1">
         <a class="nav-link" [ngClass]="{'active': activePublication === 'xfm'}"
-           (click)="loadPublicationTab('xfm')">Xfm</a>
+           (click)="loadPublicationTab('xfm')"><i class="bi-volume-up"></i> Xfm</a>
       </li>
       <li class="nav-item mr-1">
-        <a class="nav-link" [ngClass]="{'active': activePublication === 'guide'}" (click)="loadPublicationTab('guide')">Guides</a>
+        <a class="nav-link" [ngClass]="{'active': activePublication === 'guide'}" (click)="loadPublicationTab('guide')">
+          <i class="bi-volume-up"></i>  Guides
+        </a>
       </li>
       <li class="nav-item mr-1">
         <a class="nav-link" [ngClass]="{'active': activePublication === 'special'}"
-           (click)="loadPublicationTab('special')">Specials</a>
+           (click)="loadPublicationTab('special')"><i class="bi-volume-up"></i> Specials</a>
       </li>
       <li class="nav-item mr-1">
-        <a class="nav-link" [ngClass]="{'active': activePublication === 'other'}" (click)="loadPublicationTab('other')">Other</a>
-      </li>
-      <li class="nav-item mr-1">
-        <a class="nav-link" [ngClass]="{'active': activePublication === 'karl'}" (click)="loadPublicationTab('karl')">Karl</a>
+        <a class="nav-link" [ngClass]="{'active': activePublication === 'karl'}" (click)="loadPublicationTab('karl')">
+          <i class="bi-volume-up"></i> Karl
+        </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" [ngClass]="{'active': activePublication === 'preview'}"
-           (click)="loadPublicationTab('preview')">Preview</a>
+           (click)="loadPublicationTab('preview')"><i class="bi-volume-up"></i> Preview</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" [ngClass]="{'active': activePublication === 'office'}"
-           (click)="loadPublicationTab('office')">Office</a>
+           (click)="loadPublicationTab('office')"><i class="bi-camera-video"></i> Office</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" [ngClass]="{'active': activePublication === 'extras'}"
-           (click)="loadPublicationTab('extras')">Extras</a>
+           (click)="loadPublicationTab('extras')"><i class="bi-camera-video"></i> Extras</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" [ngClass]="{'active': activePublication === 'trgs'}"
-           (click)="loadPublicationTab('trgs')">TRGS</a>
+           (click)="loadPublicationTab('trgs')"><i class="bi-camera-video"></i> TRGS</a>
+      </li>
+      <li class="nav-item mr-1">
+        <a class="nav-link" [ngClass]="{'active': activePublication === 'other'}" (click)="loadPublicationTab('other')">Other</a>
       </li>
     </ul>
   </div>

@@ -75,10 +75,10 @@
     <div class="col">
       <ul class="nav nav-tabs font-weight-bold">
         <li class="nav-item mr-2">
-          <a class="nav-link" (click)="activeInfoPanel='contribute'" [ngClass]="{'active': activeInfoPanel === 'contribute'}">Contribute</a>
+          <a class="nav-link" (click)="activeInfoPanel='contribute'" [ngClass]="{'active': activeInfoPanel === 'contribute'}"><i class="bi-pencil mr-2"></i>Contribute</a>
         </li>
         <li class="nav-item mr-2">
-          <a class="nav-link" (click)="activeInfoPanel='changelog'" [ngClass]="{'active': activeInfoPanel === 'changelog'}">Changelog</a>
+          <a class="nav-link" (click)="activeInfoPanel='changelog'" [ngClass]="{'active': activeInfoPanel === 'changelog'}"><i class="bi-paperclip mr-2"></i>Changelog</a>
         </li>
       </ul>
       <div class="card mb-4" *ngIf="activeInfoPanel === 'contribute'">
