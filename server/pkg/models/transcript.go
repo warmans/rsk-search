@@ -452,29 +452,3 @@ func parsePositionRange(pos string) (int64, int64, error) {
 	}
 	return 0, 0, fmt.Errorf("unexpected position format %s", pos)
 }
-
-func parseTsRange(ts string) (time.Duration, time.Duration, error) {
-	parts := strings.Split(ts, "-")
-	if len(parts) != 2 {
-		return 0, 0, fmt.Errorf("invalid timestamp range: %s", ts)
-	}
-	startTs, err := strconv.ParseInt(parts[0], 10, 64)
-	if err != nil {
-		return 0, 0, fmt.Errorf("invalid start timestamp %s: %w", ts, err)
-	}
-	endTs, err := strconv.ParseInt(parts[1], 10, 64)
-	if err != nil {
-		return 0, 0, fmt.Errorf("invalid end timestamp %s: %w", ts, err)
-	}
-	return time.Duration(startTs) * time.Millisecond, time.Duration(endTs) * time.Millisecond, nil
-}
-
-func ParseDialogID(id string) (string, int64, error) {
-	//e.g ep-guide-S2E04-1
-	posStr := util.LastSegment(id, "-")
-	posInt, err := strconv.Atoi(posStr)
-	if err != nil {
-		return "", 0, fmt.Errorf("failed to decode position %s: %w", posStr, err)
-	}
-	return strings.TrimSuffix(id, fmt.Sprintf("-%s", posStr)), int64(posInt), nil
-}

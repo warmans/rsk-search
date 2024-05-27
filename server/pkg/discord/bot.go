@@ -561,12 +561,13 @@ func (b *Bot) scrimptonQueryComplete(s *discordgo.Session, i *discordgo.Interact
 		return
 	}
 
-	switch dialog.TranscriptMeta.MediaType {
-	case api.MediaType_VIDEO:
+	if dialog.TranscriptMeta.Media.Video {
 		if err := b.completeVideoResponse(s, i, dialog, username, *customID, nil); err != nil {
 			b.logger.Error("Failed to complete video response", zap.Error(err))
 		}
-	case api.MediaType_AUDIO:
+		return
+	}
+	if dialog.TranscriptMeta.Media.Audio {
 		// respond audio
 		interactionResponse, err, cleanup := b.audioFileResponse(dialog, *customID, username)
 		defer cleanup()
@@ -577,7 +578,10 @@ func (b *Bot) scrimptonQueryComplete(s *discordgo.Session, i *discordgo.Interact
 		if err = s.InteractionRespond(i.Interaction, interactionResponse); err != nil {
 			b.respondError(s, i, err)
 		}
+		return
 	}
+
+	b.respondError(s, i, errors.New("no media associated with dialog"))
 }
 
 func (b *Bot) completeVideoResponse(s *discordgo.Session, i *discordgo.InteractionCreate, dialog *api.TranscriptDialog, username string, customID CustomID, customText *string) error {

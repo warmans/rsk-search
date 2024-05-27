@@ -312,7 +312,7 @@ func (c *DownloadService) DownloadEpisodeMedia(resp http.ResponseWriter, req *ht
 					if episode.Media.AudioDurationMs > 0 {
 						endTimestamp = time.Duration(episode.Media.AudioDurationMs) * time.Millisecond
 					} else {
-						http.Error(resp, fmt.Sprintf("end timestamp must be specified"), http.StatusBadRequest)
+						http.Error(resp, "end timestamp must be specified", http.StatusBadRequest)
 						return
 					}
 				}
