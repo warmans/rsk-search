@@ -780,9 +780,7 @@ func lineLength(line []string) int {
 func reSplitDialog(dialog []string) []string {
 	fixed := []string{}
 	for _, line := range dialog {
-		for _, part := range strings.Split(line, "\n") {
-			fixed = append(fixed, part)
-		}
+		fixed = append(fixed, strings.Split(line, "\n")...)
 	}
 	return fixed
 }
