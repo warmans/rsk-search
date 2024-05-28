@@ -81,7 +81,7 @@ export class EpisodeSummaryComponent implements OnInit, OnDestroy {
   }
 
   toggleEpisode(episode: RskShortTranscript) {
-    if (!episode.media.audio) {
+    if (!episode.media.audio || episode.media.audioRestricted) {
       return;
     }
     this.audioService.setAudioSrc(episode.shortId, episode.name);

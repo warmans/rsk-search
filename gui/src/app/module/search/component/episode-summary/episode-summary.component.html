@@ -5,8 +5,8 @@
         (click)="toggleEpisode(episode)"
         class="icon d-flex align-items-center justify-content-around album-art"
         [style.background-image]="'url('+episodeImage+')'">
-        <i class="bi-play-circle-fill text-body" *ngIf="episode.media.audio"></i>
-        <div class="played-corner-marker" *ngIf="!played && episode.media.audio"></div>
+        <i class="bi-play-circle-fill text-body" *ngIf="episode.media.audio && !episode.media.audioRestricted"></i>
+        <div class="played-corner-marker" *ngIf="!played && episode.media.audio && !episode.media.audioRestricted"></div>
       </div>
       <div class="pl-3 d-flex flex-column justify-content-around">
         <div>
