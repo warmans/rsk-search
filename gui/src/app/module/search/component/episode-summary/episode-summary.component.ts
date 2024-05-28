@@ -7,7 +7,7 @@ import {
   OnDestroy,
   OnInit
 } from '@angular/core';
-import {RskMediaType, RskPublicationType, RskShortTranscript} from '../../../../lib/api-client/models';
+import {RskPublicationType, RskShortTranscript} from '../../../../lib/api-client/models';
 import {AudioService, Status} from '../../../core/service/audio/audio.service';
 import {takeUntil} from 'rxjs/operators';
 import {SessionService} from 'src/app/module/core/service/session/session.service';
@@ -87,7 +87,4 @@ export class EpisodeSummaryComponent implements OnInit, OnDestroy {
     this.audioService.setAudioSrc(episode.shortId, episode.name);
     this.audioService.toggleAudio();
   }
-
-  protected readonly RskMediaType = RskMediaType;
-  protected readonly RskPublicationType = RskPublicationType;
 }

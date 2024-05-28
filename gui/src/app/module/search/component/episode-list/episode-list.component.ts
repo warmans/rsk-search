@@ -82,7 +82,15 @@ export class EpisodeListComponent implements OnInit, OnDestroy {
   }
 
   activePublicationTranscripts(): RskShortTranscript[] {
-    return this.transcriptList?.filter((t => t.publicationType === this.activePublicationType)) || [];
+    return (this.transcriptList?.
+    filter((t => t.publicationType === this.activePublicationType)) || []).
+    sort((v, k): number => {
+      if (v.releaseDate) {
+        return new Date(v.releaseDate).getTime() > new Date(k.releaseDate).getTime() ? 1 : -1
+      }
+      return v.series * 100 + v.episode > k.series * 100 + k.episode ? 1 : -1;
+
+    });
   }
 
   resetEpisodeList() {
