@@ -480,6 +480,8 @@ export function isRskDialog(arg: any): arg is models.RskDialog {
     ( typeof arg.offsetMs === 'undefined' || typeof arg.offsetMs === 'number' ) &&
     // offsetSec?: string
     ( typeof arg.offsetSec === 'undefined' || typeof arg.offsetSec === 'string' ) &&
+    // placeholder?: boolean
+    ( typeof arg.placeholder === 'undefined' || typeof arg.placeholder === 'boolean' ) &&
     // pos?: number
     ( typeof arg.pos === 'undefined' || typeof arg.pos === 'number' ) &&
     // type?: DialogType

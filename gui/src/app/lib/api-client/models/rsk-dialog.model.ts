@@ -15,6 +15,7 @@ export interface RskDialog {
   offsetInferred?: boolean;
   offsetMs?: number;
   offsetSec?: string;
+  placeholder?: boolean;
   pos?: number;
   type?: DialogType;
 }

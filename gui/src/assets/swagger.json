@@ -2203,6 +2203,9 @@
           "durationMs": {
             "type": "integer",
             "format": "int32"
+          },
+          "placeholder": {
+            "type": "boolean"
           }
         }
       },

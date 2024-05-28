@@ -132,10 +132,6 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 			if err != nil {
 				return err
 			}
-			if len(approved) == 0 {
-				logger.Info("Nothing to do - none approved")
-				continue
-			}
 
 			currentPos := int64(0)
 			for _, ch := range allChunks {
@@ -154,18 +150,28 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 
 				// if the transcript is missing insert a placeholder
 				if chContribution == nil {
-					episodeOnDisk.Transcript = append(
-						episodeOnDisk.Transcript,
-						models.Dialog{
-							ID:        models.DialogID(episodeOnDisk.ID(), currentPos+transcript.PosSpacing),
-							Position:  currentPos + transcript.PosSpacing,
-							Timestamp: 0,
-							Type:      "gap",
-							Actor:     "",
-							Meta:      nil,
-							Content:   "[~3 mins of missing transcription]",
-						},
-					)
+					placeholderDialog, _, _, err := transcript.Import(bufio.NewScanner(bytes.NewBufferString(ch.Raw)), episodeOnDisk.ID(), currentPos+transcript.PosSpacing)
+					if err == nil {
+						for _, v := range placeholderDialog {
+							v.Placeholder = true
+							episodeOnDisk.Transcript = append(episodeOnDisk.Transcript, v)
+						}
+					} else {
+						logger.Error("Failed to parse placeholder transcript", zap.Error(err))
+						episodeOnDisk.Transcript = append(
+							episodeOnDisk.Transcript,
+							models.Dialog{
+								ID:          models.DialogID(episodeOnDisk.ID(), currentPos+transcript.PosSpacing),
+								Position:    currentPos + transcript.PosSpacing,
+								Timestamp:   0,
+								Type:        "gap",
+								Actor:       "",
+								Meta:        nil,
+								Content:     "[~3 mins of missing transcription]",
+								Placeholder: true,
+							},
+						)
+					}
 					episodeOnDisk.Incomplete = true
 					continue
 				}

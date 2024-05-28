@@ -137,6 +137,7 @@ type Dialog struct {
 	Meta              Metadata      `json:"metadata"`
 	Content           string        `json:"content"`
 	Notable           bool          `json:"notable"` // note-worthy line of dialog.
+	Placeholder       bool          `json:"placeholder"`
 }
 
 func (d Dialog) Proto(matchedRow bool) *api.Dialog {
@@ -154,6 +155,7 @@ func (d Dialog) Proto(matchedRow bool) *api.Dialog {
 		IsMatchedRow:   matchedRow,
 		Notable:        d.Notable,
 		DurationMs:     int32(d.Duration.Milliseconds()),
+		Placeholder:    d.Placeholder,
 	}
 	return dialog
 }
