@@ -3,6 +3,7 @@ import {
   RskAudioQuality,
   RskMedia,
   RskMediaType,
+  RskPublicationType,
   RskSynopsis,
 } from '.';
 
@@ -20,6 +21,7 @@ export interface RskShortTranscript {
   name?: string;
   offsetAccuracyPcnt?: number;
   publication?: string;
+  publicationType?: RskPublicationType;
   releaseDate?: string;
   series?: number;
   shortId?: string;

@@ -10,6 +10,33 @@ import (
 	"time"
 )
 
+type PublicationType string
+
+const (
+	PublicationTypeUnknown = PublicationType("")
+	PublicationTypeRadio   = PublicationType("radio")
+	PublicationTypePodcast = PublicationType("podcast")
+	PublicationTypePromo   = PublicationType("promo")
+	PublicationTypeTV      = PublicationType("tv")
+	PublicationTypeOther   = PublicationType("other")
+)
+
+func (m PublicationType) Proto() api.PublicationType {
+	switch m {
+	case PublicationTypeRadio:
+		return api.PublicationType_PUBLICATION_TYPE_RADIO
+	case PublicationTypePodcast:
+		return api.PublicationType_PUBLICATION_TYPE_PODCAST
+	case PublicationTypePromo:
+		return api.PublicationType_PUBLICATION_TYPE_PROMO
+	case PublicationTypeTV:
+		return api.PublicationType_PUBLICATION_TYPE_TV
+	case PublicationTypeOther:
+		return api.PublicationType_PUBLICATION_TYPE_OTHER
+	}
+	return api.PublicationType_PUBLICATION_TYPE_UNKNOWN
+}
+
 type MediaType string
 
 const (
@@ -136,12 +163,15 @@ type Media struct {
 	VideoDurationMs int64  `json:"video_duration_ms"`
 	AudioFileName   string `json:"audio_file_name"`
 	AudioDurationMs int64  `json:"audio_duration_ms"`
+	// tell the UI to only expose minimal audio (e.g. in the editor).
+	AudioRestricted bool `json:"audio_restricted"`
 }
 
 func (m Media) Proto() *api.Media {
 	return &api.Media{
-		Video: m.VideoFileName != "",
-		Audio: m.AudioFileName != "",
+		Video:           m.VideoFileName != "",
+		Audio:           m.AudioFileName != "",
+		AudioRestricted: m.AudioRestricted,
 	}
 }
 
@@ -149,9 +179,10 @@ type Transcript struct {
 	MediaType     MediaType `json:"media_type"`
 	MediaFileName string    `json:"media_file_name"` //deprecated
 
-	Publication string `json:"publication"`
-	Series      int32  `json:"series"`
-	Episode     int32  `json:"episode"`
+	PublicationType PublicationType `json:"publication_type" // e.g. podcast, radio, tv`
+	Publication     string          `json:"publication"`
+	Series          int32           `json:"series"`
+	Episode         int32           `json:"episode"`
 	// some episodes don't really have a proper series/episode and need to be identified by a name e.g. Radio 2 special
 	Name        string     `json:"name"`
 	Summary     string     `json:"summary"`
@@ -319,6 +350,7 @@ func (e *Transcript) ShortProto(audioURI string) *api.ShortTranscript {
 		AudioQuality:        e.AudioQuality.Proto(),
 		MediaType:           e.MediaType.Proto(),
 		Media:               e.Media.Proto(),
+		PublicationType:     e.PublicationType.Proto(),
 	}
 	for k, s := range e.Synopsis {
 		ep.Synopsis[k] = s.Proto()
@@ -353,6 +385,7 @@ func (e *Transcript) Proto(withRawTranscript string, audioURI string, forceLocke
 		AudioQuality:       e.AudioQuality.Proto(),
 		MediaType:          e.MediaType.Proto(),
 		Media:              e.Media.Proto(),
+		PublicationType:    e.PublicationType.Proto(),
 	}
 	for _, d := range e.Transcript {
 		ep.Transcript = append(ep.Transcript, d.Proto(false))

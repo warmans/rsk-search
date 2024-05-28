@@ -12,16 +12,16 @@
         <div>
           <div class="title mb-2">
             <a [routerLink]="['/ep', episode.id]" *ngIf="episode.transcriptAvailable">
-              <span *ngIf="episode.publication === 'xfm' || episode.publication === 'guide'">Series {{episode.series}} Episode {{episode.episode}} <span *ngIf="episode.name"> - "{{episode.name}}"</span></span>
-              <span *ngIf="episode.publication !== 'xfm' && episode.publication !== 'guide'">{{ episode.name || "Unknown" }}</span>
+              <span *ngIf="episodeIdIsMeaningful">{{episode.publication | titlecase}} | Series {{episode.series}} Episode {{episode.episode}} <span *ngIf="episode.name"> - "{{episode.name}}"</span></span>
+              <span *ngIf="!episodeIdIsMeaningful">{{episode.publication | titlecase}} |  {{ episode.name || "Unknown" }}</span>
             </a>
             <span *ngIf="!episode.transcriptAvailable">
-              <span *ngIf="episode.publication === 'xfm' || episode.publication === 'guide'">Series {{episode.series}} Episode {{episode.episode}} <span *ngIf="episode.name"> - "{{episode.name}}"</span></span>
-              <span *ngIf="episode.publication !== 'xfm' && episode.publication !== 'guide'">{{ episode.name || "Unknown" }}</span>
+              <span *ngIf="episodeIdIsMeaningful">{{episode.publication | titlecase}} | Series {{episode.series}} Episode {{episode.episode}} <span *ngIf="episode.name"> - "{{episode.name}}"</span></span>
+              <span *ngIf="!episodeIdIsMeaningful">{{episode.publication | titlecase}} |  {{ episode.name || "Unknown" }}</span>
             </span>
           </div>
           <div class="sub-title font-weight-light">
-            <a *ngIf="loggedIn && episode.media.audio" [href]="'/dl/media/'+episode.shortId+'.mp3'" target="_blank">
+            <a *ngIf="loggedIn && !episode.media.audioRestricted && episode.media.audio" [href]="'/dl/media/'+episode.shortId+'.mp3'" target="_blank">
               {{episode.shortId}}
             </a>
             <span *ngIf="!loggedIn || !episode.media.audio">

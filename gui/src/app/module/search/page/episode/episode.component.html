@@ -71,7 +71,7 @@
                     <span>{{ transcribers }}</span>
                   </td>
                 </tr>
-                <tr *ngIf="episode.media.audio">
+                <tr *ngIf="episode.media.audio && !episode.media.audioRestricted">
                   <th>Audio</th>
                   <td>
                     <button *ngIf="!audioStatus || audioStatus?.state !== audioStates.playing"
@@ -200,7 +200,7 @@
             [searchResultMode]="false"
             [enableLineLinking]="true"
             [enableLineCopy]="true"
-            [enableAudioLinks]="true"
+            [enableAudioLinks]="episode.media.audio && !episode.media.audioRestricted"
             [media]="episode.media"
             (emitAudioTimestamp)="onAudioTimestamp($event)"
             (emitSelection)="selectSection($event)"></app-transcript>

@@ -629,6 +629,8 @@ export function isRskMedia(arg: any): arg is models.RskMedia {
   typeof arg === 'object' &&
     // audio?: boolean
     ( typeof arg.audio === 'undefined' || typeof arg.audio === 'boolean' ) &&
+    // audioRestricted?: boolean
+    ( typeof arg.audioRestricted === 'undefined' || typeof arg.audioRestricted === 'boolean' ) &&
     // video?: boolean
     ( typeof arg.video === 'undefined' || typeof arg.video === 'boolean' ) &&
 
@@ -718,6 +720,17 @@ export function isRskPrediction(arg: any): arg is models.RskPrediction {
 
   true
   );
+  }
+
+export function isRskPublicationType(arg: any): arg is models.RskPublicationType {
+  return false
+   || arg === models.RskPublicationType.PUBLICATION_TYPE_UNKNOWN
+   || arg === models.RskPublicationType.PUBLICATION_TYPE_RADIO
+   || arg === models.RskPublicationType.PUBLICATION_TYPE_PODCAST
+   || arg === models.RskPublicationType.PUBLICATION_TYPE_PROMO
+   || arg === models.RskPublicationType.PUBLICATION_TYPE_TV
+   || arg === models.RskPublicationType.PUBLICATION_TYPE_OTHER
+  ;
   }
 
 export function isRskQuotas(arg: any): arg is models.RskQuotas {
@@ -915,6 +928,8 @@ export function isRskShortTranscript(arg: any): arg is models.RskShortTranscript
     ( typeof arg.offsetAccuracyPcnt === 'undefined' || typeof arg.offsetAccuracyPcnt === 'number' ) &&
     // publication?: string
     ( typeof arg.publication === 'undefined' || typeof arg.publication === 'string' ) &&
+    // publicationType?: RskPublicationType
+    ( typeof arg.publicationType === 'undefined' || isRskPublicationType(arg.publicationType) ) &&
     // releaseDate?: string
     ( typeof arg.releaseDate === 'undefined' || typeof arg.releaseDate === 'string' ) &&
     // series?: number
@@ -1046,6 +1061,8 @@ export function isRskTranscript(arg: any): arg is models.RskTranscript {
     ( typeof arg.offsetAccuracyPcnt === 'undefined' || typeof arg.offsetAccuracyPcnt === 'number' ) &&
     // publication?: string
     ( typeof arg.publication === 'undefined' || typeof arg.publication === 'string' ) &&
+    // publicationType?: RskPublicationType
+    ( typeof arg.publicationType === 'undefined' || isRskPublicationType(arg.publicationType) ) &&
     // rawTranscript?: string
     ( typeof arg.rawTranscript === 'undefined' || typeof arg.rawTranscript === 'string' ) &&
     // releaseDate?: string

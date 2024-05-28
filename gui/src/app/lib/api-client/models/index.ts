@@ -48,6 +48,7 @@ export { RskNotification } from './rsk-notification.model';
 export { RskNotificationsList } from './rsk-notifications-list.model';
 export { RskPendingRewardList } from './rsk-pending-reward-list.model';
 export { RskPrediction } from './rsk-prediction.model';
+export { RskPublicationType } from './rsk-publication-type.enum';
 export { RskQuotas } from './rsk-quotas.model';
 export { RskRandomQuote } from './rsk-random-quote.model';
 export { RskRank } from './rsk-rank.model';

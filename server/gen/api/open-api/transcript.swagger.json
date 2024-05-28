@@ -1090,6 +1090,9 @@
         },
         "audio": {
           "type": "boolean"
+        },
+        "audioRestricted": {
+          "type": "boolean"
         }
       }
     },
@@ -1102,6 +1105,18 @@
         "MULTI"
       ],
       "default": "MEDIA_TYPE_UNKNOWN"
+    },
+    "rskPublicationType": {
+      "type": "string",
+      "enum": [
+        "PUBLICATION_TYPE_UNKNOWN",
+        "PUBLICATION_TYPE_RADIO",
+        "PUBLICATION_TYPE_PODCAST",
+        "PUBLICATION_TYPE_PROMO",
+        "PUBLICATION_TYPE_TV",
+        "PUBLICATION_TYPE_OTHER"
+      ],
+      "default": "PUBLICATION_TYPE_UNKNOWN"
     },
     "rskRequestChunkContributionStateRequest": {
       "type": "object",
@@ -1212,6 +1227,9 @@
         },
         "media": {
           "$ref": "#/definitions/rskMedia"
+        },
+        "publicationType": {
+          "$ref": "#/definitions/rskPublicationType"
         }
       }
     },
@@ -1359,6 +1377,9 @@
         },
         "media": {
           "$ref": "#/definitions/rskMedia"
+        },
+        "publicationType": {
+          "$ref": "#/definitions/rskPublicationType"
         }
       }
     },

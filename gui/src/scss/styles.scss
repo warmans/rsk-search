@@ -411,6 +411,21 @@ app-user-menu {
   }
 }
 
+.form-control-themed {
+  @include theme() {
+    background-color: transparent;
+    color: theme-get('header-block-text');
+    border: none;
+    border-bottom: 1px solid theme-get('body-block-border');
+  }
+}
+
+.form-control-themed:active, .form-control-themed:focus {
+  background-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 
 
 /* Importing Bootstrap SCSS file. */

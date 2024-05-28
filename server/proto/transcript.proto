@@ -283,6 +283,15 @@ enum MediaType {
   MULTI = 3;
 }
 
+enum PublicationType {
+  PUBLICATION_TYPE_UNKNOWN = 0;
+  PUBLICATION_TYPE_RADIO = 1;
+  PUBLICATION_TYPE_PODCAST = 2;
+  PUBLICATION_TYPE_PROMO = 3;
+  PUBLICATION_TYPE_TV = 4;
+  PUBLICATION_TYPE_OTHER = 5;
+}
+
 message Transcript {
   reserved 6; // tags
 
@@ -311,11 +320,13 @@ message Transcript {
   AudioQuality audio_quality = 24;
   MediaType media_type = 25 [deprecated = true];
   Media media = 26;
+  PublicationType publication_type = 27;
 }
 
 message Media {
   bool video = 1;
   bool audio = 2;
+  bool audio_restricted = 3;
 }
 
 message ShortTranscript {
@@ -341,6 +352,7 @@ message ShortTranscript {
   AudioQuality audio_quality = 20;
   MediaType media_type = 21 [deprecated = true];
   Media media = 22;
+  PublicationType publication_type = 23;
 }
 
 message Dialog {

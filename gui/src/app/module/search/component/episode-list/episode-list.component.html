@@ -1,3 +1,8 @@
+<div class="w-100 d-flex justify-content-between mb-3">
+  <div class="flex-grow-1 mr-2">
+    <input class="form-control form-control-themed" placeholder="Quick find..." [formControl]="searchInput"/>
+  </div>
+</div>
 <div class="d-flex justify-content-between flex-row-reverse flex-nowrap">
   <div>
     <button class="btn btn-sm btn-link mr-1" (click)="showDownloadDialog = !showDownloadDialog">
@@ -6,42 +11,12 @@
   </div>
   <div>
     <ul class="nav nav-tabs font-weight-bold">
-      <li class="nav-item mr-1">
-        <a class="nav-link" [ngClass]="{'active': activePublication === 'xfm'}"
-           (click)="loadPublicationTab('xfm')"><i class="bi-volume-up"></i> Xfm</a>
+      <li *ngFor="let item of publicationCategories | keyvalue:originalOrder">
+        <a class="nav-link" [ngClass]="{'active': activePublicationType === item.value && !searchInput.value}"
+           (click)="loadPublicationTab(item.value)">{{item.key}}</a>
       </li>
-      <li class="nav-item mr-1">
-        <a class="nav-link" [ngClass]="{'active': activePublication === 'guide'}" (click)="loadPublicationTab('guide')">
-          <i class="bi-volume-up"></i>  Guides
-        </a>
-      </li>
-      <li class="nav-item mr-1">
-        <a class="nav-link" [ngClass]="{'active': activePublication === 'special'}"
-           (click)="loadPublicationTab('special')"><i class="bi-volume-up"></i> Specials</a>
-      </li>
-      <li class="nav-item mr-1">
-        <a class="nav-link" [ngClass]="{'active': activePublication === 'karl'}" (click)="loadPublicationTab('karl')">
-          <i class="bi-volume-up"></i> Karl
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [ngClass]="{'active': activePublication === 'preview'}"
-           (click)="loadPublicationTab('preview')"><i class="bi-volume-up"></i> Preview</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [ngClass]="{'active': activePublication === 'office'}"
-           (click)="loadPublicationTab('office')"><i class="bi-camera-video"></i> Office</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [ngClass]="{'active': activePublication === 'extras'}"
-           (click)="loadPublicationTab('extras')"><i class="bi-camera-video"></i> Extras</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" [ngClass]="{'active': activePublication === 'trgs'}"
-           (click)="loadPublicationTab('trgs')"><i class="bi-camera-video"></i> TRGS</a>
-      </li>
-      <li class="nav-item mr-1">
-        <a class="nav-link" [ngClass]="{'active': activePublication === 'other'}" (click)="loadPublicationTab('other')">Other</a>
+      <li *ngIf="searchInput.value">
+        <a class="nav-link active">Search Results</a>
       </li>
     </ul>
   </div>
@@ -50,11 +25,6 @@
 
 <div class="card episode-list">
   <div class="card-header d-flex justify-content-between align-items-center">
-    <div class="w-100 d-flex justify-content-between">
-      <div class="flex-grow-1 mr-2">
-        <input class="form-control" placeholder="Quick find episode by ID/name..." [formControl]="searchInput"/>
-      </div>
-    </div>
   </div>
   <div class="card-body">
     <div *ngFor="let ep of filteredTranscriptList"

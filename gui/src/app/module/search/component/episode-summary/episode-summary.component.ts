@@ -7,7 +7,7 @@ import {
   OnDestroy,
   OnInit
 } from '@angular/core';
-import {RskMediaType, RskShortTranscript} from '../../../../lib/api-client/models';
+import {RskMediaType, RskPublicationType, RskShortTranscript} from '../../../../lib/api-client/models';
 import {AudioService, Status} from '../../../core/service/audio/audio.service';
 import {takeUntil} from 'rxjs/operators';
 import {SessionService} from 'src/app/module/core/service/session/session.service';
@@ -24,6 +24,9 @@ export class EpisodeSummaryComponent implements OnInit, OnDestroy {
   set episode(value: RskShortTranscript) {
     this._episode = value;
     this.episodeImage = value?.metadata['cover_art_url'] ? value?.metadata['cover_art_url'] : `/assets/cover/${value.publication}-s${value.series}.jpg`;
+    this.episodeIdIsMeaningful = value.publicationType === RskPublicationType.PUBLICATION_TYPE_RADIO ||
+      value.publicationType === RskPublicationType.PUBLICATION_TYPE_PODCAST ||
+      value.publicationType === RskPublicationType.PUBLICATION_TYPE_TV
   }
 
   get episode(): RskShortTranscript {
@@ -35,6 +38,8 @@ export class EpisodeSummaryComponent implements OnInit, OnDestroy {
   private _episode: RskShortTranscript;
 
   episodeImage: string;
+
+  episodeIdIsMeaningful: boolean = true;
 
   played: boolean = false;
 
@@ -84,4 +89,5 @@ export class EpisodeSummaryComponent implements OnInit, OnDestroy {
   }
 
   protected readonly RskMediaType = RskMediaType;
+  protected readonly RskPublicationType = RskPublicationType;
 }

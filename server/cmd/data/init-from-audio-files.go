@@ -29,6 +29,7 @@ type audioFile struct {
 
 func InitFromAudioFilesCmd() *cobra.Command {
 
+	var rawAudioDir string
 	var publication string
 	var series int32
 	var episodeOffset int32
@@ -47,7 +48,7 @@ func InitFromAudioFilesCmd() *cobra.Command {
 
 			audioFiles := []audioFile{}
 
-			entries, err := os.ReadDir(cfg.audioDir)
+			entries, err := os.ReadDir(rawAudioDir)
 			if err != nil {
 				return err
 			}
@@ -55,22 +56,16 @@ func InitFromAudioFilesCmd() *cobra.Command {
 				if v.IsDir() {
 					continue
 				}
-				filePath := path.Join(cfg.audioDir, v.Name())
+				filePath := path.Join(rawAudioDir, v.Name())
 
 				logger.Info(fmt.Sprintf("processing %s", filePath))
 
-				meta, err := parseFileName(logger, filePath, v.Name(), publication)
+				meta, err := parseMetadata(logger, filePath, publication)
 				if err != nil {
-					logger.Warn(fmt.Sprintf("Failed to parse filename %s, fall back to id3", v.Name()))
-					meta, err = parseMetadata(logger, filePath, publication)
-					if err != nil {
-						logger.Warn(fmt.Sprintf("Failed to parse id3 of %s, giving up", v.Name()))
-						continue
-					}
-					audioFiles = append(audioFiles, meta)
-				} else {
-					audioFiles = append(audioFiles, meta)
+					logger.Warn(fmt.Sprintf("Failed to parse id3 of %s, giving up: %s", v.Name(), err.Error()))
+					continue
 				}
+				audioFiles = append(audioFiles, meta)
 			}
 
 			sort.Slice(audioFiles, func(i, j int) bool {
@@ -84,16 +79,12 @@ func InitFromAudioFilesCmd() *cobra.Command {
 				return nil
 			}
 
-			renamedFileDir := path.Join(cfg.audioDir, "renamed")
-			if _, err := exec.Command("rm", "-rf", fmt.Sprintf("%s/*", renamedFileDir)).CombinedOutput(); err != nil {
-				return err
-			}
 			for k, f := range audioFiles {
 				ep, err := initEpisodeFileFromAudio(logger, f, series, episodeOffset+int32(k)+1, cfg.dataDir)
 				if err != nil {
 					return fmt.Errorf("failed to init file for file %s date: %s name: %s: %w", f.path, f.date, f.name, err)
 				}
-				if _, err := exec.Command("cp", f.path, path.Join(renamedFileDir, fmt.Sprintf("%s.mp3", ep.ShortID()))).CombinedOutput(); err != nil {
+				if _, err := exec.Command("cp", f.path, path.Join(cfg.audioDir, fmt.Sprintf("%s.mp3", ep.ShortID()))).CombinedOutput(); err != nil {
 					return err
 				}
 			}
@@ -101,6 +92,7 @@ func InitFromAudioFilesCmd() *cobra.Command {
 		},
 	}
 
+	cmd.Flags().StringVarP(&rawAudioDir, "raw-audio-path", "", "", "Path to scan")
 	cmd.Flags().StringVarP(&publication, "publication", "p", "other", "Publication to give episodes")
 	cmd.Flags().BoolVarP(&dryRun, "dry-run", "x", false, "don't write any files, just log")
 	cmd.Flags().Int32VarP(&series, "series", "s", 1, "use this as the series number in meta/renamed file")
@@ -261,6 +253,7 @@ func initEpisodeFileFromAudio(
 		logger.Warn("failed to get episode duration", zap.String("name", f.name), zap.Error(err))
 	} else {
 		ep.Meta[models.MetadataTypeDurationMs] = fmt.Sprintf("%d", durationMs)
+		ep.Media.AudioDurationMs = durationMs
 	}
 
 	return ep, data.SaveEpisodeToFile(dataDir, ep)

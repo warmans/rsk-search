@@ -1,11 +1,10 @@
-import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
-import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
-import { debounceTime, takeUntil } from 'rxjs/operators';
-import { RskShortTranscript, RskTranscriptList } from 'src/app/lib/api-client/models';
-import { UntypedFormControl } from '@angular/forms';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-
-type tabState = 'xfm' | 'guide' | 'special' | 'other' | 'karl' | 'preview' | 'office' | 'extras' | 'trgs';
+import {Component, EventEmitter, OnDestroy, OnInit} from '@angular/core';
+import {SearchAPIClient} from 'src/app/lib/api-client/services/search';
+import {debounceTime, takeUntil} from 'rxjs/operators';
+import {RskPublicationType, RskShortTranscript, RskTranscriptList} from 'src/app/lib/api-client/models';
+import {UntypedFormControl} from '@angular/forms';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {KeyValue} from "@angular/common";
 
 @Component({
   selector: 'app-episode-list',
@@ -18,20 +17,28 @@ export class EpisodeListComponent implements OnInit, OnDestroy {
 
   transcriptList: RskShortTranscript[] = [];
 
+  publicationCategories: { [index: string]: RskPublicationType } = {
+    "Radio": RskPublicationType.PUBLICATION_TYPE_RADIO,
+    "Podcast": RskPublicationType.PUBLICATION_TYPE_PODCAST,
+    "Promo": RskPublicationType.PUBLICATION_TYPE_PROMO,
+    "TV": RskPublicationType.PUBLICATION_TYPE_TV,
+    "Other": RskPublicationType.PUBLICATION_TYPE_OTHER,
+  };
   filteredTranscriptList: RskShortTranscript[] = [];
 
   showDownloadDialog: boolean = false;
 
   searchInput: UntypedFormControl = new UntypedFormControl('');
 
-  private _activePublication: tabState = 'xfm';
+  private _activePublicationType: RskPublicationType = RskPublicationType.PUBLICATION_TYPE_RADIO;
 
-  get activePublication(): tabState {
-    return this._activePublication;
+
+  get activePublicationType(): RskPublicationType {
+    return this._activePublicationType;
   }
 
-  set activePublication(value: tabState) {
-    this._activePublication = value;
+  set activePublicationType(value: RskPublicationType) {
+    this._activePublicationType = value;
     this.resetEpisodeList();
   }
 
@@ -39,7 +46,7 @@ export class EpisodeListComponent implements OnInit, OnDestroy {
 
   constructor(private apiClient: SearchAPIClient, private router: Router, route: ActivatedRoute) {
     route.queryParamMap.pipe(takeUntil(this.destroy$)).subscribe((params: ParamMap) => {
-      this.activePublication = params.get('publication') as tabState || 'xfm';
+      this.activePublicationType = params.get('publication_type') as RskPublicationType || RskPublicationType.PUBLICATION_TYPE_RADIO;
     });
   }
 
@@ -48,8 +55,8 @@ export class EpisodeListComponent implements OnInit, OnDestroy {
     this.searchInput.valueChanges.pipe(takeUntil(this.destroy$), debounceTime(100)).subscribe((val) => {
       val = val.trim().toLowerCase();
       if (val !== '') {
-        this.filteredTranscriptList = this.activePublicationTranscripts().filter((t: RskShortTranscript) => {
-          return t.shortId.toLowerCase().indexOf(val) > 0 || t.name.toLowerCase().indexOf(val) > 0;
+        this.filteredTranscriptList = this.transcriptList.filter((t: RskShortTranscript) => {
+          return t.shortId.toLowerCase().indexOf(val) > -1 || t.name.toLowerCase().indexOf(val) > -1;
         });
       } else {
         this.resetEpisodeList();
@@ -75,10 +82,7 @@ export class EpisodeListComponent implements OnInit, OnDestroy {
   }
 
   activePublicationTranscripts(): RskShortTranscript[] {
-    if (this.activePublication === 'special') {
-      return this.transcriptList?.filter(t => t.special) || [];
-    }
-    return this.transcriptList?.filter((t => !t.special && t.publication === this.activePublication)) || [];
+    return this.transcriptList?.filter((t => t.publicationType === this.activePublicationType)) || [];
   }
 
   resetEpisodeList() {
@@ -86,7 +90,12 @@ export class EpisodeListComponent implements OnInit, OnDestroy {
     this.filteredTranscriptList = this.activePublicationTranscripts();
   }
 
-  loadPublicationTab(tab: tabState) {
-    this.router.navigate(['/search'], { queryParams: { 'publication': tab } }).finally();
+  loadPublicationTab(tab: RskPublicationType) {
+    this.searchInput.setValue("");
+    this.router.navigate(['/search'], {queryParams: {'publication_type': tab}}).finally();
+  }
+
+  originalOrder = (a: KeyValue<string,string>, b: KeyValue<string,string>): number => {
+    return 0;
   }
 }

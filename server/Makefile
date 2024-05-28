@@ -46,7 +46,12 @@ check.env:
 ifeq ($(shell which direnv),)
 	$(error "direnv not found in PATH. This tool is required to modify the project env see: https://direnv.net/docs/installation.html (or just apt-get install direnv)")
 endif
-
+ifeq ($(shell which mp3info),)
+	$(error "mp3info not found in PATH. This tool is required for some commands. try apt-get install mp3info")
+endif
+ifeq ($(shell which ffmpeg),)
+	$(error "ffmpeg not found in PATH. This tool is required for some commands: try apt-get install ffmpeg")
+endif
 #----------------------------------------------------------------------------------------------
 # Linting
 #----------------------------------------------------------------------------------------------

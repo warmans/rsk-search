@@ -2,6 +2,7 @@ package data
 
 import (
 	"github.com/spf13/cobra"
+	"os"
 )
 
 type dataConfig struct {
@@ -20,8 +21,8 @@ func RootCmd() *cobra.Command {
 	}
 
 	root.PersistentFlags().StringVarP(&cfg.dataDir, "data-dir", "d", "./var/data/episodes", "Path to the raw data files")
-	root.PersistentFlags().StringVarP(&cfg.audioDir, "audio-dir", "a", "", "Path to the audio files")
-	root.PersistentFlags().StringVarP(&cfg.videoDir, "video-dir", "v", "", "Path to the video files")
+	root.PersistentFlags().StringVarP(&cfg.audioDir, "audio-dir", "a", os.Getenv("AUDIO_DIR"), "Path to the audio files")
+	root.PersistentFlags().StringVarP(&cfg.videoDir, "video-dir", "v", os.Getenv("VIDEO_DIR"), "Path to the video files")
 	root.PersistentFlags().StringVarP(&cfg.imageDir, "image-dir", "", "./var/images", "Path to generated images")
 
 	root.AddCommand(InitCmd())

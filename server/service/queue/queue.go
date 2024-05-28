@@ -17,9 +17,7 @@ import (
 	"go.uber.org/zap"
 	"io"
 	"net/http"
-	"os/exec"
 	"path"
-	"strings"
 	"time"
 )
 
@@ -170,35 +168,6 @@ func (q *ImportQueue) HandleCreateWorkspace(ctx context.Context, t *asynq.Task) 
 	}
 
 	q.TryUpdateImportLog(ctx, tsImport.ID, t.Type(), "Workspace created: %s", q.cfg.WorkingDir)
-	// move to next stage
-
-	return q.DispatchMachineTranscribe(ctx, tsImport)
-}
-
-func (q *ImportQueue) HandleCreateWav(ctx context.Context, t *asynq.Task) error {
-
-	var tsImport *models.TscriptImport
-	if err := json.Unmarshal(t.Payload(), &tsImport); err != nil {
-		return fmt.Errorf("json.Unmarshal failed: %v: %w", err, asynq.SkipRetry)
-	}
-
-	// remove wav if it was already created
-	if err := q.fs.RemoveAll(path.Join(tsImport.WorkingDir(q.cfg.WorkingDir), tsImport.WAV())); err != nil {
-		return err
-	}
-
-	cmd := exec.Command("ffmpeg", "-i", tsImport.Mp3(), `-ac`, `1`, tsImport.WAV())
-	cmd.Dir = tsImport.WorkingDir(q.cfg.WorkingDir)
-
-	q.logger.Info("Shelling out to ffmpeg to complete wav conversation")
-	out, err := cmd.CombinedOutput()
-	if err != nil {
-		err = errors.Wrap(err, "failed to exec ffmpeg")
-		q.logger.Error(err.Error(), zap.Error(err), zap.Strings("output", strings.Split(string(out), "\n")))
-		return err
-	}
-
-	q.TryUpdateImportLog(ctx, tsImport.ID, t.Type(), "WAV file created: %s", tsImport.WAV())
 
 	return q.DispatchMachineTranscribe(ctx, tsImport)
 }
@@ -256,65 +225,6 @@ func (q *ImportQueue) HandleCreateMachineTranscription(ctx context.Context, t *a
 
 	q.TryUpdateImportLog(ctx, tsImport.ID, t.Type(), "Chunks created: %s", tsImport.ChunkedMachineTranscript())
 
-	return q.DispatchSplitAudioChunks(ctx, tsImport)
-}
-
-func (q *ImportQueue) HandleSplitAudioChunks(ctx context.Context, t *asynq.Task) error {
-	var tsImport *models.TscriptImport
-	if err := json.Unmarshal(t.Payload(), &tsImport); err != nil {
-		return fmt.Errorf("json.Unmarshal failed: %v: %w", err, asynq.SkipRetry)
-	}
-	chunkOutputDir := path.Join(tsImport.WorkingDir(q.cfg.WorkingDir), "chunks")
-	if err := q.fs.RemoveAll(chunkOutputDir); err != nil {
-		return err
-	}
-	if err := q.fs.Mkdir(chunkOutputDir, 0755); err != nil {
-		return err
-	}
-
-	chunkMetadataPath := path.Join(tsImport.WorkingDir(q.cfg.WorkingDir), tsImport.ChunkedMachineTranscript())
-
-	var tscript *models.ChunkedTranscript
-	if err := util.WithReadJSONFileDecoder(chunkMetadataPath, func(dec *json.Decoder) error {
-		if err := dec.Decode(&tscript); err != nil {
-			return err
-		}
-		return nil
-	}); err != nil {
-		return err
-	}
-
-	// split file into chunks by shelling out to ffmpeg
-
-	for _, chunk := range tscript.Chunks {
-
-		args := []string{
-			"-i", path.Join(tsImport.WorkingDir(q.cfg.WorkingDir), tsImport.Mp3()),
-			"-vcodec", "copy",
-			"-acodec", "copy",
-			"-ss", fmt.Sprintf("%0.2f", chunk.StartSecond.Seconds()),
-		}
-		if chunk.EndSecond > -1 {
-			args = append(args, "-to", fmt.Sprintf("%d", chunk.EndSecond))
-		}
-		// else it will default to eof
-
-		cmd := exec.Command(
-			"ffmpeg",
-			append(args, path.Join(chunkOutputDir, fmt.Sprintf("%s.mp3", chunk.ID)))...,
-		)
-
-		q.logger.Info("Shelling out to ffmpeg to extract Mp3 chunk", zap.String("chunk_id", chunk.ID), zap.Duration("start_second", chunk.StartSecond))
-		out, err := cmd.CombinedOutput()
-		if err != nil {
-			err = errors.Wrap(err, "failed to exec split-ep.py")
-			q.logger.Error(err.Error(), zap.Error(err), zap.Strings("output", strings.Split(string(out), "\n")))
-			return err
-		}
-	}
-
-	q.TryUpdateImportLog(ctx, tsImport.ID, t.Type(), "Mp3 split complete: %s", chunkOutputDir)
-
 	return q.DispatchPublish(ctx, tsImport)
 }
 
@@ -322,31 +232,6 @@ func (q *ImportQueue) HandlePublish(ctx context.Context, t *asynq.Task) error {
 	var tsImport *models.TscriptImport
 	if err := json.Unmarshal(t.Payload(), &tsImport); err != nil {
 		return fmt.Errorf("json.Unmarshal failed: %v: %w", err, asynq.SkipRetry)
-	}
-
-	q.logger.Info("Start publish...")
-
-	// upload chunks
-	files, err := afero.ReadDir(q.fs, path.Join(tsImport.WorkingDir(q.cfg.WorkingDir), "chunks"))
-	if err != nil {
-		return err
-	}
-	for _, v := range files {
-		if v.IsDir() {
-			continue
-		}
-		if !strings.HasSuffix(v.Name(), ".mp3") {
-			continue
-		}
-		destDir := path.Join(q.mediaBasePath, "chunk", v.Name())
-		if err := q.copyLocalFile(
-			path.Join(tsImport.WorkingDir(q.cfg.WorkingDir), "chunks", v.Name()),
-			destDir,
-		); err != nil {
-			q.logger.Error("Failed to copy chunk to public media dir", zap.Error(err), zap.String("dest_dir", destDir))
-			return err
-		}
-		q.logger.Info("Copied chunk to public chunk dir", zap.String("file", v.Name()))
 	}
 
 	q.logger.Info("Import chunks to DB")
@@ -382,7 +267,6 @@ func (q *ImportQueue) Start() error {
 	mux := asynq.NewServeMux()
 	mux.HandleFunc(TaskImportCreateWorkspace, q.HandleCreateWorkspace)
 	mux.HandleFunc(TaskImportMachineTranscribe, q.HandleCreateMachineTranscription)
-	mux.HandleFunc(TaskImportSplitChunks, q.HandleSplitAudioChunks)
 	mux.HandleFunc(TaskImportPublish, q.HandlePublish)
 	return q.srv.Start(mux)
 }

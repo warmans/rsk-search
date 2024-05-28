@@ -502,6 +502,9 @@
         },
         "audio": {
           "type": "boolean"
+        },
+        "audioRestricted": {
+          "type": "boolean"
         }
       }
     },
@@ -552,6 +555,18 @@
           "type": "string"
         }
       }
+    },
+    "rskPublicationType": {
+      "type": "string",
+      "enum": [
+        "PUBLICATION_TYPE_UNKNOWN",
+        "PUBLICATION_TYPE_RADIO",
+        "PUBLICATION_TYPE_PODCAST",
+        "PUBLICATION_TYPE_PROMO",
+        "PUBLICATION_TYPE_TV",
+        "PUBLICATION_TYPE_OTHER"
+      ],
+      "default": "PUBLICATION_TYPE_UNKNOWN"
     },
     "rskRandomQuote": {
       "type": "object",
@@ -718,6 +733,9 @@
         },
         "media": {
           "$ref": "#/definitions/rskMedia"
+        },
+        "publicationType": {
+          "$ref": "#/definitions/rskPublicationType"
         }
       }
     },
