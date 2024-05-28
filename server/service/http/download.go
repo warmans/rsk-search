@@ -522,26 +522,18 @@ func (c *DownloadService) downloadGif(ctx context.Context, resp http.ResponseWri
 	cacheKey := fmt.Sprintf("%s-%s-%s.gif", episode.ShortID(), startTimestamp.String(), endTimestamp.String())
 	startTime := time.Now()
 
-	disableCaching := true //todo enable
-	dialog := episode.GetDialogAtTimestampRange(startTimestamp, endTimestamp)
+	disableCaching := false
+	dialog := reSplitDialog(episode.GetDialogAtTimestampRange(startTimestamp, endTimestamp))
 	if customText != nil {
 		disableCaching = true
 		if *customText == "" {
 			dialog = []string{}
 		} else {
-			dialog = []string{*customText}
+			dialog = strings.Split(*customText, "\n")
 		}
 	}
 
 	cacheHit, err := c.mediaCache.Get(cacheKey, resp, disableCaching, func(writer io.Writer) error {
-		text := []string{}
-		for k, v := range strings.Split(strings.Replace(strings.Join(dialog, " "), "'", "", -1), " ") {
-			if k%8 == 0 {
-				text = append(text, "\n", v)
-				continue
-			}
-			text = append(text, " ", v)
-		}
 
 		//todo: write content type headers?
 
@@ -557,7 +549,7 @@ func (c *DownloadService) downloadGif(ctx context.Context, resp http.ResponseWri
 					"format": "gif",
 					"filter_complex": fmt.Sprintf(
 						"[0:v]drawtext=text='%s':fontcolor=white:fontsize=16:box=1:boxcolor=black@0.5:boxborderw=5:x=(w-text_w)/2:y=(h-(text_h+10))",
-						util.FfmpegSanitizeDrawtext(strings.TrimSpace(strings.Join(text, ""))),
+						util.FfmpegSanitizeDrawtext(FormatGifText(56, dialog)),
 					),
 				},
 			).WithOutput(countingWriter, os.Stderr).Run()
@@ -749,4 +741,48 @@ func (w *CountingWriter) Write(b []byte) (int, error) {
 // BytesWritten returns the number of bytes that were written to the wrapped writer.
 func (w *CountingWriter) BytesWritten() int {
 	return w.bytesWritten
+}
+
+// FormatGifText
+// max length should be 56ish
+func FormatGifText(maxLineLength int, lines []string) string {
+	text := []string{}
+	for _, line := range lines {
+		currentLine := []string{}
+		for _, word := range strings.Split(line, " ") {
+			if lineLength(currentLine)+(len(word)+1) > maxLineLength {
+				text = append(text, strings.Join(currentLine, " "))
+				currentLine = []string{word}
+				continue
+			}
+			currentLine = append(currentLine, word)
+		}
+		if len(currentLine) > 0 {
+			text = append(text, strings.Join(currentLine, " "))
+		}
+	}
+	return strings.TrimSpace(strings.Replace(strings.Join(text, "\n"), "'", "’", -1))
+}
+
+func lineLength(line []string) int {
+	if len(line) == 0 {
+		return 0
+	}
+	total := 0
+	for _, v := range line {
+		total += len(v)
+	}
+	// total + number of spaces that would be in the line
+	return total + (len(line) - 1)
+}
+
+// ensure each line in the slice is free from linebreak
+func reSplitDialog(dialog []string) []string {
+	fixed := []string{}
+	for _, line := range dialog {
+		for _, part := range strings.Split(line, "\n") {
+			fixed = append(fixed, part)
+		}
+	}
+	return fixed
 }
