@@ -297,24 +297,6 @@ func (q *ImportQueue) TryUpdateImportLog(ctx context.Context, id string, stage s
 	}
 }
 
-func (q *ImportQueue) copyLocalFile(srcPath string, destPath string) error {
-	localChunk, err := q.fs.Open(srcPath)
-	if err != nil {
-		return err
-	}
-	defer localChunk.Close()
-
-	destFile, err := q.fs.Create(destPath)
-	if err != nil {
-		return err
-	}
-	if _, err := io.Copy(destFile, localChunk); err != nil {
-		return err
-	}
-
-	return destFile.Close()
-}
-
 func asynqZapLogger(zap *zap.Logger) asynq.Logger {
 	return &ZapLogger{zap: zap}
 }

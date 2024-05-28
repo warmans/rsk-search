@@ -179,7 +179,7 @@ type Transcript struct {
 	MediaType     MediaType `json:"media_type"`
 	MediaFileName string    `json:"media_file_name"` //deprecated
 
-	PublicationType PublicationType `json:"publication_type" // e.g. podcast, radio, tv`
+	PublicationType PublicationType `json:"publication_type"` //e.g. podcast, radio, tv
 	Publication     string          `json:"publication"`
 	Series          int32           `json:"series"`
 	Episode         int32           `json:"episode"`

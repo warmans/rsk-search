@@ -11,10 +11,7 @@ import (
 	"os"
 	"os/exec"
 	"path"
-	"regexp"
 	"sort"
-	"strconv"
-	"strings"
 	"time"
 )
 
@@ -154,65 +151,6 @@ func findReleaseTimestamp(tags map[string]interface{}) string {
 		}
 	}
 	return ""
-}
-
-// 2005 - Extras - Steve Interviewed by Simon Amstell on XFM 2005-08-13.mp3
-func parseFileName(logger *zap.Logger, filePath string, fileName string, publication string) (audioFile, error) {
-
-	var year string
-	var name string
-	var date string
-
-	fileName = strings.TrimSpace(fileName)
-	fullPattern := regexp.MustCompile(`^([0-9x]+)?[\s\-]*(.+)([0-9]{4}-[0-9]{2}-[0-9]{2}).+$`)
-	matches := fullPattern.FindAllStringSubmatch(fileName, -1)
-
-	if len(matches) == 0 {
-		partialPattern := regexp.MustCompile(`^([0-9x]+)?[\s\-]*(.+)$`)
-		matches = partialPattern.FindAllStringSubmatch(fileName, -1)
-
-		year = matches[0][1]
-		name = matches[0][2]
-		date = ""
-
-		if len(matches) == 0 {
-			return audioFile{}, fmt.Errorf("name does not match")
-		}
-	} else {
-		year = matches[0][1]
-		name = matches[0][2]
-		date = matches[0][3]
-	}
-
-	var ts time.Time
-	if date != "" {
-		dateStr := fmt.Sprintf("%sT00:00:00Z", date)
-		var err error
-		ts, err = time.Parse(time.RFC3339, dateStr)
-		if err != nil {
-			logger.Warn(fmt.Sprintf("%s has an invalid timestamp: %s", fileName, dateStr))
-		}
-	}
-
-	intYear, err := strconv.Atoi(strings.Replace(year, "x", "0", -1))
-	if err != nil {
-		logger.Warn(fmt.Sprintf("%s has an invalid year: %s", fileName, date))
-	}
-
-	return audioFile{
-		path:        filePath,
-		name:        strings.TrimSuffix(strings.TrimSpace(name), ".mp3"),
-		date:        timePointer(ts),
-		year:        intYear,
-		publication: publication,
-	}, nil
-}
-
-func timePointer(ts time.Time) *time.Time {
-	if ts.IsZero() {
-		return nil
-	}
-	return &ts
 }
 
 func initEpisodeFileFromAudio(
