@@ -28,12 +28,6 @@ import (
 
 var DownloadsOverQuota = errors.New("download quota exceeded")
 
-const (
-	MediaTypeEpisode = "episode"
-	MediaTypeChunk   = "chunk"
-	MediaTypeClip    = "clip"
-)
-
 func NewDownloadService(
 	logger *zap.Logger,
 	serviceConfig config.SearchServiceConfig,
@@ -67,13 +61,8 @@ func (c *DownloadService) RegisterHTTP(ctx context.Context, router *mux.Router) 
 	router.Path("/dl/episode/{episode}.json").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DownloadEpisodeJSON)))
 	router.Path("/dl/episode/{episode}.txt").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DownloadEpisodePlaintext)))
 
-	//deprecated
-	router.Path("/dl/media/{media_type}/{id}.mp3").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DownloadMP3)))
-	router.Path("/dl/media/file/{name}").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DownloadFile)))
-	router.Path("/dl/media/gif/{id}").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DownloadGif)))
 	router.Path("/dl/media/sprite/{episode_id}.jpg").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DownloadVideoSprite)))
-
-	// media_type is one of audio, video, sprite, gif
+	router.Path("/dl/media/file/{name}").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DownloadFile)))
 	router.Path("/dl/media/{episode_id}.{format}").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DownloadEpisodeMedia)))
 	router.Path("/dl/sprite/{episode_id}.jpg").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DownloadVideoSprite)))
 }
@@ -88,97 +77,6 @@ func (c *DownloadService) DownloadPlaintextArchive(resp http.ResponseWriter, req
 	resp.Header().Set("Content-Disposition", "attachment; filename=episodes-plaintext.zip")
 	resp.Header().Set("Content-Type", "application/zip")
 	http.ServeFile(resp, req, path.Join(c.serviceConfig.FilesBasePath, "gen", "episodes-plaintext.zip"))
-}
-
-func (c *DownloadService) DownloadMP3(resp http.ResponseWriter, req *http.Request) {
-
-	vars := mux.Vars(req)
-	fileID, ok := vars["id"]
-	if !ok {
-		http.Error(resp, "No episode identifier given", http.StatusBadRequest)
-		return
-	}
-	mediaType, ok := vars["media_type"]
-	if !ok || (mediaType != MediaTypeEpisode && mediaType != MediaTypeChunk && mediaType != MediaTypeClip) {
-		http.Error(resp, "No/unknown media type given", http.StatusBadRequest)
-		return
-	}
-
-	if mediaType == MediaTypeEpisode {
-		if !meta.IsValidEpisodeID(fileID) {
-			http.Error(resp, "Episode not found", http.StatusNotFound)
-			return
-		}
-	}
-
-	filePath := path.Join(c.serviceConfig.MediaBasePath, mediaType, fmt.Sprintf("%s.mp3", fileID))
-
-	// partial file
-	if req.URL.Query().Get("pos") != "" || req.URL.Query().Get("ts") != "" {
-
-		if mediaType != MediaTypeEpisode {
-			http.Error(resp, "Section exports only supported for episodes", http.StatusNotImplemented)
-			return
-		}
-		ep, err := c.episodeCache.GetEpisode(fileID)
-		if errors.Is(err, data.ErrNotFound) || ep == nil {
-			http.Error(resp, fmt.Sprintf("unknown episode ID: %s", fileID), http.StatusNotFound)
-			return
-		}
-		if err != nil {
-			http.Error(resp, "failed to fetch episode metadata", http.StatusInternalServerError)
-			return
-		}
-
-		var startTimestamp, endTimestamp time.Duration
-		if pos := req.URL.Query().Get("pos"); pos != "" {
-			startTimestamp, endTimestamp, _, err = ep.GetDialogAtPosition(pos)
-			if err != nil {
-				http.Error(resp, "invalid position specification", http.StatusBadRequest)
-				return
-			}
-		} else {
-			if ts := req.URL.Query().Get("ts"); ts != "" {
-				startTimestamp, endTimestamp, err = parseTsParam(ts)
-				if err != nil || endTimestamp == 0 {
-					http.Error(resp, fmt.Sprintf("invalid timestamp specification: %s", ts), http.StatusBadRequest)
-				}
-			} else {
-				http.Error(resp, "either position range (pos) or timestamp range (ts) must be specified", http.StatusBadRequest)
-				return
-			}
-		}
-
-		if err := c.incrementDownloadQuotas(req.Context(), mediaType, fileID, calculateDownloadQuotaUsage(ep, endTimestamp-startTimestamp)); err != nil {
-			if errors.Is(err, DownloadsOverQuota) {
-				http.Error(resp, "Bandwidth quota exhausted", http.StatusTooManyRequests)
-			} else {
-				http.Error(resp, "Failed to calculate bandwidth quota", http.StatusInternalServerError)
-			}
-			return
-		}
-		if err = c.servePartialAudioFile(req, resp, ep, filePath, startTimestamp, endTimestamp); err != nil {
-			c.logger.Error("Failed to serve partial audio file", zap.Error(err))
-		}
-		return
-	}
-
-	// whole file
-	fileStat, err := os.Stat(filePath)
-	if err != nil {
-		c.logger.Error("Failed to find media file", zap.String("path", filePath))
-		http.Error(resp, "Episode not found", http.StatusNotFound)
-		return
-	}
-	if err := c.incrementDownloadQuotas(req.Context(), mediaType, fileID, fileStat.Size()); err != nil {
-		if errors.Is(err, DownloadsOverQuota) {
-			http.Error(resp, "Bandwidth quota exhausted", http.StatusTooManyRequests)
-		} else {
-			http.Error(resp, "Failed to calculate bandwidth quota", http.StatusInternalServerError)
-		}
-		return
-	}
-	http.ServeFile(resp, req, filePath)
 }
 
 func (c *DownloadService) incrementDownloadQuotas(ctx context.Context, mediaType string, fileID string, fileBytes int64) error {
@@ -452,72 +350,14 @@ func (c *DownloadService) DownloadFile(resp http.ResponseWriter, req *http.Reque
 	http.ServeFile(resp, req, filePath)
 }
 
-func (c *DownloadService) DownloadGif(resp http.ResponseWriter, req *http.Request) {
-	vars := mux.Vars(req)
-	fileID, ok := vars["id"]
-	if !ok {
-		http.Error(resp, "No episode identifier given", http.StatusBadRequest)
-		return
-	}
-	ep, err := c.episodeCache.GetEpisode(fileID)
-	if errors.Is(err, data.ErrNotFound) || ep == nil {
-		http.Error(resp, fmt.Sprintf("unknown episode ID: %s", fileID), http.StatusNotFound)
-		return
-	}
-	if ep.MediaType != models.MediaTypeVideo {
-		http.Error(resp, fmt.Sprintf("episode is not a video: %s", fileID), http.StatusBadRequest)
-		return
-	}
-	if ep.MediaFileName == "" {
-		http.Error(resp, fmt.Sprintf("no media found for given file: %s", fileID), http.StatusNotFound)
-		return
-	}
-	if err := c.checkQuotas(req.Context()); err != nil {
-		if errors.Is(err, DownloadsOverQuota) {
-			http.Error(resp, "Bandwidth quota exhausted", http.StatusTooManyRequests)
-		} else {
-			http.Error(resp, "Failed to calculate bandwidth quota", http.StatusInternalServerError)
-		}
-		return
-	}
-
-	pos := req.URL.Query().Get("pos")
-	if pos == "" {
-		http.Error(resp, "position not given", http.StatusBadRequest)
-		return
-	}
-
-	startTimestamp, endTimestamp, _, err := ep.GetDialogAtPosition(pos)
-	if err != nil {
-		c.logger.Error("invalid position", zap.Error(err))
-		http.Error(resp, "invalid position specification", http.StatusBadRequest)
-		return
-	}
-	var customText *string
-	if req.URL.Query().Has("custom_text") {
-		customTextParam := strings.TrimSpace(req.URL.Query().Get("custom_text"))
-		if customTextParam != "" {
-			if len(customTextParam) > 200 {
-				http.Error(resp, "custom_text cannot be more than 200 characters", http.StatusBadRequest)
-				return
-			}
-			customText = util.ToPtr(customTextParam)
-		} else {
-			customText = util.ToPtr("")
-		}
-	}
-
-	c.downloadGif(req.Context(), resp, ep, startTimestamp, endTimestamp, customText)
-}
-
 func (c *DownloadService) downloadGif(ctx context.Context, resp http.ResponseWriter, episode *models.Transcript, startTimestamp time.Duration, endTimestamp time.Duration, customText *string) {
 
 	c.logger.Debug("Exporting gif", zap.Duration("start", startTimestamp), zap.Duration("end", endTimestamp), zap.Stringp("custom_text", customText))
 
 	clipDuration := endTimestamp - startTimestamp
 	if clipDuration > time.Second*15 {
-		http.Error(resp, fmt.Sprintf("gifs cannot be more than 15 seconds. Given range was %s", clipDuration), http.StatusBadRequest)
-		return
+		// clip dialog to the maximum
+		endTimestamp = startTimestamp + time.Second*15
 	}
 	cacheKey := fmt.Sprintf("%s-%s-%s.gif", episode.ShortID(), startTimestamp.String(), endTimestamp.String())
 	startTime := time.Now()

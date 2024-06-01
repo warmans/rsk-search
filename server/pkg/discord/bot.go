@@ -6,7 +6,6 @@ import (
 	"errors"
 	"fmt"
 	"github.com/bwmarrin/discordgo"
-	"github.com/davecgh/go-spew/spew"
 	"github.com/warmans/rsk-search/gen/api"
 	"github.com/warmans/rsk-search/pkg/filter"
 	"github.com/warmans/rsk-search/pkg/searchterms"
@@ -535,8 +534,6 @@ func (b *Bot) scrimptonQueryComplete(s *discordgo.Session, i *discordgo.Interact
 	if i.Type != discordgo.InteractionMessageComponent {
 		return
 	}
-
-	spew.Dump(customIDPayload, i)
 
 	if customIDPayload == "" {
 		b.respondError(s, i, fmt.Errorf("missing customID"))
