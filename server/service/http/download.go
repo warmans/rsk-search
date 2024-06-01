@@ -486,22 +486,6 @@ func (c *DownloadService) DownloadEpisodePlaintext(resp http.ResponseWriter, req
 	http.ServeFile(resp, req, path.Join(c.serviceConfig.FilesBasePath, "gen", "plaintext", fileName))
 }
 
-func (c *DownloadService) checkQuotas(ctx context.Context) error {
-	return c.rwStoreConn.WithStore(func(s *rw.Store) error {
-		_, currentMib, err := s.GetMediaStatsForCurrentMonth(ctx)
-		if err != nil {
-			if err == context.Canceled || strings.HasSuffix(err.Error(), "driver: bad connection") {
-				return nil
-			}
-			return errors.Wrap(err, "failed to get current usage")
-		}
-		if currentMib > quota.BandwidthQuotaInMiB {
-			return DownloadsOverQuota
-		}
-		return nil
-	})
-}
-
 func (c *DownloadService) incrementQuotas(ctx context.Context, mediaType string, fileID string, fileBytes int64) error {
 	return c.rwStoreConn.WithStore(func(s *rw.Store) error {
 

@@ -460,7 +460,7 @@ message Chunk {
   string raw = 3;
   string audio_clip_uri = 4 [deprecated = true];
   int32 num_contributions = 5;
-  string episodeId = 6;
+  string episode_id = 6;
   int32 start_time_ms = 7;
   int32 end_time_ms = 8;
 }
