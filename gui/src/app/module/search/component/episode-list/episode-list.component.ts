@@ -21,7 +21,7 @@ export class EpisodeListComponent implements OnInit, OnDestroy {
     "Radio": RskPublicationType.PUBLICATION_TYPE_RADIO,
     "Podcast": RskPublicationType.PUBLICATION_TYPE_PODCAST,
     "Promo": RskPublicationType.PUBLICATION_TYPE_PROMO,
-    "TV": RskPublicationType.PUBLICATION_TYPE_TV,
+    //"TV": RskPublicationType.PUBLICATION_TYPE_TV,
     "Other": RskPublicationType.PUBLICATION_TYPE_OTHER,
   };
   filteredTranscriptList: RskShortTranscript[] = [];
