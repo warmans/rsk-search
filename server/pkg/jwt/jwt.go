@@ -85,7 +85,7 @@ func (a *Auth) VerifyToken(tokenString string) (*Claims, error) {
 	if err == nil {
 		return nil, fmt.Errorf("no error occured, but token was not generated succesfully")
 	}
-	return nil, fmt.Errorf("failed to verify token: %s", err)
+	return nil, fmt.Errorf("failed to verify token (%s): %s", tokenString, err)
 }
 
 func ExtractTokenFromRequestContext(ctx context.Context) string {

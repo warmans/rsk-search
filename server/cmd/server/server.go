@@ -123,7 +123,7 @@ func ServerCmd() *cobra.Command {
 			logger.Info("Init persistent DB...")
 			persistentDBConn, err := rw.NewConn(rwDbCfg)
 			if err != nil {
-				return err
+				return fmt.Errorf("failed to init DW DB: %w", err)
 			}
 			defer func() {
 				if err := persistentDBConn.Close(); err != nil {
@@ -133,6 +133,12 @@ func ServerCmd() *cobra.Command {
 			logger.Info("Running persistent DB migrations")
 			if err := persistentDBConn.Migrate(); err != nil {
 				return err
+			}
+
+			if err := persistentDBConn.WithStore(func(s *rw.Store) error {
+				return s.InitRadioEpisodes(context.Background(), episodeCache)
+			}); err != nil {
+				return fmt.Errorf("failed to populate radio episodes: %w", err)
 			}
 
 			// setup rewards worker
@@ -248,6 +254,12 @@ func ServerCmd() *cobra.Command {
 				grpc.NewCommunityService(
 					logger,
 					readOnlyStoreConn,
+				),
+				grpc.NewRadioService(
+					logger,
+					persistentDBConn,
+					auth,
+					episodeCache,
 				),
 			}
 

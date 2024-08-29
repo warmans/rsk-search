@@ -109,6 +109,30 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  getNext(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskNextEpisode>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  getState(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskRadioState>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  putState(
+    args: {
+      body: models.RskPutStateRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<object>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   listPendingRewards(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskPendingRewardList>;

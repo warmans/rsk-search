@@ -454,6 +454,19 @@ export function isRskCreateTscriptImportRequest(arg: any): arg is models.RskCrea
   );
   }
 
+export function isRskCurrentEpisode(arg: any): arg is models.RskCurrentEpisode {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // shortId?: string
+    ( typeof arg.shortId === 'undefined' || typeof arg.shortId === 'string' ) &&
+    // startedAt?: string
+    ( typeof arg.startedAt === 'undefined' || typeof arg.startedAt === 'string' ) &&
+
+  true
+  );
+  }
+
 export function isRskDialog(arg: any): arg is models.RskDialog {
   return (
   arg != null &&
@@ -662,6 +675,17 @@ export function isRskMetadata(arg: any): arg is models.RskMetadata {
   );
   }
 
+export function isRskNextEpisode(arg: any): arg is models.RskNextEpisode {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // shortId?: string
+    ( typeof arg.shortId === 'undefined' || typeof arg.shortId === 'string' ) &&
+
+  true
+  );
+  }
+
 export function isRskNotification(arg: any): arg is models.RskNotification {
   return (
   arg != null &&
@@ -735,6 +759,19 @@ export function isRskPublicationType(arg: any): arg is models.RskPublicationType
   ;
   }
 
+export function isRskPutStateRequest(arg: any): arg is models.RskPutStateRequest {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // currentEpisode?: RskCurrentEpisode
+    ( typeof arg.currentEpisode === 'undefined' || isRskCurrentEpisode(arg.currentEpisode) ) &&
+    // currentTimestampMs?: number
+    ( typeof arg.currentTimestampMs === 'undefined' || typeof arg.currentTimestampMs === 'number' ) &&
+
+  true
+  );
+  }
+
 export function isRskQuotas(arg: any): arg is models.RskQuotas {
   return (
   arg != null &&
@@ -743,6 +780,19 @@ export function isRskQuotas(arg: any): arg is models.RskQuotas {
     ( typeof arg.bandwidthRemainingMib === 'undefined' || typeof arg.bandwidthRemainingMib === 'number' ) &&
     // bandwidthTotalMib?: number
     ( typeof arg.bandwidthTotalMib === 'undefined' || typeof arg.bandwidthTotalMib === 'number' ) &&
+
+  true
+  );
+  }
+
+export function isRskRadioState(arg: any): arg is models.RskRadioState {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // currentEpisode?: RskCurrentEpisode
+    ( typeof arg.currentEpisode === 'undefined' || isRskCurrentEpisode(arg.currentEpisode) ) &&
+    // currentTimestampMs?: number
+    ( typeof arg.currentTimestampMs === 'undefined' || typeof arg.currentTimestampMs === 'number' ) &&
 
   true
   );

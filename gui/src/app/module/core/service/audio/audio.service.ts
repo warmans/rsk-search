@@ -4,11 +4,17 @@ import {BehaviorSubject, combineLatest, Observable} from 'rxjs';
 const STORAGE_KEY_LISTENLOG = 'audio_service_listen_log';
 const STORAGE_KEY_VOLUME = 'audio_service_volume';
 
+export enum PlayerMode {
+  Default = 'default',
+  Standalone = 'standalone',
+  Radio = 'radio'
+}
+
 export interface Status {
   audioID: string;
   audioName: string,
   audioFile: string;
-  standalone: boolean;
+  mode: PlayerMode;
   state: PlayerState;
   currentTime: number;
   totalTime: number;
@@ -27,7 +33,7 @@ export interface FileStatus {
   audioID: string;
   audioName: string,
   audioFile: string;
-  standalone: boolean;
+  mode: PlayerMode;
 }
 
 export enum PlayerState {
@@ -47,16 +53,11 @@ export class AudioService {
 
   private audioID: string | null = null;
 
-  // if the player is setup in an unusual way (e.g. chunk transcriptions) notify the player component so it
-  // can disable some features.
-  // this will also affect persisting player state to local storage.
-  private standaloneMode: boolean = false;
-
   private statusSub: BehaviorSubject<Status> = new BehaviorSubject<Status>({
     audioID: '',
     audioName: '',
     audioFile: '',
-    standalone: this.standaloneMode,
+    mode: PlayerMode.Default,
     state: PlayerState.paused,
     currentTime: 0,
     totalTime: 0,
@@ -65,6 +66,9 @@ export class AudioService {
     listened: false,
   });
   public status: Observable<Status> = this.statusSub.asObservable();
+
+  private modeSub: BehaviorSubject<PlayerMode> = new BehaviorSubject<PlayerMode>(PlayerMode.Default);
+  public mode$: Observable<PlayerMode> = this.modeSub.asObservable();
 
   private timeStatusSub: BehaviorSubject<TimeStatus> = new BehaviorSubject<TimeStatus>({
     currentTime: 0,
@@ -78,7 +82,7 @@ export class AudioService {
     audioFile: '',
     audioID: '',
     audioName: '',
-    standalone: false
+    mode: PlayerMode.Default
   });
   private audioHistoryLogSub: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(this.getListenLog());
   private errorsSub: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(this.getListenLog());
@@ -102,13 +106,13 @@ export class AudioService {
         audioID: file.audioID,
         audioName: file.audioName,
         audioFile: file.audioFile,
-        standalone: file.standalone,
+        mode: file.mode,
         state: playerState,
         currentTime: timeState.currentTime,
         totalTime: timeState.totalTime,
         percentElapsed: timeState.percentElapsed,
         percentLoaded: pcntLoaded,
-        listened: history.indexOf(file.audioID) > -1,
+        listened: this.modeSub.getValue() === PlayerMode.Default ? history.indexOf(file.audioID) > -1 : false,
       };
       this.statusSub.next(status);
 
@@ -168,22 +172,23 @@ export class AudioService {
 
   public reset() {
     this.pauseAudio();
-    this.setAudioSrc(null, '', false);
+    this.setAudioSrc(null, '', this.modeSub.getValue());
     this.clearPersistentPlayerState();
   }
 
-  public setAudioSrc(id: string | null, name: string | null, standalone?: boolean, startMs?: number, endMs?: number): void {
+  public setAudioSrc(id: string | null, name: string | null, mode?: PlayerMode, startMs?: number, endMs?: number): void {
     if (this.audioID === id) {
       return;
     }
     this.pauseAudio();
-
     let audioUri: string = `/dl/media/${id}.mp3` + ((startMs || endMs) ? `?ts=${startMs}${endMs ? "-" + endMs : ""}` : ``);
 
     this.audioID = id;
-    this.audio.src = audioUri
-    this.standaloneMode = standalone;
-    this.audioSourceSub.next({audioFile: audioUri, audioID: id, audioName: name, standalone: standalone});
+    if (id !== null) {
+      this.audio.src = audioUri
+    }
+    this.modeSub.next(mode);
+    this.audioSourceSub.next({audioFile: audioUri, audioID: id, audioName: name, mode: mode});
   }
 
   public playAudio(withOffset?: number): void {
@@ -194,7 +199,7 @@ export class AudioService {
       this.audio.currentTime = this.audio.currentTime + withOffset > 0 ? this.audio.currentTime + withOffset : 0;
     }
     // if this is a regular player always use the full playback rate
-    if (!this.standaloneMode) {
+    if (this.modeSub.getValue() !== PlayerMode.Standalone) {
       this.setPlaybackRate(1);
     }
     this.audio.play();
@@ -242,6 +247,10 @@ export class AudioService {
 
   public markAsPlayed(): void {
     this.persistEpisodeListened(this.audioID);
+    this.playerStatusSub.next(PlayerState.ended);
+    if (this.modeSub.getValue() === PlayerMode.Default){
+      this.reset();
+    }
   }
 
   public markAsUnplayed(): void {
@@ -264,18 +273,20 @@ export class AudioService {
   }
 
   private clearPersistentPlayerState() {
-    localStorage.removeItem(this.statusStorageKey());
+    if (this.modeSub.getValue() === PlayerMode.Default) {
+      localStorage.removeItem(this.statusStorageKey());
+    }
   }
 
   private persistPlayerState(s: Status) {
-    if (!s.audioFile || !s.audioID) {
+    if (!s.audioFile || !s.audioID || this.modeSub.getValue() !== PlayerMode.Default) {
       return;
     }
     localStorage.setItem(this.statusStorageKey(), JSON.stringify(s));
   }
 
   private persistEpisodeListened(audioID: string) {
-    if (this.standaloneMode) {
+    if (this.modeSub.getValue() !== PlayerMode.Default) {
       return;
     }
 
@@ -288,7 +299,7 @@ export class AudioService {
   }
 
   private persistEpisodeUnlistened(audioID: string) {
-    if (this.standaloneMode) {
+    if (this.modeSub.getValue() !== PlayerMode.Default) {
       return;
     }
     const listenLog = this.getListenLog();
@@ -310,7 +321,7 @@ export class AudioService {
         console.error(`failed to load audio service state: ${e}`);
       }
 
-      if (state && state.standalone !== true) {
+      if (state && state.mode === PlayerMode.Default) {
         this.setAudioSrc(state.audioID, state.audioName);
         this.audio.load();
         this.seekAudio(state.currentTime);
@@ -336,6 +347,6 @@ export class AudioService {
   }
 
   private statusStorageKey() {
-    return `audio_service_status${this.standaloneMode ? '-temp' : ''}`
+    return `audio_service_status${this.modeSub.getValue() === PlayerMode.Standalone ? '-temp' : ''}`
   }
 }

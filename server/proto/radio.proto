@@ -1,0 +1,75 @@
+syntax = "proto3";
+
+package rsk;
+
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+import "google/protobuf/empty.proto";
+
+option go_package = "github.com/warmans/rsk-search/server/gen/api";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    version: "1.0";
+  };
+  external_docs: {
+    url: "https://scrimpton.com";
+    description: "Radio service provides endpoints for radio player.";
+  };
+  schemes: HTTP;
+};
+service RadioService {
+
+  rpc GetState(google.protobuf.Empty) returns (RadioState) {
+    option (google.api.http) = {
+      get: "/api/radio/state"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "getState",
+      summary: "Get the current episode to play."
+      tags: "search"
+    };
+  }
+
+  rpc GetNext(google.protobuf.Empty) returns (NextEpisode) {
+    option (google.api.http) = {
+      get: "/api/radio/next"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "getNext",
+      summary: "Get the next episode to play."
+      tags: "search"
+    };
+  }
+
+  rpc PutState(PutStateRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      put: "/api/radio/state",
+      body: "*",
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "putState",
+      summary: "Store the current state."
+      tags: "search"
+    };
+  }
+}
+
+message RadioState {
+  CurrentEpisode current_episode = 1;
+  int32 current_timestamp_ms = 3;
+}
+
+message CurrentEpisode {
+  string shortId = 1;
+  string started_at = 2;
+}
+
+message PutStateRequest {
+  CurrentEpisode current_episode = 1;
+  int32 current_timestamp_ms = 3;
+}
+
+message NextEpisode {
+  string shortId = 1;
+}

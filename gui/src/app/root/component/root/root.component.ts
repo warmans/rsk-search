@@ -5,6 +5,7 @@ import {takeUntil} from 'rxjs/operators';
 import {SearchAPIClient} from 'src/app/lib/api-client/services/search';
 import {RskQuotas} from 'src/app/lib/api-client/models';
 import {QuotaService} from 'src/app/module/core/service/quota/quota.service';
+import {RadioService} from "../../../module/core/service/radio/radio.service";
 
 @Component({
   selector: 'app-root',
@@ -22,15 +23,12 @@ export class RootComponent implements OnInit, OnDestroy {
   quotas: RskQuotas;
   bandwidthQuotaUsedPcnt: number = 0;
 
-  show
-
   constructor(
     private renderer: Renderer2,
     private router: Router,
-    private route: ActivatedRoute,
     private session: SessionService,
-    private apiClient: SearchAPIClient,
     private quotaService: QuotaService,
+    public radioService: RadioService,
   ) {
     session.onTokenChange.pipe(takeUntil(this.destroy$)).subscribe((token: string) => {
       if (token) {
@@ -80,5 +78,13 @@ export class RootComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.darkTheme = localStorage.getItem('theme') === 'dark';
     this.updateTheme();
+  }
+
+  toggleRadio() {
+    if (!this.radioService.active) {
+      this.radioService.start();
+    } else {
+      this.radioService.stop();
+    }
   }
 }

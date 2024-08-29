@@ -28,7 +28,6 @@ func NewSearchService(
 	persistentDB *rw.Conn,
 	auth *jwt.Auth,
 	episodeCache *data.EpisodeCache,
-
 ) *SearchService {
 	return &SearchService{
 		logger:        logger,

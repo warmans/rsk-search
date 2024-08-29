@@ -449,6 +449,83 @@
           ]
         }
       },
+      "/api/radio/next": {
+        "get": {
+          "summary": "Get the next episode to play.",
+          "operationId": "getNext",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskNextEpisode"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "tags": [
+            "search"
+          ]
+        }
+      },
+      "/api/radio/state": {
+        "get": {
+          "summary": "Get the current episode to play.",
+          "operationId": "getState",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "$ref": "#/definitions/rskRadioState"
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "tags": [
+            "search"
+          ]
+        },
+        "put": {
+          "summary": "Store the current state.",
+          "operationId": "putState",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "properties": {}
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/rskPutStateRequest"
+              }
+            }
+          ],
+          "tags": [
+            "search"
+          ]
+        }
+      },
       "/api/rewards": {
         "get": {
           "summary": "Lists arewards that the logged in user is able to claim.",
@@ -2154,6 +2231,17 @@
           }
         }
       },
+      "rskCurrentEpisode": {
+        "type": "object",
+        "properties": {
+          "shortId": {
+            "type": "string"
+          },
+          "startedAt": {
+            "type": "string"
+          }
+        }
+      },
       "rskDialog": {
         "type": "object",
         "properties": {
@@ -2384,6 +2472,14 @@
           }
         }
       },
+      "rskNextEpisode": {
+        "type": "object",
+        "properties": {
+          "shortId": {
+            "type": "string"
+          }
+        }
+      },
       "rskNotification": {
         "type": "object",
         "properties": {
@@ -2462,6 +2558,18 @@
         ],
         "default": "PUBLICATION_TYPE_UNKNOWN"
       },
+      "rskPutStateRequest": {
+        "type": "object",
+        "properties": {
+          "currentEpisode": {
+            "$ref": "#/definitions/rskCurrentEpisode"
+          },
+          "currentTimestampMs": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
       "rskQuotas": {
         "type": "object",
         "properties": {
@@ -2470,6 +2578,18 @@
             "format": "int32"
           },
           "bandwidthRemainingMib": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "rskRadioState": {
+        "type": "object",
+        "properties": {
+          "currentEpisode": {
+            "$ref": "#/definitions/rskCurrentEpisode"
+          },
+          "currentTimestampMs": {
             "type": "integer",
             "format": "int32"
           }

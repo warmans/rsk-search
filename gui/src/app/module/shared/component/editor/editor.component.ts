@@ -16,7 +16,7 @@ import {getFirstOffset} from '../../lib/tscript';
 import {distinctUntilChanged, takeUntil} from 'rxjs/operators';
 import {formatDistance, fromUnixTime, getUnixTime, isBefore, startOfDay, subDays} from 'date-fns';
 import {EditorInputComponent} from '../editor-input/editor-input.component';
-import {AudioService, PlayerState, Status} from '../../../core/service/audio/audio.service';
+import {AudioService, PlayerMode, PlayerState, Status} from '../../../core/service/audio/audio.service';
 import {FindReplace} from '../find-replace/find-replace.component';
 
 const LOCAL_STORAGE_PREFIX = 'content-backup';
@@ -199,7 +199,7 @@ export class EditorComponent implements OnInit, OnDestroy {
     if (!this.audioConfig.episodeId) {
       return;
     }
-    this.audioService.setAudioSrc(this.audioConfig.episodeId, null, true, this.audioConfig.startMs, this.audioConfig.endMs);
+    this.audioService.setAudioSrc(this.audioConfig.episodeId, null, PlayerMode.Standalone, this.audioConfig.startMs, this.audioConfig.endMs);
     if (andPlay) {
       this.audioService.playAudio();
     }

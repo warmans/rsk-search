@@ -37,8 +37,11 @@ pre {
     background-color: theme-get('navbar-bg') !important;
     border-bottom: 1px solid theme-get('fg-body');
   }
+  .btn:focus,.btn:active {
+    outline: none !important;
+    box-shadow: none;
+  }
 }
-
 
 .sub-nav {
   @include theme() {

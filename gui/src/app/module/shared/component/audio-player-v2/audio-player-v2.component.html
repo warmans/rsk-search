@@ -6,8 +6,8 @@
   <div class="flex-grow-1 p-2">
     <div class="mb-1 d-flex justify-content-between">
       <div>
-        <a *ngIf="audioStatus.audioID && !audioStatus.standalone" [routerLink]="['/ep', 'ep-'+audioStatus.audioID]">{{ audioStatus.audioID }}</a>
-        <span *ngIf="audioStatus.audioID && audioStatus.standalone">{{ audioStatus.audioID }}</span>
+        <a *ngIf="audioStatus.audioID && audioStatus.mode !== PlayerMode.Standalone" [routerLink]="['/ep', 'ep-'+audioStatus.audioID]">{{ audioStatus.audioID }}</a>
+        <span *ngIf="audioStatus.audioID && audioStatus.mode === PlayerMode.Standalone">{{ audioStatus.audioID }}</span>
         <span *ngIf="audioStatus?.state === states.loading">(loading...)</span>
         <span class="" *ngIf="audioStatus.audioName"> - {{ audioStatus.audioName }}</span>
       </div>
@@ -23,8 +23,8 @@
       <div class="d-flex">
         <div *ngIf="audioStatus.state === states.ended">End</div>
         <div *ngIf="audioStatus.state !== states.ended">
-          <a *ngIf="audioStatus.audioID && !audioStatus.standalone" [routerLink]="['/ep', 'ep-'+audioStatus.audioID]" [fragment]="'sec-'+audioStatus.currentTime">{{audioStatus?.currentTime | formatSeconds}}</a>
-          <span *ngIf="audioStatus.audioID && audioStatus.standalone">{{audioStatus?.currentTime | formatSeconds}}</span>
+          <a *ngIf="audioStatus.audioID && audioStatus.mode !== PlayerMode.Standalone" [routerLink]="['/ep', 'ep-'+audioStatus.audioID]" [fragment]="'sec-'+audioStatus.currentTime">{{audioStatus?.currentTime | formatSeconds}}</a>
+          <span *ngIf="audioStatus.audioID && audioStatus.mode === PlayerMode.Standalone">{{audioStatus?.currentTime | formatSeconds}}</span>
         </div>
       </div>
       <div>{{audioStatus?.totalTime | formatSeconds}}</div>
@@ -34,7 +34,7 @@
     <i class="bi bi-volume-up mr-1"></i>
     <input type="range" min="0" max="100" [formControl]="volumeControl">
   </div>
-  <div class="exit d-flex align-items-center px-3" *ngIf="!audioStatus.standalone && showCloseControl">
+  <div class="exit d-flex align-items-center px-3" *ngIf="audioStatus.mode !== PlayerMode.Standalone && showCloseControl">
     <div class="clickable p-1 close" (click)="closeAudio()">&times;</div>
   </div>
   <div class="error-overlay d-flex align-items-center" *ngIf="audioStatus?.state === states.failed">

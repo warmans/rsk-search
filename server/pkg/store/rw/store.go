@@ -10,6 +10,7 @@ import (
 	"github.com/jmoiron/sqlx"
 	"github.com/lithammer/shortuuid/v3"
 	"github.com/pkg/errors"
+	"github.com/warmans/rsk-search/pkg/data"
 	"github.com/warmans/rsk-search/pkg/filter"
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/points"
@@ -1448,4 +1449,123 @@ func (s *Store) CreateAuthorNotification(ctx context.Context, not models.AuthorN
 		not.ClickThoughURL,
 	)
 	return err
+}
+
+func (s *Store) InitRadioEpisodes(ctx context.Context, episodeCache *data.EpisodeCache) error {
+	for _, ep := range episodeCache.ListEpisodes() {
+		if ep.PublicationType != models.PublicationTypeRadio &&
+			ep.PublicationType != models.PublicationTypePodcast {
+			continue
+		}
+		if ep.Bestof {
+			continue
+		}
+		_, err := s.tx.ExecContext(
+			ctx,
+			`INSERT INTO radio_episode
+    			(episode_id, publication) 
+				VALUES ($1, $2)
+				ON CONFLICT DO NOTHING
+		`,
+			ep.ShortID(),
+			ep.Publication,
+		)
+		if err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (s *Store) SetRadioState(ctx context.Context, state *models.RadioState) error {
+	_, err := s.tx.ExecContext(
+		ctx,
+		`INSERT INTO radio_state 
+    				("author_id", "episode_id", "started_at", "current_timestamp") 
+				VALUES 
+				    ($1, $2, $3, $4)
+				ON CONFLICT("author_id", "episode_id", "started_at") DO UPDATE SET "current_timestamp"=$4
+		`,
+		state.AuthorID,
+		state.EpisodeID,
+		state.StartedAt.Format(time.RFC3339),
+		state.CurrentTimestamp,
+	)
+	return err
+}
+
+func (s *Store) SetRadioExclusion(ctx context.Context, authorID string, episodeID string, excluded bool) error {
+	var err error
+	if excluded {
+		_, err = s.tx.ExecContext(
+			ctx,
+			`INSERT INTO radio_exclusion
+    			(author_id, episode_id) 
+				VALUES ($1, $2)
+				ON CONFLICT(radio_exclusion_pkey) DO NOTHING
+		`,
+			authorID,
+			episodeID,
+		)
+	} else {
+		_, err = s.tx.ExecContext(
+			ctx,
+			`DELETE FROM radio_exclusion WHERE author_id=$1 AND episode_id=$2`,
+			authorID,
+			episodeID,
+		)
+	}
+	return err
+}
+
+func (s *Store) GetLatestRadioState(ctx context.Context, authorID string) (*models.RadioState, error) {
+	row := s.tx.QueryRowContext(
+		ctx,
+		`SELECT author_id, episode_id, started_at, "current_timestamp"
+    			FROM radio_state
+				WHERE author_id=$1 
+				ORDER BY started_at DESC 
+				LIMIT 1
+		`,
+		authorID,
+	)
+
+	state := &models.RadioState{}
+	if err := row.Scan(&state.AuthorID, &state.EpisodeID, &state.StartedAt, &state.CurrentTimestamp); err != nil {
+		if errors.Is(err, sql.ErrNoRows) {
+			nextUp, err := s.GetRadioNext(ctx, authorID)
+			if err != nil {
+				return nil, err
+			}
+			return &models.RadioState{
+				AuthorID:         authorID,
+				EpisodeID:        nextUp,
+				StartedAt:        time.Now(),
+				CurrentTimestamp: 0,
+			}, nil
+		}
+		return nil, err
+	}
+	return state, nil
+}
+
+func (s *Store) GetRadioNext(ctx context.Context, authorID string) (string, error) {
+	row := s.tx.QueryRowContext(
+		ctx,
+		`SELECT e.episode_id
+    			FROM radio_episode e
+    			LEFT JOIN (SELECT episode_id, COUNT(*) as played, MAX(started_at) as last_started_at FROM radio_state WHERE author_id=$1 GROUP BY (episode_id)) s ON e.episode_id = s.episode_id 
+    			LEFT JOIN radio_exclusion ex ON s.episode_id = ex.episode_id AND ex.author_id=$1
+    			WHERE ex.episode_id IS NULL
+				ORDER BY s.played ASC NULLS FIRST, s.last_started_at ASC NULLS FIRST, RANDOM() 
+				LIMIT 1
+		`,
+		authorID,
+	)
+
+	var next string
+	if err := row.Scan(&next); err != nil {
+		return "", err
+	}
+	return next, nil
 }

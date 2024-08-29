@@ -1,0 +1,179 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "radio.proto",
+    "version": "1.0"
+  },
+  "tags": [
+    {
+      "name": "RadioService"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/radio/next": {
+      "get": {
+        "summary": "Get the next episode to play.",
+        "operationId": "getNext",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskNextEpisode"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "search"
+        ]
+      }
+    },
+    "/api/radio/state": {
+      "get": {
+        "summary": "Get the current episode to play.",
+        "operationId": "getState",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskRadioState"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "search"
+        ]
+      },
+      "put": {
+        "summary": "Store the current state.",
+        "operationId": "putState",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/rskPutStateRequest"
+            }
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "typeUrl": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "rskCurrentEpisode": {
+      "type": "object",
+      "properties": {
+        "shortId": {
+          "type": "string"
+        },
+        "startedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "rskNextEpisode": {
+      "type": "object",
+      "properties": {
+        "shortId": {
+          "type": "string"
+        }
+      }
+    },
+    "rskPutStateRequest": {
+      "type": "object",
+      "properties": {
+        "currentEpisode": {
+          "$ref": "#/definitions/rskCurrentEpisode"
+        },
+        "currentTimestampMs": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "rskRadioState": {
+      "type": "object",
+      "properties": {
+        "currentEpisode": {
+          "$ref": "#/definitions/rskCurrentEpisode"
+        },
+        "currentTimestampMs": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Radio service provides endpoints for radio player.",
+    "url": "https://scrimpton.com"
+  }
+}

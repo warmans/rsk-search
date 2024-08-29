@@ -8,18 +8,18 @@ export class SessionService {
 
   public onTokenChange: BehaviorSubject<string> = new BehaviorSubject<string>(null);
 
-  private token: string;
+  private token: string | null;
 
   private claims: Claims;
 
   constructor() {
     const storedToken = localStorage.getItem('token');
-    if (storedToken != '') {
+    if (storedToken != '' && storedToken != 'null') {
       this.registerToken(storedToken);
     }
   }
 
-  registerToken(token: string) {
+  registerToken(token: string | null) {
     this.token = token;
     localStorage.setItem('token', token);
     this.onTokenChange.next(token);
@@ -58,7 +58,6 @@ export class SessionService {
   }
 
   destroySession() {
-    localStorage.setItem('token', '');
     this.registerToken(null);
   }
 

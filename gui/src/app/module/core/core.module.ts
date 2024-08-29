@@ -7,6 +7,7 @@ import { MetaService } from './service/meta/meta.service';
 import { OutgoingTokenInterceptor } from './interceptor/outgoing-token.interceptor';
 import { AudioService } from './service/audio/audio.service';
 import { ClipboardService } from 'src/app/module/core/service/clipboard/clipboard.service';
+import { RadioService } from "./service/radio/radio.service";
 
 @NgModule({
   declarations: [],
@@ -17,6 +18,7 @@ import { ClipboardService } from 'src/app/module/core/service/clipboard/clipboar
     AlertService,
     MetaService,
     AudioService,
+    RadioService,
     ClipboardService,
     { provide: HTTP_INTERCEPTORS, useClass: APIErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: OutgoingTokenInterceptor, multi: true },

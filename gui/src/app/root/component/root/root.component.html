@@ -7,9 +7,12 @@
       <app-search-bar-compat (queryUpdated)="executeSearch($event)"></app-search-bar-compat>
     </div>
     <div class="ml-3 d-flex">
-      <button class="btn btn-transparent btn-lg mr-3" (click)="toggleDarkmode()" title="Toggle dark theme.">
+      <button class="btn btn-transparent btn-lg" (click)="toggleDarkmode()" title="Toggle dark theme">
         <i class="bi-moon-fill" *ngIf="!darkTheme"></i>
         <i class="bi-sun-fill" *ngIf="darkTheme"></i>
+      </button>
+      <button class="btn btn-transparent btn-lg mr-3" (click)="toggleRadio()" title="Start radio">
+        <i class="bi-boombox" *ngIf="loggedInUser" [ngClass]="{'text-primary': radioService.active}"></i>
       </button>
       <a class="btn btn-info btn-lg" [routerLink]="['/me']" *ngIf="!loggedInUser">
         <i class="bi-person"></i>

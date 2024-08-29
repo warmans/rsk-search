@@ -122,6 +122,30 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
       .pipe(tap((res: any) => guards.isRskMetadata(res) || console.error(`TypeGuard for response 'RskMetadata' caught inconsistency.`, res)));
   }
 
+  getNext(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskNextEpisode> {
+    return super.getNext(requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRskNextEpisode(res) || console.error(`TypeGuard for response 'RskNextEpisode' caught inconsistency.`, res)));
+  }
+
+  getState(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskRadioState> {
+    return super.getState(requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRskRadioState(res) || console.error(`TypeGuard for response 'RskRadioState' caught inconsistency.`, res)));
+  }
+
+  putState(
+    args: {
+      body: models.RskPutStateRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<object> {
+    return super.putState(args, requestHttpOptions)
+      .pipe(tap((res: any) => typeof res === 'object' || console.error(`TypeGuard for response 'object' caught inconsistency.`, res)));
+  }
+
   listPendingRewards(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskPendingRewardList> {

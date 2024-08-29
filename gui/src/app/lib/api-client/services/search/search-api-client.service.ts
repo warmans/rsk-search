@@ -280,6 +280,54 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  getNext(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskNextEpisode> {
+    const path = `/api/radio/next`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<models.RskNextEpisode>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  getState(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskRadioState> {
+    const path = `/api/radio/state`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<models.RskRadioState>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  putState(
+    args: {
+      body: models.RskPutStateRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<object> {
+    const path = `/api/radio/state`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<object>('PUT', path, options, JSON.stringify(args.body));
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   listPendingRewards(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskPendingRewardList> {

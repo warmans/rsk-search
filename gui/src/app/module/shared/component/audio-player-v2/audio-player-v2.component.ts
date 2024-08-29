@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit } from '@angular/core';
-import { AudioService, PlayerState, Status } from '../../../core/service/audio/audio.service';
+import {AudioService, PlayerMode, PlayerState, Status} from '../../../core/service/audio/audio.service';
 import { UntypedFormControl } from '@angular/forms';
 import { takeUntil } from 'rxjs/operators';
 import { QuotaService } from 'src/app/module/core/service/quota/quota.service';
@@ -83,10 +83,11 @@ export class AudioPlayerV2Component implements OnInit, OnDestroy {
 
   markAsPlayed() {
     this.audioService.markAsPlayed();
-    this.closeAudio();
   }
 
   markAsUnplayed() {
     this.audioService.markAsUnplayed();
   }
+
+  protected readonly PlayerMode = PlayerMode;
 }
