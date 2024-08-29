@@ -20,7 +20,7 @@ option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
 };
 service RadioService {
 
-  rpc GetState(google.protobuf.Empty) returns (RadioState) {
+  rpc GetRadioState(google.protobuf.Empty) returns (RadioState) {
     option (google.api.http) = {
       get: "/api/radio/state"
     };
@@ -31,7 +31,7 @@ service RadioService {
     };
   }
 
-  rpc GetNext(google.protobuf.Empty) returns (NextEpisode) {
+  rpc GetRadioNext(google.protobuf.Empty) returns (NextRadioEpisode) {
     option (google.api.http) = {
       get: "/api/radio/next"
     };
@@ -42,7 +42,7 @@ service RadioService {
     };
   }
 
-  rpc PutState(PutStateRequest) returns (google.protobuf.Empty) {
+  rpc PutRadioState(PutRadioStateRequest) returns (google.protobuf.Empty) {
     option (google.api.http) = {
       put: "/api/radio/state",
       body: "*",
@@ -56,20 +56,20 @@ service RadioService {
 }
 
 message RadioState {
-  CurrentEpisode current_episode = 1;
+  CurrentRadioEpisode current_episode = 1;
   int32 current_timestamp_ms = 3;
 }
 
-message CurrentEpisode {
+message CurrentRadioEpisode {
   string shortId = 1;
   string started_at = 2;
 }
 
-message PutStateRequest {
-  CurrentEpisode current_episode = 1;
+message PutRadioStateRequest {
+  CurrentRadioEpisode current_episode = 1;
   int32 current_timestamp_ms = 3;
 }
 
-message NextEpisode {
+message NextRadioEpisode {
   string shortId = 1;
 }

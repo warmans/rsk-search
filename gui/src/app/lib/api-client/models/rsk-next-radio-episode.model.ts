@@ -1,5 +1,5 @@
 /* tslint:disable */
 
-export interface RskNextEpisode {
+export interface RskNextRadioEpisode {
   shortId?: string;
 }

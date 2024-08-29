@@ -20,18 +20,18 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	RadioService_GetState_FullMethodName = "/rsk.RadioService/GetState"
-	RadioService_GetNext_FullMethodName  = "/rsk.RadioService/GetNext"
-	RadioService_PutState_FullMethodName = "/rsk.RadioService/PutState"
+	RadioService_GetRadioState_FullMethodName = "/rsk.RadioService/GetRadioState"
+	RadioService_GetRadioNext_FullMethodName  = "/rsk.RadioService/GetRadioNext"
+	RadioService_PutRadioState_FullMethodName = "/rsk.RadioService/PutRadioState"
 )
 
 // RadioServiceClient is the client API for RadioService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type RadioServiceClient interface {
-	GetState(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*RadioState, error)
-	GetNext(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*NextEpisode, error)
-	PutState(ctx context.Context, in *PutStateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	GetRadioState(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*RadioState, error)
+	GetRadioNext(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*NextRadioEpisode, error)
+	PutRadioState(ctx context.Context, in *PutRadioStateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type radioServiceClient struct {
@@ -42,27 +42,27 @@ func NewRadioServiceClient(cc grpc.ClientConnInterface) RadioServiceClient {
 	return &radioServiceClient{cc}
 }
 
-func (c *radioServiceClient) GetState(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*RadioState, error) {
+func (c *radioServiceClient) GetRadioState(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*RadioState, error) {
 	out := new(RadioState)
-	err := c.cc.Invoke(ctx, RadioService_GetState_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, RadioService_GetRadioState_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *radioServiceClient) GetNext(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*NextEpisode, error) {
-	out := new(NextEpisode)
-	err := c.cc.Invoke(ctx, RadioService_GetNext_FullMethodName, in, out, opts...)
+func (c *radioServiceClient) GetRadioNext(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*NextRadioEpisode, error) {
+	out := new(NextRadioEpisode)
+	err := c.cc.Invoke(ctx, RadioService_GetRadioNext_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *radioServiceClient) PutState(ctx context.Context, in *PutStateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *radioServiceClient) PutRadioState(ctx context.Context, in *PutRadioStateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, RadioService_PutState_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, RadioService_PutRadioState_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -73,23 +73,23 @@ func (c *radioServiceClient) PutState(ctx context.Context, in *PutStateRequest, 
 // All implementations should embed UnimplementedRadioServiceServer
 // for forward compatibility
 type RadioServiceServer interface {
-	GetState(context.Context, *emptypb.Empty) (*RadioState, error)
-	GetNext(context.Context, *emptypb.Empty) (*NextEpisode, error)
-	PutState(context.Context, *PutStateRequest) (*emptypb.Empty, error)
+	GetRadioState(context.Context, *emptypb.Empty) (*RadioState, error)
+	GetRadioNext(context.Context, *emptypb.Empty) (*NextRadioEpisode, error)
+	PutRadioState(context.Context, *PutRadioStateRequest) (*emptypb.Empty, error)
 }
 
 // UnimplementedRadioServiceServer should be embedded to have forward compatible implementations.
 type UnimplementedRadioServiceServer struct {
 }
 
-func (UnimplementedRadioServiceServer) GetState(context.Context, *emptypb.Empty) (*RadioState, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetState not implemented")
+func (UnimplementedRadioServiceServer) GetRadioState(context.Context, *emptypb.Empty) (*RadioState, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRadioState not implemented")
 }
-func (UnimplementedRadioServiceServer) GetNext(context.Context, *emptypb.Empty) (*NextEpisode, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetNext not implemented")
+func (UnimplementedRadioServiceServer) GetRadioNext(context.Context, *emptypb.Empty) (*NextRadioEpisode, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRadioNext not implemented")
 }
-func (UnimplementedRadioServiceServer) PutState(context.Context, *PutStateRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PutState not implemented")
+func (UnimplementedRadioServiceServer) PutRadioState(context.Context, *PutRadioStateRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PutRadioState not implemented")
 }
 
 // UnsafeRadioServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -103,56 +103,56 @@ func RegisterRadioServiceServer(s grpc.ServiceRegistrar, srv RadioServiceServer)
 	s.RegisterService(&RadioService_ServiceDesc, srv)
 }
 
-func _RadioService_GetState_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _RadioService_GetRadioState_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RadioServiceServer).GetState(ctx, in)
+		return srv.(RadioServiceServer).GetRadioState(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: RadioService_GetState_FullMethodName,
+		FullMethod: RadioService_GetRadioState_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RadioServiceServer).GetState(ctx, req.(*emptypb.Empty))
+		return srv.(RadioServiceServer).GetRadioState(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _RadioService_GetNext_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _RadioService_GetRadioNext_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RadioServiceServer).GetNext(ctx, in)
+		return srv.(RadioServiceServer).GetRadioNext(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: RadioService_GetNext_FullMethodName,
+		FullMethod: RadioService_GetRadioNext_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RadioServiceServer).GetNext(ctx, req.(*emptypb.Empty))
+		return srv.(RadioServiceServer).GetRadioNext(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _RadioService_PutState_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(PutStateRequest)
+func _RadioService_PutRadioState_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PutRadioStateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(RadioServiceServer).PutState(ctx, in)
+		return srv.(RadioServiceServer).PutRadioState(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: RadioService_PutState_FullMethodName,
+		FullMethod: RadioService_PutRadioState_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(RadioServiceServer).PutState(ctx, req.(*PutStateRequest))
+		return srv.(RadioServiceServer).PutRadioState(ctx, req.(*PutRadioStateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -165,16 +165,16 @@ var RadioService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*RadioServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetState",
-			Handler:    _RadioService_GetState_Handler,
+			MethodName: "GetRadioState",
+			Handler:    _RadioService_GetRadioState_Handler,
 		},
 		{
-			MethodName: "GetNext",
-			Handler:    _RadioService_GetNext_Handler,
+			MethodName: "GetRadioNext",
+			Handler:    _RadioService_GetRadioNext_Handler,
 		},
 		{
-			MethodName: "PutState",
-			Handler:    _RadioService_PutState_Handler,
+			MethodName: "PutRadioState",
+			Handler:    _RadioService_PutRadioState_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

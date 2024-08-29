@@ -111,7 +111,7 @@ export interface SearchAPIClientInterface {
    */
   getNext(
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RskNextEpisode>;
+  ): Observable<models.RskNextRadioEpisode>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
@@ -125,7 +125,7 @@ export interface SearchAPIClientInterface {
    */
   putState(
     args: {
-      body: models.RskPutStateRequest,
+      body: models.RskPutRadioStateRequest,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<object>;

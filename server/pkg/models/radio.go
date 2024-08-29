@@ -14,7 +14,7 @@ type RadioState struct {
 
 func (s *RadioState) Proto() *api.RadioState {
 	return &api.RadioState{
-		CurrentEpisode: &api.CurrentEpisode{
+		CurrentEpisode: &api.CurrentRadioEpisode{
 			ShortId:   s.EpisodeID,
 			StartedAt: s.StartedAt.Format(time.RFC3339),
 		},

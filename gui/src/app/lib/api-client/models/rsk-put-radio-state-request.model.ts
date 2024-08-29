@@ -3,7 +3,7 @@ import {
   RskCurrentRadioEpisode,
 } from '.';
 
-export interface RskRadioState {
+export interface RskPutRadioStateRequest {
   currentEpisode?: RskCurrentRadioEpisode;
   currentTimestampMs?: number;
 }

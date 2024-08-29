@@ -124,9 +124,9 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
 
   getNext(
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RskNextEpisode> {
+  ): Observable<models.RskNextRadioEpisode> {
     return super.getNext(requestHttpOptions)
-      .pipe(tap((res: any) => guards.isRskNextEpisode(res) || console.error(`TypeGuard for response 'RskNextEpisode' caught inconsistency.`, res)));
+      .pipe(tap((res: any) => guards.isRskNextRadioEpisode(res) || console.error(`TypeGuard for response 'RskNextRadioEpisode' caught inconsistency.`, res)));
   }
 
   getState(
@@ -138,7 +138,7 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
 
   putState(
     args: {
-      body: models.RskPutStateRequest,
+      body: models.RskPutRadioStateRequest,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<object> {

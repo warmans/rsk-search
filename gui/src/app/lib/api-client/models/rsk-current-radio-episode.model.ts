@@ -1,6 +1,6 @@
 /* tslint:disable */
 
-export interface RskCurrentEpisode {
+export interface RskCurrentRadioEpisode {
   shortId?: string;
   startedAt?: string;
 }

@@ -457,7 +457,7 @@
             "200": {
               "description": "A successful response.",
               "schema": {
-                "$ref": "#/definitions/rskNextEpisode"
+                "$ref": "#/definitions/rskNextRadioEpisode"
               }
             },
             "default": {
@@ -517,7 +517,7 @@
               "in": "body",
               "required": true,
               "schema": {
-                "$ref": "#/definitions/rskPutStateRequest"
+                "$ref": "#/definitions/rskPutRadioStateRequest"
               }
             }
           ],
@@ -2231,7 +2231,7 @@
           }
         }
       },
-      "rskCurrentEpisode": {
+      "rskCurrentRadioEpisode": {
         "type": "object",
         "properties": {
           "shortId": {
@@ -2472,7 +2472,7 @@
           }
         }
       },
-      "rskNextEpisode": {
+      "rskNextRadioEpisode": {
         "type": "object",
         "properties": {
           "shortId": {
@@ -2558,11 +2558,11 @@
         ],
         "default": "PUBLICATION_TYPE_UNKNOWN"
       },
-      "rskPutStateRequest": {
+      "rskPutRadioStateRequest": {
         "type": "object",
         "properties": {
           "currentEpisode": {
-            "$ref": "#/definitions/rskCurrentEpisode"
+            "$ref": "#/definitions/rskCurrentRadioEpisode"
           },
           "currentTimestampMs": {
             "type": "integer",
@@ -2587,7 +2587,7 @@
         "type": "object",
         "properties": {
           "currentEpisode": {
-            "$ref": "#/definitions/rskCurrentEpisode"
+            "$ref": "#/definitions/rskCurrentRadioEpisode"
           },
           "currentTimestampMs": {
             "type": "integer",

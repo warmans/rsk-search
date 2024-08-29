@@ -46,7 +46,7 @@ func (s *RadioService) RegisterHTTP(ctx context.Context, router *mux.Router, mux
 	}
 }
 
-func (s *RadioService) GetState(ctx context.Context, empty *emptypb.Empty) (*api.RadioState, error) {
+func (s *RadioService) GetRadioState(ctx context.Context, empty *emptypb.Empty) (*api.RadioState, error) {
 	claims, err := GetClaims(ctx, s.auth)
 	if err != nil {
 		return nil, err
@@ -63,7 +63,7 @@ func (s *RadioService) GetState(ctx context.Context, empty *emptypb.Empty) (*api
 	return state.Proto(), nil
 }
 
-func (s *RadioService) PutState(ctx context.Context, request *api.PutStateRequest) (*emptypb.Empty, error) {
+func (s *RadioService) PutRadioState(ctx context.Context, request *api.PutRadioStateRequest) (*emptypb.Empty, error) {
 	claims, err := GetClaims(ctx, s.auth)
 	if err != nil {
 		return nil, err
@@ -89,7 +89,7 @@ func (s *RadioService) PutState(ctx context.Context, request *api.PutStateReques
 	return &emptypb.Empty{}, nil
 }
 
-func (s *RadioService) GetNext(ctx context.Context, empty *emptypb.Empty) (*api.NextEpisode, error) {
+func (s *RadioService) GetRadioNext(ctx context.Context, empty *emptypb.Empty) (*api.NextRadioEpisode, error) {
 	claims, err := GetClaims(ctx, s.auth)
 	if err != nil {
 		return nil, err
@@ -103,7 +103,7 @@ func (s *RadioService) GetNext(ctx context.Context, empty *emptypb.Empty) (*api.
 	if err != nil {
 		return nil, err
 	}
-	return &api.NextEpisode{
+	return &api.NextRadioEpisode{
 		ShortId: nextEpisodeID,
 	}, nil
 }

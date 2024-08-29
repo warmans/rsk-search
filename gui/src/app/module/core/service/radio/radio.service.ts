@@ -1,4 +1,4 @@
-import {Injectable, OnDestroy} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {AudioService, PlayerMode, PlayerState} from "../audio/audio.service";
 import {takeUntil} from "rxjs/operators";
 import {Subject} from "rxjs";
@@ -41,7 +41,7 @@ export class RadioService {
     if (!this.userIsLoggedIn) {
       return
     }
-    this.apiClient.getState().subscribe((state)=> {
+    this.apiClient.getState().subscribe((state) => {
       this.state = state;
       this.applyState();
       this.attach();
@@ -114,7 +114,7 @@ export class RadioService {
     if (!this.userIsLoggedIn) {
       return;
     }
-    this.apiClient.getNext().subscribe((next)=> {
+    this.apiClient.getNext().subscribe((next) => {
 
       this.state = {
         currentEpisode: {

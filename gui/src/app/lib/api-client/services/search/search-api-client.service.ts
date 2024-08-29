@@ -282,14 +282,14 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   getNext(
     requestHttpOptions?: HttpOptions
-  ): Observable<models.RskNextEpisode> {
+  ): Observable<models.RskNextRadioEpisode> {
     const path = `/api/radio/next`;
     const options: APIHttpOptions = {
       ...this.options,
       ...requestHttpOptions,
     };
 
-    return this.sendRequest<models.RskNextEpisode>('GET', path, options);
+    return this.sendRequest<models.RskNextRadioEpisode>('GET', path, options);
   }
 
   /**
@@ -312,7 +312,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   putState(
     args: {
-      body: models.RskPutStateRequest,
+      body: models.RskPutRadioStateRequest,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<object> {

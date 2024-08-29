@@ -454,7 +454,7 @@ export function isRskCreateTscriptImportRequest(arg: any): arg is models.RskCrea
   );
   }
 
-export function isRskCurrentEpisode(arg: any): arg is models.RskCurrentEpisode {
+export function isRskCurrentRadioEpisode(arg: any): arg is models.RskCurrentRadioEpisode {
   return (
   arg != null &&
   typeof arg === 'object' &&
@@ -675,7 +675,7 @@ export function isRskMetadata(arg: any): arg is models.RskMetadata {
   );
   }
 
-export function isRskNextEpisode(arg: any): arg is models.RskNextEpisode {
+export function isRskNextRadioEpisode(arg: any): arg is models.RskNextRadioEpisode {
   return (
   arg != null &&
   typeof arg === 'object' &&
@@ -759,12 +759,12 @@ export function isRskPublicationType(arg: any): arg is models.RskPublicationType
   ;
   }
 
-export function isRskPutStateRequest(arg: any): arg is models.RskPutStateRequest {
+export function isRskPutRadioStateRequest(arg: any): arg is models.RskPutRadioStateRequest {
   return (
   arg != null &&
   typeof arg === 'object' &&
-    // currentEpisode?: RskCurrentEpisode
-    ( typeof arg.currentEpisode === 'undefined' || isRskCurrentEpisode(arg.currentEpisode) ) &&
+    // currentEpisode?: RskCurrentRadioEpisode
+    ( typeof arg.currentEpisode === 'undefined' || isRskCurrentRadioEpisode(arg.currentEpisode) ) &&
     // currentTimestampMs?: number
     ( typeof arg.currentTimestampMs === 'undefined' || typeof arg.currentTimestampMs === 'number' ) &&
 
@@ -789,8 +789,8 @@ export function isRskRadioState(arg: any): arg is models.RskRadioState {
   return (
   arg != null &&
   typeof arg === 'object' &&
-    // currentEpisode?: RskCurrentEpisode
-    ( typeof arg.currentEpisode === 'undefined' || isRskCurrentEpisode(arg.currentEpisode) ) &&
+    // currentEpisode?: RskCurrentRadioEpisode
+    ( typeof arg.currentEpisode === 'undefined' || isRskCurrentRadioEpisode(arg.currentEpisode) ) &&
     // currentTimestampMs?: number
     ( typeof arg.currentTimestampMs === 'undefined' || typeof arg.currentTimestampMs === 'number' ) &&
 
