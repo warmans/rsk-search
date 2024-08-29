@@ -64,9 +64,9 @@ func RefreshCmd() *cobra.Command {
 				switch episode.Publication {
 				case "office", "extras":
 					episode.PublicationType = models.PublicationTypeTV
-				case "guide", "podcast":
+				case "guide", "podcast", "fame":
 					episode.PublicationType = models.PublicationTypePodcast
-				case "xfm":
+				case "xfm", "nme", "bbc2":
 					episode.PublicationType = models.PublicationTypeRadio
 				case "preview":
 					episode.PublicationType = models.PublicationTypePromo
