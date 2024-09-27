@@ -17,6 +17,8 @@ import (
 	"time"
 )
 
+const defaultContext = 0
+
 var punctuation = regexp.MustCompile(`[^a-zA-Z0-9\s]+`)
 var spaces = regexp.MustCompile(`[\s]{2,}`)
 var metaWhitespace = regexp.MustCompile(`[\n\r\t]+`)
@@ -264,7 +266,7 @@ func (b *Bot) queryBegin(s *discordgo.Session, i *discordgo.InteractionCreate) {
 				Value: (&CustomID{
 					EpisodeID:       v.Epid,
 					Position:        int(v.Pos),
-					NumContextLines: 2,
+					NumContextLines: defaultContext,
 					ContentModifier: ContentModifierTextOnly,
 				}).String(),
 			})
