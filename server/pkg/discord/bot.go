@@ -393,16 +393,6 @@ func (b *Bot) buttons(customID CustomID) []discordgo.MessageComponent {
 
 	editRow = append(editRow, discordgo.Button{
 		// Label is what the user will see on the button.
-		Label: "Next Line",
-		Emoji: &discordgo.ComponentEmoji{
-			Name: "⏩",
-		},
-		// Style provides coloring of the button. There are not so many styles tho.
-		Style: discordgo.SecondaryButton,
-		// CustomID is a thing telling Discord which data to send when this button will be pressed.
-		CustomID: encodeCustomIDForAction("up", customID.withOption(withPosition(customID.Position+1))),
-	}, discordgo.Button{
-		// Label is what the user will see on the button.
 		Label: "Previous Line",
 		Emoji: &discordgo.ComponentEmoji{
 			Name: "⏪",
@@ -411,6 +401,16 @@ func (b *Bot) buttons(customID CustomID) []discordgo.MessageComponent {
 		Style: discordgo.SecondaryButton,
 		// CustomID is a thing telling Discord which data to send when this button will be pressed.
 		CustomID: encodeCustomIDForAction("up", customID.withOption(withPosition(customID.Position-1))),
+	}, discordgo.Button{
+		// Label is what the user will see on the button.
+		Label: "Next Line",
+		Emoji: &discordgo.ComponentEmoji{
+			Name: "⏩",
+		},
+		// Style provides coloring of the button. There are not so many styles tho.
+		Style: discordgo.SecondaryButton,
+		// CustomID is a thing telling Discord which data to send when this button will be pressed.
+		CustomID: encodeCustomIDForAction("up", customID.withOption(withPosition(customID.Position+1))),
 	})
 
 	return []discordgo.MessageComponent{
