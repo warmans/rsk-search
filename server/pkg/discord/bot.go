@@ -485,15 +485,15 @@ func (b *Bot) audioFileResponse(customID CustomID, username string) (*discordgo.
 				dialogFormatted.WriteString(fmt.Sprintf("\n> *%s*", d.Content))
 			} else {
 				if d.IsMatchedRow {
-					dialogFormatted.WriteString(fmt.Sprintf("\n> ***%s**: %s*", d.Actor, d.Content))
+					dialogFormatted.WriteString(fmt.Sprintf("\n> **%s:** %s", d.Actor, d.Content))
 				} else {
-					dialogFormatted.WriteString(fmt.Sprintf("\n> **%s**: %s", d.Actor, d.Content))
+					dialogFormatted.WriteString(fmt.Sprintf("\n> **%s:** %s", d.Actor, d.Content))
 				}
 			}
 		case api.Dialog_NONE:
 			dialogFormatted.WriteString(fmt.Sprintf("\n> *%s*", d.Content))
 		case api.Dialog_SONG:
-			dialogFormatted.WriteString(fmt.Sprintf("\n> SONG: %s", d.Content))
+			dialogFormatted.WriteString(fmt.Sprintf("\n> **SONG:** %s", d.Content))
 		}
 		if d.IsMatchedRow {
 			matchedDialogRow = dialog.Dialog[k]
