@@ -3,7 +3,6 @@ package discord
 import (
 	"context"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"github.com/bwmarrin/discordgo"
 	"github.com/warmans/rsk-search/gen/api"
@@ -11,41 +10,16 @@ import (
 	"github.com/warmans/rsk-search/pkg/searchterms"
 	"github.com/warmans/rsk-search/pkg/util"
 	"go.uber.org/zap"
-	"io"
 	"log"
 	"net/http"
-	"net/url"
 	"regexp"
 	"strings"
-	"sync"
 	"time"
 )
 
 var punctuation = regexp.MustCompile(`[^a-zA-Z0-9\s]+`)
 var spaces = regexp.MustCompile(`[\s]{2,}`)
 var metaWhitespace = regexp.MustCompile(`[\n\r\t]+`)
-
-var rendersInProgress = map[string]string{}
-var renderMutex = sync.RWMutex{}
-var errRenderInProgress = errors.New("render in progress")
-var errDuplicateInteraction = errors.New("interaction already processing")
-
-func lockRenderer(username string, interactionIdentifier string) (func(), error) {
-	renderMutex.Lock()
-	defer renderMutex.Unlock()
-	if oldInteractionID, found := rendersInProgress[username]; found {
-		if interactionIdentifier == oldInteractionID {
-			return func() {}, errDuplicateInteraction
-		}
-		return func() {}, errRenderInProgress
-	}
-	rendersInProgress[username] = interactionIdentifier
-	return func() {
-		renderMutex.Lock()
-		delete(rendersInProgress, username)
-		renderMutex.Unlock()
-	}, nil
-}
 
 type customIDOpt func(c *CustomID)
 
@@ -574,89 +548,6 @@ func (b *Bot) audioFileResponse(customID CustomID, username string) (*discordgo.
 			Attachments: util.ToPtr([]*discordgo.MessageAttachment{}),
 		},
 	}, nil, cancelFunc
-}
-
-func (b *Bot) buildVideoResponse(dialog *api.TranscriptDialog, customID CustomID, username string, placeholder bool, customText *string) (*discordgo.InteractionResponse, func(), error) {
-	cleanup, err := lockRenderer(username, customID.String())
-	defer cleanup()
-	if err != nil {
-		if errors.Is(err, errDuplicateInteraction) {
-			return nil, func() {}, errDuplicateInteraction
-		}
-		if errors.Is(err, errRenderInProgress) {
-			return nil, func() {}, errRenderInProgress
-		}
-		return nil, func() {}, err
-	}
-
-	var matchedDialogRow *api.Dialog
-	for k, d := range dialog.Dialog {
-		if d.IsMatchedRow {
-			matchedDialogRow = dialog.Dialog[k]
-			break
-		}
-	}
-	if matchedDialogRow == nil {
-		return nil, func() {}, fmt.Errorf("no line was matched")
-	}
-
-	var files []*discordgo.File
-
-	customTextParam := ""
-	if customText != nil {
-		customTextParam = fmt.Sprintf("&custom_text=%s", url.QueryEscape(*customText))
-	}
-	fileURL := fmt.Sprintf("%s/dl/media/%s.gif?pos=%d%s", b.webUrl, dialog.TranscriptMeta.ShortId, matchedDialogRow.Pos, customTextParam)
-	cancelFunc := func() {}
-	bodyText := ""
-
-	if !placeholder {
-		b.logger.Info("Fetching GIF", zap.String("url", fileURL))
-		resp, err := http.Get(fileURL)
-		if err != nil {
-			b.logger.Error("failed to fetch GIF", zap.Error(err), zap.String("url", fileURL))
-			return nil, func() {}, fmt.Errorf("failed to fetch GIF: %w", err)
-		}
-		cancelFunc = func() {
-			resp.Body.Close()
-		}
-		if resp.StatusCode != http.StatusOK {
-			b.logger.Error("failed to fetch GIF", zap.Error(err), zap.String("url", fileURL), zap.Int("status_code", resp.StatusCode))
-			body, err := io.ReadAll(resp.Body)
-			if err != nil {
-				return nil, cancelFunc, fmt.Errorf("failed to fetch GIF: %s", resp.Status)
-			}
-			return nil, cancelFunc, fmt.Errorf("failed to fetch GIF: %s", string(body))
-		}
-		files = append(files, &discordgo.File{
-			Name:        createFileName(dialog, matchedDialogRow, "gif"),
-			ContentType: "image/gif",
-			Reader:      resp.Body,
-		})
-
-	} else {
-		bodyText = ":timer: Rendering gif..."
-	}
-	editLabel := ""
-	if customText != nil {
-		editLabel = " (edited)"
-	}
-	return &discordgo.InteractionResponse{
-		Type: discordgo.InteractionResponseChannelMessageWithSource,
-		Data: &discordgo.InteractionResponseData{
-			Content: fmt.Sprintf(
-				"%s\n\n`%s` @ `%s`%s | [%s](%s) | Posted by %s",
-				bodyText,
-				dialog.TranscriptMeta.Id,
-				(time.Millisecond * time.Duration(matchedDialogRow.OffsetMs)).String(),
-				editLabel,
-				strings.TrimPrefix(b.webUrl, "https://"),
-				fmt.Sprintf("%s/ep/%s#pos-%d", b.webUrl, customID.EpisodeID, customID.Position),
-				username,
-			),
-			Files: files,
-		},
-	}, cancelFunc, nil
 }
 
 func (b *Bot) respondError(s *discordgo.Session, i *discordgo.InteractionCreate, err error) {
