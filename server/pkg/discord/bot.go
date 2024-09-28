@@ -406,7 +406,7 @@ func (b *Bot) buttons(customID CustomID, maxDialogOffset int32) []discordgo.Mess
 			),
 		})
 	}
-	if customID.EndLine-customID.EndLine < 25 {
+	if customID.EndLine-customID.StartLine < 25 {
 		if customID.StartLine > 0 {
 			editRow1 = append(editRow1, discordgo.Button{
 				// Label is what the user will see on the button.
@@ -537,7 +537,6 @@ func (b *Bot) queryComplete(s *discordgo.Session, i *discordgo.InteractionCreate
 	if err = s.InteractionRespond(i.Interaction, interactionResponse); err != nil {
 		b.respondError(s, i, err)
 	}
-	return
 }
 
 func (b *Bot) audioFileResponse(customID CustomID, username string) (*discordgo.InteractionResponse, int32, error, func()) {
