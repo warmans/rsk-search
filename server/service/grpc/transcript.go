@@ -90,20 +90,33 @@ func (s *TranscriptService) GetTranscriptDialog(ctx context.Context, request *ap
 		return nil, ErrNotFound(request.Epid)
 	}
 	dialog := []*api.Dialog{}
-	for _, d := range ep.Transcript {
-		if d.Position >= int64(request.Pos-request.NumContextLines) && d.Position <= int64(request.Pos+request.NumContextLines) {
-			dialog = append(dialog, d.Proto(request.Pos == int32(d.Position)))
+	if request.Pos > 0 {
+		for _, d := range ep.Transcript {
+			if d.Position >= int64(request.Pos-request.NumContextLines) && d.Position <= int64(request.Pos+request.NumContextLines) {
+				dialog = append(dialog, d.Proto(request.Pos == int32(d.Position)))
+			}
+			if d.Position > int64(request.Pos+request.NumContextLines) {
+				break
+			}
 		}
-		if d.Position > int64(request.Pos+request.NumContextLines) {
-			break
+	} else {
+		for _, d := range ep.Transcript {
+			if d.Position >= int64(request.Range.Start) && d.Position <= int64(request.Range.End) {
+				dialog = append(dialog, d.Proto(false))
+			}
+			if d.Position >= int64(request.Range.End) {
+				break
+			}
 		}
 	}
+
 	if len(dialog) == 0 {
 		return nil, ErrNotFound(request.Epid)
 	}
 	return &api.TranscriptDialog{
-		TranscriptMeta: ep.ShortProto(fmt.Sprintf(s.srvCfg.AudioUriPattern, ep.ShortID())),
-		Dialog:         dialog,
+		TranscriptMeta:    ep.ShortProto(fmt.Sprintf(s.srvCfg.AudioUriPattern, ep.ShortID())),
+		Dialog:            dialog,
+		MaxDialogPosition: int32(ep.Transcript[len(ep.Transcript)-1].Position),
 	}, nil
 }
 

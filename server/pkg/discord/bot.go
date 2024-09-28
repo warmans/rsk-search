@@ -31,21 +31,21 @@ func withModifier(mod ContentModifier) customIDOpt {
 	}
 }
 
-func withNumContextLines(num int) customIDOpt {
+func withStartLine(pos int32) customIDOpt {
 	return func(c *CustomID) {
-		c.NumContextLines = num
+		c.StartLine = pos
 	}
 }
-
-func withPosition(pos int) customIDOpt {
+func withEndLine(pos int32) customIDOpt {
 	return func(c *CustomID) {
-		c.Position = pos
+		c.EndLine = pos
 	}
 }
 
 type CustomID struct {
 	EpisodeID       string          `json:"e,omitempty"`
-	Position        int             `json:"p,omitempty"`
+	StartLine       int32           `json:"s,omitempty"`
+	EndLine         int32           `json:"f,omitempty"`
 	NumContextLines int             `json:"c,omitempty"`
 	ContentModifier ContentModifier `json:"t,omitempty"`
 }
@@ -63,7 +63,8 @@ func (c CustomID) String() string {
 func (c CustomID) withOption(options ...customIDOpt) CustomID {
 	clone := &CustomID{
 		EpisodeID:       c.EpisodeID,
-		Position:        c.Position,
+		StartLine:       c.StartLine,
+		EndLine:         c.EndLine,
 		NumContextLines: c.NumContextLines,
 		ContentModifier: c.ContentModifier,
 	}
@@ -265,7 +266,8 @@ func (b *Bot) queryBegin(s *discordgo.Session, i *discordgo.InteractionCreate) {
 				Name: util.TrimToN(fmt.Sprintf("%s: %s", v.Actor, v.Line), 100),
 				Value: (&CustomID{
 					EpisodeID:       v.Epid,
-					Position:        int(v.Pos),
+					StartLine:       v.Pos,
+					EndLine:         v.Pos,
 					NumContextLines: defaultContext,
 					ContentModifier: ContentModifierTextOnly,
 				}).String(),
@@ -299,14 +301,14 @@ func (b *Bot) updatePreview(
 		username = i.Member.DisplayName()
 	}
 
-	interactionResponse, err, cleanup := b.audioFileResponse(customID, username)
+	interactionResponse, maxDialogOffset, err, cleanup := b.audioFileResponse(customID, username)
 	if err != nil {
 		b.respondError(s, i, err)
 		return
 	}
 	defer cleanup()
 
-	interactionResponse.Data.Components = b.buttons(customID)
+	interactionResponse.Data.Components = b.buttons(customID, maxDialogOffset)
 	interactionResponse.Data.Flags = discordgo.MessageFlagsEphemeral
 
 	if err := s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
@@ -328,7 +330,7 @@ func (b *Bot) beginAudioResponse(
 		username = i.Member.DisplayName()
 	}
 
-	interactionResponse, err, cleanup := b.audioFileResponse(customID, username)
+	interactionResponse, maxDialogOffset, err, cleanup := b.audioFileResponse(customID, username)
 	if err != nil {
 		b.respondError(s, i, err)
 		return err
@@ -336,7 +338,7 @@ func (b *Bot) beginAudioResponse(
 	defer cleanup()
 
 	interactionResponse.Data.Flags = discordgo.MessageFlagsEphemeral
-	interactionResponse.Data.Components = b.buttons(customID)
+	interactionResponse.Data.Components = b.buttons(customID, maxDialogOffset)
 	err = s.InteractionRespond(i.Interaction, interactionResponse)
 	if err != nil {
 		b.logger.Error("failed to respond", zap.Error(err))
@@ -344,7 +346,7 @@ func (b *Bot) beginAudioResponse(
 	return nil
 }
 
-func (b *Bot) buttons(customID CustomID) []discordgo.MessageComponent {
+func (b *Bot) buttons(customID CustomID, maxDialogOffset int32) []discordgo.MessageComponent {
 
 	audioButton := discordgo.Button{
 		// Label is what the user will see on the button.
@@ -365,70 +367,143 @@ func (b *Bot) buttons(customID CustomID) []discordgo.MessageComponent {
 		audioButton.CustomID = encodeCustomIDForAction("up", customID.withOption(withModifier(ContentModifierTextOnly)))
 	}
 
-	editRow := []discordgo.MessageComponent{audioButton}
-	if customID.NumContextLines < 10 {
-		editRow = append(editRow, discordgo.Button{
+	editRow1 := []discordgo.MessageComponent{}
+	if customID.StartLine > 0 {
+		editRow1 = append(editRow1, discordgo.Button{
 			// Label is what the user will see on the button.
-			Label: "More Context",
+			Label: "Shift Dialog Backwards",
 			Emoji: &discordgo.ComponentEmoji{
-				Name: "➕",
+				Name: "⏪",
 			},
 			// Style provides coloring of the button. There are not so many styles tho.
 			Style: discordgo.SecondaryButton,
 			// CustomID is a thing telling Discord which data to send when this button will be pressed.
-			CustomID: encodeCustomIDForAction("up", customID.withOption(withNumContextLines(customID.NumContextLines+1))),
+			CustomID: encodeCustomIDForAction(
+				"up",
+				customID.withOption(
+					withStartLine(customID.StartLine-1),
+					withEndLine(customID.EndLine-1),
+				),
+			),
 		})
 	}
-	if customID.NumContextLines > 0 {
-		editRow = append(editRow, discordgo.Button{
+	if customID.StartLine+1 < maxDialogOffset {
+		editRow1 = append(editRow1, discordgo.Button{
 			// Label is what the user will see on the button.
-			Label: "Less Context",
+			Label: "Shift Dialog Forward",
 			Emoji: &discordgo.ComponentEmoji{
-				Name: "➖",
+				Name: "⏩",
 			},
 			// Style provides coloring of the button. There are not so many styles tho.
 			Style: discordgo.SecondaryButton,
 			// CustomID is a thing telling Discord which data to send when this button will be pressed.
-			CustomID: encodeCustomIDForAction("up", customID.withOption(withNumContextLines(max(0, customID.NumContextLines-1)))),
+			CustomID: encodeCustomIDForAction(
+				"up",
+				customID.withOption(
+					withStartLine(customID.StartLine+1),
+					withEndLine(min(maxDialogOffset, customID.EndLine+1)),
+				),
+			),
+		})
+	}
+	if customID.EndLine-customID.EndLine < 25 {
+		if customID.StartLine > 0 {
+			editRow1 = append(editRow1, discordgo.Button{
+				// Label is what the user will see on the button.
+				Label: "Add Leading Dialog",
+				Emoji: &discordgo.ComponentEmoji{
+					Name: "➕",
+				},
+				// Style provides coloring of the button. There are not so many styles tho.
+				Style: discordgo.SecondaryButton,
+				// CustomID is a thing telling Discord which data to send when this button will be pressed.
+				CustomID: encodeCustomIDForAction(
+					"up",
+					customID.withOption(
+						withStartLine(customID.StartLine-1),
+					),
+				),
+			})
+		}
+		if customID.EndLine+1 < maxDialogOffset {
+			editRow1 = append(editRow1, discordgo.Button{
+				// Label is what the user will see on the button.
+				Label: "Add Following Dialog",
+				Emoji: &discordgo.ComponentEmoji{
+					Name: "➕",
+				},
+				// Style provides coloring of the button. There are not so many styles tho.
+				Style: discordgo.SecondaryButton,
+				// CustomID is a thing telling Discord which data to send when this button will be pressed.
+				CustomID: encodeCustomIDForAction(
+					"up",
+					customID.withOption(
+						withEndLine(customID.EndLine+1),
+					),
+				),
+			})
+		}
+	}
+
+	editRow2 := []discordgo.MessageComponent{}
+	if customID.EndLine-customID.StartLine > 0 {
+		editRow2 = append(editRow2, discordgo.Button{
+			// Label is what the user will see on the button.
+			Label: "Trim Leading Dialog",
+			Emoji: &discordgo.ComponentEmoji{
+				Name: "✂",
+			},
+			// Style provides coloring of the button. There are not so many styles tho.
+			Style: discordgo.SecondaryButton,
+			// CustomID is a thing telling Discord which data to send when this button will be pressed.
+			CustomID: encodeCustomIDForAction(
+				"up",
+				customID.withOption(
+					withStartLine(customID.StartLine+1),
+				),
+			),
+		})
+		editRow2 = append(editRow2, discordgo.Button{
+			// Label is what the user will see on the button.
+			Label: "Trim Trailing Dialog",
+			Emoji: &discordgo.ComponentEmoji{
+				Name: "✂",
+			},
+			// Style provides coloring of the button. There are not so many styles tho.
+			Style: discordgo.SecondaryButton,
+			// CustomID is a thing telling Discord which data to send when this button will be pressed.
+			CustomID: encodeCustomIDForAction(
+				"up",
+				customID.withOption(
+					withEndLine(customID.EndLine-1),
+				),
+			),
 		})
 	}
 
-	editRow = append(editRow, discordgo.Button{
-		// Label is what the user will see on the button.
-		Label: "Previous Line",
-		Emoji: &discordgo.ComponentEmoji{
-			Name: "⏪",
+	buttons := []discordgo.MessageComponent{}
+	if len(editRow1) > 0 {
+		buttons = append(buttons, discordgo.ActionsRow{
+			Components: editRow1,
+		})
+	}
+	if len(editRow2) > 0 {
+		buttons = append(buttons, discordgo.ActionsRow{
+			Components: editRow2,
+		})
+	}
+	buttons = append(buttons, discordgo.ActionsRow{
+		Components: []discordgo.MessageComponent{
+			discordgo.Button{
+				Label:    "Post",
+				Style:    discordgo.SuccessButton,
+				CustomID: encodeCustomIDForAction("cfm", customID),
+			},
+			audioButton,
 		},
-		// Style provides coloring of the button. There are not so many styles tho.
-		Style: discordgo.SecondaryButton,
-		// CustomID is a thing telling Discord which data to send when this button will be pressed.
-		CustomID: encodeCustomIDForAction("up", customID.withOption(withPosition(customID.Position-1))),
-	}, discordgo.Button{
-		// Label is what the user will see on the button.
-		Label: "Next Line",
-		Emoji: &discordgo.ComponentEmoji{
-			Name: "⏩",
-		},
-		// Style provides coloring of the button. There are not so many styles tho.
-		Style: discordgo.SecondaryButton,
-		// CustomID is a thing telling Discord which data to send when this button will be pressed.
-		CustomID: encodeCustomIDForAction("up", customID.withOption(withPosition(customID.Position+1))),
 	})
 
-	return []discordgo.MessageComponent{
-		discordgo.ActionsRow{
-			Components: editRow,
-		},
-		discordgo.ActionsRow{
-			Components: []discordgo.MessageComponent{
-				discordgo.Button{
-					Label:    "Post",
-					Style:    discordgo.SuccessButton,
-					CustomID: encodeCustomIDForAction("cfm", customID),
-				},
-			},
-		},
-	}
+	return buttons
 }
 
 func (b *Bot) queryComplete(s *discordgo.Session, i *discordgo.InteractionCreate, customIDPayload string) {
@@ -453,7 +528,7 @@ func (b *Bot) queryComplete(s *discordgo.Session, i *discordgo.InteractionCreate
 	}
 
 	// respond audio
-	interactionResponse, err, cleanup := b.audioFileResponse(customID, username)
+	interactionResponse, _, err, cleanup := b.audioFileResponse(customID, username)
 	defer cleanup()
 	if err != nil {
 		b.respondError(s, i, err)
@@ -465,20 +540,21 @@ func (b *Bot) queryComplete(s *discordgo.Session, i *discordgo.InteractionCreate
 	return
 }
 
-func (b *Bot) audioFileResponse(customID CustomID, username string) (*discordgo.InteractionResponse, error, func()) {
+func (b *Bot) audioFileResponse(customID CustomID, username string) (*discordgo.InteractionResponse, int32, error, func()) {
 
 	dialog, err := b.transcriptApiClient.GetTranscriptDialog(context.Background(), &api.GetTranscriptDialogRequest{
-		Epid:            customID.EpisodeID,
-		Pos:             int32(customID.Position),
-		NumContextLines: int32(customID.NumContextLines),
+		Epid: customID.EpisodeID,
+		Range: &api.DialogRange{
+			Start: customID.StartLine,
+			End:   customID.EndLine,
+		},
 	})
 	if err != nil {
-		return nil, fmt.Errorf("failed to fetch selected line"), func() {}
+		return nil, 0, fmt.Errorf("failed to fetch selected line"), func() {}
 	}
 
 	dialogFormatted := strings.Builder{}
-	var matchedDialogRow *api.Dialog
-	for k, d := range dialog.Dialog {
+	for _, d := range dialog.Dialog {
 		switch d.Type {
 		case api.Dialog_CHAT:
 			if d.Actor == "" {
@@ -495,29 +571,29 @@ func (b *Bot) audioFileResponse(customID CustomID, username string) (*discordgo.
 		case api.Dialog_SONG:
 			dialogFormatted.WriteString(fmt.Sprintf("\n> **SONG:** %s", d.Content))
 		}
-		if d.IsMatchedRow {
-			matchedDialogRow = dialog.Dialog[k]
-		}
-	}
-	if matchedDialogRow == nil {
-		return nil, fmt.Errorf("no line was matched"), func() {}
 	}
 
 	var files []*discordgo.File
 	cancelFunc := func() {}
 
 	if customID.ContentModifier != ContentModifierTextOnly {
-		audioFileURL := fmt.Sprintf("%s/dl/media/%s.mp3?pos=%d", b.webUrl, dialog.TranscriptMeta.ShortId, matchedDialogRow.Pos)
+		audioFileURL := fmt.Sprintf(
+			"%s/dl/media/%s.mp3?ts=%d-%d",
+			b.webUrl,
+			dialog.TranscriptMeta.ShortId,
+			dialog.Dialog[0].OffsetMs,
+			dialog.Dialog[len(dialog.Dialog)-1].OffsetMs+dialog.Dialog[len(dialog.Dialog)-1].DurationMs,
+		)
 		resp, err := http.Get(audioFileURL)
 		if err != nil {
-			return nil, fmt.Errorf("failed to fetch selected line"), func() {}
+			return nil, 0, fmt.Errorf("failed to fetch selected line"), func() {}
 		}
 		if resp.StatusCode != http.StatusOK {
 			b.logger.Error("failed to fetch audio", zap.Error(err), zap.String("url", audioFileURL), zap.Int("status_code", resp.StatusCode))
-			return nil, fmt.Errorf("failed to fetch audio: %s", resp.Status), func() {}
+			return nil, 0, fmt.Errorf("failed to fetch audio: %s", resp.Status), func() {}
 		}
 		files = append(files, &discordgo.File{
-			Name:        createFileName(dialog, matchedDialogRow, "mp3"),
+			Name:        createFileName(dialog, "mp3"),
 			ContentType: "audio/mpeg",
 			Reader:      resp.Body,
 		})
@@ -531,11 +607,12 @@ func (b *Bot) audioFileResponse(customID CustomID, username string) (*discordgo.
 			"%s\n\n %s",
 			dialogFormatted.String(),
 			fmt.Sprintf(
-				"`%s` @ `%s` | [%s](%s) | Posted by %s",
+				"`%s` @ `%s - %s` | [%s](%s) | Posted by %s",
 				dialog.TranscriptMeta.Id,
-				(time.Millisecond*time.Duration(matchedDialogRow.OffsetMs)).String(),
+				(time.Duration(dialog.Dialog[0].OffsetMs)).String(),
+				(time.Duration(dialog.Dialog[len(dialog.Dialog)-1].OffsetMs+dialog.Dialog[len(dialog.Dialog)-1].DurationMs)).String(),
 				strings.TrimPrefix(b.webUrl, "https://"),
-				fmt.Sprintf("%s/ep/%s#pos-%d", b.webUrl, customID.EpisodeID, customID.Position),
+				fmt.Sprintf("%s/ep/%s#pos-%d-%d", b.webUrl, customID.EpisodeID, customID.StartLine, customID.EndLine),
 				username,
 			),
 		)
@@ -549,7 +626,7 @@ func (b *Bot) audioFileResponse(customID CustomID, username string) (*discordgo.
 			Files:       files,
 			Attachments: util.ToPtr([]*discordgo.MessageAttachment{}),
 		},
-	}, nil, cancelFunc
+	}, dialog.MaxDialogPosition, nil, cancelFunc
 }
 
 func (b *Bot) respondError(s *discordgo.Session, i *discordgo.InteractionCreate, err error) {
@@ -576,11 +653,11 @@ func decodeCustomIDPayload(data string) (CustomID, error) {
 	return *decoded, json.Unmarshal([]byte(data), decoded)
 }
 
-func createFileName(dialog *api.TranscriptDialog, matchedDialogRow *api.Dialog, suffix string) string {
-	if contentFilename := contentToFilename(matchedDialogRow.Content); contentFilename != "" {
+func createFileName(dialog *api.TranscriptDialog, suffix string) string {
+	if contentFilename := contentToFilename(dialog.Dialog[0].Content); contentFilename != "" {
 		return fmt.Sprintf("%s.%s", contentFilename, suffix)
 	}
-	return fmt.Sprintf("%s-%d.%s", dialog.TranscriptMeta.Id, matchedDialogRow.Pos, suffix)
+	return fmt.Sprintf("%s-%d.%s", dialog.TranscriptMeta.Id, dialog.Dialog[0].Pos, suffix)
 }
 
 func contentToFilename(rawContent string) string {

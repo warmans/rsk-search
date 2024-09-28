@@ -404,10 +404,16 @@ message GetTranscriptRequest {
   bool with_raw = 2;
 }
 
+message DialogRange {
+  int32 start = 1;
+  int32 end = 2;
+}
+
 message GetTranscriptDialogRequest {
   string epid = 1;
-  int32 pos = 2;
-  int32 num_context_lines = 3;
+  int32 pos = 2 [deprecated = true];
+  int32 num_context_lines = 3 [deprecated = true];
+  DialogRange range = 4;
 }
 
 message ListTranscriptsRequest {
@@ -620,4 +626,5 @@ message TranscriptChangeDiff {
 message TranscriptDialog {
   ShortTranscript transcript_meta = 1;
   repeated Dialog dialog = 2;
+  int32 max_dialog_position = 3;
 }

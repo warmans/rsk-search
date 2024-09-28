@@ -729,6 +729,20 @@
             "required": false,
             "type": "integer",
             "format": "int32"
+          },
+          {
+            "name": "range.start",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "range.end",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
           }
         ],
         "tags": [
@@ -1082,6 +1096,19 @@
         },
         "placeholder": {
           "type": "boolean"
+        }
+      }
+    },
+    "rskDialogRange": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "end": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },
@@ -1466,6 +1493,10 @@
           "items": {
             "$ref": "#/definitions/rskDialog"
           }
+        },
+        "maxDialogPosition": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },
