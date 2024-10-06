@@ -243,13 +243,8 @@ func (s *TranscriptService) ListChunkContributions(ctx context.Context, request 
 
 func (s *TranscriptService) GetChunkContribution(ctx context.Context, request *api.GetChunkContributionRequest) (*api.ChunkContribution, error) {
 
-	claims, err := GetClaims(ctx, s.auth)
-	if err != nil {
-		return nil, err
-	}
-
 	var contrib *models.ChunkContribution
-	err = s.persistentDB.WithStore(func(s *rw.Store) error {
+	err := s.persistentDB.WithStore(func(s *rw.Store) error {
 		var err error
 		contrib, err = s.GetChunkContribution(ctx, request.ContributionId)
 		if err != nil {
@@ -260,10 +255,8 @@ func (s *TranscriptService) GetChunkContribution(ctx context.Context, request *a
 	if err != nil {
 		return nil, ErrFromStore(err, request.ContributionId)
 	}
-	if !claims.Approver {
-		if contrib.State == models.ContributionStatePending && contrib.Author.ID != claims.AuthorID {
-			return nil, ErrPermissionDenied("you cannot view another author's contribution when it is in the pending state")
-		}
+	if err := checkReadingAllowed(contrib.State, IsApprover(ctx, s.auth), IsAuthor(ctx, s.auth, contrib.Author.ID)); err != nil {
+		return nil, err
 	}
 	return contrib.Proto(), nil
 }
@@ -473,10 +466,8 @@ func (s *TranscriptService) GetTranscriptChange(ctx context.Context, request *ap
 	if err != nil {
 		return nil, ErrFromStore(err, request.Id)
 	}
-	if !IsApprover(ctx, s.auth) {
-		if change.State == models.ContributionStatePending && !IsAuthor(ctx, s.auth, change.Author.ID) {
-			return nil, ErrPermissionDenied("you cannot view another author's contribution when it is in the pending state")
-		}
+	if err := checkReadingAllowed(change.State, IsApprover(ctx, s.auth), IsAuthor(ctx, s.auth, change.Author.ID)); err != nil {
+		return nil, err
 	}
 
 	return change.Proto(), nil
@@ -496,10 +487,8 @@ func (s *TranscriptService) GetTranscriptChangeDiff(ctx context.Context, request
 	if err != nil {
 		return nil, ErrFromStore(err, request.Id)
 	}
-	if !IsApprover(ctx, s.auth) {
-		if newTranscript.State == models.ContributionStatePending && IsAuthor(ctx, s.auth, newTranscript.Author.ID) {
-			return nil, ErrPermissionDenied("you cannot view another author's contribution diff when it is in the pending state")
-		}
+	if err := checkReadingAllowed(newTranscript.State, IsApprover(ctx, s.auth), IsAuthor(ctx, s.auth, newTranscript.Author.ID)); err != nil {
+		return nil, err
 	}
 
 	oldTranscript, err := s.episodeCache.GetEpisode(newTranscript.EpID)
@@ -809,4 +798,11 @@ func (s *TranscriptService) createAuthorNotification(
 		Message:        message,
 		ClickThoughURL: util.StringP("/me"),
 	})
+}
+
+func checkReadingAllowed(state models.ContributionState, isApprover bool, isAuthor bool) error {
+	if !isApprover && (state == models.ContributionStatePending && !isAuthor) {
+		return ErrPermissionDenied("you cannot view another author's contribution diff when it is in the pending state")
+	}
+	return nil
 }

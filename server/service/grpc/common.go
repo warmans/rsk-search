@@ -47,13 +47,13 @@ func GetClaims(ctx context.Context, auth *jwt.Auth) (*jwt.Claims, error) {
 	return claims, nil
 }
 
-func IsAuthor(ctx context.Context, auth *jwt.Auth, authorID string) bool {
+func IsAuthor(ctx context.Context, auth *jwt.Auth, resourceAuthorID string) bool {
 	token := jwt.ExtractTokenFromRequestContext(ctx)
 	if token == "" {
 		return false
 	}
 	if claims, err := auth.VerifyToken(token); err == nil {
-		return claims.AuthorID == authorID
+		return claims.AuthorID == resourceAuthorID
 	}
 	return false
 }
