@@ -30,6 +30,9 @@ func GetSongMeta() SongMetaMap {
 }
 
 type Song struct {
+	// the song: line from the transcript
+	Transcribed []string
+	// the search terms generated from the raw transcript lines
 	Terms      []string
 	EpisodeIDs []string
 	Track      *spotify.Track

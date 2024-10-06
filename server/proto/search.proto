@@ -238,4 +238,5 @@ message Song  {
   string album = 4;
   repeated string episode_ids = 5;
   string album_image_url = 6;
+  repeated string transcribed = 7;
 }

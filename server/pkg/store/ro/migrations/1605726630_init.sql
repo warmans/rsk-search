@@ -40,7 +40,8 @@ CREATE TABLE "song"
     "title"           TEXT,
     "album"           TEXT,
     "episode_ids"     JSONB,
-    "album_image_url" TEXT
+    "album_image_url" TEXT,
+    "transcribed"     JSONB
 );
 
 CREATE INDEX song_title ON song ("title");

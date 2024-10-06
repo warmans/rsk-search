@@ -182,15 +182,20 @@ func (s *Store) InsertSong(ctx context.Context, song meta.Song) error {
 	if err != nil {
 		return err
 	}
+	transcribed, err := json.Marshal(song.Transcribed)
+	if err != nil {
+		return err
+	}
 	_, err = s.tx.ExecContext(
 		ctx,
-		`INSERT INTO song ("spotify_uri", "artist", "title", "album", "episode_ids", "album_image_url") VALUES ($1, $2, $3, $4, $5, $6)`,
+		`INSERT INTO song ("spotify_uri", "artist", "title", "album", "episode_ids", "album_image_url", "transcribed") VALUES ($1, $2, $3, $4, $5, $6, $7)`,
 		song.Track.TrackURI,
 		song.Track.Artist(),
 		song.Track.Name,
 		song.Track.AlbumName,
 		string(episodeIds),
 		song.Track.AlbumImageUrl,
+		string(transcribed),
 	)
 	return err
 }
@@ -212,7 +217,7 @@ func (s *Store) ListSongs(ctx context.Context, q *common.QueryModifier) ([]*mode
 
 	rows, err := s.tx.QueryxContext(
 		ctx,
-		fmt.Sprintf(`SELECT spotify_uri, artist, title, album, episode_ids, album_image_url, COUNT() OVER() as total_rows FROM song %s %s %s`, where, order, paging),
+		fmt.Sprintf(`SELECT spotify_uri, artist, title, album, episode_ids, album_image_url, transcribed, COUNT() OVER() as total_rows FROM song %s %s %s`, where, order, paging),
 		params...,
 	)
 	if err != nil {
@@ -225,12 +230,18 @@ func (s *Store) ListSongs(ctx context.Context, q *common.QueryModifier) ([]*mode
 	for rows.Next() {
 		row := &models.Song{}
 		var episodeIDRaw []byte
-		if err := rows.Scan(&row.SpotifyURI, &row.Artist, &row.Title, &row.Album, &episodeIDRaw, &row.AlbumImageURL, &totalRows); err != nil {
+		var transcribedRaw []byte
+		if err := rows.Scan(&row.SpotifyURI, &row.Artist, &row.Title, &row.Album, &episodeIDRaw, &row.AlbumImageURL, &transcribedRaw, &totalRows); err != nil {
 			return nil, 0, err
 		}
 		if len(episodeIDRaw) > 0 {
 			if err := json.Unmarshal(episodeIDRaw, &row.EpisodeIDs); err != nil {
 				return nil, 0, fmt.Errorf("failed to unmarshal episode IDs: %w", err)
+			}
+		}
+		if len(transcribedRaw) > 0 {
+			if err := json.Unmarshal(transcribedRaw, &row.Transcribed); err != nil {
+				return nil, 0, fmt.Errorf("failed to unmarshal transcription lines: %w", err)
 			}
 		}
 		out = append(out, row)

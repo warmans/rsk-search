@@ -16,6 +16,7 @@
             <th>Song Title</th>
             <th>Artist</th>
             <th>Episodes</th>
+            <th>Transcription</th>
           </tr>
           <tr *ngFor="let song of songs">
             <td>
@@ -37,6 +38,12 @@
                 class="badge badge-secondary mr-2"
                 *ngFor="let epid of song.episodeIds"
                 [routerLink]="['/ep', 'ep-'+epid]">{{epid}}</a>
+            </td>
+            <td>
+              <span
+                class="text-muted text-sm mr-2 transcript pl-2 mb-1"
+                *ngFor="let text of song.transcribed"
+                >{{text}}</span>
             </td>
           </tr>
         </table>

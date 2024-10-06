@@ -765,6 +765,12 @@
         },
         "albumImageUrl": {
           "type": "string"
+        },
+        "transcribed": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },

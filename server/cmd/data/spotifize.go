@@ -190,9 +190,10 @@ func addSongMeta(logger *zap.Logger, token string, metadataPath string, forceCac
 						}
 					} else {
 						songCache.Songs[track.TrackURI] = &meta.Song{
-							Terms:      []string{searchTerm},
-							EpisodeIDs: []string{shortId},
-							Track:      track,
+							Transcribed: []string{v.Content},
+							Terms:       []string{searchTerm},
+							EpisodeIDs:  []string{shortId},
+							Track:       track,
 						}
 					}
 				} else {
@@ -203,6 +204,9 @@ func addSongMeta(logger *zap.Logger, token string, metadataPath string, forceCac
 					}
 					if slices.Index(songCache.Songs[cachedId].Terms, searchTerm) == -1 {
 						songCache.Songs[cachedId].Terms = append(songCache.Songs[cachedId].Terms, searchTerm)
+					}
+					if slices.Index(songCache.Songs[cachedId].Transcribed, v.Content) == -1 {
+						songCache.Songs[cachedId].Transcribed = append(songCache.Songs[cachedId].Transcribed, v.Content)
 					}
 				}
 

@@ -8,6 +8,7 @@ type Song struct {
 	Title         string
 	Album         string
 	EpisodeIDs    []string
+	Transcribed   []string
 	AlbumImageURL string
 }
 
@@ -18,6 +19,7 @@ func (s *Song) Proto() *api.Song {
 		Title:         s.Title,
 		Album:         s.Album,
 		EpisodeIds:    s.EpisodeIDs,
+		Transcribed:   s.Transcribed,
 		AlbumImageUrl: s.AlbumImageURL,
 	}
 }
