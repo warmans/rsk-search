@@ -5,13 +5,24 @@
     </div>
   </div>
   <div class="row">
+    <div class="col text-right">
+      <label>
+        <select name="sort" class="form-control-sm"  [formControl]="currentSorting" title="Result Sorting">
+          <option value="_score">Best match</option>
+          <option value="-date">Newest to oldest</option>
+          <option value="date">Oldest to newest</option>
+        </select>
+      </label>
+    </div>
+  </div>
+  <div class="row">
     <div class="col">
       <div *ngFor="let res of result?.results" class="result card mb-3 animate__animated animate__fadeIn animate__faster">
         <div class="card-header font-weight-bold">
           <div class="d-flex justify-content-between">
             <div class="d-flex align-items-center">
               <a [routerLink]="['/ep', res?.episode?.id]" [fragment]="res?.dialogs[0]?.transcript | matchedRowPos">
-                {{ res.episode?.id }}
+                {{ res.episode?.id }} <span class="text-muted text-sm ml-3">{{ res.episode?.releaseDate }}</span>
               </a>
               <span *ngIf="res.episode?.bestof" class="badge badge-secondary ml-2">Bestof</span>
             </div>

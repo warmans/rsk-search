@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnDestroy, OnInit} from '@angular/core';
 import {SearchAPIClient} from 'src/app/lib/api-client/services/search';
-import {ActivatedRoute, ParamMap} from '@angular/router';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {takeUntil} from 'rxjs/operators';
 import {Title} from '@angular/platform-browser';
 import {
@@ -13,6 +13,7 @@ import {
 } from 'src/app/lib/api-client/models';
 import {AudioService} from '../../../core/service/audio/audio.service';
 import {ClipboardService} from 'src/app/module/core/service/clipboard/clipboard.service';
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-search',
@@ -27,6 +28,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   result: RskSearchResultList;
   pages: number[] = [];
   currentPage: number;
+  currentSorting = new FormControl<string>("_score");
   morePages: boolean = false;
   latestChangelog: RskChangelog;
   contributionsNeeded: number;
@@ -40,16 +42,33 @@ export class SearchComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private titleService: Title,
     private audioService: AudioService,
-    private clipboardService: ClipboardService) {
+    private clipboardService: ClipboardService,
+    private router: Router) {
+
+    this.currentSorting.valueChanges.pipe(takeUntil(this.unsubscribe$)).subscribe((val) => {
+      console.log("VAL", val);
+      this.router.navigate([], {
+        queryParams: {
+          sort: val
+        },
+        queryParamsHandling: 'merge',
+        skipLocationChange: false,
+      });
+    });
 
     route.queryParamMap.pipe(takeUntil(this.unsubscribe$)).subscribe((params: ParamMap) => {
       this.currentPage = parseInt(params.get('page'), 10) || 0;
+      this.currentSorting.setValue((params.get('sort') || '').trim());
       this.query = (params.get('q') || '').trim();
       if (this.query === '') {
         this.result = null;
         return;
       }
-      this.executeQuery(this.query, this.currentPage);
+      this.executeQuery(
+        this.query,
+        this.currentPage,
+        this.currentSorting.getRawValue() ?? '_score',
+      );
     });
   }
 
@@ -73,12 +92,13 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.unsubscribe$.complete();
   }
 
-  executeQuery(value: string, page: number) {
+  executeQuery(value: string, page: number, sort: string) {
     this.result = undefined;
     this.loading.push(true);
     this.apiClient.search({
       query: value,
-      page: page
+      page: page,
+      sort: sort,
     }).pipe(
       takeUntil(this.unsubscribe$),
     ).subscribe((res: RskSearchResultList) => {
@@ -100,6 +120,4 @@ export class SearchComponent implements OnInit, OnDestroy {
   copyLineToClipboard(line: RskDialog) {
     this.clipboardService.copyTextToClipboard(line.content);
   }
-
-    protected readonly RskMediaType = RskMediaType;
 }

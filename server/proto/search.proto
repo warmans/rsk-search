@@ -105,6 +105,7 @@ service SearchService {
 message SearchRequest {
   string query = 1;
   int32 page = 2;
+  string sort = 3;
 }
 
 message SearchResultList {

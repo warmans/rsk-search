@@ -51,7 +51,7 @@ type Search struct {
 	audioUriPattern string
 }
 
-func (s *Search) Search(ctx context.Context, f filter.Filter, page int32) (*api.SearchResultList, error) {
+func (s *Search) Search(ctx context.Context, f filter.Filter, page int32, sortBy string) (*api.SearchResultList, error) {
 
 	query, err := bluge_query.FilterToQuery(f)
 	if err != nil {
@@ -63,6 +63,9 @@ func (s *Search) Search(ctx context.Context, f filter.Filter, page int32) (*api.
 
 	req := bluge.NewTopNSearch(PageSize, query).SetFrom(PageSize * int(page)).WithStandardAggregations()
 	req.AddAggregation("actor_count_over_time", agg)
+	if sortBy != "" {
+		req = req.SortBy([]string{sortBy})
+	}
 
 	dmi, err := s.index.Search(ctx, req)
 	if err != nil {

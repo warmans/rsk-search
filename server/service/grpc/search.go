@@ -17,6 +17,7 @@ import (
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 	"google.golang.org/protobuf/types/known/emptypb"
+	"slices"
 	"strings"
 )
 
@@ -81,10 +82,17 @@ func (s *SearchService) Search(ctx context.Context, request *api.SearchRequest) 
 		return nil, ErrInvalidRequestField("query", err, fmt.Sprintf("query: %s", request.Query))
 	}
 
+	if request.Sort != "" {
+		if !slices.Contains([]string{"_score", "date", "-date"}, request.Sort) {
+			return nil, ErrInvalidRequestField("sort", nil)
+		}
+	}
+
 	if err := checkWhy(f); err != nil {
 		return nil, err
 	}
-	return s.searchBackend.Search(ctx, f, request.Page)
+
+	return s.searchBackend.Search(ctx, f, request.Page, request.Sort)
 }
 
 func (s *SearchService) PredictSearchTerm(ctx context.Context, request *api.PredictSearchTermRequest) (*api.SearchTermPredictions, error) {

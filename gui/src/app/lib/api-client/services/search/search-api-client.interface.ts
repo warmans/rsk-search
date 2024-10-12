@@ -179,6 +179,7 @@ export interface SearchAPIClientInterface {
     args: {
       query?: string,
       page?: number,
+      sort?: string,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskSearchResultList>;
@@ -426,6 +427,8 @@ export interface SearchAPIClientInterface {
       epid: string,
       pos: number,
       numContextLines?: number,
+      rangeStart?: number,
+      rangeEnd?: number,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscriptDialog>;

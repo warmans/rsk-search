@@ -24,7 +24,7 @@ type InstrumentedSearcher struct {
 	logger *zap.Logger
 }
 
-func (i *InstrumentedSearcher) Search(ctx context.Context, f filter.Filter, page int32) (*api.SearchResultList, error) {
+func (i *InstrumentedSearcher) Search(ctx context.Context, f filter.Filter, page int32, sortBy string) (*api.SearchResultList, error) {
 	startTime := time.Now().UnixMilli()
 	defer func() {
 		taken := float64(time.Now().UnixMilli()-startTime) / 1000
@@ -33,7 +33,7 @@ func (i *InstrumentedSearcher) Search(ctx context.Context, f filter.Filter, page
 			i.logger.Warn("Slow search query detected", zap.String("filter", filter.MustPrint(f)), zap.Int32("page", page))
 		}
 	}()
-	return i.s.Search(ctx, f, page)
+	return i.s.Search(ctx, f, page, sortBy)
 }
 
 func (i *InstrumentedSearcher) PredictSearchTerms(ctx context.Context, prefix string, exact bool, numPredictions int32, f filter.Filter) (*api.SearchTermPredictions, error) {

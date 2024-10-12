@@ -414,6 +414,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
     args: {
       query?: string,
       page?: number,
+      sort?: string,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskSearchResultList> {
@@ -428,6 +429,9 @@ export class SearchAPIClient implements SearchAPIClientInterface {
     }
     if ('page' in args) {
       options.params = options.params.set('page', String(args.page));
+    }
+    if ('sort' in args) {
+      options.params = options.params.set('sort', String(args.sort));
     }
     return this.sendRequest<models.RskSearchResultList>('GET', path, options);
   }
@@ -926,6 +930,8 @@ export class SearchAPIClient implements SearchAPIClientInterface {
       epid: string,
       pos: number,
       numContextLines?: number,
+      rangeStart?: number,
+      rangeEnd?: number,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscriptDialog> {
@@ -937,6 +943,12 @@ export class SearchAPIClient implements SearchAPIClientInterface {
 
     if ('numContextLines' in args) {
       options.params = options.params.set('numContextLines', String(args.numContextLines));
+    }
+    if ('rangeStart' in args) {
+      options.params = options.params.set('range.start', String(args.rangeStart));
+    }
+    if ('rangeEnd' in args) {
+      options.params = options.params.set('range.end', String(args.rangeEnd));
     }
     return this.sendRequest<models.RskTranscriptDialog>('GET', path, options);
   }

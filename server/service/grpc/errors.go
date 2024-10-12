@@ -12,19 +12,31 @@ import (
 	"net/http"
 )
 
-func ErrInvalidRequestField(field string, err error, moreDetails ...string) error {
+func ErrInvalidRequestField(field string, originalErr error, moreDetails ...string) error {
 
 	// todo: moreDetails need to be appended dynamically but it's blocked by:
 	// https://github.com/grpc/grpc-go/issues/6133
 
+	if originalErr == nil {
+		s, err := status.New(codes.InvalidArgument, http.StatusText(http.StatusBadRequest)).WithDetails(&errdetails.BadRequest{
+			FieldViolations: []*errdetails.BadRequest_FieldViolation{
+				{Field: field, Description: "Invalid field"},
+			},
+		})
+		if err != nil {
+			return fmt.Errorf("failed to create error")
+		}
+		return s.Err()
+	}
+
 	s, err := status.New(codes.InvalidArgument, http.StatusText(http.StatusBadRequest)).WithDetails(&errdetails.BadRequest{
 		FieldViolations: []*errdetails.BadRequest_FieldViolation{
-			{Field: field, Description: err.Error()},
+			{Field: field, Description: originalErr.Error()},
 		},
 	},
 		&errdetails.DebugInfo{
-			Detail:       err.Error(),
-			StackEntries: util.ErrTrace(err, 7),
+			Detail:       originalErr.Error(),
+			StackEntries: util.ErrTrace(originalErr, 7),
 		})
 	if err != nil {
 		return fmt.Errorf("failed to create error")

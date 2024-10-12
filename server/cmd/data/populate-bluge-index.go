@@ -93,9 +93,9 @@ func getMappedField(fieldName string, t mapping.FieldType, d search.DialogDocume
 		if dateField == nil {
 			return nil, false
 		}
-		return bluge.NewDateTimeField(fieldName, *dateField).Aggregatable(), true
+		return bluge.NewDateTimeField(fieldName, *dateField).Aggregatable().Sortable(), true
 	case mapping.FieldTypeNumber:
-		return bluge.NewNumericField(fieldName, float64(d.GetNamedField(fieldName).(int64))), true
+		return bluge.NewNumericField(fieldName, float64(d.GetNamedField(fieldName).(int64))).Sortable(), true
 	case mapping.FieldTypeShingles:
 		shingleAnalyzer := &analysis.Analyzer{
 			Tokenizer: tokenizer.NewUnicodeTokenizer(),

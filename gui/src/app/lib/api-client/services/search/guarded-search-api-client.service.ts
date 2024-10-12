@@ -192,6 +192,7 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
     args: {
       query?: string,
       page?: number,
+      sort?: string,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskSearchResultList> {
@@ -439,6 +440,8 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
       epid: string,
       pos: number,
       numContextLines?: number,
+      rangeStart?: number,
+      rangeEnd?: number,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscriptDialog> {

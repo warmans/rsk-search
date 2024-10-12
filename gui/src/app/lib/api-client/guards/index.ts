@@ -1046,6 +1046,8 @@ export function isRskSong(arg: any): arg is models.RskSong {
     ( typeof arg.spotifyUri === 'undefined' || typeof arg.spotifyUri === 'string' ) &&
     // title?: string
     ( typeof arg.title === 'undefined' || typeof arg.title === 'string' ) &&
+    // transcribed?: string[]
+    ( typeof arg.transcribed === 'undefined' || (Array.isArray(arg.transcribed) && arg.transcribed.every((item: unknown) => typeof item === 'string')) ) &&
 
   true
   );
@@ -1208,6 +1210,8 @@ export function isRskTranscriptDialog(arg: any): arg is models.RskTranscriptDial
   typeof arg === 'object' &&
     // dialog?: RskDialog[]
     ( typeof arg.dialog === 'undefined' || (Array.isArray(arg.dialog) && arg.dialog.every((item: unknown) => isRskDialog(item))) ) &&
+    // maxDialogPosition?: number
+    ( typeof arg.maxDialogPosition === 'undefined' || typeof arg.maxDialogPosition === 'number' ) &&
     // transcriptMeta?: RskShortTranscript
     ( typeof arg.transcriptMeta === 'undefined' || isRskShortTranscript(arg.transcriptMeta) ) &&
 

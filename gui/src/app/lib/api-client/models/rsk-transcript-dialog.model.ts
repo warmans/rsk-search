@@ -6,5 +6,6 @@ import {
 
 export interface RskTranscriptDialog {
   dialog?: RskDialog[];
+  maxDialogPosition?: number;
   transcriptMeta?: RskShortTranscript;
 }

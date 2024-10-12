@@ -7,4 +7,5 @@ export interface RskSong {
   episodeIds?: string[];
   spotifyUri?: string;
   title?: string;
+  transcribed?: string[];
 }
