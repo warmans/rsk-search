@@ -46,7 +46,9 @@ export class SearchComponent implements OnInit, OnDestroy {
     private router: Router) {
 
     this.currentSorting.valueChanges.pipe(takeUntil(this.unsubscribe$)).subscribe((val) => {
-      console.log("VAL", val);
+      if (!val) {
+        return;
+      }
       this.router.navigate([], {
         queryParams: {
           sort: val
@@ -58,7 +60,10 @@ export class SearchComponent implements OnInit, OnDestroy {
 
     route.queryParamMap.pipe(takeUntil(this.unsubscribe$)).subscribe((params: ParamMap) => {
       this.currentPage = parseInt(params.get('page'), 10) || 0;
-      this.currentSorting.setValue((params.get('sort') || '').trim());
+      let sorting = (params.get('sort') || '').trim();
+      if (sorting) {
+        this.currentSorting.setValue(sorting);
+      }
       this.query = (params.get('q') || '').trim();
       if (this.query === '') {
         this.result = null;
