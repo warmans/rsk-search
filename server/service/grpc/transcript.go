@@ -90,23 +90,12 @@ func (s *TranscriptService) GetTranscriptDialog(ctx context.Context, request *ap
 		return nil, ErrNotFound(request.Epid)
 	}
 	dialog := []*api.Dialog{}
-	if request.Pos > 0 {
-		for _, d := range ep.Transcript {
-			if d.Position >= int64(request.Pos-request.NumContextLines) && d.Position <= int64(request.Pos+request.NumContextLines) {
-				dialog = append(dialog, d.Proto(request.Pos == int32(d.Position)))
-			}
-			if d.Position > int64(request.Pos+request.NumContextLines) {
-				break
-			}
+	for _, d := range ep.Transcript {
+		if d.Position >= int64(request.Range.Start) && d.Position <= int64(request.Range.End) {
+			dialog = append(dialog, d.Proto(false))
 		}
-	} else {
-		for _, d := range ep.Transcript {
-			if d.Position >= int64(request.Range.Start) && d.Position <= int64(request.Range.End) {
-				dialog = append(dialog, d.Proto(false))
-			}
-			if d.Position >= int64(request.Range.End) {
-				break
-			}
+		if d.Position >= int64(request.Range.End) {
+			break
 		}
 	}
 

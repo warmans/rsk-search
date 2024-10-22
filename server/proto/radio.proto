@@ -61,7 +61,7 @@ message RadioState {
 }
 
 message CurrentRadioEpisode {
-  string shortId = 1;
+  string short_id = 1;
   string started_at = 2;
 }
 
@@ -71,5 +71,5 @@ message PutRadioStateRequest {
 }
 
 message NextRadioEpisode {
-  string shortId = 1;
+  string short_id = 1;
 }
