@@ -82,7 +82,7 @@
 </div>
 
 <div *ngIf="query === ''" class="container pt-4">
-  <a target="_blank" href="https://discord.gg/nKABACyy6d"><img src="/assets/partridge-banner.png" class="mb-4 w-100" /></a>
+  <a target="_blank" [href]="banner.url"><img [src]="'/assets/'+banner.image" class="mb-4 w-100" /></a>
   <div class="row">
     <div class="col">
       <ul class="nav nav-tabs font-weight-bold">

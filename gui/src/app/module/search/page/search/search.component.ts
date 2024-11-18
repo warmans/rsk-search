@@ -7,7 +7,7 @@ import {
     RskChangelog,
     RskChunkedTranscriptList,
     RskChunkedTranscriptStats,
-    RskDialog, RskMediaType,
+    RskDialog,
     RskSearchResultList,
     RskShortTranscript
 } from 'src/app/lib/api-client/models';
@@ -32,6 +32,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   morePages: boolean = false;
   latestChangelog: RskChangelog;
   contributionsNeeded: number;
+  banner: {image: string, url : string};
 
   private unsubscribe$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -44,6 +45,8 @@ export class SearchComponent implements OnInit, OnDestroy {
     private audioService: AudioService,
     private clipboardService: ClipboardService,
     private router: Router) {
+
+    this.banner = Math.random() > 0.5 ? {image: 'partridge-banner.png', url: 'https://discord.gg/nKABACyy6d'} : {image: 'pilk-christmas-banner.png', url: 'https://woodymakesgames.itch.io/averypilkingtonchristmas'};
 
     this.currentSorting.valueChanges.pipe(takeUntil(this.unsubscribe$)).subscribe((val) => {
       if (!val) {
