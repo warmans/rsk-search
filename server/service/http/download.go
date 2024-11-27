@@ -26,6 +26,26 @@ import (
 	"time"
 )
 
+type partialFileOptions struct {
+	stripID3 bool
+}
+
+type partialFileOption func(opts *partialFileOptions)
+
+func withoutID3Metadata(enabled bool) partialFileOption {
+	return func(opts *partialFileOptions) {
+		opts.stripID3 = enabled
+	}
+}
+
+func resolvePartialFileOptions(opts []partialFileOption) *partialFileOptions {
+	options := &partialFileOptions{}
+	for _, v := range opts {
+		v(options)
+	}
+	return options
+}
+
 var DownloadsOverQuota = errors.New("download quota exceeded")
 
 func NewDownloadService(
@@ -107,21 +127,29 @@ func (c *DownloadService) servePartialAudioFile(
 	mp3Path string,
 	startTimestamp time.Duration,
 	endTimestamp time.Duration,
+	opts ...partialFileOption,
 ) error {
+
+	options := resolvePartialFileOptions(opts)
+
 	writeData := func(ss time.Duration, to time.Duration, w io.Writer) error {
+
+		outputArgs := ffmpeg_go.KwArgs{
+			"format": "mp3",
+			"vcodec": "copy",
+			"acodec": "copy",
+		}
+		if options.stripID3 {
+			outputArgs["map_metadata"] = "-1"
+		}
+
 		return ffmpeg_go.
 			Input(mp3Path,
 				ffmpeg_go.KwArgs{
 					"ss": fmt.Sprintf("%0.2f", ss.Seconds()),
 					"to": fmt.Sprintf("%0.2f", to.Seconds()),
 				}).
-			Output("pipe:",
-				ffmpeg_go.KwArgs{
-					"format": "mp3",
-					"vcodec": "copy",
-					"acodec": "copy",
-				},
-			).WithOutput(w, os.Stderr).Run()
+			Output("pipe:", outputArgs).WithOutput(w, os.Stderr).Run()
 	}
 	if req.Header.Get("Range") == "" {
 		// just return the whole file
@@ -190,6 +218,8 @@ func (c *DownloadService) DownloadEpisodeMedia(resp http.ResponseWriter, req *ht
 
 	// partial file download
 	if req.URL.Query().Has("pos") || req.URL.Query().Has("ts") {
+
+		stripID3Tags := req.URL.Query().Get("strip_tags")
 
 		//determine the time range to export
 		var startTimestamp, endTimestamp time.Duration
@@ -272,6 +302,7 @@ func (c *DownloadService) DownloadEpisodeMedia(resp http.ResponseWriter, req *ht
 				path.Join(c.serviceConfig.MediaBasePath, "episode", episode.Media.AudioFileName),
 				startTimestamp,
 				endTimestamp,
+				withoutID3Metadata(stripID3Tags == "true"),
 			); err != nil {
 				c.logger.Error("Failed to serve partial audio file", zap.Error(err))
 				return

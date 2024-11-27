@@ -4,6 +4,9 @@ import RegionsPlugin from 'wavesurfer.js/dist/plugins/regions.esm.js';
 import {Region} from "wavesurfer.js/dist/plugins/regions";
 import {Router} from "@angular/router";
 import ZoomPlugin from "wavesurfer.js/dist/plugins/zoom";
+import {FormControl} from "@angular/forms";
+import {takeUntil} from "rxjs/operators";
+import {Observable, Subject} from "rxjs";
 
 const AUDIO_CONTEXT_MS = 2000;
 
@@ -48,10 +51,18 @@ export class AudioWaveformComponent implements OnInit, AfterViewInit, OnDestroy 
 
   exportURL: string;
 
+  stripTagsControl: FormControl = new FormControl<boolean>(false);
+
+  destroy: Subject<void> = new Subject<void>();
+
   constructor(private cdr: ChangeDetectorRef, private router: Router) {
   }
 
   ngOnInit(): void {
+    this.stripTagsControl.valueChanges.pipe(takeUntil(this.destroy)).subscribe(() => {
+      const path: string = this._url.split("?")[0];
+      this.exportURL = `${path}?${this.getExportQuerystring()}`;
+    })
   }
 
   ngAfterViewInit(): void {
@@ -59,6 +70,9 @@ export class AudioWaveformComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   ngOnDestroy(): void {
+    this.destroy.next();
+    this.destroy.complete();
+
     this.wave.stop();
     this.wave.destroy();
   }
@@ -145,6 +159,6 @@ export class AudioWaveformComponent implements OnInit, AfterViewInit, OnDestroy 
   getExportQuerystring(): string {
     const adjustedStartTimeMs = (this.startTimestampMs - this.startContext) + (this.region.start * 1000)
     const adjustedEndTimeMs = (this.endTimestampMs + this.endContext) - ((this.wave.getDuration() - this.region.end) * 1000)
-    return `ts=${Math.floor(adjustedStartTimeMs).toFixed(0)}-${Math.ceil(adjustedEndTimeMs).toFixed(0)}`
+    return `ts=${Math.floor(adjustedStartTimeMs).toFixed(0)}-${Math.ceil(adjustedEndTimeMs).toFixed(0)}&strip_tags=${this.stripTagsControl.value && 'true'}`
   }
 }
