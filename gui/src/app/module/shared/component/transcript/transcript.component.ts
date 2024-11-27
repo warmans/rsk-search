@@ -1,8 +1,17 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {
+  AfterContentInit,
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output
+} from '@angular/core';
 import {
   DialogType,
-  RskDialog, RskMedia,
-  RskMediaType,
+  RskDialog,
+  RskMedia,
   RskSynopsis,
   RskTranscript,
   RskTrivia

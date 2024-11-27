@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnDestroy, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Data, Router} from '@angular/router';
 import {SearchAPIClient} from 'src/app/lib/api-client/services/search';
 import {
@@ -16,7 +16,7 @@ import {And, Eq, Neq} from 'src/app/lib/filter-dsl/filter';
 import {Bool, Str} from 'src/app/lib/filter-dsl/value';
 import {MetaService} from '../../../core/service/meta/meta.service';
 import {AudioService, PlayerState, Status} from '../../../core/service/audio/audio.service';
-import {Section} from '../../../shared/component/transcript/transcript.component';
+import {Section, TranscriptComponent} from '../../../shared/component/transcript/transcript.component';
 import {combineLatest} from 'rxjs';
 import {parseSection} from "../../../shared/lib/fragment";
 import {ClipboardService} from "../../../core/service/clipboard/clipboard.service";
@@ -74,13 +74,16 @@ export class EpisodeComponent implements OnInit, OnDestroy {
 
   episodeDurationMs: number = 0;
 
+  @ViewChild('transcript')
+  transcriptInstance: TranscriptComponent;
+
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
+    route: ActivatedRoute,
     private apiClient: SearchAPIClient,
     private viewportScroller: ViewportScroller,
     private titleService: Title,
-    private sessionService: SessionService,
+    sessionService: SessionService,
     private meta: MetaService,
     private audioService: AudioService,
     private clipboard: ClipboardService,
@@ -233,5 +236,8 @@ export class EpisodeComponent implements OnInit, OnDestroy {
   }
 
   protected readonly Math = Math;
-  protected readonly RskMediaType = RskMediaType;
+
+  scrollToSelection() {
+    this.transcriptInstance.scrollToAnchor();
+  }
 }

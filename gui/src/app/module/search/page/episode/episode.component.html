@@ -153,6 +153,7 @@
               </div>
               <div class="d-flex">
                 <button class="btn btn-sm btn-primary" (click)="scrollToTop()"><i class="bi-arrow-up"></i> Top</button>
+                <button class="btn btn-sm btn-primary ml-2" (click)="scrollToSelection()"><i class="bi-arrow-down"></i> Selection</button>
                 <button class="btn btn-sm btn-info ml-2" *ngIf="scrollToID && selection"
                         (click)="copySelection()"><i class="bi-clipboard"></i> Copy Selection
                 </button>
@@ -193,6 +194,7 @@
         </div>
         <div class="card-body p-3">
           <app-transcript
+            #transcript
             [transcript]="episode"
             [epid]="episode?.id"
             [scrollToID]="scrollToID"
