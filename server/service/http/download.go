@@ -6,7 +6,7 @@ import (
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	"github.com/pkg/errors"
-	ffmpeg_go "github.com/u2takey/ffmpeg-go"
+	ffmpeg_go "github.com/warmans/ffmpeg-go"
 	"github.com/warmans/rsk-search/pkg/data"
 	"github.com/warmans/rsk-search/pkg/mediacache"
 	"github.com/warmans/rsk-search/pkg/meta"
@@ -27,7 +27,8 @@ import (
 )
 
 type partialFileOptions struct {
-	stripID3 bool
+	stripID3   bool
+	webmOutput bool
 }
 
 type partialFileOption func(opts *partialFileOptions)
@@ -35,6 +36,12 @@ type partialFileOption func(opts *partialFileOptions)
 func withoutID3Metadata(enabled bool) partialFileOption {
 	return func(opts *partialFileOptions) {
 		opts.stripID3 = enabled
+	}
+}
+
+func withWebmOutput(enabled bool) partialFileOption {
+	return func(opts *partialFileOptions) {
+		opts.webmOutput = enabled
 	}
 }
 
@@ -132,30 +139,66 @@ func (c *DownloadService) servePartialAudioFile(
 
 	options := resolvePartialFileOptions(opts)
 
-	writeData := func(ss time.Duration, to time.Duration, w io.Writer) error {
+	var format, mimeType string
+	var writeData func(ss time.Duration, to time.Duration, w io.Writer) error
 
-		outputArgs := ffmpeg_go.KwArgs{
-			"format": "mp3",
-			"vcodec": "copy",
-			"acodec": "copy",
-		}
-		if options.stripID3 {
-			outputArgs["map_metadata"] = "-1"
-		}
+	if options.webmOutput {
+		format = "webm"
+		mimeType = "video/webm"
+		writeData = func(ss time.Duration, to time.Duration, w io.Writer) error {
+			input := []*ffmpeg_go.Stream{
+				ffmpeg_go.Input(
+					mp3Path,
+					ffmpeg_go.KwArgs{
+						"ss": fmt.Sprintf("%0.2f", startTimestamp.Seconds()),
+						"to": fmt.Sprintf("%0.2f", endTimestamp.Seconds()),
+					},
+				),
+				ffmpeg_go.Input("assets/default-lg.jpg"),
+			}
 
-		return ffmpeg_go.
-			Input(mp3Path,
-				ffmpeg_go.KwArgs{
-					"ss": fmt.Sprintf("%0.2f", ss.Seconds()),
-					"to": fmt.Sprintf("%0.2f", to.Seconds()),
-				}).
-			Output("pipe:", outputArgs).WithOutput(w, os.Stderr).Run()
+			return ffmpeg_go.
+				Output(
+					input,
+					"pipe:",
+					ffmpeg_go.KwArgs{
+						"map_0":  "0:a",
+						"map_1":  "1:v",
+						"vf":     "scale=220:220",
+						"format": "webm",
+					},
+				).
+				WithOutput(w, os.Stderr).
+				Run()
+		}
+	} else {
+		format = "mp3"
+		mimeType = "audio/mpeg"
+		writeData = func(ss time.Duration, to time.Duration, w io.Writer) error {
+
+			outputArgs := ffmpeg_go.KwArgs{
+				"format": "mp3",
+				"acodec": "copy",
+			}
+			if options.stripID3 {
+				outputArgs["map_metadata"] = "-1"
+			}
+
+			return ffmpeg_go.
+				Input(mp3Path,
+					ffmpeg_go.KwArgs{
+						"ss": fmt.Sprintf("%0.2f", ss.Seconds()),
+						"to": fmt.Sprintf("%0.2f", to.Seconds()),
+					}).
+				Output("pipe:", outputArgs).WithOutput(w, os.Stderr).Run()
+		}
 	}
+
 	if req.Header.Get("Range") == "" {
 		// just return the whole file
 		resp.WriteHeader(http.StatusOK)
-		resp.Header().Set("Content-Type", "audio/mpeg")
-		resp.Header().Set("Content-Disposition", fmt.Sprintf("attachment; filename=%s-%s-%s.mp3", episode.ID(), startTimestamp.String(), endTimestamp.String()))
+		resp.Header().Set("Content-Type", mimeType)
+		resp.Header().Set("Content-Disposition", fmt.Sprintf("attachment; filename=%s-%s-%s.%s", episode.ID(), startTimestamp.String(), endTimestamp.String(), format))
 		return writeData(startTimestamp, endTimestamp, resp)
 	}
 
@@ -163,7 +206,7 @@ func (c *DownloadService) servePartialAudioFile(
 	// Most solutions just buffer in memory to get a ReadSeeker. A temp file seems preferable since memory is
 	// more scarce than disk.
 
-	partial, err := os.CreateTemp(os.TempDir(), "partial-*.mp3")
+	partial, err := os.CreateTemp(os.TempDir(), fmt.Sprintf("partial-*.%s", format))
 	if err != nil {
 		return fmt.Errorf("failed to create temp file: %w", err)
 	}
@@ -176,11 +219,11 @@ func (c *DownloadService) servePartialAudioFile(
 
 	if err := writeData(startTimestamp, endTimestamp, partial); err != nil {
 		partial.Close()
-		return fmt.Errorf("failed to extract mp3 data: %w", err)
+		return fmt.Errorf("failed to extract data: %w", err)
 	}
 
-	resp.Header().Set("Content-Type", "audio/mpeg")
-	resp.Header().Set("Content-Disposition", fmt.Sprintf("attachment; filename=%s-%s-%s.mp3", episode.ID(), startTimestamp.String(), endTimestamp.String()))
+	resp.Header().Set("Content-Type", mimeType)
+	resp.Header().Set("Content-Disposition", fmt.Sprintf("attachment; filename=%s-%s-%s.%s", episode.ID(), startTimestamp.String(), endTimestamp.String(), format))
 	http.ServeContent(resp, req, path.Base(partial.Name()), time.Now(), partial)
 	return nil
 }
@@ -193,8 +236,8 @@ func (c *DownloadService) DownloadEpisodeMedia(resp http.ResponseWriter, req *ht
 		return
 	}
 	wantFormat, ok := vars["format"]
-	if !ok || (wantFormat != "mp3" && wantFormat != "gif") {
-		http.Error(resp, "only mp3 and gif are supported", http.StatusBadRequest)
+	if !ok || (wantFormat != "mp3" && wantFormat != "gif" && wantFormat != "webm") {
+		http.Error(resp, "only mp3, webm and gif are supported", http.StatusBadRequest)
 		return
 	}
 
@@ -207,7 +250,7 @@ func (c *DownloadService) DownloadEpisodeMedia(resp http.ResponseWriter, req *ht
 		http.Error(resp, "Failed to fetch episode metadata", http.StatusInternalServerError)
 		return
 	}
-	if wantFormat == "mp3" && episode.Media.AudioFileName == "" {
+	if (wantFormat == "mp3" || wantFormat == "webm") && episode.Media.AudioFileName == "" {
 		http.Error(resp, "this episode doesn't have audio available", http.StatusNotFound)
 		return
 	}
@@ -278,7 +321,7 @@ func (c *DownloadService) DownloadEpisodeMedia(resp http.ResponseWriter, req *ht
 			c.downloadGif(req.Context(), resp, episode, startTimestamp, endTimestamp, customText)
 			return
 		// serve partial audio
-		case "mp3":
+		case "mp3", "webm":
 
 			// todo: this is wrong because the Range header may prevent the full file being returned,
 			// note sure if it's worth just using a counting response writer.
@@ -303,6 +346,7 @@ func (c *DownloadService) DownloadEpisodeMedia(resp http.ResponseWriter, req *ht
 				startTimestamp,
 				endTimestamp,
 				withoutID3Metadata(stripID3Tags == "true"),
+				withWebmOutput(wantFormat == "webm"),
 			); err != nil {
 				c.logger.Error("Failed to serve partial audio file", zap.Error(err))
 				return
@@ -313,7 +357,7 @@ func (c *DownloadService) DownloadEpisodeMedia(resp http.ResponseWriter, req *ht
 			return
 		}
 	} else {
-		if wantFormat != "mp3" {
+		if wantFormat != "mp3" && wantFormat != "webm" {
 			http.Error(resp, "Only audio can be exported without either pos or ts specified", http.StatusBadRequest)
 			return
 		}
@@ -524,7 +568,7 @@ func (c *DownloadService) incrementQuotas(ctx context.Context, mediaType string,
 
 		_, currentMib, err := s.GetMediaStatsForCurrentMonth(ctx)
 		if err != nil {
-			if err == context.Canceled || strings.HasSuffix(err.Error(), "driver: bad connection") {
+			if errors.Is(err, context.Canceled) || strings.HasSuffix(err.Error(), "driver: bad connection") {
 				return nil
 			}
 			return errors.Wrap(err, "failed to get current usage")
@@ -534,7 +578,7 @@ func (c *DownloadService) incrementQuotas(ctx context.Context, mediaType string,
 			return DownloadsOverQuota
 		}
 		if err := s.IncrementMediaAccessLog(ctx, mediaType, fileID, fileMib); err != nil {
-			if err == context.Canceled {
+			if errors.Is(err, context.Canceled) {
 				return nil
 			}
 			return errors.Wrap(err, "failed to increment access log bytes")

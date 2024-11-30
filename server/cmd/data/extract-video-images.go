@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
-	ffmpeg_go "github.com/u2takey/ffmpeg-go"
+	ffmpeg_go "github.com/warmans/ffmpeg-go"
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/util"
 	"go.uber.org/zap"
@@ -15,7 +15,7 @@ import (
 )
 
 // ExtractVideoImages
-// create sprites:
+// create sprites
 func ExtractVideoImages() *cobra.Command {
 
 	cmd := &cobra.Command{

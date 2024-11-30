@@ -350,7 +350,7 @@ func (b *Bot) buttons(customID CustomID, maxDialogOffset int32) []discordgo.Mess
 
 	audioButton := discordgo.Button{
 		// Label is what the user will see on the button.
-		Label: "Enable Audio",
+		Label: "Enable Media",
 		Emoji: &discordgo.ComponentEmoji{
 			Name: "🔊",
 		},
@@ -360,7 +360,7 @@ func (b *Bot) buttons(customID CustomID, maxDialogOffset int32) []discordgo.Mess
 		CustomID: encodeCustomIDForAction("up", customID.withOption(withModifier(ContentModifierNone))),
 	}
 	if customID.ContentModifier == ContentModifierNone {
-		audioButton.Label = "Disable Audio"
+		audioButton.Label = "Disable Media"
 		audioButton.Emoji = &discordgo.ComponentEmoji{
 			Name: "🔇",
 		}
@@ -410,7 +410,7 @@ func (b *Bot) buttons(customID CustomID, maxDialogOffset int32) []discordgo.Mess
 		if customID.StartLine > 0 {
 			editRow1 = append(editRow1, discordgo.Button{
 				// Label is what the user will see on the button.
-				Label: "Add Leading Dialog",
+				Label: "Add Previous Line",
 				Emoji: &discordgo.ComponentEmoji{
 					Name: "➕",
 				},
@@ -428,7 +428,7 @@ func (b *Bot) buttons(customID CustomID, maxDialogOffset int32) []discordgo.Mess
 		if customID.EndLine+1 < maxDialogOffset {
 			editRow1 = append(editRow1, discordgo.Button{
 				// Label is what the user will see on the button.
-				Label: "Add Following Dialog",
+				Label: "Add Next Line",
 				Emoji: &discordgo.ComponentEmoji{
 					Name: "➕",
 				},
@@ -449,7 +449,7 @@ func (b *Bot) buttons(customID CustomID, maxDialogOffset int32) []discordgo.Mess
 	if customID.EndLine-customID.StartLine > 0 {
 		editRow2 = append(editRow2, discordgo.Button{
 			// Label is what the user will see on the button.
-			Label: "Trim Leading Dialog",
+			Label: "Trim First Line",
 			Emoji: &discordgo.ComponentEmoji{
 				Name: "✂",
 			},
@@ -465,7 +465,7 @@ func (b *Bot) buttons(customID CustomID, maxDialogOffset int32) []discordgo.Mess
 		})
 		editRow2 = append(editRow2, discordgo.Button{
 			// Label is what the user will see on the button.
-			Label: "Trim Trailing Dialog",
+			Label: "Trim Last Line",
 			Emoji: &discordgo.ComponentEmoji{
 				Name: "✂",
 			},
@@ -577,7 +577,7 @@ func (b *Bot) audioFileResponse(customID CustomID, username string) (*discordgo.
 
 	if customID.ContentModifier != ContentModifierTextOnly {
 		audioFileURL := fmt.Sprintf(
-			"%s/dl/media/%s.mp3?ts=%d-%d",
+			"%s/dl/media/%s.webm?ts=%d-%d",
 			b.webUrl,
 			dialog.TranscriptMeta.ShortId,
 			dialog.Dialog[0].OffsetMs,
@@ -592,8 +592,8 @@ func (b *Bot) audioFileResponse(customID CustomID, username string) (*discordgo.
 			return nil, 0, fmt.Errorf("failed to fetch audio: %s", resp.Status), func() {}
 		}
 		files = append(files, &discordgo.File{
-			Name:        createFileName(dialog, "mp3"),
-			ContentType: "audio/mpeg",
+			Name:        createFileName(dialog, "webm"),
+			ContentType: "video/webm",
 			Reader:      resp.Body,
 		})
 		cancelFunc = func() {

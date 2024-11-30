@@ -1,6 +1,6 @@
 module github.com/warmans/rsk-search
 
-go 1.22
+go 1.23
 
 require (
 	facette.io/natsort v0.0.0-20181210072756-2cd4dd1e2dcb
@@ -35,7 +35,6 @@ require (
 	github.com/spf13/cobra v1.2.1
 	github.com/spf13/pflag v1.0.5
 	github.com/stretchr/testify v1.8.4
-	github.com/u2takey/ffmpeg-go v0.5.0
 	go.uber.org/zap v1.24.0
 	google.golang.org/genproto v0.0.0-20230110181048-76db0878b65f
 	google.golang.org/grpc v1.53.0
@@ -91,6 +90,7 @@ require (
 	github.com/spf13/cast v1.5.0 // indirect
 	github.com/temoto/robotstxt v1.1.1 // indirect
 	github.com/u2takey/go-utils v0.3.1 // indirect
+	github.com/warmans/ffmpeg-go v1.0.0 // indirect
 	go.uber.org/atomic v1.7.0 // indirect
 	go.uber.org/multierr v1.6.0 // indirect
 	golang.org/x/crypto v0.18.0 // indirect
