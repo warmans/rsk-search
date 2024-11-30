@@ -7,7 +7,7 @@
     "episode": 3,
     "name": "",
     "summary": "",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "release_date": "2002-09-07T00:00:00Z",
     "incomplete": false,
     "bestof": false,
@@ -2363,13 +2363,13 @@
         "type": "song",
         "actor": "",
         "metadata": {
-          "song_album": "The Hour of Bewilderbeast",
-          "song_album_art": "https://i.scdn.co/image/ab67616d0000b273254f5b9a048c746142be98bc",
+          "song_album": "Pissing in the Wind",
+          "song_album_art": "https://i.scdn.co/image/ab67616d0000b273ef2f94bc63b8038b39c84903",
           "song_artist": "Badly Drawn Boy",
-          "song_track": "Magic in the Air",
-          "spotify_uri": "spotify:track:3CAuBe4iBim8OVLVGqBq14"
+          "song_track": "Spitting in the Wind - George Drakoulias Mix",
+          "spotify_uri": "spotify:track:3tKsoLoRvtFPyTutpNfRzo"
         },
-        "content": "Song: Badly Drawn Boy- Spitting in the Wind",
+        "content": "Badly Drawn Boy- Spitting in the Wind",
         "notable": false,
         "placeholder": false
       },
@@ -4097,7 +4097,7 @@
           "song_track": "Watch That Man - 2013 Remaster",
           "spotify_uri": "spotify:track:1vlcWaJV9hGbiQMbsh2d8t"
         },
-        "content": "David Bowie- Watch That Man",
+        "content": "David Bowie - Watch That Man",
         "notable": false,
         "placeholder": false
       },
@@ -7631,7 +7631,7 @@
           "song_track": "Getting Away with It - 2013 Remaster",
           "spotify_uri": "spotify:track:1cZcQDZzx940vWz9PFRY20"
         },
-        "content": "Electronic- Getting Away With It",
+        "content": "Electronic - Getting Away With It",
         "notable": false,
         "placeholder": false
       },
@@ -12284,7 +12284,7 @@
           "song_track": "After the Goldrush",
           "spotify_uri": "spotify:track:3u7eQmFOUDATeKMPUjDpGs"
         },
-        "content": "Neil Young- After the Goldrush",
+        "content": "Neil Young - After the Goldrush",
         "notable": false,
         "placeholder": false
       },
@@ -15958,7 +15958,7 @@
           "song_track": "Little By Little",
           "spotify_uri": "spotify:track:45AQ5zbSJ0j1nM9daSWeq8"
         },
-        "content": "Oasis- Little By Little",
+        "content": "Oasis - Little By Little",
         "notable": false,
         "placeholder": false
       },
@@ -18785,8 +18785,14 @@
         "timestamp_distance": 2,
         "type": "song",
         "actor": "",
-        "metadata": null,
-        "content": "Unknown",
+        "metadata": {
+          "song_album": "Beautiful",
+          "song_album_art": "https://i.scdn.co/image/ab67616d0000b2737d89c73f6c335a7413d9fcfa",
+          "song_artist": "Giulio Cercato",
+          "song_track": "Beautiful",
+          "spotify_uri": "spotify:track:3wO9yrGGSz2mDhKbnNImGC"
+        },
+        "content": "Eels - Mr.E's Beautiful Blues",
         "notable": false,
         "placeholder": false
       },
@@ -20438,13 +20444,13 @@
         "type": "song",
         "actor": "",
         "metadata": {
-          "song_album": "Dog Man Star (Remastered)",
-          "song_album_art": "https://i.scdn.co/image/ab67616d0000b2736eed07477acbf0d39e4008f5",
-          "song_artist": "The London Suede",
-          "song_track": "Stay Together (Long Version) [Remastered]",
-          "spotify_uri": "spotify:track:4iJgu8u1qNQwx3fIVNapdF"
+          "song_album": "Dog Man Star (30th Anniversary Edition)",
+          "song_album_art": "https://i.scdn.co/image/ab67616d0000b273da0bc0bf8fea77baff098323",
+          "song_artist": "Suede",
+          "song_track": "Stay Together - Single Version",
+          "spotify_uri": "spotify:track:6rc61UDQI0ZE3xbIlUAfiM"
         },
-        "content": "Suede- Stay Together",
+        "content": "Suede - Stay Together",
         "notable": false,
         "placeholder": false
       },
@@ -21598,13 +21604,14 @@
           "song_track": "Just Like a Woman",
           "spotify_uri": "spotify:track:37Dl7jQMmt0gUnzTKqnjkN"
         },
-        "content": "Bob Dylan- Just Like a Woman",
+        "content": "Bob Dylan - Just Like a Woman",
         "notable": false,
         "placeholder": false
       }
     ],
     "synopsis": null,
     "contributors": [
+      "Born-Leg-9021",
       "greendra8",
       "warmans"
     ],
