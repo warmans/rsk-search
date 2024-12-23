@@ -7,7 +7,7 @@
     "episode": 8,
     "name": "",
     "summary": "",
-    "version": "0.0.4",
+    "version": "0.0.6",
     "release_date": "2002-01-12T00:00:00Z",
     "incomplete": false,
     "bestof": false,
@@ -14273,7 +14273,7 @@
         "id": "ep-xfm-S1E08-1013",
         "pos": 1013,
         "timestamp": 2581030000000,
-        "duration": 3104000000,
+        "duration": 2905000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
@@ -14286,14 +14286,14 @@
       {
         "id": "ep-xfm-S1E08-1014",
         "pos": 1014,
-        "timestamp": 2584134000000,
-        "duration": 1016000000,
+        "timestamp": 2583935000000,
+        "duration": 1215000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "Watch it in March.",
+        "content": "We'll ask you in March.",
         "notable": false,
         "placeholder": false
       },
@@ -14614,10 +14614,12 @@
       }
     ],
     "contributors": [
+      "Hopper2004",
       "MonotoneCreeper",
       "bathabit",
       "wagu666",
-      "warmans"
+      "warmans",
+      "webbess1"
     ],
     "trivia": [
       {
