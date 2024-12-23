@@ -80,6 +80,7 @@ const (
 	ContentModifierNone ContentModifier = iota
 	ContentModifierTextOnly
 	ContentModifierAudioOnly
+	ContentModifierGifOnly
 )
 
 func NewBot(
@@ -349,14 +350,11 @@ func (b *Bot) beginAudioResponse(
 func (b *Bot) buttons(customID CustomID, maxDialogOffset int32) []discordgo.MessageComponent {
 
 	audioButton := discordgo.Button{
-		// Label is what the user will see on the button.
 		Label: "Enable Media",
 		Emoji: &discordgo.ComponentEmoji{
 			Name: "🔊",
 		},
-		// Style provides coloring of the button. There are not so many styles tho.
-		Style: discordgo.SecondaryButton,
-		// CustomID is a thing telling Discord which data to send when this button will be pressed.
+		Style:    discordgo.SecondaryButton,
 		CustomID: encodeCustomIDForAction("up", customID.withOption(withModifier(ContentModifierNone))),
 	}
 	if customID.ContentModifier == ContentModifierNone {
@@ -406,7 +404,7 @@ func (b *Bot) buttons(customID CustomID, maxDialogOffset int32) []discordgo.Mess
 			),
 		})
 	}
-	if customID.EndLine-customID.StartLine < 25 {
+	if customID.EndLine-customID.StartLine < 25 && customID.ContentModifier != ContentModifierGifOnly {
 		if customID.StartLine > 0 {
 			editRow1 = append(editRow1, discordgo.Button{
 				// Label is what the user will see on the button.
@@ -492,16 +490,45 @@ func (b *Bot) buttons(customID CustomID, maxDialogOffset int32) []discordgo.Mess
 			Components: editRow2,
 		})
 	}
-	buttons = append(buttons, discordgo.ActionsRow{
+
+	postButtons := discordgo.ActionsRow{
 		Components: []discordgo.MessageComponent{
 			discordgo.Button{
 				Label:    "Post",
 				Style:    discordgo.SuccessButton,
 				CustomID: encodeCustomIDForAction("cfm", customID),
 			},
-			audioButton,
 		},
-	})
+	}
+	if customID.ContentModifier != ContentModifierGifOnly {
+		postButtons.Components = append(postButtons.Components, audioButton)
+	}
+	if customID.StartLine == customID.EndLine && customID.NumContextLines == 0 {
+		if customID.ContentModifier != ContentModifierGifOnly {
+			postButtons.Components = append(postButtons.Components,
+				discordgo.Button{
+					Label: "GIF mode",
+					Emoji: &discordgo.ComponentEmoji{
+						Name: "📺",
+					},
+					Style:    discordgo.SecondaryButton,
+					CustomID: encodeCustomIDForAction("up", customID.withOption(withModifier(ContentModifierGifOnly))),
+				})
+		} else {
+			postButtons.Components = append(postButtons.Components,
+				discordgo.Button{
+					Label: "Normal mode",
+					Emoji: &discordgo.ComponentEmoji{
+						Name: "📻",
+					},
+					Style:    discordgo.SecondaryButton,
+					CustomID: encodeCustomIDForAction("up", customID.withOption(withModifier(ContentModifierTextOnly))),
+				})
+		}
+
+	}
+
+	buttons = append(buttons, postButtons)
 
 	return buttons
 }
@@ -572,12 +599,13 @@ func (b *Bot) audioFileResponse(customID CustomID, username string) (*discordgo.
 		}
 	}
 
+	var content string
 	var files []*discordgo.File
 	cancelFunc := func() {}
 
-	if customID.ContentModifier != ContentModifierTextOnly {
+	if customID.ContentModifier == ContentModifierGifOnly {
 		audioFileURL := fmt.Sprintf(
-			"%s/dl/media/%s.webm?ts=%d-%d",
+			"%s/dl/media/%s.gif?ts=%d-%d",
 			b.webUrl,
 			dialog.TranscriptMeta.ShortId,
 			dialog.Dialog[0].OffsetMs,
@@ -588,36 +616,81 @@ func (b *Bot) audioFileResponse(customID CustomID, username string) (*discordgo.
 			return nil, 0, fmt.Errorf("failed to fetch selected line"), func() {}
 		}
 		if resp.StatusCode != http.StatusOK {
-			b.logger.Error("failed to fetch audio", zap.Error(err), zap.String("url", audioFileURL), zap.Int("status_code", resp.StatusCode))
-			return nil, 0, fmt.Errorf("failed to fetch audio: %s", resp.Status), func() {}
+			b.logger.Error("failed to fetch gif", zap.Error(err), zap.String("url", audioFileURL), zap.Int("status_code", resp.StatusCode))
+			return nil, 0, fmt.Errorf("failed to fetch gif: %s", resp.Status), func() {}
 		}
 		files = append(files, &discordgo.File{
-			Name:        createFileName(dialog, "webm"),
-			ContentType: "video/webm",
+			Name:        createFileName(dialog, "gif"),
+			ContentType: "image/gif",
 			Reader:      resp.Body,
 		})
 		cancelFunc = func() {
 			resp.Body.Close()
 		}
-	}
-	var content string
-	if customID.ContentModifier != ContentModifierAudioOnly {
-		content = fmt.Sprintf(
-			"%s\n\n %s",
-			dialogFormatted.String(),
-			fmt.Sprintf(
-				"`%s` @ `%s - %s` | [%s](%s) | Posted by %s",
-				dialog.TranscriptMeta.Id,
-				(time.Duration(dialog.Dialog[0].OffsetMs)).String(),
-				(time.Duration(dialog.Dialog[len(dialog.Dialog)-1].OffsetMs+dialog.Dialog[len(dialog.Dialog)-1].DurationMs)).String(),
-				strings.TrimPrefix(b.webUrl, "https://"),
-				fmt.Sprintf("%s/ep/%s#pos-%d-%d", b.webUrl, customID.EpisodeID, customID.StartLine, customID.EndLine),
-				username,
-			),
-		)
+
+		if customID.ContentModifier != ContentModifierAudioOnly {
+			content = fmt.Sprintf(
+				"%s",
+				fmt.Sprintf(
+					"`%s` @ `%s - %s` | [%s](%s) | Posted by %s",
+					dialog.TranscriptMeta.Id,
+					(time.Duration(dialog.Dialog[0].OffsetMs)).String(),
+					(time.Duration(dialog.Dialog[len(dialog.Dialog)-1].OffsetMs+dialog.Dialog[len(dialog.Dialog)-1].DurationMs)).String(),
+					strings.TrimPrefix(b.webUrl, "https://"),
+					fmt.Sprintf("%s/ep/%s#pos-%d-%d", b.webUrl, customID.EpisodeID, customID.StartLine, customID.EndLine),
+					username,
+				),
+			)
+		} else {
+			content = fmt.Sprintf("Posted by %s", username)
+		}
+
 	} else {
-		content = fmt.Sprintf("Posted by %s", username)
+		if customID.ContentModifier != ContentModifierTextOnly {
+			audioFileURL := fmt.Sprintf(
+				"%s/dl/media/%s.webm?ts=%d-%d",
+				b.webUrl,
+				dialog.TranscriptMeta.ShortId,
+				dialog.Dialog[0].OffsetMs,
+				dialog.Dialog[len(dialog.Dialog)-1].OffsetMs+dialog.Dialog[len(dialog.Dialog)-1].DurationMs,
+			)
+			resp, err := http.Get(audioFileURL)
+			if err != nil {
+				return nil, 0, fmt.Errorf("failed to fetch selected line"), func() {}
+			}
+			if resp.StatusCode != http.StatusOK {
+				b.logger.Error("failed to fetch audio", zap.Error(err), zap.String("url", audioFileURL), zap.Int("status_code", resp.StatusCode))
+				return nil, 0, fmt.Errorf("failed to fetch audio: %s", resp.Status), func() {}
+			}
+			files = append(files, &discordgo.File{
+				Name:        createFileName(dialog, "webm"),
+				ContentType: "video/webm",
+				Reader:      resp.Body,
+			})
+			cancelFunc = func() {
+				resp.Body.Close()
+			}
+		}
+
+		if customID.ContentModifier != ContentModifierAudioOnly {
+			content = fmt.Sprintf(
+				"%s\n\n %s",
+				dialogFormatted.String(),
+				fmt.Sprintf(
+					"`%s` @ `%s - %s` | [%s](%s) | Posted by %s",
+					dialog.TranscriptMeta.Id,
+					(time.Duration(dialog.Dialog[0].OffsetMs)).String(),
+					(time.Duration(dialog.Dialog[len(dialog.Dialog)-1].OffsetMs+dialog.Dialog[len(dialog.Dialog)-1].DurationMs)).String(),
+					strings.TrimPrefix(b.webUrl, "https://"),
+					fmt.Sprintf("%s/ep/%s#pos-%d-%d", b.webUrl, customID.EpisodeID, customID.StartLine, customID.EndLine),
+					username,
+				),
+			)
+		} else {
+			content = fmt.Sprintf("Posted by %s", username)
+		}
 	}
+
 	return &discordgo.InteractionResponse{
 		Type: discordgo.InteractionResponseChannelMessageWithSource,
 		Data: &discordgo.InteractionResponseData{

@@ -28,7 +28,7 @@ import (
 
 type partialFileOptions struct {
 	stripID3   bool
-	webmOutput bool
+	wantFormat string
 }
 
 type partialFileOption func(opts *partialFileOptions)
@@ -39,9 +39,9 @@ func withoutID3Metadata(enabled bool) partialFileOption {
 	}
 }
 
-func withWebmOutput(enabled bool) partialFileOption {
+func withOutputFormat(format string) partialFileOption {
 	return func(opts *partialFileOptions) {
-		opts.webmOutput = enabled
+		opts.wantFormat = format
 	}
 }
 
@@ -142,7 +142,55 @@ func (c *DownloadService) servePartialAudioFile(
 	var format, mimeType string
 	var writeData func(ss time.Duration, to time.Duration, w io.Writer) error
 
-	if options.webmOutput {
+	switch options.wantFormat {
+	case "gif":
+		rawDialog := episode.GetDialogAtTimestampRange(startTimestamp, endTimestamp)
+
+		// todo concat videos to for multiple lines
+		if len(rawDialog) > 1 {
+			return fmt.Errorf("can only create a gif of a single line")
+		}
+		dialog := []string{}
+		for _, v := range rawDialog {
+			dialog = append(dialog, v.Content)
+		}
+		var videoFile string
+		switch rawDialog[0].Actor {
+		case "steve":
+			videoFile = fmt.Sprintf("%s/steve-1.mp4", c.serviceConfig.VideoPartialsBasePath)
+		case "ricky":
+			videoFile = fmt.Sprintf("%s/fake-ricky-1.mp4", c.serviceConfig.VideoPartialsBasePath)
+		case "karl":
+			videoFile = fmt.Sprintf("%s/fake-ricky-1.mp4", c.serviceConfig.VideoPartialsBasePath)
+		default:
+			videoFile = fmt.Sprintf("%s/xfm.jpg", c.serviceConfig.VideoPartialsBasePath)
+		}
+
+		format = "gif"
+		mimeType = "image/gif"
+		writeData = func(ss time.Duration, to time.Duration, w io.Writer) error {
+
+			input := []*ffmpeg_go.Stream{
+				ffmpeg_go.Input(videoFile),
+			}
+
+			return ffmpeg_go.
+				Output(
+					input,
+					"pipe:",
+					ffmpeg_go.KwArgs{
+						"format": "gif",
+						"t":      fmt.Sprintf("%0.2f", (endTimestamp - startTimestamp).Seconds()),
+						"filter_complex": fmt.Sprintf(
+							"scale=596:336,drawtext=text='%s':fontcolor=white:fontsize=16:box=1:boxcolor=black@0.5:boxborderw=5:x=(w-text_w)/2:y=(h-(text_h+10))",
+							util.FfmpegSanitizeDrawtext(FormatGifText(56, reSplitDialog(dialog))),
+						),
+					},
+				).
+				WithOutput(w, os.Stderr).
+				Run()
+		}
+	case "webm":
 		format = "webm"
 		mimeType = "video/webm"
 		writeData = func(ss time.Duration, to time.Duration, w io.Writer) error {
@@ -171,7 +219,7 @@ func (c *DownloadService) servePartialAudioFile(
 				WithOutput(w, os.Stderr).
 				Run()
 		}
-	} else {
+	default:
 		format = "mp3"
 		mimeType = "audio/mpeg"
 		writeData = func(ss time.Duration, to time.Duration, w io.Writer) error {
@@ -254,10 +302,6 @@ func (c *DownloadService) DownloadEpisodeMedia(resp http.ResponseWriter, req *ht
 		http.Error(resp, "this episode doesn't have audio available", http.StatusNotFound)
 		return
 	}
-	if wantFormat == "gif" && episode.Media.VideoFileName == "" {
-		http.Error(resp, "this episode doesn't have video available", http.StatusNotFound)
-		return
-	}
 
 	// partial file download
 	if req.URL.Query().Has("pos") || req.URL.Query().Has("ts") {
@@ -315,52 +359,55 @@ func (c *DownloadService) DownloadEpisodeMedia(resp http.ResponseWriter, req *ht
 			zap.Stringp("custom_text", customText),
 		)
 
-		switch wantFormat {
-		// serve partial video
-		case "gif":
-			c.downloadGif(req.Context(), resp, episode, startTimestamp, endTimestamp, customText)
-			return
-		// serve partial audio
-		case "mp3", "webm":
-
-			// todo: this is wrong because the Range header may prevent the full file being returned,
-			// note sure if it's worth just using a counting response writer.
-			if err := c.incrementDownloadQuotas(
-				req.Context(),
-				wantFormat,
-				episode.ShortID(),
-				calculateDownloadQuotaUsage(episode, endTimestamp-startTimestamp),
-			); err != nil {
-				if errors.Is(err, DownloadsOverQuota) {
-					http.Error(resp, "Bandwidth quota exhausted", http.StatusTooManyRequests)
-				} else {
-					http.Error(resp, "Failed to calculate bandwidth quota", http.StatusInternalServerError)
-				}
+		if episode.MediaType == models.MediaTypeVideo {
+			switch wantFormat {
+			// serve partial video
+			case "gif":
+				c.downloadGif(req.Context(), resp, episode, startTimestamp, endTimestamp, customText)
+				return
+				// serve partial audio
+			default:
+				http.Error(resp, "Unknown format requested for video media", http.StatusBadRequest)
 				return
 			}
-			if err = c.servePartialAudioFile(
-				req,
-				resp,
-				episode,
-				path.Join(c.serviceConfig.MediaBasePath, "episode", episode.Media.AudioFileName),
-				startTimestamp,
-				endTimestamp,
-				withoutID3Metadata(stripID3Tags == "true"),
-				withWebmOutput(wantFormat == "webm"),
-			); err != nil {
-				c.logger.Error("Failed to serve partial audio file", zap.Error(err))
-				return
-			}
-			return
-		default:
-			http.Error(resp, "Unknown format requested. Supported formats are gif and mp3", http.StatusBadRequest)
-			return
 		}
-	} else {
-		if wantFormat != "mp3" && wantFormat != "webm" {
+
+		// audio file
+		if wantFormat != "mp3" && wantFormat != "webm" && wantFormat != "gif" {
 			http.Error(resp, "Only audio can be exported without either pos or ts specified", http.StatusBadRequest)
 			return
 		}
+
+		// todo: this is wrong because the Range header may prevent the full file being returned,
+		// note sure if it's worth just using a counting response writer.
+		if err := c.incrementDownloadQuotas(
+			req.Context(),
+			wantFormat,
+			episode.ShortID(),
+			calculateDownloadQuotaUsage(episode, endTimestamp-startTimestamp),
+		); err != nil {
+			if errors.Is(err, DownloadsOverQuota) {
+				http.Error(resp, "Bandwidth quota exhausted", http.StatusTooManyRequests)
+			} else {
+				http.Error(resp, "Failed to calculate bandwidth quota", http.StatusInternalServerError)
+			}
+			return
+		}
+		if err = c.servePartialAudioFile(
+			req,
+			resp,
+			episode,
+			path.Join(c.serviceConfig.MediaBasePath, "episode", episode.Media.AudioFileName),
+			startTimestamp,
+			endTimestamp,
+			withoutID3Metadata(stripID3Tags == "true"),
+			withOutputFormat(wantFormat),
+		); err != nil {
+			c.logger.Error("Failed to serve partial audio file", zap.Error(err))
+			return
+		}
+		return
+
 	}
 
 	// whole audio file
@@ -438,7 +485,7 @@ func (c *DownloadService) downloadGif(ctx context.Context, resp http.ResponseWri
 	startTime := time.Now()
 
 	disableCaching := false
-	dialog := reSplitDialog(episode.GetDialogAtTimestampRange(startTimestamp, endTimestamp))
+	dialog := reSplitDialog(episode.GetDialogContentAtTimestampRange(startTimestamp, endTimestamp))
 	if customText != nil {
 		disableCaching = true
 		if *customText == "" {

@@ -239,14 +239,22 @@ func (e *Transcript) Actors() []string {
 	return actorList
 }
 
-func (e *Transcript) GetDialogAtTimestampRange(startTimestamp time.Duration, endTimestamp time.Duration) []string {
+func (e *Transcript) GetDialogContentAtTimestampRange(startTimestamp time.Duration, endTimestamp time.Duration) []string {
 	dialog := []string{}
+	for _, d := range e.GetDialogAtTimestampRange(startTimestamp, endTimestamp) {
+		dialog = append(dialog, d.Content)
+	}
+	return dialog
+}
+
+func (e *Transcript) GetDialogAtTimestampRange(startTimestamp time.Duration, endTimestamp time.Duration) []Dialog {
+	dialog := []Dialog{}
 	for _, d := range e.Transcript {
 		if d.Timestamp >= endTimestamp {
 			break
 		}
 		if d.Timestamp >= startTimestamp {
-			dialog = append(dialog, d.Content)
+			dialog = append(dialog, d)
 		}
 	}
 	return dialog
