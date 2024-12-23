@@ -161,7 +161,7 @@ func (c *DownloadService) servePartialAudioFile(
 		case "ricky":
 			videoFile = fmt.Sprintf("%s/fake-ricky-1.mp4", c.serviceConfig.VideoPartialsBasePath)
 		case "karl":
-			videoFile = fmt.Sprintf("%s/fake-ricky-1.mp4", c.serviceConfig.VideoPartialsBasePath)
+			videoFile = fmt.Sprintf("%s/fake-karl-1.mp4", c.serviceConfig.VideoPartialsBasePath)
 		default:
 			videoFile = fmt.Sprintf("%s/xfm.jpg", c.serviceConfig.VideoPartialsBasePath)
 		}
