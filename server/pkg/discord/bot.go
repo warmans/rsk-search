@@ -630,16 +630,13 @@ func (b *Bot) audioFileResponse(customID CustomID, username string) (*discordgo.
 
 		if customID.ContentModifier != ContentModifierAudioOnly {
 			content = fmt.Sprintf(
-				"%s",
-				fmt.Sprintf(
-					"`%s` @ `%s - %s` | [%s](%s) | Posted by %s",
-					dialog.TranscriptMeta.Id,
-					(time.Duration(dialog.Dialog[0].OffsetMs)).String(),
-					(time.Duration(dialog.Dialog[len(dialog.Dialog)-1].OffsetMs+dialog.Dialog[len(dialog.Dialog)-1].DurationMs)).String(),
-					strings.TrimPrefix(b.webUrl, "https://"),
-					fmt.Sprintf("%s/ep/%s#pos-%d-%d", b.webUrl, customID.EpisodeID, customID.StartLine, customID.EndLine),
-					username,
-				),
+				"`%s` @ `%s - %s` | [%s](%s) | Posted by %s",
+				dialog.TranscriptMeta.Id,
+				(time.Duration(dialog.Dialog[0].OffsetMs)).String(),
+				(time.Duration(dialog.Dialog[len(dialog.Dialog)-1].OffsetMs + dialog.Dialog[len(dialog.Dialog)-1].DurationMs)).String(),
+				strings.TrimPrefix(b.webUrl, "https://"),
+				fmt.Sprintf("%s/ep/%s#pos-%d-%d", b.webUrl, customID.EpisodeID, customID.StartLine, customID.EndLine),
+				username,
 			)
 		} else {
 			content = fmt.Sprintf("Posted by %s", username)
