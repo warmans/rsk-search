@@ -655,7 +655,7 @@ func (c *DownloadService) getVideoPartialName(actor string) string {
 	if names, ok := c.videoPartials[actor]; ok && len(names) > 0 {
 		return names[rand.IntN(len(names))]
 	}
-	return "/xfm.jpg"
+	return "xfm.jpg"
 }
 
 func calculateDownloadQuotaUsage(ep *models.Transcript, duration time.Duration) int64 {
