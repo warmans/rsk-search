@@ -18,6 +18,7 @@ import (
 	"github.com/warmans/rsk-search/service/metrics"
 	"go.uber.org/zap"
 	"io"
+	"math/rand/v2"
 	"net/http"
 	"os"
 	"path"
@@ -62,7 +63,25 @@ func NewDownloadService(
 	httpMetrics *metrics.HTTPMetrics,
 	episodeCache *data.EpisodeCache,
 	mediaCache *mediacache.Cache,
-) *DownloadService {
+) (*DownloadService, error) {
+
+	partials := map[string][]string{}
+	files, err := os.ReadDir(serviceConfig.VideoPartialsBasePath)
+	if err != nil {
+		return nil, err
+	}
+	for _, f := range files {
+		if f.IsDir() || !strings.HasSuffix(f.Name(), ".mp4") {
+			continue
+		}
+		actorName := strings.Split(f.Name(), "-")[0]
+		if _, ok := partials[actorName]; !ok {
+			partials[actorName] = []string{f.Name()}
+		} else {
+			partials[actorName] = append(partials[actorName], f.Name())
+		}
+	}
+
 	return &DownloadService{
 		logger:        logger.With(zap.String("component", "downloads-http-server")),
 		serviceConfig: serviceConfig,
@@ -70,7 +89,8 @@ func NewDownloadService(
 		httpMetrics:   httpMetrics,
 		episodeCache:  episodeCache,
 		mediaCache:    mediaCache,
-	}
+		videoPartials: partials,
+	}, nil
 }
 
 type DownloadService struct {
@@ -80,6 +100,7 @@ type DownloadService struct {
 	httpMetrics   *metrics.HTTPMetrics
 	episodeCache  *data.EpisodeCache
 	mediaCache    *mediacache.Cache
+	videoPartials map[string][]string
 }
 
 func (c *DownloadService) RegisterHTTP(ctx context.Context, router *mux.Router) {
@@ -147,31 +168,27 @@ func (c *DownloadService) servePartialAudioFile(
 		rawDialog := episode.GetDialogAtTimestampRange(startTimestamp, endTimestamp)
 
 		// todo concat videos to for multiple lines
-		if len(rawDialog) > 1 {
+		if len(rawDialog) != 1 {
 			return fmt.Errorf("can only create a gif of a single line")
 		}
 		dialog := []string{}
 		for _, v := range rawDialog {
 			dialog = append(dialog, v.Content)
 		}
-		var videoFile string
-		switch rawDialog[0].Actor {
-		case "steve":
-			videoFile = fmt.Sprintf("%s/steve-1.mp4", c.serviceConfig.VideoPartialsBasePath)
-		case "ricky":
-			videoFile = fmt.Sprintf("%s/fake-ricky-1.mp4", c.serviceConfig.VideoPartialsBasePath)
-		case "karl":
-			videoFile = fmt.Sprintf("%s/fake-karl-1.mp4", c.serviceConfig.VideoPartialsBasePath)
-		default:
-			videoFile = fmt.Sprintf("%s/xfm.jpg", c.serviceConfig.VideoPartialsBasePath)
-		}
 
 		format = "gif"
 		mimeType = "image/gif"
 		writeData = func(ss time.Duration, to time.Duration, w io.Writer) error {
 
+			startTime := rand.IntN(5)
 			input := []*ffmpeg_go.Stream{
-				ffmpeg_go.Input(videoFile),
+				ffmpeg_go.Input(fmt.Sprintf(
+					"%s/%s",
+					c.serviceConfig.VideoPartialsBasePath,
+					c.getVideoPartialName(rawDialog[0].Actor),
+				), ffmpeg_go.KwArgs{
+					"ss": fmt.Sprintf("%d", startTime),
+				}),
 			}
 
 			return ffmpeg_go.
@@ -632,6 +649,13 @@ func (c *DownloadService) incrementQuotas(ctx context.Context, mediaType string,
 		}
 		return nil
 	})
+}
+
+func (c *DownloadService) getVideoPartialName(actor string) string {
+	if names, ok := c.videoPartials[actor]; ok && len(names) > 0 {
+		return names[rand.IntN(len(names))]
+	}
+	return "/xfm.jpg"
 }
 
 func calculateDownloadQuotaUsage(ep *models.Transcript, duration time.Duration) int64 {

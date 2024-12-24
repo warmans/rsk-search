@@ -523,9 +523,17 @@ func (b *Bot) buttons(customID CustomID, maxDialogOffset int32) []discordgo.Mess
 					},
 					Style:    discordgo.SecondaryButton,
 					CustomID: encodeCustomIDForAction("up", customID.withOption(withModifier(ContentModifierTextOnly))),
-				})
+				},
+				discordgo.Button{
+					Label: "Randomize image",
+					Emoji: &discordgo.ComponentEmoji{
+						Name: "📺",
+					},
+					Style:    discordgo.SecondaryButton,
+					CustomID: encodeCustomIDForAction("up", customID.withOption(withModifier(ContentModifierGifOnly))),
+				},
+			)
 		}
-
 	}
 
 	buttons = append(buttons, postButtons)
@@ -538,31 +546,36 @@ func (b *Bot) queryComplete(s *discordgo.Session, i *discordgo.InteractionCreate
 	if i.Type != discordgo.InteractionMessageComponent {
 		return
 	}
+	// can we get the files of the existing message?
+	var files []*discordgo.File
+	if len(i.Message.Attachments) > 0 {
+		attachment := i.Message.Attachments[0]
+		image, err := http.Get(attachment.URL)
+		if err != nil {
+			b.respondError(s, i, fmt.Errorf("failed to get original message attachment: %w", err))
+			return
+		}
+		defer image.Body.Close()
 
-	if customIDPayload == "" {
-		b.respondError(s, i, fmt.Errorf("missing customID"))
-		return
-	}
-	customID, err := decodeCustomIDPayload(customIDPayload)
-	if err != nil {
-		b.respondError(s, i, fmt.Errorf("failed to decode customID: %w", err))
-		return
+		files = append(files, &discordgo.File{
+			Name:        attachment.Filename,
+			Reader:      image.Body,
+			ContentType: attachment.ContentType,
+		})
 	}
 
-	username := "unknown"
-	if i.Member != nil {
-		username = i.Member.DisplayName()
+	interactionResponse := &discordgo.InteractionResponse{
+		Type: discordgo.InteractionResponseChannelMessageWithSource,
+		Data: &discordgo.InteractionResponseData{
+			Content:     i.Message.Content,
+			Files:       files,
+			Attachments: util.ToPtr([]*discordgo.MessageAttachment{}),
+		},
 	}
 
-	// respond audio
-	interactionResponse, _, err, cleanup := b.audioFileResponse(customID, username)
-	defer cleanup()
-	if err != nil {
+	if err := s.InteractionRespond(i.Interaction, interactionResponse); err != nil {
 		b.respondError(s, i, err)
 		return
-	}
-	if err = s.InteractionRespond(i.Interaction, interactionResponse); err != nil {
-		b.respondError(s, i, err)
 	}
 }
 
