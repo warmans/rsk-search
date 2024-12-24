@@ -263,16 +263,21 @@ func ServerCmd() *cobra.Command {
 				),
 			}
 
+			downloads, err := httpsrv.NewDownloadService(
+				logger,
+				srvCfg,
+				persistentDBConn,
+				metrics.NewHTTPMetrics(),
+				episodeCache,
+				mediaCache,
+			)
+			if err != nil {
+				return err
+			}
+
 			httpServices := []server.HTTPService{
+				downloads,
 				httpsrv.NewMetricsService(),
-				httpsrv.NewDownloadService(
-					logger,
-					srvCfg,
-					persistentDBConn,
-					metrics.NewHTTPMetrics(),
-					episodeCache,
-					mediaCache,
-				),
 			}
 			if oauthCfg.RedditSecret != "" {
 				httpServices = append(httpServices, httpsrv.NewOauthService(logger, tokenCache, persistentDBConn, auth, oauthCfg, srvCfg))
