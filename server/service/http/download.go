@@ -180,20 +180,24 @@ func (c *DownloadService) servePartialAudioFile(
 		mimeType = "image/gif"
 		writeData = func(ss time.Duration, to time.Duration, w io.Writer) error {
 
-			startTime := rand.IntN(5)
-			input := []*ffmpeg_go.Stream{
-				ffmpeg_go.Input(fmt.Sprintf(
-					"%s/%s",
-					c.serviceConfig.VideoPartialsBasePath,
-					c.getVideoPartialName(rawDialog[0].Actor),
-				), ffmpeg_go.KwArgs{
-					"ss": fmt.Sprintf("%d", startTime),
-				}),
+			videoName := c.getVideoPartialName(rawDialog[0].Actor)
+			args := ffmpeg_go.KwArgs{}
+			if strings.HasSuffix(videoName, ".mp4") {
+				args["ss"] = fmt.Sprintf("%d", rand.IntN(5))
 			}
 
 			return ffmpeg_go.
 				Output(
-					input,
+					[]*ffmpeg_go.Stream{
+						ffmpeg_go.Input(
+							fmt.Sprintf(
+								"%s/%s",
+								c.serviceConfig.VideoPartialsBasePath,
+								videoName,
+							),
+							args,
+						),
+					},
 					"pipe:",
 					ffmpeg_go.KwArgs{
 						"format": "gif",
