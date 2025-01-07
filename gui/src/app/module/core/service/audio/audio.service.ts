@@ -67,6 +67,9 @@ export class AudioService {
   });
   public status: Observable<Status> = this.statusSub.asObservable();
 
+  private volumeLoadedSub: BehaviorSubject<number> = new BehaviorSubject<number>(1);
+  public volumeLoaded: Observable<number> = this.volumeLoadedSub.asObservable();
+
   private modeSub: BehaviorSubject<PlayerMode> = new BehaviorSubject<PlayerMode>(PlayerMode.Default);
   public mode$: Observable<PlayerMode> = this.modeSub.asObservable();
 
@@ -113,6 +116,7 @@ export class AudioService {
         percentElapsed: timeState.percentElapsed,
         percentLoaded: pcntLoaded,
         listened: this.modeSub.getValue() === PlayerMode.Default ? history.indexOf(file.audioID) > -1 : false,
+        volume: this.audio.volume,
       };
       this.statusSub.next(status);
 
@@ -343,7 +347,8 @@ export class AudioService {
         console.error(`failed to load audio service state: ${e}`);
       }
     }
-    this.audio.volume = vol || 1;
+    this.audio.volume = vol ?? 1;
+    this.volumeLoadedSub.next(this.audio.volume);
   }
 
   private statusStorageKey() {

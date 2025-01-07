@@ -51,6 +51,12 @@ export class AudioPlayerV2Component implements OnInit, OnDestroy {
       this.playerProgressControl.setValue(sta.currentTime, { emitEvent: false });
     });
 
+    // volume is loaded from local storage across sessions
+    this.audioService.volumeLoaded.pipe(takeUntil(this.unsubscribe$)).subscribe((vol) => {
+      this.volumeControl.setValue(vol * 100);
+    });
+
+    // persist it back if the volume is changed via our control.
     this.volumeControl.valueChanges.pipe(takeUntil(this.unsubscribe$)).subscribe((v) => {
       this.audioService.setVolume(v / 100);
     });

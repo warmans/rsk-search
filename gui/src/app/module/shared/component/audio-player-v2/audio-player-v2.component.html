@@ -23,7 +23,7 @@
       <div class="d-flex">
         <div *ngIf="audioStatus.state === states.ended">End</div>
         <div *ngIf="audioStatus.state !== states.ended">
-          <a *ngIf="audioStatus.audioID && audioStatus.mode !== PlayerMode.Standalone" [routerLink]="['/ep', 'ep-'+audioStatus.audioID]" [fragment]="'sec-'+audioStatus.currentTime">{{audioStatus?.currentTime | formatSeconds}}</a>
+          <a *ngIf="audioStatus.audioID && audioStatus.mode !== PlayerMode.Standalone" [routerLink]="['/ep', 'ep-'+audioStatus.audioID]" [fragment]="'sec-'+audioStatus.currentTime.toFixed(0)">{{audioStatus?.currentTime | formatSeconds}}</a>
           <span *ngIf="audioStatus.audioID && audioStatus.mode === PlayerMode.Standalone">{{audioStatus?.currentTime | formatSeconds}}</span>
         </div>
       </div>
