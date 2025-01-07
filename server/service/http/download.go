@@ -433,13 +433,20 @@ func (c *DownloadService) DownloadEpisodeMedia(resp http.ResponseWriter, req *ht
 
 	// whole audio file
 
+	var filePath string
+	if req.URL.Query().Get("remastered") == "1" && episode.Media.RemasteredAudioFileName != "" {
+		filePath = path.Join(c.serviceConfig.MediaBasePath, "episode", "remaster", episode.Media.RemasteredAudioFileName)
+	} else {
+		filePath = path.Join(c.serviceConfig.MediaBasePath, "episode", episode.Media.AudioFileName)
+	}
+
 	c.logger.Debug(
 		"Exporting full file",
 		zap.String("format", wantFormat),
 		zap.String("episode_id", episode.ShortID()),
+		zap.String("file_path", filePath),
 	)
 
-	filePath := path.Join(c.serviceConfig.MediaBasePath, "episode", episode.Media.AudioFileName)
 	fileStat, err := os.Stat(filePath)
 	if err != nil {
 		c.logger.Error("Failed to find media file", zap.String("path", filePath))

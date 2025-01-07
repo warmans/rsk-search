@@ -1,5 +1,6 @@
-import {Injectable} from '@angular/core';
+import {Injectable, Query} from '@angular/core';
 import {BehaviorSubject, combineLatest, Observable} from 'rxjs';
+import {HttpParams} from "@angular/common/http";
 
 const STORAGE_KEY_LISTENLOG = 'audio_service_listen_log';
 const STORAGE_KEY_VOLUME = 'audio_service_volume';
@@ -185,7 +186,15 @@ export class AudioService {
       return;
     }
     this.pauseAudio();
-    let audioUri: string = `/dl/media/${id}.mp3` + ((startMs || endMs) ? `?ts=${startMs}${endMs ? "-" + endMs : ""}` : ``);
+
+    let query = new HttpParams()
+    if (startMs || endMs) {
+      query = query.set("ts", `${startMs}${endMs ? "-" + endMs : ""}`)
+    }
+    if (mode == 'radio') {
+      query = query.set("remastered", "1")
+    }
+    let audioUri: string = `/dl/media/${id}.mp3?` + query.toString();
 
     this.audioID = id;
     if (id !== null) {
