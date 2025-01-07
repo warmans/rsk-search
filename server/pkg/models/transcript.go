@@ -161,10 +161,12 @@ func (d Dialog) Proto(matchedRow bool) *api.Dialog {
 }
 
 type Media struct {
-	VideoFileName   string `json:"video_file_name"`
-	VideoDurationMs int64  `json:"video_duration_ms"`
-	AudioFileName   string `json:"audio_file_name"`
-	AudioDurationMs int64  `json:"audio_duration_ms"`
+	VideoFileName             string `json:"video_file_name"`
+	VideoDurationMs           int64  `json:"video_duration_ms"`
+	AudioFileName             string `json:"audio_file_name"`
+	AudioDurationMs           int64  `json:"audio_duration_ms"`
+	RemasteredAudioFileName   string `json:"remastered_audio_file_name"`
+	RemasteredAudioDurationMs int64  `json:"remastered_audio_duration_ms"`
 	// tell the UI to only expose minimal audio (e.g. in the editor).
 	AudioRestricted bool `json:"audio_restricted"`
 }

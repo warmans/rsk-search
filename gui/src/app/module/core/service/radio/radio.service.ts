@@ -123,7 +123,6 @@ export class RadioService {
         },
         currentTimestampMs: 0,
       };
-      console.log("new state", this.state);
 
       this.applyState();
     })

@@ -52,6 +52,7 @@ func RootCmd() *cobra.Command {
 	root.AddCommand(CountWords())
 	root.AddCommand(MergeTimestampsAAICommand())
 	root.AddCommand(RefreshAudioMetadataCmd())
+	root.AddCommand(AddRemasterAudioCmd())
 
 	//video
 	root.AddCommand(ExtractVideoImages())
