@@ -46,7 +46,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     private clipboardService: ClipboardService,
     private router: Router) {
 
-    this.banner = Math.random() > 0.5 ? {image: 'partridge-banner.png', url: 'https://discord.gg/nKABACyy6d'} : {image: 'pilk-christmas-banner.png', url: 'https://woodymakesgames.itch.io/averypilkingtonchristmas'};
+    this.banner = {image: 'partridge-banner.png', url: 'https://discord.gg/nKABACyy6d'};
 
     this.currentSorting.valueChanges.pipe(takeUntil(this.unsubscribe$)).subscribe((val) => {
       if (!val) {

@@ -25,14 +25,14 @@ $themes: (
     'text-color': #333333,
     'bg-color': #f6f6f6,
     'fg-body': #fff,
-    'fg-body-darker': #F7F7F7,
+    'fg-body-darker': darken(#F7F7F7, 2%),
     'progress-bg': #e9ecef,
-    'navbar-bg': #f8f9fa,
+    'navbar-bg': darken(#F7F7F7, 10%),
     'code-bg': #d9d9d9,
     'hover-highlight': transparentize(#E15132, 0.2),
 
     // stop calling vars "lighter/darker" as it doesn't always apply for each theme.
-    'header-block-bg': #F7F7F7,
+    'header-block-bg': darken(#F7F7F7, 2%),
     'header-block-border': #dee2e6,
     'header-block-text': #333333,
     'header-block-bg-highlight': darken(#F7F7F7, 10%),

@@ -31,8 +31,6 @@ pre {
 .navbar {
   z-index: 100;
 
-  @include drop-shadow;
-
   @include theme() {
     background-color: theme-get('navbar-bg') !important;
     border-bottom: 1px solid theme-get('fg-body');
@@ -52,6 +50,10 @@ pre {
     @include theme() {
       color: theme-get("text-color")
     }
+  }
+
+  a:hover {
+    text-decoration: none;
   }
 }
 
@@ -248,7 +250,8 @@ pre {
   }
 
   .nav-link:hover {
-    border: 1px solid transparent;
+    border: 1px solid transparent !important;
+    color: darken($primary, 10%) !important;
   }
 }
 

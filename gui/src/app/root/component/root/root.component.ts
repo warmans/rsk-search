@@ -1,8 +1,7 @@
 import {Component, EventEmitter, OnDestroy, OnInit, Renderer2} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {Claims, SessionService} from 'src/app/module/core/service/session/session.service';
 import {takeUntil} from 'rxjs/operators';
-import {SearchAPIClient} from 'src/app/lib/api-client/services/search';
 import {RskQuotas} from 'src/app/lib/api-client/models';
 import {QuotaService} from 'src/app/module/core/service/quota/quota.service';
 import {RadioService} from "../../../module/core/service/radio/radio.service";
@@ -76,7 +75,7 @@ export class RootComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.darkTheme = localStorage.getItem('theme') === 'dark';
+    this.darkTheme = (localStorage.getItem('theme') || 'dark') === 'dark';
     this.updateTheme();
   }
 
