@@ -24,12 +24,14 @@
 </div>
 
 <div class="card episode-list">
-  <div class="card-header d-flex p-0">
-    <a
-      *ngFor="let sub of subSections[activePublicationType]"
-      class="nav-link clickable"
-      [ngClass]="{'active': activeSubSection === sub, 'text-muted': activeSubSection !== sub}"
-      (click)="loadSubsection(sub)">{{sub}}</a>
+  <div class="card-header p-2" >
+    <span *ngIf="!searchInput.value" class="d-flex">
+      <a
+        *ngFor="let sub of subSections[activePublicationType]"
+        class="nav-link clickable py-0  pr-3 pl-1"
+        [ngClass]="{'active': activeSubSection === sub, 'text-muted': activeSubSection !== sub}"
+        (click)="loadSubsection(sub)">{{sub}}</a>
+      </span>
   </div>
   <div class="card-body">
     <div *ngFor="let ep of filteredTranscriptList"

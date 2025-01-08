@@ -33,7 +33,7 @@ pre {
 
   @include theme() {
     background-color: theme-get('navbar-bg') !important;
-    border-bottom: 1px solid theme-get('fg-body');
+    border-bottom: 2px solid theme-get('navbar-border');
   }
   .btn:focus,.btn:active {
     outline: none !important;

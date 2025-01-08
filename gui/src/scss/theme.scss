@@ -6,6 +6,7 @@ $themes: (
     'fg-body-darker': #2A2E33,
     'progress-bg': #17191F,
     'navbar-bg': #343A40,
+    'navbar-border': #343A40,
     'code-bg': #17191F,
     'hover-highlight': rgba(255, 255, 255, 0.2),
 
@@ -27,7 +28,8 @@ $themes: (
     'fg-body': #fff,
     'fg-body-darker': darken(#F7F7F7, 2%),
     'progress-bg': #e9ecef,
-    'navbar-bg': darken(#F7F7F7, 10%),
+    'navbar-bg': #f6f6f6,
+    'navbar-border': #dee2e6,
     'code-bg': #d9d9d9,
     'hover-highlight': transparentize(#E15132, 0.2),
 
