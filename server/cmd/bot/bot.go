@@ -22,6 +22,7 @@ func RootCommand() *cobra.Command {
 	var guildID string
 	var apiTarget string
 	var webUrl string
+	var archiveDir string
 
 	cmd := &cobra.Command{
 		Use:   "discord-bot",
@@ -58,6 +59,7 @@ func RootCommand() *cobra.Command {
 				session,
 				guildID,
 				webUrl,
+				archiveDir,
 				createTranscriptClient(grpcConn),
 				createSearchClient(grpcConn),
 			)
@@ -82,6 +84,7 @@ func RootCommand() *cobra.Command {
 	flag.StringVarEnv(cmd.Flags(), &guildID, "", "discord-guild-id", "", "discord guild/server ID")
 	flag.StringVarEnv(cmd.Flags(), &apiTarget, "", "api-target", "127.0.0.1:9090", "gRPC API target")
 	flag.StringVarEnv(cmd.Flags(), &webUrl, "", "web-url", "http://127.0.0.1:4200", "Base web address used for links")
+	flag.StringVarEnv(cmd.Flags(), &archiveDir, "", "archive-dir", "./var/archive", "Location to archive files via archive command")
 	flag.Parse()
 
 	return cmd
