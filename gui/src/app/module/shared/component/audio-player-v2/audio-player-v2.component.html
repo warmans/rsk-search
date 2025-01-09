@@ -30,6 +30,10 @@
       <div>{{audioStatus?.totalTime | formatSeconds}}</div>
     </div>
   </div>
+  <div class="sleep p-2 d-flex align-items-center" *ngIf="audioStatus?.state === states.playing">
+    <div title="Add 15 minutes to sleep timer" class="clickable p-1" (click)="activeSleepTimer()"><i class="bi-stopwatch"></i></div>
+    <span class="clickable ml-2" title="click to clear" (click)="deactivateSleepTimer()" *ngIf="this.audioStatus.sleepTimerRemainder">{{ this.audioStatus.sleepTimerRemainder | formatSeconds:true }} &times;</span>
+  </div>
   <div class="volume p-2 d-flex align-items-center">
     <i class="bi bi-volume-up mr-1"></i>
     <input type="range" min="0" max="100" [formControl]="volumeControl">

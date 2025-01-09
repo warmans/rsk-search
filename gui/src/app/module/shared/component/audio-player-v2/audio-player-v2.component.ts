@@ -96,4 +96,12 @@ export class AudioPlayerV2Component implements OnInit, OnDestroy {
   }
 
   protected readonly PlayerMode = PlayerMode;
+
+  activeSleepTimer() {
+    this.audioService.incrementSleepTimer(60 * 15);
+  }
+
+  deactivateSleepTimer() {
+    this.audioService.clearSleepTimer();
+  }
 }

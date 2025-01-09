@@ -22,6 +22,7 @@ export interface Status {
   percentElapsed: number;
   percentLoaded: number;
   listened: boolean;
+  sleepTimerRemainder: number | undefined;
 }
 
 export interface TimeStatus {
@@ -65,6 +66,7 @@ export class AudioService {
     percentElapsed: 0,
     percentLoaded: 0,
     listened: false,
+    sleepTimerRemainder: undefined,
   });
   public status: Observable<Status> = this.statusSub.asObservable();
 
@@ -93,6 +95,9 @@ export class AudioService {
 
   public audioHistoryLog = this.audioHistoryLogSub.asObservable();
 
+  private sleepTimerRemaining: number = undefined;
+  private sleepInterval: any;
+
   constructor() {
     this.audio = new Audio();
     this.attachListeners();
@@ -100,6 +105,9 @@ export class AudioService {
     this.playerStatusSub.subscribe((playerState) => {
       if (playerState === PlayerState.ended) {
         this.persistEpisodeListened(this.audioID);
+        if (this.modeSub.getValue() !== 'radio') {
+          this.clearSleepTimer();
+        }
       }
     })
 
@@ -118,6 +126,7 @@ export class AudioService {
         percentLoaded: pcntLoaded,
         listened: this.modeSub.getValue() === PlayerMode.Default ? history.indexOf(file.audioID) > -1 : false,
         volume: this.audio.volume,
+        sleepTimerRemainder: this.sleepTimerRemaining,
       };
       this.statusSub.next(status);
 
@@ -200,7 +209,7 @@ export class AudioService {
     if (id !== null) {
       this.audio.src = audioUri
     }
-    this.modeSub.next(mode);
+    this.modeSub.next(mode ?? PlayerMode.Default);
     this.audioSourceSub.next({audioFile: audioUri, audioID: id, audioName: name, mode: mode});
   }
 
@@ -268,6 +277,30 @@ export class AudioService {
 
   public markAsUnplayed(): void {
     this.persistEpisodeUnlistened(this.audioID);
+  }
+
+  public incrementSleepTimer(durationSeconds: number) {
+    if (this.sleepTimerRemaining == null) {
+      this.sleepTimerRemaining = 0;
+    }
+    this.sleepTimerRemaining += 1000 * durationSeconds;
+    if (this.sleepInterval) {
+      return;
+    }
+    this.sleepInterval = setInterval(() => {
+      if (this.sleepTimerRemaining <= 0) {
+        this.clearSleepTimer();
+        this.pauseAudio();
+      } else {
+        this.sleepTimerRemaining -= 1000;
+      }
+    }, 1000)
+  }
+
+  public clearSleepTimer() {
+    this.sleepTimerRemaining = 0;
+    clearInterval(this.sleepInterval);
+    this.sleepInterval = undefined;
   }
 
   private calculateTime = (evt) => {

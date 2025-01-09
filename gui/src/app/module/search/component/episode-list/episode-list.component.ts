@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit} from '@angular/core';
 import {SearchAPIClient} from 'src/app/lib/api-client/services/search';
 import {debounceTime, distinctUntilChanged, takeUntil} from 'rxjs/operators';
 import {RskPublicationType, RskShortTranscript, RskTranscriptList} from 'src/app/lib/api-client/models';
@@ -99,7 +99,6 @@ export class EpisodeListComponent implements OnInit, OnDestroy {
 
     this.filteredTranscriptList = (this.transcriptList?.
     filter((t => {
-      console.log(this.activeSubSection);
       return t.publicationType === this.activePublicationType && (!this.activeSubSection || `${t.publication}-S${t.series}` === this.activeSubSection)
     })) || []).
     sort((v, k): number => {
