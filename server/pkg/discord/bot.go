@@ -124,10 +124,10 @@ func NewBot(
 					},
 				},
 			},
-			{
-				Name: "scrimp-quick-archive",
-				Type: discordgo.MessageApplicationCommand,
-			},
+			//{
+			//	Name: "scrimp-archive",
+			//	Type: discordgo.MessageApplicationCommand,
+			//},
 		},
 	}
 	bot.commandHandlers = map[string]func(s *discordgo.Session, i *discordgo.InteractionCreate){
