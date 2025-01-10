@@ -880,9 +880,7 @@ func (b *Bot) archiveModalOpen(s *discordgo.Session, i *discordgo.InteractionCre
 }
 
 func (b *Bot) completeArchive(s *discordgo.Session, i *discordgo.InteractionCreate, customIDPayload string) {
-	fileNames := []string{}
 	for _, v := range i.Message.Attachments {
-		fileNames = append(fileNames, v.Filename)
 		if err := b.archiveFile(v.Filename, v.URL); err != nil {
 			b.respondError(s, i, err)
 			return
@@ -965,7 +963,7 @@ func (b *Bot) createArchiveMeta(metaJSON string) error {
 	}
 	defer metadata.Close()
 
-	_, err = fmt.Fprintf(metadata, metaJSON)
+	_, err = fmt.Fprint(metadata, metaJSON)
 	if err != nil {
 		b.logger.Error("failed to create metadata", zap.Error(err))
 		return nil
