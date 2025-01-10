@@ -20,6 +20,7 @@ import {CatalogWarehouseComponent} from "../module/more-shite/component/catalog-
 import {RandomQuoteComponent} from "../module/more-shite/page/random-quote/random-quote.component";
 import {SongSearchComponent} from "../module/more-shite/page/song-search/song-search.component";
 import {CommunityProjectsComponent} from "../module/more-shite/page/community-projects/community-projects.component";
+import {ArchiveComponent} from "../module/more-shite/page/archive/archive.component";
 
 const routes: Routes = [
   {
@@ -108,6 +109,10 @@ const routes: Routes = [
       {
         path: "community-projects",
         component: CommunityProjectsComponent,
+      },
+      {
+        path: "archive",
+        component: ArchiveComponent,
       },
       {
         path: '',

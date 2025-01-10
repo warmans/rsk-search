@@ -6,6 +6,7 @@ import (
 	"github.com/blugelabs/bluge"
 	"github.com/spf13/afero"
 	"github.com/spf13/cobra"
+	"github.com/warmans/rsk-search/pkg/archive"
 	"github.com/warmans/rsk-search/pkg/assemblyai"
 	"github.com/warmans/rsk-search/pkg/coffee"
 	"github.com/warmans/rsk-search/pkg/data"
@@ -206,6 +207,8 @@ func ServerCmd() *cobra.Command {
 				logger.Fatal("failed to create media cache", zap.Error(err))
 			}
 
+			archiveStore := archive.NewStore(srvCfg.ArchiveBasePath)
+
 			grpcServices := []server.GRPCService{
 				grpc.NewSearchService(
 					logger,
@@ -254,6 +257,7 @@ func ServerCmd() *cobra.Command {
 				grpc.NewCommunityService(
 					logger,
 					readOnlyStoreConn,
+					archiveStore,
 				),
 				grpc.NewRadioService(
 					logger,
@@ -270,6 +274,7 @@ func ServerCmd() *cobra.Command {
 				metrics.NewHTTPMetrics(),
 				episodeCache,
 				mediaCache,
+				archiveStore,
 			)
 			if err != nil {
 				return err

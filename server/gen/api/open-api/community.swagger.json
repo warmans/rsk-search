@@ -19,6 +19,29 @@
     "application/json"
   ],
   "paths": {
+    "/api/community/archive": {
+      "get": {
+        "summary": "Lists archive items.",
+        "operationId": "listArchive",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskArchiveList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "community"
+        ]
+      }
+    },
     "/api/community/project": {
       "get": {
         "summary": "Lists community projects.",
@@ -104,6 +127,37 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "rskArchive": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "relatedEpisode": {
+          "type": "string"
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "rskArchiveList": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rskArchive"
           }
         }
       }

@@ -22,6 +22,13 @@ export class GuardedCommunityAPIClient extends CommunityAPIClient {
     super(httpClient, domain, options);
   }
 
+  listArchive(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskArchiveList> {
+    return super.listArchive(requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRskArchiveList(res) || console.error(`TypeGuard for response 'RskArchiveList' caught inconsistency.`, res)));
+  }
+
   listCommunityProjects(
     args: {
       filter?: string,

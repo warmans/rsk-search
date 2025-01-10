@@ -9,6 +9,7 @@ import (
 	"github.com/pkg/errors"
 	"github.com/warmans/rsk-search/gen/api"
 	"github.com/warmans/rsk-search/pkg/filter"
+	"github.com/warmans/rsk-search/pkg/meta"
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/searchterms"
 	"github.com/warmans/rsk-search/pkg/util"
@@ -131,16 +132,16 @@ func NewBot(
 	}
 	bot.commandHandlers = map[string]func(s *discordgo.Session, i *discordgo.InteractionCreate){
 		"scrimp":         bot.queryBegin,
-		"scrimp-archive": bot.startArchiveProcess,
+		"scrimp-archive": bot.startArchive,
 	}
 	bot.buttonHandlers = map[string]func(s *discordgo.Session, i *discordgo.InteractionCreate, suffix string){
-		"cfm":               bot.queryComplete,
-		"up":                bot.updatePreview,
-		"archive":           bot.completeArchive,
-		"archive-desc-open": bot.archiveDescribe,
+		"cfm":                bot.queryComplete,
+		"up":                 bot.updatePreview,
+		"archive":            bot.completeArchive,
+		"archive-modal-open": bot.archiveModalOpen,
 	}
 	bot.modalHandlers = map[string]func(s *discordgo.Session, i *discordgo.InteractionCreate, suffix string){
-		"archive-desc-add": bot.setArchiveDescription,
+		"archive-modal-save": bot.archiveModalSave,
 	}
 
 	return bot
@@ -732,7 +733,7 @@ func (b *Bot) audioFileResponse(customID CustomID, username string) (*discordgo.
 	}, dialog.MaxDialogPosition, nil, cancelFunc
 }
 
-func (b *Bot) startArchiveProcess(s *discordgo.Session, i *discordgo.InteractionCreate) {
+func (b *Bot) startArchive(s *discordgo.Session, i *discordgo.InteractionCreate) {
 
 	var files []*discordgo.File
 	var fileNames []string
@@ -785,7 +786,7 @@ func (b *Bot) startArchiveProcess(s *discordgo.Session, i *discordgo.Interaction
 					discordgo.Button{
 						Label:    "Add Description",
 						Style:    discordgo.SecondaryButton,
-						CustomID: "archive-desc-open:",
+						CustomID: "archive-modal-open:",
 					},
 					discordgo.Button{
 						Label:    "Submit",
@@ -805,27 +806,30 @@ func (b *Bot) startArchiveProcess(s *discordgo.Session, i *discordgo.Interaction
 
 }
 
-func (b *Bot) setArchiveDescription(s *discordgo.Session, i *discordgo.InteractionCreate, customIDPayload string) {
+func (b *Bot) archiveModalSave(s *discordgo.Session, i *discordgo.InteractionCreate, customIDPayload string) {
 
-	meta := &models.ArchiveMeta{}
-	if err := json.Unmarshal([]byte(i.Message.Content), meta); err != nil {
+	archiveMeta := &models.ArchiveMeta{}
+	if err := json.Unmarshal([]byte(i.Message.Content), archiveMeta); err != nil {
 		b.respondError(s, i, err)
 		return
 	}
 
-	meta.Description = i.ModalSubmitData().Components[0].(*discordgo.ActionsRow).Components[0].(*discordgo.TextInput).Value
-	meta.Episode = i.ModalSubmitData().Components[1].(*discordgo.ActionsRow).Components[0].(*discordgo.TextInput).Value
+	archiveMeta.Description = i.ModalSubmitData().Components[0].(*discordgo.ActionsRow).Components[0].(*discordgo.TextInput).Value
+	archiveMeta.Episode = i.ModalSubmitData().Components[1].(*discordgo.ActionsRow).Components[0].(*discordgo.TextInput).Value
+	if !meta.IsValidEpisodeID(archiveMeta.Episode) {
+		archiveMeta.Episode = ""
+	}
 
 	if err := s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
 		Type: discordgo.InteractionResponseUpdateMessage,
 		Data: &discordgo.InteractionResponseData{
-			Content: mustEncodeJson(meta),
+			Content: mustEncodeJson(archiveMeta),
 			Components: []discordgo.MessageComponent{
 				discordgo.ActionsRow{Components: []discordgo.MessageComponent{
 					discordgo.Button{
 						Label:    "Edit Description",
 						Style:    discordgo.SecondaryButton,
-						CustomID: "archive-desc-open:",
+						CustomID: "archive-modal-open:",
 					},
 					discordgo.Button{
 						Label:    "Submit",
@@ -841,31 +845,30 @@ func (b *Bot) setArchiveDescription(s *discordgo.Session, i *discordgo.Interacti
 	}
 }
 
-func (b *Bot) archiveDescribe(s *discordgo.Session, i *discordgo.InteractionCreate, customIDPayload string) {
+func (b *Bot) archiveModalOpen(s *discordgo.Session, i *discordgo.InteractionCreate, customIDPayload string) {
 	if err := s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
 		Type: discordgo.InteractionResponseModal,
 		Data: &discordgo.InteractionResponseData{
-			CustomID: "archive-desc-add:",
-			Title:    "Edit and Post GIF (no preview)",
+			CustomID: "archive-modal-save:",
+			Title:    "Add Archive Metadata",
 			Components: []discordgo.MessageComponent{
 				discordgo.ActionsRow{
 					Components: []discordgo.MessageComponent{
 						discordgo.TextInput{
-							CustomID:  "description",
-							Label:     "Description",
-							Style:     discordgo.TextInputParagraph,
-							Required:  true,
-							MaxLength: 255,
+							CustomID: "description",
+							Label:    "Description",
+							Style:    discordgo.TextInputParagraph,
+							Required: true,
 						},
 					},
 				},
 				discordgo.ActionsRow{
 					Components: []discordgo.MessageComponent{discordgo.TextInput{
 						CustomID:  "episode",
-						Label:     "Episode (in the format xfm-S1E01)",
+						Label:     "Optional Related Episode (format xfm-S01E01)",
 						Style:     discordgo.TextInputShort,
 						Required:  false,
-						MaxLength: 255,
+						MaxLength: 128,
 					}},
 				},
 			},

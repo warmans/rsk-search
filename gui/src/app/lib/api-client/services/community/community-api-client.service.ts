@@ -45,6 +45,21 @@ export class CommunityAPIClient implements CommunityAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  listArchive(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskArchiveList> {
+    const path = `/api/community/archive`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<models.RskArchiveList>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   listCommunityProjects(
     args: {
       filter?: string,

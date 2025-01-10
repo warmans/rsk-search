@@ -30,6 +30,17 @@ service CommunityService {
       tags: "community"
     };
   }
+
+  rpc ListArchive (ListArchiveRequest) returns (ArchiveList) {
+    option (google.api.http) = {
+      get: "/api/community/archive"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "listArchive",
+      summary: "Lists archive items."
+      tags: "community"
+    };
+  }
 }
 
 
@@ -54,4 +65,19 @@ message ListCommunityProjectsRequest{
 message CommunityProjectList {
   repeated CommunityProject projects = 1;
   int32 result_count = 2;
+}
+
+
+message ListArchiveRequest {
+}
+
+message ArchiveList {
+  repeated Archive items = 1;
+}
+
+message Archive {
+  string id = 1;
+  string description = 2;
+  string related_episode = 3;
+  repeated string files = 4;
 }

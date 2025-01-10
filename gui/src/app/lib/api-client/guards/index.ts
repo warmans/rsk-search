@@ -62,6 +62,34 @@ export function isRewardKind(arg: any): arg is models.RewardKind {
   ;
   }
 
+export function isRskArchive(arg: any): arg is models.RskArchive {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // description?: string
+    ( typeof arg.description === 'undefined' || typeof arg.description === 'string' ) &&
+    // files?: string[]
+    ( typeof arg.files === 'undefined' || (Array.isArray(arg.files) && arg.files.every((item: unknown) => typeof item === 'string')) ) &&
+    // id?: string
+    ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
+    // relatedEpisode?: string
+    ( typeof arg.relatedEpisode === 'undefined' || typeof arg.relatedEpisode === 'string' ) &&
+
+  true
+  );
+  }
+
+export function isRskArchiveList(arg: any): arg is models.RskArchiveList {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // items?: RskArchive[]
+    ( typeof arg.items === 'undefined' || (Array.isArray(arg.items) && arg.items.every((item: unknown) => isRskArchive(item))) ) &&
+
+  true
+  );
+  }
+
 export function isRskAudioQuality(arg: any): arg is models.RskAudioQuality {
   return false
    || arg === models.RskAudioQuality.AUDIO_QUALITY_UNKNOWN

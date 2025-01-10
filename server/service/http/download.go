@@ -7,6 +7,7 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/pkg/errors"
 	ffmpeg_go "github.com/warmans/ffmpeg-go"
+	"github.com/warmans/rsk-search/pkg/archive"
 	"github.com/warmans/rsk-search/pkg/data"
 	"github.com/warmans/rsk-search/pkg/mediacache"
 	"github.com/warmans/rsk-search/pkg/meta"
@@ -63,6 +64,7 @@ func NewDownloadService(
 	httpMetrics *metrics.HTTPMetrics,
 	episodeCache *data.EpisodeCache,
 	mediaCache *mediacache.Cache,
+	archiveStore *archive.Store,
 ) (*DownloadService, error) {
 
 	partials := map[string][]string{}
@@ -90,6 +92,7 @@ func NewDownloadService(
 		episodeCache:  episodeCache,
 		mediaCache:    mediaCache,
 		videoPartials: partials,
+		archiveStore:  archiveStore,
 	}, nil
 }
 
@@ -101,11 +104,14 @@ type DownloadService struct {
 	episodeCache  *data.EpisodeCache
 	mediaCache    *mediacache.Cache
 	videoPartials map[string][]string
+	archiveStore  *archive.Store
 }
 
 func (c *DownloadService) RegisterHTTP(ctx context.Context, router *mux.Router) {
 	router.Path("/dl/archive/episodes-json.zip").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DownloadJSONArchive)))
 	router.Path("/dl/archive/episodes-plaintext.zip").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DownloadPlaintextArchive)))
+	router.Path("/dl/archive/file/{name}").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DownloadArchiveFile)))
+
 	router.Path("/dl/episode/{episode}.json").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DownloadEpisodeJSON)))
 	router.Path("/dl/episode/{episode}.txt").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DownloadEpisodePlaintext)))
 
@@ -113,6 +119,7 @@ func (c *DownloadService) RegisterHTTP(ctx context.Context, router *mux.Router) 
 	router.Path("/dl/media/file/{name}").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DownloadFile)))
 	router.Path("/dl/media/{episode_id}.{format}").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DownloadEpisodeMedia)))
 	router.Path("/dl/sprite/{episode_id}.jpg").Handler(handlers.RecoveryHandler()(http.HandlerFunc(c.DownloadVideoSprite)))
+
 }
 
 func (c *DownloadService) DownloadJSONArchive(resp http.ResponseWriter, req *http.Request) {
@@ -667,6 +674,52 @@ func (c *DownloadService) getVideoPartialName(actor string) string {
 		return names[rand.IntN(len(names))]
 	}
 	return "xfm.jpg"
+}
+
+func (c *DownloadService) DownloadArchiveFile(resp http.ResponseWriter, req *http.Request) {
+	vars := mux.Vars(req)
+	fileName, ok := vars["name"]
+	if !ok {
+		http.Error(resp, "No episode identifier given", http.StatusBadRequest)
+		return
+	}
+
+	fileName = path.Clean(path.Base(fileName))
+	if fileName == "/" {
+		http.Error(resp, "Invalid filename", http.StatusBadRequest)
+		return
+	}
+
+	valid, err := c.archiveStore.IsValidFile(fileName)
+	if err != nil {
+		http.Error(resp, "Failed to process request", http.StatusInternalServerError)
+		return
+	}
+	if !valid {
+		http.Error(resp, "Unknown file", http.StatusNotFound)
+		return
+	}
+
+	filePath := path.Join(c.serviceConfig.ArchiveBasePath, fileName)
+
+	fileStat, err := os.Stat(filePath)
+	if err != nil {
+		c.logger.Error("Failed to find media file", zap.String("path", filePath))
+		http.Error(resp, "Episode not found", http.StatusNotFound)
+		return
+	}
+
+	if err = c.incrementQuotas(req.Context(), "archive_file", fileName, fileStat.Size()); err != nil {
+		c.logger.Error("Download failed processing quota", zap.Error(err))
+		if errors.Is(err, DownloadsOverQuota) {
+			http.Error(resp, "Bandwidth quota exhausted", http.StatusTooManyRequests)
+		} else {
+			http.Error(resp, "Failed to calculate bandwidth quota", http.StatusInternalServerError)
+		}
+		return
+	}
+
+	http.ServeFile(resp, req, filePath)
 }
 
 func calculateDownloadQuotaUsage(ep *models.Transcript, duration time.Duration) int64 {

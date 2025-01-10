@@ -9,6 +9,13 @@ export interface CommunityAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  listArchive(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskArchiveList>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   listCommunityProjects(
     args: {
       filter?: string,

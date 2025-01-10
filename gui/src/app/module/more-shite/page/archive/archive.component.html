@@ -1,0 +1,21 @@
+<div class="container pt-4">
+  <div class="w-100 d-flex flex-row align-items-center">
+    <div class="card w-100 mb-4">
+      <div class="card-header">
+        <div class="mb-2">Obscure Media Archive</div>
+
+      </div>
+      <div class="card-body pb-0 mb-0">
+        <table class="table">
+          <ng-container *ngFor="let item of archive">
+            <tr *ngFor="let img of item.files">
+              <td style="width: 500px"><img style="max-width: 500px;" [src]="'/dl/archive/file/'+img"/></td>
+              <td style="width: 100px;">{{ item.relatedEpisode }}</td>
+              <td>{{ item.description }}</td>
+            <tr>
+          </ng-container>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -5,6 +5,8 @@ export { DialogType } from './dialog-type.enum';
 export { FieldMetaKind } from './field-meta-kind.enum';
 export { NotificationKind } from './notification-kind.enum';
 export { RewardKind } from './reward-kind.enum';
+export { RskArchive } from './rsk-archive.model';
+export { RskArchiveList } from './rsk-archive-list.model';
 export { RskAudioQuality } from './rsk-audio-quality.enum';
 export { RskAuthor } from './rsk-author.model';
 export { RskAuthorContribution } from './rsk-author-contribution.model';

@@ -8,6 +8,7 @@ import {SongSearchComponent} from "./page/song-search/song-search.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {CommunityProjectsComponent} from "./page/community-projects/community-projects.component";
 import {CommunityAPIClient} from "../../lib/api-client/services/community";
+import {ArchiveComponent} from "./page/archive/archive.component";
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import {CommunityAPIClient} from "../../lib/api-client/services/community";
     CatalogWarehouseComponent,
     SongSearchComponent,
     CommunityProjectsComponent,
+    ArchiveComponent,
   ],
   imports: [
     CommonModule,

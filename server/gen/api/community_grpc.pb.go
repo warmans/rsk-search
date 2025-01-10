@@ -20,6 +20,7 @@ const _ = grpc.SupportPackageIsVersion7
 
 const (
 	CommunityService_ListProjects_FullMethodName = "/rsk.CommunityService/ListProjects"
+	CommunityService_ListArchive_FullMethodName  = "/rsk.CommunityService/ListArchive"
 )
 
 // CommunityServiceClient is the client API for CommunityService service.
@@ -27,6 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CommunityServiceClient interface {
 	ListProjects(ctx context.Context, in *ListCommunityProjectsRequest, opts ...grpc.CallOption) (*CommunityProjectList, error)
+	ListArchive(ctx context.Context, in *ListArchiveRequest, opts ...grpc.CallOption) (*ArchiveList, error)
 }
 
 type communityServiceClient struct {
@@ -46,11 +48,21 @@ func (c *communityServiceClient) ListProjects(ctx context.Context, in *ListCommu
 	return out, nil
 }
 
+func (c *communityServiceClient) ListArchive(ctx context.Context, in *ListArchiveRequest, opts ...grpc.CallOption) (*ArchiveList, error) {
+	out := new(ArchiveList)
+	err := c.cc.Invoke(ctx, CommunityService_ListArchive_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CommunityServiceServer is the server API for CommunityService service.
 // All implementations should embed UnimplementedCommunityServiceServer
 // for forward compatibility
 type CommunityServiceServer interface {
 	ListProjects(context.Context, *ListCommunityProjectsRequest) (*CommunityProjectList, error)
+	ListArchive(context.Context, *ListArchiveRequest) (*ArchiveList, error)
 }
 
 // UnimplementedCommunityServiceServer should be embedded to have forward compatible implementations.
@@ -59,6 +71,9 @@ type UnimplementedCommunityServiceServer struct {
 
 func (UnimplementedCommunityServiceServer) ListProjects(context.Context, *ListCommunityProjectsRequest) (*CommunityProjectList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListProjects not implemented")
+}
+func (UnimplementedCommunityServiceServer) ListArchive(context.Context, *ListArchiveRequest) (*ArchiveList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListArchive not implemented")
 }
 
 // UnsafeCommunityServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -90,6 +105,24 @@ func _CommunityService_ListProjects_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CommunityService_ListArchive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListArchiveRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CommunityServiceServer).ListArchive(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CommunityService_ListArchive_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CommunityServiceServer).ListArchive(ctx, req.(*ListArchiveRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // CommunityService_ServiceDesc is the grpc.ServiceDesc for CommunityService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -100,6 +133,10 @@ var CommunityService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListProjects",
 			Handler:    _CommunityService_ListProjects_Handler,
+		},
+		{
+			MethodName: "ListArchive",
+			Handler:    _CommunityService_ListArchive_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

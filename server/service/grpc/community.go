@@ -5,6 +5,7 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/warmans/rsk-search/gen/api"
+	"github.com/warmans/rsk-search/pkg/archive"
 	"github.com/warmans/rsk-search/pkg/store/ro"
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
@@ -13,16 +14,19 @@ import (
 func NewCommunityService(
 	logger *zap.Logger,
 	staticDB *ro.Conn,
+	archiveStore *archive.Store,
 ) *CommunityService {
 	return &CommunityService{
-		logger:   logger,
-		staticDB: staticDB,
+		logger:       logger,
+		staticDB:     staticDB,
+		archiveStore: archiveStore,
 	}
 }
 
 type CommunityService struct {
-	logger   *zap.Logger
-	staticDB *ro.Conn
+	logger       *zap.Logger
+	staticDB     *ro.Conn
+	archiveStore *archive.Store
 }
 
 func (s *CommunityService) RegisterGRPC(server *grpc.Server) {
@@ -53,4 +57,13 @@ func (s *CommunityService) ListProjects(ctx context.Context, request *api.ListCo
 		return nil, ErrInternal(err)
 	}
 	return projectList, nil
+}
+
+func (s *CommunityService) ListArchive(ctx context.Context, request *api.ListArchiveRequest) (*api.ArchiveList, error) {
+	items, err := s.archiveStore.ListItems()
+	if err != nil {
+		return nil, ErrInternal(err)
+	}
+
+	return items.Proto(), nil
 }
