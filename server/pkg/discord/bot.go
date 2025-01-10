@@ -125,23 +125,21 @@ func NewBot(
 				},
 			},
 			{
-				Name: "scrimp-archive",
+				Name: "scrimp-quick-archive",
 				Type: discordgo.MessageApplicationCommand,
 			},
 		},
 	}
 	bot.commandHandlers = map[string]func(s *discordgo.Session, i *discordgo.InteractionCreate){
-		"scrimp":         bot.queryBegin,
-		"scrimp-archive": bot.startArchive,
+		"scrimp":               bot.queryBegin,
+		"scrimp-quick-archive": bot.quickArchiveModalOpen,
 	}
 	bot.buttonHandlers = map[string]func(s *discordgo.Session, i *discordgo.InteractionCreate, suffix string){
-		"cfm":                bot.queryComplete,
-		"up":                 bot.updatePreview,
-		"archive":            bot.completeArchive,
-		"archive-modal-open": bot.archiveModalOpen,
+		"cfm": bot.queryComplete,
+		"up":  bot.updatePreview,
 	}
 	bot.modalHandlers = map[string]func(s *discordgo.Session, i *discordgo.InteractionCreate, suffix string){
-		"archive-modal-save": bot.archiveModalSave,
+		"quick-archive-modal-save": bot.quickArchiveModalSave,
 	}
 
 	return bot
@@ -733,124 +731,83 @@ func (b *Bot) audioFileResponse(customID CustomID, username string) (*discordgo.
 	}, dialog.MaxDialogPosition, nil, cancelFunc
 }
 
-func (b *Bot) startArchive(s *discordgo.Session, i *discordgo.InteractionCreate) {
+func (b *Bot) quickArchiveModalSave(s *discordgo.Session, i *discordgo.InteractionCreate, customIDPayload string) {
 
-	var files []*discordgo.File
-	var fileNames []string
-	var originalMessageID string
-
-	if typed, ok := i.Interaction.Data.(discordgo.ApplicationCommandInteractionData); ok {
-		originalMessageID = typed.TargetID
-		for _, v := range typed.Resolved.Messages[typed.TargetID].Attachments {
-
-			if !util.InStrings(v.ContentType, "image/png", "image/jpg", "image/jpeg", "image/webp") {
-				b.respondError(s, i, fmt.Errorf("file type is not allowed: %s", v.ContentType))
-				return
-			}
-
-			exists, err := b.checkArchiveFileExists(v.Filename)
-			if err != nil {
-				b.respondError(s, i, fmt.Errorf("failed to check file eixsts: %w", err))
-				return
-			}
-			if exists {
-				continue
-			}
-
-			//todo: check if the file already exists and only attach those that don't
-			// still needs
-
-			resp, err := http.Get(v.URL)
-			if err != nil {
-				b.respondError(s, i, err)
-				return
-			}
-			files = append(files, &discordgo.File{Reader: resp.Body, ContentType: v.ContentType, Name: v.Filename})
-			defer resp.Body.Close()
-
-			fileNames = append(fileNames, v.Filename)
-		}
-	}
-
-	if len(files) == 0 {
-		b.respondError(s, i, fmt.Errorf("all files already exist"))
-		return
-	}
-
-	err := s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
-		Type: discordgo.InteractionResponseChannelMessageWithSource,
-		Data: &discordgo.InteractionResponseData{
-			Content: mustEncodeJson(models.ArchiveMeta{OriginalMessageID: originalMessageID, Files: fileNames}),
-			Components: []discordgo.MessageComponent{
-				discordgo.ActionsRow{Components: []discordgo.MessageComponent{
-					discordgo.Button{
-						Label:    "Add Description",
-						Style:    discordgo.SecondaryButton,
-						CustomID: "archive-modal-open:",
-					},
-					discordgo.Button{
-						Label:    "Submit",
-						Style:    discordgo.PrimaryButton,
-						CustomID: "archive:",
-					},
-				}},
-			},
-			Files: files,
-			Flags: discordgo.MessageFlagsEphemeral,
-		},
-	})
+	msg, err := s.ChannelMessage(i.ChannelID, customIDPayload)
 	if err != nil {
 		b.respondError(s, i, err)
 		return
 	}
+	fileNames := []string{}
+	for _, v := range msg.Attachments {
 
-}
+		//todo: just ignore invalid ones?
+		if !util.InStrings(v.ContentType, "image/png", "image/jpg", "image/jpeg", "image/webp") {
+			b.respondError(s, i, fmt.Errorf("file type is not allowed: %s", v.ContentType))
+			return
+		}
 
-func (b *Bot) archiveModalSave(s *discordgo.Session, i *discordgo.InteractionCreate, customIDPayload string) {
+		exists, err := b.checkArchiveFileExists(v.Filename)
+		if err != nil {
+			b.respondError(s, i, fmt.Errorf("failed to check file eixsts: %w", err))
+			return
+		}
+		if exists {
+			continue
+		}
 
-	archiveMeta := &models.ArchiveMeta{}
-	if err := json.Unmarshal([]byte(i.Message.Content), archiveMeta); err != nil {
-		b.respondError(s, i, err)
-		return
+		if err := b.archiveFile(v.Filename, v.URL); err != nil {
+			b.respondError(s, i, err)
+			return
+		}
+
+		fileNames = append(fileNames, v.Filename)
 	}
 
+	archiveMeta := &models.ArchiveMeta{
+		OriginalMessageID: customIDPayload,
+		Files:             fileNames,
+	}
 	archiveMeta.Description = i.ModalSubmitData().Components[0].(*discordgo.ActionsRow).Components[0].(*discordgo.TextInput).Value
 	archiveMeta.Episode = i.ModalSubmitData().Components[1].(*discordgo.ActionsRow).Components[0].(*discordgo.TextInput).Value
 	if !meta.IsValidEpisodeID(archiveMeta.Episode) {
 		archiveMeta.Episode = ""
 	}
 
+	//todo show error if no files
+	if len(archiveMeta.Files) > 0 {
+		if err := b.createArchiveMeta(mustEncodeJson(archiveMeta)); err != nil {
+			b.respondError(s, i, err)
+			return
+		}
+	} else {
+		b.respondError(s, i, fmt.Errorf("no new files were added."))
+		return
+	}
+
 	if err := s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
-		Type: discordgo.InteractionResponseUpdateMessage,
-		Data: &discordgo.InteractionResponseData{
-			Content: mustEncodeJson(archiveMeta),
-			Components: []discordgo.MessageComponent{
-				discordgo.ActionsRow{Components: []discordgo.MessageComponent{
-					discordgo.Button{
-						Label:    "Edit Description",
-						Style:    discordgo.SecondaryButton,
-						CustomID: "archive-modal-open:",
-					},
-					discordgo.Button{
-						Label:    "Submit",
-						Style:    discordgo.PrimaryButton,
-						CustomID: "archive:",
-					},
-				}},
-			},
-		},
+		Type: discordgo.InteractionResponseChannelMessageWithSource,
+		Data: &discordgo.InteractionResponseData{Content: "Thank you!", Flags: discordgo.MessageFlagsEphemeral},
 	}); err != nil {
 		b.respondError(s, i, err)
 		return
 	}
 }
 
-func (b *Bot) archiveModalOpen(s *discordgo.Session, i *discordgo.InteractionCreate, customIDPayload string) {
+func (b *Bot) quickArchiveModalOpen(s *discordgo.Session, i *discordgo.InteractionCreate) {
+	var originalMessageID string
+	if typed, ok := i.Interaction.Data.(discordgo.ApplicationCommandInteractionData); ok {
+		originalMessageID = typed.TargetID
+	}
+	if originalMessageID == "" {
+		b.respondError(s, i, fmt.Errorf("failed to find original message ID"))
+		return
+	}
 	if err := s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
 		Type: discordgo.InteractionResponseModal,
 		Data: &discordgo.InteractionResponseData{
-			CustomID: "archive-modal-save:",
-			Title:    "Add Archive Metadata",
+			CustomID: "quick-archive-modal-save:" + originalMessageID,
+			Title:    "Add To Archive",
 			Components: []discordgo.MessageComponent{
 				discordgo.ActionsRow{
 					Components: []discordgo.MessageComponent{
@@ -864,37 +821,16 @@ func (b *Bot) archiveModalOpen(s *discordgo.Session, i *discordgo.InteractionCre
 				},
 				discordgo.ActionsRow{
 					Components: []discordgo.MessageComponent{discordgo.TextInput{
-						CustomID:  "episode",
-						Label:     "Optional Related Episode (format xfm-S01E01)",
-						Style:     discordgo.TextInputShort,
-						Required:  false,
-						MaxLength: 128,
+						CustomID:    "episode",
+						Label:       "Optional Related Episode (format xfm-S01E01)",
+						Style:       discordgo.TextInputShort,
+						Required:    false,
+						MaxLength:   128,
+						Placeholder: "e.g. xfm-S01E01",
 					}},
 				},
 			},
 		},
-	}); err != nil {
-		b.respondError(s, i, err)
-		return
-	}
-}
-
-func (b *Bot) completeArchive(s *discordgo.Session, i *discordgo.InteractionCreate, customIDPayload string) {
-	for _, v := range i.Message.Attachments {
-		if err := b.archiveFile(v.Filename, v.URL); err != nil {
-			b.respondError(s, i, err)
-			return
-		}
-	}
-
-	if err := b.createArchiveMeta(i.Message.Content); err != nil {
-		b.respondError(s, i, err)
-		return
-	}
-
-	if err := s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
-		Type: discordgo.InteractionResponseUpdateMessage,
-		Data: &discordgo.InteractionResponseData{Content: "Thank you!", Attachments: util.ToPtr([]*discordgo.MessageAttachment{})},
 	}); err != nil {
 		b.respondError(s, i, err)
 		return
