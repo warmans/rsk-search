@@ -124,15 +124,15 @@ func NewBot(
 					},
 				},
 			},
-			//{
-			//	Name: "scrimp-archive",
-			//	Type: discordgo.MessageApplicationCommand,
-			//},
+			{
+				Name: "scrimp-archive",
+				Type: discordgo.MessageApplicationCommand,
+			},
 		},
 	}
 	bot.commandHandlers = map[string]func(s *discordgo.Session, i *discordgo.InteractionCreate){
-		"scrimp":               bot.queryBegin,
-		"scrimp-quick-archive": bot.quickArchiveModalOpen,
+		"scrimp":         bot.queryBegin,
+		"scrimp-archive": bot.quickArchiveModalOpen,
 	}
 	bot.buttonHandlers = map[string]func(s *discordgo.Session, i *discordgo.InteractionCreate, suffix string){
 		"cfm": bot.queryComplete,
