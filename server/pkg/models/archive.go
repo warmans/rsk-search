@@ -1,12 +1,16 @@
 package models
 
-import "github.com/warmans/rsk-search/gen/api"
+import (
+	"github.com/warmans/rsk-search/gen/api"
+	"time"
+)
 
 type ArchiveMeta struct {
-	OriginalMessageID string   `json:"original_message_id"`
-	Files             []string `json:"files"`
-	Description       string   `json:"description"`
-	Episode           string   `json:"episode"`
+	OriginalMessageID string    `json:"original_message_id"`
+	CreatedAt         time.Time `json:"created_at"`
+	Files             []string  `json:"files"`
+	Description       string    `json:"description"`
+	Episode           string    `json:"episode"`
 }
 
 func (a *ArchiveMeta) Proto() *api.Archive {

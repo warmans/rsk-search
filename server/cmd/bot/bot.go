@@ -6,6 +6,7 @@ import (
 	"github.com/bwmarrin/discordgo"
 	"github.com/spf13/cobra"
 	"github.com/warmans/rsk-search/gen/api"
+	"github.com/warmans/rsk-search/pkg/archive"
 	"github.com/warmans/rsk-search/pkg/discord"
 	"github.com/warmans/rsk-search/pkg/flag"
 	"go.uber.org/zap"
@@ -59,7 +60,7 @@ func RootCommand() *cobra.Command {
 				session,
 				guildID,
 				webUrl,
-				archiveDir,
+				archive.NewStore(archiveDir),
 				createTranscriptClient(grpcConn),
 				createSearchClient(grpcConn),
 			)

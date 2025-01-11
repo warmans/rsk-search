@@ -2,8 +2,11 @@ package archive
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"github.com/warmans/rsk-search/pkg/models"
+	"io"
+	"net/http"
 	"os"
 	"path"
 	"strings"
@@ -20,7 +23,7 @@ type Store struct {
 	lock       sync.RWMutex
 }
 
-func (s *Store) IsValidFile(name string) (bool, error) {
+func (s *Store) FileExists(name string) (bool, error) {
 	// has the file already been seen?
 	s.lock.RLock()
 	if _, ok := s.validFiles[name]; ok {
@@ -72,4 +75,54 @@ func (s *Store) ListItems() (models.ArchiveMetaList, error) {
 	}
 
 	return out, nil
+}
+
+func (s *Store) ArchiveFile(filename string, url string) error {
+	file, err := os.OpenFile(path.Join(s.archiveDir, path.Clean(filename)), os.O_WRONLY|os.O_CREATE|os.O_EXCL, 0666)
+	if err != nil {
+		if errors.Is(err, os.ErrExist) {
+			return fmt.Errorf("file already exists: %s", filename)
+		}
+		return fmt.Errorf("unable to archive file: internal error")
+	}
+	defer file.Close()
+
+	resp, err := http.Get(url)
+	if err != nil {
+		return fmt.Errorf("unable to archive file: internal error")
+	}
+
+	defer resp.Body.Close()
+
+	_, err = io.Copy(file, resp.Body)
+	if err != nil {
+		return fmt.Errorf("unable to archive file: internal error")
+	}
+
+	return nil
+}
+
+func (s *Store) CreateMetadata(metadata models.ArchiveMeta) error {
+	metaFile, err := s.getMetaFile(metadata.OriginalMessageID)
+	if err != nil {
+		return err
+
+	}
+	defer metaFile.Close()
+
+	enc := json.NewEncoder(metaFile)
+	enc.SetIndent("", "  ")
+	return enc.Encode(metadata)
+}
+
+func (s *Store) getMetaFile(messageID string) (*os.File, error) {
+	metaFile, err := os.OpenFile(path.Join(s.archiveDir, fmt.Sprintf("%s.meta.json", path.Clean(messageID))), os.O_RDWR|os.O_CREATE|os.O_EXCL, 0666)
+	if err != nil {
+		if errors.Is(err, os.ErrExist) {
+			return nil, err
+		}
+		// we've already stored the file, probably not worth deleting it.
+		return nil, fmt.Errorf("failed to create metadata: %w", err)
+	}
+	return metaFile, nil
 }

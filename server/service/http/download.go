@@ -690,7 +690,7 @@ func (c *DownloadService) DownloadArchiveFile(resp http.ResponseWriter, req *htt
 		return
 	}
 
-	valid, err := c.archiveStore.IsValidFile(fileName)
+	valid, err := c.archiveStore.FileExists(fileName)
 	if err != nil {
 		http.Error(resp, "Failed to process request", http.StatusInternalServerError)
 		return
