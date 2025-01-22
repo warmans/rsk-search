@@ -676,7 +676,7 @@ func (b *Bot) audioFileResponse(customID CustomID, username string) (*discordgo.
 	} else {
 		if customID.ContentModifier != ContentModifierTextOnly {
 			audioFileURL := fmt.Sprintf(
-				"%s/dl/media/%s.webm?ts=%d-%d",
+				"%s/dl/media/%s.mp3?ts=%d-%d",
 				b.webUrl,
 				dialog.TranscriptMeta.ShortId,
 				dialog.Dialog[0].OffsetMs,
@@ -691,8 +691,8 @@ func (b *Bot) audioFileResponse(customID CustomID, username string) (*discordgo.
 				return nil, 0, fmt.Errorf("failed to fetch audio: %s", resp.Status), func() {}
 			}
 			files = append(files, &discordgo.File{
-				Name:        createFileName(dialog, "webm"),
-				ContentType: "video/webm",
+				Name:        createFileName(dialog, "mp3"),
+				ContentType: "audio/mpeg",
 				Reader:      resp.Body,
 			})
 			cancelFunc = func() {
