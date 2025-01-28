@@ -10,6 +10,9 @@ export interface CommunityAPIClientInterface {
    * Response generated for [ 200 ] HTTP response code.
    */
   listArchive(
+    args: {
+      episodeIds?: string[],
+    },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskArchiveList>;
 

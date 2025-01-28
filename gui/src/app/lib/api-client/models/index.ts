@@ -42,6 +42,7 @@ export { RskDonationStats } from './rsk-donation-stats.model';
 export { RskFieldMeta } from './rsk-field-meta.model';
 export { RskFieldValue } from './rsk-field-value.model';
 export { RskFieldValueList } from './rsk-field-value-list.model';
+export { RskFile } from './rsk-file.model';
 export { RskIncomingDonation } from './rsk-incoming-donation.model';
 export { RskIncomingDonationList } from './rsk-incoming-donation-list.model';
 export { RskMedia } from './rsk-media.model';

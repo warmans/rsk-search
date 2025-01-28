@@ -60,7 +60,7 @@ func (s *CommunityService) ListProjects(ctx context.Context, request *api.ListCo
 }
 
 func (s *CommunityService) ListArchive(ctx context.Context, request *api.ListArchiveRequest) (*api.ArchiveList, error) {
-	items, err := s.archiveStore.ListItems()
+	items, err := s.archiveStore.ListItems(request.EpisodeIds...)
 	if err != nil {
 		return nil, ErrInternal(err)
 	}

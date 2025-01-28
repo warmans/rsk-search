@@ -19,7 +19,7 @@ export class ArchiveComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.apiClient.listArchive().pipe(takeUntil(this.destroy$)).subscribe((res: RskArchiveList): void => {
+    this.apiClient.listArchive({}).pipe(takeUntil(this.destroy$)).subscribe((res: RskArchiveList): void => {
       this.archive = res.items
     })
     }

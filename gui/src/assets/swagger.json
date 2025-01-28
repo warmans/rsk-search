@@ -364,6 +364,18 @@
               }
             }
           },
+          "parameters": [
+            {
+              "name": "episodeIds",
+              "in": "query",
+              "required": false,
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "collectionFormat": "multi"
+            }
+          ],
           "tags": [
             "community"
           ]
@@ -1859,6 +1871,12 @@
             "items": {
               "type": "string"
             }
+          },
+          "media": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/rskFile"
+            }
           }
         }
       },
@@ -2486,6 +2504,17 @@
             "items": {
               "$ref": "#/definitions/rskFieldValue"
             }
+          }
+        }
+      },
+      "rskFile": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "thumbnailName": {
+            "type": "string"
           }
         }
       },

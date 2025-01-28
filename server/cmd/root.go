@@ -6,6 +6,7 @@ import (
 	"github.com/warmans/rsk-search/cmd/bot"
 	"github.com/warmans/rsk-search/cmd/data"
 	"github.com/warmans/rsk-search/cmd/db"
+	"github.com/warmans/rsk-search/cmd/images"
 	"github.com/warmans/rsk-search/cmd/report"
 	"github.com/warmans/rsk-search/cmd/server"
 )
@@ -22,6 +23,7 @@ func RootCmd() *cobra.Command {
 	root.AddCommand(db.RootCmd())
 	root.AddCommand(report.RootCmd())
 	root.AddCommand(bot.RootCommand())
+	root.AddCommand(images.ThumbsCmd())
 
 	return root
 }

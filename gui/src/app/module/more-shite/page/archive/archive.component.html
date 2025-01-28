@@ -8,8 +8,8 @@
       <div class="card-body pb-0 mb-0">
         <table class="table">
           <ng-container *ngFor="let item of archive">
-            <tr *ngFor="let img of item.files">
-              <td style="width: 400px"><a [href]="'/dl/archive/file/'+img" target="_blank"><img style="max-width: 100%" [src]="'/dl/archive/file/'+img"/></a></td>
+            <tr *ngFor="let med of item.media">
+              <td style="width: 400px"><a [href]="'/dl/archive/file/'+med.name" target="_blank"><img style="max-width: 100%" [src]="'/dl/archive/file/'+med.thumbnailName"/></a></td>
               <td style="width: 100px;">{{ item.relatedEpisode }}</td>
               <td>{{ item.description }}</td>
             <tr>

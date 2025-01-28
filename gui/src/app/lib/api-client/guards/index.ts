@@ -72,6 +72,8 @@ export function isRskArchive(arg: any): arg is models.RskArchive {
     ( typeof arg.files === 'undefined' || (Array.isArray(arg.files) && arg.files.every((item: unknown) => typeof item === 'string')) ) &&
     // id?: string
     ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
+    // media?: RskFile[]
+    ( typeof arg.media === 'undefined' || (Array.isArray(arg.media) && arg.media.every((item: unknown) => isRskFile(item))) ) &&
     // relatedEpisode?: string
     ( typeof arg.relatedEpisode === 'undefined' || typeof arg.relatedEpisode === 'string' ) &&
 
@@ -633,6 +635,19 @@ export function isRskFieldValueList(arg: any): arg is models.RskFieldValueList {
   typeof arg === 'object' &&
     // values?: RskFieldValue[]
     ( typeof arg.values === 'undefined' || (Array.isArray(arg.values) && arg.values.every((item: unknown) => isRskFieldValue(item))) ) &&
+
+  true
+  );
+  }
+
+export function isRskFile(arg: any): arg is models.RskFile {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // name?: string
+    ( typeof arg.name === 'undefined' || typeof arg.name === 'string' ) &&
+    // thumbnailName?: string
+    ( typeof arg.thumbnailName === 'undefined' || typeof arg.thumbnailName === 'string' ) &&
 
   true
   );

@@ -46,6 +46,9 @@ export class CommunityAPIClient implements CommunityAPIClientInterface {
    * Response generated for [ 200 ] HTTP response code.
    */
   listArchive(
+    args: {
+      episodeIds?: string[],
+    },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskArchiveList> {
     const path = `/api/community/archive`;
@@ -54,6 +57,11 @@ export class CommunityAPIClient implements CommunityAPIClientInterface {
       ...requestHttpOptions,
     };
 
+    if ('episodeIds' in args) {
+      if (args.episodeIds && args.episodeIds.length) {
+        options.params = args.episodeIds.reduce<HttpParams>((acc, cur) => acc.append('episodeIds', `${cur}`), options.params);
+      }
+    }
     return this.sendRequest<models.RskArchiveList>('GET', path, options);
   }
 

@@ -69,6 +69,7 @@ message CommunityProjectList {
 
 
 message ListArchiveRequest {
+  repeated string episode_ids = 1;
 }
 
 message ArchiveList {
@@ -79,5 +80,11 @@ message Archive {
   string id = 1;
   string description = 2;
   string related_episode = 3;
-  repeated string files = 4;
+  repeated string files = 4 [deprecated=true];
+  repeated File media = 5;
+}
+
+message File {
+  string name = 1;
+  string thumbnail_name = 2;
 }

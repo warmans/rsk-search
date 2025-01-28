@@ -4,8 +4,11 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/disintegration/imaging"
 	"github.com/warmans/rsk-search/pkg/models"
+	"github.com/warmans/rsk-search/pkg/util"
 	"io"
+	"log"
 	"net/http"
 	"os"
 	"path"
@@ -44,7 +47,9 @@ func (s *Store) FileExists(name string) (bool, error) {
 	for _, v := range archive {
 		for _, f := range v.Files {
 			s.validFiles[f] = struct{}{}
-			if f == name {
+			// todo: this is quite lame. Probably better to actually have the thumbnail name in the metadata.
+			s.validFiles[util.ThumbName(f)] = struct{}{}
+			if f == name || util.ThumbName(f) == name {
 				found = true
 			}
 		}
@@ -52,7 +57,7 @@ func (s *Store) FileExists(name string) (bool, error) {
 	return found, nil
 }
 
-func (s *Store) ListItems() (models.ArchiveMetaList, error) {
+func (s *Store) ListItems(episodeIds ...string) (models.ArchiveMetaList, error) {
 	files, err := os.ReadDir(s.archiveDir)
 	if err != nil {
 		return nil, err
@@ -71,35 +76,57 @@ func (s *Store) ListItems() (models.ArchiveMetaList, error) {
 		if err := json.Unmarshal(raw, &meta); err != nil {
 			return nil, fmt.Errorf("failed to decode archive meta %s: %w", v.Name(), err)
 		}
-		out = append(out, meta)
+		if len(episodeIds) == 0 || util.InStrings(meta.Episode, episodeIds...) {
+			out = append(out, meta)
+		}
 	}
 
 	return out, nil
 }
 
-func (s *Store) ArchiveFile(filename string, url string) error {
-	file, err := os.OpenFile(path.Join(s.archiveDir, path.Clean(filename)), os.O_WRONLY|os.O_CREATE|os.O_EXCL, 0666)
+func (s *Store) ArchiveFile(filename, url string) error {
+	dest, err := s.downloadFile(filename, url)
+	if err != nil {
+		return err
+	}
+	src, err := imaging.Open(dest)
+	if err != nil {
+		log.Fatalf("failed to open image: %v", err)
+	}
+	err = imaging.Save(
+		imaging.Resize(src, 300, 0, imaging.Lanczos),
+		util.ThumbPath(strings.TrimSuffix(dest, path.Base(dest)), path.Base(dest)),
+	)
+	if err != nil {
+		return fmt.Errorf("failed to save thumbnail: %w", err)
+	}
+	return nil
+}
+
+func (s *Store) downloadFile(filename, url string) (string, error) {
+	dest := path.Join(s.archiveDir, path.Clean(filename))
+	file, err := os.OpenFile(dest, os.O_WRONLY|os.O_CREATE|os.O_EXCL, 0666)
 	if err != nil {
 		if errors.Is(err, os.ErrExist) {
-			return fmt.Errorf("file already exists: %s", filename)
+			return "", fmt.Errorf("file already exists: %s", filename)
 		}
-		return fmt.Errorf("unable to archive file: internal error")
+		return "", fmt.Errorf("unable to archive file: internal error")
 	}
 	defer file.Close()
 
 	resp, err := http.Get(url)
 	if err != nil {
-		return fmt.Errorf("unable to archive file: internal error")
+		return "", fmt.Errorf("unable to archive file: internal error")
 	}
 
 	defer resp.Body.Close()
 
 	_, err = io.Copy(file, resp.Body)
 	if err != nil {
-		return fmt.Errorf("unable to archive file: internal error")
+		return "", fmt.Errorf("unable to archive file: internal error")
 	}
 
-	return nil
+	return dest, nil
 }
 
 func (s *Store) CreateMetadata(metadata models.ArchiveMeta) error {
