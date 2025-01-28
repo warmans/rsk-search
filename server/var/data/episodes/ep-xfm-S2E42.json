@@ -7,7 +7,7 @@
     "episode": 42,
     "name": "",
     "summary": "",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "release_date": "2003-06-14T00:00:00Z",
     "incomplete": false,
     "bestof": false,
@@ -15279,9 +15279,16 @@
     ],
     "synopsis": null,
     "contributors": [
+      "MonotoneCreeper",
       "Oooch"
     ],
-    "trivia": null,
+    "trivia": [
+      {
+        "description": "Columbo was not on TV in the UK on any channel at the time that Ricky said this",
+        "start_pos": 353,
+        "end_pos": 355
+      }
+    ],
     "media": {
       "video_file_name": "",
       "video_duration_ms": 0,
