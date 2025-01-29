@@ -92,15 +92,18 @@
         <li class="nav-item mr-2">
           <a class="nav-link" (click)="activeInfoPanel='changelog'" [ngClass]="{'active': activeInfoPanel === 'changelog'}"><i class="bi-paperclip mr-2"></i>Changelog</a>
         </li>
+        <li class="nav-item mr-2">
+          <a class="nav-link" (click)="activeInfoPanel='roadmap'" [ngClass]="{'active': activeInfoPanel === 'roadmap'}"><i class="bi-paperclip mr-2"></i>Roadmap</a>
+        </li>
       </ul>
       <div class="card mb-4" *ngIf="activeInfoPanel === 'contribute'">
         <div class="card-header"></div>
         <div class="card-body">
           <img class="float-right illustration mr-2 d-none d-xl-block" src="/assets/illustration/rgs-pointer.svg" style="width: 150px"/>
-          <p>This site was built with the help of community contributions. Users can contribute in various ways including transcribing audio or editing existing transcripts. To
-            ask a question, request a feature or report a bug head over to <a target="_blank" href="https://reddit.com/r/scrimpton">/r/scrimpton</a>.</p>
-          <p>To get involved you just need a reddit account. You can also <a href="https://www.buymeacoffee.com/scrimptonsite" target="_blank">donate</a> to help pay server costs
+          <p>This site was built with the help of community contributions. Users can contribute in various ways including transcribing audio or editing existing transcripts. </p>
+          <p>To get involved you just need a reddit or discord account. You can also <a href="https://www.buymeacoffee.com/scrimptonsite" target="_blank">donate</a> to help pay server costs
             via BuyMeACoffee.</p>
+          <p>Or if you just want to get in touch try <a href="https://discord.gg/WsnMxhf7B7">Pilkipedia discord (#scrimpton)</a> or <a target="_blank" href="https://reddit.com/r/scrimpton">/r/scrimpton</a></p>
           <p>There are currently <strong class="text-primary">{{contributionsNeeded || 0}}</strong> contributions needed.</p>
           <button class="btn btn-primary" [routerLink]="['/contribute']">Contribute</button>
         </div>
@@ -113,6 +116,13 @@
           <div>
             <a [routerLink]="['/changelog']">More...</a>
           </div>
+        </div>
+      </div>
+      <div class="card mb-4" *ngIf="activeInfoPanel === 'roadmap'">
+        <div class="card-header"></div>
+        <div class="card-body">
+          <p>The following items will be worked on next. To add items to this list consider opening an issue on github.</p>
+          <app-markdown [raw]="roadmapMarkdown"></app-markdown>
         </div>
       </div>
     </div>

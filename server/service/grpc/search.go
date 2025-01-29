@@ -10,6 +10,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/filter"
 	"github.com/warmans/rsk-search/pkg/jwt"
 	"github.com/warmans/rsk-search/pkg/meta"
+	"github.com/warmans/rsk-search/pkg/roadmap"
 	"github.com/warmans/rsk-search/pkg/search"
 	"github.com/warmans/rsk-search/pkg/store/ro"
 	"github.com/warmans/rsk-search/pkg/store/rw"
@@ -138,6 +139,10 @@ func (s *SearchService) ListChangelogs(ctx context.Context, request *api.ListCha
 		return nil, err
 	}
 	return result, nil
+}
+
+func (s *SearchService) GetRoadmap(ctx context.Context, request *api.GetRoadmapRequest) (*api.Roadmap, error) {
+	return &api.Roadmap{Markdown: roadmap.GetMarkdown()}, nil
 }
 
 func (s *SearchService) GetRandomQuote(ctx context.Context, request *api.GetRandomQuoteRequest) (*api.RandomQuote, error) {

@@ -175,6 +175,13 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  getRoadmap(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskRoadmap>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   search(
     args: {
       query?: string,

@@ -99,6 +99,29 @@
         ]
       }
     },
+    "/api/roadmap": {
+      "get": {
+        "summary": "Get roadmap",
+        "operationId": "getRoadmap",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskRoadmap"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": [
+          "search"
+        ]
+      }
+    },
     "/api/search": {
       "get": {
         "summary": "Perform a search",
@@ -592,6 +615,14 @@
         "pos": {
           "type": "integer",
           "format": "int32"
+        }
+      }
+    },
+    "rskRoadmap": {
+      "type": "object",
+      "properties": {
+        "markdown": {
+          "type": "string"
         }
       }
     },

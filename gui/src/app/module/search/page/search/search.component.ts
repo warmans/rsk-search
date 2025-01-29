@@ -36,7 +36,8 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   private unsubscribe$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  activeInfoPanel: 'contribute' | 'changelog' | 'randomQuote' = 'contribute';
+  activeInfoPanel: 'contribute' | 'changelog' | 'roadmap'  = 'contribute';
+  roadmapMarkdown: string = 'Loading...';
 
   constructor(
     private apiClient: SearchAPIClient,
@@ -93,6 +94,10 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.contributionsNeeded += v.numChunks - (v.numApprovedContributions || 0);
       });
     });
+
+    this.apiClient.getRoadmap().pipe(takeUntil(this.unsubscribe$)).subscribe((res) => {
+      this.roadmapMarkdown = res.markdown;
+    })
   }
 
   ngOnDestroy(): void {

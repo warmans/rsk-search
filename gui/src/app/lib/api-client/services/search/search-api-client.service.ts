@@ -410,6 +410,21 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  getRoadmap(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskRoadmap> {
+    const path = `/api/roadmap`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<models.RskRoadmap>('GET', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   search(
     args: {
       query?: string,

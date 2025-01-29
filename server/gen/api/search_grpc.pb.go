@@ -27,6 +27,7 @@ const (
 	SearchService_GetRandomQuote_FullMethodName    = "/rsk.SearchService/GetRandomQuote"
 	SearchService_ListSongs_FullMethodName         = "/rsk.SearchService/ListSongs"
 	SearchService_ListChangelogs_FullMethodName    = "/rsk.SearchService/ListChangelogs"
+	SearchService_GetRoadmap_FullMethodName        = "/rsk.SearchService/GetRoadmap"
 )
 
 // SearchServiceClient is the client API for SearchService service.
@@ -40,6 +41,7 @@ type SearchServiceClient interface {
 	GetRandomQuote(ctx context.Context, in *GetRandomQuoteRequest, opts ...grpc.CallOption) (*RandomQuote, error)
 	ListSongs(ctx context.Context, in *ListSongsRequest, opts ...grpc.CallOption) (*SongList, error)
 	ListChangelogs(ctx context.Context, in *ListChangelogsRequest, opts ...grpc.CallOption) (*ChangelogList, error)
+	GetRoadmap(ctx context.Context, in *GetRoadmapRequest, opts ...grpc.CallOption) (*Roadmap, error)
 }
 
 type searchServiceClient struct {
@@ -113,6 +115,15 @@ func (c *searchServiceClient) ListChangelogs(ctx context.Context, in *ListChange
 	return out, nil
 }
 
+func (c *searchServiceClient) GetRoadmap(ctx context.Context, in *GetRoadmapRequest, opts ...grpc.CallOption) (*Roadmap, error) {
+	out := new(Roadmap)
+	err := c.cc.Invoke(ctx, SearchService_GetRoadmap_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SearchServiceServer is the server API for SearchService service.
 // All implementations should embed UnimplementedSearchServiceServer
 // for forward compatibility
@@ -124,6 +135,7 @@ type SearchServiceServer interface {
 	GetRandomQuote(context.Context, *GetRandomQuoteRequest) (*RandomQuote, error)
 	ListSongs(context.Context, *ListSongsRequest) (*SongList, error)
 	ListChangelogs(context.Context, *ListChangelogsRequest) (*ChangelogList, error)
+	GetRoadmap(context.Context, *GetRoadmapRequest) (*Roadmap, error)
 }
 
 // UnimplementedSearchServiceServer should be embedded to have forward compatible implementations.
@@ -150,6 +162,9 @@ func (UnimplementedSearchServiceServer) ListSongs(context.Context, *ListSongsReq
 }
 func (UnimplementedSearchServiceServer) ListChangelogs(context.Context, *ListChangelogsRequest) (*ChangelogList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListChangelogs not implemented")
+}
+func (UnimplementedSearchServiceServer) GetRoadmap(context.Context, *GetRoadmapRequest) (*Roadmap, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRoadmap not implemented")
 }
 
 // UnsafeSearchServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -289,6 +304,24 @@ func _SearchService_ListChangelogs_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SearchService_GetRoadmap_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRoadmapRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SearchServiceServer).GetRoadmap(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SearchService_GetRoadmap_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SearchServiceServer).GetRoadmap(ctx, req.(*GetRoadmapRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SearchService_ServiceDesc is the grpc.ServiceDesc for SearchService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -323,6 +356,10 @@ var SearchService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListChangelogs",
 			Handler:    _SearchService_ListChangelogs_Handler,
+		},
+		{
+			MethodName: "GetRoadmap",
+			Handler:    _SearchService_GetRoadmap_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

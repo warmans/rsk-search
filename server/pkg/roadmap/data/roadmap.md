@@ -1,0 +1,4 @@
+- [ ] Replace audio files with more complete "remastered" versions (requires transcript fixes)
+- [ ] Integrate "obscure" media with transcript data.
+- [ ] Re-work audio player to solve responsivity issues.
+- [ ] Make it easier to add images to transcript trivia.

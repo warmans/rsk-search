@@ -939,6 +939,17 @@ export function isRskReward(arg: any): arg is models.RskReward {
   );
   }
 
+export function isRskRoadmap(arg: any): arg is models.RskRoadmap {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // markdown?: string
+    ( typeof arg.markdown === 'undefined' || typeof arg.markdown === 'string' ) &&
+
+  true
+  );
+  }
+
 export function isRskSearchResult(arg: any): arg is models.RskSearchResult {
   return (
   arg != null &&

@@ -188,6 +188,13 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
       .pipe(tap((res: any) => guards.isRskDonationRecipientList(res) || console.error(`TypeGuard for response 'RskDonationRecipientList' caught inconsistency.`, res)));
   }
 
+  getRoadmap(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskRoadmap> {
+    return super.getRoadmap(requestHttpOptions)
+      .pipe(tap((res: any) => guards.isRskRoadmap(res) || console.error(`TypeGuard for response 'RskRoadmap' caught inconsistency.`, res)));
+  }
+
   search(
     args: {
       query?: string,

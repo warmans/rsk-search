@@ -63,6 +63,7 @@ export { RskRecipientStats } from './rsk-recipient-stats.model';
 export { RskRequestChunkContributionStateRequest } from './rsk-request-chunk-contribution-state-request.model';
 export { RskRequestTranscriptChangeStateRequest } from './rsk-request-transcript-change-state-request.model';
 export { RskReward } from './rsk-reward.model';
+export { RskRoadmap } from './rsk-roadmap.model';
 export { RskSearchResult } from './rsk-search-result.model';
 export { RskSearchResultList } from './rsk-search-result-list.model';
 export { RskSearchStats } from './rsk-search-stats.model';
