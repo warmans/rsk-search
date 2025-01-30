@@ -1410,6 +1410,10 @@
         },
         "publicationType": {
           "$ref": "#/definitions/rskPublicationType"
+        },
+        "aggregateReviewScore": {
+          "type": "number",
+          "format": "float"
         }
       }
     },

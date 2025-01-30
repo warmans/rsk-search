@@ -1619,3 +1619,14 @@ func (s *Store) AddAuthorReview(
 	)
 	return err
 }
+
+func (s *Store) GetEpisodeAggregateReviewScore(ctx context.Context, episodeID string) (float32, error) {
+	row := s.tx.QueryRowxContext(
+		ctx,
+		`SELECT COALESCE(AVG(rating), 0) FROM episode_review WHERE episode_id = $1`,
+		episodeID,
+	)
+
+	var score float32
+	return score, row.Scan(&score)
+}

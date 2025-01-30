@@ -370,34 +370,35 @@ func (e *Transcript) ShortProto(audioURI string) *api.ShortTranscript {
 	return ep
 }
 
-func (e *Transcript) Proto(withRawTranscript string, audioURI string, forceLockedOn bool) *api.Transcript {
+func (e *Transcript) Proto(withRawTranscript string, audioURI string, forceLockedOn bool, aggregateScore float32) *api.Transcript {
 	if e == nil {
 		return nil
 	}
 	ep := &api.Transcript{
-		Id:                 e.ID(),
-		ShortId:            e.ShortID(),
-		Publication:        e.Publication,
-		Series:             e.Series,
-		Episode:            e.Episode,
-		Metadata:           e.Meta.Proto(),
-		ReleaseDate:        util.ShortDate(e.ReleaseDate),
-		Contributors:       e.Contributors,
-		Incomplete:         e.Incomplete,
-		RawTranscript:      withRawTranscript,
-		AudioUri:           audioURI,
-		Actors:             e.Actors(),
-		OffsetAccuracyPcnt: e.OffsetAccuracy,
-		Name:               e.Name,
-		Version:            e.Version,
-		Bestof:             e.Bestof,
-		Special:            e.Special,
-		Locked:             e.Locked || forceLockedOn,
-		Summary:            e.Summary,
-		AudioQuality:       e.AudioQuality.Proto(),
-		MediaType:          e.MediaType.Proto(),
-		Media:              e.Media.Proto(),
-		PublicationType:    e.PublicationType.Proto(),
+		Id:                   e.ID(),
+		ShortId:              e.ShortID(),
+		Publication:          e.Publication,
+		Series:               e.Series,
+		Episode:              e.Episode,
+		Metadata:             e.Meta.Proto(),
+		ReleaseDate:          util.ShortDate(e.ReleaseDate),
+		Contributors:         e.Contributors,
+		Incomplete:           e.Incomplete,
+		RawTranscript:        withRawTranscript,
+		AudioUri:             audioURI,
+		Actors:               e.Actors(),
+		OffsetAccuracyPcnt:   e.OffsetAccuracy,
+		Name:                 e.Name,
+		Version:              e.Version,
+		Bestof:               e.Bestof,
+		Special:              e.Special,
+		Locked:               e.Locked || forceLockedOn,
+		Summary:              e.Summary,
+		AudioQuality:         e.AudioQuality.Proto(),
+		MediaType:            e.MediaType.Proto(),
+		Media:                e.Media.Proto(),
+		PublicationType:      e.PublicationType.Proto(),
+		AggregateReviewScore: aggregateScore,
 	}
 	for _, d := range e.Transcript {
 		ep.Transcript = append(ep.Transcript, d.Proto(false))

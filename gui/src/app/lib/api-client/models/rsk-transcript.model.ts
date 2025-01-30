@@ -11,6 +11,7 @@ import {
 
 export interface RskTranscript {
   actors?: string[];
+  aggregateReviewScore?: number;
   audioQuality?: RskAudioQuality;
   audioUri?: string;
   bestof?: boolean;

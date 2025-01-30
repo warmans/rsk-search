@@ -1141,6 +1141,8 @@ export function isRskTranscript(arg: any): arg is models.RskTranscript {
   typeof arg === 'object' &&
     // actors?: string[]
     ( typeof arg.actors === 'undefined' || (Array.isArray(arg.actors) && arg.actors.every((item: unknown) => typeof item === 'string')) ) &&
+    // aggregateReviewScore?: number
+    ( typeof arg.aggregateReviewScore === 'undefined' || typeof arg.aggregateReviewScore === 'number' ) &&
     // audioQuality?: RskAudioQuality
     ( typeof arg.audioQuality === 'undefined' || isRskAudioQuality(arg.audioQuality) ) &&
     // audioUri?: string

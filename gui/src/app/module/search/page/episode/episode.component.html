@@ -39,6 +39,10 @@
                   <td>{{ episode.releaseDate | date }}</td>
                 </tr>
                 <tr>
+                  <th>Rating</th>
+                  <td>{{ episode.aggregateReviewScore ?? 0 | number }} / 5 <!-- TODO star rating component --></td>
+                </tr>
+                <tr>
                   <th>Transcript Data</th>
                   <td>
                     <a target="_blank" href="/dl/episode/{{episode.id}}.json">{{ episode.id }}.json</a> (or <a

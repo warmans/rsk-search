@@ -81,7 +81,17 @@ func (s *TranscriptService) GetTranscript(ctx context.Context, request *api.GetT
 	if ep.MediaType == models.MediaTypeAudio {
 		audioURL = fmt.Sprintf(s.srvCfg.AudioUriPattern, ep.ShortID())
 	}
-	return ep.Proto(rawTranscript, audioURL, locked), nil
+
+	var score float32
+	if err := s.persistentDB.WithStore(func(s *rw.Store) error {
+		var err error
+		score, err = s.GetEpisodeAggregateReviewScore(ctx, ep.ShortID())
+		return err
+	}); err != nil {
+		s.logger.Error("Failed to get review score", zap.String("epid", ep.ShortID()), zap.Error(err))
+	}
+
+	return ep.Proto(rawTranscript, audioURL, locked, score), nil
 }
 
 func (s *TranscriptService) GetTranscriptDialog(ctx context.Context, request *api.GetTranscriptDialogRequest) (*api.TranscriptDialog, error) {

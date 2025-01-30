@@ -44,7 +44,6 @@ service TranscriptService {
     };
   }
 
-
   rpc ListTranscripts(ListTranscriptsRequest) returns (TranscriptList) {
     option (google.api.http) = {
       get: "/api/transcript"
@@ -321,6 +320,7 @@ message Transcript {
   MediaType media_type = 25 [deprecated = true];
   Media media = 26;
   PublicationType publication_type = 27;
+  float aggregateReviewScore = 28;
 }
 
 message Media {
