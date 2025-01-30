@@ -27,11 +27,13 @@ func ParseEpID(raw string) (string, int32, int32, error) {
 // ExtractSeriesAndEpisode e.g. xfm-S01E02 becomes 1,2,nil
 func ExtractSeriesAndEpisode(raw string) (int32, int32, error) {
 
+	// normalise case
+	raw = strings.ToLower(raw)
 	// remove ep-?xfm-
 	raw = util.LastSegment(raw, "-")
 
-	raw = strings.TrimPrefix(raw, "S")
-	parts := strings.Split(raw, "E")
+	raw = strings.TrimPrefix(raw, "s")
+	parts := strings.Split(raw, "e")
 	if len(parts) != 2 {
 		return 0, 0, fmt.Errorf("name was in wrong format: %s", raw)
 	}
@@ -52,7 +54,11 @@ func FormatStandardEpisodeName(series, episode int32) string {
 
 // EpID is an episode ID that is prefixed with `ep-`.
 func EpID(publication string, series int32, episode int32) string {
-	return fmt.Sprintf("ep-%s-%s", publication, FormatStandardEpisodeName(series, episode))
+	return fmt.Sprintf("ep-%s", ShortEpID(publication, series, episode))
+}
+
+func ShortEpID(publication string, series int32, episode int32) string {
+	return fmt.Sprintf("%s-%s", publication, FormatStandardEpisodeName(series, episode))
 }
 
 func EpIDFromTranscript(ep *Transcript) string {

@@ -243,7 +243,7 @@ func (s *Store) ListChunks(ctx context.Context, q *common.QueryModifier) ([]*mod
 func (s *Store) GetChunkContributionCount(ctx context.Context, chunkId string) (int32, error) {
 	var count int32
 	err := s.tx.
-		QueryRowxContext(ctx, "SELECT COUNT(*) FROM tscript_contribution c LEFT JOIN author a ON c.author_id = a.id WHERE a.banned = false AND tscript_chunk_id = $1 AND c.state NOT IN ('pending', 'rejected')", chunkId).
+		QueryRowxContext(ctx, "SELECT COUNT(*) FROM tscript_contribution c LEFT JOIN author a ON c.author_id = a.id WHERE a.banned = false AND a.placeholder = false AND tscript_chunk_id = $1 AND c.state NOT IN ('pending', 'rejected')", chunkId).
 		Scan(&count)
 
 	if err != nil {
@@ -423,7 +423,7 @@ func (s *Store) ListChunkContributions(ctx context.Context, q *common.QueryModif
 		FROM tscript_contribution c
 		LEFT JOIN tscript_chunk ch ON c.tscript_chunk_id = ch.id 
 		LEFT JOIN author a ON c.author_id = a.id
-		WHERE a.banned = false 
+		WHERE a.banned = false AND a.placeholder = false
 		AND %s
 		%s
 		%s
@@ -681,6 +681,30 @@ func (s *Store) UpsertAuthor(ctx context.Context, author *models.Author) error {
 		author.OauthProvider,
 	)
 	return row.Scan(&author.ID, &author.Banned, &author.Approver)
+}
+
+func (s *Store) UpsertAuthorPlaceholder(ctx context.Context, name string) (string, error) {
+	id := shortuuid.New()
+	row := s.tx.QueryRowxContext(
+		ctx,
+		`INSERT INTO author 
+    			(id, name, created_at, oauth_provider, placeholder) 
+			VALUES 
+			    ($1, $2, NOW(), 'none', true)
+			-- noop update to force stment to return value
+			ON CONFLICT(name, oauth_provider)  
+			    DO UPDATE SET oauth_provider='none'
+			RETURNING id`,
+		id,
+		name,
+	)
+
+	// if this is an upsert the ID will not have been replaced
+	err := row.Scan(&id)
+	if errors.Is(err, sql.ErrNoRows) {
+		return id, nil
+	}
+	return id, err
 }
 
 func (s *Store) AuthorIsBanned(ctx context.Context, id string) (bool, error) {
@@ -1018,7 +1042,7 @@ func (s *Store) ListTranscriptChanges(ctx context.Context, q *common.QueryModifi
 		LEFT JOIN author a ON c.author_id = a.id
 		LEFT JOIN author_contribution_transcript_change actc ON c.id = actc.transcript_change_id
 		LEFT JOIN author_contribution con ON con.id = actc.author_contribution_id AND con.contribution_type='change'
-		WHERE a.id IS NOT NULL AND a.banned = false
+		WHERE a.id IS NOT NULL AND a.banned = false AND a.placeholder = false
 		AND %s
 		%s
 		%s
@@ -1191,7 +1215,7 @@ func (s *Store) ListAuthorContributions(ctx context.Context, q *common.QueryModi
 		SELECT c.id, c.epid, c.contribution_type, COALESCE(c.points, 0), c.created_at, a.id, a.name, a.oauth_provider
 		FROM author_contribution c
 		LEFT JOIN author a ON c.author_id = a.id
-		WHERE a.id IS NOT NULL AND a.banned = false
+		WHERE a.id IS NOT NULL AND a.banned = false AND a.placeholder = false
 		%s
 		%s
 		%s
@@ -1568,4 +1592,30 @@ func (s *Store) GetRadioNext(ctx context.Context, authorID string) (string, erro
 		return "", err
 	}
 	return next, nil
+}
+
+func (s *Store) AddAuthorReview(
+	ctx context.Context,
+	authorID string,
+	episodeID string,
+	rating float32,
+	review *string,
+) error {
+	_, err := s.tx.ExecContext(
+		ctx,
+		`INSERT INTO episode_review (
+				  author_id,
+				  episode_id,
+				  created_at,
+				  rating,
+				  review
+			  ) VALUES ($1, $2, NOW(), $3, $4) 
+				ON CONFLICT ("author_id", "episode_id") DO NOTHING 
+		`,
+		authorID,
+		episodeID,
+		rating,
+		review,
+	)
+	return err
 }
