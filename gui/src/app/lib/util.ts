@@ -1,7 +1,8 @@
-import {RskPrediction} from './api-client/models';
+import { RskPrediction } from './api-client/models';
 
 export function trimChars(str: string, ch: string): string {
-  let start = 0, end = str.length;
+  let start = 0,
+    end = str.length;
 
   while (start < end && str[start] === ch) {
     ++start;
@@ -9,7 +10,7 @@ export function trimChars(str: string, ch: string): string {
   while (end > start && str[end - 1] === ch) {
     --end;
   }
-  return (start > 0 || end < str.length) ? str.substring(start, end) : str;
+  return start > 0 || end < str.length ? str.substring(start, end) : str;
 }
 
 export function highlightPrediction(pred: RskPrediction): string {
@@ -22,7 +23,10 @@ export function highlightPrediction(pred: RskPrediction): string {
   return out;
 }
 
-export function shortenStringToNearestWord(line: string, targetLength: number): string {
+export function shortenStringToNearestWord(
+  line: string,
+  targetLength: number
+): string {
   if (line.length <= targetLength) {
     return line;
   }
@@ -37,13 +41,16 @@ export function shortenStringToNearestWord(line: string, targetLength: number): 
   return out;
 }
 
-
-export function formatSecondsAsTimestamp(seconds: number | string, secondsAreMilliseconds?: boolean): string {
+export function formatSecondsAsTimestamp(
+  seconds: number | string,
+  secondsAreMilliseconds?: boolean
+): string {
   if (!seconds) {
     return '-';
   }
 
-  let secondsNum: number = (typeof seconds === 'string') ? parseInt(seconds) : seconds;
+  let secondsNum: number =
+    typeof seconds === 'string' ? parseInt(seconds) : seconds;
   if (secondsAreMilliseconds) {
     secondsNum = secondsNum / 1000;
   }
@@ -52,3 +59,15 @@ export function formatSecondsAsTimestamp(seconds: number | string, secondsAreMil
   const secs: string = String(((minsNum % 1) * 60).toFixed(0)).padStart(2, '0');
   return `${mins}:${secs}`;
 }
+
+export function episodeIdVariations(id: string): string[] {
+  const [ matches ] = Array.from(id.matchAll(new RegExp('([a-z]+)-S([0-9]+)E([0-9]+)$', 'g')));
+  if (!matches) {
+    return [id];
+  }
+  const [, pub, series, ep] = matches;
+  return [id, `${pub}-S${parseInt(series)}E${ep}`, `${pub}-S0${parseInt(series)}E${ep}`]
+}
+
+
+
