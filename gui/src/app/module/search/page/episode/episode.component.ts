@@ -3,6 +3,8 @@ import {ActivatedRoute, Data, Router} from '@angular/router';
 import {SearchAPIClient} from 'src/app/lib/api-client/services/search';
 import {
   DialogType,
+  RskArchive,
+  RskArchiveList,
   RskDialog, RskMediaType,
   RskTranscript,
   RskTranscriptChange,
@@ -20,6 +22,8 @@ import {Section, TranscriptComponent} from '../../../shared/component/transcript
 import {combineLatest} from 'rxjs';
 import {parseSection} from "../../../shared/lib/fragment";
 import {ClipboardService} from "../../../core/service/clipboard/clipboard.service";
+import { CommunityAPIClient } from 'src/app/lib/api-client/services/community';
+import { episodeIdVariations } from 'src/app/lib/util';
 
 @Component({
   selector: 'app-episode',
@@ -54,6 +58,8 @@ export class EpisodeComponent implements OnInit, OnDestroy {
 
   songs: RskDialog[] = [];
 
+  media: RskArchive[] = [];
+
   authenticated: boolean = false;
 
   previousEpisodeId: string;
@@ -68,7 +74,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
 
   unsubscribe$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  activeInfoPanel: 'synopsis' | 'songs' | 'quotes' = 'synopsis';
+  activeInfoPanel: 'synopsis' | 'songs' | 'quotes' | 'media' = 'synopsis';
 
   showDownloadDialog: boolean = false;
 
@@ -81,6 +87,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
     private router: Router,
     route: ActivatedRoute,
     private apiClient: SearchAPIClient,
+    private communityApiClient: CommunityAPIClient,
     private viewportScroller: ViewportScroller,
     private titleService: Title,
     sessionService: SessionService,
@@ -127,8 +134,9 @@ export class EpisodeComponent implements OnInit, OnDestroy {
     combineLatest([
       this.apiClient.getTranscript({epid: this.id}),
       this.meta.getMeta(),
+      this.communityApiClient.listArchive({episodeIds: episodeIdVariations(this.id)}),
     ]).pipe(takeUntil(this.unsubscribe$)).subscribe(
-      ([ep, metadata]) => {
+      ([ep, metadata, media]) => {
 
         this.episode = ep;
         this.shortID = ep.shortId;
@@ -137,6 +145,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
         this.episodeImage = ep.metadata['cover_art_url'] ? ep.metadata['cover_art_url'] : `/assets/cover/${ep.publication}-s${ep.series}-lg.jpeg`;
         this.audioLink = ep.audioUri;
         this.episodeDurationMs = parseInt(ep.metadata['duration_ms']);
+        this.media = media.items ?? [];
 
         this.quotes = [];
         this.songs = [];
