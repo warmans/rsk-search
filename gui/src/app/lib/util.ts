@@ -23,10 +23,7 @@ export function highlightPrediction(pred: RskPrediction): string {
   return out;
 }
 
-export function shortenStringToNearestWord(
-  line: string,
-  targetLength: number
-): string {
+export function shortenStringToNearestWord(line: string, targetLength: number): string {
   if (line.length <= targetLength) {
     return line;
   }
@@ -41,16 +38,12 @@ export function shortenStringToNearestWord(
   return out;
 }
 
-export function formatSecondsAsTimestamp(
-  seconds: number | string,
-  secondsAreMilliseconds?: boolean
-): string {
+export function formatSecondsAsTimestamp(seconds: number | string, secondsAreMilliseconds?: boolean): string {
   if (!seconds) {
     return '-';
   }
 
-  let secondsNum: number =
-    typeof seconds === 'string' ? parseInt(seconds) : seconds;
+  let secondsNum: number = typeof seconds === 'string' ? parseInt(seconds) : seconds;
   if (secondsAreMilliseconds) {
     secondsNum = secondsNum / 1000;
   }
@@ -61,13 +54,10 @@ export function formatSecondsAsTimestamp(
 }
 
 export function episodeIdVariations(id: string): string[] {
-  const [ matches ] = Array.from(id.matchAll(new RegExp('([a-z]+)-S([0-9]+)E([0-9]+)$', 'g')));
+  const [matches] = Array.from(id.matchAll(new RegExp('([a-z]+)-S([0-9]+)E([0-9]+)$', 'g')));
   if (!matches) {
     return [id];
   }
   const [, pub, series, ep] = matches;
-  return [id, `${pub}-S${parseInt(series)}E${ep}`, `${pub}-S0${parseInt(series)}E${ep}`]
+  return [id, `${pub}-S${parseInt(series)}E${ep}`, `${pub}-S0${parseInt(series)}E${ep}`];
 }
-
-
-
