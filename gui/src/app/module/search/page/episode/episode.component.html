@@ -9,13 +9,8 @@
   <div *ngIf="authenticated && pendingChanges?.length > 0" class="row mb-3">
     <div class="col-12">
       <div class="alert alert-info">
-        This episode has an unmerged change. New changes cannot be created until
-        this is resolved.
-        <a
-          class="btn btn-sm btn-info"
-          [routerLink]="['/ep', id, 'change', pendingChanges[0].id]"
-          >View Change</a
-        >
+        This episode has an unmerged change. New changes cannot be created until this is resolved.
+        <a class="btn btn-sm btn-info" [routerLink]="['/ep', id, 'change', pendingChanges[0].id]">View Change</a>
       </div>
     </div>
   </div>
@@ -25,22 +20,11 @@
       <div class="card" *ngIf="episode">
         <div class="card-header d-flex justify-content-between">
           <div>
-            {{ shortID
-            }}<span *ngIf="episode.name"> - "{{ episode.name }}"</span>
+            {{ shortID }}<span *ngIf="episode.name"> - "{{ episode.name }}"</span>
           </div>
           <div>
-            <a
-              *ngIf="previousEpisodeId"
-              class="mr-2"
-              [routerLink]="['/ep', previousEpisodeId]"
-              ><i class="bi bi-arrow-left"></i> Previous</a
-            >
-            <a
-              *ngIf="nextEpisodeId"
-              class="ml-2"
-              [routerLink]="['/ep', nextEpisodeId]"
-              >Next <i class="bi bi-arrow-right"></i
-            ></a>
+            <a *ngIf="previousEpisodeId" class="mr-2" [routerLink]="['/ep', previousEpisodeId]"><i class="bi bi-arrow-left"></i> Previous</a>
+            <a *ngIf="nextEpisodeId" class="ml-2" [routerLink]="['/ep', nextEpisodeId]">Next <i class="bi bi-arrow-right"></i></a>
           </div>
         </div>
         <div class="card-body">
@@ -58,13 +42,9 @@
                 <tr>
                   <th>Transcript Data</th>
                   <td>
-                    <a target="_blank" href="/dl/episode/{{ episode.id }}.json"
-                      >{{ episode.id }}.json</a
-                    >
+                    <a target="_blank" href="/dl/episode/{{ episode.id }}.json">{{ episode.id }}.json</a>
                     (or
-                    <a target="_blank" href="/dl/episode/{{ episode.id }}.txt"
-                      >plaintext</a
-                    >)
+                    <a target="_blank" href="/dl/episode/{{ episode.id }}.txt">plaintext</a>)
                   </td>
                 </tr>
                 <tr>
@@ -78,9 +58,7 @@
                 <tr *ngIf="episode.bestof || episode.locked">
                   <th>Tags</th>
                   <td>
-                    <span *ngIf="episode.bestof" class="badge badge-secondary"
-                      >Bestof</span
-                    >
+                    <span *ngIf="episode.bestof" class="badge badge-secondary">Bestof</span>
                     <span
                       *ngIf="episode.locked"
                       class="badge badge-warning"
@@ -93,101 +71,49 @@
                   <th>Transcribers</th>
                   <td>
                     <span *ngIf="episode.metadata['pilkipedia_url']">
-                      <a
-                        [href]="episode.metadata['pilkipedia_url']"
-                        target="_blank"
-                        >Pilkipedia</a
-                      >
+                      <a [href]="episode.metadata['pilkipedia_url']" target="_blank">Pilkipedia</a>
                     </span>
-                    <span
-                      *ngIf="episode.metadata['pilkipedia_url'] && transcribers"
-                    >
-                      |
-                    </span>
+                    <span *ngIf="episode.metadata['pilkipedia_url'] && transcribers"> | </span>
                     <span>{{ transcribers }}</span>
                   </td>
                 </tr>
-                <tr
-                  *ngIf="episode.media.audio && !episode.media.audioRestricted"
-                >
+                <tr *ngIf="episode.media.audio && !episode.media.audioRestricted">
                   <th>Audio</th>
                   <td>
-                    <button
-                      *ngIf="
-                        !audioStatus ||
-                        audioStatus?.state !== audioStates.playing
-                      "
-                      class="btn btn-sm btn-primary"
-                      (click)="playAudio()"
-                    >
+                    <button *ngIf="!audioStatus || audioStatus?.state !== audioStates.playing" class="btn btn-sm btn-primary" (click)="playAudio()">
                       <i class="bi bi-play"></i> Play
                     </button>
-                    <button
-                      *ngIf="audioStatus?.state === audioStates.playing"
-                      class="btn btn-sm btn-primary"
-                      (click)="pauseAudio()"
-                    >
+                    <button *ngIf="audioStatus?.state === audioStates.playing" class="btn btn-sm btn-primary" (click)="pauseAudio()">
                       <i class="bi bi-pause"></i> Pause
                     </button>
-                    <span class="muted ml-3"
-                      >({{
-                        episode.offsetAccuracyPcnt | timecodeAccuracy
-                      }}
-                      Timecode Accuracy)</span
-                    >
+                    <span class="muted ml-3">({{ episode.offsetAccuracyPcnt | timecodeAccuracy }} Timecode Accuracy)</span>
                   </td>
                 </tr>
               </table>
             </div>
-            <div
-              class="col-lg-2 d-flex align-items-center justify-content-around"
-            >
-              <img
-                class="d-none d-lg-block series-image"
-                [src]="episodeImage"
-              />
+            <div class="col-lg-2 d-flex align-items-center justify-content-around">
+              <img class="d-none d-lg-block series-image" [src]="episodeImage" />
             </div>
           </div>
         </div>
-        <ul
-          class="nav nav-tabs font-weight-bold ml-2"
-          *ngIf="activeInfoPanel !== undefined"
-        >
-          <li
-            class="nav-item mr-2 with-border"
-            *ngIf="episode?.synopses?.length > 0"
-          >
-            <a
-              class="nav-link"
-              (click)="activeInfoPanel = 'synopsis'"
-              [ngClass]="{ active: activeInfoPanel === 'synopsis' }"
+        <ul class="nav nav-tabs font-weight-bold ml-2" *ngIf="activeInfoPanel !== undefined">
+          <li class="nav-item mr-2 with-border" *ngIf="episode?.synopses?.length > 0">
+            <a class="nav-link" (click)="activeInfoPanel = 'synopsis'" [ngClass]="{ active: activeInfoPanel === 'synopsis' }"
               ><i class="bi bi-card-list mr-1"></i> Synopsis
             </a>
           </li>
           <li class="nav-item mr-2" *ngIf="quotes && quotes.length > 0">
-            <a
-              class="nav-link"
-              (click)="activeInfoPanel = 'quotes'"
-              [ngClass]="{ active: activeInfoPanel === 'quotes' }"
-            >
+            <a class="nav-link" (click)="activeInfoPanel = 'quotes'" [ngClass]="{ active: activeInfoPanel === 'quotes' }">
               <i class="bi bi-chat-left-quote mr-1"></i> Quotes
             </a>
           </li>
           <li class="nav-item mr-2" *ngIf="songs && songs.length > 0">
-            <a
-              class="nav-link"
-              (click)="activeInfoPanel = 'songs'"
-              [ngClass]="{ active: activeInfoPanel === 'songs' }"
-            >
+            <a class="nav-link" (click)="activeInfoPanel = 'songs'" [ngClass]="{ active: activeInfoPanel === 'songs' }">
               <i class="bi bi-speaker mr-1"></i> Songs
             </a>
           </li>
           <li class="nav-item mr-2" *ngIf="media && media.length > 0">
-            <a
-              class="nav-link"
-              (click)="activeInfoPanel = 'media'"
-              [ngClass]="{ active: activeInfoPanel === 'media' }"
-            >
+            <a class="nav-link" (click)="activeInfoPanel = 'media'" [ngClass]="{ active: activeInfoPanel === 'media' }">
               <i class="bi bi-card-image mr-1"></i> Media
             </a>
           </li>
@@ -195,10 +121,7 @@
         <div *ngIf="activeInfoPanel === 'synopsis'">
           <div class="card-header border-top"></div>
           <div class="card-body">
-            <app-synopses
-              [synopses]="episode?.synopses"
-              [episodeID]="episode.id"
-            ></app-synopses>
+            <app-synopses [synopses]="episode?.synopses" [episodeID]="episode.id"></app-synopses>
           </div>
         </div>
         <div *ngIf="activeInfoPanel === 'quotes'">
@@ -207,11 +130,7 @@
             <div class="mb-1" *ngFor="let quote of quotes">
               <i class="bi-quote mr-2 text-primary"></i>
               <span class="font-italic">
-                "{{ quote.content }}" -{{ quote.actor }} (<a
-                  [routerLink]="['/ep', episode?.id]"
-                  [fragment]="'pos-' + quote?.pos"
-                  >context</a
-                >)
+                "{{ quote.content }}" -{{ quote.actor }} (<a [routerLink]="['/ep', episode?.id]" [fragment]="'pos-' + quote?.pos">context</a>)
               </span>
             </div>
           </div>
@@ -225,19 +144,11 @@
                   <i class="bi-spotify text-primary mr-2"></i>
                   <span class="text-paragraph">{{ song.content }}</span>
                 </a>
-                (<a
-                  [routerLink]="['/ep', episode?.id]"
-                  [fragment]="'pos-' + song?.pos"
-                  >context</a
-                >)
+                (<a [routerLink]="['/ep', episode?.id]" [fragment]="'pos-' + song?.pos">context</a>)
               </div>
               <div *ngIf="!song.metadata['spotify_uri']">
                 <i class="bi-spotify text-muted mr-2"></i>
-                <span class="text-paragraph">{{ song.content }}</span> (<a
-                  [routerLink]="['/ep', episode?.id]"
-                  [fragment]="'pos-' + song?.pos"
-                  >context</a
-                >)
+                <span class="text-paragraph">{{ song.content }}</span> (<a [routerLink]="['/ep', episode?.id]" [fragment]="'pos-' + song?.pos">context</a>)
               </div>
             </div>
           </div>
@@ -249,55 +160,34 @@
               <ng-container *ngFor="let item of media">
                 <div *ngFor="let med of item.media" class="d-flex justify-content-start">
                   <div class="p-4">
-                    <a [href]="'/dl/archive/file/'+med.name" target="_blank">
-                      <img style="max-width: 100%" [src]="'/dl/archive/file/'+med.thumbnailName"/>
+                    <a [href]="'/dl/archive/file/' + med.name" target="_blank">
+                      <img style="max-width: 100%" [src]="'/dl/archive/file/' + med.thumbnailName" />
                     </a>
                   </div>
                   <div class="p-4">{{ item.description }}</div>
                 </div>
               </ng-container>
             </div>
-          </div> 
+          </div>
         </div>
         <div class="card-header sticky-top border-top">
           <div class="d-flex">
-            <div
-              class="flex-grow-1 font-weight-bold d-flex justify-content-between"
-            >
+            <div class="flex-grow-1 font-weight-bold d-flex justify-content-between">
               <div>
                 <i class="bi bi-text-left mr-1"></i> Transcript
                 <!-- logic for transcript complete flag incomplete-->
-                <span
-                  *ngIf="episode.incomplete"
-                  class="badge badge-warning ml-3"
-                  >Incomplete</span
-                >
+                <span *ngIf="episode.incomplete" class="badge badge-warning ml-3">Incomplete</span>
               </div>
               <div class="d-flex">
-                <button class="btn btn-sm btn-primary" (click)="scrollToTop()">
-                  <i class="bi-arrow-up"></i> Top
-                </button>
-                <button
-                  class="btn btn-sm btn-primary ml-2"
-                  *ngIf="scrollToID && selection"
-                  (click)="scrollToSelection()"
-                >
+                <button class="btn btn-sm btn-primary" (click)="scrollToTop()"><i class="bi-arrow-up"></i> Top</button>
+                <button class="btn btn-sm btn-primary ml-2" *ngIf="scrollToID && selection" (click)="scrollToSelection()">
                   <i class="bi-arrow-down"></i> Selection
                 </button>
-                <button
-                  class="btn btn-sm btn-info ml-2"
-                  *ngIf="scrollToID && selection"
-                  (click)="copySelection()"
-                >
+                <button class="btn btn-sm btn-info ml-2" *ngIf="scrollToID && selection" (click)="copySelection()">
                   <i class="bi-clipboard"></i> Copy Selection
                 </button>
                 <ng-container *ngIf="scrollToID || scrollToSeconds">
-                  <button
-                    class="btn btn-sm btn-info ml-2"
-                    (click)="clearSelection()"
-                  >
-                    <i class="bi-escape"></i> Clear Selection
-                  </button>
+                  <button class="btn btn-sm btn-info ml-2" (click)="clearSelection()"><i class="bi-escape"></i> Clear Selection</button>
                   <!--a
                     *ngIf="authenticated && episode.offsetAccuracyPcnt > 0"
                     title="Audio export is provided on a best-effort basis. Since the audio timestamps are not 100% accurate, it's possible you won't get exactly the audio you expect."
@@ -307,9 +197,7 @@
                     <i class="bi-download"></i> Export selection audio
                   </a-->
                   <button
-                    *ngIf="
-                      episode.offsetAccuracyPcnt > 0 && episode.media.audio
-                    "
+                    *ngIf="episode.offsetAccuracyPcnt > 0 && episode.media.audio"
                     title="Audio export is provided on a best-effort basis. Since the audio timestamps are not 100% accurate, it's possible you won't get exactly the audio you expect."
                     class="btn btn-sm btn-info ml-2"
                     (click)="toggleDownloadDialog()"
@@ -325,15 +213,8 @@
                   </a-->
                 </ng-container>
                 <!--button class="btn btn-sm btn-primary ml-2" *ngIf="scrollToID || scrollToSeconds" (click)="shareSelection()">Share Selection</button-->
-                <div
-                  class="ml-2"
-                  *ngIf="pendingChanges?.length === 0 && !episode.locked"
-                >
-                  <a
-                    class="btn btn-sm btn-info"
-                    [routerLink]="['/ep', id, 'change']"
-                    ><i class="bi-pencil"></i> Submit Correction</a
-                  >
+                <div class="ml-2" *ngIf="pendingChanges?.length === 0 && !episode.locked">
+                  <a class="btn btn-sm btn-info" [routerLink]="['/ep', id, 'change']"><i class="bi-pencil"></i> Submit Correction</a>
                 </div>
               </div>
             </div>
@@ -349,16 +230,12 @@
             [searchResultMode]="false"
             [enableLineLinking]="true"
             [enableLineCopy]="true"
-            [enableAudioLinks]="
-              episode.media.audio && !episode.media.audioRestricted
-            "
+            [enableAudioLinks]="episode.media.audio && !episode.media.audioRestricted"
             [media]="episode.media"
             (emitAudioTimestamp)="onAudioTimestamp($event)"
             (emitSelection)="selectSection($event)"
           ></app-transcript>
-          <div *ngIf="!episode?.transcript?.length" class="text-center p-4">
-            No transcript available.
-          </div>
+          <div *ngIf="!episode?.transcript?.length" class="text-center p-4">No transcript available.</div>
         </div>
       </div>
     </div>
@@ -371,10 +248,7 @@
         <div class="card">
           <div class="card-body text-center">
             <div>
-              <img
-                src="/assets/illustration/pixeltrue-error-1.svg"
-                style="width: 300px"
-              />
+              <img src="/assets/illustration/pixeltrue-error-1.svg" style="width: 300px" />
             </div>
             <div class="pb-2">
               <strong>{{ error }}</strong>
@@ -387,21 +261,12 @@
   </div>
 </div>
 
-<div
-  class="download-modal modal"
-  [ngClass]="{ open: showDownloadDialog }"
-  *ngIf="showDownloadDialog && episode && selection"
->
+<div class="download-modal modal" [ngClass]="{ open: showDownloadDialog }" *ngIf="showDownloadDialog && episode && selection">
   <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <i class="bi-cloud-download mr-2"></i> Export audio section
-        <button
-          type="button"
-          class="close"
-          (click)="showDownloadDialog = false"
-          aria-label="Close"
-        >
+        <button type="button" class="close" (click)="showDownloadDialog = false" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
