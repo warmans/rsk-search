@@ -851,7 +851,9 @@ func (b *Bot) quickArchiveModalSave(s *discordgo.Session, i *discordgo.Interacti
 		Description:       i.ModalSubmitData().Components[0].(*discordgo.ActionsRow).Components[0].(*discordgo.TextInput).Value,
 	}
 	if ep := i.ModalSubmitData().Components[1].(*discordgo.ActionsRow).Components[0].(*discordgo.TextInput).Value; meta.IsValidEpisodeID(ep) {
-		archiveMeta.Episode = ep
+		if publication, series, episode, err := models.ParseEpID(ep); err == nil {
+			archiveMeta.Episode = models.ShortEpID(publication, series, episode)
+		}
 	}
 
 	if strings.HasPrefix(archiveMeta.Description, "!!") {

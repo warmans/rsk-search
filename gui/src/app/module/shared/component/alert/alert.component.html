@@ -1,9 +1,10 @@
 <div class="alerts-container">
-  <div *ngFor="let a of (alerts || [])" class="custom-alert custom-alert-{{a.level}} mb-3 p-2 animate__animated animate__backInDown shadow">
+  <div *ngFor="let a of (alerts || [])"
+       class="custom-alert custom-alert-{{a.level}} mb-3 p-2 animate__animated animate__backInDown shadow">
     <button type="button" class="close" aria-label="Close" (click)="remove(a.content)">
       <span class="text-black-50" aria-hidden="true">&times;</span>
     </button>
-    <div><strong>{{a.content}}</strong></div>
+    <div><strong>{{ a.content }}</strong></div>
     <ul class="mt-2" *ngIf="(a?.details || []).length > 0">
       <li *ngFor="let deet of a.details">{{ deet }}</li>
     </ul>
