@@ -249,4 +249,6 @@ export class EpisodeComponent implements OnInit, OnDestroy {
   scrollToSelection() {
     this.transcriptInstance.scrollToAnchor();
   }
+
+  protected readonly Array = Array;
 }

@@ -257,6 +257,20 @@ service TranscriptService {
       tags: "search"
     };
   }
+
+  // Ratings
+
+  rpc SetTranscriptRatingScore (SetTranscriptRatingScoreRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      put: "/api/transcript/{epid}/rating/score",
+      body: "*",
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "setTranscriptRatingScore",
+      summary: "Submits a rating score for a transcript."
+      tags: "search"
+    };
+  }
 }
 
 enum ContributionState {
@@ -321,6 +335,7 @@ message Transcript {
   MediaType media_type = 25 [deprecated = true];
   Media media = 26;
   PublicationType publication_type = 27;
+  Ratings ratings = 28;
 }
 
 message Media {
@@ -353,6 +368,8 @@ message ShortTranscript {
   MediaType media_type = 21 [deprecated = true];
   Media media = 22;
   PublicationType publication_type = 23;
+  float rating_score = 24;
+  int32 num_rating_scores = 25;
 }
 
 message Dialog {
@@ -421,6 +438,12 @@ message ListTranscriptsRequest {
 
 message TranscriptList {
   repeated ShortTranscript episodes = 1;
+}
+
+message Ratings {
+  map<string, float> scores = 1;
+  float score_avg = 2;
+  int32 num_scores = 3;
 }
 
 // -----------------------------------------------------------------------------------------
@@ -627,4 +650,10 @@ message TranscriptDialog {
   ShortTranscript transcript_meta = 1;
   repeated Dialog dialog = 2;
   int32 max_dialog_position = 3;
+}
+
+message SetTranscriptRatingScoreRequest {
+  string epid = 1;
+  float score = 2;
+  bool delete = 3;
 }

@@ -40,6 +40,7 @@ const (
 	TranscriptService_UpdateTranscriptChange_FullMethodName         = "/rsk.TranscriptService/UpdateTranscriptChange"
 	TranscriptService_DeleteTranscriptChange_FullMethodName         = "/rsk.TranscriptService/DeleteTranscriptChange"
 	TranscriptService_RequestTranscriptChangeState_FullMethodName   = "/rsk.TranscriptService/RequestTranscriptChangeState"
+	TranscriptService_SetTranscriptRatingScore_FullMethodName       = "/rsk.TranscriptService/SetTranscriptRatingScore"
 )
 
 // TranscriptServiceClient is the client API for TranscriptService service.
@@ -66,6 +67,7 @@ type TranscriptServiceClient interface {
 	UpdateTranscriptChange(ctx context.Context, in *UpdateTranscriptChangeRequest, opts ...grpc.CallOption) (*TranscriptChange, error)
 	DeleteTranscriptChange(ctx context.Context, in *DeleteTranscriptChangeRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	RequestTranscriptChangeState(ctx context.Context, in *RequestTranscriptChangeStateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SetTranscriptRatingScore(ctx context.Context, in *SetTranscriptRatingScoreRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type transcriptServiceClient struct {
@@ -256,6 +258,15 @@ func (c *transcriptServiceClient) RequestTranscriptChangeState(ctx context.Conte
 	return out, nil
 }
 
+func (c *transcriptServiceClient) SetTranscriptRatingScore(ctx context.Context, in *SetTranscriptRatingScoreRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, TranscriptService_SetTranscriptRatingScore_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TranscriptServiceServer is the server API for TranscriptService service.
 // All implementations should embed UnimplementedTranscriptServiceServer
 // for forward compatibility
@@ -280,6 +291,7 @@ type TranscriptServiceServer interface {
 	UpdateTranscriptChange(context.Context, *UpdateTranscriptChangeRequest) (*TranscriptChange, error)
 	DeleteTranscriptChange(context.Context, *DeleteTranscriptChangeRequest) (*emptypb.Empty, error)
 	RequestTranscriptChangeState(context.Context, *RequestTranscriptChangeStateRequest) (*emptypb.Empty, error)
+	SetTranscriptRatingScore(context.Context, *SetTranscriptRatingScoreRequest) (*emptypb.Empty, error)
 }
 
 // UnimplementedTranscriptServiceServer should be embedded to have forward compatible implementations.
@@ -345,6 +357,9 @@ func (UnimplementedTranscriptServiceServer) DeleteTranscriptChange(context.Conte
 }
 func (UnimplementedTranscriptServiceServer) RequestTranscriptChangeState(context.Context, *RequestTranscriptChangeStateRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RequestTranscriptChangeState not implemented")
+}
+func (UnimplementedTranscriptServiceServer) SetTranscriptRatingScore(context.Context, *SetTranscriptRatingScoreRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetTranscriptRatingScore not implemented")
 }
 
 // UnsafeTranscriptServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -718,6 +733,24 @@ func _TranscriptService_RequestTranscriptChangeState_Handler(srv interface{}, ct
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TranscriptService_SetTranscriptRatingScore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetTranscriptRatingScoreRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TranscriptServiceServer).SetTranscriptRatingScore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TranscriptService_SetTranscriptRatingScore_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TranscriptServiceServer).SetTranscriptRatingScore(ctx, req.(*SetTranscriptRatingScoreRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TranscriptService_ServiceDesc is the grpc.ServiceDesc for TranscriptService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -804,6 +837,10 @@ var TranscriptService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RequestTranscriptChangeState",
 			Handler:    _TranscriptService_RequestTranscriptChangeState_Handler,
+		},
+		{
+			MethodName: "SetTranscriptRatingScore",
+			Handler:    _TranscriptService_SetTranscriptRatingScore_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

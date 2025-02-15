@@ -776,6 +776,14 @@
         },
         "publicationType": {
           "$ref": "#/definitions/rskPublicationType"
+        },
+        "ratingScore": {
+          "type": "number",
+          "format": "float"
+        },
+        "numRatingScores": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },

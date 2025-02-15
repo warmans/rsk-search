@@ -443,6 +443,17 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  setTranscriptRatingScore(
+    args: {
+      epid: string,
+      body: models.RskSetTranscriptRatingScoreRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<object>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   getChunkedTranscriptChunkStats(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskChunkStats>;

@@ -971,6 +971,25 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  setTranscriptRatingScore(
+    args: {
+      epid: string,
+      body: models.RskSetTranscriptRatingScoreRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<object> {
+    const path = `/api/transcript/${args.epid}/rating/score`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<object>('PUT', path, options, JSON.stringify(args.body));
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   getChunkedTranscriptChunkStats(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskChunkStats> {

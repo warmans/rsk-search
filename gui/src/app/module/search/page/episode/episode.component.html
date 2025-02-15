@@ -78,6 +78,13 @@
                   </td>
                 </tr>
                 <tr *ngIf="episode.media.audio && !episode.media.audioRestricted">
+                  <th>Rating</th>
+                  <td>
+                    <app-star-rating [score]="episode.ratings.scoreAvg"></app-star-rating>
+                    <span class="text-muted"> ({{episode.ratings.numScores}} ratings)</span>
+                  </td>
+                </tr>
+                <tr *ngIf="episode.media.audio && !episode.media.audioRestricted">
                   <th>Audio</th>
                   <td>
                     <button *ngIf="!audioStatus || audioStatus?.state !== audioStates.playing" class="btn btn-sm btn-primary" (click)="playAudio()">

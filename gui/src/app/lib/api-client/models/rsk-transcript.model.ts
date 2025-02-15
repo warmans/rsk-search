@@ -5,6 +5,7 @@ import {
   RskMedia,
   RskMediaType,
   RskPublicationType,
+  RskRatings,
   RskSynopsis,
   RskTrivia,
 } from '.';
@@ -26,6 +27,7 @@ export interface RskTranscript {
   offsetAccuracyPcnt?: number;
   publication?: string;
   publicationType?: RskPublicationType;
+  ratings?: RskRatings;
   rawTranscript?: string;
   releaseDate?: string;
   series?: number;

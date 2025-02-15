@@ -674,11 +674,12 @@ func (s *Store) UpsertAuthor(ctx context.Context, author *models.Author) error {
 	}
 	row := s.tx.QueryRowxContext(
 		ctx,
-		"INSERT INTO author (id, name, identity, created_at, oauth_provider) VALUES ($1, $2, $3, NOW(), $4) ON CONFLICT(name, oauth_provider) DO UPDATE SET identity=$3 RETURNING id, banned, approver",
+		"INSERT INTO author (id, name, identity, created_at, oauth_provider, placeholder) VALUES ($1, $2, $3, NOW(), $4, $5) ON CONFLICT(name, oauth_provider) DO UPDATE SET identity=$3, placeholder=$5 RETURNING id, banned, approver",
 		author.ID,
 		author.Name,
 		author.Identity,
 		author.OauthProvider,
+		author.Placeholder,
 	)
 	return row.Scan(&author.ID, &author.Banned, &author.Approver)
 }
@@ -1568,4 +1569,16 @@ func (s *Store) GetRadioNext(ctx context.Context, authorID string) (string, erro
 		return "", err
 	}
 	return next, nil
+}
+
+func (s *Store) UpsertTranscriptRatingScore(ctx context.Context, episodeID string, authorID string, score float32, delete bool) error {
+	_, err := s.tx.ExecContext(
+		ctx,
+		`INSERT INTO transcript_rating_score (author_id, episode_id, score, delete) VALUES ($1, $2, $3, $4) ON CONFLICT DO UPDATE SET score=$3, delete=$4`,
+		episodeID,
+		authorID,
+		score,
+		delete,
+	)
+	return err
 }

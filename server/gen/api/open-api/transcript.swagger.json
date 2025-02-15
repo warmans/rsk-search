@@ -750,6 +750,45 @@
         ]
       }
     },
+    "/api/transcript/{epid}/rating/score": {
+      "put": {
+        "summary": "Submits a rating score for a transcript.",
+        "operationId": "setTranscriptRatingScore",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "epid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/rskSetTranscriptRatingScoreRequest"
+            }
+          }
+        ],
+        "tags": [
+          "search"
+        ]
+      }
+    },
     "/api/transcripts/chunked/chunk-stats": {
       "get": {
         "summary": "Get details about the current chunk backlog",
@@ -1148,6 +1187,26 @@
       ],
       "default": "PUBLICATION_TYPE_UNKNOWN"
     },
+    "rskRatings": {
+      "type": "object",
+      "properties": {
+        "scores": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "format": "float"
+          }
+        },
+        "scoreAvg": {
+          "type": "number",
+          "format": "float"
+        },
+        "numScores": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
     "rskRequestChunkContributionStateRequest": {
       "type": "object",
       "properties": {
@@ -1174,6 +1233,21 @@
         "pointsOnApprove": {
           "type": "number",
           "format": "float"
+        }
+      }
+    },
+    "rskSetTranscriptRatingScoreRequest": {
+      "type": "object",
+      "properties": {
+        "epid": {
+          "type": "string"
+        },
+        "score": {
+          "type": "number",
+          "format": "float"
+        },
+        "delete": {
+          "type": "boolean"
         }
       }
     },
@@ -1260,6 +1334,14 @@
         },
         "publicationType": {
           "$ref": "#/definitions/rskPublicationType"
+        },
+        "ratingScore": {
+          "type": "number",
+          "format": "float"
+        },
+        "numRatingScores": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },
@@ -1410,6 +1492,9 @@
         },
         "publicationType": {
           "$ref": "#/definitions/rskPublicationType"
+        },
+        "ratings": {
+          "$ref": "#/definitions/rskRatings"
         }
       }
     },

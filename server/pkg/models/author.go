@@ -27,6 +27,7 @@ type Author struct {
 	Approver      bool          `db:"approver"`
 	Supporter     bool          `db:"supporter"`
 	OauthProvider OauthProvider `db:"oauth_provider"`
+	Placeholder   bool          `db:"placeholder"`
 }
 
 func (a *Author) ShortAuthor() *ShortAuthor {

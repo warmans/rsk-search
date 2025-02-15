@@ -10,6 +10,7 @@ import (
 	"github.com/hexops/gotextdiff"
 	"github.com/hexops/gotextdiff/myers"
 	"github.com/hexops/gotextdiff/span"
+	"github.com/pkg/errors"
 	"github.com/warmans/rsk-search/gen/api"
 	"github.com/warmans/rsk-search/pkg/data"
 	"github.com/warmans/rsk-search/pkg/filter"
@@ -61,7 +62,7 @@ func (s *TranscriptService) RegisterHTTP(ctx context.Context, router *mux.Router
 
 func (s *TranscriptService) GetTranscript(ctx context.Context, request *api.GetTranscriptRequest) (*api.Transcript, error) {
 	ep, err := s.episodeCache.GetEpisode(request.Epid)
-	if err == data.ErrNotFound || ep == nil {
+	if errors.Is(err, data.ErrNotFound) || ep == nil {
 		return nil, ErrNotFound(request.Epid)
 	}
 	var rawTranscript string
@@ -86,7 +87,7 @@ func (s *TranscriptService) GetTranscript(ctx context.Context, request *api.GetT
 
 func (s *TranscriptService) GetTranscriptDialog(ctx context.Context, request *api.GetTranscriptDialogRequest) (*api.TranscriptDialog, error) {
 	ep, err := s.episodeCache.GetEpisode(request.Epid)
-	if err == data.ErrNotFound || ep == nil {
+	if errors.Is(err, data.ErrNotFound) || ep == nil {
 		return nil, ErrNotFound(request.Epid)
 	}
 	dialog := []*api.Dialog{}
@@ -787,6 +788,20 @@ func (s *TranscriptService) createAuthorNotification(
 		Message:        message,
 		ClickThoughURL: util.StringP("/me"),
 	})
+}
+
+func (s *TranscriptService) SetTranscriptRatingScore(ctx context.Context, request *api.SetTranscriptRatingScoreRequest) (*emptypb.Empty, error) {
+	claims, err := GetClaims(ctx, s.auth)
+	if err != nil {
+		return nil, err
+	}
+	err = s.persistentDB.WithStore(func(s *rw.Store) error {
+		return s.UpsertTranscriptRatingScore(ctx, request.Epid, claims.AuthorID, request.Score, request.Delete)
+	})
+	if err != nil {
+		return nil, ErrInternal(err)
+	}
+	return &emptypb.Empty{}, nil
 }
 
 func checkReadingAllowed(state models.ContributionState, isApprover bool, isAuthor bool) error {

@@ -456,6 +456,17 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
       .pipe(tap((res: any) => guards.isRskTranscriptDialog(res) || console.error(`TypeGuard for response 'RskTranscriptDialog' caught inconsistency.`, res)));
   }
 
+  setTranscriptRatingScore(
+    args: {
+      epid: string,
+      body: models.RskSetTranscriptRatingScoreRequest,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<object> {
+    return super.setTranscriptRatingScore(args, requestHttpOptions)
+      .pipe(tap((res: any) => typeof res === 'object' || console.error(`TypeGuard for response 'object' caught inconsistency.`, res)));
+  }
+
   getChunkedTranscriptChunkStats(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskChunkStats> {

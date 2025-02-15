@@ -19,9 +19,11 @@ export interface RskShortTranscript {
   mediaType?: RskMediaType;
   metadata?: { [key: string]: string };
   name?: string;
+  numRatingScores?: number;
   offsetAccuracyPcnt?: number;
   publication?: string;
   publicationType?: RskPublicationType;
+  ratingScore?: number;
   releaseDate?: string;
   series?: number;
   shortId?: string;

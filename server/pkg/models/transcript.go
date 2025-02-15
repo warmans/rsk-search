@@ -212,6 +212,7 @@ type Transcript struct {
 	Contributors []string   `json:"contributors"`
 	Trivia       []Trivia   `json:"trivia"`
 	Media        Media      `json:"media"`
+	Ratings      Ratings    `json:"ratings"`
 }
 
 func (e *Transcript) ID() string {
@@ -339,6 +340,15 @@ func (e *Transcript) ShortProto(audioURI string) *api.ShortTranscript {
 	if e == nil {
 		return nil
 	}
+
+	scoreTotal := float32(0)
+	numScores := len(e.Ratings.Scores)
+	if e.Ratings.Scores != nil {
+		for _, v := range e.Ratings.Scores {
+			scoreTotal += v
+		}
+	}
+
 	ep := &api.ShortTranscript{
 		Id:                  e.ID(),
 		Publication:         e.Publication,
@@ -363,6 +373,8 @@ func (e *Transcript) ShortProto(audioURI string) *api.ShortTranscript {
 		MediaType:           e.MediaType.Proto(),
 		Media:               e.Media.Proto(),
 		PublicationType:     e.PublicationType.Proto(),
+		RatingScore:         scoreTotal / float32(numScores),
+		NumRatingScores:     int32(numScores),
 	}
 	for k, s := range e.Synopsis {
 		ep.Synopsis[k] = s.Proto()
@@ -398,6 +410,7 @@ func (e *Transcript) Proto(withRawTranscript string, audioURI string, forceLocke
 		MediaType:          e.MediaType.Proto(),
 		Media:              e.Media.Proto(),
 		PublicationType:    e.PublicationType.Proto(),
+		Ratings:            e.Ratings.Proto(),
 	}
 	for _, d := range e.Transcript {
 		ep.Transcript = append(ep.Transcript, d.Proto(false))
@@ -463,6 +476,28 @@ func (f Trivia) Proto() *api.Trivia {
 		Description: f.Description,
 		StartPos:    int32(f.StartPos),
 		EndPos:      int32(f.EndPos),
+	}
+}
+
+type Ratings struct {
+	// map of authorID to score - the author ids aren't really meaningful in the context of the flat file
+	// but will be useful, for edit/delete operations
+	Scores map[string]float32 `json:"scores"`
+}
+
+func (r Ratings) Proto() *api.Ratings {
+	total := float32(0)
+	for _, v := range r.Scores {
+		total += v
+	}
+	avg := float32(0)
+	if len(r.Scores) > 0 {
+		avg = total / float32(len(r.Scores))
+	}
+	return &api.Ratings{
+		Scores:    r.Scores,
+		ScoreAvg:  avg,
+		NumScores: int32(len(r.Scores)),
 	}
 }
 

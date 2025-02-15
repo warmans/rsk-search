@@ -873,6 +873,21 @@ export function isRskRank(arg: any): arg is models.RskRank {
   );
   }
 
+export function isRskRatings(arg: any): arg is models.RskRatings {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // numScores?: number
+    ( typeof arg.numScores === 'undefined' || typeof arg.numScores === 'number' ) &&
+    // scoreAvg?: number
+    ( typeof arg.scoreAvg === 'undefined' || typeof arg.scoreAvg === 'number' ) &&
+    // scores?: { [key: string]: number }
+    ( typeof arg.scores === 'undefined' || typeof arg.scores === 'number' ) &&
+
+  true
+  );
+  }
+
 export function isRskRecipientStats(arg: any): arg is models.RskRecipientStats {
   return (
   arg != null &&
@@ -1004,6 +1019,21 @@ export function isRskSearchTermPredictions(arg: any): arg is models.RskSearchTer
   );
   }
 
+export function isRskSetTranscriptRatingScoreRequest(arg: any): arg is models.RskSetTranscriptRatingScoreRequest {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // delete?: boolean
+    ( typeof arg.delete === 'undefined' || typeof arg.delete === 'boolean' ) &&
+    // epid?: string
+    ( typeof arg.epid === 'undefined' || typeof arg.epid === 'string' ) &&
+    // score?: number
+    ( typeof arg.score === 'undefined' || typeof arg.score === 'number' ) &&
+
+  true
+  );
+  }
+
 export function isRskShortTranscript(arg: any): arg is models.RskShortTranscript {
   return (
   arg != null &&
@@ -1030,12 +1060,16 @@ export function isRskShortTranscript(arg: any): arg is models.RskShortTranscript
     ( typeof arg.metadata === 'undefined' || typeof arg.metadata === 'string' ) &&
     // name?: string
     ( typeof arg.name === 'undefined' || typeof arg.name === 'string' ) &&
+    // numRatingScores?: number
+    ( typeof arg.numRatingScores === 'undefined' || typeof arg.numRatingScores === 'number' ) &&
     // offsetAccuracyPcnt?: number
     ( typeof arg.offsetAccuracyPcnt === 'undefined' || typeof arg.offsetAccuracyPcnt === 'number' ) &&
     // publication?: string
     ( typeof arg.publication === 'undefined' || typeof arg.publication === 'string' ) &&
     // publicationType?: RskPublicationType
     ( typeof arg.publicationType === 'undefined' || isRskPublicationType(arg.publicationType) ) &&
+    // ratingScore?: number
+    ( typeof arg.ratingScore === 'undefined' || typeof arg.ratingScore === 'number' ) &&
     // releaseDate?: string
     ( typeof arg.releaseDate === 'undefined' || typeof arg.releaseDate === 'string' ) &&
     // series?: number
@@ -1171,6 +1205,8 @@ export function isRskTranscript(arg: any): arg is models.RskTranscript {
     ( typeof arg.publication === 'undefined' || typeof arg.publication === 'string' ) &&
     // publicationType?: RskPublicationType
     ( typeof arg.publicationType === 'undefined' || isRskPublicationType(arg.publicationType) ) &&
+    // ratings?: RskRatings
+    ( typeof arg.ratings === 'undefined' || isRskRatings(arg.ratings) ) &&
     // rawTranscript?: string
     ( typeof arg.rawTranscript === 'undefined' || typeof arg.rawTranscript === 'string' ) &&
     // releaseDate?: string
