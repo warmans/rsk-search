@@ -80,8 +80,14 @@
                 <tr *ngIf="episode.media.audio && !episode.media.audioRestricted">
                   <th>Rating</th>
                   <td>
-                    <app-star-rating [score]="episode.ratings.scoreAvg"></app-star-rating>
-                    <span class="text-muted"> ({{episode.ratings.numScores}} ratings)</span>
+                    <star-rating
+                      [starType]="'svg'"
+                      [rating]="episode.ratings.scoreAvg"
+                      [readOnly]="!authenticated"
+                      (starClickChange)="rateEpisode($event)">
+                    </star-rating>
+                    <span class="text-muted"> {{episode.ratings.numScores}} ratings</span>
+                    <span *ngIf="authenticated" class="text-muted"> (your rating: {{episode?.ratings?.scores[authorIdentifier] || 'none'}})</span>
                   </td>
                 </tr>
                 <tr *ngIf="episode.media.audio && !episode.media.audioRestricted">

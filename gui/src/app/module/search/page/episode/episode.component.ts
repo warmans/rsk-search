@@ -1,15 +1,7 @@
 import {Component, EventEmitter, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Data, Router} from '@angular/router';
 import {SearchAPIClient} from 'src/app/lib/api-client/services/search';
-import {
-  DialogType,
-  RskArchive,
-  RskArchiveList,
-  RskDialog, RskMediaType,
-  RskTranscript,
-  RskTranscriptChange,
-  RskTranscriptChangeList
-} from 'src/app/lib/api-client/models';
+import {DialogType, RskArchive, RskDialog, RskTranscript, RskTranscriptChange, RskTranscriptChangeList} from 'src/app/lib/api-client/models';
 import {ViewportScroller} from '@angular/common';
 import {takeUntil} from 'rxjs/operators';
 import {Title} from '@angular/platform-browser';
@@ -22,8 +14,9 @@ import {Section, TranscriptComponent} from '../../../shared/component/transcript
 import {combineLatest} from 'rxjs';
 import {parseSection} from "../../../shared/lib/fragment";
 import {ClipboardService} from "../../../core/service/clipboard/clipboard.service";
-import { CommunityAPIClient } from 'src/app/lib/api-client/services/community';
-import { episodeIdVariations } from 'src/app/lib/util';
+import {CommunityAPIClient} from 'src/app/lib/api-client/services/community';
+import {episodeIdVariations} from 'src/app/lib/util';
+import {AlertService} from "../../../core/service/alert/alert.service";
 
 @Component({
   selector: 'app-episode',
@@ -80,6 +73,8 @@ export class EpisodeComponent implements OnInit, OnDestroy {
 
   episodeDurationMs: number = 0;
 
+  authorIdentifier: string = '';
+
   @ViewChild('transcript')
   transcriptInstance: TranscriptComponent;
 
@@ -94,6 +89,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
     private meta: MetaService,
     private audioService: AudioService,
     private clipboard: ClipboardService,
+    private alertService: AlertService,
   ) {
     route.paramMap.pipe(takeUntil(this.unsubscribe$)).subscribe((d: Data) => {
       this.loadEpisode(d.params['id']);
@@ -115,6 +111,8 @@ export class EpisodeComponent implements OnInit, OnDestroy {
     sessionService.onTokenChange.pipe(takeUntil(this.unsubscribe$)).subscribe((token: string): void => {
       if (token != null) {
         this.authenticated = true;
+        const claims = sessionService.getClaims();
+        this.authorIdentifier = `${claims.oauth_provider}:${claims.identity.name}`
       }
     });
   }
@@ -251,4 +249,16 @@ export class EpisodeComponent implements OnInit, OnDestroy {
   }
 
   protected readonly Array = Array;
+
+  rateEpisode(userScore: { rating: number }) {
+    if (!userScore || !this.authenticated) {
+      return;
+    }
+    this.apiClient.setTranscriptRatingScore(
+      {epid: this.episode.shortId, body: {score: userScore.rating}}
+    ).subscribe(() => {
+      this.alertService.success("Rating submitted")
+      this.episode.ratings.scores[this.authorIdentifier] = userScore.rating;
+    });
+  }
 }

@@ -29,7 +29,6 @@ import {UserMenuComponent} from './component/user-menu/user-menu.component';
 import {TranscriptCopyDialogComponent} from './component/transcript-copy-dialog/transcript-copy-dialog.component';
 import {RandomQuoteComponent} from "../more-shite/page/random-quote/random-quote.component";
 import {AudioWaveformComponent} from "./component/audio-waveform/audio-waveform.component";
-import {StarRatingComponent} from "./component/star-rating/star-rating.component";
 
 @NgModule({
   declarations: [
@@ -59,7 +58,6 @@ import {StarRatingComponent} from "./component/star-rating/star-rating.component
     TranscriptCopyDialogComponent,
     RandomQuoteComponent,
     AudioWaveformComponent,
-    StarRatingComponent,
   ],
   imports: [
     CommonModule,
@@ -93,7 +91,6 @@ import {StarRatingComponent} from "./component/star-rating/star-rating.component
     TranscriptCopyDialogComponent,
     RandomQuoteComponent,
     AudioWaveformComponent,
-    StarRatingComponent,
   ]
 })
 export class SharedModule {

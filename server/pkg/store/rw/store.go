@@ -1574,11 +1574,42 @@ func (s *Store) GetRadioNext(ctx context.Context, authorID string) (string, erro
 func (s *Store) UpsertTranscriptRatingScore(ctx context.Context, episodeID string, authorID string, score float32, delete bool) error {
 	_, err := s.tx.ExecContext(
 		ctx,
-		`INSERT INTO transcript_rating_score (author_id, episode_id, score, delete) VALUES ($1, $2, $3, $4) ON CONFLICT DO UPDATE SET score=$3, delete=$4`,
-		episodeID,
+		`INSERT INTO transcript_rating_score (author_id, episode_id, score, delete) VALUES ($1, $2, $3, $4) ON CONFLICT(author_id, episode_id) DO UPDATE SET score=$3, delete=$4`,
 		authorID,
+		episodeID,
 		score,
 		delete,
 	)
 	return err
+}
+
+func (s *Store) ListTranscriptRatingScores(ctx context.Context, episodeID string) (models.Ratings, error) {
+	res, err := s.tx.QueryxContext(
+		ctx,
+		`SELECT
+    		s.score, 
+    		a.name, 
+    		a.oauth_provider
+		FROM transcript_rating_score s
+		LEFT JOIN author a ON s.author_id = a.id
+		WHERE episode_id = $1 
+		  AND "delete" = false 
+		  AND a.banned = false`,
+		episodeID,
+	)
+	if err != nil {
+		return models.Ratings{}, err
+	}
+	defer res.Close()
+
+	ratings := models.Ratings{Scores: make(map[string]float32)}
+	for res.Next() {
+		var name, oauthProvider string
+		var score float32
+		if err := res.Scan(&score, &name, &oauthProvider); err != nil {
+			return ratings, err
+		}
+		ratings.Scores[fmt.Sprintf("%s:%s", oauthProvider, name)] = score
+	}
+	return ratings, nil
 }

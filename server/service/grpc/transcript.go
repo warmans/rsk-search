@@ -82,6 +82,23 @@ func (s *TranscriptService) GetTranscript(ctx context.Context, request *api.GetT
 	if ep.MediaType == models.MediaTypeAudio {
 		audioURL = fmt.Sprintf(s.srvCfg.AudioUriPattern, ep.ShortID())
 	}
+	err = s.persistentDB.WithStore(func(s *rw.Store) error {
+		ratings, err := s.ListTranscriptRatingScores(ctx, ep.ShortID())
+		if err != nil {
+			return err
+		}
+		if ep.Ratings.Scores == nil {
+			ep.Ratings.Scores = make(map[string]float32)
+		}
+		for k, v := range ratings.Scores {
+			ep.Ratings.Scores[k] = v
+		}
+		return nil
+	})
+	if err != nil {
+		return nil, ErrInternal(err)
+	}
+
 	return ep.Proto(rawTranscript, audioURL, locked), nil
 }
 

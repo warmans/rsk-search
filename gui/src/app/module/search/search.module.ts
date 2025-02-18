@@ -1,20 +1,21 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { SearchComponent } from './page/search/search.component';
-import { EpisodeComponent } from './page/episode/episode.component';
-import { RouterModule } from '@angular/router';
-import { SharedModule } from '../shared/shared.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgChartsModule } from 'ng2-charts';
-import { SearchStatsComponent } from './component/search-stats/search-stats.component';
-import { MatchedRowPosPipe } from './pipe/match-row-pos.pipe';
-import { EpisodeListComponent } from './component/episode-list/episode-list.component';
-import { EpisodeSummaryComponent } from './component/episode-summary/episode-summary.component';
-import { ChangelogComponent } from './page/changelog/changelog.component';
-import { TimecodeAccuracyPipe } from './pipe/timecode-accuracy.pipe';
-import { SearchBarHelpComponent } from './component/search-bar-help/search-bar-help.component';
-import { SearchBarCompatComponent } from './component/search-bar-compat/search-bar-compat.component';
-import { SearchBarSuggestionComponent } from 'src/app/module/search/component/search-bar-suggestion/search-bar-suggestion.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {SearchComponent} from './page/search/search.component';
+import {EpisodeComponent} from './page/episode/episode.component';
+import {RouterModule} from '@angular/router';
+import {SharedModule} from '../shared/shared.module';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {NgChartsModule} from 'ng2-charts';
+import {SearchStatsComponent} from './component/search-stats/search-stats.component';
+import {MatchedRowPosPipe} from './pipe/match-row-pos.pipe';
+import {EpisodeListComponent} from './component/episode-list/episode-list.component';
+import {EpisodeSummaryComponent} from './component/episode-summary/episode-summary.component';
+import {ChangelogComponent} from './page/changelog/changelog.component';
+import {TimecodeAccuracyPipe} from './pipe/timecode-accuracy.pipe';
+import {SearchBarHelpComponent} from './component/search-bar-help/search-bar-help.component';
+import {SearchBarCompatComponent} from './component/search-bar-compat/search-bar-compat.component';
+import {SearchBarSuggestionComponent} from 'src/app/module/search/component/search-bar-suggestion/search-bar-suggestion.component';
+import {StarRatingModule} from "angular-star-rating";
 
 @NgModule({
   declarations: [
@@ -30,14 +31,15 @@ import { SearchBarSuggestionComponent } from 'src/app/module/search/component/se
     SearchBarCompatComponent,
     SearchBarSuggestionComponent
   ],
-    imports: [
-        CommonModule,
-        RouterModule,
-        SharedModule,
-        FormsModule,
-        ReactiveFormsModule,
-        NgChartsModule,
-    ],
+  imports: [
+    CommonModule,
+    RouterModule,
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgChartsModule,
+    StarRatingModule.forRoot()
+  ],
   exports: [SearchBarCompatComponent]
 })
 export class SearchModule {
