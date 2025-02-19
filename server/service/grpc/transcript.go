@@ -131,7 +131,11 @@ func (s *TranscriptService) ListTranscripts(_ context.Context, _ *api.ListTransc
 	el := &api.TranscriptList{
 		Episodes: []*api.ShortTranscript{},
 	}
-	for _, ep := range s.episodeCache.ListEpisodes() {
+	episodeList, err := s.episodeCache.ListEpisodes()
+	if err != nil {
+		return nil, ErrInternal(err)
+	}
+	for _, ep := range episodeList {
 		el.Episodes = append(el.Episodes, ep.ShortProto(fmt.Sprintf(s.srvCfg.AudioUriPattern, ep.ShortID())))
 	}
 	return el, nil

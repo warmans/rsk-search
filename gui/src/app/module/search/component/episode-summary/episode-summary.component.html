@@ -31,7 +31,10 @@
             {{ (episode.releaseDate | date) || "Date Unknown" }} |
             v{{ episode.version }}
             |
-            {{ episode.ratingScore || 0 }}/5 ({{ episode.numRatingScores }})
+            <span title="Community episode rating">
+              <i class="bi" [ngClass]="{'bi-star':  episode.ratingScore <= 2, 'bi-star-half': episode.ratingScore > 2 && episode.ratingScore < 4, 'bi-star-fill': episode.ratingScore >= 4}"></i>
+              {{ episode.ratingScore || 0 }}/5 ({{ episode.numRatingScores }})
+            </span>
           </div>
         </div>
       </div>

@@ -1453,7 +1453,11 @@ func (s *Store) CreateAuthorNotification(ctx context.Context, not models.AuthorN
 }
 
 func (s *Store) InitRadioEpisodes(ctx context.Context, episodeCache *data.EpisodeCache) error {
-	for _, ep := range episodeCache.ListEpisodes() {
+	episodeList, err := episodeCache.ListEpisodes()
+	if err != nil {
+		return err
+	}
+	for _, ep := range episodeList {
 		if ep.PublicationType != models.PublicationTypeRadio &&
 			ep.PublicationType != models.PublicationTypePodcast {
 			continue

@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"facette.io/natsort"
 	"fmt"
+	"github.com/jinzhu/copier"
 	"github.com/pkg/errors"
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/util"
@@ -142,10 +143,16 @@ func (s *EpisodeCache) GetEpisode(id string) (*models.Transcript, error) {
 	if !ok {
 		return nil, ErrNotFound
 	}
-	return &ep, nil
+
+	// do a deep clone of the object to avoid it being updated accidentally.
+	cpy := &models.Transcript{}
+	if err := copier.CopyWithOption(cpy, ep, copier.Option{DeepCopy: true}); err != nil {
+		return nil, err
+	}
+	return cpy, nil
 }
 
-func (s *EpisodeCache) ListEpisodes() []*models.Transcript {
+func (s *EpisodeCache) ListEpisodes() ([]*models.Transcript, error) {
 
 	// copy the episodeList when fetched to avoid unexpected modifications.
 	list := make([]*models.Transcript, len(s.episodeList))
@@ -153,9 +160,10 @@ func (s *EpisodeCache) ListEpisodes() []*models.Transcript {
 	s.lock.RLock()
 	defer s.lock.RUnlock()
 	for k, v := range s.episodeList {
+		// we will leak references here, but doing a deep copy is really slow.
 		list[k] = transcriptP(v)
 	}
-	return list
+	return list, nil
 }
 
 func (s *EpisodeCache) RandomQuote() Quote {
