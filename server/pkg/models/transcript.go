@@ -348,6 +348,10 @@ func (e *Transcript) ShortProto(audioURI string) *api.ShortTranscript {
 			scoreTotal += v
 		}
 	}
+	ratingScore := float32(0)
+	if numScores > 0 {
+		ratingScore = scoreTotal / float32(numScores)
+	}
 
 	ep := &api.ShortTranscript{
 		Id:                  e.ID(),
@@ -373,7 +377,7 @@ func (e *Transcript) ShortProto(audioURI string) *api.ShortTranscript {
 		MediaType:           e.MediaType.Proto(),
 		Media:               e.Media.Proto(),
 		PublicationType:     e.PublicationType.Proto(),
-		RatingScore:         scoreTotal / float32(numScores),
+		RatingScore:         ratingScore,
 		NumRatingScores:     int32(numScores),
 	}
 	for k, s := range e.Synopsis {

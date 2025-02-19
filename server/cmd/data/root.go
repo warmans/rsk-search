@@ -57,5 +57,8 @@ func RootCmd() *cobra.Command {
 	//video
 	root.AddCommand(ExtractVideoImages())
 
+	// imports
+	root.AddCommand(ImportRatingsCmd())
+
 	return root
 }

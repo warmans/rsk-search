@@ -86,7 +86,7 @@
                       [readOnly]="!authenticated"
                       (starClickChange)="rateEpisode($event)">
                     </star-rating>
-                    <span class="text-muted"> {{episode.ratings.numScores}} ratings</span>
+                    <span class="text-muted">Avg. {{episode.ratings.scoreAvg || 0}}/5 from {{episode.ratings.numScores}} ratings</span>
                     <span *ngIf="authenticated" class="text-muted"> (your rating: {{episode?.ratings?.scores[authorIdentifier] || 'none'}})</span>
                   </td>
                 </tr>

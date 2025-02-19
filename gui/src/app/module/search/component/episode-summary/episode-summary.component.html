@@ -30,6 +30,8 @@
             {{ ( episode.metadata["duration_ms"] | formatSeconds: true ) || "Duration Unknown" }} |
             {{ (episode.releaseDate | date) || "Date Unknown" }} |
             v{{ episode.version }}
+            |
+            {{ episode.ratingScore || 0 }}/5 ({{ episode.numRatingScores }})
           </div>
         </div>
       </div>
