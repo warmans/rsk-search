@@ -18,6 +18,7 @@ type Claims struct {
 	jwt.RegisteredClaims
 	AuthorID      string           `json:"author_id"`
 	Approver      bool             `json:"approver"`
+	System        bool             `json:"system"`
 	Identity      *models.Identity `json:"identity"`
 	OauthProvider string           `json:"oauth_provider"`
 }
@@ -54,6 +55,18 @@ func NewAuth(cfg *Config) *Auth {
 
 type Auth struct {
 	cfg *Config
+}
+
+func (a *Auth) NewSystemJWT() (string, error) {
+	claims := &Claims{
+		RegisteredClaims: jwt.RegisteredClaims{
+			Issuer: Issuer,
+		},
+		System: true,
+	}
+
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	return token.SignedString([]byte(a.cfg.SigningKey))
 }
 
 func (a *Auth) NewJWTForIdentity(author *models.Author, ident *models.Identity) (string, error) {

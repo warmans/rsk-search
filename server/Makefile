@@ -16,7 +16,7 @@ DEV_DB_DSN ?= "postgres://$(DEV_DB_USER):$(DEV_DB_PASS)@$(DEV_DB_HOST):5432/$(DE
 #----------------------------------------------------------------------------------------------
 
 .PHONY: setup
-setup: check.env install.tools install.buf install.golangci
+setup: check.env install.tools install.buf install.golangci dev.generate.certs
 	echo "=> Setup OK"
 
 .PHONY: install.tools
@@ -52,6 +52,7 @@ endif
 ifeq ($(shell which ffmpeg),)
 	$(error "ffmpeg not found in PATH. This tool is required for some commands: try apt-get install ffmpeg")
 endif
+
 #----------------------------------------------------------------------------------------------
 # Linting
 #----------------------------------------------------------------------------------------------
@@ -218,6 +219,14 @@ dev.refresh-data:
 	./bin/rsk-search data refresh && \
  	./bin/rsk-search data infer-missing-offsets && \
 	$(MAKE) update.spotify-links
+
+.PHONY: dev.generate.certs
+dev.generate.certs:
+	echo "Generating TLS certificates...";
+	mkdir -p x509 && \
+	openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 \
+      -nodes -keyout ./x509/server_key.pem -out ./x509/server_cert.pem -subj "/CN=scrimpton.com" \
+      -addext "subjectAltName=DNS:scrimpton.com,DNS:*.scrimpton.com,IP:0.0.0.0"
 
 .PHONY: update.spotify-links
 update.spotify-links:

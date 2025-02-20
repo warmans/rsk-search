@@ -11,7 +11,7 @@ USER nobody
 
 WORKDIR /opt/rsk
 
-COPY --chown=nobody ./bin/rsk-search .
+COPY --chown=nobody ./rsk-search .
 
 RUN chmod +x rsk-search
 RUN mkdir x509

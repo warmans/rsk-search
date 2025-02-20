@@ -825,6 +825,32 @@ func (s *TranscriptService) SetTranscriptRatingScore(ctx context.Context, reques
 	return &emptypb.Empty{}, nil
 }
 
+func (s *TranscriptService) BulkSetTranscriptRatingScore(ctx context.Context, request *api.BulkSetTranscriptRatingScoreRequest) (*emptypb.Empty, error) {
+
+	if err := s.authorizeSystemRequest(ctx); err != nil {
+		return nil, err
+	}
+
+	//todo: implement
+
+	return &emptypb.Empty{}, nil
+}
+
+func (s *TranscriptService) authorizeSystemRequest(ctx context.Context) error {
+	token := jwt.ExtractTokenFromRequestContext(ctx)
+	if token == "" {
+		return ErrUnauthorized("no token provided")
+	}
+	claims, err := s.auth.VerifyToken(token)
+	if err != nil {
+		return ErrUnauthorized(err.Error())
+	}
+	if !claims.System {
+		return ErrUnauthorized("Not a system token")
+	}
+	return nil
+}
+
 func checkReadingAllowed(state models.ContributionState, isApprover bool, isAuthor bool) error {
 	if !isApprover && (state == models.ContributionStatePending && !isAuthor) {
 		return ErrPermissionDenied("you cannot view another author's contribution diff when it is in the pending state")

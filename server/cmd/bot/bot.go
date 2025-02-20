@@ -9,9 +9,12 @@ import (
 	"github.com/warmans/rsk-search/pkg/archive"
 	"github.com/warmans/rsk-search/pkg/discord"
 	"github.com/warmans/rsk-search/pkg/flag"
+	"github.com/warmans/rsk-search/pkg/jwt"
 	"go.uber.org/zap"
+	"golang.org/x/oauth2"
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials/insecure"
+	"google.golang.org/grpc/credentials"
+	"google.golang.org/grpc/credentials/oauth"
 	"log"
 	"os"
 	"os/signal"
@@ -24,6 +27,9 @@ func RootCommand() *cobra.Command {
 	var apiTarget string
 	var webUrl string
 	var archiveDir string
+	var tlsCertPath string
+
+	jwtConfig := &jwt.Config{}
 
 	cmd := &cobra.Command{
 		Use:   "discord-bot",
@@ -39,6 +45,12 @@ func RootCommand() *cobra.Command {
 				}
 			}()
 
+			auth := jwt.NewAuth(jwtConfig)
+			systemToken, err := auth.NewSystemJWT()
+			if err != nil {
+				return fmt.Errorf("failed to create system token: %w", err)
+			}
+
 			logger.Info("Creating discord session...")
 			if botToken == "" {
 				return fmt.Errorf("discord token is required")
@@ -51,7 +63,7 @@ func RootCommand() *cobra.Command {
 				return fmt.Errorf("failed to create discord session: %w", err)
 			}
 
-			grpcConn, err := createGrpcClientConn(apiTarget)
+			grpcConn, err := createGrpcClientConn(apiTarget, systemToken, tlsCertPath)
 			if err != nil {
 				return fmt.Errorf("failed to dial GRPC connection to API: %w", err)
 			}
@@ -86,13 +98,32 @@ func RootCommand() *cobra.Command {
 	flag.StringVarEnv(cmd.Flags(), &apiTarget, "", "api-target", "127.0.0.1:9090", "gRPC API target")
 	flag.StringVarEnv(cmd.Flags(), &webUrl, "", "web-url", "http://127.0.0.1:4200", "Base web address used for links")
 	flag.StringVarEnv(cmd.Flags(), &archiveDir, "", "archive-dir", "./var/archive", "Location to archive files via archive command")
+	flag.StringVarEnv(cmd.Flags(), &tlsCertPath, "", "grpc-tls-cert", "./x509/server_cert.pem", "TLS certificate needed to access GRPC server")
+	jwtConfig.RegisterFlags(cmd.Flags(), "")
+
 	flag.Parse()
 
 	return cmd
 }
 
-func createGrpcClientConn(apiTarget string) (*grpc.ClientConn, error) {
-	return grpc.DialContext(context.Background(), apiTarget, grpc.WithTransportCredentials(insecure.NewCredentials()))
+func createGrpcClientConn(apiTarget string, systemToken string, tlsCertificatePath string) (*grpc.ClientConn, error) {
+
+	creds, err := credentials.NewClientTLSFromFile(tlsCertificatePath, "")
+	if err != nil {
+		log.Fatalf("failed to create credentials: %v", err)
+	}
+
+	return grpc.DialContext(
+		context.Background(),
+		apiTarget,
+		//todo:
+		grpc.WithTransportCredentials(creds),
+		grpc.WithPerRPCCredentials(
+			oauth.TokenSource{
+				TokenSource: oauth2.StaticTokenSource(&oauth2.Token{AccessToken: systemToken}),
+			},
+		),
+	)
 }
 
 func createTranscriptClient(conn *grpc.ClientConn) api.TranscriptServiceClient {

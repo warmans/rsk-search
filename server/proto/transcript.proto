@@ -271,6 +271,18 @@ service TranscriptService {
       tags: "search"
     };
   }
+
+  rpc BulkSetTranscriptRatingScore (BulkSetTranscriptRatingScoreRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      put: "/api/transcript/{epid}/rating/score/bulk",
+      body: "*",
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "bulkSetTranscriptRatingScore",
+      summary: "Submits a set of rating scores for a transcript."
+      tags: "search"
+    };
+  }
 }
 
 enum ContributionState {
@@ -656,4 +668,9 @@ message SetTranscriptRatingScoreRequest {
   string epid = 1;
   float score = 2;
   bool delete = 3;
+}
+
+message BulkSetTranscriptRatingScoreRequest {
+  string epid = 1;
+  map<string, float> scores = 2;
 }
