@@ -223,10 +223,12 @@ dev.refresh-data:
 .PHONY: dev.generate.certs
 dev.generate.certs:
 	echo "Generating TLS certificates...";
+	# note: that it uses a DNS entry of "server" which is what the server is called in docker-compose.
+    # if docker DNS uses a different name, it would need to be changed in here.
 	mkdir -p x509 && \
 	openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 \
       -nodes -keyout ./x509/server_key.pem -out ./x509/server_cert.pem -subj "/CN=scrimpton.com" \
-      -addext "subjectAltName=DNS:scrimpton.com,DNS:*.scrimpton.com,IP:0.0.0.0"
+      -addext "subjectAltName=DNS:scrimpton.com,DNS:*.scrimpton.com,DNS:server,IP:0.0.0.0,IP:127.0.0.1"
 
 .PHONY: update.spotify-links
 update.spotify-links:

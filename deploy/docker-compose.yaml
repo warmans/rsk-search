@@ -91,6 +91,9 @@ services:
     volumes:
       # Remember to chown dir on host to nobody:nogroup to match containers (see script/setup.sh)
       - /mnt/audio:/audio
+       # certificates are required, but can be generated with make dev.generate.certs
+       # then just put them in this directory and mount them on the server/bot
+      - /mnt/x509:/x509
     environment:
       RSK_SEARCH_ENV: "prod"
       RSK_SEARCH_RW_DB_DSN: "postgres://scrimpton:insecure@postgres:5432/scrimpton?sslmode=disable"
@@ -110,4 +113,6 @@ services:
       RSK_SEARCH_ASSEMBLY_AI_ACCESS_TOKEN: "changeme"
       RSK_SEARCH_SENTRY_DSN: ""
       RSK_SEARCH_MEDIA_CACHE_DATA_DIR: "./cache/media"
+      RSK_SEARCH_GRPC_TLS_CERT: /x509/server_cert.pem
+      RSK_SEARCH_GRPC_TLS_KEY: /x509/server_key.pem
     restart: unless-stopped
