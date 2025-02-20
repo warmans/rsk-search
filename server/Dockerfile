@@ -21,6 +21,7 @@ WORKDIR /opt/rsk
 COPY --chown=nobody var var
 COPY --chown=nobody bin/rsk-search .
 COPY --chown=nobody assets assets
+COPY --chown=nobody x509 x509
 
 RUN chmod +x rsk-search
 
