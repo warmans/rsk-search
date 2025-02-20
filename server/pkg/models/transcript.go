@@ -505,6 +505,14 @@ func (r Ratings) Proto() *api.Ratings {
 	}
 }
 
+type TranscriptRatingScore struct {
+	AuthorID         string
+	EpisodeID        string
+	Score            float32
+	Delete           bool
+	AuthorIdentifier string
+}
+
 func parsePositionRange(pos string) (int64, int64, error) {
 	pos = strings.TrimSpace(pos)
 	if pos == "" {

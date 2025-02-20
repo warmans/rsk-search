@@ -1587,7 +1587,42 @@ func (s *Store) UpsertTranscriptRatingScore(ctx context.Context, episodeID strin
 	return err
 }
 
-func (s *Store) ListTranscriptRatingScores(ctx context.Context, episodeID string) (models.Ratings, error) {
+func (s *Store) ListTranscriptRatingScores(ctx context.Context) ([]models.TranscriptRatingScore, error) {
+	res, err := s.tx.QueryxContext(
+		ctx,
+		`SELECT
+    		s.author_id, 
+    		s.episode_id, 
+    		s.score, 
+    		s.delete,
+    		CONCAT(a.oauth_provider, ':', a.name) as author_identifier
+		FROM transcript_rating_score s
+		LEFT JOIN author a ON s.author_id = a.id
+		WHERE a.banned = false`,
+	)
+	if err != nil {
+		return nil, err
+	}
+	defer res.Close()
+
+	ratings := []models.TranscriptRatingScore{}
+	for res.Next() {
+		cur := models.TranscriptRatingScore{}
+		if err := res.Scan(
+			&cur.AuthorID,
+			&cur.EpisodeID,
+			&cur.Score,
+			&cur.Delete,
+			&cur.AuthorIdentifier,
+		); err != nil {
+			return ratings, err
+		}
+		ratings = append(ratings, cur)
+	}
+	return ratings, nil
+}
+
+func (s *Store) GetTranscriptRatingScores(ctx context.Context, episodeID string) (models.Ratings, error) {
 	res, err := s.tx.QueryxContext(
 		ctx,
 		`SELECT

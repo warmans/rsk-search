@@ -184,6 +184,10 @@ dev.extract.test-data: build
 	./bin/rsk-search db extract-tscript --rw-db-dsn=${DEV_DB_DSN} --dry-run=true
 	$(MAKE) dev.refresh-data
 
+.PHONY: dev.extract.ratings
+dev.extract.ratings: build
+	./bin/rsk-search db merge-transcript-ratings --rw-db-dsn=${DEV_DB_DSN} --dry-run=false
+
 #----------------------------------------------------------------------------------------------
 # Misc.
 #----------------------------------------------------------------------------------------------
@@ -195,6 +199,7 @@ ifndef PROD_DB_DSN
 endif
 	./bin/rsk-search db extract-tscript --rw-db-dsn=${PROD_DB_DSN} --dry-run=false
 	./bin/rsk-search db merge-transcript-changes --rw-db-dsn=${PROD_DB_DSN} --dry-run=false
+	./bin/rsk-search db merge-transcript-ratings --rw-db-dsn=${PROD_DB_DSN} --dry-run=false
 	$(MAKE) dev.refresh-data
 
 .PHONY: report.prod

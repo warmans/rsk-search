@@ -83,7 +83,7 @@ func (s *TranscriptService) GetTranscript(ctx context.Context, request *api.GetT
 		audioURL = fmt.Sprintf(s.srvCfg.AudioUriPattern, ep.ShortID())
 	}
 	err = s.persistentDB.WithStore(func(s *rw.Store) error {
-		ratings, err := s.ListTranscriptRatingScores(ctx, ep.ShortID())
+		ratings, err := s.GetTranscriptRatingScores(ctx, ep.ShortID())
 		if err != nil {
 			return err
 		}
