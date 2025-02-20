@@ -11,10 +11,10 @@ USER nobody
 
 WORKDIR /opt/rsk
 
-COPY --chown=nobody ./rsk-search .
-COPY --chown=nobody x509 x509
+COPY --chown=nobody ./bin/rsk-search .
 
 RUN chmod +x rsk-search
+RUN mkdir x509
 
 EXPOSE 8888
 

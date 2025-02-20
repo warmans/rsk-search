@@ -68,16 +68,6 @@ jobs:
           name: server-binaries
           path: ${{env.working-directory}}/server/bin
 
-      - name: Setup secrets
-        shell: bash
-        env:
-          GRPC_TLS_CERT: ${{ secrets.GRPC_TLS_CERT }}
-          GRPC_TLS_KEY: ${{ secrets.GRPC_TLS_KEY }}
-        run: |
-          mkdir -p ${{env.working-directory}}/x509 && \
-          echo "${GRPC_TLS_CERT}" > ${{env.working-directory}}/x509/server_cert.pem && \
-          echo "${GRPC_TLS_KEY}" > ${{env.working-directory}}/x509/server_key.pem
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
