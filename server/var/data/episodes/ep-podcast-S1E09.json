@@ -4424,39 +4424,53 @@
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown a",
+        "actor": "steve",
         "metadata": null,
         "content": "Goodbye.",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
         "id": "ep-podcast-S1E09-316",
         "pos": 316,
         "timestamp": 1849270000000,
-        "duration": 2220000000,
+        "duration": 930000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown b",
+        "actor": "ricky",
         "metadata": null,
-        "content": "And Kyle Pilkington.",
+        "content": "And Karl Pilkington.",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
         "id": "ep-podcast-S1E09-317",
         "pos": 317,
+        "timestamp": 1850200000000,
+        "duration": 1290000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Alright?",
+        "notable": false,
+        "placeholder": false
+      },
+      {
+        "id": "ep-podcast-S1E09-318",
+        "pos": 318,
         "timestamp": 1851490000000,
         "duration": 16510000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown a",
+        "actor": "presenter",
         "metadata": null,
         "content": "The Ricky Gervais show on Guardian Unlimited.",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       }
     ],
     "synopsis": null,
