@@ -124,7 +124,7 @@ func generateRatingMigrations(migrationsPath string, mergedRatingIDs [][2]string
 		idsPairs[k] = fmt.Sprintf(`('%s', '%s')`, v[0], v[1])
 	}
 	return os.WriteFile(
-		path.Join(migrationsPath, fmt.Sprintf("%d_merge_changes.sql", time.Now().Unix())),
+		path.Join(migrationsPath, fmt.Sprintf("%d_merge_ratings.sql", time.Now().Unix())),
 		[]byte(fmt.Sprintf(
 			`DELETE FROM transcript_rating_score WHERE (author_id, episode_id) IN (%s);`,
 			strings.Join(idsPairs, ", "),
