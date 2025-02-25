@@ -6,7 +6,7 @@ import (
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	"github.com/pkg/errors"
-	ffmpeg_go "github.com/warmans/ffmpeg-go"
+	ffmpeg_go "github.com/warmans/ffmpeg-go/v2"
 	"github.com/warmans/rsk-search/pkg/archive"
 	"github.com/warmans/rsk-search/pkg/data"
 	"github.com/warmans/rsk-search/pkg/mediacache"
@@ -238,8 +238,8 @@ func (c *DownloadService) servePartialAudioFile(
 					input,
 					"pipe:",
 					ffmpeg_go.KwArgs{
-						"map_0":  "0:a",
-						"map_1":  "1:v",
+						"_map_0": "0:a",
+						"_map_1": "1:v",
 						"vf":     "scale=220:220",
 						"format": "webm",
 					},
