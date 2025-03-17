@@ -367,22 +367,6 @@ func (b *Bot) beginAudioResponse(
 
 func (b *Bot) buttons(customID CustomID, maxDialogOffset int32) []discordgo.MessageComponent {
 
-	audioButton := discordgo.Button{
-		Label: "Enable Media",
-		Emoji: &discordgo.ComponentEmoji{
-			Name: "🔊",
-		},
-		Style:    discordgo.SecondaryButton,
-		CustomID: encodeCustomIDForAction("up", customID.withOption(withModifier(ContentModifierNone))),
-	}
-	if customID.ContentModifier == ContentModifierNone {
-		audioButton.Label = "Disable Media"
-		audioButton.Emoji = &discordgo.ComponentEmoji{
-			Name: "🔇",
-		}
-		audioButton.CustomID = encodeCustomIDForAction("up", customID.withOption(withModifier(ContentModifierTextOnly)))
-	}
-
 	editRow1 := []discordgo.MessageComponent{}
 	if customID.StartLine > 0 {
 		editRow1 = append(editRow1, discordgo.Button{
@@ -513,13 +497,39 @@ func (b *Bot) buttons(customID CustomID, maxDialogOffset int32) []discordgo.Mess
 		Components: []discordgo.MessageComponent{
 			discordgo.Button{
 				Label:    "Post",
-				Style:    discordgo.SuccessButton,
+				Style:    discordgo.PrimaryButton,
 				CustomID: encodeCustomIDForAction("cfm", customID),
 			},
 		},
 	}
 	if customID.ContentModifier != ContentModifierGifOnly {
-		postButtons.Components = append(postButtons.Components, audioButton)
+		if customID.ContentModifier != ContentModifierNone {
+			postButtons.Components = append(postButtons.Components, discordgo.Button{
+				Label:    "Audio & Text",
+				Style:    discordgo.SecondaryButton,
+				CustomID: encodeCustomIDForAction("up", customID.withOption(withModifier(ContentModifierNone))),
+			})
+		}
+		if customID.ContentModifier != ContentModifierAudioOnly {
+			postButtons.Components = append(postButtons.Components, discordgo.Button{
+				Label: "Audio Only",
+				Emoji: &discordgo.ComponentEmoji{
+					Name: "🔊",
+				},
+				Style:    discordgo.SecondaryButton,
+				CustomID: encodeCustomIDForAction("up", customID.withOption(withModifier(ContentModifierAudioOnly))),
+			})
+		}
+		if customID.ContentModifier != ContentModifierTextOnly {
+			postButtons.Components = append(postButtons.Components, discordgo.Button{
+				Label: "Text Only",
+				Emoji: &discordgo.ComponentEmoji{
+					Name: "📄",
+				},
+				Style:    discordgo.SecondaryButton,
+				CustomID: encodeCustomIDForAction("up", customID.withOption(withModifier(ContentModifierTextOnly))),
+			})
+		}
 	}
 	if customID.StartLine == customID.EndLine && customID.NumContextLines == 0 {
 		if customID.ContentModifier != ContentModifierGifOnly {
@@ -531,7 +541,8 @@ func (b *Bot) buttons(customID CustomID, maxDialogOffset int32) []discordgo.Mess
 					},
 					Style:    discordgo.SecondaryButton,
 					CustomID: encodeCustomIDForAction("up", customID.withOption(withModifier(ContentModifierGifOnly))),
-				})
+				},
+			)
 		} else {
 			postButtons.Components = append(postButtons.Components,
 				discordgo.Button{

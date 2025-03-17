@@ -124,7 +124,8 @@ func Import(scanner *bufio.Scanner, episodeID string, startPos int64) ([]models.
 		// line should be in the format "actor: text..."
 		parts := strings.SplitN(line, ":", 2)
 		if len(parts) != 2 {
-			return nil, nil, nil, fmt.Errorf("line did not start with actor name or tag: %s", line)
+			fmt.Printf("WARN: invalid line detected (missing actor): %s\n", line)
+			parts = []string{"none", line}
 		}
 
 		actor := strings.ToLower(strings.TrimSuffix(strings.TrimSpace(parts[0]), ":"))
