@@ -830,12 +830,19 @@ func (b *Bot) quickArchiveModalSave(s *discordgo.Session, i *discordgo.Interacti
 		b.respondError(s, i, err)
 		return
 	}
+	if err := s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
+		Type: discordgo.InteractionResponseDeferredChannelMessageWithSource,
+	}); err != nil {
+		b.respondError(s, i, err)
+		return
+	}
+
 	fileNames := []string{}
 	for _, v := range msg.Attachments {
 		warning, err := b.validateAttachmentForArchive(v)
 		if err != nil {
 			b.logger.Error("failed to validate file", zap.Error(err))
-			b.respondError(s, i, fmt.Errorf("failed to valid file"))
+			b.followupError(s, i, fmt.Errorf("failed to valid file"))
 			return
 		}
 		if warning != "" {
@@ -843,7 +850,7 @@ func (b *Bot) quickArchiveModalSave(s *discordgo.Session, i *discordgo.Interacti
 		}
 
 		if err := b.archiveStore.ArchiveFile(v.Filename, v.URL); err != nil {
-			b.respondError(s, i, err)
+			b.followupError(s, i, err)
 			return
 		}
 
@@ -851,7 +858,7 @@ func (b *Bot) quickArchiveModalSave(s *discordgo.Session, i *discordgo.Interacti
 	}
 
 	if len(fileNames) == 0 {
-		b.respondError(s, i, fmt.Errorf("no valid/new files found in message"))
+		b.followupError(s, i, fmt.Errorf("no valid/new files found in message"))
 		return
 	}
 
@@ -867,24 +874,22 @@ func (b *Bot) quickArchiveModalSave(s *discordgo.Session, i *discordgo.Interacti
 		}
 	}
 
-	if strings.HasPrefix(archiveMeta.Description, "!!") {
-		b.respondError(s, i, fmt.Errorf("refusing the save description with error content"))
-		return
-	}
-
 	if len(archiveMeta.Files) > 0 {
 		if err := b.createArchiveMeta(archiveMeta); err != nil {
-			b.respondError(s, i, err)
+			b.followupError(s, i, err)
 			return
 		}
 	} else {
-		b.respondError(s, i, fmt.Errorf("no new files were added"))
+		b.followupError(s, i, fmt.Errorf("no new files were added"))
 		return
 	}
 
-	if err := s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
-		Type: discordgo.InteractionResponseChannelMessageWithSource,
-		Data: &discordgo.InteractionResponseData{Content: "Thank you!", Flags: discordgo.MessageFlagsEphemeral},
+	username := "unknown"
+	if i.Member != nil {
+		username = i.Member.DisplayName()
+	}
+	if _, err := s.FollowupMessageCreate(i.Interaction, false, &discordgo.WebhookParams{
+		Content: fmt.Sprintf("Media was archived by %s", username),
 	}); err != nil {
 		b.respondError(s, i, err)
 		return
@@ -893,15 +898,24 @@ func (b *Bot) quickArchiveModalSave(s *discordgo.Session, i *discordgo.Interacti
 
 func (b *Bot) respondError(s *discordgo.Session, i *discordgo.InteractionCreate, err error) {
 	b.logger.Error("Error response was sent", zap.Error(err))
-	err = s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
+	responseErr := s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
 		Type: discordgo.InteractionResponseChannelMessageWithSource,
 		Data: &discordgo.InteractionResponseData{
 			Content: fmt.Sprintf("Request failed with error: %s", err.Error()),
 			Flags:   discordgo.MessageFlagsEphemeral,
 		},
 	})
-	if err != nil {
-		b.logger.Error("failed to respond", zap.Error(err))
+	if responseErr != nil {
+		b.logger.Error("failed to respond", zap.Error(responseErr), zap.String("original_error", err.Error()))
+		return
+	}
+}
+
+func (b *Bot) followupError(s *discordgo.Session, i *discordgo.InteractionCreate, err error) {
+	if _, err := s.FollowupMessageCreate(i.Interaction, false, &discordgo.WebhookParams{
+		Content: fmt.Sprintf("Failed: %s", err.Error()),
+	}); err != nil {
+		b.logger.Error("Followup error failed", zap.Error(err))
 		return
 	}
 }
@@ -912,6 +926,7 @@ func (b *Bot) createArchiveMeta(meta models.ArchiveMeta) error {
 			// todo: could merge the image into the old meta or create a new file
 			return fmt.Errorf("metadata for this message ID already exists, but some of the files do not exist. Perhaps the message was edited. Missing files: %s", strings.Join(meta.Files, ", "))
 		}
+		return err
 	}
 	return nil
 }
