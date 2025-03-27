@@ -884,12 +884,8 @@ func (b *Bot) quickArchiveModalSave(s *discordgo.Session, i *discordgo.Interacti
 		return
 	}
 
-	username := "unknown"
-	if i.Member != nil {
-		username = i.Member.DisplayName()
-	}
 	if _, err := s.FollowupMessageCreate(i.Interaction, false, &discordgo.WebhookParams{
-		Content: fmt.Sprintf("Media was archived by %s", username),
+		Content: "Media was archived. Thanks!",
 	}); err != nil {
 		b.respondError(s, i, err)
 		return
