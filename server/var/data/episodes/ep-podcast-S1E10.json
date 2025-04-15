@@ -24,257 +24,383 @@
         "id": "ep-podcast-S1E10-1",
         "pos": 1,
         "timestamp": 3040000000,
-        "duration": 14340000000,
+        "duration": 14390000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown a",
+        "actor": "announcer",
         "metadata": null,
-        "content": "The Ricky Gervais show on Guardian Unlimited. Hello. Welcome to the 10th podcast in a series of twelve Ricky Gervais show with me, Ricky Gervais, Stephen Merchant.",
+        "content": "The Ricky Gervais show on Guardian Unlimited.",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
         "id": "ep-podcast-S1E10-2",
         "pos": 2,
+        "timestamp": 17430000000,
+        "duration": -50000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Hello. Welcome to the 10th podcast in a series of twelve. The Ricky Gervais show with me, Ricky Gervais, Stephen Merchant.",
+        "notable": false,
+        "placeholder": false
+      },
+      {
+        "id": "ep-podcast-S1E10-3",
+        "pos": 3,
         "timestamp": 17380000000,
         "duration": 600000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown b",
+        "actor": "steve",
         "metadata": null,
         "content": "Hello.",
         "notable": false,
-        "placeholder": true
-      },
-      {
-        "id": "ep-podcast-S1E10-3",
-        "pos": 3,
-        "timestamp": 17980000000,
-        "duration": 13750000000,
-        "timestamp_inferred": false,
-        "timestamp_distance": 0,
-        "type": "chat",
-        "actor": "unknown a",
-        "metadata": null,
-        "content": "And of course, Karl Pilkington. Now, thanks for your emails. We've really started a community here, I think. Yes, all brought together by one aim, the fascination of the brain of Carl Pilkington, basically.",
-        "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
         "id": "ep-podcast-S1E10-4",
         "pos": 4,
+        "timestamp": 17980000000,
+        "duration": -500000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "And of course, Karl Pilkington.",
+        "notable": false,
+        "placeholder": false
+      },
+      {
+        "id": "ep-podcast-S1E10-5",
+        "pos": 5,
+        "timestamp": 17480000000,
+        "duration": 749000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Alright.",
+        "notable": false,
+        "placeholder": false
+      },
+      {
+        "id": "ep-podcast-S1E10-6",
+        "pos": 6,
+        "timestamp": 18229000000,
+        "duration": 7121000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 1,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Now, thanks for your emails. We've really started a community here, I think.",
+        "notable": false,
+        "placeholder": false
+      },
+      {
+        "id": "ep-podcast-S1E10-7",
+        "pos": 7,
+        "timestamp": 25350000000,
+        "duration": 201000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Yes",
+        "notable": false,
+        "placeholder": false
+      },
+      {
+        "id": "ep-podcast-S1E10-8",
+        "pos": 8,
+        "timestamp": 25551000000,
+        "duration": 6179000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 1,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "All brought together by one aim, the fascination of the brain of Karl Pilkington, basically.",
+        "notable": false,
+        "placeholder": false
+      },
+      {
+        "id": "ep-podcast-S1E10-9",
+        "pos": 9,
         "timestamp": 31730000000,
         "duration": 3500000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown b",
+        "actor": "steve",
         "metadata": null,
-        "content": "Absolutely. Thousands of people who are equally as obsessed as we are with it.",
+        "content": "Yes. Absolutely. There's thousands of people who are equally as obsessed as we are with it.",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-5",
-        "pos": 5,
+        "id": "ep-podcast-S1E10-10",
+        "pos": 10,
         "timestamp": 35230000000,
         "duration": 7440000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown a",
+        "actor": "ricky",
         "metadata": null,
-        "content": "I really don't know why it's called the Ricky Dre show anymore. I mean, I was cynical at the beginning, but it's farcical. Welcome to the Karl Pilkington show.",
+        "content": "I really don't know why it's called the Ricky Gervais show anymore. I mean, I was cynical at the beginning, but it's farcical. Welcome to the Karl Pilkington show.",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-6",
-        "pos": 6,
+        "id": "ep-podcast-S1E10-11",
+        "pos": 11,
         "timestamp": 42670000000,
         "duration": 4730000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown b",
+        "actor": "steve",
         "metadata": null,
-        "content": "Well, people say they'd like to hear more from you and I, but I don't see why when you've got, I.",
+        "content": "Well, people say they'd like to hear more from you and I, but I don't see why when you've got,",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-7",
-        "pos": 7,
+        "id": "ep-podcast-S1E10-12",
+        "pos": 12,
         "timestamp": 47400000000,
         "duration": 48540000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown a",
+        "actor": "ricky",
         "metadata": null,
-        "content": "Feel like the ringmaster, but the real star is the shaved monkey in a jar that we bring out. Do you know what I mean? That's it. That's the star of the show, you know? Well, we've, we've had loads of emails, actually, and we've had one from Nige who's done this brilliant cartoon of Carl on the beach. I think we should sell those as postcards, but someone's beating us to selling merchandise. If you go to www.cafepress.com, mister pilkington, someone is selling everything with Carl Pilkington's head on it. Now these are bootleg goods. We're not making any money from it. But I'm strangely proud. I just love to see millions of people wearing a little t shirt or a baseball cap or drinking out of a mug with his little round head on it. He's made a clock, which is perfect because it fits absolutely. You know, I mean, the sides of the head go right to the edge of the clock because it's perfectly, I'd.",
+        "content": "Do you know what? I feel like the ringmaster, but the real star is the shaved monkey in a jar that we bring out. Do you know what I mean? That's it. That's the star of the show, you know? Well, we've, we've had loads of emails, actually, and we've had one from Nige who's done this brilliant cartoon of Karl on the beach. I think we should sell those as postcards, but someone's beaten us to selling merchandise. If you go to www.cafepress.com forward slash mister pilkington, someone is selling everything with Karl Pilkington's head on it. Now these are bootleg goods. We're not making any money from it. But I'm strangely proud. I just love to see millions of people wearing a little t shirt or a baseball cap or drinking out of a mug with his little round head on it. He's made a clock, which is perfect because it fits absolutely. You know, I mean, the sides of the head go right to the edge of the clock because it's perfectly round.",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-8",
-        "pos": 8,
+        "id": "ep-podcast-S1E10-13",
+        "pos": 13,
         "timestamp": 95940000000,
         "duration": 5630000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown b",
+        "actor": "steve",
         "metadata": null,
-        "content": "Like to see maybe as well those sort of rubber or plastic face masks that you can buy for Halloween with just Carl's face.",
+        "content": "I'd like to see maybe as well those sort of rubber or plastic face masks that you can buy for Halloween with just Karl's face.",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-9",
-        "pos": 9,
+        "id": "ep-podcast-S1E10-14",
+        "pos": 14,
         "timestamp": 101570000000,
-        "duration": 9320000000,
+        "duration": 9790000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown a",
+        "actor": "ricky",
         "metadata": null,
-        "content": "Oh, just millions of people all look like car. Oh, that would be amazing. What a world that would be. Carl Pilkington.",
+        "content": "Oh, just millions of people that all look like Karl. Oh, that would be amazing. What a world that would be.",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-10",
-        "pos": 10,
+        "id": "ep-podcast-S1E10-15",
+        "pos": 15,
+        "timestamp": 111360000000,
+        "duration": -470000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "type": "chat",
+        "actor": "singer in advert",
+        "metadata": null,
+        "content": "Karl Pilkington",
+        "notable": false,
+        "placeholder": false
+      },
+      {
+        "id": "ep-podcast-S1E10-16",
+        "pos": 16,
         "timestamp": 110890000000,
         "duration": 24280000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown c",
+        "actor": "karl",
         "metadata": null,
-        "content": "Cheers for that, love. Yeah, it's Carl Pilkington air. Just telling you about channel four on a Friday. You've got new green wing, right, that's nearly ready. My name is Earl and the it crowd. I mean, sort of being in the comedy business and that, I think it's fair to say I'm qualified to give me opinion. And these three things are funny. So yeah, stay in, watch it, have a good night, have a nice little brew with it. Do what you want. At the end of the day, it's your life, isn't it?",
+        "content": "Cheers for that, love. Yeah, it's Karl Pilkington here. Just telling you about channel four on a Friday. You've got new green wing, right, that's nearly ready. My name is Earl and the it crowd. I mean, sort of being in the comedy business and that, I think it's fair to say I'm qualified to give me opinion. And these three things are funny. So yeah, stay in, watch it, have a good night, have a nice little brew with it. Do what you want. At the end of the day, it's your life, isn't it?  See ya.",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-11",
-        "pos": 11,
+        "id": "ep-podcast-S1E10-17",
+        "pos": 17,
         "timestamp": 135170000000,
         "duration": 2400000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown a",
+        "actor": "singer in advert",
         "metadata": null,
-        "content": "Call pilking dumb.",
+        "content": "Karl Pilkington",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-12",
-        "pos": 12,
+        "id": "ep-podcast-S1E10-18",
+        "pos": 18,
         "timestamp": 137570000000,
-        "duration": 15840000000,
+        "duration": 3370000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown b",
+        "actor": "announcer",
         "metadata": null,
-        "content": "Now the Ricky Gervais show on Guardian Unlimited. Still to come, of course, monkey news and Carl's diary, excerpts thereof. I wonder if we should have a jingle for questions for Carl because there's a lot of questions coming in for Carl.",
+        "content": "Now the Ricky Gervais show on Guardian Unlimited.",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-13",
-        "pos": 13,
+        "id": "ep-podcast-S1E10-19",
+        "pos": 19,
+        "timestamp": 140940000000,
+        "duration": 12470000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "Still to come, of course, monkey news and Karl's diary, excerpts thereof. I wonder if we should have a jingle for questions for Karl because there's a lot of questions coming in for Karl.",
+        "notable": false,
+        "placeholder": false
+      },
+      {
+        "id": "ep-podcast-S1E10-20",
+        "pos": 20,
         "timestamp": 153410000000,
         "duration": 4700000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown a",
+        "actor": "ricky",
         "metadata": null,
-        "content": "Okay. Oh, chimpanzee. That question's for Carl.",
+        "content": "Okay. Oh, chimpanzee that. Question's for Karl!",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-14",
-        "pos": 14,
+        "id": "ep-podcast-S1E10-21",
+        "pos": 21,
         "timestamp": 158110000000,
         "duration": 12420000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown b",
+        "actor": "steve",
         "metadata": null,
-        "content": "Yeah. Okay. No, fair enough. That works. This is from Jim and Bob in Manchester. Carl, if you could talk to any animal, which one would it be and what would you say to it?",
+        "content": "Yeah. Okay. No, fair enough. That works. This is from Jim and Bob in Manchester. Karl, if you could talk to any animal, which one would it be and what would you say to it?",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-15",
-        "pos": 15,
+        "id": "ep-podcast-S1E10-22",
+        "pos": 22,
         "timestamp": 170530000000,
         "duration": 2860000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown c",
+        "actor": "karl",
         "metadata": null,
-        "content": "Insect, animal, anything. Fish, anything.",
+        "content": "Um, insect, animal, anything? Fish, anything?",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-16",
-        "pos": 16,
+        "id": "ep-podcast-S1E10-23",
+        "pos": 23,
         "timestamp": 173390000000,
         "duration": 2530000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown b",
+        "actor": "steve",
         "metadata": null,
-        "content": "Well, they said animal, but that's, yeah, that's brought to anything.",
+        "content": "Well, they said animal, but that's, yeah, that's broaden it to anything. Any creature",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-17",
-        "pos": 17,
+        "id": "ep-podcast-S1E10-24",
+        "pos": 24,
         "timestamp": 175920000000,
         "duration": 2680000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown a",
+        "actor": "ricky",
         "metadata": null,
-        "content": "Well, no, animal creature. Insect is an animal.",
+        "content": "Well, no, an insect is an animal.",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-18",
-        "pos": 18,
+        "id": "ep-podcast-S1E10-25",
+        "pos": 25,
         "timestamp": 178600000000,
-        "duration": 12470000000,
+        "duration": 5680000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown c",
+        "actor": "karl",
         "metadata": null,
-        "content": "Yeah. No, but I'm just, you know, I don't want to get it wrong. I'm just thinking about. Yeah, it's a lot of stuff out there. Um, I'd probably go for the tortoise.",
+        "content": "Yeah, I know, I'm just, you know, I don't want to get it wrong. I'm just thinking about.",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-19",
-        "pos": 19,
+        "id": "ep-podcast-S1E10-26",
+        "pos": 26,
+        "timestamp": 184280000000,
+        "duration": -500000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah",
+        "notable": false,
+        "placeholder": false
+      },
+      {
+        "id": "ep-podcast-S1E10-27",
+        "pos": 27,
+        "timestamp": 183780000000,
+        "duration": 7290000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "It's a lot of stuff out there. Um, I'd probably go for the tortoise.",
+        "notable": false,
+        "placeholder": false
+      },
+      {
+        "id": "ep-podcast-S1E10-28",
+        "pos": 28,
         "timestamp": 191070000000,
         "duration": 1080000000,
         "timestamp_inferred": false,
@@ -287,8 +413,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-20",
-        "pos": 20,
+        "id": "ep-podcast-S1E10-29",
+        "pos": 29,
         "timestamp": 192150000000,
         "duration": 2970000000,
         "timestamp_inferred": false,
@@ -301,8 +427,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-21",
-        "pos": 21,
+        "id": "ep-podcast-S1E10-30",
+        "pos": 30,
         "timestamp": 195120000000,
         "duration": -40000000,
         "timestamp_inferred": false,
@@ -315,8 +441,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-22",
-        "pos": 22,
+        "id": "ep-podcast-S1E10-31",
+        "pos": 31,
         "timestamp": 195080000000,
         "duration": 1950000000,
         "timestamp_inferred": false,
@@ -329,8 +455,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-23",
-        "pos": 23,
+        "id": "ep-podcast-S1E10-32",
+        "pos": 32,
         "timestamp": 197030000000,
         "duration": 260000000,
         "timestamp_inferred": false,
@@ -343,8 +469,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-24",
-        "pos": 24,
+        "id": "ep-podcast-S1E10-33",
+        "pos": 33,
         "timestamp": 197290000000,
         "duration": 5310000000,
         "timestamp_inferred": false,
@@ -357,8 +483,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-25",
-        "pos": 25,
+        "id": "ep-podcast-S1E10-34",
+        "pos": 34,
         "timestamp": 202600000000,
         "duration": 610000000,
         "timestamp_inferred": false,
@@ -371,8 +497,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-26",
-        "pos": 26,
+        "id": "ep-podcast-S1E10-35",
+        "pos": 35,
         "timestamp": 203210000000,
         "duration": 1920000000,
         "timestamp_inferred": false,
@@ -385,8 +511,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-27",
-        "pos": 27,
+        "id": "ep-podcast-S1E10-36",
+        "pos": 36,
         "timestamp": 205130000000,
         "duration": 3780000000,
         "timestamp_inferred": false,
@@ -399,8 +525,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-28",
-        "pos": 28,
+        "id": "ep-podcast-S1E10-37",
+        "pos": 37,
         "timestamp": 208910000000,
         "duration": 3230000000,
         "timestamp_inferred": false,
@@ -413,8 +539,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-29",
-        "pos": 29,
+        "id": "ep-podcast-S1E10-38",
+        "pos": 38,
         "timestamp": 212140000000,
         "duration": 1760000000,
         "timestamp_inferred": false,
@@ -427,8 +553,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-30",
-        "pos": 30,
+        "id": "ep-podcast-S1E10-39",
+        "pos": 39,
         "timestamp": 213900000000,
         "duration": 540000000,
         "timestamp_inferred": false,
@@ -441,8 +567,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-31",
-        "pos": 31,
+        "id": "ep-podcast-S1E10-40",
+        "pos": 40,
         "timestamp": 214440000000,
         "duration": 140000000,
         "timestamp_inferred": false,
@@ -455,8 +581,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-32",
-        "pos": 32,
+        "id": "ep-podcast-S1E10-41",
+        "pos": 41,
         "timestamp": 214580000000,
         "duration": 510000000,
         "timestamp_inferred": false,
@@ -469,8 +595,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-33",
-        "pos": 33,
+        "id": "ep-podcast-S1E10-42",
+        "pos": 42,
         "timestamp": 215090000000,
         "duration": 2770000000,
         "timestamp_inferred": false,
@@ -483,8 +609,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-34",
-        "pos": 34,
+        "id": "ep-podcast-S1E10-43",
+        "pos": 43,
         "timestamp": 217860000000,
         "duration": 430000000,
         "timestamp_inferred": false,
@@ -497,8 +623,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-35",
-        "pos": 35,
+        "id": "ep-podcast-S1E10-44",
+        "pos": 44,
         "timestamp": 218290000000,
         "duration": 5210000000,
         "timestamp_inferred": false,
@@ -511,8 +637,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-36",
-        "pos": 36,
+        "id": "ep-podcast-S1E10-45",
+        "pos": 45,
         "timestamp": 223500000000,
         "duration": 340000000,
         "timestamp_inferred": false,
@@ -525,8 +651,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-37",
-        "pos": 37,
+        "id": "ep-podcast-S1E10-46",
+        "pos": 46,
         "timestamp": 223840000000,
         "duration": 1700000000,
         "timestamp_inferred": false,
@@ -539,8 +665,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-38",
-        "pos": 38,
+        "id": "ep-podcast-S1E10-47",
+        "pos": 47,
         "timestamp": 225540000000,
         "duration": 1160000000,
         "timestamp_inferred": false,
@@ -553,8 +679,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-39",
-        "pos": 39,
+        "id": "ep-podcast-S1E10-48",
+        "pos": 48,
         "timestamp": 226700000000,
         "duration": 2560000000,
         "timestamp_inferred": false,
@@ -567,8 +693,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-40",
-        "pos": 40,
+        "id": "ep-podcast-S1E10-49",
+        "pos": 49,
         "timestamp": 229260000000,
         "duration": 3030000000,
         "timestamp_inferred": false,
@@ -581,8 +707,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-41",
-        "pos": 41,
+        "id": "ep-podcast-S1E10-50",
+        "pos": 50,
         "timestamp": 232290000000,
         "duration": 200000000,
         "timestamp_inferred": false,
@@ -595,8 +721,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-42",
-        "pos": 42,
+        "id": "ep-podcast-S1E10-51",
+        "pos": 51,
         "timestamp": 232490000000,
         "duration": 15590000000,
         "timestamp_inferred": false,
@@ -609,8 +735,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-43",
-        "pos": 43,
+        "id": "ep-podcast-S1E10-52",
+        "pos": 52,
         "timestamp": 248080000000,
         "duration": 1500000000,
         "timestamp_inferred": false,
@@ -623,8 +749,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-44",
-        "pos": 44,
+        "id": "ep-podcast-S1E10-53",
+        "pos": 53,
         "timestamp": 249580000000,
         "duration": 1080000000,
         "timestamp_inferred": false,
@@ -637,8 +763,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-45",
-        "pos": 45,
+        "id": "ep-podcast-S1E10-54",
+        "pos": 54,
         "timestamp": 250660000000,
         "duration": 10520000000,
         "timestamp_inferred": false,
@@ -651,8 +777,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-46",
-        "pos": 46,
+        "id": "ep-podcast-S1E10-55",
+        "pos": 55,
         "timestamp": 261180000000,
         "duration": 18280000000,
         "timestamp_inferred": false,
@@ -665,8 +791,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-47",
-        "pos": 47,
+        "id": "ep-podcast-S1E10-56",
+        "pos": 56,
         "timestamp": 279460000000,
         "duration": 2050000000,
         "timestamp_inferred": false,
@@ -679,8 +805,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-48",
-        "pos": 48,
+        "id": "ep-podcast-S1E10-57",
+        "pos": 57,
         "timestamp": 281510000000,
         "duration": 405000000,
         "timestamp_inferred": false,
@@ -693,8 +819,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-49",
-        "pos": 49,
+        "id": "ep-podcast-S1E10-58",
+        "pos": 58,
         "timestamp": 281915000000,
         "duration": 405000000,
         "timestamp_inferred": true,
@@ -707,8 +833,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-50",
-        "pos": 50,
+        "id": "ep-podcast-S1E10-59",
+        "pos": 59,
         "timestamp": 282320000000,
         "duration": 1800000000,
         "timestamp_inferred": false,
@@ -721,8 +847,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-51",
-        "pos": 51,
+        "id": "ep-podcast-S1E10-60",
+        "pos": 60,
         "timestamp": 284120000000,
         "duration": 2380000000,
         "timestamp_inferred": false,
@@ -735,8 +861,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-52",
-        "pos": 52,
+        "id": "ep-podcast-S1E10-61",
+        "pos": 61,
         "timestamp": 286500000000,
         "duration": 1240000000,
         "timestamp_inferred": false,
@@ -749,8 +875,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-53",
-        "pos": 53,
+        "id": "ep-podcast-S1E10-62",
+        "pos": 62,
         "timestamp": 287740000000,
         "duration": 150000000,
         "timestamp_inferred": false,
@@ -763,8 +889,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-54",
-        "pos": 54,
+        "id": "ep-podcast-S1E10-63",
+        "pos": 63,
         "timestamp": 287890000000,
         "duration": 110000000,
         "timestamp_inferred": false,
@@ -777,8 +903,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-55",
-        "pos": 55,
+        "id": "ep-podcast-S1E10-64",
+        "pos": 64,
         "timestamp": 288000000000,
         "duration": 3730000000,
         "timestamp_inferred": false,
@@ -791,8 +917,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-56",
-        "pos": 56,
+        "id": "ep-podcast-S1E10-65",
+        "pos": 65,
         "timestamp": 291730000000,
         "duration": 4080000000,
         "timestamp_inferred": false,
@@ -805,8 +931,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-57",
-        "pos": 57,
+        "id": "ep-podcast-S1E10-66",
+        "pos": 66,
         "timestamp": 295810000000,
         "duration": 3840000000,
         "timestamp_inferred": false,
@@ -819,8 +945,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-58",
-        "pos": 58,
+        "id": "ep-podcast-S1E10-67",
+        "pos": 67,
         "timestamp": 299650000000,
         "duration": 690000000,
         "timestamp_inferred": false,
@@ -833,8 +959,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-59",
-        "pos": 59,
+        "id": "ep-podcast-S1E10-68",
+        "pos": 68,
         "timestamp": 300340000000,
         "duration": 3270000000,
         "timestamp_inferred": false,
@@ -847,8 +973,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-60",
-        "pos": 60,
+        "id": "ep-podcast-S1E10-69",
+        "pos": 69,
         "timestamp": 303610000000,
         "duration": 5720000000,
         "timestamp_inferred": false,
@@ -861,8 +987,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-61",
-        "pos": 61,
+        "id": "ep-podcast-S1E10-70",
+        "pos": 70,
         "timestamp": 309330000000,
         "duration": 17970000000,
         "timestamp_inferred": false,
@@ -875,8 +1001,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-62",
-        "pos": 62,
+        "id": "ep-podcast-S1E10-71",
+        "pos": 71,
         "timestamp": 327300000000,
         "duration": 980000000,
         "timestamp_inferred": false,
@@ -889,8 +1015,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-63",
-        "pos": 63,
+        "id": "ep-podcast-S1E10-72",
+        "pos": 72,
         "timestamp": 328280000000,
         "duration": 4050000000,
         "timestamp_inferred": false,
@@ -903,8 +1029,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-64",
-        "pos": 64,
+        "id": "ep-podcast-S1E10-73",
+        "pos": 73,
         "timestamp": 332330000000,
         "duration": 7320000000,
         "timestamp_inferred": false,
@@ -917,8 +1043,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-65",
-        "pos": 65,
+        "id": "ep-podcast-S1E10-74",
+        "pos": 74,
         "timestamp": 339650000000,
         "duration": 410000000,
         "timestamp_inferred": false,
@@ -931,8 +1057,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-66",
-        "pos": 66,
+        "id": "ep-podcast-S1E10-75",
+        "pos": 75,
         "timestamp": 340060000000,
         "duration": 8380000000,
         "timestamp_inferred": false,
@@ -945,8 +1071,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-67",
-        "pos": 67,
+        "id": "ep-podcast-S1E10-76",
+        "pos": 76,
         "timestamp": 348440000000,
         "duration": 2050000000,
         "timestamp_inferred": false,
@@ -959,8 +1085,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-68",
-        "pos": 68,
+        "id": "ep-podcast-S1E10-77",
+        "pos": 77,
         "timestamp": 350490000000,
         "duration": 70000000,
         "timestamp_inferred": false,
@@ -973,8 +1099,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-69",
-        "pos": 69,
+        "id": "ep-podcast-S1E10-78",
+        "pos": 78,
         "timestamp": 350560000000,
         "duration": 2840000000,
         "timestamp_inferred": false,
@@ -987,8 +1113,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-70",
-        "pos": 70,
+        "id": "ep-podcast-S1E10-79",
+        "pos": 79,
         "timestamp": 353400000000,
         "duration": 860000000,
         "timestamp_inferred": false,
@@ -1001,8 +1127,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-71",
-        "pos": 71,
+        "id": "ep-podcast-S1E10-80",
+        "pos": 80,
         "timestamp": 354260000000,
         "duration": 4030000000,
         "timestamp_inferred": false,
@@ -1015,8 +1141,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-72",
-        "pos": 72,
+        "id": "ep-podcast-S1E10-81",
+        "pos": 81,
         "timestamp": 358290000000,
         "duration": 4060000000,
         "timestamp_inferred": false,
@@ -1029,8 +1155,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-73",
-        "pos": 73,
+        "id": "ep-podcast-S1E10-82",
+        "pos": 82,
         "timestamp": 362350000000,
         "duration": -20000000,
         "timestamp_inferred": false,
@@ -1043,8 +1169,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-74",
-        "pos": 74,
+        "id": "ep-podcast-S1E10-83",
+        "pos": 83,
         "timestamp": 362330000000,
         "duration": 5130000000,
         "timestamp_inferred": false,
@@ -1057,8 +1183,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-75",
-        "pos": 75,
+        "id": "ep-podcast-S1E10-84",
+        "pos": 84,
         "timestamp": 367460000000,
         "duration": 840000000,
         "timestamp_inferred": false,
@@ -1071,8 +1197,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-76",
-        "pos": 76,
+        "id": "ep-podcast-S1E10-85",
+        "pos": 85,
         "timestamp": 368300000000,
         "duration": 5280000000,
         "timestamp_inferred": false,
@@ -1085,414 +1211,456 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-77",
-        "pos": 77,
+        "id": "ep-podcast-S1E10-86",
+        "pos": 86,
         "timestamp": 373580000000,
         "duration": 5730000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown b",
+        "actor": "steve",
         "metadata": null,
-        "content": "That's absurd. You're now saying you're rewriting history and then going back to change it. Yeah, there's no need. You didn't die.",
+        "content": "That's absurd. You're now saying you're rewriting history and then going back to change it. There's no need. You didn't die.",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-78",
-        "pos": 78,
+        "id": "ep-podcast-S1E10-87",
+        "pos": 87,
         "timestamp": 379310000000,
         "duration": 8710000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown a",
+        "actor": "ricky",
         "metadata": null,
-        "content": "You didn't die and we've changed it. You can't change anything. You're just gonna go back and watch them. Would you like to go back and watch yourself choking on a mister freeze?",
+        "content": "Yeah. You didn't die and we've changed it. You can't change anything. You're just gonna go back and watch them. Would you like to go back and watch yourself choking on a Mr.Freeze?",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-79",
-        "pos": 79,
+        "id": "ep-podcast-S1E10-88",
+        "pos": 88,
         "timestamp": 388020000000,
         "duration": 7380000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown c",
+        "actor": "karl",
         "metadata": null,
         "content": "No, that's what I'm saying. That's why I wouldn't go back now, because I'm all right. I haven't had one since. I've learned a lesson. I'm not missing them ice pops.",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-80",
-        "pos": 80,
+        "id": "ep-podcast-S1E10-89",
+        "pos": 89,
         "timestamp": 395400000000,
         "duration": 4260000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown a",
+        "actor": "ricky",
         "metadata": null,
-        "content": "So I know that you're making the most of this opportunity to fantasize.",
+        "content": "I know that you're making the most of this opportunity to fantasise.",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-81",
-        "pos": 81,
+        "id": "ep-podcast-S1E10-90",
+        "pos": 90,
         "timestamp": 399660000000,
         "duration": 6730000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown c",
+        "actor": "karl",
         "metadata": null,
-        "content": "I don't see the point in going back in anything. I mean, do you mean go back in time to the point of. You can see, like, Rome in its working day?",
+        "content": "I don't see the point in going back in anything. I mean, do you mean go back in time to the point of you can see, like, Rome in its working day?",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-82",
-        "pos": 82,
+        "id": "ep-podcast-S1E10-91",
+        "pos": 91,
         "timestamp": 406390000000,
         "duration": 4110000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown a",
+        "actor": "ricky",
         "metadata": null,
-        "content": "What in your childhood was Rome about? When in your childhood were there gladiators? Well, that childhood.",
+        "content": "What in your childhood? Was Rome about when in your childhood? Were there gladiators in your childhood?",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-83",
-        "pos": 83,
+        "id": "ep-podcast-S1E10-92",
+        "pos": 92,
         "timestamp": 410500000000,
         "duration": 3170000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown c",
+        "actor": "karl",
         "metadata": null,
-        "content": "Seen everything I've been through. I've been through, so why see it again?",
+        "content": "Well that's what I'm saying, everything I've been through, I've been through, so why see it again?",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-84",
-        "pos": 84,
+        "id": "ep-podcast-S1E10-93",
+        "pos": 93,
         "timestamp": 413670000000,
         "duration": 2490000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown a",
+        "actor": "ricky",
         "metadata": null,
         "content": "Forget it. It was just a nice little question.",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-85",
-        "pos": 85,
+        "id": "ep-podcast-S1E10-94",
+        "pos": 94,
         "timestamp": 416160000000,
         "duration": 6600000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown b",
+        "actor": "steve",
         "metadata": null,
-        "content": "I mean, that shows the. The lack of imagination in Carl Pilkington. Your mind can't fathom something unless it's like, you know, got two heads.",
+        "content": "I mean, that shows the lack of imagination in Karl Pilkington. Your mind can't fathom something unless it's like, you know, got two heads.",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-86",
-        "pos": 86,
+        "id": "ep-podcast-S1E10-95",
+        "pos": 95,
         "timestamp": 422760000000,
         "duration": 9430000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown c",
+        "actor": "karl",
         "metadata": null,
-        "content": "But I don't see the point in doing something twice. Because the thing is, safety's one good moment. When I was about six that I loved, I then have to go through all the other 20 years again.",
+        "content": "But I don't see the point in doing something twice. Because the thing is, say if there's one good moment when I was about six that I loved, I then have to go through all the other 20 years again.",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-87",
-        "pos": 87,
+        "id": "ep-podcast-S1E10-96",
+        "pos": 96,
         "timestamp": 432190000000,
         "duration": 3620000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown a",
+        "actor": "ricky",
         "metadata": null,
         "content": "Well, why? Why have you imposed that? It's a fantasy. Make it up.",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-88",
-        "pos": 88,
+        "id": "ep-podcast-S1E10-97",
+        "pos": 97,
         "timestamp": 435810000000,
         "duration": 1380000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown b",
+        "actor": "steve",
         "metadata": null,
         "content": "You could go back and come back again.",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-89",
-        "pos": 89,
+        "id": "ep-podcast-S1E10-98",
+        "pos": 98,
         "timestamp": 437190000000,
         "duration": 3360000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown a",
+        "actor": "ricky",
         "metadata": null,
         "content": "Whiz back and fast forward 35 years.",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-90",
-        "pos": 90,
+        "id": "ep-podcast-S1E10-99",
+        "pos": 99,
         "timestamp": 440550000000,
         "duration": 720000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown c",
+        "actor": "karl",
         "metadata": null,
         "content": "Nah.",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-91",
-        "pos": 91,
+        "id": "ep-podcast-S1E10-100",
+        "pos": 100,
         "timestamp": 441270000000,
         "duration": 5200000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown a",
+        "actor": "ricky",
         "metadata": null,
         "content": "Brilliant. No, like it was on offer. Like this was really on offer. Move on.",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-92",
-        "pos": 92,
+        "id": "ep-podcast-S1E10-101",
+        "pos": 101,
         "timestamp": 446470000000,
         "duration": 21040000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown b",
+        "actor": "steve",
         "metadata": null,
-        "content": "Migrant workers in south China are wearing adult diapers on packed trains heading home for the new year holiday because they've got no access to the toilet. Many supermarkets in this particular part of China have reported a 50% increase in sales of adult nappies for the train trips. Now, what you make of that, Carl? You're on a long, long train journey. 3 hours, 4 hours.",
+        "content": "Migrant workers in south China are wearing adult diapers on packed trains heading home for the new year holiday because they've got no access to the toilet. Many supermarkets in this particular part of China have reported a 50% increase in sales of adult nappies for the train trips. Now, what you make of that, Karl? You're on a long, long train journey. 3 hours, 4 hours.",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-93",
-        "pos": 93,
+        "id": "ep-podcast-S1E10-102",
+        "pos": 102,
         "timestamp": 467510000000,
         "duration": 3220000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown a",
+        "actor": "ricky",
         "metadata": null,
-        "content": "You know there's no toilet. You know, you're gonna need to go pop on a.",
+        "content": "You know there's no toilet. You know you're gonna need to go. Pop on a...",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-94",
-        "pos": 94,
+        "id": "ep-podcast-S1E10-103",
+        "pos": 103,
         "timestamp": 470730000000,
         "duration": 1580000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown c",
+        "actor": "karl",
         "metadata": null,
         "content": "Why isn't there any toilets?",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-95",
-        "pos": 95,
+        "id": "ep-podcast-S1E10-104",
+        "pos": 104,
         "timestamp": 472310000000,
         "duration": 1820000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown a",
+        "actor": "ricky",
         "metadata": null,
         "content": "They just aren't on the trains.",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-96",
-        "pos": 96,
+        "id": "ep-podcast-S1E10-105",
+        "pos": 105,
         "timestamp": 474130000000,
         "duration": 1630000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown c",
+        "actor": "karl",
         "metadata": null,
         "content": "And they're a really long journey.",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-97",
-        "pos": 97,
+        "id": "ep-podcast-S1E10-106",
+        "pos": 106,
         "timestamp": 475760000000,
         "duration": 400000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown a",
+        "actor": "ricky",
         "metadata": null,
         "content": "Yeah.",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-98",
-        "pos": 98,
+        "id": "ep-podcast-S1E10-107",
+        "pos": 107,
         "timestamp": 476160000000,
         "duration": 1290000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown c",
+        "actor": "karl",
         "metadata": null,
         "content": "How long?",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-99",
-        "pos": 99,
+        "id": "ep-podcast-S1E10-108",
+        "pos": 108,
         "timestamp": 477450000000,
         "duration": 760000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown a",
+        "actor": "ricky",
         "metadata": null,
         "content": "Hours.",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-100",
-        "pos": 100,
+        "id": "ep-podcast-S1E10-109",
+        "pos": 109,
         "timestamp": 478210000000,
         "duration": 2920000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown b",
+        "actor": "steve",
         "metadata": null,
         "content": "Very long. In China, it's a big country.",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-101",
-        "pos": 101,
+        "id": "ep-podcast-S1E10-110",
+        "pos": 110,
         "timestamp": 481130000000,
-        "duration": 56270000000,
+        "duration": 36500000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown c",
+        "actor": "karl",
         "metadata": null,
-        "content": "Oh, I wouldn't. I couldn't do that. I couldn't. I couldn't do it. I'd have to hold it in or something. Just like, I mean, when I was a young kid. I don't know how young you are when you wear a nappy and that, but I remember that I didn't like it doing it in a pair of pants like that, a pair of nappies and that. And I used to have to, even when I was too small, to sort of get up on the toilet and that, because you'd fall in. My mum knew that I didn't like nappies and that. I used to just go in, in the corner, just near the kitchen, this thing that, like a, like a litter tray that cat's having that. I mean, you know, it wasn't, it wasn't like that, but it's, that's, that's, you know, that's the same sort of idea. And I'd go there and do me and, you know, my mom used to say, always go in there. Don't look at him. And that. Because it put me off, you know, like, cats don't like being watched when.",
+        "content": "Oh, I wouldn't. I couldn't do that. I couldn't. I couldn't do it. I'd have to hold it in or something. Just like, I mean, when I was a young kid. I don't know how young you are when you wear a nappy and that, but I remember that I didn't like it doing it in a pair of pants like that, a pair of nappies and that. And I used to have to, even when I was too small, to sort of get up on the toilet and that, because you'd fall in. My mam knew that I didn't like nappies and that. I used to just go in, in the corner, just near the kitchen, in this thing that, like a, like a litter tray.",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-102",
-        "pos": 102,
+        "id": "ep-podcast-S1E10-111",
+        "pos": 111,
+        "timestamp": 517630000000,
+        "duration": 2169000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "Ricky and Steve laugh",
+        "notable": false,
+        "placeholder": false
+      },
+      {
+        "id": "ep-podcast-S1E10-112",
+        "pos": 112,
+        "timestamp": 519799000000,
+        "duration": 17601000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "That cat's having that. I mean, you know, it wasn't, it wasn't like that, but it's, that's, that's, you know, that's the same sort of idea. And I'd go there and do me thing and, you know, my mam used to say, oh he's going there. Don't look at him. And that. Because it put me off, you know, like, cats don't like being watched when they do it.",
+        "notable": false,
+        "placeholder": false
+      },
+      {
+        "id": "ep-podcast-S1E10-113",
+        "pos": 113,
         "timestamp": 537400000000,
         "duration": 3370000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown a",
+        "actor": "ricky",
         "metadata": null,
-        "content": "They do it, when they go in their little tray in the kitchen.",
+        "content": "When they go in their little tray in the kitchen.",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-103",
-        "pos": 103,
+        "id": "ep-podcast-S1E10-114",
+        "pos": 114,
         "timestamp": 540770000000,
         "duration": 1740000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown c",
+        "actor": "karl",
         "metadata": null,
-        "content": "No, they don't, they don't like it. I tested it.",
+        "content": "No, they don't, they don't like it. I tested it again.",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-104",
-        "pos": 104,
+        "id": "ep-podcast-S1E10-115",
+        "pos": 115,
         "timestamp": 542510000000,
         "duration": 8790000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown a",
+        "actor": "ricky",
         "metadata": null,
-        "content": "What are you just like a little feral kid? Just running around and going to the litter tray, covering it up and then running up the curtain and eating a suite at the top of the pelmet?",
+        "content": "What are you just like a little feral kid? Just running around and going to the litter tray, covering it up and then running up the curtain and eating a sweet at the top of the pelmet?",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-105",
-        "pos": 105,
+        "id": "ep-podcast-S1E10-116",
+        "pos": 116,
         "timestamp": 551300000000,
-        "duration": 11390000000,
+        "duration": 9200000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
-        "actor": "unknown c",
+        "actor": "karl",
         "metadata": null,
-        "content": "No, but nobody likes being watched. And that's what I'm saying. If you're sat on a train and you're knocking one out and that and everyone's looking at you, it's. I don't think it'll catch on with.",
+        "content": "No, but nobody likes being watched. And that's what I'm saying. If you're sat on a train and you're knocking one out and that and everyone's looking at you, it's. I don't think it'll catch on.",
         "notable": false,
-        "placeholder": true
+        "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-106",
-        "pos": 106,
+        "id": "ep-podcast-S1E10-117",
+        "pos": 117,
+        "timestamp": 560500000000,
+        "duration": 2190000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "Ricky laughs",
+        "notable": false,
+        "placeholder": false
+      },
+      {
+        "id": "ep-podcast-S1E10-118",
+        "pos": 118,
         "timestamp": 562690000000,
         "duration": 12370000000,
         "timestamp_inferred": false,
@@ -1505,8 +1673,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-107",
-        "pos": 107,
+        "id": "ep-podcast-S1E10-119",
+        "pos": 119,
         "timestamp": 575060000000,
         "duration": 11690000000,
         "timestamp_inferred": false,
@@ -1519,8 +1687,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-108",
-        "pos": 108,
+        "id": "ep-podcast-S1E10-120",
+        "pos": 120,
         "timestamp": 586750000000,
         "duration": 7040000000,
         "timestamp_inferred": false,
@@ -1533,8 +1701,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-109",
-        "pos": 109,
+        "id": "ep-podcast-S1E10-121",
+        "pos": 121,
         "timestamp": 593790000000,
         "duration": 1360000000,
         "timestamp_inferred": false,
@@ -1547,8 +1715,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-110",
-        "pos": 110,
+        "id": "ep-podcast-S1E10-122",
+        "pos": 122,
         "timestamp": 595150000000,
         "duration": 15590000000,
         "timestamp_inferred": false,
@@ -1561,8 +1729,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-111",
-        "pos": 111,
+        "id": "ep-podcast-S1E10-123",
+        "pos": 123,
         "timestamp": 610740000000,
         "duration": 4890000000,
         "timestamp_inferred": false,
@@ -1575,8 +1743,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-112",
-        "pos": 112,
+        "id": "ep-podcast-S1E10-124",
+        "pos": 124,
         "timestamp": 615630000000,
         "duration": 11570000000,
         "timestamp_inferred": false,
@@ -1589,8 +1757,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-113",
-        "pos": 113,
+        "id": "ep-podcast-S1E10-125",
+        "pos": 125,
         "timestamp": 627200000000,
         "duration": 1540000000,
         "timestamp_inferred": false,
@@ -1603,8 +1771,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-114",
-        "pos": 114,
+        "id": "ep-podcast-S1E10-126",
+        "pos": 126,
         "timestamp": 628740000000,
         "duration": 2320000000,
         "timestamp_inferred": false,
@@ -1617,8 +1785,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-115",
-        "pos": 115,
+        "id": "ep-podcast-S1E10-127",
+        "pos": 127,
         "timestamp": 631060000000,
         "duration": 2310000000,
         "timestamp_inferred": false,
@@ -1631,8 +1799,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-116",
-        "pos": 116,
+        "id": "ep-podcast-S1E10-128",
+        "pos": 128,
         "timestamp": 633370000000,
         "duration": 2600000000,
         "timestamp_inferred": false,
@@ -1645,8 +1813,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-117",
-        "pos": 117,
+        "id": "ep-podcast-S1E10-129",
+        "pos": 129,
         "timestamp": 635970000000,
         "duration": 1120000000,
         "timestamp_inferred": false,
@@ -1659,8 +1827,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-118",
-        "pos": 118,
+        "id": "ep-podcast-S1E10-130",
+        "pos": 130,
         "timestamp": 637090000000,
         "duration": 2440000000,
         "timestamp_inferred": false,
@@ -1673,8 +1841,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-119",
-        "pos": 119,
+        "id": "ep-podcast-S1E10-131",
+        "pos": 131,
         "timestamp": 639530000000,
         "duration": 13800000000,
         "timestamp_inferred": false,
@@ -1687,8 +1855,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-120",
-        "pos": 120,
+        "id": "ep-podcast-S1E10-132",
+        "pos": 132,
         "timestamp": 653330000000,
         "duration": 4360000000,
         "timestamp_inferred": false,
@@ -1701,8 +1869,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-121",
-        "pos": 121,
+        "id": "ep-podcast-S1E10-133",
+        "pos": 133,
         "timestamp": 657690000000,
         "duration": 33410000000,
         "timestamp_inferred": false,
@@ -1715,8 +1883,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-122",
-        "pos": 122,
+        "id": "ep-podcast-S1E10-134",
+        "pos": 134,
         "timestamp": 691100000000,
         "duration": 590000000,
         "timestamp_inferred": false,
@@ -1729,8 +1897,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-123",
-        "pos": 123,
+        "id": "ep-podcast-S1E10-135",
+        "pos": 135,
         "timestamp": 691690000000,
         "duration": 800000000,
         "timestamp_inferred": false,
@@ -1743,8 +1911,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-124",
-        "pos": 124,
+        "id": "ep-podcast-S1E10-136",
+        "pos": 136,
         "timestamp": 692490000000,
         "duration": 500000000,
         "timestamp_inferred": false,
@@ -1757,8 +1925,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-125",
-        "pos": 125,
+        "id": "ep-podcast-S1E10-137",
+        "pos": 137,
         "timestamp": 692990000000,
         "duration": 14970000000,
         "timestamp_inferred": false,
@@ -1771,8 +1939,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-126",
-        "pos": 126,
+        "id": "ep-podcast-S1E10-138",
+        "pos": 138,
         "timestamp": 707960000000,
         "duration": 6000000000,
         "timestamp_inferred": false,
@@ -1785,8 +1953,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-127",
-        "pos": 127,
+        "id": "ep-podcast-S1E10-139",
+        "pos": 139,
         "timestamp": 713960000000,
         "duration": 15210000000,
         "timestamp_inferred": false,
@@ -1799,8 +1967,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-128",
-        "pos": 128,
+        "id": "ep-podcast-S1E10-140",
+        "pos": 140,
         "timestamp": 729170000000,
         "duration": 2750000000,
         "timestamp_inferred": false,
@@ -1813,8 +1981,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-129",
-        "pos": 129,
+        "id": "ep-podcast-S1E10-141",
+        "pos": 141,
         "timestamp": 731920000000,
         "duration": 1100000000,
         "timestamp_inferred": false,
@@ -1827,8 +1995,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-130",
-        "pos": 130,
+        "id": "ep-podcast-S1E10-142",
+        "pos": 142,
         "timestamp": 733020000000,
         "duration": 4000000000,
         "timestamp_inferred": false,
@@ -1841,8 +2009,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-131",
-        "pos": 131,
+        "id": "ep-podcast-S1E10-143",
+        "pos": 143,
         "timestamp": 737020000000,
         "duration": 62590000000,
         "timestamp_inferred": false,
@@ -1855,8 +2023,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-132",
-        "pos": 132,
+        "id": "ep-podcast-S1E10-144",
+        "pos": 144,
         "timestamp": 799610000000,
         "duration": 5950000000,
         "timestamp_inferred": false,
@@ -1869,8 +2037,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-133",
-        "pos": 133,
+        "id": "ep-podcast-S1E10-145",
+        "pos": 145,
         "timestamp": 805560000000,
         "duration": 53820000000,
         "timestamp_inferred": false,
@@ -1883,8 +2051,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-134",
-        "pos": 134,
+        "id": "ep-podcast-S1E10-146",
+        "pos": 146,
         "timestamp": 859380000000,
         "duration": 5870000000,
         "timestamp_inferred": false,
@@ -1897,8 +2065,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-135",
-        "pos": 135,
+        "id": "ep-podcast-S1E10-147",
+        "pos": 147,
         "timestamp": 865250000000,
         "duration": 2610000000,
         "timestamp_inferred": false,
@@ -1911,8 +2079,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-136",
-        "pos": 136,
+        "id": "ep-podcast-S1E10-148",
+        "pos": 148,
         "timestamp": 867860000000,
         "duration": 30410000000,
         "timestamp_inferred": false,
@@ -1925,8 +2093,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-137",
-        "pos": 137,
+        "id": "ep-podcast-S1E10-149",
+        "pos": 149,
         "timestamp": 898270000000,
         "duration": 8350000000,
         "timestamp_inferred": false,
@@ -1939,8 +2107,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-138",
-        "pos": 138,
+        "id": "ep-podcast-S1E10-150",
+        "pos": 150,
         "timestamp": 906620000000,
         "duration": 37830000000,
         "timestamp_inferred": false,
@@ -1953,8 +2121,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-139",
-        "pos": 139,
+        "id": "ep-podcast-S1E10-151",
+        "pos": 151,
         "timestamp": 944450000000,
         "duration": 17460000000,
         "timestamp_inferred": false,
@@ -1967,8 +2135,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-140",
-        "pos": 140,
+        "id": "ep-podcast-S1E10-152",
+        "pos": 152,
         "timestamp": 961910000000,
         "duration": 6290000000,
         "timestamp_inferred": false,
@@ -1981,8 +2149,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-141",
-        "pos": 141,
+        "id": "ep-podcast-S1E10-153",
+        "pos": 153,
         "timestamp": 968200000000,
         "duration": 17200000000,
         "timestamp_inferred": false,
@@ -1995,8 +2163,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-142",
-        "pos": 142,
+        "id": "ep-podcast-S1E10-154",
+        "pos": 154,
         "timestamp": 985400000000,
         "duration": 5780000000,
         "timestamp_inferred": false,
@@ -2009,8 +2177,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-143",
-        "pos": 143,
+        "id": "ep-podcast-S1E10-155",
+        "pos": 155,
         "timestamp": 991180000000,
         "duration": 1340000000,
         "timestamp_inferred": false,
@@ -2023,8 +2191,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-144",
-        "pos": 144,
+        "id": "ep-podcast-S1E10-156",
+        "pos": 156,
         "timestamp": 992520000000,
         "duration": 1250000000,
         "timestamp_inferred": false,
@@ -2037,8 +2205,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-145",
-        "pos": 145,
+        "id": "ep-podcast-S1E10-157",
+        "pos": 157,
         "timestamp": 993770000000,
         "duration": 6930000000,
         "timestamp_inferred": false,
@@ -2051,8 +2219,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-146",
-        "pos": 146,
+        "id": "ep-podcast-S1E10-158",
+        "pos": 158,
         "timestamp": 1000700000000,
         "duration": 1550000000,
         "timestamp_inferred": false,
@@ -2065,8 +2233,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-147",
-        "pos": 147,
+        "id": "ep-podcast-S1E10-159",
+        "pos": 159,
         "timestamp": 1002250000000,
         "duration": 10930000000,
         "timestamp_inferred": false,
@@ -2079,8 +2247,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-148",
-        "pos": 148,
+        "id": "ep-podcast-S1E10-160",
+        "pos": 160,
         "timestamp": 1013180000000,
         "duration": 6720000000,
         "timestamp_inferred": false,
@@ -2093,8 +2261,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-149",
-        "pos": 149,
+        "id": "ep-podcast-S1E10-161",
+        "pos": 161,
         "timestamp": 1019900000000,
         "duration": 31630000000,
         "timestamp_inferred": false,
@@ -2107,8 +2275,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-150",
-        "pos": 150,
+        "id": "ep-podcast-S1E10-162",
+        "pos": 162,
         "timestamp": 1051530000000,
         "duration": 1550000000,
         "timestamp_inferred": false,
@@ -2121,8 +2289,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-151",
-        "pos": 151,
+        "id": "ep-podcast-S1E10-163",
+        "pos": 163,
         "timestamp": 1053080000000,
         "duration": 1470000000,
         "timestamp_inferred": false,
@@ -2135,8 +2303,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-152",
-        "pos": 152,
+        "id": "ep-podcast-S1E10-164",
+        "pos": 164,
         "timestamp": 1054550000000,
         "duration": 2560000000,
         "timestamp_inferred": false,
@@ -2149,8 +2317,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-153",
-        "pos": 153,
+        "id": "ep-podcast-S1E10-165",
+        "pos": 165,
         "timestamp": 1057110000000,
         "duration": 1600000000,
         "timestamp_inferred": false,
@@ -2163,8 +2331,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-154",
-        "pos": 154,
+        "id": "ep-podcast-S1E10-166",
+        "pos": 166,
         "timestamp": 1058710000000,
         "duration": 46530000000,
         "timestamp_inferred": false,
@@ -2177,8 +2345,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-155",
-        "pos": 155,
+        "id": "ep-podcast-S1E10-167",
+        "pos": 167,
         "timestamp": 1105240000000,
         "duration": 1200000000,
         "timestamp_inferred": false,
@@ -2191,8 +2359,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-156",
-        "pos": 156,
+        "id": "ep-podcast-S1E10-168",
+        "pos": 168,
         "timestamp": 1106440000000,
         "duration": 4100000000,
         "timestamp_inferred": false,
@@ -2205,8 +2373,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-157",
-        "pos": 157,
+        "id": "ep-podcast-S1E10-169",
+        "pos": 169,
         "timestamp": 1110540000000,
         "duration": 1120000000,
         "timestamp_inferred": false,
@@ -2219,8 +2387,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-158",
-        "pos": 158,
+        "id": "ep-podcast-S1E10-170",
+        "pos": 170,
         "timestamp": 1111660000000,
         "duration": 20120000000,
         "timestamp_inferred": false,
@@ -2233,8 +2401,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-159",
-        "pos": 159,
+        "id": "ep-podcast-S1E10-171",
+        "pos": 171,
         "timestamp": 1131780000000,
         "duration": 1400000000,
         "timestamp_inferred": false,
@@ -2247,8 +2415,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-160",
-        "pos": 160,
+        "id": "ep-podcast-S1E10-172",
+        "pos": 172,
         "timestamp": 1133180000000,
         "duration": 28220000000,
         "timestamp_inferred": false,
@@ -2261,8 +2429,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-161",
-        "pos": 161,
+        "id": "ep-podcast-S1E10-173",
+        "pos": 173,
         "timestamp": 1161400000000,
         "duration": 7270000000,
         "timestamp_inferred": false,
@@ -2275,8 +2443,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-162",
-        "pos": 162,
+        "id": "ep-podcast-S1E10-174",
+        "pos": 174,
         "timestamp": 1168670000000,
         "duration": 750000000,
         "timestamp_inferred": false,
@@ -2289,8 +2457,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-163",
-        "pos": 163,
+        "id": "ep-podcast-S1E10-175",
+        "pos": 175,
         "timestamp": 1169420000000,
         "duration": 2550000000,
         "timestamp_inferred": false,
@@ -2303,8 +2471,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-164",
-        "pos": 164,
+        "id": "ep-podcast-S1E10-176",
+        "pos": 176,
         "timestamp": 1171970000000,
         "duration": 13400000000,
         "timestamp_inferred": false,
@@ -2317,8 +2485,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-165",
-        "pos": 165,
+        "id": "ep-podcast-S1E10-177",
+        "pos": 177,
         "timestamp": 1185370000000,
         "duration": 5190000000,
         "timestamp_inferred": false,
@@ -2331,8 +2499,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-166",
-        "pos": 166,
+        "id": "ep-podcast-S1E10-178",
+        "pos": 178,
         "timestamp": 1190560000000,
         "duration": 1360000000,
         "timestamp_inferred": false,
@@ -2345,8 +2513,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-167",
-        "pos": 167,
+        "id": "ep-podcast-S1E10-179",
+        "pos": 179,
         "timestamp": 1191920000000,
         "duration": 6370000000,
         "timestamp_inferred": false,
@@ -2359,8 +2527,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-168",
-        "pos": 168,
+        "id": "ep-podcast-S1E10-180",
+        "pos": 180,
         "timestamp": 1198290000000,
         "duration": 12870000000,
         "timestamp_inferred": false,
@@ -2373,8 +2541,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-169",
-        "pos": 169,
+        "id": "ep-podcast-S1E10-181",
+        "pos": 181,
         "timestamp": 1211160000000,
         "duration": 32790000000,
         "timestamp_inferred": false,
@@ -2387,8 +2555,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-170",
-        "pos": 170,
+        "id": "ep-podcast-S1E10-182",
+        "pos": 182,
         "timestamp": 1243950000000,
         "duration": 3000000000,
         "timestamp_inferred": false,
@@ -2401,8 +2569,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-171",
-        "pos": 171,
+        "id": "ep-podcast-S1E10-183",
+        "pos": 183,
         "timestamp": 1246950000000,
         "duration": 5810000000,
         "timestamp_inferred": false,
@@ -2415,8 +2583,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-172",
-        "pos": 172,
+        "id": "ep-podcast-S1E10-184",
+        "pos": 184,
         "timestamp": 1252760000000,
         "duration": 7080000000,
         "timestamp_inferred": false,
@@ -2429,8 +2597,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-173",
-        "pos": 173,
+        "id": "ep-podcast-S1E10-185",
+        "pos": 185,
         "timestamp": 1259840000000,
         "duration": 5680000000,
         "timestamp_inferred": false,
@@ -2443,8 +2611,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-174",
-        "pos": 174,
+        "id": "ep-podcast-S1E10-186",
+        "pos": 186,
         "timestamp": 1265520000000,
         "duration": 480000000,
         "timestamp_inferred": false,
@@ -2457,8 +2625,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-175",
-        "pos": 175,
+        "id": "ep-podcast-S1E10-187",
+        "pos": 187,
         "timestamp": 1266000000000,
         "duration": 470000000,
         "timestamp_inferred": false,
@@ -2471,8 +2639,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-176",
-        "pos": 176,
+        "id": "ep-podcast-S1E10-188",
+        "pos": 188,
         "timestamp": 1266470000000,
         "duration": 3996000000,
         "timestamp_inferred": false,
@@ -2485,8 +2653,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-177",
-        "pos": 177,
+        "id": "ep-podcast-S1E10-189",
+        "pos": 189,
         "timestamp": 1270466000000,
         "duration": 1748000000,
         "timestamp_inferred": true,
@@ -2499,8 +2667,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-178",
-        "pos": 178,
+        "id": "ep-podcast-S1E10-190",
+        "pos": 190,
         "timestamp": 1272214000000,
         "duration": 4496000000,
         "timestamp_inferred": true,
@@ -2513,8 +2681,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-179",
-        "pos": 179,
+        "id": "ep-podcast-S1E10-191",
+        "pos": 191,
         "timestamp": 1276710000000,
         "duration": 1550000000,
         "timestamp_inferred": false,
@@ -2527,8 +2695,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-180",
-        "pos": 180,
+        "id": "ep-podcast-S1E10-192",
+        "pos": 192,
         "timestamp": 1278260000000,
         "duration": 12620000000,
         "timestamp_inferred": false,
@@ -2541,8 +2709,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-181",
-        "pos": 181,
+        "id": "ep-podcast-S1E10-193",
+        "pos": 193,
         "timestamp": 1290880000000,
         "duration": 860000000,
         "timestamp_inferred": false,
@@ -2555,8 +2723,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-182",
-        "pos": 182,
+        "id": "ep-podcast-S1E10-194",
+        "pos": 194,
         "timestamp": 1291740000000,
         "duration": 14840000000,
         "timestamp_inferred": false,
@@ -2569,8 +2737,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-183",
-        "pos": 183,
+        "id": "ep-podcast-S1E10-195",
+        "pos": 195,
         "timestamp": 1306580000000,
         "duration": 4440000000,
         "timestamp_inferred": false,
@@ -2583,8 +2751,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-184",
-        "pos": 184,
+        "id": "ep-podcast-S1E10-196",
+        "pos": 196,
         "timestamp": 1311020000000,
         "duration": 596000000,
         "timestamp_inferred": false,
@@ -2597,8 +2765,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-185",
-        "pos": 185,
+        "id": "ep-podcast-S1E10-197",
+        "pos": 197,
         "timestamp": 1311616000000,
         "duration": 944000000,
         "timestamp_inferred": true,
@@ -2611,8 +2779,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-186",
-        "pos": 186,
+        "id": "ep-podcast-S1E10-198",
+        "pos": 198,
         "timestamp": 1312560000000,
         "duration": 1300000000,
         "timestamp_inferred": false,
@@ -2625,8 +2793,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-187",
-        "pos": 187,
+        "id": "ep-podcast-S1E10-199",
+        "pos": 199,
         "timestamp": 1313860000000,
         "duration": 7410000000,
         "timestamp_inferred": false,
@@ -2639,8 +2807,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-188",
-        "pos": 188,
+        "id": "ep-podcast-S1E10-200",
+        "pos": 200,
         "timestamp": 1321270000000,
         "duration": 1270000000,
         "timestamp_inferred": false,
@@ -2653,8 +2821,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-189",
-        "pos": 189,
+        "id": "ep-podcast-S1E10-201",
+        "pos": 201,
         "timestamp": 1322540000000,
         "duration": 8485000000,
         "timestamp_inferred": false,
@@ -2667,8 +2835,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-190",
-        "pos": 190,
+        "id": "ep-podcast-S1E10-202",
+        "pos": 202,
         "timestamp": 1331025000000,
         "duration": 1001000000,
         "timestamp_inferred": true,
@@ -2681,8 +2849,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-191",
-        "pos": 191,
+        "id": "ep-podcast-S1E10-203",
+        "pos": 203,
         "timestamp": 1332026000000,
         "duration": 5674000000,
         "timestamp_inferred": true,
@@ -2695,8 +2863,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-192",
-        "pos": 192,
+        "id": "ep-podcast-S1E10-204",
+        "pos": 204,
         "timestamp": 1337700000000,
         "duration": 6030000000,
         "timestamp_inferred": false,
@@ -2709,8 +2877,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-193",
-        "pos": 193,
+        "id": "ep-podcast-S1E10-205",
+        "pos": 205,
         "timestamp": 1343730000000,
         "duration": 1570000000,
         "timestamp_inferred": false,
@@ -2723,8 +2891,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-194",
-        "pos": 194,
+        "id": "ep-podcast-S1E10-206",
+        "pos": 206,
         "timestamp": 1345300000000,
         "duration": 4500000000,
         "timestamp_inferred": false,
@@ -2737,8 +2905,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-195",
-        "pos": 195,
+        "id": "ep-podcast-S1E10-207",
+        "pos": 207,
         "timestamp": 1349800000000,
         "duration": 2100000000,
         "timestamp_inferred": false,
@@ -2751,8 +2919,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-196",
-        "pos": 196,
+        "id": "ep-podcast-S1E10-208",
+        "pos": 208,
         "timestamp": 1351900000000,
         "duration": 2560000000,
         "timestamp_inferred": false,
@@ -2765,8 +2933,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-197",
-        "pos": 197,
+        "id": "ep-podcast-S1E10-209",
+        "pos": 209,
         "timestamp": 1354460000000,
         "duration": 5580000000,
         "timestamp_inferred": false,
@@ -2779,8 +2947,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-198",
-        "pos": 198,
+        "id": "ep-podcast-S1E10-210",
+        "pos": 210,
         "timestamp": 1360040000000,
         "duration": 4810000000,
         "timestamp_inferred": false,
@@ -2793,8 +2961,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-199",
-        "pos": 199,
+        "id": "ep-podcast-S1E10-211",
+        "pos": 211,
         "timestamp": 1364850000000,
         "duration": 3150000000,
         "timestamp_inferred": false,
@@ -2807,8 +2975,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-200",
-        "pos": 200,
+        "id": "ep-podcast-S1E10-212",
+        "pos": 212,
         "timestamp": 1368000000000,
         "duration": 3760000000,
         "timestamp_inferred": false,
@@ -2821,8 +2989,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-201",
-        "pos": 201,
+        "id": "ep-podcast-S1E10-213",
+        "pos": 213,
         "timestamp": 1371760000000,
         "duration": 3480000000,
         "timestamp_inferred": false,
@@ -2835,8 +3003,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-202",
-        "pos": 202,
+        "id": "ep-podcast-S1E10-214",
+        "pos": 214,
         "timestamp": 1375240000000,
         "duration": 950000000,
         "timestamp_inferred": false,
@@ -2849,8 +3017,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-203",
-        "pos": 203,
+        "id": "ep-podcast-S1E10-215",
+        "pos": 215,
         "timestamp": 1376190000000,
         "duration": 10690000000,
         "timestamp_inferred": false,
@@ -2863,8 +3031,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-204",
-        "pos": 204,
+        "id": "ep-podcast-S1E10-216",
+        "pos": 216,
         "timestamp": 1386880000000,
         "duration": 4960000000,
         "timestamp_inferred": false,
@@ -2877,8 +3045,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-205",
-        "pos": 205,
+        "id": "ep-podcast-S1E10-217",
+        "pos": 217,
         "timestamp": 1391840000000,
         "duration": 8990000000,
         "timestamp_inferred": false,
@@ -2891,8 +3059,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-206",
-        "pos": 206,
+        "id": "ep-podcast-S1E10-218",
+        "pos": 218,
         "timestamp": 1400830000000,
         "duration": 2990000000,
         "timestamp_inferred": false,
@@ -2905,8 +3073,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-207",
-        "pos": 207,
+        "id": "ep-podcast-S1E10-219",
+        "pos": 219,
         "timestamp": 1403820000000,
         "duration": 2860000000,
         "timestamp_inferred": false,
@@ -2919,8 +3087,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-208",
-        "pos": 208,
+        "id": "ep-podcast-S1E10-220",
+        "pos": 220,
         "timestamp": 1406680000000,
         "duration": 3330000000,
         "timestamp_inferred": false,
@@ -2933,8 +3101,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-209",
-        "pos": 209,
+        "id": "ep-podcast-S1E10-221",
+        "pos": 221,
         "timestamp": 1410010000000,
         "duration": 14550000000,
         "timestamp_inferred": false,
@@ -2947,8 +3115,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-210",
-        "pos": 210,
+        "id": "ep-podcast-S1E10-222",
+        "pos": 222,
         "timestamp": 1424560000000,
         "duration": 1000000000,
         "timestamp_inferred": false,
@@ -2961,8 +3129,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-211",
-        "pos": 211,
+        "id": "ep-podcast-S1E10-223",
+        "pos": 223,
         "timestamp": 1425560000000,
         "duration": 7020000000,
         "timestamp_inferred": false,
@@ -2975,8 +3143,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-212",
-        "pos": 212,
+        "id": "ep-podcast-S1E10-224",
+        "pos": 224,
         "timestamp": 1432580000000,
         "duration": 6720000000,
         "timestamp_inferred": false,
@@ -2989,8 +3157,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-213",
-        "pos": 213,
+        "id": "ep-podcast-S1E10-225",
+        "pos": 225,
         "timestamp": 1439300000000,
         "duration": 3990000000,
         "timestamp_inferred": false,
@@ -3003,8 +3171,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-214",
-        "pos": 214,
+        "id": "ep-podcast-S1E10-226",
+        "pos": 226,
         "timestamp": 1443290000000,
         "duration": 1580000000,
         "timestamp_inferred": false,
@@ -3017,8 +3185,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-215",
-        "pos": 215,
+        "id": "ep-podcast-S1E10-227",
+        "pos": 227,
         "timestamp": 1444870000000,
         "duration": 2100000000,
         "timestamp_inferred": false,
@@ -3031,8 +3199,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-216",
-        "pos": 216,
+        "id": "ep-podcast-S1E10-228",
+        "pos": 228,
         "timestamp": 1446970000000,
         "duration": 570000000,
         "timestamp_inferred": false,
@@ -3045,8 +3213,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-217",
-        "pos": 217,
+        "id": "ep-podcast-S1E10-229",
+        "pos": 229,
         "timestamp": 1447540000000,
         "duration": 5220000000,
         "timestamp_inferred": false,
@@ -3059,8 +3227,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-218",
-        "pos": 218,
+        "id": "ep-podcast-S1E10-230",
+        "pos": 230,
         "timestamp": 1452760000000,
         "duration": 460000000,
         "timestamp_inferred": false,
@@ -3073,8 +3241,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-219",
-        "pos": 219,
+        "id": "ep-podcast-S1E10-231",
+        "pos": 231,
         "timestamp": 1453220000000,
         "duration": 1840000000,
         "timestamp_inferred": false,
@@ -3087,8 +3255,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-220",
-        "pos": 220,
+        "id": "ep-podcast-S1E10-232",
+        "pos": 232,
         "timestamp": 1455060000000,
         "duration": 1610000000,
         "timestamp_inferred": false,
@@ -3101,8 +3269,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-221",
-        "pos": 221,
+        "id": "ep-podcast-S1E10-233",
+        "pos": 233,
         "timestamp": 1456670000000,
         "duration": 1120000000,
         "timestamp_inferred": false,
@@ -3115,8 +3283,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-222",
-        "pos": 222,
+        "id": "ep-podcast-S1E10-234",
+        "pos": 234,
         "timestamp": 1457790000000,
         "duration": 660000000,
         "timestamp_inferred": false,
@@ -3129,8 +3297,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-223",
-        "pos": 223,
+        "id": "ep-podcast-S1E10-235",
+        "pos": 235,
         "timestamp": 1458450000000,
         "duration": 21840000000,
         "timestamp_inferred": false,
@@ -3143,8 +3311,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-224",
-        "pos": 224,
+        "id": "ep-podcast-S1E10-236",
+        "pos": 236,
         "timestamp": 1480290000000,
         "duration": 1680000000,
         "timestamp_inferred": false,
@@ -3157,8 +3325,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-225",
-        "pos": 225,
+        "id": "ep-podcast-S1E10-237",
+        "pos": 237,
         "timestamp": 1481970000000,
         "duration": 1960000000,
         "timestamp_inferred": false,
@@ -3171,8 +3339,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-226",
-        "pos": 226,
+        "id": "ep-podcast-S1E10-238",
+        "pos": 238,
         "timestamp": 1483930000000,
         "duration": 3470000000,
         "timestamp_inferred": false,
@@ -3185,8 +3353,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-227",
-        "pos": 227,
+        "id": "ep-podcast-S1E10-239",
+        "pos": 239,
         "timestamp": 1487400000000,
         "duration": 450000000,
         "timestamp_inferred": false,
@@ -3199,8 +3367,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-228",
-        "pos": 228,
+        "id": "ep-podcast-S1E10-240",
+        "pos": 240,
         "timestamp": 1487850000000,
         "duration": 2430000000,
         "timestamp_inferred": false,
@@ -3213,8 +3381,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-229",
-        "pos": 229,
+        "id": "ep-podcast-S1E10-241",
+        "pos": 241,
         "timestamp": 1490280000000,
         "duration": 2050000000,
         "timestamp_inferred": false,
@@ -3227,8 +3395,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-230",
-        "pos": 230,
+        "id": "ep-podcast-S1E10-242",
+        "pos": 242,
         "timestamp": 1492330000000,
         "duration": 8420000000,
         "timestamp_inferred": false,
@@ -3241,8 +3409,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-231",
-        "pos": 231,
+        "id": "ep-podcast-S1E10-243",
+        "pos": 243,
         "timestamp": 1500750000000,
         "duration": 5030000000,
         "timestamp_inferred": false,
@@ -3255,8 +3423,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-232",
-        "pos": 232,
+        "id": "ep-podcast-S1E10-244",
+        "pos": 244,
         "timestamp": 1505780000000,
         "duration": 10710000000,
         "timestamp_inferred": false,
@@ -3269,8 +3437,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-233",
-        "pos": 233,
+        "id": "ep-podcast-S1E10-245",
+        "pos": 245,
         "timestamp": 1516490000000,
         "duration": 580000000,
         "timestamp_inferred": false,
@@ -3283,8 +3451,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-234",
-        "pos": 234,
+        "id": "ep-podcast-S1E10-246",
+        "pos": 246,
         "timestamp": 1517070000000,
         "duration": 4140000000,
         "timestamp_inferred": false,
@@ -3297,8 +3465,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-235",
-        "pos": 235,
+        "id": "ep-podcast-S1E10-247",
+        "pos": 247,
         "timestamp": 1521210000000,
         "duration": 920000000,
         "timestamp_inferred": false,
@@ -3311,8 +3479,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-236",
-        "pos": 236,
+        "id": "ep-podcast-S1E10-248",
+        "pos": 248,
         "timestamp": 1522130000000,
         "duration": 1840000000,
         "timestamp_inferred": false,
@@ -3325,8 +3493,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-237",
-        "pos": 237,
+        "id": "ep-podcast-S1E10-249",
+        "pos": 249,
         "timestamp": 1523970000000,
         "duration": 2200000000,
         "timestamp_inferred": false,
@@ -3339,8 +3507,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-238",
-        "pos": 238,
+        "id": "ep-podcast-S1E10-250",
+        "pos": 250,
         "timestamp": 1526170000000,
         "duration": 2640000000,
         "timestamp_inferred": false,
@@ -3353,8 +3521,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-239",
-        "pos": 239,
+        "id": "ep-podcast-S1E10-251",
+        "pos": 251,
         "timestamp": 1528810000000,
         "duration": 9320000000,
         "timestamp_inferred": false,
@@ -3367,8 +3535,8 @@
         "placeholder": true
       },
       {
-        "id": "ep-podcast-S1E10-240",
-        "pos": 240,
+        "id": "ep-podcast-S1E10-252",
+        "pos": 252,
         "timestamp": 1538130000000,
         "duration": 2070000000,
         "timestamp_inferred": false,
@@ -3381,8 +3549,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-241",
-        "pos": 241,
+        "id": "ep-podcast-S1E10-253",
+        "pos": 253,
         "timestamp": 1540200000000,
         "duration": 1960000000,
         "timestamp_inferred": false,
@@ -3395,8 +3563,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-242",
-        "pos": 242,
+        "id": "ep-podcast-S1E10-254",
+        "pos": 254,
         "timestamp": 1542160000000,
         "duration": 1190000000,
         "timestamp_inferred": false,
@@ -3409,8 +3577,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-243",
-        "pos": 243,
+        "id": "ep-podcast-S1E10-255",
+        "pos": 255,
         "timestamp": 1543350000000,
         "duration": 1490000000,
         "timestamp_inferred": false,
@@ -3423,8 +3591,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-244",
-        "pos": 244,
+        "id": "ep-podcast-S1E10-256",
+        "pos": 256,
         "timestamp": 1544840000000,
         "duration": 610000000,
         "timestamp_inferred": false,
@@ -3437,8 +3605,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-245",
-        "pos": 245,
+        "id": "ep-podcast-S1E10-257",
+        "pos": 257,
         "timestamp": 1545450000000,
         "duration": 1220000000,
         "timestamp_inferred": false,
@@ -3451,8 +3619,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-246",
-        "pos": 246,
+        "id": "ep-podcast-S1E10-258",
+        "pos": 258,
         "timestamp": 1546670000000,
         "duration": 3290000000,
         "timestamp_inferred": false,
@@ -3465,8 +3633,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-247",
-        "pos": 247,
+        "id": "ep-podcast-S1E10-259",
+        "pos": 259,
         "timestamp": 1549960000000,
         "duration": 8750000000,
         "timestamp_inferred": false,
@@ -3479,8 +3647,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-248",
-        "pos": 248,
+        "id": "ep-podcast-S1E10-260",
+        "pos": 260,
         "timestamp": 1558710000000,
         "duration": 3850000000,
         "timestamp_inferred": false,
@@ -3493,8 +3661,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-249",
-        "pos": 249,
+        "id": "ep-podcast-S1E10-261",
+        "pos": 261,
         "timestamp": 1562560000000,
         "duration": 920000000,
         "timestamp_inferred": false,
@@ -3507,8 +3675,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-250",
-        "pos": 250,
+        "id": "ep-podcast-S1E10-262",
+        "pos": 262,
         "timestamp": 1563480000000,
         "duration": 3650000000,
         "timestamp_inferred": false,
@@ -3521,8 +3689,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-251",
-        "pos": 251,
+        "id": "ep-podcast-S1E10-263",
+        "pos": 263,
         "timestamp": 1567130000000,
         "duration": 8240000000,
         "timestamp_inferred": false,
@@ -3535,8 +3703,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-252",
-        "pos": 252,
+        "id": "ep-podcast-S1E10-264",
+        "pos": 264,
         "timestamp": 1575370000000,
         "duration": 2600000000,
         "timestamp_inferred": false,
@@ -3549,8 +3717,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-253",
-        "pos": 253,
+        "id": "ep-podcast-S1E10-265",
+        "pos": 265,
         "timestamp": 1577970000000,
         "duration": 2830000000,
         "timestamp_inferred": false,
@@ -3563,8 +3731,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-254",
-        "pos": 254,
+        "id": "ep-podcast-S1E10-266",
+        "pos": 266,
         "timestamp": 1580800000000,
         "duration": 3930000000,
         "timestamp_inferred": false,
@@ -3577,8 +3745,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-255",
-        "pos": 255,
+        "id": "ep-podcast-S1E10-267",
+        "pos": 267,
         "timestamp": 1584730000000,
         "duration": 450000000,
         "timestamp_inferred": false,
@@ -3591,8 +3759,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-256",
-        "pos": 256,
+        "id": "ep-podcast-S1E10-268",
+        "pos": 268,
         "timestamp": 1585180000000,
         "duration": 950000000,
         "timestamp_inferred": false,
@@ -3605,8 +3773,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-257",
-        "pos": 257,
+        "id": "ep-podcast-S1E10-269",
+        "pos": 269,
         "timestamp": 1586130000000,
         "duration": 11300000000,
         "timestamp_inferred": false,
@@ -3619,8 +3787,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-258",
-        "pos": 258,
+        "id": "ep-podcast-S1E10-270",
+        "pos": 270,
         "timestamp": 1597430000000,
         "duration": 970000000,
         "timestamp_inferred": false,
@@ -3633,8 +3801,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-259",
-        "pos": 259,
+        "id": "ep-podcast-S1E10-271",
+        "pos": 271,
         "timestamp": 1598400000000,
         "duration": 1290000000,
         "timestamp_inferred": false,
@@ -3647,8 +3815,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-260",
-        "pos": 260,
+        "id": "ep-podcast-S1E10-272",
+        "pos": 272,
         "timestamp": 1599690000000,
         "duration": 3830000000,
         "timestamp_inferred": false,
@@ -3661,8 +3829,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-261",
-        "pos": 261,
+        "id": "ep-podcast-S1E10-273",
+        "pos": 273,
         "timestamp": 1603520000000,
         "duration": 4980000000,
         "timestamp_inferred": false,
@@ -3675,8 +3843,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-262",
-        "pos": 262,
+        "id": "ep-podcast-S1E10-274",
+        "pos": 274,
         "timestamp": 1608500000000,
         "duration": 1440000000,
         "timestamp_inferred": false,
@@ -3689,8 +3857,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-263",
-        "pos": 263,
+        "id": "ep-podcast-S1E10-275",
+        "pos": 275,
         "timestamp": 1609940000000,
         "duration": 1060000000,
         "timestamp_inferred": false,
@@ -3703,8 +3871,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-264",
-        "pos": 264,
+        "id": "ep-podcast-S1E10-276",
+        "pos": 276,
         "timestamp": 1611000000000,
         "duration": 190000000,
         "timestamp_inferred": false,
@@ -3717,8 +3885,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-265",
-        "pos": 265,
+        "id": "ep-podcast-S1E10-277",
+        "pos": 277,
         "timestamp": 1611190000000,
         "duration": 2740000000,
         "timestamp_inferred": false,
@@ -3731,8 +3899,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-266",
-        "pos": 266,
+        "id": "ep-podcast-S1E10-278",
+        "pos": 278,
         "timestamp": 1613930000000,
         "duration": 1000000000,
         "timestamp_inferred": false,
@@ -3745,8 +3913,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-267",
-        "pos": 267,
+        "id": "ep-podcast-S1E10-279",
+        "pos": 279,
         "timestamp": 1614930000000,
         "duration": 5560000000,
         "timestamp_inferred": false,
@@ -3759,8 +3927,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-268",
-        "pos": 268,
+        "id": "ep-podcast-S1E10-280",
+        "pos": 280,
         "timestamp": 1620490000000,
         "duration": 28190000000,
         "timestamp_inferred": false,
@@ -3773,8 +3941,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-269",
-        "pos": 269,
+        "id": "ep-podcast-S1E10-281",
+        "pos": 281,
         "timestamp": 1648680000000,
         "duration": 3320000000,
         "timestamp_inferred": false,
@@ -3787,8 +3955,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-270",
-        "pos": 270,
+        "id": "ep-podcast-S1E10-282",
+        "pos": 282,
         "timestamp": 1652000000000,
         "duration": 610000000,
         "timestamp_inferred": false,
@@ -3801,8 +3969,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-271",
-        "pos": 271,
+        "id": "ep-podcast-S1E10-283",
+        "pos": 283,
         "timestamp": 1652610000000,
         "duration": 1540000000,
         "timestamp_inferred": false,
@@ -3815,8 +3983,8 @@
         "placeholder": false
       },
       {
-        "id": "ep-podcast-S1E10-272",
-        "pos": 272,
+        "id": "ep-podcast-S1E10-284",
+        "pos": 284,
         "timestamp": 1654150000000,
         "duration": 19850000000,
         "timestamp_inferred": false,
@@ -3832,8 +4000,10 @@
     "synopsis": null,
     "contributors": [
       "Hopper2004",
+      "New-Difficulty-6049",
       "Rowanator3000",
       "Thanatosinstinct",
+      "pichushkins",
       "rdxthn"
     ],
     "trivia": null,
