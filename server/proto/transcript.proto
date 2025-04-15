@@ -673,4 +673,5 @@ message SetTranscriptRatingScoreRequest {
 message BulkSetTranscriptRatingScoreRequest {
   string epid = 1;
   map<string, float> scores = 2;
+  string oauth_source = 3;
 }

@@ -831,8 +831,25 @@ func (s *TranscriptService) BulkSetTranscriptRatingScore(ctx context.Context, re
 		return nil, err
 	}
 
-	//todo: implement
+	if request.OauthSource == "" {
+		return nil, fmt.Errorf("outh source is required to match the given scores to existing authors")
+	}
 
+	err := s.persistentDB.WithStore(func(s *rw.Store) error {
+		for author, rating := range request.Scores {
+			id, err := s.GetOrCreateAuthorID(ctx, author, request.OauthSource)
+			if err != nil {
+				return err
+			}
+			if err := s.UpsertTranscriptRatingScore(ctx, request.Epid, id, rating, false); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	if err != nil {
+		return nil, ErrInternal(err)
+	}
 	return &emptypb.Empty{}, nil
 }
 

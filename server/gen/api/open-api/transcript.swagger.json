@@ -936,6 +936,9 @@
             "type": "number",
             "format": "float"
           }
+        },
+        "oauthSource": {
+          "type": "string"
         }
       }
     },

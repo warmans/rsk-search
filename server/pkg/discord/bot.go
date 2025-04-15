@@ -18,6 +18,7 @@ import (
 	"net/http"
 	"os"
 	"regexp"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -123,6 +124,20 @@ func NewBot(
 				},
 			},
 			{
+				Name:        "rewind",
+				Description: "Create a rewind thread",
+				Type:        discordgo.ChatApplicationCommand,
+				Options: []*discordgo.ApplicationCommandOption{
+					{
+						Name:         "episode",
+						Description:  "The episode ID",
+						Type:         discordgo.ApplicationCommandOptionString,
+						Required:     true,
+						Autocomplete: true,
+					},
+				},
+			},
+			{
 				Name: "scrimp-archive",
 				Type: discordgo.MessageApplicationCommand,
 			},
@@ -130,11 +145,14 @@ func NewBot(
 	}
 	bot.commandHandlers = map[string]func(s *discordgo.Session, i *discordgo.InteractionCreate){
 		"scrimp":         bot.queryBegin,
+		"rewind":         bot.rewindBegin,
 		"scrimp-archive": bot.quickArchiveModalOpen,
 	}
 	bot.buttonHandlers = map[string]func(s *discordgo.Session, i *discordgo.InteractionCreate, suffix string){
-		"cfm": bot.queryComplete,
-		"up":  bot.updatePreview,
+		"cfm":            bot.queryComplete,
+		"up":             bot.updatePreview,
+		"rewind-start":   bot.rewindStart,
+		"episode-rating": bot.rateEpisode,
 	}
 	bot.modalHandlers = map[string]func(s *discordgo.Session, i *discordgo.InteractionCreate, suffix string){
 		"quick-archive-modal-save": bot.quickArchiveModalSave,
@@ -293,6 +311,46 @@ func (b *Bot) queryBegin(s *discordgo.Session, i *discordgo.InteractionCreate) {
 			})
 		}
 		if err = s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
+			Type: discordgo.InteractionApplicationCommandAutocompleteResult,
+			Data: &discordgo.InteractionResponseData{
+				Choices: choices,
+			},
+		}); err != nil {
+			b.logger.Error("Failed to respond with autocomplete options", zap.Error(err))
+		}
+		return
+	}
+	b.respondError(s, i, fmt.Errorf("unknown command type"))
+}
+func (b *Bot) rewindBegin(s *discordgo.Session, i *discordgo.InteractionCreate) {
+	switch i.Type {
+	case discordgo.InteractionApplicationCommand:
+		selection := i.ApplicationCommandData().Options[0].StringValue()
+		if selection == "" {
+			return
+		}
+
+		b.confirmRewindStart(s, i, selection)
+		return
+	case discordgo.InteractionApplicationCommandAutocomplete:
+		data := i.ApplicationCommandData()
+
+		prefix := strings.TrimSpace(data.Options[0].StringValue())
+
+		choices := []*discordgo.ApplicationCommandOptionChoice{}
+		for _, epID := range meta.EpisodeList() {
+			if strings.HasPrefix(strings.ToLower(epID), strings.ToLower(strings.TrimSpace(prefix))) {
+				choices = append(choices, &discordgo.ApplicationCommandOptionChoice{
+					Name:  epID,
+					Value: epID,
+				})
+			}
+			if len(choices) > 24 {
+				break
+			}
+		}
+
+		if err := s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
 			Type: discordgo.InteractionApplicationCommandAutocompleteResult,
 			Data: &discordgo.InteractionResponseData{
 				Choices: choices,
@@ -892,6 +950,138 @@ func (b *Bot) quickArchiveModalSave(s *discordgo.Session, i *discordgo.Interacti
 	}
 }
 
+func (b *Bot) confirmRewindStart(s *discordgo.Session, i *discordgo.InteractionCreate, epid string) {
+
+	if err := s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
+		Type: discordgo.InteractionResponseChannelMessageWithSource,
+		Data: &discordgo.InteractionResponseData{
+			Title:   "Confirm Rewind",
+			Content: fmt.Sprintf("Are you sure you want to start a rewind thread?"),
+			Flags:   discordgo.MessageFlagsEphemeral,
+			Components: []discordgo.MessageComponent{
+				discordgo.ActionsRow{
+					Components: []discordgo.MessageComponent{
+						discordgo.Button{
+							Label:    "Confirm",
+							Style:    discordgo.PrimaryButton,
+							CustomID: fmt.Sprintf("rewind-start:%s", epid),
+						},
+					},
+				},
+			},
+		},
+	}); err != nil {
+		b.respondError(s, i, err)
+		return
+	}
+}
+
+func (b *Bot) rewindStart(s *discordgo.Session, i *discordgo.InteractionCreate, epid string) {
+
+	content, err := b.getEpisodeSummary(epid)
+	if err != nil {
+		b.respondError(s, i, err)
+		return
+	}
+	initialMessage, err := s.ChannelMessageSendComplex(i.ChannelID, &discordgo.MessageSend{
+		Content: content,
+		Components: []discordgo.MessageComponent{
+			discordgo.ActionsRow{
+				Components: []discordgo.MessageComponent{
+					discordgo.Button{
+						Emoji: &discordgo.ComponentEmoji{
+							Name: "1️⃣",
+						},
+						Style:    discordgo.SecondaryButton,
+						CustomID: fmt.Sprintf("episode-rating:%s:1", epid),
+					},
+					discordgo.Button{
+						Emoji: &discordgo.ComponentEmoji{
+							Name: "2️⃣",
+						},
+						Style:    discordgo.SecondaryButton,
+						CustomID: fmt.Sprintf("episode-rating:%s:2", epid),
+					},
+					discordgo.Button{
+						Emoji: &discordgo.ComponentEmoji{
+							Name: "3️⃣",
+						},
+						Style:    discordgo.SecondaryButton,
+						CustomID: fmt.Sprintf("episode-rating:%s:3", epid),
+					},
+					discordgo.Button{
+						Emoji: &discordgo.ComponentEmoji{
+							Name: "4️⃣",
+						},
+						Style:    discordgo.SecondaryButton,
+						CustomID: fmt.Sprintf("episode-rating:%s:4", epid),
+					},
+					discordgo.Button{
+						Emoji: &discordgo.ComponentEmoji{
+							Name: "5️⃣",
+						},
+						Style:    discordgo.SecondaryButton,
+						CustomID: fmt.Sprintf("episode-rating:%s:5", epid),
+					},
+				},
+			},
+		},
+	})
+	if err != nil {
+		b.respondError(s, i, err)
+		return
+	}
+
+	_, err = s.MessageThreadStartComplex(initialMessage.ChannelID, initialMessage.ID, &discordgo.ThreadStart{
+		Name: fmt.Sprintf("%s REWIND", epid),
+		Type: discordgo.ChannelTypeGuildPublicThread,
+	})
+	if err != nil {
+		b.respondError(s, i, err)
+		return
+	}
+
+	if err := s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
+		Type: discordgo.InteractionResponseChannelMessageWithSource,
+		Data: &discordgo.InteractionResponseData{
+			Flags:   discordgo.MessageFlagsEphemeral,
+			Content: "Done!",
+		},
+	}); err != nil {
+		b.respondError(s, i, err)
+		return
+	}
+}
+
+func (b *Bot) rateEpisode(s *discordgo.Session, i *discordgo.InteractionCreate, epidAndRating string) {
+
+	idAndRatingParts := strings.Split(epidAndRating, ":")
+	rating, err := strconv.ParseFloat(idAndRatingParts[1], 32)
+	if err != nil {
+		b.respondError(s, i, fmt.Errorf("failed to parse rating: %w", err))
+		return
+	}
+
+	if _, err := b.transcriptApiClient.BulkSetTranscriptRatingScore(context.Background(), &api.BulkSetTranscriptRatingScoreRequest{
+		Epid:        idAndRatingParts[0],
+		OauthSource: "discord",
+		Scores: map[string]float32{
+			i.Interaction.Member.User.Username: float32(rating),
+		},
+	}); err != nil {
+		b.respondError(s, i, err)
+		return
+	}
+
+	if _, err := s.ChannelMessageSend(i.Interaction.Message.ID, fmt.Sprintf("%s rated the episode %s/5", i.Interaction.Member.DisplayName(), idAndRatingParts[1])); err != nil {
+		b.respondError(s, i, err)
+		return
+	}
+
+	b.respondConfirm(s, i, "Submitted!")
+	return
+}
+
 func (b *Bot) respondError(s *discordgo.Session, i *discordgo.InteractionCreate, err error) {
 	b.logger.Error("Error response was sent", zap.Error(err))
 	responseErr := s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
@@ -903,6 +1093,20 @@ func (b *Bot) respondError(s *discordgo.Session, i *discordgo.InteractionCreate,
 	})
 	if responseErr != nil {
 		b.logger.Error("failed to respond", zap.Error(responseErr), zap.String("original_error", err.Error()))
+		return
+	}
+}
+
+func (b *Bot) respondConfirm(s *discordgo.Session, i *discordgo.InteractionCreate, msg string) {
+	responseErr := s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
+		Type: discordgo.InteractionResponseChannelMessageWithSource,
+		Data: &discordgo.InteractionResponseData{
+			Content: msg,
+			Flags:   discordgo.MessageFlagsEphemeral,
+		},
+	})
+	if responseErr != nil {
+		b.logger.Error("failed to respond", zap.Error(responseErr))
 		return
 	}
 }
@@ -943,6 +1147,32 @@ func (b *Bot) validateAttachmentForArchive(v *discordgo.MessageAttachment) (stri
 		return fmt.Sprintf("- SKIPPED %s already exists", v.Filename), nil
 	}
 	return "", nil
+}
+
+func (b *Bot) getEpisodeSummary(epid string) (string, error) {
+	transcript, err := b.transcriptApiClient.GetTranscript(context.Background(), &api.GetTranscriptRequest{
+		Epid:    fmt.Sprintf("ep-%s", epid),
+		WithRaw: false,
+	})
+	if err != nil {
+		return "", err
+	}
+
+	return fmt.Sprintf(
+		`**%s (%s) REWIND** | 🔉 https://scrimpton.com/ep/%s
+
+This is a rewind thread. Listen to the episode using the link above. 
+
+**Other Commands:**
+ * \title "proposed episode title"
+
+**Rating:**
+`,
+		transcript.ShortId,
+		transcript.ReleaseDate,
+		transcript.Id,
+	), nil
+
 }
 
 func encodeCustomIDForAction(action string, customID CustomID) string {

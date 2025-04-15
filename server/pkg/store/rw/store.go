@@ -684,6 +684,23 @@ func (s *Store) UpsertAuthor(ctx context.Context, author *models.Author) error {
 	return row.Scan(&author.ID, &author.Banned, &author.Approver)
 }
 
+func (s *Store) GetOrCreateAuthorID(ctx context.Context, authorName string, oauthProvider string) (string, error) {
+
+	if authorName == "" || oauthProvider == "" {
+		return "", fmt.Errorf("author name or provider cannot be empty")
+	}
+	row := s.tx.QueryRowxContext(
+		ctx,
+		"INSERT INTO author (id, name, created_at, oauth_provider, placeholder) VALUES ($1, $2, NOW(), $3, true) ON CONFLICT(name, oauth_provider) DO UPDATE SET name=$2 RETURNING id",
+		shortuuid.New(),
+		authorName,
+		oauthProvider,
+	)
+
+	var id string
+	return id, row.Scan(&id)
+}
+
 func (s *Store) AuthorIsBanned(ctx context.Context, id string) (bool, error) {
 	var banned bool
 	row := s.tx.QueryRowxContext(ctx, "SELECT banned FROM author WHERE id=$1 ", id)
