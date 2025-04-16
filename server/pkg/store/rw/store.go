@@ -1669,3 +1669,14 @@ func (s *Store) GetTranscriptRatingScores(ctx context.Context, episodeID string)
 	}
 	return ratings, nil
 }
+
+func (s *Store) UpsertTranscriptTag(ctx context.Context, episodeID string, tagName string, tagTimestamp time.Duration) error {
+	_, err := s.tx.ExecContext(
+		ctx,
+		`INSERT INTO transcript_tag (episode_id, tag_name, tag_timestamp) VALUES ($1, $2, $3) ON CONFLICT(episode_id, tag_name, tag_timestamp) DO NOTHING`,
+		episodeID,
+		tagName,
+		tagTimestamp,
+	)
+	return err
+}

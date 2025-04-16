@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/bwmarrin/discordgo"
+	"github.com/davecgh/go-spew/spew"
 	"github.com/pkg/errors"
 	"github.com/warmans/rsk-search/gen/api"
 	"github.com/warmans/rsk-search/pkg/archive"
@@ -17,9 +18,11 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"path"
 	"regexp"
 	"strconv"
 	"strings"
+	"sync"
 	"time"
 )
 
@@ -108,6 +111,7 @@ func NewBot(
 		archiveStore:        archiveStore,
 		transcriptApiClient: transcriptApiClient,
 		searchApiClient:     searchApiClient,
+		rewindThreadCache:   &sync.Map{},
 		commands: []*discordgo.ApplicationCommand{
 			{
 				Name:        "scrimp",
@@ -174,9 +178,15 @@ type Bot struct {
 	buttonHandlers      map[string]func(s *discordgo.Session, i *discordgo.InteractionCreate, customIdPayload string)
 	modalHandlers       map[string]func(s *discordgo.Session, i *discordgo.InteractionCreate, customIdPayload string)
 	createdCommands     []*discordgo.ApplicationCommand
+	rewindStateLock     sync.RWMutex
+	rewindThreadCache   *sync.Map
 }
 
 func (b *Bot) Start() error {
+
+	if err := b.initRewindCache(); err != nil {
+		return err
+	}
 
 	b.session.AddHandler(func(s *discordgo.Session, r *discordgo.Ready) {
 		log.Printf("Logged in as: %v#%v", s.State.User.Username, s.State.User.Discriminator)
@@ -217,6 +227,14 @@ func (b *Bot) Start() error {
 			return
 		}
 	})
+	b.session.AddHandler(func(s *discordgo.Session, m *discordgo.MessageCreate) {
+		b.handleMessageCreate(s, m)
+	})
+
+	b.session.AddHandler(func(s *discordgo.Session, r *discordgo.MessageReactionAdd) {
+		b.handleMessageReactAdd(s, r)
+	})
+
 	if err := b.session.Open(); err != nil {
 		return fmt.Errorf("failed to open session: %w", err)
 	}
@@ -237,6 +255,18 @@ func (b *Bot) Close() error {
 		}
 	}
 	return b.session.Close()
+}
+
+func (b *Bot) handleMessageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
+	if _, isValidThread := b.rewindThreadCache.Load(m.ChannelID); isValidThread {
+		spew.Dump(m)
+	}
+}
+
+func (b *Bot) handleMessageReactAdd(s *discordgo.Session, r *discordgo.MessageReactionAdd) {
+	if _, isValidThread := b.rewindThreadCache.Load(r.ChannelID); isValidThread {
+		fmt.Println("reaction to message: ", r.MessageID, " channel: ", r.ChannelID)
+	}
 }
 
 func (b *Bot) queryBegin(s *discordgo.Session, i *discordgo.InteractionCreate) {
@@ -1032,11 +1062,21 @@ func (b *Bot) rewindStart(s *discordgo.Session, i *discordgo.InteractionCreate, 
 		return
 	}
 
-	_, err = s.MessageThreadStartComplex(initialMessage.ChannelID, initialMessage.ID, &discordgo.ThreadStart{
+	thread, err := s.MessageThreadStartComplex(initialMessage.ChannelID, initialMessage.ID, &discordgo.ThreadStart{
 		Name: fmt.Sprintf("%s REWIND", epid),
 		Type: discordgo.ChannelTypeGuildPublicThread,
 	})
 	if err != nil {
+		b.respondError(s, i, err)
+		return
+	}
+
+	if err := b.createRewindState(RewindState{
+		OriginalMessageID:      initialMessage.ID,
+		OriginalMessageChannel: initialMessage.ChannelID,
+		AnswerThreadID:         thread.ID,
+		EpisodeID:              epid,
+	}); err != nil {
 		b.respondError(s, i, err)
 		return
 	}
@@ -1159,12 +1199,12 @@ func (b *Bot) getEpisodeSummary(epid string) (string, error) {
 	}
 
 	return fmt.Sprintf(
-		`**%s (%s) REWIND** | 🔉 https://scrimpton.com/ep/%s
+		`**%s REWIND** | %s | 🔉 https://scrimpton.com/ep/%s
 
 This is a rewind thread. Listen to the episode using the link above. 
 
 **Other Commands:**
- * \title "proposed episode title"
+ * \tag [tag name] [timestamp in duration format e.g. 12m19s]
 
 **Rating:**
 `,
@@ -1173,6 +1213,93 @@ This is a rewind thread. Listen to the episode using the link above.
 		transcript.Id,
 	), nil
 
+}
+
+func (b *Bot) initRewindCache() error {
+	entires, err := os.ReadDir("var/rewind/")
+	if err != nil {
+		return err
+	}
+	for _, v := range entires {
+		if !strings.HasSuffix(v.Name(), ".json") || v.IsDir() {
+			continue
+		}
+		threadID := strings.TrimSuffix(path.Base(v.Name()), ".json")
+		b.rewindThreadCache.Store(threadID, struct{}{})
+	}
+	return nil
+}
+
+func (b *Bot) createRewindState(state RewindState) error {
+	_, err := os.Stat(fmt.Sprintf("var/rewind/%s.json", state.AnswerThreadID))
+	if err != nil && !os.IsNotExist(err) {
+		return err
+	}
+	if err == nil {
+		return nil
+	}
+	f, err := os.Create(fmt.Sprintf("var/rewind/%s.json", state.AnswerThreadID))
+	if err != nil {
+		return err
+	}
+
+	if err := json.NewEncoder(f).Encode(state); err != nil {
+		return err
+	}
+
+	b.rewindThreadCache.Store(state.AnswerThreadID, struct{}{})
+
+	return nil
+
+}
+
+func (b *Bot) openRewindStateForReading(channelID string, cb func(cw *RewindState) error) error {
+	b.rewindStateLock.RLock()
+	defer b.rewindStateLock.RUnlock()
+
+	f, err := os.Open(fmt.Sprintf("var/rewind/%s.json", channelID))
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	s := RewindState{}
+	if err := json.NewDecoder(f).Decode(&s); err != nil {
+		return err
+	}
+
+	return cb(&s)
+}
+
+func (b *Bot) openRewindStateForWriting(channelID string, cb func(cw *RewindState) (*RewindState, error)) error {
+	b.rewindStateLock.Lock()
+	defer b.rewindStateLock.Unlock()
+
+	f, err := os.OpenFile(fmt.Sprintf("var/rewind/%s.json", channelID), os.O_RDWR|os.O_EXCL, 0666)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	s := &RewindState{}
+	if err := json.NewDecoder(f).Decode(s); err != nil {
+		return err
+	}
+	s, err = cb(s)
+	if err != nil || s == nil {
+		return err
+	}
+
+	if err := f.Truncate(0); err != nil {
+		return err
+	}
+	if _, err := f.Seek(0, 0); err != nil {
+		return err
+	}
+
+	enc := json.NewEncoder(f)
+	enc.SetIndent("", "  ")
+	return enc.Encode(s)
 }
 
 func encodeCustomIDForAction(action string, customID CustomID) string {
@@ -1201,4 +1328,11 @@ func contentToFilename(rawContent string) string {
 		split = split[:8]
 	}
 	return strings.Join(split, "-")
+}
+
+type RewindState struct {
+	OriginalMessageID      string
+	OriginalMessageChannel string
+	AnswerThreadID         string
+	EpisodeID              string
 }

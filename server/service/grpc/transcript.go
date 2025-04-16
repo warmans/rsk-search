@@ -24,6 +24,7 @@ import (
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 	"google.golang.org/protobuf/types/known/emptypb"
+	"time"
 )
 
 func NewTranscriptService(
@@ -844,6 +845,26 @@ func (s *TranscriptService) BulkSetTranscriptRatingScore(ctx context.Context, re
 			if err := s.UpsertTranscriptRatingScore(ctx, request.Epid, id, rating, false); err != nil {
 				return err
 			}
+		}
+		return nil
+	})
+	if err != nil {
+		return nil, ErrInternal(err)
+	}
+	return &emptypb.Empty{}, nil
+}
+
+func (s *TranscriptService) BulkSetTranscriptTags(ctx context.Context, request *api.BulkSetTranscriptTagsRequest) (*emptypb.Empty, error) {
+	if err := s.authorizeSystemRequest(ctx); err != nil {
+		return nil, err
+	}
+	err := s.persistentDB.WithStore(func(s *rw.Store) error {
+		for _, v := range request.Tags {
+			ts, err := time.ParseDuration(v.Timestamp)
+			if err != nil {
+				return fmt.Errorf("failed to pass timestamp for tag %s: %w", v.Name, err)
+			}
+			return s.UpsertTranscriptTag(ctx, request.Epid, v.Name, ts)
 		}
 		return nil
 	})

@@ -1730,6 +1730,45 @@
           ]
         }
       },
+      "/api/transcript/{epid}/tag/bulk": {
+        "put": {
+          "summary": "Submits multiple tags for an episode.",
+          "operationId": "bulkSetTranscriptTag",
+          "responses": {
+            "200": {
+              "description": "A successful response.",
+              "schema": {
+                "properties": {}
+              }
+            },
+            "default": {
+              "description": "An unexpected error response.",
+              "schema": {
+                "$ref": "#/definitions/rpcStatus"
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "epid",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "body",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/rskBulkSetTranscriptTagsRequest"
+              }
+            }
+          ],
+          "tags": [
+            "search"
+          ]
+        }
+      },
       "/api/transcripts/chunked/chunk-stats": {
         "get": {
           "summary": "Get details about the current chunk backlog",
@@ -2121,6 +2160,20 @@
           },
           "oauthSource": {
             "type": "string"
+          }
+        }
+      },
+      "rskBulkSetTranscriptTagsRequest": {
+        "type": "object",
+        "properties": {
+          "epid": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/rskTag"
+            }
           }
         }
       },
@@ -3229,6 +3282,17 @@
           }
         }
       },
+      "rskTag": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        }
+      },
       "rskTranscript": {
         "type": "object",
         "properties": {
@@ -3333,6 +3397,12 @@
           },
           "ratings": {
             "$ref": "#/definitions/rskRatings"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/rskTag"
+            }
           }
         }
       },

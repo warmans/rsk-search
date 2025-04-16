@@ -42,6 +42,7 @@ const (
 	TranscriptService_RequestTranscriptChangeState_FullMethodName   = "/rsk.TranscriptService/RequestTranscriptChangeState"
 	TranscriptService_SetTranscriptRatingScore_FullMethodName       = "/rsk.TranscriptService/SetTranscriptRatingScore"
 	TranscriptService_BulkSetTranscriptRatingScore_FullMethodName   = "/rsk.TranscriptService/BulkSetTranscriptRatingScore"
+	TranscriptService_BulkSetTranscriptTags_FullMethodName          = "/rsk.TranscriptService/BulkSetTranscriptTags"
 )
 
 // TranscriptServiceClient is the client API for TranscriptService service.
@@ -70,6 +71,7 @@ type TranscriptServiceClient interface {
 	RequestTranscriptChangeState(ctx context.Context, in *RequestTranscriptChangeStateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	SetTranscriptRatingScore(ctx context.Context, in *SetTranscriptRatingScoreRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	BulkSetTranscriptRatingScore(ctx context.Context, in *BulkSetTranscriptRatingScoreRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	BulkSetTranscriptTags(ctx context.Context, in *BulkSetTranscriptTagsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type transcriptServiceClient struct {
@@ -278,6 +280,15 @@ func (c *transcriptServiceClient) BulkSetTranscriptRatingScore(ctx context.Conte
 	return out, nil
 }
 
+func (c *transcriptServiceClient) BulkSetTranscriptTags(ctx context.Context, in *BulkSetTranscriptTagsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, TranscriptService_BulkSetTranscriptTags_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TranscriptServiceServer is the server API for TranscriptService service.
 // All implementations should embed UnimplementedTranscriptServiceServer
 // for forward compatibility
@@ -304,6 +315,7 @@ type TranscriptServiceServer interface {
 	RequestTranscriptChangeState(context.Context, *RequestTranscriptChangeStateRequest) (*emptypb.Empty, error)
 	SetTranscriptRatingScore(context.Context, *SetTranscriptRatingScoreRequest) (*emptypb.Empty, error)
 	BulkSetTranscriptRatingScore(context.Context, *BulkSetTranscriptRatingScoreRequest) (*emptypb.Empty, error)
+	BulkSetTranscriptTags(context.Context, *BulkSetTranscriptTagsRequest) (*emptypb.Empty, error)
 }
 
 // UnimplementedTranscriptServiceServer should be embedded to have forward compatible implementations.
@@ -375,6 +387,9 @@ func (UnimplementedTranscriptServiceServer) SetTranscriptRatingScore(context.Con
 }
 func (UnimplementedTranscriptServiceServer) BulkSetTranscriptRatingScore(context.Context, *BulkSetTranscriptRatingScoreRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BulkSetTranscriptRatingScore not implemented")
+}
+func (UnimplementedTranscriptServiceServer) BulkSetTranscriptTags(context.Context, *BulkSetTranscriptTagsRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BulkSetTranscriptTags not implemented")
 }
 
 // UnsafeTranscriptServiceServer may be embedded to opt out of forward compatibility for this service.
@@ -784,6 +799,24 @@ func _TranscriptService_BulkSetTranscriptRatingScore_Handler(srv interface{}, ct
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TranscriptService_BulkSetTranscriptTags_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BulkSetTranscriptTagsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TranscriptServiceServer).BulkSetTranscriptTags(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TranscriptService_BulkSetTranscriptTags_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TranscriptServiceServer).BulkSetTranscriptTags(ctx, req.(*BulkSetTranscriptTagsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TranscriptService_ServiceDesc is the grpc.ServiceDesc for TranscriptService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -878,6 +911,10 @@ var TranscriptService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "BulkSetTranscriptRatingScore",
 			Handler:    _TranscriptService_BulkSetTranscriptRatingScore_Handler,
+		},
+		{
+			MethodName: "BulkSetTranscriptTags",
+			Handler:    _TranscriptService_BulkSetTranscriptTags_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

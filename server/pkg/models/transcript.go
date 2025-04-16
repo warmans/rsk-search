@@ -211,6 +211,7 @@ type Transcript struct {
 	Synopsis     []Synopsis `json:"synopsis"`
 	Contributors []string   `json:"contributors"`
 	Trivia       []Trivia   `json:"trivia"`
+	Tags         Tags       `json:"tags"`
 	Media        Media      `json:"media"`
 	Ratings      Ratings    `json:"ratings"`
 }
@@ -415,6 +416,7 @@ func (e *Transcript) Proto(withRawTranscript string, audioURI string, forceLocke
 		Media:              e.Media.Proto(),
 		PublicationType:    e.PublicationType.Proto(),
 		Ratings:            e.Ratings.Proto(),
+		Tags:               e.Tags.Proto(),
 	}
 	for _, d := range e.Transcript {
 		ep.Transcript = append(ep.Transcript, d.Proto(false))
@@ -480,6 +482,28 @@ func (f Trivia) Proto() *api.Trivia {
 		Description: f.Description,
 		StartPos:    int32(f.StartPos),
 		EndPos:      int32(f.EndPos),
+	}
+}
+
+type Tags []Tag
+
+func (t Tags) Proto() []*api.Tag {
+	out := make([]*api.Tag, len(t), len(t))
+	for k, v := range t {
+		out[k] = v.Proto()
+	}
+	return out
+}
+
+type Tag struct {
+	Name      string        `json:"name"`
+	Timestamp time.Duration `json:"timestamp"`
+}
+
+func (f Tag) Proto() *api.Tag {
+	return &api.Tag{
+		Name:      f.Name,
+		Timestamp: f.Timestamp.String(),
 	}
 }
 

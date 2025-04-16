@@ -283,6 +283,18 @@ service TranscriptService {
       tags: "search"
     };
   }
+
+  rpc BulkSetTranscriptTags(BulkSetTranscriptTagsRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      put: "/api/transcript/{epid}/tag/bulk",
+      body: "*",
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      operation_id: "bulkSetTranscriptTag",
+      summary: "Submits multiple tags for an episode."
+      tags: "search"
+    };
+  }
 }
 
 enum ContributionState {
@@ -292,7 +304,6 @@ enum ContributionState {
   STATE_APPROVED = 3;
   STATE_REJECTED = 4;
 }
-
 
 enum AudioQuality {
   AUDIO_QUALITY_UNKNOWN = 0;
@@ -319,8 +330,6 @@ enum PublicationType {
 }
 
 message Transcript {
-  reserved 6; // tags
-
   string id = 1;
   string publication = 2;
   int32 series = 3;
@@ -348,6 +357,7 @@ message Transcript {
   Media media = 26;
   PublicationType publication_type = 27;
   Ratings ratings = 28;
+  repeated Tag tags = 29;
 }
 
 message Media {
@@ -393,8 +403,6 @@ message Dialog {
     GAP = 4;
   }
 
-  reserved 7; // content_tags
-
   string id = 1;
   int32 pos = 2;
   DialogType type = 3;
@@ -421,11 +429,6 @@ message Trivia {
   string description = 1;
   int32 start_pos = 2;
   int32 end_pos = 3;
-}
-
-message Tag {
-  string name = 1;
-  repeated string kind = 2;
 }
 
 message GetTranscriptRequest {
@@ -674,4 +677,14 @@ message BulkSetTranscriptRatingScoreRequest {
   string epid = 1;
   map<string, float> scores = 2;
   string oauth_source = 3;
+}
+
+message BulkSetTranscriptTagsRequest {
+  string epid = 1;
+  repeated Tag tags = 2;
+}
+
+message Tag {
+  string name = 1;
+  string timestamp = 2;
 }
