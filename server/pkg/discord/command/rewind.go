@@ -246,7 +246,7 @@ func (r *RewindCommand) confirmRewindStart(s *discordgo.Session, i *discordgo.In
 		Type: discordgo.InteractionResponseChannelMessageWithSource,
 		Data: &discordgo.InteractionResponseData{
 			Title:   "Confirm Rewind",
-			Content: fmt.Sprintf("Are you sure you want to start a rewind thread?"),
+			Content: fmt.Sprintf("Are you sure you want to start a rewind thread for %s?", epid),
 			Flags:   discordgo.MessageFlagsEphemeral,
 			Components: []discordgo.MessageComponent{
 				discordgo.ActionsRow{

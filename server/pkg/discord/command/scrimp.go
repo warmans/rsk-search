@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"github.com/bwmarrin/discordgo"
 	"github.com/warmans/rsk-search/gen/api"
-	"github.com/warmans/rsk-search/pkg/archive"
 	"github.com/warmans/rsk-search/pkg/discord"
 	"github.com/warmans/rsk-search/pkg/discord/common"
 	"github.com/warmans/rsk-search/pkg/filter"
@@ -105,7 +104,6 @@ type SearchCommand struct {
 	logger              *zap.Logger
 	session             *discordgo.Session
 	webUrl              string
-	archiveStore        *archive.Store
 	transcriptApiClient api.TranscriptServiceClient
 	searchApiClient     api.SearchServiceClient
 }
