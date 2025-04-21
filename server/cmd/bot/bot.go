@@ -29,6 +29,7 @@ func RootCommand() *cobra.Command {
 	var webUrl string
 	var archiveDir string
 	var tlsCertPath string
+	var rewindStateDir string
 
 	jwtConfig := &jwt.Config{}
 
@@ -115,6 +116,7 @@ func RootCommand() *cobra.Command {
 	flag.StringVarEnv(cmd.Flags(), &webUrl, "", "web-url", "http://127.0.0.1:4200", "Base web address used for links")
 	flag.StringVarEnv(cmd.Flags(), &archiveDir, "", "archive-dir", "./var/archive", "Location to archive files via archive command")
 	flag.StringVarEnv(cmd.Flags(), &tlsCertPath, "", "grpc-tls-cert", "./x509/server_cert.pem", "TLS certificate needed to access GRPC server")
+	flag.StringVarEnv(cmd.Flags(), &rewindStateDir, "", "rewind-state-dir", "./var/rewind", "Directory to store rewind states")
 	jwtConfig.RegisterFlags(cmd.Flags(), "")
 
 	flag.Parse()

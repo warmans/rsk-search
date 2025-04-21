@@ -17,10 +17,14 @@ import (
 	"sync"
 )
 
-func NewRewindCommand(logger *zap.Logger, transcriptApiClient api.TranscriptServiceClient) (*RewindCommand, error) {
+func NewRewindCommand(
+	logger *zap.Logger,
+	rewindStateDir string,
+	transcriptApiClient api.TranscriptServiceClient) (*RewindCommand, error) {
 
 	b := &RewindCommand{
 		logger:              logger,
+		rewindStateDir:      rewindStateDir,
 		transcriptApiClient: transcriptApiClient,
 		rewindThreadCache:   &sync.Map{},
 	}
@@ -33,6 +37,7 @@ func NewRewindCommand(logger *zap.Logger, transcriptApiClient api.TranscriptServ
 
 type RewindCommand struct {
 	logger              *zap.Logger
+	rewindStateDir      string
 	transcriptApiClient api.TranscriptServiceClient
 	rewindStateLock     sync.RWMutex
 	rewindThreadCache   *sync.Map
@@ -294,11 +299,11 @@ This is a rewind thread. Listen to the episode using the link above.
 }
 
 func (r *RewindCommand) initRewindCache() error {
-	entires, err := os.ReadDir("var/rewind/")
+	entries, err := os.ReadDir(r.rewindStateDir)
 	if err != nil {
 		return err
 	}
-	for _, v := range entires {
+	for _, v := range entries {
 		if !strings.HasSuffix(v.Name(), ".json") || v.IsDir() {
 			continue
 		}
@@ -309,14 +314,14 @@ func (r *RewindCommand) initRewindCache() error {
 }
 
 func (r *RewindCommand) createRewindState(state RewindState) error {
-	_, err := os.Stat(fmt.Sprintf("var/rewind/%s.json", state.AnswerThreadID))
+	_, err := os.Stat(path.Join(r.rewindStateDir, fmt.Sprintf("%s.json", state.AnswerThreadID)))
 	if err != nil && !os.IsNotExist(err) {
 		return err
 	}
 	if err == nil {
 		return nil
 	}
-	f, err := os.Create(fmt.Sprintf("var/rewind/%s.json", state.AnswerThreadID))
+	f, err := os.Create(path.Join(r.rewindStateDir, fmt.Sprintf("%s.json", state.AnswerThreadID)))
 	if err != nil {
 		return err
 	}
@@ -335,7 +340,7 @@ func (r *RewindCommand) openRewindStateForReading(channelID string, cb func(cw *
 	r.rewindStateLock.RLock()
 	defer r.rewindStateLock.RUnlock()
 
-	f, err := os.Open(fmt.Sprintf("var/rewind/%s.json", channelID))
+	f, err := os.Open(path.Join(r.rewindStateDir, fmt.Sprintf("%s.json", channelID)))
 	if err != nil {
 		return err
 	}
@@ -353,7 +358,7 @@ func (r *RewindCommand) openRewindStateForWriting(channelID string, cb func(cw *
 	r.rewindStateLock.Lock()
 	defer r.rewindStateLock.Unlock()
 
-	f, err := os.OpenFile(fmt.Sprintf("var/rewind/%s.json", channelID), os.O_RDWR|os.O_EXCL, 0666)
+	f, err := os.OpenFile(path.Join(r.rewindStateDir, fmt.Sprintf("%s.json", channelID)), os.O_RDWR|os.O_EXCL, 0666)
 	if err != nil {
 		return err
 	}
