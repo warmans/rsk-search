@@ -67,13 +67,13 @@ func RootCommand() *cobra.Command {
 				return fmt.Errorf("failed to dial GRPC connection to API: %w", err)
 			}
 
-			rewindCommand, err := command.NewRewindCommand(
-				logger,
-				createTranscriptClient(grpcConn),
-			)
-			if err != nil {
-				return fmt.Errorf("failed to create rewindCommand: %w", err)
-			}
+			//rewindCommand, err := command.NewRewindCommand(
+			//	logger,
+			//	createTranscriptClient(grpcConn),
+			//)
+			//if err != nil {
+			//	return fmt.Errorf("failed to create rewindCommand: %w", err)
+			//}
 
 			bot := discord.NewBot(
 				logger,
@@ -86,7 +86,7 @@ func RootCommand() *cobra.Command {
 						createTranscriptClient(grpcConn),
 						createSearchClient(grpcConn),
 					),
-					rewindCommand,
+					//rewindCommand,
 				},
 				[]discord.Command{
 					command.NewArchiveCommand(logger, archive.NewStore(archiveDir)),
