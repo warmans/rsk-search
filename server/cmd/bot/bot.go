@@ -8,6 +8,7 @@ import (
 	"github.com/warmans/rsk-search/gen/api"
 	"github.com/warmans/rsk-search/pkg/archive"
 	"github.com/warmans/rsk-search/pkg/discord"
+	"github.com/warmans/rsk-search/pkg/discord/command"
 	"github.com/warmans/rsk-search/pkg/flag"
 	"github.com/warmans/rsk-search/pkg/jwt"
 	"go.uber.org/zap"
@@ -55,9 +56,7 @@ func RootCommand() *cobra.Command {
 			if botToken == "" {
 				return fmt.Errorf("discord token is required")
 			}
-			//if guildID == "" {
-			//	return fmt.Errorf("guildID is required")
-			//}
+
 			session, err := discordgo.New("Bot " + botToken)
 			if err != nil {
 				return fmt.Errorf("failed to create discord session: %w", err)
@@ -67,14 +66,31 @@ func RootCommand() *cobra.Command {
 			if err != nil {
 				return fmt.Errorf("failed to dial GRPC connection to API: %w", err)
 			}
+
+			rewindCommand, err := command.NewRewindCommand(
+				logger,
+				createTranscriptClient(grpcConn),
+			)
+			if err != nil {
+				return fmt.Errorf("failed to create rewindCommand: %w", err)
+			}
+
 			bot := discord.NewBot(
 				logger,
 				session,
-				guildID,
-				webUrl,
-				archive.NewStore(archiveDir),
-				createTranscriptClient(grpcConn),
-				createSearchClient(grpcConn),
+				[]discord.SlashCommand{
+					command.NewSearchCommand(
+						logger,
+						session,
+						webUrl,
+						createTranscriptClient(grpcConn),
+						createSearchClient(grpcConn),
+					),
+					rewindCommand,
+				},
+				[]discord.Command{
+					command.NewArchiveCommand(logger, archive.NewStore(archiveDir)),
+				},
 			)
 			logger.Info("Starting bot...")
 			if err = bot.Start(); err != nil {
@@ -116,7 +132,6 @@ func createGrpcClientConn(apiTarget string, systemToken string, tlsCertificatePa
 	return grpc.DialContext(
 		context.Background(),
 		apiTarget,
-		//todo:
 		grpc.WithTransportCredentials(creds),
 		grpc.WithPerRPCCredentials(
 			oauth.TokenSource{
