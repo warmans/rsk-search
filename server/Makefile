@@ -16,22 +16,14 @@ DEV_DB_DSN ?= "postgres://$(DEV_DB_USER):$(DEV_DB_PASS)@$(DEV_DB_HOST):5432/$(DE
 #----------------------------------------------------------------------------------------------
 
 .PHONY: setup
-setup: check.env install.tools install.buf install.golangci dev.generate.certs
+setup: check.env install.buf install.golangci dev.generate.certs
 	echo "=> Setup OK"
-
-.PHONY: install.tools
-install.tools:
-	# do not use global binaries as they are versioned for this project.
-	echo "=> Installing tools to $(LOCAL_BIN)"
-	for TOOL in `cat tools.go | grep _ | awk -F'"' '{print $$2}'`; do \
-		GOBIN=$(LOCAL_BIN) go install $${TOOL}; \
-	done;
 
 .PHONY: install.buf
 install.buf:
 	echo "=> Installing buf to $(LOCAL_BIN)"
 	BIN="$(LOCAL_BIN)" && \
-	VERSION="1.4.0" && \
+	VERSION="1.53.0" && \
 	BINARY_NAME="buf" && \
 	curl -sSL "https://github.com/bufbuild/buf/releases/download/v$${VERSION}/$${BINARY_NAME}-`uname -s`-`uname -m`" \
 		-o "$${BIN}/$${BINARY_NAME}" && \
@@ -39,7 +31,7 @@ install.buf:
 
 .PHONY: install.golangci
 install.golangci:
-	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(LOCAL_BIN) v1.61.0
+	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(LOCAL_BIN) v2.1.2
 
 .PHONY: check.env
 check.env:

@@ -1,7 +1,6 @@
 /* tslint:disable */
 
-export interface RskCreateTranscriptChangeRequest {
-  epid?: string;
+export interface TranscriptServiceCreateTranscriptChangeBody {
   summary?: string;
   transcript?: string;
   transcriptVersion?: string;

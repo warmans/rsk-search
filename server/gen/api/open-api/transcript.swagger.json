@@ -136,6 +136,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
             }
           },
@@ -187,7 +188,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/rskUpdateTranscriptChangeRequest"
+              "$ref": "#/definitions/TranscriptServiceUpdateTranscriptChangeBody"
             }
           }
         ],
@@ -235,6 +236,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
             }
           },
@@ -257,7 +259,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/rskRequestTranscriptChangeStateRequest"
+              "$ref": "#/definitions/TranscriptServiceRequestTranscriptChangeStateBody"
             }
           }
         ],
@@ -326,6 +328,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
             }
           },
@@ -377,7 +380,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/rskUpdateChunkContributionRequest"
+              "$ref": "#/definitions/TranscriptServiceUpdateChunkContributionBody"
             }
           }
         ],
@@ -416,7 +419,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/rskRequestChunkContributionStateRequest"
+              "$ref": "#/definitions/TranscriptServiceRequestChunkContributionStateBody"
             }
           }
         ],
@@ -512,7 +515,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/rskCreateChunkContributionRequest"
+              "$ref": "#/definitions/TranscriptServiceCreateChunkContributionBody"
             }
           }
         ],
@@ -682,7 +685,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/rskCreateTranscriptChangeRequest"
+              "$ref": "#/definitions/TranscriptServiceCreateTranscriptChangeBody"
             }
           }
         ],
@@ -758,6 +761,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
             }
           },
@@ -780,7 +784,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/rskSetTranscriptRatingScoreRequest"
+              "$ref": "#/definitions/TranscriptServiceSetTranscriptRatingScoreBody"
             }
           }
         ],
@@ -797,6 +801,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
             }
           },
@@ -819,7 +824,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/rskBulkSetTranscriptRatingScoreRequest"
+              "$ref": "#/definitions/TranscriptServiceBulkSetTranscriptRatingScoreBody"
             }
           }
         ],
@@ -836,6 +841,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
             }
           },
@@ -858,7 +864,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/rskBulkSetTranscriptTagsRequest"
+              "$ref": "#/definitions/TranscriptServiceBulkSetTranscriptTagsBody"
             }
           }
         ],
@@ -903,17 +909,127 @@
       ],
       "default": "UNKNOWN"
     },
+    "TranscriptServiceBulkSetTranscriptRatingScoreBody": {
+      "type": "object",
+      "properties": {
+        "scores": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "format": "float"
+          }
+        },
+        "oauthSource": {
+          "type": "string"
+        }
+      }
+    },
+    "TranscriptServiceBulkSetTranscriptTagsBody": {
+      "type": "object",
+      "properties": {
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rskTag"
+          }
+        }
+      }
+    },
+    "TranscriptServiceCreateChunkContributionBody": {
+      "type": "object",
+      "properties": {
+        "transcript": {
+          "type": "string"
+        }
+      }
+    },
+    "TranscriptServiceCreateTranscriptChangeBody": {
+      "type": "object",
+      "properties": {
+        "transcript": {
+          "type": "string"
+        },
+        "transcriptVersion": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        }
+      }
+    },
+    "TranscriptServiceRequestChunkContributionStateBody": {
+      "type": "object",
+      "properties": {
+        "requestState": {
+          "$ref": "#/definitions/rskContributionState"
+        },
+        "comment": {
+          "type": "string"
+        }
+      }
+    },
+    "TranscriptServiceRequestTranscriptChangeStateBody": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "$ref": "#/definitions/rskContributionState"
+        },
+        "pointsOnApprove": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "TranscriptServiceSetTranscriptRatingScoreBody": {
+      "type": "object",
+      "properties": {
+        "score": {
+          "type": "number",
+          "format": "float"
+        },
+        "delete": {
+          "type": "boolean"
+        }
+      }
+    },
+    "TranscriptServiceUpdateChunkContributionBody": {
+      "type": "object",
+      "properties": {
+        "transcript": {
+          "type": "string"
+        },
+        "state": {
+          "$ref": "#/definitions/rskContributionState"
+        }
+      }
+    },
+    "TranscriptServiceUpdateTranscriptChangeBody": {
+      "type": "object",
+      "properties": {
+        "transcript": {
+          "type": "string"
+        },
+        "state": {
+          "$ref": "#/definitions/rskContributionState"
+        },
+        "pointsOnApprove": {
+          "type": "number",
+          "format": "float"
+        },
+        "summary": {
+          "type": "string"
+        }
+      }
+    },
     "protobufAny": {
       "type": "object",
       "properties": {
-        "typeUrl": {
+        "@type": {
           "type": "string"
-        },
-        "value": {
-          "type": "string",
-          "format": "byte"
         }
-      }
+      },
+      "additionalProperties": {}
     },
     "rpcStatus": {
       "type": "object",
@@ -928,6 +1044,7 @@
         "details": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/protobufAny"
           }
         }
@@ -960,38 +1077,6 @@
         },
         "oauthProvider": {
           "type": "string"
-        }
-      }
-    },
-    "rskBulkSetTranscriptRatingScoreRequest": {
-      "type": "object",
-      "properties": {
-        "epid": {
-          "type": "string"
-        },
-        "scores": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "number",
-            "format": "float"
-          }
-        },
-        "oauthSource": {
-          "type": "string"
-        }
-      }
-    },
-    "rskBulkSetTranscriptTagsRequest": {
-      "type": "object",
-      "properties": {
-        "epid": {
-          "type": "string"
-        },
-        "tags": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/rskTag"
-          }
         }
       }
     },
@@ -1059,6 +1144,7 @@
         "contributions": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/rskChunkContribution"
           }
         }
@@ -1097,6 +1183,7 @@
         "chunked": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/rskChunkedTranscriptStats"
           }
         }
@@ -1165,34 +1252,6 @@
       ],
       "default": "STATE_UNDEFINED"
     },
-    "rskCreateChunkContributionRequest": {
-      "type": "object",
-      "properties": {
-        "chunkId": {
-          "type": "string"
-        },
-        "transcript": {
-          "type": "string"
-        }
-      }
-    },
-    "rskCreateTranscriptChangeRequest": {
-      "type": "object",
-      "properties": {
-        "epid": {
-          "type": "string"
-        },
-        "transcript": {
-          "type": "string"
-        },
-        "transcriptVersion": {
-          "type": "string"
-        },
-        "summary": {
-          "type": "string"
-        }
-      }
-    },
     "rskDialog": {
       "type": "object",
       "properties": {
@@ -1226,7 +1285,8 @@
         },
         "offsetSec": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "title": "deprecated"
         },
         "offsetInferred": {
           "type": "boolean"
@@ -1317,50 +1377,6 @@
         }
       }
     },
-    "rskRequestChunkContributionStateRequest": {
-      "type": "object",
-      "properties": {
-        "contributionId": {
-          "type": "string"
-        },
-        "requestState": {
-          "$ref": "#/definitions/rskContributionState"
-        },
-        "comment": {
-          "type": "string"
-        }
-      }
-    },
-    "rskRequestTranscriptChangeStateRequest": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "state": {
-          "$ref": "#/definitions/rskContributionState"
-        },
-        "pointsOnApprove": {
-          "type": "number",
-          "format": "float"
-        }
-      }
-    },
-    "rskSetTranscriptRatingScoreRequest": {
-      "type": "object",
-      "properties": {
-        "epid": {
-          "type": "string"
-        },
-        "score": {
-          "type": "number",
-          "format": "float"
-        },
-        "delete": {
-          "type": "boolean"
-        }
-      }
-    },
     "rskShortTranscript": {
       "type": "object",
       "properties": {
@@ -1393,6 +1409,7 @@
         "synopsis": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/rskSynopsis"
           }
         },
@@ -1538,6 +1555,7 @@
         "transcript": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/rskDialog"
           }
         },
@@ -1547,6 +1565,7 @@
         "synopses": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/rskSynopsis"
           }
         },
@@ -1571,6 +1590,7 @@
         "trivia": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/rskTrivia"
           }
         },
@@ -1620,6 +1640,7 @@
         "tags": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/rskTag"
           }
         }
@@ -1678,6 +1699,7 @@
         "changes": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/rskShortTranscriptChange"
           }
         }
@@ -1689,6 +1711,7 @@
         "chunks": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/rskChunk"
           }
         }
@@ -1703,6 +1726,7 @@
         "dialog": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/rskDialog"
           }
         },
@@ -1718,6 +1742,7 @@
         "episodes": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/rskShortTranscript"
           }
         }
@@ -1736,41 +1761,6 @@
         "endPos": {
           "type": "integer",
           "format": "int32"
-        }
-      }
-    },
-    "rskUpdateChunkContributionRequest": {
-      "type": "object",
-      "properties": {
-        "contributionId": {
-          "type": "string"
-        },
-        "transcript": {
-          "type": "string"
-        },
-        "state": {
-          "$ref": "#/definitions/rskContributionState"
-        }
-      }
-    },
-    "rskUpdateTranscriptChangeRequest": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "transcript": {
-          "type": "string"
-        },
-        "state": {
-          "$ref": "#/definitions/rskContributionState"
-        },
-        "pointsOnApprove": {
-          "type": "number",
-          "format": "float"
-        },
-        "summary": {
-          "type": "string"
         }
       }
     }

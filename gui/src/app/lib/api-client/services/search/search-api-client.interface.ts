@@ -157,7 +157,7 @@ export interface SearchAPIClientInterface {
   claimReward(
     args: {
       id: string,
-      body: models.RskClaimRewardRequest,
+      body: models.ContributionsServiceClaimRewardBody,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<object>;
@@ -228,6 +228,13 @@ export interface SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  getHealth(
+    requestHttpOptions?: HttpOptions
+  ): Observable<object>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   getQuotaSummary(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskQuotas>;
@@ -279,7 +286,7 @@ export interface SearchAPIClientInterface {
   updateTranscriptChange(
     args: {
       id: string,
-      body: models.RskUpdateTranscriptChangeRequest,
+      body: models.TranscriptServiceUpdateTranscriptChangeBody,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscriptChange>;
@@ -300,7 +307,7 @@ export interface SearchAPIClientInterface {
   requestTranscriptChangeState(
     args: {
       id: string,
-      body: models.RskRequestTranscriptChangeStateRequest,
+      body: models.TranscriptServiceRequestTranscriptChangeStateBody,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<object>;
@@ -338,7 +345,7 @@ export interface SearchAPIClientInterface {
   updateChunkContribution(
     args: {
       contributionId: string,
-      body: models.RskUpdateChunkContributionRequest,
+      body: models.TranscriptServiceUpdateChunkContributionBody,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskChunkContribution>;
@@ -349,7 +356,7 @@ export interface SearchAPIClientInterface {
   requestChunkContributionState(
     args: {
       contributionId: string,
-      body: models.RskRequestChunkContributionStateRequest,
+      body: models.TranscriptServiceRequestChunkContributionStateBody,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskChunkContribution>;
@@ -374,7 +381,7 @@ export interface SearchAPIClientInterface {
   createChunkContribution(
     args: {
       chunkId: string,
-      body: models.RskCreateChunkContributionRequest,
+      body: models.TranscriptServiceCreateChunkContributionBody,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskChunkContribution>;
@@ -421,7 +428,7 @@ export interface SearchAPIClientInterface {
   createTranscriptChange(
     args: {
       epid: string,
-      body: models.RskCreateTranscriptChangeRequest,
+      body: models.TranscriptServiceCreateTranscriptChangeBody,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscriptChange>;
@@ -446,7 +453,29 @@ export interface SearchAPIClientInterface {
   setTranscriptRatingScore(
     args: {
       epid: string,
-      body: models.RskSetTranscriptRatingScoreRequest,
+      body: models.TranscriptServiceSetTranscriptRatingScoreBody,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<object>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  bulkSetTranscriptRatingScore(
+    args: {
+      epid: string,
+      body: models.TranscriptServiceBulkSetTranscriptRatingScoreBody,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<object>;
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  bulkSetTranscriptTag(
+    args: {
+      epid: string,
+      body: models.TranscriptServiceBulkSetTranscriptTagsBody,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<object>;

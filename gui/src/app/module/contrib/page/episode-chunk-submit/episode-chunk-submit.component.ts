@@ -163,7 +163,6 @@ export class EpisodeChunkSubmit implements OnInit, OnDestroy {
       this.apiClient.createChunkContribution({
         chunkId: this.chunk.id,
         body: {
-          chunkId: this.chunk.id,
           transcript: this.editor.getContentSnapshot()
         }
       }).pipe(takeUntil(this.$destroy)).subscribe((res: RskChunkContribution) => {
@@ -185,7 +184,6 @@ export class EpisodeChunkSubmit implements OnInit, OnDestroy {
     return this.apiClient.updateChunkContribution({
       contributionId: this.contribution.id,
       body: {
-        contributionId: this.contribution.id,
         transcript: this.editor.getContentSnapshot(),
         state: state
       }
@@ -197,7 +195,6 @@ export class EpisodeChunkSubmit implements OnInit, OnDestroy {
     this.apiClient.requestChunkContributionState({
       contributionId: this.contribution.id,
       body: {
-        contributionId: this.contribution.id,
         requestState: state,
         comment: comment,
       }

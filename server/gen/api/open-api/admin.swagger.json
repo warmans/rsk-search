@@ -117,6 +117,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
             }
           },
@@ -145,14 +146,11 @@
     "protobufAny": {
       "type": "object",
       "properties": {
-        "typeUrl": {
+        "@type": {
           "type": "string"
-        },
-        "value": {
-          "type": "string",
-          "format": "byte"
         }
-      }
+      },
+      "additionalProperties": {}
     },
     "rpcStatus": {
       "type": "object",
@@ -167,6 +165,7 @@
         "details": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/protobufAny"
           }
         }
@@ -176,7 +175,8 @@
       "type": "object",
       "properties": {
         "epid": {
-          "type": "string"
+          "type": "string",
+          "title": "must be in the correct format e.g. xfm-S2E36"
         },
         "mp3Uri": {
           "type": "string"
@@ -193,17 +193,20 @@
           "type": "string"
         },
         "epid": {
-          "type": "string"
+          "type": "string",
+          "title": "must be in the correct format e.g. xfm-S2E36"
         },
         "mp3Uri": {
           "type": "string"
         },
         "epname": {
-          "type": "string"
+          "type": "string",
+          "title": "optional"
         },
         "log": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/rskTscriptImportLog"
           }
         },
@@ -221,6 +224,7 @@
         "imports": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/rskTscriptImport"
           }
         }

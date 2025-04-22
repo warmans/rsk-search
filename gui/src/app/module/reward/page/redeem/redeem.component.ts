@@ -64,7 +64,7 @@ export class RedeemComponent implements OnInit {
     this.loading.push(true);
     this.apiClient.claimReward({
       id: this.reward.id,
-      body: { id: this.reward.id, donationArgs: { recipient: this.form.get('cause').value } }
+      body: { donationArgs: { recipient: this.form.get('cause').value } }
     }).pipe(takeUntil(this.destroy$)).subscribe((res) => {
       this.alertService.success('Reward collected successfully.');
       this.router.navigate(['/contribute']);

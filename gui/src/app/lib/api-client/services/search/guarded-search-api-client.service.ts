@@ -170,7 +170,7 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
   claimReward(
     args: {
       id: string,
-      body: models.RskClaimRewardRequest,
+      body: models.ContributionsServiceClaimRewardBody,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<object> {
@@ -241,6 +241,13 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
       .pipe(tap((res: any) => guards.isRskSongList(res) || console.error(`TypeGuard for response 'RskSongList' caught inconsistency.`, res)));
   }
 
+  getHealth(
+    requestHttpOptions?: HttpOptions
+  ): Observable<object> {
+    return super.getHealth(requestHttpOptions)
+      .pipe(tap((res: any) => typeof res === 'object' || console.error(`TypeGuard for response 'object' caught inconsistency.`, res)));
+  }
+
   getQuotaSummary(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskQuotas> {
@@ -292,7 +299,7 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
   updateTranscriptChange(
     args: {
       id: string,
-      body: models.RskUpdateTranscriptChangeRequest,
+      body: models.TranscriptServiceUpdateTranscriptChangeBody,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscriptChange> {
@@ -313,7 +320,7 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
   requestTranscriptChangeState(
     args: {
       id: string,
-      body: models.RskRequestTranscriptChangeStateRequest,
+      body: models.TranscriptServiceRequestTranscriptChangeStateBody,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<object> {
@@ -351,7 +358,7 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
   updateChunkContribution(
     args: {
       contributionId: string,
-      body: models.RskUpdateChunkContributionRequest,
+      body: models.TranscriptServiceUpdateChunkContributionBody,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskChunkContribution> {
@@ -362,7 +369,7 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
   requestChunkContributionState(
     args: {
       contributionId: string,
-      body: models.RskRequestChunkContributionStateRequest,
+      body: models.TranscriptServiceRequestChunkContributionStateBody,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskChunkContribution> {
@@ -387,7 +394,7 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
   createChunkContribution(
     args: {
       chunkId: string,
-      body: models.RskCreateChunkContributionRequest,
+      body: models.TranscriptServiceCreateChunkContributionBody,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskChunkContribution> {
@@ -434,7 +441,7 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
   createTranscriptChange(
     args: {
       epid: string,
-      body: models.RskCreateTranscriptChangeRequest,
+      body: models.TranscriptServiceCreateTranscriptChangeBody,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscriptChange> {
@@ -459,11 +466,33 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
   setTranscriptRatingScore(
     args: {
       epid: string,
-      body: models.RskSetTranscriptRatingScoreRequest,
+      body: models.TranscriptServiceSetTranscriptRatingScoreBody,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<object> {
     return super.setTranscriptRatingScore(args, requestHttpOptions)
+      .pipe(tap((res: any) => typeof res === 'object' || console.error(`TypeGuard for response 'object' caught inconsistency.`, res)));
+  }
+
+  bulkSetTranscriptRatingScore(
+    args: {
+      epid: string,
+      body: models.TranscriptServiceBulkSetTranscriptRatingScoreBody,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<object> {
+    return super.bulkSetTranscriptRatingScore(args, requestHttpOptions)
+      .pipe(tap((res: any) => typeof res === 'object' || console.error(`TypeGuard for response 'object' caught inconsistency.`, res)));
+  }
+
+  bulkSetTranscriptTag(
+    args: {
+      epid: string,
+      body: models.TranscriptServiceBulkSetTranscriptTagsBody,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<object> {
+    return super.bulkSetTranscriptTag(args, requestHttpOptions)
       .pipe(tap((res: any) => typeof res === 'object' || console.error(`TypeGuard for response 'object' caught inconsistency.`, res)));
   }
 

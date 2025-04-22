@@ -22,6 +22,17 @@ export function isAuthorContributionType(arg: any): arg is models.AuthorContribu
   ;
   }
 
+export function isContributionsServiceClaimRewardBody(arg: any): arg is models.ContributionsServiceClaimRewardBody {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // donationArgs?: RskDonationArgs
+    ( typeof arg.donationArgs === 'undefined' || isRskDonationArgs(arg.donationArgs) ) &&
+
+  true
+  );
+  }
+
 export function isDialogType(arg: any): arg is models.DialogType {
   return false
    || arg === models.DialogType.UNKNOWN
@@ -382,19 +393,6 @@ export function isRskClaimedRewardList(arg: any): arg is models.RskClaimedReward
   );
   }
 
-export function isRskClaimRewardRequest(arg: any): arg is models.RskClaimRewardRequest {
-  return (
-  arg != null &&
-  typeof arg === 'object' &&
-    // donationArgs?: RskDonationArgs
-    ( typeof arg.donationArgs === 'undefined' || isRskDonationArgs(arg.donationArgs) ) &&
-    // id?: string
-    ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
-
-  true
-  );
-  }
-
 export function isRskCommunityProject(arg: any): arg is models.RskCommunityProject {
   return (
   arg != null &&
@@ -437,36 +435,6 @@ export function isRskContributionState(arg: any): arg is models.RskContributionS
    || arg === models.RskContributionState.STATE_APPROVED
    || arg === models.RskContributionState.STATE_REJECTED
   ;
-  }
-
-export function isRskCreateChunkContributionRequest(arg: any): arg is models.RskCreateChunkContributionRequest {
-  return (
-  arg != null &&
-  typeof arg === 'object' &&
-    // chunkId?: string
-    ( typeof arg.chunkId === 'undefined' || typeof arg.chunkId === 'string' ) &&
-    // transcript?: string
-    ( typeof arg.transcript === 'undefined' || typeof arg.transcript === 'string' ) &&
-
-  true
-  );
-  }
-
-export function isRskCreateTranscriptChangeRequest(arg: any): arg is models.RskCreateTranscriptChangeRequest {
-  return (
-  arg != null &&
-  typeof arg === 'object' &&
-    // epid?: string
-    ( typeof arg.epid === 'undefined' || typeof arg.epid === 'string' ) &&
-    // summary?: string
-    ( typeof arg.summary === 'undefined' || typeof arg.summary === 'string' ) &&
-    // transcript?: string
-    ( typeof arg.transcript === 'undefined' || typeof arg.transcript === 'string' ) &&
-    // transcriptVersion?: string
-    ( typeof arg.transcriptVersion === 'undefined' || typeof arg.transcriptVersion === 'string' ) &&
-
-  true
-  );
   }
 
 export function isRskCreateTscriptImportRequest(arg: any): arg is models.RskCreateTscriptImportRequest {
@@ -903,36 +871,6 @@ export function isRskRecipientStats(arg: any): arg is models.RskRecipientStats {
   );
   }
 
-export function isRskRequestChunkContributionStateRequest(arg: any): arg is models.RskRequestChunkContributionStateRequest {
-  return (
-  arg != null &&
-  typeof arg === 'object' &&
-    // comment?: string
-    ( typeof arg.comment === 'undefined' || typeof arg.comment === 'string' ) &&
-    // contributionId?: string
-    ( typeof arg.contributionId === 'undefined' || typeof arg.contributionId === 'string' ) &&
-    // requestState?: RskContributionState
-    ( typeof arg.requestState === 'undefined' || isRskContributionState(arg.requestState) ) &&
-
-  true
-  );
-  }
-
-export function isRskRequestTranscriptChangeStateRequest(arg: any): arg is models.RskRequestTranscriptChangeStateRequest {
-  return (
-  arg != null &&
-  typeof arg === 'object' &&
-    // id?: string
-    ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
-    // pointsOnApprove?: number
-    ( typeof arg.pointsOnApprove === 'undefined' || typeof arg.pointsOnApprove === 'number' ) &&
-    // state?: RskContributionState
-    ( typeof arg.state === 'undefined' || isRskContributionState(arg.state) ) &&
-
-  true
-  );
-  }
-
 export function isRskReward(arg: any): arg is models.RskReward {
   return (
   arg != null &&
@@ -1014,21 +952,6 @@ export function isRskSearchTermPredictions(arg: any): arg is models.RskSearchTer
     ( typeof arg.predictions === 'undefined' || (Array.isArray(arg.predictions) && arg.predictions.every((item: unknown) => isRskPrediction(item))) ) &&
     // prefix?: string
     ( typeof arg.prefix === 'undefined' || typeof arg.prefix === 'string' ) &&
-
-  true
-  );
-  }
-
-export function isRskSetTranscriptRatingScoreRequest(arg: any): arg is models.RskSetTranscriptRatingScoreRequest {
-  return (
-  arg != null &&
-  typeof arg === 'object' &&
-    // delete?: boolean
-    ( typeof arg.delete === 'undefined' || typeof arg.delete === 'boolean' ) &&
-    // epid?: string
-    ( typeof arg.epid === 'undefined' || typeof arg.epid === 'string' ) &&
-    // score?: number
-    ( typeof arg.score === 'undefined' || typeof arg.score === 'number' ) &&
 
   true
   );
@@ -1169,6 +1092,19 @@ export function isRskSynopsis(arg: any): arg is models.RskSynopsis {
   );
   }
 
+export function isRskTag(arg: any): arg is models.RskTag {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // name?: string
+    ( typeof arg.name === 'undefined' || typeof arg.name === 'string' ) &&
+    // timestamp?: string
+    ( typeof arg.timestamp === 'undefined' || typeof arg.timestamp === 'string' ) &&
+
+  true
+  );
+  }
+
 export function isRskTranscript(arg: any): arg is models.RskTranscript {
   return (
   arg != null &&
@@ -1221,6 +1157,8 @@ export function isRskTranscript(arg: any): arg is models.RskTranscript {
     ( typeof arg.summary === 'undefined' || typeof arg.summary === 'string' ) &&
     // synopses?: RskSynopsis[]
     ( typeof arg.synopses === 'undefined' || (Array.isArray(arg.synopses) && arg.synopses.every((item: unknown) => isRskSynopsis(item))) ) &&
+    // tags?: RskTag[]
+    ( typeof arg.tags === 'undefined' || (Array.isArray(arg.tags) && arg.tags.every((item: unknown) => isRskTag(item))) ) &&
     // transcript?: RskDialog[]
     ( typeof arg.transcript === 'undefined' || (Array.isArray(arg.transcript) && arg.transcript.every((item: unknown) => isRskDialog(item))) ) &&
     // trivia?: RskTrivia[]
@@ -1382,12 +1320,99 @@ export function isRskTscriptImportLog(arg: any): arg is models.RskTscriptImportL
   );
   }
 
-export function isRskUpdateChunkContributionRequest(arg: any): arg is models.RskUpdateChunkContributionRequest {
+export function isTranscriptServiceBulkSetTranscriptRatingScoreBody(arg: any): arg is models.TranscriptServiceBulkSetTranscriptRatingScoreBody {
   return (
   arg != null &&
   typeof arg === 'object' &&
-    // contributionId?: string
-    ( typeof arg.contributionId === 'undefined' || typeof arg.contributionId === 'string' ) &&
+    // oauthSource?: string
+    ( typeof arg.oauthSource === 'undefined' || typeof arg.oauthSource === 'string' ) &&
+    // scores?: { [key: string]: number }
+    ( typeof arg.scores === 'undefined' || typeof arg.scores === 'number' ) &&
+
+  true
+  );
+  }
+
+export function isTranscriptServiceBulkSetTranscriptTagsBody(arg: any): arg is models.TranscriptServiceBulkSetTranscriptTagsBody {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // tags?: RskTag[]
+    ( typeof arg.tags === 'undefined' || (Array.isArray(arg.tags) && arg.tags.every((item: unknown) => isRskTag(item))) ) &&
+
+  true
+  );
+  }
+
+export function isTranscriptServiceCreateChunkContributionBody(arg: any): arg is models.TranscriptServiceCreateChunkContributionBody {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // transcript?: string
+    ( typeof arg.transcript === 'undefined' || typeof arg.transcript === 'string' ) &&
+
+  true
+  );
+  }
+
+export function isTranscriptServiceCreateTranscriptChangeBody(arg: any): arg is models.TranscriptServiceCreateTranscriptChangeBody {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // summary?: string
+    ( typeof arg.summary === 'undefined' || typeof arg.summary === 'string' ) &&
+    // transcript?: string
+    ( typeof arg.transcript === 'undefined' || typeof arg.transcript === 'string' ) &&
+    // transcriptVersion?: string
+    ( typeof arg.transcriptVersion === 'undefined' || typeof arg.transcriptVersion === 'string' ) &&
+
+  true
+  );
+  }
+
+export function isTranscriptServiceRequestChunkContributionStateBody(arg: any): arg is models.TranscriptServiceRequestChunkContributionStateBody {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // comment?: string
+    ( typeof arg.comment === 'undefined' || typeof arg.comment === 'string' ) &&
+    // requestState?: RskContributionState
+    ( typeof arg.requestState === 'undefined' || isRskContributionState(arg.requestState) ) &&
+
+  true
+  );
+  }
+
+export function isTranscriptServiceRequestTranscriptChangeStateBody(arg: any): arg is models.TranscriptServiceRequestTranscriptChangeStateBody {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // pointsOnApprove?: number
+    ( typeof arg.pointsOnApprove === 'undefined' || typeof arg.pointsOnApprove === 'number' ) &&
+    // state?: RskContributionState
+    ( typeof arg.state === 'undefined' || isRskContributionState(arg.state) ) &&
+
+  true
+  );
+  }
+
+export function isTranscriptServiceSetTranscriptRatingScoreBody(arg: any): arg is models.TranscriptServiceSetTranscriptRatingScoreBody {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
+    // delete?: boolean
+    ( typeof arg.delete === 'undefined' || typeof arg.delete === 'boolean' ) &&
+    // score?: number
+    ( typeof arg.score === 'undefined' || typeof arg.score === 'number' ) &&
+
+  true
+  );
+  }
+
+export function isTranscriptServiceUpdateChunkContributionBody(arg: any): arg is models.TranscriptServiceUpdateChunkContributionBody {
+  return (
+  arg != null &&
+  typeof arg === 'object' &&
     // state?: RskContributionState
     ( typeof arg.state === 'undefined' || isRskContributionState(arg.state) ) &&
     // transcript?: string
@@ -1397,12 +1422,10 @@ export function isRskUpdateChunkContributionRequest(arg: any): arg is models.Rsk
   );
   }
 
-export function isRskUpdateTranscriptChangeRequest(arg: any): arg is models.RskUpdateTranscriptChangeRequest {
+export function isTranscriptServiceUpdateTranscriptChangeBody(arg: any): arg is models.TranscriptServiceUpdateTranscriptChangeBody {
   return (
   arg != null &&
   typeof arg === 'object' &&
-    // id?: string
-    ( typeof arg.id === 'undefined' || typeof arg.id === 'string' ) &&
     // pointsOnApprove?: number
     ( typeof arg.pointsOnApprove === 'undefined' || typeof arg.pointsOnApprove === 'number' ) &&
     // state?: RskContributionState

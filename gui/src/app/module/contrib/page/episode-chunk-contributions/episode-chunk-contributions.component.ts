@@ -129,11 +129,10 @@ export class EpisodeChunkContributions implements OnInit {
   updateState(contributionId: string, state: RskContributionState, comment?: string) {
     this.loading.push(true);
     this.apiClient.requestChunkContributionState({
-      contributionId: contributionId,
-      body: {
         contributionId: contributionId,
-        requestState: state,
-        comment: comment,
+        body: {
+          requestState: state,
+          comment: comment,
       }
     }).subscribe((result) => {
       this.loadData();

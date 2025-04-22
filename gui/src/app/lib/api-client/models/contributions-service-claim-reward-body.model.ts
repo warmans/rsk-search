@@ -3,7 +3,6 @@ import {
   RskDonationArgs,
 } from '.';
 
-export interface RskClaimRewardRequest {
+export interface ContributionsServiceClaimRewardBody {
   donationArgs?: RskDonationArgs;
-  id?: string;
 }

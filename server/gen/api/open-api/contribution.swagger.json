@@ -233,6 +233,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
+              "type": "object",
               "properties": {}
             }
           },
@@ -255,7 +256,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/rskClaimRewardRequest"
+              "$ref": "#/definitions/ContributionsServiceClaimRewardBody"
             }
           }
         ],
@@ -306,6 +307,14 @@
       ],
       "default": "CONTRIBUTION_TYPE_UNKNOWN"
     },
+    "ContributionsServiceClaimRewardBody": {
+      "type": "object",
+      "properties": {
+        "donationArgs": {
+          "$ref": "#/definitions/rskDonationArgs"
+        }
+      }
+    },
     "RewardRewardKind": {
       "type": "string",
       "enum": [
@@ -317,14 +326,11 @@
     "protobufAny": {
       "type": "object",
       "properties": {
-        "typeUrl": {
+        "@type": {
           "type": "string"
-        },
-        "value": {
-          "type": "string",
-          "format": "byte"
         }
-      }
+      },
+      "additionalProperties": {}
     },
     "rpcStatus": {
       "type": "object",
@@ -339,6 +345,7 @@
         "details": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/protobufAny"
           }
         }
@@ -394,6 +401,7 @@
         "contributions": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/rskAuthorContribution"
           }
         }
@@ -435,19 +443,9 @@
         "rankings": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/rskAuthorRank"
           }
-        }
-      }
-    },
-    "rskClaimRewardRequest": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "donationArgs": {
-          "$ref": "#/definitions/rskDonationArgs"
         }
       }
     },
@@ -481,6 +479,7 @@
         "rewards": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/rskClaimedReward"
           }
         }
@@ -526,6 +525,7 @@
         "organizations": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/rskDonationRecipient"
           }
         }
@@ -537,6 +537,7 @@
         "stats": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/rskRecipientStats"
           }
         }
@@ -566,6 +567,7 @@
         "donations": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/rskIncomingDonation"
           }
         }
@@ -577,6 +579,7 @@
         "rewards": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/rskReward"
           }
         }

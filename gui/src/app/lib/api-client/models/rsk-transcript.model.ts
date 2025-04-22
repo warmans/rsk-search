@@ -7,6 +7,7 @@ import {
   RskPublicationType,
   RskRatings,
   RskSynopsis,
+  RskTag,
   RskTrivia,
 } from '.';
 
@@ -35,6 +36,7 @@ export interface RskTranscript {
   special?: boolean;
   summary?: string;
   synopses?: RskSynopsis[];
+  tags?: RskTag[];
   transcript?: RskDialog[];
   trivia?: RskTrivia[];
   version?: string;

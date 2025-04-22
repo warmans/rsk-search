@@ -376,7 +376,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   claimReward(
     args: {
       id: string,
-      body: models.RskClaimRewardRequest,
+      body: models.ContributionsServiceClaimRewardBody,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<object> {
@@ -539,6 +539,21 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
+  getHealth(
+    requestHttpOptions?: HttpOptions
+  ): Observable<object> {
+    const path = `/api/status/health`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<object>('HEAD', path, options);
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
   getQuotaSummary(
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskQuotas> {
@@ -645,7 +660,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   updateTranscriptChange(
     args: {
       id: string,
-      body: models.RskUpdateTranscriptChangeRequest,
+      body: models.TranscriptServiceUpdateTranscriptChangeBody,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscriptChange> {
@@ -682,7 +697,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   requestTranscriptChangeState(
     args: {
       id: string,
-      body: models.RskRequestTranscriptChangeStateRequest,
+      body: models.TranscriptServiceRequestTranscriptChangeStateBody,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<object> {
@@ -752,7 +767,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   updateChunkContribution(
     args: {
       contributionId: string,
-      body: models.RskUpdateChunkContributionRequest,
+      body: models.TranscriptServiceUpdateChunkContributionBody,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskChunkContribution> {
@@ -771,7 +786,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   requestChunkContributionState(
     args: {
       contributionId: string,
-      body: models.RskRequestChunkContributionStateRequest,
+      body: models.TranscriptServiceRequestChunkContributionStateBody,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskChunkContribution> {
@@ -827,7 +842,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   createChunkContribution(
     args: {
       chunkId: string,
-      body: models.RskCreateChunkContributionRequest,
+      body: models.TranscriptServiceCreateChunkContributionBody,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskChunkContribution> {
@@ -924,7 +939,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   createTranscriptChange(
     args: {
       epid: string,
-      body: models.RskCreateTranscriptChangeRequest,
+      body: models.TranscriptServiceCreateTranscriptChangeBody,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscriptChange> {
@@ -974,11 +989,49 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   setTranscriptRatingScore(
     args: {
       epid: string,
-      body: models.RskSetTranscriptRatingScoreRequest,
+      body: models.TranscriptServiceSetTranscriptRatingScoreBody,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<object> {
     const path = `/api/transcript/${args.epid}/rating/score`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<object>('PUT', path, options, JSON.stringify(args.body));
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  bulkSetTranscriptRatingScore(
+    args: {
+      epid: string,
+      body: models.TranscriptServiceBulkSetTranscriptRatingScoreBody,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<object> {
+    const path = `/api/transcript/${args.epid}/rating/score/bulk`;
+    const options: APIHttpOptions = {
+      ...this.options,
+      ...requestHttpOptions,
+    };
+
+    return this.sendRequest<object>('PUT', path, options, JSON.stringify(args.body));
+  }
+
+  /**
+   * Response generated for [ 200 ] HTTP response code.
+   */
+  bulkSetTranscriptTag(
+    args: {
+      epid: string,
+      body: models.TranscriptServiceBulkSetTranscriptTagsBody,
+    },
+    requestHttpOptions?: HttpOptions
+  ): Observable<object> {
+    const path = `/api/transcript/${args.epid}/tag/bulk`;
     const options: APIHttpOptions = {
       ...this.options,
       ...requestHttpOptions,

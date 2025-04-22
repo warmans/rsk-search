@@ -363,14 +363,11 @@
     "protobufAny": {
       "type": "object",
       "properties": {
-        "typeUrl": {
+        "@type": {
           "type": "string"
-        },
-        "value": {
-          "type": "string",
-          "format": "byte"
         }
-      }
+      },
+      "additionalProperties": {}
     },
     "rpcStatus": {
       "type": "object",
@@ -385,6 +382,7 @@
         "details": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/protobufAny"
           }
         }
@@ -417,6 +415,7 @@
         "changelogs": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/rskChangelog"
           }
         }
@@ -455,7 +454,8 @@
         },
         "offsetSec": {
           "type": "string",
-          "format": "int64"
+          "format": "int64",
+          "title": "deprecated"
         },
         "offsetInferred": {
           "type": "boolean"
@@ -483,6 +483,7 @@
         "transcript": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/rskDialog"
           }
         },
@@ -521,6 +522,7 @@
         "values": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/rskFieldValue"
           }
         }
@@ -556,6 +558,7 @@
         "searchFields": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/rskFieldMeta"
           }
         },
@@ -635,6 +638,7 @@
         "dialogs": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/rskDialogResult"
           }
         }
@@ -646,6 +650,7 @@
         "results": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/rskSearchResult"
           }
         },
@@ -688,6 +693,7 @@
         "predictions": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/rskPrediction"
           }
         }
@@ -725,6 +731,7 @@
         "synopsis": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/rskSynopsis"
           }
         },
@@ -825,6 +832,7 @@
         "songs": {
           "type": "array",
           "items": {
+            "type": "object",
             "$ref": "#/definitions/rskSong"
           }
         },

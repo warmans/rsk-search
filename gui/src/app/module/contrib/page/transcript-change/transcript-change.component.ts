@@ -138,7 +138,6 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
       this.apiClient.createTranscriptChange({
         epid: this.transcript.id,
         body: {
-          epid: this.transcript.id,
           transcript: this.transcriber.getContentSnapshot(),
           transcriptVersion: this.transcript?.version || 'NONE',
           summary: this.metadata?.summary,
@@ -175,7 +174,6 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
     return this.apiClient.updateTranscriptChange({
       id: this.change.id,
       body: {
-        id: this.change.id,
         transcript: this.transcriber.getContentSnapshot(),
         summary: this.metadata.summary,
         state: state
@@ -188,7 +186,6 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
     this.apiClient.requestTranscriptChangeState({
       id: this.change.id,
       body: {
-        id: this.change.id,
         state: state,
         pointsOnApprove: this.approvalPoints.value,
       }
