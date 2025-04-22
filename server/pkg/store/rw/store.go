@@ -1680,3 +1680,32 @@ func (s *Store) UpsertTranscriptTag(ctx context.Context, episodeID string, tagNa
 	)
 	return err
 }
+
+func (s *Store) ListTranscriptTags(ctx context.Context) (models.Tags, error) {
+	res, err := s.tx.QueryxContext(
+		ctx,
+		`SELECT
+    		episode_id, 
+    		tag_name, 
+    		tag_timestamp 
+		FROM transcript_tag`,
+	)
+	if err != nil {
+		return nil, err
+	}
+	defer res.Close()
+
+	tags := models.Tags{}
+	for res.Next() {
+		cur := models.Tag{}
+		if err := res.Scan(
+			&cur.EpisodeID,
+			&cur.Name,
+			&cur.Timestamp,
+		); err != nil {
+			return nil, err
+		}
+		tags = append(tags, cur)
+	}
+	return tags, nil
+}

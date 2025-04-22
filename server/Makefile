@@ -193,6 +193,7 @@ endif
 	./bin/rsk-search db extract-tscript --rw-db-dsn=${PROD_DB_DSN} --dry-run=false
 	./bin/rsk-search db merge-transcript-changes --rw-db-dsn=${PROD_DB_DSN} --dry-run=false
 	./bin/rsk-search db merge-transcript-ratings --rw-db-dsn=${PROD_DB_DSN} --dry-run=false
+	./bin/rsk-search db merge-transcript-tags --rw-db-dsn=${PROD_DB_DSN} --dry-run=false
 	$(MAKE) dev.refresh-data
 
 .PHONY: report.prod

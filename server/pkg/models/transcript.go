@@ -496,6 +496,7 @@ func (t Tags) Proto() []*api.Tag {
 }
 
 type Tag struct {
+	EpisodeID string        `json:"episode_id"`
 	Name      string        `json:"name"`
 	Timestamp time.Duration `json:"timestamp"`
 }

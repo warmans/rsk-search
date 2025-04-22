@@ -12,10 +12,14 @@ import (
 	"go.uber.org/zap"
 	"os"
 	"path"
+	"regexp"
 	"strconv"
 	"strings"
 	"sync"
+	"time"
 )
+
+var tagRegex = regexp.MustCompile(`^\\tag\s+(.+)\s+([0-9hms\.]+)$`)
 
 func NewRewindCommand(
 	logger *zap.Logger,
@@ -269,7 +273,49 @@ func (r *RewindCommand) confirmRewindStart(s *discordgo.Session, i *discordgo.In
 }
 
 func (r *RewindCommand) handleThreadMessage(s *discordgo.Session, m *discordgo.MessageCreate) {
-	//todo: implement tag handling
+	if _, isValidThread := r.rewindThreadCache.Load(m.ChannelID); !isValidThread {
+		return
+	}
+	if !tagRegex.MatchString(m.Message.Content) {
+		return
+	}
+
+	matches := tagRegex.FindStringSubmatch(m.Message.Content)
+	tag := matches[1]
+	duration, err := time.ParseDuration(matches[2])
+	if err != nil {
+		if err := s.MessageReactionAdd(m.ChannelID, m.ID, "🔥"); err != nil {
+			fmt.Println("failed to add reaction ", err.Error())
+		}
+		if err2 := r.sendThreadMessage(s, m.ChannelID, fmt.Sprintf("Failed to parse tag location %s: %s", matches[2], err.Error())); err2 != nil {
+			r.logger.Error("Failed to send error message to thread", zap.Error(err2))
+		}
+		return
+	}
+	if err := r.openRewindStateForReading(m.ChannelID, func(cw *RewindState) error {
+		_, err := r.transcriptApiClient.BulkSetTranscriptTags(context.Background(), &api.BulkSetTranscriptTagsRequest{
+			Epid: cw.EpisodeID,
+			Tags: []*api.Tag{
+				{
+					Name:      strings.TrimSpace(tag),
+					Timestamp: duration.String(),
+				},
+			},
+		})
+		return err
+	}); err != nil {
+		if err := s.MessageReactionAdd(m.ChannelID, m.ID, "🔥"); err != nil {
+			fmt.Println("failed to add reaction ", err.Error())
+		}
+		if err2 := r.sendThreadMessage(s, m.ChannelID, fmt.Sprintf("Failed to store tag: %s", err.Error())); err2 != nil {
+			r.logger.Error("Failed to send error message to thread", zap.Error(err2))
+		}
+		return
+	}
+	if err := s.MessageReactionAdd(m.ChannelID, m.ID, "✅"); err != nil {
+		fmt.Println("failed to add reaction ", err.Error())
+		return
+	}
 }
 
 func (r *RewindCommand) getEpisodeSummary(epid string) (string, error) {
@@ -334,6 +380,16 @@ func (r *RewindCommand) createRewindState(state RewindState) error {
 
 	return nil
 
+}
+
+func (r *RewindCommand) sendThreadMessage(s *discordgo.Session, threadID string, message string) error {
+	if _, err := s.ChannelMessageSend(
+		threadID,
+		message,
+	); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (r *RewindCommand) openRewindStateForReading(channelID string, cb func(cw *RewindState) error) error {
