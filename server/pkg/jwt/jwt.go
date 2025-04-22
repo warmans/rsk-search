@@ -24,8 +24,8 @@ type Claims struct {
 }
 
 func (c *Claims) FromMap(claims jwt.MapClaims) {
-	c.RegisteredClaims.Issuer, _ = claims["iss"].(string)
-	c.RegisteredClaims.ExpiresAt = jwt.NewNumericDate(time.Unix(claims["exp"].(int64), 0))
+	c.Issuer, _ = claims["iss"].(string)
+	c.ExpiresAt = jwt.NewNumericDate(time.Unix(claims["exp"].(int64), 0))
 	c.OauthProvider, _ = claims["oauth_provider"].(string)
 
 	identityMap, ok := claims["identity"].(map[string]interface{})

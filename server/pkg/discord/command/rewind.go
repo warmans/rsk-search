@@ -236,13 +236,13 @@ func (r *RewindCommand) rateEpisode(s *discordgo.Session, i *discordgo.Interacti
 		Epid:        idAndRatingParts[0],
 		OauthSource: "discord",
 		Scores: map[string]float32{
-			i.Interaction.Member.User.Username: float32(rating),
+			i.Member.User.Username: float32(rating),
 		},
 	}); err != nil {
 		return err
 	}
 
-	if _, err := s.ChannelMessageSend(i.Interaction.Message.ID, fmt.Sprintf("%s rated the episode %s/5", i.Interaction.Member.DisplayName(), idAndRatingParts[1])); err != nil {
+	if _, err := s.ChannelMessageSend(i.Message.ID, fmt.Sprintf("%s rated the episode %s/5", i.Member.DisplayName(), idAndRatingParts[1])); err != nil {
 		return err
 	}
 
@@ -276,11 +276,11 @@ func (r *RewindCommand) handleThreadMessage(s *discordgo.Session, m *discordgo.M
 	if _, isValidThread := r.rewindThreadCache.Load(m.ChannelID); !isValidThread {
 		return
 	}
-	if !tagRegex.MatchString(m.Message.Content) {
+	if !tagRegex.MatchString(m.Content) {
 		return
 	}
 
-	matches := tagRegex.FindStringSubmatch(m.Message.Content)
+	matches := tagRegex.FindStringSubmatch(m.Content)
 	tag := matches[1]
 	duration, err := time.ParseDuration(matches[2])
 	if err != nil {

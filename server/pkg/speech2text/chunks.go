@@ -11,7 +11,7 @@ import (
 	"time"
 )
 
-const targetChunkDuration time.Duration = 180 * time.Second
+const targetChunkDuration = 180 * time.Second
 
 func MapChunksFromRawTranscript(epid string, epName string, inFile io.Reader, outputWriter io.Writer) error {
 

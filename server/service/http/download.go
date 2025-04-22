@@ -795,7 +795,7 @@ func FormatGifText(maxLineLength int, lines []string) string {
 			text = append(text, strings.Join(currentLine, " "))
 		}
 	}
-	return strings.TrimSpace(strings.Replace(strings.Join(text, "\n"), "'", "’", -1))
+	return strings.TrimSpace(strings.ReplaceAll(strings.Join(text, "\n"), "'", "’"))
 }
 
 func lineLength(line []string) int {

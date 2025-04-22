@@ -718,7 +718,7 @@ func (s *TranscriptService) RequestTranscriptChangeState(ctx context.Context, re
 	return &emptypb.Empty{}, nil
 }
 
-// if an episode is currently bring transcribed mark it as locked to prevent changes being submitted before
+// if an episode is currently being transcribed, mark it as locked to prevent changes being submitted before
 // all chunks have been completed.
 func (s *TranscriptService) lockedEpisodeIDs(ctx context.Context) (map[string]struct{}, error) {
 	inProgressTscriptIDs := map[string]struct{}{}
@@ -735,7 +735,7 @@ func (s *TranscriptService) lockedEpisodeIDs(ctx context.Context) (map[string]st
 	return inProgressTscriptIDs, err
 }
 
-// if an episode is currently bring transcribed mark it as locked to prevent changes being submitted before
+// if an episode is currently being transcribed, mark it as locked to prevent changes being submitted before
 // all chunks have been completed.
 func (s *TranscriptService) validateLockedState(ctx context.Context, epID string) error {
 	return s.persistentDB.WithStore(func(s *rw.Store) error {
@@ -761,14 +761,15 @@ func (s *TranscriptService) validateContributionStateUpdate(claims *jwt.Claims, 
 			return ErrPermissionDenied("You are not allowed to approve/reject contributions.")
 		}
 	}
-	// if the contribution has been rejected allow the author to return it to pending.
-	if currentState == models.ContributionStateRejected {
+	// if the contribution has been rejected, allow the author to return it to pending.
+	switch currentState {
+	case models.ContributionStateRejected:
 		if requestedState != api.ContributionState_STATE_PENDING {
 			return ErrFailedPrecondition(fmt.Sprintf("Only rejected contributions can be reverted to pending. Actual state was: %s (requested: %s)", currentState, requestedState))
 		}
-	} else if currentState == models.ContributionStateApproved {
-
-	} else {
+	case models.ContributionStateApproved:
+		// do nothing
+	default:
 		// otherwise only allow it to be updated if it's in the pending or approval requested state.
 		if currentState != models.ContributionStatePending && currentState != models.ContributionStateApprovalRequested {
 			return ErrFailedPrecondition(fmt.Sprintf("Only pending contributions can be edited. Actual state was: %s", currentState))
@@ -864,7 +865,9 @@ func (s *TranscriptService) BulkSetTranscriptTags(ctx context.Context, request *
 			if err != nil {
 				return fmt.Errorf("failed to pass timestamp for tag %s: %w", v.Name, err)
 			}
-			return s.UpsertTranscriptTag(ctx, request.Epid, v.Name, ts)
+			if err := s.UpsertTranscriptTag(ctx, request.Epid, v.Name, ts); err != nil {
+				return err
+			}
 		}
 		return nil
 	})

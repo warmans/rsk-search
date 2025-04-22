@@ -488,7 +488,7 @@ func (f Trivia) Proto() *api.Trivia {
 type Tags []Tag
 
 func (t Tags) Proto() []*api.Tag {
-	out := make([]*api.Tag, len(t), len(t))
+	out := make([]*api.Tag, len(t))
 	for k, v := range t {
 		out[k] = v.Proto()
 	}
