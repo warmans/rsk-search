@@ -1,5 +1,8 @@
 name: gui build/publish
 
+env:
+  NODE_VERISON: "18.x"
+
 on:
   push:
     branches: [ main, develop ]
@@ -10,18 +13,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [ 18.x ]
     env:
       working-directory: ./gui
     steps:
       - uses: actions/checkout@v3
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js ${{ env.NODE_VERISON }}
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ env.NODE_VERISON }}
 
       - name: Install deps
         working-directory: ${{env.working-directory}}
