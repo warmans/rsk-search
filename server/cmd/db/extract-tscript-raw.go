@@ -30,7 +30,7 @@ func ExtractTscriptRawCmd() *cobra.Command {
 			logger, _ := zap.NewProduction()
 			defer func() {
 				if err := logger.Sync(); err != nil {
-					fmt.Println("WARNING: failed to sync logger: "+err.Error())
+					fmt.Println("WARNING: failed to sync logger: " + err.Error())
 				}
 			}()
 
@@ -41,7 +41,9 @@ func ExtractTscriptRawCmd() *cobra.Command {
 			if err != nil {
 				return err
 			}
-			defer conn.Close()
+			defer func(conn *rw.Conn) {
+				_ = conn.Close()
+			}(conn)
 
 			return extractRaw(outputDir, conn, dryRun, logger)
 		},
@@ -127,7 +129,7 @@ func extractRaw(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.L
 					if line == "" {
 						continue
 					}
-					if _, err := outputFile.WriteString(fmt.Sprintf("%s\n", line)); err != nil {
+					if _, err := fmt.Fprintf(outputFile, "%s\n", line); err != nil {
 						return err
 					}
 				}

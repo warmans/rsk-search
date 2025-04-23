@@ -133,7 +133,9 @@ func (s *Store) ListChangelogs(ctx context.Context, q *common.QueryModifier) ([]
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
+	defer func(rows *sqlx.Rows) {
+		_ = rows.Close()
+	}(rows)
 
 	out := make([]*models.Changelog, 0)
 	for rows.Next() {
@@ -152,7 +154,9 @@ func (s *Store) getTranscriptForQuery(ctx context.Context, query string, params 
 	if err != nil {
 		return nil, "", err
 	}
-	defer res.Close()
+	defer func(res *sqlx.Rows) {
+		_ = res.Close()
+	}(res)
 
 	var epID string
 
@@ -223,7 +227,9 @@ func (s *Store) ListSongs(ctx context.Context, q *common.QueryModifier) ([]*mode
 	if err != nil {
 		return nil, 0, err
 	}
-	defer rows.Close()
+	defer func(rows *sqlx.Rows) {
+		_ = rows.Close()
+	}(rows)
 
 	var totalRows int64 //identical for every row
 	out := make([]*models.Song, 0)
@@ -284,7 +290,9 @@ func (s *Store) ListCommunityProjects(ctx context.Context, q *common.QueryModifi
 	if err != nil {
 		return nil, 0, err
 	}
-	defer rows.Close()
+	defer func(rows *sqlx.Rows) {
+		_ = rows.Close()
+	}(rows)
 
 	var totalRows int64 //identical for every row
 	out := make([]models.CommunityProject, 0)

@@ -400,7 +400,9 @@ func (r *RewindCommand) openRewindStateForReading(channelID string, cb func(cw *
 	if err != nil {
 		return err
 	}
-	defer f.Close()
+	defer func(f *os.File) {
+		_ = f.Close()
+	}(f)
 
 	s := RewindState{}
 	if err := json.NewDecoder(f).Decode(&s); err != nil {
@@ -410,36 +412,41 @@ func (r *RewindCommand) openRewindStateForReading(channelID string, cb func(cw *
 	return cb(&s)
 }
 
-func (r *RewindCommand) openRewindStateForWriting(channelID string, cb func(cw *RewindState) (*RewindState, error)) error {
-	r.rewindStateLock.Lock()
-	defer r.rewindStateLock.Unlock()
-
-	f, err := os.OpenFile(path.Join(r.rewindStateDir, fmt.Sprintf("%s.json", channelID)), os.O_RDWR|os.O_EXCL, 0666)
-	if err != nil {
-		return err
-	}
-	defer f.Close()
-
-	s := &RewindState{}
-	if err := json.NewDecoder(f).Decode(s); err != nil {
-		return err
-	}
-	s, err = cb(s)
-	if err != nil || s == nil {
-		return err
-	}
-
-	if err := f.Truncate(0); err != nil {
-		return err
-	}
-	if _, err := f.Seek(0, 0); err != nil {
-		return err
-	}
-
-	enc := json.NewEncoder(f)
-	enc.SetIndent("", "  ")
-	return enc.Encode(s)
-}
+//func (r *RewindCommand) openRewindStateForWriting(channelID string, cb func(cw *RewindState) (*RewindState, error)) error {
+//	r.rewindStateLock.Lock()
+//	defer r.rewindStateLock.Unlock()
+//
+//	f, err := os.OpenFile(path.Join(r.rewindStateDir, fmt.Sprintf("%s.json", channelID)), os.O_RDWR|os.O_EXCL, 0666)
+//	if err != nil {
+//		return err
+//	}
+//	defer func(f *os.File) {
+//		err := f.Close()
+//		if err != nil {
+//			r.logger.Error("failed to close rewind state", zap.Error(err))
+//		}
+//	}(f)
+//
+//	s := &RewindState{}
+//	if err := json.NewDecoder(f).Decode(s); err != nil {
+//		return err
+//	}
+//	s, err = cb(s)
+//	if err != nil || s == nil {
+//		return err
+//	}
+//
+//	if err := f.Truncate(0); err != nil {
+//		return err
+//	}
+//	if _, err := f.Seek(0, 0); err != nil {
+//		return err
+//	}
+//
+//	enc := json.NewEncoder(f)
+//	enc.SetIndent("", "  ")
+//	return enc.Encode(s)
+//}
 
 type RewindState struct {
 	OriginalMessageID      string

@@ -43,7 +43,12 @@ func MergeTranscriptRatingsCmd() *cobra.Command {
 			if err != nil {
 				return err
 			}
-			defer conn.Close()
+			defer func(conn *rw.Conn) {
+				err := conn.Close()
+				if err != nil {
+					logger.Error("failed to close connection", zap.Error(err))
+				}
+			}(conn)
 
 			return mergeRatings(outputDir, migrationsPath, conn, dryRun, logger)
 		},

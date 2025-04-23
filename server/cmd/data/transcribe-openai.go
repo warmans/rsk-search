@@ -140,13 +140,23 @@ func dispatchFile(logger *zap.Logger, inputFilePath string, openApiKey string) e
 	if err != nil {
 		return err
 	}
-	defer outputFile.Close()
+	defer func(outputFile *os.File) {
+		err := outputFile.Close()
+		if err != nil {
+			logger.Error("failed to close file ", zap.Error(err))
+		}
+	}(outputFile)
 
 	inputFile, err := os.Open(inputFilePath)
 	if err != nil {
 		return fmt.Errorf("failed to open input file %s: %w", inputFilePath, err)
 	}
-	defer inputFile.Close()
+	defer func(inputFile *os.File) {
+		err := inputFile.Close()
+		if err != nil {
+			logger.Error("failed to close file ", zap.Error(err))
+		}
+	}(inputFile)
 
 	body := &bytes.Buffer{}
 	writer := multipart.NewWriter(body)
@@ -166,7 +176,9 @@ func dispatchFile(logger *zap.Logger, inputFilePath string, openApiKey string) e
 	if _, err := io.Copy(part, inputFile); err != nil {
 		return fmt.Errorf("failed to copy input file: %w", err)
 	}
-	writer.Close()
+	if err = writer.Close(); err != nil {
+		return err
+	}
 
 	req, err := http.NewRequest(http.MethodPost, "https://api.openai.com/v1/audio/transcriptions", body)
 	if err != nil {
@@ -179,7 +191,9 @@ func dispatchFile(logger *zap.Logger, inputFilePath string, openApiKey string) e
 	if err != nil {
 		return fmt.Errorf("failed to send api request: %w", err)
 	}
-	defer resp.Body.Close()
+	defer func(Body io.ReadCloser) {
+		_ = Body.Close()
+	}(resp.Body)
 
 	if _, err = io.Copy(outputFile, resp.Body); err != nil {
 		return fmt.Errorf("failed to dump response: %w", err)

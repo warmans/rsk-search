@@ -51,7 +51,9 @@ func ExtractTscriptCmd() *cobra.Command {
 			if err != nil {
 				return err
 			}
-			defer conn.Close()
+			defer func(conn *rw.Conn) {
+				_ = conn.Close()
+			}(conn)
 
 			return extract(outputDir, conn, dryRun, logger)
 		},

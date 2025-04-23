@@ -10,6 +10,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/spotify"
 	"github.com/warmans/rsk-search/pkg/util"
 	"go.uber.org/zap"
+	"io"
 	"net/http"
 	"os"
 	"slices"
@@ -56,7 +57,9 @@ func ImportSpotifyData() *cobra.Command {
 					logger.Error("Failed to get spotify token", zap.Error(err))
 					return err
 				}
-				defer resp.Body.Close()
+				defer func(Body io.ReadCloser) {
+					_ = Body.Close()
+				}(resp.Body)
 
 				token := accessToken{}
 				if err := json.NewDecoder(resp.Body).Decode(&token); err != nil {
@@ -89,7 +92,9 @@ func addTinPotRadioLinks(tinPotRadioData string, logger *zap.Logger) error {
 	if err != nil {
 		return err
 	}
-	defer f.Close()
+	defer func(f *os.File) {
+		_ = f.Close()
+	}(f)
 
 	episodes := []spotify.Episode{}
 	if err := json.NewDecoder(f).Decode(&episodes); err != nil {
@@ -132,7 +137,9 @@ func addSongMeta(logger *zap.Logger, token string, metadataPath string, forceCac
 	if err != nil {
 		return err
 	}
-	defer f.Close()
+	defer func(f *os.File) {
+		_ = f.Close()
+	}(f)
 
 	songCache := meta.SongMetaMap{}
 	if err := json.NewDecoder(f).Decode(&songCache); err != nil {

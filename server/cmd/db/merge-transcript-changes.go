@@ -51,7 +51,9 @@ func MergeTranscriptChangesCmd() *cobra.Command {
 			if err != nil {
 				return err
 			}
-			defer conn.Close()
+			defer func(conn *rw.Conn) {
+				_ = conn.Close()
+			}(conn)
 
 			return mergeAll(outputDir, migrationsPath, conn, dryRun, logger)
 		},

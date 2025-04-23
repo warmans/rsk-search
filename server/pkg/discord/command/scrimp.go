@@ -12,6 +12,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/searchterms"
 	"github.com/warmans/rsk-search/pkg/util"
 	"go.uber.org/zap"
+	"io"
 	"net/http"
 	"regexp"
 	"strings"
@@ -193,7 +194,7 @@ func (b *SearchCommand) handleAutocomplete(s *discordgo.Session, i *discordgo.In
 		return err
 	}
 
-	choices := []*discordgo.ApplicationCommandOptionChoice{}
+	var choices []*discordgo.ApplicationCommandOptionChoice
 	for _, v := range res.Predictions {
 		if v.Actor == "" {
 			continue
@@ -248,7 +249,9 @@ func (b *SearchCommand) queryComplete(s *discordgo.Session, i *discordgo.Interac
 		if err != nil {
 			return fmt.Errorf("failed to get original message attachment: %w", err)
 		}
-		defer image.Body.Close()
+		defer func(Body io.ReadCloser) {
+			_ = Body.Close()
+		}(image.Body)
 
 		files = append(files, &discordgo.File{
 			Name:        attachment.Filename,
@@ -283,7 +286,7 @@ func (b *SearchCommand) updatePreview(s *discordgo.Session, i *discordgo.Interac
 		username = i.Member.DisplayName()
 	}
 
-	interactionResponse, maxDialogOffset, err, cleanup := b.audioFileResponse(customID, username)
+	interactionResponse, maxDialogOffset, cleanup, err := b.audioFileResponse(customID, username)
 	if err != nil {
 		return err
 	}
@@ -311,7 +314,7 @@ func (b *SearchCommand) beginAudioResponse(
 		username = i.Member.DisplayName()
 	}
 
-	interactionResponse, maxDialogOffset, err, cleanup := b.audioFileResponse(customID, username)
+	interactionResponse, maxDialogOffset, cleanup, err := b.audioFileResponse(customID, username)
 	if err != nil {
 		common.RespondError(b.logger, s, i, err)
 		return err
@@ -532,7 +535,7 @@ func (b *SearchCommand) buttons(customID CustomID, maxDialogOffset int32) []disc
 	return buttons
 }
 
-func (b *SearchCommand) audioFileResponse(customID CustomID, username string) (*discordgo.InteractionResponse, int32, error, func()) {
+func (b *SearchCommand) audioFileResponse(customID CustomID, username string) (*discordgo.InteractionResponse, int32, func(), error) {
 
 	dialog, err := b.transcriptApiClient.GetTranscriptDialog(context.Background(), &api.GetTranscriptDialogRequest{
 		Epid: customID.EpisodeID,
@@ -542,7 +545,7 @@ func (b *SearchCommand) audioFileResponse(customID CustomID, username string) (*
 		},
 	})
 	if err != nil {
-		return nil, 0, fmt.Errorf("failed to fetch selected line"), func() {}
+		return nil, 0, func() {}, fmt.Errorf("failed to fetch selected line")
 	}
 
 	dialogFormatted := strings.Builder{}
@@ -579,11 +582,11 @@ func (b *SearchCommand) audioFileResponse(customID CustomID, username string) (*
 		)
 		resp, err := http.Get(audioFileURL)
 		if err != nil {
-			return nil, 0, fmt.Errorf("failed to fetch selected line"), func() {}
+			return nil, 0, func() {}, fmt.Errorf("failed to fetch selected line")
 		}
 		if resp.StatusCode != http.StatusOK {
 			b.logger.Error("failed to fetch gif", zap.Error(err), zap.String("url", audioFileURL), zap.Int("status_code", resp.StatusCode))
-			return nil, 0, fmt.Errorf("failed to fetch gif: %s", resp.Status), func() {}
+			return nil, 0, func() {}, fmt.Errorf("failed to fetch gif: %s", resp.Status)
 		}
 		files = append(files, &discordgo.File{
 			Name:        createFileName(dialog, "gif"),
@@ -591,7 +594,7 @@ func (b *SearchCommand) audioFileResponse(customID CustomID, username string) (*
 			Reader:      resp.Body,
 		})
 		cancelFunc = func() {
-			resp.Body.Close()
+			_ = resp.Body.Close()
 		}
 
 		if customID.ContentModifier != ContentModifierAudioOnly {
@@ -619,11 +622,11 @@ func (b *SearchCommand) audioFileResponse(customID CustomID, username string) (*
 			)
 			resp, err := http.Get(audioFileURL)
 			if err != nil {
-				return nil, 0, fmt.Errorf("failed to fetch selected line"), func() {}
+				return nil, 0, func() {}, fmt.Errorf("failed to fetch selected line")
 			}
 			if resp.StatusCode != http.StatusOK {
 				b.logger.Error("failed to fetch audio", zap.Error(err), zap.String("url", audioFileURL), zap.Int("status_code", resp.StatusCode))
-				return nil, 0, fmt.Errorf("failed to fetch audio: %s", resp.Status), func() {}
+				return nil, 0, func() {}, fmt.Errorf("failed to fetch audio: %s", resp.Status)
 			}
 			files = append(files, &discordgo.File{
 				Name:        createFileName(dialog, "mp3"),
@@ -631,7 +634,7 @@ func (b *SearchCommand) audioFileResponse(customID CustomID, username string) (*
 				Reader:      resp.Body,
 			})
 			cancelFunc = func() {
-				resp.Body.Close()
+				_ = resp.Body.Close()
 			}
 		}
 
@@ -661,7 +664,7 @@ func (b *SearchCommand) audioFileResponse(customID CustomID, username string) (*
 			Files:       files,
 			Attachments: util.ToPtr([]*discordgo.MessageAttachment{}),
 		},
-	}, dialog.MaxDialogPosition, nil, cancelFunc
+	}, dialog.MaxDialogPosition, cancelFunc, nil
 }
 
 func (b *SearchCommand) encodeCustomIDForAction(action string, customID CustomID) string {

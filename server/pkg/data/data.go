@@ -44,7 +44,9 @@ func LoadEpisdeByEpisodeID(dataDir string, epID string) (*models.Transcript, err
 		}
 		return nil, err
 	}
-	defer f.Close()
+	defer func(f *os.File) {
+		_ = f.Close()
+	}(f)
 
 	e := &models.Transcript{}
 

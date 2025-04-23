@@ -126,7 +126,9 @@ func (r *RedditGold) getToken() (string, error) {
 	if err != nil {
 		return "", errors.Wrap(err, "failed to execute token request")
 	}
-	defer resp.Body.Close()
+	defer func(Body io.ReadCloser) {
+		_ = Body.Close()
+	}(resp.Body)
 
 	token := &token{}
 	dec := json.NewDecoder(resp.Body)

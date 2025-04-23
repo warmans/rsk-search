@@ -57,14 +57,14 @@ func (a *ArchiveCommand) MessageHandlers() discord.MessageHandlers {
 
 func (a *ArchiveCommand) quickArchiveModalOpen(s *discordgo.Session, i *discordgo.InteractionCreate, args ...string) error {
 	var originalMessageID string
-	if typed, ok := i.Interaction.Data.(discordgo.ApplicationCommandInteractionData); ok {
+	if typed, ok := i.Data.(discordgo.ApplicationCommandInteractionData); ok {
 		originalMessageID = typed.TargetID
 	}
 	if originalMessageID == "" {
 		return fmt.Errorf("failed to find original message ID")
 	}
 
-	interactionData, ok := i.Interaction.Data.(discordgo.ApplicationCommandInteractionData)
+	interactionData, ok := i.Data.(discordgo.ApplicationCommandInteractionData)
 	if !ok {
 		return fmt.Errorf("failed load target message")
 	}

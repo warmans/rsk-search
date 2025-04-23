@@ -41,7 +41,9 @@ func (c *Client) Supporters() (*SupporterList, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
+	defer func(Body io.ReadCloser) {
+		_ = Body.Close()
+	}(resp.Body)
 
 	buffer := &bytes.Buffer{}
 	if _, err := io.Copy(buffer, resp.Body); err != nil {

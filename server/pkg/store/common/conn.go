@@ -1,6 +1,7 @@
 package common
 
 import (
+	"database/sql"
 	"embed"
 	"fmt"
 	"github.com/jmoiron/sqlx"
@@ -57,7 +58,9 @@ func (c *Conn) Migrate(migrations embed.FS) error {
 		if err != nil {
 			return fmt.Errorf("failed to get migrations: %w", err)
 		}
-		defer rows.Close()
+		defer func(rows *sql.Rows) {
+			_ = rows.Close()
+		}(rows)
 
 		for rows.Next() {
 			var name string
@@ -91,7 +94,7 @@ func (c *Conn) Migrate(migrations embed.FS) error {
 			}
 
 			bytes, err := io.ReadAll(f)
-			f.Close()
+			_ = f.Close()
 			if err != nil {
 				return err
 			}

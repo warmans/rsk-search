@@ -83,7 +83,7 @@ func GenerateHTMLCmd() *cobra.Command {
 			logger, _ := zap.NewProduction()
 			defer func() {
 				if err := logger.Sync(); err != nil {
-					fmt.Println("WARNING: failed to sync logger: "+err.Error())
+					fmt.Println("WARNING: failed to sync logger: " + err.Error())
 				}
 			}()
 
@@ -96,7 +96,12 @@ func GenerateHTMLCmd() *cobra.Command {
 			if err != nil {
 				return err
 			}
-			defer outFile.Close()
+			defer func(outFile *os.File) {
+				err := outFile.Close()
+				if err != nil {
+					logger.Error("failed to close outfile", zap.Error(err))
+				}
+			}(outFile)
 
 			return tmpl.Execute(outFile, episode)
 		},

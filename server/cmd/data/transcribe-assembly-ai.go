@@ -42,7 +42,12 @@ func TranscribeAssemblyAICmd() *cobra.Command {
 			if err != nil {
 				return err
 			}
-			defer outputFile.Close()
+			defer func(outputFile *os.File) {
+				err := outputFile.Close()
+				if err != nil {
+					logger.Error("failed to close file", zap.Error(err))
+				}
+			}(outputFile)
 
 			ctx, done := context.WithTimeout(context.Background(), time.Minute*30)
 			defer done()
@@ -91,7 +96,9 @@ func AssemblyAI2Dialog() *cobra.Command {
 			if err != nil {
 				return err
 			}
-			defer outFile.Close()
+			defer func(outFile *os.File) {
+				_ = outFile.Close()
+			}(outFile)
 
 			resp := &assemblyai.TranscriptionStatusResponse{}
 			if err := json.NewDecoder(inFile).Decode(resp); err != nil {
@@ -131,7 +138,9 @@ func AssemblyAI2Srt() *cobra.Command {
 			if err != nil {
 				return err
 			}
-			defer outFile.Close()
+			defer func(outFile *os.File) {
+				_ = outFile.Close()
+			}(outFile)
 
 			resp := &assemblyai.TranscriptionStatusResponse{}
 			if err := json.NewDecoder(inFile).Decode(resp); err != nil {

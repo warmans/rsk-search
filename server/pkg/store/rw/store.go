@@ -116,7 +116,9 @@ func (s *Store) ListTscripts(ctx context.Context) ([]*models.ChunkedTranscriptSt
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
+	defer func(rows *sqlx.Rows) {
+		_ = rows.Close()
+	}(rows)
 
 	for rows.Next() {
 		cur := &models.ChunkedTranscriptStats{
@@ -433,7 +435,9 @@ func (s *Store) ListChunkContributions(ctx context.Context, q *common.QueryModif
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
+	defer func(rows *sqlx.Rows) {
+		_ = rows.Close()
+	}(rows)
 
 	out := make([]*models.ChunkContribution, 0)
 	for rows.Next() {
@@ -503,7 +507,9 @@ func (s *Store) ListNonPendingTscriptContributions(ctx context.Context, tscriptI
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
+	defer func(rows *sqlx.Rows) {
+		_ = rows.Close()
+	}(rows)
 
 	for rows.Next() {
 		cur := &models.ChunkContribution{Author: &models.ShortAuthor{}}
@@ -520,7 +526,9 @@ func (s *Store) ListRanks(ctx context.Context) ([]*models.Rank, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
+	defer func(rows *sqlx.Rows) {
+		_ = rows.Close()
+	}(rows)
 
 	res := []*models.Rank{}
 	for rows.Next() {
@@ -579,7 +587,9 @@ func (s *Store) ListAuthorRankings(ctx context.Context, qm *common.QueryModifier
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
+	defer func(rows *sqlx.Rows) {
+		_ = rows.Close()
+	}(rows)
 
 	out := make([]*models.AuthorRank, 0)
 	for rows.Next() {
@@ -727,7 +737,9 @@ func (s *Store) ListRequiredAuthorRewardsV2(ctx context.Context, pointsForReward
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
+	defer func(rows *sqlx.Rows) {
+		_ = rows.Close()
+	}(rows)
 
 	out := make([]*models.RequiredReward, 0)
 	for rows.Next() {
@@ -757,7 +769,9 @@ func (s *Store) listRewards(ctx context.Context, authorID string, claimed bool) 
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
+	defer func(rows *sqlx.Rows) {
+		_ = rows.Close()
+	}(rows)
 
 	rewards := []*models.AuthorReward{}
 	for rows.Next() {
@@ -833,7 +847,9 @@ func (s *Store) BatchGetAuthor(ctx context.Context, authorIDs ...string) ([]*mod
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
+	defer func(rows *sqlx.Rows) {
+		_ = rows.Close()
+	}(rows)
 
 	authors := []*models.Author{}
 	for rows.Next() {
@@ -1046,7 +1062,9 @@ func (s *Store) ListTranscriptChanges(ctx context.Context, q *common.QueryModifi
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
+	defer func(rows *sqlx.Rows) {
+		_ = rows.Close()
+	}(rows)
 
 	var authorIDs []string
 	out := make([]*models.TranscriptChange, 0)
@@ -1144,7 +1162,9 @@ func (s *Store) SpendPoints(ctx context.Context, authorId string, spendRequired 
 		remainder float32
 	}, 0)
 	if err := func() error {
-		defer rows.Close()
+		defer func(rows *sqlx.Rows) {
+			_ = rows.Close()
+		}(rows)
 		for rows.Next() {
 			spendable := struct {
 				id        string
@@ -1219,7 +1239,9 @@ func (s *Store) ListAuthorContributions(ctx context.Context, q *common.QueryModi
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
+	defer func(rows *sqlx.Rows) {
+		_ = rows.Close()
+	}(rows)
 
 	out := make([]*models.AuthorContribution, 0)
 	for rows.Next() {
@@ -1425,7 +1447,9 @@ func (s *Store) ListAuthorNotifications(ctx context.Context, authorID string, qm
 	if err != nil {
 		return nil, err
 	}
-	defer rows.Close()
+	defer func(rows *sqlx.Rows) {
+		_ = rows.Close()
+	}(rows)
 
 	out := make([]*models.AuthorNotification, 0)
 	for rows.Next() {
@@ -1620,7 +1644,9 @@ func (s *Store) ListTranscriptRatingScores(ctx context.Context) ([]models.Transc
 	if err != nil {
 		return nil, err
 	}
-	defer res.Close()
+	defer func(res *sqlx.Rows) {
+		_ = res.Close()
+	}(res)
 
 	ratings := []models.TranscriptRatingScore{}
 	for res.Next() {
@@ -1656,7 +1682,9 @@ func (s *Store) GetTranscriptRatingScores(ctx context.Context, episodeID string)
 	if err != nil {
 		return models.Ratings{}, err
 	}
-	defer res.Close()
+	defer func(res *sqlx.Rows) {
+		_ = res.Close()
+	}(res)
 
 	ratings := models.Ratings{Scores: make(map[string]float32)}
 	for res.Next() {
@@ -1693,7 +1721,9 @@ func (s *Store) ListTranscriptTags(ctx context.Context) (models.Tags, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer res.Close()
+	defer func(res *sqlx.Rows) {
+		_ = res.Close()
+	}(res)
 
 	tags := models.Tags{}
 	for res.Next() {

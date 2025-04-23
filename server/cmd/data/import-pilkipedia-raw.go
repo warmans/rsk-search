@@ -92,7 +92,9 @@ func loadTranscript(inputDir string, publication string, date time.Time) (*model
 		}
 		return nil, err
 	}
-	defer f.Close()
+	defer func(f *os.File) {
+		_ = f.Close()
+	}(f)
 
 	e := &models.Transcript{}
 

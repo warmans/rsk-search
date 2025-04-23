@@ -37,7 +37,12 @@ func ImportRatingsCmd() *cobra.Command {
 			if err != nil {
 				return fmt.Errorf("failed to open CSV: %w", err)
 			}
-			defer f.Close()
+			defer func(f *os.File) {
+				err := f.Close()
+				if err != nil {
+					logger.Error("failed to close file", zap.Error(err))
+				}
+			}(f)
 
 			return processFile(logger, externalAuthorName, csv.NewReader(f))
 		},

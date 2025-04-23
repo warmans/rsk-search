@@ -84,7 +84,9 @@ func parseFile(path string) (*SwaggerFile, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer f.Close()
+	defer func(f *os.File) {
+		_ = f.Close()
+	}(f)
 
 	swaggerData := &SwaggerFile{}
 	return swaggerData, json.NewDecoder(f).Decode(swaggerData)

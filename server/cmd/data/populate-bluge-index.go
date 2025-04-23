@@ -116,7 +116,9 @@ func documentsFromPath(filePath string) ([]search.DialogDocument, error) {
 	if err != nil {
 		return nil, fmt.Errorf("failed to open file %s: %w", filePath, err)
 	}
-	defer f.Close()
+	defer func(f *os.File) {
+		_ = f.Close()
+	}(f)
 
 	episode := &models.Transcript{}
 

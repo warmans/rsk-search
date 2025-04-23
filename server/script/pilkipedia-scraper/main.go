@@ -119,7 +119,9 @@ func main() {
 		if err != nil {
 			log.Fatal("failed to open file for writing ", err.Error())
 		}
-		defer file.Close()
+		defer func(file *os.File) {
+			_ = file.Close()
+		}(file)
 
 		enc := json.NewEncoder(file)
 		enc.SetIndent("", "  ")

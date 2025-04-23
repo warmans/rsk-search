@@ -201,10 +201,10 @@ func distancePcnt(x int, y int, total int) float64 {
 }
 
 func cleanString(raw string) string {
-	raw = strings.Replace(raw, "'s", "", -1)
-	raw = strings.Replace(raw, "’s", "", -1)
-	raw = strings.Replace(raw, "-", " ", -1)
-	raw = strings.Replace(raw, "carl", "karl", -1)
+	raw = strings.ReplaceAll(raw, "'s", "")
+	raw = strings.ReplaceAll(raw, "’s", "")
+	raw = strings.ReplaceAll(raw, "-", " ")
+	raw = strings.ReplaceAll(raw, "carl", "karl")
 	raw = punctuation.ReplaceAllString(raw, "")
 	raw = stopwords.CleanString(strings.ToLower(raw), "en", false)
 	raw = withoutWords(raw, "yeah", "sure", "hello", "alright", "dont", "know", "i", "uh", "huh")

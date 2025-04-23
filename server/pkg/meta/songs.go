@@ -4,6 +4,7 @@ import (
 	"embed"
 	"encoding/json"
 	"github.com/warmans/rsk-search/pkg/spotify"
+	"io/fs"
 	"slices"
 )
 
@@ -17,7 +18,9 @@ func init() {
 	if err != nil {
 		panic("failed to open embedded metadata: " + err.Error())
 	}
-	defer f.Close()
+	defer func(f fs.File) {
+		_ = f.Close()
+	}(f)
 
 	dec := json.NewDecoder(f)
 	if err := dec.Decode(&songMeta); err != nil {

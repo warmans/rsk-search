@@ -112,14 +112,18 @@ func (s *Store) downloadFile(filename, url string) (string, error) {
 		}
 		return "", fmt.Errorf("unable to archive file: internal error")
 	}
-	defer file.Close()
+	defer func(file *os.File) {
+		_ = file.Close()
+	}(file)
 
 	resp, err := http.Get(url)
 	if err != nil {
 		return "", fmt.Errorf("unable to archive file: internal error")
 	}
 
-	defer resp.Body.Close()
+	defer func(Body io.ReadCloser) {
+		_ = Body.Close()
+	}(resp.Body)
 
 	_, err = io.Copy(file, resp.Body)
 	if err != nil {
@@ -135,7 +139,9 @@ func (s *Store) CreateMetadata(metadata models.ArchiveMeta) error {
 		return err
 
 	}
-	defer metaFile.Close()
+	defer func(metaFile *os.File) {
+		_ = metaFile.Close()
+	}(metaFile)
 
 	enc := json.NewEncoder(metaFile)
 	enc.SetIndent("", "  ")

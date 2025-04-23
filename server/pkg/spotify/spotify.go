@@ -3,6 +3,7 @@ package spotify
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
@@ -78,7 +79,9 @@ func (s *Search) FindTrack(term string) (*Track, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
+	defer func(Body io.ReadCloser) {
+		_ = Body.Close()
+	}(resp.Body)
 
 	var errorCode, errorDesc string
 

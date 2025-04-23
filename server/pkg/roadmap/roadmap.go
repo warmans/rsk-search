@@ -4,6 +4,7 @@ import (
 	"embed"
 	"fmt"
 	"io"
+	"io/fs"
 )
 
 //go:embed data/roadmap.md
@@ -16,7 +17,9 @@ func init() {
 	if err != nil {
 		panic("failed to open embedded roadmap data: " + err.Error())
 	}
-	defer f.Close()
+	defer func(f fs.File) {
+		_ = f.Close()
+	}(f)
 
 	data, err := io.ReadAll(f)
 	if err != nil {

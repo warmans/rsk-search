@@ -1,7 +1,6 @@
 package bot
 
 import (
-	"context"
 	"fmt"
 	"github.com/bwmarrin/discordgo"
 	"github.com/spf13/cobra"
@@ -132,8 +131,7 @@ func createGrpcClientConn(apiTarget string, systemToken string, tlsCertificatePa
 		log.Fatalf("failed to create credentials: %v", err)
 	}
 
-	return grpc.DialContext(
-		context.Background(),
+	return grpc.NewClient(
 		apiTarget,
 		grpc.WithTransportCredentials(creds),
 		grpc.WithPerRPCCredentials(

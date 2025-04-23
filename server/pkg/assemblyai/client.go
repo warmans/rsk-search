@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"go.uber.org/zap"
+	"io"
 	"net/http"
 	"time"
 )
@@ -90,7 +91,9 @@ func (c *Client) submitQuery(reqBody *TranscribeRequest) (*TranscriptionStatusRe
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
+	defer func(Body io.ReadCloser) {
+		_ = Body.Close()
+	}(resp.Body)
 
 	status := &TranscriptionStatusResponse{}
 	if err := json.NewDecoder(resp.Body).Decode(status); err != nil {
@@ -137,7 +140,9 @@ func (c *Client) getStatus(jobID string) (*TranscriptionStatusResponse, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
+	defer func(Body io.ReadCloser) {
+		_ = Body.Close()
+	}(resp.Body)
 
 	status := &TranscriptionStatusResponse{}
 	if err := json.NewDecoder(resp.Body).Decode(status); err != nil {

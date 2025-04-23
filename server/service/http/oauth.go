@@ -185,7 +185,9 @@ func (c *OauthService) getBearerToken(provider models.OauthProvider, tokenEndpoi
 		c.logger.Error("failed to request bearer token", zap.Error(err))
 		return "", fmt.Errorf("failed to request bearer token")
 	}
-	defer resp.Body.Close()
+	defer func(Body io.ReadCloser) {
+		_ = Body.Close()
+	}(resp.Body)
 
 	respBody := &bytes.Buffer{}
 	if _, err := io.Copy(respBody, resp.Body); err != nil {
@@ -246,7 +248,9 @@ func (c *OauthService) getRedditIdentity(bearerToken string) (*oauth.RedditIdent
 		c.logger.Error("failed to execute identity request", zap.Error(err))
 		return nil, "", fmt.Errorf("failed to request identity")
 	}
-	defer resp.Body.Close()
+	defer func(Body io.ReadCloser) {
+		_ = Body.Close()
+	}(resp.Body)
 
 	buff := &bytes.Buffer{}
 	if _, err := buff.ReadFrom(resp.Body); err != nil {
@@ -288,7 +292,9 @@ func (c *OauthService) getDiscordIdentity(bearerToken string) (*oauth.DiscordIde
 		c.logger.Error("failed to execute identity request", zap.Error(err))
 		return nil, "", fmt.Errorf("failed to request identity")
 	}
-	defer resp.Body.Close()
+	defer func(Body io.ReadCloser) {
+		_ = Body.Close()
+	}(resp.Body)
 
 	buff := &bytes.Buffer{}
 	if _, err := buff.ReadFrom(resp.Body); err != nil {

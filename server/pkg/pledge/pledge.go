@@ -7,6 +7,7 @@ import (
 	"github.com/pkg/errors"
 	"github.com/spf13/pflag"
 	"github.com/warmans/rsk-search/pkg/flag"
+	"io"
 	"net/http"
 	"net/url"
 )
@@ -66,7 +67,9 @@ func (c *Client) CreateDonation(donationDetails DonationRequest) (*Donation, err
 	if err != nil {
 		return nil, errors.Wrapf(err, "with body: %s", getResponseError(resp))
 	}
-	defer resp.Body.Close()
+	defer func(Body io.ReadCloser) {
+		_ = Body.Close()
+	}(resp.Body)
 
 	if err := checkResponse(resp); err != nil {
 		return nil, errors.Wrapf(err, "with body: %s", getResponseError(resp))
@@ -90,7 +93,9 @@ func (c *Client) ListOrganizations() (*OrganizationList, error) {
 	if err != nil {
 		return nil, errors.Wrapf(err, "with body: %s", getResponseError(resp))
 	}
-	defer resp.Body.Close()
+	defer func(Body io.ReadCloser) {
+		_ = Body.Close()
+	}(resp.Body)
 
 	if err := checkResponse(resp); err != nil {
 		return nil, errors.Wrapf(err, "with body: %s", getResponseError(resp))

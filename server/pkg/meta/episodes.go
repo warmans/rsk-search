@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/warmans/rsk-search/pkg/models"
+	"io/fs"
 )
 
 //go:embed data/episode-date-map.json
@@ -22,7 +23,9 @@ func init() {
 	if err != nil {
 		panic("failed to open embedded metadata: " + err.Error())
 	}
-	defer epIndexFile.Close()
+	defer func(epIndexFile fs.File) {
+		_ = epIndexFile.Close()
+	}(epIndexFile)
 	dec := json.NewDecoder(epIndexFile)
 	if err := dec.Decode(&parsedIndex); err != nil {
 		panic("failed to decode metadata: " + err.Error())
@@ -35,7 +38,9 @@ func init() {
 	if err != nil {
 		panic("failed to open embedded metadata: " + err.Error())
 	}
-	defer orderedEpsFile.Close()
+	defer func(orderedEpsFile fs.File) {
+		_ = orderedEpsFile.Close()
+	}(orderedEpsFile)
 	if err := json.NewDecoder(orderedEpsFile).Decode(&episodeOrder); err != nil {
 		panic("failed to decode metadata: " + err.Error())
 	}

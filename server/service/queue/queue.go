@@ -153,14 +153,24 @@ func (q *ImportQueue) HandleCreateWorkspace(ctx context.Context, t *asynq.Task) 
 	if err != nil {
 		return err
 	}
-	defer localMP3.Close()
+	defer func(localMP3 afero.File) {
+		err := localMP3.Close()
+		if err != nil {
+			q.logger.Error("Failed to close local MP3", zap.Error(err))
+		}
+	}(localMP3)
 
 	q.logger.Info("Fetching MP3 to local working dir", zap.String("uri", tsImport.Mp3URI))
 	resp, err := http.DefaultClient.Get(tsImport.Mp3URI)
 	if err != nil {
 		return err
 	}
-	defer resp.Body.Close()
+	defer func(Body io.ReadCloser) {
+		err := Body.Close()
+		if err != nil {
+			q.logger.Error("Failed to close response body", zap.Error(err))
+		}
+	}(resp.Body)
 
 	q.logger.Info("Copying to file")
 	if _, err := io.Copy(localMP3, resp.Body); err != nil {
@@ -187,7 +197,12 @@ func (q *ImportQueue) HandleCreateMachineTranscription(ctx context.Context, t *a
 	if err != nil {
 		return err
 	}
-	defer outputFile.Close()
+	defer func(outputFile afero.File) {
+		err := outputFile.Close()
+		if err != nil {
+			q.logger.Error("Failed to close output file", zap.Error(err))
+		}
+	}(outputFile)
 
 	q.logger.Info("Starting speech 2 text...")
 	resp, err := q.assemblyAi.Transcribe(ctx, &assemblyai.TranscribeRequest{AudioURL: tsImport.Mp3URI, SpeakerLabels: true})
@@ -217,7 +232,12 @@ func (q *ImportQueue) HandleCreateMachineTranscription(ctx context.Context, t *a
 	if err != nil {
 		return err
 	}
-	defer outFile.Close()
+	defer func(outFile afero.File) {
+		err := outFile.Close()
+		if err != nil {
+			q.logger.Error("Failed to close output file", zap.Error(err))
+		}
+	}(outFile)
 
 	if err := speech2text.MapChunksFromRawTranscript(tsImport.EpID, tsImport.EpName, outputFile, outFile); err != nil {
 		return err

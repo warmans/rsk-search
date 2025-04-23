@@ -44,7 +44,9 @@ func MergeTranscriptTagsCmd() *cobra.Command {
 			if err != nil {
 				return err
 			}
-			defer conn.Close()
+			defer func(conn *rw.Conn) {
+				_ = conn.Close()
+			}(conn)
 
 			return mergeTags(outputDir, migrationsPath, conn, dryRun, logger)
 		},

@@ -291,10 +291,15 @@ func (c *DownloadService) servePartialAudioFile(
 			c.logger.Error("failed to remove temporary file", zap.Error(err), zap.String("path", partial.Name()))
 		}
 	}()
-	defer partial.Close()
+	defer func(partial *os.File) {
+		err := partial.Close()
+		if err != nil {
+			c.logger.Error("failed to close file ", zap.Error(err))
+		}
+	}(partial)
 
 	if err := writeData(startTimestamp, endTimestamp, partial); err != nil {
-		partial.Close()
+		_ = partial.Close()
 		return fmt.Errorf("failed to extract data: %w", err)
 	}
 

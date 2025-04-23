@@ -50,7 +50,12 @@ func InitFromSrtCmd() *cobra.Command {
 			if err != nil {
 				return err
 			}
-			defer f.Close()
+			defer func(f *os.File) {
+				err := f.Close()
+				if err != nil {
+					logger.Error("failed to close file", zap.Error(err))
+				}
+			}(f)
 
 			logger.Info(fmt.Sprintf("processing %s", srtPath))
 			return initEpisodeFileFromSRT(logger, mediaFilePath, publication, series, episode, cfg.dataDir, f)

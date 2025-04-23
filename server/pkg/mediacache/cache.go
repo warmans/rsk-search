@@ -41,7 +41,9 @@ func (c *Cache) Get(key string, writeTo io.Writer, noCache bool, fetchFn func(wr
 	filePath := path.Join(c.cfg.DataPath, key)
 	f, err := os.Open(filePath)
 	if err == nil {
-		defer f.Close()
+		defer func(f *os.File) {
+			_ = f.Close()
+		}(f)
 		if _, err = io.Copy(writeTo, f); err == nil {
 			return true, nil
 		}
