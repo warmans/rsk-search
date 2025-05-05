@@ -53,7 +53,15 @@ func TranscribeAssemblyAICmd() *cobra.Command {
 			defer done()
 
 			client := assemblyai.NewClient(logger, http.DefaultClient, &assemblyai.Config{AccessToken: apiKey})
-			result, err := client.Transcribe(ctx, &assemblyai.TranscribeRequest{AudioURL: inputURL, SpeakerLabels: true})
+			result, err := client.Transcribe(ctx, &assemblyai.TranscribeRequest{
+				AudioURL:          inputURL,
+				SpeakerLabels:     true,
+				EntityDetection:   true,
+				SentimentAnalysis: true,
+				Summarization:     false,
+				//SummaryModel:      "conversational",
+				//SummaryType:       "bullets_verbose",
+			})
 			if err != nil {
 				return err
 			}

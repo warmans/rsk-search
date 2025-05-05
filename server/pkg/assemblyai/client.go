@@ -4,10 +4,12 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"go.uber.org/zap"
 	"io"
 	"net/http"
+	"os"
 	"time"
 )
 
@@ -16,8 +18,28 @@ const (
 )
 
 type TranscribeRequest struct {
-	AudioURL      string `json:"audio_url"`
-	SpeakerLabels bool   `json:"speaker_labels"`
+	AudioURL          string `json:"audio_url"`
+	SpeakerLabels     bool   `json:"speaker_labels"`
+	EntityDetection   bool   `json:"entity_detection"`
+	SentimentAnalysis bool   `json:"sentiment_analysis"`
+	Summarization     bool   `json:"summarization"`
+	SummaryModel      string `json:"summary_model"`
+	SummaryType       string `json:"summary_type"`
+}
+
+type Entity struct {
+	EntityType string `json:"entity_type"`
+	Text       string `json:"text"`
+	Start      int64  `json:"start"`
+	End        int64  `json:"end"`
+}
+
+type Sentiment struct {
+	Text       string  `json:"text"`
+	Start      int64   `json:"start"`
+	End        int64   `json:"end"`
+	Sentiment  string  `json:"sentiment"`
+	Confidence float64 `json:"confidence"`
 }
 
 type TranscriptWord struct {
@@ -37,11 +59,13 @@ type TranscriptUtterance struct {
 }
 
 type TranscriptionStatusResponse struct {
-	ID     string `json:"id"`
-	Status string `json:"status"`
-	Text   string `json:"text"`
-	//Words      []*TranscriptWord      `json:"words"` // don't care
-	Utterances []*TranscriptUtterance `json:"utterances"`
+	ID                       string                 `json:"id"`
+	Status                   string                 `json:"status"`
+	Text                     string                 `json:"text"`
+	Utterances               []*TranscriptUtterance `json:"utterances"`
+	Summary                  string                 `json:"summary"`
+	SentimentAnalysisResults []*Sentiment           `json:"sentiment_analysis_results"`
+	Entities                 []*Entity              `json:"entities"`
 }
 
 func NewClient(logger *zap.Logger, httpClient *http.Client, cfg *Config) *Client {
@@ -63,6 +87,10 @@ func (c *Client) Transcribe(ctx context.Context, req *TranscribeRequest) (*Trans
 	job, err := c.submitQuery(req)
 	if err != nil {
 		return nil, err
+	}
+
+	if job.ID == "" {
+		return nil, fmt.Errorf("no job ID returned (status: %s)", job.Status)
 	}
 
 	c.logger.Info("Job submitted OK, awaiting result...", zap.String("id", job.ID), zap.String("status", job.Status))
@@ -95,9 +123,23 @@ func (c *Client) submitQuery(reqBody *TranscribeRequest) (*TranscriptionStatusRe
 		_ = Body.Close()
 	}(resp.Body)
 
-	status := &TranscriptionStatusResponse{}
-	if err := json.NewDecoder(resp.Body).Decode(status); err != nil {
+	buff := bytes.NewBuffer(nil)
+	if _, err := io.Copy(buff, resp.Body); err != nil {
 		return nil, err
+	}
+
+	if resp.StatusCode != 200 {
+		return nil, fmt.Errorf("unexpected status code: %d (%s)", resp.StatusCode, buff.String())
+	}
+
+	status := &TranscriptionStatusResponse{}
+	if err := json.NewDecoder(buff).Decode(status); err != nil {
+		return nil, err
+	}
+
+	if status.ID == "" {
+		_ = os.WriteFile("response.dump.json", buff.Bytes(), 0644)
+		return nil, errors.New("unexpected result, dumping response to response.dump.json")
 	}
 
 	return status, nil
