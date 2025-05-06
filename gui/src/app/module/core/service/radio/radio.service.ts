@@ -99,7 +99,7 @@ export class RadioService {
       this.audioService.reset();
       return;
     }
-    this.audioService.setAudioSrc(
+    this.audioService.setAudioSrcFromEpisodeName(
       this.state.currentEpisode.shortId,
       "RADIO",
       PlayerMode.Radio,

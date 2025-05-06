@@ -14,13 +14,13 @@ import (
 )
 
 // MergeAAISentimentsCommand
-// e.g.  make build && ./bin/rsk-search data merge-aai-sentiments -s "var/aai-transcripts/xfm-S1E03.mp3?remastered=1.json" -t "ep-xfm-S1E03.json"
+// e.g.  make build && ./bin/rsk-search data aai-merge-sentiments -s "var/aai-transcripts/xfm-S1E03.mp3?remastered=1.json" -t "ep-xfm-S1E03.json"
 func MergeAAISentimentsCommand() *cobra.Command {
 	var aaiDataPath string
 	var targetTranscriptName string
 
 	cmd := &cobra.Command{
-		Use:   "merge-aai-sentiments",
+		Use:   "aai-merge-sentiments",
 		Short: "merge aai sentiments into transcript",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			targetPath := path.Join(cfg.dataDir, targetTranscriptName)

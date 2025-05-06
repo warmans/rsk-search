@@ -336,6 +336,13 @@ func (c *DownloadService) DownloadEpisodeMedia(resp http.ResponseWriter, req *ht
 		return
 	}
 
+	var mediaFilePath string
+	if req.URL.Query().Get("remastered") == "1" && episode.Media.RemasteredAudioFileName != "" {
+		mediaFilePath = path.Join(c.serviceConfig.MediaBasePath, "episode", episode.Media.RemasteredAudioFileName)
+	} else {
+		mediaFilePath = path.Join(c.serviceConfig.MediaBasePath, "episode", episode.Media.AudioFileName)
+	}
+
 	// partial file download
 	if req.URL.Query().Has("pos") || req.URL.Query().Has("ts") {
 
@@ -430,7 +437,7 @@ func (c *DownloadService) DownloadEpisodeMedia(resp http.ResponseWriter, req *ht
 			req,
 			resp,
 			episode,
-			path.Join(c.serviceConfig.MediaBasePath, "episode", episode.Media.AudioFileName),
+			mediaFilePath,
 			startTimestamp,
 			endTimestamp,
 			withoutID3Metadata(stripID3Tags == "true"),
@@ -445,23 +452,16 @@ func (c *DownloadService) DownloadEpisodeMedia(resp http.ResponseWriter, req *ht
 
 	// whole audio file
 
-	var filePath string
-	if req.URL.Query().Get("remastered") == "1" && episode.Media.RemasteredAudioFileName != "" {
-		filePath = path.Join(c.serviceConfig.MediaBasePath, "episode", "remaster", episode.Media.RemasteredAudioFileName)
-	} else {
-		filePath = path.Join(c.serviceConfig.MediaBasePath, "episode", episode.Media.AudioFileName)
-	}
-
 	c.logger.Debug(
 		"Exporting full file",
 		zap.String("format", wantFormat),
 		zap.String("episode_id", episode.ShortID()),
-		zap.String("file_path", filePath),
+		zap.String("file_path", mediaFilePath),
 	)
 
-	fileStat, err := os.Stat(filePath)
+	fileStat, err := os.Stat(mediaFilePath)
 	if err != nil {
-		c.logger.Error("Failed to find media file", zap.String("path", filePath))
+		c.logger.Error("Failed to find media file", zap.String("path", mediaFilePath))
 		http.Error(resp, "Episode not found", http.StatusNotFound)
 		return
 	}
@@ -473,7 +473,7 @@ func (c *DownloadService) DownloadEpisodeMedia(resp http.ResponseWriter, req *ht
 		}
 		return
 	}
-	http.ServeFile(resp, req, filePath)
+	http.ServeFile(resp, req, mediaFilePath)
 }
 
 func (c *DownloadService) DownloadFile(resp http.ResponseWriter, req *http.Request) {

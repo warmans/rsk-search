@@ -199,7 +199,7 @@ export class EditorComponent implements OnInit, OnDestroy {
     if (!this.audioConfig.episodeId) {
       return;
     }
-    this.audioService.setAudioSrc(this.audioConfig.episodeId, null, PlayerMode.Standalone, this.audioConfig.startMs, this.audioConfig.endMs);
+    this.audioService.setAudioSrcFromEpisodeName(this.audioConfig.episodeId, null, PlayerMode.Standalone, this.audioConfig.startMs, this.audioConfig.endMs);
     if (andPlay) {
       this.audioService.playAudio();
     }

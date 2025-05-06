@@ -8,7 +8,8 @@ const STORAGE_KEY_VOLUME = 'audio_service_volume';
 export enum PlayerMode {
   Default = 'default',
   Standalone = 'standalone',
-  Radio = 'radio'
+  Radio = 'radio',
+  ForceRemastered = 'force_remastered'
 }
 
 export interface Status {
@@ -186,11 +187,11 @@ export class AudioService {
 
   public reset() {
     this.pauseAudio();
-    this.setAudioSrc(null, '', this.modeSub.getValue());
+    this.setAudioSrcFromEpisodeName(null, '', this.modeSub.getValue());
     this.clearPersistentPlayerState();
   }
 
-  public setAudioSrc(id: string | null, name: string | null, mode?: PlayerMode, startMs?: number, endMs?: number): void {
+  public setAudioSrcFromEpisodeName(id: string | null, name: string | null, mode?: PlayerMode, startMs?: number, endMs?: number): void {
     if (this.audioID === id) {
       return;
     }
@@ -200,7 +201,7 @@ export class AudioService {
     if (startMs || endMs) {
       query = query.set("ts", `${startMs}${endMs ? "-" + endMs : ""}`)
     }
-    if (mode == 'radio') {
+    if (mode === PlayerMode.Radio || mode === PlayerMode.ForceRemastered) {
       query = query.set("remastered", "1")
     }
     let audioUri: string = `/dl/media/${id}.mp3?` + query.toString();
@@ -368,7 +369,7 @@ export class AudioService {
       }
 
       if (state && state.mode === PlayerMode.Default) {
-        this.setAudioSrc(state.audioID, state.audioName);
+        this.setAudioSrcFromEpisodeName(state.audioID, state.audioName);
         this.audio.load();
         this.seekAudio(state.currentTime);
       }

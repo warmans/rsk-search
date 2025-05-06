@@ -9,7 +9,7 @@ import {SessionService} from '../../../core/service/session/session.service';
 import {And, Eq, Neq} from 'src/app/lib/filter-dsl/filter';
 import {Bool, Str} from 'src/app/lib/filter-dsl/value';
 import {MetaService} from '../../../core/service/meta/meta.service';
-import {AudioService, PlayerState, Status} from '../../../core/service/audio/audio.service';
+import {AudioService, PlayerMode, PlayerState, Status} from '../../../core/service/audio/audio.service';
 import {Section, TranscriptComponent} from '../../../shared/component/transcript/transcript.component';
 import {combineLatest} from 'rxjs';
 import {parseSection} from "../../../shared/lib/fragment";
@@ -207,13 +207,13 @@ export class EpisodeComponent implements OnInit, OnDestroy {
   }
 
   onAudioTimestamp(offsetMs: number) {
-    this.audioService.setAudioSrc(this.episode.shortId, this.episode.name);
+    this.audioService.setAudioSrcFromEpisodeName(this.episode.shortId, this.episode.name);
     this.audioService.seekAudio(offsetMs / 1000);
     this.audioService.playAudio();
   }
 
   playAudio() {
-    this.audioService.setAudioSrc(this.episode.shortId, this.episode.name);
+    this.audioService.setAudioSrcFromEpisodeName(this.episode.shortId, this.episode.name);
     this.audioService.playAudio();
   }
 

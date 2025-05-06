@@ -54,6 +54,7 @@ func RootCmd() *cobra.Command {
 	root.AddCommand(CountWords())
 	root.AddCommand(RefreshAudioMetadataCmd())
 	root.AddCommand(AddRemasterAudioCmd())
+	root.AddCommand(PromoteRemasterAudioCmd())
 
 	//video
 	root.AddCommand(ExtractVideoImages())
