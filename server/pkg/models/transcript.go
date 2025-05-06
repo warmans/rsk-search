@@ -125,6 +125,14 @@ func (m Metadata) Proto() map[string]string {
 	return p
 }
 
+type Sentiment string
+
+const (
+	SentimentMixed    = Sentiment("mixed")
+	SentimentPositive = Sentiment("positive")
+	SentimentNegative = Sentiment("negative")
+)
+
 type Dialog struct {
 	ID                string        `json:"id"`
 	Position          int64         `json:"pos"`
@@ -138,6 +146,7 @@ type Dialog struct {
 	Content           string        `json:"content"`
 	Notable           bool          `json:"notable"` // note-worthy line of dialog.
 	Placeholder       bool          `json:"placeholder"`
+	Sentiment         Sentiment     `json:"sentiment"`
 }
 
 func (d Dialog) Proto(matchedRow bool) *api.Dialog {

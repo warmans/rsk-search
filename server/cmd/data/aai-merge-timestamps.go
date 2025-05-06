@@ -21,9 +21,9 @@ import (
 
 var punctuation = regexp.MustCompile(`[^a-zA-Z0-9\s]+`)
 
-// MergeTimestampsAAICommand
+// MergeAAITimestampsCommand
 // e.g. export EP=S2E08; ./bin/rsk-search data transcribe-assembly-ai -i https://scrimpton.com/dl/media/episode/xfm-${EP}.mp3 && ./bin/rsk-search data merge-timestamps-aai -s var/aai-transcripts/xfm-${EP}.json -t ep-xfm-${EP}.json
-func MergeTimestampsAAICommand() *cobra.Command {
+func MergeAAITimestampsCommand() *cobra.Command {
 
 	var timestampSourceFile string
 	var targetTranscriptName string
@@ -35,7 +35,7 @@ func MergeTimestampsAAICommand() *cobra.Command {
 	var skipPositions []int
 
 	cmd := &cobra.Command{
-		Use:   "merge-timestamps-aai",
+		Use:   "merge-aai-timestamps",
 		Short: "create a machine transcription using Assembly AI API",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			targetPath := path.Join(cfg.dataDir, targetTranscriptName)

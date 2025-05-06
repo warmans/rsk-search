@@ -56,7 +56,7 @@ func TranscribeAssemblyAICmd() *cobra.Command {
 			result, err := client.Transcribe(ctx, &assemblyai.TranscribeRequest{
 				AudioURL:          inputURL,
 				SpeakerLabels:     true,
-				EntityDetection:   true,
+				EntityDetection:   false,
 				SentimentAnalysis: true,
 				Summarization:     false,
 				//SummaryModel:      "conversational",

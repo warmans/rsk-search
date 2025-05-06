@@ -40,17 +40,18 @@ func RootCmd() *cobra.Command {
 	// index
 	root.AddCommand(PopulateBlugeIndex())
 
-	// assembly ai testing
+	// assembly ai
 	root.AddCommand(TranscribeAssemblyAICmd())
 	root.AddCommand(AssemblyAI2Dialog())
 	root.AddCommand(AssemblyAI2Srt())
+	root.AddCommand(MergeAAITimestampsCommand())
+	root.AddCommand(MergeAAISentimentsCommand())
 
 	//openai testing
 	root.AddCommand(TranscribeOpenAICommand())
 
 	//misc
 	root.AddCommand(CountWords())
-	root.AddCommand(MergeTimestampsAAICommand())
 	root.AddCommand(RefreshAudioMetadataCmd())
 	root.AddCommand(AddRemasterAudioCmd())
 
