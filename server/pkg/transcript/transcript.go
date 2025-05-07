@@ -3,12 +3,15 @@ package transcript
 import (
 	"bufio"
 	"fmt"
+	"github.com/pkg/errors"
 	"github.com/warmans/rsk-search/pkg/models"
 	"strconv"
 	"strings"
 	"time"
 	"unicode"
 )
+
+var ErrEOF = fmt.Errorf("EOF")
 
 const PosSpacing = 1
 
@@ -22,6 +25,68 @@ func WithStripMetadata() ExportOption {
 	return func(opts *exportOptions) {
 		opts.stripMetadata = true
 	}
+}
+
+func NewTranscriptScanner(scanner *bufio.Scanner) *TranscriptScanner {
+	return &TranscriptScanner{scanner: scanner}
+}
+
+type TranscriptScanner struct {
+	scanner *bufio.Scanner
+	peeked  *string
+	text    string
+}
+
+func (ts *TranscriptScanner) Next() (string, error) {
+	if peeked := ts.peeked; peeked != nil {
+		ts.peeked = nil
+		return *peeked, nil
+	}
+	if !ts.scanner.Scan() {
+		return "", ErrEOF
+	}
+	return ts.scanner.Text(), nil
+}
+
+func (ts *TranscriptScanner) PeekNext() (string, error) {
+	if ts.peeked != nil {
+		return *ts.peeked, nil
+	}
+	peeked, err := ts.Next()
+	if err != nil {
+		return "", err
+	}
+	ts.peeked = &peeked
+	return peeked, nil
+}
+
+func (ts *TranscriptScanner) Err() error {
+	return ts.scanner.Err()
+}
+
+// ReadAllPrefixed reads all lines from the scanner that start with the given prefix.
+// this is useful for reading synopsis and trivia lines.
+func (ts *TranscriptScanner) ReadAllPrefixed(prefix string) ([]string, error) {
+	all := []string{}
+	for {
+		peeked, err := ts.PeekNext()
+		if err != nil {
+			if errors.Is(err, ErrEOF) {
+				break
+			}
+			return nil, err
+		}
+		if strings.HasPrefix(peeked, prefix) {
+			next, err := ts.Next()
+			if err != nil {
+				return nil, err
+			}
+			all = append(all, strings.TrimSpace(strings.TrimPrefix(next, prefix)))
+			continue
+		}
+		break
+	}
+	return all, nil
 }
 
 func Validate(scanner *bufio.Scanner) error {
@@ -38,6 +103,8 @@ func Validate(scanner *bufio.Scanner) error {
 // Import imports plain text transcripts to JSON.
 func Import(scanner *bufio.Scanner, episodeID string, startPos int64) ([]models.Dialog, []models.Synopsis, []models.Trivia, error) {
 
+	parser := NewTranscriptScanner(scanner)
+
 	output := make([]models.Dialog, 0)
 	position := startPos
 	var lastOffset time.Duration
@@ -49,11 +116,19 @@ func Import(scanner *bufio.Scanner, episodeID string, startPos int64) ([]models.
 	trivia := make([]models.Trivia, 0)
 	var currentTrivia *models.Trivia
 
-	for scanner.Scan() {
+	for {
 		notable := false
 
+		currentLine, err := parser.Next()
+		if err != nil {
+			if errors.Is(err, ErrEOF) {
+				break
+			}
+			return nil, nil, nil, err
+		}
+
 		// strip space and non-breakable-spaces
-		line := strings.TrimSpace(strings.ReplaceAll(scanner.Text(), "\u00a0", " "))
+		line := strings.TrimSpace(strings.ReplaceAll(currentLine, "\u00a0", " "))
 		if line == "" {
 			continue
 		}
@@ -85,6 +160,13 @@ func Import(scanner *bufio.Scanner, episodeID string, startPos int64) ([]models.
 			}
 			if strings.HasPrefix(line, "#SYN: ") {
 				currentSynopsis = &models.Synopsis{Description: CorrectContent(strings.TrimSpace(strings.TrimPrefix(line, "#SYN:"))), StartPos: position}
+				nextLines, err := parser.ReadAllPrefixed("#")
+				if err != nil {
+					return nil, nil, nil, err
+				}
+				if len(nextLines) > 0 {
+					currentSynopsis.Description += "\n" + strings.Join(nextLines, "\n")
+				}
 			}
 			continue
 		}
@@ -96,15 +178,14 @@ func Import(scanner *bufio.Scanner, episodeID string, startPos int64) ([]models.
 			}
 			if strings.HasPrefix(line, "#TRIVIA:") {
 				currentTrivia = &models.Trivia{Description: CorrectContent(strings.TrimSpace(strings.TrimPrefix(line, "#TRIVIA:"))), StartPos: position}
+				nextLines, err := parser.ReadAllPrefixed("#")
+				if err != nil {
+					return nil, nil, nil, err
+				}
+				if len(nextLines) > 0 {
+					currentTrivia.Description += "\n" + strings.Join(nextLines, "\n")
+				}
 			}
-			continue
-		}
-		// continued trivia e.g.
-		// #TRIVIA:
-		// # foo
-		// # bar baz
-		if currentTrivia != nil && strings.HasPrefix(line, "#") {
-			currentTrivia.Description += "\n" + strings.TrimSpace(strings.TrimPrefix(line, "#"))
 			continue
 		}
 
@@ -177,7 +258,13 @@ func Export(dialog []models.Dialog, synopsis []models.Synopsis, trivia []models.
 			}
 			for _, syn := range synopsis {
 				if d.Position == syn.StartPos {
-					output.WriteString(fmt.Sprintf("#SYN: %s\n", syn.Description))
+					synopsisLines := strings.Split(syn.Description, "\n")
+					output.WriteString(fmt.Sprintf("#SYN: %s\n", synopsisLines[0]))
+					if len(synopsisLines) > 1 {
+						for _, line := range synopsisLines[1:] {
+							output.WriteString(fmt.Sprintf("# %s\n", strings.TrimSpace(line)))
+						}
+					}
 				}
 				if d.Position == syn.EndPos {
 					output.WriteString("#/SYN\n")

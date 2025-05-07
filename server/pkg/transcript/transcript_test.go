@@ -32,7 +32,7 @@ func TestCorrectContent(t *testing.T) {
 	}
 }
 
-func TestExport(t *testing.T) {
+func TestExportImport(t *testing.T) {
 	type args struct {
 		dialog   []models.Dialog
 		synopsis []models.Synopsis
@@ -180,6 +180,52 @@ ricky: Foo
 karl: Bar
 #OFFSET: 3.00
 #/TRIVIA
+steve: Baz
+`,
+			wantErr: false,
+		}, {
+			name: "multi-line synopsis renders OK",
+			args: args{
+				dialog: []models.Dialog{
+					{
+						Position:  1,
+						Timestamp: time.Second * 1,
+						Type:      models.DialogTypeChat,
+						Actor:     "ricky",
+						Content:   "Foo",
+					},
+					{
+						Position:  2,
+						Timestamp: time.Second * 2,
+						Type:      models.DialogTypeChat,
+						Actor:     "karl",
+						Content:   "Bar",
+					},
+					{
+						Position:  3,
+						Timestamp: time.Second * 3,
+						Type:      models.DialogTypeChat,
+						Actor:     "steve",
+						Content:   "Baz",
+					},
+				},
+				synopsis: []models.Synopsis{
+					{
+						Description: "Many\nlines of\nsynopsis",
+						StartPos:    1,
+						EndPos:      3,
+					},
+				},
+			},
+			want: `#OFFSET: 1.00
+#SYN: Many
+# lines of
+# synopsis
+ricky: Foo
+#OFFSET: 2.00
+karl: Bar
+#OFFSET: 3.00
+#/SYN
 steve: Baz
 `,
 			wantErr: false,
