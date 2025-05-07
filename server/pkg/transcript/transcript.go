@@ -34,7 +34,6 @@ func NewTranscriptScanner(scanner *bufio.Scanner) *TranscriptScanner {
 type TranscriptScanner struct {
 	scanner *bufio.Scanner
 	peeked  *string
-	text    string
 }
 
 func (ts *TranscriptScanner) Next() (string, error) {
