@@ -13,8 +13,8 @@
           </nav>
         </div>
         <div class="text-right pt-2">
-          <button class="btn btn-sm btn-info" (click)="setStateFilter('request_approval')">
-            Pending
+          <button class="btn btn-sm btn-secondary" [ngClass]="{'btn-info': stateFilter === 'request_approval'}" (click)="setStateFilter('request_approval')">
+            Toggle Pending Only
           </button>
         </div>
       </div>
