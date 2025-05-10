@@ -1,13 +1,13 @@
-import { Component, EventEmitter, OnInit } from '@angular/core';
-import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
-import { RskChunk, RskChunkContribution, RskChunkContributionList, RskContributionState, RskTranscriptChunkList } from 'src/app/lib/api-client/models';
-import { takeUntil } from 'rxjs/operators';
-import { ActivatedRoute, Data } from '@angular/router';
-import { Title } from '@angular/platform-browser';
-import { parseTranscript, Tscript } from '../../../shared/lib/tscript';
-import { SessionService } from '../../../core/service/session/session.service';
-import { And, Eq } from 'src/app/lib/filter-dsl/filter';
-import { Str } from 'src/app/lib/filter-dsl/value';
+import {Component, EventEmitter, OnInit} from '@angular/core';
+import {SearchAPIClient} from 'src/app/lib/api-client/services/search';
+import {RskChunk, RskChunkContribution, RskChunkContributionList, RskContributionState, RskTranscriptChunkList} from 'src/app/lib/api-client/models';
+import {takeUntil} from 'rxjs/operators';
+import {ActivatedRoute, Data} from '@angular/router';
+import {Title} from '@angular/platform-browser';
+import {parseTranscript, Tscript} from '../../../shared/lib/tscript';
+import {SessionService} from '../../../core/service/session/session.service';
+import {And, Eq} from 'src/app/lib/filter-dsl/filter';
+import {Str} from 'src/app/lib/filter-dsl/value';
 
 @Component({
   selector: 'app-episode-chunk-contributions',
@@ -30,7 +30,7 @@ export class EpisodeChunkContributions implements OnInit {
 
   loading: boolean[] = [];
 
-  pendingApprovalOnly: boolean = false;
+  stateFilter: string | undefined;
 
   rejectCallback: (contributionId: string, comment: string) => void = (contributionId: string, comment: string) => {
     this.updateState(contributionId, RskContributionState.STATE_REJECTED, comment);
@@ -62,9 +62,10 @@ export class EpisodeChunkContributions implements OnInit {
   loadData() {
 
     let filter = Eq('tscript_id', Str(this.chunkedTranscriptID));
-    if (this.pendingApprovalOnly) {
-      filter = And(filter, Eq('state', Str('request_approval')));
+    if (this.stateFilter) {
+      filter = And(filter, Eq('state', Str(this.stateFilter)));
     }
+
 
     this.loading.push(true);
     this.apiClient.listTranscriptChunks({
@@ -83,7 +84,7 @@ export class EpisodeChunkContributions implements OnInit {
     }).pipe(takeUntil(this.destroy$)).subscribe((val: RskChunkContributionList) => {
       this.groupedContributions = {};
       val.contributions.forEach((c) => {
-        if (c.state === RskContributionState.STATE_PENDING) {
+        if (c.state === RskContributionState.STATE_PENDING || c.state === RskContributionState.STATE_REJECTED) {
           return;
         }
         if (this.groupedContributions[c.chunkId]) {
@@ -146,9 +147,8 @@ export class EpisodeChunkContributions implements OnInit {
     this.approvalList[approvalListIndex] = this.groupedContributions[oldVal.chunkId].find((v) => v.id === ev.target.value);
   }
 
-  toggleFilterPendingApproval() {
-    this.pendingApprovalOnly = !this.pendingApprovalOnly;
+  setStateFilter(state: string | undefined) {
+    this.stateFilter = state === this.stateFilter ? undefined : state;
     this.loadData();
   }
-
 }

@@ -6,7 +6,7 @@
   <ng-container *ngIf="!merged">
     <span *ngSwitchCase="states.STATE_PENDING" class="bg-info" title="Contribution is a draft and will not be reviewed until submitted for approval.">Draft</span>
     <span *ngSwitchCase="states.STATE_REQUEST_APPROVAL" class="bg-info" title="Contribution will be manually reviewed and probably approved.">Approval Requested</span>
-    <span *ngSwitchCase="states.STATE_APPROVED" class="bg-success" title="Contribution was merged into the final dataset">Merge Pending</span>
+    <span *ngSwitchCase="states.STATE_APPROVED" class="bg-success" title="Contribution was approved and should be merged shortly.">Approved</span>
     <span *ngSwitchCase="states.STATE_REJECTED" class="bg-danger" title="Some transcripts cannot be merged, usually because a duplication transcription was already submitted. More details are shown on your profile.">Rejected <i class="bi-question"></i></span>
     <span *ngSwitchDefault>Unknown</span>
     </ng-container>

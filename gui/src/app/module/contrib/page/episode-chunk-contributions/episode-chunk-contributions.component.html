@@ -13,17 +13,15 @@
           </nav>
         </div>
         <div class="text-right pt-2">
-          <button class="btn btn-sm btn-info" (click)="toggleFilterPendingApproval()">
-            Pending Approval Only
-            <i class="bs bi-filter-circle-fill" *ngIf="pendingApprovalOnly"></i>
-            <i class="bs bi-filter-circle" *ngIf="!pendingApprovalOnly"></i>
+          <button class="btn btn-sm btn-info" (click)="setStateFilter('request_approval')">
+            Pending
           </button>
         </div>
       </div>
 
       <div class="card mb-3">
         <div *ngFor="let ch of chunks">
-          <ng-container *ngIf="!pendingApprovalOnly || (pendingApprovalOnly && (groupedContributions[ch.id] || []).length > 0)">
+          <ng-container *ngIf="!stateFilter || (stateFilter && (groupedContributions[ch.id] || []).length > 0)">
             <div class="card-header">
               {{ch.id}}
               <span *ngIf="(groupedContributions[ch.id] || []).length === 0">
