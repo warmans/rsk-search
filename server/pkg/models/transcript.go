@@ -201,9 +201,9 @@ type Transcript struct {
 
 	// is the episode a "clip show"?
 	Bestof bool `json:"bestof"`
-	// is the episode a "one off" special type episode?
+	// is the episode a "one-off" special type episode?
 	Special bool `json:"special"`
-	// Force an episode into the locked state. If false it will not override any other locking.
+	// Force an episode into the locked state. If false, it will not override any other locking.
 	Locked bool `json:"locked"`
 
 	OffsetAccuracy int32 `json:"offset_accuracy"`
