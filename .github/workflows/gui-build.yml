@@ -2,6 +2,7 @@ name: gui build/publish
 
 env:
   NODE_VERISON: "18.x"
+  GUI_ROOT: ./gui
 
 on:
   push:
@@ -13,8 +14,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      working-directory: ./gui
     steps:
       - uses: actions/checkout@v3
 
@@ -24,18 +23,18 @@ jobs:
           node-version: ${{ env.NODE_VERISON }}
 
       - name: Install deps
-        working-directory: ${{env.working-directory}}
+        working-directory: ${{env.GUI_ROOT}}
         run: npm ci
 
       - name: Build GUI
-        working-directory: ${{env.working-directory}}
+        working-directory: ${{env.GUI_ROOT}}
         run: npm run build
 
       - name: Store output
         uses: actions/upload-artifact@v4
         with:
           name: gui-dist
-          path: ${{env.working-directory}}/dist
+          path: ${{env.GUI_ROOT}}/dist
           retention-days: 1
 
   publish:
@@ -43,7 +42,7 @@ jobs:
     needs: build
     if: ${{ github.ref == 'refs/heads/main' }}
     env:
-      working-directory: ./gui
+      working-directory: ${{env.GUI_ROOT}}
     steps:
 
       - name: Checkout
@@ -53,7 +52,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: gui-dist
-          path: ${{env.working-directory}}/dist
+          path: ${{env.GUI_ROOT}}/dist
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -70,6 +69,6 @@ jobs:
       - name: Build and push GUI
         uses: docker/build-push-action@v4
         with:
-          context: ./gui
+          context: ${{env.GUI_ROOT}}
           push: true
           tags: warmans/rsk-search-gui:latest

@@ -78,13 +78,11 @@ func RefreshCmd() *cobra.Command {
 				hasGaps := false
 				for k, v := range episode.Transcript {
 					episode.Transcript[k].Position = int64(k + 1)
-					if v.Type == models.DialogTypeGap {
+					if v.Type == models.DialogTypeGap || v.Placeholder {
 						hasGaps = true
 					}
 				}
-				if hasGaps {
-					episode.Incomplete = true
-				}
+				episode.Incomplete = hasGaps
 
 				// ensure IDs are correct
 				for k := range episode.Transcript {
