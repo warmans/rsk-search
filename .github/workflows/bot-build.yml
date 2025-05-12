@@ -9,8 +9,8 @@ on:
     branches: [ main, develop ]
     paths:
       - .github/workflows/bot-build.yml
-      - ./server/**
-      - ./discord-bot/**
+      - server/**
+      - discord-bot/**
 
   pull_request:
     branches: [ main ]

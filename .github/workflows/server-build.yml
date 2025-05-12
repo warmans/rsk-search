@@ -9,7 +9,7 @@ on:
     branches: [ main, develop ]
     paths:
       - .github/workflows/server-build.yml
-      - ./server/**
+      - server/**
 
   pull_request:
     branches: [ main ]
