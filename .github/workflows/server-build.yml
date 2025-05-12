@@ -33,8 +33,6 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    env:
-      working-directory: ./server
     steps:
       - uses: actions/checkout@v3
 
@@ -56,8 +54,6 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    env:
-      working-directory: ./server
     steps:
       - uses: actions/checkout@v3
 
@@ -95,8 +91,6 @@ jobs:
       - build
       - test
     if: ${{ github.ref == 'refs/heads/main' }}
-    env:
-      working-directory: ./server
     steps:
       - name: Checkout
         uses: actions/checkout@v3
