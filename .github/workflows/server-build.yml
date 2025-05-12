@@ -7,6 +7,9 @@ env:
 on:
   push:
     branches: [ main, develop ]
+    paths:
+      - .github/**
+      - ${{env.SERVER_ROOT}}/**
 
   pull_request:
     branches: [ main ]

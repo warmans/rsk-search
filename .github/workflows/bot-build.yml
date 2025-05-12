@@ -2,10 +2,15 @@ name: bot build/publish
 
 env:
   SERVER_ROOT: ./server
+  BOT_ROOT: ./discord-bot
 
 on:
   push:
     branches: [ main, develop ]
+    paths:
+      - .github/**
+      - ${{env.SERVER_ROOT}}/**
+      - ${{env.BOT_ROOT}}/**
 
   pull_request:
     branches: [ main ]
