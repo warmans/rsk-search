@@ -1102,6 +1102,8 @@ export function isRskTranscript(arg: any): arg is models.RskTranscript {
     ( typeof arg.audioQuality === 'undefined' || isRskAudioQuality(arg.audioQuality) ) &&
     // bestof?: boolean
     ( typeof arg.bestof === 'undefined' || typeof arg.bestof === 'boolean' ) &&
+    // completionReports?: string[]
+    ( typeof arg.completionReports === 'undefined' || (Array.isArray(arg.completionReports) && arg.completionReports.every((item: unknown) => typeof item === 'string')) ) &&
     // contributors?: string[]
     ( typeof arg.contributors === 'undefined' || (Array.isArray(arg.contributors) && arg.contributors.every((item: unknown) => typeof item === 'string')) ) &&
     // episode?: number

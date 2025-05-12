@@ -14,6 +14,7 @@ export interface RskTranscript {
   actors?: string[];
   audioQuality?: RskAudioQuality;
   bestof?: boolean;
+  completionReports?: string[];
   contributors?: string[];
   episode?: number;
   id?: string;

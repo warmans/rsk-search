@@ -74,15 +74,22 @@ func RefreshCmd() *cobra.Command {
 					episode.PublicationType = models.PublicationTypeOther
 				}
 
-				// identify gaps and fix positions
-				hasGaps := false
-				for k, v := range episode.Transcript {
-					episode.Transcript[k].Position = int64(k + 1)
-					if v.Type == models.DialogTypeGap || v.Placeholder {
-						hasGaps = true
+				// don't override reported incompleteness
+				if episode.Completion != models.CompletionStateReported {
+					hasGaps := false
+					for k, v := range episode.Transcript {
+						episode.Transcript[k].Position = int64(k + 1)
+						if v.Type == models.DialogTypeGap || v.Placeholder {
+							hasGaps = true
+						}
+					}
+					if hasGaps {
+						episode.Completion = models.CompletionStateGaps
 					}
 				}
-				episode.Incomplete = hasGaps
+				if episode.Completion == models.CompletionStateUnknown {
+					episode.Completion = models.CompletionStateComplete
+				}
 
 				// ensure IDs are correct
 				for k := range episode.Transcript {

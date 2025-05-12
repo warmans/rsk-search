@@ -272,6 +272,7 @@ type Transcript struct {
 	PublicationType    PublicationType        `protobuf:"varint,27,opt,name=publication_type,json=publicationType,proto3,enum=rsk.PublicationType" json:"publication_type,omitempty"`
 	Ratings            *Ratings               `protobuf:"bytes,28,opt,name=ratings,proto3" json:"ratings,omitempty"`
 	Tags               []*Tag                 `protobuf:"bytes,29,rep,name=tags,proto3" json:"tags,omitempty"`
+	CompletionReports  []string               `protobuf:"bytes,30,rep,name=completion_reports,json=completionReports,proto3" json:"completion_reports,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -484,6 +485,13 @@ func (x *Transcript) GetRatings() *Ratings {
 func (x *Transcript) GetTags() []*Tag {
 	if x != nil {
 		return x.Tags
+	}
+	return nil
+}
+
+func (x *Transcript) GetCompletionReports() []string {
+	if x != nil {
+		return x.CompletionReports
 	}
 	return nil
 }
@@ -3502,7 +3510,7 @@ var File_transcript_proto protoreflect.FileDescriptor
 
 const file_transcript_proto_rawDesc = "" +
 	"\n" +
-	"\x10transcript.proto\x12\x03rsk\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\fcommon.proto\"\xcb\a\n" +
+	"\x10transcript.proto\x12\x03rsk\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\fcommon.proto\"\xfa\a\n" +
 	"\n" +
 	"Transcript\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12 \n" +
@@ -3536,7 +3544,8 @@ const file_transcript_proto_rawDesc = "" +
 	".rsk.MediaR\x05media\x12?\n" +
 	"\x10publication_type\x18\x1b \x01(\x0e2\x14.rsk.PublicationTypeR\x0fpublicationType\x12&\n" +
 	"\aratings\x18\x1c \x01(\v2\f.rsk.RatingsR\aratings\x12\x1c\n" +
-	"\x04tags\x18\x1d \x03(\v2\b.rsk.TagR\x04tags\x1a;\n" +
+	"\x04tags\x18\x1d \x03(\v2\b.rsk.TagR\x04tags\x12-\n" +
+	"\x12completion_reports\x18\x1e \x03(\tR\x11completionReports\x1a;\n" +
 	"\rMetadataEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"^\n" +

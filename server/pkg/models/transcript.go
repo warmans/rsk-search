@@ -116,6 +116,19 @@ const (
 	SentimentNegative = Sentiment("negative")
 )
 
+type CompletionState string
+
+func (i CompletionState) Bool() bool {
+	return i != CompletionStateComplete
+}
+
+const (
+	CompletionStateUnknown  = CompletionState("")
+	CompletionStateComplete = CompletionState("complete")
+	CompletionStateReported = CompletionState("reported")
+	CompletionStateGaps     = CompletionState("gaps")
+)
+
 type Dialog struct {
 	ID                string        `json:"id"`
 	Position          int64         `json:"pos"`
@@ -182,7 +195,10 @@ type Transcript struct {
 	Version     string     `json:"version"` // SemVer
 	ReleaseDate *time.Time `json:"release_date"`
 	// is the episode missing some sections of transcript?
-	Incomplete bool `json:"incomplete"`
+	Completion CompletionState `json:"completion"`
+	// reason for being reported incomplete
+	CompletionReports []string `json:"completion_reports"`
+
 	// is the episode a "clip show"?
 	Bestof bool `json:"bestof"`
 	// is the episode a "one off" special type episode?
@@ -349,7 +365,7 @@ func (e *Transcript) ShortProto() *api.ShortTranscript {
 		Series:              e.Series,
 		Episode:             e.Episode,
 		TranscriptAvailable: len(e.Transcript) > 0,
-		Incomplete:          e.Incomplete,
+		Incomplete:          e.Completion.Bool(),
 		ReleaseDate:         util.ShortDate(e.ReleaseDate),
 		Summary:             e.Summary,
 		Synopsis:            make([]*api.Synopsis, len(e.Synopsis)),
@@ -387,7 +403,8 @@ func (e *Transcript) Proto(withRawTranscript string, forceLockedOn bool) *api.Tr
 		Metadata:           e.Meta.Proto(),
 		ReleaseDate:        util.ShortDate(e.ReleaseDate),
 		Contributors:       e.Contributors,
-		Incomplete:         e.Incomplete,
+		Incomplete:         e.Completion.Bool(),
+		CompletionReports:  e.CompletionReports,
 		RawTranscript:      withRawTranscript,
 		Actors:             e.Actors(),
 		OffsetAccuracyPcnt: e.OffsetAccuracy,

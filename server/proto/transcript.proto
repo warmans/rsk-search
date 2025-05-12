@@ -349,6 +349,7 @@ message Transcript {
   PublicationType publication_type = 27;
   Ratings ratings = 28;
   repeated Tag tags = 29;
+  repeated string completion_reports = 30;
 }
 
 message Media {

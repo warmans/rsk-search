@@ -3446,6 +3446,12 @@
               "type": "object",
               "$ref": "#/definitions/rskTag"
             }
+          },
+          "completionReports": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },

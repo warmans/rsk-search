@@ -92,7 +92,6 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 					Series:         v.Series,
 					Episode:        v.Episode,
 					Name:           v.Name,
-					Incomplete:     true,
 					OffsetAccuracy: 0,
 					Contributors:   []string{},
 				}
@@ -174,7 +173,7 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 							},
 						)
 					}
-					episodeOnDisk.Incomplete = true
+					episodeOnDisk.Completion = models.CompletionStateGaps
 					continue
 				}
 
