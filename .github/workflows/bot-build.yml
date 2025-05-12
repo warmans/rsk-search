@@ -9,8 +9,8 @@ on:
     branches: [ main, develop ]
     paths:
       - .github/**
-      - ${{env.SERVER_ROOT}}/**
-      - ${{env.BOT_ROOT}}/**
+      - ./server/**
+      - ./discord-bot/**
 
   pull_request:
     branches: [ main ]

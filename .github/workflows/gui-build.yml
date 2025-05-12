@@ -9,7 +9,7 @@ on:
     branches: [ main, develop ]
     paths:
       - .github/**
-      - ${{env.GUI_ROOT}}/**
+      - ./gui/**
 
   pull_request:
     branches: [ main ]

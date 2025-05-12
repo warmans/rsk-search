@@ -9,7 +9,7 @@ on:
     branches: [ main, develop ]
     paths:
       - .github/**
-      - ${{env.SERVER_ROOT}}/**
+      - ./server/**
 
   pull_request:
     branches: [ main ]
