@@ -131,58 +131,6 @@ func (AudioQuality) EnumDescriptor() ([]byte, []int) {
 	return file_transcript_proto_rawDescGZIP(), []int{1}
 }
 
-type MediaType int32
-
-const (
-	MediaType_MEDIA_TYPE_UNKNOWN MediaType = 0
-	MediaType_AUDIO              MediaType = 1
-	MediaType_VIDEO              MediaType = 2
-	MediaType_MULTI              MediaType = 3
-)
-
-// Enum value maps for MediaType.
-var (
-	MediaType_name = map[int32]string{
-		0: "MEDIA_TYPE_UNKNOWN",
-		1: "AUDIO",
-		2: "VIDEO",
-		3: "MULTI",
-	}
-	MediaType_value = map[string]int32{
-		"MEDIA_TYPE_UNKNOWN": 0,
-		"AUDIO":              1,
-		"VIDEO":              2,
-		"MULTI":              3,
-	}
-)
-
-func (x MediaType) Enum() *MediaType {
-	p := new(MediaType)
-	*p = x
-	return p
-}
-
-func (x MediaType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (MediaType) Descriptor() protoreflect.EnumDescriptor {
-	return file_transcript_proto_enumTypes[2].Descriptor()
-}
-
-func (MediaType) Type() protoreflect.EnumType {
-	return &file_transcript_proto_enumTypes[2]
-}
-
-func (x MediaType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use MediaType.Descriptor instead.
-func (MediaType) EnumDescriptor() ([]byte, []int) {
-	return file_transcript_proto_rawDescGZIP(), []int{2}
-}
-
 type PublicationType int32
 
 const (
@@ -225,11 +173,11 @@ func (x PublicationType) String() string {
 }
 
 func (PublicationType) Descriptor() protoreflect.EnumDescriptor {
-	return file_transcript_proto_enumTypes[3].Descriptor()
+	return file_transcript_proto_enumTypes[2].Descriptor()
 }
 
 func (PublicationType) Type() protoreflect.EnumType {
-	return &file_transcript_proto_enumTypes[3]
+	return &file_transcript_proto_enumTypes[2]
 }
 
 func (x PublicationType) Number() protoreflect.EnumNumber {
@@ -238,7 +186,7 @@ func (x PublicationType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PublicationType.Descriptor instead.
 func (PublicationType) EnumDescriptor() ([]byte, []int) {
-	return file_transcript_proto_rawDescGZIP(), []int{3}
+	return file_transcript_proto_rawDescGZIP(), []int{2}
 }
 
 type Dialog_DialogType int32
@@ -280,11 +228,11 @@ func (x Dialog_DialogType) String() string {
 }
 
 func (Dialog_DialogType) Descriptor() protoreflect.EnumDescriptor {
-	return file_transcript_proto_enumTypes[4].Descriptor()
+	return file_transcript_proto_enumTypes[3].Descriptor()
 }
 
 func (Dialog_DialogType) Type() protoreflect.EnumType {
-	return &file_transcript_proto_enumTypes[4]
+	return &file_transcript_proto_enumTypes[3]
 }
 
 func (x Dialog_DialogType) Number() protoreflect.EnumNumber {
@@ -297,39 +245,35 @@ func (Dialog_DialogType) EnumDescriptor() ([]byte, []int) {
 }
 
 type Transcript struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Publication   string                 `protobuf:"bytes,2,opt,name=publication,proto3" json:"publication,omitempty"`
-	Series        int32                  `protobuf:"varint,3,opt,name=series,proto3" json:"series,omitempty"`
-	Episode       int32                  `protobuf:"varint,4,opt,name=episode,proto3" json:"episode,omitempty"`
-	Metadata      map[string]string      `protobuf:"bytes,5,rep,name=metadata,proto3" json:"metadata,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	Transcript    []*Dialog              `protobuf:"bytes,7,rep,name=transcript,proto3" json:"transcript,omitempty"`
-	ReleaseDate   string                 `protobuf:"bytes,8,opt,name=release_date,json=releaseDate,proto3" json:"release_date,omitempty"`
-	Synopses      []*Synopsis            `protobuf:"bytes,9,rep,name=synopses,proto3" json:"synopses,omitempty"`
-	Contributors  []string               `protobuf:"bytes,10,rep,name=contributors,proto3" json:"contributors,omitempty"`
-	Incomplete    bool                   `protobuf:"varint,11,opt,name=incomplete,proto3" json:"incomplete,omitempty"`
-	RawTranscript string                 `protobuf:"bytes,12,opt,name=raw_transcript,json=rawTranscript,proto3" json:"raw_transcript,omitempty"`
-	// Deprecated: Marked as deprecated in transcript.proto.
-	AudioUri           string       `protobuf:"bytes,13,opt,name=audio_uri,json=audioUri,proto3" json:"audio_uri,omitempty"`
-	ShortId            string       `protobuf:"bytes,14,opt,name=short_id,json=shortId,proto3" json:"short_id,omitempty"`
-	Trivia             []*Trivia    `protobuf:"bytes,15,rep,name=trivia,proto3" json:"trivia,omitempty"`
-	Actors             []string     `protobuf:"bytes,16,rep,name=actors,proto3" json:"actors,omitempty"`
-	OffsetAccuracyPcnt int32        `protobuf:"varint,17,opt,name=offset_accuracy_pcnt,json=offsetAccuracyPcnt,proto3" json:"offset_accuracy_pcnt,omitempty"`
-	Name               string       `protobuf:"bytes,18,opt,name=name,proto3" json:"name,omitempty"`
-	Version            string       `protobuf:"bytes,19,opt,name=version,proto3" json:"version,omitempty"`
-	Bestof             bool         `protobuf:"varint,20,opt,name=bestof,proto3" json:"bestof,omitempty"`
-	Special            bool         `protobuf:"varint,21,opt,name=special,proto3" json:"special,omitempty"`
-	Locked             bool         `protobuf:"varint,22,opt,name=locked,proto3" json:"locked,omitempty"`
-	Summary            string       `protobuf:"bytes,23,opt,name=summary,proto3" json:"summary,omitempty"`
-	AudioQuality       AudioQuality `protobuf:"varint,24,opt,name=audio_quality,json=audioQuality,proto3,enum=rsk.AudioQuality" json:"audio_quality,omitempty"`
-	// Deprecated: Marked as deprecated in transcript.proto.
-	MediaType       MediaType       `protobuf:"varint,25,opt,name=media_type,json=mediaType,proto3,enum=rsk.MediaType" json:"media_type,omitempty"`
-	Media           *Media          `protobuf:"bytes,26,opt,name=media,proto3" json:"media,omitempty"`
-	PublicationType PublicationType `protobuf:"varint,27,opt,name=publication_type,json=publicationType,proto3,enum=rsk.PublicationType" json:"publication_type,omitempty"`
-	Ratings         *Ratings        `protobuf:"bytes,28,opt,name=ratings,proto3" json:"ratings,omitempty"`
-	Tags            []*Tag          `protobuf:"bytes,29,rep,name=tags,proto3" json:"tags,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	Id                 string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Publication        string                 `protobuf:"bytes,2,opt,name=publication,proto3" json:"publication,omitempty"`
+	Series             int32                  `protobuf:"varint,3,opt,name=series,proto3" json:"series,omitempty"`
+	Episode            int32                  `protobuf:"varint,4,opt,name=episode,proto3" json:"episode,omitempty"`
+	Metadata           map[string]string      `protobuf:"bytes,5,rep,name=metadata,proto3" json:"metadata,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	Transcript         []*Dialog              `protobuf:"bytes,7,rep,name=transcript,proto3" json:"transcript,omitempty"`
+	ReleaseDate        string                 `protobuf:"bytes,8,opt,name=release_date,json=releaseDate,proto3" json:"release_date,omitempty"`
+	Synopses           []*Synopsis            `protobuf:"bytes,9,rep,name=synopses,proto3" json:"synopses,omitempty"`
+	Contributors       []string               `protobuf:"bytes,10,rep,name=contributors,proto3" json:"contributors,omitempty"`
+	Incomplete         bool                   `protobuf:"varint,11,opt,name=incomplete,proto3" json:"incomplete,omitempty"`
+	RawTranscript      string                 `protobuf:"bytes,12,opt,name=raw_transcript,json=rawTranscript,proto3" json:"raw_transcript,omitempty"`
+	ShortId            string                 `protobuf:"bytes,14,opt,name=short_id,json=shortId,proto3" json:"short_id,omitempty"`
+	Trivia             []*Trivia              `protobuf:"bytes,15,rep,name=trivia,proto3" json:"trivia,omitempty"`
+	Actors             []string               `protobuf:"bytes,16,rep,name=actors,proto3" json:"actors,omitempty"`
+	OffsetAccuracyPcnt int32                  `protobuf:"varint,17,opt,name=offset_accuracy_pcnt,json=offsetAccuracyPcnt,proto3" json:"offset_accuracy_pcnt,omitempty"`
+	Name               string                 `protobuf:"bytes,18,opt,name=name,proto3" json:"name,omitempty"`
+	Version            string                 `protobuf:"bytes,19,opt,name=version,proto3" json:"version,omitempty"`
+	Bestof             bool                   `protobuf:"varint,20,opt,name=bestof,proto3" json:"bestof,omitempty"`
+	Special            bool                   `protobuf:"varint,21,opt,name=special,proto3" json:"special,omitempty"`
+	Locked             bool                   `protobuf:"varint,22,opt,name=locked,proto3" json:"locked,omitempty"`
+	Summary            string                 `protobuf:"bytes,23,opt,name=summary,proto3" json:"summary,omitempty"`
+	AudioQuality       AudioQuality           `protobuf:"varint,24,opt,name=audio_quality,json=audioQuality,proto3,enum=rsk.AudioQuality" json:"audio_quality,omitempty"`
+	Media              *Media                 `protobuf:"bytes,26,opt,name=media,proto3" json:"media,omitempty"`
+	PublicationType    PublicationType        `protobuf:"varint,27,opt,name=publication_type,json=publicationType,proto3,enum=rsk.PublicationType" json:"publication_type,omitempty"`
+	Ratings            *Ratings               `protobuf:"bytes,28,opt,name=ratings,proto3" json:"ratings,omitempty"`
+	Tags               []*Tag                 `protobuf:"bytes,29,rep,name=tags,proto3" json:"tags,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *Transcript) Reset() {
@@ -439,14 +383,6 @@ func (x *Transcript) GetRawTranscript() string {
 	return ""
 }
 
-// Deprecated: Marked as deprecated in transcript.proto.
-func (x *Transcript) GetAudioUri() string {
-	if x != nil {
-		return x.AudioUri
-	}
-	return ""
-}
-
 func (x *Transcript) GetShortId() string {
 	if x != nil {
 		return x.ShortId
@@ -522,14 +458,6 @@ func (x *Transcript) GetAudioQuality() AudioQuality {
 		return x.AudioQuality
 	}
 	return AudioQuality_AUDIO_QUALITY_UNKNOWN
-}
-
-// Deprecated: Marked as deprecated in transcript.proto.
-func (x *Transcript) GetMediaType() MediaType {
-	if x != nil {
-		return x.MediaType
-	}
-	return MediaType_MEDIA_TYPE_UNKNOWN
 }
 
 func (x *Transcript) GetMedia() *Media {
@@ -633,24 +561,20 @@ type ShortTranscript struct {
 	Synopsis            []*Synopsis            `protobuf:"bytes,9,rep,name=synopsis,proto3" json:"synopsis,omitempty"`
 	TriviaAvailable     bool                   `protobuf:"varint,10,opt,name=trivia_available,json=triviaAvailable,proto3" json:"trivia_available,omitempty"`
 	Actors              []string               `protobuf:"bytes,11,rep,name=actors,proto3" json:"actors,omitempty"`
-	// Deprecated: Marked as deprecated in transcript.proto.
-	AudioUri           string            `protobuf:"bytes,12,opt,name=audio_uri,json=audioUri,proto3" json:"audio_uri,omitempty"`
-	ShortId            string            `protobuf:"bytes,13,opt,name=short_id,json=shortId,proto3" json:"short_id,omitempty"`
-	OffsetAccuracyPcnt int32             `protobuf:"varint,14,opt,name=offset_accuracy_pcnt,json=offsetAccuracyPcnt,proto3" json:"offset_accuracy_pcnt,omitempty"`
-	Name               string            `protobuf:"bytes,15,opt,name=name,proto3" json:"name,omitempty"`
-	Version            string            `protobuf:"bytes,16,opt,name=version,proto3" json:"version,omitempty"`
-	Metadata           map[string]string `protobuf:"bytes,17,rep,name=metadata,proto3" json:"metadata,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	Bestof             bool              `protobuf:"varint,18,opt,name=bestof,proto3" json:"bestof,omitempty"`
-	Special            bool              `protobuf:"varint,19,opt,name=special,proto3" json:"special,omitempty"`
-	AudioQuality       AudioQuality      `protobuf:"varint,20,opt,name=audio_quality,json=audioQuality,proto3,enum=rsk.AudioQuality" json:"audio_quality,omitempty"`
-	// Deprecated: Marked as deprecated in transcript.proto.
-	MediaType       MediaType       `protobuf:"varint,21,opt,name=media_type,json=mediaType,proto3,enum=rsk.MediaType" json:"media_type,omitempty"`
-	Media           *Media          `protobuf:"bytes,22,opt,name=media,proto3" json:"media,omitempty"`
-	PublicationType PublicationType `protobuf:"varint,23,opt,name=publication_type,json=publicationType,proto3,enum=rsk.PublicationType" json:"publication_type,omitempty"`
-	RatingScore     float32         `protobuf:"fixed32,24,opt,name=rating_score,json=ratingScore,proto3" json:"rating_score,omitempty"`
-	NumRatingScores int32           `protobuf:"varint,25,opt,name=num_rating_scores,json=numRatingScores,proto3" json:"num_rating_scores,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	ShortId             string                 `protobuf:"bytes,13,opt,name=short_id,json=shortId,proto3" json:"short_id,omitempty"`
+	OffsetAccuracyPcnt  int32                  `protobuf:"varint,14,opt,name=offset_accuracy_pcnt,json=offsetAccuracyPcnt,proto3" json:"offset_accuracy_pcnt,omitempty"`
+	Name                string                 `protobuf:"bytes,15,opt,name=name,proto3" json:"name,omitempty"`
+	Version             string                 `protobuf:"bytes,16,opt,name=version,proto3" json:"version,omitempty"`
+	Metadata            map[string]string      `protobuf:"bytes,17,rep,name=metadata,proto3" json:"metadata,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	Bestof              bool                   `protobuf:"varint,18,opt,name=bestof,proto3" json:"bestof,omitempty"`
+	Special             bool                   `protobuf:"varint,19,opt,name=special,proto3" json:"special,omitempty"`
+	AudioQuality        AudioQuality           `protobuf:"varint,20,opt,name=audio_quality,json=audioQuality,proto3,enum=rsk.AudioQuality" json:"audio_quality,omitempty"`
+	Media               *Media                 `protobuf:"bytes,22,opt,name=media,proto3" json:"media,omitempty"`
+	PublicationType     PublicationType        `protobuf:"varint,23,opt,name=publication_type,json=publicationType,proto3,enum=rsk.PublicationType" json:"publication_type,omitempty"`
+	RatingScore         float32                `protobuf:"fixed32,24,opt,name=rating_score,json=ratingScore,proto3" json:"rating_score,omitempty"`
+	NumRatingScores     int32                  `protobuf:"varint,25,opt,name=num_rating_scores,json=numRatingScores,proto3" json:"num_rating_scores,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
 }
 
 func (x *ShortTranscript) Reset() {
@@ -760,14 +684,6 @@ func (x *ShortTranscript) GetActors() []string {
 	return nil
 }
 
-// Deprecated: Marked as deprecated in transcript.proto.
-func (x *ShortTranscript) GetAudioUri() string {
-	if x != nil {
-		return x.AudioUri
-	}
-	return ""
-}
-
 func (x *ShortTranscript) GetShortId() string {
 	if x != nil {
 		return x.ShortId
@@ -822,14 +738,6 @@ func (x *ShortTranscript) GetAudioQuality() AudioQuality {
 		return x.AudioQuality
 	}
 	return AudioQuality_AUDIO_QUALITY_UNKNOWN
-}
-
-// Deprecated: Marked as deprecated in transcript.proto.
-func (x *ShortTranscript) GetMediaType() MediaType {
-	if x != nil {
-		return x.MediaType
-	}
-	return MediaType_MEDIA_TYPE_UNKNOWN
 }
 
 func (x *ShortTranscript) GetMedia() *Media {
@@ -3594,7 +3502,7 @@ var File_transcript_proto protoreflect.FileDescriptor
 
 const file_transcript_proto_rawDesc = "" +
 	"\n" +
-	"\x10transcript.proto\x12\x03rsk\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\fcommon.proto\"\x9f\b\n" +
+	"\x10transcript.proto\x12\x03rsk\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\fcommon.proto\"\xcb\a\n" +
 	"\n" +
 	"Transcript\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12 \n" +
@@ -3612,8 +3520,7 @@ const file_transcript_proto_rawDesc = "" +
 	"\n" +
 	"incomplete\x18\v \x01(\bR\n" +
 	"incomplete\x12%\n" +
-	"\x0eraw_transcript\x18\f \x01(\tR\rrawTranscript\x12\x1f\n" +
-	"\taudio_uri\x18\r \x01(\tB\x02\x18\x01R\baudioUri\x12\x19\n" +
+	"\x0eraw_transcript\x18\f \x01(\tR\rrawTranscript\x12\x19\n" +
 	"\bshort_id\x18\x0e \x01(\tR\ashortId\x12#\n" +
 	"\x06trivia\x18\x0f \x03(\v2\v.rsk.TriviaR\x06trivia\x12\x16\n" +
 	"\x06actors\x18\x10 \x03(\tR\x06actors\x120\n" +
@@ -3624,9 +3531,7 @@ const file_transcript_proto_rawDesc = "" +
 	"\aspecial\x18\x15 \x01(\bR\aspecial\x12\x16\n" +
 	"\x06locked\x18\x16 \x01(\bR\x06locked\x12\x18\n" +
 	"\asummary\x18\x17 \x01(\tR\asummary\x126\n" +
-	"\raudio_quality\x18\x18 \x01(\x0e2\x11.rsk.AudioQualityR\faudioQuality\x121\n" +
-	"\n" +
-	"media_type\x18\x19 \x01(\x0e2\x0e.rsk.MediaTypeB\x02\x18\x01R\tmediaType\x12 \n" +
+	"\raudio_quality\x18\x18 \x01(\x0e2\x11.rsk.AudioQualityR\faudioQuality\x12 \n" +
 	"\x05media\x18\x1a \x01(\v2\n" +
 	".rsk.MediaR\x05media\x12?\n" +
 	"\x10publication_type\x18\x1b \x01(\x0e2\x14.rsk.PublicationTypeR\x0fpublicationType\x12&\n" +
@@ -3638,7 +3543,7 @@ const file_transcript_proto_rawDesc = "" +
 	"\x05Media\x12\x14\n" +
 	"\x05video\x18\x01 \x01(\bR\x05video\x12\x14\n" +
 	"\x05audio\x18\x02 \x01(\bR\x05audio\x12)\n" +
-	"\x10audio_restricted\x18\x03 \x01(\bR\x0faudioRestricted\"\xdb\a\n" +
+	"\x10audio_restricted\x18\x03 \x01(\bR\x0faudioRestricted\"\x87\a\n" +
 	"\x0fShortTranscript\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12 \n" +
 	"\vpublication\x18\x02 \x01(\tR\vpublication\x12\x16\n" +
@@ -3653,8 +3558,7 @@ const file_transcript_proto_rawDesc = "" +
 	"\bsynopsis\x18\t \x03(\v2\r.rsk.SynopsisR\bsynopsis\x12)\n" +
 	"\x10trivia_available\x18\n" +
 	" \x01(\bR\x0ftriviaAvailable\x12\x16\n" +
-	"\x06actors\x18\v \x03(\tR\x06actors\x12\x1f\n" +
-	"\taudio_uri\x18\f \x01(\tB\x02\x18\x01R\baudioUri\x12\x19\n" +
+	"\x06actors\x18\v \x03(\tR\x06actors\x12\x19\n" +
 	"\bshort_id\x18\r \x01(\tR\ashortId\x120\n" +
 	"\x14offset_accuracy_pcnt\x18\x0e \x01(\x05R\x12offsetAccuracyPcnt\x12\x12\n" +
 	"\x04name\x18\x0f \x01(\tR\x04name\x12\x18\n" +
@@ -3662,9 +3566,7 @@ const file_transcript_proto_rawDesc = "" +
 	"\bmetadata\x18\x11 \x03(\v2\".rsk.ShortTranscript.MetadataEntryR\bmetadata\x12\x16\n" +
 	"\x06bestof\x18\x12 \x01(\bR\x06bestof\x12\x18\n" +
 	"\aspecial\x18\x13 \x01(\bR\aspecial\x126\n" +
-	"\raudio_quality\x18\x14 \x01(\x0e2\x11.rsk.AudioQualityR\faudioQuality\x121\n" +
-	"\n" +
-	"media_type\x18\x15 \x01(\x0e2\x0e.rsk.MediaTypeB\x02\x18\x01R\tmediaType\x12 \n" +
+	"\raudio_quality\x18\x14 \x01(\x0e2\x11.rsk.AudioQualityR\faudioQuality\x12 \n" +
 	"\x05media\x18\x16 \x01(\v2\n" +
 	".rsk.MediaR\x05media\x12?\n" +
 	"\x10publication_type\x18\x17 \x01(\x0e2\x14.rsk.PublicationTypeR\x0fpublicationType\x12!\n" +
@@ -3924,12 +3826,7 @@ const file_transcript_proto_rawDesc = "" +
 	"\x15AUDIO_QUALITY_UNKNOWN\x10\x00\x12\b\n" +
 	"\x04POOR\x10\x01\x12\v\n" +
 	"\aAVERAGE\x10\x02\x12\b\n" +
-	"\x04GOOD\x10\x03*D\n" +
-	"\tMediaType\x12\x16\n" +
-	"\x12MEDIA_TYPE_UNKNOWN\x10\x00\x12\t\n" +
-	"\x05AUDIO\x10\x01\x12\t\n" +
-	"\x05VIDEO\x10\x02\x12\t\n" +
-	"\x05MULTI\x10\x03*\xba\x01\n" +
+	"\x04GOOD\x10\x03*\xba\x01\n" +
 	"\x0fPublicationType\x12\x1c\n" +
 	"\x18PUBLICATION_TYPE_UNKNOWN\x10\x00\x12\x1a\n" +
 	"\x16PUBLICATION_TYPE_RADIO\x10\x01\x12\x1c\n" +
@@ -3999,165 +3896,162 @@ func file_transcript_proto_rawDescGZIP() []byte {
 	return file_transcript_proto_rawDescData
 }
 
-var file_transcript_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
+var file_transcript_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
 var file_transcript_proto_msgTypes = make([]protoimpl.MessageInfo, 52)
 var file_transcript_proto_goTypes = []any{
 	(ContributionState)(0),                       // 0: rsk.ContributionState
 	(AudioQuality)(0),                            // 1: rsk.AudioQuality
-	(MediaType)(0),                               // 2: rsk.MediaType
-	(PublicationType)(0),                         // 3: rsk.PublicationType
-	(Dialog_DialogType)(0),                       // 4: rsk.Dialog.DialogType
-	(*Transcript)(nil),                           // 5: rsk.Transcript
-	(*Media)(nil),                                // 6: rsk.Media
-	(*ShortTranscript)(nil),                      // 7: rsk.ShortTranscript
-	(*Dialog)(nil),                               // 8: rsk.Dialog
-	(*Synopsis)(nil),                             // 9: rsk.Synopsis
-	(*Trivia)(nil),                               // 10: rsk.Trivia
-	(*GetTranscriptRequest)(nil),                 // 11: rsk.GetTranscriptRequest
-	(*DialogRange)(nil),                          // 12: rsk.DialogRange
-	(*GetTranscriptDialogRequest)(nil),           // 13: rsk.GetTranscriptDialogRequest
-	(*ListTranscriptsRequest)(nil),               // 14: rsk.ListTranscriptsRequest
-	(*TranscriptList)(nil),                       // 15: rsk.TranscriptList
-	(*Ratings)(nil),                              // 16: rsk.Ratings
-	(*ChunkStates)(nil),                          // 17: rsk.ChunkStates
-	(*ChunkedTranscriptStats)(nil),               // 18: rsk.ChunkedTranscriptStats
-	(*ChunkedTranscriptList)(nil),                // 19: rsk.ChunkedTranscriptList
-	(*ChunkStats)(nil),                           // 20: rsk.ChunkStats
-	(*GetTranscriptChunkRequest)(nil),            // 21: rsk.GetTranscriptChunkRequest
-	(*Chunk)(nil),                                // 22: rsk.Chunk
-	(*ListTranscriptChunksRequest)(nil),          // 23: rsk.ListTranscriptChunksRequest
-	(*TranscriptChunkList)(nil),                  // 24: rsk.TranscriptChunkList
-	(*ListChunkContributionsRequest)(nil),        // 25: rsk.ListChunkContributionsRequest
-	(*ChunkContributionList)(nil),                // 26: rsk.ChunkContributionList
-	(*ChunkContribution)(nil),                    // 27: rsk.ChunkContribution
-	(*ShortChunkContribution)(nil),               // 28: rsk.ShortChunkContribution
-	(*ChunkChunkContributionList)(nil),           // 29: rsk.ChunkChunkContributionList
-	(*GetChunkContributionRequest)(nil),          // 30: rsk.GetChunkContributionRequest
-	(*CreateChunkContributionRequest)(nil),       // 31: rsk.CreateChunkContributionRequest
-	(*UpdateChunkContributionRequest)(nil),       // 32: rsk.UpdateChunkContributionRequest
-	(*DeleteChunkContributionRequest)(nil),       // 33: rsk.DeleteChunkContributionRequest
-	(*RequestChunkContributionStateRequest)(nil), // 34: rsk.RequestChunkContributionStateRequest
-	(*CreateTranscriptChangeRequest)(nil),        // 35: rsk.CreateTranscriptChangeRequest
-	(*ListTranscriptChangesRequest)(nil),         // 36: rsk.ListTranscriptChangesRequest
-	(*UpdateTranscriptChangeRequest)(nil),        // 37: rsk.UpdateTranscriptChangeRequest
-	(*DeleteTranscriptChangeRequest)(nil),        // 38: rsk.DeleteTranscriptChangeRequest
-	(*TranscriptChangeList)(nil),                 // 39: rsk.TranscriptChangeList
-	(*TranscriptChange)(nil),                     // 40: rsk.TranscriptChange
-	(*ShortTranscriptChange)(nil),                // 41: rsk.ShortTranscriptChange
-	(*RequestTranscriptChangeStateRequest)(nil),  // 42: rsk.RequestTranscriptChangeStateRequest
-	(*GetTranscriptChangeRequest)(nil),           // 43: rsk.GetTranscriptChangeRequest
-	(*GetTranscriptChangeDiffRequest)(nil),       // 44: rsk.GetTranscriptChangeDiffRequest
-	(*TranscriptChangeDiff)(nil),                 // 45: rsk.TranscriptChangeDiff
-	(*TranscriptDialog)(nil),                     // 46: rsk.TranscriptDialog
-	(*SetTranscriptRatingScoreRequest)(nil),      // 47: rsk.SetTranscriptRatingScoreRequest
-	(*BulkSetTranscriptRatingScoreRequest)(nil),  // 48: rsk.BulkSetTranscriptRatingScoreRequest
-	(*BulkSetTranscriptTagsRequest)(nil),         // 49: rsk.BulkSetTranscriptTagsRequest
-	(*Tag)(nil),                                  // 50: rsk.Tag
-	nil,                                          // 51: rsk.Transcript.MetadataEntry
-	nil,                                          // 52: rsk.ShortTranscript.MetadataEntry
-	nil,                                          // 53: rsk.Dialog.MetadataEntry
-	nil,                                          // 54: rsk.Ratings.ScoresEntry
-	nil,                                          // 55: rsk.ChunkedTranscriptStats.ChunkContributionsEntry
-	nil,                                          // 56: rsk.BulkSetTranscriptRatingScoreRequest.ScoresEntry
-	(*Author)(nil),                               // 57: rsk.Author
-	(*emptypb.Empty)(nil),                        // 58: google.protobuf.Empty
+	(PublicationType)(0),                         // 2: rsk.PublicationType
+	(Dialog_DialogType)(0),                       // 3: rsk.Dialog.DialogType
+	(*Transcript)(nil),                           // 4: rsk.Transcript
+	(*Media)(nil),                                // 5: rsk.Media
+	(*ShortTranscript)(nil),                      // 6: rsk.ShortTranscript
+	(*Dialog)(nil),                               // 7: rsk.Dialog
+	(*Synopsis)(nil),                             // 8: rsk.Synopsis
+	(*Trivia)(nil),                               // 9: rsk.Trivia
+	(*GetTranscriptRequest)(nil),                 // 10: rsk.GetTranscriptRequest
+	(*DialogRange)(nil),                          // 11: rsk.DialogRange
+	(*GetTranscriptDialogRequest)(nil),           // 12: rsk.GetTranscriptDialogRequest
+	(*ListTranscriptsRequest)(nil),               // 13: rsk.ListTranscriptsRequest
+	(*TranscriptList)(nil),                       // 14: rsk.TranscriptList
+	(*Ratings)(nil),                              // 15: rsk.Ratings
+	(*ChunkStates)(nil),                          // 16: rsk.ChunkStates
+	(*ChunkedTranscriptStats)(nil),               // 17: rsk.ChunkedTranscriptStats
+	(*ChunkedTranscriptList)(nil),                // 18: rsk.ChunkedTranscriptList
+	(*ChunkStats)(nil),                           // 19: rsk.ChunkStats
+	(*GetTranscriptChunkRequest)(nil),            // 20: rsk.GetTranscriptChunkRequest
+	(*Chunk)(nil),                                // 21: rsk.Chunk
+	(*ListTranscriptChunksRequest)(nil),          // 22: rsk.ListTranscriptChunksRequest
+	(*TranscriptChunkList)(nil),                  // 23: rsk.TranscriptChunkList
+	(*ListChunkContributionsRequest)(nil),        // 24: rsk.ListChunkContributionsRequest
+	(*ChunkContributionList)(nil),                // 25: rsk.ChunkContributionList
+	(*ChunkContribution)(nil),                    // 26: rsk.ChunkContribution
+	(*ShortChunkContribution)(nil),               // 27: rsk.ShortChunkContribution
+	(*ChunkChunkContributionList)(nil),           // 28: rsk.ChunkChunkContributionList
+	(*GetChunkContributionRequest)(nil),          // 29: rsk.GetChunkContributionRequest
+	(*CreateChunkContributionRequest)(nil),       // 30: rsk.CreateChunkContributionRequest
+	(*UpdateChunkContributionRequest)(nil),       // 31: rsk.UpdateChunkContributionRequest
+	(*DeleteChunkContributionRequest)(nil),       // 32: rsk.DeleteChunkContributionRequest
+	(*RequestChunkContributionStateRequest)(nil), // 33: rsk.RequestChunkContributionStateRequest
+	(*CreateTranscriptChangeRequest)(nil),        // 34: rsk.CreateTranscriptChangeRequest
+	(*ListTranscriptChangesRequest)(nil),         // 35: rsk.ListTranscriptChangesRequest
+	(*UpdateTranscriptChangeRequest)(nil),        // 36: rsk.UpdateTranscriptChangeRequest
+	(*DeleteTranscriptChangeRequest)(nil),        // 37: rsk.DeleteTranscriptChangeRequest
+	(*TranscriptChangeList)(nil),                 // 38: rsk.TranscriptChangeList
+	(*TranscriptChange)(nil),                     // 39: rsk.TranscriptChange
+	(*ShortTranscriptChange)(nil),                // 40: rsk.ShortTranscriptChange
+	(*RequestTranscriptChangeStateRequest)(nil),  // 41: rsk.RequestTranscriptChangeStateRequest
+	(*GetTranscriptChangeRequest)(nil),           // 42: rsk.GetTranscriptChangeRequest
+	(*GetTranscriptChangeDiffRequest)(nil),       // 43: rsk.GetTranscriptChangeDiffRequest
+	(*TranscriptChangeDiff)(nil),                 // 44: rsk.TranscriptChangeDiff
+	(*TranscriptDialog)(nil),                     // 45: rsk.TranscriptDialog
+	(*SetTranscriptRatingScoreRequest)(nil),      // 46: rsk.SetTranscriptRatingScoreRequest
+	(*BulkSetTranscriptRatingScoreRequest)(nil),  // 47: rsk.BulkSetTranscriptRatingScoreRequest
+	(*BulkSetTranscriptTagsRequest)(nil),         // 48: rsk.BulkSetTranscriptTagsRequest
+	(*Tag)(nil),                                  // 49: rsk.Tag
+	nil,                                          // 50: rsk.Transcript.MetadataEntry
+	nil,                                          // 51: rsk.ShortTranscript.MetadataEntry
+	nil,                                          // 52: rsk.Dialog.MetadataEntry
+	nil,                                          // 53: rsk.Ratings.ScoresEntry
+	nil,                                          // 54: rsk.ChunkedTranscriptStats.ChunkContributionsEntry
+	nil,                                          // 55: rsk.BulkSetTranscriptRatingScoreRequest.ScoresEntry
+	(*Author)(nil),                               // 56: rsk.Author
+	(*emptypb.Empty)(nil),                        // 57: google.protobuf.Empty
 }
 var file_transcript_proto_depIdxs = []int32{
-	51, // 0: rsk.Transcript.metadata:type_name -> rsk.Transcript.MetadataEntry
-	8,  // 1: rsk.Transcript.transcript:type_name -> rsk.Dialog
-	9,  // 2: rsk.Transcript.synopses:type_name -> rsk.Synopsis
-	10, // 3: rsk.Transcript.trivia:type_name -> rsk.Trivia
+	50, // 0: rsk.Transcript.metadata:type_name -> rsk.Transcript.MetadataEntry
+	7,  // 1: rsk.Transcript.transcript:type_name -> rsk.Dialog
+	8,  // 2: rsk.Transcript.synopses:type_name -> rsk.Synopsis
+	9,  // 3: rsk.Transcript.trivia:type_name -> rsk.Trivia
 	1,  // 4: rsk.Transcript.audio_quality:type_name -> rsk.AudioQuality
-	2,  // 5: rsk.Transcript.media_type:type_name -> rsk.MediaType
-	6,  // 6: rsk.Transcript.media:type_name -> rsk.Media
-	3,  // 7: rsk.Transcript.publication_type:type_name -> rsk.PublicationType
-	16, // 8: rsk.Transcript.ratings:type_name -> rsk.Ratings
-	50, // 9: rsk.Transcript.tags:type_name -> rsk.Tag
-	9,  // 10: rsk.ShortTranscript.synopsis:type_name -> rsk.Synopsis
-	52, // 11: rsk.ShortTranscript.metadata:type_name -> rsk.ShortTranscript.MetadataEntry
-	1,  // 12: rsk.ShortTranscript.audio_quality:type_name -> rsk.AudioQuality
-	2,  // 13: rsk.ShortTranscript.media_type:type_name -> rsk.MediaType
-	6,  // 14: rsk.ShortTranscript.media:type_name -> rsk.Media
-	3,  // 15: rsk.ShortTranscript.publication_type:type_name -> rsk.PublicationType
-	4,  // 16: rsk.Dialog.type:type_name -> rsk.Dialog.DialogType
-	53, // 17: rsk.Dialog.metadata:type_name -> rsk.Dialog.MetadataEntry
-	12, // 18: rsk.GetTranscriptDialogRequest.range:type_name -> rsk.DialogRange
-	7,  // 19: rsk.TranscriptList.episodes:type_name -> rsk.ShortTranscript
-	54, // 20: rsk.Ratings.scores:type_name -> rsk.Ratings.ScoresEntry
-	0,  // 21: rsk.ChunkStates.states:type_name -> rsk.ContributionState
-	55, // 22: rsk.ChunkedTranscriptStats.chunk_contributions:type_name -> rsk.ChunkedTranscriptStats.ChunkContributionsEntry
-	18, // 23: rsk.ChunkedTranscriptList.chunked:type_name -> rsk.ChunkedTranscriptStats
-	22, // 24: rsk.TranscriptChunkList.chunks:type_name -> rsk.Chunk
-	27, // 25: rsk.ChunkContributionList.contributions:type_name -> rsk.ChunkContribution
-	0,  // 26: rsk.ChunkContribution.state:type_name -> rsk.ContributionState
-	57, // 27: rsk.ChunkContribution.author:type_name -> rsk.Author
-	0,  // 28: rsk.ShortChunkContribution.state:type_name -> rsk.ContributionState
-	28, // 29: rsk.ChunkChunkContributionList.contributions:type_name -> rsk.ShortChunkContribution
-	0,  // 30: rsk.UpdateChunkContributionRequest.state:type_name -> rsk.ContributionState
-	0,  // 31: rsk.RequestChunkContributionStateRequest.request_state:type_name -> rsk.ContributionState
-	0,  // 32: rsk.UpdateTranscriptChangeRequest.state:type_name -> rsk.ContributionState
-	41, // 33: rsk.TranscriptChangeList.changes:type_name -> rsk.ShortTranscriptChange
-	0,  // 34: rsk.TranscriptChange.state:type_name -> rsk.ContributionState
-	57, // 35: rsk.TranscriptChange.author:type_name -> rsk.Author
-	0,  // 36: rsk.ShortTranscriptChange.state:type_name -> rsk.ContributionState
-	57, // 37: rsk.ShortTranscriptChange.author:type_name -> rsk.Author
-	0,  // 38: rsk.RequestTranscriptChangeStateRequest.state:type_name -> rsk.ContributionState
-	7,  // 39: rsk.TranscriptDialog.transcript_meta:type_name -> rsk.ShortTranscript
-	8,  // 40: rsk.TranscriptDialog.dialog:type_name -> rsk.Dialog
-	56, // 41: rsk.BulkSetTranscriptRatingScoreRequest.scores:type_name -> rsk.BulkSetTranscriptRatingScoreRequest.ScoresEntry
-	50, // 42: rsk.BulkSetTranscriptTagsRequest.tags:type_name -> rsk.Tag
-	17, // 43: rsk.ChunkedTranscriptStats.ChunkContributionsEntry.value:type_name -> rsk.ChunkStates
-	11, // 44: rsk.TranscriptService.GetTranscript:input_type -> rsk.GetTranscriptRequest
-	13, // 45: rsk.TranscriptService.GetTranscriptDialog:input_type -> rsk.GetTranscriptDialogRequest
-	14, // 46: rsk.TranscriptService.ListTranscripts:input_type -> rsk.ListTranscriptsRequest
-	58, // 47: rsk.TranscriptService.ListChunkedTranscripts:input_type -> google.protobuf.Empty
-	58, // 48: rsk.TranscriptService.GetChunkedTranscriptChunkStats:input_type -> google.protobuf.Empty
-	23, // 49: rsk.TranscriptService.ListTranscriptChunks:input_type -> rsk.ListTranscriptChunksRequest
-	21, // 50: rsk.TranscriptService.GetTranscriptChunk:input_type -> rsk.GetTranscriptChunkRequest
-	25, // 51: rsk.TranscriptService.ListChunkContributions:input_type -> rsk.ListChunkContributionsRequest
-	31, // 52: rsk.TranscriptService.CreateChunkContribution:input_type -> rsk.CreateChunkContributionRequest
-	30, // 53: rsk.TranscriptService.GetChunkContribution:input_type -> rsk.GetChunkContributionRequest
-	32, // 54: rsk.TranscriptService.UpdateChunkContribution:input_type -> rsk.UpdateChunkContributionRequest
-	33, // 55: rsk.TranscriptService.DeleteChunkContribution:input_type -> rsk.DeleteChunkContributionRequest
-	34, // 56: rsk.TranscriptService.RequestChunkContributionState:input_type -> rsk.RequestChunkContributionStateRequest
-	36, // 57: rsk.TranscriptService.ListTranscriptChanges:input_type -> rsk.ListTranscriptChangesRequest
-	43, // 58: rsk.TranscriptService.GetTranscriptChange:input_type -> rsk.GetTranscriptChangeRequest
-	44, // 59: rsk.TranscriptService.GetTranscriptChangeDiff:input_type -> rsk.GetTranscriptChangeDiffRequest
-	35, // 60: rsk.TranscriptService.CreateTranscriptChange:input_type -> rsk.CreateTranscriptChangeRequest
-	37, // 61: rsk.TranscriptService.UpdateTranscriptChange:input_type -> rsk.UpdateTranscriptChangeRequest
-	38, // 62: rsk.TranscriptService.DeleteTranscriptChange:input_type -> rsk.DeleteTranscriptChangeRequest
-	42, // 63: rsk.TranscriptService.RequestTranscriptChangeState:input_type -> rsk.RequestTranscriptChangeStateRequest
-	47, // 64: rsk.TranscriptService.SetTranscriptRatingScore:input_type -> rsk.SetTranscriptRatingScoreRequest
-	48, // 65: rsk.TranscriptService.BulkSetTranscriptRatingScore:input_type -> rsk.BulkSetTranscriptRatingScoreRequest
-	49, // 66: rsk.TranscriptService.BulkSetTranscriptTags:input_type -> rsk.BulkSetTranscriptTagsRequest
-	5,  // 67: rsk.TranscriptService.GetTranscript:output_type -> rsk.Transcript
-	46, // 68: rsk.TranscriptService.GetTranscriptDialog:output_type -> rsk.TranscriptDialog
-	15, // 69: rsk.TranscriptService.ListTranscripts:output_type -> rsk.TranscriptList
-	19, // 70: rsk.TranscriptService.ListChunkedTranscripts:output_type -> rsk.ChunkedTranscriptList
-	20, // 71: rsk.TranscriptService.GetChunkedTranscriptChunkStats:output_type -> rsk.ChunkStats
-	24, // 72: rsk.TranscriptService.ListTranscriptChunks:output_type -> rsk.TranscriptChunkList
-	22, // 73: rsk.TranscriptService.GetTranscriptChunk:output_type -> rsk.Chunk
-	26, // 74: rsk.TranscriptService.ListChunkContributions:output_type -> rsk.ChunkContributionList
-	27, // 75: rsk.TranscriptService.CreateChunkContribution:output_type -> rsk.ChunkContribution
-	27, // 76: rsk.TranscriptService.GetChunkContribution:output_type -> rsk.ChunkContribution
-	27, // 77: rsk.TranscriptService.UpdateChunkContribution:output_type -> rsk.ChunkContribution
-	58, // 78: rsk.TranscriptService.DeleteChunkContribution:output_type -> google.protobuf.Empty
-	27, // 79: rsk.TranscriptService.RequestChunkContributionState:output_type -> rsk.ChunkContribution
-	39, // 80: rsk.TranscriptService.ListTranscriptChanges:output_type -> rsk.TranscriptChangeList
-	40, // 81: rsk.TranscriptService.GetTranscriptChange:output_type -> rsk.TranscriptChange
-	45, // 82: rsk.TranscriptService.GetTranscriptChangeDiff:output_type -> rsk.TranscriptChangeDiff
-	40, // 83: rsk.TranscriptService.CreateTranscriptChange:output_type -> rsk.TranscriptChange
-	40, // 84: rsk.TranscriptService.UpdateTranscriptChange:output_type -> rsk.TranscriptChange
-	58, // 85: rsk.TranscriptService.DeleteTranscriptChange:output_type -> google.protobuf.Empty
-	58, // 86: rsk.TranscriptService.RequestTranscriptChangeState:output_type -> google.protobuf.Empty
-	58, // 87: rsk.TranscriptService.SetTranscriptRatingScore:output_type -> google.protobuf.Empty
-	58, // 88: rsk.TranscriptService.BulkSetTranscriptRatingScore:output_type -> google.protobuf.Empty
-	58, // 89: rsk.TranscriptService.BulkSetTranscriptTags:output_type -> google.protobuf.Empty
-	67, // [67:90] is the sub-list for method output_type
-	44, // [44:67] is the sub-list for method input_type
-	44, // [44:44] is the sub-list for extension type_name
-	44, // [44:44] is the sub-list for extension extendee
-	0,  // [0:44] is the sub-list for field type_name
+	5,  // 5: rsk.Transcript.media:type_name -> rsk.Media
+	2,  // 6: rsk.Transcript.publication_type:type_name -> rsk.PublicationType
+	15, // 7: rsk.Transcript.ratings:type_name -> rsk.Ratings
+	49, // 8: rsk.Transcript.tags:type_name -> rsk.Tag
+	8,  // 9: rsk.ShortTranscript.synopsis:type_name -> rsk.Synopsis
+	51, // 10: rsk.ShortTranscript.metadata:type_name -> rsk.ShortTranscript.MetadataEntry
+	1,  // 11: rsk.ShortTranscript.audio_quality:type_name -> rsk.AudioQuality
+	5,  // 12: rsk.ShortTranscript.media:type_name -> rsk.Media
+	2,  // 13: rsk.ShortTranscript.publication_type:type_name -> rsk.PublicationType
+	3,  // 14: rsk.Dialog.type:type_name -> rsk.Dialog.DialogType
+	52, // 15: rsk.Dialog.metadata:type_name -> rsk.Dialog.MetadataEntry
+	11, // 16: rsk.GetTranscriptDialogRequest.range:type_name -> rsk.DialogRange
+	6,  // 17: rsk.TranscriptList.episodes:type_name -> rsk.ShortTranscript
+	53, // 18: rsk.Ratings.scores:type_name -> rsk.Ratings.ScoresEntry
+	0,  // 19: rsk.ChunkStates.states:type_name -> rsk.ContributionState
+	54, // 20: rsk.ChunkedTranscriptStats.chunk_contributions:type_name -> rsk.ChunkedTranscriptStats.ChunkContributionsEntry
+	17, // 21: rsk.ChunkedTranscriptList.chunked:type_name -> rsk.ChunkedTranscriptStats
+	21, // 22: rsk.TranscriptChunkList.chunks:type_name -> rsk.Chunk
+	26, // 23: rsk.ChunkContributionList.contributions:type_name -> rsk.ChunkContribution
+	0,  // 24: rsk.ChunkContribution.state:type_name -> rsk.ContributionState
+	56, // 25: rsk.ChunkContribution.author:type_name -> rsk.Author
+	0,  // 26: rsk.ShortChunkContribution.state:type_name -> rsk.ContributionState
+	27, // 27: rsk.ChunkChunkContributionList.contributions:type_name -> rsk.ShortChunkContribution
+	0,  // 28: rsk.UpdateChunkContributionRequest.state:type_name -> rsk.ContributionState
+	0,  // 29: rsk.RequestChunkContributionStateRequest.request_state:type_name -> rsk.ContributionState
+	0,  // 30: rsk.UpdateTranscriptChangeRequest.state:type_name -> rsk.ContributionState
+	40, // 31: rsk.TranscriptChangeList.changes:type_name -> rsk.ShortTranscriptChange
+	0,  // 32: rsk.TranscriptChange.state:type_name -> rsk.ContributionState
+	56, // 33: rsk.TranscriptChange.author:type_name -> rsk.Author
+	0,  // 34: rsk.ShortTranscriptChange.state:type_name -> rsk.ContributionState
+	56, // 35: rsk.ShortTranscriptChange.author:type_name -> rsk.Author
+	0,  // 36: rsk.RequestTranscriptChangeStateRequest.state:type_name -> rsk.ContributionState
+	6,  // 37: rsk.TranscriptDialog.transcript_meta:type_name -> rsk.ShortTranscript
+	7,  // 38: rsk.TranscriptDialog.dialog:type_name -> rsk.Dialog
+	55, // 39: rsk.BulkSetTranscriptRatingScoreRequest.scores:type_name -> rsk.BulkSetTranscriptRatingScoreRequest.ScoresEntry
+	49, // 40: rsk.BulkSetTranscriptTagsRequest.tags:type_name -> rsk.Tag
+	16, // 41: rsk.ChunkedTranscriptStats.ChunkContributionsEntry.value:type_name -> rsk.ChunkStates
+	10, // 42: rsk.TranscriptService.GetTranscript:input_type -> rsk.GetTranscriptRequest
+	12, // 43: rsk.TranscriptService.GetTranscriptDialog:input_type -> rsk.GetTranscriptDialogRequest
+	13, // 44: rsk.TranscriptService.ListTranscripts:input_type -> rsk.ListTranscriptsRequest
+	57, // 45: rsk.TranscriptService.ListChunkedTranscripts:input_type -> google.protobuf.Empty
+	57, // 46: rsk.TranscriptService.GetChunkedTranscriptChunkStats:input_type -> google.protobuf.Empty
+	22, // 47: rsk.TranscriptService.ListTranscriptChunks:input_type -> rsk.ListTranscriptChunksRequest
+	20, // 48: rsk.TranscriptService.GetTranscriptChunk:input_type -> rsk.GetTranscriptChunkRequest
+	24, // 49: rsk.TranscriptService.ListChunkContributions:input_type -> rsk.ListChunkContributionsRequest
+	30, // 50: rsk.TranscriptService.CreateChunkContribution:input_type -> rsk.CreateChunkContributionRequest
+	29, // 51: rsk.TranscriptService.GetChunkContribution:input_type -> rsk.GetChunkContributionRequest
+	31, // 52: rsk.TranscriptService.UpdateChunkContribution:input_type -> rsk.UpdateChunkContributionRequest
+	32, // 53: rsk.TranscriptService.DeleteChunkContribution:input_type -> rsk.DeleteChunkContributionRequest
+	33, // 54: rsk.TranscriptService.RequestChunkContributionState:input_type -> rsk.RequestChunkContributionStateRequest
+	35, // 55: rsk.TranscriptService.ListTranscriptChanges:input_type -> rsk.ListTranscriptChangesRequest
+	42, // 56: rsk.TranscriptService.GetTranscriptChange:input_type -> rsk.GetTranscriptChangeRequest
+	43, // 57: rsk.TranscriptService.GetTranscriptChangeDiff:input_type -> rsk.GetTranscriptChangeDiffRequest
+	34, // 58: rsk.TranscriptService.CreateTranscriptChange:input_type -> rsk.CreateTranscriptChangeRequest
+	36, // 59: rsk.TranscriptService.UpdateTranscriptChange:input_type -> rsk.UpdateTranscriptChangeRequest
+	37, // 60: rsk.TranscriptService.DeleteTranscriptChange:input_type -> rsk.DeleteTranscriptChangeRequest
+	41, // 61: rsk.TranscriptService.RequestTranscriptChangeState:input_type -> rsk.RequestTranscriptChangeStateRequest
+	46, // 62: rsk.TranscriptService.SetTranscriptRatingScore:input_type -> rsk.SetTranscriptRatingScoreRequest
+	47, // 63: rsk.TranscriptService.BulkSetTranscriptRatingScore:input_type -> rsk.BulkSetTranscriptRatingScoreRequest
+	48, // 64: rsk.TranscriptService.BulkSetTranscriptTags:input_type -> rsk.BulkSetTranscriptTagsRequest
+	4,  // 65: rsk.TranscriptService.GetTranscript:output_type -> rsk.Transcript
+	45, // 66: rsk.TranscriptService.GetTranscriptDialog:output_type -> rsk.TranscriptDialog
+	14, // 67: rsk.TranscriptService.ListTranscripts:output_type -> rsk.TranscriptList
+	18, // 68: rsk.TranscriptService.ListChunkedTranscripts:output_type -> rsk.ChunkedTranscriptList
+	19, // 69: rsk.TranscriptService.GetChunkedTranscriptChunkStats:output_type -> rsk.ChunkStats
+	23, // 70: rsk.TranscriptService.ListTranscriptChunks:output_type -> rsk.TranscriptChunkList
+	21, // 71: rsk.TranscriptService.GetTranscriptChunk:output_type -> rsk.Chunk
+	25, // 72: rsk.TranscriptService.ListChunkContributions:output_type -> rsk.ChunkContributionList
+	26, // 73: rsk.TranscriptService.CreateChunkContribution:output_type -> rsk.ChunkContribution
+	26, // 74: rsk.TranscriptService.GetChunkContribution:output_type -> rsk.ChunkContribution
+	26, // 75: rsk.TranscriptService.UpdateChunkContribution:output_type -> rsk.ChunkContribution
+	57, // 76: rsk.TranscriptService.DeleteChunkContribution:output_type -> google.protobuf.Empty
+	26, // 77: rsk.TranscriptService.RequestChunkContributionState:output_type -> rsk.ChunkContribution
+	38, // 78: rsk.TranscriptService.ListTranscriptChanges:output_type -> rsk.TranscriptChangeList
+	39, // 79: rsk.TranscriptService.GetTranscriptChange:output_type -> rsk.TranscriptChange
+	44, // 80: rsk.TranscriptService.GetTranscriptChangeDiff:output_type -> rsk.TranscriptChangeDiff
+	39, // 81: rsk.TranscriptService.CreateTranscriptChange:output_type -> rsk.TranscriptChange
+	39, // 82: rsk.TranscriptService.UpdateTranscriptChange:output_type -> rsk.TranscriptChange
+	57, // 83: rsk.TranscriptService.DeleteTranscriptChange:output_type -> google.protobuf.Empty
+	57, // 84: rsk.TranscriptService.RequestTranscriptChangeState:output_type -> google.protobuf.Empty
+	57, // 85: rsk.TranscriptService.SetTranscriptRatingScore:output_type -> google.protobuf.Empty
+	57, // 86: rsk.TranscriptService.BulkSetTranscriptRatingScore:output_type -> google.protobuf.Empty
+	57, // 87: rsk.TranscriptService.BulkSetTranscriptTags:output_type -> google.protobuf.Empty
+	65, // [65:88] is the sub-list for method output_type
+	42, // [42:65] is the sub-list for method input_type
+	42, // [42:42] is the sub-list for extension type_name
+	42, // [42:42] is the sub-list for extension extendee
+	0,  // [0:42] is the sub-list for field type_name
 }
 
 func init() { file_transcript_proto_init() }
@@ -4171,7 +4065,7 @@ func file_transcript_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_transcript_proto_rawDesc), len(file_transcript_proto_rawDesc)),
-			NumEnums:      5,
+			NumEnums:      4,
 			NumMessages:   52,
 			NumExtensions: 0,
 			NumServices:   1,

@@ -664,15 +664,6 @@ export function isRskMedia(arg: any): arg is models.RskMedia {
   );
   }
 
-export function isRskMediaType(arg: any): arg is models.RskMediaType {
-  return false
-   || arg === models.RskMediaType.MEDIA_TYPE_UNKNOWN
-   || arg === models.RskMediaType.AUDIO
-   || arg === models.RskMediaType.VIDEO
-   || arg === models.RskMediaType.MULTI
-  ;
-  }
-
 export function isRskMetadata(arg: any): arg is models.RskMetadata {
   return (
   arg != null &&
@@ -965,8 +956,6 @@ export function isRskShortTranscript(arg: any): arg is models.RskShortTranscript
     ( typeof arg.actors === 'undefined' || (Array.isArray(arg.actors) && arg.actors.every((item: unknown) => typeof item === 'string')) ) &&
     // audioQuality?: RskAudioQuality
     ( typeof arg.audioQuality === 'undefined' || isRskAudioQuality(arg.audioQuality) ) &&
-    // audioUri?: string
-    ( typeof arg.audioUri === 'undefined' || typeof arg.audioUri === 'string' ) &&
     // bestof?: boolean
     ( typeof arg.bestof === 'undefined' || typeof arg.bestof === 'boolean' ) &&
     // episode?: number
@@ -977,8 +966,6 @@ export function isRskShortTranscript(arg: any): arg is models.RskShortTranscript
     ( typeof arg.incomplete === 'undefined' || typeof arg.incomplete === 'boolean' ) &&
     // media?: RskMedia
     ( typeof arg.media === 'undefined' || isRskMedia(arg.media) ) &&
-    // mediaType?: RskMediaType
-    ( typeof arg.mediaType === 'undefined' || isRskMediaType(arg.mediaType) ) &&
     // metadata?: { [key: string]: string }
     ( typeof arg.metadata === 'undefined' || typeof arg.metadata === 'string' ) &&
     // name?: string
@@ -1113,8 +1100,6 @@ export function isRskTranscript(arg: any): arg is models.RskTranscript {
     ( typeof arg.actors === 'undefined' || (Array.isArray(arg.actors) && arg.actors.every((item: unknown) => typeof item === 'string')) ) &&
     // audioQuality?: RskAudioQuality
     ( typeof arg.audioQuality === 'undefined' || isRskAudioQuality(arg.audioQuality) ) &&
-    // audioUri?: string
-    ( typeof arg.audioUri === 'undefined' || typeof arg.audioUri === 'string' ) &&
     // bestof?: boolean
     ( typeof arg.bestof === 'undefined' || typeof arg.bestof === 'boolean' ) &&
     // contributors?: string[]
@@ -1129,8 +1114,6 @@ export function isRskTranscript(arg: any): arg is models.RskTranscript {
     ( typeof arg.locked === 'undefined' || typeof arg.locked === 'boolean' ) &&
     // media?: RskMedia
     ( typeof arg.media === 'undefined' || isRskMedia(arg.media) ) &&
-    // mediaType?: RskMediaType
-    ( typeof arg.mediaType === 'undefined' || isRskMediaType(arg.mediaType) ) &&
     // metadata?: { [key: string]: string }
     ( typeof arg.metadata === 'undefined' || typeof arg.metadata === 'string' ) &&
     // name?: string

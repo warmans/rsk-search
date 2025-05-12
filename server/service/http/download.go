@@ -399,7 +399,7 @@ func (c *DownloadService) DownloadEpisodeMedia(resp http.ResponseWriter, req *ht
 			zap.Stringp("custom_text", customText),
 		)
 
-		if episode.MediaType == models.MediaTypeVideo {
+		if episode.Media.VideoFileName != "" {
 			switch wantFormat {
 			// serve partial video
 			case "gif":
@@ -590,8 +590,8 @@ func (c *DownloadService) DownloadVideoSprite(resp http.ResponseWriter, req *htt
 		http.Error(resp, fmt.Sprintf("unknown episode ID: %s", episodeID), http.StatusNotFound)
 		return
 	}
-	if ep.MediaType != models.MediaTypeVideo {
-		http.Error(resp, fmt.Sprintf("episode is not a video: %s", episodeID), http.StatusBadRequest)
+	if ep.Media.VideoFileName == "" {
+		http.Error(resp, fmt.Sprintf("episode has no video: %s", episodeID), http.StatusBadRequest)
 		return
 	}
 	filePath := path.Join(c.serviceConfig.MediaBasePath, "image", "sprite", episodeID+".jpg")

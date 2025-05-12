@@ -2,7 +2,6 @@
 import {
   RskAudioQuality,
   RskMedia,
-  RskMediaType,
   RskPublicationType,
   RskSynopsis,
 } from '.';
@@ -10,13 +9,11 @@ import {
 export interface RskShortTranscript {
   actors?: string[];
   audioQuality?: RskAudioQuality;
-  audioUri?: string;
   bestof?: boolean;
   episode?: number;
   id?: string;
   incomplete?: boolean;
   media?: RskMedia;
-  mediaType?: RskMediaType;
   metadata?: { [key: string]: string };
   name?: string;
   numRatingScores?: number;

@@ -44,7 +44,6 @@ export { RskFile } from './rsk-file.model';
 export { RskIncomingDonation } from './rsk-incoming-donation.model';
 export { RskIncomingDonationList } from './rsk-incoming-donation-list.model';
 export { RskMedia } from './rsk-media.model';
-export { RskMediaType } from './rsk-media-type.enum';
 export { RskMetadata } from './rsk-metadata.model';
 export { RskNextRadioEpisode } from './rsk-next-radio-episode.model';
 export { RskNotification } from './rsk-notification.model';

@@ -313,13 +313,6 @@ enum AudioQuality {
 }
 
 
-enum MediaType {
-  MEDIA_TYPE_UNKNOWN = 0;
-  AUDIO = 1;
-  VIDEO = 2;
-  MULTI = 3;
-}
-
 enum PublicationType {
   PUBLICATION_TYPE_UNKNOWN = 0;
   PUBLICATION_TYPE_RADIO = 1;
@@ -341,7 +334,6 @@ message Transcript {
   repeated string contributors = 10;
   bool incomplete = 11;
   string raw_transcript = 12;
-  string audio_uri = 13 [deprecated = true];
   string short_id = 14;
   repeated Trivia trivia = 15;
   repeated string actors = 16;
@@ -353,7 +345,6 @@ message Transcript {
   bool locked = 22;
   string summary = 23;
   AudioQuality audio_quality = 24;
-  MediaType media_type = 25 [deprecated = true];
   Media media = 26;
   PublicationType publication_type = 27;
   Ratings ratings = 28;
@@ -378,7 +369,6 @@ message ShortTranscript {
   repeated Synopsis synopsis = 9;
   bool trivia_available = 10;
   repeated string actors = 11;
-  string audio_uri = 12 [deprecated = true];
   string short_id = 13;
   int32 offset_accuracy_pcnt = 14;
   string name = 15;
@@ -387,7 +377,6 @@ message ShortTranscript {
   bool bestof = 18;
   bool special = 19;
   AudioQuality audio_quality = 20;
-  MediaType media_type = 21 [deprecated = true];
   Media media = 22;
   PublicationType publication_type = 23;
   float rating_score = 24;

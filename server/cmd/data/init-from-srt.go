@@ -90,14 +90,13 @@ func initEpisodeFileFromSRT(
 	}
 
 	ep := &models.Transcript{
-		MediaType:     models.MediaTypeVideo,
-		MediaFileName: path.Base(mediaFileName),
-		Publication:   publication,
-		Series:        series,
-		Episode:       episode,
-		Version:       "0.0.0",
-		Transcript:    []models.Dialog{},
-		Locked:        false,
+		Media:       models.Media{VideoFileName: path.Base(mediaFileName)},
+		Publication: publication,
+		Series:      series,
+		Episode:     episode,
+		Version:     "0.0.0",
+		Transcript:  []models.Dialog{},
+		Locked:      false,
 		Meta: map[models.MetadataType]string{
 			models.CoverArtURL:            "/assets/cover/default.jpg",
 			models.MetadataTypeDurationMs: fmt.Sprintf("%d", int64(durationSeconds*1000)),

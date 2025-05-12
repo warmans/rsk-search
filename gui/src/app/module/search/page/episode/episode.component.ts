@@ -43,8 +43,6 @@ export class EpisodeComponent implements OnInit, OnDestroy {
 
   error: string;
 
-  audioLink: string;
-
   transcribers: string;
 
   quotes: RskDialog[] = [];
@@ -141,7 +139,6 @@ export class EpisodeComponent implements OnInit, OnDestroy {
         this.titleService.setTitle(ep.id);
         this.transcribers = ep.contributors.join(', ');
         this.episodeImage = ep.metadata['cover_art_url'] ? ep.metadata['cover_art_url'] : `/assets/cover/${ep.publication}-s${ep.series}-lg.jpeg`;
-        this.audioLink = ep.audioUri;
         this.episodeDurationMs = parseInt(ep.metadata['duration_ms']);
         this.media = media.items ?? [];
 

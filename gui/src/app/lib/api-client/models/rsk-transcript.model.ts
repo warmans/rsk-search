@@ -3,7 +3,6 @@ import {
   RskAudioQuality,
   RskDialog,
   RskMedia,
-  RskMediaType,
   RskPublicationType,
   RskRatings,
   RskSynopsis,
@@ -14,7 +13,6 @@ import {
 export interface RskTranscript {
   actors?: string[];
   audioQuality?: RskAudioQuality;
-  audioUri?: string;
   bestof?: boolean;
   contributors?: string[];
   episode?: number;
@@ -22,7 +20,6 @@ export interface RskTranscript {
   incomplete?: boolean;
   locked?: boolean;
   media?: RskMedia;
-  mediaType?: RskMediaType;
   metadata?: { [key: string]: string };
   name?: string;
   offsetAccuracyPcnt?: number;

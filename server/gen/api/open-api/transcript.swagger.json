@@ -1335,16 +1335,6 @@
         }
       }
     },
-    "rskMediaType": {
-      "type": "string",
-      "enum": [
-        "MEDIA_TYPE_UNKNOWN",
-        "AUDIO",
-        "VIDEO",
-        "MULTI"
-      ],
-      "default": "MEDIA_TYPE_UNKNOWN"
-    },
     "rskPublicationType": {
       "type": "string",
       "enum": [
@@ -1422,9 +1412,6 @@
             "type": "string"
           }
         },
-        "audioUri": {
-          "type": "string"
-        },
         "shortId": {
           "type": "string"
         },
@@ -1452,9 +1439,6 @@
         },
         "audioQuality": {
           "$ref": "#/definitions/rskAudioQuality"
-        },
-        "mediaType": {
-          "$ref": "#/definitions/rskMediaType"
         },
         "media": {
           "$ref": "#/definitions/rskMedia"
@@ -1581,9 +1565,6 @@
         "rawTranscript": {
           "type": "string"
         },
-        "audioUri": {
-          "type": "string"
-        },
         "shortId": {
           "type": "string"
         },
@@ -1624,9 +1605,6 @@
         },
         "audioQuality": {
           "$ref": "#/definitions/rskAudioQuality"
-        },
-        "mediaType": {
-          "$ref": "#/definitions/rskMediaType"
         },
         "media": {
           "$ref": "#/definitions/rskMedia"

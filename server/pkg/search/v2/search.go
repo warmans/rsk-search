@@ -130,7 +130,7 @@ func (s *Search) Search(ctx context.Context, f filter.Filter, page int32, sortBy
 						innerErr = errors.Wrapf(err, "episode ID: %s", episodeID)
 						return false
 					}
-					result.Episode = ep.ShortProto(fmt.Sprintf(s.audioUriPattern, ep.ShortID()))
+					result.Episode = ep.ShortProto()
 
 					// dialogs
 					lines := make([]*api.Dialog, len(dialogs))

@@ -542,16 +542,6 @@
         }
       }
     },
-    "rskMediaType": {
-      "type": "string",
-      "enum": [
-        "MEDIA_TYPE_UNKNOWN",
-        "AUDIO",
-        "VIDEO",
-        "MULTI"
-      ],
-      "default": "MEDIA_TYPE_UNKNOWN"
-    },
     "rskMetadata": {
       "type": "object",
       "properties": {
@@ -744,9 +734,6 @@
             "type": "string"
           }
         },
-        "audioUri": {
-          "type": "string"
-        },
         "shortId": {
           "type": "string"
         },
@@ -774,9 +761,6 @@
         },
         "audioQuality": {
           "$ref": "#/definitions/rskAudioQuality"
-        },
-        "mediaType": {
-          "$ref": "#/definitions/rskMediaType"
         },
         "media": {
           "$ref": "#/definitions/rskMedia"

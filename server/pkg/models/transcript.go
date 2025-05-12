@@ -37,23 +37,6 @@ func (m PublicationType) Proto() api.PublicationType {
 	return api.PublicationType_PUBLICATION_TYPE_UNKNOWN
 }
 
-type MediaType string
-
-const (
-	MediaTypeAudio = MediaType("audio")
-	MediaTypeVideo = MediaType("video")
-)
-
-func (m MediaType) Proto() api.MediaType {
-	switch m {
-	case MediaTypeAudio:
-		return api.MediaType_AUDIO
-	case MediaTypeVideo:
-		return api.MediaType_VIDEO
-	}
-	return api.MediaType_MEDIA_TYPE_UNKNOWN
-}
-
 type DialogType string
 
 func (d DialogType) Proto() api.Dialog_DialogType {
@@ -189,9 +172,6 @@ func (m Media) Proto() *api.Media {
 }
 
 type Transcript struct {
-	MediaType     MediaType `json:"media_type"`
-	MediaFileName string    `json:"media_file_name"` //deprecated
-
 	PublicationType PublicationType `json:"publication_type"` //e.g. podcast, radio, tv
 	Publication     string          `json:"publication"`
 	Series          int32           `json:"series"`
@@ -346,7 +326,7 @@ func (e *Transcript) GetDialogByPosition(pos int64) (*Dialog, error) {
 	return util.ToPtr(e.Transcript[pos-1]), nil
 }
 
-func (e *Transcript) ShortProto(audioURI string) *api.ShortTranscript {
+func (e *Transcript) ShortProto() *api.ShortTranscript {
 	if e == nil {
 		return nil
 	}
@@ -376,7 +356,6 @@ func (e *Transcript) ShortProto(audioURI string) *api.ShortTranscript {
 		TriviaAvailable:     len(e.Trivia) > 0,
 		Actors:              e.Actors(),
 		ShortId:             e.ShortID(),
-		AudioUri:            audioURI, //deprecated
 		OffsetAccuracyPcnt:  e.OffsetAccuracy,
 		Name:                e.Name,
 		Version:             e.Version,
@@ -384,7 +363,6 @@ func (e *Transcript) ShortProto(audioURI string) *api.ShortTranscript {
 		Bestof:              e.Bestof,
 		Special:             e.Special,
 		AudioQuality:        e.AudioQuality.Proto(),
-		MediaType:           e.MediaType.Proto(),
 		Media:               e.Media.Proto(),
 		PublicationType:     e.PublicationType.Proto(),
 		RatingScore:         ratingScore,
@@ -396,7 +374,7 @@ func (e *Transcript) ShortProto(audioURI string) *api.ShortTranscript {
 	return ep
 }
 
-func (e *Transcript) Proto(withRawTranscript string, audioURI string, forceLockedOn bool) *api.Transcript {
+func (e *Transcript) Proto(withRawTranscript string, forceLockedOn bool) *api.Transcript {
 	if e == nil {
 		return nil
 	}
@@ -411,7 +389,6 @@ func (e *Transcript) Proto(withRawTranscript string, audioURI string, forceLocke
 		Contributors:       e.Contributors,
 		Incomplete:         e.Incomplete,
 		RawTranscript:      withRawTranscript,
-		AudioUri:           audioURI,
 		Actors:             e.Actors(),
 		OffsetAccuracyPcnt: e.OffsetAccuracy,
 		Name:               e.Name,
@@ -421,7 +398,6 @@ func (e *Transcript) Proto(withRawTranscript string, audioURI string, forceLocke
 		Locked:             e.Locked || forceLockedOn,
 		Summary:            e.Summary,
 		AudioQuality:       e.AudioQuality.Proto(),
-		MediaType:          e.MediaType.Proto(),
 		Media:              e.Media.Proto(),
 		PublicationType:    e.PublicationType.Proto(),
 		Ratings:            e.Ratings.Proto(),

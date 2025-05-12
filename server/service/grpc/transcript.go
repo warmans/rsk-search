@@ -79,10 +79,7 @@ func (s *TranscriptService) GetTranscript(ctx context.Context, request *api.GetT
 		return nil, ErrInternal(err)
 	}
 	_, locked := lockedEpsiodeIDs[ep.ID()]
-	var audioURL string
-	if ep.MediaType == models.MediaTypeAudio {
-		audioURL = fmt.Sprintf(s.srvCfg.AudioUriPattern, ep.ShortID())
-	}
+
 	err = s.persistentDB.WithStore(func(s *rw.Store) error {
 		ratings, err := s.GetTranscriptRatingScores(ctx, ep.ShortID())
 		if err != nil {
@@ -100,7 +97,7 @@ func (s *TranscriptService) GetTranscript(ctx context.Context, request *api.GetT
 		return nil, ErrInternal(err)
 	}
 
-	return ep.Proto(rawTranscript, audioURL, locked), nil
+	return ep.Proto(rawTranscript, locked), nil
 }
 
 func (s *TranscriptService) GetTranscriptDialog(ctx context.Context, request *api.GetTranscriptDialogRequest) (*api.TranscriptDialog, error) {
@@ -122,7 +119,7 @@ func (s *TranscriptService) GetTranscriptDialog(ctx context.Context, request *ap
 		return nil, ErrNotFound(request.Epid)
 	}
 	return &api.TranscriptDialog{
-		TranscriptMeta:    ep.ShortProto(fmt.Sprintf(s.srvCfg.AudioUriPattern, ep.ShortID())),
+		TranscriptMeta:    ep.ShortProto(),
 		Dialog:            dialog,
 		MaxDialogPosition: int32(ep.Transcript[len(ep.Transcript)-1].Position),
 	}, nil
@@ -137,7 +134,7 @@ func (s *TranscriptService) ListTranscripts(_ context.Context, _ *api.ListTransc
 		return nil, ErrInternal(err)
 	}
 	for _, ep := range episodeList {
-		el.Episodes = append(el.Episodes, ep.ShortProto(fmt.Sprintf(s.srvCfg.AudioUriPattern, ep.ShortID())))
+		el.Episodes = append(el.Episodes, ep.ShortProto())
 	}
 	return el, nil
 }
