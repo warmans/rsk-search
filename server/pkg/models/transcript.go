@@ -127,6 +127,7 @@ const (
 	CompletionStateComplete = CompletionState("complete")
 	CompletionStateReported = CompletionState("reported")
 	CompletionStateGaps     = CompletionState("gaps")
+	CompletionStateEmpty    = CompletionState("empty")
 )
 
 type Dialog struct {

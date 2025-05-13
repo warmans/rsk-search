@@ -75,20 +75,25 @@ func RefreshCmd() *cobra.Command {
 				}
 
 				// don't override reported incompleteness
-				if episode.Completion != models.CompletionStateReported {
-					hasGaps := false
-					for k, v := range episode.Transcript {
-						episode.Transcript[k].Position = int64(k + 1)
-						if v.Type == models.DialogTypeGap || v.Placeholder {
-							hasGaps = true
+				if len(episode.Transcript) == 0 {
+					episode.Completion = models.CompletionStateEmpty
+				} else {
+					if episode.Completion != models.CompletionStateReported {
+						hasGaps := len(episode.Transcript) == 0
+						for k, v := range episode.Transcript {
+							episode.Transcript[k].Position = int64(k + 1)
+							if v.Type == models.DialogTypeGap || v.Placeholder {
+								hasGaps = true
+							}
+						}
+						if hasGaps {
+							episode.Completion = models.CompletionStateGaps
+						} else {
+							episode.Completion = models.CompletionStateComplete
+							// some episodes are locked by default, but they shouldn't be if they're complete
+							episode.Locked = false
 						}
 					}
-					if hasGaps {
-						episode.Completion = models.CompletionStateGaps
-					}
-				}
-				if episode.Completion == models.CompletionStateUnknown {
-					episode.Completion = models.CompletionStateComplete
 				}
 
 				// ensure IDs are correct
