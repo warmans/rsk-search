@@ -75,6 +75,10 @@ func (ts *TranscriptScanner) ReadAllPrefixed(prefix string) ([]string, error) {
 			}
 			return nil, err
 		}
+		// stop if another tag is encountered
+		if IsTag(peeked) {
+			return all, nil
+		}
 		if strings.HasPrefix(peeked, prefix) {
 			next, err := ts.Next()
 			if err != nil {
@@ -151,7 +155,7 @@ func Import(scanner *bufio.Scanner, episodeID string, startPos int64) ([]models.
 			continue
 		}
 
-		if strings.HasPrefix(line, "#SYN: ") || strings.HasPrefix(line, "#/SYN") {
+		if IsSynopsisTag(line) {
 			if currentSynopsis != nil {
 				currentSynopsis.EndPos = position
 				synopsies = append(synopsies, *currentSynopsis)
@@ -169,7 +173,7 @@ func Import(scanner *bufio.Scanner, episodeID string, startPos int64) ([]models.
 			}
 			continue
 		}
-		if strings.HasPrefix(line, "#TRIVIA:") || strings.HasPrefix(line, "#/TRIVIA") {
+		if IsTriviaTag(line) {
 			if currentTrivia != nil {
 				currentTrivia.EndPos = position
 				trivia = append(trivia, *currentTrivia)
@@ -312,8 +316,20 @@ func CorrectContent(c string) string {
 	return string(runes)
 }
 
+func IsTag(line string) bool {
+	return IsOffsetTag(line) || IsTriviaTag(line) || IsSynopsisTag(line)
+}
+
 func IsOffsetTag(line string) bool {
 	return strings.HasPrefix(line, "#OFFSET:")
+}
+
+func IsTriviaTag(line string) bool {
+	return strings.HasPrefix(line, "#TRIVIA:") || strings.HasPrefix(line, "#/TRIVIA")
+}
+
+func IsSynopsisTag(line string) bool {
+	return strings.HasPrefix(line, "#SYN:") || strings.HasPrefix(line, "#/SYN")
 }
 
 func ScanOffset(line string) (time.Duration, bool) {

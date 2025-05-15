@@ -257,3 +257,27 @@ steve: Baz
 		})
 	}
 }
+
+func TestReadTagNearOffset(t *testing.T) {
+	text := `
+#TRIVIA: Many
+#OFFSET: 123
+`
+
+	_, _, trivia, err := Import(bufio.NewScanner(strings.NewReader(text)), "", 0)
+	require.NoError(t, err)
+	require.EqualValues(t, trivia[0].Description, "Many")
+}
+
+func TestReadMultilineTagNearOffset(t *testing.T) {
+	text := `
+#TRIVIA: Many
+# lines of
+# text
+#OFFSET: 123
+`
+
+	_, _, trivia, err := Import(bufio.NewScanner(strings.NewReader(text)), "", 0)
+	require.NoError(t, err)
+	require.EqualValues(t, "Many\nlines of\ntext", trivia[0].Description)
+}
