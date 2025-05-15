@@ -5,7 +5,7 @@
     "episode": 7,
     "name": "Episode Seven",
     "summary": "",
-    "version": "0.0.0",
+    "version": "0.0.2",
     "release_date": "2004-11-30T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -5333,7 +5333,7 @@
         "id": "ep-podcast-S1E07-355",
         "pos": 355,
         "timestamp": 1503660000000,
-        "duration": 6003000000,
+        "duration": 9925000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "type": "chat",
@@ -5347,8 +5347,8 @@
       {
         "id": "ep-podcast-S1E07-356",
         "pos": 356,
-        "timestamp": 1509663000000,
-        "duration": 1200000000,
+        "timestamp": 1513585000000,
+        "duration": 1985000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
         "type": "chat",
@@ -5362,10 +5362,10 @@
       {
         "id": "ep-podcast-S1E07-357",
         "pos": 357,
-        "timestamp": 1510863000000,
-        "duration": 9707000000,
-        "timestamp_inferred": true,
-        "timestamp_distance": 2,
+        "timestamp": 1515570000000,
+        "duration": 5000000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -7177,7 +7177,7 @@
     ],
     "synopsis": [
       {
-        "description": "Monkey News - The Builder\nOFFSET: 1515.57",
+        "description": "Monkey News - The Builder",
         "start_pos": 357,
         "end_pos": 425
       }
@@ -7185,7 +7185,8 @@
     "contributors": [
       "RosePamphyle",
       "dspmcmirror",
-      "szmark777"
+      "szmark777",
+      "warmans"
     ],
     "trivia": null,
     "tags": null,

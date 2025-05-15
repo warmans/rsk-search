@@ -222,6 +222,10 @@ dev.refresh-data:
  	./bin/rsk-search data infer-missing-offsets && \
 	$(MAKE) update.spotify-links
 
+.PHONY: dev.merge-sentiments
+dev.merge-sentiments:
+	./script/merge-sentiments.sh
+
 .PHONY: dev.generate.certs
 dev.generate.certs:
 	echo "Generating TLS certificates...";
