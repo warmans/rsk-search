@@ -95,7 +95,7 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
             this.checkUserCanEdit();
 
             this.initialTranscript = res.transcript;
-            this.metadata = { summary: res.summary, name: res.name };
+            this.metadata = { summary: res.summary || this.transcript.summary, name: res.name || this.transcript.name };
 
             this.versionMismatchError = (this.change?.transcriptVersion !== this.transcript?.version);
             this.userIsOwner = this.sessionService.getClaims()?.author_id === res.author.id || this.sessionService.getClaims()?.approver;
