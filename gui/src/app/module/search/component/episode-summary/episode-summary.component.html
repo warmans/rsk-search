@@ -12,11 +12,11 @@
         <div>
           <div class="title mb-2">
             <a [routerLink]="['/ep', episode.id]" *ngIf="episode.transcriptAvailable">
-              <span *ngIf="episodeIdIsMeaningful">{{episode.publication | titlecase}} | Series {{episode.series}} Episode {{episode.episode}} <span *ngIf="episode.name" class="text-muted font-weight-normal"> - {{episode.name}}</span></span>
+              <span *ngIf="episodeIdIsMeaningful">{{episode.publication | titlecase}} | Series {{episode.series}} Episode {{episode.episode}} <span *ngIf="episode.name" class="text-muted"> - {{episode.name}}</span></span>
               <span *ngIf="!episodeIdIsMeaningful">{{episode.publication | titlecase}} |  {{ episode.name || "Unknown" }}</span>
             </a>
             <span *ngIf="!episode.transcriptAvailable">
-              <span *ngIf="episodeIdIsMeaningful">{{episode.publication | titlecase}} | Series {{episode.series}} Episode {{episode.episode}} <span *ngIf="episode.name" class="text-muted font-weight-normal"> - {{episode.name}}</span></span>
+              <span *ngIf="episodeIdIsMeaningful">{{episode.publication | titlecase}} | Series {{episode.series}} Episode {{episode.episode}} <span *ngIf="episode.name" class="text-muted"> - {{episode.name}}</span></span>
               <span *ngIf="!episodeIdIsMeaningful">{{episode.publication | titlecase}} |  {{ episode.name || "Unknown" }}</span>
             </span>
           </div>
