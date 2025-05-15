@@ -194,7 +194,7 @@ endif
 	./bin/rsk-search db merge-transcript-changes --rw-db-dsn=${PROD_DB_DSN} --dry-run=false
 	./bin/rsk-search db merge-transcript-ratings --rw-db-dsn=${PROD_DB_DSN} --dry-run=false
 	./bin/rsk-search db merge-transcript-tags --rw-db-dsn=${PROD_DB_DSN} --dry-run=false
-	$(MAKE) dev.infer-offsets dev.refresh-data
+	$(MAKE) dev.infer-offsets dev.refresh-data dev.merge-sentiments
 
 .PHONY: extract.dev
 extract.dev: build
@@ -202,7 +202,7 @@ extract.dev: build
 	./bin/rsk-search db merge-transcript-changes --rw-db-dsn=${DEV_DB_DSN} --dry-run=false
 	./bin/rsk-search db merge-transcript-ratings --rw-db-dsn=${DEV_DB_DSN} --dry-run=false
 	./bin/rsk-search db merge-transcript-tags --rw-db-dsn=${DEV_DB_DSN} --dry-run=false
-	$(MAKE) dev.infer-offsets dev.refresh-data
+	$(MAKE) dev.infer-offsets dev.refresh-data dev.merge-sentiments
 
 
 .PHONY: report.prod
