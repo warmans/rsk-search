@@ -10,6 +10,7 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"net/http"
+	"strings"
 )
 
 func ErrInvalidRequestField(field string, originalErr error, moreDetails ...string) error {
@@ -20,7 +21,7 @@ func ErrInvalidRequestField(field string, originalErr error, moreDetails ...stri
 	if originalErr == nil {
 		s, err := status.New(codes.InvalidArgument, http.StatusText(http.StatusBadRequest)).WithDetails(&errdetails.BadRequest{
 			FieldViolations: []*errdetails.BadRequest_FieldViolation{
-				{Field: field, Description: "Invalid field"},
+				{Field: field, Description: fmt.Sprintf("Invalid field: %s", strings.Join(moreDetails, ", "))},
 			},
 		})
 		if err != nil {

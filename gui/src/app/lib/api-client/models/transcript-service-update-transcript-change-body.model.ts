@@ -4,6 +4,7 @@ import {
 } from '.';
 
 export interface TranscriptServiceUpdateTranscriptChangeBody {
+  name?: string;
   pointsOnApprove?: number;
   state?: RskContributionState;
   summary?: string;

@@ -85,7 +85,7 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
         withRaw: true
       }).pipe(takeUntil(this.destroy$)).subscribe((res: RskTranscript) => {
         this.transcript = res;
-        this.metadata = { summary: res.summary };
+        this.metadata = { summary: res.summary, name: res.name };
 
         if (!d.params['change_id']) {
           this.initialTranscript = res.rawTranscript;
@@ -95,7 +95,7 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
             this.checkUserCanEdit();
 
             this.initialTranscript = res.transcript;
-            this.metadata = { summary: res.summary };
+            this.metadata = { summary: res.summary, name: res.name };
 
             this.versionMismatchError = (this.change?.transcriptVersion !== this.transcript?.version);
             this.userIsOwner = this.sessionService.getClaims()?.author_id === res.author.id || this.sessionService.getClaims()?.approver;
@@ -140,6 +140,7 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
         body: {
           transcript: this.transcriber.getContentSnapshot(),
           transcriptVersion: this.transcript?.version || 'NONE',
+          name: this.metadata?.name,
           summary: this.metadata?.summary,
         }
       }).pipe(takeUntil(this.destroy$)).subscribe((res: RskTranscriptChange) => {
@@ -175,6 +176,7 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
       id: this.change.id,
       body: {
         transcript: this.transcriber.getContentSnapshot(),
+        name: this.metadata.name,
         summary: this.metadata.summary,
         state: state
       }

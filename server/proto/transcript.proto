@@ -582,6 +582,7 @@ message CreateTranscriptChangeRequest {
   string transcript = 2;
   string transcript_version = 3;
   string summary = 4;
+  string name = 5;
 }
 
 message ListTranscriptChangesRequest {
@@ -598,6 +599,7 @@ message UpdateTranscriptChangeRequest {
   ContributionState state = 3;
   float points_on_approve = 4;
   string summary = 5;
+  string name = 6;
 }
 
 message DeleteTranscriptChangeRequest {
@@ -620,6 +622,7 @@ message TranscriptChange {
   bool merged = 9;
   float points_awarded = 10;
   string transcript_version = 11;
+  string name = 12;
 }
 
 message ShortTranscriptChange {

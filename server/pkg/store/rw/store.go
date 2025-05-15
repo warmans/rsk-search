@@ -891,8 +891,19 @@ func (s *Store) GetTranscriptChange(ctx context.Context, id string) (*models.Tra
 	var authorID string
 
 	err := s.tx.
-		QueryRowxContext(ctx, `SELECT id, author_id, epid, COALESCE(transcript_version, 'NONE'), summary, transcription, state, created_at, merged FROM transcript_change WHERE id=$1`, id).
-		Scan(&change.ID, &authorID, &change.EpID, &change.TranscriptVersion, &change.Summary, &change.Transcription, &change.State, &change.CreatedAt, &change.Merged)
+		QueryRowxContext(ctx, `SELECT id, author_id, epid, COALESCE(transcript_version, 'NONE'), name, summary, transcription, state, created_at, merged FROM transcript_change WHERE id=$1`, id).
+		Scan(
+			&change.ID,
+			&authorID,
+			&change.EpID,
+			&change.TranscriptVersion,
+			&change.Name,
+			&change.Summary,
+			&change.Transcription,
+			&change.State,
+			&change.CreatedAt,
+			&change.Merged,
+		)
 	if err != nil {
 		return nil, err
 	}
@@ -918,6 +929,7 @@ func (s *Store) CreateTranscriptChange(ctx context.Context, c *models.Transcript
 		ID:                shortuuid.New(),
 		EpID:              c.EpID,
 		Author:            author,
+		Name:              c.Name,
 		Summary:           c.Summary,
 		Transcription:     c.Transcription,
 		State:             models.ContributionStatePending,
@@ -926,11 +938,22 @@ func (s *Store) CreateTranscriptChange(ctx context.Context, c *models.Transcript
 	}
 	_, err = s.tx.ExecContext(
 		ctx,
-		`INSERT INTO transcript_change (id, author_id, epid, transcript_version, summary, transcription, state, created_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
+		`INSERT INTO transcript_change (
+		   id, 
+		   author_id, 
+		   epid, 
+		   transcript_version, 
+		   name,
+		   summary,
+		   transcription,
+		   state,
+		   created_at
+		   ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
 		change.ID,
 		change.Author.ID,
 		change.EpID,
 		change.TranscriptVersion,
+		change.Name,
 		change.Summary,
 		change.Transcription,
 		models.ContributionStatePending,
@@ -952,8 +975,9 @@ func (s *Store) UpdateTranscriptChange(ctx context.Context, c *models.Transcript
 	}
 	_, err = s.tx.ExecContext(
 		ctx,
-		`UPDATE transcript_change SET transcription=$1, summary=$2, state=$3 WHERE id=$4`,
+		`UPDATE transcript_change SET transcription=$1, name=$2, summary=$3, state=$4 WHERE id=$5`,
 		c.Transcription,
+		c.Name,
 		c.Summary,
 		c.State,
 		c.ID,
@@ -975,6 +999,7 @@ func (s *Store) UpdateTranscriptChange(ctx context.Context, c *models.Transcript
 	}
 
 	change.Transcription = c.Transcription
+	change.Name = c.Name
 	change.Summary = c.Summary
 	change.State = c.State
 

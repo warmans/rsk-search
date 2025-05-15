@@ -512,6 +512,23 @@ func (s *TranscriptService) GetTranscriptChangeDiff(ctx context.Context, request
 
 	diffs := []string{}
 
+	nameEdits := myers.ComputeEdits(
+		span.URIFromPath("NAME"),
+		oldTranscript.Name,
+		newTranscript.Name,
+	)
+	if len(nameEdits) > 0 {
+		nameDiff := fmt.Sprint(
+			gotextdiff.ToUnified(
+				"NAME",
+				"NAME",
+				oldTranscript.Name,
+				nameEdits,
+			),
+		)
+		diffs = append(diffs, nameDiff)
+	}
+
 	// summary diff
 	summaryEdits := myers.ComputeEdits(
 		span.URIFromPath("SUMMARY"),
@@ -560,6 +577,13 @@ func (s *TranscriptService) CreateTranscriptChange(ctx context.Context, request 
 		return nil, err
 	}
 
+	if len(request.Name) > 128 {
+		return nil, ErrInvalidRequestField("name", nil, "Cannot be more than 128 characters")
+	}
+	if len(request.Summary) > 2048 {
+		return nil, ErrInvalidRequestField("summary", nil, "Cannot be more than 2048 characters")
+	}
+
 	var change *models.TranscriptChange
 	err = s.persistentDB.WithStore(func(s *rw.Store) error {
 
@@ -587,6 +611,7 @@ func (s *TranscriptService) CreateTranscriptChange(ctx context.Context, request 
 			AuthorID:          claims.AuthorID,
 			EpID:              request.Epid,
 			Summary:           request.Summary,
+			Name:              request.Name,
 			Transcription:     request.Transcript,
 			TranscriptVersion: request.TranscriptVersion,
 		})
@@ -603,6 +628,13 @@ func (s *TranscriptService) UpdateTranscriptChange(ctx context.Context, request 
 	claims, err := GetClaims(ctx, s.auth)
 	if err != nil {
 		return nil, err
+	}
+
+	if len(request.Name) > 128 {
+		return nil, ErrInvalidRequestField("name", nil, "Cannot be more than 128 characters")
+	}
+	if len(request.Summary) > 2048 {
+		return nil, ErrInvalidRequestField("summary", nil, "Cannot be more than 2048 characters")
 	}
 
 	var oldChange *models.TranscriptChange
@@ -640,6 +672,7 @@ func (s *TranscriptService) UpdateTranscriptChange(ctx context.Context, request 
 		var err error
 		updatedChange, err = tx.UpdateTranscriptChange(ctx, &models.TranscriptChangeUpdate{
 			ID:            request.Id,
+			Name:          request.Name,
 			Summary:       request.Summary,
 			Transcription: request.Transcript,
 			State:         models.ContributionStateFromProto(request.State),

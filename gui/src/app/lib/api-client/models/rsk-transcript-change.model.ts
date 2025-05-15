@@ -10,6 +10,7 @@ export interface RskTranscriptChange {
   episodeId?: string;
   id?: string;
   merged?: boolean;
+  name?: string;
   pointsAwarded?: number;
   state?: RskContributionState;
   summary?: string;

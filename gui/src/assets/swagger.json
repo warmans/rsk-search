@@ -2051,6 +2051,9 @@
           },
           "summary": {
             "type": "string"
+          },
+          "name": {
+            "type": "string"
           }
         }
       },
@@ -2114,6 +2117,9 @@
             "format": "float"
           },
           "summary": {
+            "type": "string"
+          },
+          "name": {
             "type": "string"
           }
         }
@@ -3487,6 +3493,9 @@
             "format": "float"
           },
           "transcriptVersion": {
+            "type": "string"
+          },
+          "name": {
             "type": "string"
           }
         }

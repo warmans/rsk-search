@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import {FormControl, UntypedFormControl, UntypedFormGroup, Validators} from '@angular/forms';
 import { Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 
 export interface TranscriptMetadata {
+  name: string;
   summary: string;
 }
 
@@ -19,10 +20,11 @@ export class MetadataEditorComponent implements OnInit, OnDestroy {
     if (!value) {
       return;
     }
+    this.form.get('name').setValue(value.name, {emitEvent: false});
     this.form.get('summary').setValue(value.summary, {emitEvent: false});
   }
   get transcriptMeta(): TranscriptMetadata {
-    return { summary: this.form.get('summary').value };
+    return { summary: this.form.get('summary').value, name: this.form.get('name').value };
   }
 
   @Input()
@@ -32,7 +34,8 @@ export class MetadataEditorComponent implements OnInit, OnDestroy {
   metadataUpdated: EventEmitter<TranscriptMetadata> = new EventEmitter<TranscriptMetadata>();
 
   form: UntypedFormGroup = new UntypedFormGroup({
-    summary: new UntypedFormControl()
+    name: new FormControl<string>(""),
+    summary: new FormControl<string>("")
   });
 
   destroy$: Subject<void> = new Subject<void>();

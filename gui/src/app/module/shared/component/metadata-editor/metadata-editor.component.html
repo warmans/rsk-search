@@ -1,13 +1,29 @@
 <form [formGroup]="form">
   <div class="form-group">
-    <label class="font-weight-bold" for="summary">Summary</label>
+    <label class="font-weight-bold" for="name">Episode Name</label>
+    <textarea
+      *ngIf="allowEdit"
+      class="form-control"
+      name="name"
+      id="name"
+      placeholder="Give the episode a name."
+      formControlName="name"
+      maxlength="128">
+    </textarea>
+    <div *ngIf="!allowEdit">
+      <p [ngClass]="{'text-muted': !transcriptMeta.name}">{{ transcriptMeta.name || "none..." }}</p>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="font-weight-bold" for="summary">Episode Summary</label>
     <textarea
       *ngIf="allowEdit"
       class="form-control"
       name="summary"
       id="summary"
-      placeholder="Briefly summarise episode"
-      formControlName="summary">
+      placeholder="Briefly summarise episode."
+      formControlName="summary"
+      maxlength="2048">
     </textarea>
     <div *ngIf="!allowEdit">
       <p [ngClass]="{'text-muted': !transcriptMeta.summary}">{{ transcriptMeta.summary || "none..." }}</p>

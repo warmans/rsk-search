@@ -9,12 +9,14 @@ type TranscriptChangeCreate struct {
 	AuthorID          string
 	EpID              string
 	TranscriptVersion string
+	Name              string
 	Summary           string
 	Transcription     string
 }
 
 type TranscriptChangeUpdate struct {
 	ID            string
+	Name          string
 	Summary       string
 	Transcription string
 	State         ContributionState
@@ -25,6 +27,7 @@ type TranscriptChange struct {
 	EpID              string
 	TranscriptVersion string
 	Author            *Author
+	Name              string
 	Summary           string
 	Transcription     string
 	State             ContributionState
@@ -41,6 +44,7 @@ func (c *TranscriptChange) Proto() *api.TranscriptChange {
 		Id:                c.ID,
 		EpisodeId:         c.EpID,
 		TranscriptVersion: c.TranscriptVersion,
+		Name:              c.Name,
 		Summary:           c.Summary,
 		Transcript:        c.Transcription,
 		State:             c.State.Proto(),

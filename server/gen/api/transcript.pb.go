@@ -2512,6 +2512,7 @@ type CreateTranscriptChangeRequest struct {
 	Transcript        string                 `protobuf:"bytes,2,opt,name=transcript,proto3" json:"transcript,omitempty"`
 	TranscriptVersion string                 `protobuf:"bytes,3,opt,name=transcript_version,json=transcriptVersion,proto3" json:"transcript_version,omitempty"`
 	Summary           string                 `protobuf:"bytes,4,opt,name=summary,proto3" json:"summary,omitempty"`
+	Name              string                 `protobuf:"bytes,5,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -2570,6 +2571,13 @@ func (x *CreateTranscriptChangeRequest) GetTranscriptVersion() string {
 func (x *CreateTranscriptChangeRequest) GetSummary() string {
 	if x != nil {
 		return x.Summary
+	}
+	return ""
+}
+
+func (x *CreateTranscriptChangeRequest) GetName() string {
+	if x != nil {
+		return x.Name
 	}
 	return ""
 }
@@ -2657,6 +2665,7 @@ type UpdateTranscriptChangeRequest struct {
 	State           ContributionState      `protobuf:"varint,3,opt,name=state,proto3,enum=rsk.ContributionState" json:"state,omitempty"`
 	PointsOnApprove float32                `protobuf:"fixed32,4,opt,name=points_on_approve,json=pointsOnApprove,proto3" json:"points_on_approve,omitempty"`
 	Summary         string                 `protobuf:"bytes,5,opt,name=summary,proto3" json:"summary,omitempty"`
+	Name            string                 `protobuf:"bytes,6,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -2722,6 +2731,13 @@ func (x *UpdateTranscriptChangeRequest) GetPointsOnApprove() float32 {
 func (x *UpdateTranscriptChangeRequest) GetSummary() string {
 	if x != nil {
 		return x.Summary
+	}
+	return ""
+}
+
+func (x *UpdateTranscriptChangeRequest) GetName() string {
+	if x != nil {
+		return x.Name
 	}
 	return ""
 }
@@ -2826,6 +2842,7 @@ type TranscriptChange struct {
 	Merged            bool                   `protobuf:"varint,9,opt,name=merged,proto3" json:"merged,omitempty"`
 	PointsAwarded     float32                `protobuf:"fixed32,10,opt,name=points_awarded,json=pointsAwarded,proto3" json:"points_awarded,omitempty"`
 	TranscriptVersion string                 `protobuf:"bytes,11,opt,name=transcript_version,json=transcriptVersion,proto3" json:"transcript_version,omitempty"`
+	Name              string                 `protobuf:"bytes,12,opt,name=name,proto3" json:"name,omitempty"`
 	unknownFields     protoimpl.UnknownFields
 	sizeCache         protoimpl.SizeCache
 }
@@ -2926,6 +2943,13 @@ func (x *TranscriptChange) GetPointsAwarded() float32 {
 func (x *TranscriptChange) GetTranscriptVersion() string {
 	if x != nil {
 		return x.TranscriptVersion
+	}
+	return ""
+}
+
+func (x *TranscriptChange) GetName() string {
+	if x != nil {
+		return x.Name
 	}
 	return ""
 }
@@ -3739,21 +3763,22 @@ const file_transcript_proto_rawDesc = "" +
 	"$RequestChunkContributionStateRequest\x12'\n" +
 	"\x0fcontribution_id\x18\x01 \x01(\tR\x0econtributionId\x12;\n" +
 	"\rrequest_state\x18\x02 \x01(\x0e2\x16.rsk.ContributionStateR\frequestState\x12\x18\n" +
-	"\acomment\x18\x03 \x01(\tR\acomment\"\x9c\x01\n" +
+	"\acomment\x18\x03 \x01(\tR\acomment\"\xb0\x01\n" +
 	"\x1dCreateTranscriptChangeRequest\x12\x12\n" +
 	"\x04epid\x18\x01 \x01(\tR\x04epid\x12\x1e\n" +
 	"\n" +
 	"transcript\x18\x02 \x01(\tR\n" +
 	"transcript\x12-\n" +
 	"\x12transcript_version\x18\x03 \x01(\tR\x11transcriptVersion\x12\x18\n" +
-	"\asummary\x18\x04 \x01(\tR\asummary\"\xad\x01\n" +
+	"\asummary\x18\x04 \x01(\tR\asummary\x12\x12\n" +
+	"\x04name\x18\x05 \x01(\tR\x04name\"\xad\x01\n" +
 	"\x1cListTranscriptChangesRequest\x12\x16\n" +
 	"\x06filter\x18\x01 \x01(\tR\x06filter\x12\x1d\n" +
 	"\n" +
 	"sort_field\x18\x02 \x01(\tR\tsortField\x12%\n" +
 	"\x0esort_direction\x18\x03 \x01(\tR\rsortDirection\x12\x12\n" +
 	"\x04page\x18\x04 \x01(\x05R\x04page\x12\x1b\n" +
-	"\tpage_size\x18\x05 \x01(\x05R\bpageSize\"\xc3\x01\n" +
+	"\tpage_size\x18\x05 \x01(\x05R\bpageSize\"\xd7\x01\n" +
 	"\x1dUpdateTranscriptChangeRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1e\n" +
 	"\n" +
@@ -3761,11 +3786,12 @@ const file_transcript_proto_rawDesc = "" +
 	"transcript\x12,\n" +
 	"\x05state\x18\x03 \x01(\x0e2\x16.rsk.ContributionStateR\x05state\x12*\n" +
 	"\x11points_on_approve\x18\x04 \x01(\x02R\x0fpointsOnApprove\x12\x18\n" +
-	"\asummary\x18\x05 \x01(\tR\asummary\"/\n" +
+	"\asummary\x18\x05 \x01(\tR\asummary\x12\x12\n" +
+	"\x04name\x18\x06 \x01(\tR\x04name\"/\n" +
 	"\x1dDeleteTranscriptChangeRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"L\n" +
 	"\x14TranscriptChangeList\x124\n" +
-	"\achanges\x18\x01 \x03(\v2\x1a.rsk.ShortTranscriptChangeR\achanges\"\xe1\x02\n" +
+	"\achanges\x18\x01 \x03(\v2\x1a.rsk.ShortTranscriptChangeR\achanges\"\xf5\x02\n" +
 	"\x10TranscriptChange\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
 	"\n" +
@@ -3781,7 +3807,8 @@ const file_transcript_proto_rawDesc = "" +
 	"\x06merged\x18\t \x01(\bR\x06merged\x12%\n" +
 	"\x0epoints_awarded\x18\n" +
 	" \x01(\x02R\rpointsAwarded\x12-\n" +
-	"\x12transcript_version\x18\v \x01(\tR\x11transcriptVersionJ\x04\b\x05\x10\x06\"\xa6\x02\n" +
+	"\x12transcript_version\x18\v \x01(\tR\x11transcriptVersion\x12\x12\n" +
+	"\x04name\x18\f \x01(\tR\x04nameJ\x04\b\x05\x10\x06\"\xa6\x02\n" +
 	"\x15ShortTranscriptChange\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1d\n" +
 	"\n" +
