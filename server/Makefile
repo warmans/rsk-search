@@ -181,11 +181,6 @@ dev.extract.test-data: build
 dev.extract.ratings: build
 	./bin/rsk-search db merge-transcript-ratings --rw-db-dsn=${DEV_DB_DSN} --dry-run=false
 
-.PHONY: init-from-audio
-dev.init-from-audio: build
-	./bin/rsk-search data init-from-audio --audio-file-path="$(AUDIO_DIR)"
-
-
 #----------------------------------------------------------------------------------------------
 # Misc.
 #----------------------------------------------------------------------------------------------
