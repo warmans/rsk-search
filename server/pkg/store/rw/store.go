@@ -1643,6 +1643,12 @@ func (s *Store) GetRadioNext(ctx context.Context, authorID string) (string, erro
 	return next, nil
 }
 
+//todo: add GetRadioStats
+//
+//	select a.id, a."name", SUM(rs."current_timestamp" / 1000000 / 60 / 60) , COUNT(*)
+//	from radio_state rs left join author a on rs.author_id  = a.id
+//	group by a.id, a.name
+
 func (s *Store) UpsertTranscriptRatingScore(ctx context.Context, episodeID string, authorID string, score float32, delete bool) error {
 	_, err := s.tx.ExecContext(
 		ctx,
