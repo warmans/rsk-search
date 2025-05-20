@@ -241,18 +241,18 @@ steve: Baz
 			require.EqualValues(t, tt.want, got)
 
 			// also check that importing the exported content works as expected
-			dialog, synopsis, trivia, err := Import(bufio.NewScanner(strings.NewReader(got)), "", 0)
+			ts, err := Import(bufio.NewScanner(strings.NewReader(got)), "", 0)
 			require.NoError(t, err)
-			for k := range dialog {
-				require.EqualValues(t, tt.args.dialog[k].Timestamp, dialog[k].Timestamp)
-				require.EqualValues(t, tt.args.dialog[k].Content, dialog[k].Content)
-				require.EqualValues(t, tt.args.dialog[k].Actor, dialog[k].Actor)
+			for k := range ts.Transcript {
+				require.EqualValues(t, tt.args.dialog[k].Timestamp, ts.Transcript[k].Timestamp)
+				require.EqualValues(t, tt.args.dialog[k].Content, ts.Transcript[k].Content)
+				require.EqualValues(t, tt.args.dialog[k].Actor, ts.Transcript[k].Actor)
 			}
-			for k := range trivia {
-				require.EqualValues(t, tt.args.trivia[k].Description, trivia[k].Description)
+			for k := range ts.Trivia {
+				require.EqualValues(t, tt.args.trivia[k].Description, ts.Trivia[k].Description)
 			}
-			for k := range synopsis {
-				require.EqualValues(t, tt.args.synopsis[k].Description, synopsis[k].Description)
+			for k := range ts.Synopsis {
+				require.EqualValues(t, tt.args.synopsis[k].Description, ts.Synopsis[k].Description)
 			}
 		})
 	}
@@ -264,9 +264,9 @@ func TestReadTagNearOffset(t *testing.T) {
 #OFFSET: 123
 `
 
-	_, _, trivia, err := Import(bufio.NewScanner(strings.NewReader(text)), "", 0)
+	ts, err := Import(bufio.NewScanner(strings.NewReader(text)), "", 0)
 	require.NoError(t, err)
-	require.EqualValues(t, trivia[0].Description, "Many")
+	require.EqualValues(t, ts.Trivia[0].Description, "Many")
 }
 
 func TestReadMultilineTagNearOffset(t *testing.T) {
@@ -277,7 +277,36 @@ func TestReadMultilineTagNearOffset(t *testing.T) {
 #OFFSET: 123
 `
 
-	_, _, trivia, err := Import(bufio.NewScanner(strings.NewReader(text)), "", 0)
+	ts, err := Import(bufio.NewScanner(strings.NewReader(text)), "", 0)
 	require.NoError(t, err)
-	require.EqualValues(t, "Many\nlines of\ntext", trivia[0].Description)
+	require.EqualValues(t, "Many\nlines of\ntext", ts.Trivia[0].Description)
+}
+
+func TestReadGap(t *testing.T) {
+	text := `
+#OFFSET: 1
+Steve: 1
+#OFFSET: 12
+Ricky: 2
+#GAP: 1m5s
+Karl: 3
+`
+
+	ts, err := Import(bufio.NewScanner(strings.NewReader(text)), "", 0)
+	require.NoError(t, err)
+	require.NotNil(t, ts.Transcript)
+
+	require.EqualValues(t, models.DialogTypeChat, ts.Transcript[0].Type)
+	require.EqualValues(t, "1", ts.Transcript[0].Content)
+	require.EqualValues(t, time.Second, ts.Transcript[0].Timestamp)
+
+	require.EqualValues(t, models.DialogTypeChat, ts.Transcript[1].Type)
+	require.EqualValues(t, "2", ts.Transcript[1].Content)
+	require.EqualValues(t, time.Second*12, ts.Transcript[1].Timestamp)
+
+	require.EqualValues(t, models.DialogTypeGap, ts.Transcript[2].Type)
+	require.EqualValues(t, time.Minute+(5*time.Second), ts.Transcript[2].Duration)
+
+	require.EqualValues(t, models.DialogTypeChat, ts.Transcript[3].Type)
+	require.EqualValues(t, "3", ts.Transcript[3].Content)
 }

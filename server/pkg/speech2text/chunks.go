@@ -35,7 +35,7 @@ func getChunks(scanner *bufio.Scanner) ([]models.Chunk, error) {
 		line := scanner.Text()
 
 		if transcript.IsOffsetTag(line) {
-			offset, ok := transcript.ScanOffset(line)
+			offset, ok := transcript.ScanSeconds(transcript.OffsetTag, line)
 			if !ok {
 				return nil, fmt.Errorf("failed to get valid offset from line: %s", line)
 			}

@@ -151,9 +151,9 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 
 				// if the transcript is missing insert a placeholder
 				if chContribution == nil {
-					placeholderDialog, _, _, err := transcript.Import(bufio.NewScanner(bytes.NewBufferString(ch.Raw)), episodeOnDisk.ID(), currentPos+transcript.PosSpacing)
+					ts, err := transcript.Import(bufio.NewScanner(bytes.NewBufferString(ch.Raw)), episodeOnDisk.ID(), currentPos+transcript.PosSpacing)
 					if err == nil {
-						for _, v := range placeholderDialog {
+						for _, v := range ts.Transcript {
 							v.Placeholder = true
 							episodeOnDisk.Transcript = append(episodeOnDisk.Transcript, v)
 						}
@@ -177,7 +177,7 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 					continue
 				}
 
-				dialog, synopsis, trivia, err := transcript.Import(bufio.NewScanner(bytes.NewBufferString(chContribution.Transcription)), episodeOnDisk.ID(), currentPos+transcript.PosSpacing)
+				ts, err := transcript.Import(bufio.NewScanner(bytes.NewBufferString(chContribution.Transcription)), episodeOnDisk.ID(), currentPos+transcript.PosSpacing)
 				if err != nil {
 					return err
 				}
@@ -190,9 +190,9 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 				} else {
 					uniqueContributors[author.Name] = struct{}{}
 				}
-				episodeOnDisk.Transcript = append(episodeOnDisk.Transcript, dialog...)
-				episodeOnDisk.Synopsis = append(episodeOnDisk.Synopsis, synopsis...)
-				episodeOnDisk.Trivia = append(episodeOnDisk.Trivia, trivia...)
+				episodeOnDisk.Transcript = append(episodeOnDisk.Transcript, ts.Transcript...)
+				episodeOnDisk.Synopsis = append(episodeOnDisk.Synopsis, ts.Synopsis...)
+				episodeOnDisk.Trivia = append(episodeOnDisk.Trivia, ts.Trivia...)
 			}
 
 			contributors := []string{}

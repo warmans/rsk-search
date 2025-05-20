@@ -11,6 +11,23 @@ import (
 	"unicode"
 )
 
+type tag string
+
+func (t tag) Open() string {
+	return fmt.Sprintf("#%s:", string(t))
+}
+
+func (t tag) Close() string {
+	return fmt.Sprintf("#/%s", string(t))
+}
+
+const (
+	OffsetTag   tag = "OFFSET"
+	GapTag      tag = "GAP"
+	SynopsisTag tag = "SYN"
+	TriviaTag   tag = "TRIVIA"
+)
+
 var ErrEOF = fmt.Errorf("EOF")
 
 const PosSpacing = 1
@@ -93,30 +110,32 @@ func (ts *TranscriptScanner) ReadAllPrefixed(prefix string) ([]string, error) {
 }
 
 func Validate(scanner *bufio.Scanner) error {
-	lines, _, _, err := Import(scanner, "", 0)
+	transcript, err := Import(scanner, "", 0)
 	if err != nil {
 		return err
 	}
-	if len(lines) == 0 {
+	if len(transcript.Transcript) == 0 {
 		return fmt.Errorf("no valid lines parsed from transcript")
 	}
 	return nil
 }
 
 // Import imports plain text transcripts to JSON.
-func Import(scanner *bufio.Scanner, episodeID string, startPos int64) ([]models.Dialog, []models.Synopsis, []models.Trivia, error) {
+func Import(scanner *bufio.Scanner, episodeID string, startPos int64) (*models.Transcript, error) {
 
 	parser := NewTranscriptScanner(scanner)
 
-	output := make([]models.Dialog, 0)
 	position := startPos
 	var lastOffset time.Duration
 	var numOffsets int
 
-	synopsies := make([]models.Synopsis, 0)
-	var currentSynopsis *models.Synopsis
+	transcript := &models.Transcript{
+		Transcript: make([]models.Dialog, 0),
+		Synopsis:   make([]models.Synopsis, 0),
+		Trivia:     make([]models.Trivia, 0),
+	}
 
-	trivia := make([]models.Trivia, 0)
+	var currentSynopsis *models.Synopsis
 	var currentTrivia *models.Trivia
 
 	for {
@@ -127,7 +146,7 @@ func Import(scanner *bufio.Scanner, episodeID string, startPos int64) ([]models.
 			if errors.Is(err, ErrEOF) {
 				break
 			}
-			return nil, nil, nil, err
+			return nil, err
 		}
 
 		// strip space and non-breakable-spaces
@@ -145,9 +164,9 @@ func Import(scanner *bufio.Scanner, episodeID string, startPos int64) ([]models.
 		// OFFSET lines related to the next line of text so just store the offset
 		// and continue.
 		if IsOffsetTag(line) {
-			if offset, ok := ScanOffset(line); ok {
+			if offset, ok := ScanSeconds(OffsetTag, line); ok {
 				if offset > 0 && offset <= lastOffset {
-					return nil, nil, nil, fmt.Errorf("offsets are invalid")
+					return nil, fmt.Errorf("offsets are invalid")
 				}
 				lastOffset = offset
 				numOffsets++
@@ -155,17 +174,37 @@ func Import(scanner *bufio.Scanner, episodeID string, startPos int64) ([]models.
 			continue
 		}
 
+		if IsGapTag(line) {
+			duration, err := ScanDuration(GapTag, line)
+			if err == nil {
+				gap := models.Dialog{
+					ID:       models.DialogID(episodeID, position),
+					Type:     models.DialogTypeGap,
+					Position: position,
+					Duration: duration,
+				}
+				if lastOffset > 0 {
+					gap.Timestamp = lastOffset
+					gap.TimestampInferred = false
+					lastOffset = 0
+				}
+				transcript.Transcript = append(transcript.Transcript, gap)
+				position += PosSpacing
+			}
+			continue
+		}
+
 		if IsSynopsisTag(line) {
 			if currentSynopsis != nil {
 				currentSynopsis.EndPos = position
-				synopsies = append(synopsies, *currentSynopsis)
+				transcript.Synopsis = append(transcript.Synopsis, *currentSynopsis)
 				currentSynopsis = nil
 			}
 			if strings.HasPrefix(line, "#SYN: ") {
 				currentSynopsis = &models.Synopsis{Description: CorrectContent(strings.TrimSpace(strings.TrimPrefix(line, "#SYN:"))), StartPos: position}
 				nextLines, err := parser.ReadAllPrefixed("#")
 				if err != nil {
-					return nil, nil, nil, err
+					return nil, err
 				}
 				if len(nextLines) > 0 {
 					currentSynopsis.Description += "\n" + strings.Join(nextLines, "\n")
@@ -176,14 +215,14 @@ func Import(scanner *bufio.Scanner, episodeID string, startPos int64) ([]models.
 		if IsTriviaTag(line) {
 			if currentTrivia != nil {
 				currentTrivia.EndPos = position
-				trivia = append(trivia, *currentTrivia)
+				transcript.Trivia = append(transcript.Trivia, *currentTrivia)
 				currentTrivia = nil
 			}
 			if strings.HasPrefix(line, "#TRIVIA:") {
 				currentTrivia = &models.Trivia{Description: CorrectContent(strings.TrimSpace(strings.TrimPrefix(line, "#TRIVIA:"))), StartPos: position}
 				nextLines, err := parser.ReadAllPrefixed("#")
 				if err != nil {
-					return nil, nil, nil, err
+					return nil, err
 				}
 				if len(nextLines) > 0 {
 					currentTrivia.Description += "\n" + strings.Join(nextLines, "\n")
@@ -223,25 +262,25 @@ func Import(scanner *bufio.Scanner, episodeID string, startPos int64) ([]models.
 		}
 		di.Content = CorrectContent(strings.TrimSpace(parts[1]))
 
-		output = append(output, di)
+		transcript.Transcript = append(transcript.Transcript, di)
 
 		// advance to next line
 		position += PosSpacing
 	}
 
 	if err := scanner.Err(); err != nil {
-		return nil, nil, nil, err
+		return nil, err
 	}
 	if currentSynopsis != nil {
 		currentSynopsis.EndPos = position
-		synopsies = append(synopsies, *currentSynopsis)
+		transcript.Synopsis = append(transcript.Synopsis, *currentSynopsis)
 	}
 	if currentTrivia != nil {
 		currentTrivia.EndPos = position
-		trivia = append(trivia, *currentTrivia)
+		transcript.Trivia = append(transcript.Trivia, *currentTrivia)
 	}
 
-	return output, synopsies, trivia, nil
+	return transcript, nil
 }
 
 // Export dumps dialog back to the raw format.
@@ -321,21 +360,30 @@ func IsTag(line string) bool {
 }
 
 func IsOffsetTag(line string) bool {
-	return strings.HasPrefix(line, "#OFFSET:")
+	return strings.HasPrefix(line, OffsetTag.Open())
+}
+
+func IsGapTag(line string) bool {
+	return strings.HasPrefix(line, GapTag.Open())
 }
 
 func IsTriviaTag(line string) bool {
-	return strings.HasPrefix(line, "#TRIVIA:") || strings.HasPrefix(line, "#/TRIVIA")
+	return strings.HasPrefix(line, TriviaTag.Open()) || strings.HasPrefix(line, TriviaTag.Close())
 }
 
 func IsSynopsisTag(line string) bool {
-	return strings.HasPrefix(line, "#SYN:") || strings.HasPrefix(line, "#/SYN")
+	return strings.HasPrefix(line, SynopsisTag.Open()) || strings.HasPrefix(line, SynopsisTag.Close())
 }
 
-func ScanOffset(line string) (time.Duration, bool) {
-	offsetStr := strings.TrimSpace(strings.TrimPrefix(line, "#OFFSET:"))
+func ScanSeconds(tagPrefix tag, line string) (time.Duration, bool) {
+	offsetStr := strings.TrimSpace(strings.TrimPrefix(line, tagPrefix.Open()))
 	if off, err := strconv.ParseFloat(offsetStr, 64); err == nil {
 		return time.Duration(off*1000) * time.Millisecond, true
 	}
 	return 0, false
+}
+
+func ScanDuration(tagPrefix tag, line string) (time.Duration, error) {
+	strDuration := strings.TrimSpace(strings.TrimPrefix(line, tagPrefix.Open()))
+	return time.ParseDuration(strDuration)
 }

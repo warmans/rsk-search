@@ -1,8 +1,8 @@
 package models
 
 import (
+	"errors"
 	"fmt"
-	"github.com/pkg/errors"
 	"github.com/warmans/rsk-search/gen/api"
 	"github.com/warmans/rsk-search/pkg/util"
 	"strconv"
@@ -134,9 +134,9 @@ type Dialog struct {
 	ID                string        `json:"id"`
 	Position          int64         `json:"pos"`
 	Timestamp         time.Duration `json:"timestamp"`
-	Duration          time.Duration `json:"duration"`
 	TimestampInferred bool          `json:"timestamp_inferred"`
 	TimestampDistance int64         `json:"timestamp_distance"` //distance to nearest non-inferred offset
+	Duration          time.Duration `json:"duration"`
 	Type              DialogType    `json:"type"`
 	Actor             string        `json:"actor"`
 	Meta              Metadata      `json:"metadata"`
