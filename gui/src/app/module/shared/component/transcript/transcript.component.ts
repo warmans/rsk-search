@@ -26,6 +26,7 @@ interface DialogGroup {
   startPos: number;
   endPos: number;
   tscript: Tscript;
+  gap: boolean;
 }
 
 export interface Section {
@@ -287,12 +288,40 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
     let currentGroup: DialogGroup = {
       startPos: 1,
       endPos: undefined,
-      tscript: {synopses: [], trivia: [], transcript: []}
+      tscript: {synopses: [], trivia: [], transcript: []},
+      gap: false,
     };
     for (let i: number = (this.startLine || 0); i < (this.endLine && this.endLine < episode?.transcript.length ? this.endLine : episode?.transcript.length); i++) {
 
       if (episode.transcript[i].offsetMs > 0) {
         this.audioOffsetsAvailable = true;
+      }
+
+      // gaps immediately flush and restart the current group
+      if (episode.transcript[i].type === DialogType.GAP) {
+        // flush the current group
+        this.groupedDialog.push(currentGroup);
+
+        // flush the gap
+        currentGroup = {
+          startPos: episode.transcript[i].pos,
+          endPos: undefined,
+          tscript: {synopses: [], trivia: [], transcript: []},
+          gap: false,
+        };
+        currentGroup.tscript.transcript.push(episode.transcript[i]);
+        currentGroup.gap = true;
+        currentGroup.endPos = episode.transcript[i].pos;
+        this.groupedDialog.push(currentGroup);
+
+        // start a new group
+        currentGroup = {
+          startPos: episode.transcript[i].pos,
+          endPos: undefined,
+          tscript: {synopses: [], trivia: [], transcript: []},
+          gap: false,
+        };
+        continue
       }
 
       this.lineInSynopsisMap[episode.transcript[i].pos] = !!(episode?.synopses || []).find((s: RskSynopsis): boolean => episode.transcript[i].pos >= s.startPos && i < s.endPos);
@@ -315,7 +344,8 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
             currentGroup = {
               startPos: episode.transcript[i].pos,
               endPos: undefined,
-              tscript: {synopses: [], trivia: [], transcript: []}
+              tscript: {synopses: [], trivia: [], transcript: []},
+              gap: false,
             };
             if ((currentGroup?.tscript?.trivia || []).length === 0) {
               currentGroup.tscript.trivia = [trivia];
@@ -332,7 +362,8 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
             currentGroup = {
               startPos: episode.transcript[i].pos,
               endPos: undefined,
-              tscript: {synopses: [], trivia: [], transcript: []}
+              tscript: {synopses: [], trivia: [], transcript: []},
+              gap: false,
             };
           }
         })

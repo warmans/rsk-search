@@ -47,6 +47,11 @@ export function isEndTriviaLine(line: string): boolean {
   return !!line.match(/^#[/]TRIVIA.*/g);
 }
 
+
+export function isGapLine(line: string): boolean {
+  return !!line.match(/^#GAP:.*/g);
+}
+
 export function getOffsetValueFromLineInSeconds(line: string): number {
   const match = line.match(/^#OFFSET:\s([0-9\.]+)/);
   return match?.length == 2 ? parseFloat(match[1]) : -1;
@@ -87,6 +92,18 @@ export function parseTranscript(transcript: string): Tscript {
 
     if (isOffsetLine(line)) {
       lastTimestampMs = getOffsetValueFromLineInSeconds(line)*1000
+      return
+    }
+    if (isGapLine(line)) {
+
+      tscript.transcript.push({
+        type: DialogType.GAP,
+        pos: pos,
+        offsetMs: lastTimestampMs,
+        content: line.replace(/^#GAP:/, ''),
+      });
+      lastTimestampMs = undefined
+      pos++;
       return
     }
     if (isStartSynopsisLine(line)) {
