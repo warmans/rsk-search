@@ -47,6 +47,6 @@ service StatusService {
 }
 
 message Quotas {
-  int32 bandwidth_total_mib = 1;
-  int32 bandwidth_remaining_mib = 2;
+  float bandwidth_total_mib = 1;
+  float bandwidth_remaining_mib = 2;
 }

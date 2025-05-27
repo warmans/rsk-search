@@ -45,8 +45,8 @@ func (s *StatusService) GetQuotaSummary(ctx context.Context, empty *emptypb.Empt
 		if err != nil {
 			return err
 		}
-		res.BandwidthTotalMib = int32(quota.BandwidthQuotaInMiB)
-		res.BandwidthRemainingMib = int32(quota.BandwidthQuotaInMiB - mibDownloaded)
+		res.BandwidthTotalMib = float32(quota.BandwidthQuotaInMiB)
+		res.BandwidthRemainingMib = float32(quota.BandwidthQuotaInMiB - mibDownloaded)
 		return nil
 	})
 	if err != nil {

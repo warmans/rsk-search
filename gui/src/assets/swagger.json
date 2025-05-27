@@ -2958,12 +2958,12 @@
         "type": "object",
         "properties": {
           "bandwidthTotalMib": {
-            "type": "integer",
-            "format": "int32"
+            "type": "number",
+            "format": "float"
           },
           "bandwidthRemainingMib": {
-            "type": "integer",
-            "format": "int32"
+            "type": "number",
+            "format": "float"
           }
         }
       },

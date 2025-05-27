@@ -1,0 +1,1 @@
+ALTER TABLE media_access_log ALTER COLUMN total_mib TYPE REAL USING (total_mib::REAL);

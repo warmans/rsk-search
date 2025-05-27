@@ -1405,7 +1405,7 @@ func (s *Store) GetDonationStats(ctx context.Context) (models.DonationRecipientS
 	return recipients, nil
 }
 
-func (s *Store) IncrementMediaAccessLog(ctx context.Context, mediaType string, epid string, mib int64) error {
+func (s *Store) IncrementMediaAccessLog(ctx context.Context, mediaType string, epid string, mib float64) error {
 	now := time.Now()
 	_, err := s.tx.ExecContext(
 		ctx,
@@ -1421,17 +1421,17 @@ func (s *Store) IncrementMediaAccessLog(ctx context.Context, mediaType string, e
 	return err
 }
 
-func (s *Store) GetMediaStatsForCurrentMonth(ctx context.Context) (int64, int64, error) {
+func (s *Store) GetMediaStatsForCurrentMonth(ctx context.Context) (int64, float64, error) {
 	now := time.Now()
 	startOfMonth := time.Date(now.Year(), now.Month(), 1, 0, 0, 0, 0, time.UTC)
 	endOfMonth := startOfMonth.AddDate(0, 1, 0)
 
 	var totalDownloads int64
-	var totalMib int64
+	var totalMib float64
 	err := s.tx.QueryRowxContext(
 		ctx,
 		`
-			SELECT COALESCE(SUM(num_times_accessed), 0), COALESCE(SUM(total_mib), 0) 
+			SELECT COALESCE(SUM(num_times_accessed), 0), COALESCE(SUM(total_mib *num_times_accessed), 0) 
 			FROM media_access_log
 			WHERE time_bucket >= $1 AND time_bucket < $2`,
 		startOfMonth,

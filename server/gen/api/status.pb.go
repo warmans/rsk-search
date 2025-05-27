@@ -26,8 +26,8 @@ const (
 
 type Quotas struct {
 	state                 protoimpl.MessageState `protogen:"open.v1"`
-	BandwidthTotalMib     int32                  `protobuf:"varint,1,opt,name=bandwidth_total_mib,json=bandwidthTotalMib,proto3" json:"bandwidth_total_mib,omitempty"`
-	BandwidthRemainingMib int32                  `protobuf:"varint,2,opt,name=bandwidth_remaining_mib,json=bandwidthRemainingMib,proto3" json:"bandwidth_remaining_mib,omitempty"`
+	BandwidthTotalMib     float32                `protobuf:"fixed32,1,opt,name=bandwidth_total_mib,json=bandwidthTotalMib,proto3" json:"bandwidth_total_mib,omitempty"`
+	BandwidthRemainingMib float32                `protobuf:"fixed32,2,opt,name=bandwidth_remaining_mib,json=bandwidthRemainingMib,proto3" json:"bandwidth_remaining_mib,omitempty"`
 	unknownFields         protoimpl.UnknownFields
 	sizeCache             protoimpl.SizeCache
 }
@@ -62,14 +62,14 @@ func (*Quotas) Descriptor() ([]byte, []int) {
 	return file_status_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Quotas) GetBandwidthTotalMib() int32 {
+func (x *Quotas) GetBandwidthTotalMib() float32 {
 	if x != nil {
 		return x.BandwidthTotalMib
 	}
 	return 0
 }
 
-func (x *Quotas) GetBandwidthRemainingMib() int32 {
+func (x *Quotas) GetBandwidthRemainingMib() float32 {
 	if x != nil {
 		return x.BandwidthRemainingMib
 	}
@@ -82,8 +82,8 @@ const file_status_proto_rawDesc = "" +
 	"\n" +
 	"\fstatus.proto\x12\x03rsk\x1a\x1cgoogle/api/annotations.proto\x1a.protoc-gen-openapiv2/options/annotations.proto\x1a\x1bgoogle/protobuf/empty.proto\"p\n" +
 	"\x06Quotas\x12.\n" +
-	"\x13bandwidth_total_mib\x18\x01 \x01(\x05R\x11bandwidthTotalMib\x126\n" +
-	"\x17bandwidth_remaining_mib\x18\x02 \x01(\x05R\x15bandwidthRemainingMib2\xba\x02\n" +
+	"\x13bandwidth_total_mib\x18\x01 \x01(\x02R\x11bandwidthTotalMib\x126\n" +
+	"\x17bandwidth_remaining_mib\x18\x02 \x01(\x02R\x15bandwidthRemainingMib2\xba\x02\n" +
 	"\rStatusService\x12\x94\x01\n" +
 	"\x06Health\x12\x16.google.protobuf.Empty\x1a\x16.google.protobuf.Empty\"Z\x92A5\n" +
 	"\x06search\x12 Just return 200 if the API is up*\tgetHealth\x82\xd3\xe4\x93\x02\x1cB\x1a\n" +
