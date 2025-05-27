@@ -33,6 +33,8 @@ func MergeAAITimestampsCommand() *cobra.Command {
 	var debugPos int64
 	var debugComparePos int64
 	var skipPositions []int
+	var forceReplace bool
+	var dryRun bool
 
 	cmd := &cobra.Command{
 		Use:   "aai-merge-timestamps",
@@ -56,7 +58,23 @@ func MergeAAITimestampsCommand() *cobra.Command {
 				outputPath = path.Join(cfg.dataDir, targetTranscriptName)
 			}
 
-			target.Transcript = mergeTimestampsTo(target.Transcript, assemblyAiToDialog(timestampSource.Utterances), debugPos, debugComparePos, skipPositions, preserveTimestamps)
+			newTranscript, err := mergeTimestampsTo(
+				target.Transcript,
+				assemblyAiToDialog(timestampSource.Utterances),
+				debugPos,
+				debugComparePos,
+				skipPositions,
+				preserveTimestamps,
+				forceReplace,
+			)
+			if err != nil {
+				return fmt.Errorf("failed to update transcript: %w", err)
+			}
+			if dryRun {
+				return nil
+			}
+
+			target.Transcript = newTranscript
 			if replace {
 				err = data.ReplaceEpisodeFile(cfg.dataDir, target)
 			} else {
@@ -80,11 +98,20 @@ func MergeAAITimestampsCommand() *cobra.Command {
 	cmd.Flags().Int64VarP(&debugPos, "debug-pos", "p", 0, "Dump debug info for this position in the target transcript")
 	cmd.Flags().Int64VarP(&debugComparePos, "debug-compare-pos", "c", 0, "Limit debug output to comparison lines with this position in the comparison transcript")
 	cmd.Flags().BoolVarP(&preserveTimestamps, "preserve-timestamps", "", true, "keep existing timestamps")
+	cmd.Flags().BoolVarP(&forceReplace, "force-replace", "f", false, "replace even if new transcript has fewer timestamps")
+	cmd.Flags().BoolVarP(&dryRun, "dry-run", "", false, "Print result only, don't update anything")
 
 	return cmd
 }
 
-func mergeTimestampsTo(target []models.Dialog, compare []models.Dialog, debugPos int64, debugComparePos int64, skip []int, preserveTimestamps bool) []models.Dialog {
+func mergeTimestampsTo(target []models.Dialog, compare []models.Dialog, debugPos int64, debugComparePos int64, skip []int, preserveTimestamps bool, forceReplace bool) ([]models.Dialog, error) {
+
+	initialNumOffsets := 0
+	for _, v := range target {
+		if v.Timestamp > 0 && !v.TimestampInferred {
+			initialNumOffsets++
+		}
+	}
 
 	// clear all non-chat data
 	transcript := []models.Dialog{}
@@ -120,6 +147,10 @@ func mergeTimestampsTo(target []models.Dialog, compare []models.Dialog, debugPos
 			continue
 		}
 
+		// consider explicit timestamps as matched lines
+		if targetLine.Timestamp > 0 && !targetLine.TimestampInferred {
+			lastMatchedTimestamp = targetLine.Timestamp
+		}
 		fmt.Printf("TARGET %d: %s (%s)\n", targetPos, targetLine.Content, targetText)
 		for comparePos := 0; comparePos < len(compare); comparePos++ {
 			compareText := cleanString(compare[comparePos].Content)
@@ -186,9 +217,20 @@ func mergeTimestampsTo(target []models.Dialog, compare []models.Dialog, debugPos
 			target[pos].TimestampInferred = false
 		}
 	}
-	fmt.Printf("\nCOMPLETED with %d matched of %d (%0.2f%%)\n", numMatched, len(transcript), float64(numMatched)/float64(len(transcript))*100)
 
-	return target
+	originalAccuracy := float64(initialNumOffsets) / float64(len(transcript)) * 100
+	newAccuracy := float64(numMatched) / float64(len(transcript)) * 100
+
+	if originalAccuracy > newAccuracy {
+		fmt.Printf("\nWARNING: original accuracy %0.2f%% > new accuracy %0.2f%%\n", originalAccuracy, newAccuracy)
+		if !forceReplace {
+			return nil, fmt.Errorf("new accuracy %0.2f%% is lower than original accuracy %0.2f%%", newAccuracy, originalAccuracy)
+		}
+	}
+
+	fmt.Printf("\nCOMPLETED with %d matched of %d (%0.2f -> %0.2f%%)\n", numMatched, len(transcript), originalAccuracy, newAccuracy)
+
+	return target, nil
 }
 
 func distanceWithinNPcnt(x int, y int, total int, pcnt float64) bool {
