@@ -94,6 +94,17 @@ Finally youtube videos can be embedded in a trivia breakout using the same synta
 <p>The way they are generated means that small inaccuracies will stack until an accurate offset resets the calculation. As a result the more #OFFSETS that are added
 the more accurate the inferred offsets will become, but it is also not strictly necessary to add an offset for every line.</p>
 
+<h4 class="mb-2 mt-4">Gaps</h4>
+
+If there is a gap in the transcript that you wish to make a note of, you can use the <span class="code">#GAP</span> tag.
+
+The format is <span class="code">#GAP: [duration]</span>.
+
+For example if there is5 minutes and 30 seconds of missing transcript you can use the following tag:
+
+<pre class="pt-3">
+  #GAP: 5m30s
+</pre>
 
 <h4 class="mb-2 mt-4">What will happen next?</h4>
 <p>Once a chunk has been submitted it will be reviewed and if it is valid and mostly correct it will be merged
