@@ -295,6 +295,12 @@ func Export(dialog []models.Dialog, synopsis []models.Synopsis, trivia []models.
 	output := strings.Builder{}
 	for _, d := range dialog {
 		if !options.stripMetadata {
+
+			if d.Type == models.DialogTypeGap {
+				output.WriteString(fmt.Sprintf("#GAP: %s\n", d.Duration.String()))
+				continue
+			}
+
 			if d.Timestamp > 0 && !d.TimestampInferred {
 				output.WriteString(fmt.Sprintf("#OFFSET: %0.2f\n", d.Timestamp.Seconds()))
 			}
