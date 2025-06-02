@@ -125,7 +125,7 @@ func (s *Search) Search(ctx context.Context, f filter.Filter, page int32, sortBy
 						s.logger.Warn("failed to find dialog line, is the DB out of sync with the index?", zap.String("dialog_id", string(value)))
 						return true
 					}
-					ep, err := s.episodeCache.GetEpisode(episodeID)
+					ep, err := s.episodeCache.GetEpisode(episodeID, false)
 					if err != nil {
 						innerErr = errors.Wrapf(err, "episode ID: %s", episodeID)
 						return false

@@ -322,7 +322,7 @@ func (c *DownloadService) DownloadEpisodeMedia(resp http.ResponseWriter, req *ht
 		return
 	}
 
-	episode, err := c.episodeCache.GetEpisode(episodeID)
+	episode, err := c.episodeCache.GetEpisode(episodeID, true)
 	if err != nil {
 		if errors.Is(err, data.ErrNotFound) {
 			http.Error(resp, "Episode not found", http.StatusNotFound)
@@ -585,7 +585,7 @@ func (c *DownloadService) DownloadVideoSprite(resp http.ResponseWriter, req *htt
 		http.Error(resp, "No dialog identifier given", http.StatusBadRequest)
 		return
 	}
-	ep, err := c.episodeCache.GetEpisode(episodeID)
+	ep, err := c.episodeCache.GetEpisode(episodeID, true)
 	if errors.Is(err, data.ErrNotFound) || ep == nil {
 		http.Error(resp, fmt.Sprintf("unknown episode ID: %s", episodeID), http.StatusNotFound)
 		return

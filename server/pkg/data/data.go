@@ -135,7 +135,7 @@ type EpisodeCache struct {
 	lock        sync.RWMutex
 }
 
-func (s *EpisodeCache) GetEpisode(id string) (*models.Transcript, error) {
+func (s *EpisodeCache) GetEpisode(id string, deepCopy bool) (*models.Transcript, error) {
 	if !strings.HasPrefix(id, "ep-") {
 		id = fmt.Sprintf("ep-%s", id)
 	}
@@ -147,11 +147,15 @@ func (s *EpisodeCache) GetEpisode(id string) (*models.Transcript, error) {
 	}
 
 	// do a deep clone of the object to avoid it being updated accidentally.
-	cpy := &models.Transcript{}
-	if err := copier.CopyWithOption(cpy, ep, copier.Option{DeepCopy: true}); err != nil {
-		return nil, err
+	if deepCopy {
+		cpy := &models.Transcript{}
+		if err := copier.CopyWithOption(cpy, ep, copier.Option{DeepCopy: true}); err != nil {
+			return nil, err
+		}
+		return cpy, nil
+	} else {
+		return transcriptP(ep), nil
 	}
-	return cpy, nil
 }
 
 func (s *EpisodeCache) ListEpisodes() ([]*models.Transcript, error) {

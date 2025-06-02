@@ -66,7 +66,7 @@ func (s *TranscriptService) RegisterHTTP(ctx context.Context, router *mux.Router
 }
 
 func (s *TranscriptService) GetTranscript(ctx context.Context, request *api.GetTranscriptRequest) (*api.Transcript, error) {
-	ep, err := s.episodeCache.GetEpisode(request.Epid)
+	ep, err := s.episodeCache.GetEpisode(request.Epid, true)
 	if errors.Is(err, data.ErrNotFound) || ep == nil {
 		return nil, ErrNotFound(request.Epid)
 	}
@@ -105,7 +105,7 @@ func (s *TranscriptService) GetTranscript(ctx context.Context, request *api.GetT
 }
 
 func (s *TranscriptService) GetTranscriptDialog(ctx context.Context, request *api.GetTranscriptDialogRequest) (*api.TranscriptDialog, error) {
-	ep, err := s.episodeCache.GetEpisode(request.Epid)
+	ep, err := s.episodeCache.GetEpisode(request.Epid, true)
 	if errors.Is(err, data.ErrNotFound) || ep == nil {
 		return nil, ErrNotFound(request.Epid)
 	}
@@ -148,7 +148,7 @@ func (s *TranscriptService) ListTranscripts(ctx context.Context, req *api.ListTr
 		Episodes: []*api.ShortTranscript{},
 	}
 	for _, meta := range episodeMeta {
-		ep, err := s.episodeCache.GetEpisode(meta.ID())
+		ep, err := s.episodeCache.GetEpisode(meta.ID(), false)
 		if err != nil {
 			s.logger.Error("failed to get episode from cache", zap.Error(err))
 			continue
@@ -519,7 +519,7 @@ func (s *TranscriptService) GetTranscriptChangeDiff(ctx context.Context, request
 		return nil, err
 	}
 
-	oldTranscript, err := s.episodeCache.GetEpisode(newTranscript.EpID)
+	oldTranscript, err := s.episodeCache.GetEpisode(newTranscript.EpID, true)
 	if err != nil {
 		return nil, ErrNotFound(newTranscript.EpID)
 	}
