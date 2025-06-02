@@ -155,7 +155,6 @@ func (s *EpisodeCache) GetEpisode(id string) (*models.Transcript, error) {
 }
 
 func (s *EpisodeCache) ListEpisodes() ([]*models.Transcript, error) {
-
 	// copy the episodeList when fetched to avoid unexpected modifications.
 	list := make([]*models.Transcript, len(s.episodeList))
 

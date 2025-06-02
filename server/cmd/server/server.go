@@ -223,6 +223,7 @@ func ServerCmd() *cobra.Command {
 					logger,
 					srvCfg,
 					persistentDBConn,
+					readOnlyStoreConn,
 					episodeCache,
 					auth,
 				),

@@ -439,6 +439,7 @@ message GetTranscriptDialogRequest {
 }
 
 message ListTranscriptsRequest {
+  string filter = 1;
 }
 
 message TranscriptList {

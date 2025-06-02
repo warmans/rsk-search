@@ -223,10 +223,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
   }
 
   clearSelection() {
-    // this intentionally does not remove the position from the URL, to automatically scrolling to the top of the page.
-    this.selection = undefined;
-    this.scrollToID = undefined;
-    this.scrollToSeconds = undefined;
+    this.router.navigate([], {});
   }
 
   copySelection() {

@@ -1222,6 +1222,7 @@ func (x *GetTranscriptDialogRequest) GetRange() *DialogRange {
 
 type ListTranscriptsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	Filter        string                 `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1254,6 +1255,13 @@ func (x *ListTranscriptsRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use ListTranscriptsRequest.ProtoReflect.Descriptor instead.
 func (*ListTranscriptsRequest) Descriptor() ([]byte, []int) {
 	return file_transcript_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *ListTranscriptsRequest) GetFilter() string {
+	if x != nil {
+		return x.Filter
+	}
+	return ""
 }
 
 type TranscriptList struct {
@@ -3654,8 +3662,9 @@ const file_transcript_proto_rawDesc = "" +
 	"\x04epid\x18\x01 \x01(\tR\x04epid\x12\x14\n" +
 	"\x03pos\x18\x02 \x01(\x05B\x02\x18\x01R\x03pos\x12.\n" +
 	"\x11num_context_lines\x18\x03 \x01(\x05B\x02\x18\x01R\x0fnumContextLines\x12&\n" +
-	"\x05range\x18\x04 \x01(\v2\x10.rsk.DialogRangeR\x05range\"\x18\n" +
-	"\x16ListTranscriptsRequest\"B\n" +
+	"\x05range\x18\x04 \x01(\v2\x10.rsk.DialogRangeR\x05range\"0\n" +
+	"\x16ListTranscriptsRequest\x12\x16\n" +
+	"\x06filter\x18\x01 \x01(\tR\x06filter\"B\n" +
 	"\x0eTranscriptList\x120\n" +
 	"\bepisodes\x18\x01 \x03(\v2\x14.rsk.ShortTranscriptR\bepisodes\"\xb2\x01\n" +
 	"\aRatings\x120\n" +

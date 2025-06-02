@@ -1,10 +1,13 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit} from '@angular/core';
 import {SearchAPIClient} from 'src/app/lib/api-client/services/search';
 import {debounceTime, distinctUntilChanged, takeUntil} from 'rxjs/operators';
 import {RskPublicationType, RskShortTranscript, RskTranscriptList} from 'src/app/lib/api-client/models';
 import {UntypedFormControl} from '@angular/forms';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {KeyValue} from "@angular/common";
+import {Eq} from "../../../../lib/filter-dsl/filter";
+import {Str} from "../../../../lib/filter-dsl/value";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-episode-list',
@@ -39,15 +42,19 @@ export class EpisodeListComponent implements OnInit, OnDestroy {
   }
 
   set activePublicationType(value: RskPublicationType) {
-    this._activePublicationType = value;
-    this.resetEpisodeList();
+    if (this._activePublicationType !== value) {
+      this._activePublicationType = value;
+      this.resetEpisodeList(true);
+    }
   }
 
   private _activeSubSection: string;
 
   set activeSubSection(value: string) {
-    this._activeSubSection = value;
-    this.resetEpisodeList();
+    if (this._activeSubSection !== value) {
+      this._activeSubSection = value;
+      this.resetEpisodeList();
+    }
   }
 
   get activeSubSection(): string {
@@ -58,8 +65,8 @@ export class EpisodeListComponent implements OnInit, OnDestroy {
 
   constructor(private apiClient: SearchAPIClient, private router: Router, route: ActivatedRoute) {
     route.queryParamMap.pipe(takeUntil(this.destroy$)).subscribe((params: ParamMap) => {
-      this.activePublicationType = params.get('publication_type') as RskPublicationType || RskPublicationType.PUBLICATION_TYPE_RADIO;
-      this.activeSubSection = params.get('subsection');
+      this.activePublicationType = params.get('publication_type') as RskPublicationType ?? RskPublicationType.PUBLICATION_TYPE_RADIO;
+      this.activeSubSection = params.get('subsection') ?? (this.activePublicationType === RskPublicationType.PUBLICATION_TYPE_RADIO ? "xfm-S1" : undefined);
     });
   }
 
@@ -82,9 +89,12 @@ export class EpisodeListComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  listEpisodes() {
+  listEpisodes(): Subscription{
+    this.transcriptList = [];
+    this.filteredTranscriptList = [];
+
     this.loading.push(true);
-    this.apiClient.listTranscripts().pipe(
+   return  this.apiClient.listTranscripts({filter: Eq("publication_type", Str(this.mapPublicationType(this._activePublicationType))).print()}).pipe(
       takeUntil(this.destroy$),
     ).subscribe((res: RskTranscriptList) => {
       this.transcriptList = res.episodes;
@@ -127,9 +137,16 @@ export class EpisodeListComponent implements OnInit, OnDestroy {
     })
   }
 
-  resetEpisodeList() {
-    this.searchInput.setValue('', {emitEvent: false});
-    this.updateFilteredTranscriptList();
+  resetEpisodeList(reload: boolean = false) {
+    if (reload) {
+      this.listEpisodes().add(() => {
+        this.searchInput.setValue('', {emitEvent: false});
+        this.updateFilteredTranscriptList();
+      })
+    } else {
+      this.searchInput.setValue('', {emitEvent: false});
+      this.updateFilteredTranscriptList();
+    }
   }
 
   loadPublicationTab(tab: RskPublicationType) {
@@ -139,11 +156,28 @@ export class EpisodeListComponent implements OnInit, OnDestroy {
 
   loadSubsection(sub: string) {
     this.searchInput.setValue("");
-    this.router.navigate(['/search'], {queryParams: {'subsection': sub}, queryParamsHandling: 'merge'});
+    this.router.navigate(['/search'], {queryParams: {'subsection': sub}, queryParamsHandling: 'merge' });
   }
 
   originalOrder = (a: KeyValue<string,string>, b: KeyValue<string,string>): number => {
     return 0;
+  }
+
+  mapPublicationType(type: RskPublicationType): string {
+    switch (type) {
+      case RskPublicationType.PUBLICATION_TYPE_RADIO:
+        return 'radio';
+      case RskPublicationType.PUBLICATION_TYPE_OTHER:
+        return 'other';
+      case RskPublicationType.PUBLICATION_TYPE_PODCAST:
+        return 'podcast';
+      case RskPublicationType.PUBLICATION_TYPE_PROMO:
+        return 'promo';
+      case RskPublicationType.PUBLICATION_TYPE_TV:
+        return 'tv';
+      default:
+      return 'unknown';
+    }
   }
 
 }

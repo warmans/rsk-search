@@ -572,3 +572,15 @@ func parsePositionRange(pos string) (int64, int64, error) {
 	}
 	return 0, 0, fmt.Errorf("unexpected position format %s", pos)
 }
+
+type EpisodeMeta struct {
+	PublicationType PublicationType `json:"publication_type"` //e.g. podcast, radio, tv
+	Publication     string          `json:"publication"`
+	Series          int32           `json:"series"`
+	Episode         int32           `json:"episode"`
+	ReleaseDate     *time.Time      `json:"release_date"`
+}
+
+func (e *EpisodeMeta) ID() string {
+	return EpID(e.Publication, e.Series, e.Episode)
+}

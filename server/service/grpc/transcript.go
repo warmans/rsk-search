@@ -17,6 +17,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/jwt"
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/store/common"
+	"github.com/warmans/rsk-search/pkg/store/ro"
 	"github.com/warmans/rsk-search/pkg/store/rw"
 	"github.com/warmans/rsk-search/pkg/transcript"
 	"github.com/warmans/rsk-search/pkg/util"
@@ -31,6 +32,7 @@ func NewTranscriptService(
 	logger *zap.Logger,
 	srvCfg config.SearchServiceConfig,
 	persistentDB *rw.Conn,
+	staticDB *ro.Conn,
 	episodeCache *data.EpisodeCache,
 	auth *jwt.Auth,
 ) *TranscriptService {
@@ -38,6 +40,7 @@ func NewTranscriptService(
 		logger:       logger,
 		srvCfg:       srvCfg,
 		persistentDB: persistentDB,
+		staticDB:     staticDB,
 		episodeCache: episodeCache,
 		auth:         auth,
 	}
@@ -47,6 +50,7 @@ type TranscriptService struct {
 	logger       *zap.Logger
 	srvCfg       config.SearchServiceConfig
 	persistentDB *rw.Conn
+	staticDB     *ro.Conn
 	auth         *jwt.Auth
 	episodeCache *data.EpisodeCache
 }
@@ -125,15 +129,30 @@ func (s *TranscriptService) GetTranscriptDialog(ctx context.Context, request *ap
 	}, nil
 }
 
-func (s *TranscriptService) ListTranscripts(_ context.Context, _ *api.ListTranscriptsRequest) (*api.TranscriptList, error) {
-	el := &api.TranscriptList{
-		Episodes: []*api.ShortTranscript{},
+func (s *TranscriptService) ListTranscripts(ctx context.Context, req *api.ListTranscriptsRequest) (*api.TranscriptList, error) {
+	qm, err := NewQueryModifiers(req)
+	if err != nil {
+		return nil, err
 	}
-	episodeList, err := s.episodeCache.ListEpisodes()
+	var episodeMeta []*models.EpisodeMeta
+	err = s.staticDB.WithStore(func(s *ro.Store) error {
+		var err error
+		episodeMeta, err = s.ListEpisodes(ctx, qm)
+		return err
+	})
 	if err != nil {
 		return nil, ErrInternal(err)
 	}
-	for _, ep := range episodeList {
+
+	el := &api.TranscriptList{
+		Episodes: []*api.ShortTranscript{},
+	}
+	for _, meta := range episodeMeta {
+		ep, err := s.episodeCache.GetEpisode(meta.ID())
+		if err != nil {
+			s.logger.Error("failed to get episode from cache", zap.Error(err))
+			continue
+		}
 		el.Episodes = append(el.Episodes, ep.ShortProto())
 	}
 	return el, nil

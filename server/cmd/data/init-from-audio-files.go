@@ -64,7 +64,7 @@ func InitFromAudioFilesCmd() *cobra.Command {
 
 	cmd.Flags().StringVarP(&audioFilePath, "audio-file-path", "", "", "Path to scan")
 	cmd.Flags().StringVarP(&publication, "publication", "p", "", "Publication to give episodes")
-	cmd.Flags().StringVarP(&publicationType, "publication-type", "t", "podcast", "Publication type to give episodes")
+	cmd.Flags().StringVarP(&publicationType, "publication-type", "t", "radio", "Publication type to give episodes")
 	cmd.Flags().BoolVarP(&dryRun, "dry-run", "x", false, "don't write any files, just log")
 	return cmd
 }

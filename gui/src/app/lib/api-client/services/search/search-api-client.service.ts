@@ -570,6 +570,9 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    * Response generated for [ 200 ] HTTP response code.
    */
   listTranscripts(
+    args: {
+      filter?: string,
+    },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscriptList> {
     const path = `/api/transcript`;
@@ -578,6 +581,9 @@ export class SearchAPIClient implements SearchAPIClientInterface {
       ...requestHttpOptions,
     };
 
+    if ('filter' in args) {
+      options.params = options.params.set('filter', String(args.filter));
+    }
     return this.sendRequest<models.RskTranscriptList>('GET', path, options);
   }
 

@@ -1,12 +1,13 @@
 CREATE TABLE "episode"
 (
-    "id"           TEXT PRIMARY KEY,
-    "publication"  TEXT,
-    "series"       INTEGER,
-    "episode"      INTEGER,
-    "release_date" TIMESTAMP,
-    "metadata"     JSON,
-    "contributors" JSON
+    "id"               TEXT PRIMARY KEY,
+    "publication_type" TEXT,
+    "publication"      TEXT,
+    "series"           INTEGER,
+    "episode"          INTEGER,
+    "release_date"     TIMESTAMP,
+    "metadata"         JSON,
+    "contributors"     JSON
 );
 
 CREATE TABLE "dialog"

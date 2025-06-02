@@ -154,12 +154,20 @@ func local_request_TranscriptService_GetTranscriptDialog_0(ctx context.Context, 
 	return msg, metadata, err
 }
 
+var filter_TranscriptService_ListTranscripts_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+
 func request_TranscriptService_ListTranscripts_0(ctx context.Context, marshaler runtime.Marshaler, client TranscriptServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var (
 		protoReq ListTranscriptsRequest
 		metadata runtime.ServerMetadata
 	)
 	io.Copy(io.Discard, req.Body)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TranscriptService_ListTranscripts_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
 	msg, err := client.ListTranscripts(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 }
@@ -169,6 +177,12 @@ func local_request_TranscriptService_ListTranscripts_0(ctx context.Context, mars
 		protoReq ListTranscriptsRequest
 		metadata runtime.ServerMetadata
 	)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_TranscriptService_ListTranscripts_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
 	msg, err := server.ListTranscripts(ctx, &protoReq)
 	return msg, metadata, err
 }

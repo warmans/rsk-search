@@ -256,9 +256,12 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
   }
 
   listTranscripts(
+    args: {
+      filter?: string,
+    },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscriptList> {
-    return super.listTranscripts(requestHttpOptions)
+    return super.listTranscripts(args, requestHttpOptions)
       .pipe(tap((res: any) => guards.isRskTranscriptList(res) || console.error(`TypeGuard for response 'RskTranscriptList' caught inconsistency.`, res)));
   }
 

@@ -131,7 +131,6 @@ const routes: Routes = [
       {
         anchorScrolling: 'enabled',
         onSameUrlNavigation: 'reload',
-        scrollPositionRestoration: 'enabled'
       },
     )],
   exports: [RouterModule],

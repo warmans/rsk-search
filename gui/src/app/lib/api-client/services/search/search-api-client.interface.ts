@@ -243,6 +243,9 @@ export interface SearchAPIClientInterface {
    * Response generated for [ 200 ] HTTP response code.
    */
   listTranscripts(
+    args: {
+      filter?: string,
+    },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscriptList>;
 

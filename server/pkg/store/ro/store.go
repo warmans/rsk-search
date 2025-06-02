@@ -54,8 +54,9 @@ func (s *Store) InsertEpisodeWithTranscript(ctx context.Context, ep *models.Tran
 	}
 	_, err = s.tx.ExecContext(
 		ctx,
-		`INSERT INTO episode (id, publication, series, episode, release_date, metadata, contributors) VALUES ($1, $2, $3, $4, $5, $6, $7) ON CONFLICT DO NOTHING`,
+		`INSERT INTO episode (id, publication_type, publication, series, episode, release_date, metadata, contributors) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) ON CONFLICT DO NOTHING`,
 		ep.ID(),
+		ep.PublicationType,
 		ep.Publication,
 		ep.Series,
 		ep.Episode,
@@ -110,6 +111,45 @@ func (s *Store) InsertChangelog(ctx context.Context, ep *models.Changelog) error
 		ep.Content,
 	)
 	return err
+}
+
+func (s *Store) ListEpisodes(ctx context.Context, q *common.QueryModifier) ([]*models.EpisodeMeta, error) {
+	fieldMap := map[string]string{
+		"publication_type": "publication_type",
+		"publication":      "publication",
+		"series":           "series",
+		"episode":          "episode",
+		"release_date":     "release_date",
+	}
+
+	q.Apply(common.WithDefaultSorting("release_date", common.SortAsc))
+
+	where, params, order, paging, err := q.ToSQL(fieldMap, true)
+	if err != nil {
+		return nil, err
+	}
+
+	rows, err := s.tx.QueryxContext(
+		ctx,
+		fmt.Sprintf(`SELECT publication_type, publication, series, episode, release_date  FROM episode %s %s %s`, where, order, paging),
+		params...,
+	)
+	if err != nil {
+		return nil, err
+	}
+	defer func(rows *sqlx.Rows) {
+		_ = rows.Close()
+	}(rows)
+
+	result := make([]*models.EpisodeMeta, 0)
+	for rows.Next() {
+		row := &models.EpisodeMeta{}
+		if err := rows.Scan(&row.PublicationType, &row.Publication, &row.Series, &row.Episode, &row.ReleaseDate); err != nil {
+			return nil, err
+		}
+		result = append(result, row)
+	}
+	return result, nil
 }
 
 func (s *Store) ListChangelogs(ctx context.Context, q *common.QueryModifier) ([]*models.Changelog, error) {

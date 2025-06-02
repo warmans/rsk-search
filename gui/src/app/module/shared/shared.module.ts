@@ -29,6 +29,7 @@ import {UserMenuComponent} from './component/user-menu/user-menu.component';
 import {TranscriptCopyDialogComponent} from './component/transcript-copy-dialog/transcript-copy-dialog.component';
 import {RandomQuoteComponent} from "../more-shite/page/random-quote/random-quote.component";
 import {AudioWaveformComponent} from "./component/audio-waveform/audio-waveform.component";
+import {LoadingSpinnerComponent} from "./component/loading-spinner/loading-spinner.component";
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import {AudioWaveformComponent} from "./component/audio-waveform/audio-waveform.
     AlertComponent,
     FocusedDirective,
     LoadingOverlayComponent,
+    LoadingSpinnerComponent,
     SafeUrlPipe,
     FormatSecondsPipe,
     TranscriptComponent,
@@ -91,6 +93,7 @@ import {AudioWaveformComponent} from "./component/audio-waveform/audio-waveform.
     TranscriptCopyDialogComponent,
     RandomQuoteComponent,
     AudioWaveformComponent,
+    LoadingSpinnerComponent,
   ]
 })
 export class SharedModule {

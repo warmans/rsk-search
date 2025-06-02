@@ -37,6 +37,14 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
         "tags": [
           "search"
         ]
