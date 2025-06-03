@@ -321,6 +321,6 @@ func (r *RateCommand) confirmSubmission(s *discordgo.Session, i *discordgo.Inter
 	return nil
 }
 
-func stars(rating float32) string {
-	return strings.Repeat("⭐", int(rating))
-}
+//func stars(rating float32) string {
+//	return strings.Repeat("⭐", int(rating))
+//}
