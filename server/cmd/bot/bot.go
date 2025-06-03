@@ -88,6 +88,7 @@ func RootCommand() *cobra.Command {
 						createSearchClient(grpcConn),
 					),
 					rewindCommand,
+					command.NewRateCommand(logger, createTranscriptClient(grpcConn)),
 				},
 				[]discord.Command{
 					command.NewArchiveCommand(logger, archive.NewStore(archiveDir)),
