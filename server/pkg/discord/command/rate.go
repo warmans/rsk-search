@@ -8,6 +8,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/discord"
 	"github.com/warmans/rsk-search/pkg/discord/common"
 	"github.com/warmans/rsk-search/pkg/meta"
+	"github.com/warmans/rsk-search/pkg/util"
 	"go.uber.org/zap"
 	"strconv"
 	"strings"
@@ -147,14 +148,7 @@ func (r *RateCommand) handleCreateRatingMsg(s *discordgo.Session, i *discordgo.I
 	}
 
 	_, err = s.ChannelMessageSendComplex(i.ChannelID, &discordgo.MessageSend{
-		Content: fmt.Sprintf(
-			"## Rate %s\n-# %s | %s | currently %0.2f from %d ratings\n --- \n",
-			epid,
-			transcript.Name,
-			transcript.ReleaseDate,
-			transcript.Ratings.ScoreAvg,
-			transcript.Ratings.NumScores,
-		),
+		Content: ratingMessageContent(epid, transcript),
 		Components: []discordgo.MessageComponent{
 			discordgo.ActionsRow{
 				Components: []discordgo.MessageComponent{
@@ -315,12 +309,29 @@ func (r *RateCommand) confirmSubmission(s *discordgo.Session, i *discordgo.Inter
 		existingRating = fmt.Sprintf("(currently %0.2f from %d ratings)", transcript.Ratings.ScoreAvg, transcript.Ratings.NumScores)
 	}
 
-	if _, err := s.ChannelMessageSend(i.Message.ChannelID, fmt.Sprintf("%s rated the episode %0.2f/5.00 %s", i.Member.DisplayName(), rating, existingRating)); err != nil {
+	if _, err := s.ChannelMessageEditComplex(&discordgo.MessageEdit{
+		ID:         i.Message.ID,
+		Content:    util.ToPtr(ratingMessageContent(episode, transcript)),
+		Components: util.ToPtr(i.Message.Components),
+		Channel:    i.Message.ChannelID,
+		Embed:      nil,
+	}); err != nil {
+		return err
+	}
+
+	if _, err := s.ChannelMessageSend(i.Message.ChannelID, fmt.Sprintf("%s rated %s %0.2f/5.00 %s", i.Member.DisplayName(), episode, rating, existingRating)); err != nil {
 		return err
 	}
 	return nil
 }
 
-//func stars(rating float32) string {
-//	return strings.Repeat("⭐", int(rating))
-//}
+func ratingMessageContent(epid string, transcript *api.Transcript) string {
+	return fmt.Sprintf(
+		"## Rate %s\n-# %s | %s | currently %0.2f from %d ratings\n --- \n",
+		epid,
+		transcript.Name,
+		transcript.ReleaseDate,
+		transcript.Ratings.ScoreAvg,
+		transcript.Ratings.NumScores,
+	)
+}
