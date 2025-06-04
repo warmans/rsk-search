@@ -43,6 +43,12 @@
             "in": "query",
             "required": false,
             "type": "string"
+          },
+          {
+            "name": "includeRatingBreakdown",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
           }
         ],
         "tags": [
@@ -1467,6 +1473,13 @@
         "numRatingScores": {
           "type": "integer",
           "format": "int32"
+        },
+        "ratingBreakdown": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "format": "float"
+          }
         }
       }
     },

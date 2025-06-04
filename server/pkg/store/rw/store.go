@@ -1698,7 +1698,7 @@ func (s *Store) ListTranscriptRatingScores(ctx context.Context) ([]models.Transc
 	return ratings, nil
 }
 
-func (s *Store) GetTranscriptRatingScores(ctx context.Context, episodeID string) (models.Ratings, error) {
+func (s *Store) GetPendingTranscriptRatingScores(ctx context.Context, episodeID string) (models.Ratings, error) {
 	res, err := s.tx.QueryxContext(
 		ctx,
 		`SELECT
@@ -1727,6 +1727,41 @@ func (s *Store) GetTranscriptRatingScores(ctx context.Context, episodeID string)
 			return ratings, err
 		}
 		ratings.Scores[fmt.Sprintf("%s:%s", oauthProvider, name)] = score
+	}
+	return ratings, nil
+}
+
+func (s *Store) ListPendingRatings(ctx context.Context) (map[string]models.Ratings, error) {
+	res, err := s.tx.QueryxContext(
+		ctx,
+		`SELECT
+			s.episode_id,
+    		s.score, 
+    		a.name, 
+    		a.oauth_provider
+		FROM transcript_rating_score s
+		LEFT JOIN author a ON s.author_id = a.id
+		WHERE "delete" = false 
+		  AND a.banned = false`,
+	)
+	if err != nil {
+		return map[string]models.Ratings{}, err
+	}
+	defer func(res *sqlx.Rows) {
+		_ = res.Close()
+	}(res)
+
+	ratings := make(map[string]models.Ratings)
+	for res.Next() {
+		var episode, name, oauthProvider string
+		var score float32
+		if err := res.Scan(&episode, &score, &name, &oauthProvider); err != nil {
+			return ratings, err
+		}
+		if _, ok := ratings[episode]; !ok {
+			ratings[episode] = models.Ratings{Scores: make(map[string]float32)}
+		}
+		ratings[episode].Scores[fmt.Sprintf("%s:%s", oauthProvider, name)] = score
 	}
 	return ratings, nil
 }

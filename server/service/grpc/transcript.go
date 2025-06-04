@@ -85,7 +85,7 @@ func (s *TranscriptService) GetTranscript(ctx context.Context, request *api.GetT
 	_, locked := lockedEpsiodeIDs[ep.ID()]
 
 	err = s.persistentDB.WithStore(func(s *rw.Store) error {
-		ratings, err := s.GetTranscriptRatingScores(ctx, ep.ShortID())
+		ratings, err := s.GetPendingTranscriptRatingScores(ctx, ep.ShortID())
 		if err != nil {
 			return err
 		}
@@ -123,7 +123,7 @@ func (s *TranscriptService) GetTranscriptDialog(ctx context.Context, request *ap
 		return nil, ErrNotFound(request.Epid)
 	}
 	return &api.TranscriptDialog{
-		TranscriptMeta:    ep.ShortProto(),
+		TranscriptMeta:    ep.ShortProto(false),
 		Dialog:            dialog,
 		MaxDialogPosition: int32(ep.Transcript[len(ep.Transcript)-1].Position),
 	}, nil
@@ -144,6 +144,14 @@ func (s *TranscriptService) ListTranscripts(ctx context.Context, req *api.ListTr
 		return nil, ErrInternal(err)
 	}
 
+	pendingRatings := make(map[string]models.Ratings)
+	if err := s.persistentDB.WithStore(func(s *rw.Store) error {
+		pendingRatings, err = s.ListPendingRatings(ctx)
+		return err
+	}); err != nil {
+		return nil, ErrInternal(err)
+	}
+
 	el := &api.TranscriptList{
 		Episodes: []*api.ShortTranscript{},
 	}
@@ -153,7 +161,16 @@ func (s *TranscriptService) ListTranscripts(ctx context.Context, req *api.ListTr
 			s.logger.Error("failed to get episode from cache", zap.Error(err))
 			continue
 		}
-		el.Episodes = append(el.Episodes, ep.ShortProto())
+		// merge pending ratings if any
+		if ep.Ratings.Scores == nil {
+			ep.Ratings.Scores = make(map[string]float32)
+		}
+		if pending, ok := pendingRatings[ep.ShortID()]; ok {
+			for k, v := range pending.Scores {
+				ep.Ratings.Scores[k] = v
+			}
+		}
+		el.Episodes = append(el.Episodes, ep.ShortProto(true))
 	}
 	return el, nil
 }

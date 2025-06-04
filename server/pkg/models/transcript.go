@@ -343,7 +343,7 @@ func (e *Transcript) GetDialogByPosition(pos int64) (*Dialog, error) {
 	return util.ToPtr(e.Transcript[pos-1]), nil
 }
 
-func (e *Transcript) ShortProto() *api.ShortTranscript {
+func (e *Transcript) ShortProto(withRatingBreakdown bool) *api.ShortTranscript {
 	if e == nil {
 		return nil
 	}
@@ -387,6 +387,9 @@ func (e *Transcript) ShortProto() *api.ShortTranscript {
 	}
 	for k, s := range e.Synopsis {
 		ep.Synopsis[k] = s.Proto()
+	}
+	if withRatingBreakdown {
+		ep.RatingBreakdown = e.Ratings.Scores
 	}
 	return ep
 }

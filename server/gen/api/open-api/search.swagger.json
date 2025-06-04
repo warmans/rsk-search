@@ -775,6 +775,13 @@
         "numRatingScores": {
           "type": "integer",
           "format": "int32"
+        },
+        "ratingBreakdown": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "format": "float"
+          }
         }
       }
     },

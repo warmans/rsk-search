@@ -581,6 +581,7 @@ type ShortTranscript struct {
 	PublicationType     PublicationType        `protobuf:"varint,23,opt,name=publication_type,json=publicationType,proto3,enum=rsk.PublicationType" json:"publication_type,omitempty"`
 	RatingScore         float32                `protobuf:"fixed32,24,opt,name=rating_score,json=ratingScore,proto3" json:"rating_score,omitempty"`
 	NumRatingScores     int32                  `protobuf:"varint,25,opt,name=num_rating_scores,json=numRatingScores,proto3" json:"num_rating_scores,omitempty"`
+	RatingBreakdown     map[string]float32     `protobuf:"bytes,26,rep,name=rating_breakdown,json=ratingBreakdown,proto3" json:"rating_breakdown,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"fixed32,2,opt,name=value"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
 }
@@ -774,6 +775,13 @@ func (x *ShortTranscript) GetNumRatingScores() int32 {
 		return x.NumRatingScores
 	}
 	return 0
+}
+
+func (x *ShortTranscript) GetRatingBreakdown() map[string]float32 {
+	if x != nil {
+		return x.RatingBreakdown
+	}
+	return nil
 }
 
 type Dialog struct {
@@ -1221,10 +1229,11 @@ func (x *GetTranscriptDialogRequest) GetRange() *DialogRange {
 }
 
 type ListTranscriptsRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Filter        string                 `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                  protoimpl.MessageState `protogen:"open.v1"`
+	Filter                 string                 `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
+	IncludeRatingBreakdown bool                   `protobuf:"varint,2,opt,name=include_rating_breakdown,json=includeRatingBreakdown,proto3" json:"include_rating_breakdown,omitempty"`
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
 func (x *ListTranscriptsRequest) Reset() {
@@ -1262,6 +1271,13 @@ func (x *ListTranscriptsRequest) GetFilter() string {
 		return x.Filter
 	}
 	return ""
+}
+
+func (x *ListTranscriptsRequest) GetIncludeRatingBreakdown() bool {
+	if x != nil {
+		return x.IncludeRatingBreakdown
+	}
+	return false
 }
 
 type TranscriptList struct {
@@ -3584,7 +3600,7 @@ const file_transcript_proto_rawDesc = "" +
 	"\x05Media\x12\x14\n" +
 	"\x05video\x18\x01 \x01(\bR\x05video\x12\x14\n" +
 	"\x05audio\x18\x02 \x01(\bR\x05audio\x12)\n" +
-	"\x10audio_restricted\x18\x03 \x01(\bR\x0faudioRestricted\"\x87\a\n" +
+	"\x10audio_restricted\x18\x03 \x01(\bR\x0faudioRestricted\"\xa1\b\n" +
 	"\x0fShortTranscript\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12 \n" +
 	"\vpublication\x18\x02 \x01(\tR\vpublication\x12\x16\n" +
@@ -3612,10 +3628,14 @@ const file_transcript_proto_rawDesc = "" +
 	".rsk.MediaR\x05media\x12?\n" +
 	"\x10publication_type\x18\x17 \x01(\x0e2\x14.rsk.PublicationTypeR\x0fpublicationType\x12!\n" +
 	"\frating_score\x18\x18 \x01(\x02R\vratingScore\x12*\n" +
-	"\x11num_rating_scores\x18\x19 \x01(\x05R\x0fnumRatingScores\x1a;\n" +
+	"\x11num_rating_scores\x18\x19 \x01(\x05R\x0fnumRatingScores\x12T\n" +
+	"\x10rating_breakdown\x18\x1a \x03(\v2).rsk.ShortTranscript.RatingBreakdownEntryR\x0fratingBreakdown\x1a;\n" +
 	"\rMetadataEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xcd\x04\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\x1aB\n" +
+	"\x14RatingBreakdownEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\x02R\x05value:\x028\x01\"\xcd\x04\n" +
 	"\x06Dialog\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x10\n" +
 	"\x03pos\x18\x02 \x01(\x05R\x03pos\x12*\n" +
@@ -3662,9 +3682,10 @@ const file_transcript_proto_rawDesc = "" +
 	"\x04epid\x18\x01 \x01(\tR\x04epid\x12\x14\n" +
 	"\x03pos\x18\x02 \x01(\x05B\x02\x18\x01R\x03pos\x12.\n" +
 	"\x11num_context_lines\x18\x03 \x01(\x05B\x02\x18\x01R\x0fnumContextLines\x12&\n" +
-	"\x05range\x18\x04 \x01(\v2\x10.rsk.DialogRangeR\x05range\"0\n" +
+	"\x05range\x18\x04 \x01(\v2\x10.rsk.DialogRangeR\x05range\"j\n" +
 	"\x16ListTranscriptsRequest\x12\x16\n" +
-	"\x06filter\x18\x01 \x01(\tR\x06filter\"B\n" +
+	"\x06filter\x18\x01 \x01(\tR\x06filter\x128\n" +
+	"\x18include_rating_breakdown\x18\x02 \x01(\bR\x16includeRatingBreakdown\"B\n" +
 	"\x0eTranscriptList\x120\n" +
 	"\bepisodes\x18\x01 \x03(\v2\x14.rsk.ShortTranscriptR\bepisodes\"\xb2\x01\n" +
 	"\aRatings\x120\n" +
@@ -3942,7 +3963,7 @@ func file_transcript_proto_rawDescGZIP() []byte {
 }
 
 var file_transcript_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
-var file_transcript_proto_msgTypes = make([]protoimpl.MessageInfo, 52)
+var file_transcript_proto_msgTypes = make([]protoimpl.MessageInfo, 53)
 var file_transcript_proto_goTypes = []any{
 	(ContributionState)(0),                       // 0: rsk.ContributionState
 	(AudioQuality)(0),                            // 1: rsk.AudioQuality
@@ -3996,12 +4017,13 @@ var file_transcript_proto_goTypes = []any{
 	(*Tag)(nil),                                  // 49: rsk.Tag
 	nil,                                          // 50: rsk.Transcript.MetadataEntry
 	nil,                                          // 51: rsk.ShortTranscript.MetadataEntry
-	nil,                                          // 52: rsk.Dialog.MetadataEntry
-	nil,                                          // 53: rsk.Ratings.ScoresEntry
-	nil,                                          // 54: rsk.ChunkedTranscriptStats.ChunkContributionsEntry
-	nil,                                          // 55: rsk.BulkSetTranscriptRatingScoreRequest.ScoresEntry
-	(*Author)(nil),                               // 56: rsk.Author
-	(*emptypb.Empty)(nil),                        // 57: google.protobuf.Empty
+	nil,                                          // 52: rsk.ShortTranscript.RatingBreakdownEntry
+	nil,                                          // 53: rsk.Dialog.MetadataEntry
+	nil,                                          // 54: rsk.Ratings.ScoresEntry
+	nil,                                          // 55: rsk.ChunkedTranscriptStats.ChunkContributionsEntry
+	nil,                                          // 56: rsk.BulkSetTranscriptRatingScoreRequest.ScoresEntry
+	(*Author)(nil),                               // 57: rsk.Author
+	(*emptypb.Empty)(nil),                        // 58: google.protobuf.Empty
 }
 var file_transcript_proto_depIdxs = []int32{
 	50, // 0: rsk.Transcript.metadata:type_name -> rsk.Transcript.MetadataEntry
@@ -4018,85 +4040,86 @@ var file_transcript_proto_depIdxs = []int32{
 	1,  // 11: rsk.ShortTranscript.audio_quality:type_name -> rsk.AudioQuality
 	5,  // 12: rsk.ShortTranscript.media:type_name -> rsk.Media
 	2,  // 13: rsk.ShortTranscript.publication_type:type_name -> rsk.PublicationType
-	3,  // 14: rsk.Dialog.type:type_name -> rsk.Dialog.DialogType
-	52, // 15: rsk.Dialog.metadata:type_name -> rsk.Dialog.MetadataEntry
-	11, // 16: rsk.GetTranscriptDialogRequest.range:type_name -> rsk.DialogRange
-	6,  // 17: rsk.TranscriptList.episodes:type_name -> rsk.ShortTranscript
-	53, // 18: rsk.Ratings.scores:type_name -> rsk.Ratings.ScoresEntry
-	0,  // 19: rsk.ChunkStates.states:type_name -> rsk.ContributionState
-	54, // 20: rsk.ChunkedTranscriptStats.chunk_contributions:type_name -> rsk.ChunkedTranscriptStats.ChunkContributionsEntry
-	17, // 21: rsk.ChunkedTranscriptList.chunked:type_name -> rsk.ChunkedTranscriptStats
-	21, // 22: rsk.TranscriptChunkList.chunks:type_name -> rsk.Chunk
-	26, // 23: rsk.ChunkContributionList.contributions:type_name -> rsk.ChunkContribution
-	0,  // 24: rsk.ChunkContribution.state:type_name -> rsk.ContributionState
-	56, // 25: rsk.ChunkContribution.author:type_name -> rsk.Author
-	0,  // 26: rsk.ShortChunkContribution.state:type_name -> rsk.ContributionState
-	27, // 27: rsk.ChunkChunkContributionList.contributions:type_name -> rsk.ShortChunkContribution
-	0,  // 28: rsk.UpdateChunkContributionRequest.state:type_name -> rsk.ContributionState
-	0,  // 29: rsk.RequestChunkContributionStateRequest.request_state:type_name -> rsk.ContributionState
-	0,  // 30: rsk.UpdateTranscriptChangeRequest.state:type_name -> rsk.ContributionState
-	40, // 31: rsk.TranscriptChangeList.changes:type_name -> rsk.ShortTranscriptChange
-	0,  // 32: rsk.TranscriptChange.state:type_name -> rsk.ContributionState
-	56, // 33: rsk.TranscriptChange.author:type_name -> rsk.Author
-	0,  // 34: rsk.ShortTranscriptChange.state:type_name -> rsk.ContributionState
-	56, // 35: rsk.ShortTranscriptChange.author:type_name -> rsk.Author
-	0,  // 36: rsk.RequestTranscriptChangeStateRequest.state:type_name -> rsk.ContributionState
-	6,  // 37: rsk.TranscriptDialog.transcript_meta:type_name -> rsk.ShortTranscript
-	7,  // 38: rsk.TranscriptDialog.dialog:type_name -> rsk.Dialog
-	55, // 39: rsk.BulkSetTranscriptRatingScoreRequest.scores:type_name -> rsk.BulkSetTranscriptRatingScoreRequest.ScoresEntry
-	49, // 40: rsk.BulkSetTranscriptTagsRequest.tags:type_name -> rsk.Tag
-	16, // 41: rsk.ChunkedTranscriptStats.ChunkContributionsEntry.value:type_name -> rsk.ChunkStates
-	10, // 42: rsk.TranscriptService.GetTranscript:input_type -> rsk.GetTranscriptRequest
-	12, // 43: rsk.TranscriptService.GetTranscriptDialog:input_type -> rsk.GetTranscriptDialogRequest
-	13, // 44: rsk.TranscriptService.ListTranscripts:input_type -> rsk.ListTranscriptsRequest
-	57, // 45: rsk.TranscriptService.ListChunkedTranscripts:input_type -> google.protobuf.Empty
-	57, // 46: rsk.TranscriptService.GetChunkedTranscriptChunkStats:input_type -> google.protobuf.Empty
-	22, // 47: rsk.TranscriptService.ListTranscriptChunks:input_type -> rsk.ListTranscriptChunksRequest
-	20, // 48: rsk.TranscriptService.GetTranscriptChunk:input_type -> rsk.GetTranscriptChunkRequest
-	24, // 49: rsk.TranscriptService.ListChunkContributions:input_type -> rsk.ListChunkContributionsRequest
-	30, // 50: rsk.TranscriptService.CreateChunkContribution:input_type -> rsk.CreateChunkContributionRequest
-	29, // 51: rsk.TranscriptService.GetChunkContribution:input_type -> rsk.GetChunkContributionRequest
-	31, // 52: rsk.TranscriptService.UpdateChunkContribution:input_type -> rsk.UpdateChunkContributionRequest
-	32, // 53: rsk.TranscriptService.DeleteChunkContribution:input_type -> rsk.DeleteChunkContributionRequest
-	33, // 54: rsk.TranscriptService.RequestChunkContributionState:input_type -> rsk.RequestChunkContributionStateRequest
-	35, // 55: rsk.TranscriptService.ListTranscriptChanges:input_type -> rsk.ListTranscriptChangesRequest
-	42, // 56: rsk.TranscriptService.GetTranscriptChange:input_type -> rsk.GetTranscriptChangeRequest
-	43, // 57: rsk.TranscriptService.GetTranscriptChangeDiff:input_type -> rsk.GetTranscriptChangeDiffRequest
-	34, // 58: rsk.TranscriptService.CreateTranscriptChange:input_type -> rsk.CreateTranscriptChangeRequest
-	36, // 59: rsk.TranscriptService.UpdateTranscriptChange:input_type -> rsk.UpdateTranscriptChangeRequest
-	37, // 60: rsk.TranscriptService.DeleteTranscriptChange:input_type -> rsk.DeleteTranscriptChangeRequest
-	41, // 61: rsk.TranscriptService.RequestTranscriptChangeState:input_type -> rsk.RequestTranscriptChangeStateRequest
-	46, // 62: rsk.TranscriptService.SetTranscriptRatingScore:input_type -> rsk.SetTranscriptRatingScoreRequest
-	47, // 63: rsk.TranscriptService.BulkSetTranscriptRatingScore:input_type -> rsk.BulkSetTranscriptRatingScoreRequest
-	48, // 64: rsk.TranscriptService.BulkSetTranscriptTags:input_type -> rsk.BulkSetTranscriptTagsRequest
-	4,  // 65: rsk.TranscriptService.GetTranscript:output_type -> rsk.Transcript
-	45, // 66: rsk.TranscriptService.GetTranscriptDialog:output_type -> rsk.TranscriptDialog
-	14, // 67: rsk.TranscriptService.ListTranscripts:output_type -> rsk.TranscriptList
-	18, // 68: rsk.TranscriptService.ListChunkedTranscripts:output_type -> rsk.ChunkedTranscriptList
-	19, // 69: rsk.TranscriptService.GetChunkedTranscriptChunkStats:output_type -> rsk.ChunkStats
-	23, // 70: rsk.TranscriptService.ListTranscriptChunks:output_type -> rsk.TranscriptChunkList
-	21, // 71: rsk.TranscriptService.GetTranscriptChunk:output_type -> rsk.Chunk
-	25, // 72: rsk.TranscriptService.ListChunkContributions:output_type -> rsk.ChunkContributionList
-	26, // 73: rsk.TranscriptService.CreateChunkContribution:output_type -> rsk.ChunkContribution
-	26, // 74: rsk.TranscriptService.GetChunkContribution:output_type -> rsk.ChunkContribution
-	26, // 75: rsk.TranscriptService.UpdateChunkContribution:output_type -> rsk.ChunkContribution
-	57, // 76: rsk.TranscriptService.DeleteChunkContribution:output_type -> google.protobuf.Empty
-	26, // 77: rsk.TranscriptService.RequestChunkContributionState:output_type -> rsk.ChunkContribution
-	38, // 78: rsk.TranscriptService.ListTranscriptChanges:output_type -> rsk.TranscriptChangeList
-	39, // 79: rsk.TranscriptService.GetTranscriptChange:output_type -> rsk.TranscriptChange
-	44, // 80: rsk.TranscriptService.GetTranscriptChangeDiff:output_type -> rsk.TranscriptChangeDiff
-	39, // 81: rsk.TranscriptService.CreateTranscriptChange:output_type -> rsk.TranscriptChange
-	39, // 82: rsk.TranscriptService.UpdateTranscriptChange:output_type -> rsk.TranscriptChange
-	57, // 83: rsk.TranscriptService.DeleteTranscriptChange:output_type -> google.protobuf.Empty
-	57, // 84: rsk.TranscriptService.RequestTranscriptChangeState:output_type -> google.protobuf.Empty
-	57, // 85: rsk.TranscriptService.SetTranscriptRatingScore:output_type -> google.protobuf.Empty
-	57, // 86: rsk.TranscriptService.BulkSetTranscriptRatingScore:output_type -> google.protobuf.Empty
-	57, // 87: rsk.TranscriptService.BulkSetTranscriptTags:output_type -> google.protobuf.Empty
-	65, // [65:88] is the sub-list for method output_type
-	42, // [42:65] is the sub-list for method input_type
-	42, // [42:42] is the sub-list for extension type_name
-	42, // [42:42] is the sub-list for extension extendee
-	0,  // [0:42] is the sub-list for field type_name
+	52, // 14: rsk.ShortTranscript.rating_breakdown:type_name -> rsk.ShortTranscript.RatingBreakdownEntry
+	3,  // 15: rsk.Dialog.type:type_name -> rsk.Dialog.DialogType
+	53, // 16: rsk.Dialog.metadata:type_name -> rsk.Dialog.MetadataEntry
+	11, // 17: rsk.GetTranscriptDialogRequest.range:type_name -> rsk.DialogRange
+	6,  // 18: rsk.TranscriptList.episodes:type_name -> rsk.ShortTranscript
+	54, // 19: rsk.Ratings.scores:type_name -> rsk.Ratings.ScoresEntry
+	0,  // 20: rsk.ChunkStates.states:type_name -> rsk.ContributionState
+	55, // 21: rsk.ChunkedTranscriptStats.chunk_contributions:type_name -> rsk.ChunkedTranscriptStats.ChunkContributionsEntry
+	17, // 22: rsk.ChunkedTranscriptList.chunked:type_name -> rsk.ChunkedTranscriptStats
+	21, // 23: rsk.TranscriptChunkList.chunks:type_name -> rsk.Chunk
+	26, // 24: rsk.ChunkContributionList.contributions:type_name -> rsk.ChunkContribution
+	0,  // 25: rsk.ChunkContribution.state:type_name -> rsk.ContributionState
+	57, // 26: rsk.ChunkContribution.author:type_name -> rsk.Author
+	0,  // 27: rsk.ShortChunkContribution.state:type_name -> rsk.ContributionState
+	27, // 28: rsk.ChunkChunkContributionList.contributions:type_name -> rsk.ShortChunkContribution
+	0,  // 29: rsk.UpdateChunkContributionRequest.state:type_name -> rsk.ContributionState
+	0,  // 30: rsk.RequestChunkContributionStateRequest.request_state:type_name -> rsk.ContributionState
+	0,  // 31: rsk.UpdateTranscriptChangeRequest.state:type_name -> rsk.ContributionState
+	40, // 32: rsk.TranscriptChangeList.changes:type_name -> rsk.ShortTranscriptChange
+	0,  // 33: rsk.TranscriptChange.state:type_name -> rsk.ContributionState
+	57, // 34: rsk.TranscriptChange.author:type_name -> rsk.Author
+	0,  // 35: rsk.ShortTranscriptChange.state:type_name -> rsk.ContributionState
+	57, // 36: rsk.ShortTranscriptChange.author:type_name -> rsk.Author
+	0,  // 37: rsk.RequestTranscriptChangeStateRequest.state:type_name -> rsk.ContributionState
+	6,  // 38: rsk.TranscriptDialog.transcript_meta:type_name -> rsk.ShortTranscript
+	7,  // 39: rsk.TranscriptDialog.dialog:type_name -> rsk.Dialog
+	56, // 40: rsk.BulkSetTranscriptRatingScoreRequest.scores:type_name -> rsk.BulkSetTranscriptRatingScoreRequest.ScoresEntry
+	49, // 41: rsk.BulkSetTranscriptTagsRequest.tags:type_name -> rsk.Tag
+	16, // 42: rsk.ChunkedTranscriptStats.ChunkContributionsEntry.value:type_name -> rsk.ChunkStates
+	10, // 43: rsk.TranscriptService.GetTranscript:input_type -> rsk.GetTranscriptRequest
+	12, // 44: rsk.TranscriptService.GetTranscriptDialog:input_type -> rsk.GetTranscriptDialogRequest
+	13, // 45: rsk.TranscriptService.ListTranscripts:input_type -> rsk.ListTranscriptsRequest
+	58, // 46: rsk.TranscriptService.ListChunkedTranscripts:input_type -> google.protobuf.Empty
+	58, // 47: rsk.TranscriptService.GetChunkedTranscriptChunkStats:input_type -> google.protobuf.Empty
+	22, // 48: rsk.TranscriptService.ListTranscriptChunks:input_type -> rsk.ListTranscriptChunksRequest
+	20, // 49: rsk.TranscriptService.GetTranscriptChunk:input_type -> rsk.GetTranscriptChunkRequest
+	24, // 50: rsk.TranscriptService.ListChunkContributions:input_type -> rsk.ListChunkContributionsRequest
+	30, // 51: rsk.TranscriptService.CreateChunkContribution:input_type -> rsk.CreateChunkContributionRequest
+	29, // 52: rsk.TranscriptService.GetChunkContribution:input_type -> rsk.GetChunkContributionRequest
+	31, // 53: rsk.TranscriptService.UpdateChunkContribution:input_type -> rsk.UpdateChunkContributionRequest
+	32, // 54: rsk.TranscriptService.DeleteChunkContribution:input_type -> rsk.DeleteChunkContributionRequest
+	33, // 55: rsk.TranscriptService.RequestChunkContributionState:input_type -> rsk.RequestChunkContributionStateRequest
+	35, // 56: rsk.TranscriptService.ListTranscriptChanges:input_type -> rsk.ListTranscriptChangesRequest
+	42, // 57: rsk.TranscriptService.GetTranscriptChange:input_type -> rsk.GetTranscriptChangeRequest
+	43, // 58: rsk.TranscriptService.GetTranscriptChangeDiff:input_type -> rsk.GetTranscriptChangeDiffRequest
+	34, // 59: rsk.TranscriptService.CreateTranscriptChange:input_type -> rsk.CreateTranscriptChangeRequest
+	36, // 60: rsk.TranscriptService.UpdateTranscriptChange:input_type -> rsk.UpdateTranscriptChangeRequest
+	37, // 61: rsk.TranscriptService.DeleteTranscriptChange:input_type -> rsk.DeleteTranscriptChangeRequest
+	41, // 62: rsk.TranscriptService.RequestTranscriptChangeState:input_type -> rsk.RequestTranscriptChangeStateRequest
+	46, // 63: rsk.TranscriptService.SetTranscriptRatingScore:input_type -> rsk.SetTranscriptRatingScoreRequest
+	47, // 64: rsk.TranscriptService.BulkSetTranscriptRatingScore:input_type -> rsk.BulkSetTranscriptRatingScoreRequest
+	48, // 65: rsk.TranscriptService.BulkSetTranscriptTags:input_type -> rsk.BulkSetTranscriptTagsRequest
+	4,  // 66: rsk.TranscriptService.GetTranscript:output_type -> rsk.Transcript
+	45, // 67: rsk.TranscriptService.GetTranscriptDialog:output_type -> rsk.TranscriptDialog
+	14, // 68: rsk.TranscriptService.ListTranscripts:output_type -> rsk.TranscriptList
+	18, // 69: rsk.TranscriptService.ListChunkedTranscripts:output_type -> rsk.ChunkedTranscriptList
+	19, // 70: rsk.TranscriptService.GetChunkedTranscriptChunkStats:output_type -> rsk.ChunkStats
+	23, // 71: rsk.TranscriptService.ListTranscriptChunks:output_type -> rsk.TranscriptChunkList
+	21, // 72: rsk.TranscriptService.GetTranscriptChunk:output_type -> rsk.Chunk
+	25, // 73: rsk.TranscriptService.ListChunkContributions:output_type -> rsk.ChunkContributionList
+	26, // 74: rsk.TranscriptService.CreateChunkContribution:output_type -> rsk.ChunkContribution
+	26, // 75: rsk.TranscriptService.GetChunkContribution:output_type -> rsk.ChunkContribution
+	26, // 76: rsk.TranscriptService.UpdateChunkContribution:output_type -> rsk.ChunkContribution
+	58, // 77: rsk.TranscriptService.DeleteChunkContribution:output_type -> google.protobuf.Empty
+	26, // 78: rsk.TranscriptService.RequestChunkContributionState:output_type -> rsk.ChunkContribution
+	38, // 79: rsk.TranscriptService.ListTranscriptChanges:output_type -> rsk.TranscriptChangeList
+	39, // 80: rsk.TranscriptService.GetTranscriptChange:output_type -> rsk.TranscriptChange
+	44, // 81: rsk.TranscriptService.GetTranscriptChangeDiff:output_type -> rsk.TranscriptChangeDiff
+	39, // 82: rsk.TranscriptService.CreateTranscriptChange:output_type -> rsk.TranscriptChange
+	39, // 83: rsk.TranscriptService.UpdateTranscriptChange:output_type -> rsk.TranscriptChange
+	58, // 84: rsk.TranscriptService.DeleteTranscriptChange:output_type -> google.protobuf.Empty
+	58, // 85: rsk.TranscriptService.RequestTranscriptChangeState:output_type -> google.protobuf.Empty
+	58, // 86: rsk.TranscriptService.SetTranscriptRatingScore:output_type -> google.protobuf.Empty
+	58, // 87: rsk.TranscriptService.BulkSetTranscriptRatingScore:output_type -> google.protobuf.Empty
+	58, // 88: rsk.TranscriptService.BulkSetTranscriptTags:output_type -> google.protobuf.Empty
+	66, // [66:89] is the sub-list for method output_type
+	43, // [43:66] is the sub-list for method input_type
+	43, // [43:43] is the sub-list for extension type_name
+	43, // [43:43] is the sub-list for extension extendee
+	0,  // [0:43] is the sub-list for field type_name
 }
 
 func init() { file_transcript_proto_init() }
@@ -4111,7 +4134,7 @@ func file_transcript_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_transcript_proto_rawDesc), len(file_transcript_proto_rawDesc)),
 			NumEnums:      4,
-			NumMessages:   52,
+			NumMessages:   53,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
