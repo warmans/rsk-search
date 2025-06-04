@@ -20,7 +20,7 @@ export class EpisodeListComponent implements OnInit, OnDestroy {
 
   transcriptList: RskShortTranscript[] = [];
 
-  subSections: { [index: string]: Array<string>} = {};
+  subSections: { [index: string]: Array<string> } = {};
 
   publicationCategories: { [index: string]: RskPublicationType } = {
     "Radio": RskPublicationType.PUBLICATION_TYPE_RADIO,
@@ -63,7 +63,12 @@ export class EpisodeListComponent implements OnInit, OnDestroy {
 
   private destroy$ = new EventEmitter<void>();
 
-  constructor(private apiClient: SearchAPIClient, private router: Router, route: ActivatedRoute) {
+  constructor(private apiClient: SearchAPIClient, private router: Router, private route: ActivatedRoute) {
+    // todo: bug - list is loaded twice if the pace is refreshed with something in the URL
+    // this is a quick fix
+    if (!this.route.snapshot.queryParamMap.get('publication_type')){
+      this.listEpisodes();
+    }
     route.queryParamMap.pipe(takeUntil(this.destroy$)).subscribe((params: ParamMap) => {
       this.activePublicationType = params.get('publication_type') as RskPublicationType ?? RskPublicationType.PUBLICATION_TYPE_RADIO;
       this.activeSubSection = params.get('subsection') ?? (this.activePublicationType === RskPublicationType.PUBLICATION_TYPE_RADIO ? "xfm-S1" : undefined);
@@ -71,7 +76,7 @@ export class EpisodeListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.listEpisodes();
+
     this.searchInput.valueChanges.pipe(takeUntil(this.destroy$), distinctUntilChanged(), debounceTime(100)).subscribe((val) => {
       val = val.trim().toLowerCase();
       if (val !== '') {
@@ -89,12 +94,12 @@ export class EpisodeListComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  listEpisodes(): Subscription{
+  listEpisodes(): Subscription {
     this.transcriptList = [];
     this.filteredTranscriptList = [];
 
     this.loading.push(true);
-   return  this.apiClient.listTranscripts({filter: Eq("publication_type", Str(this.mapPublicationType(this._activePublicationType))).print()}).pipe(
+    return this.apiClient.listTranscripts({filter: Eq("publication_type", Str(this.mapPublicationType(this._activePublicationType))).print()}).pipe(
       takeUntil(this.destroy$),
     ).subscribe((res: RskTranscriptList) => {
       this.transcriptList = res.episodes;
@@ -107,11 +112,9 @@ export class EpisodeListComponent implements OnInit, OnDestroy {
 
   updateFilteredTranscriptList() {
 
-    this.filteredTranscriptList = (this.transcriptList?.
-    filter((t => {
+    this.filteredTranscriptList = (this.transcriptList?.filter((t => {
       return t.publicationType === this.activePublicationType && (!this.activeSubSection || `${t.publication}-S${t.series}` === this.activeSubSection)
-    })) || []).
-    sort((v, k): number => {
+    })) || []).sort((v, k): number => {
       if (v.releaseDate) {
         return new Date(v.releaseDate).getTime() > new Date(k.releaseDate).getTime() ? 1 : -1
       }
@@ -120,7 +123,7 @@ export class EpisodeListComponent implements OnInit, OnDestroy {
   }
 
   identifySubsections() {
-    let subsections: {[index: string]: Array<{sub: string, publishDate: Date}>} = {};
+    let subsections: { [index: string]: Array<{ sub: string, publishDate: Date }> } = {};
     this.transcriptList.forEach((ts) => {
       const sub = `${ts.publication}-S${ts.series}`;
       if (subsections[ts.publicationType] == null) {
@@ -156,10 +159,10 @@ export class EpisodeListComponent implements OnInit, OnDestroy {
 
   loadSubsection(sub: string) {
     this.searchInput.setValue("");
-    this.router.navigate(['/search'], {queryParams: {'subsection': sub}, queryParamsHandling: 'merge' });
+    this.router.navigate(['/search'], {queryParams: {'subsection': sub}, queryParamsHandling: 'merge'});
   }
 
-  originalOrder = (a: KeyValue<string,string>, b: KeyValue<string,string>): number => {
+  originalOrder = (a: KeyValue<string, string>, b: KeyValue<string, string>): number => {
     return 0;
   }
 
@@ -176,7 +179,7 @@ export class EpisodeListComponent implements OnInit, OnDestroy {
       case RskPublicationType.PUBLICATION_TYPE_TV:
         return 'tv';
       default:
-      return 'unknown';
+        return 'unknown';
     }
   }
 

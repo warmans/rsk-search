@@ -3,31 +3,41 @@ package chart
 import (
 	"context"
 	"github.com/fogleman/gg"
+	"github.com/golang/freetype/truetype"
 	"github.com/warmans/gochart"
 	"github.com/warmans/gochart/pkg/style"
 	"github.com/warmans/rsk-search/gen/api"
+	"golang.org/x/image/font/gofont/goregular"
 	"image/color"
+	"log"
 )
 
 func GenerateRatingsChart(ctx context.Context, client api.TranscriptServiceClient) (*gg.Context, error) {
-	transcripts, err := client.ListTranscripts(ctx, &api.ListTranscriptsRequest{IncludeRatingBreakdown: true})
+	transcripts, err := client.ListTranscripts(ctx, &api.ListTranscriptsRequest{IncludeRatingBreakdown: true, Filter: `publication_type = "radio"`})
 	if err != nil {
 		return nil, err
 	}
 
 	allSeries := createSeries(transcripts)
 
-	canvas := gg.NewContext(800, 400)
+	font, err := truetype.Parse(goregular.TTF)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	face := truetype.NewFace(font, &truetype.Options{Size: 8})
+
+	canvas := gg.NewContext(1200, 400)
 	canvas.SetColor(color.White)
 	canvas.DrawRectangle(0, 0, float64(canvas.Width()), float64(canvas.Height()))
 	canvas.Fill()
 
-	yScale := gochart.NewYScale(5, allSeries[0])
+	yScale := gochart.NewYScale(10, allSeries[0])
 	xScale := gochart.NewXScale(allSeries[0], 0)
 
 	layout := gochart.NewDynamicLayout(
 		gochart.NewYAxis(yScale),
-		gochart.NewXAxis(allSeries[0], xScale),
+		gochart.NewXAxis(allSeries[0], xScale, gochart.XFontStyles(style.FontFace(face))),
 		append([]gochart.Plot{
 			gochart.NewYGrid(yScale)},
 			createPlots(yScale, xScale, allSeries)...,
