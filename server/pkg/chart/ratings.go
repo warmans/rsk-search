@@ -105,7 +105,7 @@ func createBarPlots(yScale gochart.YScale, xScale gochart.XScale, series []gocha
 	for k, v := range series {
 		bar := gochart.NewBarsPlot(yScale, xScale, v)
 		bar.SetStyleFn(func(v float64) style.Opts {
-			if v < 1 {
+			if v <= 1 {
 				return style.Opts{style.Color(color.RGBA{R: 220, A: 255})}
 			}
 			if v > 1 && v < 3 {
