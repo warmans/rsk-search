@@ -1,4 +1,7 @@
-FROM alpine:3.13
+FROM debian:stable-slim
+
+RUN apt update && apt install -y gcc libfreetype-dev ffmpeg
+RUN addgroup nobody
 
 RUN mkdir -p /opt/rsk && chown -R nobody /opt/rsk
 
