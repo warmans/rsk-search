@@ -3,13 +3,33 @@ package command
 import (
 	"bytes"
 	"context"
+	"encoding/json"
+	"fmt"
 	"github.com/bwmarrin/discordgo"
 	"github.com/warmans/rsk-search/gen/api"
 	"github.com/warmans/rsk-search/pkg/chart"
 	"github.com/warmans/rsk-search/pkg/discord"
-	"github.com/warmans/rsk-search/pkg/discord/common"
+	"github.com/warmans/rsk-search/pkg/filter"
+	"github.com/warmans/rsk-search/pkg/util"
 	"go.uber.org/zap"
+	"io"
+	"net/http"
+	"regexp"
+	"strings"
 )
+
+const (
+	quickFilterRadio   = `publication_type = "radio"`
+	quickFilterPodcast = `publication_type = "podcast"`
+	quickFilterSeries0 = `publication = "xfm" and series = 0`
+)
+
+var extractState = regexp.MustCompile(`\|\|(\{.*\})\|\|`)
+
+type State struct {
+	Mine   bool   `json:"m"`
+	Filter string `json:"f"`
+}
 
 func NewShowRatingsCommand(
 	logger *zap.Logger,
@@ -42,7 +62,12 @@ func (r *ShowRatingsCommand) Options() []*discordgo.ApplicationCommandOption {
 }
 
 func (r *ShowRatingsCommand) ButtonHandlers() discord.InteractionHandlers {
-	return discord.InteractionHandlers{}
+	return discord.InteractionHandlers{
+		"post":         r.handlePost,
+		"load":         r.handleLoadChart,
+		"quick-filter": r.handleQuickFilter,
+		"toggle-mine":  r.handleToggleMine,
+	}
 }
 
 func (r *ShowRatingsCommand) ModalHandlers() discord.InteractionHandlers {
@@ -51,7 +76,7 @@ func (r *ShowRatingsCommand) ModalHandlers() discord.InteractionHandlers {
 
 func (r *ShowRatingsCommand) CommandHandlers() discord.InteractionHandlers {
 	return discord.InteractionHandlers{
-		r.Name(): r.handleShowRatingChart,
+		r.Name(): r.handleInitialInvocation,
 	}
 }
 
@@ -63,23 +88,271 @@ func (r *ShowRatingsCommand) MessageHandlers() discord.MessageHandlers {
 	return discord.MessageHandlers{}
 }
 
-func (r *ShowRatingsCommand) handleShowRatingChart(s *discordgo.Session, i *discordgo.InteractionCreate, args ...string) error {
-	canvas, err := chart.GenerateRatingsChart(context.Background(), r.transcriptApiClient)
+func (r *ShowRatingsCommand) handleToggleMine(s *discordgo.Session, i *discordgo.InteractionCreate, args ...string) error {
+	state, err := r.extractStateFromBody(i.Message.Content)
 	if err != nil {
 		return err
 	}
-	buff := &bytes.Buffer{}
-	if err := canvas.EncodePNG(buff); err != nil {
+	state.Mine = !state.Mine
+
+	return r._handleLoadChart(s, i, state, "")
+}
+
+func (r *ShowRatingsCommand) handleQuickFilter(s *discordgo.Session, i *discordgo.InteractionCreate, args ...string) error {
+	state, err := r.extractStateFromBody(i.Message.Content)
+	if err != nil {
+		return err
+	}
+	switch args[0] {
+	case "radio":
+		state.Filter = quickFilterRadio
+	case "podcast":
+		state.Filter = quickFilterPodcast
+	case "current":
+		state.Filter = quickFilterSeries0
+	}
+
+	return r._handleLoadChart(s, i, state, "")
+}
+
+func (r *ShowRatingsCommand) handleLoadChart(s *discordgo.Session, i *discordgo.InteractionCreate, args ...string) error {
+	state, err := r.extractStateFromBody(i.Message.Content)
+	if err != nil {
+		return err
+	}
+	return r._handleLoadChart(s, i, state, args...)
+}
+
+func (r *ShowRatingsCommand) _handleLoadChart(s *discordgo.Session, i *discordgo.InteractionCreate, state *State, args ...string) error {
+
+	var buff *bytes.Buffer
+	var err error
+	var author *string
+
+	if state.Mine {
+		author = util.ToPtr(i.Member.User.Username)
+	}
+
+	buff, err = r.ratingsChart(state.Filter, author)
+	if err != nil {
 		return err
 	}
 
-	if _, err := s.ChannelMessageSendComplex(i.ChannelID, &discordgo.MessageSend{
-		Files: []*discordgo.File{{Name: "ratings.png", ContentType: "image/png", Reader: buff}},
+	return s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
+		Type: discordgo.InteractionResponseUpdateMessage,
+		Data: &discordgo.InteractionResponseData{
+			Flags:       discordgo.MessageFlagsEphemeral,
+			Content:     r.mustEncodeState(*state),
+			Files:       []*discordgo.File{{Name: "ratings.png", ContentType: "image/png", Reader: buff}},
+			Attachments: util.ToPtr([]*discordgo.MessageAttachment{}),
+			Components:  r.buttons(*state),
+		},
+	})
+}
+
+func (r *ShowRatingsCommand) handlePost(s *discordgo.Session, i *discordgo.InteractionCreate, args ...string) error {
+	if i.Type != discordgo.InteractionMessageComponent {
+		return nil
+	}
+
+	state, err := r.extractStateFromBody(i.Message.Content)
+	if err != nil {
+		return err
+	}
+
+	bodyContent := ""
+	if state.Mine {
+		bodyContent = fmt.Sprintf("Ratings by %s", i.Member.DisplayName())
+	}
+
+	// can we get the files of the existing message?
+	var files []*discordgo.File
+	if len(i.Message.Attachments) > 0 {
+		attachment := i.Message.Attachments[0]
+		image, err := http.Get(attachment.URL)
+		if err != nil {
+			return fmt.Errorf("failed to get original message attachment: %w", err)
+		}
+		defer func(Body io.ReadCloser) {
+			_ = Body.Close()
+		}(image.Body)
+
+		files = append(files, &discordgo.File{
+			Name:        attachment.Filename,
+			Reader:      image.Body,
+			ContentType: attachment.ContentType,
+		})
+	}
+
+	interactionResponse := &discordgo.InteractionResponse{
+		Type: discordgo.InteractionResponseChannelMessageWithSource,
+		Data: &discordgo.InteractionResponseData{
+			Content:     bodyContent,
+			Files:       files,
+			Attachments: util.ToPtr([]*discordgo.MessageAttachment{}),
+		},
+	}
+
+	if err := s.InteractionRespond(i.Interaction, interactionResponse); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (r *ShowRatingsCommand) handleInitialInvocation(s *discordgo.Session, i *discordgo.InteractionCreate, args ...string) error {
+
+	defaultState := State{}
+
+	buff, err := r.ratingsChart("", nil)
+	if err != nil {
+		return err
+	}
+	if err := s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
+		Type: discordgo.InteractionResponseChannelMessageWithSource,
+		Data: &discordgo.InteractionResponseData{
+			Title:      "Chart",
+			Content:    r.mustEncodeState(defaultState),
+			Flags:      discordgo.MessageFlagsEphemeral,
+			Files:      []*discordgo.File{{Name: "ratings.png", ContentType: "image/png", Reader: buff}},
+			Components: r.buttons(defaultState),
+		},
 	}); err != nil {
 		return err
 	}
 
-	common.RespondConfirm(r.logger, s, i, "OK!")
+	return nil
+}
+
+func (r *ShowRatingsCommand) buttons(state State) []discordgo.MessageComponent {
+	return []discordgo.MessageComponent{
+		discordgo.ActionsRow{
+			Components: []discordgo.MessageComponent{
+				discordgo.Button{
+					Label:    "Toggle Show Mine",
+					Style:    buttonStyleIf(state.Mine, discordgo.SuccessButton, discordgo.SecondaryButton),
+					CustomID: fmt.Sprintf("%s:toggle-mine", r.Name()),
+				},
+				//discordgo.Button{
+				//	Label:    "Set Filter",
+				//	Style:    discordgo.SecondaryButton,
+				//	CustomID: fmt.Sprintf("%s:set-filter", r.Name()),
+				//},
+			},
+		},
+		discordgo.ActionsRow{
+			Components: []discordgo.MessageComponent{
+				discordgo.Button{
+					Label:    "Radio",
+					Style:    buttonStyleIf(state.Filter == quickFilterRadio, discordgo.SuccessButton, discordgo.SecondaryButton),
+					CustomID: fmt.Sprintf("%s:quick-filter:radio", r.Name()),
+				},
+				discordgo.Button{
+					Label:    "Podcast",
+					Style:    buttonStyleIf(state.Filter == quickFilterPodcast, discordgo.SuccessButton, discordgo.SecondaryButton),
+					CustomID: fmt.Sprintf("%s:quick-filter:podcast", r.Name()),
+				},
+				discordgo.Button{
+					Label:    "Current Rewind Series",
+					Style:    buttonStyleIf(state.Filter == quickFilterSeries0, discordgo.SuccessButton, discordgo.SecondaryButton),
+					CustomID: fmt.Sprintf("%s:quick-filter:current", r.Name()),
+				},
+			},
+		},
+		discordgo.ActionsRow{
+			Components: []discordgo.MessageComponent{
+				discordgo.Button{
+					Label:    "Post",
+					Style:    discordgo.PrimaryButton,
+					CustomID: fmt.Sprintf("%s:post", r.Name()),
+				},
+			},
+		},
+	}
+}
+
+func (r *ShowRatingsCommand) ratingsChart(filterStr string, author *string) (*bytes.Buffer, error) {
+
+	var f *filter.Filter
+	if strings.TrimSpace(filterStr) != "" {
+		parsedFilter, err := filter.Parse(strings.TrimSpace(filterStr))
+		if err != nil {
+			return nil, err
+		}
+		f = util.ToPtr(parsedFilter)
+	}
+
+	canvas, err := chart.GenerateRatingsChart(context.Background(), r.transcriptApiClient, f, author)
+	if err != nil {
+		return nil, err
+	}
+	buff := &bytes.Buffer{}
+	if err := canvas.EncodePNG(buff); err != nil {
+		return nil, err
+	}
+	return buff, nil
+}
+
+func (r *ShowRatingsCommand) handleOpenFilterModal(s *discordgo.Session, i *discordgo.InteractionCreate, args ...string) error {
+
+	fields := []discordgo.MessageComponent{discordgo.ActionsRow{
+		Components: []discordgo.MessageComponent{
+			discordgo.TextInput{
+				CustomID:    "value",
+				Label:       fmt.Sprintf("%s Rating", args[0]),
+				Placeholder: "0-5",
+				Style:       discordgo.TextInputShort,
+				Required:    true,
+				MaxLength:   3,
+			},
+		},
+	}}
+	err := s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
+		Type: discordgo.InteractionResponseModal,
+		Data: &discordgo.InteractionResponseData{
+			CustomID:   fmt.Sprintf("%s:submit-custom-rating:%s", r.Name(), args[0]),
+			Title:      "Custom Rating",
+			Components: fields,
+		},
+	})
+	if err != nil {
+		return err
+	}
 
 	return nil
+}
+
+func (r *ShowRatingsCommand) mustEncodeState(s State) string {
+	b, err := json.Marshal(s)
+	if err != nil {
+		r.logger.Error("failed to marshal state", zap.Error(err))
+		return "{}"
+	}
+	return fmt.Sprintf("||%s||", string(b))
+}
+
+func (r *ShowRatingsCommand) mustDecodeState(raw string) *State {
+	state := &State{}
+	err := json.Unmarshal([]byte(strings.Trim(raw, "|")), state)
+	if err != nil {
+		r.logger.Error("failed to unmarshal state", zap.Error(err))
+		return &State{}
+	}
+	return state
+}
+
+func (r *ShowRatingsCommand) extractStateFromBody(msgContent string) (*State, error) {
+	foundState := extractState.FindString(msgContent)
+	if foundState == "" {
+		return nil, fmt.Errorf("failed to find state in message body")
+	}
+
+	return r.mustDecodeState(foundState), nil
+}
+
+func buttonStyleIf(cond bool, style discordgo.ButtonStyle, def discordgo.ButtonStyle) discordgo.ButtonStyle {
+	if cond {
+		return style
+	}
+	return def
 }
