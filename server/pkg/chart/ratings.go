@@ -11,9 +11,16 @@ import (
 	"github.com/warmans/rsk-search/pkg/filter"
 	"golang.org/x/image/font/gofont/goregular"
 	"image/color"
+	"slices"
 )
 
-func GenerateRatingsChart(ctx context.Context, client api.TranscriptServiceClient, filterOrNil *filter.Filter, author *string) (*gg.Context, error) {
+func GenerateRatingsChart(
+	ctx context.Context,
+	client api.TranscriptServiceClient,
+	filterOrNil *filter.Filter,
+	author *string,
+	sort bool,
+) (*gg.Context, error) {
 
 	defaultFilter := filter.Or(
 		filter.Eq("publication_type", filter.String("radio")),
@@ -30,11 +37,15 @@ func GenerateRatingsChart(ctx context.Context, client api.TranscriptServiceClien
 		return nil, err
 	}
 
-	var allSeries []gochart.Series
+	var allSeries gochart.Series
 	if author != nil {
 		allSeries = createAuthorSeries(transcripts, *author)
 	} else {
 		allSeries = createAveragesSeries(transcripts)
+	}
+
+	if sort {
+		allSeries = sortSeriesHighLow(allSeries)
 	}
 
 	font, err := truetype.Parse(goregular.TTF)
@@ -49,15 +60,15 @@ func GenerateRatingsChart(ctx context.Context, client api.TranscriptServiceClien
 	canvas.DrawRectangle(0, 0, float64(canvas.Width()), float64(canvas.Height()))
 	canvas.Fill()
 
-	yScale := gochart.NewYScale(10, allSeries[0])
-	xScale := gochart.NewXScale(allSeries[0], 0)
+	yScale := gochart.NewFixedYScale(10, 5)
+	xScale := gochart.NewXScale(allSeries, 0)
 
 	layout := gochart.NewDynamicLayout(
 		gochart.NewStdYAxis(yScale),
-		gochart.NewCompactXAxis(allSeries[0], xScale, gochart.XCompactFontStyles(style.FontFace(face))),
+		gochart.NewCompactXAxis(allSeries, xScale, gochart.XCompactFontStyles(style.FontFace(face))),
 		append([]gochart.Plot{
 			gochart.NewYGrid(yScale)},
-			createBarPlots(yScale, xScale, allSeries)...,
+			createBarPlots(yScale, xScale, []gochart.Series{allSeries})...,
 		)...,
 	)
 
@@ -68,7 +79,7 @@ func GenerateRatingsChart(ctx context.Context, client api.TranscriptServiceClien
 	return canvas, nil
 }
 
-func createAveragesSeries(transcripts *api.TranscriptList) []gochart.Series {
+func createAveragesSeries(transcripts *api.TranscriptList) gochart.Series {
 	XYs := struct {
 		X []string
 		Y []float64
@@ -79,10 +90,10 @@ func createAveragesSeries(transcripts *api.TranscriptList) []gochart.Series {
 		XYs.Y = append(XYs.Y, float64(v.RatingScore))
 	}
 
-	return []gochart.Series{gochart.NewXYSeries(XYs.X, XYs.Y)}
+	return gochart.NewXYSeries(XYs.X, XYs.Y)
 }
 
-func createAuthorSeries(transcripts *api.TranscriptList, author string) []gochart.Series {
+func createAuthorSeries(transcripts *api.TranscriptList, author string) gochart.Series {
 	XYs := struct {
 		X []string
 		Y []float64
@@ -97,7 +108,7 @@ func createAuthorSeries(transcripts *api.TranscriptList, author string) []gochar
 		XYs.Y = append(XYs.Y, authorRating)
 	}
 
-	return []gochart.Series{gochart.NewXYSeries(XYs.X, XYs.Y)}
+	return gochart.NewXYSeries(XYs.X, XYs.Y)
 }
 
 func createBarPlots(yScale gochart.YScale, xScale gochart.XScale, series []gochart.Series) []gochart.Plot {
@@ -117,4 +128,43 @@ func createBarPlots(yScale gochart.YScale, xScale gochart.XScale, series []gocha
 		plots[k] = bar
 	}
 	return plots
+}
+
+func sortSeriesHighLow(series gochart.Series) gochart.Series {
+	tuples := []struct {
+		x string
+		y float64
+	}{}
+
+	for k, v := range series.Xs() {
+		tuples = append(tuples, struct {
+			x string
+			y float64
+		}{x: v, y: series.Y(k)})
+	}
+
+	slices.SortFunc(
+		tuples,
+		func(a, b struct {
+			x string
+			y float64
+		}) int {
+			if a.y > b.y {
+				return -1
+			}
+			if a.y < b.y {
+				return 1
+			}
+			return 0
+		},
+	)
+
+	newX := []string{}
+	newY := []float64{}
+	for _, v := range tuples {
+		newX = append(newX, v.x)
+		newY = append(newY, v.y)
+	}
+
+	return gochart.NewXYSeries(newX, newY)
 }

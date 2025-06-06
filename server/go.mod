@@ -95,7 +95,7 @@ require (
 	github.com/spf13/cast v1.5.0 // indirect
 	github.com/temoto/robotstxt v1.1.1 // indirect
 	github.com/u2takey/go-utils v0.3.1 // indirect
-	github.com/warmans/gochart v0.0.0-20250605215358-2fd1dcd4e1c9 // indirect
+	github.com/warmans/gochart v0.0.0-20250606182453-1a8ef0b8273c // indirect
 	go.uber.org/atomic v1.7.0 // indirect
 	go.uber.org/multierr v1.6.0 // indirect
 	golang.org/x/crypto v0.33.0 // indirect

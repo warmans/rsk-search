@@ -28,6 +28,7 @@ var extractState = regexp.MustCompile(`\|\|(\{.*\})\|\|`)
 
 type State struct {
 	Mine   bool   `json:"m"`
+	Sort   bool   `json:"s"`
 	Filter string `json:"f"`
 }
 
@@ -63,10 +64,11 @@ func (r *ShowRatingsCommand) Options() []*discordgo.ApplicationCommandOption {
 
 func (r *ShowRatingsCommand) ButtonHandlers() discord.InteractionHandlers {
 	return discord.InteractionHandlers{
-		"post":         r.handlePost,
-		"load":         r.handleLoadChart,
-		"quick-filter": r.handleQuickFilter,
-		"toggle-mine":  r.handleToggleMine,
+		"post":           r.handlePost,
+		"load":           r.handleLoadChart,
+		"quick-filter":   r.handleQuickFilter,
+		"toggle-mine":    r.handleToggleMine,
+		"toggle-sorting": r.handleToggleSorting,
 	}
 }
 
@@ -86,6 +88,16 @@ func (r *ShowRatingsCommand) AutoCompleteHandler() discord.InteractionHandler {
 
 func (r *ShowRatingsCommand) MessageHandlers() discord.MessageHandlers {
 	return discord.MessageHandlers{}
+}
+
+func (r *ShowRatingsCommand) handleToggleSorting(s *discordgo.Session, i *discordgo.InteractionCreate, args ...string) error {
+	state, err := r.extractStateFromBody(i.Message.Content)
+	if err != nil {
+		return err
+	}
+	state.Sort = !state.Sort
+
+	return r._handleLoadChart(s, i, state, "")
 }
 
 func (r *ShowRatingsCommand) handleToggleMine(s *discordgo.Session, i *discordgo.InteractionCreate, args ...string) error {
@@ -133,7 +145,7 @@ func (r *ShowRatingsCommand) _handleLoadChart(s *discordgo.Session, i *discordgo
 		author = util.ToPtr(i.Member.User.Username)
 	}
 
-	buff, err = r.ratingsChart(state.Filter, author)
+	buff, err = r.ratingsChart(state.Filter, author, state.Sort)
 	if err != nil {
 		return err
 	}
@@ -204,7 +216,7 @@ func (r *ShowRatingsCommand) handleInitialInvocation(s *discordgo.Session, i *di
 
 	defaultState := State{}
 
-	buff, err := r.ratingsChart("", nil)
+	buff, err := r.ratingsChart("", nil, false)
 	if err != nil {
 		return err
 	}
@@ -232,6 +244,11 @@ func (r *ShowRatingsCommand) buttons(state State) []discordgo.MessageComponent {
 					Label:    "Toggle Show Mine",
 					Style:    buttonStyleIf(state.Mine, discordgo.SuccessButton, discordgo.SecondaryButton),
 					CustomID: fmt.Sprintf("%s:toggle-mine", r.Name()),
+				},
+				discordgo.Button{
+					Label:    "Toggle Sorting",
+					Style:    buttonStyleIf(state.Sort, discordgo.SuccessButton, discordgo.SecondaryButton),
+					CustomID: fmt.Sprintf("%s:toggle-sorting", r.Name()),
 				},
 				//discordgo.Button{
 				//	Label:    "Set Filter",
@@ -271,7 +288,7 @@ func (r *ShowRatingsCommand) buttons(state State) []discordgo.MessageComponent {
 	}
 }
 
-func (r *ShowRatingsCommand) ratingsChart(filterStr string, author *string) (*bytes.Buffer, error) {
+func (r *ShowRatingsCommand) ratingsChart(filterStr string, author *string, sort bool) (*bytes.Buffer, error) {
 
 	var f *filter.Filter
 	if strings.TrimSpace(filterStr) != "" {
@@ -282,7 +299,7 @@ func (r *ShowRatingsCommand) ratingsChart(filterStr string, author *string) (*by
 		f = util.ToPtr(parsedFilter)
 	}
 
-	canvas, err := chart.GenerateRatingsChart(context.Background(), r.transcriptApiClient, f, author)
+	canvas, err := chart.GenerateRatingsChart(context.Background(), r.transcriptApiClient, f, author, sort)
 	if err != nil {
 		return nil, err
 	}
