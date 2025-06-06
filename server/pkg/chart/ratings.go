@@ -116,13 +116,19 @@ func createBarPlots(yScale gochart.YScale, xScale gochart.XScale, series []gocha
 	for k, v := range series {
 		bar := gochart.NewBarsPlot(yScale, xScale, v)
 		bar.SetStyleFn(func(v float64) style.Opts {
-			if v <= 1.5 {
-				return style.Opts{style.Color(color.RGBA{R: 220, A: 255})}
+			if v <= 1 {
+				return style.Opts{style.Color(color.RGBA{234, 85, 67, 255})}
 			}
-			if v > 1.5 && v < 2.5 {
-				return style.Opts{style.Color(color.RGBA{R: 245, G: 138, B: 39, A: 255})}
+			if v <= 2 {
+				return style.Opts{style.Color(color.RGBA{239, 156, 31, 255})}
 			}
-			return style.Opts{style.Color(color.RGBA{R: 23, G: 220, B: 0, A: 255})}
+			if v <= 3 {
+				return style.Opts{style.Color(color.RGBA{237, 224, 90, 255})}
+			}
+			if v <= 4 {
+				return style.Opts{style.Color(color.RGBA{188, 207, 49, 255})}
+			}
+			return style.Opts{style.Color(color.RGBA{133, 187, 68, 255})}
 
 		})
 		plots[k] = bar
