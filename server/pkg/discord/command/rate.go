@@ -148,7 +148,7 @@ func (r *RateCommand) handleCreateRatingMsg(s *discordgo.Session, i *discordgo.I
 	}
 
 	// get a list of people that voted for a the previous episode, but not this one and mention them.
-	mentions := r.getMissingRatingMentions(transcript)
+	mentions := r.getMissingRatingMentions(transcript, s, i.Interaction.ChannelID)
 
 	_, err = s.ChannelMessageSendComplex(i.ChannelID, &discordgo.MessageSend{
 		Content: ratingMessageContent(epid, transcript, mentions),
@@ -312,7 +312,7 @@ func (r *RateCommand) confirmSubmission(s *discordgo.Session, i *discordgo.Inter
 		existingRating = fmt.Sprintf("(currently %0.2f from %d ratings)", transcript.Ratings.ScoreAvg, transcript.Ratings.NumScores)
 	}
 
-	mentions := r.getMissingRatingMentions(transcript)
+	mentions := r.getMissingRatingMentions(transcript, s, i.Interaction.GuildID)
 
 	if _, err := s.ChannelMessageEditComplex(&discordgo.MessageEdit{
 		ID:         i.Message.ID,
@@ -330,7 +330,18 @@ func (r *RateCommand) confirmSubmission(s *discordgo.Session, i *discordgo.Inter
 	return nil
 }
 
-func (r *RateCommand) getMissingRatingMentions(current *api.Transcript) []string {
+func (r *RateCommand) getMissingRatingMentions(current *api.Transcript, s *discordgo.Session, threadID string) []string {
+
+	memberIdMap := make(map[string]string)
+	members, err := s.ThreadMembers(threadID, 100, true, "")
+	if err == nil {
+		for _, m := range members {
+			memberIdMap[m.Member.User.Username] = m.Member.User.ID
+		}
+	} else {
+		r.logger.Error("failed to get thread members", zap.Error(err))
+	}
+
 	previousEpid, ok := meta.PreviousEpisode(current.ShortId)
 	if ok {
 		prevTranscript, err := r.transcriptApiClient.GetTranscript(
@@ -342,7 +353,9 @@ func (r *RateCommand) getMissingRatingMentions(current *api.Transcript) []string
 			for author := range prevTranscript.Ratings.Scores {
 				if _, ok := current.Ratings.Scores[author]; !ok {
 					if strings.HasPrefix(author, "discord:") {
-						missing = append(missing, fmt.Sprintf("@%s", strings.TrimPrefix(author, "discord:")))
+						if memberId, ok := memberIdMap[strings.TrimPrefix(author, "discord:")]; ok {
+							missing = append(missing, fmt.Sprintf("<@%s>", memberId))
+						}
 					}
 				}
 			}

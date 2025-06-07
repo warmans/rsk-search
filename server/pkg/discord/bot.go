@@ -35,7 +35,9 @@ func NewBot(
 	slashCommands []SlashCommand,
 	applicationCommands []Command,
 ) *Bot {
-	session.Identify.Intents = discordgo.MakeIntent(discordgo.IntentsAllWithoutPrivileged | discordgo.IntentMessageContent)
+	session.Identify.Intents = discordgo.MakeIntent(
+		discordgo.IntentsAllWithoutPrivileged | discordgo.IntentMessageContent | discordgo.IntentGuildMembers,
+	)
 
 	bot := &Bot{
 		logger:               logger,
