@@ -340,6 +340,7 @@ func (r *RateCommand) getMissingRatingMentions(current *api.Transcript, s *disco
 		}
 	} else {
 		r.logger.Error("failed to get thread members", zap.Error(err))
+		return []string{}
 	}
 
 	previousEpid, ok := meta.PreviousEpisode(current.ShortId)
