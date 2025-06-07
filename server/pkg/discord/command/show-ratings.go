@@ -19,6 +19,7 @@ import (
 )
 
 const (
+	quickFilterAll     = ``
 	quickFilterRadio   = `publication_type = "radio"`
 	quickFilterPodcast = `publication_type = "podcast"`
 	quickFilterSeries0 = `publication = "xfm" and series = 0`
@@ -27,9 +28,10 @@ const (
 var extractState = regexp.MustCompile(`\|\|(\{.*\})\|\|`)
 
 type State struct {
-	Mine   bool   `json:"m"`
-	Sort   bool   `json:"s"`
-	Filter string `json:"f"`
+	Mine   bool       `json:"m"`
+	Sort   bool       `json:"s"`
+	Kind   chart.Kind `json:"k"`
+	Filter string     `json:"f"`
 }
 
 func NewShowRatingsCommand(
@@ -69,6 +71,7 @@ func (r *ShowRatingsCommand) ButtonHandlers() discord.InteractionHandlers {
 		"quick-filter":   r.handleQuickFilter,
 		"toggle-mine":    r.handleToggleMine,
 		"toggle-sorting": r.handleToggleSorting,
+		"set-kind":       r.handleSetKind,
 	}
 }
 
@@ -106,6 +109,28 @@ func (r *ShowRatingsCommand) handleToggleMine(s *discordgo.Session, i *discordgo
 		return err
 	}
 	state.Mine = !state.Mine
+	// force the chart to avg if it's a user's ratings
+	if state.Mine {
+		state.Kind = chart.RatingAvg
+	}
+
+	return r._handleLoadChart(s, i, state, "")
+}
+
+func (r *ShowRatingsCommand) handleSetKind(s *discordgo.Session, i *discordgo.InteractionCreate, args ...string) error {
+	state, err := r.extractStateFromBody(i.Message.Content)
+	if err != nil {
+		return err
+	}
+
+	switch args[0] {
+	case "avg":
+		state.Kind = chart.RatingAvg
+		state.Mine = false
+	case "count":
+		state.Kind = chart.RatingCounts
+		state.Mine = false
+	}
 
 	return r._handleLoadChart(s, i, state, "")
 }
@@ -116,6 +141,8 @@ func (r *ShowRatingsCommand) handleQuickFilter(s *discordgo.Session, i *discordg
 		return err
 	}
 	switch args[0] {
+	case "all":
+		state.Filter = quickFilterAll
 	case "radio":
 		state.Filter = quickFilterRadio
 	case "podcast":
@@ -145,7 +172,7 @@ func (r *ShowRatingsCommand) _handleLoadChart(s *discordgo.Session, i *discordgo
 		author = util.ToPtr(i.Member.User.Username)
 	}
 
-	buff, err = r.ratingsChart(state.Filter, author, state.Sort)
+	buff, err = r.ratingsChart(state.Filter, author, state.Sort, state.Kind)
 	if err != nil {
 		return err
 	}
@@ -214,9 +241,14 @@ func (r *ShowRatingsCommand) handlePost(s *discordgo.Session, i *discordgo.Inter
 
 func (r *ShowRatingsCommand) handleInitialInvocation(s *discordgo.Session, i *discordgo.InteractionCreate, args ...string) error {
 
-	defaultState := State{}
+	defaultState := State{
+		Mine:   false,
+		Sort:   false,
+		Kind:   chart.RatingAvg,
+		Filter: quickFilterAll,
+	}
 
-	buff, err := r.ratingsChart("", nil, false)
+	buff, err := r.ratingsChart("", nil, false, chart.RatingAvg)
 	if err != nil {
 		return err
 	}
@@ -241,36 +273,70 @@ func (r *ShowRatingsCommand) buttons(state State) []discordgo.MessageComponent {
 		discordgo.ActionsRow{
 			Components: []discordgo.MessageComponent{
 				discordgo.Button{
-					Label:    "Toggle Show Mine",
+					Label: "Sort",
+					Emoji: &discordgo.ComponentEmoji{
+						Name: "↘️",
+					},
+					Style:    buttonStyleIf(state.Sort, discordgo.SuccessButton, discordgo.SecondaryButton),
+					CustomID: fmt.Sprintf("%s:toggle-sorting", r.Name()),
+				},
+				discordgo.Button{
+					Label: "My Ratings",
+					Emoji: &discordgo.ComponentEmoji{
+						Name: "📊",
+					},
 					Style:    buttonStyleIf(state.Mine, discordgo.SuccessButton, discordgo.SecondaryButton),
 					CustomID: fmt.Sprintf("%s:toggle-mine", r.Name()),
 				},
 				discordgo.Button{
-					Label:    "Toggle Sorting",
-					Style:    buttonStyleIf(state.Sort, discordgo.SuccessButton, discordgo.SecondaryButton),
-					CustomID: fmt.Sprintf("%s:toggle-sorting", r.Name()),
+					Label: "Average",
+					Emoji: &discordgo.ComponentEmoji{
+						Name: "📊",
+					},
+					Style:    buttonStyleIf(state.Kind == chart.RatingAvg && !state.Mine, discordgo.SuccessButton, discordgo.SecondaryButton),
+					CustomID: fmt.Sprintf("%s:set-kind:avg", r.Name()),
 				},
-				//discordgo.Button{
-				//	Label:    "Set Filter",
-				//	Style:    discordgo.SecondaryButton,
-				//	CustomID: fmt.Sprintf("%s:set-filter", r.Name()),
-				//},
+				discordgo.Button{
+					Label: "Count",
+					Emoji: &discordgo.ComponentEmoji{
+						Name: "📊",
+					},
+					Style:    buttonStyleIf(state.Kind == chart.RatingCounts, discordgo.SuccessButton, discordgo.SecondaryButton),
+					CustomID: fmt.Sprintf("%s:set-kind:count", r.Name()),
+				},
 			},
 		},
 		discordgo.ActionsRow{
 			Components: []discordgo.MessageComponent{
 				discordgo.Button{
-					Label:    "Radio",
+					Label: "All",
+					Emoji: &discordgo.ComponentEmoji{
+						Name: "📂",
+					},
+					Style:    buttonStyleIf(state.Filter == quickFilterAll, discordgo.SuccessButton, discordgo.SecondaryButton),
+					CustomID: fmt.Sprintf("%s:quick-filter:all", r.Name()),
+				},
+				discordgo.Button{
+					Label: "Radio",
+					Emoji: &discordgo.ComponentEmoji{
+						Name: "📂",
+					},
 					Style:    buttonStyleIf(state.Filter == quickFilterRadio, discordgo.SuccessButton, discordgo.SecondaryButton),
 					CustomID: fmt.Sprintf("%s:quick-filter:radio", r.Name()),
 				},
 				discordgo.Button{
-					Label:    "Podcast",
+					Label: "Podcast",
+					Emoji: &discordgo.ComponentEmoji{
+						Name: "📂",
+					},
 					Style:    buttonStyleIf(state.Filter == quickFilterPodcast, discordgo.SuccessButton, discordgo.SecondaryButton),
 					CustomID: fmt.Sprintf("%s:quick-filter:podcast", r.Name()),
 				},
 				discordgo.Button{
-					Label:    "Current Rewind Series",
+					Label: "Current Rewind Series",
+					Emoji: &discordgo.ComponentEmoji{
+						Name: "📂",
+					},
 					Style:    buttonStyleIf(state.Filter == quickFilterSeries0, discordgo.SuccessButton, discordgo.SecondaryButton),
 					CustomID: fmt.Sprintf("%s:quick-filter:current", r.Name()),
 				},
@@ -288,7 +354,7 @@ func (r *ShowRatingsCommand) buttons(state State) []discordgo.MessageComponent {
 	}
 }
 
-func (r *ShowRatingsCommand) ratingsChart(filterStr string, author *string, sort bool) (*bytes.Buffer, error) {
+func (r *ShowRatingsCommand) ratingsChart(filterStr string, author *string, sort bool, kind chart.Kind) (*bytes.Buffer, error) {
 
 	var f *filter.Filter
 	if strings.TrimSpace(filterStr) != "" {
@@ -299,7 +365,14 @@ func (r *ShowRatingsCommand) ratingsChart(filterStr string, author *string, sort
 		f = util.ToPtr(parsedFilter)
 	}
 
-	canvas, err := chart.GenerateRatingsChart(context.Background(), r.transcriptApiClient, f, author, sort)
+	canvas, err := chart.GenerateRatingsChart(
+		context.Background(),
+		r.transcriptApiClient,
+		f,
+		author,
+		sort,
+		kind,
+	)
 	if err != nil {
 		return nil, err
 	}

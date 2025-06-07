@@ -147,8 +147,11 @@ func (r *RateCommand) handleCreateRatingMsg(s *discordgo.Session, i *discordgo.I
 		return fmt.Errorf("failed to get episode: %w", err)
 	}
 
+	// get a list of people that voted for a the previous episode, but not this one and mention them.
+	mentions := r.getMissingRatingMentions(transcript)
+
 	_, err = s.ChannelMessageSendComplex(i.ChannelID, &discordgo.MessageSend{
-		Content: ratingMessageContent(epid, transcript),
+		Content: ratingMessageContent(epid, transcript, mentions),
 		Components: []discordgo.MessageComponent{
 			discordgo.ActionsRow{
 				Components: []discordgo.MessageComponent{
@@ -309,9 +312,11 @@ func (r *RateCommand) confirmSubmission(s *discordgo.Session, i *discordgo.Inter
 		existingRating = fmt.Sprintf("(currently %0.2f from %d ratings)", transcript.Ratings.ScoreAvg, transcript.Ratings.NumScores)
 	}
 
+	mentions := r.getMissingRatingMentions(transcript)
+
 	if _, err := s.ChannelMessageEditComplex(&discordgo.MessageEdit{
 		ID:         i.Message.ID,
-		Content:    util.ToPtr(ratingMessageContent(episode, transcript)),
+		Content:    util.ToPtr(ratingMessageContent(episode, transcript, mentions)),
 		Components: util.ToPtr(i.Message.Components),
 		Channel:    i.Message.ChannelID,
 		Embed:      nil,
@@ -325,13 +330,42 @@ func (r *RateCommand) confirmSubmission(s *discordgo.Session, i *discordgo.Inter
 	return nil
 }
 
-func ratingMessageContent(epid string, transcript *api.Transcript) string {
+func (r *RateCommand) getMissingRatingMentions(current *api.Transcript) []string {
+	previousEpid, ok := meta.PreviousEpisode(current.ShortId)
+	if ok {
+		prevTranscript, err := r.transcriptApiClient.GetTranscript(
+			context.Background(),
+			&api.GetTranscriptRequest{Epid: previousEpid},
+		)
+		if err == nil {
+			missing := []string{}
+			for author := range prevTranscript.Ratings.Scores {
+				if _, ok := current.Ratings.Scores[author]; !ok {
+					if strings.HasPrefix(author, "discord:") {
+						missing = append(missing, fmt.Sprintf("@%s", strings.TrimPrefix(author, "discord:")))
+					}
+				}
+			}
+			return missing
+		} else {
+			r.logger.Error("Failed to get previous episode", zap.Error(err))
+		}
+	}
+	return []string{}
+}
+
+func ratingMessageContent(epid string, transcript *api.Transcript, mentions []string) string {
+	mentionText := ""
+	if len(mentions) > 0 {
+		mentionText = fmt.Sprintf("\n --- \n 👀 %s", strings.Join(mentions, " "))
+	}
 	return fmt.Sprintf(
-		"## Rate %s\n-# %s | %s | currently %0.2f from %d ratings\n --- \n",
+		"## Rate %s\n-# %s | %s | currently %0.2f from %d ratings %s \n --- \n",
 		epid,
 		transcript.Name,
 		transcript.ReleaseDate,
 		transcript.Ratings.ScoreAvg,
 		transcript.Ratings.NumScores,
+		mentionText,
 	)
 }

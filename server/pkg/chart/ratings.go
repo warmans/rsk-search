@@ -14,12 +14,20 @@ import (
 	"slices"
 )
 
+type Kind string
+
+const (
+	RatingAvg    Kind = "avg"
+	RatingCounts Kind = "count"
+)
+
 func GenerateRatingsChart(
 	ctx context.Context,
 	client api.TranscriptServiceClient,
 	filterOrNil *filter.Filter,
 	author *string,
 	sort bool,
+	kind Kind,
 ) (*gg.Context, error) {
 
 	defaultFilter := filter.Or(
@@ -37,15 +45,24 @@ func GenerateRatingsChart(
 		return nil, err
 	}
 
-	var allSeries gochart.Series
+	var series gochart.Series
+	var yScale gochart.YScale = gochart.NewFixedYScale(10, 5)
+
 	if author != nil {
-		allSeries = createAuthorSeries(transcripts, *author)
+		series = createAuthorSeries(transcripts, *author)
 	} else {
-		allSeries = createAveragesSeries(transcripts)
+		switch kind {
+		case RatingAvg:
+			series = createAveragesSeries(transcripts)
+		case RatingCounts:
+			series = createCountSeries(transcripts)
+			yScale = gochart.NewYScale(10, series)
+		}
+
 	}
 
 	if sort {
-		allSeries = sortSeriesHighLow(allSeries)
+		series = sortSeriesHighLow(series)
 	}
 
 	font, err := truetype.Parse(goregular.TTF)
@@ -60,15 +77,14 @@ func GenerateRatingsChart(
 	canvas.DrawRectangle(0, 0, float64(canvas.Width()), float64(canvas.Height()))
 	canvas.Fill()
 
-	yScale := gochart.NewFixedYScale(10, 5)
-	xScale := gochart.NewXScale(allSeries, 0)
+	xScale := gochart.NewXScale(series, 0)
 
 	layout := gochart.NewDynamicLayout(
 		gochart.NewStdYAxis(yScale),
-		gochart.NewCompactXAxis(allSeries, xScale, gochart.XCompactFontStyles(style.FontFace(face))),
+		gochart.NewCompactXAxis(series, xScale, gochart.XCompactFontStyles(style.FontFace(face))),
 		append([]gochart.Plot{
 			gochart.NewYGrid(yScale)},
-			createBarPlots(yScale, xScale, []gochart.Series{allSeries})...,
+			createBarPlots(yScale, xScale, []gochart.Series{series})...,
 		)...,
 	)
 
@@ -88,6 +104,20 @@ func createAveragesSeries(transcripts *api.TranscriptList) gochart.Series {
 	for _, v := range transcripts.Episodes {
 		XYs.X = append(XYs.X, v.ShortId)
 		XYs.Y = append(XYs.Y, float64(v.RatingScore))
+	}
+
+	return gochart.NewXYSeries(XYs.X, XYs.Y)
+}
+
+func createCountSeries(transcripts *api.TranscriptList) gochart.Series {
+	XYs := struct {
+		X []string
+		Y []float64
+	}{}
+
+	for _, v := range transcripts.Episodes {
+		XYs.X = append(XYs.X, v.ShortId)
+		XYs.Y = append(XYs.Y, float64(len(v.RatingBreakdown)))
 	}
 
 	return gochart.NewXYSeries(XYs.X, XYs.Y)

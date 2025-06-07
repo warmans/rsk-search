@@ -61,6 +61,18 @@ func EpisodeList() []string {
 	return cpy
 }
 
+func PreviousEpisode(epid string) (string, bool) {
+	for k, v := range episodeOrder {
+		if v == epid {
+			if k == 0 {
+				return "", false
+			}
+			return episodeOrder[k-1], true
+		}
+	}
+	return "", false
+}
+
 // IsValidEpisodeID returns true if the ID appears to be valid based on the format, but doesn't mean it will exist.
 func IsValidEpisodeID(id string) bool {
 	if _, _, _, err := models.ParseEpID(id); err != nil {
