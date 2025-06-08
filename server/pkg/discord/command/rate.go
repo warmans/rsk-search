@@ -312,7 +312,7 @@ func (r *RateCommand) confirmSubmission(s *discordgo.Session, i *discordgo.Inter
 		existingRating = fmt.Sprintf("(currently %0.2f from %d ratings)", transcript.Ratings.ScoreAvg, transcript.Ratings.NumScores)
 	}
 
-	mentions := r.getMissingRatingMentions(transcript, s, i.Interaction.GuildID)
+	mentions := r.getMissingRatingMentions(transcript, s, i.Interaction.ChannelID)
 
 	if _, err := s.ChannelMessageEditComplex(&discordgo.MessageEdit{
 		ID:         i.Message.ID,
