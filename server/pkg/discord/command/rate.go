@@ -148,7 +148,7 @@ func (r *RateCommand) handleCreateRatingMsg(s *discordgo.Session, i *discordgo.I
 	}
 
 	// get a list of people that voted for a the previous episode, but not this one and mention them.
-	mentions := r.getMissingRatingMentions(transcript, s, i.Interaction.ChannelID)
+	mentions := r.getMissingRatingMentions(transcript, s, i.ChannelID)
 
 	_, err = s.ChannelMessageSendComplex(i.ChannelID, &discordgo.MessageSend{
 		Content: ratingMessageContent(epid, transcript, mentions),
