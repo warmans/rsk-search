@@ -383,35 +383,6 @@ func (r *ShowRatingsCommand) ratingsChart(filterStr string, author *string, sort
 	return buff, nil
 }
 
-func (r *ShowRatingsCommand) handleOpenFilterModal(s *discordgo.Session, i *discordgo.InteractionCreate, args ...string) error {
-
-	fields := []discordgo.MessageComponent{discordgo.ActionsRow{
-		Components: []discordgo.MessageComponent{
-			discordgo.TextInput{
-				CustomID:    "value",
-				Label:       fmt.Sprintf("%s Rating", args[0]),
-				Placeholder: "0-5",
-				Style:       discordgo.TextInputShort,
-				Required:    true,
-				MaxLength:   3,
-			},
-		},
-	}}
-	err := s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
-		Type: discordgo.InteractionResponseModal,
-		Data: &discordgo.InteractionResponseData{
-			CustomID:   fmt.Sprintf("%s:submit-custom-rating:%s", r.Name(), args[0]),
-			Title:      "Custom Rating",
-			Components: fields,
-		},
-	})
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
 func (r *ShowRatingsCommand) mustEncodeState(s State) string {
 	b, err := json.Marshal(s)
 	if err != nil {

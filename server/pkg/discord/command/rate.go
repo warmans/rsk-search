@@ -312,7 +312,7 @@ func (r *RateCommand) confirmSubmission(s *discordgo.Session, i *discordgo.Inter
 		existingRating = fmt.Sprintf("(currently %0.2f from %d ratings)", transcript.Ratings.ScoreAvg, transcript.Ratings.NumScores)
 	}
 
-	mentions := r.getMissingRatingMentions(transcript, s, i.Interaction.ChannelID)
+	mentions := r.getMissingRatingMentions(transcript, s, i.Message.ChannelID)
 
 	if _, err := s.ChannelMessageEditComplex(&discordgo.MessageEdit{
 		ID:         i.Message.ID,
@@ -334,6 +334,10 @@ func (r *RateCommand) getMissingRatingMentions(current *api.Transcript, s *disco
 
 	memberIdMap := make(map[string]string)
 	members, err := s.ThreadMembers(threadID, 100, true, "")
+	if len(members) == 100 {
+		//todo: should probably add paging
+		r.logger.Error("Possibly missing thread members")
+	}
 	if err == nil {
 		for _, m := range members {
 			memberIdMap[m.Member.User.Username] = m.Member.User.ID

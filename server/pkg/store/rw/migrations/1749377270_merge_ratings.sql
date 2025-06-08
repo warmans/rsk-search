@@ -1,0 +1,1 @@
+DELETE FROM transcript_rating_score WHERE (author_id, episode_id) IN (('tv7FU9PeJo26WBP9TNgtmb', 'xfm-S0E03'), ('fQNHdsobHqoMQEPWC4zanM', 'xfm-S0E03'), ('EGPd3eut4EsaM62wgyuL5E', 'xfm-S0E03'), ('qdcQYbu9AEgCXyte8sDy3M', 'xfm-S0E03'), ('oEEk45B6cr4eFkG9LaLBfc', 'xfm-S0E03'));
