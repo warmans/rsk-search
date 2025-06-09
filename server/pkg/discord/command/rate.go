@@ -10,6 +10,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/meta"
 	"github.com/warmans/rsk-search/pkg/util"
 	"go.uber.org/zap"
+	"math"
 	"strconv"
 	"strings"
 )
@@ -147,7 +148,7 @@ func (r *RateCommand) handleCreateRatingMsg(s *discordgo.Session, i *discordgo.I
 		return fmt.Errorf("failed to get episode: %w", err)
 	}
 
-	// get a list of people that voted for a the previous episode, but not this one and mention them.
+	// get a list of people that voted for the previous episode, but not this one and mention them.
 	mentions := r.getMissingRatingMentions(transcript, s, i.ChannelID)
 
 	_, err = s.ChannelMessageSendComplex(i.ChannelID, &discordgo.MessageSend{
@@ -324,7 +325,7 @@ func (r *RateCommand) confirmSubmission(s *discordgo.Session, i *discordgo.Inter
 		return err
 	}
 
-	if _, err := s.ChannelMessageSend(i.Message.ChannelID, fmt.Sprintf("%s rated %s %0.2f/5.00 %s", i.Member.DisplayName(), episode, rating, existingRating)); err != nil {
+	if _, err := s.ChannelMessageSend(i.Message.ChannelID, fmt.Sprintf("%s\n%s rated %s %0.2f/5.00 %s", stars(rating), i.Member.DisplayName(), episode, rating, existingRating)); err != nil {
 		return err
 	}
 	return nil
@@ -386,4 +387,8 @@ func ratingMessageContent(epid string, transcript *api.Transcript, mentions []st
 		transcript.Ratings.NumScores,
 		mentionText,
 	)
+}
+
+func stars(num float64) string {
+	return strings.Repeat("⭐", int(math.Round(num)))
 }
