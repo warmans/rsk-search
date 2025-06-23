@@ -213,6 +213,9 @@ func (r *ShowRatingsCommand) handlePost(s *discordgo.Session, i *discordgo.Inter
 		if state.Kind == chart.RatingAvg {
 			bodyContent = "Episode Average Ratings"
 		}
+		if state.Kind == chart.RatingBreakdown {
+			bodyContent = "Episode Ratings Breakdown"
+		}
 	}
 
 	// can we get the files of the existing message?
