@@ -22,7 +22,7 @@ const (
 	quickFilterAll     = ``
 	quickFilterRadio   = `publication_type = "radio"`
 	quickFilterPodcast = `publication_type = "podcast"`
-	quickFilterSeries0 = `publication = "xfm" and series = 0`
+	quickFilterCurrent = `publication = "xfm" and series = 1`
 )
 
 var extractState = regexp.MustCompile(`\|\|(\{.*\})\|\|`)
@@ -130,6 +130,9 @@ func (r *ShowRatingsCommand) handleSetKind(s *discordgo.Session, i *discordgo.In
 	case "count":
 		state.Kind = chart.RatingCounts
 		state.Mine = false
+	case "breakdown":
+		state.Kind = chart.RatingBreakdown
+		state.Mine = false
 	}
 
 	return r._handleLoadChart(s, i, state, "")
@@ -148,7 +151,7 @@ func (r *ShowRatingsCommand) handleQuickFilter(s *discordgo.Session, i *discordg
 	case "podcast":
 		state.Filter = quickFilterPodcast
 	case "current":
-		state.Filter = quickFilterSeries0
+		state.Filter = quickFilterCurrent
 	}
 
 	return r._handleLoadChart(s, i, state, "")
@@ -311,6 +314,14 @@ func (r *ShowRatingsCommand) buttons(state State) []discordgo.MessageComponent {
 					Style:    buttonStyleIf(state.Kind == chart.RatingCounts, discordgo.SuccessButton, discordgo.SecondaryButton),
 					CustomID: fmt.Sprintf("%s:set-kind:count", r.Name()),
 				},
+				discordgo.Button{
+					Label: "Breakdown",
+					Emoji: &discordgo.ComponentEmoji{
+						Name: "📊",
+					},
+					Style:    buttonStyleIf(state.Kind == chart.RatingBreakdown, discordgo.SuccessButton, discordgo.SecondaryButton),
+					CustomID: fmt.Sprintf("%s:set-kind:breakdown", r.Name()),
+				},
 			},
 		},
 		discordgo.ActionsRow{
@@ -344,7 +355,7 @@ func (r *ShowRatingsCommand) buttons(state State) []discordgo.MessageComponent {
 					Emoji: &discordgo.ComponentEmoji{
 						Name: "📂",
 					},
-					Style:    buttonStyleIf(state.Filter == quickFilterSeries0, discordgo.SuccessButton, discordgo.SecondaryButton),
+					Style:    buttonStyleIf(state.Filter == quickFilterCurrent, discordgo.SuccessButton, discordgo.SecondaryButton),
 					CustomID: fmt.Sprintf("%s:quick-filter:current", r.Name()),
 				},
 			},
@@ -383,11 +394,13 @@ func (r *ShowRatingsCommand) ratingsChart(filterStr string, author *string, sort
 	if err != nil {
 		return nil, err
 	}
+
 	buff := &bytes.Buffer{}
 	if err := canvas.EncodePNG(buff); err != nil {
 		return nil, err
 	}
 	return buff, nil
+
 }
 
 func (r *ShowRatingsCommand) mustEncodeState(s State) string {

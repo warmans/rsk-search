@@ -17,8 +17,9 @@ import (
 type Kind string
 
 const (
-	RatingAvg    Kind = "avg"
-	RatingCounts Kind = "count"
+	RatingAvg       Kind = "avg"
+	RatingCounts    Kind = "count"
+	RatingBreakdown Kind = "breakdown"
 )
 
 func GenerateRatingsChart(
@@ -204,3 +205,52 @@ func sortSeriesHighLow(series gochart.Series) gochart.Series {
 
 	return gochart.NewXYSeries(newX, newY)
 }
+
+/*
+type authorSeries struct {
+	labels       []string
+	seriesLabels []string
+	values       [][]float64
+}
+
+func getAllAuthorSeries(list *api.TranscriptList) authorSeries {
+
+	authors := getUniqueAuthors(list)
+	s := authorSeries{
+		seriesLabels: authors,
+		values:       make([][]float64, len(authors)),
+		labels:       make([]string, 0),
+	}
+
+	for _, episode := range list.Episodes {
+		s.labels = append(s.labels, episode.ShortId)
+		for authorKey, authorName := range authors {
+			rating, ok := episode.RatingBreakdown[authorName]
+			if ok {
+				s.values[authorKey] = append(s.values[authorKey], float64(rating))
+			} else {
+				s.values[authorKey] = append(s.values[authorKey], 0)
+			}
+		}
+	}
+
+	return s
+}
+
+func getUniqueAuthors(list *api.TranscriptList) []string {
+	unique := map[string]struct{}{}
+	for _, author := range list.Episodes {
+		for authorName := range author.RatingBreakdown {
+			if strings.HasPrefix(authorName, "discord:") {
+				unique[authorName] = struct{}{}
+			}
+		}
+	}
+
+	out := []string{}
+	for k := range unique {
+		out = append(out, k)
+	}
+	return out
+}
+*/
