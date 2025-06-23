@@ -39,7 +39,7 @@ require (
 	github.com/spf13/pflag v1.0.5
 	github.com/stretchr/testify v1.10.0
 	github.com/warmans/ffmpeg-go/v2 v2.0.0
-	github.com/warmans/gochart v0.0.0-20250606182453-1a8ef0b8273c
+	github.com/warmans/gochart v0.0.0-20250623210325-9d9e487fd115
 	go.uber.org/zap v1.24.0
 	golang.org/x/image v0.24.0
 	golang.org/x/oauth2 v0.27.0
@@ -106,3 +106,7 @@ require (
 	google.golang.org/appengine v1.6.8 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
+
+//replace (
+//	 github.com/warmans/gochart v0.0.0-20250623191432-8b06a1a21002 => /home/swarman/gomod/github.com/warmans/gochart
+//)

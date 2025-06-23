@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/bwmarrin/discordgo"
+	"github.com/fogleman/gg"
 	"github.com/warmans/rsk-search/gen/api"
 	"github.com/warmans/rsk-search/pkg/chart"
 	"github.com/warmans/rsk-search/pkg/discord"
@@ -383,16 +384,30 @@ func (r *ShowRatingsCommand) ratingsChart(filterStr string, author *string, sort
 		f = util.ToPtr(parsedFilter)
 	}
 
-	canvas, err := chart.GenerateRatingsChart(
-		context.Background(),
-		r.transcriptApiClient,
-		f,
-		author,
-		sort,
-		kind,
-	)
-	if err != nil {
-		return nil, err
+	var canvas *gg.Context
+	if kind == chart.RatingBreakdown {
+		var err error
+		canvas, err = chart.GenerateBreakdownChart(
+			context.Background(),
+			r.transcriptApiClient,
+			f,
+		)
+		if err != nil {
+			return nil, err
+		}
+	} else {
+		var err error
+		canvas, err = chart.GenerateRatingsChart(
+			context.Background(),
+			r.transcriptApiClient,
+			f,
+			author,
+			sort,
+			kind,
+		)
+		if err != nil {
+			return nil, err
+		}
 	}
 
 	buff := &bytes.Buffer{}
