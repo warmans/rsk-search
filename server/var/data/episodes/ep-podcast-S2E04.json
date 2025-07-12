@@ -12,7 +12,7 @@
     "bestof": false,
     "special": false,
     "locked": false,
-    "offset_accuracy": 100,
+    "offset_accuracy": 97,
     "audio_quality": "",
     "metadata": {
       "cover_art_url": "/assets/cover/default.jpg",
@@ -2532,11 +2532,11 @@
         "timestamp_distance": 0,
         "duration": 11840000000,
         "type": "chat",
-        "actor": "unknown b",
+        "actor": "ricky",
         "metadata": null,
         "content": "That's so true. That's really true. If the point is they're staying still, if that's their skill, a picture won't tell that story. That's absolutely true.",
         "notable": false,
-        "placeholder": true,
+        "placeholder": false,
         "sentiment": ""
       },
       {
@@ -2547,11 +2547,11 @@
         "timestamp_distance": 0,
         "duration": 13310000000,
         "type": "chat",
-        "actor": "unknown c",
+        "actor": "steve",
         "metadata": null,
-        "content": "My dad took the cat to be put down today because it kept bumping into things since losing its sight. My mam said, she's not going to get another one. She said, the parrot is looking worried as it's seen the budgie and the cat go in the space of three months.",
+        "content": "\"My dad took the cat to be put down today because it kept bumping into things since losing its sight. My mam said, she's not going to get another one. She said the parrot is looking worried as it's seen the budgie and the cat go in the space of three months.\"",
         "notable": false,
-        "placeholder": true,
+        "placeholder": false,
         "sentiment": ""
       },
       {
@@ -2560,453 +2560,573 @@
         "timestamp": 1365170000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 5920000000,
+        "duration": 816000000,
         "type": "chat",
-        "actor": "unknown b",
+        "actor": "",
         "metadata": null,
-        "content": "Your mum said, the parrot's looking worried. What happened to the cat then?",
+        "content": "Ricky laughs",
         "notable": false,
-        "placeholder": true,
+        "placeholder": false,
         "sentiment": ""
       },
       {
         "id": "ep-podcast-S2E04-171",
         "pos": 171,
-        "timestamp": 1371090000000,
-        "timestamp_inferred": false,
-        "timestamp_distance": 0,
-        "duration": 19870000000,
+        "timestamp": 1365986000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 1,
+        "duration": 5104000000,
         "type": "chat",
-        "actor": "unknown a",
+        "actor": "ricky",
         "metadata": null,
-        "content": "It gets into a lot of fights. It lost one eye and then it got into another fight and lost another. And it was just walking around bumping into stuff. I mean, the vet sort of said, oh, we can do stuff to keep it alive and all that, but it's a Bit out of order, innit, because it cost a fortune. He shouldn't tell you, but Mum and Dad can't afford to have eyes put on it and stuff.",
+        "content": "Your mum said, the parrot's looking worried. What happened to the cat then?",
         "notable": false,
-        "placeholder": true,
+        "placeholder": false,
         "sentiment": ""
       },
       {
         "id": "ep-podcast-S2E04-172",
         "pos": 172,
-        "timestamp": 1390960000000,
+        "timestamp": 1371090000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 2280000000,
+        "duration": 19870000000,
         "type": "chat",
-        "actor": "unknown b",
+        "actor": "karl",
         "metadata": null,
-        "content": "No, you can't have eyes put on a cat anyway.",
+        "content": "It gets into a lot of fights. It lost one eye and then it got into another fight and lost another and it was just walking around bumping into stuff. I mean, the vet sort of said, oh, we can do stuff to keep it alive and all that, but it's a bit out of order, innit, because it cost a fortune. He shouldn't tell you. Mum and Dad can't afford to have eyes put on it and stuff.",
         "notable": false,
-        "placeholder": true,
+        "placeholder": false,
         "sentiment": ""
       },
       {
         "id": "ep-podcast-S2E04-173",
         "pos": 173,
-        "timestamp": 1393240000000,
+        "timestamp": 1390960000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 3960000000,
+        "duration": 2280000000,
         "type": "chat",
-        "actor": "unknown a",
+        "actor": "ricky",
         "metadata": null,
-        "content": "No, but he said, oh, we can do something here. We can have its eyes sorted out.",
+        "content": "No, you can't have eyes put on a cat anyway.",
         "notable": false,
-        "placeholder": true,
+        "placeholder": false,
         "sentiment": ""
       },
       {
         "id": "ep-podcast-S2E04-174",
         "pos": 174,
-        "timestamp": 1397200000000,
+        "timestamp": 1393240000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 4640000000,
+        "duration": 3960000000,
         "type": "chat",
-        "actor": "unknown b",
+        "actor": "karl",
         "metadata": null,
-        "content": "But I don't think you should be allowed cats.",
+        "content": "No, but he said, oh, we can do something here. We can have its eyes sorted out.",
         "notable": false,
-        "placeholder": true,
+        "placeholder": false,
         "sentiment": ""
       },
       {
         "id": "ep-podcast-S2E04-175",
         "pos": 175,
-        "timestamp": 1401840000000,
+        "timestamp": 1397200000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 600000000,
+        "duration": 4640000000,
         "type": "chat",
-        "actor": "unknown a",
+        "actor": "ricky",
         "metadata": null,
-        "content": "Why not?",
+        "content": "But... I don't think you should be allowed cats.",
         "notable": false,
-        "placeholder": true,
+        "placeholder": false,
         "sentiment": ""
       },
       {
         "id": "ep-podcast-S2E04-176",
         "pos": 176,
-        "timestamp": 1402440000000,
+        "timestamp": 1401840000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 1240000000,
+        "duration": 600000000,
         "type": "chat",
-        "actor": "unknown c",
+        "actor": "karl",
         "metadata": null,
-        "content": "The Pilkington family.",
+        "content": "Why?",
         "notable": false,
-        "placeholder": true,
+        "placeholder": false,
         "sentiment": ""
       },
       {
         "id": "ep-podcast-S2E04-177",
         "pos": 177,
-        "timestamp": 1403680000000,
+        "timestamp": 1402440000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 10000000000,
+        "duration": 1240000000,
         "type": "chat",
-        "actor": "unknown a",
+        "actor": "steve",
         "metadata": null,
-        "content": "Why not? Well, they have good lives. Yeah, I know, but they have good lives whilst they're still knocking about. It's just that we get through them.",
+        "content": "Not the Pilkington family.",
         "notable": false,
-        "placeholder": true,
+        "placeholder": false,
         "sentiment": ""
       },
       {
         "id": "ep-podcast-S2E04-178",
         "pos": 178,
-        "timestamp": 1413680000000,
+        "timestamp": 1403680000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 2160000000,
+        "duration": 2208000000,
         "type": "chat",
-        "actor": "unknown c",
+        "actor": "karl",
         "metadata": null,
-        "content": "It's a good job you're not gonna have kids.",
+        "content": "Why not? Well, they have good lives.",
         "notable": false,
-        "placeholder": true,
+        "placeholder": false,
         "sentiment": ""
       },
       {
         "id": "ep-podcast-S2E04-179",
         "pos": 179,
-        "timestamp": 1415840000000,
-        "timestamp_inferred": false,
-        "timestamp_distance": 0,
-        "duration": 8960000000,
+        "timestamp": 1405888000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 1,
+        "duration": 981000000,
         "type": "chat",
-        "actor": "unknown b",
+        "actor": "ricky",
         "metadata": null,
-        "content": "Oh, God Almighty. I can't believe it. The cat that kept throwing up so his mum shaved it. Unbelievable. Dry wipe cat.",
+        "content": "They keep dying.",
         "notable": false,
-        "placeholder": true,
+        "placeholder": false,
         "sentiment": ""
       },
       {
         "id": "ep-podcast-S2E04-180",
         "pos": 180,
-        "timestamp": 1424800000000,
-        "timestamp_inferred": false,
-        "timestamp_distance": 0,
-        "duration": 15040000000,
+        "timestamp": 1406869000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 2,
+        "duration": 6811000000,
         "type": "chat",
-        "actor": "unknown c",
+        "actor": "karl",
         "metadata": null,
-        "content": "A mate sent me a story on email about a bloke in China who has this weird illness that means he can't have his picture taken. That's not the weird bit. If he tries, his body doesn't appear in the photo.",
+        "content": "Yeah, I know, but they have good lives whilst they're still knocking about. It's just that we get through them.",
         "notable": false,
-        "placeholder": true,
+        "placeholder": false,
         "sentiment": ""
       },
       {
         "id": "ep-podcast-S2E04-181",
         "pos": 181,
-        "timestamp": 1439840000000,
+        "timestamp": 1413680000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 1240000000,
+        "duration": 471000000,
         "type": "chat",
-        "actor": "unknown b",
+        "actor": "",
         "metadata": null,
-        "content": "Don't talk shit.",
+        "content": "Steve laughs",
         "notable": false,
-        "placeholder": true,
+        "placeholder": false,
         "sentiment": ""
       },
       {
         "id": "ep-podcast-S2E04-182",
         "pos": 182,
-        "timestamp": 1441080000000,
-        "timestamp_inferred": false,
-        "timestamp_distance": 0,
-        "duration": 4100000000,
+        "timestamp": 1414151000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 1,
+        "duration": 1689000000,
         "type": "chat",
-        "actor": "unknown c",
+        "actor": "steve",
         "metadata": null,
-        "content": "He has had group pictures taken and everyone appeared apart from him.",
+        "content": "It's a good job you're not gonna have kids.",
         "notable": false,
-        "placeholder": true,
+        "placeholder": false,
         "sentiment": ""
       },
       {
         "id": "ep-podcast-S2E04-183",
         "pos": 183,
-        "timestamp": 1445180000000,
+        "timestamp": 1415840000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 600000000,
+        "duration": 8960000000,
         "type": "chat",
-        "actor": "unknown b",
+        "actor": "ricky",
         "metadata": null,
-        "content": "Talk shit.",
+        "content": "Oh, God Almighty. I can't believe it. The cat that kept throwing up so his mum shaved it. Unbelievable. Dry wipe cat.",
         "notable": false,
-        "placeholder": true,
+        "placeholder": false,
         "sentiment": ""
       },
       {
         "id": "ep-podcast-S2E04-184",
         "pos": 184,
-        "timestamp": 1445780000000,
+        "timestamp": 1424800000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 5640000000,
+        "duration": 8802000000,
         "type": "chat",
-        "actor": "unknown c",
+        "actor": "steve",
         "metadata": null,
-        "content": "The story had a picture next to it of a family photo and it said he was stood at the back, but you couldn't see him.",
+        "content": "\"A mate sent me a story on email about a bloke in China who has this weird illness that means he can't have his picture taken.\"",
         "notable": false,
-        "placeholder": true,
+        "placeholder": false,
         "sentiment": ""
       },
       {
         "id": "ep-podcast-S2E04-185",
         "pos": 185,
-        "timestamp": 1451420000000,
-        "timestamp_inferred": false,
-        "timestamp_distance": 0,
-        "duration": 1560000000,
+        "timestamp": 1433602000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 1,
+        "duration": 831000000,
         "type": "chat",
-        "actor": "unknown b",
+        "actor": "",
         "metadata": null,
-        "content": "Right. He wasn't in the picture.",
+        "content": "Ricky laughs",
         "notable": false,
-        "placeholder": true,
+        "placeholder": false,
         "sentiment": ""
       },
       {
         "id": "ep-podcast-S2E04-186",
         "pos": 186,
-        "timestamp": 1452980000000,
-        "timestamp_inferred": false,
-        "timestamp_distance": 0,
-        "duration": 800000000,
+        "timestamp": 1434433000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 2,
+        "duration": 5407000000,
         "type": "chat",
-        "actor": "unknown a",
+        "actor": "steve",
         "metadata": null,
-        "content": "He was in the picture.",
+        "content": "That's not the weird bit. \"If he tries, his body doesn't appear in the photo.\"",
         "notable": false,
-        "placeholder": true,
+        "placeholder": false,
         "sentiment": ""
       },
       {
         "id": "ep-podcast-S2E04-187",
         "pos": 187,
-        "timestamp": 1453780000000,
+        "timestamp": 1439840000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 1000000000,
+        "duration": 1240000000,
         "type": "chat",
-        "actor": "unknown b",
+        "actor": "ricky",
         "metadata": null,
-        "content": "No, he wasn't in the picture.",
+        "content": "Don't talk shit.",
         "notable": false,
-        "placeholder": true,
+        "placeholder": false,
         "sentiment": ""
       },
       {
         "id": "ep-podcast-S2E04-188",
         "pos": 188,
-        "timestamp": 1454780000000,
+        "timestamp": 1441080000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 1280000000,
+        "duration": 4100000000,
         "type": "chat",
-        "actor": "unknown a",
+        "actor": "steve",
         "metadata": null,
-        "content": "He's done loads of tests and stuff.",
+        "content": "\"He has had group pictures taken and everyone appeared apart from him.\"",
         "notable": false,
-        "placeholder": true,
+        "placeholder": false,
         "sentiment": ""
       },
       {
         "id": "ep-podcast-S2E04-189",
         "pos": 189,
-        "timestamp": 1456060000000,
+        "timestamp": 1445180000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 14400000000,
+        "duration": 600000000,
         "type": "chat",
-        "actor": "unknown b",
+        "actor": "ricky",
         "metadata": null,
-        "content": "No, there's. I haven't done loads of tests. This is bollocks. There's no way this is scientifically possible. What's his want? Yeah, now he's wanted just a white bit of paper up on the police wall. Have you seen this man? What man? If you see him, tell us. You're talking shit.",
+        "content": "Don't talk shit, that's bollocks.",
         "notable": false,
-        "placeholder": true,
+        "placeholder": false,
         "sentiment": ""
       },
       {
         "id": "ep-podcast-S2E04-190",
         "pos": 190,
-        "timestamp": 1470460000000,
+        "timestamp": 1445780000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 15410000000,
+        "duration": 5640000000,
         "type": "chat",
-        "actor": "unknown c",
+        "actor": "steve",
         "metadata": null,
-        "content": "Suzanne watched the film You've Got Mail Tonight for about the 14th time. I don't think you could properly fancy someone without seeing them unless you're blind. I think it's odd when blind people have affairs. Why is that odd?",
+        "content": "\"The story had a picture next to it of a family photo and it said he was stood at the back, but you couldn't see him.\"",
         "notable": false,
-        "placeholder": true,
+        "placeholder": false,
         "sentiment": ""
       },
       {
         "id": "ep-podcast-S2E04-191",
         "pos": 191,
-        "timestamp": 1485870000000,
+        "timestamp": 1451420000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 8800000000,
+        "duration": 1560000000,
         "type": "chat",
-        "actor": "unknown a",
+        "actor": "ricky",
         "metadata": null,
-        "content": "Just because most stuff is based on looks, isn't it? So you think once they've found someone, they're happy with them, stick with them.",
+        "content": "Right. He wasn't in the picture.",
         "notable": false,
-        "placeholder": true,
+        "placeholder": false,
         "sentiment": ""
       },
       {
         "id": "ep-podcast-S2E04-192",
         "pos": 192,
-        "timestamp": 1494670000000,
+        "timestamp": 1452980000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 4040000000,
+        "duration": 800000000,
         "type": "chat",
-        "actor": "unknown b",
+        "actor": "karl",
         "metadata": null,
-        "content": "But no, it's not true. Most things are based on looks.",
+        "content": "He was in the picture.",
         "notable": false,
-        "placeholder": true,
+        "placeholder": false,
         "sentiment": ""
       },
       {
         "id": "ep-podcast-S2E04-193",
         "pos": 193,
-        "timestamp": 1498710000000,
+        "timestamp": 1453780000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 4400000000,
+        "duration": 1000000000,
         "type": "chat",
-        "actor": "unknown a",
+        "actor": "ricky",
         "metadata": null,
-        "content": "What I mean is, when you first meet someone and that, well, initially it's.",
+        "content": "No he wasn't in the picture.",
         "notable": false,
-        "placeholder": true,
+        "placeholder": false,
         "sentiment": ""
       },
       {
         "id": "ep-podcast-S2E04-194",
         "pos": 194,
-        "timestamp": 1503110000000,
+        "timestamp": 1454780000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 1320000000,
+        "duration": 1280000000,
         "type": "chat",
-        "actor": "unknown b",
+        "actor": "karl",
         "metadata": null,
-        "content": "Only looks because you don't know them.",
+        "content": "They've done loads of tests and stuff.",
         "notable": false,
-        "placeholder": true,
+        "placeholder": false,
         "sentiment": ""
       },
       {
         "id": "ep-podcast-S2E04-195",
         "pos": 195,
-        "timestamp": 1504430000000,
+        "timestamp": 1456060000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 1120000000,
+        "duration": 14400000000,
         "type": "chat",
-        "actor": "unknown a",
+        "actor": "ricky",
         "metadata": null,
-        "content": "So that's what I'm saying.",
+        "content": "No they haven't done loads of tests. This is bollocks. There's no way this is scientifically possible. What, he's wanted? Yeah, now he's wanted, just a white bit of paper up on the police wall. Have you seen this man? What man? If you see him, tell us. You're talking shit.",
         "notable": false,
-        "placeholder": true,
+        "placeholder": false,
         "sentiment": ""
       },
       {
         "id": "ep-podcast-S2E04-196",
         "pos": 196,
-        "timestamp": 1505550000000,
+        "timestamp": 1470460000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 1820000000,
+        "duration": 10420000000,
         "type": "chat",
-        "actor": "unknown b",
+        "actor": "steve",
         "metadata": null,
-        "content": "That's ridic thing to say, isn't it?",
+        "content": "\"Suzanne watched the film 'You've Got Mail' tonight for about the 14th time. I don't think you could properly fancy someone without seeing them unless you're blind.\"",
         "notable": false,
-        "placeholder": true,
+        "placeholder": false,
         "sentiment": ""
       },
       {
         "id": "ep-podcast-S2E04-197",
         "pos": 197,
-        "timestamp": 1507370000000,
-        "timestamp_inferred": false,
-        "timestamp_distance": 0,
-        "duration": 6960000000,
+        "timestamp": 1480880000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 1,
+        "duration": 757000000,
         "type": "chat",
-        "actor": "unknown a",
+        "actor": "",
         "metadata": null,
-        "content": "Well, no, it's just what I think. I'm not saying that that's like fat or anything. I'm just thinking if you're blind, why mess about?",
+        "content": "Ricky laughs",
         "notable": false,
-        "placeholder": true,
+        "placeholder": false,
         "sentiment": ""
       },
       {
         "id": "ep-podcast-S2E04-198",
         "pos": 198,
-        "timestamp": 1514330000000,
-        "timestamp_inferred": false,
-        "timestamp_distance": 0,
-        "duration": 5200000000,
+        "timestamp": 1481637000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 2,
+        "duration": 4233000000,
         "type": "chat",
-        "actor": "unknown b",
+        "actor": "steve",
         "metadata": null,
-        "content": "You're still basing on it if it's only looks that you people find. What?",
+        "content": "\"I think it's odd when blind people have affairs.\" Why is that odd?",
         "notable": false,
-        "placeholder": true,
+        "placeholder": false,
         "sentiment": ""
       },
       {
         "id": "ep-podcast-S2E04-199",
         "pos": 199,
-        "timestamp": 1519530000000,
+        "timestamp": 1485870000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 2960000000,
+        "duration": 8800000000,
         "type": "chat",
-        "actor": "unknown a",
+        "actor": "karl",
         "metadata": null,
-        "content": "Yeah, I'm just saying. So why is a blind person messing about having an affair?",
+        "content": "Just because most stuff is based on looks, innit? So you think once they've found someone, they're happy with them, stick with them.",
         "notable": false,
-        "placeholder": true,
+        "placeholder": false,
         "sentiment": ""
       },
       {
         "id": "ep-podcast-S2E04-200",
         "pos": 200,
+        "timestamp": 1494670000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "duration": 4040000000,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "But no, it's not true. What do you mean most things are based on looks?",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S2E04-201",
+        "pos": 201,
+        "timestamp": 1498710000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "duration": 4400000000,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "What I mean is, when you first meet someone and that --",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S2E04-202",
+        "pos": 202,
+        "timestamp": 1503110000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "duration": 1320000000,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Well, initially it's only looks because you don't know them.",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S2E04-203",
+        "pos": 203,
+        "timestamp": 1504430000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "duration": 1120000000,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "So that's what I'm saying.",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S2E04-204",
+        "pos": 204,
+        "timestamp": 1505550000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "duration": 1820000000,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "But that's ridiculous thing to say, isn't it?",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S2E04-205",
+        "pos": 205,
+        "timestamp": 1507370000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "duration": 6960000000,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Well no, it's just what I think. I'm not saying that that's like fats or anything. I'm just thinking if you're blind, why mess about?",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S2E04-206",
+        "pos": 206,
+        "timestamp": 1514330000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "duration": 5200000000,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "You're still basing on it if it's only looks that people find -- what?",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S2E04-207",
+        "pos": 207,
+        "timestamp": 1519530000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "duration": 2960000000,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Yeah, I'm just saying, so why is a blind person messing about having an affair?",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S2E04-208",
+        "pos": 208,
         "timestamp": 1522490000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3020,8 +3140,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-201",
-        "pos": 201,
+        "id": "ep-podcast-S2E04-209",
+        "pos": 209,
         "timestamp": 1527370000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3035,8 +3155,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-202",
-        "pos": 202,
+        "id": "ep-podcast-S2E04-210",
+        "pos": 210,
         "timestamp": 1531050000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3050,8 +3170,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-203",
-        "pos": 203,
+        "id": "ep-podcast-S2E04-211",
+        "pos": 211,
         "timestamp": 1533530000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3065,8 +3185,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-204",
-        "pos": 204,
+        "id": "ep-podcast-S2E04-212",
+        "pos": 212,
         "timestamp": 1552170000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3080,8 +3200,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-205",
-        "pos": 205,
+        "id": "ep-podcast-S2E04-213",
+        "pos": 213,
         "timestamp": 1568130000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3095,8 +3215,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-206",
-        "pos": 206,
+        "id": "ep-podcast-S2E04-214",
+        "pos": 214,
         "timestamp": 1589100000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3110,8 +3230,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-207",
-        "pos": 207,
+        "id": "ep-podcast-S2E04-215",
+        "pos": 215,
         "timestamp": 1613500000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3125,8 +3245,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-208",
-        "pos": 208,
+        "id": "ep-podcast-S2E04-216",
+        "pos": 216,
         "timestamp": 1623020000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3140,8 +3260,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-209",
-        "pos": 209,
+        "id": "ep-podcast-S2E04-217",
+        "pos": 217,
         "timestamp": 1663990000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3155,8 +3275,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-210",
-        "pos": 210,
+        "id": "ep-podcast-S2E04-218",
+        "pos": 218,
         "timestamp": 1666430000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3170,8 +3290,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-211",
-        "pos": 211,
+        "id": "ep-podcast-S2E04-219",
+        "pos": 219,
         "timestamp": 1668150000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3185,8 +3305,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-212",
-        "pos": 212,
+        "id": "ep-podcast-S2E04-220",
+        "pos": 220,
         "timestamp": 1670420000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3200,8 +3320,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-213",
-        "pos": 213,
+        "id": "ep-podcast-S2E04-221",
+        "pos": 221,
         "timestamp": 1671540000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3215,8 +3335,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-214",
-        "pos": 214,
+        "id": "ep-podcast-S2E04-222",
+        "pos": 222,
         "timestamp": 1672900000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3230,8 +3350,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-215",
-        "pos": 215,
+        "id": "ep-podcast-S2E04-223",
+        "pos": 223,
         "timestamp": 1675300000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3245,8 +3365,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-216",
-        "pos": 216,
+        "id": "ep-podcast-S2E04-224",
+        "pos": 224,
         "timestamp": 1680380000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3260,8 +3380,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-217",
-        "pos": 217,
+        "id": "ep-podcast-S2E04-225",
+        "pos": 225,
         "timestamp": 1684900000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3275,8 +3395,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-218",
-        "pos": 218,
+        "id": "ep-podcast-S2E04-226",
+        "pos": 226,
         "timestamp": 1687380000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3290,8 +3410,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-219",
-        "pos": 219,
+        "id": "ep-podcast-S2E04-227",
+        "pos": 227,
         "timestamp": 1689740000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3305,8 +3425,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-220",
-        "pos": 220,
+        "id": "ep-podcast-S2E04-228",
+        "pos": 228,
         "timestamp": 1700920000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3320,8 +3440,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-221",
-        "pos": 221,
+        "id": "ep-podcast-S2E04-229",
+        "pos": 229,
         "timestamp": 1716400000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3335,8 +3455,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-222",
-        "pos": 222,
+        "id": "ep-podcast-S2E04-230",
+        "pos": 230,
         "timestamp": 1721160000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3350,8 +3470,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-223",
-        "pos": 223,
+        "id": "ep-podcast-S2E04-231",
+        "pos": 231,
         "timestamp": 1726400000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3365,8 +3485,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-224",
-        "pos": 224,
+        "id": "ep-podcast-S2E04-232",
+        "pos": 232,
         "timestamp": 1728180000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3380,8 +3500,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-225",
-        "pos": 225,
+        "id": "ep-podcast-S2E04-233",
+        "pos": 233,
         "timestamp": 1731540000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3395,8 +3515,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-226",
-        "pos": 226,
+        "id": "ep-podcast-S2E04-234",
+        "pos": 234,
         "timestamp": 1738740000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3410,8 +3530,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-227",
-        "pos": 227,
+        "id": "ep-podcast-S2E04-235",
+        "pos": 235,
         "timestamp": 1744100000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3425,8 +3545,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-228",
-        "pos": 228,
+        "id": "ep-podcast-S2E04-236",
+        "pos": 236,
         "timestamp": 1765280000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3440,8 +3560,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-229",
-        "pos": 229,
+        "id": "ep-podcast-S2E04-237",
+        "pos": 237,
         "timestamp": 1765800000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3455,8 +3575,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-230",
-        "pos": 230,
+        "id": "ep-podcast-S2E04-238",
+        "pos": 238,
         "timestamp": 1767040000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3470,8 +3590,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-231",
-        "pos": 231,
+        "id": "ep-podcast-S2E04-239",
+        "pos": 239,
         "timestamp": 1776800000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3485,8 +3605,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-232",
-        "pos": 232,
+        "id": "ep-podcast-S2E04-240",
+        "pos": 240,
         "timestamp": 1780760000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3500,8 +3620,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-233",
-        "pos": 233,
+        "id": "ep-podcast-S2E04-241",
+        "pos": 241,
         "timestamp": 1781200000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3515,8 +3635,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-234",
-        "pos": 234,
+        "id": "ep-podcast-S2E04-242",
+        "pos": 242,
         "timestamp": 1813240000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3530,8 +3650,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-235",
-        "pos": 235,
+        "id": "ep-podcast-S2E04-243",
+        "pos": 243,
         "timestamp": 1817320000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3545,8 +3665,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-236",
-        "pos": 236,
+        "id": "ep-podcast-S2E04-244",
+        "pos": 244,
         "timestamp": 1819000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3560,8 +3680,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-237",
-        "pos": 237,
+        "id": "ep-podcast-S2E04-245",
+        "pos": 245,
         "timestamp": 1825200000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3575,8 +3695,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-238",
-        "pos": 238,
+        "id": "ep-podcast-S2E04-246",
+        "pos": 246,
         "timestamp": 1826680000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3590,8 +3710,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-239",
-        "pos": 239,
+        "id": "ep-podcast-S2E04-247",
+        "pos": 247,
         "timestamp": 1827800000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3605,8 +3725,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-240",
-        "pos": 240,
+        "id": "ep-podcast-S2E04-248",
+        "pos": 248,
         "timestamp": 1838120000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3620,8 +3740,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-241",
-        "pos": 241,
+        "id": "ep-podcast-S2E04-249",
+        "pos": 249,
         "timestamp": 1838920000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3635,8 +3755,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-242",
-        "pos": 242,
+        "id": "ep-podcast-S2E04-250",
+        "pos": 250,
         "timestamp": 1839440000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3650,8 +3770,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-243",
-        "pos": 243,
+        "id": "ep-podcast-S2E04-251",
+        "pos": 251,
         "timestamp": 1840920000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3665,8 +3785,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-244",
-        "pos": 244,
+        "id": "ep-podcast-S2E04-252",
+        "pos": 252,
         "timestamp": 1846430000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3680,8 +3800,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-245",
-        "pos": 245,
+        "id": "ep-podcast-S2E04-253",
+        "pos": 253,
         "timestamp": 1847310000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3695,8 +3815,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-246",
-        "pos": 246,
+        "id": "ep-podcast-S2E04-254",
+        "pos": 254,
         "timestamp": 1848270000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3710,8 +3830,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-247",
-        "pos": 247,
+        "id": "ep-podcast-S2E04-255",
+        "pos": 255,
         "timestamp": 1851990000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3725,8 +3845,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-248",
-        "pos": 248,
+        "id": "ep-podcast-S2E04-256",
+        "pos": 256,
         "timestamp": 1854030000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3740,8 +3860,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-249",
-        "pos": 249,
+        "id": "ep-podcast-S2E04-257",
+        "pos": 257,
         "timestamp": 1855870000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3755,8 +3875,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-250",
-        "pos": 250,
+        "id": "ep-podcast-S2E04-258",
+        "pos": 258,
         "timestamp": 1856990000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3770,8 +3890,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-251",
-        "pos": 251,
+        "id": "ep-podcast-S2E04-259",
+        "pos": 259,
         "timestamp": 1860510000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3785,8 +3905,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-252",
-        "pos": 252,
+        "id": "ep-podcast-S2E04-260",
+        "pos": 260,
         "timestamp": 1860870000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3800,8 +3920,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-253",
-        "pos": 253,
+        "id": "ep-podcast-S2E04-261",
+        "pos": 261,
         "timestamp": 1865190000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3815,8 +3935,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-254",
-        "pos": 254,
+        "id": "ep-podcast-S2E04-262",
+        "pos": 262,
         "timestamp": 1865550000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3830,8 +3950,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-255",
-        "pos": 255,
+        "id": "ep-podcast-S2E04-263",
+        "pos": 263,
         "timestamp": 1865790000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3845,8 +3965,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-256",
-        "pos": 256,
+        "id": "ep-podcast-S2E04-264",
+        "pos": 264,
         "timestamp": 1867230000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3860,8 +3980,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-257",
-        "pos": 257,
+        "id": "ep-podcast-S2E04-265",
+        "pos": 265,
         "timestamp": 1867670000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3875,8 +3995,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-258",
-        "pos": 258,
+        "id": "ep-podcast-S2E04-266",
+        "pos": 266,
         "timestamp": 1868390000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3890,8 +4010,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-259",
-        "pos": 259,
+        "id": "ep-podcast-S2E04-267",
+        "pos": 267,
         "timestamp": 1870510000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3905,8 +4025,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-260",
-        "pos": 260,
+        "id": "ep-podcast-S2E04-268",
+        "pos": 268,
         "timestamp": 1870830000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3920,8 +4040,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-261",
-        "pos": 261,
+        "id": "ep-podcast-S2E04-269",
+        "pos": 269,
         "timestamp": 1873100000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3935,8 +4055,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-262",
-        "pos": 262,
+        "id": "ep-podcast-S2E04-270",
+        "pos": 270,
         "timestamp": 1874540000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3950,8 +4070,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-263",
-        "pos": 263,
+        "id": "ep-podcast-S2E04-271",
+        "pos": 271,
         "timestamp": 1880220000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3965,8 +4085,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-264",
-        "pos": 264,
+        "id": "ep-podcast-S2E04-272",
+        "pos": 272,
         "timestamp": 1882060000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3980,8 +4100,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-265",
-        "pos": 265,
+        "id": "ep-podcast-S2E04-273",
+        "pos": 273,
         "timestamp": 1883660000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3995,8 +4115,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-266",
-        "pos": 266,
+        "id": "ep-podcast-S2E04-274",
+        "pos": 274,
         "timestamp": 1884700000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4010,8 +4130,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-267",
-        "pos": 267,
+        "id": "ep-podcast-S2E04-275",
+        "pos": 275,
         "timestamp": 1887100000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4025,8 +4145,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-268",
-        "pos": 268,
+        "id": "ep-podcast-S2E04-276",
+        "pos": 276,
         "timestamp": 1890380000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4040,8 +4160,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-269",
-        "pos": 269,
+        "id": "ep-podcast-S2E04-277",
+        "pos": 277,
         "timestamp": 1893660000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4055,8 +4175,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-270",
-        "pos": 270,
+        "id": "ep-podcast-S2E04-278",
+        "pos": 278,
         "timestamp": 1895180000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4070,8 +4190,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-271",
-        "pos": 271,
+        "id": "ep-podcast-S2E04-279",
+        "pos": 279,
         "timestamp": 1898700000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4085,8 +4205,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-272",
-        "pos": 272,
+        "id": "ep-podcast-S2E04-280",
+        "pos": 280,
         "timestamp": 1901440000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4100,8 +4220,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-273",
-        "pos": 273,
+        "id": "ep-podcast-S2E04-281",
+        "pos": 281,
         "timestamp": 1903360000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4115,8 +4235,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-274",
-        "pos": 274,
+        "id": "ep-podcast-S2E04-282",
+        "pos": 282,
         "timestamp": 1905000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4130,8 +4250,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-275",
-        "pos": 275,
+        "id": "ep-podcast-S2E04-283",
+        "pos": 283,
         "timestamp": 1905440000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4145,8 +4265,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-276",
-        "pos": 276,
+        "id": "ep-podcast-S2E04-284",
+        "pos": 284,
         "timestamp": 1908160000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4160,8 +4280,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-277",
-        "pos": 277,
+        "id": "ep-podcast-S2E04-285",
+        "pos": 285,
         "timestamp": 1914880000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4175,8 +4295,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-278",
-        "pos": 278,
+        "id": "ep-podcast-S2E04-286",
+        "pos": 286,
         "timestamp": 1916480000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4190,8 +4310,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-279",
-        "pos": 279,
+        "id": "ep-podcast-S2E04-287",
+        "pos": 287,
         "timestamp": 1918480000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4205,8 +4325,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-280",
-        "pos": 280,
+        "id": "ep-podcast-S2E04-288",
+        "pos": 288,
         "timestamp": 1920640000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4220,8 +4340,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-281",
-        "pos": 281,
+        "id": "ep-podcast-S2E04-289",
+        "pos": 289,
         "timestamp": 1939150000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4235,8 +4355,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-282",
-        "pos": 282,
+        "id": "ep-podcast-S2E04-290",
+        "pos": 290,
         "timestamp": 1943070000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4250,8 +4370,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-283",
-        "pos": 283,
+        "id": "ep-podcast-S2E04-291",
+        "pos": 291,
         "timestamp": 1945230000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4265,8 +4385,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-284",
-        "pos": 284,
+        "id": "ep-podcast-S2E04-292",
+        "pos": 292,
         "timestamp": 1947790000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4280,8 +4400,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-285",
-        "pos": 285,
+        "id": "ep-podcast-S2E04-293",
+        "pos": 293,
         "timestamp": 1954100000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4295,8 +4415,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-286",
-        "pos": 286,
+        "id": "ep-podcast-S2E04-294",
+        "pos": 294,
         "timestamp": 1954500000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4310,8 +4430,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-287",
-        "pos": 287,
+        "id": "ep-podcast-S2E04-295",
+        "pos": 295,
         "timestamp": 1957460000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4325,8 +4445,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-288",
-        "pos": 288,
+        "id": "ep-podcast-S2E04-296",
+        "pos": 296,
         "timestamp": 1957940000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4340,8 +4460,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-289",
-        "pos": 289,
+        "id": "ep-podcast-S2E04-297",
+        "pos": 297,
         "timestamp": 1958700000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4355,8 +4475,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-290",
-        "pos": 290,
+        "id": "ep-podcast-S2E04-298",
+        "pos": 298,
         "timestamp": 1962580000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4370,8 +4490,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-291",
-        "pos": 291,
+        "id": "ep-podcast-S2E04-299",
+        "pos": 299,
         "timestamp": 1971860000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4385,8 +4505,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-292",
-        "pos": 292,
+        "id": "ep-podcast-S2E04-300",
+        "pos": 300,
         "timestamp": 1973060000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4400,8 +4520,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-293",
-        "pos": 293,
+        "id": "ep-podcast-S2E04-301",
+        "pos": 301,
         "timestamp": 1974580000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4415,8 +4535,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-294",
-        "pos": 294,
+        "id": "ep-podcast-S2E04-302",
+        "pos": 302,
         "timestamp": 1979940000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4430,8 +4550,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-295",
-        "pos": 295,
+        "id": "ep-podcast-S2E04-303",
+        "pos": 303,
         "timestamp": 1983060000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4445,8 +4565,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-296",
-        "pos": 296,
+        "id": "ep-podcast-S2E04-304",
+        "pos": 304,
         "timestamp": 1983740000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4460,8 +4580,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-297",
-        "pos": 297,
+        "id": "ep-podcast-S2E04-305",
+        "pos": 305,
         "timestamp": 1984860000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4475,8 +4595,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-298",
-        "pos": 298,
+        "id": "ep-podcast-S2E04-306",
+        "pos": 306,
         "timestamp": 1985260000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4490,8 +4610,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-299",
-        "pos": 299,
+        "id": "ep-podcast-S2E04-307",
+        "pos": 307,
         "timestamp": 1990740000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4505,8 +4625,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-300",
-        "pos": 300,
+        "id": "ep-podcast-S2E04-308",
+        "pos": 308,
         "timestamp": 1991740000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4520,8 +4640,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-301",
-        "pos": 301,
+        "id": "ep-podcast-S2E04-309",
+        "pos": 309,
         "timestamp": 1992860000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4535,8 +4655,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-302",
-        "pos": 302,
+        "id": "ep-podcast-S2E04-310",
+        "pos": 310,
         "timestamp": 1995660000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4550,8 +4670,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-303",
-        "pos": 303,
+        "id": "ep-podcast-S2E04-311",
+        "pos": 311,
         "timestamp": 2000820000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4565,8 +4685,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-304",
-        "pos": 304,
+        "id": "ep-podcast-S2E04-312",
+        "pos": 312,
         "timestamp": 2001660000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4580,8 +4700,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-305",
-        "pos": 305,
+        "id": "ep-podcast-S2E04-313",
+        "pos": 313,
         "timestamp": 2012420000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4595,8 +4715,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-306",
-        "pos": 306,
+        "id": "ep-podcast-S2E04-314",
+        "pos": 314,
         "timestamp": 2015540000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4610,8 +4730,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-307",
-        "pos": 307,
+        "id": "ep-podcast-S2E04-315",
+        "pos": 315,
         "timestamp": 2019500000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4625,8 +4745,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-308",
-        "pos": 308,
+        "id": "ep-podcast-S2E04-316",
+        "pos": 316,
         "timestamp": 2019900000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4640,8 +4760,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E04-309",
-        "pos": 309,
+        "id": "ep-podcast-S2E04-317",
+        "pos": 317,
         "timestamp": 2033780000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4656,7 +4776,9 @@
       }
     ],
     "synopsis": null,
-    "contributors": [],
+    "contributors": [
+      "Aggravating-Dog8417"
+    ],
     "trivia": null,
     "tags": null,
     "media": {
