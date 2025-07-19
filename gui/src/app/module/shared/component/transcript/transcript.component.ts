@@ -330,7 +330,7 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
 
       // there may be multiple trivias which intersect this line. So find them all and then,
       // append them as required.
-      const foundIntersectingTrivia: RskTrivia[] = (episode?.trivia || []).filter((s: RskTrivia) => episode.transcript[i].pos === s.startPos - 1 || episode.transcript[i].pos === s.endPos);
+      const foundIntersectingTrivia: RskTrivia[] = (episode?.trivia || []).filter((s: RskTrivia) => episode.transcript[i].pos === s.startPos - 1 || episode.transcript[i].pos === s.endPos-1);
 
       if ((foundIntersectingTrivia || []).length > 0) {
         foundIntersectingTrivia.forEach((trivia: RskTrivia) => {
@@ -353,7 +353,7 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
               currentGroup.tscript.trivia.push(trivia);
             }
           }
-          if (episode.transcript[i].pos === trivia.endPos) {
+          if (episode.transcript[i].pos === trivia.endPos-1) {
             // flush current group
             currentGroup.endPos = episode.transcript[i].pos;
             this.groupedDialog.push(currentGroup);

@@ -437,6 +437,12 @@ app-user-menu {
   justify-content: flex-start;
 }
 
+.trivia-breakout {
+  p {
+    margin: 0 !important;;
+  }
+}
+
 
 /* Importing Bootstrap SCSS file. */
 @import "node_modules/bootstrap/scss/bootstrap";

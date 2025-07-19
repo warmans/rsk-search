@@ -5,7 +5,7 @@
     "episode": 12,
     "name": "Fuk, Luk and Sau",
     "summary": "",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "release_date": "2002-02-16T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -5596,7 +5596,7 @@
         "timestamp": 786900000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 6084000000,
+        "duration": 6132000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -5608,10 +5608,10 @@
       {
         "id": "ep-xfm-S1E12-372",
         "pos": 372,
-        "timestamp": 792984000000,
+        "timestamp": 793032000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 180000000,
+        "duration": 181000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -5623,10 +5623,10 @@
       {
         "id": "ep-xfm-S1E12-373",
         "pos": 373,
-        "timestamp": 793164000000,
+        "timestamp": 793213000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
-        "duration": 1584000000,
+        "duration": 1596000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -5638,10 +5638,10 @@
       {
         "id": "ep-xfm-S1E12-374",
         "pos": 374,
-        "timestamp": 794748000000,
+        "timestamp": 794809000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
-        "duration": 792000000,
+        "duration": 798000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -5653,10 +5653,10 @@
       {
         "id": "ep-xfm-S1E12-375",
         "pos": 375,
-        "timestamp": 795540000000,
+        "timestamp": 795607000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
-        "duration": 2988000000,
+        "duration": 3012000000,
         "type": "chat",
         "actor": "ricky and steve",
         "metadata": null,
@@ -5668,10 +5668,10 @@
       {
         "id": "ep-xfm-S1E12-376",
         "pos": 376,
-        "timestamp": 798528000000,
+        "timestamp": 798619000000,
         "timestamp_inferred": true,
         "timestamp_distance": 5,
-        "duration": 792000000,
+        "duration": 798000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -5683,14 +5683,14 @@
       {
         "id": "ep-xfm-S1E12-377",
         "pos": 377,
-        "timestamp": 799320000000,
+        "timestamp": 799417000000,
         "timestamp_inferred": true,
         "timestamp_distance": 6,
-        "duration": 1836000000,
+        "duration": 1705000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "(sings) “the saviour of… the human raaace…”",
+        "content": "(sings) \"the saviour of… the human raaace…\"",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
@@ -5698,10 +5698,10 @@
       {
         "id": "ep-xfm-S1E12-378",
         "pos": 378,
-        "timestamp": 801156000000,
+        "timestamp": 801122000000,
         "timestamp_inferred": true,
         "timestamp_distance": 7,
-        "duration": 576000000,
+        "duration": 580000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -5713,10 +5713,10 @@
       {
         "id": "ep-xfm-S1E12-379",
         "pos": 379,
-        "timestamp": 801732000000,
+        "timestamp": 801702000000,
         "timestamp_inferred": true,
         "timestamp_distance": 8,
-        "duration": 3458000000,
+        "duration": 3488000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -20448,7 +20448,13 @@
       "lasermoai",
       "warmans"
     ],
-    "trivia": null,
+    "trivia": [
+      {
+        "description": "![](https://www.youtube.com/watch?v=2x8D4T--0v4)",
+        "start_pos": 375,
+        "end_pos": 378
+      }
+    ],
     "tags": null,
     "media": {
       "video_file_name": "",
@@ -20461,7 +20467,12 @@
     },
     "ratings": {
       "scores": {
-        "discord:paulgriffincsp": 3.25,
+        "discord:.warmans": 4,
+        "discord:alexb457": 3,
+        "discord:clubbychipface": 3.5,
+        "discord:harrybee": 5,
+        "discord:paulgriffincsp": 3.5,
+        "discord:wqzkav": 4,
         "reddit:Rhondson": 3
       }
     }
