@@ -7,9 +7,10 @@ import { Like } from 'src/app/lib/filter-dsl/filter';
 import { Str } from 'src/app/lib/filter-dsl/value';
 
 @Component({
-  selector: 'app-rankings',
-  templateUrl: './rankings.component.html',
-  styleUrls: ['./rankings.component.scss']
+    selector: 'app-rankings',
+    templateUrl: './rankings.component.html',
+    styleUrls: ['./rankings.component.scss'],
+    standalone: false
 })
 export class RankingsComponent implements OnInit, OnDestroy {
 

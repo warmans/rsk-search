@@ -4,9 +4,10 @@ import { RskChangelog, RskChangelogList } from '../../../../lib/api-client/model
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
 
 @Component({
-  selector: 'app-changelog',
-  templateUrl: './changelog.component.html',
-  styleUrls: ['./changelog.component.scss']
+    selector: 'app-changelog',
+    templateUrl: './changelog.component.html',
+    styleUrls: ['./changelog.component.scss'],
+    standalone: false
 })
 export class ChangelogComponent implements OnInit, OnDestroy {
 

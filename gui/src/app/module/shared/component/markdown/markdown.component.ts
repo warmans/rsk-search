@@ -3,10 +3,11 @@ import {marked} from 'marked';
 import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
-  selector: 'app-markdown',
-  templateUrl: './markdown.component.html',
-  styleUrls: ['./markdown.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-markdown',
+    templateUrl: './markdown.component.html',
+    styleUrls: ['./markdown.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class MarkdownComponent implements OnInit {
 

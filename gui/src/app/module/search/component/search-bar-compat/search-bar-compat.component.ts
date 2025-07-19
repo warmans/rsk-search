@@ -24,9 +24,10 @@ import {TermsToFilter} from 'src/app/lib/search-parser/util';
 import {Suggestion, SuggestionType} from "../search-bar-suggestion/search-bar-suggestion.component";
 
 @Component({
-  selector: 'app-search-bar-compat',
-  templateUrl: './search-bar-compat.component.html',
-  styleUrls: ['./search-bar-compat.component.scss']
+    selector: 'app-search-bar-compat',
+    templateUrl: './search-bar-compat.component.html',
+    styleUrls: ['./search-bar-compat.component.scss'],
+    standalone: false
 })
 export class SearchBarCompatComponent implements OnInit, OnDestroy {
 

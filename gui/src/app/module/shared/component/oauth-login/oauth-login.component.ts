@@ -7,9 +7,10 @@ import {FormControl} from "@angular/forms";
 import {RskAuthURL} from "../../../../lib/api-client/models";
 
 @Component({
-  selector: 'app-oauth-login',
-  templateUrl: './oauth-login.component.html',
-  styleUrls: ['./oauth-login.component.scss']
+    selector: 'app-oauth-login',
+    templateUrl: './oauth-login.component.html',
+    styleUrls: ['./oauth-login.component.scss'],
+    standalone: false
 })
 export class OauthLoginComponent implements OnDestroy {
 

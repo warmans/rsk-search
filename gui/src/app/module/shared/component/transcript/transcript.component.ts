@@ -38,10 +38,11 @@ export interface Section {
 }
 
 @Component({
-  selector: 'app-transcript',
-  templateUrl: './transcript.component.html',
-  styleUrls: ['./transcript.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-transcript',
+    templateUrl: './transcript.component.html',
+    styleUrls: ['./transcript.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class TranscriptComponent implements OnInit, AfterViewInit {
 

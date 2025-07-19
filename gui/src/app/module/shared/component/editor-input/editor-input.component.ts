@@ -4,10 +4,11 @@ import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-editor-input',
-  templateUrl: './editor-input.component.html',
-  styleUrls: ['./editor-input.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-editor-input',
+    templateUrl: './editor-input.component.html',
+    styleUrls: ['./editor-input.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class EditorInputComponent implements OnInit, OnDestroy, AfterViewInit {
 

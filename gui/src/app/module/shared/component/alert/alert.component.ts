@@ -2,9 +2,10 @@ import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { Alert, AlertService } from '../../../core/service/alert/alert.service';
 
 @Component({
-  selector: 'app-alert',
-  templateUrl: './alert.component.html',
-  styleUrls: ['./alert.component.scss']
+    selector: 'app-alert',
+    templateUrl: './alert.component.html',
+    styleUrls: ['./alert.component.scss'],
+    standalone: false
 })
 export class AlertComponent implements OnInit, OnDestroy {
 

@@ -6,9 +6,10 @@ import { Router, RoutesRecognized } from '@angular/router';
 import { SessionService } from '../../../core/service/session/session.service';
 
 @Component({
-  selector: 'app-pending-rewards',
-  templateUrl: './pending-rewards.component.html',
-  styleUrls: ['./pending-rewards.component.scss']
+    selector: 'app-pending-rewards',
+    templateUrl: './pending-rewards.component.html',
+    styleUrls: ['./pending-rewards.component.scss'],
+    standalone: false
 })
 export class PendingRewardsComponent implements OnInit, OnDestroy {
 

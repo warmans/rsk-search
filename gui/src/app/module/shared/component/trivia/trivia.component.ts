@@ -2,9 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { RskTrivia } from '../../../../lib/api-client/models';
 
 @Component({
-  selector: 'app-trivia',
-  templateUrl: './trivia.component.html',
-  styleUrls: ['./trivia.component.scss']
+    selector: 'app-trivia',
+    templateUrl: './trivia.component.html',
+    styleUrls: ['./trivia.component.scss'],
+    standalone: false
 })
 export class TriviaComponent implements OnInit {
 

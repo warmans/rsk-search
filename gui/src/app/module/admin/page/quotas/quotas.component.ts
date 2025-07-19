@@ -5,9 +5,10 @@ import { RskQuotas } from 'src/app/lib/api-client/models';
 import { Subject } from 'rxjs';
 
 @Component({
-  selector: 'app-quotas',
-  templateUrl: './quotas.component.html',
-  styleUrls: ['./quotas.component.scss']
+    selector: 'app-quotas',
+    templateUrl: './quotas.component.html',
+    styleUrls: ['./quotas.component.scss'],
+    standalone: false
 })
 export class QuotasComponent implements OnInit, OnDestroy {
 

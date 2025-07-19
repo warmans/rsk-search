@@ -14,9 +14,10 @@ import { TranscriptMetadata } from 'src/app/module/shared/component/metadata-edi
 const DISMISS_HELP_KEY: string = 'contribute.change.help.hide';
 
 @Component({
-  selector: 'app-transcript-change',
-  templateUrl: './transcript-change.component.html',
-  styleUrls: ['./transcript-change.component.scss']
+    selector: 'app-transcript-change',
+    templateUrl: './transcript-change.component.html',
+    styleUrls: ['./transcript-change.component.scss'],
+    standalone: false
 })
 export class TranscriptChangeComponent implements OnInit, OnDestroy {
 

@@ -4,9 +4,10 @@ import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-donations',
-  templateUrl: './donations.component.html',
-  styleUrls: ['./donations.component.scss']
+    selector: 'app-donations',
+    templateUrl: './donations.component.html',
+    styleUrls: ['./donations.component.scss'],
+    standalone: false
 })
 export class DonationsComponent implements OnInit {
 

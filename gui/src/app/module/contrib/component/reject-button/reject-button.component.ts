@@ -4,9 +4,10 @@ import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 import { AlertService } from '../../../core/service/alert/alert.service';
 
 @Component({
-  selector: 'app-reject-button',
-  templateUrl: './reject-button.component.html',
-  styleUrls: ['./reject-button.component.scss']
+    selector: 'app-reject-button',
+    templateUrl: './reject-button.component.html',
+    styleUrls: ['./reject-button.component.scss'],
+    standalone: false
 })
 export class RejectButtonComponent implements OnInit, OnDestroy {
 

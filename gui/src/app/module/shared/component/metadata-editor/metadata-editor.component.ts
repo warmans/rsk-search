@@ -9,9 +9,10 @@ export interface TranscriptMetadata {
 }
 
 @Component({
-  selector: 'app-metadata-editor',
-  templateUrl: './metadata-editor.component.html',
-  styleUrls: ['./metadata-editor.component.scss']
+    selector: 'app-metadata-editor',
+    templateUrl: './metadata-editor.component.html',
+    styleUrls: ['./metadata-editor.component.scss'],
+    standalone: false
 })
 export class MetadataEditorComponent implements OnInit, OnDestroy {
 

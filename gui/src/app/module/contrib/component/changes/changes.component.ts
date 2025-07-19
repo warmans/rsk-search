@@ -13,9 +13,10 @@ import {takeUntil} from "rxjs/operators";
 import {SearchAPIClient} from "../../../../lib/api-client/services/search";
 
 @Component({
-  selector: 'app-changes',
-  templateUrl: './changes.component.html',
-  styleUrls: ['./changes.component.scss']
+    selector: 'app-changes',
+    templateUrl: './changes.component.html',
+    styleUrls: ['./changes.component.scss'],
+    standalone: false
 })
 export class ChangesComponent {
 

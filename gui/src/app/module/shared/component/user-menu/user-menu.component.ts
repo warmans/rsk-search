@@ -7,9 +7,10 @@ import { debounceTime, filter, takeUntil } from 'rxjs/operators';
 import { NavigationStart, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-user-menu',
-  templateUrl: './user-menu.component.html',
-  styleUrls: ['./user-menu.component.scss']
+    selector: 'app-user-menu',
+    templateUrl: './user-menu.component.html',
+    styleUrls: ['./user-menu.component.scss'],
+    standalone: false
 })
 export class UserMenuComponent implements OnInit, OnDestroy {
 

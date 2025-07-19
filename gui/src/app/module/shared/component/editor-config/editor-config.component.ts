@@ -3,9 +3,10 @@ import { UntypedFormControl, UntypedFormGroup, ValidationErrors, ValidatorFn } f
 import { KeyPressEventCodes } from '../../../../lib/keys';
 
 @Component({
-  selector: 'app-editor-config',
-  templateUrl: './editor-config.component.html',
-  styleUrls: ['./editor-config.component.scss']
+    selector: 'app-editor-config',
+    templateUrl: './editor-config.component.html',
+    styleUrls: ['./editor-config.component.scss'],
+    standalone: false
 })
 export class EditorConfigComponent implements OnInit {
 

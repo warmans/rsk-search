@@ -8,9 +8,10 @@ import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms
 import { AlertService } from '../../../core/service/alert/alert.service';
 
 @Component({
-  selector: 'app-redeem',
-  templateUrl: './redeem.component.html',
-  styleUrls: ['./redeem.component.scss']
+    selector: 'app-redeem',
+    templateUrl: './redeem.component.html',
+    styleUrls: ['./redeem.component.scss'],
+    standalone: false
 })
 export class RedeemComponent implements OnInit {
 

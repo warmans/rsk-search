@@ -13,10 +13,11 @@ import {takeUntil} from 'rxjs/operators';
 import {SessionService} from 'src/app/module/core/service/session/session.service';
 
 @Component({
-  selector: 'app-episode-summary',
-  templateUrl: './episode-summary.component.html',
-  styleUrls: ['./episode-summary.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-episode-summary',
+    templateUrl: './episode-summary.component.html',
+    styleUrls: ['./episode-summary.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class EpisodeSummaryComponent implements OnInit, OnDestroy {
 

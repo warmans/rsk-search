@@ -5,9 +5,10 @@ import { RskDonationStats, RskRecipientStats } from 'src/app/lib/api-client/mode
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-causes',
-  templateUrl: './causes.component.html',
-  styleUrls: ['./causes.component.scss']
+    selector: 'app-causes',
+    templateUrl: './causes.component.html',
+    styleUrls: ['./causes.component.scss'],
+    standalone: false
 })
 export class CausesComponent implements OnInit, OnDestroy {
 

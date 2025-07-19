@@ -11,9 +11,10 @@ import {
 import {takeUntil} from 'rxjs/operators';
 
 @Component({
-  selector: 'app-import',
-  templateUrl: './import.component.html',
-  styleUrls: ['./import.component.scss']
+    selector: 'app-import',
+    templateUrl: './import.component.html',
+    styleUrls: ['./import.component.scss'],
+    standalone: false
 })
 export class ImportComponent implements OnInit, OnDestroy {
 

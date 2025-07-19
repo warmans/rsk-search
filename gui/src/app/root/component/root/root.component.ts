@@ -7,9 +7,10 @@ import {QuotaService} from 'src/app/module/core/service/quota/quota.service';
 import {RadioService} from "../../../module/core/service/radio/radio.service";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './root.component.html',
-  styleUrls: ['./root.component.scss']
+    selector: 'app-root',
+    templateUrl: './root.component.html',
+    styleUrls: ['./root.component.scss'],
+    standalone: false
 })
 export class RootComponent implements OnInit, OnDestroy {
 

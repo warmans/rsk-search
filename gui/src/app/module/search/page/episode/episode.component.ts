@@ -19,9 +19,10 @@ import {episodeIdVariations} from 'src/app/lib/util';
 import {AlertService} from "../../../core/service/alert/alert.service";
 
 @Component({
-  selector: 'app-episode',
-  templateUrl: './episode.component.html',
-  styleUrls: ['./episode.component.scss']
+    selector: 'app-episode',
+    templateUrl: './episode.component.html',
+    styleUrls: ['./episode.component.scss'],
+    standalone: false
 })
 export class EpisodeComponent implements OnInit, OnDestroy {
 

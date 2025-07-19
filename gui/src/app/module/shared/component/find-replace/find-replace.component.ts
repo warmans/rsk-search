@@ -7,10 +7,11 @@ export interface FindReplace {
 }
 
 @Component({
-  selector: 'app-find-replace',
-  templateUrl: './find-replace.component.html',
-  styleUrls: ['./find-replace.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-find-replace',
+    templateUrl: './find-replace.component.html',
+    styleUrls: ['./find-replace.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class FindReplaceComponent {
 

@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'timecodeAccuracy'
+    name: 'timecodeAccuracy',
+    standalone: false
 })
 export class TimecodeAccuracyPipe implements PipeTransform {
   constructor() {

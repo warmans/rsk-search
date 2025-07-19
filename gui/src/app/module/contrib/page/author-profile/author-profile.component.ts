@@ -16,9 +16,10 @@ import {
 import {Title} from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-author-profile',
-  templateUrl: './author-profile.component.html',
-  styleUrls: ['./author-profile.component.scss']
+    selector: 'app-author-profile',
+    templateUrl: './author-profile.component.html',
+    styleUrls: ['./author-profile.component.scss'],
+    standalone: false
 })
 export class AuthorProfile implements OnInit, OnDestroy {
 

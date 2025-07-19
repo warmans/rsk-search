@@ -16,9 +16,10 @@ import {ClipboardService} from 'src/app/module/core/service/clipboard/clipboard.
 import {FormControl} from "@angular/forms";
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+    selector: 'app-search',
+    templateUrl: './search.component.html',
+    styleUrls: ['./search.component.scss'],
+    standalone: false
 })
 export class SearchComponent implements OnInit, OnDestroy {
 

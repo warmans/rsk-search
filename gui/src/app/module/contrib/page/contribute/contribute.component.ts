@@ -9,9 +9,10 @@ import {takeUntil} from 'rxjs/operators';
 import {Title} from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-contribute',
-  templateUrl: './contribute.component.html',
-  styleUrls: ['./contribute.component.scss']
+    selector: 'app-contribute',
+    templateUrl: './contribute.component.html',
+    styleUrls: ['./contribute.component.scss'],
+    standalone: false
 })
 export class ContributeComponent implements OnInit, OnDestroy {
 

@@ -10,9 +10,10 @@ import {Str} from "../../../../lib/filter-dsl/value";
 import {Subscription} from "rxjs";
 
 @Component({
-  selector: 'app-episode-list',
-  templateUrl: './episode-list.component.html',
-  styleUrls: ['./episode-list.component.scss'],
+    selector: 'app-episode-list',
+    templateUrl: './episode-list.component.html',
+    styleUrls: ['./episode-list.component.scss'],
+    standalone: false
 })
 export class EpisodeListComponent implements OnInit, OnDestroy {
 

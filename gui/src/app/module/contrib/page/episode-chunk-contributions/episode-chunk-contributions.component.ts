@@ -10,9 +10,10 @@ import {And, Eq} from 'src/app/lib/filter-dsl/filter';
 import {Str} from 'src/app/lib/filter-dsl/value';
 
 @Component({
-  selector: 'app-episode-chunk-contributions',
-  templateUrl: './episode-chunk-contributions.component.html',
-  styleUrls: ['./episode-chunk-contributions.component.scss']
+    selector: 'app-episode-chunk-contributions',
+    templateUrl: './episode-chunk-contributions.component.html',
+    styleUrls: ['./episode-chunk-contributions.component.scss'],
+    standalone: false
 })
 export class EpisodeChunkContributions implements OnInit {
 

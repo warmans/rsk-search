@@ -7,9 +7,10 @@ import { RskQuotas } from 'src/app/lib/api-client/models';
 import { addMonths, intervalToDuration, startOfMonth } from 'date-fns';
 
 @Component({
-  selector: 'app-audio-player-v2',
-  templateUrl: './audio-player-v2.component.html',
-  styleUrls: ['./audio-player-v2.component.scss']
+    selector: 'app-audio-player-v2',
+    templateUrl: './audio-player-v2.component.html',
+    styleUrls: ['./audio-player-v2.component.scss'],
+    standalone: false
 })
 export class AudioPlayerV2Component implements OnInit, OnDestroy {
 

@@ -11,9 +11,10 @@ import { RskChunk, RskChunkContribution, RskContributionState } from 'src/app/li
 import { EditorComponent } from '../../../shared/component/editor/editor.component';
 
 @Component({
-  selector: 'app-episode-chunk-submit',
-  templateUrl: './episode-chunk-submit.component.html',
-  styleUrls: ['./episode-chunk-submit.component.scss']
+    selector: 'app-episode-chunk-submit',
+    templateUrl: './episode-chunk-submit.component.html',
+    styleUrls: ['./episode-chunk-submit.component.scss'],
+    standalone: false
 })
 export class EpisodeChunkSubmit implements OnInit, OnDestroy {
 

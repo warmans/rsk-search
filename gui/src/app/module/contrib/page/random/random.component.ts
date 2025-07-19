@@ -4,9 +4,10 @@ import { Router } from '@angular/router';
 import { RskChunkStats } from 'src/app/lib/api-client/models';
 
 @Component({
-  selector: 'app-random',
-  templateUrl: './random.component.html',
-  styleUrls: ['./random.component.scss']
+    selector: 'app-random',
+    templateUrl: './random.component.html',
+    styleUrls: ['./random.component.scss'],
+    standalone: false
 })
 export class RandomComponent implements OnInit {
 

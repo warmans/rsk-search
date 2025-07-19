@@ -3,10 +3,11 @@ import {RskSearchStats} from '../../../../lib/api-client/models';
 import {ChartConfiguration} from 'chart.js';
 
 @Component({
-  selector: 'app-search-stats',
-  templateUrl: './search-stats.component.html',
-  styleUrls: ['./search-stats.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-search-stats',
+    templateUrl: './search-stats.component.html',
+    styleUrls: ['./search-stats.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class SearchStatsComponent implements OnInit {
 

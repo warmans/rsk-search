@@ -4,9 +4,10 @@ import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ClipboardService } from 'src/app/module/core/service/clipboard/clipboard.service';
 
 @Component({
-  selector: 'app-transcript-copy-dialog',
-  templateUrl: './transcript-copy-dialog.component.html',
-  styleUrls: ['./transcript-copy-dialog.component.scss']
+    selector: 'app-transcript-copy-dialog',
+    templateUrl: './transcript-copy-dialog.component.html',
+    styleUrls: ['./transcript-copy-dialog.component.scss'],
+    standalone: false
 })
 export class TranscriptCopyDialogComponent implements OnInit {
 

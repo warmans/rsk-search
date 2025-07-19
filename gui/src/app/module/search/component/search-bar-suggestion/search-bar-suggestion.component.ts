@@ -20,9 +20,10 @@ export interface Suggestion {
 }
 
 @Component({
-  selector: 'app-search-bar-suggestion',
-  templateUrl: './search-bar-suggestion.component.html',
-  styleUrls: ['./search-bar-suggestion.component.scss']
+    selector: 'app-search-bar-suggestion',
+    templateUrl: './search-bar-suggestion.component.html',
+    styleUrls: ['./search-bar-suggestion.component.scss'],
+    standalone: false
 })
 export class SearchBarSuggestionComponent implements OnInit {
 

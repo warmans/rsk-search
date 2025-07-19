@@ -3,10 +3,11 @@ import { RskClaimedReward } from '../../../../lib/api-client/models';
 import { environment } from '../../../../../environments/environment.prod';
 
 @Component({
-  selector: 'app-claimed-rewards',
-  templateUrl: './claimed-rewards.component.html',
-  styleUrls: ['./claimed-rewards.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-claimed-rewards',
+    templateUrl: './claimed-rewards.component.html',
+    styleUrls: ['./claimed-rewards.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class ClaimedRewardsComponent implements OnInit {
 
