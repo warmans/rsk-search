@@ -1,5 +1,5 @@
 import {BrowserModule, Title} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 
 import {RootRoutingModule} from './root-routing.module';
 import {RootComponent} from './component/root/root.component';
@@ -15,10 +15,13 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {MoreShiteModule} from "../module/more-shite/more-shite.module";
 import {CommunityAPIClientModule} from "../lib/api-client/services/community";
 
+import * as Sentry from "@sentry/angular";
+
 @NgModule({ declarations: [
         RootComponent
     ],
-    bootstrap: [RootComponent], imports: [CoreModule,
+    bootstrap: [RootComponent],
+    imports: [CoreModule,
         BrowserModule,
         RootRoutingModule,
         SearchAPIClientModule.forRoot(),
@@ -29,6 +32,15 @@ import {CommunityAPIClientModule} from "../lib/api-client/services/community";
         ContribModule,
         AdminModule,
         MoreShiteModule,
-        NgbModule], providers: [Title, provideHttpClient(withInterceptorsFromDi())] })
+        NgbModule],
+    providers: [
+      Title,
+      provideHttpClient(withInterceptorsFromDi()),
+      {
+        provide: ErrorHandler,
+        useValue: Sentry.createErrorHandler(),
+      },
+    ]
+})
 export class RootModule {
 }
