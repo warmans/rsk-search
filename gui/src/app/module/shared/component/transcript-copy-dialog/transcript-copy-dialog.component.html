@@ -1,7 +1,9 @@
 <div class="copy-container" #componentRoot>
   <i (click)="copyPlain()" class="bi-clipboard2-fill clickable mr-2"></i>
   <i (click)="optionsOpen = !optionsOpen" class="bi-chevron-down clickable"></i>
-  <div *ngIf="optionsOpen" class="copy-dropdown p-2">
-    <div class="clickable" (click)="copyMarkdown()"><i class="bi-reddit clickable mr-2"></i> Markdown</div>
-  </div>
+  @if (optionsOpen) {
+    <div class="copy-dropdown p-2">
+      <div class="clickable" (click)="copyMarkdown()"><i class="bi-reddit clickable mr-2"></i> Markdown</div>
+    </div>
+  }
 </div>

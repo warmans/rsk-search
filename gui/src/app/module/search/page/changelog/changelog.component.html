@@ -17,12 +17,14 @@
         </div>
       </div>
 
-      <div class="card mb-4" *ngFor="let changelog of changelogs">
-        <div class="card-header">{{changelog.date}}</div>
-        <div class="card-body">
-          <app-markdown [raw]="changelog.content"></app-markdown>
+      @for (changelog of changelogs; track changelog) {
+        <div class="card mb-4">
+          <div class="card-header">{{changelog.date}}</div>
+          <div class="card-body">
+            <app-markdown [raw]="changelog.content"></app-markdown>
+          </div>
         </div>
-      </div>
+      }
     </div>
   </div>
 </div>

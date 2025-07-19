@@ -26,7 +26,7 @@ export class CommunityProjectsComponent implements OnInit, OnDestroy {
   morePages: boolean;
   maxPages: number = MAX_PAGINATION_LINKS;
 
-  projects: RskCommunityProject[] = [];
+  projects: Array<RskCommunityProject & {expand?: boolean}> = [];
 
   private destroy$: Subject<void> = new Subject<void>();
 

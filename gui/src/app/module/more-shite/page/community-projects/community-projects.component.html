@@ -16,48 +16,56 @@
             <th>Summary</th>
             <th></th>
           </tr>
-          <ng-container *ngFor="let proj of projects">
+          @for (proj of projects; track proj) {
             <tr>
               <td>
                 {{proj.name}}
               </td>
               <td>
                 {{proj.summary}}
-                <div><a *ngIf="proj.content" class="clickable" (click)="proj.expand = !proj.expand">More info...</a></div>
+                <div>@if (proj.content) {
+                  <a class="clickable" (click)="proj.expand = !proj.expand">More info...</a>
+                }</div>
               </td>
               <td><a [href]="proj.url" target="_blank" class="text-nowrap">Visit <i class="bi-arrow-up-right"></i></a></td>
             </tr>
-            <tr *ngIf="proj.expand && proj.content">
-              <td class="border-top-0" colspan="3">{{proj.content}}</td>
-            </tr>
-          </ng-container>
+            @if (proj.expand && proj.content) {
+              <tr>
+                <td class="border-top-0" colspan="3">{{proj.content}}</td>
+              </tr>
+            }
+          }
         </table>
       </div>
       <div class="card-footer text-muted text-right">
         <nav aria-label="pages">
           <ul class="pagination">
-            <li *ngFor="let i of pages" class="page-item" [ngClass]="{'active': i === currentPage}">
-              <a class="page-link"
-                 [routerLink]="['/more-shite', 'community-projects']"
-                 [queryParams]="{'page': i}"
-                 [queryParamsHandling]="'merge'">{{i}}
-              </a>
-            </li>
-            <ng-container *ngIf="morePages">
-              <li class="page-item active" *ngIf="currentPage > pages.length">
+            @for (i of pages; track i) {
+              <li class="page-item" [ngClass]="{'active': i === currentPage}">
                 <a class="page-link"
-                   [routerLink]="['/more-shite', 'community-projects']"
-                   [queryParams]="{'page': currentPage}"
-                   [queryParamsHandling]="'merge'">{{currentPage}}
+                  [routerLink]="['/more-shite', 'community-projects']"
+                  [queryParams]="{'page': i}"
+                  [queryParamsHandling]="'merge'">{{i}}
                 </a>
               </li>
+            }
+            @if (morePages) {
+              @if (currentPage > pages.length) {
+                <li class="page-item active">
+                  <a class="page-link"
+                    [routerLink]="['/more-shite', 'community-projects']"
+                    [queryParams]="{'page': currentPage}"
+                    [queryParamsHandling]="'merge'">{{currentPage}}
+                  </a>
+                </li>
+              }
               <li class="page-item">
                 <a [routerLink]="['/more-shite', 'community-projects']"
-                   [queryParams]="{'page': currentPage >= maxPages ? currentPage+1 : maxPages+1}"
-                   [queryParamsHandling]="'merge'" class="page-link">Next...
+                  [queryParams]="{'page': currentPage >= maxPages ? currentPage+1 : maxPages+1}"
+                  [queryParamsHandling]="'merge'" class="page-link">Next...
                 </a>
               </li>
-            </ng-container>
+            }
           </ul>
         </nav>
       </div>

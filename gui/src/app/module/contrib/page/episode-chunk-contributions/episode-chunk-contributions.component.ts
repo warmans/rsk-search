@@ -19,7 +19,7 @@ export class EpisodeChunkContributions implements OnInit {
 
   chunkedTranscriptID: string;
 
-  chunks: RskChunk[] = [];
+  chunks: Array<RskChunk & {selectedContribution?: number}> = [];
 
   groupedContributions: { [index: string]: RskChunkContribution[] } = {};
 

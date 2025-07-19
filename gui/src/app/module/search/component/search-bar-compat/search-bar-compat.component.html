@@ -14,7 +14,9 @@
           (keyup)="onKeyup($event)" />
       </form>
       <div class="controls pr-2">
-        <i *ngIf="terms?.length > 0" class="bi bi-x-circle clickable mr-2" title="Clear" (click)="reset()"></i>
+        @if (terms?.length > 0) {
+          <i class="bi bi-x-circle clickable mr-2" title="Clear" (click)="reset()"></i>
+        }
         <i class="bi bi-question-circle clickable" title="Help" (click)="toggleHelp()"></i>
       </div>
     </div>
@@ -22,35 +24,43 @@
       <button class="btn btn-primary" (click)="emitQuery()"><i class="bi-search"></i></button>
     </div>
   </div>
-  <div class="search-dropdown p-3 mt-2" *ngIf="focusState === 'typing' && activeTerm?.field === 'actor'">
-    <app-search-bar-suggestion
-      [keyInput]="keyPress$"
-      [term]="activeTerm"
-      [dataFn]="mentionsDataFn"
-      (emitQuery)="emitQuery()"
-      (termSelected)="applySuggestion($event)">
-    </app-search-bar-suggestion>
-  </div>
-  <div class="search-dropdown p-3 mt-2" *ngIf="focusState === 'typing' && activeTerm?.field === 'publication'">
-    <app-search-bar-suggestion
-      [keyInput]="keyPress$"
-      [term]="activeTerm"
-      [dataFn]="publicationDataFn"
-      (emitQuery)="emitQuery()"
-      (termSelected)="applySuggestion($event)">
-    </app-search-bar-suggestion>
-  </div>
-  <div class="search-dropdown p-3 mt-2" *ngIf="focusState === 'typing' && activeTerm?.field === 'content'">
-    <app-search-bar-suggestion
-      [keyInput]="keyPress$"
-      [term]="activeTerm"
-      [dataFn]="contentDataFn"
-      [termFilters]="contentFilters"
-      (emitQuery)="emitQuery()"
-      (termSelected)="applySuggestion($event)">
-    </app-search-bar-suggestion>
-  </div>
-  <div class="search-dropdown p-3 mt-2" *ngIf="showHelp">
-    <app-search-bar-help></app-search-bar-help>
-  </div>
+  @if (focusState === 'typing' && activeTerm?.field === 'actor') {
+    <div class="search-dropdown p-3 mt-2">
+      <app-search-bar-suggestion
+        [keyInput]="keyPress$"
+        [term]="activeTerm"
+        [dataFn]="mentionsDataFn"
+        (emitQuery)="emitQuery()"
+        (termSelected)="applySuggestion($event)">
+      </app-search-bar-suggestion>
+    </div>
+  }
+  @if (focusState === 'typing' && activeTerm?.field === 'publication') {
+    <div class="search-dropdown p-3 mt-2">
+      <app-search-bar-suggestion
+        [keyInput]="keyPress$"
+        [term]="activeTerm"
+        [dataFn]="publicationDataFn"
+        (emitQuery)="emitQuery()"
+        (termSelected)="applySuggestion($event)">
+      </app-search-bar-suggestion>
+    </div>
+  }
+  @if (focusState === 'typing' && activeTerm?.field === 'content') {
+    <div class="search-dropdown p-3 mt-2">
+      <app-search-bar-suggestion
+        [keyInput]="keyPress$"
+        [term]="activeTerm"
+        [dataFn]="contentDataFn"
+        [termFilters]="contentFilters"
+        (emitQuery)="emitQuery()"
+        (termSelected)="applySuggestion($event)">
+      </app-search-bar-suggestion>
+    </div>
+  }
+  @if (showHelp) {
+    <div class="search-dropdown p-3 mt-2">
+      <app-search-bar-help></app-search-bar-help>
+    </div>
+  }
 </div>

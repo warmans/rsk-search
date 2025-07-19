@@ -5,56 +5,92 @@
         (click)="toggleEpisode(episode)"
         class="icon d-flex align-items-center justify-content-around album-art"
         [style.background-image]="'url('+episodeImage+')'">
-        <i class="bi-play-circle-fill text-body" *ngIf="episode.media.audio && !episode.media.audioRestricted"></i>
-        <div class="played-corner-marker" *ngIf="!played && episode.media.audio && !episode.media.audioRestricted"></div>
+        @if (episode.media.audio && !episode.media.audioRestricted) {
+          <i class="bi-play-circle-fill text-body"></i>
+        }
+        @if (!played && episode.media.audio && !episode.media.audioRestricted) {
+          <div class="played-corner-marker"></div>
+        }
       </div>
       <div class="pl-3 d-flex flex-column justify-content-around">
         <div>
           <div class="title mb-2">
-            <a [routerLink]="['/ep', episode.id]" *ngIf="episode.transcriptAvailable">
-              <span *ngIf="episodeIdIsMeaningful">{{episode.publication | titlecase}} | Series {{episode.series}} Episode {{episode.episode}} <span *ngIf="episode.name" class="text-muted"> - {{episode.name}}</span></span>
-              <span *ngIf="!episodeIdIsMeaningful">{{episode.publication | titlecase}} |  {{ episode.name || "Unknown" }}</span>
-            </a>
-            <span *ngIf="!episode.transcriptAvailable">
-              <span *ngIf="episodeIdIsMeaningful">{{episode.publication | titlecase}} | Series {{episode.series}} Episode {{episode.episode}} <span *ngIf="episode.name" class="text-muted"> - {{episode.name}}</span></span>
-              <span *ngIf="!episodeIdIsMeaningful">{{episode.publication | titlecase}} |  {{ episode.name || "Unknown" }}</span>
-            </span>
+            @if (episode.transcriptAvailable) {
+              <a [routerLink]="['/ep', episode.id]">
+                @if (episodeIdIsMeaningful) {
+                  <span>{{episode.publication | titlecase}} | Series {{episode.series}} Episode {{episode.episode}} @if (episode.name) {
+                    <span class="text-muted"> - {{episode.name}}</span>
+                  }</span>
+                }
+                @if (!episodeIdIsMeaningful) {
+                  <span>{{episode.publication | titlecase}} |  {{ episode.name || "Unknown" }}</span>
+                }
+              </a>
+            }
+            @if (!episode.transcriptAvailable) {
+              <span>
+                @if (episodeIdIsMeaningful) {
+                  <span>{{episode.publication | titlecase}} | Series {{episode.series}} Episode {{episode.episode}} @if (episode.name) {
+                    <span class="text-muted"> - {{episode.name}}</span>
+                  }</span>
+                }
+                @if (!episodeIdIsMeaningful) {
+                  <span>{{episode.publication | titlecase}} |  {{ episode.name || "Unknown" }}</span>
+                }
+              </span>
+            }
           </div>
           <div class="sub-title font-weight-light">
-            <a *ngIf="loggedIn && !episode.media.audioRestricted && episode.media.audio" [href]="'/dl/media/'+episode.shortId+'.mp3'" target="_blank">
-              {{episode.shortId}}
-            </a>
-            <span *ngIf="!loggedIn || !episode.media.audio">
-              {{episode.shortId}}
-            </span> |
-            {{ ( episode.metadata["duration_ms"] | formatSeconds: true ) || "Duration Unknown" }} |
-            {{ (episode.releaseDate | date) || "Date Unknown" }} |
-            v{{ episode.version }}
-            |
-            <span title="Community episode rating ({{episode.numRatingScores}} ratings)">
-              <i class="bi" [ngClass]="{'bi-star':  episode.ratingScore <= 2, 'bi-star-half': episode.ratingScore > 2 && episode.ratingScore < 4, 'bi-star-fill': episode.ratingScore >= 4}"></i>
-              {{ episode.ratingScore || 0 | number:'1.0-2' }}/5
-            </span>
+            @if (loggedIn && !episode.media.audioRestricted && episode.media.audio) {
+              <a [href]="'/dl/media/'+episode.shortId+'.mp3'" target="_blank">
+                {{episode.shortId}}
+              </a>
+            }
+            @if (!loggedIn || !episode.media.audio) {
+              <span>
+                {{episode.shortId}}
+              </span>
+              } |
+              {{ ( episode.metadata["duration_ms"] | formatSeconds: true ) || "Duration Unknown" }} |
+              {{ (episode.releaseDate | date) || "Date Unknown" }} |
+              v{{ episode.version }}
+              |
+              <span title="Community episode rating ({{episode.numRatingScores}} ratings)">
+                <i class="bi" [ngClass]="{'bi-star':  episode.ratingScore <= 2, 'bi-star-half': episode.ratingScore > 2 && episode.ratingScore < 4, 'bi-star-fill': episode.ratingScore >= 4}"></i>
+                {{ episode.ratingScore || 0 | number:'1.0-2' }}/5
+              </span>
+            </div>
           </div>
         </div>
       </div>
+      @if (episode.transcriptAvailable) {
+        <div class="font-weight-light text-sm">
+          @if (episode.bestof) {
+            <div class="mr-2"><i class="bi bi-card-text mr-1"></i> Bestof Episode</div>
+          }
+          @if (episode.transcriptAvailable && !episode.incomplete) {
+            <div class="mr-2"><i class="bi bi-card-text mr-1"></i> Complete Transcript</div>
+          }
+          @if (!episode.transcriptAvailable || episode.incomplete) {
+            <div class="mr-2"><i class="bi bi-card-text text-danger mr-1"></i> Incomplete Transcript</div>
+          }
+          @if (episode.triviaAvailable) {
+            <div class="mr-2"><i class="bi bi-card-text mr-1"></i> Trivia</div>
+          }
+          <div title="Timecodes are inferred where missing. If a transcript includes more manually placed offsets the inferred offsets are more accurate.">
+            <i class="bi bi-card-text mr-1"></i> {{episode.offsetAccuracyPcnt | timecodeAccuracy}} Timecode Accuracy
+          </div>
+        </div>
+      }
     </div>
-    <div class="font-weight-light text-sm" *ngIf="episode.transcriptAvailable">
-      <div *ngIf="episode.bestof" class="mr-2"><i class="bi bi-card-text mr-1"></i> Bestof Episode</div>
-      <div *ngIf="episode.transcriptAvailable && !episode.incomplete" class="mr-2"><i class="bi bi-card-text mr-1"></i> Complete Transcript</div>
-      <div *ngIf="!episode.transcriptAvailable || episode.incomplete" class="mr-2"><i class="bi bi-card-text text-danger mr-1"></i> Incomplete Transcript</div>
-      <div *ngIf="episode.triviaAvailable" class="mr-2"><i class="bi bi-card-text mr-1"></i> Trivia</div>
-      <div title="Timecodes are inferred where missing. If a transcript includes more manually placed offsets the inferred offsets are more accurate.">
-        <i class="bi bi-card-text mr-1"></i> {{episode.offsetAccuracyPcnt | timecodeAccuracy}} Timecode Accuracy
-      </div>
+    <div class="body p-2">
+      @if (episode.summary) {
+        <p>{{ episode.summary }}</p>
+      }
+      <app-synopses [synopses]="episode.synopsis" [episodeID]="episode.id"></app-synopses>
+    </div>
+    <div class="foot p-2 font-weight-light d-flex justify-content-between">
+      <div></div>
+      <div>{{episode.actors.join(', ')}}</div>
     </div>
   </div>
-  <div class="body p-2">
-    <p *ngIf="episode.summary">{{ episode.summary }}</p>
-    <app-synopses [synopses]="episode.synopsis" [episodeID]="episode.id"></app-synopses>
-  </div>
-  <div class="foot p-2 font-weight-light d-flex justify-content-between">
-    <div></div>
-    <div>{{episode.actors.join(', ')}}</div>
-  </div>
-</div>

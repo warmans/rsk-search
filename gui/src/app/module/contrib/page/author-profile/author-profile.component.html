@@ -1,119 +1,30 @@
-<div class="container-fluid pt-3" *ngIf="claims">
-  <div class="row mb-3">
-    <div class="col">
-      <div class="card">
-        <div class="card-header">
-          <button class="btn btn-danger btn-sm float-right" (click)="logout()">Logout</button>
-          Linked Account
-        </div>
-
-        <div class="d-flex">
-          <div class="flex-shrink-1">
-            <img class="img-thumbnail bg-transparent border-0" [src]="claims.identity.icon_img"
-                 style="max-width: 100px"/>
+@if (claims) {
+  <div class="container-fluid pt-3">
+    <div class="row mb-3">
+      <div class="col">
+        <div class="card">
+          <div class="card-header">
+            <button class="btn btn-danger btn-sm float-right" (click)="logout()">Logout</button>
+            Linked Account
           </div>
-          <div class="flex-grow-1">
-            <table class="table mb-0">
-              <tr>
-                <th style="width: 100px;">Oauth</th>
-                <td>{{claims.oauth_provider}}</td>
-              </tr>
-              <tr>
-                <th>ID</th>
-                <td>{{claims.identity.id}}</td>
-              </tr>
-              <tr>
-                <th>Name</th>
-                <td>{{claims.identity.name}}</td>
-              </tr>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-
-      <app-claimed-rewards [rewards]="rewards"></app-claimed-rewards>
-
-      <div class="row">
-        <div class="col">
-          <ul class="nav nav-tabs font-weight-bold">
-            <li class="nav-item mr-2">
-              <a class="nav-link" (click)="activeInfoPanel='contributions'"
-                 [ngClass]="{'active': activeInfoPanel === 'contributions'}">My Contributions</a>
-            </li>
-            <li class="nav-item mr-2">
-              <a class="nav-link" (click)="activeInfoPanel='edits'" [ngClass]="{'active': activeInfoPanel === 'edits'}">My
-                Edits</a>
-            </li>
-          </ul>
-          <div class="card mb-4" *ngIf="activeInfoPanel === 'contributions'">
-            <div class="card-header text-paragraph">Contributions are new chunks submitted for untranscribed media.
+          <div class="d-flex">
+            <div class="flex-shrink-1">
+              <img class="img-thumbnail bg-transparent border-0" [src]="claims.identity.icon_img"
+                style="max-width: 100px"/>
             </div>
-            <div class="card-body p-0">
-              <div *ngIf="contributions?.length === 0" class="m-4">No contributions yet.</div>
+            <div class="flex-grow-1">
               <table class="table mb-0">
-                <tr *ngFor="let row of contributions">
-                  <td style="width: 300px;">
-                    <a
-                      *ngIf="row.state === states.STATE_PENDING || row.state === states.STATE_REQUEST_APPROVAL || row.state === states.STATE_REJECTED"
-                      [routerLink]="['/chunk', row.chunkId, 'contrib', row.id]">{{row.id}}</a>
-                    <span
-                      *ngIf="row.state !== states.STATE_PENDING && row.state !== states.STATE_REQUEST_APPROVAL && row.state !== states.STATE_REJECTED ">{{row.id}}</span>
-                  </td>
-                  <td style="width: 300px;">
-                    <app-contribution-state [state]="row.state"></app-contribution-state>
-                  </td>
-                  <td>{{ row.stateComment }}</td>
-                  <td style="width: 50px">
-                    <button class="btn btn-danger btn-sm" (click)="discardDraft(row.chunkId, row.id)"
-                            [disabled]="row.state != states.STATE_PENDING">Discard
-                    </button>
-                  </td>
-                </tr>
-              </table>
-            </div>
-          </div>
-          <div class="card mb-4" *ngIf="activeInfoPanel === 'edits'">
-            <div class="card-header text-paragraph">Edits are changes made to existing transcripts. Note that your
-              changes will not be visible in the
-              transcript until they have been fully merged.
-            </div>
-            <div class="card-body p-0">
-              <div *ngIf="changes?.length === 0" class="m-4">No edits yet.</div>
-              <table class="table p-0" *ngIf="changes?.length > 0">
                 <tr>
-                  <th>Episode</th>
-                  <th>State</th>
-                  <th>Created At</th>
-                  <th>Points Awarded</th>
-                  <th></th>
-                  <th></th>
+                  <th style="width: 100px;">Oauth</th>
+                  <td>{{claims.oauth_provider}}</td>
                 </tr>
-                <tr *ngFor="let change of changes">
-                  <td>
-                    <ng-container *ngIf="change.merged">
-                      <a
-                        title="Note that your changes will not be shown here until the change has been fully merged"
-                        [routerLink]="['/ep', change.episodeId]">{{change.episodeId}}</a>
-                    </ng-container>
-                    <ng-container *ngIf="!change.merged">{{change.episodeId}}</ng-container>
-                  </td>
-                  <td>
-                    <app-contribution-state [state]="change.state" [merged]="change.merged"></app-contribution-state>
-                  </td>
-                  <td>{{change.createdAt}}</td>
-                  <td>{{change.pointsAwarded || 'NA'}}</td>
-                  <td>
-                    <a
-                      *ngIf="change.state === states.STATE_PENDING || change.state === states.STATE_REQUEST_APPROVAL || change.state === states.STATE_REJECTED"
-                      class="btn btn-sm btn-info" [routerLink]="['/ep', change.episodeId, 'change', change.id]">View</a>
-                    <span
-                      *ngIf="change.state !== states.STATE_PENDING && change.state !== states.STATE_REQUEST_APPROVAL && change.state !== states.STATE_REJECTED ">-</span>
-                  </td>
-                  <td></td>
+                <tr>
+                  <th>ID</th>
+                  <td>{{claims.identity.id}}</td>
+                </tr>
+                <tr>
+                  <th>Name</th>
+                  <td>{{claims.identity.name}}</td>
                 </tr>
               </table>
             </div>
@@ -121,8 +32,118 @@
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col">
+        <app-claimed-rewards [rewards]="rewards"></app-claimed-rewards>
+        <div class="row">
+          <div class="col">
+            <ul class="nav nav-tabs font-weight-bold">
+              <li class="nav-item mr-2">
+                <a class="nav-link" (click)="activeInfoPanel='contributions'"
+                [ngClass]="{'active': activeInfoPanel === 'contributions'}">My Contributions</a>
+              </li>
+              <li class="nav-item mr-2">
+                <a class="nav-link" (click)="activeInfoPanel='edits'" [ngClass]="{'active': activeInfoPanel === 'edits'}">My
+                Edits</a>
+              </li>
+            </ul>
+            @if (activeInfoPanel === 'contributions') {
+              <div class="card mb-4">
+                <div class="card-header text-paragraph">Contributions are new chunks submitted for untranscribed media.
+                </div>
+                <div class="card-body p-0">
+                  @if (contributions?.length === 0) {
+                    <div class="m-4">No contributions yet.</div>
+                  }
+                  <table class="table mb-0">
+                    @for (row of contributions; track row) {
+                      <tr>
+                        <td style="width: 300px;">
+                          @if (row.state === states.STATE_PENDING || row.state === states.STATE_REQUEST_APPROVAL || row.state === states.STATE_REJECTED) {
+                            <a
+                            [routerLink]="['/chunk', row.chunkId, 'contrib', row.id]">{{row.id}}</a>
+                          }
+                          @if (row.state !== states.STATE_PENDING && row.state !== states.STATE_REQUEST_APPROVAL && row.state !== states.STATE_REJECTED ) {
+                            <span
+                            >{{row.id}}</span>
+                          }
+                        </td>
+                        <td style="width: 300px;">
+                          <app-contribution-state [state]="row.state"></app-contribution-state>
+                        </td>
+                        <td>{{ row.stateComment }}</td>
+                        <td style="width: 50px">
+                          <button class="btn btn-danger btn-sm" (click)="discardDraft(row.chunkId, row.id)"
+                            [disabled]="row.state != states.STATE_PENDING">Discard
+                          </button>
+                        </td>
+                      </tr>
+                    }
+                  </table>
+                </div>
+              </div>
+            }
+            @if (activeInfoPanel === 'edits') {
+              <div class="card mb-4">
+                <div class="card-header text-paragraph">Edits are changes made to existing transcripts. Note that your
+                  changes will not be visible in the
+                  transcript until they have been fully merged.
+                </div>
+                <div class="card-body p-0">
+                  @if (changes?.length === 0) {
+                    <div class="m-4">No edits yet.</div>
+                  }
+                  @if (changes?.length > 0) {
+                    <table class="table p-0">
+                      <tr>
+                        <th>Episode</th>
+                        <th>State</th>
+                        <th>Created At</th>
+                        <th>Points Awarded</th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                      @for (change of changes; track change) {
+                        <tr>
+                          <td>
+                            @if (change.merged) {
+                              <a
+                                title="Note that your changes will not be shown here until the change has been fully merged"
+                              [routerLink]="['/ep', change.episodeId]">{{change.episodeId}}</a>
+                            }
+                            @if (!change.merged) {
+                              {{change.episodeId}}
+                            }
+                          </td>
+                          <td>
+                            <app-contribution-state [state]="change.state" [merged]="change.merged"></app-contribution-state>
+                          </td>
+                          <td>{{change.createdAt}}</td>
+                          <td>{{change.pointsAwarded || 'NA'}}</td>
+                          <td>
+                            @if (change.state === states.STATE_PENDING || change.state === states.STATE_REQUEST_APPROVAL || change.state === states.STATE_REJECTED) {
+                              <a
+                              class="btn btn-sm btn-info" [routerLink]="['/ep', change.episodeId, 'change', change.id]">View</a>
+                            }
+                            @if (change.state !== states.STATE_PENDING && change.state !== states.STATE_REQUEST_APPROVAL && change.state !== states.STATE_REJECTED ) {
+                              <span
+                              >-</span>
+                            }
+                          </td>
+                          <td></td>
+                        </tr>
+                      }
+                    </table>
+                  }
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+}
 <app-oauth-login [open]="!claims"></app-oauth-login>
 
 <app-loading-overlay [loading]="loading.length > 0"></app-loading-overlay>

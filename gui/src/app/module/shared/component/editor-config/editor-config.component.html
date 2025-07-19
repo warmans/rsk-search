@@ -11,11 +11,13 @@
             <div class="form-row">
               <div class="col-md-8">
                 <label for="play-pause-key"
-                       title="This key will cause the audio to be paused, and rewound by a couple of seconds.">
+                  title="This key will cause the audio to be paused, and rewound by a couple of seconds.">
                   Play/Pause Key <i class="bi-question-circle ml-2"></i>
                 </label>
                 <select id="play-pause-key"  class="form-control form-control-sm" formControlName="playPauseKey">
-                  <option *ngFor="let c of keyCodes" [ngValue]="c">{{ c || 'NONE' }}</option>
+                  @for (c of keyCodes; track c) {
+                    <option [ngValue]="c">{{ c || 'NONE' }}</option>
+                  }
                 </select>
                 <app-form-errors [form]="configForm" fieldName="playPauseKey"></app-form-errors>
               </div>
@@ -37,10 +39,12 @@
           </div>
           <div class="form-group">
             <label for="ff-key" title="This key will cause the audio to skip forward a few seconds.">
-            Skip Forward Key <i class="bi-question-circle ml-2"></i>
+              Skip Forward Key <i class="bi-question-circle ml-2"></i>
             </label>
             <select id="ff-key"  class="form-control form-control-sm" formControlName="fastForwardKey">
-              <option *ngFor="let c of keyCodes" [ngValue]="c">{{ c || 'NONE' }}</option>
+              @for (c of keyCodes; track c) {
+                <option [ngValue]="c">{{ c || 'NONE' }}</option>
+              }
             </select>
             <app-form-errors [form]="configForm" fieldName="fastForwardKey"></app-form-errors>
           </div>
@@ -49,7 +53,9 @@
               Skip Backwards Key <i class="bi-question-circle ml-2"></i>
             </label>
             <select id="rw-key"  class="form-control form-control-sm" formControlName="rewindKey">
-              <option *ngFor="let c of keyCodes" [ngValue]="c">{{ c || 'NONE' }}</option>
+              @for (c of keyCodes; track c) {
+                <option [ngValue]="c">{{ c || 'NONE' }}</option>
+              }
             </select>
             <app-form-errors [form]="configForm" fieldName="rewindKey"></app-form-errors>
           </div>
@@ -60,7 +66,9 @@
                   Insert OFFSET <i class="bi-question-circle ml-2"></i>
                 </label>
                 <select id="io-key"  class="form-control form-control-sm" formControlName="insertOffsetKey">
-                  <option *ngFor="let c of keyCodes" [ngValue]="c">{{ c || 'NONE' }}</option>
+                  @for (c of keyCodes; track c) {
+                    <option [ngValue]="c">{{ c || 'NONE' }}</option>
+                  }
                 </select>
                 <app-form-errors [form]="configForm" fieldName="insertOffsetKey"></app-form-errors>
               </div>
@@ -78,7 +86,9 @@
               Insert SYN <i class="bi-question-circle ml-2"></i>
             </label>
             <select id="insertSynKey"  class="form-control form-control-sm" formControlName="insertSynKey">
-              <option *ngFor="let c of keyCodes" [ngValue]="c">{{ c || 'NONE' }}</option>
+              @for (c of keyCodes; track c) {
+                <option [ngValue]="c">{{ c || 'NONE' }}</option>
+              }
             </select>
             <app-form-errors [form]="configForm" fieldName="insertSynKey"></app-form-errors>
           </div>

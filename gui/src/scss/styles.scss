@@ -1,3 +1,4 @@
+@use "sass:color";
 @import "imports";
 
 @mixin drop-shadow {
@@ -251,7 +252,7 @@ pre {
 
   .nav-link:hover {
     border: 1px solid transparent !important;
-    color: darken($primary, 10%) !important;
+    color: color.adjust($primary, $lightness: -10%) !important;
   }
 }
 
@@ -363,7 +364,7 @@ pre {
     }
     .line {
       .matched {
-        background: transparentize($primary, 0.5);
+        background: color.adjust($primary, $alpha: -0.5);
       }
 
       .not-matched {

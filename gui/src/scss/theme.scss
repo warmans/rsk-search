@@ -1,3 +1,5 @@
+@use "sass:color";
+
 $themes: (
   dark-theme: (
     'text-color': #f7f7ff,
@@ -12,12 +14,12 @@ $themes: (
 
     // stop calling vars "lighter/darker" as it doesn't always apply for each theme.
     'header-block-bg': #2A2E33,
-    'header-block-border': darken(#2A2E33, 5%),
+    'header-block-border': color.adjust(#2A2E33, $lightness: -5%),
     'header-block-text': #f7f7ff,
-    'header-block-bg-highlight': lighten(#2A2E33, 10%),
+    'header-block-bg-highlight': color.adjust(#2A2E33, $lightness: 10%),
 
     'body-block-border': #292d32,
-    'body-block-standout': lighten(#343A40, 10%),
+    'body-block-standout': color.adjust(#343A40, $lightness: 10%),
 
     // used for inverting svg colours
     'invert-pcnt': 90%,
@@ -26,21 +28,21 @@ $themes: (
     'text-color': #333333,
     'bg-color': #f6f6f6,
     'fg-body': #fff,
-    'fg-body-darker': darken(#F7F7F7, 2%),
+    'fg-body-darker': color.adjust(#F7F7F7, $lightness: -2%),
     'progress-bg': #e9ecef,
     'navbar-bg': #f6f6f6,
     'navbar-border': #dee2e6,
     'code-bg': #d9d9d9,
-    'hover-highlight': transparentize(#E15132, 0.2),
+    'hover-highlight':  color.adjust(#E15132, $alpha: -0.2),
 
     // stop calling vars "lighter/darker" as it doesn't always apply for each theme.
-    'header-block-bg': darken(#F7F7F7, 2%),
+    'header-block-bg': color.adjust(#F7F7F7, $lightness: -2%),
     'header-block-border': #dee2e6,
     'header-block-text': #333333,
-    'header-block-bg-highlight': darken(#F7F7F7, 10%),
+    'header-block-bg-highlight': color.adjust(#F7F7F7, $lightness: -10%),
 
     'body-block-border': #dee2e6,
-    'body-block-standout': darken(#F7F7F7, 10%),
+    'body-block-standout': color.adjust(#F7F7F7, $lightness: -10%),
 
     // used for inverting svg colours
     'invert-pcnt': 0%,

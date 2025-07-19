@@ -1,12 +1,16 @@
-<div class="rewards-container" *ngIf="displayOnPage">
-  <div class="reward d-flex p-3 mb-3 animate__animated animate__tada shadow" *ngFor="let reward of rewards; let i = index;">
-    <div class="mr-3 reward-icon flex-column d-flex justify-content-center">
-      <img style="width: 80px; height: 80px;" [src]="rewardIcons[i]" />
-    </div>
-    <div class="flex-grow-1">
-      <div class="mb-1"><strong>{{reward.name}}</strong></div>
-      <div class="mb-1">{{reward.criteria}}</div>
-      <a [routerLink]="['/reward', 'redeem', reward.id]">Select cause to receive {{reward.value | currency:reward.valueCurrency}}...</a>
-    </div>
+@if (displayOnPage) {
+  <div class="rewards-container">
+    @for (reward of rewards; track reward; let i = $index) {
+      <div class="reward d-flex p-3 mb-3 animate__animated animate__tada shadow">
+        <div class="mr-3 reward-icon flex-column d-flex justify-content-center">
+          <img style="width: 80px; height: 80px;" [src]="rewardIcons[i]" />
+        </div>
+        <div class="flex-grow-1">
+          <div class="mb-1"><strong>{{reward.name}}</strong></div>
+          <div class="mb-1">{{reward.criteria}}</div>
+          <a [routerLink]="['/reward', 'redeem', reward.id]">Select cause to receive {{reward.value | currency:reward.valueCurrency}}...</a>
+        </div>
+      </div>
+    }
   </div>
-</div>
+}

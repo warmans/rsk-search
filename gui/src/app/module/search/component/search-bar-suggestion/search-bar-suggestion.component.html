@@ -1,11 +1,14 @@
 <div class="autocomplete-dropdown">
-  <div class="text-muted" *ngIf="(values || []).length === 0">{{ loading ? 'Loading' : 'No exact matches found'}}...
-  </div>
-  <div class="line d-flex align-items-center"
-       *ngFor="let line of highlightedValues; let idx = index"
-       [ngClass]="{'active': idx === selectedAutoCompleteRow}"
-       (click)="selectTerm(values[idx])">
-    <span class="flex-grow-1" [innerHTML]="line"></span>
-    <span class="text-muted text-nowrap ml-2">&#64;{{values[idx].actor || "NA"}} | {{values[idx].epid}}</span>
-  </div>
+  @if ((values || []).length === 0) {
+    <div class="text-muted">{{ loading ? 'Loading' : 'No exact matches found'}}...
+    </div>
+  }
+  @for (line of highlightedValues; track line; let idx = $index) {
+    <div class="line d-flex align-items-center"
+      [ngClass]="{'active': idx === selectedAutoCompleteRow}"
+      (click)="selectTerm(values[idx])">
+      <span class="flex-grow-1" [innerHTML]="line"></span>
+      <span class="text-muted text-nowrap ml-2">&#64;{{values[idx].actor || "NA"}} | {{values[idx].epid}}</span>
+    </div>
+  }
 </div>

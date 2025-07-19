@@ -1,11 +1,12 @@
 <div class="w-100 vh-100 d-flex flex-column align-items-center">
   <div class="background-illustration speaker-image cover-background"
-       [style.background-image]="'url(/assets/illustration/'+quoteImage+')'"></div>
-  <div class="quote text-center d-flex flex-row align-items-center foreground" *ngIf="quote">
-    <div class="px-3 px-xl-5 px-lg-5">
+  [style.background-image]="'url(/assets/illustration/'+quoteImage+')'"></div>
+  @if (quote) {
+    <div class="quote text-center d-flex flex-row align-items-center foreground">
+      <div class="px-3 px-xl-5 px-lg-5">
       <!--button class="btn btn-primary btn-sm float-right" (click)="getQuote()">Generate</button-->
       <a class="text-paragraph quote-text text-block-bg px-3" [routerLink]="['/ep', quote?.epid]"
-         [fragment]="'pos-'+(quote?.pos)">
+        [fragment]="'pos-'+(quote?.pos)">
         {{quote?.quote}}
       </a>
       <div class="quote-footer pt-3">
@@ -13,4 +14,5 @@
       </div>
     </div>
   </div>
+}
 </div>

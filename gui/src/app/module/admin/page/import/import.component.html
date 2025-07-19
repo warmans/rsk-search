@@ -28,34 +28,42 @@
           Tscript Imports
         </div>
         <div class="card-body">
-          <div class="row p-2" *ngFor="let imp of imports">
-            <div class="col-2">{{imp.id}}</div>
-            <div class="col-1">{{imp.createdAt}}</div>
-            <div class="col-1">{{imp.completedAt || "INCOMPLETE" }}</div>
-            <div class="col-1">{{imp.epid}}</div>
-            <div class="col-2">{{imp.epname}}</div>
-            <div class="col-2">{{imp.mp3Uri}}</div>
-            <div class="col-2">{{(imp.log || []).length > 0 ? imp.log[imp.log.length-1].msg : 'No Log'}}</div>
-            <div class="col-1"><button class="btn btn-primary btn-sm" (click)="imp.showLog = !imp.showLog">LOG</button></div>
-            <div class="col-12 p-2" *ngIf="imp.showLog">
-              <div class="row code" *ngFor="let log of imp.log">
-                <div class="col-2">{{log.stage}}</div>
-                <div class="col-10">{{log.msg}}</div>
-              </div>
+          @for (imp of imports; track imp) {
+            <div class="row p-2">
+              <div class="col-2">{{imp.id}}</div>
+              <div class="col-1">{{imp.createdAt}}</div>
+              <div class="col-1">{{imp.completedAt || "INCOMPLETE" }}</div>
+              <div class="col-1">{{imp.epid}}</div>
+              <div class="col-2">{{imp.epname}}</div>
+              <div class="col-2">{{imp.mp3Uri}}</div>
+              <div class="col-2">{{(imp.log || []).length > 0 ? imp.log[imp.log.length-1].msg : 'No Log'}}</div>
+              <div class="col-1"><button class="btn btn-primary btn-sm" (click)="imp.showLog = !imp.showLog">LOG</button></div>
+              @if (imp.showLog) {
+                <div class="col-12 p-2">
+                  @for (log of imp.log; track log) {
+                    <div class="row code">
+                      <div class="col-2">{{log.stage}}</div>
+                      <div class="col-10">{{log.msg}}</div>
+                    </div>
+                  }
+                </div>
+              }
             </div>
-          </div>
+          }
         </div>
       </div>
       <div class="card">
         <div class="card-header">
           Tscript List
         </div>
-          <table class="table">
-            <tr *ngFor="let ts of chunkedTranscripts">
+        <table class="table">
+          @for (ts of chunkedTranscripts; track ts) {
+            <tr>
               <td>{{ts.id}}</td>
               <td><button class="btn btn-sm btn-primary" (click)="deleteTscript(ts.id)">Delete</button><td>
             </tr>
-          </table>
+          }
+        </table>
       </div>
     </div>
   </div>

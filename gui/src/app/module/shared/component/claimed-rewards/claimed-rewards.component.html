@@ -8,36 +8,44 @@
     <div class="d-flex flex-grow-1 flex-column justify-content-center">
       <div>
         <div class="mb-3" style="font-size: 1.3rem">
-          <span *ngIf="totalValue > 0"><span class="text-success font-weight-bold">{{totalValue | currency}}</span> total donations made on your behalf!</span>
-          <span *ngIf="totalValue === 0">No donations made on your behalf yet. Awards are given every <strong>{{awardThreshold}}</strong> transcription chunks contributed.</span>
+          @if (totalValue > 0) {
+            <span><span class="text-success font-weight-bold">{{totalValue | currency}}</span> total donations made on your behalf!</span>
+          }
+          @if (totalValue === 0) {
+            <span>No donations made on your behalf yet. Awards are given every <strong>{{awardThreshold}}</strong> transcription chunks contributed.</span>
+          }
         </div>
 
         <div>
           <p>For every <strong>{{awardThreshold}}</strong> chunks you contribute you will be given a reward.
-            This reward allows you
-            to trigger a donation to a chosen cause. Donations are facilitated by
-            <a href="https://www.pledge.to/" target="_blank">Pledge.to</a>
-          </p>
-          <p>Donations are made anonymously from your perspective. If you would like to make rewards non-anonymous you
-            can
-            request this feature though the link in the footer.</p>
-          <p>Number of required contributions may change over time, but already given rewards will never be revoked.</p>
-        </div>
+          This reward allows you
+          to trigger a donation to a chosen cause. Donations are facilitated by
+          <a href="https://www.pledge.to/" target="_blank">Pledge.to</a>
+        </p>
+        <p>Donations are made anonymously from your perspective. If you would like to make rewards non-anonymous you
+          can
+        request this feature though the link in the footer.</p>
+        <p>Number of required contributions may change over time, but already given rewards will never be revoked.</p>
       </div>
     </div>
   </div>
-  <table class="table mb-0" *ngIf="rewards?.length">
+</div>
+@if (rewards?.length) {
+  <table class="table mb-0">
     <tr>
       <th>Kind</th>
       <th>Description</th>
       <th>Claimed At</th>
     </tr>
-    <tr *ngFor="let row of rewards">
-      <td style="width: 200px;">
-        {{row.claimKind}}
-      </td>
-      <td>{{row.claimDescription}}</td>
-      <td>{{row.claimAt}}</td>
-    </tr>
+    @for (row of rewards; track row) {
+      <tr>
+        <td style="width: 200px;">
+          {{row.claimKind}}
+        </td>
+        <td>{{row.claimDescription}}</td>
+        <td>{{row.claimAt}}</td>
+      </tr>
+    }
   </table>
+}
 </div>

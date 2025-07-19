@@ -18,60 +18,72 @@
             <th>Episodes</th>
             <th>Transcription</th>
           </tr>
-          <tr *ngFor="let song of songs">
-            <td>
-              <div class="album-image missing-album-image d-flex flex-row align-items-center border-body-block-standout text-body-block-standout" *ngIf="!song.albumImageUrl">
-                <span class="w-100 text-center">
-                  <i class="bi-file-music"></i>
-                </span>
-              </div>
-              <img class="album-image" *ngIf="song.albumImageUrl" [src]="song.albumImageUrl"/>
-            </td>
-            <td>
-              <a class="text-paragraph align-self-center" [href]="song.spotifyUri">
-                <i class="bi-spotify text-primary mr-2"></i> <span class="text-paragraph">{{song.title}}</span>
-              </a>
-            </td>
-            <td>{{song.artist}}</td>
-            <td>
-              <a
-                class="badge badge-secondary mr-2"
-                *ngFor="let epid of song.episodeIds"
-                [routerLink]="['/ep', 'ep-'+epid]">{{epid}}</a>
-            </td>
-            <td>
-              <span
-                class="text-muted text-sm mr-2 transcript pl-2 mb-1"
-                *ngFor="let text of song.transcribed"
-                >{{text}}</span>
-            </td>
-          </tr>
+          @for (song of songs; track song) {
+            <tr>
+              <td>
+                @if (!song.albumImageUrl) {
+                  <div class="album-image missing-album-image d-flex flex-row align-items-center border-body-block-standout text-body-block-standout">
+                    <span class="w-100 text-center">
+                      <i class="bi-file-music"></i>
+                    </span>
+                  </div>
+                }
+                @if (song.albumImageUrl) {
+                  <img class="album-image" [src]="song.albumImageUrl"/>
+                }
+              </td>
+              <td>
+                <a class="text-paragraph align-self-center" [href]="song.spotifyUri">
+                  <i class="bi-spotify text-primary mr-2"></i> <span class="text-paragraph">{{song.title}}</span>
+                </a>
+              </td>
+              <td>{{song.artist}}</td>
+              <td>
+                @for (epid of song.episodeIds; track epid) {
+                  <a
+                    class="badge badge-secondary mr-2"
+                  [routerLink]="['/ep', 'ep-'+epid]">{{epid}}</a>
+                }
+              </td>
+              <td>
+                @for (text of song.transcribed; track text) {
+                  <span
+                    class="text-muted text-sm mr-2 transcript pl-2 mb-1"
+                  >{{text}}</span>
+                }
+              </td>
+            </tr>
+          }
         </table>
       </div>
       <div class="card-footer text-muted text-right">
         <nav aria-label="pages">
           <ul class="pagination">
-            <li *ngFor="let i of pages" class="page-item" [ngClass]="{'active': i === currentPage}">
-              <a class="page-link"
-                 [routerLink]="['/more-shite', 'song-search']"
-                 [queryParams]="{'page': i}"
-                 [queryParamsHandling]="'merge'">{{i}}
-              </a>
-            </li>
-            <ng-container *ngIf="morePages">
-              <li class="page-item active" *ngIf="currentPage > pages.length">
-                <a class="page-link " [routerLink]="['/more-shite', 'song-search']"
-                   [queryParams]="{'page': currentPage}"
-                   [queryParamsHandling]="'merge'">{{currentPage}}
+            @for (i of pages; track i) {
+              <li class="page-item" [ngClass]="{'active': i === currentPage}">
+                <a class="page-link"
+                  [routerLink]="['/more-shite', 'song-search']"
+                  [queryParams]="{'page': i}"
+                  [queryParamsHandling]="'merge'">{{i}}
                 </a>
               </li>
+            }
+            @if (morePages) {
+              @if (currentPage > pages.length) {
+                <li class="page-item active">
+                  <a class="page-link " [routerLink]="['/more-shite', 'song-search']"
+                    [queryParams]="{'page': currentPage}"
+                    [queryParamsHandling]="'merge'">{{currentPage}}
+                  </a>
+                </li>
+              }
               <li class="page-item">
                 <a [routerLink]="['/more-shite', 'song-search']"
-                   [queryParams]="{'page': currentPage >= maxPages ? currentPage+1 : maxPages+1}"
-                   [queryParamsHandling]="'merge'" class="page-link">Next...
+                  [queryParams]="{'page': currentPage >= maxPages ? currentPage+1 : maxPages+1}"
+                  [queryParamsHandling]="'merge'" class="page-link">Next...
                 </a>
               </li>
-            </ng-container>
+            }
           </ul>
         </nav>
       </div>

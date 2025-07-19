@@ -8,16 +8,26 @@
     </div>
     <div class="ml-3 d-flex">
       <button class="btn btn-transparent btn-lg" (click)="toggleDarkmode()" title="Toggle dark theme">
-        <i class="bi-moon-fill" *ngIf="!darkTheme"></i>
-        <i class="bi-sun-fill" *ngIf="darkTheme"></i>
+        @if (!darkTheme) {
+          <i class="bi-moon-fill"></i>
+        }
+        @if (darkTheme) {
+          <i class="bi-sun-fill"></i>
+        }
       </button>
-      <button *ngIf="loggedInUser" class="btn btn-transparent btn-lg mr-3" (click)="toggleRadio()" title="Start radio">
-        <i class="bi-boombox" [ngClass]="{'text-primary': radioService.active}"></i>
-      </button>
-      <a class="btn btn-info btn-lg" [routerLink]="['/me']" *ngIf="!loggedInUser">
-        <i class="bi-person"></i>
-      </a>
-      <app-user-menu *ngIf="loggedInUser" [loggedInUser]="loggedInUser"></app-user-menu>
+      @if (loggedInUser) {
+        <button class="btn btn-transparent btn-lg mr-3" (click)="toggleRadio()" title="Start radio">
+          <i class="bi-boombox" [ngClass]="{'text-primary': radioService.active}"></i>
+        </button>
+      }
+      @if (!loggedInUser) {
+        <a class="btn btn-info btn-lg" [routerLink]="['/me']">
+          <i class="bi-person"></i>
+        </a>
+      }
+      @if (loggedInUser) {
+        <app-user-menu [loggedInUser]="loggedInUser"></app-user-menu>
+      }
     </div>
   </div>
 </nav>
@@ -30,13 +40,15 @@
 
 <app-alert></app-alert>
 
-<div class="alert alert-warning" *ngIf="bandwidthQuotaUsedPcnt > 95">
-  <strong>Scrimpton has reached {{ bandwidthQuotaUsedPcnt * 100 | number}}% of its bandwidth quota.</strong>
-  <div>This means a bandwidth limit has been reached preventing further file downloads. This may prevent audio files
-    from being played until the quota is reset at the end of the
-    month.
+@if (bandwidthQuotaUsedPcnt > 95) {
+  <div class="alert alert-warning">
+    <strong>Scrimpton has reached {{ bandwidthQuotaUsedPcnt * 100 | number}}% of its bandwidth quota.</strong>
+    <div>This means a bandwidth limit has been reached preventing further file downloads. This may prevent audio files
+      from being played until the quota is reset at the end of the
+      month.
+    </div>
   </div>
-</div>
+}
 
 <div class="d-flex flex-column justify-content-between vh-100 h-100">
   <div>

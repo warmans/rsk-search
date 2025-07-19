@@ -1,34 +1,44 @@
 <div class="card position-relative">
   <div class="card-header text-paragraph">
-    <a href="https://www.buymeacoffee.com/scrimptonsite" target="_blank">Donations</a> are accepted by this site to help fund server costs. The 5 most recent are shown below. <a class="text-primary clickable" (click)="showMoreInfo = !showMoreInfo"><span *ngIf="!showMoreInfo">More</span><span *ngIf="showMoreInfo">Less</span>...</a>
-    <div *ngIf="showMoreInfo" class="pt-2">
+    <a href="https://www.buymeacoffee.com/scrimptonsite" target="_blank">Donations</a> are accepted by this site to help fund server costs. The 5 most recent are shown below. <a class="text-primary clickable" (click)="showMoreInfo = !showMoreInfo">@if (!showMoreInfo) {
+    <span>More</span>
+    }@if (showMoreInfo) {
+    <span>Less</span>
+  }...</a>
+  @if (showMoreInfo) {
+    <div class="pt-2">
       <p>
-      The running cost for this site is around £20 per month including compute, storage and other minor costs.<br />
-      Rewards are also a small overhead. If users find this service useful and wish to contribute but do not have<br/>
-      time to contribute transcripts, they may instead choose to donate a small amount of money to help fund server costs.
+        The running cost for this site is around £20 per month including compute, storage and other minor costs.<br />
+        Rewards are also a small overhead. If users find this service useful and wish to contribute but do not have<br/>
+        time to contribute transcripts, they may instead choose to donate a small amount of money to help fund server costs.
       </p>
       <p class="mb-0">
         <strong>What happens if nobody donates?</strong><br/>
         Probably nothing. I had planned to run the site indefinitely without donations. It's just another option to help out.
       </p>
     </div>
-  </div>
-  <div class="card-body p-0">
-    <div *ngIf="!donations">Loading...</div>
-    <table class="table">
+  }
+</div>
+<div class="card-body p-0">
+  @if (!donations) {
+    <div>Loading...</div>
+  }
+  <table class="table">
+    <tr>
+      <th>From</th>
+      <th>Amount</th>
+      <th>Approx. Server Days</th>
+      <th>Note</th>
+    </tr>
+    @for (don of donations; track don) {
       <tr>
-        <th>From</th>
-        <th>Amount</th>
-        <th>Approx. Server Days</th>
-        <th>Note</th>
-      </tr>
-      <tr *ngFor="let don of donations">
         <td>{{don.name}}</td>
         <td>{{don.amount | currency:don.amountCurrency}}</td>
         <td>{{(don.amount / 10) * 30 | number }}</td>
         <td>{{don.note}}</td>
       </tr>
-    </table>
-  </div>
-  <app-loading-overlay [loading]="loading"></app-loading-overlay>
+    }
+  </table>
+</div>
+<app-loading-overlay [loading]="loading"></app-loading-overlay>
 </div>

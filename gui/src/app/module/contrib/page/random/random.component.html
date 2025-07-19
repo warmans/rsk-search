@@ -4,13 +4,17 @@
       <div class="card">
         <div class="card-header">Locating Chunk...</div>
         <div class="card-body">
-         <p>Searching for available audio chunks to transcribe.</p>
-          <div *ngIf="chunkStats">
-            There are currently {{chunkStats.numPending}} chunks requiring transcription.<br />
-            <div *ngIf="chunkStats.suggestedNextChunkId">
-              Suggested next ID: <a [routerLink]="['/chunk', chunkStats.suggestedNextChunkId]">{{chunkStats.suggestedNextChunkId}}</a>
+          <p>Searching for available audio chunks to transcribe.</p>
+          @if (chunkStats) {
+            <div>
+              There are currently {{chunkStats.numPending}} chunks requiring transcription.<br />
+              @if (chunkStats.suggestedNextChunkId) {
+                <div>
+                  Suggested next ID: <a [routerLink]="['/chunk', chunkStats.suggestedNextChunkId]">{{chunkStats.suggestedNextChunkId}}</a>
+                </div>
+              }
             </div>
-          </div>
+          }
         </div>
       </div>
     </div>

@@ -1,14 +1,28 @@
-<div *ngIf="field?.invalid" class="text-danger mt-1 p-1">
-  <div *ngIf="field?.errors?.required">
-    {{fieldName}} is required.
+@if (field?.invalid) {
+  <div class="text-danger mt-1 p-1">
+    @if (field?.errors?.required) {
+      <div>
+        {{fieldName}} is required.
+      </div>
+    }
+    @if (field?.errors?.maxlength) {
+      <div>
+        {{fieldName}} is too long (max length is {{ field .errors .maxlength .requiredLength }} characters).
+      </div>
+    }
+    @if (field?.errors?.apiErrors) {
+      <div>
+        @for (err of (field?.errors?.apiErrors || []); track err) {
+          <div>{{ err }}</div>
+        }
+      </div>
+    }
+    @if (field?.errors?.duplicateValue) {
+      <div>
+        @for (err of (field?.errors?.duplicateValue || []); track err) {
+          <div>{{ err }}</div>
+        }
+      </div>
+    }
   </div>
-  <div *ngIf="field?.errors?.maxlength">
-    {{fieldName}} is too long (max length is {{ field .errors .maxlength .requiredLength }} characters).
-  </div>
-  <div *ngIf="field?.errors?.apiErrors">
-    <div *ngFor="let err of (field?.errors?.apiErrors || [])">{{ err }}</div>
-  </div>
-  <div *ngIf="field?.errors?.duplicateValue">
-    <div *ngFor="let err of (field?.errors?.duplicateValue || [])">{{ err }}</div>
-  </div>
-</div>
+}

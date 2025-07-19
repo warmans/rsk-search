@@ -1,3 +1,4 @@
+@use "sass:color";
 @import "src/scss/variables";
 
 .state {
@@ -11,18 +12,18 @@
 
   &.bg-info {
     font-weight: bold;
-    background-color: lighten($info, 45%) !important;
-    color: darken($info, 20%);
+    background-color:  color.adjust($info, $lightness: 45%) !important;
+    color: color.adjust($info, $lightness: -2%);
   }
   &.bg-danger {
     font-weight: bold;
-    background-color: lighten($danger, 40%) !important;
-    color: darken($danger, 20%);
+    background-color: color.adjust($danger, $lightness: 45%) !important;
+    color: color.adjust($danger, $lightness: -2%);
   }
   &.bg-success {
     font-weight: bold;
-    background-color: lighten($success, 45%) !important;
-    color: darken($success, 20%);
+    background-color: color.adjust($success, $lightness: 45%) !important;
+    color: color.adjust($success, $lightness: -2%);
   }
 
 }

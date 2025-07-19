@@ -1,102 +1,145 @@
-<div *ngFor="let group of groupedDialog" class="group d-flex">
-  <div class="flex-grow-1" [ngClass]="{'gap': group.gap}">
-    <ng-container *ngIf="group.gap">
-      <div class="text-muted">
-        <span *ngIf="group.tscript.transcript[0].durationMs">{{ group.tscript.transcript[0].durationMs | formatSeconds:true }}</span>
-        <span *ngIf="!group.tscript.transcript[0].durationMs">{{ group.tscript.transcript[0].content }}</span>
-        of missing transcript
-      </div>
-    </ng-container>
-    <ng-container *ngIf="!group.gap">
-      <div *ngFor="let line of group?.tscript?.transcript">
-        <div class="line d-flex mb-2 p-2 section-title pt-3 pb-3" *ngIf="synopsisPos[line.pos]?.description">
-          <strong><i class="bi bi-card-list mr-2"></i>{{ synopsisPos[line.pos].description }}</strong>
-          <span *ngIf="enableLineLinking" class="ml-2">
-            <a
-              class="clickable text-muted"
-              title="Link to this line. Hold shift and click another line to select multiple."
-              (click)="selectRange(synopsisPos[line.pos].startPos, synopsisPos[line.pos].endPos-1)">
-              <i class="bi-link"></i>
-            </a>
-        </span>
+@for (group of groupedDialog; track group) {
+  <div class="group d-flex">
+    <div class="flex-grow-1" [ngClass]="{'gap': group.gap}">
+      @if (group.gap) {
+        <div class="text-muted">
+          @if (group.tscript.transcript[0].durationMs) {
+            <span>{{ group.tscript.transcript[0].durationMs | formatSeconds:true }}</span>
+          }
+          @if (!group.tscript.transcript[0].durationMs) {
+            <span>{{ group.tscript.transcript[0].content }}</span>
+          }
+          of missing transcript
         </div>
-        <div class="d-flex">
-          <div
-            *ngIf="!searchResultMode"
-            [ngClass]="{'linked': lineInSynopsisMap[line.pos], 'no-linked': !lineInSynopsisMap[line.pos]}"
-            class="linked-indicator px-2">
-          </div>
-          <div *ngIf="media?.audio && audioOffsetsAvailable && enableAudioLinks"
-               class="text-sm timestamp mb-2 py-2 flex-shrink-0 d-flex flex-column justify-content-center"
-               style="width: 4rem">
-            <div
-              title="Timestamps are inferred and may not be accurate. These can be improved using the corrections feature."
-              [ngClass]="{'text-muted': line.offsetInferred}" *ngIf="line.offsetMs > 0"
-              (click)="emitTimestamp(line.offsetMs)"
-              class="clickable"><i class="bi-caret-right"></i>{{ line.offsetMs | formatSeconds:true }}
-            </div>
-          </div>
-          <div *ngIf="media?.video" class="mr-3">
-            <div *ngIf="line.pos % 5 !== 0">
-              <div style="width: 164px; height:5px;"></div>
-            </div>
-            <div *ngIf="line.pos % 5 === 0">
-              <div
-                [style.background-position-x]="(164-(line.pos/5 * 164))+'px'"
-                [style.background-image]="'url(/dl/sprite/'+epid+'.jpg)'"
-                style="width: 164px; height:92px; background-repeat: no-repeat;">
+      }
+      @if (!group.gap) {
+        @for (line of group?.tscript?.transcript; track line) {
+          <div>
+            @if (synopsisPos[line.pos]?.description) {
+              <div class="line d-flex mb-2 p-2 section-title pt-3 pb-3">
+                <strong><i class="bi bi-card-list mr-2"></i>{{ synopsisPos[line.pos].description }}</strong>
+                @if (enableLineLinking) {
+                  <span class="ml-2">
+                    <a
+                      class="clickable text-muted"
+                      title="Link to this line. Hold shift and click another line to select multiple."
+                      (click)="selectRange(synopsisPos[line.pos].startPos, synopsisPos[line.pos].endPos-1)">
+                      <i class="bi-link"></i>
+                    </a>
+                  </span>
+                }
               </div>
+            }
+            <div class="d-flex">
+              @if (!searchResultMode) {
+                <div
+                  [ngClass]="{'linked': lineInSynopsisMap[line.pos], 'no-linked': !lineInSynopsisMap[line.pos]}"
+                  class="linked-indicator px-2">
+                </div>
+              }
+              @if (media?.audio && audioOffsetsAvailable && enableAudioLinks) {
+                <div
+                  class="text-sm timestamp mb-2 py-2 flex-shrink-0 d-flex flex-column justify-content-center"
+                  style="width: 4rem">
+                  @if (line.offsetMs > 0) {
+                    <div
+                      title="Timestamps are inferred and may not be accurate. These can be improved using the corrections feature."
+                      [ngClass]="{'text-muted': line.offsetInferred}"
+                      (click)="emitTimestamp(line.offsetMs)"
+                      class="clickable"><i class="bi-caret-right"></i>{{ line.offsetMs | formatSeconds:true }}
+                    </div>
+                  }
+                </div>
+              }
+              @if (media?.video) {
+                <div class="mr-3">
+                  @if (line.pos % 5 !== 0) {
+                    <div>
+                      <div style="width: 164px; height:5px;"></div>
+                    </div>
+                  }
+                  @if (line.pos % 5 === 0) {
+                    <div>
+                      <div
+                        [style.background-position-x]="(164-(line.pos/5 * 164))+'px'"
+                        [style.background-image]="'url(/dl/sprite/'+epid+'.jpg)'"
+                        style="width: 164px; height:92px; background-repeat: no-repeat;">
+                      </div>
+                    </div>
+                  }
+                </div>
+              }
+              <div class="line d-flex mb-2 p-2 {{actorClass(line)}}"
+                [ngClass]="{'matched': searchResultMode && line.isMatchedRow, 'not-matched': searchResultMode && !line.isMatchedRow, 'font-italic': line.notable, 'focus': line.pos  >= scrollToPosStart || line.pos <= scrollToPosEnd, 'mute': (scrollToPosStart > 0 && !searchResultMode ? (line.pos < scrollToPosStart || line.pos > scrollToPosEnd) : false) }"
+                id="pos-{{line.pos}}">
+                <div class="actor mr-2 text-capitalize text-nowrap ">
+                  @if (line.placeholder) {
+                    <i title="AI placeholder"
+                    class="bi-robot text-warning mr-2"></i>
+                    }{{ line.type === dialogTypes.CHAT ? line.actor : (line.type === dialogTypes.UNKNOWN ? '' : line.type) }}
+                  </div>
+                  <div class="col">
+                    @if (line.type === dialogTypes.SONG) {
+                      <span>
+                        {{ line.content }} @if (line?.metadata && line?.metadata['spotify_uri']) {
+                        <a class="badge badge-success" [href]="line?.metadata['spotify_uri'] | safeUrl"
+                        >spotify</a>
+                      }
+                    </span>
+                  }
+                  @if (line.type === dialogTypes.CHAT) {
+                    <span>{{ line.content }}</span>
+                  }
+                </div>
+              </div>
+              @if (enableLineCopy) {
+                <div class="mb-2 ml-2 d-flex flex-column justify-content-center">
+                  <span>
+                    <a class="clickable" (click)="copyLineToClipboard(line.content)">
+                      <i class="bi-clipboard2-fill text-muted"></i>
+                    </a>
+                  </span>
+                </div>
+              }
+              @if (enableLineLinking) {
+                <div class="mb-2 ml-2 d-flex flex-column justify-content-center">
+                  <span>
+                    @if (scrollToPosStart != line.pos) {
+                      <a class="clickable text-muted"
+                        title="Link to this line (or set selection start)"
+                        (click)="selectPosition(line, $event)">
+                        <i class="bi-bookmark-fill"></i>
+                      </a>
+                    }
+                  </span>
+                </div>
+              }
+              @if (enableLineLinking && scrollToPosStart && scrollToPosStart < line.pos) {
+                <div class="mb-2 ml-2 d-flex flex-column justify-content-center"
+                  >
+                  <a class="clickable text-muted"
+                    title="Set selection end"
+                    (click)="addToSelection(line)">
+                    <i class="bi-bookmark-plus"></i>
+                  </a>
+                </div>
+              }
             </div>
           </div>
-          <div class="line d-flex mb-2 p-2 {{actorClass(line)}}"
-               [ngClass]="{'matched': searchResultMode && line.isMatchedRow, 'not-matched': searchResultMode && !line.isMatchedRow, 'font-italic': line.notable, 'focus': line.pos  >= scrollToPosStart || line.pos <= scrollToPosEnd, 'mute': (scrollToPosStart > 0 && !searchResultMode ? (line.pos < scrollToPosStart || line.pos > scrollToPosEnd) : false) }"
-               id="pos-{{line.pos}}">
-            <div class="actor mr-2 text-capitalize text-nowrap ">
-              <i *ngIf="line.placeholder" title="AI placeholder"
-                 class="bi-robot text-warning mr-2"></i>{{ line.type === dialogTypes.CHAT ? line.actor : (line.type === dialogTypes.UNKNOWN ? '' : line.type) }}
+        }
+      }
+    </div>
+    @if (group.tscript?.trivia.length > 0) {
+      <div class="ml-3 d-flex d-flex flex-column justify-content-center trivia-breakout"
+        >
+        <div class="p-2 text-muted">
+          @for (t of group.tscript.trivia; track t) {
+            <div>
+              <app-markdown [raw]="t.description"></app-markdown>
             </div>
-            <div class="col">
-            <span *ngIf="line.type === dialogTypes.SONG">
-              {{ line.content }} <a class="badge badge-success" [href]="line?.metadata['spotify_uri'] | safeUrl"
-                                    *ngIf="line?.metadata && line?.metadata['spotify_uri']">spotify</a>
-            </span>
-              <span *ngIf="line.type === dialogTypes.CHAT">{{ line.content }}</span>
-            </div>
-          </div>
-          <div class="mb-2 ml-2 d-flex flex-column justify-content-center" *ngIf="enableLineCopy">
-          <span>
-            <a class="clickable" (click)="copyLineToClipboard(line.content)">
-              <i class="bi-clipboard2-fill text-muted"></i>
-            </a>
-          </span>
-          </div>
-          <div class="mb-2 ml-2 d-flex flex-column justify-content-center" *ngIf="enableLineLinking">
-          <span>
-            <a class="clickable text-muted" *ngIf="scrollToPosStart != line.pos"
-               title="Link to this line (or set selection start)"
-               (click)="selectPosition(line, $event)">
-              <i class="bi-bookmark-fill"></i>
-            </a>
-          </span>
-          </div>
-          <div class="mb-2 ml-2 d-flex flex-column justify-content-center"
-               *ngIf="enableLineLinking && scrollToPosStart && scrollToPosStart < line.pos">
-            <a class="clickable text-muted"
-               title="Set selection end"
-               (click)="addToSelection(line)">
-              <i class="bi-bookmark-plus"></i>
-            </a>
-          </div>
+          }
         </div>
       </div>
-    </ng-container>
+    }
   </div>
-  <div class="ml-3 d-flex d-flex flex-column justify-content-center trivia-breakout"
-       *ngIf="group.tscript?.trivia.length > 0">
-    <div class="p-2 text-muted">
-      <div *ngFor="let t of group.tscript.trivia">
-        <app-markdown [raw]="t.description"></app-markdown>
-      </div>
-    </div>
-  </div>
-</div>
+}

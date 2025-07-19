@@ -1,12 +1,12 @@
 import {AfterViewInit, ChangeDetectorRef, Component, Input, OnDestroy, OnInit} from '@angular/core';
 import WaveSurfer from 'wavesurfer.js';
-import RegionsPlugin from 'wavesurfer.js/dist/plugins/regions.esm.js';
-import {Region} from "wavesurfer.js/dist/plugins/regions";
+import RegionsPlugin from 'wavesurfer.js/plugins/regions';
+import {Region} from "wavesurfer.js/plugins/regions";
 import {Router} from "@angular/router";
-import ZoomPlugin from "wavesurfer.js/dist/plugins/zoom";
+import ZoomPlugin from "wavesurfer.js/plugins/zoom";
 import {FormControl} from "@angular/forms";
 import {takeUntil} from "rxjs/operators";
-import {Observable, Subject} from "rxjs";
+import {Subject} from "rxjs";
 
 const AUDIO_CONTEXT_MS = 2000;
 

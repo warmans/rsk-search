@@ -11,13 +11,17 @@
   </div>
   <div>
     <ul class="nav nav-tabs font-weight-bold">
-      <li *ngFor="let item of publicationCategories | keyvalue:originalOrder">
-        <a class="nav-link" [ngClass]="{'active': activePublicationType === item.value && !searchInput.value}"
-           (click)="loadPublicationTab(item.value)">{{item.key}}</a>
-      </li>
-      <li *ngIf="searchInput.value">
-        <a class="nav-link active">Search Results</a>
-      </li>
+      @for (item of publicationCategories | keyvalue:originalOrder; track item) {
+        <li>
+          <a class="nav-link" [ngClass]="{'active': activePublicationType === item.value && !searchInput.value}"
+          (click)="loadPublicationTab(item.value)">{{item.key}}</a>
+        </li>
+      }
+      @if (searchInput.value) {
+        <li>
+          <a class="nav-link active">Search Results</a>
+        </li>
+      }
     </ul>
   </div>
 
@@ -25,21 +29,26 @@
 
 <div class="card episode-list">
   <div class="card-header p-2" >
-    <span *ngIf="!searchInput.value" class="d-flex">
-      <a
-        *ngFor="let sub of subSections[activePublicationType]"
-        class="nav-link clickable py-0  pr-3 pl-1"
-        [ngClass]="{'active': activeSubSection === sub, 'text-muted': activeSubSection !== sub}"
-        (click)="loadSubsection(sub);"
-      >{{sub}}</a>
+    @if (!searchInput.value) {
+      <span class="d-flex">
+        @for (sub of subSections[activePublicationType]; track sub) {
+          <a
+            class="nav-link clickable py-0  pr-3 pl-1"
+            [ngClass]="{'active': activeSubSection === sub, 'text-muted': activeSubSection !== sub}"
+            (click)="loadSubsection(sub);"
+          >{{sub}}</a>
+        }
       </span>
+    }
   </div>
   <div class="card-body">
     <app-loading-spinner [loading]="loading.length > 0"></app-loading-spinner>
-    <div *ngFor="let ep of filteredTranscriptList"
-         class="mb-2 episode-container animate__animated animate__fadeIn animate__faster">
-      <app-episode-summary [episode]="ep"></app-episode-summary>
-    </div>
+    @for (ep of filteredTranscriptList; track ep) {
+      <div
+        class="mb-2 episode-container animate__animated animate__fadeIn animate__faster">
+        <app-episode-summary [episode]="ep"></app-episode-summary>
+      </div>
+    }
   </div>
 </div>
 <div class="download-modal modal" [ngClass]="{'open': showDownloadDialog}">

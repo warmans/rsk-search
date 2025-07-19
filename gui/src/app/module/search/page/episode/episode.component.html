@@ -6,25 +6,34 @@
     </ol>
   </nav>
 
-  <div *ngIf="authenticated && pendingChanges?.length > 0" class="row mb-3">
-    <div class="col-12">
-      <div class="alert alert-info">
-        This episode has an unmerged change. New changes cannot be created until this is resolved.
-        <a class="btn btn-sm btn-info" [routerLink]="['/ep', id, 'change', pendingChanges[0].id]">View Change</a>
+  @if (authenticated && pendingChanges?.length > 0) {
+    <div class="row mb-3">
+      <div class="col-12">
+        <div class="alert alert-info">
+          This episode has an unmerged change. New changes cannot be created until this is resolved.
+          <a class="btn btn-sm btn-info" [routerLink]="['/ep', id, 'change', pendingChanges[0].id]">View Change</a>
+        </div>
       </div>
     </div>
-  </div>
+  }
 
   <div class="row">
     <div class="col">
-      <div class="card" *ngIf="episode">
-        <div class="card-header d-flex justify-content-between">
-          <div>
-            {{ shortID }}<span *ngIf="episode.name" class="text-muted"> - {{ episode.name }}</span>
+      @if (episode) {
+        <div class="card">
+          <div class="card-header d-flex justify-content-between">
+            <div>
+              {{ shortID }}@if (episode.name) {
+              <span class="text-muted"> - {{ episode.name }}</span>
+            }
           </div>
           <div>
-            <a *ngIf="previousEpisodeId" class="mr-2" [routerLink]="['/ep', previousEpisodeId]"><i class="bi bi-arrow-left"></i> Previous</a>
-            <a *ngIf="nextEpisodeId" class="ml-2" [routerLink]="['/ep', nextEpisodeId]">Next <i class="bi bi-arrow-right"></i></a>
+            @if (previousEpisodeId) {
+              <a class="mr-2" [routerLink]="['/ep', previousEpisodeId]"><i class="bi bi-arrow-left"></i> Previous</a>
+            }
+            @if (nextEpisodeId) {
+              <a class="ml-2" [routerLink]="['/ep', nextEpisodeId]">Next <i class="bi bi-arrow-right"></i></a>
+            }
           </div>
         </div>
         <div class="card-body">
@@ -51,157 +60,214 @@
                   <th>Presenters</th>
                   <td>{{ episode.actors.join(", ") }}</td>
                 </tr>
-                <tr *ngIf="episode.summary">
-                  <th>Summary</th>
-                  <td>{{ episode.summary }}</td>
-                </tr>
-                <tr *ngIf="episode.bestof || episode.locked">
-                  <th>Tags</th>
-                  <td>
-                    <span *ngIf="episode.bestof" class="badge badge-secondary">Bestof</span>
-                    <span
-                      *ngIf="episode.locked"
-                      class="badge badge-warning"
-                      title="Changes cannot be submitted for this transcript because it is in the process of being transcribed."
-                      >Locked</span
-                    >
-                  </td>
-                </tr>
-                <tr *ngIf="transcribers">
-                  <th>Transcribers</th>
-                  <td>
-                    <span *ngIf="episode.metadata['pilkipedia_url']">
-                      <a [href]="episode.metadata['pilkipedia_url']" target="_blank">Pilkipedia</a>
-                    </span>
-                    <span *ngIf="episode.metadata['pilkipedia_url'] && transcribers"> | </span>
-                    <span>{{ transcribers }}</span>
-                  </td>
-                </tr>
-                <tr *ngIf="episode.media.audio && !episode.media.audioRestricted">
-                  <th>Rating</th>
-                  <td>
-                    <star-rating
-                      [starType]="'svg'"
-                      [rating]="episode.ratings.scoreAvg"
-                      [readOnly]="!authenticated"
-                      (starClickChange)="rateEpisode($event)">
-                    </star-rating>
-                    <span class="text-muted">Avg. {{episode.ratings.scoreAvg || 0 | number:'1.0-2'}}/5 from {{episode.ratings.numScores}} ratings</span>
-                    <span *ngIf="authenticated" class="text-muted"> (your rating: {{episode?.ratings?.scores[authorIdentifier] || 'none'}})</span>
-                  </td>
-                </tr>
-                <tr *ngIf="episode.media.audio && !episode.media.audioRestricted">
-                  <th>Audio</th>
-                  <td>
-                    <button *ngIf="!audioStatus || audioStatus?.state !== audioStates.playing" class="btn btn-sm btn-primary" (click)="playAudio()">
-                      <i class="bi bi-play"></i> Play
-                    </button>
-                    <button *ngIf="audioStatus?.state === audioStates.playing" class="btn btn-sm btn-primary" (click)="pauseAudio()">
-                      <i class="bi bi-pause"></i> Pause
-                    </button>
-                    <span class="muted ml-3">({{ episode.offsetAccuracyPcnt | timecodeAccuracy }} Timecode Accuracy)</span>
-                  </td>
-                </tr>
-              </table>
-            </div>
-            <div class="col-lg-2 d-flex align-items-center justify-content-around">
-              <img class="d-none d-lg-block series-image" [src]="episodeImage" />
-            </div>
-          </div>
-        </div>
-        <ul class="nav nav-tabs font-weight-bold ml-2" *ngIf="activeInfoPanel !== undefined">
-          <li class="nav-item mr-2 with-border" *ngIf="episode?.synopses?.length > 0">
-            <a class="nav-link" (click)="activeInfoPanel = 'synopsis'" [ngClass]="{ active: activeInfoPanel === 'synopsis' }"
-              ><i class="bi bi-card-list mr-1"></i> Synopsis
-            </a>
-          </li>
-          <li class="nav-item mr-2" *ngIf="quotes && quotes.length > 0">
-            <a class="nav-link" (click)="activeInfoPanel = 'quotes'" [ngClass]="{ active: activeInfoPanel === 'quotes' }">
-              <i class="bi bi-chat-left-quote mr-1"></i> Quotes
-            </a>
-          </li>
-          <li class="nav-item mr-2" *ngIf="songs && songs.length > 0">
-            <a class="nav-link" (click)="activeInfoPanel = 'songs'" [ngClass]="{ active: activeInfoPanel === 'songs' }">
-              <i class="bi bi-speaker mr-1"></i> Songs
-            </a>
-          </li>
-          <li class="nav-item mr-2" *ngIf="media && media.length > 0">
-            <a class="nav-link" (click)="activeInfoPanel = 'media'" [ngClass]="{ active: activeInfoPanel === 'media' }">
-              <i class="bi bi-card-image mr-1"></i> Media
-            </a>
-          </li>
-        </ul>
-        <div *ngIf="activeInfoPanel === 'synopsis'">
-          <div class="card-header border-top"></div>
-          <div class="card-body">
-            <app-synopses [synopses]="episode?.synopses" [episodeID]="episode.id"></app-synopses>
-          </div>
-        </div>
-        <div *ngIf="activeInfoPanel === 'quotes'">
-          <div class="card-header border-top"></div>
-          <div class="card-body p-3">
-            <div class="mb-1" *ngFor="let quote of quotes">
-              <i class="bi-quote mr-2 text-primary"></i>
-              <span class="font-italic">
-                "{{ quote.content }}" -{{ quote.actor }} (<a [routerLink]="['/ep', episode?.id]" [fragment]="'pos-' + quote?.pos">context</a>)
-              </span>
-            </div>
-          </div>
-        </div>
-        <div *ngIf="activeInfoPanel === 'songs'">
-          <div class="card-header border-top"></div>
-          <div class="card-body p-3">
-            <div class="mb-1" *ngFor="let song of songs">
-              <div *ngIf="song.metadata['spotify_uri']">
-                <a class="text-paragraph" [href]="song.metadata['spotify_uri']">
-                  <i class="bi-spotify text-primary mr-2"></i>
-                  <span class="text-paragraph">{{ song.content }}</span>
-                </a>
-                (<a [routerLink]="['/ep', episode?.id]" [fragment]="'pos-' + song?.pos">context</a>)
+                @if (episode.summary) {
+                  <tr>
+                    <th>Summary</th>
+                    <td>{{ episode.summary }}</td>
+                  </tr>
+                }
+                @if (episode.bestof || episode.locked) {
+                  <tr>
+                    <th>Tags</th>
+                    <td>
+                      @if (episode.bestof) {
+                        <span class="badge badge-secondary">Bestof</span>
+                      }
+                      @if (episode.locked) {
+                        <span
+                          class="badge badge-warning"
+                          title="Changes cannot be submitted for this transcript because it is in the process of being transcribed."
+                          >Locked</span
+                          >
+                        }
+                      </td>
+                    </tr>
+                  }
+                  @if (transcribers) {
+                    <tr>
+                      <th>Transcribers</th>
+                      <td>
+                        @if (episode.metadata['pilkipedia_url']) {
+                          <span>
+                            <a [href]="episode.metadata['pilkipedia_url']" target="_blank">Pilkipedia</a>
+                          </span>
+                        }
+                        @if (episode.metadata['pilkipedia_url'] && transcribers) {
+                          <span> | </span>
+                        }
+                        <span>{{ transcribers }}</span>
+                      </td>
+                    </tr>
+                  }
+                  @if (episode.media.audio && !episode.media.audioRestricted) {
+                    <tr>
+                      <th>Rating</th>
+                      <td>
+                        <star-rating
+                          [starType]="'svg'"
+                          [rating]="episode.ratings.scoreAvg"
+                          [readOnly]="!authenticated"
+                          (starClickChange)="rateEpisode($event)">
+                        </star-rating>
+                        <span class="text-muted">Avg. {{episode.ratings.scoreAvg || 0 | number:'1.0-2'}}/5 from {{episode.ratings.numScores}} ratings</span>
+                        @if (authenticated) {
+                          <span class="text-muted"> (your rating: {{episode?.ratings?.scores[authorIdentifier] || 'none'}})</span>
+                        }
+                      </td>
+                    </tr>
+                  }
+                  @if (episode.media.audio && !episode.media.audioRestricted) {
+                    <tr>
+                      <th>Audio</th>
+                      <td>
+                        @if (!audioStatus || audioStatus?.state !== audioStates.playing) {
+                          <button class="btn btn-sm btn-primary" (click)="playAudio()">
+                            <i class="bi bi-play"></i> Play
+                          </button>
+                        }
+                        @if (audioStatus?.state === audioStates.playing) {
+                          <button class="btn btn-sm btn-primary" (click)="pauseAudio()">
+                            <i class="bi bi-pause"></i> Pause
+                          </button>
+                        }
+                        <span class="muted ml-3">({{ episode.offsetAccuracyPcnt | timecodeAccuracy }} Timecode Accuracy)</span>
+                      </td>
+                    </tr>
+                  }
+                </table>
               </div>
-              <div *ngIf="!song.metadata['spotify_uri']">
-                <i class="bi-spotify text-muted mr-2"></i>
-                <span class="text-paragraph">{{ song.content }}</span> (<a [routerLink]="['/ep', episode?.id]" [fragment]="'pos-' + song?.pos">context</a>)
+              <div class="col-lg-2 d-flex align-items-center justify-content-around">
+                <img class="d-none d-lg-block series-image" [src]="episodeImage" />
               </div>
             </div>
           </div>
-        </div>
-        <div *ngIf="activeInfoPanel === 'media'">
-          <div class="card-header border-top"></div>
-          <div class="card-body">
+          @if (activeInfoPanel !== undefined) {
+            <ul class="nav nav-tabs font-weight-bold ml-2">
+              @if (episode?.synopses?.length > 0) {
+                <li class="nav-item mr-2 with-border">
+                  <a class="nav-link" (click)="activeInfoPanel = 'synopsis'" [ngClass]="{ active: activeInfoPanel === 'synopsis' }"
+                    ><i class="bi bi-card-list mr-1"></i> Synopsis
+                  </a>
+                </li>
+              }
+              @if (quotes && quotes.length > 0) {
+                <li class="nav-item mr-2">
+                  <a class="nav-link" (click)="activeInfoPanel = 'quotes'" [ngClass]="{ active: activeInfoPanel === 'quotes' }">
+                    <i class="bi bi-chat-left-quote mr-1"></i> Quotes
+                  </a>
+                </li>
+              }
+              @if (songs && songs.length > 0) {
+                <li class="nav-item mr-2">
+                  <a class="nav-link" (click)="activeInfoPanel = 'songs'" [ngClass]="{ active: activeInfoPanel === 'songs' }">
+                    <i class="bi bi-speaker mr-1"></i> Songs
+                  </a>
+                </li>
+              }
+              @if (media && media.length > 0) {
+                <li class="nav-item mr-2">
+                  <a class="nav-link" (click)="activeInfoPanel = 'media'" [ngClass]="{ active: activeInfoPanel === 'media' }">
+                    <i class="bi bi-card-image mr-1"></i> Media
+                  </a>
+                </li>
+              }
+            </ul>
+          }
+          @if (activeInfoPanel === 'synopsis') {
             <div>
-              <ng-container *ngFor="let item of media">
-                <div *ngFor="let med of item.media" class="d-flex justify-content-start">
-                  <div class="p-4">
-                    <a [href]="'/dl/archive/file/' + med.name" target="_blank">
-                      <img style="max-width: 100%" [src]="'/dl/archive/file/' + med.thumbnailName" />
-                    </a>
-                  </div>
-                  <div class="p-4">{{ item.description }}</div>
-                </div>
-              </ng-container>
-            </div>
-          </div>
-        </div>
-        <div class="card-header sticky-top border-top">
-          <div class="d-flex">
-            <div class="flex-grow-1 font-weight-bold d-flex justify-content-between">
-              <div>
-                <i class="bi bi-text-left mr-1"></i> Transcript
-                <!-- logic for transcript complete flag incomplete-->
-                <span *ngIf="episode.incomplete" class="badge badge-warning ml-3">Incomplete</span>
+              <div class="card-header border-top"></div>
+              <div class="card-body">
+                <app-synopses [synopses]="episode?.synopses" [episodeID]="episode.id"></app-synopses>
               </div>
-              <div class="d-flex">
-                <button class="btn btn-sm btn-primary" (click)="scrollToTop()"><i class="bi-arrow-up"></i> Top</button>
-                <button class="btn btn-sm btn-primary ml-2" *ngIf="scrollToID && selection" (click)="scrollToSelection()">
-                  <i class="bi-arrow-down"></i> Selection
-                </button>
-                <button class="btn btn-sm btn-info ml-2" *ngIf="scrollToID && selection" (click)="copySelection()">
-                  <i class="bi-clipboard"></i> Copy Selection
-                </button>
-                <ng-container *ngIf="scrollToID || scrollToSeconds">
-                  <button class="btn btn-sm btn-info ml-2" (click)="clearSelection()"><i class="bi-escape"></i> Clear Selection</button>
-                  <!--a
+            </div>
+          }
+          @if (activeInfoPanel === 'quotes') {
+            <div>
+              <div class="card-header border-top"></div>
+              <div class="card-body p-3">
+                @for (quote of quotes; track quote) {
+                  <div class="mb-1">
+                    <i class="bi-quote mr-2 text-primary"></i>
+                    <span class="font-italic">
+                      "{{ quote.content }}" -{{ quote.actor }} (<a [routerLink]="['/ep', episode?.id]" [fragment]="'pos-' + quote?.pos">context</a>)
+                    </span>
+                  </div>
+                }
+              </div>
+            </div>
+          }
+          @if (activeInfoPanel === 'songs') {
+            <div>
+              <div class="card-header border-top"></div>
+              <div class="card-body p-3">
+                @for (song of songs; track song) {
+                  <div class="mb-1">
+                    @if (song.metadata['spotify_uri']) {
+                      <div>
+                        <a class="text-paragraph" [href]="song.metadata['spotify_uri']">
+                          <i class="bi-spotify text-primary mr-2"></i>
+                          <span class="text-paragraph">{{ song.content }}</span>
+                        </a>
+                        (<a [routerLink]="['/ep', episode?.id]" [fragment]="'pos-' + song?.pos">context</a>)
+                      </div>
+                    }
+                    @if (!song.metadata['spotify_uri']) {
+                      <div>
+                        <i class="bi-spotify text-muted mr-2"></i>
+                        <span class="text-paragraph">{{ song.content }}</span> (<a [routerLink]="['/ep', episode?.id]" [fragment]="'pos-' + song?.pos">context</a>)
+                      </div>
+                    }
+                  </div>
+                }
+              </div>
+            </div>
+          }
+          @if (activeInfoPanel === 'media') {
+            <div>
+              <div class="card-header border-top"></div>
+              <div class="card-body">
+                <div>
+                  @for (item of media; track item) {
+                    @for (med of item.media; track med) {
+                      <div class="d-flex justify-content-start">
+                        <div class="p-4">
+                          <a [href]="'/dl/archive/file/' + med.name" target="_blank">
+                            <img style="max-width: 100%" [src]="'/dl/archive/file/' + med.thumbnailName" />
+                          </a>
+                        </div>
+                        <div class="p-4">{{ item.description }}</div>
+                      </div>
+                    }
+                  }
+                </div>
+              </div>
+            </div>
+          }
+          <div class="card-header sticky-top border-top">
+            <div class="d-flex">
+              <div class="flex-grow-1 font-weight-bold d-flex justify-content-between">
+                <div>
+                  <i class="bi bi-text-left mr-1"></i> Transcript
+                  <!-- logic for transcript complete flag incomplete-->
+                  @if (episode.incomplete) {
+                    <span class="badge badge-warning ml-3">Incomplete</span>
+                  }
+                </div>
+                <div class="d-flex">
+                  <button class="btn btn-sm btn-primary" (click)="scrollToTop()"><i class="bi-arrow-up"></i> Top</button>
+                  @if (scrollToID && selection) {
+                    <button class="btn btn-sm btn-primary ml-2" (click)="scrollToSelection()">
+                      <i class="bi-arrow-down"></i> Selection
+                    </button>
+                  }
+                  @if (scrollToID && selection) {
+                    <button class="btn btn-sm btn-info ml-2" (click)="copySelection()">
+                      <i class="bi-clipboard"></i> Copy Selection
+                    </button>
+                  }
+                  @if (scrollToID || scrollToSeconds) {
+                    <button class="btn btn-sm btn-info ml-2" (click)="clearSelection()"><i class="bi-escape"></i> Clear Selection</button>
+                    <!--a
                     *ngIf="authenticated && episode.offsetAccuracyPcnt > 0"
                     title="Audio export is provided on a best-effort basis. Since the audio timestamps are not 100% accurate, it's possible you won't get exactly the audio you expect."
                     class="btn btn-sm btn-info ml-2"
@@ -209,91 +275,101 @@
                     [href]="episode.audioUri+ '?ts='+selection.startTimestampMs+'-'+selection.endTimestampMs">
                     <i class="bi-download"></i> Export selection audio
                   </a-->
-                  <button
-                    *ngIf="episode.offsetAccuracyPcnt > 0 && episode.media.audio"
-                    title="Audio export is provided on a best-effort basis. Since the audio timestamps are not 100% accurate, it's possible you won't get exactly the audio you expect."
-                    class="btn btn-sm btn-info ml-2"
-                    (click)="toggleDownloadDialog()"
-                  >
-                    <i class="bi-download"></i> Export Selected Audio
-                  </button>
+                  @if (episode.offsetAccuracyPcnt > 0 && episode.media.audio) {
+                    <button
+                      title="Audio export is provided on a best-effort basis. Since the audio timestamps are not 100% accurate, it's possible you won't get exactly the audio you expect."
+                      class="btn btn-sm btn-info ml-2"
+                      (click)="toggleDownloadDialog()"
+                      >
+                      <i class="bi-download"></i> Export Selected Audio
+                    </button>
+                  }
                   <!-- a
-                    *ngIf="authenticated && episode.media.video"
-                    class="btn btn-sm btn-info ml-2"
-                    target="_blank"
-                    [href]="'/dl/media/'+episode.id+'.gif'+'?ts='+selection.startTimestampMs+'-'+selection.endTimestampMs">
-                    <i class="bi-download"></i> Export GIF
-                  </a-->
-                </ng-container>
-                <!--button class="btn btn-sm btn-primary ml-2" *ngIf="scrollToID || scrollToSeconds" (click)="shareSelection()">Share Selection</button-->
-                <div class="ml-2" *ngIf="pendingChanges?.length === 0 && !episode.locked">
-                  <a class="btn btn-sm btn-info" [routerLink]="['/ep', id, 'change']"><i class="bi-pencil"></i> Submit Correction</a>
-                </div>
+                  *ngIf="authenticated && episode.media.video"
+                  class="btn btn-sm btn-info ml-2"
+                  target="_blank"
+                  [href]="'/dl/media/'+episode.id+'.gif'+'?ts='+selection.startTimestampMs+'-'+selection.endTimestampMs">
+                  <i class="bi-download"></i> Export GIF
+                </a-->
+              }
+            <!--button class="btn btn-sm btn-primary ml-2" *ngIf="scrollToID || scrollToSeconds" (click)="shareSelection()">Share Selection</button-->
+            @if (pendingChanges?.length === 0 && !episode.locked) {
+              <div class="ml-2">
+                <a class="btn btn-sm btn-info" [routerLink]="['/ep', id, 'change']"><i class="bi-pencil"></i> Submit Correction</a>
               </div>
-            </div>
-          </div>
-        </div>
-        <div class="card-body p-3">
-          <app-transcript
-            #transcript
-            [transcript]="episode"
-            [epid]="episode?.id"
-            [scrollToID]="scrollToID"
-            [scrollToSeconds]="scrollToSeconds"
-            [searchResultMode]="false"
-            [enableLineLinking]="true"
-            [enableLineCopy]="true"
-            [enableAudioLinks]="episode.media.audio && !episode.media.audioRestricted"
-            [media]="episode.media"
-            (emitAudioTimestamp)="onAudioTimestamp($event)"
-            (emitSelection)="selectSection($event)"
-          ></app-transcript>
-          <div *ngIf="!episode?.transcript?.length" class="text-center p-4">No transcript available.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="container-fluid w-25" *ngIf="error && !episode">
-  <div class="row">
-    <div class="col">
-      <div>
-        <div class="card">
-          <div class="card-body text-center">
-            <div>
-              <img src="/assets/illustration/pixeltrue-error-1.svg" style="width: 300px" />
-            </div>
-            <div class="pb-2">
-              <strong>{{ error }}</strong>
-            </div>
-            <div>Alright, lets see your little website then. Sick of ya...</div>
+            }
           </div>
         </div>
       </div>
     </div>
+    <div class="card-body p-3">
+      <app-transcript
+        #transcript
+        [transcript]="episode"
+        [epid]="episode?.id"
+        [scrollToID]="scrollToID"
+        [scrollToSeconds]="scrollToSeconds"
+        [searchResultMode]="false"
+        [enableLineLinking]="true"
+        [enableLineCopy]="true"
+        [enableAudioLinks]="episode.media.audio && !episode.media.audioRestricted"
+        [media]="episode.media"
+        (emitAudioTimestamp)="onAudioTimestamp($event)"
+        (emitSelection)="selectSection($event)"
+      ></app-transcript>
+      @if (!episode?.transcript?.length) {
+        <div class="text-center p-4">No transcript available.</div>
+      }
+    </div>
   </div>
+}
 </div>
+</div>
+</div>
+@if (error && !episode) {
+  <div class="container-fluid w-25">
+    <div class="row">
+      <div class="col">
+        <div>
+          <div class="card">
+            <div class="card-body text-center">
+              <div>
+                <img src="/assets/illustration/pixeltrue-error-1.svg" style="width: 300px" />
+              </div>
+              <div class="pb-2">
+                <strong>{{ error }}</strong>
+              </div>
+              <div>Alright, lets see your little website then. Sick of ya...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+}
 
-<div class="download-modal modal" [ngClass]="{ open: showDownloadDialog }" *ngIf="showDownloadDialog && episode && selection">
-  <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <i class="bi-cloud-download mr-2"></i> Export audio section
-        <button type="button" class="close" (click)="showDownloadDialog = false" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <app-audio-waveform
-          [url]="'/dl/media/' + episode.id + '.mp3'"
-          [startTimestampMs]="selection.startTimestampMs"
-          [endTimestampMs]="selection.endTimestampMs"
-          [episodeDurationMs]="episodeDurationMs"
-        >
-        </app-audio-waveform>
+@if (showDownloadDialog && episode && selection) {
+  <div class="download-modal modal" [ngClass]="{ open: showDownloadDialog }">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <i class="bi-cloud-download mr-2"></i> Export audio section
+          <button type="button" class="close" (click)="showDownloadDialog = false" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <app-audio-waveform
+            [url]="'/dl/media/' + episode.id + '.mp3'"
+            [startTimestampMs]="selection.startTimestampMs"
+            [endTimestampMs]="selection.endTimestampMs"
+            [episodeDurationMs]="episodeDurationMs"
+            >
+          </app-audio-waveform>
+        </div>
       </div>
     </div>
   </div>
-</div>
+}
 
 <app-loading-overlay [loading]="loading"></app-loading-overlay>

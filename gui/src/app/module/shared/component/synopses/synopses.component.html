@@ -1,5 +1,9 @@
-<div *ngIf="synopses.length === 0" class="text-muted">No synopsis available.</div>
-<div *ngFor="let syn of synopses" class="mb-1">
-  <i class="bi bi-text-paragraph mr-2 text-primary"></i>
-  <a class="text-paragraph" [routerLink]="['/ep', episodeID]" [fragment]="'pos-'+syn.startPos+'-'+syn.endPos">{{syn.description}}</a>
-</div>
+@if (synopses.length === 0) {
+  <div class="text-muted">No synopsis available.</div>
+}
+@for (syn of synopses; track syn) {
+  <div class="mb-1">
+    <i class="bi bi-text-paragraph mr-2 text-primary"></i>
+    <a class="text-paragraph" [routerLink]="['/ep', episodeID]" [fragment]="'pos-'+syn.startPos+'-'+syn.endPos">{{syn.description}}</a>
+  </div>
+}

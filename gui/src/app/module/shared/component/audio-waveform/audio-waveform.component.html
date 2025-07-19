@@ -1,26 +1,32 @@
 <div id="waveform"></div>
 <div id="wave-timeline"></div>
-<ng-container *ngIf="wave && !loading">
+@if (wave && !loading) {
   <div class="controls pt-2 mt-2 d-flex flex-row justify-content-between">
     <div class="d-flex">
-      <button *ngIf="!wave.isPlaying()" class="btn btn-sm btn-info mr-2" (click)="onPlayPressed()"><i class="bi-play"></i>
+      @if (!wave.isPlaying()) {
+        <button class="btn btn-sm btn-info mr-2" (click)="onPlayPressed()"><i class="bi-play"></i>
         Play
       </button>
-      <button *ngIf="wave.isPlaying()" class="btn btn-sm btn-info mr-2" (click)="onPausePressed()"><i
-        class="bi-pause"></i> Pause
-      </button>
-      <a class="btn btn-sm btn-primary d-block" target="_blank" [href]="exportURL"><i class="bi-download"></i> Download</a>
-    </div>
-    <div class="ml-2 d-flex flex-column justify-content-around">
-      <div class="form-group form-check mb-0">
-        <input [formControl]="stripTagsControl" type="checkbox" class="form-check-input" id="strip-metadata">
-        <label class="form-check-label" for="strip-metadata" title="Strip ID3 tags from exported file">Strip Metadata</label>
-      </div>
-    </div>
-  </div>
-</ng-container>
-<div class="loading py-5" *ngIf="loading">
-  <div class="spinner-border loading-indicator" role="status">
-    <span class="sr-only">Loading...</span>
+    }
+    @if (wave.isPlaying()) {
+      <button class="btn btn-sm btn-info mr-2" (click)="onPausePressed()"><i
+      class="bi-pause"></i> Pause
+    </button>
+  }
+  <a class="btn btn-sm btn-primary d-block" target="_blank" [href]="exportURL"><i class="bi-download"></i> Download</a>
+</div>
+<div class="ml-2 d-flex flex-column justify-content-around">
+  <div class="form-group form-check mb-0">
+    <input [formControl]="stripTagsControl" type="checkbox" class="form-check-input" id="strip-metadata">
+    <label class="form-check-label" for="strip-metadata" title="Strip ID3 tags from exported file">Strip Metadata</label>
   </div>
 </div>
+</div>
+}
+@if (loading) {
+  <div class="loading py-5">
+    <div class="spinner-border loading-indicator" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+}

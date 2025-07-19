@@ -20,51 +20,67 @@
       </div>
 
       <div class="card mb-3">
-        <div *ngFor="let ch of chunks">
-          <ng-container *ngIf="!stateFilter || (stateFilter && (groupedContributions[ch.id] || []).length > 0)">
-            <div class="card-header">
-              {{ch.id}}
-              <span *ngIf="(groupedContributions[ch.id] || []).length === 0">
-                No contributions (<a [routerLink]="['/chunk', ch.id]">Create one now</a>)
-              </span>
-              <span *ngIf="(groupedContributions[ch.id] || []).length > 0">
-                by {{groupedContributions[ch.id][(ch.selectedContribution || 0)].author.name}} ::
-                <app-contribution-state [state]="groupedContributions[ch.id][(ch.selectedContribution || 0)].state"></app-contribution-state>
-              </span>
-
-              <div class="float-right" *ngIf="(groupedContributions[ch.id] || []).length > 1">
-                <select
-                  class="form-control form-control-sm" style="max-width: 400px"
-                  (change)="ch.selectedContribution = $event.target.value">
-                  <option
-                    *ngFor="let contrib of groupedContributions[ch.id]; let i = index;"
-                    [value]="i"
-                    [selected]="ch.selectedContribution === i">{{contrib.id}} ({{contrib.state}})
-                  </option>
-                </select>
-              </div>
-            </div>
-            <div class="card-body">
-              <div *ngIf="(groupedContributions[ch.id] || []).length === 0" class="text-muted">
-                <app-transcript [transcript]="parseTscript(ch.raw)"></app-transcript>
-              </div>
-              <div *ngIf="(groupedContributions[ch.id] || []).length > 0">
-                <app-transcript [transcript]="parseTscript(groupedContributions[ch.id][(ch.selectedContribution || 0)].transcript)"></app-transcript>
-              </div>
-            </div>
-            <div *ngIf="(groupedContributions[ch.id] || []).length > 0">
-              <div class="card-footer d-flex" *ngIf="approver && groupedContributions[ch.id][(ch.selectedContribution || 0)].state === states.STATE_REQUEST_APPROVAL">
-                <div><a class="btn btn-success mr-3" (click)="updateState(groupedContributions[ch.id][(ch.selectedContribution || 0)].id, states.STATE_APPROVED)">Approve</a></div>
-                <div>
-                  <div class="mr-3">
-                    <app-reject-button [contributionId]="groupedContributions[ch.id][(ch.selectedContribution || 0)].id" [rejectAction]="rejectCallback"></app-reject-button>
+        @for (ch of chunks; track ch) {
+          <div>
+            @if (!stateFilter || (stateFilter && (groupedContributions[ch.id] || []).length > 0)) {
+              <div class="card-header">
+                {{ch.id}}
+                @if ((groupedContributions[ch.id] || []).length === 0) {
+                  <span>
+                    No contributions (<a [routerLink]="['/chunk', ch.id]">Create one now</a>)
+                  </span>
+                }
+                @if ((groupedContributions[ch.id] || []).length > 0) {
+                  <span>
+                    by {{groupedContributions[ch.id][(ch.selectedContribution || 0)].author.name}} ::
+                    <app-contribution-state [state]="groupedContributions[ch.id][(ch.selectedContribution || 0)].state"></app-contribution-state>
+                  </span>
+                }
+                @if ((groupedContributions[ch.id] || []).length > 1) {
+                  <div class="float-right">
+                    <select
+                      class="form-control form-control-sm" style="max-width: 400px"
+                      (change)="ch.selectedContribution = $event.target.value">
+                      @for (contrib of groupedContributions[ch.id]; track contrib; let i = $index) {
+                        <option
+                          [value]="i"
+                          [selected]="ch.selectedContribution === i">{{contrib.id}} ({{contrib.state}})
+                        </option>
+                      }
+                    </select>
                   </div>
-                </div>
-                <div><a class="btn btn-info" [routerLink]="['/chunk', ch.id, 'contrib', groupedContributions[ch.id][(ch.selectedContribution || 0)].id]">Edit</a></div>
+                }
               </div>
-            </div>
-          </ng-container>
-        </div>
+              <div class="card-body">
+                @if ((groupedContributions[ch.id] || []).length === 0) {
+                  <div class="text-muted">
+                    <app-transcript [transcript]="parseTscript(ch.raw)"></app-transcript>
+                  </div>
+                }
+                @if ((groupedContributions[ch.id] || []).length > 0) {
+                  <div>
+                    <app-transcript [transcript]="parseTscript(groupedContributions[ch.id][(ch.selectedContribution || 0)].transcript)"></app-transcript>
+                  </div>
+                }
+              </div>
+              @if ((groupedContributions[ch.id] || []).length > 0) {
+                <div>
+                  @if (approver && groupedContributions[ch.id][(ch.selectedContribution || 0)].state === states.STATE_REQUEST_APPROVAL) {
+                    <div class="card-footer d-flex">
+                      <div><a class="btn btn-success mr-3" (click)="updateState(groupedContributions[ch.id][(ch.selectedContribution || 0)].id, states.STATE_APPROVED)">Approve</a></div>
+                      <div>
+                        <div class="mr-3">
+                          <app-reject-button [contributionId]="groupedContributions[ch.id][(ch.selectedContribution || 0)].id" [rejectAction]="rejectCallback"></app-reject-button>
+                        </div>
+                      </div>
+                      <div><a class="btn btn-info" [routerLink]="['/chunk', ch.id, 'contrib', groupedContributions[ch.id][(ch.selectedContribution || 0)].id]">Edit</a></div>
+                    </div>
+                  }
+                </div>
+              }
+            }
+          </div>
+        }
       </div>
     </div>
   </div>

@@ -25,7 +25,7 @@ export class ImportComponent implements OnInit, OnDestroy {
   });
 
   chunkedTranscripts: RskChunkedTranscriptStats[] = [];
-  imports: RskTscriptImport[] = [];
+  imports: Array<RskTscriptImport & {showLog?: boolean}> = [];
 
   private unsubscribe$: EventEmitter<void> = new EventEmitter<void>();
 

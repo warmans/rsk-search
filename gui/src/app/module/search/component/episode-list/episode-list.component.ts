@@ -153,7 +153,7 @@ export class EpisodeListComponent implements OnInit, OnDestroy {
     }
   }
 
-  loadPublicationTab(tab: RskPublicationType) {
+  loadPublicationTab(tab: string) {
     this.searchInput.setValue("");
     this.router.navigate(['/search'], {queryParams: {'publication_type': tab}});
   }

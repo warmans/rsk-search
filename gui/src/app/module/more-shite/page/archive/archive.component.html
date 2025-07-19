@@ -7,13 +7,15 @@
       </div>
       <div class="card-body pb-0 mb-0">
         <table class="table">
-          <ng-container *ngFor="let item of archive">
-            <tr *ngFor="let med of item.media">
-              <td style="width: 400px"><a [href]="'/dl/archive/file/'+med.name" target="_blank"><img style="max-width: 100%" [src]="'/dl/archive/file/'+med.thumbnailName"/></a></td>
-              <td style="width: 100px;">{{ item.relatedEpisode }}</td>
-              <td>{{ item.description }}</td>
-            <tr>
-          </ng-container>
+          @for (item of archive; track item) {
+            @for (med of item.media; track med) {
+              <tr>
+                <td style="width: 400px"><a [href]="'/dl/archive/file/'+med.name" target="_blank"><img style="max-width: 100%" [src]="'/dl/archive/file/'+med.thumbnailName"/></a></td>
+                <td style="width: 100px;">{{ item.relatedEpisode }}</td>
+                <td>{{ item.description }}</td>
+              <tr>
+            }
+          }
         </table>
       </div>
     </div>
