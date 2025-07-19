@@ -1,6 +1,6 @@
 import {Injectable, Query} from '@angular/core';
 import {BehaviorSubject, combineLatest, Observable} from 'rxjs';
-import {HttpParams} from "@angular/common/http";
+import { HttpParams } from "@angular/common/http";
 
 const STORAGE_KEY_LISTENLOG = 'audio_service_listen_log';
 const STORAGE_KEY_VOLUME = 'audio_service_volume';

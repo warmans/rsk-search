@@ -1,7 +1,7 @@
 name: gui build/publish
 
 env:
-  NODE_VERISON: "18.x"
+  NODE_VERISON: "22.x"
   GUI_ROOT: ./gui
 
 on:

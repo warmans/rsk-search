@@ -4,7 +4,7 @@ import {NgModule} from '@angular/core';
 import {RootRoutingModule} from './root-routing.module';
 import {RootComponent} from './component/root/root.component';
 import {CoreModule} from '../module/core/core.module';
-import {HttpClientModule} from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import {SearchAPIClientModule} from '../lib/api-client/services/search';
 import {SearchModule} from '../module/search/search.module';
 import {SharedModule} from '../module/shared/shared.module';
@@ -15,27 +15,20 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {MoreShiteModule} from "../module/more-shite/more-shite.module";
 import {CommunityAPIClientModule} from "../lib/api-client/services/community";
 
-@NgModule({
-  declarations: [
-    RootComponent
-  ],
-  imports: [
-    CoreModule,
-    BrowserModule,
-    RootRoutingModule,
-    HttpClientModule,
-    SearchAPIClientModule.forRoot(),
-    CommunityAPIClientModule.forRoot(),
-    SharedModule,
-    SearchModule,
-    RewardModule,
-    ContribModule,
-    AdminModule,
-    MoreShiteModule,
-    NgbModule,
-  ],
-  providers: [Title],
-  bootstrap: [RootComponent]
-})
+@NgModule({ declarations: [
+        RootComponent
+    ],
+    bootstrap: [RootComponent], imports: [CoreModule,
+        BrowserModule,
+        RootRoutingModule,
+        SearchAPIClientModule.forRoot(),
+        CommunityAPIClientModule.forRoot(),
+        SharedModule,
+        SearchModule,
+        RewardModule,
+        ContribModule,
+        AdminModule,
+        MoreShiteModule,
+        NgbModule], providers: [Title, provideHttpClient(withInterceptorsFromDi())] })
 export class RootModule {
 }
