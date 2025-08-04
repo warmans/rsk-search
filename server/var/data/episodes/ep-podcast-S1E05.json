@@ -5,7 +5,7 @@
     "episode": 5,
     "name": "Episode Five",
     "summary": "",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "release_date": "2004-11-30T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -7573,9 +7573,16 @@
       "ThePumpk1nMaster",
       "dspmcmirror",
       "i_speak_terpanese",
+      "lasermoai",
       "verilydol"
     ],
-    "trivia": null,
+    "trivia": [
+      {
+        "description": "The shop was called Iconastas. It closed down in 2019.",
+        "start_pos": 196,
+        "end_pos": 211
+      }
+    ],
     "tags": null,
     "media": {
       "video_file_name": "",
