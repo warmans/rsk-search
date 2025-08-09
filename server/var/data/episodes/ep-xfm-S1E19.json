@@ -5,7 +5,7 @@
     "episode": 19,
     "name": "Sorreh...",
     "summary": "",
-    "version": "0.0.9",
+    "version": "0.0.10",
     "release_date": "2002-04-06T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -22142,7 +22142,7 @@
         "end_pos": 72
       },
       {
-        "description": "Do the lads know any french? (no)\n/TRIVIA",
+        "description": "Do the lads know any french? (no)",
         "start_pos": 90,
         "end_pos": 146
       },
@@ -22167,7 +22167,7 @@
         "end_pos": 1266
       },
       {
-        "description": "Sainsbury's are bringing in square tins.\nTRIVIA: ![white van man section in The Sun](/dl/media/file/square-tins.jpg)",
+        "description": "Sainsbury's are bringing in square tins.",
         "start_pos": 1275,
         "end_pos": 1300
       },
@@ -22194,12 +22194,17 @@
       {
         "description": "Some people believe Ricky is saying \"So are Air\" here - a reference to another French band.",
         "start_pos": 89,
-        "end_pos": 749
+        "end_pos": 90
       },
       {
         "description": "\"One in Ten\" was released July 1981, as Ricky was queuing in the dole office",
         "start_pos": 749,
         "end_pos": 762
+      },
+      {
+        "description": "![white van man section in The Sun](/dl/media/file/square-tins.jpg)",
+        "start_pos": 1275,
+        "end_pos": 1300
       }
     ],
     "tags": null,
@@ -22214,9 +22219,13 @@
     },
     "ratings": {
       "scores": {
+        "discord:.oyv": 4,
+        "discord:.warmans": 4.5,
         "discord:alexb457": 4.5,
         "discord:clubbychipface": 5,
-        "discord:idekbye": 4,
+        "discord:dragonq0105": 4.7,
+        "discord:harrybee": 5,
+        "discord:idekbye": 4.5,
         "discord:paulgriffincsp": 5,
         "discord:rowanator3000": 4.5,
         "discord:sigh8499": 4,
