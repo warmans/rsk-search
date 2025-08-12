@@ -5,7 +5,7 @@
     "episode": 21,
     "name": "Karl has won!",
     "summary": "",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "release_date": "2002-04-20T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -23492,7 +23492,12 @@
       {
         "description": "Steve's mobile Disco anecdote: The Rock n' Roll DJs and the Fantasy Island Roadshow",
         "start_pos": 86,
-        "end_pos": 183
+        "end_pos": 147
+      },
+      {
+        "description": "Scouts go mad for Steve's DJ set",
+        "start_pos": 147,
+        "end_pos": 180
       },
       {
         "description": "Ricky swapped his records for chemicals",
@@ -23608,8 +23613,10 @@
     },
     "ratings": {
       "scores": {
+        "discord:alexb457": 4,
         "discord:clubbychipface": 4.2,
         "discord:dragonq0105": 4.2,
+        "discord:harrybee": 5,
         "discord:idekbye": 4.2,
         "discord:paulgriffincsp": 3.8,
         "discord:wqzkav": 4.7,
