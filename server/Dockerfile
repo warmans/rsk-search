@@ -1,6 +1,6 @@
 FROM debian:stable-slim
 
-RUN apt update && apt install -y gcc libfreetype-dev ffmpeg
+RUN apt update && apt install -y gcc libfreetype-dev ffmpeg ca-certificates
 
 #RUN wget -q -O /tmp/ffmpeg.tar.xz https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz && \
 #    cd /tmp && \

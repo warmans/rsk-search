@@ -1,6 +1,6 @@
 FROM debian:stable-slim
 
-RUN apt update && apt install -y gcc libfreetype-dev ffmpeg
+RUN apt update && apt install -y gcc libfreetype-dev ffmpeg ca-certificates
 RUN addgroup nobody
 
 RUN mkdir -p /opt/rsk && chown -R nobody /opt/rsk
