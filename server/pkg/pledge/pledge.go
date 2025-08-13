@@ -125,7 +125,7 @@ func checkResponse(resp *http.Response) error {
 }
 
 func getResponseError(resp *http.Response) string {
-	if resp.Body == nil {
+	if resp == nil || resp.Body == nil {
 		return "none"
 	}
 	response := struct {
