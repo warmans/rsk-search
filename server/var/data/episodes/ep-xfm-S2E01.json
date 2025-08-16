@@ -3,9 +3,9 @@
     "publication": "xfm",
     "series": 2,
     "episode": 1,
-    "name": "Man-moths",
-    "summary": "",
-    "version": "0.0.1",
+    "name": "A flight that didn’t happen, some ghosts that didn’t exist, and a cat that didn’t look happy.",
+    "summary": "The first episode of the new series and the lads are just back from Edinburgh. Unfortunately Steve seems to have had a problem with his flight, but who's responsible (financially)? Karl tells some ghost stories with one featuring Nick Frost's auntie as well as the mysterious case of the cat that didn't look happy. Near the end of the episode there is a segment of White Van Karl which with discussions about smoking, drugs and a Man Moth. We also learn the history of the manhole cover experiment.",
+    "version": "0.0.2",
     "release_date": "2002-08-24T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -294,7 +294,7 @@
         "actor": "ricky",
         "metadata": null,
         "content": "The beginning of a radio show is very much your wares, your shop window laying out your stall. I don’t think you can choose a better track than The Only Ones “Another Girl Another Planet.”",
-        "notable": false,
+        "notable": true,
         "placeholder": false,
         "sentiment": "mixed"
       },
@@ -2981,7 +2981,7 @@
           "song_track": "Brilliant Disguise",
           "spotify_uri": "spotify:track:0nqbZ17t9v52SCemAm1QP0"
         },
-        "content": "Bruce Springsteen - “Brilliant Disguise”",
+        "content": "Bruce Springsteen - Brilliant Disguise",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
@@ -7980,7 +7980,7 @@
         "actor": "karl",
         "metadata": null,
         "content": "The baby had been messing with the furniture. It was the baby that had the power.",
-        "notable": false,
+        "notable": true,
         "placeholder": false,
         "sentiment": "negative"
       },
@@ -9798,7 +9798,7 @@
         "actor": "steve",
         "metadata": null,
         "content": "They drink milk from a saucer.",
-        "notable": false,
+        "notable": true,
         "placeholder": false,
         "sentiment": "mixed"
       },
@@ -15652,12 +15652,149 @@
         "sentiment": "mixed"
       }
     ],
-    "synopsis": null,
+    "synopsis": [
+      {
+        "description": "Ricky has turned over a new leaf",
+        "start_pos": 4,
+        "end_pos": 20
+      },
+      {
+        "description": "Money for Nothing: One of the greatest rock intros of all time",
+        "start_pos": 21,
+        "end_pos": 30
+      },
+      {
+        "description": "An estate agent is spotted with an obnoxious stereo",
+        "start_pos": 32,
+        "end_pos": 55
+      },
+      {
+        "description": "Ricky hasn't in fact turned over a new leaf (the croque-monsieur incident)",
+        "start_pos": 55,
+        "end_pos": 99
+      },
+      {
+        "description": "Ricky and steve have been away for 14 weeks (working on The Office)",
+        "start_pos": 100,
+        "end_pos": 115
+      },
+      {
+        "description": "Does Ricky owe Steve £165 for making him miss his flight?",
+        "start_pos": 115,
+        "end_pos": 185
+      },
+      {
+        "description": "Don't confuse Springsteen and Bon Jovi",
+        "start_pos": 185,
+        "end_pos": 196
+      },
+      {
+        "description": "Steve has won this time (he hasn't - plane debate continues)",
+        "start_pos": 201,
+        "end_pos": 237
+      },
+      {
+        "description": "Steve's Generosity",
+        "start_pos": 237,
+        "end_pos": 271
+      },
+      {
+        "description": "Karl gets annoyed by people fighting of seats on a flight",
+        "start_pos": 294,
+        "end_pos": 316
+      },
+      {
+        "description": "Is Steve a bit tight with money? (plane debate continues)",
+        "start_pos": 316,
+        "end_pos": 367
+      },
+      {
+        "description": "Steve gave a homeless girl a pound, because he fancied her",
+        "start_pos": 367,
+        "end_pos": 377
+      },
+      {
+        "description": "Karl's new mates (Nick Frost and Simon Pegg)",
+        "start_pos": 386,
+        "end_pos": 399
+      },
+      {
+        "description": "Experiment from ages ago: \"count how many times I blink\"",
+        "start_pos": 399,
+        "end_pos": 442
+      },
+      {
+        "description": "Ghost story involving Nick Frost's auntie",
+        "start_pos": 442,
+        "end_pos": 556
+      },
+      {
+        "description": "A fire that didn’t happen, about a wife that didn’t exist, and a cat that didn’t look happy.",
+        "start_pos": 560,
+        "end_pos": 615
+      },
+      {
+        "description": "Werewolf boys and Xfm listeners",
+        "start_pos": 625,
+        "end_pos": 655
+      },
+      {
+        "description": "They never saw the manhole cover again.",
+        "start_pos": 655,
+        "end_pos": 686
+      },
+      {
+        "description": "White van Karl: Prince Harry smoking openly at a polo club?",
+        "start_pos": 698,
+        "end_pos": 746
+      },
+      {
+        "description": "White van Karl: Man-moths",
+        "start_pos": 746,
+        "end_pos": 837
+      },
+      {
+        "description": "Can people send steve money  (plane debate continues)",
+        "start_pos": 843,
+        "end_pos": 878
+      },
+      {
+        "description": "A paper round was the best job Karl ever had",
+        "start_pos": 882,
+        "end_pos": 916
+      },
+      {
+        "description": "Oysters and whiskey are deadly",
+        "start_pos": 935,
+        "end_pos": 965
+      },
+      {
+        "description": "Hairy kids growing up with werewolves",
+        "start_pos": 965,
+        "end_pos": 982
+      },
+      {
+        "description": "Slugs have been stealing stamps",
+        "start_pos": 982,
+        "end_pos": 1036
+      }
+    ],
     "contributors": [
       "PerfectAlias",
       "warmans"
     ],
-    "trivia": null,
+    "trivia": [
+      {
+        "description": "In an earlier episode steve claims the only French he knows is to describe his favourite music, and to ask the way to the tourist information center...",
+        "start_pos": 91,
+        "end_pos": 94
+      },
+      {
+        "description": "This ends up as a scene in Steve's sitcom Hello Ladies",
+        "start_pos": 254,
+        "end_pos": 255
+      }
+    ],
     "tags": null,
     "media": {
       "video_file_name": "",
@@ -15670,9 +15807,14 @@
     },
     "ratings": {
       "scores": {
+        "discord:alexb457": 3.8,
+        "discord:clubbychipface": 5,
+        "discord:dragonq0105": 5,
+        "discord:idekbye": 4.3,
         "discord:orgamecha": 5,
-        "discord:paulgriffincsp": 3.75,
-        "discord:wqzkav": 4.3,
+        "discord:paulgriffincsp": 4,
+        "discord:sigh8499": 4,
+        "discord:wqzkav": 5,
         "reddit:Rhondson": 5
       }
     }
