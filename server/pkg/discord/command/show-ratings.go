@@ -23,7 +23,7 @@ const (
 	quickFilterAll     = ``
 	quickFilterRadio   = `publication_type = "radio"`
 	quickFilterPodcast = `publication_type = "podcast"`
-	quickFilterCurrent = `publication = "xfm" and series = 1`
+	quickFilterCurrent = `publication = "xfm" and series = 2`
 )
 
 var extractState = regexp.MustCompile(`\|\|(\{.*\})\|\|`)
