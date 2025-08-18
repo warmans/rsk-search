@@ -5,7 +5,7 @@
     "episode": 3,
     "name": "",
     "summary": "",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "release_date": "2002-09-07T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -4490,7 +4490,7 @@
         "type": "chat",
         "actor": "",
         "metadata": null,
-        "content": "Ricky and Steve smigger",
+        "content": "Ricky and Steve snigger",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
@@ -23146,13 +23146,95 @@
         "sentiment": "mixed"
       }
     ],
-    "synopsis": null,
+    "synopsis": [
+      {
+        "description": "Unprepared as usual, playing football with Karl",
+        "start_pos": 1,
+        "end_pos": 64
+      },
+      {
+        "description": "Ricky going on holiday to Sorrento, his eating habits",
+        "start_pos": 64,
+        "end_pos": 167
+      },
+      {
+        "description": "The opera, Pirates of Penzance",
+        "start_pos": 167,
+        "end_pos": 242
+      },
+      {
+        "description": "Karl the magician at talent show",
+        "start_pos": 242,
+        "end_pos": 288
+      },
+      {
+        "description": "Best thing that ever happened to Karl",
+        "start_pos": 288,
+        "end_pos": 348
+      },
+      {
+        "description": "Steve's desperate hunt for Springsteen tickets, The Cure owe Steve",
+        "start_pos": 414,
+        "end_pos": 467
+      },
+      {
+        "description": "Ricky saw Bowie at the BBC Jonathan Ross recording, Steve is angry",
+        "start_pos": 467,
+        "end_pos": 542
+      },
+      {
+        "description": "Steve's hunt for Springsteen tickets continues",
+        "start_pos": 542,
+        "end_pos": 562
+      },
+      {
+        "description": "When Steve tried to negotiate with a club bouncer to get in",
+        "start_pos": 562,
+        "end_pos": 588
+      },
+      {
+        "description": "Karl went to Habitat, saw freaks",
+        "start_pos": 588,
+        "end_pos": 687
+      },
+      {
+        "description": "Steve's hunt for Springsteen tickets carries on",
+        "start_pos": 687,
+        "end_pos": 717
+      },
+      {
+        "description": "Babies with big heads",
+        "start_pos": 717,
+        "end_pos": 730
+      },
+      {
+        "description": "Decapitated man's blinking experiment, Karl bought property on moon",
+        "start_pos": 830,
+        "end_pos": 874
+      },
+      {
+        "description": "Another decapitated man conducted an experiment, this time with steps instead of blinks. This",
+        "start_pos": 874,
+        "end_pos": 1051
+      },
+      {
+        "description": "Early version of Rockbusters: Karl Pilkington's What's The Song: She's Electric",
+        "start_pos": 1051,
+        "end_pos": 1338
+      },
+      {
+        "description": "Ricky records some lines for next week, Critical feedback on What's The Song",
+        "start_pos": 1338,
+        "end_pos": 1456
+      }
+    ],
     "contributors": [
       "Born-Leg-9021",
       "Hopper2004",
       "greendra8",
       "lasermoai",
-      "warmans"
+      "warmans",
+      "wqzkav"
     ],
     "trivia": null,
     "tags": null,
