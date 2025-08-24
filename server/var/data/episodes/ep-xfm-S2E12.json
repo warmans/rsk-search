@@ -5,7 +5,7 @@
     "episode": 12,
     "name": "",
     "summary": "",
-    "version": "0.0.1",
+    "version": "0.1.1",
     "release_date": "2002-11-09T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -16720,7 +16720,7 @@
         "timestamp": 2562960000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 4096000000,
+        "duration": 4159000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -16732,25 +16732,25 @@
       {
         "id": "ep-xfm-S2E12-1112",
         "pos": 1112,
-        "timestamp": 2567056000000,
+        "timestamp": 2567119000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 138000000,
+        "duration": 140000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Yeah.",
         "notable": false,
         "placeholder": false,
-        "sentiment": "negative"
+        "sentiment": "mixed"
       },
       {
         "id": "ep-xfm-S2E12-1113",
         "pos": 1113,
-        "timestamp": 2567194000000,
+        "timestamp": 2567259000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
-        "duration": 968000000,
+        "duration": 983000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -16762,10 +16762,10 @@
       {
         "id": "ep-xfm-S2E12-1114",
         "pos": 1114,
-        "timestamp": 2568162000000,
+        "timestamp": 2568242000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
-        "duration": 138000000,
+        "duration": 140000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -16777,14 +16777,14 @@
       {
         "id": "ep-xfm-S2E12-1115",
         "pos": 1115,
-        "timestamp": 2568300000000,
+        "timestamp": 2568382000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
-        "duration": 140000000,
+        "duration": 58000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "Ah…",
+        "content": "Ah",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
@@ -24007,9 +24007,116 @@
         "sentiment": "mixed"
       }
     ],
-    "synopsis": null,
+    "synopsis": [
+      {
+        "description": "Coldplay's music video for The Scientist",
+        "start_pos": 1,
+        "end_pos": 16
+      },
+      {
+        "description": "A woman pinched Steve's arse",
+        "start_pos": 16,
+        "end_pos": 77
+      },
+      {
+        "description": "Hobo called Karl a dickhead",
+        "start_pos": 77,
+        "end_pos": 122
+      },
+      {
+        "description": "Steve feels uncomfortable around hobos",
+        "start_pos": 122,
+        "end_pos": 152
+      },
+      {
+        "description": "Ricky's first week of boxing training, he's looking for a boxing nickname",
+        "start_pos": 152,
+        "end_pos": 282
+      },
+      {
+        "description": "Karl wonders what the next step is if Ricky wins the boxing match",
+        "start_pos": 282,
+        "end_pos": 375
+      },
+      {
+        "description": "When Karl did Crusaders",
+        "start_pos": 375,
+        "end_pos": 554
+      },
+      {
+        "description": "Rockbusters prizes",
+        "start_pos": 554,
+        "end_pos": 660
+      },
+      {
+        "description": "Rockbusters clues",
+        "start_pos": 660,
+        "end_pos": 707
+      },
+      {
+        "description": "More fan mails for Ricky's boxing nickname, Richard Anderson email",
+        "start_pos": 707,
+        "end_pos": 731
+      },
+      {
+        "description": "Educating Ricky: The Tease",
+        "start_pos": 731,
+        "end_pos": 769
+      },
+      {
+        "description": "Educating Ricky: I'll ba-con in the morning",
+        "start_pos": 769,
+        "end_pos": 877
+      },
+      {
+        "description": "Educating Ricky EXTRA: 8 year old lad still being breast fed, Karl tried to confuse the computer, Genius or Fool, A solution for the breastfeeding issue",
+        "start_pos": 877,
+        "end_pos": 1038
+      },
+      {
+        "description": "You don't see an old man having a Twix",
+        "start_pos": 1038,
+        "end_pos": 1095
+      },
+      {
+        "description": "What confuses Karl in the world",
+        "start_pos": 1095,
+        "end_pos": 1116
+      },
+      {
+        "description": "Steve wants to revive White Van Karl this week, Karl on more things you don't see",
+        "start_pos": 1116,
+        "end_pos": 1140
+      },
+      {
+        "description": "Educating Ricky: We’ll have a big fire to-marrow, Steve hates fireworks",
+        "start_pos": 1140,
+        "end_pos": 1280
+      },
+      {
+        "description": "Kid born without brain",
+        "start_pos": 1280,
+        "end_pos": 1327
+      },
+      {
+        "description": "White Van Karl revived for this week, When Ron Merchant learned the word \"twat\"",
+        "start_pos": 1327,
+        "end_pos": 1446
+      },
+      {
+        "description": "Educating Ricky: He’s a bit of a noose-ance, Brian Blessed shat himself on Everest",
+        "start_pos": 1446,
+        "end_pos": 1543
+      },
+      {
+        "description": "Rockbusters answers, More on Aunty Nora's valances and Brian Blessed shitting himself next week, end",
+        "start_pos": 1543,
+        "end_pos": 1596
+      }
+    ],
     "contributors": [
-      "lasermoai"
+      "lasermoai",
+      "wqzkav"
     ],
     "trivia": null,
     "tags": null,
