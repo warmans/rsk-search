@@ -20,4 +20,5 @@ var Mapping = map[string]FieldType{
 	"pos":           FieldTypeNumber,
 	"content":       FieldTypeText,
 	"type":          FieldTypeKeyword,
+	"special":       FieldTypeKeyword, // true or false
 }

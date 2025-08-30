@@ -141,6 +141,7 @@ func documentsFromPath(filePath string) ([]search.DialogDocument, error) {
 			Actor:        v.Actor,
 			Position:     v.Position,
 			Content:      v.Content,
+			Special:      fmt.Sprintf("%v", episode.Special),
 		})
 	}
 

@@ -54,7 +54,7 @@ func (s *Store) InsertEpisodeWithTranscript(ctx context.Context, ep *models.Tran
 	}
 	_, err = s.tx.ExecContext(
 		ctx,
-		`INSERT INTO episode (id, publication_type, publication, series, episode, release_date, metadata, contributors) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) ON CONFLICT DO NOTHING`,
+		`INSERT INTO episode (id, publication_type, publication, series, episode, release_date, metadata, contributors, special) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) ON CONFLICT DO NOTHING`,
 		ep.ID(),
 		ep.PublicationType,
 		ep.Publication,
@@ -63,6 +63,7 @@ func (s *Store) InsertEpisodeWithTranscript(ctx context.Context, ep *models.Tran
 		util.SqlDate(ep.ReleaseDate),
 		epMeta,
 		epContributors,
+		ep.Special,
 	)
 
 	for _, v := range ep.Transcript {
@@ -120,6 +121,7 @@ func (s *Store) ListEpisodes(ctx context.Context, q *common.QueryModifier) ([]*m
 		"series":           "series",
 		"episode":          "episode",
 		"release_date":     "release_date",
+		"special":          "special",
 	}
 
 	q.Apply(common.WithDefaultSorting("release_date", common.SortAsc))
@@ -131,7 +133,7 @@ func (s *Store) ListEpisodes(ctx context.Context, q *common.QueryModifier) ([]*m
 
 	rows, err := s.tx.QueryxContext(
 		ctx,
-		fmt.Sprintf(`SELECT publication_type, publication, series, episode, release_date  FROM episode %s %s %s`, where, order, paging),
+		fmt.Sprintf(`SELECT publication_type, publication, series, episode, release_date, special  FROM episode %s %s %s`, where, order, paging),
 		params...,
 	)
 	if err != nil {
@@ -144,7 +146,7 @@ func (s *Store) ListEpisodes(ctx context.Context, q *common.QueryModifier) ([]*m
 	result := make([]*models.EpisodeMeta, 0)
 	for rows.Next() {
 		row := &models.EpisodeMeta{}
-		if err := rows.Scan(&row.PublicationType, &row.Publication, &row.Series, &row.Episode, &row.ReleaseDate); err != nil {
+		if err := rows.Scan(&row.PublicationType, &row.Publication, &row.Series, &row.Episode, &row.ReleaseDate, &row.Special); err != nil {
 			return nil, err
 		}
 		result = append(result, row)

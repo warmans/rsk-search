@@ -582,6 +582,7 @@ type EpisodeMeta struct {
 	Series          int32           `json:"series"`
 	Episode         int32           `json:"episode"`
 	ReleaseDate     *time.Time      `json:"release_date"`
+	Special         bool            `json:"special"`
 }
 
 func (e *EpisodeMeta) ID() string {

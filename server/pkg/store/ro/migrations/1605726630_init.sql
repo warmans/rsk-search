@@ -5,6 +5,7 @@ CREATE TABLE "episode"
     "publication"      TEXT,
     "series"           INTEGER,
     "episode"          INTEGER,
+    "special"          BOOLEAN,
     "release_date"     TIMESTAMP,
     "metadata"         JSON,
     "contributors"     JSON

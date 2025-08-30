@@ -27,6 +27,7 @@ type DialogDocument struct {
 	Position     int64      `json:"pos"`
 	Content      string     `json:"content"`
 	ContentType  string     `json:"type"`
+	Special      string     `json:"special"`
 }
 
 func (d DialogDocument) GetNamedField(name string) interface{} {
@@ -49,6 +50,8 @@ func (d DialogDocument) GetNamedField(name string) interface{} {
 		return d.Content
 	case "type":
 		return d.ContentType
+	case "special":
+		return d.Special
 	}
 	return ""
 }
