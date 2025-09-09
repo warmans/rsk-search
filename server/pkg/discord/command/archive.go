@@ -158,12 +158,12 @@ func (a *ArchiveCommand) quickArchiveModalSave(s *discordgo.Session, i *discordg
 			continue
 		}
 
-		if err := a.archiveStore.ArchiveFile(v.Filename, v.URL); err != nil {
+		if err := a.archiveStore.ArchiveFile(a.fileName(v), v.URL); err != nil {
 			a.followupError(s, i, err)
 			return nil
 		}
 
-		fileNames = append(fileNames, v.Filename)
+		fileNames = append(fileNames, a.fileName(v))
 	}
 
 	if len(fileNames) == 0 {
@@ -227,15 +227,19 @@ func (a *ArchiveCommand) validateAttachmentForArchive(v *discordgo.MessageAttach
 		return "", nil
 	}
 	if !util.InStrings(v.ContentType, "image/png", "image/jpg", "image/jpeg", "image/webp") {
-		return fmt.Sprintf("- SKIPPED %s was not a valid image", v.Filename), nil
+		return fmt.Sprintf("- SKIPPED %s was not a valid image", a.fileName(v)), nil
 	}
-	exists, err := a.archiveStore.FileExists(v.Filename)
+	exists, err := a.archiveStore.FileExists(a.fileName(v))
 	if err != nil {
 		a.logger.Error("failed to check file exists", zap.Error(err))
 		return "", fmt.Errorf("failed to check file exists")
 	}
 	if exists {
-		return fmt.Sprintf("- SKIPPED %s already exists", v.Filename), nil
+		return fmt.Sprintf("- SKIPPED %s already exists", a.fileName(v)), nil
 	}
 	return "", nil
+}
+
+func (a *ArchiveCommand) fileName(v *discordgo.MessageAttachment) string {
+	return fmt.Sprintf("%s-%s", v.ID, v.Filename)
 }
