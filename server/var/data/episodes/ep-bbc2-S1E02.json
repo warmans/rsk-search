@@ -5,7 +5,7 @@
     "episode": 2,
     "name": "BBC Radio 2 NYE Special",
     "summary": "",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "release_date": "2005-12-31T10:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -28312,7 +28312,7 @@
         "end_pos": 1512
       },
       {
-        "description": "Blind people are riding horses now.\nTRIVIA: Apparently people do use \"guide horses\" but only [very small ones](https://en.wikipedia.org/wiki/Guide_horse) that can fit in Tescos:\n\n![picture](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Guide_horse.jpg/330px-Guide_horse.jpg)\n",
+        "description": "Blind people are riding horses now.",
         "start_pos": 1513,
         "end_pos": 1535
       },
@@ -28346,6 +28346,11 @@
       "wontbemad"
     ],
     "trivia": [
+      {
+        "description": "Apparently people do use \"guide horses\" but only [very small ones](https://en.wikipedia.org/wiki/Guide_horse) that can fit in Tescos:\n\n![picture](https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Guide_horse.jpg/330px-Guide_horse.jpg)\n",
+        "start_pos": 1514,
+        "end_pos": 1515
+      },
       {
         "description": "This could have been the Western Morning News (Sunday edition?)",
         "start_pos": 1551,
