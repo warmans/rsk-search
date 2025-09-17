@@ -5,7 +5,7 @@
     "episode": 13,
     "name": "",
     "summary": "",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "release_date": "2002-11-16T00:00:00Z",
     "completion": "reported",
     "completion_reports": null,
@@ -5954,7 +5954,7 @@
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "Okay. We got on DVD the Manic Street Preacher's Greatest Hits on DVD. The videos, I'm assuming. The film, \"Human Traffic\", it's a remixed DVD version of that. I think we were giving this away last week, you've obviously got a bulk stock of these, Groove Armada's \"Lovebox\", an album from them. \"The Best Air Guitar Album In The World Ever\", that's got the likes of Queen, Adams, Palmer, Leopard, Idle ---",
+        "content": "Okay. We got on DVD the Manic Street Preacher's Greatest Hits on DVD. The videos, I'm assuming. The film, \"Human Traffic\", it's a remixed DVD version of that. I think we were giving this away last week, you've obviously got a bulk stock of these, Groove Armada's \"Lovebox\", an album from them. \"The Best Air Guitar Album In The World Ever\", that's got the likes of Queen, Adams, Palmer, Leppard, Idle ---",
         "notable": false,
         "placeholder": false,
         "sentiment": "positive"
@@ -5999,7 +5999,7 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "I think The Smiths should be on there.",
+        "content": "I think the 'smith should be on there.",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
@@ -12818,6 +12818,7 @@
     ],
     "contributors": [
       "MattJGH",
+      "clubbychipface",
       "warmans"
     ],
     "trivia": null,
@@ -12833,7 +12834,14 @@
     },
     "ratings": {
       "scores": {
+        "discord:.warmans": 4,
+        "discord:alexb457": 4,
+        "discord:clubbychipface": 4,
+        "discord:dragonq0105": 4.2,
+        "discord:idekbye": 4.1,
         "discord:paulgriffincsp": 3.25,
+        "discord:rowanator3000": 4,
+        "discord:spuddy___": 4,
         "reddit:Rhondson": 4
       }
     }

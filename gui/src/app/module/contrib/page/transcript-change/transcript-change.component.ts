@@ -74,7 +74,9 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
     titleService.setTitle('Contribute');
 
     // don't bother prompting for login etc. if the intent is just to read the change.
-    this.readOnly = route.snapshot.queryParamMap.get('readonly') === '1';
+    route.queryParamMap.pipe((takeUntil(this.destroy$))).subscribe((params) => {
+      this.readOnly = params.get('readonly') === '1'
+    });
 
     route.paramMap.pipe(takeUntil(this.destroy$)).subscribe((d: Data) => {
 

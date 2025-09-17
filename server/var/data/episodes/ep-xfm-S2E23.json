@@ -5,7 +5,7 @@
     "episode": 23,
     "name": "",
     "summary": "",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "release_date": "2003-01-25T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -12229,7 +12229,7 @@
         "timestamp": 2606160000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 12046000000,
+        "duration": 12129000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -12241,14 +12241,14 @@
       {
         "id": "ep-xfm-S2E23-811",
         "pos": 811,
-        "timestamp": 2618206000000,
+        "timestamp": 2618289000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 2244000000,
+        "duration": 2161000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "\"Camelopard\", the original name for a giraffe.",
+        "content": "A leo-pard, the original name for a giraffe.",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
@@ -12274,11 +12274,11 @@
         "timestamp": 2621570000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 14385000000,
+        "duration": 14410000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "Whereas \"Leggo\" was invented when a mother had sent someone to get one of those - there was no name for them. So she went \"Can you go and get some - \". There was a gap, he went \"Oh! Yeah, I'll go and get some - \". Cause they weren't called anything. Brought them back, started playing with the -",
+        "content": "Whereas \"Lego\" was invented when a mother had sent someone to get one of those - there was no name for them. So she went \"Can you go and get some - \". There was a gap, he went \"Oh! Yeah, I'll go and get some - \". Cause they weren't called anything. Brought them back, started playing with the -",
         "notable": false,
         "placeholder": false,
         "sentiment": "negative"
@@ -12286,10 +12286,10 @@
       {
         "id": "ep-xfm-S2E23-814",
         "pos": 814,
-        "timestamp": 2635955000000,
+        "timestamp": 2635980000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 585000000,
+        "duration": 588000000,
         "type": "chat",
         "actor": "",
         "metadata": null,
@@ -12301,14 +12301,14 @@
       {
         "id": "ep-xfm-S2E23-815",
         "pos": 815,
-        "timestamp": 2636540000000,
+        "timestamp": 2636568000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
-        "duration": 3950000000,
+        "duration": 3922000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "And she went. \"Look, gimmie thoes - \". He went \"No\". She went \"Leggo, you idiot!\"",
+        "content": "And she went. \"Look, gimmie those - \". He went \"No\". She went \"Lego, you idiot!\"",
         "notable": false,
         "placeholder": false,
         "sentiment": "negative"
@@ -15146,9 +15146,16 @@
       "Digifoto",
       "Unidentified_Snail",
       "booch_daddy",
+      "clubbychipface",
       "warmans"
     ],
-    "trivia": null,
+    "trivia": [
+      {
+        "description": "Ricky means to say \"cameleopard\" here, an archaic English name for the giraffe, but mistakenly says \"leo-pard\".",
+        "start_pos": 812,
+        "end_pos": 812
+      }
+    ],
     "tags": null,
     "media": {
       "video_file_name": "",
