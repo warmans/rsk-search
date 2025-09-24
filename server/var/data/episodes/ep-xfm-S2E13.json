@@ -5,7 +5,7 @@
     "episode": 13,
     "name": "",
     "summary": "",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "release_date": "2002-11-16T00:00:00Z",
     "completion": "reported",
     "completion_reports": null,
@@ -12718,37 +12718,37 @@
         "timestamp": 1787090000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 1349479000000,
+        "duration": 3658000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "That’s dynamite stuff, well done Karl. More ‘Educating Ricky’ next?",
         "notable": false,
         "placeholder": false,
-        "sentiment": "negative"
+        "sentiment": "positive"
       },
       {
         "id": "ep-xfm-S2E13-846",
         "pos": 846,
-        "timestamp": 3136569000000,
+        "timestamp": 1790748000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 92430000000,
+        "duration": 250000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
         "content": "Yeah.",
         "notable": false,
         "placeholder": false,
-        "sentiment": "negative"
+        "sentiment": "mixed"
       },
       {
         "id": "ep-xfm-S2E13-847",
         "pos": 847,
-        "timestamp": 3228999000000,
+        "timestamp": 1790998000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
-        "duration": 1000000,
+        "duration": 0,
         "type": "song",
         "actor": "",
         "metadata": {
@@ -12762,6 +12762,21 @@
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
+      },
+      {
+        "id": "ep-xfm-S2E13-848",
+        "pos": 848,
+        "timestamp": 1790998000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 3,
+        "duration": 1438002000000,
+        "type": "gap",
+        "actor": "",
+        "metadata": null,
+        "content": "",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": "negative"
       }
     ],
     "synopsis": [
@@ -12818,6 +12833,7 @@
     ],
     "contributors": [
       "MattJGH",
+      "MonotoneCreeper",
       "clubbychipface",
       "warmans"
     ],
