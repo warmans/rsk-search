@@ -1,7 +1,7 @@
 <div
   class="editor"
   [ngClass]="{'wrap': wrap}"
-  [attr.contenteditable]="!readonly"
+  [attr.contenteditable]="readonly ? 'false' : 'plaintext-only'"
   unformattedPaste
   (keyup)="onKeypress()"
   (click)="onKeypress()"
