@@ -5,7 +5,7 @@
     "episode": 42,
     "name": "",
     "summary": "",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "release_date": "2003-06-14T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -16328,6 +16328,7 @@
     "contributors": [
       "MonotoneCreeper",
       "Oooch",
+      "lasermoai",
       "wqzkav"
     ],
     "trivia": [
@@ -16335,6 +16336,11 @@
         "description": "Columbo was not on TV in the UK on any channel at the time that Ricky said this",
         "start_pos": 352,
         "end_pos": 354
+      },
+      {
+        "description": "He means the Viking leader Ivar the Boneless.",
+        "start_pos": 641,
+        "end_pos": 656
       }
     ],
     "tags": null,
