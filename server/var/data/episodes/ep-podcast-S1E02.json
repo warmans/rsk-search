@@ -5,7 +5,7 @@
     "episode": 2,
     "name": "Episode Two",
     "summary": "",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "release_date": "2004-11-30T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -104,7 +104,7 @@
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "Rick, you'll be pleased to know we've already had some responses. You remember last week I mentioned that you can email us on podcast@rickygervais.com if you've got anything for Karl or you or I. And Simon and Mark have already emailed us in this link to something that was on the BBC News website. I don't know if you're familiar with this, but it's a remarkable story. Steve: Em.. Well, I'll just  -- I'll give you the headline straight away and you can. You can draw your own conclusion: \"Lion Mutilates 42 Midgets in Cambodian Ring Fight\". That's just the headline.",
+        "content": "Rick, you'll be pleased to know we've already had some responses. You remember last week I mentioned that you can email us on podcast@rickygervais.com if you've got anything for Karl or you or I. And Simon and Mark have already emailed us in this link to something that was on the BBC News website. I don't know if you're familiar with this, but it's a remarkable story. Steve: Em.. Well, I'll just -- I'll give you the headline straight away and you can. You can draw your own conclusion: \"Lion Mutilates 42 Midgets in Cambodian Ring Fight\". That's just the headline.",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
@@ -7404,13 +7404,14 @@
     "contributors": [
       "Born-Leg-9021",
       "RosePamphyle",
-      "ThePumpk1nMaster"
+      "ThePumpk1nMaster",
+      "lasermoai"
     ],
     "trivia": [
       {
         "description": "This was a well-distributed hoax article from 2 May 2005. Although this was purported to be from the BBC, it was actually provided on someone's personal website in the style of the BBC, stating the event was to take place in Kâmpóng Chhnãng, the capital of Cambodia. (Source: https://web.archive.org/web/20050609031635/https://lionvs40midgets.uk-directory.com/).\nIt also appeared in the Lads mag Maxim and shock-jock Howard Stern's show.\nThe person who wrote it wanted to settle a bet with his friend and ended up writing a fake article to convince his friend who was certain the 40 midgets would win in the hypothetical fight, using a previous article from the BBC about Cambodian \"zombies\" as the template.\nThe author wrote it as a joke, but it quickly ended up becoming a viral sensation due to it being posted to sites like FARK and CollegeHumor, and forwarded via email to many people around the world, including, apparently, Steve Merchant and Ricky Gervais. Snopes wrote an article explaining the background here: https://www.snopes.com/fact-check/lion-in-wait/",
         "start_pos": 6,
-        "end_pos": 6
+        "end_pos": 15
       },
       {
         "description": "Ready, Steady Cook was a BBC cookery show starring chef Ainsley Harriot and other chefs, who were given a bag of ingredients and were asked to make dishes, usually on a budget.",
