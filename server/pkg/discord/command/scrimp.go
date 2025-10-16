@@ -747,11 +747,13 @@ func (b *SearchCommand) audioFileResponse(customID CustomID, username string) (*
 	} else {
 		if customID.ContentModifier != ContentModifierTextOnly {
 			audioFileURL := fmt.Sprintf(
-				"%s/dl/media/%s.mp3?ts=%d-%d",
+				"%s/dl/media/%s.mp3?ts=%d-%d&extend=%s&shift=%s",
 				b.webUrl,
 				dialog.TranscriptMeta.ShortId,
 				dialog.Dialog[0].OffsetMs,
 				dialog.Dialog[len(dialog.Dialog)-1].OffsetMs+dialog.Dialog[len(dialog.Dialog)-1].DurationMs,
+				customID.AudioExtendOrTrim.String(),
+				customID.AudioShift.String(),
 			)
 			resp, err := http.Get(audioFileURL)
 			if err != nil {
