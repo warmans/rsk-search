@@ -151,9 +151,9 @@ func (b *SearchCommand) Options() []*discordgo.ApplicationCommandOption {
 
 func (b *SearchCommand) ButtonHandlers() discord.InteractionHandlers {
 	return discord.InteractionHandlers{
-		"cfm":                   b.queryComplete,
-		"up":                    b.updatePreview,
-		"open-audio-edit-modal": b.handleOpenAudioEditModal,
+		"cfm":  b.queryComplete,
+		"up":   b.updatePreview,
+		"oaem": b.handleOpenAudioEditModal,
 	}
 }
 
@@ -346,7 +346,10 @@ func (b *SearchCommand) updatePreview(s *discordgo.Session, i *discordgo.Interac
 		Components: &interactionResponse.Data.Components,
 	})
 
-	return err
+	if err != nil {
+		return fmt.Errorf("failed to update preview: %w", err)
+	}
+	return nil
 }
 
 func (b *SearchCommand) beginAudioResponse(
@@ -478,6 +481,8 @@ func (b *SearchCommand) buttons(customID CustomID, maxDialogOffset int32) []disc
 				"up",
 				customID.withOption(
 					withStartLine(customID.StartLine+1),
+					withAudioShift(0),
+					withAudioExtendOrTrim(0),
 				),
 			),
 		})
@@ -494,6 +499,8 @@ func (b *SearchCommand) buttons(customID CustomID, maxDialogOffset int32) []disc
 				"up",
 				customID.withOption(
 					withEndLine(customID.EndLine-1),
+					withAudioShift(0),
+					withAudioExtendOrTrim(0),
 				),
 			),
 		})
@@ -576,7 +583,7 @@ func (b *SearchCommand) buttons(customID CustomID, maxDialogOffset int32) []disc
 			// Style provides coloring of the button. There are not so many styles tho.
 			Style: discordgo.SecondaryButton,
 			// CustomID is a thing telling Discord which data to send when this button will be pressed.
-			CustomID: fmt.Sprintf("%s:open-audio-edit-modal:%s", b.Name(), customID),
+			CustomID: fmt.Sprintf("%s:oaem:%s", b.Name(), customID),
 		})
 	}
 
