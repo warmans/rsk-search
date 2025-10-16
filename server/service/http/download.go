@@ -29,8 +29,10 @@ import (
 )
 
 type partialFileOptions struct {
-	stripID3   bool
-	wantFormat string
+	stripID3     bool
+	wantFormat   string
+	extendOrTrim time.Duration
+	shift        time.Duration
 }
 
 type partialFileOption func(opts *partialFileOptions)
@@ -38,6 +40,18 @@ type partialFileOption func(opts *partialFileOptions)
 func withoutID3Metadata(enabled bool) partialFileOption {
 	return func(opts *partialFileOptions) {
 		opts.stripID3 = enabled
+	}
+}
+
+func withShift(shift time.Duration) partialFileOption {
+	return func(opts *partialFileOptions) {
+		opts.shift = shift
+	}
+}
+
+func withExtendOrTrim(extendOrTrim time.Duration) partialFileOption {
+	return func(opts *partialFileOptions) {
+		opts.extendOrTrim = extendOrTrim
 	}
 }
 
@@ -263,8 +277,8 @@ func (c *DownloadService) servePartialAudioFile(
 			return ffmpeg_go.
 				Input(mp3Path,
 					ffmpeg_go.KwArgs{
-						"ss": fmt.Sprintf("%0.2f", ss.Seconds()),
-						"to": fmt.Sprintf("%0.2f", to.Seconds()),
+						"ss": fmt.Sprintf("%0.2f", ss.Seconds()+options.shift.Seconds()),
+						"to": fmt.Sprintf("%0.2f", to.Seconds()+options.shift.Seconds()+options.extendOrTrim.Seconds()),
 					}).
 				Output("pipe:", outputArgs).WithOutput(w, os.Stderr).Run()
 		}
@@ -347,6 +361,24 @@ func (c *DownloadService) DownloadEpisodeMedia(resp http.ResponseWriter, req *ht
 	if req.URL.Query().Has("pos") || req.URL.Query().Has("ts") {
 
 		stripID3Tags := req.URL.Query().Get("strip_tags")
+
+		var extendOrTrimDuration time.Duration
+		var shiftDuration time.Duration
+
+		if extendOrTrim := req.URL.Query().Get("extend"); extendOrTrim != "" {
+			extendOrTrimDuration, err = time.ParseDuration(extendOrTrim)
+			if err != nil {
+				http.Error(resp, "Invalid extend duration requested: "+err.Error(), http.StatusBadRequest)
+				return
+			}
+		}
+		if shift := req.URL.Query().Get("shift"); shift != "" {
+			shiftDuration, err = time.ParseDuration(shift)
+			if err != nil {
+				http.Error(resp, "Invalid shift duration requested: "+err.Error(), http.StatusBadRequest)
+				return
+			}
+		}
 
 		//determine the time range to export
 		var startTimestamp, endTimestamp time.Duration
@@ -442,6 +474,8 @@ func (c *DownloadService) DownloadEpisodeMedia(resp http.ResponseWriter, req *ht
 			endTimestamp,
 			withoutID3Metadata(stripID3Tags == "true"),
 			withOutputFormat(wantFormat),
+			withShift(shiftDuration),
+			withExtendOrTrim(extendOrTrimDuration),
 		); err != nil {
 			c.logger.Error("Failed to serve partial audio file", zap.Error(err))
 			return

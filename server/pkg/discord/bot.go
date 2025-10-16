@@ -140,6 +140,7 @@ func (b *Bot) Start() error {
 				if strings.HasPrefix(i.ModalSubmitData().CustomID, k) {
 					arg := strings.TrimPrefix(i.ModalSubmitData().CustomID, fmt.Sprintf("%s:", k))
 					if err := h(s, i, arg); err != nil {
+						b.logger.Error(fmt.Sprintf("failed to execute handler for modal: %s", k))
 						common.RespondError(b.logger, s, i, err)
 					}
 					return
@@ -152,6 +153,7 @@ func (b *Bot) Start() error {
 				if strings.HasPrefix(i.MessageComponentData().CustomID, k) {
 					arg := strings.TrimPrefix(i.MessageComponentData().CustomID, fmt.Sprintf("%s:", k))
 					if err := h(s, i, arg); err != nil {
+						b.logger.Error(fmt.Sprintf("failed to execute handler for button: %s", k))
 						common.RespondError(b.logger, s, i, err)
 					}
 					return
