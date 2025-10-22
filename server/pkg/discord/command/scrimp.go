@@ -14,49 +14,43 @@ import (
 	"go.uber.org/zap"
 	"io"
 	"net/http"
-	"regexp"
+	"strconv"
 	"strings"
 	"time"
 )
 
-const defaultContext = 0
+type stateOpt func(c *ScrimpState)
 
-var punctuation = regexp.MustCompile(`[^a-zA-Z0-9\s]+`)
-var spaces = regexp.MustCompile(`[\s]{2,}`)
-var metaWhitespace = regexp.MustCompile(`[\n\r\t]+`)
-
-type customIDOpt func(c *CustomID)
-
-func withModifier(mod ContentModifier) customIDOpt {
-	return func(c *CustomID) {
+func withModifier(mod ContentModifier) stateOpt {
+	return func(c *ScrimpState) {
 		c.ContentModifier = mod
 	}
 }
 
-func withStartLine(pos int32) customIDOpt {
-	return func(c *CustomID) {
+func withStartLine(pos int32) stateOpt {
+	return func(c *ScrimpState) {
 		c.StartLine = pos
 	}
 }
-func withEndLine(pos int32) customIDOpt {
-	return func(c *CustomID) {
+func withEndLine(pos int32) stateOpt {
+	return func(c *ScrimpState) {
 		c.EndLine = pos
 	}
 }
 
-func withAudioShift(duration time.Duration) customIDOpt {
-	return func(c *CustomID) {
+func withAudioShift(duration time.Duration) stateOpt {
+	return func(c *ScrimpState) {
 		c.AudioShift = duration
 	}
 }
 
-func withAudioExtendOrTrim(duration time.Duration) customIDOpt {
-	return func(c *CustomID) {
+func withAudioExtendOrTrim(duration time.Duration) stateOpt {
+	return func(c *ScrimpState) {
 		c.AudioExtendOrTrim = duration
 	}
 }
 
-type CustomID struct {
+type ScrimpState struct {
 	EpisodeID         string          `json:"e,omitempty"`
 	StartLine         int32           `json:"s,omitempty"`
 	EndLine           int32           `json:"f,omitempty"`
@@ -66,18 +60,12 @@ type CustomID struct {
 	ContentModifier   ContentModifier `json:"t,omitempty"`
 }
 
-func (c CustomID) String() string {
-	data, err := json.Marshal(c)
-	if err != nil {
-		// this should never happen
-		fmt.Printf("failed to encode customID: %s\n", err.Error())
-		return ""
-	}
-	return string(data)
+func (c ScrimpState) String() string {
+	return mustEncodeState(c)
 }
 
-func (c CustomID) withOption(options ...customIDOpt) CustomID {
-	clone := &CustomID{
+func (c ScrimpState) withOption(options ...stateOpt) ScrimpState {
+	clone := &ScrimpState{
 		EpisodeID:         c.EpisodeID,
 		StartLine:         c.StartLine,
 		EndLine:           c.EndLine,
@@ -92,6 +80,15 @@ func (c CustomID) withOption(options ...customIDOpt) CustomID {
 	return *clone
 }
 
+type Action string
+
+const (
+	ActionNone               Action = ""
+	ActionUpdateState        Action = "sta"
+	ActionOpenAudioEditModal Action = "oaem"
+	ActionCompleteQuery      Action = "cfm"
+)
+
 type ContentModifier uint8
 
 const (
@@ -100,6 +97,54 @@ const (
 	ContentModifierAudioOnly
 	ContentModifierGifOnly
 )
+
+type StateUpdateType string
+
+const StateUpdateShiftDialogBackwards StateUpdateType = "sdb"
+const StateUpdateShiftDialogForwards StateUpdateType = "sdf"
+const StateUpdateAddPreviousLine StateUpdateType = "apl"
+const StateUpdateAddNextLine StateUpdateType = "anl"
+const StateUpdateTrimFirstLine StateUpdateType = "tfl"
+const StateUpdateTrimLastLine StateUpdateType = "tll"
+const StateUpdateAudioShift StateUpdateType = "as"
+const StateUpdateAudioExtendTrim StateUpdateType = "aet"
+const StateUpdateSetContentModifier StateUpdateType = "scm"
+
+type StateUpdate struct {
+	Type  StateUpdateType `json:"t"`
+	Value any             `json:"v"`
+}
+
+func (s StateUpdate) CustomID() string {
+	enc, err := json.Marshal(s)
+	if err != nil {
+		panic(fmt.Sprintf("failed to encode state update: %s", err.Error()))
+	}
+	return fmt.Sprintf("%s:%s", ActionUpdateState, string(enc))
+}
+
+type searchResult struct {
+	EpisodeID string `json:"e,omitempty"`
+	StartLine int32  `json:"s,omitempty"`
+	EndLine   int32  `json:"f,omitempty"`
+}
+
+func (s searchResult) String() string {
+	b, err := json.Marshal(s)
+	if err != nil {
+		return ""
+	}
+	return string(b)
+}
+
+func (s searchResult) ToState() ScrimpState {
+	return ScrimpState{
+		EpisodeID:       s.EpisodeID,
+		StartLine:       s.StartLine,
+		EndLine:         s.EndLine,
+		ContentModifier: ContentModifierTextOnly,
+	}
+}
 
 func NewSearchCommand(
 	logger *zap.Logger,
@@ -151,15 +196,15 @@ func (b *SearchCommand) Options() []*discordgo.ApplicationCommandOption {
 
 func (b *SearchCommand) ButtonHandlers() discord.InteractionHandlers {
 	return discord.InteractionHandlers{
-		"cfm":  b.queryComplete,
-		"up":   b.updatePreview,
-		"oaem": b.handleOpenAudioEditModal,
+		string(ActionCompleteQuery):      b.queryComplete,
+		string(ActionOpenAudioEditModal): b.handleOpenAudioEditModal,
+		string(ActionUpdateState):        b.handleStateUpdate,
 	}
 }
 
 func (b *SearchCommand) ModalHandlers() discord.InteractionHandlers {
 	return discord.InteractionHandlers{
-		"submit-audio-edit": b.handleAudioEdit,
+		"se": b.handleAudioEdit,
 	}
 }
 
@@ -219,13 +264,11 @@ func (b *SearchCommand) handleAutocomplete(s *discordgo.Session, i *discordgo.In
 			continue
 		}
 		choices = append(choices, &discordgo.ApplicationCommandOptionChoice{
-			Name: util.TrimToN(fmt.Sprintf("%s: %s", v.Actor, v.Line), 100),
-			Value: (&CustomID{
-				EpisodeID:       v.Epid,
-				StartLine:       v.Pos,
-				EndLine:         v.Pos,
-				NumContextLines: defaultContext,
-				ContentModifier: ContentModifierTextOnly,
+			Name: util.TrimToN(fmt.Sprintf("[%s] %s: %s", v.Epid, v.Actor, v.Line), 100),
+			Value: (&searchResult{
+				EpisodeID: v.Epid,
+				StartLine: v.Pos,
+				EndLine:   v.Pos,
 			}).String(),
 		})
 	}
@@ -244,18 +287,21 @@ func (b *SearchCommand) queryBegin(s *discordgo.Session, i *discordgo.Interactio
 	if selection == "" {
 		return nil
 	}
-	customID, err := decodeCustomIDPayload(selection)
-	if err != nil {
-		return err
-	}
-	if err := b.beginAudioResponse(s, i, customID); err != nil {
-		return err
+
+	result := &searchResult{}
+	if err := json.Unmarshal([]byte(selection), result); err != nil {
+		return fmt.Errorf("failed to decode selected result: %w", err)
 	}
 
-	return nil
+	return b.beginAudioResponse(s, i, result.ToState())
 }
 
 func (b *SearchCommand) queryComplete(s *discordgo.Session, i *discordgo.InteractionCreate, args ...string) error {
+
+	state, err := extractStateFromBody[ScrimpState](i.Message)
+	if err != nil {
+		return err
+	}
 
 	if i.Type != discordgo.InteractionMessageComponent {
 		return nil
@@ -279,13 +325,8 @@ func (b *SearchCommand) queryComplete(s *discordgo.Session, i *discordgo.Interac
 		})
 	}
 
-	customID, err := decodeCustomIDPayload(args[0])
-	if err != nil {
-		return fmt.Errorf("failed to decode customID: %w", err)
-	}
-
 	content := i.Message.Content
-	if customID.ContentModifier == ContentModifierAudioOnly {
+	if state.ContentModifier == ContentModifierAudioOnly {
 		username := "unknown"
 		if i.Member != nil {
 			username = i.Member.DisplayName()
@@ -296,7 +337,7 @@ func (b *SearchCommand) queryComplete(s *discordgo.Session, i *discordgo.Interac
 	interactionResponse := &discordgo.InteractionResponse{
 		Type: discordgo.InteractionResponseChannelMessageWithSource,
 		Data: &discordgo.InteractionResponseData{
-			Content:     content,
+			Content:     deleteStateFromContent(content),
 			Files:       files,
 			Attachments: util.ToPtr([]*discordgo.MessageAttachment{}),
 		},
@@ -309,11 +350,7 @@ func (b *SearchCommand) queryComplete(s *discordgo.Session, i *discordgo.Interac
 	return nil
 }
 
-func (b *SearchCommand) updatePreview(s *discordgo.Session, i *discordgo.InteractionCreate, args ...string) error {
-	customID, err := decodeCustomIDPayload(args[0])
-	if err != nil {
-		return fmt.Errorf("failed to decode customID: %w", err)
-	}
+func (b *SearchCommand) updatePreview(s *discordgo.Session, i *discordgo.InteractionCreate, state ScrimpState) error {
 	username := "unknown"
 	if i.Member != nil {
 		username = i.Member.DisplayName()
@@ -331,13 +368,13 @@ func (b *SearchCommand) updatePreview(s *discordgo.Session, i *discordgo.Interac
 		return err
 	}
 
-	interactionResponse, maxDialogOffset, cleanup, err := b.audioFileResponse(customID, username)
+	interactionResponse, maxDialogOffset, cleanup, err := b.audioFileResponse(state, username, true)
 	if err != nil {
 		return err
 	}
 	defer cleanup()
 
-	interactionResponse.Data.Components = b.buttons(customID, maxDialogOffset)
+	interactionResponse.Data.Components = b.buttons(state, maxDialogOffset)
 	interactionResponse.Data.Flags = discordgo.MessageFlagsEphemeral
 
 	_, err = s.InteractionResponseEdit(i.Interaction, &discordgo.WebhookEdit{
@@ -355,14 +392,14 @@ func (b *SearchCommand) updatePreview(s *discordgo.Session, i *discordgo.Interac
 func (b *SearchCommand) beginAudioResponse(
 	s *discordgo.Session,
 	i *discordgo.InteractionCreate,
-	customID CustomID,
+	state ScrimpState,
 ) error {
 	username := "unknown"
 	if i.Member != nil {
 		username = i.Member.DisplayName()
 	}
 
-	interactionResponse, maxDialogOffset, cleanup, err := b.audioFileResponse(customID, username)
+	interactionResponse, maxDialogOffset, cleanup, err := b.audioFileResponse(state, username, true)
 	if err != nil {
 		common.RespondError(b.logger, s, i, err)
 		return err
@@ -370,7 +407,7 @@ func (b *SearchCommand) beginAudioResponse(
 	defer cleanup()
 
 	interactionResponse.Data.Flags = discordgo.MessageFlagsEphemeral
-	interactionResponse.Data.Components = b.buttons(customID, maxDialogOffset)
+	interactionResponse.Data.Components = b.buttons(state, maxDialogOffset)
 	err = s.InteractionRespond(i.Interaction, interactionResponse)
 	if err != nil {
 		b.logger.Error("failed to respond", zap.Error(err))
@@ -378,53 +415,35 @@ func (b *SearchCommand) beginAudioResponse(
 	return nil
 }
 
-func (b *SearchCommand) buttons(customID CustomID, maxDialogOffset int32) []discordgo.MessageComponent {
+func (b *SearchCommand) buttons(state ScrimpState, maxDialogOffset int32) []discordgo.MessageComponent {
 
 	editRow1 := []discordgo.MessageComponent{}
-	if customID.StartLine > 0 {
+	if state.StartLine > 0 {
 		editRow1 = append(editRow1, discordgo.Button{
-			// Label is what the user will see on the button.
 			Label: "Shift Dialog Backwards",
 			Emoji: &discordgo.ComponentEmoji{
 				Name: "⏪",
 			},
-			// Style provides coloring of the button. There are not so many styles tho.
 			Style: discordgo.SecondaryButton,
-			// CustomID is a thing telling Discord which data to send when this button will be pressed.
-			CustomID: b.encodeCustomIDForAction(
-				"up",
-				customID.withOption(
-					withStartLine(customID.StartLine-1),
-					withEndLine(customID.EndLine-1),
-					withAudioShift(0),
-					withAudioExtendOrTrim(0),
-				),
+			CustomID: b.encodeCustomIDForStateUpdate(
+				StateUpdate{Type: StateUpdateShiftDialogBackwards},
 			),
 		})
 	}
-	if customID.StartLine+1 < maxDialogOffset {
+	if state.StartLine+1 < maxDialogOffset {
 		editRow1 = append(editRow1, discordgo.Button{
-			// Label is what the user will see on the button.
 			Label: "Shift Dialog Forward",
 			Emoji: &discordgo.ComponentEmoji{
 				Name: "⏩",
 			},
-			// Style provides coloring of the button. There are not so many styles tho.
 			Style: discordgo.SecondaryButton,
-			// CustomID is a thing telling Discord which data to send when this button will be pressed.
-			CustomID: b.encodeCustomIDForAction(
-				"up",
-				customID.withOption(
-					withStartLine(customID.StartLine+1),
-					withEndLine(min(maxDialogOffset, customID.EndLine+1)),
-					withAudioShift(0),
-					withAudioExtendOrTrim(0),
-				),
+			CustomID: b.encodeCustomIDForStateUpdate(
+				StateUpdate{Type: StateUpdateShiftDialogForwards},
 			),
 		})
 	}
-	if customID.EndLine-customID.StartLine < 25 && customID.ContentModifier != ContentModifierGifOnly {
-		if customID.StartLine > 0 {
+	if state.EndLine-state.StartLine < 25 && state.ContentModifier != ContentModifierGifOnly {
+		if state.StartLine > 0 {
 			editRow1 = append(editRow1, discordgo.Button{
 				// Label is what the user will see on the button.
 				Label: "Add Previous Line",
@@ -434,17 +453,12 @@ func (b *SearchCommand) buttons(customID CustomID, maxDialogOffset int32) []disc
 				// Style provides coloring of the button. There are not so many styles tho.
 				Style: discordgo.SecondaryButton,
 				// CustomID is a thing telling Discord which data to send when this button will be pressed.
-				CustomID: b.encodeCustomIDForAction(
-					"up",
-					customID.withOption(
-						withStartLine(customID.StartLine-1),
-						withAudioShift(0),
-						withAudioExtendOrTrim(0),
-					),
+				CustomID: b.encodeCustomIDForStateUpdate(
+					StateUpdate{Type: StateUpdateAddPreviousLine},
 				),
 			})
 		}
-		if customID.EndLine+1 < maxDialogOffset {
+		if state.EndLine+1 < maxDialogOffset {
 			editRow1 = append(editRow1, discordgo.Button{
 				// Label is what the user will see on the button.
 				Label: "Add Next Line",
@@ -454,136 +468,88 @@ func (b *SearchCommand) buttons(customID CustomID, maxDialogOffset int32) []disc
 				// Style provides coloring of the button. There are not so many styles tho.
 				Style: discordgo.SecondaryButton,
 				// CustomID is a thing telling Discord which data to send when this button will be pressed.
-				CustomID: b.encodeCustomIDForAction(
-					"up",
-					customID.withOption(
-						withEndLine(customID.EndLine+1),
-						withAudioShift(0),
-						withAudioExtendOrTrim(0),
-					),
+				CustomID: b.encodeCustomIDForStateUpdate(
+					StateUpdate{Type: StateUpdateAddNextLine},
 				),
 			})
 		}
 	}
 
 	editRow2 := []discordgo.MessageComponent{}
-	if customID.EndLine-customID.StartLine > 0 {
+	if state.EndLine-state.StartLine > 0 {
 		editRow2 = append(editRow2, discordgo.Button{
-			// Label is what the user will see on the button.
 			Label: "Trim First Line",
 			Emoji: &discordgo.ComponentEmoji{
 				Name: "✂",
 			},
-			// Style provides coloring of the button. There are not so many styles tho.
 			Style: discordgo.SecondaryButton,
-			// CustomID is a thing telling Discord which data to send when this button will be pressed.
-			CustomID: b.encodeCustomIDForAction(
-				"up",
-				customID.withOption(
-					withStartLine(customID.StartLine+1),
-					withAudioShift(0),
-					withAudioExtendOrTrim(0),
-				),
+			CustomID: b.encodeCustomIDForStateUpdate(
+				StateUpdate{Type: StateUpdateTrimFirstLine},
 			),
 		})
 		editRow2 = append(editRow2, discordgo.Button{
-			// Label is what the user will see on the button.
 			Label: "Trim Last Line",
 			Emoji: &discordgo.ComponentEmoji{
 				Name: "✂",
 			},
-			// Style provides coloring of the button. There are not so many styles tho.
 			Style: discordgo.SecondaryButton,
-			// CustomID is a thing telling Discord which data to send when this button will be pressed.
-			CustomID: b.encodeCustomIDForAction(
-				"up",
-				customID.withOption(
-					withEndLine(customID.EndLine-1),
-					withAudioShift(0),
-					withAudioExtendOrTrim(0),
-				),
+			CustomID: b.encodeCustomIDForStateUpdate(
+				StateUpdate{Type: StateUpdateTrimLastLine},
 			),
 		})
 	}
 
 	// audio is only enabled with these modifiers
 	editRow3 := []discordgo.MessageComponent{}
-	if customID.ContentModifier == ContentModifierAudioOnly || customID.ContentModifier == ContentModifierNone {
+	if state.ContentModifier == ContentModifierAudioOnly || state.ContentModifier == ContentModifierNone {
 
 		editRow3 = append(editRow3, discordgo.Button{
-			// Label is what the user will see on the button.
 			Label: "Shift Audio Backwards 1s",
 			Emoji: &discordgo.ComponentEmoji{
-				Name: "⏩",
+				Name: "⏪",
 			},
-			// Style provides coloring of the button. There are not so many styles tho.
 			Style: discordgo.SecondaryButton,
-			// CustomID is a thing telling Discord which data to send when this button will be pressed.
-			CustomID: b.encodeCustomIDForAction(
-				"up",
-				customID.withOption(
-					withAudioShift(customID.AudioShift-time.Second),
-				),
+			CustomID: b.encodeCustomIDForStateUpdate(
+				StateUpdate{Type: StateUpdateShiftDialogBackwards, Value: "1s"},
 			),
 		})
 		editRow3 = append(editRow3, discordgo.Button{
-			// Label is what the user will see on the button.
 			Label: "Shift Audio Forward 1s",
 			Emoji: &discordgo.ComponentEmoji{
 				Name: "⏩",
 			},
-			// Style provides coloring of the button. There are not so many styles tho.
 			Style: discordgo.SecondaryButton,
-			// CustomID is a thing telling Discord which data to send when this button will be pressed.
-			CustomID: b.encodeCustomIDForAction(
-				"up",
-				customID.withOption(
-					withAudioShift(customID.AudioShift+time.Second),
-				),
+			CustomID: b.encodeCustomIDForStateUpdate(
+				StateUpdate{Type: StateUpdateShiftDialogForwards, Value: "1s"},
 			),
 		})
 
 		editRow3 = append(editRow3, discordgo.Button{
-			// Label is what the user will see on the button.
 			Label: "Trim Audio 1s",
 			Emoji: &discordgo.ComponentEmoji{
 				Name: "✂",
 			},
-			// Style provides coloring of the button. There are not so many styles tho.
 			Style: discordgo.SecondaryButton,
-			// CustomID is a thing telling Discord which data to send when this button will be pressed.
-			CustomID: b.encodeCustomIDForAction(
-				"up",
-				customID.withOption(
-					withAudioExtendOrTrim(customID.AudioExtendOrTrim-time.Second),
-				),
+			CustomID: b.encodeCustomIDForStateUpdate(
+				StateUpdate{Type: StateUpdateAudioExtendTrim, Value: "-1s"},
 			),
 		})
 
 		editRow3 = append(editRow3, discordgo.Button{
-			// Label is what the user will see on the button.
 			Label: "Extend Audio 1s",
 			Emoji: &discordgo.ComponentEmoji{
 				Name: "➕",
 			},
-			// Style provides coloring of the button. There are not so many styles tho.
 			Style: discordgo.SecondaryButton,
-			// CustomID is a thing telling Discord which data to send when this button will be pressed.
-			CustomID: b.encodeCustomIDForAction(
-				"up",
-				customID.withOption(
-					withAudioExtendOrTrim(customID.AudioExtendOrTrim+time.Second),
-				),
+			CustomID: b.encodeCustomIDForStateUpdate(
+				StateUpdate{Type: StateUpdateAudioExtendTrim, Value: "1s"},
 			),
 		})
 
 		editRow3 = append(editRow3, discordgo.Button{
-			// Label is what the user will see on the button.
-			Label: "Custom",
-			// Style provides coloring of the button. There are not so many styles tho.
-			Style: discordgo.SecondaryButton,
-			// CustomID is a thing telling Discord which data to send when this button will be pressed.
-			CustomID: fmt.Sprintf("%s:oaem:%s", b.Name(), customID),
+			Label:    "Custom",
+			Style:    discordgo.SecondaryButton,
+			CustomID: fmt.Sprintf("%s:oaem:%s", b.Name(), state),
 		})
 	}
 
@@ -608,49 +574,57 @@ func (b *SearchCommand) buttons(customID CustomID, maxDialogOffset int32) []disc
 			discordgo.Button{
 				Label:    "Post",
 				Style:    discordgo.PrimaryButton,
-				CustomID: b.encodeCustomIDForAction("cfm", customID),
+				CustomID: fmt.Sprintf("%s:%s", b.Name(), ActionCompleteQuery),
 			},
 		},
 	}
-	if customID.ContentModifier != ContentModifierGifOnly {
-		if customID.ContentModifier != ContentModifierNone {
+	if state.ContentModifier != ContentModifierGifOnly {
+		if state.ContentModifier != ContentModifierNone {
 			postButtons.Components = append(postButtons.Components, discordgo.Button{
-				Label:    "Audio & Text",
-				Style:    discordgo.SecondaryButton,
-				CustomID: b.encodeCustomIDForAction("up", customID.withOption(withModifier(ContentModifierNone))),
+				Label: "Audio & Text",
+				Style: discordgo.SecondaryButton,
+				CustomID: b.encodeCustomIDForStateUpdate(
+					StateUpdate{Type: StateUpdateSetContentModifier, Value: fmt.Sprint(ContentModifierNone)},
+				),
 			})
 		}
-		if customID.ContentModifier != ContentModifierAudioOnly {
+		if state.ContentModifier != ContentModifierAudioOnly {
 			postButtons.Components = append(postButtons.Components, discordgo.Button{
 				Label: "Audio Only",
 				Emoji: &discordgo.ComponentEmoji{
 					Name: "🔊",
 				},
-				Style:    discordgo.SecondaryButton,
-				CustomID: b.encodeCustomIDForAction("up", customID.withOption(withModifier(ContentModifierAudioOnly))),
+				Style: discordgo.SecondaryButton,
+				CustomID: b.encodeCustomIDForStateUpdate(
+					StateUpdate{Type: StateUpdateSetContentModifier, Value: fmt.Sprint(ContentModifierAudioOnly)},
+				),
 			})
 		}
-		if customID.ContentModifier != ContentModifierTextOnly {
+		if state.ContentModifier != ContentModifierTextOnly {
 			postButtons.Components = append(postButtons.Components, discordgo.Button{
 				Label: "Text Only",
 				Emoji: &discordgo.ComponentEmoji{
 					Name: "📄",
 				},
-				Style:    discordgo.SecondaryButton,
-				CustomID: b.encodeCustomIDForAction("up", customID.withOption(withModifier(ContentModifierTextOnly))),
+				Style: discordgo.SecondaryButton,
+				CustomID: b.encodeCustomIDForStateUpdate(
+					StateUpdate{Type: StateUpdateSetContentModifier, Value: fmt.Sprint(ContentModifierTextOnly)},
+				),
 			})
 		}
 	}
-	if customID.StartLine == customID.EndLine && customID.NumContextLines == 0 {
-		if customID.ContentModifier != ContentModifierGifOnly {
+	if state.StartLine == state.EndLine && state.NumContextLines == 0 {
+		if state.ContentModifier != ContentModifierGifOnly {
 			postButtons.Components = append(postButtons.Components,
 				discordgo.Button{
 					Label: "GIF mode",
 					Emoji: &discordgo.ComponentEmoji{
 						Name: "📺",
 					},
-					Style:    discordgo.SecondaryButton,
-					CustomID: b.encodeCustomIDForAction("up", customID.withOption(withModifier(ContentModifierGifOnly))),
+					Style: discordgo.SecondaryButton,
+					CustomID: b.encodeCustomIDForStateUpdate(
+						StateUpdate{Type: StateUpdateSetContentModifier, Value: fmt.Sprint(ContentModifierGifOnly)},
+					),
 				},
 			)
 		} else {
@@ -660,16 +634,20 @@ func (b *SearchCommand) buttons(customID CustomID, maxDialogOffset int32) []disc
 					Emoji: &discordgo.ComponentEmoji{
 						Name: "📻",
 					},
-					Style:    discordgo.SecondaryButton,
-					CustomID: b.encodeCustomIDForAction("up", customID.withOption(withModifier(ContentModifierTextOnly))),
+					Style: discordgo.SecondaryButton,
+					CustomID: b.encodeCustomIDForStateUpdate(
+						StateUpdate{Type: StateUpdateSetContentModifier, Value: fmt.Sprint(ContentModifierTextOnly)},
+					),
 				},
 				discordgo.Button{
 					Label: "Randomize image",
 					Emoji: &discordgo.ComponentEmoji{
 						Name: "📺",
 					},
-					Style:    discordgo.SecondaryButton,
-					CustomID: b.encodeCustomIDForAction("up", customID.withOption(withModifier(ContentModifierGifOnly))),
+					Style: discordgo.SecondaryButton,
+					CustomID: b.encodeCustomIDForStateUpdate(
+						StateUpdate{Type: StateUpdateSetContentModifier, Value: fmt.Sprint(ContentModifierGifOnly)},
+					),
 				},
 			)
 		}
@@ -680,13 +658,17 @@ func (b *SearchCommand) buttons(customID CustomID, maxDialogOffset int32) []disc
 	return buttons
 }
 
-func (b *SearchCommand) audioFileResponse(customID CustomID, username string) (*discordgo.InteractionResponse, int32, func(), error) {
+func (b *SearchCommand) audioFileResponse(
+	state ScrimpState,
+	username string,
+	isPreview bool,
+) (*discordgo.InteractionResponse, int32, func(), error) {
 
 	dialog, err := b.transcriptApiClient.GetTranscriptDialog(context.Background(), &api.GetTranscriptDialogRequest{
-		Epid: customID.EpisodeID,
+		Epid: state.EpisodeID,
 		Range: &api.DialogRange{
-			Start: customID.StartLine,
-			End:   customID.EndLine,
+			Start: state.StartLine,
+			End:   state.EndLine,
 		},
 	})
 	if err != nil {
@@ -717,7 +699,7 @@ func (b *SearchCommand) audioFileResponse(customID CustomID, username string) (*
 	var files []*discordgo.File
 	cancelFunc := func() {}
 
-	if customID.ContentModifier == ContentModifierGifOnly {
+	if state.ContentModifier == ContentModifierGifOnly {
 		audioFileURL := fmt.Sprintf(
 			"%s/dl/media/%s.gif?ts=%d-%d",
 			b.webUrl,
@@ -747,20 +729,20 @@ func (b *SearchCommand) audioFileResponse(customID CustomID, username string) (*
 			(time.Duration(dialog.Dialog[0].OffsetMs)).String(),
 			(time.Duration(dialog.Dialog[len(dialog.Dialog)-1].OffsetMs + dialog.Dialog[len(dialog.Dialog)-1].DurationMs)).String(),
 			strings.TrimPrefix(b.webUrl, "https://"),
-			fmt.Sprintf("%s/ep/%s#pos-%d-%d", b.webUrl, customID.EpisodeID, customID.StartLine, customID.EndLine),
+			fmt.Sprintf("%s/ep/%s#pos-%d-%d", b.webUrl, state.EpisodeID, state.StartLine, state.EndLine),
 			username,
 		)
 
 	} else {
-		if customID.ContentModifier != ContentModifierTextOnly {
+		if state.ContentModifier != ContentModifierTextOnly {
 			audioFileURL := fmt.Sprintf(
 				"%s/dl/media/%s.mp3?ts=%d-%d&extend=%s&shift=%s",
 				b.webUrl,
 				dialog.TranscriptMeta.ShortId,
 				dialog.Dialog[0].OffsetMs,
 				dialog.Dialog[len(dialog.Dialog)-1].OffsetMs+dialog.Dialog[len(dialog.Dialog)-1].DurationMs,
-				customID.AudioExtendOrTrim.String(),
-				customID.AudioShift.String(),
+				state.AudioExtendOrTrim.String(),
+				state.AudioShift.String(),
 			)
 			resp, err := http.Get(audioFileURL)
 			if err != nil {
@@ -780,16 +762,16 @@ func (b *SearchCommand) audioFileResponse(customID CustomID, username string) (*
 			}
 		}
 
-		audioModifierDescription := ""
-		if customID.AudioShift > 0 {
-			audioModifierDescription += fmt.Sprintf("[>> %s]", customID.AudioShift)
+		audioModifierDescriptions := []string{}
+		if state.AudioShift != 0 {
+			audioModifierDescriptions = append(audioModifierDescriptions, fmt.Sprintf("[>> %s]", state.AudioShift))
 		}
-		if customID.AudioExtendOrTrim > 0 {
-			audioModifierDescription += fmt.Sprintf("[++ %s]", customID.AudioExtendOrTrim)
+		if state.AudioExtendOrTrim != 0 {
+			audioModifierDescriptions = append(audioModifierDescriptions, fmt.Sprintf("[++ %s]", state.AudioExtendOrTrim))
 		}
 
 		dialogText := fmt.Sprintf("%s\n\n", dialogFormatted.String())
-		if customID.ContentModifier == ContentModifierAudioOnly {
+		if state.ContentModifier == ContentModifierAudioOnly {
 			dialogText = ""
 		}
 		content = fmt.Sprintf(
@@ -800,13 +782,16 @@ func (b *SearchCommand) audioFileResponse(customID CustomID, username string) (*
 				dialog.TranscriptMeta.Id,
 				(time.Duration(dialog.Dialog[0].OffsetMs)).String(),
 				(time.Duration(dialog.Dialog[len(dialog.Dialog)-1].OffsetMs+dialog.Dialog[len(dialog.Dialog)-1].DurationMs)).String(),
-				audioModifierDescription,
+				strings.Join(audioModifierDescriptions, " "),
 				strings.TrimPrefix(b.webUrl, "https://"),
-				fmt.Sprintf("%s/ep/%s#pos-%d-%d", b.webUrl, customID.EpisodeID, customID.StartLine, customID.EndLine),
+				fmt.Sprintf("%s/ep/%s#pos-%d-%d", b.webUrl, state.EpisodeID, state.StartLine, state.EndLine),
 				username,
 			),
 		)
+	}
 
+	if isPreview {
+		content = fmt.Sprintf("%s\n%s", content, state.String())
 	}
 
 	return &discordgo.InteractionResponse{
@@ -819,13 +804,13 @@ func (b *SearchCommand) audioFileResponse(customID CustomID, username string) (*
 	}, dialog.MaxDialogPosition, cancelFunc, nil
 }
 
-func (b *SearchCommand) encodeCustomIDForAction(action string, customID CustomID) string {
-	return fmt.Sprintf("%s:%s:%s", b.Name(), action, customID.String())
+func (b *SearchCommand) encodeCustomIDForStateUpdate(opt StateUpdate) string {
+	return fmt.Sprintf("%s:%s", b.Name(), opt.CustomID())
 }
 
 func (b *SearchCommand) handleOpenAudioEditModal(s *discordgo.Session, i *discordgo.InteractionCreate, args ...string) error {
 
-	customID, err := decodeCustomIDPayload(args[0])
+	state, err := extractStateFromBody[ScrimpState](i.Message)
 	if err != nil {
 		return err
 	}
@@ -840,7 +825,7 @@ func (b *SearchCommand) handleOpenAudioEditModal(s *discordgo.Session, i *discor
 					Style:       discordgo.TextInputShort,
 					Required:    true,
 					MaxLength:   10,
-					Value:       customID.AudioShift.String(),
+					Value:       state.AudioShift.String(),
 				},
 			},
 		},
@@ -853,7 +838,7 @@ func (b *SearchCommand) handleOpenAudioEditModal(s *discordgo.Session, i *discor
 					Style:       discordgo.TextInputShort,
 					Required:    true,
 					MaxLength:   10,
-					Value:       customID.AudioExtendOrTrim.String(),
+					Value:       state.AudioExtendOrTrim.String(),
 				},
 			},
 		},
@@ -862,7 +847,7 @@ func (b *SearchCommand) handleOpenAudioEditModal(s *discordgo.Session, i *discor
 	err = s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
 		Type: discordgo.InteractionResponseModal,
 		Data: &discordgo.InteractionResponseData{
-			CustomID:   fmt.Sprintf("%s:submit-audio-edit:%s", b.Name(), customID),
+			CustomID:   fmt.Sprintf("%s:se", b.Name()),
 			Title:      "Edit Audio",
 			Components: fields,
 		},
@@ -872,6 +857,109 @@ func (b *SearchCommand) handleOpenAudioEditModal(s *discordgo.Session, i *discor
 	}
 
 	return nil
+}
+
+func (b *SearchCommand) handleStateUpdate(s *discordgo.Session, i *discordgo.InteractionCreate, args ...string) error {
+	state, err := extractStateFromBody[ScrimpState](i.Message)
+	if err != nil {
+		return fmt.Errorf("Failed decode state: %w", err)
+	}
+
+	update := &StateUpdate{}
+	if err := json.Unmarshal(
+		[]byte(strings.TrimPrefix(args[0], fmt.Sprintf("%s:", ActionUpdateState))),
+		update,
+	); err != nil {
+		return err
+	}
+
+	switch update.Type {
+	case StateUpdateShiftDialogBackwards:
+		return b.updatePreview(
+			s,
+			i,
+			state.withOption(withEndLine(state.EndLine-1), withStartLine(state.StartLine-1)),
+		)
+	case StateUpdateShiftDialogForwards:
+		return b.updatePreview(
+			s,
+			i,
+			state.withOption(withEndLine(state.EndLine+1), withStartLine(state.StartLine+1)),
+		)
+	case StateUpdateAddPreviousLine:
+		return b.updatePreview(
+			s,
+			i,
+			state.withOption(
+				withStartLine(state.StartLine-1),
+			),
+		)
+	case StateUpdateAddNextLine:
+		return b.updatePreview(
+			s,
+			i,
+			state.withOption(
+				withEndLine(state.EndLine+1),
+			),
+		)
+	case StateUpdateTrimFirstLine:
+		return b.updatePreview(
+			s,
+			i,
+			state.withOption(withStartLine(state.StartLine-1)),
+		)
+	case StateUpdateTrimLastLine:
+		return b.updatePreview(
+			s,
+			i,
+			state.withOption(withEndLine(state.EndLine-1)),
+		)
+	case StateUpdateAudioShift:
+		strVal, ok := update.Value.(string)
+		if !ok {
+			return fmt.Errorf("update had wrong type %T", update.Value)
+		}
+		duration, err := time.ParseDuration(strVal)
+		if err != nil {
+			return err
+		}
+		return b.updatePreview(
+			s,
+			i,
+			state.withOption(withAudioShift(duration)),
+		)
+	case StateUpdateAudioExtendTrim:
+		strVal, ok := update.Value.(string)
+		if !ok {
+			return fmt.Errorf("update had wrong type %T", update.Value)
+		}
+		duration, err := time.ParseDuration(strVal)
+		if err != nil {
+			return err
+		}
+		return b.updatePreview(
+			s,
+			i,
+			state.withOption(withAudioExtendOrTrim(duration)),
+		)
+	case StateUpdateSetContentModifier:
+		// encode as a string to stop it being interpreted as a float
+		strVal, ok := update.Value.(string)
+		if !ok {
+			return fmt.Errorf("update had wrong type %T", update.Value)
+		}
+		modifier, err := strconv.ParseInt(strVal, 10, 8)
+		if err != nil {
+			return err
+		}
+		return b.updatePreview(
+			s,
+			i,
+			state.withOption(withModifier(ContentModifier(uint8(modifier)))),
+		)
+	}
+
+	return b.updatePreview(s, i, *state)
 }
 
 func (b *SearchCommand) handleAudioEdit(s *discordgo.Session, i *discordgo.InteractionCreate, args ...string) error {
@@ -893,18 +981,18 @@ func (b *SearchCommand) handleAudioEdit(s *discordgo.Session, i *discordgo.Inter
 			return fmt.Errorf("invalid extend value: %s", extendStrVal)
 		}
 	}
-	customID, err := decodeCustomIDPayload(args[0])
+	state, err := extractStateFromBody[ScrimpState](i.Message)
 	if err != nil {
-		return fmt.Errorf("failed to decode customID: %w", err)
+		return err
 	}
 
 	if err := b.updatePreview(
 		s,
 		i,
-		customID.withOption(
+		state.withOption(
 			withAudioShift(shift),
 			withAudioExtendOrTrim(extend),
-		).String(),
+		),
 	); err != nil {
 		return fmt.Errorf("failed to update preview: %w", err)
 	}
@@ -912,26 +1000,9 @@ func (b *SearchCommand) handleAudioEdit(s *discordgo.Session, i *discordgo.Inter
 	return nil
 }
 
-func decodeCustomIDPayload(data string) (CustomID, error) {
-	decoded := &CustomID{}
-	return *decoded, json.Unmarshal([]byte(data), decoded)
-}
-
 func createFileName(dialog *api.TranscriptDialog, suffix string) string {
 	if contentFilename := contentToFilename(dialog.Dialog[0].Content); contentFilename != "" {
 		return fmt.Sprintf("%s.%s", contentFilename, suffix)
 	}
 	return fmt.Sprintf("%s-%d.%s", dialog.TranscriptMeta.Id, dialog.Dialog[0].Pos, suffix)
-}
-
-func contentToFilename(rawContent string) string {
-	rawContent = punctuation.ReplaceAllString(rawContent, "")
-	rawContent = spaces.ReplaceAllString(rawContent, " ")
-	rawContent = metaWhitespace.ReplaceAllString(rawContent, " ")
-	rawContent = strings.ToLower(strings.TrimSpace(rawContent))
-	split := strings.Split(rawContent, " ")
-	if len(split) > 9 {
-		split = split[:8]
-	}
-	return strings.Join(split, "-")
 }

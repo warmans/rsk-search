@@ -3,7 +3,6 @@ package command
 import (
 	"bytes"
 	"context"
-	"encoding/json"
 	"fmt"
 	"github.com/bwmarrin/discordgo"
 	"github.com/fogleman/gg"
@@ -15,12 +14,8 @@ import (
 	"go.uber.org/zap"
 	"io"
 	"net/http"
-	"regexp"
 	"strconv"
-	"strings"
 )
-
-var extractState = regexp.MustCompile(`\|\|(\{.*\})\|\|`)
 
 type State struct {
 	Mine        bool       `json:"m"`
@@ -91,7 +86,7 @@ func (r *ShowRatingsCommand) MessageHandlers() discord.MessageHandlers {
 }
 
 func (r *ShowRatingsCommand) handleToggleSorting(s *discordgo.Session, i *discordgo.InteractionCreate, args ...string) error {
-	state, err := r.extractStateFromBody(i.Message.Content)
+	state, err := extractStateFromBody[State](i.Message)
 	if err != nil {
 		return err
 	}
@@ -101,7 +96,7 @@ func (r *ShowRatingsCommand) handleToggleSorting(s *discordgo.Session, i *discor
 }
 
 func (r *ShowRatingsCommand) handleToggleMine(s *discordgo.Session, i *discordgo.InteractionCreate, args ...string) error {
-	state, err := r.extractStateFromBody(i.Message.Content)
+	state, err := extractStateFromBody[State](i.Message)
 	if err != nil {
 		return err
 	}
@@ -115,7 +110,7 @@ func (r *ShowRatingsCommand) handleToggleMine(s *discordgo.Session, i *discordgo
 }
 
 func (r *ShowRatingsCommand) handleSetKind(s *discordgo.Session, i *discordgo.InteractionCreate, args ...string) error {
-	state, err := r.extractStateFromBody(i.Message.Content)
+	state, err := extractStateFromBody[State](i.Message)
 	if err != nil {
 		return err
 	}
@@ -136,7 +131,7 @@ func (r *ShowRatingsCommand) handleSetKind(s *discordgo.Session, i *discordgo.In
 }
 
 func (r *ShowRatingsCommand) handlePublicationFilter(s *discordgo.Session, i *discordgo.InteractionCreate, args ...string) error {
-	state, err := r.extractStateFromBody(i.Message.Content)
+	state, err := extractStateFromBody[State](i.Message)
 	if err != nil {
 		return err
 	}
@@ -158,7 +153,7 @@ func (r *ShowRatingsCommand) handlePublicationFilter(s *discordgo.Session, i *di
 }
 
 func (r *ShowRatingsCommand) handleSeriesFilter(s *discordgo.Session, i *discordgo.InteractionCreate, args ...string) error {
-	state, err := r.extractStateFromBody(i.Message.Content)
+	state, err := extractStateFromBody[State](i.Message)
 	if err != nil {
 		return err
 	}
@@ -169,7 +164,7 @@ func (r *ShowRatingsCommand) handleSeriesFilter(s *discordgo.Session, i *discord
 }
 
 func (r *ShowRatingsCommand) handleLoadChart(s *discordgo.Session, i *discordgo.InteractionCreate, args ...string) error {
-	state, err := r.extractStateFromBody(i.Message.Content)
+	state, err := extractStateFromBody[State](i.Message)
 	if err != nil {
 		return err
 	}
@@ -212,7 +207,7 @@ func (r *ShowRatingsCommand) _handleLoadChart(s *discordgo.Session, i *discordgo
 		Type: discordgo.InteractionResponseUpdateMessage,
 		Data: &discordgo.InteractionResponseData{
 			Flags:       discordgo.MessageFlagsEphemeral,
-			Content:     r.mustEncodeState(*state),
+			Content:     mustEncodeState[State](*state),
 			Files:       []*discordgo.File{{Name: "ratings.png", ContentType: "image/png", Reader: buff}},
 			Attachments: util.ToPtr([]*discordgo.MessageAttachment{}),
 			Components:  r.buttons(*state),
@@ -225,7 +220,7 @@ func (r *ShowRatingsCommand) handlePost(s *discordgo.Session, i *discordgo.Inter
 		return nil
 	}
 
-	state, err := r.extractStateFromBody(i.Message.Content)
+	state, err := extractStateFromBody[State](i.Message)
 	if err != nil {
 		return err
 	}
@@ -298,7 +293,7 @@ func (r *ShowRatingsCommand) handleInitialInvocation(s *discordgo.Session, i *di
 		Type: discordgo.InteractionResponseChannelMessageWithSource,
 		Data: &discordgo.InteractionResponseData{
 			Title:      "Chart",
-			Content:    r.mustEncodeState(defaultState),
+			Content:    mustEncodeState[State](defaultState),
 			Flags:      discordgo.MessageFlagsEphemeral,
 			Files:      []*discordgo.File{{Name: "ratings.png", ContentType: "image/png", Reader: buff}},
 			Components: r.buttons(defaultState),
@@ -477,34 +472,6 @@ func (r *ShowRatingsCommand) ratingsChart(f *filter.Filter, author *string, sort
 	}
 	return buff, nil
 
-}
-
-func (r *ShowRatingsCommand) mustEncodeState(s State) string {
-	b, err := json.Marshal(s)
-	if err != nil {
-		r.logger.Error("failed to marshal state", zap.Error(err))
-		return "{}"
-	}
-	return fmt.Sprintf("||%s||", string(b))
-}
-
-func (r *ShowRatingsCommand) mustDecodeState(raw string) *State {
-	state := &State{}
-	err := json.Unmarshal([]byte(strings.Trim(raw, "|")), state)
-	if err != nil {
-		r.logger.Error("failed to unmarshal state", zap.Error(err))
-		return &State{}
-	}
-	return state
-}
-
-func (r *ShowRatingsCommand) extractStateFromBody(msgContent string) (*State, error) {
-	foundState := extractState.FindString(msgContent)
-	if foundState == "" {
-		return nil, fmt.Errorf("failed to find state in message body")
-	}
-
-	return r.mustDecodeState(foundState), nil
 }
 
 func buttonStyleIf(cond bool, style discordgo.ButtonStyle, def discordgo.ButtonStyle) discordgo.ButtonStyle {
