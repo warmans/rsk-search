@@ -862,7 +862,7 @@ func (b *SearchCommand) handleOpenAudioEditModal(s *discordgo.Session, i *discor
 func (b *SearchCommand) handleStateUpdate(s *discordgo.Session, i *discordgo.InteractionCreate, args ...string) error {
 	state, err := extractStateFromBody[ScrimpState](i.Message)
 	if err != nil {
-		return fmt.Errorf("Failed decode state: %w", err)
+		return err
 	}
 
 	update := &StateUpdate{}
