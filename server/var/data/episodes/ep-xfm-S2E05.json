@@ -5,7 +5,7 @@
     "episode": 5,
     "name": "A bit of a slippery dish",
     "summary": "",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "release_date": "2002-09-21T00:00:00Z",
     "completion": "gaps",
     "completion_reports": null,
@@ -19575,7 +19575,7 @@
         "timestamp": 3185940000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 2366000000,
+        "duration": 2365000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -19587,10 +19587,10 @@
       {
         "id": "ep-xfm-S2E05-1302",
         "pos": 1302,
-        "timestamp": 3188306000000,
+        "timestamp": 3188305000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 1183000000,
+        "duration": 1182000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -19602,7 +19602,7 @@
       {
         "id": "ep-xfm-S2E05-1303",
         "pos": 1303,
-        "timestamp": 3189489000000,
+        "timestamp": 3189487000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
         "duration": 1051000000,
@@ -19617,10 +19617,10 @@
       {
         "id": "ep-xfm-S2E05-1304",
         "pos": 1304,
-        "timestamp": 3190540000000,
+        "timestamp": 3190538000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
-        "duration": 2235000000,
+        "duration": 2234000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -19632,10 +19632,10 @@
       {
         "id": "ep-xfm-S2E05-1305",
         "pos": 1305,
-        "timestamp": 3192775000000,
+        "timestamp": 3192772000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
-        "duration": 6969000000,
+        "duration": 6966000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -19647,10 +19647,10 @@
       {
         "id": "ep-xfm-S2E05-1306",
         "pos": 1306,
-        "timestamp": 3199744000000,
+        "timestamp": 3199738000000,
         "timestamp_inferred": true,
         "timestamp_distance": 5,
-        "duration": 2235000000,
+        "duration": 2234000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -19662,7 +19662,7 @@
       {
         "id": "ep-xfm-S2E05-1307",
         "pos": 1307,
-        "timestamp": 3201979000000,
+        "timestamp": 3201972000000,
         "timestamp_inferred": true,
         "timestamp_distance": 6,
         "duration": 0,
@@ -19683,10 +19683,10 @@
       {
         "id": "ep-xfm-S2E05-1308",
         "pos": 1308,
-        "timestamp": 3201979000000,
+        "timestamp": 3201972000000,
         "timestamp_inferred": true,
         "timestamp_distance": 7,
-        "duration": 50021000000,
+        "duration": 50028000000,
         "type": "gap",
         "actor": "",
         "metadata": null,
@@ -19756,9 +19756,16 @@
     "contributors": [
       "JohnArce",
       "MonotoneCreeper",
+      "lasermoai",
       "wqzkav"
     ],
-    "trivia": null,
+    "trivia": [
+      {
+        "description": "This is a reference to Thomas Wright \"Fats\" Waller, an American jazz musician.",
+        "start_pos": 61,
+        "end_pos": 62
+      }
+    ],
     "tags": null,
     "media": {
       "video_file_name": "",
