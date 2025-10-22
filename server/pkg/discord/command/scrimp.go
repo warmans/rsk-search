@@ -264,7 +264,7 @@ func (b *SearchCommand) handleAutocomplete(s *discordgo.Session, i *discordgo.In
 			continue
 		}
 		choices = append(choices, &discordgo.ApplicationCommandOptionChoice{
-			Name: util.TrimToN(fmt.Sprintf("[%s] %s: %s", v.Epid, v.Actor, v.Line), 100),
+			Name: util.TrimToN(fmt.Sprintf("[%s] %s: %s", strings.TrimPrefix(v.Epid, "ep-"), v.Actor, v.Line), 100),
 			Value: (&searchResult{
 				EpisodeID: v.Epid,
 				StartLine: v.Pos,
