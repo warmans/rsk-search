@@ -258,6 +258,7 @@ export class GuardedSearchAPIClient extends SearchAPIClient {
   listTranscripts(
     args: {
       filter?: string,
+      includeRatingBreakdown?: boolean,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscriptList> {

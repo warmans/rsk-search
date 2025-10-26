@@ -48,6 +48,8 @@ export class CommunityAPIClient implements CommunityAPIClientInterface {
   listArchive(
     args: {
       episodeIds?: string[],
+      page?: number,
+      pageSize?: number,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskArchiveList> {
@@ -61,6 +63,12 @@ export class CommunityAPIClient implements CommunityAPIClientInterface {
       if (args.episodeIds && args.episodeIds.length) {
         options.params = args.episodeIds.reduce<HttpParams>((acc, cur) => acc.append('episodeIds', `${cur}`), options.params);
       }
+    }
+    if ('page' in args) {
+      options.params = options.params.set('page', String(args.page));
+    }
+    if ('pageSize' in args) {
+      options.params = options.params.set('pageSize', String(args.pageSize));
     }
     return this.sendRequest<models.RskArchiveList>('GET', path, options);
   }

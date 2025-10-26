@@ -36,10 +36,10 @@ func (a *ArchiveMeta) Proto() *api.Archive {
 
 type ArchiveMetaList []ArchiveMeta
 
-func (l ArchiveMetaList) Proto() *api.ArchiveList {
+func (l ArchiveMetaList) Proto(resultCount int32) *api.ArchiveList {
 	out := make([]*api.Archive, len(l))
 	for k, v := range l {
 		out[k] = v.Proto()
 	}
-	return &api.ArchiveList{Items: out}
+	return &api.ArchiveList{Items: out, ResultCount: resultCount}
 }

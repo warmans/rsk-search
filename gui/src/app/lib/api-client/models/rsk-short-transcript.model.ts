@@ -20,6 +20,7 @@ export interface RskShortTranscript {
   offsetAccuracyPcnt?: number;
   publication?: string;
   publicationType?: RskPublicationType;
+  ratingBreakdown?: { [key: string]: number };
   ratingScore?: number;
   releaseDate?: string;
   series?: number;

@@ -98,6 +98,8 @@ export function isRskArchiveList(arg: any): arg is models.RskArchiveList {
   typeof arg === 'object' &&
     // items?: RskArchive[]
     ( typeof arg.items === 'undefined' || (Array.isArray(arg.items) && arg.items.every((item: unknown) => isRskArchive(item))) ) &&
+    // resultCount?: number
+    ( typeof arg.resultCount === 'undefined' || typeof arg.resultCount === 'number' ) &&
 
   true
   );
@@ -978,6 +980,8 @@ export function isRskShortTranscript(arg: any): arg is models.RskShortTranscript
     ( typeof arg.publication === 'undefined' || typeof arg.publication === 'string' ) &&
     // publicationType?: RskPublicationType
     ( typeof arg.publicationType === 'undefined' || isRskPublicationType(arg.publicationType) ) &&
+    // ratingBreakdown?: { [key: string]: number }
+    ( typeof arg.ratingBreakdown === 'undefined' || typeof arg.ratingBreakdown === 'number' ) &&
     // ratingScore?: number
     ( typeof arg.ratingScore === 'undefined' || typeof arg.ratingScore === 'number' ) &&
     // releaseDate?: string

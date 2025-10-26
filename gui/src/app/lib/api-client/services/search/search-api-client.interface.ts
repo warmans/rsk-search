@@ -245,6 +245,7 @@ export interface SearchAPIClientInterface {
   listTranscripts(
     args: {
       filter?: string,
+      includeRatingBreakdown?: boolean,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscriptList>;

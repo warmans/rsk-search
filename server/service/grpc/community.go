@@ -65,5 +65,16 @@ func (s *CommunityService) ListArchive(ctx context.Context, request *api.ListArc
 		return nil, ErrInternal(err)
 	}
 
-	return items.Proto(), nil
+	// first page should be 1 not 0
+	pageNum := max(request.Page, 1)
+
+	pageSize := min(request.PageSize, 25)
+	if request.PageSize == 0 {
+		pageSize = 25
+	}
+
+	offset := pageSize * (pageNum - 1) // start at 0 not pageSize
+	page := items[min(offset, int32(len(items))):min(offset+pageSize, int32(len(items)))]
+
+	return page.Proto(int32(len(items))), nil
 }

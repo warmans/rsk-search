@@ -5,4 +5,5 @@ import {
 
 export interface RskArchiveList {
   items?: RskArchive[];
+  resultCount?: number;
 }

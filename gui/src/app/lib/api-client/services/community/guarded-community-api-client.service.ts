@@ -25,6 +25,8 @@ export class GuardedCommunityAPIClient extends CommunityAPIClient {
   listArchive(
     args: {
       episodeIds?: string[],
+      page?: number,
+      pageSize?: number,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskArchiveList> {

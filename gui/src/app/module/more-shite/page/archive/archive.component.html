@@ -3,7 +3,6 @@
     <div class="card w-100 mb-4">
       <div class="card-header">
         <div class="mb-2">Obscure Media Archive</div>
-
       </div>
       <div class="card-body pb-0 mb-0">
         <table class="table">
@@ -17,6 +16,38 @@
             }
           }
         </table>
+      </div>
+      <div class="card-footer">
+        <nav aria-label="pages">
+          <ul class="pagination">
+            @for (i of pages; track i) {
+              <li class="page-item" [ngClass]="{'active': i === currentPage}">
+                <a class="page-link"
+                   [routerLink]="['/more-shite', 'archive']"
+                   [queryParams]="{'page': i}"
+                   [queryParamsHandling]="'merge'">{{i}}
+                </a>
+              </li>
+            }
+            @if (morePages) {
+              @if (currentPage > pages.length) {
+                <li class="page-item active">
+                  <a class="page-link"
+                     [routerLink]="['/more-shite', 'archive']"
+                     [queryParams]="{'page': currentPage}"
+                     [queryParamsHandling]="'merge'">{{currentPage}}
+                  </a>
+                </li>
+              }
+              <li class="page-item">
+                <a [routerLink]="['/more-shite', 'archive']"
+                   [queryParams]="{'page': currentPage >= maxPages ? currentPage+1 : maxPages+1}"
+                   [queryParamsHandling]="'merge'" class="page-link">Next...
+                </a>
+              </li>
+            }
+          </ul>
+        </nav>
       </div>
     </div>
   </div>

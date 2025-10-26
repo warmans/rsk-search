@@ -572,6 +572,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   listTranscripts(
     args: {
       filter?: string,
+      includeRatingBreakdown?: boolean,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscriptList> {
@@ -583,6 +584,9 @@ export class SearchAPIClient implements SearchAPIClientInterface {
 
     if ('filter' in args) {
       options.params = options.params.set('filter', String(args.filter));
+    }
+    if ('includeRatingBreakdown' in args) {
+      options.params = options.params.set('includeRatingBreakdown', String(args.includeRatingBreakdown));
     }
     return this.sendRequest<models.RskTranscriptList>('GET', path, options);
   }

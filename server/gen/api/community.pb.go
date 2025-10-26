@@ -239,6 +239,8 @@ func (x *CommunityProjectList) GetResultCount() int32 {
 type ListArchiveRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	EpisodeIds    []string               `protobuf:"bytes,1,rep,name=episode_ids,json=episodeIds,proto3" json:"episode_ids,omitempty"`
+	Page          int32                  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
+	PageSize      int32                  `protobuf:"varint,3,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -280,9 +282,24 @@ func (x *ListArchiveRequest) GetEpisodeIds() []string {
 	return nil
 }
 
+func (x *ListArchiveRequest) GetPage() int32 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *ListArchiveRequest) GetPageSize() int32 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
 type ArchiveList struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Items         []*Archive             `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
+	ResultCount   int32                  `protobuf:"varint,2,opt,name=result_count,json=resultCount,proto3" json:"result_count,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -322,6 +339,13 @@ func (x *ArchiveList) GetItems() []*Archive {
 		return x.Items
 	}
 	return nil
+}
+
+func (x *ArchiveList) GetResultCount() int32 {
+	if x != nil {
+		return x.ResultCount
+	}
+	return 0
 }
 
 type Archive struct {
@@ -476,12 +500,15 @@ const file_community_proto_rawDesc = "" +
 	"\tpage_size\x18\x05 \x01(\x05R\bpageSize\"l\n" +
 	"\x14CommunityProjectList\x121\n" +
 	"\bprojects\x18\x01 \x03(\v2\x15.rsk.CommunityProjectR\bprojects\x12!\n" +
-	"\fresult_count\x18\x02 \x01(\x05R\vresultCount\"5\n" +
+	"\fresult_count\x18\x02 \x01(\x05R\vresultCount\"f\n" +
 	"\x12ListArchiveRequest\x12\x1f\n" +
 	"\vepisode_ids\x18\x01 \x03(\tR\n" +
-	"episodeIds\"1\n" +
+	"episodeIds\x12\x12\n" +
+	"\x04page\x18\x02 \x01(\x05R\x04page\x12\x1b\n" +
+	"\tpage_size\x18\x03 \x01(\x05R\bpageSize\"T\n" +
 	"\vArchiveList\x12\"\n" +
-	"\x05items\x18\x01 \x03(\v2\f.rsk.ArchiveR\x05items\"\x9f\x01\n" +
+	"\x05items\x18\x01 \x03(\v2\f.rsk.ArchiveR\x05items\x12!\n" +
+	"\fresult_count\x18\x02 \x01(\x05R\vresultCount\"\x9f\x01\n" +
 	"\aArchive\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12 \n" +
 	"\vdescription\x18\x02 \x01(\tR\vdescription\x12'\n" +

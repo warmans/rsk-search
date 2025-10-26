@@ -70,10 +70,13 @@ message CommunityProjectList {
 
 message ListArchiveRequest {
   repeated string episode_ids = 1;
+  int32 page = 2;
+  int32 page_size = 3;
 }
 
 message ArchiveList {
   repeated Archive items = 1;
+  int32 result_count = 2;
 }
 
 message Archive {

@@ -12,6 +12,8 @@ export interface CommunityAPIClientInterface {
   listArchive(
     args: {
       episodeIds?: string[],
+      page?: number,
+      pageSize?: number,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskArchiveList>;
