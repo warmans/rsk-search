@@ -461,6 +461,12 @@ func (c *DownloadService) DownloadEpisodeMedia(resp http.ResponseWriter, req *ht
 			if errors.Is(err, DownloadsOverQuota) {
 				http.Error(resp, "Bandwidth quota exhausted", http.StatusTooManyRequests)
 			} else {
+				c.logger.Error(
+					"Download quota calculation failed",
+					zap.String("file", episode.ShortID()),
+					zap.String("format", wantFormat),
+					zap.Error(err),
+				)
 				http.Error(resp, "Failed to calculate bandwidth quota", http.StatusInternalServerError)
 			}
 			return
