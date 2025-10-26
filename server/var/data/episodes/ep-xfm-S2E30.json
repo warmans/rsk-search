@@ -5,7 +5,7 @@
     "episode": 30,
     "name": "",
     "summary": "",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "release_date": "2003-03-15T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -22295,10 +22295,17 @@
     "synopsis": null,
     "contributors": [
       "booch_daddy",
+      "lasermoai",
       "warmans",
       "wqzkav"
     ],
-    "trivia": null,
+    "trivia": [
+      {
+        "description": "Tandy is an electronics store chain.",
+        "start_pos": 796,
+        "end_pos": 797
+      }
+    ],
     "tags": null,
     "media": {
       "video_file_name": "",
@@ -22313,6 +22320,7 @@
       "scores": {
         "discord:.oyv": 4,
         "discord:alexb457": 4,
+        "discord:clubbychipface": 4,
         "discord:paulgriffincsp": 4,
         "discord:rowanator3000": 4,
         "discord:sigh8499": 4,

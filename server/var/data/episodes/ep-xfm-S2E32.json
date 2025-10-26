@@ -5,7 +5,7 @@
     "episode": 32,
     "name": "",
     "summary": "",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "release_date": "2003-03-29T00:00:00Z",
     "completion": "reported",
     "completion_reports": null,
@@ -11438,7 +11438,7 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "Did you see?! Did you see that fat, um, girls in Feeder's program.",
+        "content": "Did you see?! Did you see that fat, um, girls and feeders program?",
         "notable": false,
         "placeholder": false,
         "sentiment": "negative"
@@ -16405,7 +16405,7 @@
         "timestamp": 2907260000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 16342000000,
+        "duration": 16340000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -16417,7 +16417,7 @@
       {
         "id": "ep-xfm-S2E32-1089",
         "pos": 1089,
-        "timestamp": 2923602000000,
+        "timestamp": 2923600000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
         "duration": 1390000000,
@@ -16432,10 +16432,10 @@
       {
         "id": "ep-xfm-S2E32-1090",
         "pos": 1090,
-        "timestamp": 2924992000000,
+        "timestamp": 2924990000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
-        "duration": 792008000000,
+        "duration": 792010000000,
         "type": "gap",
         "actor": "",
         "metadata": null,
@@ -16453,6 +16453,7 @@
       }
     ],
     "contributors": [
+      "clubbychipface",
       "warmans",
       "wqzkav"
     ],

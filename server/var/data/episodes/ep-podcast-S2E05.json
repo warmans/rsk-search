@@ -12,7 +12,7 @@
     "bestof": false,
     "special": false,
     "locked": false,
-    "offset_accuracy": 92,
+    "offset_accuracy": 91,
     "audio_quality": "",
     "metadata": {
       "cover_art_url": "/assets/cover/default.jpg",
@@ -4992,11 +4992,11 @@
         "timestamp_distance": 0,
         "duration": 800000000,
         "type": "chat",
-        "actor": "unknown c",
+        "actor": "steve",
         "metadata": null,
-        "content": "Goodbye.",
+        "content": "Goodbye",
         "notable": false,
-        "placeholder": true,
+        "placeholder": false,
         "sentiment": ""
       },
       {
@@ -5005,13 +5005,43 @@
         "timestamp": 1857090000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 16910000000,
+        "duration": 5559000000,
         "type": "chat",
-        "actor": "unknown b",
+        "actor": "ricky",
         "metadata": null,
-        "content": "And from Carl Pilking, Audible hopes you've enjoyed this program.",
+        "content": "And from Karl Pilkington",
         "notable": false,
-        "placeholder": true,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S2E05-334",
+        "pos": 334,
+        "timestamp": 1862649000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 1,
+        "duration": 1621000000,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Alright",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S2E05-335",
+        "pos": 335,
+        "timestamp": 1864270000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 2,
+        "duration": 9730000000,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "Audible hopes you've enjoyed this program.",
+        "notable": false,
+        "placeholder": false,
         "sentiment": ""
       }
     ],
@@ -5019,7 +5049,8 @@
     "contributors": [
       "MechanicalChomp",
       "ThePumpk1nMaster",
-      "ashzx"
+      "ashzx",
+      "warmans"
     ],
     "trivia": null,
     "tags": null,
