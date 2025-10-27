@@ -80,9 +80,10 @@
         <li class="nav-item mr-2">
           <a class="nav-link" (click)="activeContributionsPanel='outgoing_donations'" [ngClass]="{'active':  activeContributionsPanel === 'outgoing_donations'}">Causes</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)="activeContributionsPanel='incoming_donations'" [ngClass]="{'active':  activeContributionsPanel === 'incoming_donations'}">Donations</a>
-        </li>
+<!-- the buy me a coffee API is not reliable -->
+<!--        <li class="nav-item">-->
+<!--          <a class="nav-link" (click)="activeContributionsPanel='incoming_donations'" [ngClass]="{'active':  activeContributionsPanel === 'incoming_donations'}">Donations</a>-->
+<!--        </li>-->
       </ul>
       @if (activeContributionsPanel === 'authors') {
         <div>
