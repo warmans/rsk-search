@@ -264,13 +264,7 @@ func (s *TranscriptService) ListChunkContributions(ctx context.Context, request 
 	if err != nil {
 		return nil, err
 	}
-
-	if qm.Filter != nil {
-		qm.Filter = filter.And(filter.Neq("state", filter.String("pending")), qm.Filter)
-	} else {
-		qm.Filter = filter.Neq("state", filter.String("pending"))
-	}
-
+	
 	out := &api.ChunkContributionList{
 		Contributions: make([]*api.ChunkContribution, 0),
 	}

@@ -1073,7 +1073,7 @@ func (s *Store) ListTranscriptChanges(ctx context.Context, q *common.QueryModifi
 	rows, err := s.tx.QueryxContext(
 		ctx,
 		fmt.Sprintf(`
-		SELECT c.id, c.author_id, c.epid, COALESCE(c.transcript_version, 'NONE'), c.name, c.summary, c.transcription, c.state, c.created_at, c.merged, COALESCE(con.points, 0)
+		SELECT c.id, c.author_id, c.epid, COALESCE(c.transcript_version, 'NONE'), COALESCE(c.name, 'UNKNOWN'), c.summary, c.transcription, c.state, c.created_at, c.merged, COALESCE(con.points, 0)
 		FROM transcript_change c
 		LEFT JOIN author a ON c.author_id = a.id
 		LEFT JOIN author_contribution_transcript_change actc ON c.id = actc.transcript_change_id

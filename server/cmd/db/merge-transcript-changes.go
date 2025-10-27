@@ -183,7 +183,10 @@ func generateMigration(migrationsPath string, approvedChangeIDs []string) error 
 	}
 	return os.WriteFile(
 		path.Join(migrationsPath, fmt.Sprintf("%d_merge_changes.sql", time.Now().Unix())),
-		[]byte(fmt.Sprintf("UPDATE transcript_change SET merged=true WHERE id IN (%s);", strings.Join(approvedChangeIDs, ", "))),
+		[]byte(fmt.Sprintf(
+			"DELETE FROM transcript_change WHERE id IN (%s);",
+			strings.Join(approvedChangeIDs, ", "),
+		)),
 		0666,
 	)
 }
