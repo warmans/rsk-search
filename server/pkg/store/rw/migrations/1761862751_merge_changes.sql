@@ -1,0 +1,1 @@
+DELETE FROM transcript_change WHERE id IN ('UitDw3VMAN3dk4psXW8ABP', 'PRV32crJXW6ry2t2AkXJFn', 'EZFaxfJQN7Cn9eLmNrbM4h', 'pdAVZejVGQgRBie3NXgnZD', 'jBj4qkuVNXocadFs3LSyqc');

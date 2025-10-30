@@ -5,7 +5,7 @@
     "episode": 15,
     "name": "",
     "summary": "",
-    "version": "0.1.9",
+    "version": "0.1.10",
     "release_date": "2002-11-30T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -21603,7 +21603,7 @@
         "timestamp": 3286980000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 4465000000,
+        "duration": 4426000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -21615,14 +21615,14 @@
       {
         "id": "ep-xfm-S2E15-1436",
         "pos": 1436,
-        "timestamp": 3291445000000,
+        "timestamp": 3291406000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 3435000000,
+        "duration": 3474000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "Tattoo Stan. That's a province in Russia isn't it.",
+        "content": "Tattoo Stan. That's a province in Russia, isn't it.",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
@@ -24750,6 +24750,7 @@
     "contributors": [
       "Born-Leg-9021",
       "KomradeKvestions",
+      "lasermoai",
       "pimplom",
       "warmans",
       "wqzkav"
@@ -24764,6 +24765,11 @@
         "description": "![Body Yoga](/dl/media/file/prize-body-yoga.jpg)",
         "start_pos": 350,
         "end_pos": 352
+      },
+      {
+        "description": "He probably means Tatarstan.",
+        "start_pos": 1436,
+        "end_pos": 1437
       }
     ],
     "tags": null,

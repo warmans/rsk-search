@@ -5,7 +5,7 @@
     "episode": 20,
     "name": "Near-death Experiences",
     "summary": "Ricky is joined in the studio by Stephen Mitchell, raising questions about the level of due-dilligence newspaper reporters are performing. Karl recounts some stories from his childhood including harrowing accounts of his near-death experiences. There is some talk about quotes, the veracity of moon landing and karl attempts to come up with a quote.",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "release_date": "2002-04-13T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -18076,7 +18076,7 @@
         "timestamp": 3308500000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 2953000000,
+        "duration": 2856000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -18088,14 +18088,14 @@
       {
         "id": "ep-xfm-S1E20-1200",
         "pos": 1200,
-        "timestamp": 3311453000000,
+        "timestamp": 3311356000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 1271000000,
+        "duration": 1388000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "What, you feel a certain right?",
+        "content": "What, you feel it served him right?",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
@@ -18103,10 +18103,10 @@
       {
         "id": "ep-xfm-S1E20-1201",
         "pos": 1201,
-        "timestamp": 3312724000000,
+        "timestamp": 3312744000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
-        "duration": 576000000,
+        "duration": 556000000,
         "type": "chat",
         "actor": "",
         "metadata": null,
@@ -18125,7 +18125,7 @@
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "Well… but anyway that’s, I didn’t reall wanna talk about it, you just brought it up ‘cause of “Forrest Gump”…",
+        "content": "Well… but anyway that’s, I didn’t really wanna talk about it, he just brought it up ‘cause of “Forrest Gump”…",
         "notable": false,
         "placeholder": false,
         "sentiment": "negative"
@@ -18722,6 +18722,7 @@
     "contributors": [
       "MonotoneCreeper",
       "danabrey",
+      "lasermoai",
       "warmans"
     ],
     "trivia": [
