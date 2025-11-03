@@ -49,7 +49,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     private router: Router) {
 
     //this.banner = {image: 'partridge-banner.png', url: 'https://discord.gg/nKABACyy6d'},
-    this.banner = (new Date()).getMonth() > 10
+    this.banner = (new Date()).getMonth() >= 10
       ? {image: 'pilk-christmas-banner.png', url: 'https://woodymakesgames.itch.io/averypilkingtonchristmas'}
       : {image: 'partridge-banner.png', url: 'https://discord.gg/nKABACyy6d'}
 
