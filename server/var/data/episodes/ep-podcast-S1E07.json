@@ -5,7 +5,7 @@
     "episode": 7,
     "name": "Episode Seven",
     "summary": "",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "release_date": "2004-11-30T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -7185,10 +7185,17 @@
     "contributors": [
       "RosePamphyle",
       "dspmcmirror",
+      "lasermoai",
       "szmark777",
       "warmans"
     ],
-    "trivia": null,
+    "trivia": [
+      {
+        "description": "This was actually the Greek tragedian Aeschylus. He was killed by a tortoise dropped by an eagle.",
+        "start_pos": 229,
+        "end_pos": 250
+      }
+    ],
     "tags": null,
     "media": {
       "video_file_name": "",
