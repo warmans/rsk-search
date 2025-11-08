@@ -1,0 +1,1 @@
+UPDATE transcript_change SET merged=true WHERE id IN ('4iKNDhJcKJtK8sF2oVTNSF', '3eQsZzrMyQuTnnirSMcbLd', '7MktCV3My3p5sRFyocxd7a', 'bAYezU4sU7eAxSDLsocy8g');

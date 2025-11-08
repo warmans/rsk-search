@@ -5,7 +5,7 @@
     "episode": 13,
     "name": "Trendy Toffs",
     "summary": "Another edition of White Van Karl, and more stories from Karl’s childhood. Ricky and Steve talk to some trendy toffs in the studio. Karl offends one billion people.",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "release_date": "2002-02-23T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -283,11 +283,11 @@
         "timestamp": 54470000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 4396000000,
+        "duration": 4393000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "So I sort of, sort of felt sorry for them, so I've invited -  I said they could come on here. Just for 5 minutes. If that's alright-",
+        "content": "So I sort of, sort of felt sorry for them, so I've invited - I said they could come on here. Just for 5 minutes. If that's alright-",
         "notable": false,
         "placeholder": false,
         "sentiment": "negative"
@@ -295,10 +295,10 @@
       {
         "id": "ep-xfm-S1E13-19",
         "pos": 19,
-        "timestamp": 58866000000,
+        "timestamp": 58863000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 434000000,
+        "duration": 437000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -18170,9 +18170,21 @@
       "EarthlingCalling",
       "MonotoneCreeper",
       "Oooch",
-      "dspmcmirror"
+      "dspmcmirror",
+      "lasermoai"
     ],
-    "trivia": null,
+    "trivia": [
+      {
+        "description": "Little Donkey is a popular Christmas carol by British songwriter Eric Boswell.",
+        "start_pos": 115,
+        "end_pos": 151
+      },
+      {
+        "description": "ITV Granada, formerly Granada Television, is a British commercial television station, based in Manchester.",
+        "start_pos": 656,
+        "end_pos": 657
+      }
+    ],
     "tags": null,
     "media": {
       "video_file_name": "",
