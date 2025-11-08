@@ -151,7 +151,7 @@ export class EditorComponent implements OnInit, OnDestroy {
       return false;
     }
     if (this._editorConfig?.insertOffsetKey && event.key === (this._editorConfig?.insertOffsetKey)) {
-      this.insertOffsetAboveCaret();
+      this.insertOffsetBelowCaret();
       return false;
     }
     if (this._editorConfig?.insertSynKey && event.key === (this._editorConfig?.insertSynKey)) {
@@ -321,17 +321,18 @@ export class EditorComponent implements OnInit, OnDestroy {
     }
   }
 
-  insertOffsetAboveCaret() {
-    let startOffset = this.firstOffset > -1 ? this.firstOffset : 0;
-    this.editorComponent.insertOffsetAboveCaret(startOffset + (this.audioStatus?.currentTime || 0) - (this._editorConfig.insertOffsetBacktrack || 0));
+  insertOffsetBelowCaret() {
+    const startOffset = this.firstOffset > -1 ? this.firstOffset : 0;
+    const offsetSeconds = startOffset + (this.audioStatus?.currentTime || 0) - (this._editorConfig.insertOffsetBacktrack || 0)
+    this.editorComponent.insertOffsetBelowCaret(offsetSeconds);
   }
 
   insertSynAboveCaret() {
-    this.insertTextAboveCaret('#SYN: ');
+    this.insertTextBelowCaret('#SYN: ');
   }
 
-  insertTextAboveCaret(text: string) {
-    this.editorComponent.insertTextAboveCaret(text);
+  insertTextBelowCaret(text: string) {
+    this.editorComponent.insertTextBelowCaret(text);
   }
 
   refreshEditorHTML() {

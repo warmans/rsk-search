@@ -148,24 +148,31 @@ export class EditorInputComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  insertOffsetAboveCaret(seconds: number): void {
-    let sel = document.getSelection();
-    let nd = sel.anchorNode;
-
-    if (!this.nodeIsChildOfEditor(nd.parentElement)) {
-      return;
-    }
-    this.renderer.insertBefore(nd.parentNode, this.newOffsetElement(`#OFFSET: ${seconds.toFixed(2)}`), nd);
-    this.contentChanged();
+  insertOffsetBelowCaret(seconds: number): void {
+    this.insertElementBelowCaret(this.newOffsetElement(`#OFFSET: ${seconds.toFixed(2)}`));
   }
 
   insertTextAboveCaret(text: string): void {
+    this.insertElementBelowCaret(this.newTextElement(text), true);
+  }
+
+  insertTextBelowCaret(text: string): void {
+    this.insertElementBelowCaret(this.newTextElement(text));
+  }
+
+  private insertElementBelowCaret(el: any, forceInsertAbove: boolean = false) {
     let sel = document.getSelection();
     let nd = sel.anchorNode;
     if (!this.nodeIsChildOfEditor(nd.parentElement)) {
       return;
     }
-    this.renderer.insertBefore(nd.parentNode, this.newTextElement(text), nd);
+    const insertAbove = forceInsertAbove || nd.parentNode.nextSibling == null;
+
+    this.renderer.insertBefore(
+      insertAbove ? nd.parentNode : nd.parentNode.parentNode,
+      el,
+      insertAbove ? nd : nd.parentNode.nextSibling,
+    );
     this.contentChanged();
   }
 

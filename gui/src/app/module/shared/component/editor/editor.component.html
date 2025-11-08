@@ -2,7 +2,7 @@
   @if (allowEdit) {
     <div class="card-header sticky-top d-flex justify-content-between">
       <div>
-        <button class="btn btn-success btn-sm mr-3" (click)="insertOffsetAboveCaret()" title="Add an #OFFSET tag above the cursor to the current audio timestamp. See hotkey in config.">
+        <button class="btn btn-success btn-sm mr-3" (click)="insertOffsetBelowCaret()" title="Add an #OFFSET tag above the cursor to the current audio timestamp. See hotkey in config.">
           #OFFSET ({{(audioStatus?.currentTime || 0) | number:'1.0-2'}}) @if (editorConfig?.insertOffsetKey) {
           <span class="badge"><i class="bi-keyboard-fill mr-1"></i> {{editorConfig?.insertOffsetKey}}</span>
         }
@@ -12,13 +12,13 @@
         <span class="badge"><i class="bi-keyboard-fill mr-1"></i>{{editorConfig?.insertSynKey || 'NONE'}}</span>
       }
     </button>
-    <button class="btn btn-success btn-sm mr-3" (click)="insertTextAboveCaret('#/SYN')" title="Add a closing #/SYN tag above the cursor">
+    <button class="btn btn-success btn-sm mr-3" (click)="insertTextBelowCaret('#/SYN')" title="Add a closing #/SYN tag above the cursor">
       #/SYN
     </button>
-    <button class="btn btn-success btn-sm mr-3" (click)="insertTextAboveCaret('#TRIVIA: ')" title="Add an opening #TRIVIA: tag above the cursor">
+    <button class="btn btn-success btn-sm mr-3" (click)="insertTextBelowCaret('#TRIVIA: ')" title="Add an opening #TRIVIA: tag above the cursor">
       #TRIVIA
     </button>
-    <button class="btn btn-success btn-sm" (click)="insertTextAboveCaret('#/TRIVIA')" title="Add a closing #/TRIVIA tag above the cursor">
+    <button class="btn btn-success btn-sm" (click)="insertTextBelowCaret('#/TRIVIA')" title="Add a closing #/TRIVIA tag above the cursor">
       #/TRIVIA
     </button>
     <span class="mx-3"> | </span>
