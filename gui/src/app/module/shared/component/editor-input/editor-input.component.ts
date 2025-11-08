@@ -169,9 +169,9 @@ export class EditorInputComponent implements OnInit, OnDestroy, AfterViewInit {
     const insertAbove = forceInsertAbove || nd.parentNode.nextSibling == null;
 
     this.renderer.insertBefore(
-      insertAbove ? nd.parentNode : nd.parentNode.parentNode,
+      nd.parentNode.parentNode,
       el,
-      insertAbove ? nd : nd.parentNode.nextSibling,
+      insertAbove ? nd.parentNode : nd.parentNode.nextSibling,
     );
     this.contentChanged();
   }
