@@ -33,6 +33,7 @@
 .line .actor {
   width: 100px;
   font-weight: bold;
+  overflow: hidden;
 }
 
 .line.mute, .line.not-matched {
