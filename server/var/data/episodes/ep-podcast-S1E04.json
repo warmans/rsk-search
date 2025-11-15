@@ -5,7 +5,7 @@
     "episode": 4,
     "name": "Episode Four",
     "summary": "",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "release_date": "2004-11-30T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -8134,10 +8134,17 @@
       "Swiftsonian",
       "ThePumpk1nMaster",
       "dspmcmirror",
+      "lasermoai",
       "ohminii",
       "verilydol"
     ],
-    "trivia": null,
+    "trivia": [
+      {
+        "description": "The name of the loneliest man on the Apollo 15 mission was Alfred Worden.",
+        "start_pos": 154,
+        "end_pos": 155
+      }
+    ],
     "tags": null,
     "media": {
       "video_file_name": "",
