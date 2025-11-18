@@ -906,7 +906,7 @@ func (b *SearchCommand) handleStateUpdate(s *discordgo.Session, i *discordgo.Int
 		return b.updatePreview(
 			s,
 			i,
-			state.withOption(withStartLine(state.StartLine-1)),
+			state.withOption(withStartLine(state.StartLine+1)),
 		)
 	case StateUpdateTrimLastLine:
 		return b.updatePreview(
