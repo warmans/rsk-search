@@ -5,7 +5,7 @@
     "episode": 34,
     "name": "",
     "summary": "",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "release_date": "2003-04-12T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -5330,7 +5330,7 @@
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "Horse. I’ve never understood that. Never understood that. Is Wyclef doing alright? Is he- I’m always concerned about The Fugees cause I heard L-Lauren Hill’s not- her new album’s apparently not very good. Nas, or whatever his name is, I don’t know what’s happened to him. He’s just been off the face of the Earth.",
+        "content": "Horse. I’ve never understood that. Never understood that. Is Wyclef doing alright? Is he- I’m always concerned about The Fugees cause I heard L-Lauryn Hill’s not- her new album’s apparently not very good. Nas, or whatever his name is, I don’t know what’s happened to him. He’s disappeared off the face of the Earth.",
         "notable": false,
         "placeholder": false,
         "sentiment": "negative"
@@ -25287,6 +25287,7 @@
     ],
     "synopsis": null,
     "contributors": [
+      "clubbychipface",
       "hut88",
       "lasermoai",
       "veganbaconfarm",
@@ -25297,6 +25298,11 @@
         "description": "This is called progeria.",
         "start_pos": 232,
         "end_pos": 233
+      },
+      {
+        "description": "The third member of the Fugees is known as Pras.",
+        "start_pos": 353,
+        "end_pos": 354
       },
       {
         "description": "He's talking about The Trade in Rare Mountain Gorillas - Rwanda segment from the series MacIntyre Investigates, televised on April 7th, 2003.",

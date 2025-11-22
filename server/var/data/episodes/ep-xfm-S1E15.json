@@ -5,7 +5,7 @@
     "episode": 15,
     "name": "The Elephant Woman",
     "summary": "This episode starts with one of Steve's various toilet anecdotes before getting into some small features - baby eyes, white van karl, Karl's brother's army career. The main feature is Karl's explanation of Che Guevara  followed by a call in from an expert. Towards the end of the show Karl tells the story of when he encountered an \"elephant woman\" while riding in his dad's cab.",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "release_date": "2002-03-09T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -14337,7 +14337,7 @@
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "No, it's the name of the disease, innit, elephantitus?",
+        "content": "No, it's the name of the disease, innit, elephantitis?",
         "notable": false,
         "placeholder": false,
         "sentiment": "negative"
@@ -17204,9 +17204,16 @@
     ],
     "contributors": [
       "MonotoneCreeper",
+      "lasermoai",
       "warmans"
     ],
-    "trivia": null,
+    "trivia": [
+      {
+        "description": "He's actually suspected to have had a Proteus syndrome.",
+        "start_pos": 952,
+        "end_pos": 953
+      }
+    ],
     "tags": null,
     "media": {
       "video_file_name": "",

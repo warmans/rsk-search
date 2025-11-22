@@ -5,7 +5,7 @@
     "episode": 6,
     "name": "The Ricky Gervais Guide to: The World Cup",
     "summary": "",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "release_date": "2010-06-12T12:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -6105,7 +6105,7 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "Did you answer back to a dictator? Yeah. What did he do? Battered me. But you got a trenching up your ass as well. Yeah. That makes me slather.",
+        "content": "Did you answer back to a dictator? (alternating in demick and normal voice) \"Yeah?\" \"What did he do?\" \"Battered me.\" \"But you got a truncheon up your arse as well!\" \"Yeah. That makes me slather\".",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
@@ -8111,7 +8111,7 @@
         "timestamp": 2063000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 3028000000,
+        "duration": 3050000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -8123,10 +8123,10 @@
       {
         "id": "ep-guide-S2E06-541",
         "pos": 541,
-        "timestamp": 2066028000000,
+        "timestamp": 2066050000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 1600000000,
+        "duration": 1611000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -8138,14 +8138,14 @@
       {
         "id": "ep-guide-S2E06-542",
         "pos": 542,
-        "timestamp": 2067628000000,
+        "timestamp": 2067661000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
-        "duration": 3372000000,
+        "duration": 3339000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "...Sunday sort of band stand.  Let's play we will rock you.",
+        "content": "...Sunday sort of band stand. Let's play we will rock you.",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
@@ -10275,7 +10275,8 @@
     ],
     "contributors": [
       "Oooch",
-      "Oversteer_"
+      "Oversteer_",
+      "wqzkav"
     ],
     "trivia": null,
     "tags": null,
