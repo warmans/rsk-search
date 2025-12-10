@@ -5,7 +5,7 @@
     "episode": 23,
     "name": "Karl's Room 101",
     "summary": "The last episode of Xfm series 1, before ricky and steve go away to film the second series of the office. This episode mostly covers Karl's picks for Room 101 including the infamous egyptian midget waiters. The winner of the BAFTA bag competition is also picked after karl selects a book of urban legends as the winner. Other noteworthy links include karl revealing he once had the hair of a chinaman.",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "release_date": "2002-05-04T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -3484,11 +3484,11 @@
         "timestamp": 568800000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 12218000000,
+        "duration": 12130000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "The high jump, d'you know the reason I didn't get the gold, it's faintly embarrassing cos the guy who was, it was just neck and neck me and another guy, in fact he was slightly shorter than I was, and I was using the traditional Fosbury Flop, is the Fosbury Flop?",
+        "content": "The high jump, d'you know the reason I didn't get the gold, it's faintly embarrassing cos the guy who was, it was just neck and neck me and another guy, in fact he was slightly shorter than I was, and I was using the traditional Fosby Flop, is the Fosby Flop?",
         "notable": false,
         "placeholder": false,
         "sentiment": "negative"
@@ -3496,10 +3496,10 @@
       {
         "id": "ep-xfm-S1E23-232",
         "pos": 232,
-        "timestamp": 581018000000,
+        "timestamp": 580930000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 789000000,
+        "duration": 796000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3511,10 +3511,10 @@
       {
         "id": "ep-xfm-S1E23-233",
         "pos": 233,
-        "timestamp": 581807000000,
+        "timestamp": 581726000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
-        "duration": 8826000000,
+        "duration": 8898000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3526,10 +3526,10 @@
       {
         "id": "ep-xfm-S1E23-234",
         "pos": 234,
-        "timestamp": 590633000000,
+        "timestamp": 590624000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
-        "duration": 1117000000,
+        "duration": 1126000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -18282,9 +18282,20 @@
     ],
     "contributors": [
       "MonotoneCreeper",
+      "clubbychipface",
       "warmans"
     ],
     "trivia": [
+      {
+        "description": "The man who finished the London Marathon in a costume was Lloyd Scott, who completed the course in 5d 8hr 29min 46sec whilst wearing a deep sea diving suit. He was raising money for Cancer and Leukaemia in Children (Clic).",
+        "start_pos": 128,
+        "end_pos": 136
+      },
+      {
+        "description": "Ricky is referring to the 2002 FA Cup Final, in which Arsenal beat Chelsea 2-0; Ricky lost his bets.",
+        "start_pos": 788,
+        "end_pos": 789
+      },
       {
         "description": "Ricky was alegedly the manager of the band Suede for a short time. This is discussed in the book The Pointy Birds.",
         "start_pos": 1128,

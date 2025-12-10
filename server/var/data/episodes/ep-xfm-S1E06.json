@@ -5,7 +5,7 @@
     "episode": 6,
     "name": "The worst feature on Bwitish radio",
     "summary": "Jonathan Ross stops by and whips out his famous member. Quiz show with Ricky and Steve, but Karl doesn’t write down the questions or answers.",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "release_date": "2001-12-15T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -7229,7 +7229,7 @@
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "You go in, according to the Time Out guide 2001 if you went in a bought a big round, it’s a dear pub.",
+        "content": "You go in, according to the Time Out Guide 2001 if you went in a bought a big round, it’s a dear pub.",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
@@ -7454,7 +7454,7 @@
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "So who was that question from, maybe they should get these three cds.",
+        "content": "So who was that question from, maybe they should get these three CDs.",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
@@ -7495,11 +7495,11 @@
         "timestamp": 1080950000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 5033000000,
+        "duration": 5074000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "There is no way of verifying that, that’s probably libelous. They probably made-",
+        "content": "There is no way of verifying that, that’s probably libellous. They probably made-",
         "notable": false,
         "placeholder": false,
         "sentiment": "negative"
@@ -7507,10 +7507,10 @@
       {
         "id": "ep-xfm-S1E06-497",
         "pos": 497,
-        "timestamp": 1085983000000,
+        "timestamp": 1086024000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 1657000000,
+        "duration": 1650000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -7522,10 +7522,10 @@
       {
         "id": "ep-xfm-S1E06-498",
         "pos": 498,
-        "timestamp": 1087640000000,
+        "timestamp": 1087674000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
-        "duration": 736000000,
+        "duration": 733000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -7537,10 +7537,10 @@
       {
         "id": "ep-xfm-S1E06-499",
         "pos": 499,
-        "timestamp": 1088376000000,
+        "timestamp": 1088407000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
-        "duration": 2393000000,
+        "duration": 2384000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -7552,10 +7552,10 @@
       {
         "id": "ep-xfm-S1E06-500",
         "pos": 500,
-        "timestamp": 1090769000000,
+        "timestamp": 1090791000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
-        "duration": 1964000000,
+        "duration": 1956000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -7567,10 +7567,10 @@
       {
         "id": "ep-xfm-S1E06-501",
         "pos": 501,
-        "timestamp": 1092733000000,
+        "timestamp": 1092747000000,
         "timestamp_inferred": true,
         "timestamp_distance": 5,
-        "duration": 3376000000,
+        "duration": 3362000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -14110,9 +14110,21 @@
     "contributors": [
       "EarthlingCalling",
       "KomradeKvestions",
-      "MonotoneCreeper"
+      "MonotoneCreeper",
+      "clubbychipface"
     ],
-    "trivia": null,
+    "trivia": [
+      {
+        "description": "The first woman MP was Nancy Astor, Viscountess Astor.",
+        "start_pos": 55,
+        "end_pos": 60
+      },
+      {
+        "description": "After an exhaustive search of the Time Out Guides from 2000-2002 (to account for a Karl error), there is no indication that Punch \u0026 Judy is the most expensive pub.",
+        "start_pos": 489,
+        "end_pos": 490
+      }
+    ],
     "tags": null,
     "media": {
       "video_file_name": "",

@@ -5,7 +5,7 @@
     "episode": 20,
     "name": "Near-death Experiences",
     "summary": "Ricky is joined in the studio by Stephen Mitchell, raising questions about the level of due-dilligence newspaper reporters are performing. Karl recounts some stories from his childhood including harrowing accounts of his near-death experiences. There is some talk about quotes, the veracity of moon landing and karl attempts to come up with a quote.",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "release_date": "2002-04-13T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -8803,11 +8803,11 @@
         "timestamp": 1717022000000,
         "timestamp_inferred": true,
         "timestamp_distance": 256,
-        "duration": 7000000,
+        "duration": 8000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "Yeah “Alright Now”",
+        "content": "Yeah “All Right Now”.",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
@@ -8815,14 +8815,14 @@
       {
         "id": "ep-xfm-S1E20-585",
         "pos": 585,
-        "timestamp": 1717029000000,
+        "timestamp": 1717030000000,
         "timestamp_inferred": true,
         "timestamp_distance": 255,
         "duration": 31000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "Long time ago ,“Alright Now”, this is a great little track, it‘s “ My brother Jack”",
+        "content": "Long time ago, “All Right Now”, this is a great little track, it‘s “My Brother Jake”.",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
@@ -8830,7 +8830,7 @@
       {
         "id": "ep-xfm-S1E20-586",
         "pos": 586,
-        "timestamp": 1717060000000,
+        "timestamp": 1717061000000,
         "timestamp_inferred": true,
         "timestamp_distance": 254,
         "duration": 0,
@@ -8851,7 +8851,7 @@
       {
         "id": "ep-xfm-S1E20-587",
         "pos": 587,
-        "timestamp": 1717060000000,
+        "timestamp": 1717061000000,
         "timestamp_inferred": true,
         "timestamp_distance": 253,
         "duration": 0,
@@ -8872,7 +8872,7 @@
       {
         "id": "ep-xfm-S1E20-588",
         "pos": 588,
-        "timestamp": 1717060000000,
+        "timestamp": 1717061000000,
         "timestamp_inferred": true,
         "timestamp_distance": 252,
         "duration": 22000000,
@@ -8887,7 +8887,7 @@
       {
         "id": "ep-xfm-S1E20-589",
         "pos": 589,
-        "timestamp": 1717082000000,
+        "timestamp": 1717083000000,
         "timestamp_inferred": true,
         "timestamp_distance": 251,
         "duration": 1000000,
@@ -8902,7 +8902,7 @@
       {
         "id": "ep-xfm-S1E20-590",
         "pos": 590,
-        "timestamp": 1717083000000,
+        "timestamp": 1717084000000,
         "timestamp_inferred": true,
         "timestamp_distance": 250,
         "duration": 9000000,
@@ -8917,7 +8917,7 @@
       {
         "id": "ep-xfm-S1E20-591",
         "pos": 591,
-        "timestamp": 1717092000000,
+        "timestamp": 1717093000000,
         "timestamp_inferred": true,
         "timestamp_distance": 249,
         "duration": 4000000,
@@ -8932,7 +8932,7 @@
       {
         "id": "ep-xfm-S1E20-592",
         "pos": 592,
-        "timestamp": 1717096000000,
+        "timestamp": 1717097000000,
         "timestamp_inferred": true,
         "timestamp_distance": 248,
         "duration": 15000000,
@@ -8947,7 +8947,7 @@
       {
         "id": "ep-xfm-S1E20-593",
         "pos": 593,
-        "timestamp": 1717111000000,
+        "timestamp": 1717112000000,
         "timestamp_inferred": true,
         "timestamp_distance": 247,
         "duration": 8000000,
@@ -8962,7 +8962,7 @@
       {
         "id": "ep-xfm-S1E20-594",
         "pos": 594,
-        "timestamp": 1717119000000,
+        "timestamp": 1717120000000,
         "timestamp_inferred": true,
         "timestamp_distance": 246,
         "duration": 4000000,
@@ -8977,10 +8977,10 @@
       {
         "id": "ep-xfm-S1E20-595",
         "pos": 595,
-        "timestamp": 1717123000000,
+        "timestamp": 1717124000000,
         "timestamp_inferred": true,
         "timestamp_distance": 245,
-        "duration": 137000000,
+        "duration": 136000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -18619,7 +18619,7 @@
     ],
     "synopsis": [
       {
-        "description": "Steve Mitchell joins ricky in the studio.",
+        "description": "Steve Mitchell joins Ricky in the studio.",
         "start_pos": 11,
         "end_pos": 36
       },
@@ -18721,13 +18721,14 @@
     ],
     "contributors": [
       "MonotoneCreeper",
+      "clubbychipface",
       "danabrey",
       "lasermoai",
       "warmans"
     ],
     "trivia": [
       {
-        "description": "![steve mitchell article](/dl/media/file/steve-mitchell.jpg)",
+        "description": "![Steve Mitchell article](/dl/media/file/steve-mitchell.jpg)",
         "start_pos": 17,
         "end_pos": 36
       },

@@ -5,7 +5,7 @@
     "episode": 4,
     "name": "Steve is one of the UK’s most eligible bachelors",
     "summary": "Steve is one of the UK’s 50 most eligible (and desperate) bachelors. Discussion on what old things they’d like to bring back and wanking giants.",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "release_date": "2001-12-01T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -3532,7 +3532,7 @@
         "timestamp": 623740000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 1340000000,
+        "duration": 1333000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -3544,10 +3544,10 @@
       {
         "id": "ep-xfm-S1E04-234",
         "pos": 234,
-        "timestamp": 625080000000,
+        "timestamp": 625073000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 2092000000,
+        "duration": 2080000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3559,14 +3559,14 @@
       {
         "id": "ep-xfm-S1E04-235",
         "pos": 235,
-        "timestamp": 627172000000,
+        "timestamp": 627153000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
-        "duration": 1046000000,
+        "duration": 1072000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "Bruce Dickinson from Iron Maiden",
+        "content": "Bruce Dickinson from Iron Maiden.",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
@@ -3574,10 +3574,10 @@
       {
         "id": "ep-xfm-S1E04-236",
         "pos": 236,
-        "timestamp": 628218000000,
+        "timestamp": 628225000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
-        "duration": 751000000,
+        "duration": 747000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -3589,10 +3589,10 @@
       {
         "id": "ep-xfm-S1E04-237",
         "pos": 237,
-        "timestamp": 628969000000,
+        "timestamp": 628972000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
-        "duration": 721000000,
+        "duration": 718000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -10923,7 +10923,7 @@
         "end_pos": 225
       },
       {
-        "description": "Steve saw Bruce Dickson (Iron Maiden) in a sandwich shop",
+        "description": "Steve saw Bruce Dickinson (Iron Maiden) in a sandwich shop",
         "start_pos": 229,
         "end_pos": 245
       },
@@ -11035,9 +11035,16 @@
     ],
     "contributors": [
       "MonotoneCreeper",
+      "clubbychipface",
       "warmans"
     ],
-    "trivia": null,
+    "trivia": [
+      {
+        "description": "According to the Internet, Bruce Dickinson is 5 feet 6 inches tall.",
+        "start_pos": 237,
+        "end_pos": 238
+      }
+    ],
     "tags": null,
     "media": {
       "video_file_name": "",

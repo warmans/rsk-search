@@ -5,7 +5,7 @@
     "episode": 5,
     "name": "Karl's Magpie",
     "summary": "Giveaway this week are tickets to K-Fest, featuring Lanners. The lads tell embarrassing stories and Karl reveals a little of his peculiar childhood.",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "release_date": "2001-12-08T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -1379,7 +1379,7 @@
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "Yeah, I'm going to be playing a Hip-hop track.",
+        "content": "Yeah, I'm going to be playing a hip-hop track.",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
@@ -1405,11 +1405,11 @@
         "timestamp": 157080000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 663000000,
+        "duration": 681000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "It's called, Steve Say Hip-Hop hoorey!",
+        "content": "It's called \"Steve Says Hip-Hop Hooray\"!",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
@@ -1417,10 +1417,10 @@
       {
         "id": "ep-xfm-S1E05-93",
         "pos": 93,
-        "timestamp": 157743000000,
+        "timestamp": 157761000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 209000000,
+        "duration": 204000000,
         "type": "chat",
         "actor": "",
         "metadata": null,
@@ -1432,14 +1432,14 @@
       {
         "id": "ep-xfm-S1E05-94",
         "pos": 94,
-        "timestamp": 157952000000,
+        "timestamp": 157965000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
-        "duration": 262000000,
+        "duration": 255000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "Hip-hop hoorey.",
+        "content": "Hip-Hop Hooray.",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
@@ -1447,10 +1447,10 @@
       {
         "id": "ep-xfm-S1E05-95",
         "pos": 95,
-        "timestamp": 158214000000,
+        "timestamp": 158220000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
-        "duration": 246000000,
+        "duration": 240000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -5491,7 +5491,7 @@
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "Even Hip-hop.",
+        "content": "Even hip-hop.",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
@@ -7402,7 +7402,7 @@
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "Bit of hip hop?",
+        "content": "Bit of hip-hop?",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
@@ -7417,7 +7417,7 @@
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "Oh man alive. Hip Hop Hooray!",
+        "content": "Oh man alive. Hip-Hop Hooray!",
         "notable": false,
         "placeholder": false,
         "sentiment": "positive"
@@ -7432,7 +7432,7 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "Hip Hop Hooray!",
+        "content": "Hip-Hop Hooray!",
         "notable": false,
         "placeholder": false,
         "sentiment": "positive"
@@ -7447,7 +7447,7 @@
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "Oh, it’s the opportunity where Steve gets to play one of his hip hop tracks, something that you’ve maybe not heard before Rick.",
+        "content": "Oh, it’s the opportunity where Steve gets to play one of his hip-hop tracks, something that you’ve maybe not heard before Rick.",
         "notable": false,
         "placeholder": false,
         "sentiment": "positive"
@@ -7492,7 +7492,7 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "All right, just get on with the hip hop track.",
+        "content": "All right, just get on with the hip-hop track.",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
@@ -7507,7 +7507,7 @@
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "Um, this is from, I need to just introduce it briefly, from an artist called ”Mad Skillz“ who on this record claims that he has written loads of other people’s songs, which I think is true. The only thing I would say is the names of the artists he’s supposedly written for have been bleeped out, but of course because it’s also a radio-friendly version, all the swearing’s been bleeped out as well, so there’s a lot of bleeping, but if you can piece it together from it, it will actually be quite a good song.",
+        "content": "Um, this is from, I need to just introduce it briefly, from an artist called Mad Skillz who on this record claims that he has written loads of other people’s songs, which I think is true. The only thing I would say is the names of the artists he’s supposedly written for have been bleeped out, but of course because it’s also a radio-friendly version, all the swearing’s been bleeped out as well, so there’s a lot of bleeping, but if you can piece it together from it, it will actually be quite a good song.",
         "notable": false,
         "placeholder": false,
         "sentiment": "positive"
@@ -14683,7 +14683,7 @@
         "end_pos": 487
       },
       {
-        "description": "Feature: Hip-hop Hooray!",
+        "description": "Feature: Hip-Hop Hooray!",
         "start_pos": 487,
         "end_pos": 501
       },
@@ -14745,7 +14745,13 @@
       "warmans",
       "whatdarrenplays"
     ],
-    "trivia": null,
+    "trivia": [
+      {
+        "description": "Despite Steve’s commitment to the Hip-Hop Hooray feature, he doesn’t even give the song name for this week’s entry (it’s \"Ghost Writer\" by Mad Skillz).",
+        "start_pos": 497,
+        "end_pos": 498
+      }
+    ],
     "tags": null,
     "media": {
       "video_file_name": "",

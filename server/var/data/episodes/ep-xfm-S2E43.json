@@ -5,7 +5,7 @@
     "episode": 43,
     "name": "",
     "summary": "",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "release_date": "2003-06-21T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -12325,7 +12325,7 @@
         "timestamp": 1976100000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 6699000000,
+        "duration": 6775000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -12337,10 +12337,10 @@
       {
         "id": "ep-xfm-S2E43-819",
         "pos": 819,
-        "timestamp": 1982799000000,
+        "timestamp": 1982875000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 378000000,
+        "duration": 382000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -12352,10 +12352,10 @@
       {
         "id": "ep-xfm-S2E43-820",
         "pos": 820,
-        "timestamp": 1983177000000,
+        "timestamp": 1983257000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
-        "duration": 5618000000,
+        "duration": 5682000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -12367,10 +12367,10 @@
       {
         "id": "ep-xfm-S2E43-821",
         "pos": 821,
-        "timestamp": 1988795000000,
+        "timestamp": 1988939000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
-        "duration": 270000000,
+        "duration": 273000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -12382,14 +12382,14 @@
       {
         "id": "ep-xfm-S2E43-822",
         "pos": 822,
-        "timestamp": 1989065000000,
+        "timestamp": 1989212000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
-        "duration": 5240000000,
+        "duration": 5026000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "...that thinks one day she'll [sic] leave Gwyneth, right, and end up with- with- with her, right.",
+        "content": "...that thinks one day she'll leave, Gwyneth, right, and end up with- with- with her, right.",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
@@ -12397,10 +12397,10 @@
       {
         "id": "ep-xfm-S2E43-823",
         "pos": 823,
-        "timestamp": 1994305000000,
+        "timestamp": 1994238000000,
         "timestamp_inferred": true,
         "timestamp_distance": 5,
-        "duration": 324000000,
+        "duration": 327000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -12412,10 +12412,10 @@
       {
         "id": "ep-xfm-S2E43-824",
         "pos": 824,
-        "timestamp": 1994629000000,
+        "timestamp": 1994565000000,
         "timestamp_inferred": true,
         "timestamp_distance": 6,
-        "duration": 5621000000,
+        "duration": 5685000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -14507,7 +14507,7 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "Yeah, yeah, yeah. \"I am the fat bloke with fleshy legs.\"",
+        "content": "Yeah, yeah, yeah. \"I am the fat bloater with fleshy legs.\"",
         "notable": false,
         "placeholder": false,
         "sentiment": "negative"
@@ -14537,7 +14537,7 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "\"I like to read these books whilst listening to XFM of a Saturday.\"",
+        "content": "\"I like to read these books whilst listening to Xfm of a Saturday.\"",
         "notable": false,
         "placeholder": false,
         "sentiment": "positive"
@@ -19013,7 +19013,7 @@
         "type": "chat",
         "actor": "",
         "metadata": null,
-        "content": "Ricky crumples up his paper.",
+        "content": "Paper is loudly crumpled up.",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
@@ -22556,10 +22556,17 @@
     ],
     "contributors": [
       "MisterM2402",
+      "clubbychipface",
       "ryanooooo",
       "wqzkav"
     ],
-    "trivia": null,
+    "trivia": [
+      {
+        "description": "Karl is probably referring to the Wild Futures sanctuary, which was established in Looe in 1964 to house rescued monkeys. The site was put on sale in 2025 after a period of financial difficulty.",
+        "start_pos": 209,
+        "end_pos": 214
+      }
+    ],
     "tags": null,
     "media": {
       "video_file_name": "",
@@ -22572,7 +22579,11 @@
     },
     "ratings": {
       "scores": {
+        "discord:alexb457": 4.3,
+        "discord:dragonq0105": 5,
         "discord:paulgriffincsp": 4.5,
+        "discord:rowanator3000": 4,
+        "discord:sigh8499": 4,
         "reddit:Rhondson": 5,
         "reddit:pichushkins": 5
       }

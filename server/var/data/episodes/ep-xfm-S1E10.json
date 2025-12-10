@@ -5,7 +5,7 @@
     "episode": 10,
     "name": "I say toob",
     "summary": "Steve is upset that he spent £20 too much on a PS2. They discuss Americans and Americanisms that get on their nerves.",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "release_date": "2002-01-26T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -12912,11 +12912,11 @@
         "timestamp": 2470190000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 29323000000,
+        "duration": 29357000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "Because, erm, I saw a video, for the Electric Soft Parade's 'Silence of the Dark', but it was called Silence of the Dark 2, but it was the same song, it sounds like they've redone it, the video is different to the old video, I was very confused, hopefully someone will phone in and solve it for me, anyway this is the original Silence of the Dark, still a good track, let's hear it.",
+        "content": "Because, erm, I saw a video, for The Electric Soft Parade's 'Silent to the Dark', but it was called Silent to the Dark II, but it was the same song, it sounds like they've redone it, the video is different to the old video, I was very confused, hopefully someone will phone in and solve it for me, anyway this is the original Silent to the Dark, still a good track, let's hear it Karl.",
         "notable": false,
         "placeholder": false,
         "sentiment": "positive"
@@ -12924,20 +12924,20 @@
       {
         "id": "ep-xfm-S1E10-857",
         "pos": 857,
-        "timestamp": 2499513000000,
+        "timestamp": 2499547000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
         "duration": 0,
         "type": "song",
         "actor": "",
         "metadata": {
-          "song_album": "The Silence Of The Lambs",
-          "song_album_art": "https://i.scdn.co/image/ab67616d0000b2735295e0312e6e34ac4b46c7a3",
-          "song_artist": "Münchner Symphoniker",
-          "song_track": "Main Title",
-          "spotify_uri": "spotify:track:5fGk9UjkHggNZDwT0Yowl6"
+          "song_album": "Shore",
+          "song_album_art": "https://i.scdn.co/image/ab67616d0000b27365d8099f09fab56a7f92bc83",
+          "song_artist": "Stellar Serenity",
+          "song_track": "Shore",
+          "spotify_uri": "spotify:track:3b6vQmDPvzM3bPokB68f97"
         },
-        "content": "Electric Soft Parade - Silence of the Dark",
+        "content": "The Electric Soft Parade - Silence of the Dark",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
@@ -12945,14 +12945,14 @@
       {
         "id": "ep-xfm-S1E10-858",
         "pos": 858,
-        "timestamp": 2499513000000,
+        "timestamp": 2499547000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
-        "duration": 5067000000,
+        "duration": 5033000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "Silence of the dark. The debut single by the Electric Soft Parade.",
+        "content": "Silence of the dark. The debut single by The Electric Soft Parade.",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
@@ -13494,6 +13494,7 @@
     "contributors": [
       "EarthlingCalling",
       "MonotoneCreeper",
+      "clubbychipface",
       "lasermoai",
       "sheddow",
       "warmans"
@@ -13503,6 +13504,11 @@
         "description": "![tiger skin](/dl/media/file/tiger-skin.jpg)",
         "start_pos": 339,
         "end_pos": 397
+      },
+      {
+        "description": "To clear up Steve’s confusion, The Electric Soft Parade released “Silent to the Dark II” as a new version of their original song, instead mixed by Danton Stupple.",
+        "start_pos": 856,
+        "end_pos": 857
       }
     ],
     "tags": null,

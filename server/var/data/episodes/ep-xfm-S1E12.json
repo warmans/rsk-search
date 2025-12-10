@@ -5,7 +5,7 @@
     "episode": 12,
     "name": "Fuk, Luk and Sau",
     "summary": "Karl comes out of his shell with his story about scoring a goal chased by a bee, and the first ever White Van Karl. Steve trials the barnstorming format “Ladies and gentlemen welcome to the stage…” Karl tries to stop Ricky and Steve saying the name of a Chinese god.",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "release_date": "2002-02-16T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -6016,11 +6016,11 @@
         "timestamp": 836000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 15348000000,
+        "duration": 15430000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "Yeah. So they go home for Christmas… Mrs. McCartney goes, “All right, boys. How are you, Paul, how are you doin’?” “I’m startin’ a new band called Wings.” “Oh yeah, yeah.” “This is Linda.” “All right, lovely, sit down. Mike, what are you doin’?” “Just had a number one.” “Brilliant, round of applause.” “How many number ones do you have, Paul?” “Uh… 19.” “Still. We know what we like, don’t we?”",
+        "content": "Yeah. So they go home for Christmas… Mrs. McCartney goes, “All right, boys. How are you, Paul, how are you doin’?” “I’m startin’ a new band called Wings.” “Oh yeah, yeah.” “This is Linda.” “All right, lovely, sit down. Mike, what are you doin’?” “Just had a number one.” “Brilliant, round of applause.” “How many number ones do you have, Paul?” “Uh… nineteen.” “Still. We know what we like, don’t we?”",
         "notable": false,
         "placeholder": false,
         "sentiment": "positive"
@@ -6028,10 +6028,10 @@
       {
         "id": "ep-xfm-S1E12-400",
         "pos": 400,
-        "timestamp": 851348000000,
+        "timestamp": 851430000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 2837000000,
+        "duration": 2814000000,
         "type": "chat",
         "actor": "ricky and steve",
         "metadata": null,
@@ -6043,10 +6043,10 @@
       {
         "id": "ep-xfm-S1E12-401",
         "pos": 401,
-        "timestamp": 854185000000,
+        "timestamp": 854244000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
-        "duration": 1845000000,
+        "duration": 1831000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -6058,10 +6058,10 @@
       {
         "id": "ep-xfm-S1E12-402",
         "pos": 402,
-        "timestamp": 856030000000,
+        "timestamp": 856075000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
-        "duration": 2768000000,
+        "duration": 2746000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -6073,10 +6073,10 @@
       {
         "id": "ep-xfm-S1E12-403",
         "pos": 403,
-        "timestamp": 858798000000,
+        "timestamp": 858821000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
-        "duration": 2495000000,
+        "duration": 2475000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -6088,10 +6088,10 @@
       {
         "id": "ep-xfm-S1E12-404",
         "pos": 404,
-        "timestamp": 861293000000,
+        "timestamp": 861296000000,
         "timestamp_inferred": true,
         "timestamp_distance": 5,
-        "duration": 447000000,
+        "duration": 444000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -20446,6 +20446,7 @@
     ],
     "contributors": [
       "MonotoneCreeper",
+      "clubbychipface",
       "lasermoai",
       "warmans"
     ],
@@ -20454,6 +20455,16 @@
         "description": "![](https://www.youtube.com/watch?v=2x8D4T--0v4)",
         "start_pos": 375,
         "end_pos": 378
+      },
+      {
+        "description": "Ricky says flippantly that Paul McCartney achieved 19 number 1 singles by 1970 (presumably meaning “by the time the Beatles had broken up”). In fact, by 1970, The Beatles achieved 17 UK number 1 singles and 20 number 1 singles on US Billboard.",
+        "start_pos": 399,
+        "end_pos": 400
+      },
+      {
+        "description": "The band who released “Where’s Me Jumper” were known as The Sultans of Ping F.C.",
+        "start_pos": 474,
+        "end_pos": 475
       }
     ],
     "tags": null,
