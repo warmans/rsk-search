@@ -5,7 +5,7 @@
     "episode": 51,
     "name": "",
     "summary": "",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "release_date": "2003-08-16T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -9412,7 +9412,7 @@
         "timestamp": 2534560000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 6105000000,
+        "duration": 6000000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -9424,10 +9424,10 @@
       {
         "id": "ep-xfm-S2E51-624",
         "pos": 624,
-        "timestamp": 2540665000000,
+        "timestamp": 2540560000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 407000000,
+        "duration": 400000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -9439,14 +9439,14 @@
       {
         "id": "ep-xfm-S2E51-625",
         "pos": 625,
-        "timestamp": 2541072000000,
+        "timestamp": 2540960000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
-        "duration": 2768000000,
+        "duration": 2880000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "I think it's anti- ((Antidulian))?",
+        "content": "I think it's anti- antidewian [sic]?",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
@@ -9551,7 +9551,7 @@
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "((Antidulian?)).",
+        "content": "Antidewian.",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
@@ -15116,13 +15116,20 @@
     ],
     "contributors": [
       "ThatIsTheLonging",
+      "clubbychipface",
       "lasermoai",
       "sheddow",
       "warmans",
       "wontbemad",
       "wqzkav"
     ],
-    "trivia": null,
+    "trivia": [
+      {
+        "description": "Karl is thinking of \"antediluvian\"",
+        "start_pos": 625,
+        "end_pos": 626
+      }
+    ],
     "tags": null,
     "media": {
       "video_file_name": "",
@@ -15135,7 +15142,13 @@
     },
     "ratings": {
       "scores": {
+        "discord:alexb457": 3.8,
+        "discord:dragonq0105": 3.8,
+        "discord:harrybee": 4,
         "discord:paulgriffincsp": 3.5,
+        "discord:rowanator3000": 3.5,
+        "discord:sigh8499": 4,
+        "discord:wqzkav": 3,
         "reddit:Rhondson": 4
       }
     }
