@@ -115,17 +115,8 @@ func (r *ShowRatingsCommand) handleSetKind(s *discordgo.Session, i *discordgo.In
 		return err
 	}
 
-	switch args[0] {
-	case "avg":
-		state.Kind = chart.RatingAvg
-		state.Mine = false
-	case "count":
-		state.Kind = chart.RatingCounts
-		state.Mine = false
-	case "breakdown":
-		state.Kind = chart.RatingBreakdown
-		state.Mine = false
-	}
+	state.Kind = chart.Kind(args[0])
+	state.Mine = false
 
 	return r._handleLoadChart(s, i, state, "")
 }
@@ -325,13 +316,17 @@ func (r *ShowRatingsCommand) buttons(state State) []discordgo.MessageComponent {
 					Style:    buttonStyleIf(state.Mine, discordgo.SuccessButton, discordgo.SecondaryButton),
 					CustomID: fmt.Sprintf("%s:toggle-mine", r.Name()),
 				},
+			},
+		},
+		discordgo.ActionsRow{
+			Components: []discordgo.MessageComponent{
 				discordgo.Button{
 					Label: "Average",
 					Emoji: &discordgo.ComponentEmoji{
 						Name: "📊",
 					},
 					Style:    buttonStyleIf(state.Kind == chart.RatingAvg && !state.Mine, discordgo.SuccessButton, discordgo.SecondaryButton),
-					CustomID: fmt.Sprintf("%s:set-kind:avg", r.Name()),
+					CustomID: fmt.Sprintf("%s:set-kind:%s", r.Name(), chart.RatingAvg),
 				},
 				discordgo.Button{
 					Label: "Count",
@@ -339,7 +334,7 @@ func (r *ShowRatingsCommand) buttons(state State) []discordgo.MessageComponent {
 						Name: "📊",
 					},
 					Style:    buttonStyleIf(state.Kind == chart.RatingCounts, discordgo.SuccessButton, discordgo.SecondaryButton),
-					CustomID: fmt.Sprintf("%s:set-kind:count", r.Name()),
+					CustomID: fmt.Sprintf("%s:set-kind:%s", r.Name(), chart.RatingCounts),
 				},
 				discordgo.Button{
 					Label: "Breakdown",
@@ -347,7 +342,15 @@ func (r *ShowRatingsCommand) buttons(state State) []discordgo.MessageComponent {
 						Name: "📊",
 					},
 					Style:    buttonStyleIf(state.Kind == chart.RatingBreakdown, discordgo.SuccessButton, discordgo.SecondaryButton),
-					CustomID: fmt.Sprintf("%s:set-kind:breakdown", r.Name()),
+					CustomID: fmt.Sprintf("%s:set-kind:%s", r.Name(), chart.RatingBreakdown),
+				},
+				discordgo.Button{
+					Label: "Average by Series",
+					Emoji: &discordgo.ComponentEmoji{
+						Name: "📊",
+					},
+					Style:    buttonStyleIf(state.Kind == chart.RatingSeriesAvg, discordgo.SuccessButton, discordgo.SecondaryButton),
+					CustomID: fmt.Sprintf("%s:set-kind:%s", r.Name(), chart.RatingSeriesAvg),
 				},
 			},
 		},
@@ -397,32 +400,34 @@ func (r *ShowRatingsCommand) buttons(state State) []discordgo.MessageComponent {
 		},
 	}
 
-	switch state.Publication {
-	case "xfm":
-		row := discordgo.ActionsRow{
-			Components: []discordgo.MessageComponent{},
-		}
-		for i := 0; i <= 4; i++ {
-			row.Components = append(row.Components, discordgo.Button{
-				Label:    fmt.Sprintf("%d", i),
-				Style:    buttonStyleIf(state.Series == fmt.Sprintf("%d", i), discordgo.SuccessButton, discordgo.SecondaryButton),
-				CustomID: fmt.Sprintf("%s:series-filter:%d", r.Name(), i),
-			})
-		}
-		buttons = append(buttons, row)
-	case "podcast":
-		row := discordgo.ActionsRow{
-			Components: []discordgo.MessageComponent{},
-		}
-		for i := 1; i <= 4; i++ {
-			row.Components = append(row.Components, discordgo.Button{
-				Label:    fmt.Sprintf("%d", i),
-				Style:    buttonStyleIf(state.Series == fmt.Sprintf("%d", i), discordgo.SuccessButton, discordgo.SecondaryButton),
-				CustomID: fmt.Sprintf("%s:series-filter:%d", r.Name(), i),
-			})
-		}
-		buttons = append(buttons, row)
+	if state.Kind != chart.RatingSeriesAvg {
+		switch state.Publication {
+		case "xfm":
+			row := discordgo.ActionsRow{
+				Components: []discordgo.MessageComponent{},
+			}
+			for i := 0; i <= 4; i++ {
+				row.Components = append(row.Components, discordgo.Button{
+					Label:    fmt.Sprintf("%d", i),
+					Style:    buttonStyleIf(state.Series == fmt.Sprintf("%d", i), discordgo.SuccessButton, discordgo.SecondaryButton),
+					CustomID: fmt.Sprintf("%s:series-filter:%d", r.Name(), i),
+				})
+			}
+			buttons = append(buttons, row)
+		case "podcast":
+			row := discordgo.ActionsRow{
+				Components: []discordgo.MessageComponent{},
+			}
+			for i := 1; i <= 4; i++ {
+				row.Components = append(row.Components, discordgo.Button{
+					Label:    fmt.Sprintf("%d", i),
+					Style:    buttonStyleIf(state.Series == fmt.Sprintf("%d", i), discordgo.SuccessButton, discordgo.SecondaryButton),
+					CustomID: fmt.Sprintf("%s:series-filter:%d", r.Name(), i),
+				})
+			}
+			buttons = append(buttons, row)
 
+		}
 	}
 
 	buttons = append(buttons, discordgo.ActionsRow{

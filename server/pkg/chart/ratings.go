@@ -21,6 +21,7 @@ const (
 	RatingAvg       Kind = "avg"
 	RatingCounts    Kind = "count"
 	RatingBreakdown Kind = "breakdown"
+	RatingSeriesAvg Kind = "series_avg"
 )
 
 func GenerateBreakdownChart(
@@ -117,8 +118,9 @@ func GenerateRatingsChart(
 		case RatingCounts:
 			series = createCountSeries(transcripts)
 			yScale = gochart.NewYScale(10, series)
+		case RatingSeriesAvg:
+			series = createSeriesAvgSeries(transcripts)
 		}
-
 	}
 
 	if sort {
@@ -165,6 +167,66 @@ func createAveragesSeries(transcripts *api.TranscriptList) gochart.Series {
 	for _, v := range transcripts.Episodes {
 		XYs.X = append(XYs.X, v.ShortId)
 		XYs.Y = append(XYs.Y, float64(v.RatingScore))
+	}
+
+	return gochart.NewXYSeries(XYs.X, XYs.Y)
+}
+
+func createSeriesAvgSeries(transcripts *api.TranscriptList) gochart.Series {
+
+	// sum all the totals
+	totals := map[string]*struct {
+		sum   float64
+		count int
+	}{}
+	for _, v := range transcripts.Episodes {
+		label := fmt.Sprintf("%s-S%d", v.Publication, v.Series)
+
+		if _, ok := totals[label]; !ok {
+
+			totals[label] = &struct {
+				sum   float64
+				count int
+			}{
+				sum:   0,
+				count: 0,
+			}
+		}
+
+		totals[label].sum += float64(v.RatingScore)
+		totals[label].count += 1
+	}
+
+	// sort them by series
+	var sorted []struct {
+		label string
+		avg   float64
+	}
+	for label, rating := range totals {
+		sorted = append(sorted, struct {
+			label string
+			avg   float64
+		}{
+			label: label,
+			avg:   rating.sum / float64(rating.count),
+		})
+	}
+
+	slices.SortFunc(sorted, func(a, b struct {
+		label string
+		avg   float64
+	}) int {
+		return strings.Compare(a.label, b.label)
+	})
+
+	// create the series
+	XYs := struct {
+		X []string
+		Y []float64
+	}{}
+	for _, v := range sorted {
+		XYs.X = append(XYs.X, v.label)
+		XYs.Y = append(XYs.Y, v.avg)
 	}
 
 	return gochart.NewXYSeries(XYs.X, XYs.Y)
