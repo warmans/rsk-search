@@ -61,7 +61,7 @@ func DumpDialog() *cobra.Command {
 				logger.Info("Processing file...", zap.String("path", dirEntry.Name()))
 
 				for idx, dialog := range episode.Transcript {
-					if dialog.Type != models.DialogTypeChat {
+					if dialog.Type != models.DialogTypeChat || dialog.Actor == "" {
 						continue
 					}
 					tryAddFullStop := false
