@@ -926,7 +926,7 @@ func (b *SearchCommand) handleStateUpdate(s *discordgo.Session, i *discordgo.Int
 		return b.updatePreview(
 			s,
 			i,
-			state.withOption(withAudioShift(duration)),
+			state.withOption(withAudioShift(state.AudioShift+duration)),
 		)
 	case StateUpdateAudioExtendTrim:
 		strVal, ok := update.Value.(string)
@@ -940,7 +940,7 @@ func (b *SearchCommand) handleStateUpdate(s *discordgo.Session, i *discordgo.Int
 		return b.updatePreview(
 			s,
 			i,
-			state.withOption(withAudioExtendOrTrim(duration)),
+			state.withOption(withAudioExtendOrTrim(state.AudioExtendOrTrim+duration)),
 		)
 	case StateUpdateSetContentModifier:
 		// encode as a string to stop it being interpreted as a float
