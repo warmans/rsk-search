@@ -510,7 +510,7 @@ func (b *SearchCommand) buttons(state ScrimpState, maxDialogOffset int32) []disc
 			},
 			Style: discordgo.SecondaryButton,
 			CustomID: b.encodeCustomIDForStateUpdate(
-				StateUpdate{Type: StateUpdateShiftDialogBackwards, Value: "1s"},
+				StateUpdate{Type: StateUpdateAudioShift, Value: "-1s"},
 			),
 		})
 		editRow3 = append(editRow3, discordgo.Button{
@@ -520,7 +520,7 @@ func (b *SearchCommand) buttons(state ScrimpState, maxDialogOffset int32) []disc
 			},
 			Style: discordgo.SecondaryButton,
 			CustomID: b.encodeCustomIDForStateUpdate(
-				StateUpdate{Type: StateUpdateShiftDialogForwards, Value: "1s"},
+				StateUpdate{Type: StateUpdateAudioShift, Value: "1s"},
 			),
 		})
 
