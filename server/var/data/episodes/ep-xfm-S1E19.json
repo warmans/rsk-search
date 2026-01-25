@@ -5,7 +5,7 @@
     "episode": 19,
     "name": "Horse in the house",
     "summary": "",
-    "version": "0.0.12",
+    "version": "0.1.12",
     "release_date": "2002-04-06T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -14593,11 +14593,11 @@
         "timestamp": 2355900000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 8450000000,
+        "duration": 8465000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "You know, you show your respect by sort of doin’ the news on it, givin’ her a bit of coverage and showin’ what a good woman she was and whatever.",
+        "content": "You know, you show your respect by sort of doin’ the news on it, givin’ her a bit of coverage and showin’ you know what a good woman she was and whatever.",
         "notable": false,
         "placeholder": false,
         "sentiment": "positive"
@@ -14605,10 +14605,10 @@
       {
         "id": "ep-xfm-S1E19-969",
         "pos": 969,
-        "timestamp": 2364350000000,
+        "timestamp": 2364365000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 280000000,
+        "duration": 265000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -14882,7 +14882,7 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "I agree. No what annoys me is that when you see people on television sort of members of the public and they’re crying about the Queen Mother who was sad when anyone dies, sad when anyone’s Nan dies. She was 102 and um what you know what I mean it sort of like I think they think they should cry…I don’t understand it.",
+        "content": "I agree. No what annoys me is that when you see people on television sort of members of the public and they’re crying about the Queen Mother who was- sad when anyone dies, sad when anyone’s Nan dies. She was 102 and um what you know what I mean it sort of like I think they think they should cry… I actually don’t understand it.",
         "notable": false,
         "placeholder": false,
         "sentiment": "negative"
@@ -14893,22 +14893,52 @@
         "timestamp": 2447570000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 20837000000,
+        "duration": 16014000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "Well there’s a picture in the paper today of various people who were lining the pre umm you know the funeral route yesterday and there’s a picture of a very young child maybe sort of five or six on the arms of her dad and her head bowed and it says, “A young girl there weeps for the Queen Mother” and I was looking at it and she, you can tell she’s just tired. She’s just tired and bored and it’s so transparent that she’s not crying.",
+        "content": "Well there’s a picture in the paper today of various people who were lining the pre umm you know the funeral kind of route yesterday and there’s a picture of a very young child maybe sort of five or six on the arms of her dad and her head bowed and it says, “A young girl there weeps for the Queen Mother” and I was looking at it and she, you can tell she’s just tired.",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": "mixed"
+      },
+      {
+        "id": "ep-xfm-S1E19-989",
+        "pos": 989,
+        "timestamp": 2463584000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 1,
+        "duration": 1732000000,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Well she doesn't know, why would she cry?",
         "notable": false,
         "placeholder": false,
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-989",
-        "pos": 989,
-        "timestamp": 2468407000000,
+        "id": "ep-xfm-S1E19-990",
+        "pos": 990,
+        "timestamp": 2465316000000,
         "timestamp_inferred": true,
-        "timestamp_distance": 1,
-        "duration": 2032000000,
+        "timestamp_distance": 2,
+        "duration": 3295000000,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "She’s just tired and bored and it’s so transparent that it’s not crying.",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": "positive"
+      },
+      {
+        "id": "ep-xfm-S1E19-991",
+        "pos": 991,
+        "timestamp": 2468611000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 3,
+        "duration": 1859000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -14918,12 +14948,12 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-990",
-        "pos": 990,
-        "timestamp": 2470439000000,
+        "id": "ep-xfm-S1E19-992",
+        "pos": 992,
+        "timestamp": 2470470000000,
         "timestamp_inferred": true,
-        "timestamp_distance": 2,
-        "duration": 371000000,
+        "timestamp_distance": 4,
+        "duration": 340000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -14933,8 +14963,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-991",
-        "pos": 991,
+        "id": "ep-xfm-S1E19-993",
+        "pos": 993,
         "timestamp": 2470810000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -14948,8 +14978,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-992",
-        "pos": 992,
+        "id": "ep-xfm-S1E19-994",
+        "pos": 994,
         "timestamp": 2472320000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -14963,8 +14993,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-993",
-        "pos": 993,
+        "id": "ep-xfm-S1E19-995",
+        "pos": 995,
         "timestamp": 2480409000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -14978,8 +15008,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-994",
-        "pos": 994,
+        "id": "ep-xfm-S1E19-996",
+        "pos": 996,
         "timestamp": 2481360000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -14993,8 +15023,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-995",
-        "pos": 995,
+        "id": "ep-xfm-S1E19-997",
+        "pos": 997,
         "timestamp": 2482192000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -15008,8 +15038,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-996",
-        "pos": 996,
+        "id": "ep-xfm-S1E19-998",
+        "pos": 998,
         "timestamp": 2497934000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
@@ -15023,8 +15053,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-997",
-        "pos": 997,
+        "id": "ep-xfm-S1E19-999",
+        "pos": 999,
         "timestamp": 2501980000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -15038,8 +15068,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-998",
-        "pos": 998,
+        "id": "ep-xfm-S1E19-1000",
+        "pos": 1000,
         "timestamp": 2502925000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -15053,8 +15083,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-999",
-        "pos": 999,
+        "id": "ep-xfm-S1E19-1001",
+        "pos": 1001,
         "timestamp": 2505460000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -15068,8 +15098,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1000",
-        "pos": 1000,
+        "id": "ep-xfm-S1E19-1002",
+        "pos": 1002,
         "timestamp": 2507149000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -15083,8 +15113,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1001",
-        "pos": 1001,
+        "id": "ep-xfm-S1E19-1003",
+        "pos": 1003,
         "timestamp": 2508574000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -15098,8 +15128,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1002",
-        "pos": 1002,
+        "id": "ep-xfm-S1E19-1004",
+        "pos": 1004,
         "timestamp": 2509207000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -15113,8 +15143,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1003",
-        "pos": 1003,
+        "id": "ep-xfm-S1E19-1005",
+        "pos": 1005,
         "timestamp": 2512585000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
@@ -15128,8 +15158,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1004",
-        "pos": 1004,
+        "id": "ep-xfm-S1E19-1006",
+        "pos": 1006,
         "timestamp": 2512743000000,
         "timestamp_inferred": true,
         "timestamp_distance": 5,
@@ -15143,8 +15173,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1005",
-        "pos": 1005,
+        "id": "ep-xfm-S1E19-1007",
+        "pos": 1007,
         "timestamp": 2514168000000,
         "timestamp_inferred": true,
         "timestamp_distance": 6,
@@ -15158,8 +15188,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1006",
-        "pos": 1006,
+        "id": "ep-xfm-S1E19-1008",
+        "pos": 1008,
         "timestamp": 2516068000000,
         "timestamp_inferred": true,
         "timestamp_distance": 7,
@@ -15173,8 +15203,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1007",
-        "pos": 1007,
+        "id": "ep-xfm-S1E19-1009",
+        "pos": 1009,
         "timestamp": 2518500000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -15188,8 +15218,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1008",
-        "pos": 1008,
+        "id": "ep-xfm-S1E19-1010",
+        "pos": 1010,
         "timestamp": 2522750000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -15203,8 +15233,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1009",
-        "pos": 1009,
+        "id": "ep-xfm-S1E19-1011",
+        "pos": 1011,
         "timestamp": 2537020000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -15218,8 +15248,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1010",
-        "pos": 1010,
+        "id": "ep-xfm-S1E19-1012",
+        "pos": 1012,
         "timestamp": 2538140000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -15227,18 +15257,18 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "What will us three look like in the future if they’re being genetically modified, beautiful people? What will we be like? How will we be considered in society?",
+        "content": "What will us three look like in the future if they’re being you know genetically modified, beautiful people? What will we be like? How will we be considered in society?",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1011",
-        "pos": 1011,
+        "id": "ep-xfm-S1E19-1013",
+        "pos": 1013,
         "timestamp": 2546280000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 4396000000,
+        "duration": 4446000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -15248,12 +15278,12 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1012",
-        "pos": 1012,
-        "timestamp": 2550676000000,
+        "id": "ep-xfm-S1E19-1014",
+        "pos": 1014,
+        "timestamp": 2550726000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 222000000,
+        "duration": 224000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -15263,12 +15293,12 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1013",
-        "pos": 1013,
-        "timestamp": 2550898000000,
+        "id": "ep-xfm-S1E19-1015",
+        "pos": 1015,
+        "timestamp": 2550950000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
-        "duration": 888000000,
+        "duration": 898000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -15278,12 +15308,12 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1014",
-        "pos": 1014,
-        "timestamp": 2551786000000,
+        "id": "ep-xfm-S1E19-1016",
+        "pos": 1016,
+        "timestamp": 2551848000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
-        "duration": 222000000,
+        "duration": 224000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -15293,23 +15323,23 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1015",
-        "pos": 1015,
-        "timestamp": 2552008000000,
+        "id": "ep-xfm-S1E19-1017",
+        "pos": 1017,
+        "timestamp": 2552072000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
-        "duration": 9992000000,
+        "duration": 9928000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "But I erm I don’t think it matters at the end of the day right you might look like some other kid but it’s the way that you’re brought up that will change your features and the way you are you know you’re personality.",
+        "content": "But I erm I don’t think it matters at the end of the day right you might look like some other kid but it’s the way that you’re brought up that will change your features and the way you are you know your personality.",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1016",
-        "pos": 1016,
+        "id": "ep-xfm-S1E19-1018",
+        "pos": 1018,
         "timestamp": 2562000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -15323,8 +15353,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1017",
-        "pos": 1017,
+        "id": "ep-xfm-S1E19-1019",
+        "pos": 1019,
         "timestamp": 2563720000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -15338,8 +15368,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1018",
-        "pos": 1018,
+        "id": "ep-xfm-S1E19-1020",
+        "pos": 1020,
         "timestamp": 2568130000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -15353,8 +15383,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1019",
-        "pos": 1019,
+        "id": "ep-xfm-S1E19-1021",
+        "pos": 1021,
         "timestamp": 2569220000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -15368,8 +15398,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1020",
-        "pos": 1020,
+        "id": "ep-xfm-S1E19-1022",
+        "pos": 1022,
         "timestamp": 2573158000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -15383,8 +15413,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1021",
-        "pos": 1021,
+        "id": "ep-xfm-S1E19-1023",
+        "pos": 1023,
         "timestamp": 2573540000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -15392,14 +15422,14 @@
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "So we don’t need to worry sort of think.",
+        "content": "So we don’t need to worry sort of thing.",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1022",
-        "pos": 1022,
+        "id": "ep-xfm-S1E19-1024",
+        "pos": 1024,
         "timestamp": 2575725000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -15413,8 +15443,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1023",
-        "pos": 1023,
+        "id": "ep-xfm-S1E19-1025",
+        "pos": 1025,
         "timestamp": 2575985000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -15428,8 +15458,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1024",
-        "pos": 1024,
+        "id": "ep-xfm-S1E19-1026",
+        "pos": 1026,
         "timestamp": 2576245000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -15443,8 +15473,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1025",
-        "pos": 1025,
+        "id": "ep-xfm-S1E19-1027",
+        "pos": 1027,
         "timestamp": 2582385000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
@@ -15458,8 +15488,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1026",
-        "pos": 1026,
+        "id": "ep-xfm-S1E19-1028",
+        "pos": 1028,
         "timestamp": 2583009000000,
         "timestamp_inferred": true,
         "timestamp_distance": 5,
@@ -15473,8 +15503,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1027",
-        "pos": 1027,
+        "id": "ep-xfm-S1E19-1029",
+        "pos": 1029,
         "timestamp": 2583997000000,
         "timestamp_inferred": true,
         "timestamp_distance": 6,
@@ -15488,8 +15518,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1028",
-        "pos": 1028,
+        "id": "ep-xfm-S1E19-1030",
+        "pos": 1030,
         "timestamp": 2585662000000,
         "timestamp_inferred": true,
         "timestamp_distance": 7,
@@ -15503,8 +15533,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1029",
-        "pos": 1029,
+        "id": "ep-xfm-S1E19-1031",
+        "pos": 1031,
         "timestamp": 2586290000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -15518,8 +15548,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1030",
-        "pos": 1030,
+        "id": "ep-xfm-S1E19-1032",
+        "pos": 1032,
         "timestamp": 2588630000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -15533,8 +15563,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1031",
-        "pos": 1031,
+        "id": "ep-xfm-S1E19-1033",
+        "pos": 1033,
         "timestamp": 2589092000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -15548,12 +15578,12 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1032",
-        "pos": 1032,
+        "id": "ep-xfm-S1E19-1034",
+        "pos": 1034,
         "timestamp": 2590220000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 2351000000,
+        "duration": 2134000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -15563,27 +15593,27 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1033",
-        "pos": 1033,
-        "timestamp": 2592571000000,
+        "id": "ep-xfm-S1E19-1035",
+        "pos": 1035,
+        "timestamp": 2592354000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 209000000,
+        "duration": 190000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Sure.",
         "notable": false,
         "placeholder": false,
-        "sentiment": "negative"
+        "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1034",
-        "pos": 1034,
-        "timestamp": 2592780000000,
+        "id": "ep-xfm-S1E19-1036",
+        "pos": 1036,
+        "timestamp": 2592544000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
-        "duration": 3737000000,
+        "duration": 3392000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -15593,23 +15623,53 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1035",
-        "pos": 1035,
-        "timestamp": 2596517000000,
+        "id": "ep-xfm-S1E19-1037",
+        "pos": 1037,
+        "timestamp": 2595936000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
-        "duration": 3193000000,
+        "duration": 876000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "What did she look like? Tattoos? Did she look like Tony Green with a fag on?",
+        "content": "What did she look like?",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1036",
-        "pos": 1036,
+        "id": "ep-xfm-S1E19-1038",
+        "pos": 1038,
+        "timestamp": 2596812000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 4,
+        "duration": 914000000,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "But anyone can clean up-",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": "mixed"
+      },
+      {
+        "id": "ep-xfm-S1E19-1039",
+        "pos": 1039,
+        "timestamp": 2597726000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 5,
+        "duration": 1984000000,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Tattoos? Did she look like Tony Green with a fag on?",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": "mixed"
+      },
+      {
+        "id": "ep-xfm-S1E19-1040",
+        "pos": 1040,
         "timestamp": 2599710000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -15623,8 +15683,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1037",
-        "pos": 1037,
+        "id": "ep-xfm-S1E19-1041",
+        "pos": 1041,
         "timestamp": 2601924000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -15638,27 +15698,27 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1038",
-        "pos": 1038,
+        "id": "ep-xfm-S1E19-1042",
+        "pos": 1042,
         "timestamp": 2602120000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 3966000000,
+        "duration": 4076000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "Which, even if you’ve not got a lot of money you can still make it look nice right?",
+        "content": "Which, even if you’ve not got a lot of money you can still try and make a place look nice, right?",
         "notable": false,
         "placeholder": false,
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1039",
-        "pos": 1039,
-        "timestamp": 2606086000000,
+        "id": "ep-xfm-S1E19-1043",
+        "pos": 1043,
+        "timestamp": 2606196000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 934000000,
+        "duration": 824000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -15668,8 +15728,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1040",
-        "pos": 1040,
+        "id": "ep-xfm-S1E19-1044",
+        "pos": 1044,
         "timestamp": 2607020000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -15683,8 +15743,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1041",
-        "pos": 1041,
+        "id": "ep-xfm-S1E19-1045",
+        "pos": 1045,
         "timestamp": 2610705000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -15698,8 +15758,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1042",
-        "pos": 1042,
+        "id": "ep-xfm-S1E19-1046",
+        "pos": 1046,
         "timestamp": 2611406000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -15713,8 +15773,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1043",
-        "pos": 1043,
+        "id": "ep-xfm-S1E19-1047",
+        "pos": 1047,
         "timestamp": 2611756000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -15728,8 +15788,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1044",
-        "pos": 1044,
+        "id": "ep-xfm-S1E19-1048",
+        "pos": 1048,
         "timestamp": 2614390000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -15743,8 +15803,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1045",
-        "pos": 1045,
+        "id": "ep-xfm-S1E19-1049",
+        "pos": 1049,
         "timestamp": 2620538000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -15758,8 +15818,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1046",
-        "pos": 1046,
+        "id": "ep-xfm-S1E19-1050",
+        "pos": 1050,
         "timestamp": 2622399000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -15773,8 +15833,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1047",
-        "pos": 1047,
+        "id": "ep-xfm-S1E19-1051",
+        "pos": 1051,
         "timestamp": 2623075000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -15788,8 +15848,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1048",
-        "pos": 1048,
+        "id": "ep-xfm-S1E19-1052",
+        "pos": 1052,
         "timestamp": 2623921000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
@@ -15803,8 +15863,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1049",
-        "pos": 1049,
+        "id": "ep-xfm-S1E19-1053",
+        "pos": 1053,
         "timestamp": 2626630000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -15818,8 +15878,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1050",
-        "pos": 1050,
+        "id": "ep-xfm-S1E19-1054",
+        "pos": 1054,
         "timestamp": 2629040000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -15833,8 +15893,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1051",
-        "pos": 1051,
+        "id": "ep-xfm-S1E19-1055",
+        "pos": 1055,
         "timestamp": 2631315000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -15848,8 +15908,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1052",
-        "pos": 1052,
+        "id": "ep-xfm-S1E19-1056",
+        "pos": 1056,
         "timestamp": 2631981000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -15863,8 +15923,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1053",
-        "pos": 1053,
+        "id": "ep-xfm-S1E19-1057",
+        "pos": 1057,
         "timestamp": 2633812000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -15878,8 +15938,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1054",
-        "pos": 1054,
+        "id": "ep-xfm-S1E19-1058",
+        "pos": 1058,
         "timestamp": 2636753000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
@@ -15893,8 +15953,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1055",
-        "pos": 1055,
+        "id": "ep-xfm-S1E19-1059",
+        "pos": 1059,
         "timestamp": 2637474000000,
         "timestamp_inferred": true,
         "timestamp_distance": 5,
@@ -15908,8 +15968,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1056",
-        "pos": 1056,
+        "id": "ep-xfm-S1E19-1060",
+        "pos": 1060,
         "timestamp": 2638861000000,
         "timestamp_inferred": true,
         "timestamp_distance": 6,
@@ -15923,8 +15983,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1057",
-        "pos": 1057,
+        "id": "ep-xfm-S1E19-1061",
+        "pos": 1061,
         "timestamp": 2639530000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -15938,8 +15998,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1058",
-        "pos": 1058,
+        "id": "ep-xfm-S1E19-1062",
+        "pos": 1062,
         "timestamp": 2642767000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -15953,8 +16013,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1059",
-        "pos": 1059,
+        "id": "ep-xfm-S1E19-1063",
+        "pos": 1063,
         "timestamp": 2643346000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -15968,8 +16028,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1060",
-        "pos": 1060,
+        "id": "ep-xfm-S1E19-1064",
+        "pos": 1064,
         "timestamp": 2652770000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -15983,8 +16043,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1061",
-        "pos": 1061,
+        "id": "ep-xfm-S1E19-1065",
+        "pos": 1065,
         "timestamp": 2656463000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -15998,8 +16058,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1062",
-        "pos": 1062,
+        "id": "ep-xfm-S1E19-1066",
+        "pos": 1066,
         "timestamp": 2658010000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -16013,8 +16073,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1063",
-        "pos": 1063,
+        "id": "ep-xfm-S1E19-1067",
+        "pos": 1067,
         "timestamp": 2665282000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -16028,8 +16088,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1064",
-        "pos": 1064,
+        "id": "ep-xfm-S1E19-1068",
+        "pos": 1068,
         "timestamp": 2665920000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -16043,8 +16103,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1065",
-        "pos": 1065,
+        "id": "ep-xfm-S1E19-1069",
+        "pos": 1069,
         "timestamp": 2668900000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -16058,8 +16118,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1066",
-        "pos": 1066,
+        "id": "ep-xfm-S1E19-1070",
+        "pos": 1070,
         "timestamp": 2670614000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -16073,8 +16133,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1067",
-        "pos": 1067,
+        "id": "ep-xfm-S1E19-1071",
+        "pos": 1071,
         "timestamp": 2671277000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -16088,8 +16148,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1068",
-        "pos": 1068,
+        "id": "ep-xfm-S1E19-1072",
+        "pos": 1072,
         "timestamp": 2672550000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -16103,8 +16163,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1069",
-        "pos": 1069,
+        "id": "ep-xfm-S1E19-1073",
+        "pos": 1073,
         "timestamp": 2679233000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -16118,8 +16178,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1070",
-        "pos": 1070,
+        "id": "ep-xfm-S1E19-1074",
+        "pos": 1074,
         "timestamp": 2679879000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -16133,8 +16193,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1071",
-        "pos": 1071,
+        "id": "ep-xfm-S1E19-1075",
+        "pos": 1075,
         "timestamp": 2680570000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -16148,8 +16208,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1072",
-        "pos": 1072,
+        "id": "ep-xfm-S1E19-1076",
+        "pos": 1076,
         "timestamp": 2683447000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -16163,8 +16223,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1073",
-        "pos": 1073,
+        "id": "ep-xfm-S1E19-1077",
+        "pos": 1077,
         "timestamp": 2683750000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -16178,8 +16238,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1074",
-        "pos": 1074,
+        "id": "ep-xfm-S1E19-1078",
+        "pos": 1078,
         "timestamp": 2686936000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -16193,8 +16253,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1075",
-        "pos": 1075,
+        "id": "ep-xfm-S1E19-1079",
+        "pos": 1079,
         "timestamp": 2689200000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -16208,8 +16268,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1076",
-        "pos": 1076,
+        "id": "ep-xfm-S1E19-1080",
+        "pos": 1080,
         "timestamp": 2689929000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -16223,8 +16283,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1077",
-        "pos": 1077,
+        "id": "ep-xfm-S1E19-1081",
+        "pos": 1081,
         "timestamp": 2690658000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
@@ -16238,8 +16298,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1078",
-        "pos": 1078,
+        "id": "ep-xfm-S1E19-1082",
+        "pos": 1082,
         "timestamp": 2692039000000,
         "timestamp_inferred": true,
         "timestamp_distance": 5,
@@ -16253,8 +16313,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1079",
-        "pos": 1079,
+        "id": "ep-xfm-S1E19-1083",
+        "pos": 1083,
         "timestamp": 2694265000000,
         "timestamp_inferred": true,
         "timestamp_distance": 6,
@@ -16268,8 +16328,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1080",
-        "pos": 1080,
+        "id": "ep-xfm-S1E19-1084",
+        "pos": 1084,
         "timestamp": 2694495000000,
         "timestamp_inferred": true,
         "timestamp_distance": 7,
@@ -16283,8 +16343,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1081",
-        "pos": 1081,
+        "id": "ep-xfm-S1E19-1085",
+        "pos": 1085,
         "timestamp": 2694690000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -16298,8 +16358,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1082",
-        "pos": 1082,
+        "id": "ep-xfm-S1E19-1086",
+        "pos": 1086,
         "timestamp": 2700590000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -16313,8 +16373,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1083",
-        "pos": 1083,
+        "id": "ep-xfm-S1E19-1087",
+        "pos": 1087,
         "timestamp": 2700853000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -16328,42 +16388,42 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1084",
-        "pos": 1084,
+        "id": "ep-xfm-S1E19-1088",
+        "pos": 1088,
         "timestamp": 2703540000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 17033000000,
+        "duration": 3223000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "You had the traditional method of transport, yeah.",
         "notable": false,
         "placeholder": false,
-        "sentiment": "negative"
+        "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1085",
-        "pos": 1085,
-        "timestamp": 2720573000000,
+        "id": "ep-xfm-S1E19-1089",
+        "pos": 1089,
+        "timestamp": 2706763000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 12605000000,
+        "duration": 2385000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
         "content": "And err, the horse was in the lounge.",
         "notable": false,
         "placeholder": false,
-        "sentiment": "positive"
+        "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1086",
-        "pos": 1086,
-        "timestamp": 2733178000000,
+        "id": "ep-xfm-S1E19-1090",
+        "pos": 1090,
+        "timestamp": 2709148000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
-        "duration": 5452000000,
+        "duration": 1032000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -16373,42 +16433,42 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1087",
-        "pos": 1087,
-        "timestamp": 2738630000000,
+        "id": "ep-xfm-S1E19-1091",
+        "pos": 1091,
+        "timestamp": 2710180000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 46000000,
+        "duration": 1292000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "Just like walking around.",
+        "content": "Just- Just like walking around.",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1088",
-        "pos": 1088,
-        "timestamp": 2738676000000,
+        "id": "ep-xfm-S1E19-1092",
+        "pos": 1092,
+        "timestamp": 2711472000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 13000000,
+        "duration": 542000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "Oh God!",
+        "content": "Oh God! This-",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1089",
-        "pos": 1089,
-        "timestamp": 2738689000000,
+        "id": "ep-xfm-S1E19-1093",
+        "pos": 1093,
+        "timestamp": 2712014000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
-        "duration": 9000000,
+        "duration": 208000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -16418,12 +16478,12 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1090",
-        "pos": 1090,
-        "timestamp": 2738698000000,
+        "id": "ep-xfm-S1E19-1094",
+        "pos": 1094,
+        "timestamp": 2712222000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
-        "duration": 217000000,
+        "duration": 4878000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -16433,57 +16493,57 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1091",
-        "pos": 1091,
-        "timestamp": 2738915000000,
+        "id": "ep-xfm-S1E19-1095",
+        "pos": 1095,
+        "timestamp": 2717100000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
-        "duration": 206000000,
+        "duration": 4628000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "What? This is genius! He just keeps coming what do you mean you tried to flog little flowers? What do you mean?",
         "notable": false,
         "placeholder": false,
-        "sentiment": "mixed"
+        "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1092",
-        "pos": 1092,
-        "timestamp": 2739121000000,
+        "id": "ep-xfm-S1E19-1096",
+        "pos": 1096,
+        "timestamp": 2721728000000,
         "timestamp_inferred": true,
         "timestamp_distance": 5,
-        "duration": 13000000,
+        "duration": 291000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
         "content": "Well…",
         "notable": false,
         "placeholder": false,
-        "sentiment": "mixed"
+        "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1093",
-        "pos": 1093,
-        "timestamp": 2739134000000,
+        "id": "ep-xfm-S1E19-1097",
+        "pos": 1097,
+        "timestamp": 2722019000000,
         "timestamp_inferred": true,
         "timestamp_distance": 6,
-        "duration": 212000000,
+        "duration": 4753000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
         "content": "Woah, wait, wait, wait, wait, wait a minute, let’s play a record, let’s play a record and come back to this…",
         "notable": false,
         "placeholder": false,
-        "sentiment": "mixed"
+        "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1094",
-        "pos": 1094,
-        "timestamp": 2739346000000,
+        "id": "ep-xfm-S1E19-1098",
+        "pos": 1098,
+        "timestamp": 2726772000000,
         "timestamp_inferred": true,
         "timestamp_distance": 7,
-        "duration": 57000000,
+        "duration": 1292000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -16493,12 +16553,12 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1095",
-        "pos": 1095,
-        "timestamp": 2739403000000,
+        "id": "ep-xfm-S1E19-1099",
+        "pos": 1099,
+        "timestamp": 2728064000000,
         "timestamp_inferred": true,
         "timestamp_distance": 8,
-        "duration": 137000000,
+        "duration": 3085000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -16508,12 +16568,12 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1096",
-        "pos": 1096,
-        "timestamp": 2739540000000,
+        "id": "ep-xfm-S1E19-1100",
+        "pos": 1100,
+        "timestamp": 2731149000000,
         "timestamp_inferred": true,
         "timestamp_distance": 9,
-        "duration": 113000000,
+        "duration": 2543000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -16523,27 +16583,27 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1097",
-        "pos": 1097,
-        "timestamp": 2739653000000,
+        "id": "ep-xfm-S1E19-1101",
+        "pos": 1101,
+        "timestamp": 2733692000000,
         "timestamp_inferred": true,
         "timestamp_distance": 10,
-        "duration": 193000000,
+        "duration": 4920000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "Let’s play a track Karl, we’ve created a whole world here where there’s a man living with a horse.",
+        "content": "Let’s play a track Karl, come on Karl, we’ve created a whole world here where there’s a man living with a horse.",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1098",
-        "pos": 1098,
-        "timestamp": 2739846000000,
+        "id": "ep-xfm-S1E19-1102",
+        "pos": 1102,
+        "timestamp": 2738612000000,
         "timestamp_inferred": true,
         "timestamp_distance": 11,
-        "duration": 64000000,
+        "duration": 1298000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -16553,8 +16613,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1099",
-        "pos": 1099,
+        "id": "ep-xfm-S1E19-1103",
+        "pos": 1103,
         "timestamp": 2739910000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -16568,27 +16628,27 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1100",
-        "pos": 1100,
+        "id": "ep-xfm-S1E19-1104",
+        "pos": 1104,
         "timestamp": 2742010000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 5769000000,
+        "duration": 5762000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "I just think of a big sort of like orange carpet and it’s got a re diffusion telly and its got the horse going “Oh I’m fed up in here”.",
+        "content": "I just think of a big sort of like orange carpet and it’s got a rediffusion telly and its got the horse going “Oh I’m fed up in here”.",
         "notable": false,
         "placeholder": false,
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1101",
-        "pos": 1101,
-        "timestamp": 2747779000000,
+        "id": "ep-xfm-S1E19-1105",
+        "pos": 1105,
+        "timestamp": 2747772000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 322000000,
+        "duration": 324000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -16598,12 +16658,12 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1102",
-        "pos": 1102,
-        "timestamp": 2748101000000,
+        "id": "ep-xfm-S1E19-1106",
+        "pos": 1106,
+        "timestamp": 2748096000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
-        "duration": 929000000,
+        "duration": 934000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -16613,8 +16673,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1103",
-        "pos": 1103,
+        "id": "ep-xfm-S1E19-1107",
+        "pos": 1107,
         "timestamp": 2749030000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -16628,8 +16688,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1104",
-        "pos": 1104,
+        "id": "ep-xfm-S1E19-1108",
+        "pos": 1108,
         "timestamp": 2750381000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -16643,8 +16703,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1105",
-        "pos": 1105,
+        "id": "ep-xfm-S1E19-1109",
+        "pos": 1109,
         "timestamp": 2750807000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -16658,8 +16718,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1106",
-        "pos": 1106,
+        "id": "ep-xfm-S1E19-1110",
+        "pos": 1110,
         "timestamp": 2753902000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -16673,8 +16733,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1107",
-        "pos": 1107,
+        "id": "ep-xfm-S1E19-1111",
+        "pos": 1111,
         "timestamp": 2754079000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
@@ -16688,8 +16748,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1108",
-        "pos": 1108,
+        "id": "ep-xfm-S1E19-1112",
+        "pos": 1112,
         "timestamp": 2754328000000,
         "timestamp_inferred": true,
         "timestamp_distance": 5,
@@ -16703,8 +16763,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1109",
-        "pos": 1109,
+        "id": "ep-xfm-S1E19-1113",
+        "pos": 1113,
         "timestamp": 2758280000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -16718,8 +16778,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1110",
-        "pos": 1110,
+        "id": "ep-xfm-S1E19-1114",
+        "pos": 1114,
         "timestamp": 2768384000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -16733,8 +16793,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1111",
-        "pos": 1111,
+        "id": "ep-xfm-S1E19-1115",
+        "pos": 1115,
         "timestamp": 2770809000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -16753,27 +16813,27 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1112",
-        "pos": 1112,
+        "id": "ep-xfm-S1E19-1116",
+        "pos": 1116,
         "timestamp": 2770810000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 5787000000,
+        "duration": 5836000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "…classic first album, Velvet Underground and Nico, which apparently peaked at a disappointing 171 in the US charts.",
+        "content": "…from that classic first album, Velvet Underground and Nico, which apparently peaked at a disappointing 171 in the US charts.",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1113",
-        "pos": 1113,
-        "timestamp": 2776597000000,
+        "id": "ep-xfm-S1E19-1117",
+        "pos": 1117,
+        "timestamp": 2776646000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 693000000,
+        "duration": 644000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -16783,8 +16843,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1114",
-        "pos": 1114,
+        "id": "ep-xfm-S1E19-1118",
+        "pos": 1118,
         "timestamp": 2777290000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -16798,8 +16858,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1115",
-        "pos": 1115,
+        "id": "ep-xfm-S1E19-1119",
+        "pos": 1119,
         "timestamp": 2780050000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -16813,8 +16873,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1116",
-        "pos": 1116,
+        "id": "ep-xfm-S1E19-1120",
+        "pos": 1120,
         "timestamp": 2784695000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -16828,8 +16888,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1117",
-        "pos": 1117,
+        "id": "ep-xfm-S1E19-1121",
+        "pos": 1121,
         "timestamp": 2787017000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -16843,12 +16903,12 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1118",
-        "pos": 1118,
+        "id": "ep-xfm-S1E19-1122",
+        "pos": 1122,
         "timestamp": 2793820000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 3972000000,
+        "duration": 3647000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -16858,12 +16918,12 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1119",
-        "pos": 1119,
-        "timestamp": 2797792000000,
+        "id": "ep-xfm-S1E19-1123",
+        "pos": 1123,
+        "timestamp": 2797467000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 347000000,
+        "duration": 318000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -16873,23 +16933,38 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1120",
-        "pos": 1120,
-        "timestamp": 2798139000000,
+        "id": "ep-xfm-S1E19-1124",
+        "pos": 1124,
+        "timestamp": 2797785000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
-        "duration": 2161000000,
+        "duration": 2372000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "‘Cause you lived in a ho—on an estate in Manchester.",
+        "content": "‘Cause you lived in a ho- on an estate in Manchester, didn't you?",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1121",
-        "pos": 1121,
+        "id": "ep-xfm-S1E19-1125",
+        "pos": 1125,
+        "timestamp": 2800157000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 3,
+        "duration": 143000000,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Yeah",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": "mixed"
+      },
+      {
+        "id": "ep-xfm-S1E19-1126",
+        "pos": 1126,
         "timestamp": 2800300000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -16903,8 +16978,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1122",
-        "pos": 1122,
+        "id": "ep-xfm-S1E19-1127",
+        "pos": 1127,
         "timestamp": 2803535000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -16918,8 +16993,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1123",
-        "pos": 1123,
+        "id": "ep-xfm-S1E19-1128",
+        "pos": 1128,
         "timestamp": 2805035000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -16933,8 +17008,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1124",
-        "pos": 1124,
+        "id": "ep-xfm-S1E19-1129",
+        "pos": 1129,
         "timestamp": 2805570000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -16948,8 +17023,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1125",
-        "pos": 1125,
+        "id": "ep-xfm-S1E19-1130",
+        "pos": 1130,
         "timestamp": 2809873000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -16963,8 +17038,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1126",
-        "pos": 1126,
+        "id": "ep-xfm-S1E19-1131",
+        "pos": 1131,
         "timestamp": 2812380000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -16978,8 +17053,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1127",
-        "pos": 1127,
+        "id": "ep-xfm-S1E19-1132",
+        "pos": 1132,
         "timestamp": 2816011000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -16993,8 +17068,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1128",
-        "pos": 1128,
+        "id": "ep-xfm-S1E19-1133",
+        "pos": 1133,
         "timestamp": 2816737000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -17008,8 +17083,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1129",
-        "pos": 1129,
+        "id": "ep-xfm-S1E19-1134",
+        "pos": 1134,
         "timestamp": 2817463000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -17023,8 +17098,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1130",
-        "pos": 1130,
+        "id": "ep-xfm-S1E19-1135",
+        "pos": 1135,
         "timestamp": 2817981000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
@@ -17038,8 +17113,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1131",
-        "pos": 1131,
+        "id": "ep-xfm-S1E19-1136",
+        "pos": 1136,
         "timestamp": 2823740000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -17053,8 +17128,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1132",
-        "pos": 1132,
+        "id": "ep-xfm-S1E19-1137",
+        "pos": 1137,
         "timestamp": 2824992000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -17068,8 +17143,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1133",
-        "pos": 1133,
+        "id": "ep-xfm-S1E19-1138",
+        "pos": 1138,
         "timestamp": 2825660000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -17083,8 +17158,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1134",
-        "pos": 1134,
+        "id": "ep-xfm-S1E19-1139",
+        "pos": 1139,
         "timestamp": 2828491000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -17098,8 +17173,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1135",
-        "pos": 1135,
+        "id": "ep-xfm-S1E19-1140",
+        "pos": 1140,
         "timestamp": 2829480000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -17113,8 +17188,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1136",
-        "pos": 1136,
+        "id": "ep-xfm-S1E19-1141",
+        "pos": 1141,
         "timestamp": 2831120000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -17128,8 +17203,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1137",
-        "pos": 1137,
+        "id": "ep-xfm-S1E19-1142",
+        "pos": 1142,
         "timestamp": 2835490000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -17143,8 +17218,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1138",
-        "pos": 1138,
+        "id": "ep-xfm-S1E19-1143",
+        "pos": 1143,
         "timestamp": 2837645000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -17158,8 +17233,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1139",
-        "pos": 1139,
+        "id": "ep-xfm-S1E19-1144",
+        "pos": 1144,
         "timestamp": 2840167000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -17173,8 +17248,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1140",
-        "pos": 1140,
+        "id": "ep-xfm-S1E19-1145",
+        "pos": 1145,
         "timestamp": 2840290000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -17182,14 +17257,14 @@
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "Sorry, and you said you were in the house one day and you saw the horse…",
+        "content": "Sorry, and you said you were in the house one day and you saw the horse in there?",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1141",
-        "pos": 1141,
+        "id": "ep-xfm-S1E19-1146",
+        "pos": 1146,
         "timestamp": 2842280000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -17203,8 +17278,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1142",
-        "pos": 1142,
+        "id": "ep-xfm-S1E19-1147",
+        "pos": 1147,
         "timestamp": 2854413000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -17218,8 +17293,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1143",
-        "pos": 1143,
+        "id": "ep-xfm-S1E19-1148",
+        "pos": 1148,
         "timestamp": 2855390000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -17233,12 +17308,12 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1144",
-        "pos": 1144,
+        "id": "ep-xfm-S1E19-1149",
+        "pos": 1149,
         "timestamp": 2857480000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 1102000000,
+        "duration": 1052000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -17248,27 +17323,27 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1145",
-        "pos": 1145,
-        "timestamp": 2858582000000,
+        "id": "ep-xfm-S1E19-1150",
+        "pos": 1150,
+        "timestamp": 2858532000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 586000000,
+        "duration": 693000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "“…I’m a charity.”",
+        "content": "“…I’m a charity, here.”",
         "notable": false,
         "placeholder": false,
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1146",
-        "pos": 1146,
-        "timestamp": 2859168000000,
+        "id": "ep-xfm-S1E19-1151",
+        "pos": 1151,
+        "timestamp": 2859225000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
-        "duration": 281000000,
+        "duration": 268000000,
         "type": "chat",
         "actor": "",
         "metadata": null,
@@ -17278,12 +17353,12 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1147",
-        "pos": 1147,
-        "timestamp": 2859449000000,
+        "id": "ep-xfm-S1E19-1152",
+        "pos": 1152,
+        "timestamp": 2859493000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
-        "duration": 445000000,
+        "duration": 425000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -17293,12 +17368,12 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1148",
-        "pos": 1148,
-        "timestamp": 2859894000000,
+        "id": "ep-xfm-S1E19-1153",
+        "pos": 1153,
+        "timestamp": 2859918000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
-        "duration": 211000000,
+        "duration": 201000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -17308,12 +17383,12 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1149",
-        "pos": 1149,
-        "timestamp": 2860105000000,
+        "id": "ep-xfm-S1E19-1154",
+        "pos": 1154,
+        "timestamp": 2860119000000,
         "timestamp_inferred": true,
         "timestamp_distance": 5,
-        "duration": 285000000,
+        "duration": 271000000,
         "type": "chat",
         "actor": "",
         "metadata": null,
@@ -17323,8 +17398,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1150",
-        "pos": 1150,
+        "id": "ep-xfm-S1E19-1155",
+        "pos": 1155,
         "timestamp": 2860390000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -17338,8 +17413,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1151",
-        "pos": 1151,
+        "id": "ep-xfm-S1E19-1156",
+        "pos": 1156,
         "timestamp": 2864238000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -17353,8 +17428,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1152",
-        "pos": 1152,
+        "id": "ep-xfm-S1E19-1157",
+        "pos": 1157,
         "timestamp": 2864487000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -17368,8 +17443,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1153",
-        "pos": 1153,
+        "id": "ep-xfm-S1E19-1158",
+        "pos": 1158,
         "timestamp": 2873833000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -17383,8 +17458,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1154",
-        "pos": 1154,
+        "id": "ep-xfm-S1E19-1159",
+        "pos": 1159,
         "timestamp": 2874082000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
@@ -17398,8 +17473,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1155",
-        "pos": 1155,
+        "id": "ep-xfm-S1E19-1160",
+        "pos": 1160,
         "timestamp": 2874881000000,
         "timestamp_inferred": true,
         "timestamp_distance": 5,
@@ -17413,8 +17488,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1156",
-        "pos": 1156,
+        "id": "ep-xfm-S1E19-1161",
+        "pos": 1161,
         "timestamp": 2875130000000,
         "timestamp_inferred": true,
         "timestamp_distance": 6,
@@ -17428,8 +17503,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1157",
-        "pos": 1157,
+        "id": "ep-xfm-S1E19-1162",
+        "pos": 1162,
         "timestamp": 2876679000000,
         "timestamp_inferred": true,
         "timestamp_distance": 7,
@@ -17443,8 +17518,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1158",
-        "pos": 1158,
+        "id": "ep-xfm-S1E19-1163",
+        "pos": 1163,
         "timestamp": 2876928000000,
         "timestamp_inferred": true,
         "timestamp_distance": 8,
@@ -17458,8 +17533,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1159",
-        "pos": 1159,
+        "id": "ep-xfm-S1E19-1164",
+        "pos": 1164,
         "timestamp": 2878777000000,
         "timestamp_inferred": true,
         "timestamp_distance": 9,
@@ -17473,8 +17548,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1160",
-        "pos": 1160,
+        "id": "ep-xfm-S1E19-1165",
+        "pos": 1165,
         "timestamp": 2880176000000,
         "timestamp_inferred": true,
         "timestamp_distance": 10,
@@ -17488,8 +17563,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1161",
-        "pos": 1161,
+        "id": "ep-xfm-S1E19-1166",
+        "pos": 1166,
         "timestamp": 2881125000000,
         "timestamp_inferred": true,
         "timestamp_distance": 11,
@@ -17503,8 +17578,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1162",
-        "pos": 1162,
+        "id": "ep-xfm-S1E19-1167",
+        "pos": 1167,
         "timestamp": 2885273000000,
         "timestamp_inferred": true,
         "timestamp_distance": 12,
@@ -17518,8 +17593,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1163",
-        "pos": 1163,
+        "id": "ep-xfm-S1E19-1168",
+        "pos": 1168,
         "timestamp": 2887072000000,
         "timestamp_inferred": true,
         "timestamp_distance": 13,
@@ -17533,8 +17608,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1164",
-        "pos": 1164,
+        "id": "ep-xfm-S1E19-1169",
+        "pos": 1169,
         "timestamp": 2887621000000,
         "timestamp_inferred": true,
         "timestamp_distance": 14,
@@ -17548,8 +17623,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1165",
-        "pos": 1165,
+        "id": "ep-xfm-S1E19-1170",
+        "pos": 1170,
         "timestamp": 2888330000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -17563,8 +17638,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1166",
-        "pos": 1166,
+        "id": "ep-xfm-S1E19-1171",
+        "pos": 1171,
         "timestamp": 2895532000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -17578,8 +17653,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1167",
-        "pos": 1167,
+        "id": "ep-xfm-S1E19-1172",
+        "pos": 1172,
         "timestamp": 2895736000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -17593,8 +17668,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1168",
-        "pos": 1168,
+        "id": "ep-xfm-S1E19-1173",
+        "pos": 1173,
         "timestamp": 2896308000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -17608,8 +17683,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1169",
-        "pos": 1169,
+        "id": "ep-xfm-S1E19-1174",
+        "pos": 1174,
         "timestamp": 2898110000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -17623,8 +17698,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1170",
-        "pos": 1170,
+        "id": "ep-xfm-S1E19-1175",
+        "pos": 1175,
         "timestamp": 2902310000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -17638,8 +17713,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1171",
-        "pos": 1171,
+        "id": "ep-xfm-S1E19-1176",
+        "pos": 1176,
         "timestamp": 2905247000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -17653,8 +17728,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1172",
-        "pos": 1172,
+        "id": "ep-xfm-S1E19-1177",
+        "pos": 1177,
         "timestamp": 2906216000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -17668,8 +17743,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1173",
-        "pos": 1173,
+        "id": "ep-xfm-S1E19-1178",
+        "pos": 1178,
         "timestamp": 2906568000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -17683,8 +17758,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1174",
-        "pos": 1174,
+        "id": "ep-xfm-S1E19-1179",
+        "pos": 1179,
         "timestamp": 2906832000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
@@ -17698,8 +17773,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1175",
-        "pos": 1175,
+        "id": "ep-xfm-S1E19-1180",
+        "pos": 1180,
         "timestamp": 2907510000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -17713,8 +17788,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1176",
-        "pos": 1176,
+        "id": "ep-xfm-S1E19-1181",
+        "pos": 1181,
         "timestamp": 2909898000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -17728,8 +17803,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1177",
-        "pos": 1177,
+        "id": "ep-xfm-S1E19-1182",
+        "pos": 1182,
         "timestamp": 2910044000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -17743,8 +17818,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1178",
-        "pos": 1178,
+        "id": "ep-xfm-S1E19-1183",
+        "pos": 1183,
         "timestamp": 2914235000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -17758,8 +17833,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1179",
-        "pos": 1179,
+        "id": "ep-xfm-S1E19-1184",
+        "pos": 1184,
         "timestamp": 2915502000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
@@ -17773,8 +17848,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1180",
-        "pos": 1180,
+        "id": "ep-xfm-S1E19-1185",
+        "pos": 1185,
         "timestamp": 2916525000000,
         "timestamp_inferred": true,
         "timestamp_distance": 5,
@@ -17788,8 +17863,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1181",
-        "pos": 1181,
+        "id": "ep-xfm-S1E19-1186",
+        "pos": 1186,
         "timestamp": 2923641000000,
         "timestamp_inferred": true,
         "timestamp_distance": 6,
@@ -17803,8 +17878,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1182",
-        "pos": 1182,
+        "id": "ep-xfm-S1E19-1187",
+        "pos": 1187,
         "timestamp": 2924420000000,
         "timestamp_inferred": true,
         "timestamp_distance": 7,
@@ -17818,8 +17893,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1183",
-        "pos": 1183,
+        "id": "ep-xfm-S1E19-1188",
+        "pos": 1188,
         "timestamp": 2926564000000,
         "timestamp_inferred": true,
         "timestamp_distance": 8,
@@ -17833,8 +17908,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1184",
-        "pos": 1184,
+        "id": "ep-xfm-S1E19-1189",
+        "pos": 1189,
         "timestamp": 2927148000000,
         "timestamp_inferred": true,
         "timestamp_distance": 9,
@@ -17848,8 +17923,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1185",
-        "pos": 1185,
+        "id": "ep-xfm-S1E19-1190",
+        "pos": 1190,
         "timestamp": 2927976000000,
         "timestamp_inferred": true,
         "timestamp_distance": 10,
@@ -17863,8 +17938,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1186",
-        "pos": 1186,
+        "id": "ep-xfm-S1E19-1191",
+        "pos": 1191,
         "timestamp": 2930023000000,
         "timestamp_inferred": true,
         "timestamp_distance": 11,
@@ -17878,8 +17953,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1187",
-        "pos": 1187,
+        "id": "ep-xfm-S1E19-1192",
+        "pos": 1192,
         "timestamp": 2930656000000,
         "timestamp_inferred": true,
         "timestamp_distance": 12,
@@ -17893,8 +17968,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1188",
-        "pos": 1188,
+        "id": "ep-xfm-S1E19-1193",
+        "pos": 1193,
         "timestamp": 2930948000000,
         "timestamp_inferred": true,
         "timestamp_distance": 13,
@@ -17908,8 +17983,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1189",
-        "pos": 1189,
+        "id": "ep-xfm-S1E19-1194",
+        "pos": 1194,
         "timestamp": 2931532000000,
         "timestamp_inferred": true,
         "timestamp_distance": 14,
@@ -17923,8 +17998,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1190",
-        "pos": 1190,
+        "id": "ep-xfm-S1E19-1195",
+        "pos": 1195,
         "timestamp": 2933725000000,
         "timestamp_inferred": true,
         "timestamp_distance": 15,
@@ -17938,8 +18013,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1191",
-        "pos": 1191,
+        "id": "ep-xfm-S1E19-1196",
+        "pos": 1196,
         "timestamp": 2934797000000,
         "timestamp_inferred": true,
         "timestamp_distance": 16,
@@ -17953,8 +18028,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1192",
-        "pos": 1192,
+        "id": "ep-xfm-S1E19-1197",
+        "pos": 1197,
         "timestamp": 2935186000000,
         "timestamp_inferred": true,
         "timestamp_distance": 17,
@@ -17968,8 +18043,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1193",
-        "pos": 1193,
+        "id": "ep-xfm-S1E19-1198",
+        "pos": 1198,
         "timestamp": 2937184000000,
         "timestamp_inferred": true,
         "timestamp_distance": 18,
@@ -17983,8 +18058,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1194",
-        "pos": 1194,
+        "id": "ep-xfm-S1E19-1199",
+        "pos": 1199,
         "timestamp": 2937427000000,
         "timestamp_inferred": true,
         "timestamp_distance": 19,
@@ -17998,8 +18073,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1195",
-        "pos": 1195,
+        "id": "ep-xfm-S1E19-1200",
+        "pos": 1200,
         "timestamp": 2940205000000,
         "timestamp_inferred": true,
         "timestamp_distance": 20,
@@ -18013,8 +18088,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1196",
-        "pos": 1196,
+        "id": "ep-xfm-S1E19-1201",
+        "pos": 1201,
         "timestamp": 2940448000000,
         "timestamp_inferred": true,
         "timestamp_distance": 21,
@@ -18028,8 +18103,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1197",
-        "pos": 1197,
+        "id": "ep-xfm-S1E19-1202",
+        "pos": 1202,
         "timestamp": 2946297000000,
         "timestamp_inferred": true,
         "timestamp_distance": 22,
@@ -18043,8 +18118,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1198",
-        "pos": 1198,
+        "id": "ep-xfm-S1E19-1203",
+        "pos": 1203,
         "timestamp": 2946589000000,
         "timestamp_inferred": true,
         "timestamp_distance": 23,
@@ -18058,8 +18133,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1199",
-        "pos": 1199,
+        "id": "ep-xfm-S1E19-1204",
+        "pos": 1204,
         "timestamp": 2949903000000,
         "timestamp_inferred": true,
         "timestamp_distance": 24,
@@ -18073,8 +18148,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1200",
-        "pos": 1200,
+        "id": "ep-xfm-S1E19-1205",
+        "pos": 1205,
         "timestamp": 2950160000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -18088,8 +18163,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1201",
-        "pos": 1201,
+        "id": "ep-xfm-S1E19-1206",
+        "pos": 1206,
         "timestamp": 2951484000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -18103,8 +18178,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1202",
-        "pos": 1202,
+        "id": "ep-xfm-S1E19-1207",
+        "pos": 1207,
         "timestamp": 2951650000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -18118,8 +18193,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1203",
-        "pos": 1203,
+        "id": "ep-xfm-S1E19-1208",
+        "pos": 1208,
         "timestamp": 2954113000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -18133,8 +18208,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1204",
-        "pos": 1204,
+        "id": "ep-xfm-S1E19-1209",
+        "pos": 1209,
         "timestamp": 2954314000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -18148,8 +18223,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1205",
-        "pos": 1205,
+        "id": "ep-xfm-S1E19-1210",
+        "pos": 1210,
         "timestamp": 2955930000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -18163,12 +18238,12 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1206",
-        "pos": 1206,
+        "id": "ep-xfm-S1E19-1211",
+        "pos": 1211,
         "timestamp": 2961130000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 1163000000,
+        "duration": 2098000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -18178,12 +18253,12 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1207",
-        "pos": 1207,
-        "timestamp": 2962293000000,
+        "id": "ep-xfm-S1E19-1212",
+        "pos": 1212,
+        "timestamp": 2963228000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 189000000,
+        "duration": 342000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -18193,12 +18268,12 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1208",
-        "pos": 1208,
-        "timestamp": 2962482000000,
+        "id": "ep-xfm-S1E19-1213",
+        "pos": 1213,
+        "timestamp": 2963570000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
-        "duration": 498000000,
+        "duration": 899000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -18208,12 +18283,12 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1209",
-        "pos": 1209,
-        "timestamp": 2962980000000,
+        "id": "ep-xfm-S1E19-1214",
+        "pos": 1214,
+        "timestamp": 2964469000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
-        "duration": 783000000,
+        "duration": 1413000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -18223,12 +18298,12 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1210",
-        "pos": 1210,
-        "timestamp": 2963763000000,
+        "id": "ep-xfm-S1E19-1215",
+        "pos": 1215,
+        "timestamp": 2965882000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
-        "duration": 477000000,
+        "duration": 858000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -18238,12 +18313,12 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1211",
-        "pos": 1211,
-        "timestamp": 2964240000000,
+        "id": "ep-xfm-S1E19-1216",
+        "pos": 1216,
+        "timestamp": 2966740000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 5679000000,
+        "duration": 4103000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -18253,12 +18328,12 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1212",
-        "pos": 1212,
-        "timestamp": 2969919000000,
+        "id": "ep-xfm-S1E19-1217",
+        "pos": 1217,
+        "timestamp": 2970843000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 1528000000,
+        "duration": 1104000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -18268,12 +18343,12 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1213",
-        "pos": 1213,
-        "timestamp": 2971447000000,
+        "id": "ep-xfm-S1E19-1218",
+        "pos": 1218,
+        "timestamp": 2971947000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
-        "duration": 273000000,
+        "duration": 197000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -18283,12 +18358,12 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1214",
-        "pos": 1214,
-        "timestamp": 2971720000000,
+        "id": "ep-xfm-S1E19-1219",
+        "pos": 1219,
+        "timestamp": 2972144000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
-        "duration": 1530000000,
+        "duration": 1106000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -18298,8 +18373,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1215",
-        "pos": 1215,
+        "id": "ep-xfm-S1E19-1220",
+        "pos": 1220,
         "timestamp": 2973250000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -18313,8 +18388,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1216",
-        "pos": 1216,
+        "id": "ep-xfm-S1E19-1221",
+        "pos": 1221,
         "timestamp": 2978861000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -18328,8 +18403,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1217",
-        "pos": 1217,
+        "id": "ep-xfm-S1E19-1222",
+        "pos": 1222,
         "timestamp": 2979187000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -18343,8 +18418,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1218",
-        "pos": 1218,
+        "id": "ep-xfm-S1E19-1223",
+        "pos": 1223,
         "timestamp": 2983273000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -18358,8 +18433,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1219",
-        "pos": 1219,
+        "id": "ep-xfm-S1E19-1224",
+        "pos": 1224,
         "timestamp": 2983545000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
@@ -18373,8 +18448,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1220",
-        "pos": 1220,
+        "id": "ep-xfm-S1E19-1225",
+        "pos": 1225,
         "timestamp": 2984907000000,
         "timestamp_inferred": true,
         "timestamp_distance": 5,
@@ -18388,8 +18463,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1221",
-        "pos": 1221,
+        "id": "ep-xfm-S1E19-1226",
+        "pos": 1226,
         "timestamp": 2985233000000,
         "timestamp_inferred": true,
         "timestamp_distance": 6,
@@ -18403,8 +18478,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1222",
-        "pos": 1222,
+        "id": "ep-xfm-S1E19-1227",
+        "pos": 1227,
         "timestamp": 2986431000000,
         "timestamp_inferred": true,
         "timestamp_distance": 7,
@@ -18418,8 +18493,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1223",
-        "pos": 1223,
+        "id": "ep-xfm-S1E19-1228",
+        "pos": 1228,
         "timestamp": 2986703000000,
         "timestamp_inferred": true,
         "timestamp_distance": 8,
@@ -18433,8 +18508,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1224",
-        "pos": 1224,
+        "id": "ep-xfm-S1E19-1229",
+        "pos": 1229,
         "timestamp": 2987960000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -18448,8 +18523,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1225",
-        "pos": 1225,
+        "id": "ep-xfm-S1E19-1230",
+        "pos": 1230,
         "timestamp": 2992274000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -18463,8 +18538,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1226",
-        "pos": 1226,
+        "id": "ep-xfm-S1E19-1231",
+        "pos": 1231,
         "timestamp": 2993398000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -18478,8 +18553,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1227",
-        "pos": 1227,
+        "id": "ep-xfm-S1E19-1232",
+        "pos": 1232,
         "timestamp": 2993580000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -18493,8 +18568,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1228",
-        "pos": 1228,
+        "id": "ep-xfm-S1E19-1233",
+        "pos": 1233,
         "timestamp": 2999820000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -18508,8 +18583,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1229",
-        "pos": 1229,
+        "id": "ep-xfm-S1E19-1234",
+        "pos": 1234,
         "timestamp": 3000050000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -18523,8 +18598,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1230",
-        "pos": 1230,
+        "id": "ep-xfm-S1E19-1235",
+        "pos": 1235,
         "timestamp": 3004051000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -18538,8 +18613,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1231",
-        "pos": 1231,
+        "id": "ep-xfm-S1E19-1236",
+        "pos": 1236,
         "timestamp": 3004298000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -18553,8 +18628,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1232",
-        "pos": 1232,
+        "id": "ep-xfm-S1E19-1237",
+        "pos": 1237,
         "timestamp": 3007015000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -18568,8 +18643,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1233",
-        "pos": 1233,
+        "id": "ep-xfm-S1E19-1238",
+        "pos": 1238,
         "timestamp": 3007854000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
@@ -18583,8 +18658,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1234",
-        "pos": 1234,
+        "id": "ep-xfm-S1E19-1239",
+        "pos": 1239,
         "timestamp": 3009434000000,
         "timestamp_inferred": true,
         "timestamp_distance": 5,
@@ -18598,8 +18673,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1235",
-        "pos": 1235,
+        "id": "ep-xfm-S1E19-1240",
+        "pos": 1240,
         "timestamp": 3009582000000,
         "timestamp_inferred": true,
         "timestamp_distance": 6,
@@ -18613,8 +18688,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1236",
-        "pos": 1236,
+        "id": "ep-xfm-S1E19-1241",
+        "pos": 1241,
         "timestamp": 3011064000000,
         "timestamp_inferred": true,
         "timestamp_distance": 7,
@@ -18628,8 +18703,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1237",
-        "pos": 1237,
+        "id": "ep-xfm-S1E19-1242",
+        "pos": 1242,
         "timestamp": 3011755000000,
         "timestamp_inferred": true,
         "timestamp_distance": 8,
@@ -18643,8 +18718,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1238",
-        "pos": 1238,
+        "id": "ep-xfm-S1E19-1243",
+        "pos": 1243,
         "timestamp": 3017189000000,
         "timestamp_inferred": true,
         "timestamp_distance": 9,
@@ -18658,8 +18733,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1239",
-        "pos": 1239,
+        "id": "ep-xfm-S1E19-1244",
+        "pos": 1244,
         "timestamp": 3017880000000,
         "timestamp_inferred": true,
         "timestamp_distance": 10,
@@ -18673,8 +18748,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1240",
-        "pos": 1240,
+        "id": "ep-xfm-S1E19-1245",
+        "pos": 1245,
         "timestamp": 3019020000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -18688,8 +18763,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1241",
-        "pos": 1241,
+        "id": "ep-xfm-S1E19-1246",
+        "pos": 1246,
         "timestamp": 3020882000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -18703,8 +18778,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1242",
-        "pos": 1242,
+        "id": "ep-xfm-S1E19-1247",
+        "pos": 1247,
         "timestamp": 3026568000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -18718,8 +18793,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1243",
-        "pos": 1243,
+        "id": "ep-xfm-S1E19-1248",
+        "pos": 1248,
         "timestamp": 3026819000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -18733,8 +18808,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1244",
-        "pos": 1244,
+        "id": "ep-xfm-S1E19-1249",
+        "pos": 1249,
         "timestamp": 3034166000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
@@ -18748,8 +18823,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1245",
-        "pos": 1245,
+        "id": "ep-xfm-S1E19-1250",
+        "pos": 1250,
         "timestamp": 3034420000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -18763,8 +18838,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1246",
-        "pos": 1246,
+        "id": "ep-xfm-S1E19-1251",
+        "pos": 1251,
         "timestamp": 3046001000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -18778,8 +18853,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1247",
-        "pos": 1247,
+        "id": "ep-xfm-S1E19-1252",
+        "pos": 1252,
         "timestamp": 3046222000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -18793,8 +18868,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1248",
-        "pos": 1248,
+        "id": "ep-xfm-S1E19-1253",
+        "pos": 1253,
         "timestamp": 3047553000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -18808,8 +18883,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1249",
-        "pos": 1249,
+        "id": "ep-xfm-S1E19-1254",
+        "pos": 1254,
         "timestamp": 3048573000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
@@ -18823,8 +18898,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1250",
-        "pos": 1250,
+        "id": "ep-xfm-S1E19-1255",
+        "pos": 1255,
         "timestamp": 3048839000000,
         "timestamp_inferred": true,
         "timestamp_distance": 5,
@@ -18838,8 +18913,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1251",
-        "pos": 1251,
+        "id": "ep-xfm-S1E19-1256",
+        "pos": 1256,
         "timestamp": 3049637000000,
         "timestamp_inferred": true,
         "timestamp_distance": 6,
@@ -18853,8 +18928,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1252",
-        "pos": 1252,
+        "id": "ep-xfm-S1E19-1257",
+        "pos": 1257,
         "timestamp": 3050350000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -18868,8 +18943,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1253",
-        "pos": 1253,
+        "id": "ep-xfm-S1E19-1258",
+        "pos": 1258,
         "timestamp": 3051568000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -18883,8 +18958,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1254",
-        "pos": 1254,
+        "id": "ep-xfm-S1E19-1259",
+        "pos": 1259,
         "timestamp": 3052786000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -18898,8 +18973,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1255",
-        "pos": 1255,
+        "id": "ep-xfm-S1E19-1260",
+        "pos": 1260,
         "timestamp": 3053555000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -18913,8 +18988,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1256",
-        "pos": 1256,
+        "id": "ep-xfm-S1E19-1261",
+        "pos": 1261,
         "timestamp": 3056762000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
@@ -18928,8 +19003,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1257",
-        "pos": 1257,
+        "id": "ep-xfm-S1E19-1262",
+        "pos": 1262,
         "timestamp": 3057660000000,
         "timestamp_inferred": true,
         "timestamp_distance": 5,
@@ -18943,8 +19018,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1258",
-        "pos": 1258,
+        "id": "ep-xfm-S1E19-1263",
+        "pos": 1263,
         "timestamp": 3060867000000,
         "timestamp_inferred": true,
         "timestamp_distance": 6,
@@ -18958,8 +19033,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1259",
-        "pos": 1259,
+        "id": "ep-xfm-S1E19-1264",
+        "pos": 1264,
         "timestamp": 3062598000000,
         "timestamp_inferred": true,
         "timestamp_distance": 7,
@@ -18973,8 +19048,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1260",
-        "pos": 1260,
+        "id": "ep-xfm-S1E19-1265",
+        "pos": 1265,
         "timestamp": 3062982000000,
         "timestamp_inferred": true,
         "timestamp_distance": 8,
@@ -18988,8 +19063,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1261",
-        "pos": 1261,
+        "id": "ep-xfm-S1E19-1266",
+        "pos": 1266,
         "timestamp": 3072160000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -19003,8 +19078,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1262",
-        "pos": 1262,
+        "id": "ep-xfm-S1E19-1267",
+        "pos": 1267,
         "timestamp": 3074902000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -19018,8 +19093,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1263",
-        "pos": 1263,
+        "id": "ep-xfm-S1E19-1268",
+        "pos": 1268,
         "timestamp": 3076980000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -19033,8 +19108,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1264",
-        "pos": 1264,
+        "id": "ep-xfm-S1E19-1269",
+        "pos": 1269,
         "timestamp": 3080073000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -19048,8 +19123,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1265",
-        "pos": 1265,
+        "id": "ep-xfm-S1E19-1270",
+        "pos": 1270,
         "timestamp": 3081895000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -19063,8 +19138,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1266",
-        "pos": 1266,
+        "id": "ep-xfm-S1E19-1271",
+        "pos": 1271,
         "timestamp": 3082557000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -19078,8 +19153,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1267",
-        "pos": 1267,
+        "id": "ep-xfm-S1E19-1272",
+        "pos": 1272,
         "timestamp": 3090788000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
@@ -19093,8 +19168,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1268",
-        "pos": 1268,
+        "id": "ep-xfm-S1E19-1273",
+        "pos": 1273,
         "timestamp": 3091174000000,
         "timestamp_inferred": true,
         "timestamp_distance": 5,
@@ -19108,8 +19183,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1269",
-        "pos": 1269,
+        "id": "ep-xfm-S1E19-1274",
+        "pos": 1274,
         "timestamp": 3091726000000,
         "timestamp_inferred": true,
         "timestamp_distance": 6,
@@ -19123,8 +19198,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1270",
-        "pos": 1270,
+        "id": "ep-xfm-S1E19-1275",
+        "pos": 1275,
         "timestamp": 3092278000000,
         "timestamp_inferred": true,
         "timestamp_distance": 7,
@@ -19138,8 +19213,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1271",
-        "pos": 1271,
+        "id": "ep-xfm-S1E19-1276",
+        "pos": 1276,
         "timestamp": 3092498000000,
         "timestamp_inferred": true,
         "timestamp_distance": 8,
@@ -19153,8 +19228,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1272",
-        "pos": 1272,
+        "id": "ep-xfm-S1E19-1277",
+        "pos": 1277,
         "timestamp": 3093989000000,
         "timestamp_inferred": true,
         "timestamp_distance": 9,
@@ -19168,8 +19243,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1273",
-        "pos": 1273,
+        "id": "ep-xfm-S1E19-1278",
+        "pos": 1278,
         "timestamp": 3094707000000,
         "timestamp_inferred": true,
         "timestamp_distance": 10,
@@ -19183,8 +19258,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1274",
-        "pos": 1274,
+        "id": "ep-xfm-S1E19-1279",
+        "pos": 1279,
         "timestamp": 3094927000000,
         "timestamp_inferred": true,
         "timestamp_distance": 11,
@@ -19198,8 +19273,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1275",
-        "pos": 1275,
+        "id": "ep-xfm-S1E19-1280",
+        "pos": 1280,
         "timestamp": 3095755000000,
         "timestamp_inferred": true,
         "timestamp_distance": 12,
@@ -19213,8 +19288,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1276",
-        "pos": 1276,
+        "id": "ep-xfm-S1E19-1281",
+        "pos": 1281,
         "timestamp": 3097530000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -19228,8 +19303,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1277",
-        "pos": 1277,
+        "id": "ep-xfm-S1E19-1282",
+        "pos": 1282,
         "timestamp": 3103050000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -19243,8 +19318,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1278",
-        "pos": 1278,
+        "id": "ep-xfm-S1E19-1283",
+        "pos": 1283,
         "timestamp": 3104430000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -19258,8 +19333,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1279",
-        "pos": 1279,
+        "id": "ep-xfm-S1E19-1284",
+        "pos": 1284,
         "timestamp": 3105202000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -19273,8 +19348,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1280",
-        "pos": 1280,
+        "id": "ep-xfm-S1E19-1285",
+        "pos": 1285,
         "timestamp": 3105974000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
@@ -19288,8 +19363,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1281",
-        "pos": 1281,
+        "id": "ep-xfm-S1E19-1286",
+        "pos": 1286,
         "timestamp": 3107409000000,
         "timestamp_inferred": true,
         "timestamp_distance": 5,
@@ -19303,8 +19378,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1282",
-        "pos": 1282,
+        "id": "ep-xfm-S1E19-1287",
+        "pos": 1287,
         "timestamp": 3108126000000,
         "timestamp_inferred": true,
         "timestamp_distance": 6,
@@ -19318,8 +19393,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1283",
-        "pos": 1283,
+        "id": "ep-xfm-S1E19-1288",
+        "pos": 1288,
         "timestamp": 3108898000000,
         "timestamp_inferred": true,
         "timestamp_distance": 7,
@@ -19333,8 +19408,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1284",
-        "pos": 1284,
+        "id": "ep-xfm-S1E19-1289",
+        "pos": 1289,
         "timestamp": 3109174000000,
         "timestamp_inferred": true,
         "timestamp_distance": 8,
@@ -19348,8 +19423,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1285",
-        "pos": 1285,
+        "id": "ep-xfm-S1E19-1290",
+        "pos": 1290,
         "timestamp": 3109891000000,
         "timestamp_inferred": true,
         "timestamp_distance": 9,
@@ -19363,8 +19438,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1286",
-        "pos": 1286,
+        "id": "ep-xfm-S1E19-1291",
+        "pos": 1291,
         "timestamp": 3112270000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -19378,8 +19453,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1287",
-        "pos": 1287,
+        "id": "ep-xfm-S1E19-1292",
+        "pos": 1292,
         "timestamp": 3118461000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -19393,8 +19468,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1288",
-        "pos": 1288,
+        "id": "ep-xfm-S1E19-1293",
+        "pos": 1293,
         "timestamp": 3120907000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -19408,8 +19483,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1289",
-        "pos": 1289,
+        "id": "ep-xfm-S1E19-1294",
+        "pos": 1294,
         "timestamp": 3122665000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -19423,8 +19498,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1290",
-        "pos": 1290,
+        "id": "ep-xfm-S1E19-1295",
+        "pos": 1295,
         "timestamp": 3124270000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
@@ -19438,8 +19513,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1291",
-        "pos": 1291,
+        "id": "ep-xfm-S1E19-1296",
+        "pos": 1296,
         "timestamp": 3128780000000,
         "timestamp_inferred": true,
         "timestamp_distance": 5,
@@ -19453,8 +19528,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1292",
-        "pos": 1292,
+        "id": "ep-xfm-S1E19-1297",
+        "pos": 1297,
         "timestamp": 3129697000000,
         "timestamp_inferred": true,
         "timestamp_distance": 6,
@@ -19468,8 +19543,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1293",
-        "pos": 1293,
+        "id": "ep-xfm-S1E19-1298",
+        "pos": 1298,
         "timestamp": 3134589000000,
         "timestamp_inferred": true,
         "timestamp_distance": 7,
@@ -19483,8 +19558,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1294",
-        "pos": 1294,
+        "id": "ep-xfm-S1E19-1299",
+        "pos": 1299,
         "timestamp": 3137264000000,
         "timestamp_inferred": true,
         "timestamp_distance": 8,
@@ -19498,8 +19573,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1295",
-        "pos": 1295,
+        "id": "ep-xfm-S1E19-1300",
+        "pos": 1300,
         "timestamp": 3138181000000,
         "timestamp_inferred": true,
         "timestamp_distance": 9,
@@ -19513,8 +19588,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1296",
-        "pos": 1296,
+        "id": "ep-xfm-S1E19-1301",
+        "pos": 1301,
         "timestamp": 3139098000000,
         "timestamp_inferred": true,
         "timestamp_distance": 10,
@@ -19528,8 +19603,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1297",
-        "pos": 1297,
+        "id": "ep-xfm-S1E19-1302",
+        "pos": 1302,
         "timestamp": 3140703000000,
         "timestamp_inferred": true,
         "timestamp_distance": 11,
@@ -19543,8 +19618,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1298",
-        "pos": 1298,
+        "id": "ep-xfm-S1E19-1303",
+        "pos": 1303,
         "timestamp": 3146054000000,
         "timestamp_inferred": true,
         "timestamp_distance": 12,
@@ -19558,8 +19633,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1299",
-        "pos": 1299,
+        "id": "ep-xfm-S1E19-1304",
+        "pos": 1304,
         "timestamp": 3147047000000,
         "timestamp_inferred": true,
         "timestamp_distance": 13,
@@ -19573,8 +19648,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1300",
-        "pos": 1300,
+        "id": "ep-xfm-S1E19-1305",
+        "pos": 1305,
         "timestamp": 3149951000000,
         "timestamp_inferred": true,
         "timestamp_distance": 14,
@@ -19588,8 +19663,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1301",
-        "pos": 1301,
+        "id": "ep-xfm-S1E19-1306",
+        "pos": 1306,
         "timestamp": 3152473000000,
         "timestamp_inferred": true,
         "timestamp_distance": 15,
@@ -19609,8 +19684,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1302",
-        "pos": 1302,
+        "id": "ep-xfm-S1E19-1307",
+        "pos": 1307,
         "timestamp": 3152473000000,
         "timestamp_inferred": true,
         "timestamp_distance": 16,
@@ -19624,8 +19699,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1303",
-        "pos": 1303,
+        "id": "ep-xfm-S1E19-1308",
+        "pos": 1308,
         "timestamp": 3160117000000,
         "timestamp_inferred": true,
         "timestamp_distance": 17,
@@ -19639,8 +19714,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1304",
-        "pos": 1304,
+        "id": "ep-xfm-S1E19-1309",
+        "pos": 1309,
         "timestamp": 3160499000000,
         "timestamp_inferred": true,
         "timestamp_distance": 18,
@@ -19654,8 +19729,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1305",
-        "pos": 1305,
+        "id": "ep-xfm-S1E19-1310",
+        "pos": 1310,
         "timestamp": 3164856000000,
         "timestamp_inferred": true,
         "timestamp_distance": 19,
@@ -19669,8 +19744,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1306",
-        "pos": 1306,
+        "id": "ep-xfm-S1E19-1311",
+        "pos": 1311,
         "timestamp": 3165238000000,
         "timestamp_inferred": true,
         "timestamp_distance": 20,
@@ -19684,8 +19759,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1307",
-        "pos": 1307,
+        "id": "ep-xfm-S1E19-1312",
+        "pos": 1312,
         "timestamp": 3168372000000,
         "timestamp_inferred": true,
         "timestamp_distance": 21,
@@ -19699,8 +19774,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1308",
-        "pos": 1308,
+        "id": "ep-xfm-S1E19-1313",
+        "pos": 1313,
         "timestamp": 3169220000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -19714,8 +19789,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1309",
-        "pos": 1309,
+        "id": "ep-xfm-S1E19-1314",
+        "pos": 1314,
         "timestamp": 3179620000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -19729,8 +19804,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1310",
-        "pos": 1310,
+        "id": "ep-xfm-S1E19-1315",
+        "pos": 1315,
         "timestamp": 3182591000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -19744,8 +19819,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1311",
-        "pos": 1311,
+        "id": "ep-xfm-S1E19-1316",
+        "pos": 1316,
         "timestamp": 3182810000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -19759,8 +19834,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1312",
-        "pos": 1312,
+        "id": "ep-xfm-S1E19-1317",
+        "pos": 1317,
         "timestamp": 3184896000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -19774,8 +19849,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1313",
-        "pos": 1313,
+        "id": "ep-xfm-S1E19-1318",
+        "pos": 1318,
         "timestamp": 3185150000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -19789,8 +19864,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1314",
-        "pos": 1314,
+        "id": "ep-xfm-S1E19-1319",
+        "pos": 1319,
         "timestamp": 3188814000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -19804,8 +19879,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1315",
-        "pos": 1315,
+        "id": "ep-xfm-S1E19-1320",
+        "pos": 1320,
         "timestamp": 3191360000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -19819,8 +19894,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1316",
-        "pos": 1316,
+        "id": "ep-xfm-S1E19-1321",
+        "pos": 1321,
         "timestamp": 3203426000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -19834,8 +19909,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1317",
-        "pos": 1317,
+        "id": "ep-xfm-S1E19-1322",
+        "pos": 1322,
         "timestamp": 3203824000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -19849,8 +19924,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1318",
-        "pos": 1318,
+        "id": "ep-xfm-S1E19-1323",
+        "pos": 1323,
         "timestamp": 3205020000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -19864,8 +19939,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1319",
-        "pos": 1319,
+        "id": "ep-xfm-S1E19-1324",
+        "pos": 1324,
         "timestamp": 3205618000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
@@ -19879,8 +19954,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1320",
-        "pos": 1320,
+        "id": "ep-xfm-S1E19-1325",
+        "pos": 1325,
         "timestamp": 3208958000000,
         "timestamp_inferred": true,
         "timestamp_distance": 5,
@@ -19894,8 +19969,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1321",
-        "pos": 1321,
+        "id": "ep-xfm-S1E19-1326",
+        "pos": 1326,
         "timestamp": 3209510000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -19909,8 +19984,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1322",
-        "pos": 1322,
+        "id": "ep-xfm-S1E19-1327",
+        "pos": 1327,
         "timestamp": 3212538000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -19924,8 +19999,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1323",
-        "pos": 1323,
+        "id": "ep-xfm-S1E19-1328",
+        "pos": 1328,
         "timestamp": 3213800000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -19939,8 +20014,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1324",
-        "pos": 1324,
+        "id": "ep-xfm-S1E19-1329",
+        "pos": 1329,
         "timestamp": 3216370000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -19954,8 +20029,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1325",
-        "pos": 1325,
+        "id": "ep-xfm-S1E19-1330",
+        "pos": 1330,
         "timestamp": 3218446000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -19969,8 +20044,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1326",
-        "pos": 1326,
+        "id": "ep-xfm-S1E19-1331",
+        "pos": 1331,
         "timestamp": 3218820000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -19984,8 +20059,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1327",
-        "pos": 1327,
+        "id": "ep-xfm-S1E19-1332",
+        "pos": 1332,
         "timestamp": 3221810000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -19999,8 +20074,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1328",
-        "pos": 1328,
+        "id": "ep-xfm-S1E19-1333",
+        "pos": 1333,
         "timestamp": 3222652000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -20014,8 +20089,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1329",
-        "pos": 1329,
+        "id": "ep-xfm-S1E19-1334",
+        "pos": 1334,
         "timestamp": 3222851000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -20029,8 +20104,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1330",
-        "pos": 1330,
+        "id": "ep-xfm-S1E19-1335",
+        "pos": 1335,
         "timestamp": 3223340000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -20044,8 +20119,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1331",
-        "pos": 1331,
+        "id": "ep-xfm-S1E19-1336",
+        "pos": 1336,
         "timestamp": 3229139000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -20059,8 +20134,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1332",
-        "pos": 1332,
+        "id": "ep-xfm-S1E19-1337",
+        "pos": 1337,
         "timestamp": 3229630000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -20074,8 +20149,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1333",
-        "pos": 1333,
+        "id": "ep-xfm-S1E19-1338",
+        "pos": 1338,
         "timestamp": 3237787000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -20089,8 +20164,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1334",
-        "pos": 1334,
+        "id": "ep-xfm-S1E19-1339",
+        "pos": 1339,
         "timestamp": 3239210000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -20104,8 +20179,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1335",
-        "pos": 1335,
+        "id": "ep-xfm-S1E19-1340",
+        "pos": 1340,
         "timestamp": 3242737000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -20119,8 +20194,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1336",
-        "pos": 1336,
+        "id": "ep-xfm-S1E19-1341",
+        "pos": 1341,
         "timestamp": 3244255000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -20134,8 +20209,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1337",
-        "pos": 1337,
+        "id": "ep-xfm-S1E19-1342",
+        "pos": 1342,
         "timestamp": 3244499000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -20149,8 +20224,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1338",
-        "pos": 1338,
+        "id": "ep-xfm-S1E19-1343",
+        "pos": 1343,
         "timestamp": 3249740000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
@@ -20164,8 +20239,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1339",
-        "pos": 1339,
+        "id": "ep-xfm-S1E19-1344",
+        "pos": 1344,
         "timestamp": 3249935000000,
         "timestamp_inferred": true,
         "timestamp_distance": 5,
@@ -20179,8 +20254,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1340",
-        "pos": 1340,
+        "id": "ep-xfm-S1E19-1345",
+        "pos": 1345,
         "timestamp": 3252678000000,
         "timestamp_inferred": true,
         "timestamp_distance": 6,
@@ -20194,8 +20269,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1341",
-        "pos": 1341,
+        "id": "ep-xfm-S1E19-1346",
+        "pos": 1346,
         "timestamp": 3252922000000,
         "timestamp_inferred": true,
         "timestamp_distance": 7,
@@ -20209,8 +20284,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1342",
-        "pos": 1342,
+        "id": "ep-xfm-S1E19-1347",
+        "pos": 1347,
         "timestamp": 3253999000000,
         "timestamp_inferred": true,
         "timestamp_distance": 8,
@@ -20224,8 +20299,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1343",
-        "pos": 1343,
+        "id": "ep-xfm-S1E19-1348",
+        "pos": 1348,
         "timestamp": 3254880000000,
         "timestamp_inferred": true,
         "timestamp_distance": 9,
@@ -20239,8 +20314,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1344",
-        "pos": 1344,
+        "id": "ep-xfm-S1E19-1349",
+        "pos": 1349,
         "timestamp": 3256888000000,
         "timestamp_inferred": true,
         "timestamp_distance": 10,
@@ -20254,8 +20329,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1345",
-        "pos": 1345,
+        "id": "ep-xfm-S1E19-1350",
+        "pos": 1350,
         "timestamp": 3257140000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -20269,8 +20344,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1346",
-        "pos": 1346,
+        "id": "ep-xfm-S1E19-1351",
+        "pos": 1351,
         "timestamp": 3268706000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -20284,8 +20359,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1347",
-        "pos": 1347,
+        "id": "ep-xfm-S1E19-1352",
+        "pos": 1352,
         "timestamp": 3270080000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -20299,8 +20374,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1348",
-        "pos": 1348,
+        "id": "ep-xfm-S1E19-1353",
+        "pos": 1353,
         "timestamp": 3272633000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -20314,8 +20389,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1349",
-        "pos": 1349,
+        "id": "ep-xfm-S1E19-1354",
+        "pos": 1354,
         "timestamp": 3274183000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -20329,8 +20404,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1350",
-        "pos": 1350,
+        "id": "ep-xfm-S1E19-1355",
+        "pos": 1355,
         "timestamp": 3275370000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -20344,8 +20419,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1351",
-        "pos": 1351,
+        "id": "ep-xfm-S1E19-1356",
+        "pos": 1356,
         "timestamp": 3276835000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -20359,8 +20434,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1352",
-        "pos": 1352,
+        "id": "ep-xfm-S1E19-1357",
+        "pos": 1357,
         "timestamp": 3277024000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -20374,8 +20449,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1353",
-        "pos": 1353,
+        "id": "ep-xfm-S1E19-1358",
+        "pos": 1358,
         "timestamp": 3278678000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -20389,8 +20464,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1354",
-        "pos": 1354,
+        "id": "ep-xfm-S1E19-1359",
+        "pos": 1359,
         "timestamp": 3279576000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
@@ -20404,8 +20479,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1355",
-        "pos": 1355,
+        "id": "ep-xfm-S1E19-1360",
+        "pos": 1360,
         "timestamp": 3280899000000,
         "timestamp_inferred": true,
         "timestamp_distance": 5,
@@ -20419,8 +20494,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1356",
-        "pos": 1356,
+        "id": "ep-xfm-S1E19-1361",
+        "pos": 1361,
         "timestamp": 3281610000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -20434,8 +20509,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1357",
-        "pos": 1357,
+        "id": "ep-xfm-S1E19-1362",
+        "pos": 1362,
         "timestamp": 3285040000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -20449,8 +20524,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1358",
-        "pos": 1358,
+        "id": "ep-xfm-S1E19-1363",
+        "pos": 1363,
         "timestamp": 3286670000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -20464,8 +20539,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1359",
-        "pos": 1359,
+        "id": "ep-xfm-S1E19-1364",
+        "pos": 1364,
         "timestamp": 3295050000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -20479,8 +20554,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1360",
-        "pos": 1360,
+        "id": "ep-xfm-S1E19-1365",
+        "pos": 1365,
         "timestamp": 3299388000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -20494,8 +20569,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1361",
-        "pos": 1361,
+        "id": "ep-xfm-S1E19-1366",
+        "pos": 1366,
         "timestamp": 3299607000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -20509,8 +20584,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1362",
-        "pos": 1362,
+        "id": "ep-xfm-S1E19-1367",
+        "pos": 1367,
         "timestamp": 3301254000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -20524,8 +20599,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1363",
-        "pos": 1363,
+        "id": "ep-xfm-S1E19-1368",
+        "pos": 1368,
         "timestamp": 3301528000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
@@ -20539,8 +20614,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1364",
-        "pos": 1364,
+        "id": "ep-xfm-S1E19-1369",
+        "pos": 1369,
         "timestamp": 3303175000000,
         "timestamp_inferred": true,
         "timestamp_distance": 5,
@@ -20554,8 +20629,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1365",
-        "pos": 1365,
+        "id": "ep-xfm-S1E19-1370",
+        "pos": 1370,
         "timestamp": 3303394000000,
         "timestamp_inferred": true,
         "timestamp_distance": 6,
@@ -20569,8 +20644,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1366",
-        "pos": 1366,
+        "id": "ep-xfm-S1E19-1371",
+        "pos": 1371,
         "timestamp": 3306634000000,
         "timestamp_inferred": true,
         "timestamp_distance": 7,
@@ -20584,8 +20659,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1367",
-        "pos": 1367,
+        "id": "ep-xfm-S1E19-1372",
+        "pos": 1372,
         "timestamp": 3308775000000,
         "timestamp_inferred": true,
         "timestamp_distance": 8,
@@ -20599,8 +20674,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1368",
-        "pos": 1368,
+        "id": "ep-xfm-S1E19-1373",
+        "pos": 1373,
         "timestamp": 3310257000000,
         "timestamp_inferred": true,
         "timestamp_distance": 9,
@@ -20614,8 +20689,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1369",
-        "pos": 1369,
+        "id": "ep-xfm-S1E19-1374",
+        "pos": 1374,
         "timestamp": 3312020000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -20629,8 +20704,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1370",
-        "pos": 1370,
+        "id": "ep-xfm-S1E19-1375",
+        "pos": 1375,
         "timestamp": 3315750000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -20644,8 +20719,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1371",
-        "pos": 1371,
+        "id": "ep-xfm-S1E19-1376",
+        "pos": 1376,
         "timestamp": 3319259000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -20659,8 +20734,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1372",
-        "pos": 1372,
+        "id": "ep-xfm-S1E19-1377",
+        "pos": 1377,
         "timestamp": 3319540000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -20674,8 +20749,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1373",
-        "pos": 1373,
+        "id": "ep-xfm-S1E19-1378",
+        "pos": 1378,
         "timestamp": 3323332000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -20689,8 +20764,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1374",
-        "pos": 1374,
+        "id": "ep-xfm-S1E19-1379",
+        "pos": 1379,
         "timestamp": 3323600000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -20704,8 +20779,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1375",
-        "pos": 1375,
+        "id": "ep-xfm-S1E19-1380",
+        "pos": 1380,
         "timestamp": 3325850000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -20719,8 +20794,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1376",
-        "pos": 1376,
+        "id": "ep-xfm-S1E19-1381",
+        "pos": 1381,
         "timestamp": 3330404000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -20734,8 +20809,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1377",
-        "pos": 1377,
+        "id": "ep-xfm-S1E19-1382",
+        "pos": 1382,
         "timestamp": 3330678000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -20749,8 +20824,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1378",
-        "pos": 1378,
+        "id": "ep-xfm-S1E19-1383",
+        "pos": 1383,
         "timestamp": 3331994000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -20764,8 +20839,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1379",
-        "pos": 1379,
+        "id": "ep-xfm-S1E19-1384",
+        "pos": 1384,
         "timestamp": 3332270000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -20779,8 +20854,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1380",
-        "pos": 1380,
+        "id": "ep-xfm-S1E19-1385",
+        "pos": 1385,
         "timestamp": 3333458000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -20794,8 +20869,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1381",
-        "pos": 1381,
+        "id": "ep-xfm-S1E19-1386",
+        "pos": 1386,
         "timestamp": 3333678000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -20809,8 +20884,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1382",
-        "pos": 1382,
+        "id": "ep-xfm-S1E19-1387",
+        "pos": 1387,
         "timestamp": 3336230000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -20824,8 +20899,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1383",
-        "pos": 1383,
+        "id": "ep-xfm-S1E19-1388",
+        "pos": 1388,
         "timestamp": 3346048000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -20839,8 +20914,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1384",
-        "pos": 1384,
+        "id": "ep-xfm-S1E19-1389",
+        "pos": 1389,
         "timestamp": 3348190000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -20854,8 +20929,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1385",
-        "pos": 1385,
+        "id": "ep-xfm-S1E19-1390",
+        "pos": 1390,
         "timestamp": 3348620000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -20869,8 +20944,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1386",
-        "pos": 1386,
+        "id": "ep-xfm-S1E19-1391",
+        "pos": 1391,
         "timestamp": 3351740000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -20884,8 +20959,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1387",
-        "pos": 1387,
+        "id": "ep-xfm-S1E19-1392",
+        "pos": 1392,
         "timestamp": 3351940000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -20899,8 +20974,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1388",
-        "pos": 1388,
+        "id": "ep-xfm-S1E19-1393",
+        "pos": 1393,
         "timestamp": 3359700000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -20914,8 +20989,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1389",
-        "pos": 1389,
+        "id": "ep-xfm-S1E19-1394",
+        "pos": 1394,
         "timestamp": 3362928000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -20929,8 +21004,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1390",
-        "pos": 1390,
+        "id": "ep-xfm-S1E19-1395",
+        "pos": 1395,
         "timestamp": 3363440000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -20944,8 +21019,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1391",
-        "pos": 1391,
+        "id": "ep-xfm-S1E19-1396",
+        "pos": 1396,
         "timestamp": 3374027000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -20959,8 +21034,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1392",
-        "pos": 1392,
+        "id": "ep-xfm-S1E19-1397",
+        "pos": 1397,
         "timestamp": 3374826000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -20974,8 +21049,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1393",
-        "pos": 1393,
+        "id": "ep-xfm-S1E19-1398",
+        "pos": 1398,
         "timestamp": 3375491000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -20989,8 +21064,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1394",
-        "pos": 1394,
+        "id": "ep-xfm-S1E19-1399",
+        "pos": 1399,
         "timestamp": 3376889000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
@@ -21004,8 +21079,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1395",
-        "pos": 1395,
+        "id": "ep-xfm-S1E19-1400",
+        "pos": 1400,
         "timestamp": 3379286000000,
         "timestamp_inferred": true,
         "timestamp_distance": 5,
@@ -21019,8 +21094,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1396",
-        "pos": 1396,
+        "id": "ep-xfm-S1E19-1401",
+        "pos": 1401,
         "timestamp": 3379752000000,
         "timestamp_inferred": true,
         "timestamp_distance": 6,
@@ -21034,8 +21109,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1397",
-        "pos": 1397,
+        "id": "ep-xfm-S1E19-1402",
+        "pos": 1402,
         "timestamp": 3380018000000,
         "timestamp_inferred": true,
         "timestamp_distance": 7,
@@ -21049,8 +21124,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1398",
-        "pos": 1398,
+        "id": "ep-xfm-S1E19-1403",
+        "pos": 1403,
         "timestamp": 3381020000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -21064,8 +21139,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1399",
-        "pos": 1399,
+        "id": "ep-xfm-S1E19-1404",
+        "pos": 1404,
         "timestamp": 3385620000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -21079,8 +21154,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1400",
-        "pos": 1400,
+        "id": "ep-xfm-S1E19-1405",
+        "pos": 1405,
         "timestamp": 3391328000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -21094,8 +21169,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1401",
-        "pos": 1401,
+        "id": "ep-xfm-S1E19-1406",
+        "pos": 1406,
         "timestamp": 3391620000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -21109,8 +21184,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1402",
-        "pos": 1402,
+        "id": "ep-xfm-S1E19-1407",
+        "pos": 1407,
         "timestamp": 3395050000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -21124,8 +21199,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1403",
-        "pos": 1403,
+        "id": "ep-xfm-S1E19-1408",
+        "pos": 1408,
         "timestamp": 3397660000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -21139,8 +21214,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1404",
-        "pos": 1404,
+        "id": "ep-xfm-S1E19-1409",
+        "pos": 1409,
         "timestamp": 3399767000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -21154,8 +21229,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1405",
-        "pos": 1405,
+        "id": "ep-xfm-S1E19-1410",
+        "pos": 1410,
         "timestamp": 3399977000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -21169,8 +21244,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1406",
-        "pos": 1406,
+        "id": "ep-xfm-S1E19-1411",
+        "pos": 1411,
         "timestamp": 3400314000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -21184,8 +21259,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1407",
-        "pos": 1407,
+        "id": "ep-xfm-S1E19-1412",
+        "pos": 1412,
         "timestamp": 3407858000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
@@ -21199,8 +21274,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1408",
-        "pos": 1408,
+        "id": "ep-xfm-S1E19-1413",
+        "pos": 1413,
         "timestamp": 3412960000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -21214,8 +21289,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1409",
-        "pos": 1409,
+        "id": "ep-xfm-S1E19-1414",
+        "pos": 1414,
         "timestamp": 3418084000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -21229,8 +21304,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1410",
-        "pos": 1410,
+        "id": "ep-xfm-S1E19-1415",
+        "pos": 1415,
         "timestamp": 3418370000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -21244,8 +21319,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1411",
-        "pos": 1411,
+        "id": "ep-xfm-S1E19-1416",
+        "pos": 1416,
         "timestamp": 3420790000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -21259,8 +21334,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1412",
-        "pos": 1412,
+        "id": "ep-xfm-S1E19-1417",
+        "pos": 1417,
         "timestamp": 3423479000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -21274,8 +21349,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1413",
-        "pos": 1413,
+        "id": "ep-xfm-S1E19-1418",
+        "pos": 1418,
         "timestamp": 3424045000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -21289,8 +21364,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1414",
-        "pos": 1414,
+        "id": "ep-xfm-S1E19-1419",
+        "pos": 1419,
         "timestamp": 3426593000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -21304,8 +21379,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1415",
-        "pos": 1415,
+        "id": "ep-xfm-S1E19-1420",
+        "pos": 1420,
         "timestamp": 3426828000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
@@ -21319,8 +21394,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1416",
-        "pos": 1416,
+        "id": "ep-xfm-S1E19-1421",
+        "pos": 1421,
         "timestamp": 3427771000000,
         "timestamp_inferred": true,
         "timestamp_distance": 5,
@@ -21334,8 +21409,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1417",
-        "pos": 1417,
+        "id": "ep-xfm-S1E19-1422",
+        "pos": 1422,
         "timestamp": 3428006000000,
         "timestamp_inferred": true,
         "timestamp_distance": 6,
@@ -21349,8 +21424,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1418",
-        "pos": 1418,
+        "id": "ep-xfm-S1E19-1423",
+        "pos": 1423,
         "timestamp": 3428949000000,
         "timestamp_inferred": true,
         "timestamp_distance": 7,
@@ -21364,8 +21439,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1419",
-        "pos": 1419,
+        "id": "ep-xfm-S1E19-1424",
+        "pos": 1424,
         "timestamp": 3429190000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -21379,8 +21454,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1420",
-        "pos": 1420,
+        "id": "ep-xfm-S1E19-1425",
+        "pos": 1425,
         "timestamp": 3430980000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -21394,8 +21469,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1421",
-        "pos": 1421,
+        "id": "ep-xfm-S1E19-1426",
+        "pos": 1426,
         "timestamp": 3437012000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -21409,8 +21484,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1422",
-        "pos": 1422,
+        "id": "ep-xfm-S1E19-1427",
+        "pos": 1427,
         "timestamp": 3437203000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -21424,8 +21499,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1423",
-        "pos": 1423,
+        "id": "ep-xfm-S1E19-1428",
+        "pos": 1428,
         "timestamp": 3439932000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -21439,8 +21514,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1424",
-        "pos": 1424,
+        "id": "ep-xfm-S1E19-1429",
+        "pos": 1429,
         "timestamp": 3440458000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
@@ -21454,8 +21529,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1425",
-        "pos": 1425,
+        "id": "ep-xfm-S1E19-1430",
+        "pos": 1430,
         "timestamp": 3450943000000,
         "timestamp_inferred": true,
         "timestamp_distance": 5,
@@ -21469,8 +21544,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1426",
-        "pos": 1426,
+        "id": "ep-xfm-S1E19-1431",
+        "pos": 1431,
         "timestamp": 3452670000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -21484,8 +21559,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1427",
-        "pos": 1427,
+        "id": "ep-xfm-S1E19-1432",
+        "pos": 1432,
         "timestamp": 3455669000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -21499,8 +21574,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1428",
-        "pos": 1428,
+        "id": "ep-xfm-S1E19-1433",
+        "pos": 1433,
         "timestamp": 3456155000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -21514,8 +21589,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1429",
-        "pos": 1429,
+        "id": "ep-xfm-S1E19-1434",
+        "pos": 1434,
         "timestamp": 3457006000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -21529,8 +21604,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1430",
-        "pos": 1430,
+        "id": "ep-xfm-S1E19-1435",
+        "pos": 1435,
         "timestamp": 3458748000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
@@ -21544,8 +21619,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1431",
-        "pos": 1431,
+        "id": "ep-xfm-S1E19-1436",
+        "pos": 1436,
         "timestamp": 3459842000000,
         "timestamp_inferred": true,
         "timestamp_distance": 5,
@@ -21559,8 +21634,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1432",
-        "pos": 1432,
+        "id": "ep-xfm-S1E19-1437",
+        "pos": 1437,
         "timestamp": 3462600000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -21574,8 +21649,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1433",
-        "pos": 1433,
+        "id": "ep-xfm-S1E19-1438",
+        "pos": 1438,
         "timestamp": 3468543000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -21589,8 +21664,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1434",
-        "pos": 1434,
+        "id": "ep-xfm-S1E19-1439",
+        "pos": 1439,
         "timestamp": 3468880000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -21604,8 +21679,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1435",
-        "pos": 1435,
+        "id": "ep-xfm-S1E19-1440",
+        "pos": 1440,
         "timestamp": 3473490000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -21619,8 +21694,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1436",
-        "pos": 1436,
+        "id": "ep-xfm-S1E19-1441",
+        "pos": 1441,
         "timestamp": 3475567000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -21634,8 +21709,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1437",
-        "pos": 1437,
+        "id": "ep-xfm-S1E19-1442",
+        "pos": 1442,
         "timestamp": 3475743000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -21649,8 +21724,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1438",
-        "pos": 1438,
+        "id": "ep-xfm-S1E19-1443",
+        "pos": 1443,
         "timestamp": 3476165000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -21664,8 +21739,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1439",
-        "pos": 1439,
+        "id": "ep-xfm-S1E19-1444",
+        "pos": 1444,
         "timestamp": 3478523000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
@@ -21679,8 +21754,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1440",
-        "pos": 1440,
+        "id": "ep-xfm-S1E19-1445",
+        "pos": 1445,
         "timestamp": 3478945000000,
         "timestamp_inferred": true,
         "timestamp_distance": 5,
@@ -21694,8 +21769,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1441",
-        "pos": 1441,
+        "id": "ep-xfm-S1E19-1446",
+        "pos": 1446,
         "timestamp": 3480247000000,
         "timestamp_inferred": true,
         "timestamp_distance": 6,
@@ -21709,8 +21784,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1442",
-        "pos": 1442,
+        "id": "ep-xfm-S1E19-1447",
+        "pos": 1447,
         "timestamp": 3480387000000,
         "timestamp_inferred": true,
         "timestamp_distance": 7,
@@ -21724,8 +21799,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1443",
-        "pos": 1443,
+        "id": "ep-xfm-S1E19-1448",
+        "pos": 1448,
         "timestamp": 3482010000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -21739,8 +21814,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1444",
-        "pos": 1444,
+        "id": "ep-xfm-S1E19-1449",
+        "pos": 1449,
         "timestamp": 3484145000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -21754,8 +21829,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1445",
-        "pos": 1445,
+        "id": "ep-xfm-S1E19-1450",
+        "pos": 1450,
         "timestamp": 3484905000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -21769,8 +21844,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1446",
-        "pos": 1446,
+        "id": "ep-xfm-S1E19-1451",
+        "pos": 1451,
         "timestamp": 3485550000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -21784,8 +21859,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1447",
-        "pos": 1447,
+        "id": "ep-xfm-S1E19-1452",
+        "pos": 1452,
         "timestamp": 3487884000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -21799,8 +21874,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1448",
-        "pos": 1448,
+        "id": "ep-xfm-S1E19-1453",
+        "pos": 1453,
         "timestamp": 3489835000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -21814,8 +21889,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1449",
-        "pos": 1449,
+        "id": "ep-xfm-S1E19-1454",
+        "pos": 1454,
         "timestamp": 3491890000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -21829,8 +21904,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1450",
-        "pos": 1450,
+        "id": "ep-xfm-S1E19-1455",
+        "pos": 1455,
         "timestamp": 3497499000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
@@ -21844,8 +21919,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1451",
-        "pos": 1451,
+        "id": "ep-xfm-S1E19-1456",
+        "pos": 1456,
         "timestamp": 3497640000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -21859,8 +21934,8 @@
         "sentiment": "negative"
       },
       {
-        "id": "ep-xfm-S1E19-1452",
-        "pos": 1452,
+        "id": "ep-xfm-S1E19-1457",
+        "pos": 1457,
         "timestamp": 3499740000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -21874,8 +21949,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1453",
-        "pos": 1453,
+        "id": "ep-xfm-S1E19-1458",
+        "pos": 1458,
         "timestamp": 3501210000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -21889,8 +21964,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1454",
-        "pos": 1454,
+        "id": "ep-xfm-S1E19-1459",
+        "pos": 1459,
         "timestamp": 3513608000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -21904,8 +21979,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1455",
-        "pos": 1455,
+        "id": "ep-xfm-S1E19-1460",
+        "pos": 1460,
         "timestamp": 3514006000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -21919,8 +21994,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1456",
-        "pos": 1456,
+        "id": "ep-xfm-S1E19-1461",
+        "pos": 1461,
         "timestamp": 3515241000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -21934,8 +22009,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1457",
-        "pos": 1457,
+        "id": "ep-xfm-S1E19-1462",
+        "pos": 1462,
         "timestamp": 3516080000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -21949,8 +22024,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1458",
-        "pos": 1458,
+        "id": "ep-xfm-S1E19-1463",
+        "pos": 1463,
         "timestamp": 3535713000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -21970,8 +22045,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1459",
-        "pos": 1459,
+        "id": "ep-xfm-S1E19-1464",
+        "pos": 1464,
         "timestamp": 3535713000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -21985,8 +22060,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1460",
-        "pos": 1460,
+        "id": "ep-xfm-S1E19-1465",
+        "pos": 1465,
         "timestamp": 3543979000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -22000,8 +22075,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1461",
-        "pos": 1461,
+        "id": "ep-xfm-S1E19-1466",
+        "pos": 1466,
         "timestamp": 3545390000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -22015,8 +22090,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1462",
-        "pos": 1462,
+        "id": "ep-xfm-S1E19-1467",
+        "pos": 1467,
         "timestamp": 3548630000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -22030,8 +22105,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1463",
-        "pos": 1463,
+        "id": "ep-xfm-S1E19-1468",
+        "pos": 1468,
         "timestamp": 3550502000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -22045,8 +22120,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1464",
-        "pos": 1464,
+        "id": "ep-xfm-S1E19-1469",
+        "pos": 1469,
         "timestamp": 3553993000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -22060,8 +22135,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1465",
-        "pos": 1465,
+        "id": "ep-xfm-S1E19-1470",
+        "pos": 1470,
         "timestamp": 3554600000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -22075,8 +22150,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1466",
-        "pos": 1466,
+        "id": "ep-xfm-S1E19-1471",
+        "pos": 1471,
         "timestamp": 3558141000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
@@ -22090,8 +22165,8 @@
         "sentiment": "positive"
       },
       {
-        "id": "ep-xfm-S1E19-1467",
-        "pos": 1467,
+        "id": "ep-xfm-S1E19-1472",
+        "pos": 1472,
         "timestamp": 3558849000000,
         "timestamp_inferred": true,
         "timestamp_distance": 5,
@@ -22105,8 +22180,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1468",
-        "pos": 1468,
+        "id": "ep-xfm-S1E19-1473",
+        "pos": 1473,
         "timestamp": 3560974000000,
         "timestamp_inferred": true,
         "timestamp_distance": 6,
@@ -22120,8 +22195,8 @@
         "sentiment": "mixed"
       },
       {
-        "id": "ep-xfm-S1E19-1469",
-        "pos": 1469,
+        "id": "ep-xfm-S1E19-1474",
+        "pos": 1474,
         "timestamp": 3561277000000,
         "timestamp_inferred": true,
         "timestamp_distance": 7,
@@ -22148,43 +22223,44 @@
       },
       {
         "description": "A kid used to take a horse into the house.",
-        "start_pos": 1039,
-        "end_pos": 1140
+        "start_pos": 1043,
+        "end_pos": 1145
       },
       {
         "description": "Karl sells flowers for charity (actually forget charity, I'm a charity)",
-        "start_pos": 1140,
-        "end_pos": 1165
+        "start_pos": 1145,
+        "end_pos": 1170
       },
       {
         "description": "More musings on horses in houses.",
-        "start_pos": 1165,
-        "end_pos": 1210
+        "start_pos": 1170,
+        "end_pos": 1215
       },
       {
         "description": "Karl's thoughts on nature-vs-nurture. What if ricky just fed a baby cheese?",
-        "start_pos": 1210,
-        "end_pos": 1266
+        "start_pos": 1215,
+        "end_pos": 1271
       },
       {
         "description": "Sainsbury's are bringing in square tins.",
-        "start_pos": 1275,
-        "end_pos": 1300
+        "start_pos": 1280,
+        "end_pos": 1305
       },
       {
         "description": "The Re-Education of Karl (quote book).",
-        "start_pos": 1303,
-        "end_pos": 1412
+        "start_pos": 1308,
+        "end_pos": 1417
       },
       {
         "description": "Neil Armstrong mucks up his line on the moon.",
-        "start_pos": 1412,
-        "end_pos": 1452
+        "start_pos": 1417,
+        "end_pos": 1457
       }
     ],
     "contributors": [
       "MonotoneCreeper",
       "Oooch",
+      "bathabit",
       "booch_daddy",
       "clubbychipface",
       "dspmcmirror",
@@ -22214,8 +22290,8 @@
       },
       {
         "description": "![white van man section in The Sun](/dl/media/file/square-tins.jpg)",
-        "start_pos": 1275,
-        "end_pos": 1300
+        "start_pos": 1280,
+        "end_pos": 1305
       }
     ],
     "tags": null,
