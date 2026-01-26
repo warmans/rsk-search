@@ -5,7 +5,7 @@
     "episode": 1,
     "name": "Sponsored by Lindauers",
     "summary": "",
-    "version": "1.1.3",
+    "version": "1.1.4",
     "release_date": "2005-05-28T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -287,7 +287,7 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "Yeah yeah! The spare ribs on the floor. Yeah, nothing's changed at all. Oh act- oh that's not true um, ah, the listener-ship has changed, it went down slightly didn't it, on the last rate chart.",
+        "content": "Yeah yeah! The spare ribs on the floor. Yeah, nothing's changed at all. Oh act- oh that's not true um, ah, the listener-ship has changed, it went down slightly didn't it, on the last RAJAR?",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
@@ -17392,11 +17392,17 @@
       "Born-Leg-9021",
       "ImportantSlip14",
       "MonotoneCreeper",
+      "clubbychipface",
       "dspmcmirror",
       "lasermoai",
       "warmans"
     ],
     "trivia": [
+      {
+        "description": "RAJAR stands for Radio Joint Audience Research and is the official body in charge of measuring radio audiences in the UK.",
+        "start_pos": 18,
+        "end_pos": 19
+      },
       {
         "description": "You can see the freewebs site on [archive.org](https://web.archive.org/web/20051105025023/http://www.freewebs.com/the_k_man/)",
         "start_pos": 182,
