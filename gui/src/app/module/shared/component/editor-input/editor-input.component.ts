@@ -166,13 +166,22 @@ export class EditorInputComponent implements OnInit, OnDestroy, AfterViewInit {
     if (!this.nodeIsChildOfEditor(nd.parentElement)) {
       return;
     }
-    const insertAbove = forceInsertAbove || nd.parentNode.nextSibling == null;
 
-    this.renderer.insertBefore(
-      nd.parentNode.parentNode,
-      el,
-      insertAbove ? nd.parentNode : nd.parentNode.nextSibling,
-    );
+    const insertAbove = forceInsertAbove || nd.parentNode.nextSibling == null;
+    if (insertAbove) {
+      this.renderer.insertBefore(
+        nd.parentNode,
+        el,
+        nd,
+      );
+    } else {
+      this.renderer.insertBefore(
+        nd.parentNode.parentNode,
+        el,
+        nd.parentNode.nextSibling,
+      );
+    }
+
     this.contentChanged();
   }
 
