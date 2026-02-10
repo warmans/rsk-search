@@ -5,7 +5,7 @@
     "episode": 11,
     "name": "Crinchling",
     "summary": "Discussion on Pop idol, things they learned at school, and how jaffa cakes cure cancer. Ricky hypocritically puts annoying people in Room 101, Steve is annoyed by cinema-goers.",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "release_date": "2002-02-09T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -1967,7 +1967,7 @@
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "It's great isn't it?",
+        "content": "It's great isn't it? Yeah, really good.",
         "notable": false,
         "placeholder": false,
         "sentiment": "positive"
@@ -1982,7 +1982,7 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "Yeah, really good, yeah.",
+        "content": "Really good, yeah.",
         "notable": false,
         "placeholder": false,
         "sentiment": "positive"
@@ -2188,7 +2188,7 @@
         "timestamp": 365930000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 255000000,
+        "duration": 239000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -2200,14 +2200,14 @@
       {
         "id": "ep-xfm-S1E11-146",
         "pos": 146,
-        "timestamp": 366185000000,
+        "timestamp": 366169000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 133000000,
+        "duration": 171000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "And yeah...",
+        "content": "And uh, I just-",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
@@ -2215,10 +2215,10 @@
       {
         "id": "ep-xfm-S1E11-147",
         "pos": 147,
-        "timestamp": 366318000000,
+        "timestamp": 366340000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
-        "duration": 342000000,
+        "duration": 320000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -2237,7 +2237,7 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "And I remembered all the great songs he's ever done, I didn't like his spoken word much, too, you know too much, and, er, some of his later projects, I thought were a little bit- but his own songs, from, you know, 1978 to about 198- I thought were great.",
+        "content": "I remembered all the great songs he's ever done, I didn't like his spoken word much, too, you know too much, and, er, some of his later projects, I thought were a little bit- but his own songs, from, you know, 1978 to about 198- I thought were great.",
         "notable": false,
         "placeholder": false,
         "sentiment": "positive"
@@ -3332,7 +3332,7 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "Oh, oh those chimps that drink tea, oh. Once right, at school, we had a French dictionary, and you know (singing) “Ice cold co- coke, on the back of my throat, singing hello summertime, it's the real thing!” Remember that?",
+        "content": "Oh, oh those chimps that drink tea, oh. Once right, in school, we had a French dictionary, and you know (singing) “Ice cold co- coke, on the back of my throat, singing hello summertime, it's the real thing!” Remember that?",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
@@ -16996,7 +16996,8 @@
     "contributors": [
       "EarthlingCalling",
       "Green_Jade",
-      "MonotoneCreeper"
+      "MonotoneCreeper",
+      "bathabit"
     ],
     "trivia": [
       {
