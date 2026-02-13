@@ -21,7 +21,7 @@ export class ImportComponent implements OnInit, OnDestroy {
   importForm: UntypedFormGroup = new UntypedFormGroup({
     'epid': new UntypedFormControl('preview-S1E06', [Validators.required]),
     'epname': new UntypedFormControl('', []),
-    'mp3_uri': new UntypedFormControl('https://scrimpton.com/dl/media/episode/preview-S1E06.mp3', [Validators.required]),
+    'mp3_uri': new UntypedFormControl('https://scrimpton.com/dl/media/preview-S1E06.mp3', [Validators.required]),
   });
 
   chunkedTranscripts: RskChunkedTranscriptStats[] = [];

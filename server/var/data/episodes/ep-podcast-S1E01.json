@@ -5,7 +5,7 @@
     "episode": 1,
     "name": "Episode One",
     "summary": "",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "release_date": "2004-11-30T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -3719,7 +3719,7 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "The left button! Oh well-known spacecraft command! This is Houston, hit the left button. Oh, brilliant. This is what happened in Appollo 13. Hit the left button.",
+        "content": "The left button! Oh well-known spacecraft command! This is Houston, hit the left button. Oh, brilliant. This is what happened in Apollo 13. Hit the left button.",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
@@ -6207,6 +6207,11 @@
         "description": "'Bod' is a British children's cutout animated cartoon series, first shown on BBC1 in 1975.",
         "start_pos": 16,
         "end_pos": 39
+      },
+      {
+        "description": "He's talking about Ham the Chimp.\n\nhttps://en.wikipedia.org/wiki/Ham_%28chimpanzee%29",
+        "start_pos": 201,
+        "end_pos": 204
       }
     ],
     "tags": null,

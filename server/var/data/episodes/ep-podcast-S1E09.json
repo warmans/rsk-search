@@ -5,7 +5,7 @@
     "episode": 9,
     "name": "Episode Nine",
     "summary": "",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "release_date": "2004-11-30T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -5683,10 +5683,17 @@
       "ThePumpk1nMaster",
       "clubbychipface",
       "dspmcmirror",
+      "lasermoai",
       "verilydol",
       "warmans"
     ],
-    "trivia": null,
+    "trivia": [
+      {
+        "description": "It's called *The Crying Boy* by Giovanni Bragolin.\n\n![](https://upload.wikimedia.org/wikipedia/en/8/86/Bragolin_Crying_Boy.JPG)",
+        "start_pos": 80,
+        "end_pos": 93
+      }
+    ],
     "tags": null,
     "media": {
       "video_file_name": "",

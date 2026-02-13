@@ -5,7 +5,7 @@
     "episode": 1,
     "name": "Episode One",
     "summary": "",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "release_date": "2005-11-30T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -25,7 +25,7 @@
         "timestamp": 640000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 3260000000,
+        "duration": 2950000000,
         "type": "chat",
         "actor": "announcer",
         "metadata": null,
@@ -37,14 +37,14 @@
       {
         "id": "ep-podcast-S2E01-2",
         "pos": 2,
-        "timestamp": 3900000000,
+        "timestamp": 3590000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 7540000000,
+        "duration": 7850000000,
         "type": "chat",
         "actor": "",
         "metadata": null,
-        "content": "Podcast jingle",
+        "content": "Podcast theme plays",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
@@ -59,7 +59,7 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "Hello and welcome to the all-new 'Ricky Gervais show' with me, Ricky Gervais, Stephen Merchant, -",
+        "content": "Hello and welcome to the all-new \"Ricky Gervais Show\" with me, Ricky Gervais, Stephen Merchant--",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
@@ -89,7 +89,7 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "- And Karl Pilkington.",
+        "content": "--and Karl Pilkington.",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
@@ -115,7 +115,7 @@
         "timestamp": 19100000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 1876000000,
+        "duration": 1612000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -127,10 +127,10 @@
       {
         "id": "ep-podcast-S2E01-8",
         "pos": 8,
-        "timestamp": 20976000000,
+        "timestamp": 20712000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 324000000,
+        "duration": 278000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -142,14 +142,14 @@
       {
         "id": "ep-podcast-S2E01-9",
         "pos": 9,
-        "timestamp": 21300000000,
+        "timestamp": 20990000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 4400000000,
+        "duration": 2600000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "What - In what way is this all-new? I mean, it seems very similar. It's me, you and Karl. I suspect we're going to be talking bollocks(!)",
+        "content": "What - In what way is this all-new? I mean, it seems very similar. It's me--",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
@@ -157,21 +157,51 @@
       {
         "id": "ep-podcast-S2E01-10",
         "pos": 10,
-        "timestamp": 25700000000,
+        "timestamp": 23590000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 3300000000,
+        "duration": 123000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "Ahh..! I'll tell you what's new about it... This time you have to pay for it.",
-        "notable": true,
+        "content": "Ahh!",
+        "notable": false,
         "placeholder": false,
         "sentiment": ""
       },
       {
         "id": "ep-podcast-S2E01-11",
         "pos": 11,
+        "timestamp": 23713000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 1,
+        "duration": 1887000000,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "--you and Karl. I suspect we're going to be talking bollocks!",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S2E01-12",
+        "pos": 12,
+        "timestamp": 25600000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "duration": 3400000000,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "I'll tell you what's new about it...(in a voice) this time you have to pay for it!",
+        "notable": true,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S2E01-13",
+        "pos": 13,
         "timestamp": 29000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -185,12 +215,12 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-12",
-        "pos": 12,
+        "id": "ep-podcast-S2E01-14",
+        "pos": 14,
         "timestamp": 31480000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 360000000,
+        "duration": 220000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -200,12 +230,12 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-13",
-        "pos": 13,
-        "timestamp": 31840000000,
+        "id": "ep-podcast-S2E01-15",
+        "pos": 15,
+        "timestamp": 31700000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 3800000000,
+        "duration": 3900000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -215,12 +245,12 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-14",
-        "pos": 14,
-        "timestamp": 35640000000,
+        "id": "ep-podcast-S2E01-16",
+        "pos": 16,
+        "timestamp": 35600000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 3110000000,
+        "duration": 3100000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -230,12 +260,12 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-15",
-        "pos": 15,
-        "timestamp": 38750000000,
+        "id": "ep-podcast-S2E01-17",
+        "pos": 17,
+        "timestamp": 38700000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 970000000,
+        "duration": 1020000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -245,8 +275,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-16",
-        "pos": 16,
+        "id": "ep-podcast-S2E01-18",
+        "pos": 18,
         "timestamp": 39720000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -260,8 +290,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-17",
-        "pos": 17,
+        "id": "ep-podcast-S2E01-19",
+        "pos": 19,
         "timestamp": 42500000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -275,8 +305,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-18",
-        "pos": 18,
+        "id": "ep-podcast-S2E01-20",
+        "pos": 20,
         "timestamp": 44200000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -290,8 +320,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-19",
-        "pos": 19,
+        "id": "ep-podcast-S2E01-21",
+        "pos": 21,
         "timestamp": 45850000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -300,13 +330,13 @@
         "actor": "ricky",
         "metadata": null,
         "content": "Good. I think there'll be a campaign, you know. If I know our listeners - and I DON'T WANT TO,-",
-        "notable": false,
+        "notable": true,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-20",
-        "pos": 20,
+        "id": "ep-podcast-S2E01-22",
+        "pos": 22,
         "timestamp": 50338000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -320,8 +350,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-21",
-        "pos": 21,
+        "id": "ep-podcast-S2E01-23",
+        "pos": 23,
         "timestamp": 51000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -335,8 +365,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-22",
-        "pos": 22,
+        "id": "ep-podcast-S2E01-24",
+        "pos": 24,
         "timestamp": 54400000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -344,14 +374,14 @@
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "I just want a quick q-question because it's - I'm a bit confused. Is this show 13 (cos' we've just done 12); or is this show one of the all-new Ricky Gervais show? I didn't know where we are.",
+        "content": "I just want a quick q-question because it's - I'm a bit confused. Is this Show 13, cos' we've just done 12, or is this Show 1 of the all-new Ricky Gervais Show? I didn't know where we are.",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-23",
-        "pos": 23,
+        "id": "ep-podcast-S2E01-25",
+        "pos": 25,
         "timestamp": 61800000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -359,14 +389,14 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "Show one of the all-new Ricky Gervais Show.",
+        "content": "Show 1 of the all-new Ricky Gervais Show.",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-24",
-        "pos": 24,
+        "id": "ep-podcast-S2E01-26",
+        "pos": 26,
         "timestamp": 63400000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -380,8 +410,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-25",
-        "pos": 25,
+        "id": "ep-podcast-S2E01-27",
+        "pos": 27,
         "timestamp": 64260000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -395,8 +425,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-26",
-        "pos": 26,
+        "id": "ep-podcast-S2E01-28",
+        "pos": 28,
         "timestamp": 65379000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -410,8 +440,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-27",
-        "pos": 27,
+        "id": "ep-podcast-S2E01-29",
+        "pos": 29,
         "timestamp": 66600000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -425,8 +455,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-28",
-        "pos": 28,
+        "id": "ep-podcast-S2E01-30",
+        "pos": 30,
         "timestamp": 75300000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -434,14 +464,14 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "Yeah..",
+        "content": "Yeah.",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-29",
-        "pos": 29,
+        "id": "ep-podcast-S2E01-31",
+        "pos": 31,
         "timestamp": 76000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -449,14 +479,14 @@
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "Erm.. Runs out of whatever we need. I don't know how it works. Erm..",
+        "content": "Erm...runs out of whatever we need. I don't know how it works. Erm..",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-30",
-        "pos": 30,
+        "id": "ep-podcast-S2E01-32",
+        "pos": 32,
         "timestamp": 80000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -470,12 +500,12 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-31",
-        "pos": 31,
+        "id": "ep-podcast-S2E01-33",
+        "pos": 33,
         "timestamp": 82800000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 908000000,
+        "duration": 875000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -485,12 +515,12 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-32",
-        "pos": 32,
-        "timestamp": 83708000000,
+        "id": "ep-podcast-S2E01-34",
+        "pos": 34,
+        "timestamp": 83675000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 194000000,
+        "duration": 187000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -500,27 +530,27 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-33",
-        "pos": 33,
-        "timestamp": 83902000000,
+        "id": "ep-podcast-S2E01-35",
+        "pos": 35,
+        "timestamp": 83862000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
-        "duration": 1848000000,
+        "duration": 1812000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "Whatever the reason is, if it [struggling to articulate]-",
+        "content": "Whatever the reason is, if it [struggling to articulate]--",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-34",
-        "pos": 34,
-        "timestamp": 85750000000,
+        "id": "ep-podcast-S2E01-36",
+        "pos": 36,
+        "timestamp": 85674000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
-        "duration": 650000000,
+        "duration": 626000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -530,53 +560,38 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-35",
-        "pos": 35,
-        "timestamp": 86400000000,
+        "id": "ep-podcast-S2E01-37",
+        "pos": 37,
+        "timestamp": 86300000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 5000000000,
+        "duration": 4700000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "You are talking yourself out of a job with NASA, putting yourself down like that. I think you know exactly how the world works...",
-        "notable": false,
-        "placeholder": false,
-        "sentiment": ""
-      },
-      {
-        "id": "ep-podcast-S2E01-36",
-        "pos": 36,
-        "timestamp": 91400000000,
-        "timestamp_inferred": false,
-        "timestamp_distance": 0,
-        "duration": 2200000000,
-        "type": "chat",
-        "actor": "karl",
-        "metadata": null,
-        "content": "No-no no, but you know, just like erm...",
-        "notable": false,
-        "placeholder": false,
-        "sentiment": ""
-      },
-      {
-        "id": "ep-podcast-S2E01-37",
-        "pos": 37,
-        "timestamp": 93600000000,
-        "timestamp_inferred": false,
-        "timestamp_distance": 0,
-        "duration": 2400000000,
-        "type": "chat",
-        "actor": "karl",
-        "metadata": null,
-        "content": "Say, if we had to go to another world..",
-        "notable": false,
+        "content": "You are talking yourself out of a job with NASA, putting yourself down like that. I think you know exactly how the world works.",
+        "notable": true,
         "placeholder": false,
         "sentiment": ""
       },
       {
         "id": "ep-podcast-S2E01-38",
         "pos": 38,
+        "timestamp": 91000000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "duration": 5000000000,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "No-no no, but you know, just like erm...say if we had to go to another world..",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S2E01-39",
+        "pos": 39,
         "timestamp": 96000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -590,8 +605,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-39",
-        "pos": 39,
+        "id": "ep-podcast-S2E01-40",
+        "pos": 40,
         "timestamp": 96533000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -605,8 +620,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-40",
-        "pos": 40,
+        "id": "ep-podcast-S2E01-41",
+        "pos": 41,
         "timestamp": 97600000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -620,8 +635,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-41",
-        "pos": 41,
+        "id": "ep-podcast-S2E01-42",
+        "pos": 42,
         "timestamp": 99900000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -635,31 +650,16 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-42",
-        "pos": 42,
+        "id": "ep-podcast-S2E01-43",
+        "pos": 43,
         "timestamp": 100800000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 16200000000,
+        "duration": 16100000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "I - I explained, I - told you, it depends.. Because, it doesn't matter where you start, right? It depends what a year is. A 'year' is a year because that's how long it takes our planet to go round our sun. A day is a day because that's how long it takes the world to r-revolve once -",
-        "notable": false,
-        "placeholder": false,
-        "sentiment": ""
-      },
-      {
-        "id": "ep-podcast-S2E01-43",
-        "pos": 43,
-        "timestamp": 117000000000,
-        "timestamp_inferred": false,
-        "timestamp_distance": 0,
-        "duration": 8500000000,
-        "type": "chat",
-        "actor": "karl",
-        "metadata": null,
-        "content": "I know, but you can't - you can't go to another world, and then start.. changing everything, cos' people are going to be a bit 'unnervy' about being on different soil.",
+        "content": "I - I explained, I - told you, it depends.. Because, it doesn't matter where you start, right? It depends what a year is. A year is a year because that's how long it takes our planet to go round our sun. A day is a day because that's how long it takes the world to r-revolve once--",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
@@ -667,14 +667,14 @@
       {
         "id": "ep-podcast-S2E01-44",
         "pos": 44,
-        "timestamp": 125500000000,
+        "timestamp": 116900000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 100000000,
+        "duration": 8054000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "(brief pause) So its-",
+        "content": "I know, but you can't - you can't go to another world, and then start...changing everything cos' people are going to be a bit unnervy about being on different soil.",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
@@ -682,14 +682,14 @@
       {
         "id": "ep-podcast-S2E01-45",
         "pos": 45,
-        "timestamp": 125600000000,
-        "timestamp_inferred": false,
-        "timestamp_distance": 0,
-        "duration": 7310000000,
+        "timestamp": 124954000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 1,
+        "duration": 246000000,
         "type": "chat",
-        "actor": "ricky",
+        "actor": "",
         "metadata": null,
-        "content": "But it's not their choice! You can't go to a planet and go, \"Hm, we've got to speed this planet up. It's not all going through space quickly enough.\"",
+        "content": "Pause",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
@@ -697,14 +697,14 @@
       {
         "id": "ep-podcast-S2E01-46",
         "pos": 46,
-        "timestamp": 132910000000,
+        "timestamp": 125200000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 4360000000,
+        "duration": 100000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "Yeah, but everybody's -- you know, like - especially older people, are set in their ways. Right?",
+        "content": "So it's ((inaudible, crosstalk))--",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
@@ -712,10 +712,40 @@
       {
         "id": "ep-podcast-S2E01-47",
         "pos": 47,
-        "timestamp": 137270000000,
+        "timestamp": 125300000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 5720000000,
+        "duration": 7000000000,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "But it's not their choice! You can't go to a planet and go, (in a voice) \"Hm, we've got to speed this planet up. It's not all going through space quickly enough!\"",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S2E01-48",
+        "pos": 48,
+        "timestamp": 132300000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "duration": 4700000000,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Yeah, but everybody's-you know like- especially older people, are set in their ways. Right?",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S2E01-49",
+        "pos": 49,
+        "timestamp": 137000000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "duration": 5900000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -725,46 +755,16 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-48",
-        "pos": 48,
-        "timestamp": 142990000000,
-        "timestamp_inferred": false,
-        "timestamp_distance": 0,
-        "duration": 4110000000,
-        "type": "chat",
-        "actor": "karl",
-        "metadata": null,
-        "content": "No, but if they have to. (brief pause) Anyway, that - that isn't the point. All - all I'm sayin'-",
-        "notable": false,
-        "placeholder": false,
-        "sentiment": ""
-      },
-      {
-        "id": "ep-podcast-S2E01-49",
-        "pos": 49,
-        "timestamp": 147100000000,
-        "timestamp_inferred": false,
-        "timestamp_distance": 0,
-        "duration": 3300000000,
-        "type": "chat",
-        "actor": "ricky",
-        "metadata": null,
-        "content": "What? They're going to be moaning about, \"Days are shorter here\", or \"Days are longer, aren't they?\"",
-        "notable": false,
-        "placeholder": false,
-        "sentiment": ""
-      },
-      {
         "id": "ep-podcast-S2E01-50",
         "pos": 50,
-        "timestamp": 150400000000,
+        "timestamp": 142900000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 1200000000,
+        "duration": 890000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "Well yeah. You know what they like. Change-",
+        "content": "No, but if they have to.",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
@@ -772,14 +772,14 @@
       {
         "id": "ep-podcast-S2E01-51",
         "pos": 51,
-        "timestamp": 151600000000,
+        "timestamp": 143790000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 5080000000,
+        "duration": 910000000,
         "type": "chat",
-        "actor": "steve",
+        "actor": "",
         "metadata": null,
-        "content": "But old people don't care. They like short days. They don't get out of bed, do they, until late. They've got nothing to get up for, and they go to bed early.",
+        "content": "Pause",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
@@ -787,14 +787,14 @@
       {
         "id": "ep-podcast-S2E01-52",
         "pos": 52,
-        "timestamp": 156680000000,
+        "timestamp": 144700000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 1020000000,
+        "duration": 2200000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "Yeah, but it's not just that, is it?",
+        "content": "Anyway, that - that isn't the point, all-all I'm sayin'--",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
@@ -802,14 +802,14 @@
       {
         "id": "ep-podcast-S2E01-53",
         "pos": 53,
-        "timestamp": 157700000000,
+        "timestamp": 146900000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 1540000000,
+        "duration": 3200000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "What if it's a longer day, Steve..?",
+        "content": "What, they're going to be moaning about, \"Days are shorter here\", or \"Days are longer, aren't they?\"",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
@@ -817,10 +817,70 @@
       {
         "id": "ep-podcast-S2E01-54",
         "pos": 54,
-        "timestamp": 159240000000,
+        "timestamp": 150100000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 660000000,
+        "duration": 1500000000,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Well yeah, you know what they like. Change-",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S2E01-55",
+        "pos": 55,
+        "timestamp": 151600000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "duration": 4890000000,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "But old people don't care, they like short days. They don't get out of bed, do they, until late. They've got nothing to get up for, and they go to bed early.",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S2E01-56",
+        "pos": 56,
+        "timestamp": 156490000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "duration": 900000000,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Yeah but it's not just that is it ((inaudible, crosstalk))--",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S2E01-57",
+        "pos": 57,
+        "timestamp": 157390000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "duration": 1610000000,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "What if it's a longer day, Steve?",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S2E01-58",
+        "pos": 58,
+        "timestamp": 159000000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "duration": 490000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -830,69 +890,69 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-55",
-        "pos": 55,
-        "timestamp": 159900000000,
+        "id": "ep-podcast-S2E01-59",
+        "pos": 59,
+        "timestamp": 159490000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 940000000,
+        "duration": 810000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "(to Karl) That's your point innit'?",
+        "content": "(to Karl) That's your point innit?",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-56",
-        "pos": 56,
-        "timestamp": 160840000000,
+        "id": "ep-podcast-S2E01-60",
+        "pos": 60,
+        "timestamp": 160300000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 5760000000,
+        "duration": 6300000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "But I'm talking about.. stationery, diaries.. Everything's gonna be a mess.",
+        "content": "But I'm talking about...stationery, diaries...everything's, gonna be a mess.",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-57",
-        "pos": 57,
+        "id": "ep-podcast-S2E01-61",
+        "pos": 61,
         "timestamp": 166600000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 1100000000,
+        "duration": 800000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "Right..",
+        "content": "Right.",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-58",
-        "pos": 58,
-        "timestamp": 167700000000,
+        "id": "ep-podcast-S2E01-62",
+        "pos": 62,
+        "timestamp": 167400000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 2100000000,
+        "duration": 2000000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "So what do you do? If I was in charge..",
+        "content": "So what do you do? If I was in charge--",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-59",
-        "pos": 59,
-        "timestamp": 169800000000,
+        "id": "ep-podcast-S2E01-63",
+        "pos": 63,
+        "timestamp": 169400000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
         "duration": 200000000,
@@ -905,27 +965,27 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-60",
-        "pos": 60,
-        "timestamp": 170000000000,
+        "id": "ep-podcast-S2E01-64",
+        "pos": 64,
+        "timestamp": 169600000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 5000000000,
+        "duration": 5090000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "I'd - I'd just say, \"Yeah, carry on. It's uh, 2007, it's September, it's a Thursday. Get on with it.\"",
+        "content": "I'd - I'd just say, \"Yeah, carry on. It's uh, 2007, it's September. It's a Thursday. Get on with it.\"",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-61",
-        "pos": 61,
-        "timestamp": 175000000000,
+        "id": "ep-podcast-S2E01-65",
+        "pos": 65,
+        "timestamp": 174690000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 670000000,
+        "duration": 610000000,
         "type": "chat",
         "actor": "",
         "metadata": null,
@@ -935,12 +995,12 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-62",
-        "pos": 62,
-        "timestamp": 175670000000,
+        "id": "ep-podcast-S2E01-66",
+        "pos": 66,
+        "timestamp": 175300000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 560000000,
+        "duration": 400000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -950,76 +1010,16 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-63",
-        "pos": 63,
-        "timestamp": 176230000000,
+        "id": "ep-podcast-S2E01-67",
+        "pos": 67,
+        "timestamp": 175700000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 1270000000,
+        "duration": 1500000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "I - I think, because people-",
-        "notable": false,
-        "placeholder": false,
-        "sentiment": ""
-      },
-      {
-        "id": "ep-podcast-S2E01-64",
-        "pos": 64,
-        "timestamp": 177500000000,
-        "timestamp_inferred": false,
-        "timestamp_distance": 0,
-        "duration": 4100000000,
-        "type": "chat",
-        "actor": "ricky",
-        "metadata": null,
-        "content": "26 Hours later. Uh, with a new day...",
-        "notable": false,
-        "placeholder": false,
-        "sentiment": ""
-      },
-      {
-        "id": "ep-podcast-S2E01-65",
-        "pos": 65,
-        "timestamp": 181600000000,
-        "timestamp_inferred": false,
-        "timestamp_distance": 0,
-        "duration": 5800000000,
-        "type": "chat",
-        "actor": "ricky",
-        "metadata": null,
-        "content": "And uh, 480 days later, \"Oh, it's another year, 2008.\"",
-        "notable": false,
-        "placeholder": false,
-        "sentiment": ""
-      },
-      {
-        "id": "ep-podcast-S2E01-66",
-        "pos": 66,
-        "timestamp": 187400000000,
-        "timestamp_inferred": false,
-        "timestamp_distance": 0,
-        "duration": 7200000000,
-        "type": "chat",
-        "actor": "ricky",
-        "metadata": null,
-        "content": "I was trying to explain to him yesterday, uh, in a cafe about telescopes that can see back to the Big Bang, and-",
-        "notable": false,
-        "placeholder": false,
-        "sentiment": ""
-      },
-      {
-        "id": "ep-podcast-S2E01-67",
-        "pos": 67,
-        "timestamp": 194600000000,
-        "timestamp_inferred": false,
-        "timestamp_distance": 0,
-        "duration": 1000000000,
-        "type": "chat",
-        "actor": "steve",
-        "metadata": null,
-        "content": "Why.. did you do that..?",
+        "content": "I - I think, because people ((inaudible))--",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
@@ -1027,14 +1027,14 @@
       {
         "id": "ep-podcast-S2E01-68",
         "pos": 68,
-        "timestamp": 195600000000,
+        "timestamp": 177200000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 9400000000,
+        "duration": 4710000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "Well, I was trying to explain what a light-year was. Then, I was explaining to him that - you know.. You sit down, you - you put your telescope on, you're looking at a star, the star explodes.",
+        "content": "26 Hours later...uh, with a new day....and uh--",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
@@ -1042,14 +1042,14 @@
       {
         "id": "ep-podcast-S2E01-69",
         "pos": 69,
-        "timestamp": 205000000000,
+        "timestamp": 181910000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 16900000000,
+        "duration": 490000000,
         "type": "chat",
-        "actor": "ricky",
+        "actor": "karl",
         "metadata": null,
-        "content": "That star exploded a million years ago and he couldn't have it. I was going, \"you're literally seeing it explode a million years ago because that's how long the light, going-\". And I started telling that, you know uh.. Someone on another planet far, far away could be watching the 1980 World Cup Final - if they had a strong enough telescope, because it -",
+        "content": "((describe interruption))",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
@@ -1057,10 +1057,70 @@
       {
         "id": "ep-podcast-S2E01-70",
         "pos": 70,
-        "timestamp": 221900000000,
+        "timestamp": 182400000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 575000000,
+        "duration": 3373000000,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "480 days later, \"Oh, it's another year, 2008!\"",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S2E01-71",
+        "pos": 71,
+        "timestamp": 185773000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 1,
+        "duration": 8727000000,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "I was trying to explain to him yesterday, uh, in a cafe, about, um, telescopes that can see back to the Big Bang, and--",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S2E01-72",
+        "pos": 72,
+        "timestamp": 194500000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "duration": 900000000,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "(aghast) Why...did you do that?",
+        "notable": true,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S2E01-73",
+        "pos": 73,
+        "timestamp": 195400000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "duration": 25890000000,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Well, I was trying to explain what a light-year was. Then, I was explaining to him that, you know...you sit down, you - you put your telescope on, you're looking at a star, the star explodes. That star exploded a million years ago, and he couldn't have it. I was going, \"you're literally seeing it explode a million years ago 'cause that's how long the light, going-\". And I started telling that, you know um, someone on another planet far far away could be watching, the 1980 World Cup Final...if they had a strong enough telescope, because it--",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S2E01-74",
+        "pos": 74,
+        "timestamp": 221290000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "duration": 100000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -1070,57 +1130,57 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-71",
-        "pos": 71,
-        "timestamp": 222475000000,
-        "timestamp_inferred": true,
-        "timestamp_distance": 1,
-        "duration": 5075000000,
+        "id": "ep-podcast-S2E01-75",
+        "pos": 75,
+        "timestamp": 221390000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "duration": 5610000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "- that's how long it took to get. Look at him. Look at his face. I - I can see his head bleeding.",
+        "content": "--that's how long it took to get. ((incoherent stammer)) look at him, look at his face. I - I can see his head bleeding.",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-72",
-        "pos": 72,
-        "timestamp": 227550000000,
+        "id": "ep-podcast-S2E01-76",
+        "pos": 76,
+        "timestamp": 227000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 2410000000,
+        "duration": 2590000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "I just don't- So are you saying...",
+        "content": "I just don't (sighs)...so are you saying--",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-73",
-        "pos": 73,
-        "timestamp": 229960000000,
+        "id": "ep-podcast-S2E01-77",
+        "pos": 77,
+        "timestamp": 229590000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 5520000000,
+        "duration": 3410000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "Why did you start doing this in a cafe, Rick? Was it a 24 hour cafe? What were you thinking?",
-        "notable": false,
+        "content": "Why did you start doing this in a cafe, Rick? Was it a 24 hour cafe?",
+        "notable": true,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-74",
-        "pos": 74,
-        "timestamp": 235480000000,
-        "timestamp_inferred": true,
-        "timestamp_distance": 1,
-        "duration": 720000000,
+        "id": "ep-podcast-S2E01-78",
+        "pos": 78,
+        "timestamp": 233000000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "duration": 800000000,
         "type": "chat",
         "actor": "",
         "metadata": null,
@@ -1130,76 +1190,16 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-75",
-        "pos": 75,
-        "timestamp": 236200000000,
+        "id": "ep-podcast-S2E01-79",
+        "pos": 79,
+        "timestamp": 233800000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 4440000000,
-        "type": "chat",
-        "actor": "karl",
-        "metadata": null,
-        "content": "But are you saying then there could be an alien fella?",
-        "notable": false,
-        "placeholder": false,
-        "sentiment": ""
-      },
-      {
-        "id": "ep-podcast-S2E01-76",
-        "pos": 76,
-        "timestamp": 240640000000,
-        "timestamp_inferred": false,
-        "timestamp_distance": 0,
-        "duration": 19020000000,
-        "type": "chat",
-        "actor": "ricky",
-        "metadata": null,
-        "content": "No! I'm not saying that at all. I'm saying that just like we can see things happening in other planets, other solar systems that happened millions of years ago, there could be a little alien fella with a telescope watching the Battle of Hastings if he was far enough away.",
-        "notable": false,
-        "placeholder": false,
-        "sentiment": ""
-      },
-      {
-        "id": "ep-podcast-S2E01-77",
-        "pos": 77,
-        "timestamp": 259660000000,
-        "timestamp_inferred": false,
-        "timestamp_distance": 0,
-        "duration": 7760000000,
+        "duration": 1600000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "Do you understand the concept of what Karl's saying? That light is travelling at a certain speed, which means it hasn't necessarily arrived here, yet.",
-        "notable": false,
-        "placeholder": false,
-        "sentiment": ""
-      },
-      {
-        "id": "ep-podcast-S2E01-78",
-        "pos": 78,
-        "timestamp": 267420000000,
-        "timestamp_inferred": false,
-        "timestamp_distance": 0,
-        "duration": 1560000000,
-        "type": "chat",
-        "actor": "karl",
-        "metadata": null,
-        "content": "So we could all relive history, though, is what I mean?",
-        "notable": false,
-        "placeholder": false,
-        "sentiment": ""
-      },
-      {
-        "id": "ep-podcast-S2E01-79",
-        "pos": 79,
-        "timestamp": 268980000000,
-        "timestamp_inferred": false,
-        "timestamp_distance": 0,
-        "duration": 1160000000,
-        "type": "chat",
-        "actor": "ricky",
-        "metadata": null,
-        "content": "No, we couldn't.",
+        "content": "What were you thinking?",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
@@ -1207,29 +1207,29 @@
       {
         "id": "ep-podcast-S2E01-80",
         "pos": 80,
-        "timestamp": 270140000000,
+        "timestamp": 235400000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 3200000000,
+        "duration": 4600000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "Because but it's backwards.",
-        "notable": false,
+        "content": "But, are you saying then...there could be an alien fella?",
+        "notable": true,
         "placeholder": false,
         "sentiment": ""
       },
       {
         "id": "ep-podcast-S2E01-81",
         "pos": 81,
-        "timestamp": 273340000000,
+        "timestamp": 240000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 3440000000,
+        "duration": 17000000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "Well, no... One: you'd have to travel faster than the speed of light.",
+        "content": "No! I'm not saying that at all. I'm saying that, just like we can see things happening in other ((incoherent stammer)) on other planets, other solar systems, um, that happened millions of years ago, um, there could be a little alien fella with a telescope, uh, watching the Battle of Hastings, if he was far enough away.",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
@@ -1237,14 +1237,14 @@
       {
         "id": "ep-podcast-S2E01-82",
         "pos": 82,
-        "timestamp": 276780000000,
+        "timestamp": 257000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 2080000000,
+        "duration": 2100000000,
         "type": "chat",
-        "actor": "karl",
+        "actor": "",
         "metadata": null,
-        "content": "Yeah, I know, but say if we can do all that.",
+        "content": "Pause",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
@@ -1252,14 +1252,14 @@
       {
         "id": "ep-podcast-S2E01-83",
         "pos": 83,
-        "timestamp": 278860000000,
+        "timestamp": 259100000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 2070000000,
+        "duration": 5210000000,
         "type": "chat",
-        "actor": "ricky",
+        "actor": "steve",
         "metadata": null,
-        "content": "Well, that's the big thing, you can't.",
+        "content": "Do you understand the concept of what Ricky's saying, that light...is travelling at a certain speed, which means--",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
@@ -1267,10 +1267,130 @@
       {
         "id": "ep-podcast-S2E01-84",
         "pos": 84,
-        "timestamp": 280930000000,
+        "timestamp": 264310000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 2160000000,
+        "duration": 120000000,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "--so--",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S2E01-85",
+        "pos": 85,
+        "timestamp": 264430000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "duration": 2370000000,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "It hasn't necessarily arrived here, yet.",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S2E01-86",
+        "pos": 86,
+        "timestamp": 266800000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "duration": 1800000000,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "So we could all relive history, though, is what I mean?",
+        "notable": true,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S2E01-87",
+        "pos": 87,
+        "timestamp": 268600000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "duration": 1400000000,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "No, we couldn't, 'cos we're ((incoherent))--",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S2E01-88",
+        "pos": 88,
+        "timestamp": 270000000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "duration": 990000000,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "No, but whiz backwards?",
+        "notable": true,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S2E01-89",
+        "pos": 89,
+        "timestamp": 270990000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "duration": 5210000000,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "((incoherent stammer)) Well, no...one, you'd have to travel faster than the speed of light.",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S2E01-90",
+        "pos": 90,
+        "timestamp": 276200000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "duration": 2100000000,
+        "type": "chat",
+        "actor": "karl",
+        "metadata": null,
+        "content": "Yeah, I know, but say if we can do all that.",
+        "notable": true,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S2E01-91",
+        "pos": 91,
+        "timestamp": 278300000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "duration": 1700000000,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Well, that-that's the big thing, you can't.",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S2E01-92",
+        "pos": 92,
+        "timestamp": 280000000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "duration": 2400000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1280,27 +1400,27 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-85",
-        "pos": 85,
-        "timestamp": 283090000000,
+        "id": "ep-podcast-S2E01-93",
+        "pos": 93,
+        "timestamp": 282400000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 1440000000,
+        "duration": 1800000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "Why haven't we? Hmmmm...",
-        "notable": false,
+        "notable": true,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-86",
-        "pos": 86,
-        "timestamp": 284530000000,
+        "id": "ep-podcast-S2E01-94",
+        "pos": 94,
+        "timestamp": 284200000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 3280000000,
+        "duration": 3000000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1310,12 +1430,12 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-87",
-        "pos": 87,
-        "timestamp": 287810000000,
+        "id": "ep-podcast-S2E01-95",
+        "pos": 95,
+        "timestamp": 287200000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 7120000000,
+        "duration": 7100000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -1325,12 +1445,12 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-88",
-        "pos": 88,
-        "timestamp": 294930000000,
+        "id": "ep-podcast-S2E01-96",
+        "pos": 96,
+        "timestamp": 294300000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 4880000000,
+        "duration": 5000000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1340,12 +1460,12 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-89",
-        "pos": 89,
-        "timestamp": 299810000000,
+        "id": "ep-podcast-S2E01-97",
+        "pos": 97,
+        "timestamp": 299300000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 10030000000,
+        "duration": 10000000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -1355,12 +1475,12 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-90",
-        "pos": 90,
-        "timestamp": 309840000000,
+        "id": "ep-podcast-S2E01-98",
+        "pos": 98,
+        "timestamp": 309300000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 1640000000,
+        "duration": 1400000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1370,12 +1490,12 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-91",
-        "pos": 91,
-        "timestamp": 311480000000,
+        "id": "ep-podcast-S2E01-99",
+        "pos": 99,
+        "timestamp": 310700000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 1560000000,
+        "duration": 1300000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -1385,12 +1505,12 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-92",
-        "pos": 92,
-        "timestamp": 313040000000,
+        "id": "ep-podcast-S2E01-100",
+        "pos": 100,
+        "timestamp": 312000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 720000000,
+        "duration": 1000000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1400,12 +1520,12 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-93",
-        "pos": 93,
-        "timestamp": 313760000000,
+        "id": "ep-podcast-S2E01-101",
+        "pos": 101,
+        "timestamp": 313000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 800000000,
+        "duration": 1000000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -1415,12 +1535,12 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-94",
-        "pos": 94,
-        "timestamp": 314560000000,
+        "id": "ep-podcast-S2E01-102",
+        "pos": 102,
+        "timestamp": 314000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 7440000000,
+        "duration": 8000000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1430,12 +1550,12 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-95",
-        "pos": 95,
+        "id": "ep-podcast-S2E01-103",
+        "pos": 103,
         "timestamp": 322000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 3597000000,
+        "duration": 3174000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -1445,12 +1565,12 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-96",
-        "pos": 96,
-        "timestamp": 325597000000,
+        "id": "ep-podcast-S2E01-104",
+        "pos": 104,
+        "timestamp": 325174000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 1843000000,
+        "duration": 1626000000,
         "type": "chat",
         "actor": "",
         "metadata": null,
@@ -1460,57 +1580,57 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-97",
-        "pos": 97,
-        "timestamp": 327440000000,
+        "id": "ep-podcast-S2E01-105",
+        "pos": 105,
+        "timestamp": 326800000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 2760000000,
+        "duration": 2700000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
         "content": "If only you had a saying there! At your fingertips.",
-        "notable": false,
+        "notable": true,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-98",
-        "pos": 98,
-        "timestamp": 330200000000,
+        "id": "ep-podcast-S2E01-106",
+        "pos": 106,
+        "timestamp": 329500000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 3960000000,
+        "duration": 3800000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
         "content": "What I mean is the universe, they say it's non stop. There's no science to it.",
-        "notable": false,
+        "notable": true,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-99",
-        "pos": 99,
-        "timestamp": 334160000000,
+        "id": "ep-podcast-S2E01-107",
+        "pos": 107,
+        "timestamp": 333300000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 7540000000,
+        "duration": 6502000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "No, don't say that. Scientists have never said that.(laughs)",
+        "content": "No they don't say that. Scientists have never said that.(laughs)",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-100",
-        "pos": 100,
-        "timestamp": 341700000000,
+        "id": "ep-podcast-S2E01-108",
+        "pos": 108,
+        "timestamp": 339802000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 1760000000,
+        "duration": 1422000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -1520,8 +1640,23 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-101",
-        "pos": 101,
+        "id": "ep-podcast-S2E01-109",
+        "pos": 109,
+        "timestamp": 341224000000,
+        "timestamp_inferred": true,
+        "timestamp_distance": 2,
+        "duration": 2236000000,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "Transition music plays",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S2E01-110",
+        "pos": 110,
         "timestamp": 343460000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1535,8 +1670,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-102",
-        "pos": 102,
+        "id": "ep-podcast-S2E01-111",
+        "pos": 111,
         "timestamp": 369230000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1550,8 +1685,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-103",
-        "pos": 103,
+        "id": "ep-podcast-S2E01-112",
+        "pos": 112,
         "timestamp": 372808000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -1565,8 +1700,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-104",
-        "pos": 104,
+        "id": "ep-podcast-S2E01-113",
+        "pos": 113,
         "timestamp": 372990000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1580,8 +1715,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-105",
-        "pos": 105,
+        "id": "ep-podcast-S2E01-114",
+        "pos": 114,
         "timestamp": 377350000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1595,8 +1730,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-106",
-        "pos": 106,
+        "id": "ep-podcast-S2E01-115",
+        "pos": 115,
         "timestamp": 380190000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1610,8 +1745,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-107",
-        "pos": 107,
+        "id": "ep-podcast-S2E01-116",
+        "pos": 116,
         "timestamp": 383416000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -1625,8 +1760,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-108",
-        "pos": 108,
+        "id": "ep-podcast-S2E01-117",
+        "pos": 117,
         "timestamp": 384590000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1640,8 +1775,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-109",
-        "pos": 109,
+        "id": "ep-podcast-S2E01-118",
+        "pos": 118,
         "timestamp": 385750000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1655,8 +1790,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-110",
-        "pos": 110,
+        "id": "ep-podcast-S2E01-119",
+        "pos": 119,
         "timestamp": 386830000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1670,8 +1805,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-111",
-        "pos": 111,
+        "id": "ep-podcast-S2E01-120",
+        "pos": 120,
         "timestamp": 388670000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1680,13 +1815,13 @@
         "actor": "ricky",
         "metadata": null,
         "content": "Incredible. That is the most stupid thing ever said by a human being! Can we get the Guinness Book Records on this? I mean, out there. Listen, people, have you heard anything more stupid than how would I know which one I was? It's the most stupid thing any human being has ever said. By definition.",
-        "notable": false,
+        "notable": true,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-112",
-        "pos": 112,
+        "id": "ep-podcast-S2E01-121",
+        "pos": 121,
         "timestamp": 406200000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1700,8 +1835,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-113",
-        "pos": 113,
+        "id": "ep-podcast-S2E01-122",
+        "pos": 122,
         "timestamp": 426510000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1715,8 +1850,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-114",
-        "pos": 114,
+        "id": "ep-podcast-S2E01-123",
+        "pos": 123,
         "timestamp": 428870000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1730,8 +1865,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-115",
-        "pos": 115,
+        "id": "ep-podcast-S2E01-124",
+        "pos": 124,
         "timestamp": 431270000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1745,8 +1880,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-116",
-        "pos": 116,
+        "id": "ep-podcast-S2E01-125",
+        "pos": 125,
         "timestamp": 433070000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1760,8 +1895,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-117",
-        "pos": 117,
+        "id": "ep-podcast-S2E01-126",
+        "pos": 126,
         "timestamp": 435550000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1775,8 +1910,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-118",
-        "pos": 118,
+        "id": "ep-podcast-S2E01-127",
+        "pos": 127,
         "timestamp": 436016000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -1790,8 +1925,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-119",
-        "pos": 119,
+        "id": "ep-podcast-S2E01-128",
+        "pos": 128,
         "timestamp": 436626000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -1805,8 +1940,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-120",
-        "pos": 120,
+        "id": "ep-podcast-S2E01-129",
+        "pos": 129,
         "timestamp": 437775000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -1820,8 +1955,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-121",
-        "pos": 121,
+        "id": "ep-podcast-S2E01-130",
+        "pos": 130,
         "timestamp": 439070000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1835,8 +1970,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-122",
-        "pos": 122,
+        "id": "ep-podcast-S2E01-131",
+        "pos": 131,
         "timestamp": 442996000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -1850,8 +1985,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-123",
-        "pos": 123,
+        "id": "ep-podcast-S2E01-132",
+        "pos": 132,
         "timestamp": 444904000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -1865,8 +2000,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-124",
-        "pos": 124,
+        "id": "ep-podcast-S2E01-133",
+        "pos": 133,
         "timestamp": 447085000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -1880,8 +2015,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-125",
-        "pos": 125,
+        "id": "ep-podcast-S2E01-134",
+        "pos": 134,
         "timestamp": 447850000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1895,8 +2030,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-126",
-        "pos": 126,
+        "id": "ep-podcast-S2E01-135",
+        "pos": 135,
         "timestamp": 452993000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -1910,8 +2045,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-127",
-        "pos": 127,
+        "id": "ep-podcast-S2E01-136",
+        "pos": 136,
         "timestamp": 454220000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1925,8 +2060,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-128",
-        "pos": 128,
+        "id": "ep-podcast-S2E01-137",
+        "pos": 137,
         "timestamp": 457810000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -1940,8 +2075,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-129",
-        "pos": 129,
+        "id": "ep-podcast-S2E01-138",
+        "pos": 138,
         "timestamp": 459180000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1955,8 +2090,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-130",
-        "pos": 130,
+        "id": "ep-podcast-S2E01-139",
+        "pos": 139,
         "timestamp": 469401000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -1970,8 +2105,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-131",
-        "pos": 131,
+        "id": "ep-podcast-S2E01-140",
+        "pos": 140,
         "timestamp": 470100000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1985,8 +2120,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-132",
-        "pos": 132,
+        "id": "ep-podcast-S2E01-141",
+        "pos": 141,
         "timestamp": 474883000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -2000,8 +2135,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-133",
-        "pos": 133,
+        "id": "ep-podcast-S2E01-142",
+        "pos": 142,
         "timestamp": 475920000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2015,8 +2150,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-134",
-        "pos": 134,
+        "id": "ep-podcast-S2E01-143",
+        "pos": 143,
         "timestamp": 481100000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2030,8 +2165,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-135",
-        "pos": 135,
+        "id": "ep-podcast-S2E01-144",
+        "pos": 144,
         "timestamp": 482800000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2045,8 +2180,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-136",
-        "pos": 136,
+        "id": "ep-podcast-S2E01-145",
+        "pos": 145,
         "timestamp": 483800000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2060,8 +2195,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-137",
-        "pos": 137,
+        "id": "ep-podcast-S2E01-146",
+        "pos": 146,
         "timestamp": 485280000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2075,8 +2210,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-138",
-        "pos": 138,
+        "id": "ep-podcast-S2E01-147",
+        "pos": 147,
         "timestamp": 486060000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2090,8 +2225,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-139",
-        "pos": 139,
+        "id": "ep-podcast-S2E01-148",
+        "pos": 148,
         "timestamp": 488720000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2105,8 +2240,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-140",
-        "pos": 140,
+        "id": "ep-podcast-S2E01-149",
+        "pos": 149,
         "timestamp": 489160000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2120,8 +2255,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-141",
-        "pos": 141,
+        "id": "ep-podcast-S2E01-150",
+        "pos": 150,
         "timestamp": 489360000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2135,8 +2270,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-142",
-        "pos": 142,
+        "id": "ep-podcast-S2E01-151",
+        "pos": 151,
         "timestamp": 503990000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2150,8 +2285,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-143",
-        "pos": 143,
+        "id": "ep-podcast-S2E01-152",
+        "pos": 152,
         "timestamp": 505293000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -2165,8 +2300,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-144",
-        "pos": 144,
+        "id": "ep-podcast-S2E01-153",
+        "pos": 153,
         "timestamp": 506116000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -2180,8 +2315,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-145",
-        "pos": 145,
+        "id": "ep-podcast-S2E01-154",
+        "pos": 154,
         "timestamp": 507214000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -2195,8 +2330,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-146",
-        "pos": 146,
+        "id": "ep-podcast-S2E01-155",
+        "pos": 155,
         "timestamp": 508037000000,
         "timestamp_inferred": true,
         "timestamp_distance": 4,
@@ -2210,8 +2345,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-147",
-        "pos": 147,
+        "id": "ep-podcast-S2E01-156",
+        "pos": 156,
         "timestamp": 509000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2225,8 +2360,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-148",
-        "pos": 148,
+        "id": "ep-podcast-S2E01-157",
+        "pos": 157,
         "timestamp": 515200000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2240,8 +2375,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-149",
-        "pos": 149,
+        "id": "ep-podcast-S2E01-158",
+        "pos": 158,
         "timestamp": 517659000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2255,8 +2390,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-150",
-        "pos": 150,
+        "id": "ep-podcast-S2E01-159",
+        "pos": 159,
         "timestamp": 520500000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2270,8 +2405,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-151",
-        "pos": 151,
+        "id": "ep-podcast-S2E01-160",
+        "pos": 160,
         "timestamp": 521799000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2285,8 +2420,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-152",
-        "pos": 152,
+        "id": "ep-podcast-S2E01-161",
+        "pos": 161,
         "timestamp": 522100000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2300,8 +2435,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-153",
-        "pos": 153,
+        "id": "ep-podcast-S2E01-162",
+        "pos": 162,
         "timestamp": 523559000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2315,8 +2450,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-154",
-        "pos": 154,
+        "id": "ep-podcast-S2E01-163",
+        "pos": 163,
         "timestamp": 524800000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2330,8 +2465,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-155",
-        "pos": 155,
+        "id": "ep-podcast-S2E01-164",
+        "pos": 164,
         "timestamp": 533500000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2345,8 +2480,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-156",
-        "pos": 156,
+        "id": "ep-podcast-S2E01-165",
+        "pos": 165,
         "timestamp": 537630000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2360,8 +2495,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-157",
-        "pos": 157,
+        "id": "ep-podcast-S2E01-166",
+        "pos": 166,
         "timestamp": 545814000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -2375,8 +2510,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-158",
-        "pos": 158,
+        "id": "ep-podcast-S2E01-167",
+        "pos": 167,
         "timestamp": 546430000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2390,8 +2525,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-159",
-        "pos": 159,
+        "id": "ep-podcast-S2E01-168",
+        "pos": 168,
         "timestamp": 550926000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -2405,12 +2540,12 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-160",
-        "pos": 160,
+        "id": "ep-podcast-S2E01-169",
+        "pos": 169,
         "timestamp": 551450000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 9950000000,
+        "duration": 8750000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -2420,12 +2555,12 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-161",
-        "pos": 161,
-        "timestamp": 561400000000,
+        "id": "ep-podcast-S2E01-170",
+        "pos": 170,
+        "timestamp": 560200000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 3527000000,
+        "duration": 4132000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -2435,23 +2570,23 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-162",
-        "pos": 162,
-        "timestamp": 564927000000,
+        "id": "ep-podcast-S2E01-171",
+        "pos": 171,
+        "timestamp": 564332000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 973000000,
+        "duration": 1568000000,
         "type": "chat",
         "actor": "",
         "metadata": null,
-        "content": "Transition music",
+        "content": "Transition music plays",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-163",
-        "pos": 163,
+        "id": "ep-podcast-S2E01-172",
+        "pos": 172,
         "timestamp": 565900000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2465,8 +2600,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-164",
-        "pos": 164,
+        "id": "ep-podcast-S2E01-173",
+        "pos": 173,
         "timestamp": 579506000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -2480,8 +2615,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-165",
-        "pos": 165,
+        "id": "ep-podcast-S2E01-174",
+        "pos": 174,
         "timestamp": 580040000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2495,8 +2630,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-166",
-        "pos": 166,
+        "id": "ep-podcast-S2E01-175",
+        "pos": 175,
         "timestamp": 611500000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2510,8 +2645,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-167",
-        "pos": 167,
+        "id": "ep-podcast-S2E01-176",
+        "pos": 176,
         "timestamp": 615620000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2525,8 +2660,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-168",
-        "pos": 168,
+        "id": "ep-podcast-S2E01-177",
+        "pos": 177,
         "timestamp": 616780000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2540,8 +2675,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-169",
-        "pos": 169,
+        "id": "ep-podcast-S2E01-178",
+        "pos": 178,
         "timestamp": 622930000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2555,8 +2690,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-170",
-        "pos": 170,
+        "id": "ep-podcast-S2E01-179",
+        "pos": 179,
         "timestamp": 623440000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2570,8 +2705,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-171",
-        "pos": 171,
+        "id": "ep-podcast-S2E01-180",
+        "pos": 180,
         "timestamp": 648870000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2585,8 +2720,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-172",
-        "pos": 172,
+        "id": "ep-podcast-S2E01-181",
+        "pos": 181,
         "timestamp": 649450000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2600,8 +2735,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-173",
-        "pos": 173,
+        "id": "ep-podcast-S2E01-182",
+        "pos": 182,
         "timestamp": 650110000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2615,8 +2750,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-174",
-        "pos": 174,
+        "id": "ep-podcast-S2E01-183",
+        "pos": 183,
         "timestamp": 652470000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2630,8 +2765,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-175",
-        "pos": 175,
+        "id": "ep-podcast-S2E01-184",
+        "pos": 184,
         "timestamp": 661510000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2645,8 +2780,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-176",
-        "pos": 176,
+        "id": "ep-podcast-S2E01-185",
+        "pos": 185,
         "timestamp": 665150000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2660,8 +2795,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-177",
-        "pos": 177,
+        "id": "ep-podcast-S2E01-186",
+        "pos": 186,
         "timestamp": 665590000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2675,8 +2810,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-178",
-        "pos": 178,
+        "id": "ep-podcast-S2E01-187",
+        "pos": 187,
         "timestamp": 674910000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2690,8 +2825,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-179",
-        "pos": 179,
+        "id": "ep-podcast-S2E01-188",
+        "pos": 188,
         "timestamp": 680890000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2705,8 +2840,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-180",
-        "pos": 180,
+        "id": "ep-podcast-S2E01-189",
+        "pos": 189,
         "timestamp": 684270000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2720,8 +2855,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-181",
-        "pos": 181,
+        "id": "ep-podcast-S2E01-190",
+        "pos": 190,
         "timestamp": 699940000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2735,8 +2870,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-182",
-        "pos": 182,
+        "id": "ep-podcast-S2E01-191",
+        "pos": 191,
         "timestamp": 701700000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2750,8 +2885,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-183",
-        "pos": 183,
+        "id": "ep-podcast-S2E01-192",
+        "pos": 192,
         "timestamp": 705620000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2765,8 +2900,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-184",
-        "pos": 184,
+        "id": "ep-podcast-S2E01-193",
+        "pos": 193,
         "timestamp": 709980000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2780,8 +2915,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-185",
-        "pos": 185,
+        "id": "ep-podcast-S2E01-194",
+        "pos": 194,
         "timestamp": 721390000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2795,8 +2930,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-186",
-        "pos": 186,
+        "id": "ep-podcast-S2E01-195",
+        "pos": 195,
         "timestamp": 723390000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2810,8 +2945,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-187",
-        "pos": 187,
+        "id": "ep-podcast-S2E01-196",
+        "pos": 196,
         "timestamp": 723790000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2825,8 +2960,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-188",
-        "pos": 188,
+        "id": "ep-podcast-S2E01-197",
+        "pos": 197,
         "timestamp": 725950000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2840,8 +2975,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-189",
-        "pos": 189,
+        "id": "ep-podcast-S2E01-198",
+        "pos": 198,
         "timestamp": 729070000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2855,8 +2990,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-190",
-        "pos": 190,
+        "id": "ep-podcast-S2E01-199",
+        "pos": 199,
         "timestamp": 733590000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2870,8 +3005,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-191",
-        "pos": 191,
+        "id": "ep-podcast-S2E01-200",
+        "pos": 200,
         "timestamp": 736230000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2885,8 +3020,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-192",
-        "pos": 192,
+        "id": "ep-podcast-S2E01-201",
+        "pos": 201,
         "timestamp": 739310000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2900,8 +3035,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-193",
-        "pos": 193,
+        "id": "ep-podcast-S2E01-202",
+        "pos": 202,
         "timestamp": 746460000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2915,8 +3050,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-194",
-        "pos": 194,
+        "id": "ep-podcast-S2E01-203",
+        "pos": 203,
         "timestamp": 748700000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2930,8 +3065,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-195",
-        "pos": 195,
+        "id": "ep-podcast-S2E01-204",
+        "pos": 204,
         "timestamp": 749800000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2945,8 +3080,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-196",
-        "pos": 196,
+        "id": "ep-podcast-S2E01-205",
+        "pos": 205,
         "timestamp": 750890000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2960,8 +3095,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-197",
-        "pos": 197,
+        "id": "ep-podcast-S2E01-206",
+        "pos": 206,
         "timestamp": 754860000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2975,8 +3110,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-198",
-        "pos": 198,
+        "id": "ep-podcast-S2E01-207",
+        "pos": 207,
         "timestamp": 756780000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2990,8 +3125,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-199",
-        "pos": 199,
+        "id": "ep-podcast-S2E01-208",
+        "pos": 208,
         "timestamp": 768460000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3005,8 +3140,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-200",
-        "pos": 200,
+        "id": "ep-podcast-S2E01-209",
+        "pos": 209,
         "timestamp": 769660000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3020,8 +3155,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-201",
-        "pos": 201,
+        "id": "ep-podcast-S2E01-210",
+        "pos": 210,
         "timestamp": 775420000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3035,8 +3170,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-202",
-        "pos": 202,
+        "id": "ep-podcast-S2E01-211",
+        "pos": 211,
         "timestamp": 777260000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3050,8 +3185,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-203",
-        "pos": 203,
+        "id": "ep-podcast-S2E01-212",
+        "pos": 212,
         "timestamp": 779220000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3065,8 +3200,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-204",
-        "pos": 204,
+        "id": "ep-podcast-S2E01-213",
+        "pos": 213,
         "timestamp": 781550000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3080,8 +3215,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-205",
-        "pos": 205,
+        "id": "ep-podcast-S2E01-214",
+        "pos": 214,
         "timestamp": 783160000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3095,8 +3230,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-206",
-        "pos": 206,
+        "id": "ep-podcast-S2E01-215",
+        "pos": 215,
         "timestamp": 786140000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3110,8 +3245,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-207",
-        "pos": 207,
+        "id": "ep-podcast-S2E01-216",
+        "pos": 216,
         "timestamp": 795780000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3125,8 +3260,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-208",
-        "pos": 208,
+        "id": "ep-podcast-S2E01-217",
+        "pos": 217,
         "timestamp": 798080000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -3140,8 +3275,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-209",
-        "pos": 209,
+        "id": "ep-podcast-S2E01-218",
+        "pos": 218,
         "timestamp": 799630000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3155,8 +3290,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-210",
-        "pos": 210,
+        "id": "ep-podcast-S2E01-219",
+        "pos": 219,
         "timestamp": 804750000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3170,8 +3305,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-211",
-        "pos": 211,
+        "id": "ep-podcast-S2E01-220",
+        "pos": 220,
         "timestamp": 810995000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -3185,8 +3320,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-212",
-        "pos": 212,
+        "id": "ep-podcast-S2E01-221",
+        "pos": 221,
         "timestamp": 812025000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -3200,8 +3335,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-213",
-        "pos": 213,
+        "id": "ep-podcast-S2E01-222",
+        "pos": 222,
         "timestamp": 813700000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3215,8 +3350,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-214",
-        "pos": 214,
+        "id": "ep-podcast-S2E01-223",
+        "pos": 223,
         "timestamp": 814390000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3230,8 +3365,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-215",
-        "pos": 215,
+        "id": "ep-podcast-S2E01-224",
+        "pos": 224,
         "timestamp": 817550000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3245,8 +3380,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-216",
-        "pos": 216,
+        "id": "ep-podcast-S2E01-225",
+        "pos": 225,
         "timestamp": 817983000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -3260,8 +3395,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-217",
-        "pos": 217,
+        "id": "ep-podcast-S2E01-226",
+        "pos": 226,
         "timestamp": 824700000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3275,8 +3410,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-218",
-        "pos": 218,
+        "id": "ep-podcast-S2E01-227",
+        "pos": 227,
         "timestamp": 825800000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3290,8 +3425,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-219",
-        "pos": 219,
+        "id": "ep-podcast-S2E01-228",
+        "pos": 228,
         "timestamp": 835000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3305,8 +3440,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-220",
-        "pos": 220,
+        "id": "ep-podcast-S2E01-229",
+        "pos": 229,
         "timestamp": 836590000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3320,8 +3455,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-221",
-        "pos": 221,
+        "id": "ep-podcast-S2E01-230",
+        "pos": 230,
         "timestamp": 838700000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3335,8 +3470,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-222",
-        "pos": 222,
+        "id": "ep-podcast-S2E01-231",
+        "pos": 231,
         "timestamp": 839900000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3350,8 +3485,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-223",
-        "pos": 223,
+        "id": "ep-podcast-S2E01-232",
+        "pos": 232,
         "timestamp": 840400000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3365,8 +3500,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-224",
-        "pos": 224,
+        "id": "ep-podcast-S2E01-233",
+        "pos": 233,
         "timestamp": 841458000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -3380,8 +3515,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-225",
-        "pos": 225,
+        "id": "ep-podcast-S2E01-234",
+        "pos": 234,
         "timestamp": 844000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3395,8 +3530,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-226",
-        "pos": 226,
+        "id": "ep-podcast-S2E01-235",
+        "pos": 235,
         "timestamp": 848750000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3410,8 +3545,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-227",
-        "pos": 227,
+        "id": "ep-podcast-S2E01-236",
+        "pos": 236,
         "timestamp": 850000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3425,8 +3560,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-228",
-        "pos": 228,
+        "id": "ep-podcast-S2E01-237",
+        "pos": 237,
         "timestamp": 850590000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3440,8 +3575,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-229",
-        "pos": 229,
+        "id": "ep-podcast-S2E01-238",
+        "pos": 238,
         "timestamp": 855190000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3455,8 +3590,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-230",
-        "pos": 230,
+        "id": "ep-podcast-S2E01-239",
+        "pos": 239,
         "timestamp": 857510000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3470,8 +3605,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-231",
-        "pos": 231,
+        "id": "ep-podcast-S2E01-240",
+        "pos": 240,
         "timestamp": 857800000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3485,8 +3620,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-232",
-        "pos": 232,
+        "id": "ep-podcast-S2E01-241",
+        "pos": 241,
         "timestamp": 860400000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3500,8 +3635,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-233",
-        "pos": 233,
+        "id": "ep-podcast-S2E01-242",
+        "pos": 242,
         "timestamp": 860760000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -3515,8 +3650,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-234",
-        "pos": 234,
+        "id": "ep-podcast-S2E01-243",
+        "pos": 243,
         "timestamp": 861000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3530,8 +3665,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-235",
-        "pos": 235,
+        "id": "ep-podcast-S2E01-244",
+        "pos": 244,
         "timestamp": 863430000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3545,8 +3680,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-236",
-        "pos": 236,
+        "id": "ep-podcast-S2E01-245",
+        "pos": 245,
         "timestamp": 865000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3560,8 +3695,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-237",
-        "pos": 237,
+        "id": "ep-podcast-S2E01-246",
+        "pos": 246,
         "timestamp": 868150000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3575,8 +3710,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-238",
-        "pos": 238,
+        "id": "ep-podcast-S2E01-247",
+        "pos": 247,
         "timestamp": 868500000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3590,8 +3725,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-239",
-        "pos": 239,
+        "id": "ep-podcast-S2E01-248",
+        "pos": 248,
         "timestamp": 871670000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3605,8 +3740,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-240",
-        "pos": 240,
+        "id": "ep-podcast-S2E01-249",
+        "pos": 249,
         "timestamp": 873730000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3620,8 +3755,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-241",
-        "pos": 241,
+        "id": "ep-podcast-S2E01-250",
+        "pos": 250,
         "timestamp": 874000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3635,8 +3770,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-242",
-        "pos": 242,
+        "id": "ep-podcast-S2E01-251",
+        "pos": 251,
         "timestamp": 877400000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3650,8 +3785,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-243",
-        "pos": 243,
+        "id": "ep-podcast-S2E01-252",
+        "pos": 252,
         "timestamp": 880400000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3665,8 +3800,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-244",
-        "pos": 244,
+        "id": "ep-podcast-S2E01-253",
+        "pos": 253,
         "timestamp": 883890000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3680,8 +3815,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-245",
-        "pos": 245,
+        "id": "ep-podcast-S2E01-254",
+        "pos": 254,
         "timestamp": 888800000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3695,8 +3830,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-246",
-        "pos": 246,
+        "id": "ep-podcast-S2E01-255",
+        "pos": 255,
         "timestamp": 889000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3710,8 +3845,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-247",
-        "pos": 247,
+        "id": "ep-podcast-S2E01-256",
+        "pos": 256,
         "timestamp": 897300000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3725,8 +3860,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-248",
-        "pos": 248,
+        "id": "ep-podcast-S2E01-257",
+        "pos": 257,
         "timestamp": 899420000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3740,8 +3875,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-249",
-        "pos": 249,
+        "id": "ep-podcast-S2E01-258",
+        "pos": 258,
         "timestamp": 946000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3755,8 +3890,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-250",
-        "pos": 250,
+        "id": "ep-podcast-S2E01-259",
+        "pos": 259,
         "timestamp": 948800000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3770,8 +3905,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-251",
-        "pos": 251,
+        "id": "ep-podcast-S2E01-260",
+        "pos": 260,
         "timestamp": 949400000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3785,8 +3920,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-252",
-        "pos": 252,
+        "id": "ep-podcast-S2E01-261",
+        "pos": 261,
         "timestamp": 950000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3800,8 +3935,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-253",
-        "pos": 253,
+        "id": "ep-podcast-S2E01-262",
+        "pos": 262,
         "timestamp": 951000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3815,8 +3950,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-254",
-        "pos": 254,
+        "id": "ep-podcast-S2E01-263",
+        "pos": 263,
         "timestamp": 952800000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3830,8 +3965,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-255",
-        "pos": 255,
+        "id": "ep-podcast-S2E01-264",
+        "pos": 264,
         "timestamp": 958000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3845,8 +3980,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-256",
-        "pos": 256,
+        "id": "ep-podcast-S2E01-265",
+        "pos": 265,
         "timestamp": 962500000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3860,8 +3995,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-257",
-        "pos": 257,
+        "id": "ep-podcast-S2E01-266",
+        "pos": 266,
         "timestamp": 962390000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3875,8 +4010,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-258",
-        "pos": 258,
+        "id": "ep-podcast-S2E01-267",
+        "pos": 267,
         "timestamp": 964500000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3890,8 +4025,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-259",
-        "pos": 259,
+        "id": "ep-podcast-S2E01-268",
+        "pos": 268,
         "timestamp": 967000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3905,8 +4040,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-260",
-        "pos": 260,
+        "id": "ep-podcast-S2E01-269",
+        "pos": 269,
         "timestamp": 972000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3920,8 +4055,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-261",
-        "pos": 261,
+        "id": "ep-podcast-S2E01-270",
+        "pos": 270,
         "timestamp": 973000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3935,8 +4070,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-262",
-        "pos": 262,
+        "id": "ep-podcast-S2E01-271",
+        "pos": 271,
         "timestamp": 974190000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3950,8 +4085,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-263",
-        "pos": 263,
+        "id": "ep-podcast-S2E01-272",
+        "pos": 272,
         "timestamp": 976130000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3965,8 +4100,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-264",
-        "pos": 264,
+        "id": "ep-podcast-S2E01-273",
+        "pos": 273,
         "timestamp": 980290000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3980,8 +4115,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-265",
-        "pos": 265,
+        "id": "ep-podcast-S2E01-274",
+        "pos": 274,
         "timestamp": 983800000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3989,14 +4124,14 @@
         "type": "chat",
         "actor": "",
         "metadata": null,
-        "content": "Podcast theme plays",
+        "content": "Transition music plays",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-266",
-        "pos": 266,
+        "id": "ep-podcast-S2E01-275",
+        "pos": 275,
         "timestamp": 989000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4010,8 +4145,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-267",
-        "pos": 267,
+        "id": "ep-podcast-S2E01-276",
+        "pos": 276,
         "timestamp": 992000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4025,8 +4160,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-268",
-        "pos": 268,
+        "id": "ep-podcast-S2E01-277",
+        "pos": 277,
         "timestamp": 996700000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4040,8 +4175,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-269",
-        "pos": 269,
+        "id": "ep-podcast-S2E01-278",
+        "pos": 278,
         "timestamp": 997000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4055,8 +4190,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-270",
-        "pos": 270,
+        "id": "ep-podcast-S2E01-279",
+        "pos": 279,
         "timestamp": 1030000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4070,8 +4205,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-271",
-        "pos": 271,
+        "id": "ep-podcast-S2E01-280",
+        "pos": 280,
         "timestamp": 1031630000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4085,8 +4220,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-272",
-        "pos": 272,
+        "id": "ep-podcast-S2E01-281",
+        "pos": 281,
         "timestamp": 1032530000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4100,8 +4235,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-273",
-        "pos": 273,
+        "id": "ep-podcast-S2E01-282",
+        "pos": 282,
         "timestamp": 1034349000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4115,8 +4250,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-274",
-        "pos": 274,
+        "id": "ep-podcast-S2E01-283",
+        "pos": 283,
         "timestamp": 1039700000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4130,8 +4265,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-275",
-        "pos": 275,
+        "id": "ep-podcast-S2E01-284",
+        "pos": 284,
         "timestamp": 1041310000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4145,8 +4280,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-276",
-        "pos": 276,
+        "id": "ep-podcast-S2E01-285",
+        "pos": 285,
         "timestamp": 1043400000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4160,8 +4295,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-277",
-        "pos": 277,
+        "id": "ep-podcast-S2E01-286",
+        "pos": 286,
         "timestamp": 1045069000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4175,8 +4310,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-278",
-        "pos": 278,
+        "id": "ep-podcast-S2E01-287",
+        "pos": 287,
         "timestamp": 1060000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4190,8 +4325,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-279",
-        "pos": 279,
+        "id": "ep-podcast-S2E01-288",
+        "pos": 288,
         "timestamp": 1060998000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -4205,8 +4340,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-280",
-        "pos": 280,
+        "id": "ep-podcast-S2E01-289",
+        "pos": 289,
         "timestamp": 1061910000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4220,8 +4355,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-281",
-        "pos": 281,
+        "id": "ep-podcast-S2E01-290",
+        "pos": 290,
         "timestamp": 1070000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4235,8 +4370,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-282",
-        "pos": 282,
+        "id": "ep-podcast-S2E01-291",
+        "pos": 291,
         "timestamp": 1070500000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4250,8 +4385,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-283",
-        "pos": 283,
+        "id": "ep-podcast-S2E01-292",
+        "pos": 292,
         "timestamp": 1072370000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4265,8 +4400,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-284",
-        "pos": 284,
+        "id": "ep-podcast-S2E01-293",
+        "pos": 293,
         "timestamp": 1073470000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4280,8 +4415,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-285",
-        "pos": 285,
+        "id": "ep-podcast-S2E01-294",
+        "pos": 294,
         "timestamp": 1074310000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4295,8 +4430,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-286",
-        "pos": 286,
+        "id": "ep-podcast-S2E01-295",
+        "pos": 295,
         "timestamp": 1075300000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4310,8 +4445,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-287",
-        "pos": 287,
+        "id": "ep-podcast-S2E01-296",
+        "pos": 296,
         "timestamp": 1076810000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4325,8 +4460,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-288",
-        "pos": 288,
+        "id": "ep-podcast-S2E01-297",
+        "pos": 297,
         "timestamp": 1079490000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4340,8 +4475,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-289",
-        "pos": 289,
+        "id": "ep-podcast-S2E01-298",
+        "pos": 298,
         "timestamp": 1081000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4355,8 +4490,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-290",
-        "pos": 290,
+        "id": "ep-podcast-S2E01-299",
+        "pos": 299,
         "timestamp": 1082100000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4370,8 +4505,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-291",
-        "pos": 291,
+        "id": "ep-podcast-S2E01-300",
+        "pos": 300,
         "timestamp": 1082700000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4385,8 +4520,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-292",
-        "pos": 292,
+        "id": "ep-podcast-S2E01-301",
+        "pos": 301,
         "timestamp": 1083900000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4400,8 +4535,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-293",
-        "pos": 293,
+        "id": "ep-podcast-S2E01-302",
+        "pos": 302,
         "timestamp": 1084554000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -4415,8 +4550,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-294",
-        "pos": 294,
+        "id": "ep-podcast-S2E01-303",
+        "pos": 303,
         "timestamp": 1085810000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4430,8 +4565,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-295",
-        "pos": 295,
+        "id": "ep-podcast-S2E01-304",
+        "pos": 304,
         "timestamp": 1088500000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4445,8 +4580,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-296",
-        "pos": 296,
+        "id": "ep-podcast-S2E01-305",
+        "pos": 305,
         "timestamp": 1088900000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4460,8 +4595,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-297",
-        "pos": 297,
+        "id": "ep-podcast-S2E01-306",
+        "pos": 306,
         "timestamp": 1089590000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4475,8 +4610,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-298",
-        "pos": 298,
+        "id": "ep-podcast-S2E01-307",
+        "pos": 307,
         "timestamp": 1089794000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -4490,8 +4625,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-299",
-        "pos": 299,
+        "id": "ep-podcast-S2E01-308",
+        "pos": 308,
         "timestamp": 1092900000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4505,8 +4640,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-300",
-        "pos": 300,
+        "id": "ep-podcast-S2E01-309",
+        "pos": 309,
         "timestamp": 1095300000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4520,8 +4655,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-301",
-        "pos": 301,
+        "id": "ep-podcast-S2E01-310",
+        "pos": 310,
         "timestamp": 1096200000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4535,8 +4670,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-302",
-        "pos": 302,
+        "id": "ep-podcast-S2E01-311",
+        "pos": 311,
         "timestamp": 1096347000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -4550,8 +4685,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-303",
-        "pos": 303,
+        "id": "ep-podcast-S2E01-312",
+        "pos": 312,
         "timestamp": 1099390000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4565,8 +4700,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-304",
-        "pos": 304,
+        "id": "ep-podcast-S2E01-313",
+        "pos": 313,
         "timestamp": 1101500000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4580,8 +4715,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-305",
-        "pos": 305,
+        "id": "ep-podcast-S2E01-314",
+        "pos": 314,
         "timestamp": 1104300000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4595,8 +4730,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-306",
-        "pos": 306,
+        "id": "ep-podcast-S2E01-315",
+        "pos": 315,
         "timestamp": 1108200000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4610,8 +4745,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-307",
-        "pos": 307,
+        "id": "ep-podcast-S2E01-316",
+        "pos": 316,
         "timestamp": 1109390000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4625,8 +4760,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-308",
-        "pos": 308,
+        "id": "ep-podcast-S2E01-317",
+        "pos": 317,
         "timestamp": 1113730000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4640,8 +4775,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-309",
-        "pos": 309,
+        "id": "ep-podcast-S2E01-318",
+        "pos": 318,
         "timestamp": 1119640000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4655,8 +4790,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-310",
-        "pos": 310,
+        "id": "ep-podcast-S2E01-319",
+        "pos": 319,
         "timestamp": 1121300000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4670,8 +4805,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-311",
-        "pos": 311,
+        "id": "ep-podcast-S2E01-320",
+        "pos": 320,
         "timestamp": 1126400000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4685,8 +4820,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-312",
-        "pos": 312,
+        "id": "ep-podcast-S2E01-321",
+        "pos": 321,
         "timestamp": 1126890000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4700,8 +4835,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-313",
-        "pos": 313,
+        "id": "ep-podcast-S2E01-322",
+        "pos": 322,
         "timestamp": 1128000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4715,8 +4850,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-314",
-        "pos": 314,
+        "id": "ep-podcast-S2E01-323",
+        "pos": 323,
         "timestamp": 1129400000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4730,8 +4865,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-315",
-        "pos": 315,
+        "id": "ep-podcast-S2E01-324",
+        "pos": 324,
         "timestamp": 1131240000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4745,8 +4880,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-316",
-        "pos": 316,
+        "id": "ep-podcast-S2E01-325",
+        "pos": 325,
         "timestamp": 1131519000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -4760,8 +4895,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-317",
-        "pos": 317,
+        "id": "ep-podcast-S2E01-326",
+        "pos": 326,
         "timestamp": 1135810000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4775,8 +4910,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-318",
-        "pos": 318,
+        "id": "ep-podcast-S2E01-327",
+        "pos": 327,
         "timestamp": 1136551000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -4790,8 +4925,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-319",
-        "pos": 319,
+        "id": "ep-podcast-S2E01-328",
+        "pos": 328,
         "timestamp": 1139200000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4805,8 +4940,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-320",
-        "pos": 320,
+        "id": "ep-podcast-S2E01-329",
+        "pos": 329,
         "timestamp": 1141000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4820,8 +4955,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-321",
-        "pos": 321,
+        "id": "ep-podcast-S2E01-330",
+        "pos": 330,
         "timestamp": 1145100000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4835,8 +4970,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-322",
-        "pos": 322,
+        "id": "ep-podcast-S2E01-331",
+        "pos": 331,
         "timestamp": 1146000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4850,8 +4985,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-323",
-        "pos": 323,
+        "id": "ep-podcast-S2E01-332",
+        "pos": 332,
         "timestamp": 1154990000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4865,8 +5000,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-324",
-        "pos": 324,
+        "id": "ep-podcast-S2E01-333",
+        "pos": 333,
         "timestamp": 1161850000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4880,8 +5015,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-325",
-        "pos": 325,
+        "id": "ep-podcast-S2E01-334",
+        "pos": 334,
         "timestamp": 1170090000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4895,8 +5030,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-326",
-        "pos": 326,
+        "id": "ep-podcast-S2E01-335",
+        "pos": 335,
         "timestamp": 1180970000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4910,8 +5045,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-327",
-        "pos": 327,
+        "id": "ep-podcast-S2E01-336",
+        "pos": 336,
         "timestamp": 1183490000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4925,8 +5060,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-328",
-        "pos": 328,
+        "id": "ep-podcast-S2E01-337",
+        "pos": 337,
         "timestamp": 1184297000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -4940,8 +5075,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-329",
-        "pos": 329,
+        "id": "ep-podcast-S2E01-338",
+        "pos": 338,
         "timestamp": 1187900000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4955,8 +5090,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-330",
-        "pos": 330,
+        "id": "ep-podcast-S2E01-339",
+        "pos": 339,
         "timestamp": 1187990000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4970,8 +5105,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-331",
-        "pos": 331,
+        "id": "ep-podcast-S2E01-340",
+        "pos": 340,
         "timestamp": 1191990000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4985,8 +5120,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-332",
-        "pos": 332,
+        "id": "ep-podcast-S2E01-341",
+        "pos": 341,
         "timestamp": 1192490000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5000,8 +5135,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-333",
-        "pos": 333,
+        "id": "ep-podcast-S2E01-342",
+        "pos": 342,
         "timestamp": 1192700000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5015,8 +5150,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-334",
-        "pos": 334,
+        "id": "ep-podcast-S2E01-343",
+        "pos": 343,
         "timestamp": 1206640000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5030,8 +5165,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-335",
-        "pos": 335,
+        "id": "ep-podcast-S2E01-344",
+        "pos": 344,
         "timestamp": 1207200000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5045,8 +5180,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-336",
-        "pos": 336,
+        "id": "ep-podcast-S2E01-345",
+        "pos": 345,
         "timestamp": 1208200000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5060,8 +5195,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-337",
-        "pos": 337,
+        "id": "ep-podcast-S2E01-346",
+        "pos": 346,
         "timestamp": 1209000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5075,8 +5210,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-338",
-        "pos": 338,
+        "id": "ep-podcast-S2E01-347",
+        "pos": 347,
         "timestamp": 1214400000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5090,8 +5225,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-339",
-        "pos": 339,
+        "id": "ep-podcast-S2E01-348",
+        "pos": 348,
         "timestamp": 1221400000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5105,8 +5240,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-340",
-        "pos": 340,
+        "id": "ep-podcast-S2E01-349",
+        "pos": 349,
         "timestamp": 1222138000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -5120,8 +5255,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-341",
-        "pos": 341,
+        "id": "ep-podcast-S2E01-350",
+        "pos": 350,
         "timestamp": 1225200000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5135,8 +5270,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-342",
-        "pos": 342,
+        "id": "ep-podcast-S2E01-351",
+        "pos": 351,
         "timestamp": 1225760000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5150,8 +5285,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-343",
-        "pos": 343,
+        "id": "ep-podcast-S2E01-352",
+        "pos": 352,
         "timestamp": 1226000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5165,8 +5300,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-344",
-        "pos": 344,
+        "id": "ep-podcast-S2E01-353",
+        "pos": 353,
         "timestamp": 1233400000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5180,8 +5315,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-345",
-        "pos": 345,
+        "id": "ep-podcast-S2E01-354",
+        "pos": 354,
         "timestamp": 1233700000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5195,8 +5330,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-346",
-        "pos": 346,
+        "id": "ep-podcast-S2E01-355",
+        "pos": 355,
         "timestamp": 1243310000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5210,8 +5345,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-347",
-        "pos": 347,
+        "id": "ep-podcast-S2E01-356",
+        "pos": 356,
         "timestamp": 1244820000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5225,8 +5360,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-348",
-        "pos": 348,
+        "id": "ep-podcast-S2E01-357",
+        "pos": 357,
         "timestamp": 1245500000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5240,8 +5375,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-349",
-        "pos": 349,
+        "id": "ep-podcast-S2E01-358",
+        "pos": 358,
         "timestamp": 1247200000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5255,8 +5390,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-350",
-        "pos": 350,
+        "id": "ep-podcast-S2E01-359",
+        "pos": 359,
         "timestamp": 1253940000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5270,8 +5405,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-351",
-        "pos": 351,
+        "id": "ep-podcast-S2E01-360",
+        "pos": 360,
         "timestamp": 1254000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5285,8 +5420,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-352",
-        "pos": 352,
+        "id": "ep-podcast-S2E01-361",
+        "pos": 361,
         "timestamp": 1256310000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5300,8 +5435,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-353",
-        "pos": 353,
+        "id": "ep-podcast-S2E01-362",
+        "pos": 362,
         "timestamp": 1257590000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5315,8 +5450,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-354",
-        "pos": 354,
+        "id": "ep-podcast-S2E01-363",
+        "pos": 363,
         "timestamp": 1258790000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5330,8 +5465,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-355",
-        "pos": 355,
+        "id": "ep-podcast-S2E01-364",
+        "pos": 364,
         "timestamp": 1259300000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5345,8 +5480,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-356",
-        "pos": 356,
+        "id": "ep-podcast-S2E01-365",
+        "pos": 365,
         "timestamp": 1270420000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5360,8 +5495,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-357",
-        "pos": 357,
+        "id": "ep-podcast-S2E01-366",
+        "pos": 366,
         "timestamp": 1270810000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5375,8 +5510,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-358",
-        "pos": 358,
+        "id": "ep-podcast-S2E01-367",
+        "pos": 367,
         "timestamp": 1273790000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5390,8 +5525,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-359",
-        "pos": 359,
+        "id": "ep-podcast-S2E01-368",
+        "pos": 368,
         "timestamp": 1275000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5405,8 +5540,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-360",
-        "pos": 360,
+        "id": "ep-podcast-S2E01-369",
+        "pos": 369,
         "timestamp": 1275300000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5420,8 +5555,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-361",
-        "pos": 361,
+        "id": "ep-podcast-S2E01-370",
+        "pos": 370,
         "timestamp": 1276390000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5435,8 +5570,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-362",
-        "pos": 362,
+        "id": "ep-podcast-S2E01-371",
+        "pos": 371,
         "timestamp": 1278200000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5450,8 +5585,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-363",
-        "pos": 363,
+        "id": "ep-podcast-S2E01-372",
+        "pos": 372,
         "timestamp": 1278790000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5465,8 +5600,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-364",
-        "pos": 364,
+        "id": "ep-podcast-S2E01-373",
+        "pos": 373,
         "timestamp": 1279230000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5480,8 +5615,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-365",
-        "pos": 365,
+        "id": "ep-podcast-S2E01-374",
+        "pos": 374,
         "timestamp": 1279400000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5495,8 +5630,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-366",
-        "pos": 366,
+        "id": "ep-podcast-S2E01-375",
+        "pos": 375,
         "timestamp": 1279800000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5510,8 +5645,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-367",
-        "pos": 367,
+        "id": "ep-podcast-S2E01-376",
+        "pos": 376,
         "timestamp": 1282490000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5525,8 +5660,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-368",
-        "pos": 368,
+        "id": "ep-podcast-S2E01-377",
+        "pos": 377,
         "timestamp": 1282900000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5540,8 +5675,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-369",
-        "pos": 369,
+        "id": "ep-podcast-S2E01-378",
+        "pos": 378,
         "timestamp": 1283800000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5555,8 +5690,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-370",
-        "pos": 370,
+        "id": "ep-podcast-S2E01-379",
+        "pos": 379,
         "timestamp": 1284690000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5570,8 +5705,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-371",
-        "pos": 371,
+        "id": "ep-podcast-S2E01-380",
+        "pos": 380,
         "timestamp": 1286450000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5585,8 +5720,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-372",
-        "pos": 372,
+        "id": "ep-podcast-S2E01-381",
+        "pos": 381,
         "timestamp": 1287400000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5600,8 +5735,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-373",
-        "pos": 373,
+        "id": "ep-podcast-S2E01-382",
+        "pos": 382,
         "timestamp": 1291000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5615,8 +5750,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-374",
-        "pos": 374,
+        "id": "ep-podcast-S2E01-383",
+        "pos": 383,
         "timestamp": 1291200000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5630,8 +5765,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-375",
-        "pos": 375,
+        "id": "ep-podcast-S2E01-384",
+        "pos": 384,
         "timestamp": 1291830000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5645,8 +5780,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-376",
-        "pos": 376,
+        "id": "ep-podcast-S2E01-385",
+        "pos": 385,
         "timestamp": 1292553000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -5660,8 +5795,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-377",
-        "pos": 377,
+        "id": "ep-podcast-S2E01-386",
+        "pos": 386,
         "timestamp": 1294000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5675,8 +5810,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-378",
-        "pos": 378,
+        "id": "ep-podcast-S2E01-387",
+        "pos": 387,
         "timestamp": 1294800000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5690,8 +5825,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-379",
-        "pos": 379,
+        "id": "ep-podcast-S2E01-388",
+        "pos": 388,
         "timestamp": 1296230000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5705,8 +5840,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-380",
-        "pos": 380,
+        "id": "ep-podcast-S2E01-389",
+        "pos": 389,
         "timestamp": 1297000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5720,8 +5855,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-381",
-        "pos": 381,
+        "id": "ep-podcast-S2E01-390",
+        "pos": 390,
         "timestamp": 1297590000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5735,8 +5870,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-382",
-        "pos": 382,
+        "id": "ep-podcast-S2E01-391",
+        "pos": 391,
         "timestamp": 1309290000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5750,8 +5885,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-383",
-        "pos": 383,
+        "id": "ep-podcast-S2E01-392",
+        "pos": 392,
         "timestamp": 1309800000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5765,8 +5900,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-384",
-        "pos": 384,
+        "id": "ep-podcast-S2E01-393",
+        "pos": 393,
         "timestamp": 1311000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5780,8 +5915,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-385",
-        "pos": 385,
+        "id": "ep-podcast-S2E01-394",
+        "pos": 394,
         "timestamp": 1312000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5795,8 +5930,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-386",
-        "pos": 386,
+        "id": "ep-podcast-S2E01-395",
+        "pos": 395,
         "timestamp": 1319800000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5810,8 +5945,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-387",
-        "pos": 387,
+        "id": "ep-podcast-S2E01-396",
+        "pos": 396,
         "timestamp": 1320700000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5825,8 +5960,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-388",
-        "pos": 388,
+        "id": "ep-podcast-S2E01-397",
+        "pos": 397,
         "timestamp": 1330800000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5840,8 +5975,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-389",
-        "pos": 389,
+        "id": "ep-podcast-S2E01-398",
+        "pos": 398,
         "timestamp": 1338300000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5855,8 +5990,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-390",
-        "pos": 390,
+        "id": "ep-podcast-S2E01-399",
+        "pos": 399,
         "timestamp": 1339200000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5870,8 +6005,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-391",
-        "pos": 391,
+        "id": "ep-podcast-S2E01-400",
+        "pos": 400,
         "timestamp": 1340690000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5885,8 +6020,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-392",
-        "pos": 392,
+        "id": "ep-podcast-S2E01-401",
+        "pos": 401,
         "timestamp": 1343150000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5900,8 +6035,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-393",
-        "pos": 393,
+        "id": "ep-podcast-S2E01-402",
+        "pos": 402,
         "timestamp": 1348120000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5915,8 +6050,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-394",
-        "pos": 394,
+        "id": "ep-podcast-S2E01-403",
+        "pos": 403,
         "timestamp": 1349220000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5930,8 +6065,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-395",
-        "pos": 395,
+        "id": "ep-podcast-S2E01-404",
+        "pos": 404,
         "timestamp": 1349530000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5945,8 +6080,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-396",
-        "pos": 396,
+        "id": "ep-podcast-S2E01-405",
+        "pos": 405,
         "timestamp": 1351320000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5960,8 +6095,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-397",
-        "pos": 397,
+        "id": "ep-podcast-S2E01-406",
+        "pos": 406,
         "timestamp": 1352840000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5975,8 +6110,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-398",
-        "pos": 398,
+        "id": "ep-podcast-S2E01-407",
+        "pos": 407,
         "timestamp": 1353550000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5990,8 +6125,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-399",
-        "pos": 399,
+        "id": "ep-podcast-S2E01-408",
+        "pos": 408,
         "timestamp": 1355780000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6005,8 +6140,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-400",
-        "pos": 400,
+        "id": "ep-podcast-S2E01-409",
+        "pos": 409,
         "timestamp": 1355937000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -6020,8 +6155,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-401",
-        "pos": 401,
+        "id": "ep-podcast-S2E01-410",
+        "pos": 410,
         "timestamp": 1364600000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6035,8 +6170,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-402",
-        "pos": 402,
+        "id": "ep-podcast-S2E01-411",
+        "pos": 411,
         "timestamp": 1366600000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6050,8 +6185,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-403",
-        "pos": 403,
+        "id": "ep-podcast-S2E01-412",
+        "pos": 412,
         "timestamp": 1367000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6065,8 +6200,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-404",
-        "pos": 404,
+        "id": "ep-podcast-S2E01-413",
+        "pos": 413,
         "timestamp": 1368000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6080,8 +6215,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-405",
-        "pos": 405,
+        "id": "ep-podcast-S2E01-414",
+        "pos": 414,
         "timestamp": 1373000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6095,8 +6230,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-406",
-        "pos": 406,
+        "id": "ep-podcast-S2E01-415",
+        "pos": 415,
         "timestamp": 1377000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6110,8 +6245,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-407",
-        "pos": 407,
+        "id": "ep-podcast-S2E01-416",
+        "pos": 416,
         "timestamp": 1377639000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -6125,8 +6260,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-408",
-        "pos": 408,
+        "id": "ep-podcast-S2E01-417",
+        "pos": 417,
         "timestamp": 1378300000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6140,8 +6275,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-409",
-        "pos": 409,
+        "id": "ep-podcast-S2E01-418",
+        "pos": 418,
         "timestamp": 1381200000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6155,8 +6290,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-410",
-        "pos": 410,
+        "id": "ep-podcast-S2E01-419",
+        "pos": 419,
         "timestamp": 1381450000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6170,8 +6305,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-411",
-        "pos": 411,
+        "id": "ep-podcast-S2E01-420",
+        "pos": 420,
         "timestamp": 1381730000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6185,8 +6320,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-412",
-        "pos": 412,
+        "id": "ep-podcast-S2E01-421",
+        "pos": 421,
         "timestamp": 1382710000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6200,8 +6335,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-413",
-        "pos": 413,
+        "id": "ep-podcast-S2E01-422",
+        "pos": 422,
         "timestamp": 1382800000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6215,8 +6350,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-414",
-        "pos": 414,
+        "id": "ep-podcast-S2E01-423",
+        "pos": 423,
         "timestamp": 1384120000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6230,8 +6365,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-415",
-        "pos": 415,
+        "id": "ep-podcast-S2E01-424",
+        "pos": 424,
         "timestamp": 1391130000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6245,8 +6380,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-416",
-        "pos": 416,
+        "id": "ep-podcast-S2E01-425",
+        "pos": 425,
         "timestamp": 1391390000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6260,8 +6395,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-417",
-        "pos": 417,
+        "id": "ep-podcast-S2E01-426",
+        "pos": 426,
         "timestamp": 1396760000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6275,8 +6410,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-418",
-        "pos": 418,
+        "id": "ep-podcast-S2E01-427",
+        "pos": 427,
         "timestamp": 1400320000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6290,8 +6425,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-419",
-        "pos": 419,
+        "id": "ep-podcast-S2E01-428",
+        "pos": 428,
         "timestamp": 1401080000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6305,8 +6440,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-420",
-        "pos": 420,
+        "id": "ep-podcast-S2E01-429",
+        "pos": 429,
         "timestamp": 1401416000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -6320,8 +6455,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-421",
-        "pos": 421,
+        "id": "ep-podcast-S2E01-430",
+        "pos": 430,
         "timestamp": 1402650000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6335,8 +6470,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-422",
-        "pos": 422,
+        "id": "ep-podcast-S2E01-431",
+        "pos": 431,
         "timestamp": 1404520000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6350,8 +6485,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-423",
-        "pos": 423,
+        "id": "ep-podcast-S2E01-432",
+        "pos": 432,
         "timestamp": 1412290000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6365,8 +6500,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-424",
-        "pos": 424,
+        "id": "ep-podcast-S2E01-433",
+        "pos": 433,
         "timestamp": 1416110000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6380,8 +6515,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-425",
-        "pos": 425,
+        "id": "ep-podcast-S2E01-434",
+        "pos": 434,
         "timestamp": 1417130000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6395,8 +6530,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-426",
-        "pos": 426,
+        "id": "ep-podcast-S2E01-435",
+        "pos": 435,
         "timestamp": 1422200000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6410,8 +6545,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-427",
-        "pos": 427,
+        "id": "ep-podcast-S2E01-436",
+        "pos": 436,
         "timestamp": 1423830000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6425,8 +6560,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-428",
-        "pos": 428,
+        "id": "ep-podcast-S2E01-437",
+        "pos": 437,
         "timestamp": 1425650000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6440,8 +6575,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-429",
-        "pos": 429,
+        "id": "ep-podcast-S2E01-438",
+        "pos": 438,
         "timestamp": 1426000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6455,8 +6590,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-430",
-        "pos": 430,
+        "id": "ep-podcast-S2E01-439",
+        "pos": 439,
         "timestamp": 1427000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6470,8 +6605,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-431",
-        "pos": 431,
+        "id": "ep-podcast-S2E01-440",
+        "pos": 440,
         "timestamp": 1436900000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -6485,8 +6620,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-432",
-        "pos": 432,
+        "id": "ep-podcast-S2E01-441",
+        "pos": 441,
         "timestamp": 1437656000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -6500,8 +6635,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-433",
-        "pos": 433,
+        "id": "ep-podcast-S2E01-442",
+        "pos": 442,
         "timestamp": 1438223000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
@@ -6515,8 +6650,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-434",
-        "pos": 434,
+        "id": "ep-podcast-S2E01-443",
+        "pos": 443,
         "timestamp": 1438540000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6530,8 +6665,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-435",
-        "pos": 435,
+        "id": "ep-podcast-S2E01-444",
+        "pos": 444,
         "timestamp": 1444500000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6545,8 +6680,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-436",
-        "pos": 436,
+        "id": "ep-podcast-S2E01-445",
+        "pos": 445,
         "timestamp": 1445510000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6560,8 +6695,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-437",
-        "pos": 437,
+        "id": "ep-podcast-S2E01-446",
+        "pos": 446,
         "timestamp": 1456000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6575,8 +6710,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-438",
-        "pos": 438,
+        "id": "ep-podcast-S2E01-447",
+        "pos": 447,
         "timestamp": 1456800000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -6590,8 +6725,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-439",
-        "pos": 439,
+        "id": "ep-podcast-S2E01-448",
+        "pos": 448,
         "timestamp": 1457600000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6605,8 +6740,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-440",
-        "pos": 440,
+        "id": "ep-podcast-S2E01-449",
+        "pos": 449,
         "timestamp": 1459000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6620,8 +6755,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-441",
-        "pos": 441,
+        "id": "ep-podcast-S2E01-450",
+        "pos": 450,
         "timestamp": 1461590000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6635,8 +6770,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-442",
-        "pos": 442,
+        "id": "ep-podcast-S2E01-451",
+        "pos": 451,
         "timestamp": 1461735000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -6650,8 +6785,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-443",
-        "pos": 443,
+        "id": "ep-podcast-S2E01-452",
+        "pos": 452,
         "timestamp": 1463000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6665,8 +6800,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-444",
-        "pos": 444,
+        "id": "ep-podcast-S2E01-453",
+        "pos": 453,
         "timestamp": 1467000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6680,8 +6815,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-445",
-        "pos": 445,
+        "id": "ep-podcast-S2E01-454",
+        "pos": 454,
         "timestamp": 1473400000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6695,8 +6830,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-446",
-        "pos": 446,
+        "id": "ep-podcast-S2E01-455",
+        "pos": 455,
         "timestamp": 1474130000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6710,8 +6845,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-447",
-        "pos": 447,
+        "id": "ep-podcast-S2E01-456",
+        "pos": 456,
         "timestamp": 1478290000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6725,8 +6860,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-448",
-        "pos": 448,
+        "id": "ep-podcast-S2E01-457",
+        "pos": 457,
         "timestamp": 1482000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6740,8 +6875,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-449",
-        "pos": 449,
+        "id": "ep-podcast-S2E01-458",
+        "pos": 458,
         "timestamp": 1484000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6755,8 +6890,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-450",
-        "pos": 450,
+        "id": "ep-podcast-S2E01-459",
+        "pos": 459,
         "timestamp": 1485000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6770,8 +6905,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-451",
-        "pos": 451,
+        "id": "ep-podcast-S2E01-460",
+        "pos": 460,
         "timestamp": 1488400000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6785,8 +6920,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-452",
-        "pos": 452,
+        "id": "ep-podcast-S2E01-461",
+        "pos": 461,
         "timestamp": 1502050000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6800,8 +6935,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-453",
-        "pos": 453,
+        "id": "ep-podcast-S2E01-462",
+        "pos": 462,
         "timestamp": 1505300000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6815,8 +6950,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-454",
-        "pos": 454,
+        "id": "ep-podcast-S2E01-463",
+        "pos": 463,
         "timestamp": 1507169000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -6830,8 +6965,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-455",
-        "pos": 455,
+        "id": "ep-podcast-S2E01-464",
+        "pos": 464,
         "timestamp": 1507359000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -6845,8 +6980,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-456",
-        "pos": 456,
+        "id": "ep-podcast-S2E01-465",
+        "pos": 465,
         "timestamp": 1509000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6860,8 +6995,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-457",
-        "pos": 457,
+        "id": "ep-podcast-S2E01-466",
+        "pos": 466,
         "timestamp": 1509490000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6875,8 +7010,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-458",
-        "pos": 458,
+        "id": "ep-podcast-S2E01-467",
+        "pos": 467,
         "timestamp": 1511000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6890,8 +7025,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-459",
-        "pos": 459,
+        "id": "ep-podcast-S2E01-468",
+        "pos": 468,
         "timestamp": 1531000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6905,8 +7040,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-460",
-        "pos": 460,
+        "id": "ep-podcast-S2E01-469",
+        "pos": 469,
         "timestamp": 1531500000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6920,12 +7055,12 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-461",
-        "pos": 461,
+        "id": "ep-podcast-S2E01-470",
+        "pos": 470,
         "timestamp": 1536000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 431000000,
+        "duration": 307000000,
         "type": "chat",
         "actor": "",
         "metadata": null,
@@ -6935,12 +7070,12 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-462",
-        "pos": 462,
-        "timestamp": 1536431000000,
+        "id": "ep-podcast-S2E01-471",
+        "pos": 471,
+        "timestamp": 1536307000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 1115000000,
+        "duration": 794000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -6950,12 +7085,12 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-463",
-        "pos": 463,
-        "timestamp": 1537546000000,
+        "id": "ep-podcast-S2E01-472",
+        "pos": 472,
+        "timestamp": 1537101000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
-        "duration": 11664000000,
+        "duration": 8299000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -6965,12 +7100,12 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-464",
-        "pos": 464,
-        "timestamp": 1549210000000,
+        "id": "ep-podcast-S2E01-473",
+        "pos": 473,
+        "timestamp": 1545400000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 11040000000,
+        "duration": 14850000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -6980,8 +7115,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-465",
-        "pos": 465,
+        "id": "ep-podcast-S2E01-474",
+        "pos": 474,
         "timestamp": 1560250000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -6995,8 +7130,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-466",
-        "pos": 466,
+        "id": "ep-podcast-S2E01-475",
+        "pos": 475,
         "timestamp": 1561690000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7010,12 +7145,12 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-467",
-        "pos": 467,
+        "id": "ep-podcast-S2E01-476",
+        "pos": 476,
         "timestamp": 1572690000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 6080000000,
+        "duration": 2310000000,
         "type": "chat",
         "actor": "",
         "metadata": null,
@@ -7025,27 +7160,27 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-468",
-        "pos": 468,
-        "timestamp": 1578770000000,
+        "id": "ep-podcast-S2E01-477",
+        "pos": 477,
+        "timestamp": 1575000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 4430000000,
+        "duration": 4600000000,
         "type": "chat",
         "actor": "",
         "metadata": null,
-        "content": "Podcast music plays",
+        "content": "Transition music plays",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-469",
-        "pos": 469,
-        "timestamp": 1583200000000,
+        "id": "ep-podcast-S2E01-478",
+        "pos": 478,
+        "timestamp": 1579600000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 12800000000,
+        "duration": 16400000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -7055,8 +7190,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-470",
-        "pos": 470,
+        "id": "ep-podcast-S2E01-479",
+        "pos": 479,
         "timestamp": 1596000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7070,8 +7205,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-471",
-        "pos": 471,
+        "id": "ep-podcast-S2E01-480",
+        "pos": 480,
         "timestamp": 1596300000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7085,8 +7220,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-472",
-        "pos": 472,
+        "id": "ep-podcast-S2E01-481",
+        "pos": 481,
         "timestamp": 1604000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7100,8 +7235,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-473",
-        "pos": 473,
+        "id": "ep-podcast-S2E01-482",
+        "pos": 482,
         "timestamp": 1604400000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7115,8 +7250,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-474",
-        "pos": 474,
+        "id": "ep-podcast-S2E01-483",
+        "pos": 483,
         "timestamp": 1605340000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7130,8 +7265,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-475",
-        "pos": 475,
+        "id": "ep-podcast-S2E01-484",
+        "pos": 484,
         "timestamp": 1606250000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -7145,8 +7280,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-476",
-        "pos": 476,
+        "id": "ep-podcast-S2E01-485",
+        "pos": 485,
         "timestamp": 1608000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7160,8 +7295,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-477",
-        "pos": 477,
+        "id": "ep-podcast-S2E01-486",
+        "pos": 486,
         "timestamp": 1613000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7175,8 +7310,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-478",
-        "pos": 478,
+        "id": "ep-podcast-S2E01-487",
+        "pos": 487,
         "timestamp": 1613300000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7190,8 +7325,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-479",
-        "pos": 479,
+        "id": "ep-podcast-S2E01-488",
+        "pos": 488,
         "timestamp": 1618300000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7205,8 +7340,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-480",
-        "pos": 480,
+        "id": "ep-podcast-S2E01-489",
+        "pos": 489,
         "timestamp": 1619660000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7220,8 +7355,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-481",
-        "pos": 481,
+        "id": "ep-podcast-S2E01-490",
+        "pos": 490,
         "timestamp": 1620050000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7235,8 +7370,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-482",
-        "pos": 482,
+        "id": "ep-podcast-S2E01-491",
+        "pos": 491,
         "timestamp": 1621300000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7250,8 +7385,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-483",
-        "pos": 483,
+        "id": "ep-podcast-S2E01-492",
+        "pos": 492,
         "timestamp": 1621400000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7265,8 +7400,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-484",
-        "pos": 484,
+        "id": "ep-podcast-S2E01-493",
+        "pos": 493,
         "timestamp": 1623290000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7280,8 +7415,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-485",
-        "pos": 485,
+        "id": "ep-podcast-S2E01-494",
+        "pos": 494,
         "timestamp": 1628000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7295,8 +7430,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-486",
-        "pos": 486,
+        "id": "ep-podcast-S2E01-495",
+        "pos": 495,
         "timestamp": 1628800000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7310,8 +7445,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-487",
-        "pos": 487,
+        "id": "ep-podcast-S2E01-496",
+        "pos": 496,
         "timestamp": 1629300000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7325,8 +7460,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-488",
-        "pos": 488,
+        "id": "ep-podcast-S2E01-497",
+        "pos": 497,
         "timestamp": 1630800000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7340,8 +7475,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-489",
-        "pos": 489,
+        "id": "ep-podcast-S2E01-498",
+        "pos": 498,
         "timestamp": 1633000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7355,8 +7490,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-490",
-        "pos": 490,
+        "id": "ep-podcast-S2E01-499",
+        "pos": 499,
         "timestamp": 1641000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7370,8 +7505,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-491",
-        "pos": 491,
+        "id": "ep-podcast-S2E01-500",
+        "pos": 500,
         "timestamp": 1641150000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7385,8 +7520,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-492",
-        "pos": 492,
+        "id": "ep-podcast-S2E01-501",
+        "pos": 501,
         "timestamp": 1647800000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7400,8 +7535,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-493",
-        "pos": 493,
+        "id": "ep-podcast-S2E01-502",
+        "pos": 502,
         "timestamp": 1649000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7415,8 +7550,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-494",
-        "pos": 494,
+        "id": "ep-podcast-S2E01-503",
+        "pos": 503,
         "timestamp": 1650800000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7430,8 +7565,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-495",
-        "pos": 495,
+        "id": "ep-podcast-S2E01-504",
+        "pos": 504,
         "timestamp": 1663390000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7445,8 +7580,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-496",
-        "pos": 496,
+        "id": "ep-podcast-S2E01-505",
+        "pos": 505,
         "timestamp": 1670680000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7460,8 +7595,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-497",
-        "pos": 497,
+        "id": "ep-podcast-S2E01-506",
+        "pos": 506,
         "timestamp": 1682000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7475,8 +7610,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-498",
-        "pos": 498,
+        "id": "ep-podcast-S2E01-507",
+        "pos": 507,
         "timestamp": 1682750000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7490,8 +7625,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-499",
-        "pos": 499,
+        "id": "ep-podcast-S2E01-508",
+        "pos": 508,
         "timestamp": 1687400000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7505,8 +7640,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-500",
-        "pos": 500,
+        "id": "ep-podcast-S2E01-509",
+        "pos": 509,
         "timestamp": 1687600000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7520,8 +7655,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-501",
-        "pos": 501,
+        "id": "ep-podcast-S2E01-510",
+        "pos": 510,
         "timestamp": 1689600000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7535,8 +7670,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-502",
-        "pos": 502,
+        "id": "ep-podcast-S2E01-511",
+        "pos": 511,
         "timestamp": 1690200000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7550,8 +7685,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-503",
-        "pos": 503,
+        "id": "ep-podcast-S2E01-512",
+        "pos": 512,
         "timestamp": 1695200000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7565,8 +7700,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-504",
-        "pos": 504,
+        "id": "ep-podcast-S2E01-513",
+        "pos": 513,
         "timestamp": 1696000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7580,8 +7715,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-505",
-        "pos": 505,
+        "id": "ep-podcast-S2E01-514",
+        "pos": 514,
         "timestamp": 1697000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7595,8 +7730,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-506",
-        "pos": 506,
+        "id": "ep-podcast-S2E01-515",
+        "pos": 515,
         "timestamp": 1702600000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7610,8 +7745,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-507",
-        "pos": 507,
+        "id": "ep-podcast-S2E01-516",
+        "pos": 516,
         "timestamp": 1703080000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7625,8 +7760,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-508",
-        "pos": 508,
+        "id": "ep-podcast-S2E01-517",
+        "pos": 517,
         "timestamp": 1703657000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -7640,8 +7775,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-509",
-        "pos": 509,
+        "id": "ep-podcast-S2E01-518",
+        "pos": 518,
         "timestamp": 1703990000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7655,8 +7790,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-510",
-        "pos": 510,
+        "id": "ep-podcast-S2E01-519",
+        "pos": 519,
         "timestamp": 1706000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7670,8 +7805,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-511",
-        "pos": 511,
+        "id": "ep-podcast-S2E01-520",
+        "pos": 520,
         "timestamp": 1706470000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7685,8 +7820,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-512",
-        "pos": 512,
+        "id": "ep-podcast-S2E01-521",
+        "pos": 521,
         "timestamp": 1707560000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7700,8 +7835,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-513",
-        "pos": 513,
+        "id": "ep-podcast-S2E01-522",
+        "pos": 522,
         "timestamp": 1709790000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7715,8 +7850,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-514",
-        "pos": 514,
+        "id": "ep-podcast-S2E01-523",
+        "pos": 523,
         "timestamp": 1715280000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7730,8 +7865,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-515",
-        "pos": 515,
+        "id": "ep-podcast-S2E01-524",
+        "pos": 524,
         "timestamp": 1716390000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7745,8 +7880,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-516",
-        "pos": 516,
+        "id": "ep-podcast-S2E01-525",
+        "pos": 525,
         "timestamp": 1723000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7760,8 +7895,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-517",
-        "pos": 517,
+        "id": "ep-podcast-S2E01-526",
+        "pos": 526,
         "timestamp": 1724200000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7775,8 +7910,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-518",
-        "pos": 518,
+        "id": "ep-podcast-S2E01-527",
+        "pos": 527,
         "timestamp": 1728170000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7790,8 +7925,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-519",
-        "pos": 519,
+        "id": "ep-podcast-S2E01-528",
+        "pos": 528,
         "timestamp": 1729010000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7805,8 +7940,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-520",
-        "pos": 520,
+        "id": "ep-podcast-S2E01-529",
+        "pos": 529,
         "timestamp": 1734680000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7820,8 +7955,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-521",
-        "pos": 521,
+        "id": "ep-podcast-S2E01-530",
+        "pos": 530,
         "timestamp": 1736640000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7835,8 +7970,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-522",
-        "pos": 522,
+        "id": "ep-podcast-S2E01-531",
+        "pos": 531,
         "timestamp": 1740290000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7850,8 +7985,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-523",
-        "pos": 523,
+        "id": "ep-podcast-S2E01-532",
+        "pos": 532,
         "timestamp": 1742640000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7865,8 +8000,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-524",
-        "pos": 524,
+        "id": "ep-podcast-S2E01-533",
+        "pos": 533,
         "timestamp": 1743480000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7880,8 +8015,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-525",
-        "pos": 525,
+        "id": "ep-podcast-S2E01-534",
+        "pos": 534,
         "timestamp": 1743840000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7895,8 +8030,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-526",
-        "pos": 526,
+        "id": "ep-podcast-S2E01-535",
+        "pos": 535,
         "timestamp": 1744240000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7910,8 +8045,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-527",
-        "pos": 527,
+        "id": "ep-podcast-S2E01-536",
+        "pos": 536,
         "timestamp": 1749120000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7925,8 +8060,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-528",
-        "pos": 528,
+        "id": "ep-podcast-S2E01-537",
+        "pos": 537,
         "timestamp": 1750000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7940,8 +8075,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-529",
-        "pos": 529,
+        "id": "ep-podcast-S2E01-538",
+        "pos": 538,
         "timestamp": 1762400000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7955,8 +8090,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-530",
-        "pos": 530,
+        "id": "ep-podcast-S2E01-539",
+        "pos": 539,
         "timestamp": 1763000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7970,8 +8105,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-531",
-        "pos": 531,
+        "id": "ep-podcast-S2E01-540",
+        "pos": 540,
         "timestamp": 1777000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7985,8 +8120,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-532",
-        "pos": 532,
+        "id": "ep-podcast-S2E01-541",
+        "pos": 541,
         "timestamp": 1797000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -7994,14 +8129,14 @@
         "type": "chat",
         "actor": "",
         "metadata": null,
-        "content": "Podcast theme plays",
+        "content": "Transition music plays",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-533",
-        "pos": 533,
+        "id": "ep-podcast-S2E01-542",
+        "pos": 542,
         "timestamp": 1802290000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -8015,8 +8150,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-534",
-        "pos": 534,
+        "id": "ep-podcast-S2E01-543",
+        "pos": 543,
         "timestamp": 1807700000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -8030,8 +8165,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-535",
-        "pos": 535,
+        "id": "ep-podcast-S2E01-544",
+        "pos": 544,
         "timestamp": 1809200000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -8045,8 +8180,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-536",
-        "pos": 536,
+        "id": "ep-podcast-S2E01-545",
+        "pos": 545,
         "timestamp": 1809560000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -8060,8 +8195,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-537",
-        "pos": 537,
+        "id": "ep-podcast-S2E01-546",
+        "pos": 546,
         "timestamp": 1811200000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -8075,8 +8210,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-538",
-        "pos": 538,
+        "id": "ep-podcast-S2E01-547",
+        "pos": 547,
         "timestamp": 1818080000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -8090,8 +8225,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-539",
-        "pos": 539,
+        "id": "ep-podcast-S2E01-548",
+        "pos": 548,
         "timestamp": 1821000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -8105,8 +8240,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-540",
-        "pos": 540,
+        "id": "ep-podcast-S2E01-549",
+        "pos": 549,
         "timestamp": 1821490000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -8120,8 +8255,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-541",
-        "pos": 541,
+        "id": "ep-podcast-S2E01-550",
+        "pos": 550,
         "timestamp": 1830600000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -8135,8 +8270,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-542",
-        "pos": 542,
+        "id": "ep-podcast-S2E01-551",
+        "pos": 551,
         "timestamp": 1831746000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -8150,8 +8285,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-543",
-        "pos": 543,
+        "id": "ep-podcast-S2E01-552",
+        "pos": 552,
         "timestamp": 1833620000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -8165,8 +8300,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-544",
-        "pos": 544,
+        "id": "ep-podcast-S2E01-553",
+        "pos": 553,
         "timestamp": 1834140000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -8180,8 +8315,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-545",
-        "pos": 545,
+        "id": "ep-podcast-S2E01-554",
+        "pos": 554,
         "timestamp": 1834830000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -8195,8 +8330,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-546",
-        "pos": 546,
+        "id": "ep-podcast-S2E01-555",
+        "pos": 555,
         "timestamp": 1836900000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -8210,8 +8345,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-547",
-        "pos": 547,
+        "id": "ep-podcast-S2E01-556",
+        "pos": 556,
         "timestamp": 1844890000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -8225,8 +8360,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S2E01-548",
-        "pos": 548,
+        "id": "ep-podcast-S2E01-557",
+        "pos": 557,
         "timestamp": 1851000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -8240,7 +8375,28 @@
         "sentiment": ""
       }
     ],
-    "synopsis": null,
+    "synopsis": [
+      {
+        "description": "The all-new Ricky Gervais Show",
+        "start_pos": 1,
+        "end_pos": 24
+      },
+      {
+        "description": "What year would you start with in a new world?",
+        "start_pos": 24,
+        "end_pos": 71
+      },
+      {
+        "description": "Ricky tried to explain The Big Bang and what a light year is, to Karl, in a cafe. Time travel.",
+        "start_pos": 71,
+        "end_pos": 110
+      },
+      {
+        "description": "What would Karl do if he got a doppelganger?",
+        "start_pos": 110,
+        "end_pos": 558
+      }
+    ],
     "contributors": [
       "dspmcmirror",
       "lentini1978",
