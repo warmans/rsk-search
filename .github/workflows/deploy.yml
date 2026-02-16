@@ -1,3 +1,7 @@
+concurrency:
+  group: deploy-main
+  cancel-in-progress: false
+
 name: deploy all
 
 on:
