@@ -4,11 +4,12 @@ import (
 	"bufio"
 	"encoding/json"
 	"fmt"
+	"io"
+	"time"
+
 	"github.com/lithammer/shortuuid/v3"
 	"github.com/warmans/rsk-search/pkg/models"
 	"github.com/warmans/rsk-search/pkg/transcript"
-	"io"
-	"time"
 )
 
 const targetChunkDuration = 180 * time.Second
