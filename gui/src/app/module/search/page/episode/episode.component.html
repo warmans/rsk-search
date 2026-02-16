@@ -164,6 +164,13 @@
                   </a>
                 </li>
               }
+              @if ((episode.trivia || []).length > 0) {
+                <li class="nav-item mr-2">
+                  <a class="nav-link" (click)="activeInfoPanel = 'trivia'" [ngClass]="{ active: activeInfoPanel === 'trivia' }">
+                    <i class="bi bi-card-image mr-1"></i> Trivia
+                  </a>
+                </li>
+              }
               @if (media && media.length > 0) {
                 <li class="nav-item mr-2">
                   <a class="nav-link" (click)="activeInfoPanel = 'media'" [ngClass]="{ active: activeInfoPanel === 'media' }">
@@ -219,6 +226,21 @@
                     }
                   </div>
                 }
+              </div>
+            </div>
+          }
+          @if (activeInfoPanel === 'trivia') {
+            <div>
+              <div class="card-header border-top"></div>
+              <div class="card-body">
+                <div>
+                  @for (trivia of episode.trivia; track trivia) {
+                    <div class="mb-3 pb-1 border-bottom">
+                      <app-markdown [raw]="trivia.description "></app-markdown>
+                      <div><a [routerLink]="['/ep', episode?.id]" [fragment]="'pos-' + trivia.startPos">context</a></div>
+                    </div>
+                  }
+                </div>
               </div>
             </div>
           }

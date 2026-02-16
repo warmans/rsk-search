@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Data, Router} from '@angular/router';
 import {SearchAPIClient} from 'src/app/lib/api-client/services/search';
-import {DialogType, RskArchive, RskDialog, RskTranscript, RskTranscriptChange, RskTranscriptChangeList} from 'src/app/lib/api-client/models';
+import {DialogType, RskArchive, RskDialog, RskTranscript, RskTranscriptChange, RskTranscriptChangeList, RskTrivia} from 'src/app/lib/api-client/models';
 import {ViewportScroller} from '@angular/common';
 import {takeUntil} from 'rxjs/operators';
 import {Title} from '@angular/platform-browser';
@@ -17,6 +17,7 @@ import {ClipboardService} from "../../../core/service/clipboard/clipboard.servic
 import {CommunityAPIClient} from 'src/app/lib/api-client/services/community';
 import {episodeIdVariations} from 'src/app/lib/util';
 import {AlertService} from "../../../core/service/alert/alert.service";
+import {Tscript} from "../../../shared/lib/tscript";
 
 @Component({
     selector: 'app-episode',
@@ -66,7 +67,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
 
   unsubscribe$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  activeInfoPanel: 'synopsis' | 'songs' | 'quotes' | 'media' = 'synopsis';
+  activeInfoPanel: 'synopsis' | 'songs' | 'quotes' | 'trivia' | 'media' = 'synopsis';
 
   showDownloadDialog: boolean = false;
 
@@ -176,6 +177,9 @@ export class EpisodeComponent implements OnInit, OnDestroy {
         }
         if (this.songs && this.songs.length > 0) {
           availableInfoPanels.push("songs");
+        }
+        if ((this.episode.trivia || []).length > 0) {
+          availableInfoPanels.push("trivia");
         }
         this.activeInfoPanel = (availableInfoPanels.length > 0) ? availableInfoPanels[0] : undefined;
         this.selection = parseSection(this.scrollToID, (this.episode?.transcript || []));

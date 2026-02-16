@@ -182,7 +182,7 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
       if (transcript === null) {
         return
       }
-      this.preProcessTranscript(transcript);
+      this.preProcessTranscript(JSON.parse(JSON.stringify(transcript)));
     });
   }
 
