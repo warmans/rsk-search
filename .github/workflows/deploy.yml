@@ -1,4 +1,4 @@
-name: Remote SSH after main pipeline
+name: deploy all
 
 on:
   workflow_run:
