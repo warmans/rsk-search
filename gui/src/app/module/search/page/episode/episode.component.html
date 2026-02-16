@@ -234,8 +234,8 @@
               <div class="card-header border-top"></div>
               <div class="card-body">
                 <div>
-                  @for (trivia of episode.trivia; track trivia) {
-                    <div class="mb-3 pb-1 border-bottom">
+                  @for (trivia of episode.trivia; track trivia; let last = $last) {
+                    <div class="pb-1" [class.mb-3]="!last" [class.border-bottom]="!last">
                       <app-markdown [raw]="trivia.description "></app-markdown>
                       <div><a [routerLink]="['/ep', episode?.id]" [fragment]="'pos-' + trivia.startPos">context</a></div>
                     </div>
