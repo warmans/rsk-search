@@ -891,6 +891,8 @@ func (s *Store) GetTranscriptChange(ctx context.Context, id string) (*models.Tra
 	change := &models.TranscriptChange{}
 	var authorID string
 
+	var releaseDate *time.Time
+
 	err := s.tx.
 		QueryRowxContext(ctx, `SELECT id, author_id, epid, COALESCE(transcript_version, 'NONE'), name, summary, release_date, transcription, state, created_at, merged FROM transcript_change WHERE id=$1`, id).
 		Scan(
@@ -900,7 +902,7 @@ func (s *Store) GetTranscriptChange(ctx context.Context, id string) (*models.Tra
 			&change.TranscriptVersion,
 			&change.Name,
 			&change.Summary,
-			&change.ReleaseDate,
+			&releaseDate,
 			&change.Transcription,
 			&change.State,
 			&change.CreatedAt,
@@ -914,6 +916,9 @@ func (s *Store) GetTranscriptChange(ctx context.Context, id string) (*models.Tra
 		return nil, err
 	}
 	change.Author = author
+	if releaseDate != nil {
+		change.ReleaseDate = *releaseDate
+	}
 
 	return change, nil
 }
@@ -1078,6 +1083,8 @@ func (s *Store) ListTranscriptChanges(ctx context.Context, q *common.QueryModifi
 		return nil, err
 	}
 
+	var episodeReleaseDate *time.Time
+
 	rows, err := s.tx.QueryxContext(
 		ctx,
 		fmt.Sprintf(`
@@ -1123,7 +1130,7 @@ func (s *Store) ListTranscriptChanges(ctx context.Context, q *common.QueryModifi
 			&cur.TranscriptVersion,
 			&cur.Name,
 			&cur.Summary,
-			&cur.ReleaseDate,
+			&episodeReleaseDate,
 			&cur.Transcription,
 			&cur.State,
 			&cur.CreatedAt,
@@ -1132,6 +1139,9 @@ func (s *Store) ListTranscriptChanges(ctx context.Context, q *common.QueryModifi
 			return nil, err
 		}
 		authorIDs = append(authorIDs, cur.Author.ID)
+		if episodeReleaseDate != nil {
+			cur.ReleaseDate = *episodeReleaseDate
+		}
 		out = append(out, cur)
 	}
 	if len(authorIDs) == 0 {
