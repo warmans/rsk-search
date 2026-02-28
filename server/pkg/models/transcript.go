@@ -3,11 +3,12 @@ package models
 import (
 	"errors"
 	"fmt"
-	"github.com/warmans/rsk-search/gen/api"
-	"github.com/warmans/rsk-search/pkg/util"
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/warmans/rsk-search/gen/api"
+	"github.com/warmans/rsk-search/pkg/util"
 )
 
 type PublicationType string
@@ -180,7 +181,7 @@ type Media struct {
 func (m Media) Proto() *api.Media {
 	return &api.Media{
 		Video:           m.VideoFileName != "",
-		Audio:           m.AudioFileName != "",
+		Audio:           m.AudioFileName != "" || m.RemasteredAudioFileName != "",
 		AudioRestricted: m.AudioRestricted,
 	}
 }

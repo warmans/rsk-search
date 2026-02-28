@@ -110,23 +110,21 @@
                       </td>
                     </tr>
                   }
-                  @if (episode.media.audio && !episode.media.audioRestricted) {
-                    <tr>
-                      <th>Rating</th>
-                      <td>
-                        <star-rating
-                          [starType]="'svg'"
-                          [rating]="episode.ratings.scoreAvg"
-                          [readOnly]="!authenticated"
-                          (starClickChange)="rateEpisode($event)">
-                        </star-rating>
-                        <span class="text-muted">Avg. {{episode.ratings.scoreAvg || 0 | number:'1.0-2'}}/5 from {{episode.ratings.numScores}} ratings</span>
-                        @if (authenticated) {
-                          <span class="text-muted"> (your rating: {{episode?.ratings?.scores[authorIdentifier] || 'none'}})</span>
-                        }
-                      </td>
-                    </tr>
-                  }
+                  <tr>
+                    <th>Rating</th>
+                    <td>
+                      <star-rating
+                        [starType]="'svg'"
+                        [rating]="episode.ratings.scoreAvg"
+                        [readOnly]="!authenticated"
+                        (starClickChange)="rateEpisode($event)">
+                      </star-rating>
+                      <span class="text-muted">Avg. {{episode.ratings.scoreAvg || 0 | number:'1.0-2'}}/5 from {{episode.ratings.numScores}} ratings</span>
+                      @if (authenticated) {
+                        <span class="text-muted"> (your rating: {{episode?.ratings?.scores[authorIdentifier] || 'none'}})</span>
+                      }
+                    </td>
+                  </tr>
                   @if (episode.media.audio && !episode.media.audioRestricted) {
                     <tr>
                       <th>Audio</th>
