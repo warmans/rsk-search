@@ -124,8 +124,6 @@ func mergeAll(outputDataPath string, migrationsPath string, conn *rw.Conn, dryRu
 			episodeOnDisk.Synopsis = append(episodeOnDisk.Synopsis, ts.Synopsis...)
 			episodeOnDisk.Trivia = append(episodeOnDisk.Trivia, ts.Trivia...)
 
-			spew.Dump(v)
-
 			// metadata
 			if v.Summary != "" {
 				episodeOnDisk.Summary = v.Summary

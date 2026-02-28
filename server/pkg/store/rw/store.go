@@ -6,7 +6,10 @@ import (
 	"embed"
 	"encoding/json"
 	"fmt"
-	"github.com/davecgh/go-spew/spew"
+	"math"
+	"strings"
+	"time"
+
 	"github.com/google/uuid"
 	"github.com/jmoiron/sqlx"
 	"github.com/lithammer/shortuuid/v3"
@@ -17,9 +20,6 @@ import (
 	"github.com/warmans/rsk-search/pkg/points"
 	"github.com/warmans/rsk-search/pkg/store/common"
 	"github.com/warmans/rsk-search/pkg/util"
-	"math"
-	"strings"
-	"time"
 )
 
 type ChunkActivity string
@@ -920,8 +920,6 @@ func (s *Store) GetTranscriptChange(ctx context.Context, id string) (*models.Tra
 
 func (s *Store) CreateTranscriptChange(ctx context.Context, c *models.TranscriptChangeCreate) (*models.TranscriptChange, error) {
 
-	spew.Dump(c)
-
 	author, err := s.GetAuthor(ctx, c.AuthorID)
 	if err != nil {
 		return nil, err
@@ -970,8 +968,6 @@ func (s *Store) CreateTranscriptChange(ctx context.Context, c *models.Transcript
 }
 
 func (s *Store) UpdateTranscriptChange(ctx context.Context, c *models.TranscriptChangeUpdate, ppointsOnApprove float32) (*models.TranscriptChange, error) {
-
-	spew.Dump("UPDATE", c)
 
 	if c.ID == "" {
 		return nil, fmt.Errorf("no identifier was provided")
