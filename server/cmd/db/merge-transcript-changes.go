@@ -5,7 +5,12 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/davecgh/go-spew/spew"
+	"os"
+	"path"
+	"sort"
+	"strings"
+	"time"
+
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 	"github.com/warmans/rsk-search/pkg/data"
@@ -16,11 +21,6 @@ import (
 	"github.com/warmans/rsk-search/pkg/transcript"
 	"github.com/warmans/rsk-search/pkg/util"
 	"go.uber.org/zap"
-	"os"
-	"path"
-	"sort"
-	"strings"
-	"time"
 )
 
 func init() {
