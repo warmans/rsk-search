@@ -1,8 +1,9 @@
 package models
 
 import (
-	"github.com/warmans/rsk-search/gen/api"
 	"time"
+
+	"github.com/warmans/rsk-search/gen/api"
 )
 
 type TranscriptChangeCreate struct {
@@ -11,6 +12,7 @@ type TranscriptChangeCreate struct {
 	TranscriptVersion string
 	Name              string
 	Summary           string
+	ReleaseDate       time.Time
 	Transcription     string
 }
 
@@ -18,6 +20,7 @@ type TranscriptChangeUpdate struct {
 	ID            string
 	Name          string
 	Summary       string
+	ReleaseDate   time.Time
 	Transcription string
 	State         ContributionState
 }
@@ -29,6 +32,7 @@ type TranscriptChange struct {
 	Author            *Author
 	Name              string
 	Summary           string
+	ReleaseDate       time.Time
 	Transcription     string
 	State             ContributionState
 	CreatedAt         time.Time
@@ -46,6 +50,7 @@ func (c *TranscriptChange) Proto() *api.TranscriptChange {
 		TranscriptVersion: c.TranscriptVersion,
 		Name:              c.Name,
 		Summary:           c.Summary,
+		ReleaseDate:       c.ReleaseDate.Format(time.DateOnly),
 		Transcript:        c.Transcription,
 		State:             c.State.Proto(),
 		Author:            c.Author.ShortAuthor().Proto(),

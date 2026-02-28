@@ -5,6 +5,8 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"time"
+
 	"github.com/gorilla/mux"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/hexops/gotextdiff"
@@ -25,7 +27,6 @@ import (
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 	"google.golang.org/protobuf/types/known/emptypb"
-	"time"
 )
 
 func NewTranscriptService(
@@ -264,7 +265,7 @@ func (s *TranscriptService) ListChunkContributions(ctx context.Context, request 
 	if err != nil {
 		return nil, err
 	}
-	
+
 	out := &api.ChunkContributionList{
 		Contributions: make([]*api.ChunkContribution, 0),
 	}
@@ -577,6 +578,24 @@ func (s *TranscriptService) GetTranscriptChangeDiff(ctx context.Context, request
 		diffs = append(diffs, summaryDiff)
 	}
 
+	// summary diff
+	releaseDateEdits := myers.ComputeEdits(
+		span.URIFromPath("RELEASE_DATE"),
+		oldTranscript.ReleaseDate.Format(time.DateOnly),
+		newTranscript.ReleaseDate.Format(time.DateOnly),
+	)
+	if len(releaseDateEdits) > 0 {
+		releaseDateDiff := fmt.Sprint(
+			gotextdiff.ToUnified(
+				"RELEASE_DATE",
+				"RELEASE_DATE",
+				oldTranscript.ReleaseDate.Format(time.DateOnly),
+				releaseDateEdits,
+			),
+		)
+		diffs = append(diffs, releaseDateDiff)
+	}
+
 	// transcript diff
 	transcriptEdits := myers.ComputeEdits(
 		span.URIFromPath("TRANSCRIPT"),
@@ -614,6 +633,14 @@ func (s *TranscriptService) CreateTranscriptChange(ctx context.Context, request 
 		return nil, ErrInvalidRequestField("summary", nil, "Cannot be more than 2048 characters")
 	}
 
+	var releaseDate time.Time
+	if request.ReleaseDate != "" {
+		releaseDate, err = time.Parse(time.DateOnly, request.ReleaseDate)
+		if err != nil {
+			return nil, ErrInvalidRequestField("release_date", nil, "Not a valid short RFC3339 date (e.g. 2001-01-01)")
+		}
+	}
+
 	var change *models.TranscriptChange
 	err = s.persistentDB.WithStore(func(s *rw.Store) error {
 
@@ -642,6 +669,7 @@ func (s *TranscriptService) CreateTranscriptChange(ctx context.Context, request 
 			EpID:              request.Epid,
 			Summary:           request.Summary,
 			Name:              request.Name,
+			ReleaseDate:       releaseDate,
 			Transcription:     request.Transcript,
 			TranscriptVersion: request.TranscriptVersion,
 		})
@@ -665,6 +693,14 @@ func (s *TranscriptService) UpdateTranscriptChange(ctx context.Context, request 
 	}
 	if len(request.Summary) > 2048 {
 		return nil, ErrInvalidRequestField("summary", nil, "Cannot be more than 2048 characters")
+	}
+
+	var releaseDate time.Time
+	if request.ReleaseDate != "" {
+		releaseDate, err = time.Parse(time.DateOnly, request.ReleaseDate)
+		if err != nil {
+			return nil, ErrInvalidRequestField("release_date", nil, "Not a valid short RFC3339 date (e.g. 2001-01-01)")
+		}
 	}
 
 	var oldChange *models.TranscriptChange
@@ -693,6 +729,10 @@ func (s *TranscriptService) UpdateTranscriptChange(ctx context.Context, request 
 		}
 	}
 
+	if releaseDate.IsZero() {
+		releaseDate = oldChange.ReleaseDate
+	}
+
 	var updatedChange *models.TranscriptChange
 	err = s.persistentDB.WithStore(func(tx *rw.Store) error {
 
@@ -704,6 +744,7 @@ func (s *TranscriptService) UpdateTranscriptChange(ctx context.Context, request 
 			ID:            request.Id,
 			Name:          request.Name,
 			Summary:       request.Summary,
+			ReleaseDate:   releaseDate,
 			Transcription: request.Transcript,
 			State:         models.ContributionStateFromProto(request.State),
 		}, request.PointsOnApprove)

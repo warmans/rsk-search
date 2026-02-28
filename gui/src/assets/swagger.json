@@ -2082,6 +2082,9 @@
           },
           "name": {
             "type": "string"
+          },
+          "releaseDate": {
+            "type": "string"
           }
         }
       },
@@ -2148,6 +2151,9 @@
             "type": "string"
           },
           "name": {
+            "type": "string"
+          },
+          "releaseDate": {
             "type": "string"
           }
         }
@@ -3535,6 +3541,9 @@
             "type": "string"
           },
           "name": {
+            "type": "string"
+          },
+          "releaseDate": {
             "type": "string"
           }
         }

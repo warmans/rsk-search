@@ -24,5 +24,10 @@
         }
       </div>
     }
+    @if (field?.errors?.pattern) {
+      <div>
+        Input does not match expected pattern: {{field?.errors?.pattern.requiredPattern}}
+      </div>
+    }
   </div>
 }

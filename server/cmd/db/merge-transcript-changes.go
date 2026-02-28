@@ -5,6 +5,7 @@ import (
 	"bytes"
 	"context"
 	"fmt"
+	"github.com/davecgh/go-spew/spew"
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 	"github.com/warmans/rsk-search/pkg/data"
@@ -123,13 +124,17 @@ func mergeAll(outputDataPath string, migrationsPath string, conn *rw.Conn, dryRu
 			episodeOnDisk.Synopsis = append(episodeOnDisk.Synopsis, ts.Synopsis...)
 			episodeOnDisk.Trivia = append(episodeOnDisk.Trivia, ts.Trivia...)
 
+			spew.Dump(v)
+
 			// metadata
 			if v.Summary != "" {
 				episodeOnDisk.Summary = v.Summary
 			}
-
 			if v.Name != "" {
 				episodeOnDisk.Name = v.Name
+			}
+			if !v.ReleaseDate.IsZero() {
+				episodeOnDisk.ReleaseDate = &v.ReleaseDate
 			}
 
 			contributors := []string{}

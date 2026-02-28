@@ -586,6 +586,7 @@ message CreateTranscriptChangeRequest {
   string transcript_version = 3;
   string summary = 4;
   string name = 5;
+  string release_date = 6;
 }
 
 message ListTranscriptChangesRequest {
@@ -603,6 +604,7 @@ message UpdateTranscriptChangeRequest {
   float points_on_approve = 4;
   string summary = 5;
   string name = 6;
+  string release_date = 7;
 }
 
 message DeleteTranscriptChangeRequest {
@@ -626,6 +628,7 @@ message TranscriptChange {
   float points_awarded = 10;
   string transcript_version = 11;
   string name = 12;
+  string release_date = 13;
 }
 
 message ShortTranscriptChange {

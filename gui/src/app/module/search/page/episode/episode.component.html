@@ -17,6 +17,17 @@
     </div>
   }
 
+  @if (authenticated && episode.locked) {
+    <div class="row mb-3">
+      <div class="col-12">
+        <div class="alert alert-info">
+          This episode is currently being transcribed. Changes cannot be submitted until the first version of the transcript is complete.
+          <a class="btn btn-sm btn-info" [routerLink]="['/contribute']">Contribute</a>
+        </div>
+      </div>
+    </div>
+  }
+
   <div class="row">
     <div class="col">
       @if (episode) {

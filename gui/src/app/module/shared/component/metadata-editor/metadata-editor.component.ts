@@ -6,6 +6,7 @@ import { debounceTime, takeUntil } from 'rxjs/operators';
 export interface TranscriptMetadata {
   name: string;
   summary: string;
+  release_date: string;
 }
 
 @Component({
@@ -21,11 +22,16 @@ export class MetadataEditorComponent implements OnInit, OnDestroy {
     if (!value) {
       return;
     }
-    this.form.get('name').setValue(value.name, {emitEvent: false});
-    this.form.get('summary').setValue(value.summary, {emitEvent: false});
+    this.form.get('name').setValue(value.name ?? '', {emitEvent: false});
+    this.form.get('summary').setValue(value.summary ?? '', {emitEvent: false});
+    this.form.get('release_date').setValue(value.release_date ?? '', {emitEvent: false});
   }
   get transcriptMeta(): TranscriptMetadata {
-    return { summary: this.form.get('summary').value, name: this.form.get('name').value };
+    return {
+      summary: this.form.get('summary').value,
+      name: this.form.get('name').value,
+      release_date: this.form.get('release_date').value,
+    };
   }
 
   @Input()
@@ -36,7 +42,10 @@ export class MetadataEditorComponent implements OnInit, OnDestroy {
 
   form: UntypedFormGroup = new UntypedFormGroup({
     name: new FormControl<string>(""),
-    summary: new FormControl<string>("")
+    summary: new FormControl<string>(""),
+    release_date: new FormControl<string>("", [
+      Validators.pattern(/^\d{4}-\d{2}-\d{2}$/)
+    ])
   });
 
   destroy$: Subject<void> = new Subject<void>();

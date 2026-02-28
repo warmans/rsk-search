@@ -6,6 +6,7 @@ import (
 	"embed"
 	"encoding/json"
 	"fmt"
+	"github.com/davecgh/go-spew/spew"
 	"github.com/google/uuid"
 	"github.com/jmoiron/sqlx"
 	"github.com/lithammer/shortuuid/v3"
@@ -891,7 +892,7 @@ func (s *Store) GetTranscriptChange(ctx context.Context, id string) (*models.Tra
 	var authorID string
 
 	err := s.tx.
-		QueryRowxContext(ctx, `SELECT id, author_id, epid, COALESCE(transcript_version, 'NONE'), name, summary, transcription, state, created_at, merged FROM transcript_change WHERE id=$1`, id).
+		QueryRowxContext(ctx, `SELECT id, author_id, epid, COALESCE(transcript_version, 'NONE'), name, summary, release_date, transcription, state, created_at, merged FROM transcript_change WHERE id=$1`, id).
 		Scan(
 			&change.ID,
 			&authorID,
@@ -899,6 +900,7 @@ func (s *Store) GetTranscriptChange(ctx context.Context, id string) (*models.Tra
 			&change.TranscriptVersion,
 			&change.Name,
 			&change.Summary,
+			&change.ReleaseDate,
 			&change.Transcription,
 			&change.State,
 			&change.CreatedAt,
@@ -918,6 +920,8 @@ func (s *Store) GetTranscriptChange(ctx context.Context, id string) (*models.Tra
 
 func (s *Store) CreateTranscriptChange(ctx context.Context, c *models.TranscriptChangeCreate) (*models.TranscriptChange, error) {
 
+	spew.Dump(c)
+
 	author, err := s.GetAuthor(ctx, c.AuthorID)
 	if err != nil {
 		return nil, err
@@ -931,6 +935,7 @@ func (s *Store) CreateTranscriptChange(ctx context.Context, c *models.Transcript
 		Author:            author,
 		Name:              c.Name,
 		Summary:           c.Summary,
+		ReleaseDate:       c.ReleaseDate,
 		Transcription:     c.Transcription,
 		State:             models.ContributionStatePending,
 		CreatedAt:         time.Now(),
@@ -945,16 +950,18 @@ func (s *Store) CreateTranscriptChange(ctx context.Context, c *models.Transcript
 		   transcript_version, 
 		   name,
 		   summary,
+		   release_date,
 		   transcription,
 		   state,
 		   created_at
-		   ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
+		   ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
 		change.ID,
 		change.Author.ID,
 		change.EpID,
 		change.TranscriptVersion,
 		change.Name,
 		change.Summary,
+		change.ReleaseDate.Format(util.SQLDateFormat),
 		change.Transcription,
 		models.ContributionStatePending,
 		change.CreatedAt.Format(util.SQLDateFormat),
@@ -963,6 +970,9 @@ func (s *Store) CreateTranscriptChange(ctx context.Context, c *models.Transcript
 }
 
 func (s *Store) UpdateTranscriptChange(ctx context.Context, c *models.TranscriptChangeUpdate, ppointsOnApprove float32) (*models.TranscriptChange, error) {
+
+	spew.Dump("UPDATE", c)
+
 	if c.ID == "" {
 		return nil, fmt.Errorf("no identifier was provided")
 	}
@@ -975,10 +985,11 @@ func (s *Store) UpdateTranscriptChange(ctx context.Context, c *models.Transcript
 	}
 	_, err = s.tx.ExecContext(
 		ctx,
-		`UPDATE transcript_change SET transcription=$1, name=$2, summary=$3, state=$4 WHERE id=$5`,
+		`UPDATE transcript_change SET transcription=$1, name=$2, summary=$3, release_date=$4, state=$5 WHERE id=$6`,
 		c.Transcription,
 		c.Name,
 		c.Summary,
+		c.ReleaseDate.Format(util.SQLDateFormat),
 		c.State,
 		c.ID,
 	)
@@ -1001,6 +1012,7 @@ func (s *Store) UpdateTranscriptChange(ctx context.Context, c *models.Transcript
 	change.Transcription = c.Transcription
 	change.Name = c.Name
 	change.Summary = c.Summary
+	change.ReleaseDate = c.ReleaseDate
 	change.State = c.State
 
 	return change, err
@@ -1073,7 +1085,19 @@ func (s *Store) ListTranscriptChanges(ctx context.Context, q *common.QueryModifi
 	rows, err := s.tx.QueryxContext(
 		ctx,
 		fmt.Sprintf(`
-		SELECT c.id, c.author_id, c.epid, COALESCE(c.transcript_version, 'NONE'), COALESCE(c.name, 'UNKNOWN'), c.summary, c.transcription, c.state, c.created_at, c.merged, COALESCE(con.points, 0)
+		SELECT 
+		    c.id, 
+		    c.author_id,
+		    c.epid,
+		    COALESCE(c.transcript_version, 'NONE'),
+		    COALESCE(c.name, 'UNKNOWN'), 
+		    c.summary, 
+		    c.release_date, 
+		    c.transcription, 
+		    c.state, 
+		    c.created_at,
+		    c.merged, 
+		    COALESCE(con.points, 0)
 		FROM transcript_change c
 		LEFT JOIN author a ON c.author_id = a.id
 		LEFT JOIN author_contribution_transcript_change actc ON c.id = actc.transcript_change_id
@@ -1103,6 +1127,7 @@ func (s *Store) ListTranscriptChanges(ctx context.Context, q *common.QueryModifi
 			&cur.TranscriptVersion,
 			&cur.Name,
 			&cur.Summary,
+			&cur.ReleaseDate,
 			&cur.Transcription,
 			&cur.State,
 			&cur.CreatedAt,

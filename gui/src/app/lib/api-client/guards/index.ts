@@ -1177,6 +1177,8 @@ export function isRskTranscriptChange(arg: any): arg is models.RskTranscriptChan
     ( typeof arg.name === 'undefined' || typeof arg.name === 'string' ) &&
     // pointsAwarded?: number
     ( typeof arg.pointsAwarded === 'undefined' || typeof arg.pointsAwarded === 'number' ) &&
+    // releaseDate?: string
+    ( typeof arg.releaseDate === 'undefined' || typeof arg.releaseDate === 'string' ) &&
     // state?: RskContributionState
     ( typeof arg.state === 'undefined' || isRskContributionState(arg.state) ) &&
     // summary?: string
@@ -1352,6 +1354,8 @@ export function isTranscriptServiceCreateTranscriptChangeBody(arg: any): arg is 
   typeof arg === 'object' &&
     // name?: string
     ( typeof arg.name === 'undefined' || typeof arg.name === 'string' ) &&
+    // releaseDate?: string
+    ( typeof arg.releaseDate === 'undefined' || typeof arg.releaseDate === 'string' ) &&
     // summary?: string
     ( typeof arg.summary === 'undefined' || typeof arg.summary === 'string' ) &&
     // transcript?: string
@@ -1423,6 +1427,8 @@ export function isTranscriptServiceUpdateTranscriptChangeBody(arg: any): arg is 
     ( typeof arg.name === 'undefined' || typeof arg.name === 'string' ) &&
     // pointsOnApprove?: number
     ( typeof arg.pointsOnApprove === 'undefined' || typeof arg.pointsOnApprove === 'number' ) &&
+    // releaseDate?: string
+    ( typeof arg.releaseDate === 'undefined' || typeof arg.releaseDate === 'string' ) &&
     // state?: RskContributionState
     ( typeof arg.state === 'undefined' || isRskContributionState(arg.state) ) &&
     // summary?: string

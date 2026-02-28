@@ -10,6 +10,7 @@
         formControlName="name"
         maxlength="128">
       </textarea>
+      <app-form-errors [form]="form" fieldName="name"></app-form-errors>
     }
     @if (!allowEdit) {
       <div>
@@ -28,10 +29,29 @@
         formControlName="summary"
         maxlength="2048">
       </textarea>
+      <app-form-errors [form]="form" fieldName="summary"></app-form-errors>
     }
     @if (!allowEdit) {
       <div>
         <p [ngClass]="{'text-muted': !transcriptMeta.summary}">{{ transcriptMeta.summary || "none..." }}</p>
+      </div>
+    }
+  </div>
+  <div class="form-group">
+    <label class="font-weight-bold" for="release_date">Release Date</label>
+    @if (allowEdit) {
+      <input
+        class="form-control"
+        name="release_date"
+        id="release_date"
+        placeholder="Episode release date in full or partial RFC3339 format (e.g.2023-12-31 or 2023-12-31T23:59:59Z)."
+        formControlName="release_date"
+        title="Enter a valid RFC3339 date (e.g. 2023-12-31T23:59:59Z)"/>
+      <app-form-errors [form]="form" fieldName="release_date"></app-form-errors>
+    }
+    @if (!allowEdit) {
+      <div>
+        <p [ngClass]="{'text-muted': !transcriptMeta.release_date}">{{ transcriptMeta.release_date || "NA" }}</p>
       </div>
     }
   </div>
