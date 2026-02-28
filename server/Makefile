@@ -220,6 +220,7 @@ dev.infer-offsets:
 dev.refresh-data:
 	./bin/rsk-search data refresh && \
  	./bin/rsk-search data infer-missing-offsets && \
+ 	./bin/rsk-search data dump-metadata-embeds && \
 	$(MAKE) update.spotify-links
 
 .PHONY: dev.merge-sentiments
