@@ -5,7 +5,7 @@
     "episode": 20,
     "name": "",
     "summary": "",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "release_date": "2003-01-04T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -14943,11 +14943,18 @@
     "contributors": [
       "Critical_Timing",
       "Digifoto",
+      "lasermoai",
       "mahmouddahoud",
       "warevolva",
       "wqzkav"
     ],
-    "trivia": null,
+    "trivia": [
+      {
+        "description": "\"John has a long mustache\" was one of the messages used before D-Day in Normandy to signal French partisans of the imminent invasion.",
+        "start_pos": 849,
+        "end_pos": 882
+      }
+    ],
     "tags": null,
     "media": {
       "video_file_name": "",

@@ -5,7 +5,7 @@
     "episode": 2,
     "name": "Episode Two",
     "summary": "",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "release_date": "2004-11-30T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -6745,7 +6745,7 @@
         "timestamp": 1825650000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 11011000000,
+        "duration": 11039000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -6757,10 +6757,10 @@
       {
         "id": "ep-podcast-S1E02-450",
         "pos": 450,
-        "timestamp": 1836661000000,
+        "timestamp": 1836689000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
-        "duration": 983000000,
+        "duration": 985000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -6772,14 +6772,14 @@
       {
         "id": "ep-podcast-S1E02-451",
         "pos": 451,
-        "timestamp": 1837644000000,
+        "timestamp": 1837674000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
-        "duration": 1278000000,
+        "duration": 1232000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "Right, Ready, Steady Cook.",
+        "content": "Right, Ready Steady Cook.",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
@@ -6787,10 +6787,10 @@
       {
         "id": "ep-podcast-S1E02-452",
         "pos": 452,
-        "timestamp": 1838922000000,
+        "timestamp": 1838906000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
-        "duration": 6638000000,
+        "duration": 6654000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -7405,6 +7405,7 @@
       "Born-Leg-9021",
       "RosePamphyle",
       "ThePumpk1nMaster",
+      "clubbychipface",
       "lasermoai"
     ],
     "trivia": [
@@ -7414,7 +7415,7 @@
         "end_pos": 15
       },
       {
-        "description": "Ready, Steady Cook was a BBC cookery show starring chef Ainsley Harriot and other chefs, who were given a bag of ingredients and were asked to make dishes, usually on a budget.",
+        "description": "Ready Steady Cook was a BBC cookery show starring chef Ainsley Harriott and other chefs, who were given a bag of ingredients and were asked to make dishes, usually on a budget.",
         "start_pos": 451,
         "end_pos": 453
       },
@@ -7436,7 +7437,11 @@
     },
     "ratings": {
       "scores": {
-        "discord:paulgriffincsp": 2.75
+        "discord:alexb457": 2,
+        "discord:dragonq0105": 3.5,
+        "discord:harrybee": 3,
+        "discord:paulgriffincsp": 2.5,
+        "discord:rowanator3000": 2
       }
     }
   }
