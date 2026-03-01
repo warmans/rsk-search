@@ -7543,7 +7543,13 @@
         "duration": 98780000000,
         "type": "song",
         "actor": "",
-        "metadata": null,
+        "metadata": {
+          "song_album": "Unknown",
+          "song_album_art": "https://i.scdn.co/image/ab67616d0000b273bc65dd5b9306f46ad0ed4967",
+          "song_artist": "Sky's Memoirs",
+          "song_track": "Unknown",
+          "spotify_uri": "spotify:track:46Slcc2Ge6lABrvMugCWhq"
+        },
         "content": "Unknown - I Could Eat A Knob At Night",
         "notable": false,
         "placeholder": false,
