@@ -5,7 +5,7 @@
     "episode": 22,
     "name": "Urban Legends",
     "summary": "Lots of discussion about urban legends including the infamous \"Levis, 36\" story. ",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "release_date": "2002-04-27T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -5420,12 +5420,13 @@
         "type": "song",
         "actor": "",
         "metadata": {
-          "song_album": "Mali Music",
-          "song_album_art": "https://i.scdn.co/image/ab67616d0000b273d2e242c8f33f3542b8a46731",
-          "song_track": "Sunset Coming On",
-          "spotify_uri": "spotify:track:0pab5P1Vod5G3Oex6Dh1El"
+          "song_album": "Celadon",
+          "song_album_art": "https://i.scdn.co/image/ab67616d0000b273780cbf6836f071d21ff72c2f",
+          "song_artist": "Ambarta",
+          "song_track": "Celadon",
+          "spotify_uri": "spotify:track:6lKaPEQXZTV2VO9esX41Wt"
         },
-        "content": "Mali Music – Sunset Coming On",
+        "content": "Damon Albarn w/ Bocoum + Diabaté – Sunset Coming On.",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
@@ -16692,6 +16693,7 @@
     ],
     "synopsis": null,
     "contributors": [
+      "AnteaterSnouce",
       "MonotoneCreeper",
       "lasermoai",
       "warmans"

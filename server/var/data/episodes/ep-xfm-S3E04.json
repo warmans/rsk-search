@@ -5,7 +5,7 @@
     "episode": 4,
     "name": "",
     "summary": "",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "release_date": "2003-11-22T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -18960,10 +18960,17 @@
     "contributors": [
       "MisterM2402",
       "clubbychipface",
+      "lasermoai",
       "wagu666",
       "warmans"
     ],
-    "trivia": null,
+    "trivia": [
+      {
+        "description": "This is a legend about Saint Basil's Cathedral. Modern historians believe it to be false.",
+        "start_pos": 465,
+        "end_pos": 476
+      }
+    ],
     "tags": null,
     "media": {
       "video_file_name": "",

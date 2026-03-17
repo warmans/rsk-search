@@ -5,7 +5,7 @@
     "episode": 10,
     "name": "I say toob",
     "summary": "Steve is upset that he spent £20 too much on a PS2. They discuss Americans and Americanisms that get on their nerves.",
-    "version": "1.0.8",
+    "version": "1.0.9",
     "release_date": "2002-01-26T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -343,11 +343,11 @@
         "timestamp": 112730000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 36590000000,
+        "duration": 36595000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "Rick, two and a half hours I walked round last night, I swear to god, I was walking round to different shops , I went from Oxford Street to Piccadilly Circus and back again, along the length of Oxford Street, back again, all over the place, right, basically couldn't get a better deal than about 240 quid, for a console and a game so I ended up in Virgin Megastore, I bought a... I bought Auto Grand Theft 3 or whatever, and a PlayStation and a memory card, whatever, so I'm shooting off, I'm walking off, I'm going to the tube and I walk all the way to HMV, on err, opposite Bond Street, i just popped in there cos I'd forgotten to get something and I went downstairs and I was walking past the PlayStations and it went 'if you buy a PlayStation 2 you can get Grand Theft Auto 3 with twenty pounds off'.",
+        "content": "Rick, two and a half hours I walked round last night, I swear to god, I was walking round to different shops , I went from Oxford Street to Piccadilly Circus and back again, along the length of Oxford Street, back again, all over the place, right, basically couldn't get a better deal than about 240 quid, for a console and a game so I ended up in Virgin Megastore, I bought a... I bought Auto Grand Theft 3 or whatever, and a PlayStation and a memory card, whatever, so I'm shooting off, I'm walking off, I'm going to the tube and I walk all the way to HMV, on err, opposite Bond Street, i just popped in there cos I'd forgotten to get something and I went downstairs and I was walking past the PlayStations and it went 'if you buy a PlayStation 2 you can get Grand Theft Auto III with twenty pounds off'.",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
@@ -355,7 +355,7 @@
       {
         "id": "ep-xfm-S1E10-23",
         "pos": 23,
-        "timestamp": 149320000000,
+        "timestamp": 149325000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
         "duration": 227000000,
@@ -370,10 +370,10 @@
       {
         "id": "ep-xfm-S1E10-24",
         "pos": 24,
-        "timestamp": 149547000000,
+        "timestamp": 149552000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
-        "duration": 1274000000,
+        "duration": 1271000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
@@ -385,10 +385,10 @@
       {
         "id": "ep-xfm-S1E10-25",
         "pos": 25,
-        "timestamp": 150821000000,
+        "timestamp": 150823000000,
         "timestamp_inferred": true,
         "timestamp_distance": 3,
-        "duration": 729000000,
+        "duration": 727000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -13500,6 +13500,11 @@
       "warmans"
     ],
     "trivia": [
+      {
+        "description": "Steve probably confused *GTA III* with *Gran Turismo 3*.",
+        "start_pos": 28,
+        "end_pos": 29
+      },
       {
         "description": "It's called *Facts and Trivia* by Isaac Asimov.\n\nhttps://www.amazon.com/Facts-and-Trivia-Giant-Books/dp/075252822X",
         "start_pos": 291,

@@ -5,7 +5,7 @@
     "episode": 24,
     "name": "",
     "summary": "",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "release_date": "2003-02-01T00:00:00Z",
     "completion": "reported",
     "completion_reports": null,
@@ -14848,7 +14848,7 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "What are you say-what are you saying!? Right.  Shut up everybody. What are you saying? You've got one chance now, (starts clapping hands in anger) you've got to ask me a question and I will answer it to the best of my ability. But what are you saying? What is your question?",
+        "content": "What are you say-what are you saying!? Right. Shut up everybody. What are you saying? You've got one chance now, (starts clapping hands in anger) you've got to ask me a question and I will answer it to the best of my ability. But what are you saying? What is your question?",
         "notable": false,
         "placeholder": false,
         "sentiment": "negative"
@@ -17915,10 +17915,17 @@
       "Green_Jade",
       "MonotoneCreeper",
       "No-Locksmith-4867",
+      "lasermoai",
       "the_duckington",
       "wqzkav"
     ],
-    "trivia": null,
+    "trivia": [
+      {
+        "description": "\"Chimpanzee that\" seems to be a play on \"fancy that\".",
+        "start_pos": 549,
+        "end_pos": 551
+      }
+    ],
     "tags": null,
     "media": {
       "video_file_name": "",
