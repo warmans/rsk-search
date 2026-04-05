@@ -1,0 +1,1 @@
+DELETE FROM transcript_rating_score WHERE (author_id, episode_id) IN (('WDK85mZupzXDVRrrkgZC9A', 'podcast-S1E13'), ('vxd6kwHCxic8t3MBeAZen7', 'podcast-S1E13'));
