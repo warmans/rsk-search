@@ -1,16 +1,18 @@
 package data
 
 import (
+	"errors"
 	"fmt"
+	"os"
+	"path"
+	"strings"
+	"time"
+
 	"github.com/dhowden/tag"
 	"github.com/spf13/cobra"
 	"github.com/warmans/rsk-search/pkg/data"
 	"github.com/warmans/rsk-search/pkg/models"
 	"go.uber.org/zap"
-	"os"
-	"path"
-	"strings"
-	"time"
 )
 
 type audioFile struct {
@@ -54,9 +56,9 @@ func InitFromAudioFilesCmd() *cobra.Command {
 				return err
 			}
 
-			_, err = initEpisodeFileFromAudio(logger, meta, cfg.dataDir, models.PublicationType(publicationType))
+			err = initEpisodeFileFromAudio(logger, meta, cfg.dataDir, models.PublicationType(publicationType))
 			if err != nil {
-				return fmt.Errorf("failed to init metadata for file %s date: %s name: %s: %w", meta.path, meta.date, meta.name, err)
+				return fmt.Errorf("failed to init metadata for file %s: %w", meta.path, err)
 			}
 			return nil
 		},
@@ -74,6 +76,8 @@ func parseMetadata(logger *zap.Logger, fileName string, publication string) (aud
 	if err != nil {
 		return audioFile{}, err
 	}
+	defer file.Close()
+
 	tags, err := tag.ReadFrom(file)
 	if err != nil {
 		return audioFile{}, err
@@ -143,7 +147,7 @@ func initEpisodeFileFromAudio(
 	f audioFile,
 	dataDir string,
 	publicationType models.PublicationType,
-) (*models.Transcript, error) {
+) error {
 
 	ep := &models.Transcript{
 		PublicationType: publicationType,
@@ -164,7 +168,18 @@ func initEpisodeFileFromAudio(
 		},
 	}
 
-	logger.Info("Creating...", zap.String("episode", f.name))
+	episodeFileName := data.EpisodeFileName(dataDir, ep)
+
+	logger.Info("Creating...", zap.String("episode", episodeFileName))
+
+	if _, err := os.Stat(episodeFileName); err == nil {
+		logger.Info("Skipping existing file...", zap.String("episode", episodeFileName))
+		return nil
+	} else {
+		if !errors.Is(err, os.ErrNotExist) {
+			return fmt.Errorf("failed to stat file: %w", err)
+		}
+	}
 	durationMs, err := getAudioDurationMs(f.path)
 	if err != nil {
 		logger.Warn("failed to get episode duration", zap.String("name", f.name), zap.Error(err))
@@ -173,5 +188,5 @@ func initEpisodeFileFromAudio(
 		ep.Media.AudioDurationMs = durationMs
 	}
 
-	return ep, data.SaveEpisodeToFile(dataDir, ep)
+	return data.SaveEpisodeToFile(dataDir, ep)
 }
