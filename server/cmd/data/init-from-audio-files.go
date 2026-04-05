@@ -76,7 +76,9 @@ func parseMetadata(logger *zap.Logger, fileName string, publication string) (aud
 	if err != nil {
 		return audioFile{}, err
 	}
-	defer file.Close()
+	defer func() {
+		_ = file.Close()
+	}()
 
 	tags, err := tag.ReadFrom(file)
 	if err != nil {
