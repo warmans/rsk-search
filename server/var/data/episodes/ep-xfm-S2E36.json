@@ -5,7 +5,7 @@
     "episode": 36,
     "name": "Ding Dong!",
     "summary": "",
-    "version": "1.0.9",
+    "version": "1.0.10",
     "release_date": "2003-04-26T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -4880,7 +4880,7 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "No.",
+        "content": "’No.’",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
@@ -4910,7 +4910,7 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "’Lampshade’.",
+        "content": "’Lampshade.’",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
@@ -5045,7 +5045,7 @@
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "I thought they were…you didn’t steal them of Chris did you?",
+        "content": "I thought they were…you didn’t steal them off Chris Moyles did you?",
         "notable": false,
         "placeholder": false,
         "sentiment": "mixed"
@@ -20100,6 +20100,11 @@
         "description": "This may be a reference to the The Frog and the Fox fable.\n\nhttps://en.wikipedia.org/wiki/The_Frog_and_the_Fox",
         "start_pos": 247,
         "end_pos": 248
+      },
+      {
+        "description": "This is a joke about Asian conical hats.",
+        "start_pos": 317,
+        "end_pos": 327
       },
       {
         "description": "Robert Vaughn guest starred in two episodes, once as the murderer and once as the victim. Robert Culp guest starred in three episodes as the murderer; Patrick McGoohan holds the record for the most appearances as a Columbo killer, having played the killer in four episodes.",

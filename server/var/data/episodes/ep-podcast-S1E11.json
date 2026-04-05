@@ -5,7 +5,7 @@
     "episode": 11,
     "name": "Episode Eleven",
     "summary": "",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "release_date": "2006-02-13T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
@@ -5651,11 +5651,18 @@
       "RosePamphyle",
       "Rowanator3000",
       "ThePumpk1nMaster",
+      "lasermoai",
       "ohminii",
       "plebican",
       "wqzkav"
     ],
-    "trivia": null,
+    "trivia": [
+      {
+        "description": "Chimps have opposable thumbs. He's talking shit.",
+        "start_pos": 307,
+        "end_pos": 310
+      }
+    ],
     "tags": null,
     "media": {
       "video_file_name": "",
@@ -5669,6 +5676,7 @@
     "ratings": {
       "scores": {
         "discord:alexb457": 2.5,
+        "discord:dragonq0105": 3.2,
         "discord:paulgriffincsp": 2.5,
         "discord:rowanator3000": 3
       }
