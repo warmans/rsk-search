@@ -1,19 +1,18 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit } from '@angular/core';
-import {AudioService, PlayerMode, PlayerState, Status} from '../../../core/service/audio/audio.service';
+import { Component, Input, inject, OnInit, DestroyRef } from '@angular/core';
+import { AudioService, PlayerMode, PlayerState, Status } from '../../../core/service/audio/audio.service';
 import { UntypedFormControl } from '@angular/forms';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { QuotaService } from 'src/app/module/core/service/quota/quota.service';
 import { RskQuotas } from 'src/app/lib/api-client/models';
 import { addMonths, intervalToDuration, startOfMonth } from 'date-fns';
 
 @Component({
-    selector: 'app-audio-player-v2',
-    templateUrl: './audio-player-v2.component.html',
-    styleUrls: ['./audio-player-v2.component.scss'],
-    standalone: false
+  selector: 'app-audio-player-v2',
+  templateUrl: './audio-player-v2.component.html',
+  styleUrls: ['./audio-player-v2.component.scss'],
+  standalone: false
 })
-export class AudioPlayerV2Component implements OnInit, OnDestroy {
-
+export class AudioPlayerV2Component implements OnInit {
   @Input()
   showCloseControl: boolean = true;
 
@@ -25,26 +24,30 @@ export class AudioPlayerV2Component implements OnInit, OnDestroy {
 
   playerProgressControl: UntypedFormControl = new UntypedFormControl(0);
 
-  timeTillQuotaRefreshed: string = "unknown";
+  timeTillQuotaRefreshed: string = 'unknown';
   bandwidthQuotaUsedPcnt: number = 0;
 
-  private unsubscribe$: EventEmitter<void> = new EventEmitter<void>();
+  mobileMenuOpen = false;
+  mobileVolumeOpen = false;
 
-  constructor(private audioService: AudioService, private quotaService: QuotaService) {
+  protected readonly PlayerMode = PlayerMode;
+
+  private audioService = inject(AudioService);
+  private quotaService = inject(QuotaService);
+  private destroyRef = inject(DestroyRef);
+
+  ngOnInit(): void {
     const interval = intervalToDuration({
       start: new Date(),
       end: startOfMonth(addMonths(new Date(), 1)),
-    })
-    this.timeTillQuotaRefreshed = (interval.days > 0)  ? `${interval.days} days` : (interval.hours > 0 ? `${interval.hours} hours` : `${interval.minutes} minutes`)
-
-    quotaService.quotas$.pipe(takeUntil(this.unsubscribe$)).subscribe((res: RskQuotas) => {
-      this.bandwidthQuotaUsedPcnt = (1 - (res.bandwidthRemainingMib / res.bandwidthTotalMib)) * 100;
     });
-  }
+    this.timeTillQuotaRefreshed = interval.days > 0 ? `${interval.days} days` : interval.hours > 0 ? `${interval.hours} hours` : `${interval.minutes} minutes`;
 
-  ngOnInit(): void {
+    this.quotaService.quotas$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((res: RskQuotas) => {
+      this.bandwidthQuotaUsedPcnt = (1 - res.bandwidthRemainingMib / res.bandwidthTotalMib) * 100;
+    });
 
-    this.audioService.status.pipe(takeUntil(this.unsubscribe$)).subscribe((sta: Status) => {
+    this.audioService.status.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((sta: Status) => {
       this.audioStatus = sta;
       if (!sta) {
         return;
@@ -52,24 +55,19 @@ export class AudioPlayerV2Component implements OnInit, OnDestroy {
       this.playerProgressControl.setValue(sta.currentTime, { emitEvent: false });
     });
 
-    // volume is loaded from local storage across sessions
-    this.audioService.volumeLoaded.pipe(takeUntil(this.unsubscribe$)).subscribe((vol) => {
+    // volume is loaded from local storage across session
+    this.audioService.volumeLoaded.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((vol) => {
       this.volumeControl.setValue(vol * 100);
     });
 
     // persist it back if the volume is changed via our control.
-    this.volumeControl.valueChanges.pipe(takeUntil(this.unsubscribe$)).subscribe((v) => {
+    this.volumeControl.valueChanges.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((v) => {
       this.audioService.setVolume(v / 100);
     });
 
-    this.playerProgressControl.valueChanges.pipe(takeUntil(this.unsubscribe$)).subscribe((v) => {
+    this.playerProgressControl.valueChanges.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((v) => {
       this.audioService.seekAudio(v);
     });
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribe$.next();
-    this.unsubscribe$.complete();
   }
 
   play() {
@@ -95,8 +93,6 @@ export class AudioPlayerV2Component implements OnInit, OnDestroy {
   markAsUnplayed() {
     this.audioService.markAsUnplayed();
   }
-
-  protected readonly PlayerMode = PlayerMode;
 
   activeSleepTimer() {
     this.audioService.incrementSleepTimer(60 * 15);

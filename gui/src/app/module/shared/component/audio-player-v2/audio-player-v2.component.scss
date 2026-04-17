@@ -1,13 +1,25 @@
+@use "../../../../../scss/theme.scss" as *;
+
 .player {
   font-size: 0.9rem;
   width: 100%;
 
-  .controls {
-    font-size: 2rem;
+  .control {
+    font-size: 1.5rem;
+
+    button {
+      background: 0;
+      border: 0;
+      color: inherit;
+    }
+
+    .dropdown-menu {
+      min-width: auto;
+    }
   }
 
-  .volume {
-    font-size: 1.5rem;
+  .play-pause {
+    font-size: 2rem;
   }
 
   .error-overlay {
@@ -19,5 +31,37 @@
     background-color: rgba(0, 0, 0, 0.8);
     text-align: center;
     font-size: 1.2rem;
+  }
+
+  .volume-vertical {
+    -webkit-appearance: slider-vertical;
+    appearance: slider-vertical;
+    writing-mode: vertical-lr;
+    direction: rtl;
+    width: 36px;
+    height: 200px;
+  }
+
+  .player-dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 0.25rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+  }
+
+  .control .dropdown-toggle::after {
+    display: none;
+  }
+
+  .player-dropdown {
+    @include themeComponent() {
+      color: theme-get("text-color");
+      background-color: theme-get("fg-body-darker");
+    }
   }
 }
