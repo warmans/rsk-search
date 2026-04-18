@@ -76,6 +76,6 @@
     "vitest": "^4.1.4"
   },
   "lint-staged": {
-    "*.{js,ts,html,scss,json}": "oxfmt --write"
+    "*.{js,ts,html,scss,json}": "oxfmt --write --no-error-on-unmatched-pattern"
   }
 }
