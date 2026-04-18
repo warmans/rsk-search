@@ -90,9 +90,6 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
 
   @Input()
   set scrollToID(value: string | null) {
-    if (value === null) {
-      return;
-    }
     this._scrollToID = value;
 
     if (!this._scrollToID) {
@@ -134,8 +131,8 @@ export class TranscriptComponent implements OnInit, AfterViewInit {
 
   private _scrollToSeconds: number;
 
-  scrollToPosStart: number;
-  scrollToPosEnd: number;
+  scrollToPosStart: number | undefined | null;
+  scrollToPosEnd: number | undefined | null;
 
   @Input()
   searchResultMode: boolean = false;
