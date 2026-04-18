@@ -104,17 +104,18 @@ export class EpisodeListComponent implements OnInit, OnDestroy {
     this.filteredTranscriptList = [];
 
     this.loading.push(true);
-    return this.apiClient
+    const sub = this.apiClient
       .listTranscripts({ filter: Eq('publication_type', Str(this.mapPublicationType(this._activePublicationType))).print() })
       .pipe(takeUntil(this.destroy$))
       .subscribe((res: RskTranscriptList) => {
         this.transcriptList = res.episodes;
         this.updateFilteredTranscriptList();
         this.identifySubsections();
-      })
-      .add(() => {
-        this.loading.pop();
       });
+    sub.add(() => {
+      this.loading.pop();
+    });
+    return sub;
   }
 
   updateFilteredTranscriptList() {

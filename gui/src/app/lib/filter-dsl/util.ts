@@ -14,3 +14,7 @@ export class FilterExtractor implements Visitor {
     return this;
   }
 }
+
+export function isNumeric(val: any): val is number {
+  return !Array.isArray(val) && val - parseFloat(val) + 1 >= 0;
+}

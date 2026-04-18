@@ -39,6 +39,11 @@ jobs:
           npm run lint
           npm run fmt:check
 
+      - name: Test
+        working-directory: ${{env.GUI_ROOT}}
+        run: |
+          npm test
+
       - name: Build GUI
         working-directory: ${{env.GUI_ROOT}}
         run: npm run build

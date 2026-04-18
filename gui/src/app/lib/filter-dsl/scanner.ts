@@ -1,5 +1,5 @@
-import { isNumeric } from 'rxjs/internal-compatibility';
 import { trimChars } from '../util';
+import { isNumeric } from './util';
 
 export enum Tag {
   EOF = 'EOF',

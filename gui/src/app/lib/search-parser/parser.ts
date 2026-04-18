@@ -65,7 +65,7 @@ export class TermParser {
       case Tag.Word:
         let words: string[] = [t.lexeme];
         let wordsEndPos = t.end;
-        // group neighbouring words into a single term.
+        // group neighboring words into a single term.
         let next = this.peekNext();
         while (next.tag === Tag.Word || next.tag === Tag.Whitespace) {
           next = this.getNext(); // advance to peeked value
