@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
-import { ActivatedRoute, Data, Router } from '@angular/router';
+import { ActivatedRoute, Data, Router, RouterLink } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
@@ -9,12 +9,27 @@ import { getFirstOffset } from '../../../shared/lib/tscript';
 import { AlertService } from '../../../core/service/alert/alert.service';
 import { RskChunk, RskChunkContribution, RskContributionState } from 'src/app/lib/api-client/models';
 import { EditorComponent } from '../../../shared/component/editor/editor.component';
+import { ContributionStateComponent } from '../../../shared/component/contribution-state/contribution-state.component';
+import { RejectButtonComponent } from '../../component/reject-button/reject-button.component';
+import { NgClass } from '@angular/common';
+import { TranscriptComponent } from '../../../shared/component/transcript/transcript.component';
+import { OauthLoginComponent } from '../../../shared/component/oauth-login/oauth-login.component';
+import { LoadingOverlayComponent } from '../../../shared/component/loading-overlay/loading-overlay.component';
 
 @Component({
   selector: 'app-episode-chunk-submit',
   templateUrl: './episode-chunk-submit.component.html',
   styleUrls: ['./episode-chunk-submit.component.scss'],
-  standalone: false,
+  imports: [
+    RouterLink,
+    ContributionStateComponent,
+    RejectButtonComponent,
+    NgClass,
+    EditorComponent,
+    TranscriptComponent,
+    OauthLoginComponent,
+    LoadingOverlayComponent,
+  ],
 })
 export class EpisodeChunkSubmit implements OnInit, OnDestroy {
   authenticated: boolean = false;

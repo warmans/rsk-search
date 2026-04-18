@@ -1,11 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { RskTrivia } from '../../../../lib/api-client/models';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-trivia',
   templateUrl: './trivia.component.html',
   styleUrls: ['./trivia.component.scss'],
-  standalone: false,
+  imports: [RouterLink],
 })
 export class TriviaComponent implements OnInit {
   @Input()

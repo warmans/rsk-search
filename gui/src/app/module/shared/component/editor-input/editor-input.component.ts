@@ -14,13 +14,14 @@ import {
 import { getOffsetValueFromLineInSeconds, isOffsetLine } from '../../lib/tscript';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-editor-input',
   templateUrl: './editor-input.component.html',
   styleUrls: ['./editor-input.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  imports: [NgClass],
 })
 export class EditorInputComponent implements OnInit, OnDestroy, AfterViewInit {
   _textContent = '';

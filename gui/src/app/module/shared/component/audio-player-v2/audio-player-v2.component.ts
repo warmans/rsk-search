@@ -1,16 +1,20 @@
 import { Component, Input, inject, OnInit, DestroyRef } from '@angular/core';
 import { AudioService, PlayerMode, PlayerState, Status } from '../../../core/service/audio/audio.service';
-import { UntypedFormControl } from '@angular/forms';
+import { UntypedFormControl, ReactiveFormsModule } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { QuotaService } from 'src/app/module/core/service/quota/quota.service';
 import { RskQuotas } from 'src/app/lib/api-client/models';
 import { addMonths, intervalToDuration, startOfMonth } from 'date-fns';
+import { RouterLink } from '@angular/router';
+import { NgTemplateOutlet } from '@angular/common';
+import { NgbDropdown, NgbDropdownToggle, NgbDropdownMenu, NgbDropdownItem } from '@ng-bootstrap/ng-bootstrap';
+import { FormatSecondsPipe } from '../../pipe/format-seconds.pipe';
 
 @Component({
   selector: 'app-audio-player-v2',
   templateUrl: './audio-player-v2.component.html',
   styleUrls: ['./audio-player-v2.component.scss'],
-  standalone: false,
+  imports: [RouterLink, NgTemplateOutlet, ReactiveFormsModule, NgbDropdown, NgbDropdownToggle, NgbDropdownMenu, NgbDropdownItem, FormatSecondsPipe],
 })
 export class AudioPlayerV2Component implements OnInit {
   @Input()

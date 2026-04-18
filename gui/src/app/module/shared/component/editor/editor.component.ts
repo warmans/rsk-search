@@ -6,7 +6,10 @@ import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { formatDistance, fromUnixTime, getUnixTime, isBefore, startOfDay, subDays } from 'date-fns';
 import { EditorInputComponent } from '../editor-input/editor-input.component';
 import { AudioService, PlayerMode, PlayerState, Status } from '../../../core/service/audio/audio.service';
-import { FindReplace } from '../find-replace/find-replace.component';
+import { FindReplace, FindReplaceComponent } from '../find-replace/find-replace.component';
+import { NgClass, DecimalPipe } from '@angular/common';
+import { EditorHelpComponent } from '../editor-help/editor-help.component';
+import { FormErrorsComponent } from '../form-errors/form-errors.component';
 
 const LOCAL_STORAGE_PREFIX = 'content-backup';
 
@@ -21,7 +24,7 @@ export interface AudioConfig {
   templateUrl: './editor.component.html',
   styleUrls: ['./editor.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  imports: [FindReplaceComponent, EditorConfigComponent, NgClass, EditorInputComponent, EditorHelpComponent, FormErrorsComponent, DecimalPipe],
 })
 export class EditorComponent implements OnInit, OnDestroy {
   @Input()

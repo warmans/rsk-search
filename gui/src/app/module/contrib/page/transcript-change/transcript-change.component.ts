@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { debounceTime, takeUntil } from 'rxjs/operators';
-import { ActivatedRoute, Data, Router } from '@angular/router';
+import { ActivatedRoute, Data, Router, RouterLink } from '@angular/router';
 import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 import { Title } from '@angular/platform-browser';
 import { SessionService } from '../../../core/service/session/session.service';
@@ -8,8 +8,15 @@ import { AlertService } from '../../../core/service/alert/alert.service';
 import { RskContributionState, RskTranscript, RskTranscriptChange, RskTranscriptChangeDiff } from 'src/app/lib/api-client/models';
 import { EditorComponent } from '../../../shared/component/editor/editor.component';
 import { Observable, Subject } from 'rxjs';
-import { UntypedFormControl } from '@angular/forms';
+import { UntypedFormControl, ReactiveFormsModule } from '@angular/forms';
 import { TranscriptMetadata } from 'src/app/module/shared/component/metadata-editor/metadata-editor.component';
+import { ContributionStateComponent } from '../../../shared/component/contribution-state/contribution-state.component';
+import { NgClass } from '@angular/common';
+import { TranscriptComponent } from '../../../shared/component/transcript/transcript.component';
+import { HtmlDiffComponent } from '../../../shared/component/html-diff/html-diff.component';
+import { MetadataEditorComponent } from '../../../shared/component/metadata-editor/metadata-editor.component';
+import { OauthLoginComponent } from '../../../shared/component/oauth-login/oauth-login.component';
+import { LoadingOverlayComponent } from '../../../shared/component/loading-overlay/loading-overlay.component';
 
 const DISMISS_HELP_KEY: string = 'contribute.change.help.hide';
 
@@ -17,7 +24,18 @@ const DISMISS_HELP_KEY: string = 'contribute.change.help.hide';
   selector: 'app-transcript-change',
   templateUrl: './transcript-change.component.html',
   styleUrls: ['./transcript-change.component.scss'],
-  standalone: false,
+  imports: [
+    RouterLink,
+    ContributionStateComponent,
+    ReactiveFormsModule,
+    NgClass,
+    EditorComponent,
+    TranscriptComponent,
+    HtmlDiffComponent,
+    MetadataEditorComponent,
+    OauthLoginComponent,
+    LoadingOverlayComponent,
+  ],
 })
 export class TranscriptChangeComponent implements OnInit, OnDestroy {
   epID: string;

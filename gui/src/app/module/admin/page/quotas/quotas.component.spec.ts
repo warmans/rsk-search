@@ -8,7 +8,7 @@ describe('QuotasComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [QuotasComponent],
+      imports: [QuotasComponent],
     }).compileComponents();
   });
 

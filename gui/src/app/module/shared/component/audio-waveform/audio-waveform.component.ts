@@ -4,7 +4,7 @@ import RegionsPlugin from 'wavesurfer.js/plugins/regions';
 import { Region } from 'wavesurfer.js/plugins/regions';
 import { Router } from '@angular/router';
 import ZoomPlugin from 'wavesurfer.js/plugins/zoom';
-import { FormControl } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
@@ -12,9 +12,9 @@ const AUDIO_CONTEXT_MS = 2000;
 
 @Component({
   selector: 'app-audio-waveform',
-  standalone: false,
   templateUrl: './audio-waveform.component.html',
   styleUrl: './audio-waveform.component.scss',
+  imports: [ReactiveFormsModule],
 })
 export class AudioWaveformComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input()

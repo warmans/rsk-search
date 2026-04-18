@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router, RouterLink } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
 import {
@@ -13,13 +13,32 @@ import {
 } from 'src/app/lib/api-client/models';
 import { AudioService } from '../../../core/service/audio/audio.service';
 import { ClipboardService } from 'src/app/module/core/service/clipboard/clipboard.service';
-import { FormControl } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { SearchStatsComponent } from '../../component/search-stats/search-stats.component';
+import { TranscriptCopyDialogComponent } from '../../../shared/component/transcript-copy-dialog/transcript-copy-dialog.component';
+import { TranscriptComponent } from '../../../shared/component/transcript/transcript.component';
+import { NgClass } from '@angular/common';
+import { MarkdownComponent } from '../../../shared/component/markdown/markdown.component';
+import { EpisodeListComponent } from '../../component/episode-list/episode-list.component';
+import { LoadingOverlayComponent } from '../../../shared/component/loading-overlay/loading-overlay.component';
+import { MatchedRowPosPipe } from '../../pipe/match-row-pos.pipe';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss'],
-  standalone: false,
+  imports: [
+    SearchStatsComponent,
+    ReactiveFormsModule,
+    RouterLink,
+    TranscriptCopyDialogComponent,
+    TranscriptComponent,
+    NgClass,
+    MarkdownComponent,
+    EpisodeListComponent,
+    LoadingOverlayComponent,
+    MatchedRowPosPipe,
+  ],
 })
 export class SearchComponent implements OnInit, OnDestroy {
   loading: boolean[] = [];

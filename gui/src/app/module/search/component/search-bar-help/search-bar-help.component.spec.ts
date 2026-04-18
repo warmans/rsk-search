@@ -8,7 +8,7 @@ describe('SearchBarHelpComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SearchBarHelpComponent],
+      imports: [SearchBarHelpComponent],
     }).compileComponents();
   });
 

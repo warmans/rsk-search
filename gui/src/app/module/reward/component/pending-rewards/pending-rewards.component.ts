@@ -2,14 +2,15 @@ import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 import { takeUntil } from 'rxjs/operators';
 import { RskReward } from 'src/app/lib/api-client/models';
-import { Router, RoutesRecognized } from '@angular/router';
+import { Router, RoutesRecognized, RouterLink } from '@angular/router';
 import { SessionService } from '../../../core/service/session/session.service';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-pending-rewards',
   templateUrl: './pending-rewards.component.html',
   styleUrls: ['./pending-rewards.component.scss'],
-  standalone: false,
+  imports: [RouterLink, CurrencyPipe],
 })
 export class PendingRewardsComponent implements OnInit, OnDestroy {
   displayOnPage: boolean = true;

@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { FormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormControl, UntypedFormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { FormErrorsComponent } from '../form-errors/form-errors.component';
+import { NgClass } from '@angular/common';
 
 export interface TranscriptMetadata {
   name: string;
@@ -13,7 +15,7 @@ export interface TranscriptMetadata {
   selector: 'app-metadata-editor',
   templateUrl: './metadata-editor.component.html',
   styleUrls: ['./metadata-editor.component.scss'],
-  standalone: false,
+  imports: [ReactiveFormsModule, FormErrorsComponent, NgClass],
 })
 export class MetadataEditorComponent implements OnInit, OnDestroy {
   @Input()

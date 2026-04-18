@@ -8,7 +8,7 @@ describe('TranscriptChangeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TranscriptChangeComponent],
+      imports: [TranscriptChangeComponent],
     }).compileComponents();
   }));
 

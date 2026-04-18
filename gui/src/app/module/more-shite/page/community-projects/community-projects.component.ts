@@ -1,21 +1,22 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommunityAPIClient } from '../../../../lib/api-client/services/community';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { UntypedFormControl } from '@angular/forms';
+import { ActivatedRoute, ParamMap, Router, RouterLink } from '@angular/router';
+import { UntypedFormControl, ReactiveFormsModule } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { Like } from '../../../../lib/filter-dsl/filter';
 import { Str } from '../../../../lib/filter-dsl/value';
 import { RskCommunityProject, RskCommunityProjectList } from '../../../../lib/api-client/models';
+import { NgClass } from '@angular/common';
 
 const PAGE_SIZE = 25;
 const MAX_PAGINATION_LINKS = 10;
 
 @Component({
   selector: 'app-community-projects',
-  standalone: false,
   templateUrl: './community-projects.component.html',
   styleUrl: './community-projects.component.scss',
+  imports: [ReactiveFormsModule, NgClass, RouterLink],
 })
 export class CommunityProjectsComponent implements OnInit, OnDestroy {
   searchInput: UntypedFormControl = new UntypedFormControl('');

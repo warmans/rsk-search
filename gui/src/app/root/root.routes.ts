@@ -1,4 +1,3 @@
-import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SearchComponent } from '../module/search/page/search/search.component';
 import { EpisodeComponent } from '../module/search/page/episode/episode.component';
@@ -20,7 +19,7 @@ import { SongSearchComponent } from '../module/more-shite/page/song-search/song-
 import { CommunityProjectsComponent } from '../module/more-shite/page/community-projects/community-projects.component';
 import { ArchiveComponent } from '../module/more-shite/page/archive/archive.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: 'search',
     component: SearchComponent,
@@ -121,14 +120,3 @@ const routes: Routes = [
   },
   { path: '', redirectTo: '/search', pathMatch: 'full' },
 ];
-
-@NgModule({
-  imports: [
-    RouterModule.forRoot(routes, {
-      anchorScrolling: 'enabled',
-      onSameUrlNavigation: 'reload',
-    }),
-  ],
-  exports: [RouterModule],
-})
-export class RootRoutingModule {}

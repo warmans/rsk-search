@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { RskChunkStats } from 'src/app/lib/api-client/models';
 
 @Component({
   selector: 'app-random',
   templateUrl: './random.component.html',
   styleUrls: ['./random.component.scss'],
-  standalone: false,
+  imports: [RouterLink],
 })
 export class RandomComponent implements OnInit {
   loading = false;

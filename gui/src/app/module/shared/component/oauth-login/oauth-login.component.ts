@@ -1,16 +1,17 @@
 import { Component, EventEmitter, Input, OnDestroy } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
-import { ActivatedRoute, Data, Router } from '@angular/router';
+import { ActivatedRoute, Data, Router, RouterLink } from '@angular/router';
 import { SessionService } from 'src/app/module/core/service/session/session.service';
-import { FormControl } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { RskAuthURL } from '../../../../lib/api-client/models';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-oauth-login',
   templateUrl: './oauth-login.component.html',
   styleUrls: ['./oauth-login.component.scss'],
-  standalone: false,
+  imports: [NgClass, ReactiveFormsModule, RouterLink],
 })
 export class OauthLoginComponent implements OnDestroy {
   @Input()

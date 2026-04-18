@@ -5,6 +5,7 @@ import { CompOp, Filter } from 'src/app/lib/filter-dsl/filter';
 import { RskPrediction } from 'src/app/lib/api-client/models';
 import { highlightPrediction } from 'src/app/lib/util';
 import { Term } from 'src/app/lib/search-parser/parser';
+import { NgClass } from '@angular/common';
 
 export enum SuggestionType {
   Dialog = 'dialog',
@@ -23,7 +24,7 @@ export interface Suggestion {
   selector: 'app-search-bar-suggestion',
   templateUrl: './search-bar-suggestion.component.html',
   styleUrls: ['./search-bar-suggestion.component.scss'],
-  standalone: false,
+  imports: [NgClass],
 })
 export class SearchBarSuggestionComponent implements OnInit {
   @Input()

@@ -8,7 +8,7 @@ describe('RedditLoginComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [OauthLoginComponent],
+      imports: [OauthLoginComponent],
     }).compileComponents();
   }));
 

@@ -8,7 +8,7 @@ describe('MetadataEditorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [MetadataEditorComponent],
+      imports: [MetadataEditorComponent],
     }).compileComponents();
   });
 

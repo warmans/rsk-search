@@ -1,13 +1,14 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { RskClaimedReward } from '../../../../lib/api-client/models';
 import { environment } from '../../../../../environments/environment.prod';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-claimed-rewards',
   templateUrl: './claimed-rewards.component.html',
   styleUrls: ['./claimed-rewards.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  imports: [CurrencyPipe],
 })
 export class ClaimedRewardsComponent implements OnInit {
   @Input()

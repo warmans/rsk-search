@@ -1,13 +1,14 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { RskSearchStats } from '../../../../lib/api-client/models';
 import { ChartConfiguration } from 'chart.js';
+import { NgChartsModule } from 'ng2-charts';
 
 @Component({
   selector: 'app-search-stats',
   templateUrl: './search-stats.component.html',
   styleUrls: ['./search-stats.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  imports: [NgChartsModule],
 })
 export class SearchStatsComponent implements OnInit {
   @Input()

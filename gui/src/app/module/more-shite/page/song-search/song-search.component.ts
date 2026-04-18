@@ -1,21 +1,22 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { UntypedFormControl, ReactiveFormsModule } from '@angular/forms';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { RskSong, RskSongList } from '../../../../lib/api-client/models';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router, RouterLink } from '@angular/router';
 import { Like, Or } from '../../../../lib/filter-dsl/filter';
 import { Str } from '../../../../lib/filter-dsl/value';
+import { NgClass } from '@angular/common';
 
 const PAGE_SIZE = 25;
 const MAX_PAGINATION_LINKS = 10;
 
 @Component({
   selector: 'app-song-search',
-  standalone: false,
   templateUrl: './song-search.component.html',
   styleUrl: './song-search.component.scss',
+  imports: [ReactiveFormsModule, RouterLink, NgClass],
 })
 export class SongSearchComponent implements OnInit, OnDestroy {
   searchInput: UntypedFormControl = new UntypedFormControl('');

@@ -1,12 +1,13 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { RskSynopsis } from '../../../../lib/api-client/models';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-synopses',
   templateUrl: './synopses.component.html',
   styleUrls: ['./synopses.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  imports: [RouterLink],
 })
 export class SynopsesComponent implements OnInit {
   @Input()

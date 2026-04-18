@@ -3,12 +3,13 @@ import { QuotaService } from 'src/app/module/core/service/quota/quota.service';
 import { takeUntil } from 'rxjs/operators';
 import { RskQuotas } from 'src/app/lib/api-client/models';
 import { Subject } from 'rxjs';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-quotas',
   templateUrl: './quotas.component.html',
   styleUrls: ['./quotas.component.scss'],
-  standalone: false,
+  imports: [DecimalPipe],
 })
 export class QuotasComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject<void>();

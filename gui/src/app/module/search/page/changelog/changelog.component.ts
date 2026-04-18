@@ -2,12 +2,14 @@ import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 import { RskChangelog, RskChangelogList } from '../../../../lib/api-client/models';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
+import { RouterLink } from '@angular/router';
+import { MarkdownComponent } from '../../../shared/component/markdown/markdown.component';
 
 @Component({
   selector: 'app-changelog',
   templateUrl: './changelog.component.html',
   styleUrls: ['./changelog.component.scss'],
-  standalone: false,
+  imports: [RouterLink, MarkdownComponent],
 })
 export class ChangelogComponent implements OnInit, OnDestroy {
   changelogs: RskChangelog[] = [];

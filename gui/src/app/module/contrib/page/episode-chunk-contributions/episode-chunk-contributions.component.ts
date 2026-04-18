@@ -2,18 +2,24 @@ import { Component, EventEmitter, OnInit } from '@angular/core';
 import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 import { RskChunk, RskChunkContribution, RskChunkContributionList, RskContributionState, RskTranscriptChunkList } from 'src/app/lib/api-client/models';
 import { takeUntil } from 'rxjs/operators';
-import { ActivatedRoute, Data } from '@angular/router';
+import { ActivatedRoute, Data, RouterLink } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { parseTranscript, Tscript } from '../../../shared/lib/tscript';
 import { SessionService } from '../../../core/service/session/session.service';
 import { And, Eq } from 'src/app/lib/filter-dsl/filter';
 import { Str } from 'src/app/lib/filter-dsl/value';
+import { NgClass } from '@angular/common';
+import { ContributionStateComponent } from '../../../shared/component/contribution-state/contribution-state.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { TranscriptComponent } from '../../../shared/component/transcript/transcript.component';
+import { RejectButtonComponent } from '../../component/reject-button/reject-button.component';
+import { LoadingOverlayComponent } from '../../../shared/component/loading-overlay/loading-overlay.component';
 
 @Component({
   selector: 'app-episode-chunk-contributions',
   templateUrl: './episode-chunk-contributions.component.html',
   styleUrls: ['./episode-chunk-contributions.component.scss'],
-  standalone: false,
+  imports: [RouterLink, NgClass, ContributionStateComponent, ReactiveFormsModule, TranscriptComponent, RejectButtonComponent, LoadingOverlayComponent],
 })
 export class EpisodeChunkContributions implements OnInit {
   chunkedTranscriptID: string;

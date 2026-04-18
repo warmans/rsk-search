@@ -2,18 +2,20 @@ import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 import { RskPublicationType, RskShortTranscript, RskTranscriptList } from 'src/app/lib/api-client/models';
-import { UntypedFormControl } from '@angular/forms';
+import { UntypedFormControl, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { KeyValue } from '@angular/common';
+import { KeyValue, NgClass, KeyValuePipe } from '@angular/common';
 import { Eq } from '../../../../lib/filter-dsl/filter';
 import { Str } from '../../../../lib/filter-dsl/value';
 import { Subscription } from 'rxjs';
+import { LoadingSpinnerComponent } from '../../../shared/component/loading-spinner/loading-spinner.component';
+import { EpisodeSummaryComponent } from '../episode-summary/episode-summary.component';
 
 @Component({
   selector: 'app-episode-list',
   templateUrl: './episode-list.component.html',
   styleUrls: ['./episode-list.component.scss'],
-  standalone: false,
+  imports: [ReactiveFormsModule, NgClass, LoadingSpinnerComponent, EpisodeSummaryComponent, KeyValuePipe],
 })
 export class EpisodeListComponent implements OnInit, OnDestroy {
   loading: boolean[] = [];

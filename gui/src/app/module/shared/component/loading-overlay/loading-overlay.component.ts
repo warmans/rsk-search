@@ -1,10 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-loading-overlay',
   templateUrl: './loading-overlay.component.html',
   styleUrls: ['./loading-overlay.component.scss'],
-  standalone: false,
+  imports: [NgClass],
 })
 export class LoadingOverlayComponent implements OnInit {
   @Input()

@@ -3,7 +3,9 @@ import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/r
 import { Observable, of } from 'rxjs';
 import { SessionService } from '../core/service/session/session.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class CanActivateAdmin {
   constructor(private session: SessionService) {}
 

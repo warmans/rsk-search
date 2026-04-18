@@ -12,12 +12,16 @@ import { And, Eq, Neq } from '../../../../lib/filter-dsl/filter';
 import { Bool, Str } from '../../../../lib/filter-dsl/value';
 import { takeUntil } from 'rxjs/operators';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
+import { NgClass, DecimalPipe, DatePipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { ContributionStateComponent } from '../../../shared/component/contribution-state/contribution-state.component';
+import { LoadingOverlayComponent } from '../../../shared/component/loading-overlay/loading-overlay.component';
 
 @Component({
   selector: 'app-changes',
   templateUrl: './changes.component.html',
   styleUrls: ['./changes.component.scss'],
-  standalone: false,
+  imports: [NgClass, RouterLink, ContributionStateComponent, LoadingOverlayComponent, DecimalPipe, DatePipe],
 })
 export class ChangesComponent {
   private unsubscribe$: EventEmitter<boolean> = new EventEmitter<boolean>();

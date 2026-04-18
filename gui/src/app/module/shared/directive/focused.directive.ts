@@ -1,9 +1,6 @@
 import { Directive, ElementRef, Input } from '@angular/core';
 
-@Directive({
-  selector: '[focused]',
-  standalone: false,
-})
+@Directive({ selector: '[focused]' })
 export class FocusedDirective {
   @Input()
   set focused(value: boolean) {

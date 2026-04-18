@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { UntypedFormControl, ReactiveFormsModule } from '@angular/forms';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-reject-button',
   templateUrl: './reject-button.component.html',
   styleUrls: ['./reject-button.component.scss'],
-  standalone: false,
+  imports: [NgClass, ReactiveFormsModule],
 })
 export class RejectButtonComponent implements OnInit, OnDestroy {
   @Input()

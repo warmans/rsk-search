@@ -3,12 +3,13 @@ import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 import { takeUntil } from 'rxjs/operators';
 import { RskDonationStats, RskRecipientStats } from 'src/app/lib/api-client/models';
 import { environment } from 'src/environments/environment';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-causes',
   templateUrl: './causes.component.html',
   styleUrls: ['./causes.component.scss'],
-  standalone: false,
+  imports: [CurrencyPipe],
 })
 export class CausesComponent implements OnInit, OnDestroy {
   private destroy$ = new EventEmitter<boolean>();

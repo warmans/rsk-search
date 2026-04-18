@@ -3,12 +3,18 @@ import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 import { RskChunkedTranscriptList, RskChunkedTranscriptStats, RskContributionState } from 'src/app/lib/api-client/models';
 import { takeUntil } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
+import { RouterLink } from '@angular/router';
+import { NgClass } from '@angular/common';
+import { ChangesComponent } from '../../component/changes/changes.component';
+import { RankingsComponent } from '../../component/rankings/rankings.component';
+import { CausesComponent } from '../../component/causes/causes.component';
+import { DonationsComponent } from '../../component/donations/donations.component';
 
 @Component({
   selector: 'app-contribute',
   templateUrl: './contribute.component.html',
   styleUrls: ['./contribute.component.scss'],
-  standalone: false,
+  imports: [RouterLink, NgClass, ChangesComponent, RankingsComponent, CausesComponent, DonationsComponent],
 })
 export class ContributeComponent implements OnInit, OnDestroy {
   loading: boolean[] = [];

@@ -1,5 +1,5 @@
 import { Component, ElementRef, EventEmitter, HostListener, OnDestroy, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { UntypedFormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
 import { ParseTerms, Term } from 'src/app/lib/search-parser/parser';
@@ -11,13 +11,15 @@ import { CompFilter, CompOp, Filter } from 'src/app/lib/filter-dsl/filter';
 import { ParseAST } from 'src/app/lib/filter-dsl/ast';
 import { FilterExtractor } from 'src/app/lib/filter-dsl/util';
 import { TermsToFilter } from 'src/app/lib/search-parser/util';
-import { Suggestion, SuggestionType } from '../search-bar-suggestion/search-bar-suggestion.component';
+import { Suggestion, SuggestionType, SearchBarSuggestionComponent } from '../search-bar-suggestion/search-bar-suggestion.component';
+import { SearchBarHelpComponent } from '../search-bar-help/search-bar-help.component';
+import { SearchComponent } from '../../page/search/search.component';
 
 @Component({
   selector: 'app-search-bar-compat',
   templateUrl: './search-bar-compat.component.html',
   styleUrls: ['./search-bar-compat.component.scss'],
-  standalone: false,
+  imports: [ReactiveFormsModule, FormsModule, SearchBarSuggestionComponent, SearchBarHelpComponent, SearchComponent],
 })
 export class SearchBarCompatComponent implements OnInit, OnDestroy {
   @Output()

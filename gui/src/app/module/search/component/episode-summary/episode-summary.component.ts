@@ -3,13 +3,18 @@ import { RskPublicationType, RskShortTranscript } from '../../../../lib/api-clie
 import { AudioService, Status } from '../../../core/service/audio/audio.service';
 import { takeUntil } from 'rxjs/operators';
 import { SessionService } from 'src/app/module/core/service/session/session.service';
+import { RouterLink } from '@angular/router';
+import { NgClass, DecimalPipe, TitleCasePipe, DatePipe } from '@angular/common';
+import { SynopsesComponent } from '../../../shared/component/synopses/synopses.component';
+import { FormatSecondsPipe } from '../../../shared/pipe/format-seconds.pipe';
+import { TimecodeAccuracyPipe } from '../../pipe/timecode-accuracy.pipe';
 
 @Component({
   selector: 'app-episode-summary',
   templateUrl: './episode-summary.component.html',
   styleUrls: ['./episode-summary.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  imports: [RouterLink, NgClass, SynopsesComponent, DecimalPipe, TitleCasePipe, DatePipe, FormatSecondsPipe, TimecodeAccuracyPipe],
 })
 export class EpisodeSummaryComponent implements OnInit, OnDestroy {
   @Input()

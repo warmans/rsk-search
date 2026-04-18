@@ -7,7 +7,6 @@ import { DomSanitizer } from '@angular/platform-browser';
   templateUrl: './markdown.component.html',
   styleUrls: ['./markdown.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
 })
 export class MarkdownComponent implements OnInit {
   @Input()

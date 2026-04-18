@@ -1,10 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { formatSecondsAsTimestamp } from 'src/app/lib/util';
 
-@Pipe({
-  name: 'formatSeconds',
-  standalone: false,
-})
+@Pipe({ name: 'formatSeconds' })
 export class FormatSecondsPipe implements PipeTransform {
   constructor() {}
 

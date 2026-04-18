@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 import { AlertService } from '../../../core/service/alert/alert.service';
 import { RskChunkedTranscriptList, RskChunkedTranscriptStats, RskTscriptImport, RskTscriptImportList } from 'src/app/lib/api-client/models';
@@ -9,7 +9,7 @@ import { takeUntil } from 'rxjs/operators';
   selector: 'app-import',
   templateUrl: './import.component.html',
   styleUrls: ['./import.component.scss'],
-  standalone: false,
+  imports: [ReactiveFormsModule],
 })
 export class ImportComponent implements OnInit, OnDestroy {
   importForm: UntypedFormGroup = new UntypedFormGroup({

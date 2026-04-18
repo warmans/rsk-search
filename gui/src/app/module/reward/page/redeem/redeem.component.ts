@@ -4,14 +4,16 @@ import { takeUntil } from 'rxjs/operators';
 import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AlertService } from '../../../core/service/alert/alert.service';
+import { LoadingOverlayComponent } from '../../../shared/component/loading-overlay/loading-overlay.component';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-redeem',
   templateUrl: './redeem.component.html',
   styleUrls: ['./redeem.component.scss'],
-  standalone: false,
+  imports: [ReactiveFormsModule, LoadingOverlayComponent, CurrencyPipe],
 })
 export class RedeemComponent implements OnInit {
   organizations: RskDonationRecipient[] = [];

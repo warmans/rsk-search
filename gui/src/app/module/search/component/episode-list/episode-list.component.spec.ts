@@ -8,7 +8,7 @@ describe('EpisodeListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [EpisodeListComponent],
+      imports: [EpisodeListComponent],
     }).compileComponents();
   });
 

@@ -1,8 +1,8 @@
 import { Component, EventEmitter, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Data, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, Data, NavigationEnd, Router, RouterLink } from '@angular/router';
 import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 import { DialogType, RskArchive, RskDialog, RskTranscript, RskTranscriptChange, RskTranscriptChangeList } from 'src/app/lib/api-client/models';
-import { Location, ViewportScroller } from '@angular/common';
+import { Location, ViewportScroller, NgClass, DecimalPipe, DatePipe } from '@angular/common';
 import { filter, takeUntil } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
 import { SessionService } from '../../../core/service/session/session.service';
@@ -17,12 +17,30 @@ import { ClipboardService } from '../../../core/service/clipboard/clipboard.serv
 import { CommunityAPIClient } from 'src/app/lib/api-client/services/community';
 import { episodeIdVariations } from 'src/app/lib/util';
 import { AlertService } from '../../../core/service/alert/alert.service';
+import { StarRatingModule } from 'angular-star-rating';
+import { SynopsesComponent } from '../../../shared/component/synopses/synopses.component';
+import { MarkdownComponent } from '../../../shared/component/markdown/markdown.component';
+import { AudioWaveformComponent } from '../../../shared/component/audio-waveform/audio-waveform.component';
+import { LoadingOverlayComponent } from '../../../shared/component/loading-overlay/loading-overlay.component';
+import { TimecodeAccuracyPipe } from '../../pipe/timecode-accuracy.pipe';
 
 @Component({
   selector: 'app-episode',
   templateUrl: './episode.component.html',
   styleUrls: ['./episode.component.scss'],
-  standalone: false,
+  imports: [
+    RouterLink,
+    StarRatingModule,
+    NgClass,
+    SynopsesComponent,
+    MarkdownComponent,
+    TranscriptComponent,
+    AudioWaveformComponent,
+    LoadingOverlayComponent,
+    DecimalPipe,
+    DatePipe,
+    TimecodeAccuracyPipe,
+  ],
 })
 export class EpisodeComponent implements OnInit, OnDestroy {
   loading: boolean = false;

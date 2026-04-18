@@ -5,7 +5,6 @@ import { Alert, AlertService } from '../../../core/service/alert/alert.service';
   selector: 'app-alert',
   templateUrl: './alert.component.html',
   styleUrls: ['./alert.component.scss'],
-  standalone: false,
 })
 export class AlertComponent implements OnInit, OnDestroy {
   alerts: Alert[] = [];

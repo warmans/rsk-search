@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { NgbPopover } from '@ng-bootstrap/ng-bootstrap';
 
 export interface FindReplace {
   find: string;
@@ -11,7 +12,7 @@ export interface FindReplace {
   templateUrl: './find-replace.component.html',
   styleUrls: ['./find-replace.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false,
+  imports: [NgbPopover, ReactiveFormsModule],
 })
 export class FindReplaceComponent {
   @Output()

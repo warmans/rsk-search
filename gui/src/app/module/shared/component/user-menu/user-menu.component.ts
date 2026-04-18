@@ -4,13 +4,15 @@ import { Subject } from 'rxjs';
 import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 import { NotificationKind, RskNotification } from 'src/app/lib/api-client/models';
 import { debounceTime, filter, takeUntil } from 'rxjs/operators';
-import { NavigationStart, Router } from '@angular/router';
+import { NavigationStart, Router, RouterLink } from '@angular/router';
+import { NgClass } from '@angular/common';
+import { FormErrorsComponent } from '../form-errors/form-errors.component';
 
 @Component({
   selector: 'app-user-menu',
   templateUrl: './user-menu.component.html',
   styleUrls: ['./user-menu.component.scss'],
-  standalone: false,
+  imports: [RouterLink, NgClass, FormErrorsComponent],
 })
 export class UserMenuComponent implements OnInit, OnDestroy {
   @Input()

@@ -2,15 +2,17 @@ import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { RskAuthorRank, RskAuthorRankList } from 'src/app/lib/api-client/models';
 import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
-import { UntypedFormControl } from '@angular/forms';
+import { UntypedFormControl, ReactiveFormsModule } from '@angular/forms';
 import { Like } from 'src/app/lib/filter-dsl/filter';
 import { Str } from 'src/app/lib/filter-dsl/value';
+import { NgClass, DecimalPipe, CurrencyPipe } from '@angular/common';
+import { LoadingOverlayComponent } from '../../../shared/component/loading-overlay/loading-overlay.component';
 
 @Component({
   selector: 'app-rankings',
   templateUrl: './rankings.component.html',
   styleUrls: ['./rankings.component.scss'],
-  standalone: false,
+  imports: [ReactiveFormsModule, NgClass, LoadingOverlayComponent, DecimalPipe, CurrencyPipe],
 })
 export class RankingsComponent implements OnInit, OnDestroy {
   private destroy$ = new EventEmitter<boolean>();

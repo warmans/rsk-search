@@ -5,7 +5,6 @@ import { AbstractControl, UntypedFormGroup } from '@angular/forms';
   selector: 'app-form-errors',
   templateUrl: './form-errors.component.html',
   styleUrls: ['./form-errors.component.scss'],
-  standalone: false,
 })
 export class FormErrorsComponent implements OnInit {
   @Input()

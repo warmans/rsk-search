@@ -1,12 +1,14 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, ValidationErrors, ValidatorFn, ReactiveFormsModule } from '@angular/forms';
 import { KeyPressEventCodes } from '../../../../lib/keys';
+import { NgClass } from '@angular/common';
+import { FormErrorsComponent } from '../form-errors/form-errors.component';
 
 @Component({
   selector: 'app-editor-config',
   templateUrl: './editor-config.component.html',
   styleUrls: ['./editor-config.component.scss'],
-  standalone: false,
+  imports: [NgClass, ReactiveFormsModule, FormErrorsComponent],
 })
 export class EditorConfigComponent implements OnInit {
   open: boolean;

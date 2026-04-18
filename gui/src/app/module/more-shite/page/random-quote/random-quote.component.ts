@@ -2,12 +2,13 @@ import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
 import { RskRandomQuote } from '../../../../lib/api-client/models';
 import { takeUntil } from 'rxjs/operators';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-random-quote',
   templateUrl: './random-quote.component.html',
   styleUrl: './random-quote.component.scss',
-  standalone: false,
+  imports: [RouterLink],
 })
 export class RandomQuoteComponent implements OnInit, OnDestroy {
   quote: RskRandomQuote;

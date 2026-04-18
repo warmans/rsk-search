@@ -1,16 +1,33 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Renderer2 } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { Claims, SessionService } from 'src/app/module/core/service/session/session.service';
 import { takeUntil } from 'rxjs/operators';
 import { RskQuotas } from 'src/app/lib/api-client/models';
 import { QuotaService } from 'src/app/module/core/service/quota/quota.service';
 import { RadioService } from '../../../module/core/service/radio/radio.service';
+import { SearchBarCompatComponent } from '../../../module/search/component/search-bar-compat/search-bar-compat.component';
+import { NgClass, DecimalPipe } from '@angular/common';
+import { UserMenuComponent } from 'src/app/module/shared/component/user-menu/user-menu.component';
+import { AlertComponent } from 'src/app/module/shared/component/alert/alert.component';
+import { AudioPlayerFixedComponent } from 'src/app/module/shared/component/audio-player-fixed/audio-player-fixed.component';
+import { PendingRewardsComponent } from 'src/app/module/reward/component/pending-rewards/pending-rewards.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './root.component.html',
   styleUrls: ['./root.component.scss'],
-  standalone: false,
+  imports: [
+    RouterLink,
+    SearchBarCompatComponent,
+    NgClass,
+    RouterLinkActive,
+    RouterOutlet,
+    DecimalPipe,
+    UserMenuComponent,
+    AlertComponent,
+    AudioPlayerFixedComponent,
+    PendingRewardsComponent,
+  ],
 })
 export class RootComponent implements OnInit, OnDestroy {
   loggedInUser: Claims;

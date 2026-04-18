@@ -8,7 +8,7 @@ describe('HtmlDiffComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [HtmlDiffComponent],
+      imports: [HtmlDiffComponent],
     }).compileComponents();
   });
 

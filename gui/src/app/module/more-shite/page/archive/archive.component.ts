@@ -3,16 +3,17 @@ import { CommunityAPIClient } from '../../../../lib/api-client/services/communit
 import { takeUntil } from 'rxjs/operators';
 import { RskArchive, RskArchiveList } from '../../../../lib/api-client/models';
 import { Subject } from 'rxjs';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, RouterLink } from '@angular/router';
+import { NgClass } from '@angular/common';
 
 const PAGE_SIZE = 10;
 const MAX_PAGINATION_LINKS = 10;
 
 @Component({
   selector: 'app-archive',
-  standalone: false,
   templateUrl: './archive.component.html',
   styleUrl: './archive.component.scss',
+  imports: [NgClass, RouterLink],
 })
 export class ArchiveComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject<void>();

@@ -2,15 +2,16 @@ import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { interval } from 'rxjs';
 import { takeUntil, timeInterval } from 'rxjs/operators';
 import { differenceInDays, differenceInSeconds } from 'date-fns';
+import { DecimalPipe, CurrencyPipe } from '@angular/common';
 
 const PENCE_PER_SECOND: number = 26 / (24 * 60 * 60);
 const INITIAL_PENCE_OWED: number = 720;
 
 @Component({
   selector: 'app-catalog-warehouse',
-  standalone: false,
   templateUrl: './catalog-warehouse.component.html',
   styleUrl: './catalog-warehouse.component.scss',
+  imports: [DecimalPipe, CurrencyPipe],
 })
 export class CatalogWarehouseComponent implements OnInit, OnDestroy {
   public valueInPence = 0;
