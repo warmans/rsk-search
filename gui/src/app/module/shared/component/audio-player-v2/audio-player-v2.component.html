@@ -1,18 +1,16 @@
-@if (this.audioStatus?.audioID) {
+@if (audioStatus?.audioID) {
+  @let isPlaying = audioStatus?.state === states.playing;
   <div class="player d-flex px-2">
-    <div class="controls py-2 pr-2 d-flex align-items-center">
-      @if (audioStatus?.state !== states.playing) {
-        <div class="clickable p-1" (click)="play()"><i class="bi-play-circle-fill"></i></div>
-      }
-      @if (audioStatus?.state === states.playing) {
-        <div class="clickable p-1" (click)="pause()"><i class="bi-pause-circle-fill"></i></div>
-      }
+    <div class="control play-pause pr-2 d-flex align-items-center">
+      <button type="button" class="p-1" (click)="isPlaying ? pause() : play()">
+        <i [class]="isPlaying ? 'bi-pause-circle-fill' : 'bi-play-circle-fill'"></i>
+      </button>
     </div>
     <div class="flex-grow-1 p-2">
       <div class="mb-1 d-flex justify-content-between">
         <div>
           @if (audioStatus.audioID && audioStatus.mode !== PlayerMode.Standalone) {
-            <a [routerLink]="['/ep', 'ep-'+audioStatus.audioID]">{{ audioStatus.audioID }}</a>
+            <a [routerLink]="['/ep', 'ep-' + audioStatus.audioID]">{{ audioStatus.audioID }}</a>
           }
           @if (audioStatus.audioID && audioStatus.mode === PlayerMode.Standalone) {
             <span>{{ audioStatus.audioID }}</span>
@@ -24,17 +22,12 @@
             <span class=""> - {{ audioStatus.audioName }}</span>
           }
         </div>
-        <div>
-          @if (!audioStatus.listened) {
-            <a class="clickable" (click)="markAsPlayed()">Mark as played</a>
-          }
-          @if (audioStatus.listened) {
-            <a class="clickable" (click)="markAsUnplayed()">Mark as not played</a>
-          }
+        <div class="d-none d-lg-block">
+          <ng-container *ngTemplateOutlet="markAsPlayedUnplayed"></ng-container>
         </div>
       </div>
       <div>
-        <input style="width: 100%" type="range" [min]="0" [max]="audioStatus.totalTime" [formControl]="playerProgressControl">
+        <input class="w-100" type="range" [min]="0" [max]="audioStatus.totalTime" [formControl]="playerProgressControl" />
       </div>
       <div class="d-flex justify-content-between">
         <div class="d-flex">
@@ -44,32 +37,66 @@
           @if (audioStatus.state !== states.ended) {
             <div>
               @if (audioStatus.audioID && audioStatus.mode !== PlayerMode.Standalone) {
-                <a [routerLink]="['/ep', 'ep-'+audioStatus.audioID]" [fragment]="'sec-'+audioStatus.currentTime.toFixed(0)">{{audioStatus?.currentTime | formatSeconds}}</a>
+                <a [routerLink]="['/ep', 'ep-' + audioStatus.audioID]" [fragment]="'sec-' + audioStatus.currentTime.toFixed(0)">{{
+                  audioStatus?.currentTime | formatSeconds
+                }}</a>
               }
               @if (audioStatus.audioID && audioStatus.mode === PlayerMode.Standalone) {
-                <span>{{audioStatus?.currentTime | formatSeconds}}</span>
+                <span>{{ audioStatus?.currentTime | formatSeconds }}</span>
               }
             </div>
           }
         </div>
-        <div>{{audioStatus?.totalTime | formatSeconds}}</div>
+        <div>{{ audioStatus?.totalTime | formatSeconds }}</div>
       </div>
     </div>
-    @if (audioStatus?.state === states.playing) {
-      <div class="sleep p-2 d-flex align-items-center">
+    @if (isPlaying) {
+      <div class="sleep p-2 d-none d-lg-flex align-items-center">
         <div title="Add 15 minutes to sleep timer" class="clickable p-1" (click)="activeSleepTimer()"><i class="bi-stopwatch"></i></div>
         @if (this.audioStatus.sleepTimerRemainder) {
-          <span class="clickable ml-2" title="click to clear" (click)="deactivateSleepTimer()">{{ this.audioStatus.sleepTimerRemainder | formatSeconds:true }} &times;</span>
+          <span class="clickable ml-2" title="click to clear" (click)="deactivateSleepTimer()"
+            >{{ this.audioStatus.sleepTimerRemainder | formatSeconds: true }} &times;</span
+          >
         }
       </div>
     }
-    <div class="volume p-2 d-flex align-items-center">
+    <div class="control p-2 d-none d-lg-flex align-items-center d-sm-none">
       <i class="bi bi-volume-up mr-1"></i>
-      <input type="range" min="0" max="100" [formControl]="volumeControl">
+      <input type="range" min="0" max="100" [formControl]="volumeControl" />
+    </div>
+    <div ngbDropdown [autoClose]="'outside'" class="control d-flex d-lg-none">
+      <button ngbDropdownToggle class="p-3 align-self-center" type="button">
+        <i class="bi bi-volume-up"></i>
+      </button>
+      <div ngbDropdownMenu class="player-dropdown">
+        <input ngbDropdownItem class="volume-vertical" type="range" min="0" max="100" [formControl]="volumeControl" />
+      </div>
+    </div>
+    <div ngbDropdown [autoClose]="'outside'" class="control d-flex d-lg-none align-items-center">
+      <button ngbDropdownToggle class="p-3"><i class="bi bi-three-dots-vertical"></i></button>
+      <div ngbDropdownMenu class="player-dropdown">
+        <li class="player-dropdown-item">
+          <ng-container *ngTemplateOutlet="markAsPlayedUnplayed"></ng-container>
+        </li>
+        @if (audioStatus.state === states.playing) {
+          <li class="player-dropdown-item"><a class="clickable" (click)="activeSleepTimer()">Add 15 minutes to sleep</a></li>
+        }
+        @if (audioStatus.sleepTimerRemainder) {
+          <li class="player-dropdown-item"><a class="clickable" (click)="deactivateSleepTimer()">Clear sleep timer</a></li>
+        }
+        @if (audioStatus.sleepTimerRemainder) {
+          <li>
+            <hr class="dropdown-divider" />
+          </li>
+          <li class="player-dropdown-item">Sleep timer: {{ this.audioStatus.sleepTimerRemainder | formatSeconds: true }}</li>
+        }
+      </div>
     </div>
     @if (audioStatus.mode !== PlayerMode.Standalone && showCloseControl) {
-      <div class="exit d-flex align-items-center px-3">
-        <div class="clickable p-1 close" (click)="closeAudio()">&times;</div>
+      <div class="exit d-flex align-items-center pr-1 px-lg-3 control">
+        <button type="button" class="p-3 p-lg-1" (click)="closeAudio()" aria-label="Stop audio">
+          <i class="bi-stop-circle-fill"></i>
+        </button>
       </div>
     }
     @if (audioStatus?.state === states.failed) {
@@ -79,7 +106,7 @@
             <span class="bg-danger text-white px-2 mr-2">FAILED! Audio couldn't be loaded.</span>
           }
           @if (bandwidthQuotaUsedPcnt >= 99) {
-            <span class="bg-danger text-white px-2 mr-2">SORRY! Quota reached. Audio will become available again in {{timeTillQuotaRefreshed}}.</span>
+            <span class="bg-danger text-white px-2 mr-2">SORRY! Quota reached. Audio will become available again in {{ timeTillQuotaRefreshed }}.</span>
           }
           <a class="btn btn-sm btn-secondary" (click)="closeAudio()">Close player</a>
         </div>
@@ -87,3 +114,12 @@
     }
   </div>
 }
+
+<ng-template #markAsPlayedUnplayed>
+  @if (!audioStatus.listened) {
+    <a class="clickable" (click)="markAsPlayed()">Mark as played</a>
+  }
+  @if (audioStatus.listened) {
+    <a class="clickable" (click)="markAsUnplayed()">Mark as not played</a>
+  }
+</ng-template>

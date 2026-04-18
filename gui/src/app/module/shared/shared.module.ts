@@ -22,7 +22,7 @@ import {ClaimedRewardsComponent} from './component/claimed-rewards/claimed-rewar
 import {MarkdownComponent} from './component/markdown/markdown.component';
 import {AudioPlayerV2Component} from './component/audio-player-v2/audio-player-v2.component';
 import {AudioPlayerFixedComponent} from './component/audio-player-fixed/audio-player-fixed.component';
-import {NgbPopoverModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDropdownModule, NgbPopoverModule} from '@ng-bootstrap/ng-bootstrap';
 import {FindReplaceComponent} from './component/find-replace/find-replace.component';
 import {MetadataEditorComponent} from './component/metadata-editor/metadata-editor.component';
 import {UserMenuComponent} from './component/user-menu/user-menu.component';
@@ -65,6 +65,7 @@ import {LoadingSpinnerComponent} from "./component/loading-spinner/loading-spinn
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
+    NgbDropdownModule,
     NgbPopoverModule,
   ],
   providers: [],
