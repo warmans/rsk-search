@@ -86,7 +86,7 @@ describe('ParseAST', () => {
     expect(() => ParseAST('field')).toThrow();
   });
 
-  it('should throw error on "= \"value\""', () => {
+  it(`should throw error on "= "value""`, () => {
     expect(() => ParseAST('= "value"')).toThrow();
   });
 });

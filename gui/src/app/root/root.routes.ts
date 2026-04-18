@@ -1,4 +1,4 @@
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { SearchComponent } from '../module/search/page/search/search.component';
 import { EpisodeComponent } from '../module/search/page/episode/episode.component';
 import { RandomComponent } from '../module/contrib/page/random/random.component';
