@@ -11,7 +11,7 @@ import { EpisodeChunkSubmit } from '../module/contrib/page/episode-chunk-submit/
 import { ChangelogComponent } from '../module/search/page/changelog/changelog.component';
 import { ImportComponent } from '../module/admin/page/import/import.component';
 import { CanActivateAdmin } from '../module/admin/can-activate-admin';
-import { QuotasComponent } from 'src/app/module/admin/page/quotas/quotas.component';
+import { QuotasComponent } from 'module/admin/page/quotas/quotas.component';
 import { IndexComponent } from '../module/more-shite/page/index/index.component';
 import { CatalogWarehouseComponent } from '../module/more-shite/component/catalog-warehouse/catalog-warehouse.component';
 import { RandomQuoteComponent } from '../module/more-shite/page/random-quote/random-quote.component';

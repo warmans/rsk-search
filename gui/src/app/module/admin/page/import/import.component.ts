@@ -1,8 +1,8 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
+import { SearchAPIClient } from 'lib/api-client/services/search';
 import { AlertService } from '../../../core/service/alert/alert.service';
-import { RskChunkedTranscriptList, RskChunkedTranscriptStats, RskTscriptImport, RskTscriptImportList } from 'src/app/lib/api-client/models';
+import { RskChunkedTranscriptList, RskChunkedTranscriptStats, RskTscriptImport, RskTscriptImportList } from 'lib/api-client/models';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({

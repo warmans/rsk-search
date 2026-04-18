@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
-import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
+import { SearchAPIClient } from 'lib/api-client/services/search';
 import { takeUntil } from 'rxjs/operators';
-import { RskDonationStats, RskRecipientStats } from 'src/app/lib/api-client/models';
+import { RskDonationStats, RskRecipientStats } from 'lib/api-client/models';
 import { environment } from 'src/environments/environment';
 import { CurrencyPipe } from '@angular/common';
 

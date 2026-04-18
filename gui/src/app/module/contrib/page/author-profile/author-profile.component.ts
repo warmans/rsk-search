@@ -1,10 +1,10 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
-import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
+import { SearchAPIClient } from 'lib/api-client/services/search';
 import { Claims, SessionService } from '../../../core/service/session/session.service';
 import { takeUntil } from 'rxjs/operators';
 import { Router, RouterLink } from '@angular/router';
-import { Eq } from 'src/app/lib/filter-dsl/filter';
-import { Str } from 'src/app/lib/filter-dsl/value';
+import { Eq } from 'lib/filter-dsl/filter';
+import { Str } from 'lib/filter-dsl/value';
 import {
   RskChunkContribution,
   RskChunkContributionList,
@@ -12,7 +12,7 @@ import {
   RskContributionState,
   RskShortTranscriptChange,
   RskTranscriptChangeList,
-} from 'src/app/lib/api-client/models';
+} from 'lib/api-client/models';
 import { Title } from '@angular/platform-browser';
 import { ClaimedRewardsComponent } from '../../../shared/component/claimed-rewards/claimed-rewards.component';
 import { NgClass } from '@angular/common';

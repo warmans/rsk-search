@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
+import { SearchAPIClient } from 'lib/api-client/services/search';
 import { Router, RouterLink } from '@angular/router';
-import { RskChunkStats } from 'src/app/lib/api-client/models';
+import { RskChunkStats } from 'lib/api-client/models';
 
 @Component({
   selector: 'app-random',

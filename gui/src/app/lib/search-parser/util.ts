@@ -1,5 +1,5 @@
-import { Term } from 'src/app/lib/search-parser/parser';
-import { And, Filter } from 'src/app/lib/filter-dsl/filter';
+import { Term } from 'lib/search-parser/parser';
+import { And, Filter } from 'lib/filter-dsl/filter';
 
 export function TermsToFilter(terms: Term[]): Filter {
   let filter: Filter;

@@ -1,18 +1,11 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
-import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
+import { SearchAPIClient } from 'lib/api-client/services/search';
 import { ActivatedRoute, ParamMap, Router, RouterLink } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
-import {
-  RskChangelog,
-  RskChunkedTranscriptList,
-  RskChunkedTranscriptStats,
-  RskDialog,
-  RskSearchResultList,
-  RskShortTranscript,
-} from 'src/app/lib/api-client/models';
+import { RskChangelog, RskChunkedTranscriptList, RskChunkedTranscriptStats, RskDialog, RskSearchResultList, RskShortTranscript } from 'lib/api-client/models';
 import { AudioService } from '../../../core/service/audio/audio.service';
-import { ClipboardService } from 'src/app/module/core/service/clipboard/clipboard.service';
+import { ClipboardService } from 'module/core/service/clipboard/clipboard.service';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { SearchStatsComponent } from '../../component/search-stats/search-stats.component';
 import { TranscriptCopyDialogComponent } from '../../../shared/component/transcript-copy-dialog/transcript-copy-dialog.component';

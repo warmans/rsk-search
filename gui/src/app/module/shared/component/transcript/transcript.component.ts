@@ -2,7 +2,7 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input,
 import { DialogType, RskDialog, RskMedia, RskSynopsis, RskTranscript, RskTrivia } from '../../../../lib/api-client/models';
 import { ViewportScroller, NgClass } from '@angular/common';
 import { parseTranscript, Tscript } from '../../lib/tscript';
-import { ClipboardService } from 'src/app/module/core/service/clipboard/clipboard.service';
+import { ClipboardService } from 'module/core/service/clipboard/clipboard.service';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { MarkdownComponent } from '../markdown/markdown.component';

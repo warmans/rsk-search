@@ -1,5 +1,5 @@
-import { ParseTerms } from 'src/app/lib/search-parser/parser';
-import { CompOp } from 'src/app/lib/filter-dsl/filter';
+import { CompOp } from '../filter-dsl/filter';
+import { ParseTerms } from './parser';
 import { describe, expect, it } from 'vitest';
 
 describe('ParseTerms', () => {

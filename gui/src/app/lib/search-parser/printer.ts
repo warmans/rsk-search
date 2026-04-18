@@ -1,6 +1,6 @@
-import { Term } from 'src/app/lib/search-parser/parser';
-import { TermsToFilter } from 'src/app/lib/search-parser/util';
-import { CompOp } from 'src/app/lib/filter-dsl/filter';
+import { Term } from 'lib/search-parser/parser';
+import { TermsToFilter } from 'lib/search-parser/util';
+import { CompOp } from 'lib/filter-dsl/filter';
 
 export function PrintFilterString(terms: Term[]): string {
   let filter = TermsToFilter(terms);

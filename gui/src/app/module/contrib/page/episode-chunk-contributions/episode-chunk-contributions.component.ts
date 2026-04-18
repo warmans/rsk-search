@@ -1,13 +1,13 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
-import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
-import { RskChunk, RskChunkContribution, RskChunkContributionList, RskContributionState, RskTranscriptChunkList } from 'src/app/lib/api-client/models';
+import { SearchAPIClient } from 'lib/api-client/services/search';
+import { RskChunk, RskChunkContribution, RskChunkContributionList, RskContributionState, RskTranscriptChunkList } from 'lib/api-client/models';
 import { takeUntil } from 'rxjs/operators';
 import { ActivatedRoute, Data, RouterLink } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { parseTranscript, Tscript } from '../../../shared/lib/tscript';
 import { SessionService } from '../../../core/service/session/session.service';
-import { And, Eq } from 'src/app/lib/filter-dsl/filter';
-import { Str } from 'src/app/lib/filter-dsl/value';
+import { And, Eq } from 'lib/filter-dsl/filter';
+import { Str } from 'lib/filter-dsl/value';
 import { NgClass } from '@angular/common';
 import { ContributionStateComponent } from '../../../shared/component/contribution-state/contribution-state.component';
 import { ReactiveFormsModule } from '@angular/forms';

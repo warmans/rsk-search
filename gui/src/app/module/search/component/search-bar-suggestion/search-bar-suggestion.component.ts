@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
-import { CompOp, Filter } from 'src/app/lib/filter-dsl/filter';
-import { RskPrediction } from 'src/app/lib/api-client/models';
-import { highlightPrediction } from 'src/app/lib/util';
-import { Term } from 'src/app/lib/search-parser/parser';
+import { CompOp, Filter } from 'lib/filter-dsl/filter';
+import { RskPrediction } from 'lib/api-client/models';
+import { highlightPrediction } from 'lib/util';
+import { Term } from 'lib/search-parser/parser';
 import { NgClass } from '@angular/common';
 
 export enum SuggestionType {

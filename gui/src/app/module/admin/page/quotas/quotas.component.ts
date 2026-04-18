@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { QuotaService } from 'src/app/module/core/service/quota/quota.service';
+import { QuotaService } from 'module/core/service/quota/quota.service';
 import { takeUntil } from 'rxjs/operators';
-import { RskQuotas } from 'src/app/lib/api-client/models';
+import { RskQuotas } from 'lib/api-client/models';
 import { Subject } from 'rxjs';
 import { DecimalPipe } from '@angular/common';
 

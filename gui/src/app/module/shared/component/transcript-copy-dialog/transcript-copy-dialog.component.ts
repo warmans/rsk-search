@@ -1,7 +1,7 @@
 import { Component, HostListener, Input, OnInit, ViewChild } from '@angular/core';
-import { RskSearchResult } from 'src/app/lib/api-client/models';
+import { RskSearchResult } from 'lib/api-client/models';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { ClipboardService } from 'src/app/module/core/service/clipboard/clipboard.service';
+import { ClipboardService } from 'module/core/service/clipboard/clipboard.service';
 import { FormErrorsComponent } from '../form-errors/form-errors.component';
 
 @Component({

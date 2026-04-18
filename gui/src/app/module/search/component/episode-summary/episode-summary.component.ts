@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, In
 import { RskPublicationType, RskShortTranscript } from '../../../../lib/api-client/models';
 import { AudioService, Status } from '../../../core/service/audio/audio.service';
 import { takeUntil } from 'rxjs/operators';
-import { SessionService } from 'src/app/module/core/service/session/session.service';
+import { SessionService } from 'module/core/service/session/session.service';
 import { RouterLink } from '@angular/router';
 import { NgClass, DecimalPipe, TitleCasePipe, DatePipe } from '@angular/common';
 import { SynopsesComponent } from '../../../shared/component/synopses/synopses.component';

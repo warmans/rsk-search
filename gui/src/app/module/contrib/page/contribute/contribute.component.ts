@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
-import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
-import { RskChunkedTranscriptList, RskChunkedTranscriptStats, RskContributionState } from 'src/app/lib/api-client/models';
+import { SearchAPIClient } from 'lib/api-client/services/search';
+import { RskChunkedTranscriptList, RskChunkedTranscriptStats, RskContributionState } from 'lib/api-client/models';
 import { takeUntil } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';

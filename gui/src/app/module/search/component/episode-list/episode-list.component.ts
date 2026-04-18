@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
-import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
+import { SearchAPIClient } from 'lib/api-client/services/search';
 import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
-import { RskPublicationType, RskShortTranscript, RskTranscriptList } from 'src/app/lib/api-client/models';
+import { RskPublicationType, RskShortTranscript, RskTranscriptList } from 'lib/api-client/models';
 import { UntypedFormControl, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { KeyValue, NgClass, KeyValuePipe } from '@angular/common';

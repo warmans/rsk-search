@@ -1,15 +1,15 @@
 import { Component, EventEmitter, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { ActivatedRoute, Data, Router, RouterLink } from '@angular/router';
-import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
+import { SearchAPIClient } from 'lib/api-client/services/search';
 import { Title } from '@angular/platform-browser';
 import { SessionService } from '../../../core/service/session/session.service';
 import { AlertService } from '../../../core/service/alert/alert.service';
-import { RskContributionState, RskTranscript, RskTranscriptChange, RskTranscriptChangeDiff } from 'src/app/lib/api-client/models';
+import { RskContributionState, RskTranscript, RskTranscriptChange, RskTranscriptChangeDiff } from 'lib/api-client/models';
 import { EditorComponent } from '../../../shared/component/editor/editor.component';
 import { Observable, Subject } from 'rxjs';
 import { UntypedFormControl, ReactiveFormsModule } from '@angular/forms';
-import { TranscriptMetadata } from 'src/app/module/shared/component/metadata-editor/metadata-editor.component';
+import { TranscriptMetadata } from 'module/shared/component/metadata-editor/metadata-editor.component';
 import { ContributionStateComponent } from '../../../shared/component/contribution-state/contribution-state.component';
 import { NgClass } from '@angular/common';
 import { TranscriptComponent } from '../../../shared/component/transcript/transcript.component';

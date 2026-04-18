@@ -1,8 +1,8 @@
 import { Component, HostListener, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Claims } from 'src/app/module/core/service/session/session.service';
+import { Claims } from 'module/core/service/session/session.service';
 import { Subject } from 'rxjs';
-import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
-import { NotificationKind, RskNotification } from 'src/app/lib/api-client/models';
+import { SearchAPIClient } from 'lib/api-client/services/search';
+import { NotificationKind, RskNotification } from 'lib/api-client/models';
 import { debounceTime, filter, takeUntil } from 'rxjs/operators';
 import { NavigationStart, Router, RouterLink } from '@angular/router';
 import { NgClass } from '@angular/common';

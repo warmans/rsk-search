@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
-import { RskIncomingDonation, RskIncomingDonationList } from 'src/app/lib/api-client/models';
-import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
+import { RskIncomingDonation, RskIncomingDonationList } from 'lib/api-client/models';
+import { SearchAPIClient } from 'lib/api-client/services/search';
 import { takeUntil } from 'rxjs/operators';
 import { LoadingOverlayComponent } from '../../../shared/component/loading-overlay/loading-overlay.component';
 import { DecimalPipe, CurrencyPipe } from '@angular/common';

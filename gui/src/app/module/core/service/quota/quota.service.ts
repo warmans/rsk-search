@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { RskQuotas } from 'src/app/lib/api-client/models';
-import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
+import { RskQuotas } from 'lib/api-client/models';
+import { SearchAPIClient } from 'lib/api-client/services/search';
 
 @Injectable({
   providedIn: 'root',

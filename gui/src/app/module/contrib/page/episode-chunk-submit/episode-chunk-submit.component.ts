@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
+import { SearchAPIClient } from 'lib/api-client/services/search';
 import { ActivatedRoute, Data, Router, RouterLink } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { Observable, Subject } from 'rxjs';
@@ -7,7 +7,7 @@ import { debounceTime, takeUntil } from 'rxjs/operators';
 import { SessionService } from '../../../core/service/session/session.service';
 import { getFirstOffset } from '../../../shared/lib/tscript';
 import { AlertService } from '../../../core/service/alert/alert.service';
-import { RskChunk, RskChunkContribution, RskContributionState } from 'src/app/lib/api-client/models';
+import { RskChunk, RskChunkContribution, RskContributionState } from 'lib/api-client/models';
 import { EditorComponent } from '../../../shared/component/editor/editor.component';
 import { ContributionStateComponent } from '../../../shared/component/contribution-state/contribution-state.component';
 import { RejectButtonComponent } from '../../component/reject-button/reject-button.component';

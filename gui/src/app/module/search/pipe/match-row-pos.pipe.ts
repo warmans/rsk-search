@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { RskDialog } from 'src/app/lib/api-client/models';
+import { RskDialog } from 'lib/api-client/models';
 
 @Pipe({ name: 'matchedRowPos' })
 export class MatchedRowPosPipe implements PipeTransform {

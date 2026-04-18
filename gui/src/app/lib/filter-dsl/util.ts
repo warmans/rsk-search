@@ -1,4 +1,4 @@
-import { BoolFilter, CompFilter, Visitor } from 'src/app/lib/filter-dsl/filter';
+import { BoolFilter, CompFilter, Visitor } from 'lib/filter-dsl/filter';
 
 export class FilterExtractor implements Visitor {
   filters: CompFilter[] = [];

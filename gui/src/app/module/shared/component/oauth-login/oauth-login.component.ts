@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnDestroy } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
-import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
+import { SearchAPIClient } from 'lib/api-client/services/search';
 import { ActivatedRoute, Data, Router, RouterLink } from '@angular/router';
-import { SessionService } from 'src/app/module/core/service/session/session.service';
+import { SessionService } from 'module/core/service/session/session.service';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { RskAuthURL } from '../../../../lib/api-client/models';
 import { NgClass } from '@angular/common';

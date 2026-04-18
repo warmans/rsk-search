@@ -1,6 +1,6 @@
-import { CompOp, Filter, NewCompFilter } from 'src/app/lib/filter-dsl/filter';
-import { Scanner, Tag, Tok } from 'src/app/lib/search-parser/scanner';
-import { Str } from 'src/app/lib/filter-dsl/value';
+import { CompOp, Filter, NewCompFilter } from '../filter-dsl/filter';
+import { Scanner, Tag, Tok } from './scanner';
+import { Str } from '../filter-dsl/value';
 
 export class Pos {
   start: number;

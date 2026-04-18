@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
-import { RskDonationRecipient, RskReward } from 'src/app/lib/api-client/models';
+import { RskDonationRecipient, RskReward } from 'lib/api-client/models';
 import { takeUntil } from 'rxjs/operators';
-import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
+import { SearchAPIClient } from 'lib/api-client/services/search';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { UntypedFormControl, UntypedFormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
