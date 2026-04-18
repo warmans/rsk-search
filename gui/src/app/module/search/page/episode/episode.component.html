@@ -34,61 +34,62 @@
         <div class="card">
           <div class="card-header d-flex justify-content-between">
             <div>
-              {{ shortID }}@if (episode.name) {
-              <span class="text-muted"> - {{ episode.name }}</span>
-            }
+              {{ shortID }}
+              @if (episode.name) {
+                <span class="text-muted"> - {{ episode.name }}</span>
+              }
+            </div>
+            <div>
+              @if (previousEpisodeId) {
+                <a class="mr-2" [routerLink]="['/ep', previousEpisodeId]"><i class="bi bi-arrow-left"></i> Previous</a>
+              }
+              @if (nextEpisodeId) {
+                <a class="ml-2" [routerLink]="['/ep', nextEpisodeId]">Next <i class="bi bi-arrow-right"></i></a>
+              }
+            </div>
           </div>
-          <div>
-            @if (previousEpisodeId) {
-              <a class="mr-2" [routerLink]="['/ep', previousEpisodeId]"><i class="bi bi-arrow-left"></i> Previous</a>
-            }
-            @if (nextEpisodeId) {
-              <a class="ml-2" [routerLink]="['/ep', nextEpisodeId]">Next <i class="bi bi-arrow-right"></i></a>
-            }
-          </div>
-        </div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-lg-10">
-              <table class="table m-0">
-                <tr>
-                  <th class="border-top-0">Transcript Version</th>
-                  <td class="border-top-0 w-100">{{ episode.version }}</td>
-                </tr>
-                <tr>
-                  <th>Broadcast</th>
-                  <td>{{ episode.releaseDate | date }}</td>
-                </tr>
-                <tr>
-                  <th>Transcript Data</th>
-                  <td>
-                    <a target="_blank" href="/dl/episode/{{ episode.id }}.json">{{ episode.id }}.json</a>
-                    (or
-                    <a target="_blank" href="/dl/episode/{{ episode.id }}.txt">plaintext</a>)
-                  </td>
-                </tr>
-                <tr>
-                  <th>Presenters</th>
-                  <td>{{ episode.actors.join(", ") }}</td>
-                </tr>
-                @if (episode.summary) {
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-10">
+                <table class="table m-0">
                   <tr>
-                    <th>Summary</th>
-                    <td>{{ episode.summary }}</td>
+                    <th class="border-top-0">Transcript Version</th>
+                    <td class="border-top-0 w-100">{{ episode.version }}</td>
                   </tr>
-                }
-                @if (episode.bestof || episode.locked) {
                   <tr>
-                    <th>Tags</th>
+                    <th>Broadcast</th>
+                    <td>{{ episode.releaseDate | date }}</td>
+                  </tr>
+                  <tr>
+                    <th>Transcript Data</th>
                     <td>
-                      @if (episode.bestof) {
-                        <span class="badge badge-secondary">Bestof</span>
-                      }
-                      @if (episode.locked) {
-                        <span
-                          class="badge badge-warning"
-                          title="Changes cannot be submitted for this transcript because it is in the process of being transcribed."
-                          >Locked</span
+                      <a target="_blank" href="/dl/episode/{{ episode.id }}.json">{{ episode.id }}.json</a>
+                      (or
+                      <a target="_blank" href="/dl/episode/{{ episode.id }}.txt">plaintext</a>)
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Presenters</th>
+                    <td>{{ episode.actors.join(", ") }}</td>
+                  </tr>
+                  @if (episode.summary) {
+                    <tr>
+                      <th>Summary</th>
+                      <td>{{ episode.summary }}</td>
+                    </tr>
+                  }
+                  @if (episode.bestof || episode.locked) {
+                    <tr>
+                      <th>Tags</th>
+                      <td>
+                        @if (episode.bestof) {
+                          <span class="badge badge-secondary">Bestof</span>
+                        }
+                        @if (episode.locked) {
+                          <span
+                            class="badge badge-warning"
+                            title="Changes cannot be submitted for this transcript because it is in the process of being transcribed."
+                            >Locked</span
                           >
                         }
                       </td>
@@ -245,7 +246,7 @@
                 <div>
                   @for (trivia of episode.trivia; track trivia; let last = $last) {
                     <div class="pb-1" [class.mb-3]="!last" [class.border-bottom]="!last">
-                      <app-markdown [raw]="trivia.description "></app-markdown>
+                      <app-markdown [raw]="trivia.description"></app-markdown>
                       <div><a [routerLink]="['/ep', episode?.id]" [fragment]="'pos-' + trivia.startPos">context</a></div>
                     </div>
                   }
@@ -298,64 +299,48 @@
                   }
                   @if (scrollToID || scrollToSeconds) {
                     <button class="btn btn-sm btn-info ml-2" (click)="clearSelection()"><i class="bi-escape"></i> Clear Selection</button>
-                    <!--a
-                    *ngIf="authenticated && episode.offsetAccuracyPcnt > 0"
-                    title="Audio export is provided on a best-effort basis. Since the audio timestamps are not 100% accurate, it's possible you won't get exactly the audio you expect."
-                    class="btn btn-sm btn-info ml-2"
-                    target="_blank"
-                    [href]="episode.audioUri+ '?ts='+selection.startTimestampMs+'-'+selection.endTimestampMs">
-                    <i class="bi-download"></i> Export selection audio
-                  </a-->
-                  @if (episode.offsetAccuracyPcnt > 0 && episode.media.audio) {
-                    <button
-                      title="Audio export is provided on a best-effort basis. Since the audio timestamps are not 100% accurate, it's possible you won't get exactly the audio you expect."
-                      class="btn btn-sm btn-info ml-2"
-                      (click)="toggleDownloadDialog()"
+                    @if (episode.offsetAccuracyPcnt > 0 && episode.media.audio) {
+                      <button
+                        title="Audio export is provided on a best-effort basis. Since the audio timestamps are not 100% accurate, it's possible you won't get exactly the audio you expect."
+                        class="btn btn-sm btn-info ml-2"
+                        (click)="toggleDownloadDialog()"
                       >
-                      <i class="bi-download"></i> Export Selected Audio
-                    </button>
+                        <i class="bi-download"></i> Export Selected Audio
+                      </button>
+                    }
                   }
-                  <!-- a
-                  *ngIf="authenticated && episode.media.video"
-                  class="btn btn-sm btn-info ml-2"
-                  target="_blank"
-                  [href]="'/dl/media/'+episode.id+'.gif'+'?ts='+selection.startTimestampMs+'-'+selection.endTimestampMs">
-                  <i class="bi-download"></i> Export GIF
-                </a-->
-              }
-            <!--button class="btn btn-sm btn-primary ml-2" *ngIf="scrollToID || scrollToSeconds" (click)="shareSelection()">Share Selection</button-->
-            @if (pendingChanges?.length === 0 && !episode.locked) {
-              <div class="ml-2">
-                <a class="btn btn-sm btn-info" [routerLink]="['/ep', id, 'change']"><i class="bi-pencil"></i> Submit Correction</a>
+                  @if (pendingChanges?.length === 0 && !episode.locked) {
+                    <div class="ml-2">
+                      <a class="btn btn-sm btn-info" [routerLink]="['/ep', id, 'change']"><i class="bi-pencil"></i> Submit Correction</a>
+                    </div>
+                  }
+                </div>
               </div>
+            </div>
+          </div>
+          <div class="card-body p-3">
+            <app-transcript
+              #transcript
+              [transcript]="episode"
+              [epid]="episode?.id"
+              [scrollToID]="scrollToID"
+              [scrollToSeconds]="scrollToSeconds"
+              [searchResultMode]="false"
+              [enableLineLinking]="true"
+              [enableLineCopy]="true"
+              [enableAudioLinks]="episode.media.audio && !episode.media.audioRestricted"
+              [media]="episode.media"
+              (emitAudioTimestamp)="onAudioTimestamp($event)"
+              (emitSelection)="selectSection($event)"
+            ></app-transcript>
+            @if (!episode?.transcript?.length) {
+              <div class="text-center p-4">No transcript available.</div>
             }
           </div>
         </div>
-      </div>
-    </div>
-    <div class="card-body p-3">
-      <app-transcript
-        #transcript
-        [transcript]="episode"
-        [epid]="episode?.id"
-        [scrollToID]="scrollToID"
-        [scrollToSeconds]="scrollToSeconds"
-        [searchResultMode]="false"
-        [enableLineLinking]="true"
-        [enableLineCopy]="true"
-        [enableAudioLinks]="episode.media.audio && !episode.media.audioRestricted"
-        [media]="episode.media"
-        (emitAudioTimestamp)="onAudioTimestamp($event)"
-        (emitSelection)="selectSection($event)"
-      ></app-transcript>
-      @if (!episode?.transcript?.length) {
-        <div class="text-center p-4">No transcript available.</div>
       }
     </div>
   </div>
-}
-</div>
-</div>
 </div>
 @if (error && !episode) {
   <div class="container-fluid w-25">
@@ -395,7 +380,7 @@
             [startTimestampMs]="selection.startTimestampMs"
             [endTimestampMs]="selection.endTimestampMs"
             [episodeDurationMs]="episodeDurationMs"
-            >
+          >
           </app-audio-waveform>
         </div>
       </div>
