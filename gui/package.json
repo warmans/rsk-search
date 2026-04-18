@@ -18,7 +18,8 @@
     "docker-publish": "DOCKER_IMAGE_NAME=rsk-search-gui ../deploy/script/docker-publish.sh",
     "release": "npm run build && npm run docker-build && npm run docker-publish",
     "check-deps": "npx npm-check-updates",
-    "update-deps": "npx npm-check-updates -i"
+    "update-deps": "npx npm-check-updates -i",
+    "install-git-hooks": "cd .. && husky gui/.husky"
   },
   "dependencies": {
     "@angular/animations": "21.2.9",
@@ -58,6 +59,7 @@
     "@types/jasmine": "3.8.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^18.0.0",
+    "husky": "^9.1.7",
     "jasmine-core": "3.8.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~6.3.9",
@@ -65,10 +67,14 @@
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
+    "lint-staged": "^16.4.0",
     "oxfmt": "^0.45.0",
     "oxlint": "^1.60.0",
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "typescript": "~5.9.3"
+  },
+  "lint-staged": {
+    "*.{js,ts,html,scss,json}": "oxfmt --write"
   }
 }

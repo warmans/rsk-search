@@ -41,6 +41,10 @@ From the gui directory:
 If the local server is running you can use `npm run start` to proxy the
 API to the local running API.
 
+The project uses oxfmt to enforce formatting in CI. You can automatically format code using `npm run fmt`.
+
+Running `npm run install-git-hooks` will add a pre-commit hook that will run `npm run fmt` before committing.
+
 ### Server development
 
 From the server directory:
