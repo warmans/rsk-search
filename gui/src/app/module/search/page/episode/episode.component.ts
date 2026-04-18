@@ -1,32 +1,30 @@
 import {Component, EventEmitter, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute, Data, Router} from '@angular/router';
+import {ActivatedRoute, Data, NavigationEnd, Router} from '@angular/router';
 import {SearchAPIClient} from 'src/app/lib/api-client/services/search';
-import {DialogType, RskArchive, RskDialog, RskTranscript, RskTranscriptChange, RskTranscriptChangeList, RskTrivia} from 'src/app/lib/api-client/models';
-import {ViewportScroller} from '@angular/common';
-import {takeUntil} from 'rxjs/operators';
+import {DialogType, RskArchive, RskDialog, RskTranscript, RskTranscriptChange, RskTranscriptChangeList} from 'src/app/lib/api-client/models';
+import {Location, ViewportScroller} from '@angular/common';
+import {filter, takeUntil} from 'rxjs/operators';
 import {Title} from '@angular/platform-browser';
 import {SessionService} from '../../../core/service/session/session.service';
 import {And, Eq, Neq} from 'src/app/lib/filter-dsl/filter';
 import {Bool, Str} from 'src/app/lib/filter-dsl/value';
 import {MetaService} from '../../../core/service/meta/meta.service';
-import {AudioService, PlayerMode, PlayerState, Status} from '../../../core/service/audio/audio.service';
+import {AudioService, PlayerState, Status} from '../../../core/service/audio/audio.service';
 import {Section, TranscriptComponent} from '../../../shared/component/transcript/transcript.component';
 import {combineLatest} from 'rxjs';
-import {parseSection} from "../../../shared/lib/fragment";
-import {ClipboardService} from "../../../core/service/clipboard/clipboard.service";
+import {parseSection} from '../../../shared/lib/fragment';
+import {ClipboardService} from '../../../core/service/clipboard/clipboard.service';
 import {CommunityAPIClient} from 'src/app/lib/api-client/services/community';
 import {episodeIdVariations} from 'src/app/lib/util';
-import {AlertService} from "../../../core/service/alert/alert.service";
-import {Tscript} from "../../../shared/lib/tscript";
+import {AlertService} from '../../../core/service/alert/alert.service';
 
 @Component({
-    selector: 'app-episode',
-    templateUrl: './episode.component.html',
-    styleUrls: ['./episode.component.scss'],
-    standalone: false
+  selector: 'app-episode',
+  templateUrl: './episode.component.html',
+  styleUrls: ['./episode.component.scss'],
+  standalone: false
 })
 export class EpisodeComponent implements OnInit, OnDestroy {
-
   loading: boolean = false;
 
   id: string;
@@ -90,109 +88,114 @@ export class EpisodeComponent implements OnInit, OnDestroy {
     private audioService: AudioService,
     private clipboard: ClipboardService,
     private alertService: AlertService,
+    private location: Location
   ) {
     route.paramMap.pipe(takeUntil(this.unsubscribe$)).subscribe((d: Data) => {
       this.loadEpisode(d.params['id']);
-    });
-    route.fragment.pipe(takeUntil(this.unsubscribe$)).subscribe((f) => {
-      if (!f) {
-        this.scrollToID = undefined;
-        this.scrollToSeconds = undefined;
-        return;
-      }
-      if (f.startsWith('pos-')) {
-        this.scrollToID = f;
-        this.selection = parseSection(f, (this.episode?.transcript || []));
-      }
-      if (f.startsWith('sec-')) {
-        this.scrollToSeconds = parseInt(f.replace('sec-', ''));
-      }
     });
     sessionService.onTokenChange.pipe(takeUntil(this.unsubscribe$)).subscribe((token: string): void => {
       if (token != null) {
         this.authenticated = true;
         const claims = sessionService.getClaims();
-        this.authorIdentifier = `${claims.oauth_provider}:${claims.identity.name}`
+        this.authorIdentifier = `${claims.oauth_provider}:${claims.identity.name}`;
       }
     });
   }
 
   ngOnInit(): void {
+    const fragment = this.router.url.split('#')[1] ?? null;
+    this.handleFragment(fragment);
+
+    this.router.events
+      .pipe(
+        filter((event) => event instanceof NavigationEnd),
+        takeUntil(this.unsubscribe$),
+      )
+      .subscribe((event) => {
+        const fragment = event.url.split('#')[1] ?? null;
+        this.handleFragment(fragment);
+      });
+
     this.audioService.status.pipe(takeUntil(this.unsubscribe$)).subscribe((sta: Status) => {
       this.audioStatus = sta;
     });
   }
 
   loadEpisode(id: string) {
-
     this.id = id;
     this.loading = true;
     this.error = undefined;
 
     combineLatest([
-      this.apiClient.getTranscript({epid: this.id}),
+      this.apiClient.getTranscript({ epid: this.id }),
       this.meta.getMeta(),
-      this.communityApiClient.listArchive({episodeIds: episodeIdVariations(this.id)}),
-    ]).pipe(takeUntil(this.unsubscribe$)).subscribe(
-      ([ep, metadata, media]) => {
+      this.communityApiClient.listArchive({ episodeIds: episodeIdVariations(this.id) }),
+    ])
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(
+        ([ep, metadata, media]) => {
+          this.episode = ep;
+          this.shortID = ep.shortId;
+          this.titleService.setTitle(ep.id);
+          this.transcribers = ep.contributors.join(', ');
+          this.episodeImage = ep.metadata['cover_art_url'] ? ep.metadata['cover_art_url'] : `/assets/cover/${ep.publication}-s${ep.series}-lg.jpeg`;
+          this.episodeDurationMs = parseInt(ep.metadata['duration_ms']);
+          this.media = media.items ?? [];
 
-        this.episode = ep;
-        this.shortID = ep.shortId;
-        this.titleService.setTitle(ep.id);
-        this.transcribers = ep.contributors.join(', ');
-        this.episodeImage = ep.metadata['cover_art_url'] ? ep.metadata['cover_art_url'] : `/assets/cover/${ep.publication}-s${ep.series}-lg.jpeg`;
-        this.episodeDurationMs = parseInt(ep.metadata['duration_ms']);
-        this.media = media.items ?? [];
+          this.quotes = [];
+          this.songs = [];
+          ep.transcript.forEach((r: RskDialog) => {
+            if (r.notable) {
+              this.quotes.push(r);
+            }
+            if (r.type === DialogType.SONG) {
+              this.songs.push(r);
+            }
+          });
 
-        this.quotes = [];
-        this.songs = [];
-        ep.transcript.forEach((r: RskDialog) => {
-          if (r.notable) {
-            this.quotes.push(r);
+          const curIndex = (metadata.episodeShortIds || []).findIndex((v) => v == ep.shortId);
+          if (curIndex === -1) {
+            console.error(`failed to find episode in metadata ${ep.shortId}`);
           }
-          if (r.type === DialogType.SONG) {
-            this.songs.push(r);
+
+          this.previousEpisodeId = this.nextEpisodeId = null;
+          if (curIndex > 0 && (metadata.episodeShortIds || []).length > 0) {
+            this.previousEpisodeId = `ep-${metadata.episodeShortIds[curIndex - 1]}`;
           }
-        });
+          if (curIndex < (metadata.episodeShortIds || []).length - 1) {
+            this.nextEpisodeId = `ep-${metadata.episodeShortIds[curIndex + 1]}`;
+          }
 
-        const curIndex = (metadata.episodeShortIds || []).findIndex((v) => v == ep.shortId);
-        if (curIndex === -1) {
-          console.error(`failed to find episode in metadata ${ep.shortId}`);
-        }
+          const availableInfoPanels = [];
+          if (this.episode?.synopses && this.episode?.synopses.length > 0) {
+            availableInfoPanels.push('synopsis');
+          }
+          if (this.quotes && this.episode?.synopses.length > 0) {
+            availableInfoPanels.push('quotes');
+          }
+          if (this.songs && this.songs.length > 0) {
+            availableInfoPanels.push('songs');
+          }
+          if ((this.episode.trivia || []).length > 0) {
+            availableInfoPanels.push('trivia');
+          }
+          this.activeInfoPanel = availableInfoPanels.length > 0 ? availableInfoPanels[0] : undefined;
+          this.selection = parseSection(this.scrollToID, this.episode?.transcript || []);
+        },
+        (err) => {
+          this.error = 'Failed to fetch episode';
+        },
+      )
+      .add(() => (this.loading = false));
 
-        this.previousEpisodeId = this.nextEpisodeId = null;
-        if (curIndex > 0 && (metadata.episodeShortIds || []).length > 0) {
-          this.previousEpisodeId = `ep-${metadata.episodeShortIds[curIndex - 1]}`;
-        }
-        if (curIndex < ((metadata.episodeShortIds || []).length - 1)) {
-          this.nextEpisodeId = `ep-${metadata.episodeShortIds[curIndex + 1]}`;
-        }
-
-        const availableInfoPanels = [];
-        if (this.episode?.synopses && this.episode?.synopses.length > 0) {
-          availableInfoPanels.push("synopsis");
-        }
-        if (this.quotes && this.episode?.synopses.length > 0) {
-          availableInfoPanels.push("quotes");
-        }
-        if (this.songs && this.songs.length > 0) {
-          availableInfoPanels.push("songs");
-        }
-        if ((this.episode.trivia || []).length > 0) {
-          availableInfoPanels.push("trivia");
-        }
-        this.activeInfoPanel = (availableInfoPanels.length > 0) ? availableInfoPanels[0] : undefined;
-        this.selection = parseSection(this.scrollToID, (this.episode?.transcript || []));
-      },
-      (err) => {
-        this.error = 'Failed to fetch episode';
-      }).add(() => this.loading = false);
-
-    this.apiClient.listTranscriptChanges({
-      filter: And(Eq('epid', Str(this.id)), Eq('merged', Bool(false)), Neq('state', Str('pending')), Neq('state', Str('rejected'))).print()
-    }).pipe(takeUntil(this.unsubscribe$)).subscribe((ep: RskTranscriptChangeList) => {
-      this.pendingChanges = ep.changes;
-    });
+    this.apiClient
+      .listTranscriptChanges({
+        filter: And(Eq('epid', Str(this.id)), Eq('merged', Bool(false)), Neq('state', Str('pending')), Neq('state', Str('rejected'))).print(),
+      })
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((ep: RskTranscriptChangeList) => {
+        this.pendingChanges = ep.changes;
+      });
   }
 
   query(field: string, value: string): string {
@@ -224,18 +227,22 @@ export class EpisodeComponent implements OnInit, OnDestroy {
   }
 
   selectSection(sel: Section) {
-    this.router.navigate([], {fragment: `pos-${sel.startPos}-${sel.endPos}`});
+    this.router.navigate([], { fragment: `pos-${sel.startPos}-${sel.endPos}` });
   }
 
   clearSelection() {
-    this.router.navigate([], {});
+    const includesFragment = this.location.path(true).includes('#');
+    if (includesFragment) {
+      this.location.go(this.location.path(false));
+      this.handleFragment(null);
+    }
   }
 
   copySelection() {
     this.clipboard.copyTextToClipboard(
       (this.episode.transcript.slice(this.selection.startPos - 1, this.selection.endPos) || [])
-        .map((d: RskDialog): string => d.actor ? `**${d.actor}:** ${d.content}` : `*${d.content}*`)
-        .join("\n")
+        .map((d: RskDialog): string => (d.actor ? `**${d.actor}:** ${d.content}` : `*${d.content}*`))
+        .join('\n'),
     );
   }
 
@@ -256,11 +263,24 @@ export class EpisodeComponent implements OnInit, OnDestroy {
     if (!userScore || !this.authenticated) {
       return;
     }
-    this.apiClient.setTranscriptRatingScore(
-      {epid: this.episode.shortId, body: {score: userScore.rating}}
-    ).subscribe(() => {
-      this.alertService.success("Rating submitted")
+    this.apiClient.setTranscriptRatingScore({ epid: this.episode.shortId, body: { score: userScore.rating } }).subscribe(() => {
+      this.alertService.success('Rating submitted');
       this.episode.ratings.scores[this.authorIdentifier] = userScore.rating;
     });
+  }
+
+  private handleFragment(fragment: string | null): void {
+    if (!fragment) {
+      this.scrollToID = null;
+      this.scrollToSeconds = null;
+      return;
+    }
+    if (fragment.startsWith('pos-')) {
+      this.scrollToID = fragment;
+      this.selection = parseSection(fragment, this.episode?.transcript || []);
+    }
+    if (fragment.startsWith('sec-')) {
+      this.scrollToSeconds = parseInt(fragment.replace('sec-', ''));
+    }
   }
 }
