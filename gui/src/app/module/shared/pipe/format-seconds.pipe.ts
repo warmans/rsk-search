@@ -2,13 +2,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { formatSecondsAsTimestamp } from 'src/app/lib/util';
 
 @Pipe({
-    name: 'formatSeconds',
-    standalone: false
+  name: 'formatSeconds',
+  standalone: false,
 })
 export class FormatSecondsPipe implements PipeTransform {
-
-  constructor() {
-  }
+  constructor() {}
 
   transform(seconds: number | string, secondsAreMilliseconds?: boolean): string {
     return formatSecondsAsTimestamp(seconds, secondsAreMilliseconds);

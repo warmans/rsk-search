@@ -25,7 +25,7 @@ body {
 
 pre {
   @include theme() {
-    color: theme-get('text-color');
+    color: theme-get("text-color");
   }
 }
 
@@ -33,10 +33,11 @@ pre {
   z-index: 100;
 
   @include theme() {
-    background-color: theme-get('navbar-bg') !important;
-    border-bottom: 2px solid theme-get('navbar-border');
+    background-color: theme-get("navbar-bg") !important;
+    border-bottom: 2px solid theme-get("navbar-border");
   }
-  .btn:focus,.btn:active {
+  .btn:focus,
+  .btn:active {
     outline: none !important;
     box-shadow: none;
   }
@@ -49,7 +50,7 @@ pre {
 
   a.active {
     @include theme() {
-      color: theme-get("text-color")
+      color: theme-get("text-color");
     }
   }
 
@@ -57,7 +58,6 @@ pre {
     text-decoration: none;
   }
 }
-
 
 .footer {
   width: 100%;
@@ -70,7 +70,7 @@ pre {
   padding: 2px 5px;
 
   @include theme() {
-    background-color: theme-get('code-bg');
+    background-color: theme-get("code-bg");
   }
 }
 
@@ -80,22 +80,21 @@ pre {
 }
 
 .card {
-
   @include theme() {
-    background-color: theme-get('fg-body');
+    background-color: theme-get("fg-body");
   }
 
   .card-body {
     @include theme() {
-      background-color: theme-get('fg-body');
-      color: theme-get('text-color');
+      background-color: theme-get("fg-body");
+      color: theme-get("text-color");
     }
   }
 
   .card-notification {
     @include theme() {
-      background-color: theme-get('body-block-standout');
-      color: theme-get('text-color');
+      background-color: theme-get("body-block-standout");
+      color: theme-get("text-color");
     }
   }
 
@@ -103,20 +102,20 @@ pre {
     font-weight: bold;
     color: $primary;
     @include theme() {
-      background-color: theme-get('header-block-bg');
-      border-color: theme-get('header-block-border') !important;
+      background-color: theme-get("header-block-bg");
+      border-color: theme-get("header-block-border") !important;
     }
 
     .text-muted {
       @include theme() {
-        color: theme-get('fg-body');
+        color: theme-get("fg-body");
       }
     }
 
     p {
       font-weight: normal;
       @include theme() {
-        color: theme-get('header-block-text');
+        color: theme-get("header-block-text");
       }
     }
 
@@ -124,33 +123,34 @@ pre {
       background-color: transparent;
       border-color: transparent;
       @include theme() {
-        color: theme-get('header-block-text') !important;
+        color: theme-get("header-block-text") !important;
       }
     }
 
     .form-control {
       @include theme() {
-        border-color: theme-get('header-block-border');
+        border-color: theme-get("header-block-border");
       }
     }
   }
 
   .card-footer {
     @include theme() {
-      color: theme-get('text-color');
+      color: theme-get("text-color");
     }
   }
 
   .form-control {
     @include theme() {
       background-color: transparent;
-      color: theme-get('header-block-text');
+      color: theme-get("header-block-text");
       border: none;
-      border-bottom: 1px solid theme-get('body-block-border');
+      border-bottom: 1px solid theme-get("body-block-border");
     }
   }
 
-  .form-control:active, .form-control:focus {
+  .form-control:active,
+  .form-control:focus {
     outline: none;
     box-shadow: none;
   }
@@ -158,35 +158,35 @@ pre {
 
 .popover {
   @include theme() {
-    background-color: theme-get('fg-body');
+    background-color: theme-get("fg-body");
   }
 
   .popover-header {
     font-weight: bold;
     color: $primary;
     @include theme() {
-      background-color: theme-get('header-block-bg');
-      border-color: theme-get('header-block-border') !important;
+      background-color: theme-get("header-block-bg");
+      border-color: theme-get("header-block-border") !important;
     }
-
   }
 
   .popover-body {
     @include theme() {
-      background-color: theme-get('fg-body');
-      color: theme-get('text-color');
+      background-color: theme-get("fg-body");
+      color: theme-get("text-color");
     }
   }
 }
 
 .table {
   @include theme() {
-    color: theme-get('text-color');
+    color: theme-get("text-color");
   }
 
-  th, td {
+  th,
+  td {
     @include theme() {
-      border-top: 1px solid theme-get('body-block-border');
+      border-top: 1px solid theme-get("body-block-border");
     }
     vertical-align: middle;
   }
@@ -198,40 +198,42 @@ pre {
 
 .progress {
   @include theme() {
-    background-color: theme-get('progress-bg') !important;
+    background-color: theme-get("progress-bg") !important;
   }
 }
 
 .modal-content {
   @include theme() {
-    background-color: theme-get('fg-body') !important;
+    background-color: theme-get("fg-body") !important;
   }
 
-  .modal-footer, .modal-header {
+  .modal-footer,
+  .modal-header {
     @include theme() {
-      border-color: theme-get('body-block-border') !important;
+      border-color: theme-get("body-block-border") !important;
     }
   }
 }
 
-.modal-body, .modal-header {
+.modal-body,
+.modal-header {
   @include theme() {
-    color: theme-get('text-color');
+    color: theme-get("text-color");
   }
 }
 
 .nav-tabs {
-
   border-bottom: none !important;
   z-index: 10;
   top: 1px;
   position: relative;
 
-  .nav-link.active, .nav-item.show .nav-link {
+  .nav-link.active,
+  .nav-item.show .nav-link {
     border-bottom: none;
     @include theme() {
-      background-color: theme-get('fg-body-darker') !important;
-      border-color: theme-get('body-block-border');
+      background-color: theme-get("fg-body-darker") !important;
+      border-color: theme-get("body-block-border");
       border-bottom: none;
     }
   }
@@ -242,7 +244,8 @@ pre {
     }
   }
 
-  .nav-link:hover, .nav-link.active {
+  .nav-link:hover,
+  .nav-link.active {
     color: $primary !important;
     border: 1px solid;
     outline: none;
@@ -259,7 +262,7 @@ pre {
 .card .nav-tabs li {
   border: 1px solid;
   @include theme() {
-    border-color: theme-get('header-block-border');
+    border-color: theme-get("header-block-border");
     border-bottom: none;
   }
 }
@@ -275,14 +278,14 @@ pre {
 .text-paragraph {
   font-weight: normal !important;
   @include theme() {
-    color: theme-get('text-color');
+    color: theme-get("text-color");
   }
 }
 
 .btn-transparent {
   background-color: transparent;
   @include theme() {
-    color: theme-get('text-color') !important;
+    color: theme-get("text-color") !important;
   }
 
   &:focus {
@@ -292,14 +295,14 @@ pre {
 
   &:hover {
     @include theme() {
-      color: theme-get('text-color') !important;
+      color: theme-get("text-color") !important;
     }
   }
 }
 
 .close {
   @include theme() {
-    color: theme-get('text-color');
+    color: theme-get("text-color");
   }
 }
 
@@ -314,26 +317,26 @@ pre {
 
 .border-bottom {
   @include theme() {
-    border-color: theme-get('body-block-standout') !important;
+    border-color: theme-get("body-block-standout") !important;
   }
 }
 
 .border-body-block-standout {
   @include theme() {
-    border-color: theme-get('body-block-standout') !important;
+    border-color: theme-get("body-block-standout") !important;
   }
 }
 
 .text-body-block-standout {
   @include theme() {
-    color: theme-get('body-block-standout') !important;
+    color: theme-get("body-block-standout") !important;
   }
 }
 
 .pagination {
   .page-link:hover {
     @include theme() {
-      background-color: theme-get('hover-highlight');
+      background-color: theme-get("hover-highlight");
       color: #fff;
     }
   }
@@ -342,9 +345,9 @@ pre {
 // how to use theme-get in the actual component?!
 .player-fixed {
   @include theme() {
-    color: theme-get('text-color');
-    background-color: theme-get('fg-body-darker');
-    border-top: 1px solid theme-get('fg-body');
+    color: theme-get("text-color");
+    background-color: theme-get("fg-body-darker");
+    border-top: 1px solid theme-get("fg-body");
   }
 }
 
@@ -352,14 +355,15 @@ pre {
 
 .search-dropdown {
   @include theme() {
-    background-color: theme-get('header-block-bg') !important;
-    color: theme-get('header-block-text') !important;
+    background-color: theme-get("header-block-bg") !important;
+    color: theme-get("header-block-text") !important;
   }
 
   .autocomplete-dropdown {
-    .line:hover, .line.active {
+    .line:hover,
+    .line.active {
       @include theme() {
-        background-color: theme-get('header-block-bg-highlight') !important;
+        background-color: theme-get("header-block-bg-highlight") !important;
       }
     }
     .line {
@@ -372,7 +376,6 @@ pre {
       }
     }
   }
-
 }
 
 app-markdown {
@@ -382,52 +385,52 @@ app-markdown {
 }
 
 app-user-menu {
-
   .arrow-up {
     @include theme() {
-      border-bottom-color: theme-get('fg-body-darker') !important;
+      border-bottom-color: theme-get("fg-body-darker") !important;
     }
   }
 
   .menu {
     @include theme() {
-      color: theme-get('text-color');
-      background-color: theme-get('fg-body-darker');
+      color: theme-get("text-color");
+      background-color: theme-get("fg-body-darker");
     }
   }
 }
 
 .illustration {
   @include theme() {
-    -webkit-filter: invert(theme-get('invert-pcnt')); /* safari 6.0 - 9.0 */
-    filter: invert(theme-get('invert-pcnt'));
+    -webkit-filter: invert(theme-get("invert-pcnt")); /* safari 6.0 - 9.0 */
+    filter: invert(theme-get("invert-pcnt"));
   }
 }
 
 .background-illustration {
   @include theme() {
-    -webkit-filter: invert(theme-get('invert-pcnt')); /* safari 6.0 - 9.0 */
-    filter: invert(theme-get('invert-pcnt'));
+    -webkit-filter: invert(theme-get("invert-pcnt")); /* safari 6.0 - 9.0 */
+    filter: invert(theme-get("invert-pcnt"));
   }
 }
 
 .text-block-bg {
   @include theme() {
-    background-color: theme-get('header-block-text');
-    color: theme-get('header-block-bg');
+    background-color: theme-get("header-block-text");
+    color: theme-get("header-block-bg");
   }
 }
 
 .form-control-themed {
   @include theme() {
     background-color: transparent;
-    color: theme-get('header-block-text');
+    color: theme-get("header-block-text");
     border: none;
-    border-bottom: 1px solid theme-get('body-block-border');
+    border-bottom: 1px solid theme-get("body-block-border");
   }
 }
 
-.form-control-themed:active, .form-control-themed:focus {
+.form-control-themed:active,
+.form-control-themed:focus {
   background-color: transparent !important;
   outline: none !important;
   box-shadow: none !important;
@@ -440,10 +443,9 @@ app-user-menu {
 
 .trivia-breakout {
   p {
-    margin: 0 !important;;
+    margin: 0 !important;
   }
 }
-
 
 /* Importing Bootstrap SCSS file. */
 @import "node_modules/bootstrap/scss/bootstrap";

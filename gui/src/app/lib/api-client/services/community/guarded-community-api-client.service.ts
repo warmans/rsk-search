@@ -15,37 +15,43 @@ import * as guards from '../../guards';
  */
 @Injectable()
 export class GuardedCommunityAPIClient extends CommunityAPIClient {
-
-  constructor(readonly httpClient: HttpClient,
-              @Optional() @Inject(USE_DOMAIN) domain?: string,
-              @Optional() @Inject(USE_HTTP_OPTIONS) options?: DefaultHttpOptions) {
+  constructor(
+    readonly httpClient: HttpClient,
+    @Optional() @Inject(USE_DOMAIN) domain?: string,
+    @Optional() @Inject(USE_HTTP_OPTIONS) options?: DefaultHttpOptions,
+  ) {
     super(httpClient, domain, options);
   }
 
   listArchive(
     args: {
-      episodeIds?: string[],
-      page?: number,
-      pageSize?: number,
+      episodeIds?: string[];
+      page?: number;
+      pageSize?: number;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<models.RskArchiveList> {
-    return super.listArchive(args, requestHttpOptions)
+    return super
+      .listArchive(args, requestHttpOptions)
       .pipe(tap((res: any) => guards.isRskArchiveList(res) || console.error(`TypeGuard for response 'RskArchiveList' caught inconsistency.`, res)));
   }
 
   listCommunityProjects(
     args: {
-      filter?: string,
-      sortField?: string,
-      sortDirection?: string,
-      page?: number,
-      pageSize?: number,
+      filter?: string;
+      sortField?: string;
+      sortDirection?: string;
+      page?: number;
+      pageSize?: number;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<models.RskCommunityProjectList> {
-    return super.listCommunityProjects(args, requestHttpOptions)
-      .pipe(tap((res: any) => guards.isRskCommunityProjectList(res) || console.error(`TypeGuard for response 'RskCommunityProjectList' caught inconsistency.`, res)));
+    return super
+      .listCommunityProjects(args, requestHttpOptions)
+      .pipe(
+        tap(
+          (res: any) => guards.isRskCommunityProjectList(res) || console.error(`TypeGuard for response 'RskCommunityProjectList' caught inconsistency.`, res),
+        ),
+      );
   }
-
 }

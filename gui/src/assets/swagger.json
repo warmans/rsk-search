@@ -1,3689 +1,3540 @@
 {
-    "swagger": "2.0",
-    "info": {
-      "title": "ScrimptonAPI",
-      "version": "1.0"
-    },
-    "tags": [
-      {
-        "name": "ScrimptonAPI"
-      }
-    ],
-    "schemes": [
-      "https"
-    ],
-    "consumes": [
-      "application/json"
-    ],
-    "produces": [
-      "application/json"
-    ],
-    "externalDocs": {
-      "description": "Search Xfm transcriptions",
-      "url": "http://scrimpton.com"
-    },
-    "paths": {
-      "/api/admin/tscript/import": {
-        "post": {
-          "summary": "Creates a new incomplete transcript by importing an mp3.",
-          "operationId": "createTscriptImport",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskTscriptImport"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "body",
-              "in": "body",
-              "required": true,
-              "schema": {
-                "$ref": "#/definitions/rskCreateTscriptImportRequest"
-              }
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/admin/tscript/imports": {
-        "get": {
-          "summary": "Lists previously run imports.",
-          "operationId": "listTscriptImports",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskTscriptImportList"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "filter",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "sortField",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "sortDirection",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "page",
-              "in": "query",
-              "required": false,
-              "type": "integer",
-              "format": "int32"
-            },
-            {
-              "name": "pageSize",
-              "in": "query",
-              "required": false,
-              "type": "integer",
-              "format": "int32"
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/admin/tscript/{id}": {
-        "delete": {
-          "summary": "Delete a completed partial transacript. This should only be done after the data has been extracted to the permanent transcript (flat file).",
-          "operationId": "deleteTscript",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "type": "object",
-                "properties": {}
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "id",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/auth/url": {
-        "get": {
-          "summary": "Redirects user to oauth confirmation page",
-          "operationId": "getAuthUrl",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskAuthURL"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "provider",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/author/contribution": {
-        "get": {
-          "summary": "Lists all the contributions for a single author",
-          "operationId": "listAuthorContributions",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskAuthorContributionList"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "filter",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "sortField",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "sortDirection",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "page",
-              "in": "query",
-              "required": false,
-              "type": "integer",
-              "format": "int32"
-            },
-            {
-              "name": "pageSize",
-              "in": "query",
-              "required": false,
-              "type": "integer",
-              "format": "int32"
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/author/ranks": {
-        "get": {
-          "summary": "Lists the rankings of the authors.",
-          "operationId": "listAuthorRanks",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskAuthorRankList"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "filter",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "sortField",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "sortDirection",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "page",
-              "in": "query",
-              "required": false,
-              "type": "integer",
-              "format": "int32"
-            },
-            {
-              "name": "pageSize",
-              "in": "query",
-              "required": false,
-              "type": "integer",
-              "format": "int32"
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/changelog": {
-        "get": {
-          "summary": "Fetch list of changelogs",
-          "operationId": "listChangelogs",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskChangelogList"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "filter",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "sortField",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "sortDirection",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "page",
-              "in": "query",
-              "required": false,
-              "type": "integer",
-              "format": "int32"
-            },
-            {
-              "name": "pageSize",
-              "in": "query",
-              "required": false,
-              "type": "integer",
-              "format": "int32"
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/community/archive": {
-        "get": {
-          "summary": "Lists archive items.",
-          "operationId": "listArchive",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskArchiveList"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "episodeIds",
-              "in": "query",
-              "required": false,
-              "type": "array",
-              "items": {
-                "type": "string"
-              },
-              "collectionFormat": "multi"
-            },
-            {
-              "name": "page",
-              "in": "query",
-              "required": false,
-              "type": "integer",
-              "format": "int32"
-            },
-            {
-              "name": "pageSize",
-              "in": "query",
-              "required": false,
-              "type": "integer",
-              "format": "int32"
-            }
-          ],
-          "tags": [
-            "community"
-          ]
-        }
-      },
-      "/api/community/project": {
-        "get": {
-          "summary": "Lists community projects.",
-          "operationId": "listCommunityProjects",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskCommunityProjectList"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "filter",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "sortField",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "sortDirection",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "page",
-              "in": "query",
-              "required": false,
-              "type": "integer",
-              "format": "int32"
-            },
-            {
-              "name": "pageSize",
-              "in": "query",
-              "required": false,
-              "type": "integer",
-              "format": "int32"
-            }
-          ],
-          "tags": [
-            "community"
-          ]
-        }
-      },
-      "/api/donations": {
-        "get": {
-          "summary": "Lists donations made to scrimpton.",
-          "operationId": "listIncomingDonations",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskIncomingDonationList"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/metadata": {
-        "get": {
-          "summary": "Search related metadata (searchable fields, available publications etc.)",
-          "operationId": "getMetadata",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskMetadata"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/radio/next": {
-        "get": {
-          "summary": "Get the next episode to play.",
-          "operationId": "getNext",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskNextRadioEpisode"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/radio/state": {
-        "get": {
-          "summary": "Get the current episode to play.",
-          "operationId": "getState",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskRadioState"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "tags": [
-            "search"
-          ]
-        },
-        "put": {
-          "summary": "Store the current state.",
-          "operationId": "putState",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "type": "object",
-                "properties": {}
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "body",
-              "in": "body",
-              "required": true,
-              "schema": {
-                "$ref": "#/definitions/rskPutRadioStateRequest"
-              }
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/rewards": {
-        "get": {
-          "summary": "Lists arewards that the logged in user is able to claim.",
-          "operationId": "listPendingRewards",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskPendingRewardList"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/rewards/claimed": {
-        "get": {
-          "summary": "Lists rewards that have been claimed.",
-          "operationId": "listClaimedRewards",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskClaimedRewardList"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/rewards/stats": {
-        "get": {
-          "summary": "show stats on donations made via rewards system",
-          "operationId": "getDonationStats",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskDonationStats"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/rewards/{id}/claim": {
-        "patch": {
-          "summary": "Claims a reward.",
-          "operationId": "claimReward",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "type": "object",
-                "properties": {}
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "id",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "name": "body",
-              "in": "body",
-              "required": true,
-              "schema": {
-                "$ref": "#/definitions/ContributionsServiceClaimRewardBody"
-              }
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/rewards/{rewardId}/recipients": {
-        "get": {
-          "summary": "Lists available recipients for reward.",
-          "operationId": "listDonationRecipients",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskDonationRecipientList"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "rewardId",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/roadmap": {
-        "get": {
-          "summary": "Get roadmap",
-          "operationId": "getRoadmap",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskRoadmap"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/search": {
-        "get": {
-          "summary": "Perform a search",
-          "operationId": "search",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskSearchResultList"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "query",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "page",
-              "in": "query",
-              "required": false,
-              "type": "integer",
-              "format": "int32"
-            },
-            {
-              "name": "sort",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/search/predict-terms": {
-        "get": {
-          "summary": "Predict the search term being typed similar to auto-complete.",
-          "operationId": "predictSearchTerm",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskSearchTermPredictions"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "prefix",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "maxPredictions",
-              "in": "query",
-              "required": false,
-              "type": "integer",
-              "format": "int32"
-            },
-            {
-              "name": "query",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "exact",
-              "in": "query",
-              "required": false,
-              "type": "boolean"
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/search/random-quote": {
-        "get": {
-          "summary": "Gets a random quote from the transcripts",
-          "operationId": "getRandomQuote",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskRandomQuote"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/search/songs": {
-        "get": {
-          "summary": "Fetch a list of all songs played",
-          "operationId": "listSongs",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskSongList"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "filter",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "sortField",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "sortDirection",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "page",
-              "in": "query",
-              "required": false,
-              "type": "integer",
-              "format": "int32"
-            },
-            {
-              "name": "pageSize",
-              "in": "query",
-              "required": false,
-              "type": "integer",
-              "format": "int32"
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/status/health": {
-        "head": {
-          "summary": "Just return 200 if the API is up",
-          "operationId": "getHealth",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "type": "object",
-                "properties": {}
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/status/quotas": {
-        "get": {
-          "summary": "Get summary of the service quotas",
-          "operationId": "getQuotaSummary",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskQuotas"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/transcript": {
-        "get": {
-          "summary": "Fetch list of available episodes",
-          "operationId": "listTranscripts",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskTranscriptList"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "filter",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "includeRatingBreakdown",
-              "in": "query",
-              "required": false,
-              "type": "boolean"
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/transcript/change": {
-        "get": {
-          "summary": "Submits a new version of a transcript.",
-          "operationId": "listTranscriptChanges",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskTranscriptChangeList"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "filter",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "sortField",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "sortDirection",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "page",
-              "in": "query",
-              "required": false,
-              "type": "integer",
-              "format": "int32"
-            },
-            {
-              "name": "pageSize",
-              "in": "query",
-              "required": false,
-              "type": "integer",
-              "format": "int32"
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/transcript/change/{id}": {
-        "get": {
-          "summary": "Get a single existing change.",
-          "operationId": "getTranscriptChange",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskTranscriptChange"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "id",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        },
-        "delete": {
-          "summary": "Deletes a change.",
-          "operationId": "deleteTranscriptChange",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "type": "object",
-                "properties": {}
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "id",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        },
-        "patch": {
-          "summary": "Updates an existing change.",
-          "operationId": "updateTranscriptChange",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskTranscriptChange"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "id",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "name": "body",
-              "in": "body",
-              "required": true,
-              "schema": {
-                "$ref": "#/definitions/TranscriptServiceUpdateTranscriptChangeBody"
-              }
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/transcript/change/{id}/diff": {
-        "get": {
-          "summary": "Get the diff for a change.",
-          "operationId": "getTranscriptChangeDiff",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskTranscriptChangeDiff"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "id",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/transcript/change/{id}/state": {
-        "patch": {
-          "summary": "request the change's state be changed.",
-          "operationId": "requestTranscriptChangeState",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "type": "object",
-                "properties": {}
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "id",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "name": "body",
-              "in": "body",
-              "required": true,
-              "schema": {
-                "$ref": "#/definitions/TranscriptServiceRequestTranscriptChangeStateBody"
-              }
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/transcript/chunked": {
-        "get": {
-          "summary": "List incomplete transcriptions that are being completed in chunks.",
-          "operationId": "listChunkedTranscripts",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskChunkedTranscriptList"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/transcript/chunked/chunk/contribution/{contributionId}": {
-        "get": {
-          "summary": "lists any existing contributions for a chunk",
-          "operationId": "getChunkContribution",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskChunkContribution"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "contributionId",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        },
-        "delete": {
-          "summary": "Discard contribution.",
-          "operationId": "deleteChunkContribution",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "type": "object",
-                "properties": {}
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "contributionId",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        },
-        "patch": {
-          "summary": "Update one of your existing contributions.",
-          "operationId": "updateChunkContribution",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskChunkContribution"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "contributionId",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "name": "body",
-              "in": "body",
-              "required": true,
-              "schema": {
-                "$ref": "#/definitions/TranscriptServiceUpdateChunkContributionBody"
-              }
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/transcript/chunked/chunk/contribution/{contributionId}/state": {
-        "patch": {
-          "summary": "request the contribution state be changed.",
-          "operationId": "requestChunkContributionState",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskChunkContribution"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "contributionId",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "name": "body",
-              "in": "body",
-              "required": true,
-              "schema": {
-                "$ref": "#/definitions/TranscriptServiceRequestChunkContributionStateBody"
-              }
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/transcript/chunked/chunk/contributions": {
-        "get": {
-          "summary": "lists contributed transcript chunks",
-          "operationId": "listChunkContributions",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskChunkContributionList"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "filter",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "sortField",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "sortDirection",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "page",
-              "in": "query",
-              "required": false,
-              "type": "integer",
-              "format": "int32"
-            },
-            {
-              "name": "pageSize",
-              "in": "query",
-              "required": false,
-              "type": "integer",
-              "format": "int32"
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/transcript/chunked/chunk/{chunkId}/contribution": {
-        "post": {
-          "summary": "Submit a completed (or in-progress) chunk.",
-          "operationId": "createChunkContribution",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskChunkContribution"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "chunkId",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "name": "body",
-              "in": "body",
-              "required": true,
-              "schema": {
-                "$ref": "#/definitions/TranscriptServiceCreateChunkContributionBody"
-              }
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/transcript/chunked/chunk/{id}": {
-        "get": {
-          "summary": "Gets a specific transcript chunk to be completed.",
-          "operationId": "getTranscriptChunk",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskChunk"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "id",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/transcript/chunked/{chunkedTranscriptId}/chunks": {
-        "get": {
-          "summary": "Lists all chunks for the given chunked transcript ID.",
-          "operationId": "listTranscriptChunks",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskTranscriptChunkList"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "chunkedTranscriptId",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "name": "filter",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "sortField",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "sortDirection",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "page",
-              "in": "query",
-              "required": false,
-              "type": "integer",
-              "format": "int32"
-            },
-            {
-              "name": "pageSize",
-              "in": "query",
-              "required": false,
-              "type": "integer",
-              "format": "int32"
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/transcript/{epid}": {
-        "get": {
-          "summary": "Fetch a transcript and associated metadata.",
-          "operationId": "getTranscript",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskTranscript"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "epid",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "name": "withRaw",
-              "in": "query",
-              "required": false,
-              "type": "boolean"
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/transcript/{epid}/change": {
-        "post": {
-          "summary": "Submits a new version of a transcript.",
-          "operationId": "createTranscriptChange",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskTranscriptChange"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "epid",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "name": "body",
-              "in": "body",
-              "required": true,
-              "schema": {
-                "$ref": "#/definitions/TranscriptServiceCreateTranscriptChangeBody"
-              }
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/transcript/{epid}/dialog/{pos}": {
-        "get": {
-          "summary": "Fetch a single line of dialog by position.",
-          "operationId": "getTranscriptDialog",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskTranscriptDialog"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "epid",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "name": "pos",
-              "in": "path",
-              "required": true,
-              "type": "integer",
-              "format": "int32"
-            },
-            {
-              "name": "numContextLines",
-              "in": "query",
-              "required": false,
-              "type": "integer",
-              "format": "int32"
-            },
-            {
-              "name": "range.start",
-              "in": "query",
-              "required": false,
-              "type": "integer",
-              "format": "int32"
-            },
-            {
-              "name": "range.end",
-              "in": "query",
-              "required": false,
-              "type": "integer",
-              "format": "int32"
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/transcript/{epid}/rating/score": {
-        "put": {
-          "summary": "Submits a rating score for a transcript.",
-          "operationId": "setTranscriptRatingScore",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "type": "object",
-                "properties": {}
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "epid",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "name": "body",
-              "in": "body",
-              "required": true,
-              "schema": {
-                "$ref": "#/definitions/TranscriptServiceSetTranscriptRatingScoreBody"
-              }
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/transcript/{epid}/rating/score/bulk": {
-        "put": {
-          "summary": "Submits a set of rating scores for a transcript.",
-          "operationId": "bulkSetTranscriptRatingScore",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "type": "object",
-                "properties": {}
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "epid",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "name": "body",
-              "in": "body",
-              "required": true,
-              "schema": {
-                "$ref": "#/definitions/TranscriptServiceBulkSetTranscriptRatingScoreBody"
-              }
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/transcript/{epid}/tag/bulk": {
-        "put": {
-          "summary": "Submits multiple tags for an episode.",
-          "operationId": "bulkSetTranscriptTag",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "type": "object",
-                "properties": {}
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "epid",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "name": "body",
-              "in": "body",
-              "required": true,
-              "schema": {
-                "$ref": "#/definitions/TranscriptServiceBulkSetTranscriptTagsBody"
-              }
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/transcripts/chunked/chunk-stats": {
-        "get": {
-          "summary": "Get details about the current chunk backlog",
-          "operationId": "getChunkedTranscriptChunkStats",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskChunkStats"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/user/notifications": {
-        "get": {
-          "summary": "List most recent notifications.",
-          "operationId": "listNotifications",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskNotificationsList"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "filter",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "sortField",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "sortDirection",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            },
-            {
-              "name": "page",
-              "in": "query",
-              "required": false,
-              "type": "integer",
-              "format": "int32"
-            },
-            {
-              "name": "pageSize",
-              "in": "query",
-              "required": false,
-              "type": "integer",
-              "format": "int32"
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/user/notifications/mark-all": {
-        "post": {
-          "summary": "Mark all user's notifications as having been read.",
-          "operationId": "markNotificationsRead",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "type": "object",
-                "properties": {}
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "tags": [
-            "search"
-          ]
-        }
-      },
-      "/api/values/{field}": {
-        "get": {
-          "summary": "Get a list of values for the given keyword field",
-          "operationId": "listFieldValues",
-          "responses": {
-            "200": {
-              "description": "A successful response.",
-              "schema": {
-                "$ref": "#/definitions/rskFieldValueList"
-              }
-            },
-            "default": {
-              "description": "An unexpected error response.",
-              "schema": {
-                "$ref": "#/definitions/rpcStatus"
-              }
-            }
-          },
-          "parameters": [
-            {
-              "name": "field",
-              "in": "path",
-              "required": true,
-              "type": "string"
-            },
-            {
-              "name": "prefix",
-              "in": "query",
-              "required": false,
-              "type": "string"
-            }
-          ],
-          "tags": [
-            "search"
-          ]
-        }
-      }
-    },
-    "definitions": {
-      "AuthorContributionContributionType": {
-        "type": "string",
-        "enum": [
-          "CONTRIBUTION_TYPE_UNKNOWN",
-          "CHUNK",
-          "CHANGE"
-        ],
-        "default": "CONTRIBUTION_TYPE_UNKNOWN"
-      },
-      "ContributionsServiceClaimRewardBody": {
-        "type": "object",
-        "properties": {
-          "donationArgs": {
-            "$ref": "#/definitions/rskDonationArgs"
-          }
-        }
-      },
-      "DialogDialogType": {
-        "type": "string",
-        "enum": [
-          "UNKNOWN",
-          "SONG",
-          "CHAT",
-          "NONE",
-          "GAP"
-        ],
-        "default": "UNKNOWN"
-      },
-      "FieldMetaKind": {
-        "type": "string",
-        "enum": [
-          "UNKNOWN",
-          "IDENTIFIER",
-          "KEYWORD",
-          "KEYWORD_LIST",
-          "TEXT",
-          "INT",
-          "FLOAT",
-          "DATE"
-        ],
-        "default": "UNKNOWN"
-      },
-      "NotificationNotificationKind": {
-        "type": "string",
-        "enum": [
-          "UNDEFINED_KIND",
-          "CONFIRMATION",
-          "INFO",
-          "WARNING",
-          "SPAM"
-        ],
-        "default": "UNDEFINED_KIND"
-      },
-      "RewardRewardKind": {
-        "type": "string",
-        "enum": [
-          "UNKNOWN",
-          "DONATION"
-        ],
-        "default": "UNKNOWN"
-      },
-      "TranscriptServiceBulkSetTranscriptRatingScoreBody": {
-        "type": "object",
-        "properties": {
-          "scores": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "number",
-              "format": "float"
-            }
-          },
-          "oauthSource": {
-            "type": "string"
-          }
-        }
-      },
-      "TranscriptServiceBulkSetTranscriptTagsBody": {
-        "type": "object",
-        "properties": {
-          "tags": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "$ref": "#/definitions/rskTag"
-            }
-          }
-        }
-      },
-      "TranscriptServiceCreateChunkContributionBody": {
-        "type": "object",
-        "properties": {
-          "transcript": {
-            "type": "string"
-          }
-        }
-      },
-      "TranscriptServiceCreateTranscriptChangeBody": {
-        "type": "object",
-        "properties": {
-          "transcript": {
-            "type": "string"
-          },
-          "transcriptVersion": {
-            "type": "string"
-          },
-          "summary": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "releaseDate": {
-            "type": "string"
-          }
-        }
-      },
-      "TranscriptServiceRequestChunkContributionStateBody": {
-        "type": "object",
-        "properties": {
-          "requestState": {
-            "$ref": "#/definitions/rskContributionState"
-          },
-          "comment": {
-            "type": "string"
-          }
-        }
-      },
-      "TranscriptServiceRequestTranscriptChangeStateBody": {
-        "type": "object",
-        "properties": {
-          "state": {
-            "$ref": "#/definitions/rskContributionState"
-          },
-          "pointsOnApprove": {
-            "type": "number",
-            "format": "float"
-          }
-        }
-      },
-      "TranscriptServiceSetTranscriptRatingScoreBody": {
-        "type": "object",
-        "properties": {
-          "score": {
-            "type": "number",
-            "format": "float"
-          },
-          "delete": {
-            "type": "boolean"
-          }
-        }
-      },
-      "TranscriptServiceUpdateChunkContributionBody": {
-        "type": "object",
-        "properties": {
-          "transcript": {
-            "type": "string"
-          },
-          "state": {
-            "$ref": "#/definitions/rskContributionState"
-          }
-        }
-      },
-      "TranscriptServiceUpdateTranscriptChangeBody": {
-        "type": "object",
-        "properties": {
-          "transcript": {
-            "type": "string"
-          },
-          "state": {
-            "$ref": "#/definitions/rskContributionState"
-          },
-          "pointsOnApprove": {
-            "type": "number",
-            "format": "float"
-          },
-          "summary": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "releaseDate": {
-            "type": "string"
-          }
-        }
-      },
-      "protobufAny": {
-        "type": "object",
-        "properties": {
-          "@type": {
-            "type": "string"
-          }
-        },
-        "additionalProperties": {}
-      },
-      "rpcStatus": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "message": {
-            "type": "string"
-          },
-          "details": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "$ref": "#/definitions/protobufAny"
-            }
-          }
-        }
-      },
-      "rskArchive": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "relatedEpisode": {
-            "type": "string"
-          },
-          "files": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "media": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "$ref": "#/definitions/rskFile"
-            }
-          }
-        }
-      },
-      "rskArchiveList": {
-        "type": "object",
-        "properties": {
-          "items": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "$ref": "#/definitions/rskArchive"
-            }
-          },
-          "resultCount": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
-      "rskAudioQuality": {
-        "type": "string",
-        "enum": [
-          "AUDIO_QUALITY_UNKNOWN",
-          "POOR",
-          "AVERAGE",
-          "GOOD"
-        ],
-        "default": "AUDIO_QUALITY_UNKNOWN"
-      },
-      "rskAuthURL": {
-        "type": "object",
-        "properties": {
-          "url": {
-            "type": "string"
-          }
-        }
-      },
-      "rskAuthor": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "identityIconImg": {
-            "type": "string"
-          },
-          "supporter": {
-            "type": "boolean"
-          },
-          "oauthProvider": {
-            "type": "string"
-          }
-        }
-      },
-      "rskAuthorContribution": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "episodeId": {
-            "type": "string"
-          },
-          "contributionType": {
-            "$ref": "#/definitions/AuthorContributionContributionType"
-          },
-          "author": {
-            "$ref": "#/definitions/rskAuthor"
-          },
-          "points": {
-            "type": "number",
-            "format": "float"
-          },
-          "createdAt": {
-            "type": "string"
-          }
-        }
-      },
-      "rskAuthorContributionList": {
-        "type": "object",
-        "properties": {
-          "contributions": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "$ref": "#/definitions/rskAuthorContribution"
-            }
-          }
-        }
-      },
-      "rskAuthorRank": {
-        "type": "object",
-        "properties": {
-          "author": {
-            "$ref": "#/definitions/rskAuthor"
-          },
-          "approvedChunks": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "approvedChanges": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "rewardValueUsd": {
-            "type": "number",
-            "format": "float"
-          },
-          "points": {
-            "type": "number",
-            "format": "float"
-          },
-          "currentRank": {
-            "$ref": "#/definitions/rskRank"
-          },
-          "nextRank": {
-            "$ref": "#/definitions/rskRank"
-          }
-        }
-      },
-      "rskAuthorRankList": {
-        "type": "object",
-        "properties": {
-          "rankings": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "$ref": "#/definitions/rskAuthorRank"
-            }
-          }
-        }
-      },
-      "rskChangelog": {
-        "type": "object",
-        "properties": {
-          "date": {
-            "type": "string"
-          },
-          "content": {
-            "type": "string"
-          }
-        }
-      },
-      "rskChangelogList": {
-        "type": "object",
-        "properties": {
-          "changelogs": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "$ref": "#/definitions/rskChangelog"
-            }
-          }
-        }
-      },
-      "rskChunk": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "chunkedTranscriptId": {
-            "type": "string"
-          },
-          "raw": {
-            "type": "string"
-          },
-          "audioClipUri": {
-            "type": "string"
-          },
-          "numContributions": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "episodeId": {
-            "type": "string"
-          },
-          "startTimeMs": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "endTimeMs": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
-      "rskChunkContribution": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "chunkId": {
-            "type": "string"
-          },
-          "transcript": {
-            "type": "string"
-          },
-          "state": {
-            "$ref": "#/definitions/rskContributionState"
-          },
-          "author": {
-            "$ref": "#/definitions/rskAuthor"
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "stateComment": {
-            "type": "string"
-          }
-        }
-      },
-      "rskChunkContributionList": {
-        "type": "object",
-        "properties": {
-          "contributions": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "$ref": "#/definitions/rskChunkContribution"
-            }
-          }
-        }
-      },
-      "rskChunkStates": {
-        "type": "object",
-        "properties": {
-          "states": {
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/rskContributionState"
-            }
-          }
-        }
-      },
-      "rskChunkStats": {
-        "type": "object",
-        "properties": {
-          "numPending": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "numSubmitted": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "suggestedNextChunkId": {
-            "type": "string"
-          }
-        }
-      },
-      "rskChunkedTranscriptList": {
-        "type": "object",
-        "properties": {
-          "chunked": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "$ref": "#/definitions/rskChunkedTranscriptStats"
-            }
-          }
-        }
-      },
-      "rskChunkedTranscriptStats": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "publication": {
-            "type": "string"
-          },
-          "series": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "episode": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "chunkContributions": {
-            "type": "object",
-            "additionalProperties": {
-              "$ref": "#/definitions/rskChunkStates"
-            }
-          },
-          "numChunks": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "numContributions": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "numPendingContributions": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "numRequestApprovalContributions": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "numApprovedContributions": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "numRejectedContributions": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "name": {
-            "type": "string"
-          }
-        }
-      },
-      "rskClaimedReward": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "claimKind": {
-            "type": "string"
-          },
-          "claimValue": {
-            "type": "number",
-            "format": "float"
-          },
-          "claimCurrency": {
-            "type": "string"
-          },
-          "claimDescription": {
-            "type": "string"
-          },
-          "claimAt": {
-            "type": "string"
-          }
-        }
-      },
-      "rskClaimedRewardList": {
-        "type": "object",
-        "properties": {
-          "rewards": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "$ref": "#/definitions/rskClaimedReward"
-            }
-          }
-        }
-      },
-      "rskCommunityProject": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "summary": {
-            "type": "string"
-          },
-          "content": {
-            "type": "string"
-          },
-          "url": {
-            "type": "string"
-          },
-          "createdAt": {
-            "type": "string"
-          }
-        }
-      },
-      "rskCommunityProjectList": {
-        "type": "object",
-        "properties": {
-          "projects": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "$ref": "#/definitions/rskCommunityProject"
-            }
-          },
-          "resultCount": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
-      "rskContributionState": {
-        "type": "string",
-        "enum": [
-          "STATE_UNDEFINED",
-          "STATE_REQUEST_APPROVAL",
-          "STATE_PENDING",
-          "STATE_APPROVED",
-          "STATE_REJECTED"
-        ],
-        "default": "STATE_UNDEFINED"
-      },
-      "rskCreateTscriptImportRequest": {
-        "type": "object",
-        "properties": {
-          "epid": {
-            "type": "string",
-            "title": "must be in the correct format e.g. xfm-S2E36"
-          },
-          "mp3Uri": {
-            "type": "string"
-          },
-          "epname": {
-            "type": "string"
-          }
-        }
-      },
-      "rskCurrentRadioEpisode": {
-        "type": "object",
-        "properties": {
-          "shortId": {
-            "type": "string"
-          },
-          "startedAt": {
-            "type": "string"
-          }
-        }
-      },
-      "rskDialog": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "pos": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "type": {
-            "$ref": "#/definitions/DialogDialogType"
-          },
-          "actor": {
-            "type": "string"
-          },
-          "content": {
-            "type": "string"
-          },
-          "metadata": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string"
-            }
-          },
-          "isMatchedRow": {
-            "type": "boolean"
-          },
-          "notable": {
-            "type": "boolean"
-          },
-          "offsetSec": {
-            "type": "string",
-            "format": "int64",
-            "title": "deprecated"
-          },
-          "offsetInferred": {
-            "type": "boolean"
-          },
-          "offsetDistance": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "offsetMs": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "durationMs": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "placeholder": {
-            "type": "boolean"
-          }
-        }
-      },
-      "rskDialogRange": {
-        "type": "object",
-        "properties": {
-          "start": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "end": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
-      "rskDialogResult": {
-        "type": "object",
-        "properties": {
-          "transcript": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "$ref": "#/definitions/rskDialog"
-            }
-          },
-          "score": {
-            "type": "number",
-            "format": "float"
-          }
-        }
-      },
-      "rskDonationArgs": {
-        "type": "object",
-        "properties": {
-          "recipient": {
-            "type": "string"
-          }
-        }
-      },
-      "rskDonationRecipient": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "mission": {
-            "type": "string"
-          },
-          "logoUrl": {
-            "type": "string"
-          },
-          "ngoId": {
-            "type": "string"
-          },
-          "url": {
-            "type": "string"
-          },
-          "quote": {
-            "type": "string"
-          }
-        }
-      },
-      "rskDonationRecipientList": {
-        "type": "object",
-        "properties": {
-          "organizations": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "$ref": "#/definitions/rskDonationRecipient"
-            }
-          }
-        }
-      },
-      "rskDonationStats": {
-        "type": "object",
-        "properties": {
-          "stats": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "$ref": "#/definitions/rskRecipientStats"
-            }
-          }
-        }
-      },
-      "rskFieldMeta": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "kind": {
-            "$ref": "#/definitions/FieldMetaKind"
-          }
-        }
-      },
-      "rskFieldValue": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "type": "string"
-          },
-          "count": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
-      "rskFieldValueList": {
-        "type": "object",
-        "properties": {
-          "values": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "$ref": "#/definitions/rskFieldValue"
-            }
-          }
-        }
-      },
-      "rskFile": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "thumbnailName": {
-            "type": "string"
-          }
-        }
-      },
-      "rskIncomingDonation": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "amount": {
-            "type": "number",
-            "format": "float"
-          },
-          "amountCurrency": {
-            "type": "string"
-          },
-          "note": {
-            "type": "string"
-          }
-        }
-      },
-      "rskIncomingDonationList": {
-        "type": "object",
-        "properties": {
-          "donations": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "$ref": "#/definitions/rskIncomingDonation"
-            }
-          }
-        }
-      },
-      "rskMedia": {
-        "type": "object",
-        "properties": {
-          "video": {
-            "type": "boolean"
-          },
-          "audio": {
-            "type": "boolean"
-          },
-          "audioRestricted": {
-            "type": "boolean"
-          }
-        }
-      },
-      "rskMetadata": {
-        "type": "object",
-        "properties": {
-          "searchFields": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "$ref": "#/definitions/rskFieldMeta"
-            }
-          },
-          "episodeShortIds": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "rskNextRadioEpisode": {
-        "type": "object",
-        "properties": {
-          "shortId": {
-            "type": "string"
-          }
-        }
-      },
-      "rskNotification": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "kind": {
-            "$ref": "#/definitions/NotificationNotificationKind"
-          },
-          "message": {
-            "type": "string"
-          },
-          "clickThoughUrl": {
-            "type": "string"
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "readAt": {
-            "type": "string"
-          }
-        }
-      },
-      "rskNotificationsList": {
-        "type": "object",
-        "properties": {
-          "notifications": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "$ref": "#/definitions/rskNotification"
-            }
-          }
-        }
-      },
-      "rskPendingRewardList": {
-        "type": "object",
-        "properties": {
-          "rewards": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "$ref": "#/definitions/rskReward"
-            }
-          }
-        }
-      },
-      "rskPrediction": {
-        "type": "object",
-        "properties": {
-          "line": {
-            "type": "string"
-          },
-          "fragment": {
-            "type": "string"
-          },
-          "epid": {
-            "type": "string"
-          },
-          "pos": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "actor": {
-            "type": "string"
-          }
-        }
-      },
-      "rskPublicationType": {
-        "type": "string",
-        "enum": [
-          "PUBLICATION_TYPE_UNKNOWN",
-          "PUBLICATION_TYPE_RADIO",
-          "PUBLICATION_TYPE_PODCAST",
-          "PUBLICATION_TYPE_PROMO",
-          "PUBLICATION_TYPE_TV",
-          "PUBLICATION_TYPE_OTHER"
-        ],
-        "default": "PUBLICATION_TYPE_UNKNOWN"
-      },
-      "rskPutRadioStateRequest": {
-        "type": "object",
-        "properties": {
-          "currentEpisode": {
-            "$ref": "#/definitions/rskCurrentRadioEpisode"
-          },
-          "currentTimestampMs": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
-      "rskQuotas": {
-        "type": "object",
-        "properties": {
-          "bandwidthTotalMib": {
-            "type": "number",
-            "format": "float"
-          },
-          "bandwidthRemainingMib": {
-            "type": "number",
-            "format": "float"
-          }
-        }
-      },
-      "rskRadioState": {
-        "type": "object",
-        "properties": {
-          "currentEpisode": {
-            "$ref": "#/definitions/rskCurrentRadioEpisode"
-          },
-          "currentTimestampMs": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
-      "rskRandomQuote": {
-        "type": "object",
-        "properties": {
-          "quote": {
-            "type": "string"
-          },
-          "actor": {
-            "type": "string"
-          },
-          "epid": {
-            "type": "string"
-          },
-          "pos": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
-      "rskRank": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "points": {
-            "type": "number",
-            "format": "float"
-          }
-        }
-      },
-      "rskRatings": {
-        "type": "object",
-        "properties": {
-          "scores": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "number",
-              "format": "float"
-            }
-          },
-          "scoreAvg": {
-            "type": "number",
-            "format": "float"
-          },
-          "numScores": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
-      "rskRecipientStats": {
-        "type": "object",
-        "properties": {
-          "donationRecipient": {
-            "type": "string"
-          },
-          "pointsSpent": {
-            "type": "number",
-            "format": "float"
-          },
-          "donatedAmountUsd": {
-            "type": "number",
-            "format": "float"
-          }
-        }
-      },
-      "rskReward": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "kind": {
-            "$ref": "#/definitions/RewardRewardKind"
-          },
-          "name": {
-            "type": "string"
-          },
-          "criteria": {
-            "type": "string"
-          },
-          "value": {
-            "type": "number",
-            "format": "float"
-          },
-          "valueCurrency": {
-            "type": "string"
-          }
-        }
-      },
-      "rskRoadmap": {
-        "type": "object",
-        "properties": {
-          "markdown": {
-            "type": "string"
-          }
-        }
-      },
-      "rskSearchResult": {
-        "type": "object",
-        "properties": {
-          "episode": {
-            "$ref": "#/definitions/rskShortTranscript"
-          },
-          "dialogs": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "$ref": "#/definitions/rskDialogResult"
-            }
-          }
-        }
-      },
-      "rskSearchResultList": {
-        "type": "object",
-        "properties": {
-          "results": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "$ref": "#/definitions/rskSearchResult"
-            }
-          },
-          "resultCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "stats": {
-            "type": "object",
-            "additionalProperties": {
-              "$ref": "#/definitions/rskSearchStats"
-            }
-          }
-        }
-      },
-      "rskSearchStats": {
-        "type": "object",
-        "properties": {
-          "labels": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "values": {
-            "type": "array",
-            "items": {
-              "type": "number",
-              "format": "float"
-            }
-          }
-        }
-      },
-      "rskSearchTermPredictions": {
-        "type": "object",
-        "properties": {
-          "prefix": {
-            "type": "string"
-          },
-          "predictions": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "$ref": "#/definitions/rskPrediction"
-            }
-          }
-        }
-      },
-      "rskShortTranscript": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "publication": {
-            "type": "string"
-          },
-          "series": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "episode": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "transcriptAvailable": {
-            "type": "boolean"
-          },
-          "incomplete": {
-            "type": "boolean"
-          },
-          "releaseDate": {
-            "type": "string"
-          },
-          "summary": {
-            "type": "string"
-          },
-          "synopsis": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "$ref": "#/definitions/rskSynopsis"
-            }
-          },
-          "triviaAvailable": {
-            "type": "boolean"
-          },
-          "actors": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "shortId": {
-            "type": "string"
-          },
-          "offsetAccuracyPcnt": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "name": {
-            "type": "string"
-          },
-          "version": {
-            "type": "string"
-          },
-          "metadata": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string"
-            }
-          },
-          "bestof": {
-            "type": "boolean"
-          },
-          "special": {
-            "type": "boolean"
-          },
-          "audioQuality": {
-            "$ref": "#/definitions/rskAudioQuality"
-          },
-          "media": {
-            "$ref": "#/definitions/rskMedia"
-          },
-          "publicationType": {
-            "$ref": "#/definitions/rskPublicationType"
-          },
-          "ratingScore": {
-            "type": "number",
-            "format": "float"
-          },
-          "numRatingScores": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "ratingBreakdown": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "number",
-              "format": "float"
-            }
-          }
-        }
-      },
-      "rskShortTranscriptChange": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "episodeId": {
-            "type": "string"
-          },
-          "state": {
-            "$ref": "#/definitions/rskContributionState"
-          },
-          "author": {
-            "$ref": "#/definitions/rskAuthor"
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "merged": {
-            "type": "boolean"
-          },
-          "pointsAwarded": {
-            "type": "number",
-            "format": "float"
-          },
-          "transcriptVersion": {
-            "type": "string"
-          }
-        }
-      },
-      "rskSong": {
-        "type": "object",
-        "properties": {
-          "spotifyUri": {
-            "type": "string"
-          },
-          "artist": {
-            "type": "string"
-          },
-          "title": {
-            "type": "string"
-          },
-          "album": {
-            "type": "string"
-          },
-          "episodeIds": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "albumImageUrl": {
-            "type": "string"
-          },
-          "transcribed": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "rskSongList": {
-        "type": "object",
-        "properties": {
-          "songs": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "$ref": "#/definitions/rskSong"
-            }
-          },
-          "resultCount": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
-      "rskSynopsis": {
-        "type": "object",
-        "properties": {
-          "description": {
-            "type": "string"
-          },
-          "startPos": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "endPos": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
-      "rskTag": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "timestamp": {
-            "type": "string"
-          }
-        }
-      },
-      "rskTranscript": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "publication": {
-            "type": "string"
-          },
-          "series": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "episode": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "metadata": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string"
-            }
-          },
-          "transcript": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "$ref": "#/definitions/rskDialog"
-            }
-          },
-          "releaseDate": {
-            "type": "string"
-          },
-          "synopses": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "$ref": "#/definitions/rskSynopsis"
-            }
-          },
-          "contributors": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "incomplete": {
-            "type": "boolean"
-          },
-          "rawTranscript": {
-            "type": "string"
-          },
-          "shortId": {
-            "type": "string"
-          },
-          "trivia": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "$ref": "#/definitions/rskTrivia"
-            }
-          },
-          "actors": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "offsetAccuracyPcnt": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "name": {
-            "type": "string"
-          },
-          "version": {
-            "type": "string"
-          },
-          "bestof": {
-            "type": "boolean"
-          },
-          "special": {
-            "type": "boolean"
-          },
-          "locked": {
-            "type": "boolean"
-          },
-          "summary": {
-            "type": "string"
-          },
-          "audioQuality": {
-            "$ref": "#/definitions/rskAudioQuality"
-          },
-          "media": {
-            "$ref": "#/definitions/rskMedia"
-          },
-          "publicationType": {
-            "$ref": "#/definitions/rskPublicationType"
-          },
-          "ratings": {
-            "$ref": "#/definitions/rskRatings"
-          },
-          "tags": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "$ref": "#/definitions/rskTag"
-            }
-          },
-          "completionReports": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "rskTranscriptChange": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "episodeId": {
-            "type": "string"
-          },
-          "summary": {
-            "type": "string"
-          },
-          "transcript": {
-            "type": "string"
-          },
-          "state": {
-            "$ref": "#/definitions/rskContributionState"
-          },
-          "author": {
-            "$ref": "#/definitions/rskAuthor"
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "merged": {
-            "type": "boolean"
-          },
-          "pointsAwarded": {
-            "type": "number",
-            "format": "float"
-          },
-          "transcriptVersion": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "releaseDate": {
-            "type": "string"
-          }
-        }
-      },
-      "rskTranscriptChangeDiff": {
-        "type": "object",
-        "properties": {
-          "diffs": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "rskTranscriptChangeList": {
-        "type": "object",
-        "properties": {
-          "changes": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "$ref": "#/definitions/rskShortTranscriptChange"
-            }
-          }
-        }
-      },
-      "rskTranscriptChunkList": {
-        "type": "object",
-        "properties": {
-          "chunks": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "$ref": "#/definitions/rskChunk"
-            }
-          }
-        }
-      },
-      "rskTranscriptDialog": {
-        "type": "object",
-        "properties": {
-          "transcriptMeta": {
-            "$ref": "#/definitions/rskShortTranscript"
-          },
-          "dialog": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "$ref": "#/definitions/rskDialog"
-            }
-          },
-          "maxDialogPosition": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
-      "rskTranscriptList": {
-        "type": "object",
-        "properties": {
-          "episodes": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "$ref": "#/definitions/rskShortTranscript"
-            }
-          }
-        }
-      },
-      "rskTrivia": {
-        "type": "object",
-        "properties": {
-          "description": {
-            "type": "string"
-          },
-          "startPos": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "endPos": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
-      "rskTscriptImport": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "epid": {
-            "type": "string",
-            "title": "must be in the correct format e.g. xfm-S2E36"
-          },
-          "mp3Uri": {
-            "type": "string"
-          },
-          "epname": {
-            "type": "string",
-            "title": "optional"
-          },
-          "log": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "$ref": "#/definitions/rskTscriptImportLog"
-            }
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "completedAt": {
-            "type": "string"
-          }
-        }
-      },
-      "rskTscriptImportList": {
-        "type": "object",
-        "properties": {
-          "imports": {
-            "type": "array",
-            "items": {
-              "type": "object",
+  "swagger": "2.0",
+  "info": {
+    "title": "ScrimptonAPI",
+    "version": "1.0"
+  },
+  "tags": [
+    {
+      "name": "ScrimptonAPI"
+    }
+  ],
+  "schemes": ["https"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "externalDocs": {
+    "description": "Search Xfm transcriptions",
+    "url": "http://scrimpton.com"
+  },
+  "paths": {
+    "/api/admin/tscript/import": {
+      "post": {
+        "summary": "Creates a new incomplete transcript by importing an mp3.",
+        "operationId": "createTscriptImport",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
               "$ref": "#/definitions/rskTscriptImport"
             }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
           }
-        }
-      },
-      "rskTscriptImportLog": {
-        "type": "object",
-        "properties": {
-          "stage": {
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/rskCreateTscriptImportRequest"
+            }
+          }
+        ],
+        "tags": ["search"]
+      }
+    },
+    "/api/admin/tscript/imports": {
+      "get": {
+        "summary": "Lists previously run imports.",
+        "operationId": "listTscriptImports",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskTscriptImportList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
             "type": "string"
           },
-          "msg": {
+          {
+            "name": "sortField",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortDirection",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": ["search"]
+      }
+    },
+    "/api/admin/tscript/{id}": {
+      "delete": {
+        "summary": "Delete a completed partial transacript. This should only be done after the data has been extracted to the permanent transcript (flat file).",
+        "operationId": "deleteTscript",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
             "type": "string"
           }
+        ],
+        "tags": ["search"]
+      }
+    },
+    "/api/auth/url": {
+      "get": {
+        "summary": "Redirects user to oauth confirmation page",
+        "operationId": "getAuthUrl",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskAuthURL"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": ["search"]
+      }
+    },
+    "/api/author/contribution": {
+      "get": {
+        "summary": "Lists all the contributions for a single author",
+        "operationId": "listAuthorContributions",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskAuthorContributionList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortDirection",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": ["search"]
+      }
+    },
+    "/api/author/ranks": {
+      "get": {
+        "summary": "Lists the rankings of the authors.",
+        "operationId": "listAuthorRanks",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskAuthorRankList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortDirection",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": ["search"]
+      }
+    },
+    "/api/changelog": {
+      "get": {
+        "summary": "Fetch list of changelogs",
+        "operationId": "listChangelogs",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskChangelogList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortDirection",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": ["search"]
+      }
+    },
+    "/api/community/archive": {
+      "get": {
+        "summary": "Lists archive items.",
+        "operationId": "listArchive",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskArchiveList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "episodeIds",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": ["community"]
+      }
+    },
+    "/api/community/project": {
+      "get": {
+        "summary": "Lists community projects.",
+        "operationId": "listCommunityProjects",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskCommunityProjectList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortDirection",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": ["community"]
+      }
+    },
+    "/api/donations": {
+      "get": {
+        "summary": "Lists donations made to scrimpton.",
+        "operationId": "listIncomingDonations",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskIncomingDonationList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": ["search"]
+      }
+    },
+    "/api/metadata": {
+      "get": {
+        "summary": "Search related metadata (searchable fields, available publications etc.)",
+        "operationId": "getMetadata",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskMetadata"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": ["search"]
+      }
+    },
+    "/api/radio/next": {
+      "get": {
+        "summary": "Get the next episode to play.",
+        "operationId": "getNext",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskNextRadioEpisode"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": ["search"]
+      }
+    },
+    "/api/radio/state": {
+      "get": {
+        "summary": "Get the current episode to play.",
+        "operationId": "getState",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskRadioState"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": ["search"]
+      },
+      "put": {
+        "summary": "Store the current state.",
+        "operationId": "putState",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/rskPutRadioStateRequest"
+            }
+          }
+        ],
+        "tags": ["search"]
+      }
+    },
+    "/api/rewards": {
+      "get": {
+        "summary": "Lists arewards that the logged in user is able to claim.",
+        "operationId": "listPendingRewards",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskPendingRewardList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": ["search"]
+      }
+    },
+    "/api/rewards/claimed": {
+      "get": {
+        "summary": "Lists rewards that have been claimed.",
+        "operationId": "listClaimedRewards",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskClaimedRewardList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": ["search"]
+      }
+    },
+    "/api/rewards/stats": {
+      "get": {
+        "summary": "show stats on donations made via rewards system",
+        "operationId": "getDonationStats",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskDonationStats"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": ["search"]
+      }
+    },
+    "/api/rewards/{id}/claim": {
+      "patch": {
+        "summary": "Claims a reward.",
+        "operationId": "claimReward",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ContributionsServiceClaimRewardBody"
+            }
+          }
+        ],
+        "tags": ["search"]
+      }
+    },
+    "/api/rewards/{rewardId}/recipients": {
+      "get": {
+        "summary": "Lists available recipients for reward.",
+        "operationId": "listDonationRecipients",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskDonationRecipientList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "rewardId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": ["search"]
+      }
+    },
+    "/api/roadmap": {
+      "get": {
+        "summary": "Get roadmap",
+        "operationId": "getRoadmap",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskRoadmap"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": ["search"]
+      }
+    },
+    "/api/search": {
+      "get": {
+        "summary": "Perform a search",
+        "operationId": "search",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskSearchResultList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": ["search"]
+      }
+    },
+    "/api/search/predict-terms": {
+      "get": {
+        "summary": "Predict the search term being typed similar to auto-complete.",
+        "operationId": "predictSearchTerm",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskSearchTermPredictions"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "prefix",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "maxPredictions",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "exact",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": ["search"]
+      }
+    },
+    "/api/search/random-quote": {
+      "get": {
+        "summary": "Gets a random quote from the transcripts",
+        "operationId": "getRandomQuote",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskRandomQuote"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": ["search"]
+      }
+    },
+    "/api/search/songs": {
+      "get": {
+        "summary": "Fetch a list of all songs played",
+        "operationId": "listSongs",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskSongList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortDirection",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": ["search"]
+      }
+    },
+    "/api/status/health": {
+      "head": {
+        "summary": "Just return 200 if the API is up",
+        "operationId": "getHealth",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": ["search"]
+      }
+    },
+    "/api/status/quotas": {
+      "get": {
+        "summary": "Get summary of the service quotas",
+        "operationId": "getQuotaSummary",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskQuotas"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": ["search"]
+      }
+    },
+    "/api/transcript": {
+      "get": {
+        "summary": "Fetch list of available episodes",
+        "operationId": "listTranscripts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskTranscriptList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "includeRatingBreakdown",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": ["search"]
+      }
+    },
+    "/api/transcript/change": {
+      "get": {
+        "summary": "Submits a new version of a transcript.",
+        "operationId": "listTranscriptChanges",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskTranscriptChangeList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortDirection",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": ["search"]
+      }
+    },
+    "/api/transcript/change/{id}": {
+      "get": {
+        "summary": "Get a single existing change.",
+        "operationId": "getTranscriptChange",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskTranscriptChange"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": ["search"]
+      },
+      "delete": {
+        "summary": "Deletes a change.",
+        "operationId": "deleteTranscriptChange",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": ["search"]
+      },
+      "patch": {
+        "summary": "Updates an existing change.",
+        "operationId": "updateTranscriptChange",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskTranscriptChange"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TranscriptServiceUpdateTranscriptChangeBody"
+            }
+          }
+        ],
+        "tags": ["search"]
+      }
+    },
+    "/api/transcript/change/{id}/diff": {
+      "get": {
+        "summary": "Get the diff for a change.",
+        "operationId": "getTranscriptChangeDiff",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskTranscriptChangeDiff"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": ["search"]
+      }
+    },
+    "/api/transcript/change/{id}/state": {
+      "patch": {
+        "summary": "request the change's state be changed.",
+        "operationId": "requestTranscriptChangeState",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TranscriptServiceRequestTranscriptChangeStateBody"
+            }
+          }
+        ],
+        "tags": ["search"]
+      }
+    },
+    "/api/transcript/chunked": {
+      "get": {
+        "summary": "List incomplete transcriptions that are being completed in chunks.",
+        "operationId": "listChunkedTranscripts",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskChunkedTranscriptList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": ["search"]
+      }
+    },
+    "/api/transcript/chunked/chunk/contribution/{contributionId}": {
+      "get": {
+        "summary": "lists any existing contributions for a chunk",
+        "operationId": "getChunkContribution",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskChunkContribution"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "contributionId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": ["search"]
+      },
+      "delete": {
+        "summary": "Discard contribution.",
+        "operationId": "deleteChunkContribution",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "contributionId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": ["search"]
+      },
+      "patch": {
+        "summary": "Update one of your existing contributions.",
+        "operationId": "updateChunkContribution",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskChunkContribution"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "contributionId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TranscriptServiceUpdateChunkContributionBody"
+            }
+          }
+        ],
+        "tags": ["search"]
+      }
+    },
+    "/api/transcript/chunked/chunk/contribution/{contributionId}/state": {
+      "patch": {
+        "summary": "request the contribution state be changed.",
+        "operationId": "requestChunkContributionState",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskChunkContribution"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "contributionId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TranscriptServiceRequestChunkContributionStateBody"
+            }
+          }
+        ],
+        "tags": ["search"]
+      }
+    },
+    "/api/transcript/chunked/chunk/contributions": {
+      "get": {
+        "summary": "lists contributed transcript chunks",
+        "operationId": "listChunkContributions",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskChunkContributionList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortDirection",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": ["search"]
+      }
+    },
+    "/api/transcript/chunked/chunk/{chunkId}/contribution": {
+      "post": {
+        "summary": "Submit a completed (or in-progress) chunk.",
+        "operationId": "createChunkContribution",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskChunkContribution"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "chunkId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TranscriptServiceCreateChunkContributionBody"
+            }
+          }
+        ],
+        "tags": ["search"]
+      }
+    },
+    "/api/transcript/chunked/chunk/{id}": {
+      "get": {
+        "summary": "Gets a specific transcript chunk to be completed.",
+        "operationId": "getTranscriptChunk",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskChunk"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": ["search"]
+      }
+    },
+    "/api/transcript/chunked/{chunkedTranscriptId}/chunks": {
+      "get": {
+        "summary": "Lists all chunks for the given chunked transcript ID.",
+        "operationId": "listTranscriptChunks",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskTranscriptChunkList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "chunkedTranscriptId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortDirection",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": ["search"]
+      }
+    },
+    "/api/transcript/{epid}": {
+      "get": {
+        "summary": "Fetch a transcript and associated metadata.",
+        "operationId": "getTranscript",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskTranscript"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "epid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "withRaw",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "tags": ["search"]
+      }
+    },
+    "/api/transcript/{epid}/change": {
+      "post": {
+        "summary": "Submits a new version of a transcript.",
+        "operationId": "createTranscriptChange",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskTranscriptChange"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "epid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TranscriptServiceCreateTranscriptChangeBody"
+            }
+          }
+        ],
+        "tags": ["search"]
+      }
+    },
+    "/api/transcript/{epid}/dialog/{pos}": {
+      "get": {
+        "summary": "Fetch a single line of dialog by position.",
+        "operationId": "getTranscriptDialog",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskTranscriptDialog"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "epid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "pos",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "numContextLines",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "range.start",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "range.end",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": ["search"]
+      }
+    },
+    "/api/transcript/{epid}/rating/score": {
+      "put": {
+        "summary": "Submits a rating score for a transcript.",
+        "operationId": "setTranscriptRatingScore",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "epid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TranscriptServiceSetTranscriptRatingScoreBody"
+            }
+          }
+        ],
+        "tags": ["search"]
+      }
+    },
+    "/api/transcript/{epid}/rating/score/bulk": {
+      "put": {
+        "summary": "Submits a set of rating scores for a transcript.",
+        "operationId": "bulkSetTranscriptRatingScore",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "epid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TranscriptServiceBulkSetTranscriptRatingScoreBody"
+            }
+          }
+        ],
+        "tags": ["search"]
+      }
+    },
+    "/api/transcript/{epid}/tag/bulk": {
+      "put": {
+        "summary": "Submits multiple tags for an episode.",
+        "operationId": "bulkSetTranscriptTag",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "epid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TranscriptServiceBulkSetTranscriptTagsBody"
+            }
+          }
+        ],
+        "tags": ["search"]
+      }
+    },
+    "/api/transcripts/chunked/chunk-stats": {
+      "get": {
+        "summary": "Get details about the current chunk backlog",
+        "operationId": "getChunkedTranscriptChunkStats",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskChunkStats"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": ["search"]
+      }
+    },
+    "/api/user/notifications": {
+      "get": {
+        "summary": "List most recent notifications.",
+        "operationId": "listNotifications",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskNotificationsList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortField",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "sortDirection",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "tags": ["search"]
+      }
+    },
+    "/api/user/notifications/mark-all": {
+      "post": {
+        "summary": "Mark all user's notifications as having been read.",
+        "operationId": "markNotificationsRead",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "tags": ["search"]
+      }
+    },
+    "/api/values/{field}": {
+      "get": {
+        "summary": "Get a list of values for the given keyword field",
+        "operationId": "listFieldValues",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/rskFieldValueList"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "field",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "prefix",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": ["search"]
+      }
+    }
+  },
+  "definitions": {
+    "AuthorContributionContributionType": {
+      "type": "string",
+      "enum": ["CONTRIBUTION_TYPE_UNKNOWN", "CHUNK", "CHANGE"],
+      "default": "CONTRIBUTION_TYPE_UNKNOWN"
+    },
+    "ContributionsServiceClaimRewardBody": {
+      "type": "object",
+      "properties": {
+        "donationArgs": {
+          "$ref": "#/definitions/rskDonationArgs"
+        }
+      }
+    },
+    "DialogDialogType": {
+      "type": "string",
+      "enum": ["UNKNOWN", "SONG", "CHAT", "NONE", "GAP"],
+      "default": "UNKNOWN"
+    },
+    "FieldMetaKind": {
+      "type": "string",
+      "enum": ["UNKNOWN", "IDENTIFIER", "KEYWORD", "KEYWORD_LIST", "TEXT", "INT", "FLOAT", "DATE"],
+      "default": "UNKNOWN"
+    },
+    "NotificationNotificationKind": {
+      "type": "string",
+      "enum": ["UNDEFINED_KIND", "CONFIRMATION", "INFO", "WARNING", "SPAM"],
+      "default": "UNDEFINED_KIND"
+    },
+    "RewardRewardKind": {
+      "type": "string",
+      "enum": ["UNKNOWN", "DONATION"],
+      "default": "UNKNOWN"
+    },
+    "TranscriptServiceBulkSetTranscriptRatingScoreBody": {
+      "type": "object",
+      "properties": {
+        "scores": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "format": "float"
+          }
+        },
+        "oauthSource": {
+          "type": "string"
+        }
+      }
+    },
+    "TranscriptServiceBulkSetTranscriptTagsBody": {
+      "type": "object",
+      "properties": {
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rskTag"
+          }
+        }
+      }
+    },
+    "TranscriptServiceCreateChunkContributionBody": {
+      "type": "object",
+      "properties": {
+        "transcript": {
+          "type": "string"
+        }
+      }
+    },
+    "TranscriptServiceCreateTranscriptChangeBody": {
+      "type": "object",
+      "properties": {
+        "transcript": {
+          "type": "string"
+        },
+        "transcriptVersion": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "releaseDate": {
+          "type": "string"
+        }
+      }
+    },
+    "TranscriptServiceRequestChunkContributionStateBody": {
+      "type": "object",
+      "properties": {
+        "requestState": {
+          "$ref": "#/definitions/rskContributionState"
+        },
+        "comment": {
+          "type": "string"
+        }
+      }
+    },
+    "TranscriptServiceRequestTranscriptChangeStateBody": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "$ref": "#/definitions/rskContributionState"
+        },
+        "pointsOnApprove": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "TranscriptServiceSetTranscriptRatingScoreBody": {
+      "type": "object",
+      "properties": {
+        "score": {
+          "type": "number",
+          "format": "float"
+        },
+        "delete": {
+          "type": "boolean"
+        }
+      }
+    },
+    "TranscriptServiceUpdateChunkContributionBody": {
+      "type": "object",
+      "properties": {
+        "transcript": {
+          "type": "string"
+        },
+        "state": {
+          "$ref": "#/definitions/rskContributionState"
+        }
+      }
+    },
+    "TranscriptServiceUpdateTranscriptChangeBody": {
+      "type": "object",
+      "properties": {
+        "transcript": {
+          "type": "string"
+        },
+        "state": {
+          "$ref": "#/definitions/rskContributionState"
+        },
+        "pointsOnApprove": {
+          "type": "number",
+          "format": "float"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "releaseDate": {
+          "type": "string"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    },
+    "rskArchive": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "relatedEpisode": {
+          "type": "string"
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "media": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rskFile"
+          }
+        }
+      }
+    },
+    "rskArchiveList": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rskArchive"
+          }
+        },
+        "resultCount": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "rskAudioQuality": {
+      "type": "string",
+      "enum": ["AUDIO_QUALITY_UNKNOWN", "POOR", "AVERAGE", "GOOD"],
+      "default": "AUDIO_QUALITY_UNKNOWN"
+    },
+    "rskAuthURL": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "rskAuthor": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "identityIconImg": {
+          "type": "string"
+        },
+        "supporter": {
+          "type": "boolean"
+        },
+        "oauthProvider": {
+          "type": "string"
+        }
+      }
+    },
+    "rskAuthorContribution": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "episodeId": {
+          "type": "string"
+        },
+        "contributionType": {
+          "$ref": "#/definitions/AuthorContributionContributionType"
+        },
+        "author": {
+          "$ref": "#/definitions/rskAuthor"
+        },
+        "points": {
+          "type": "number",
+          "format": "float"
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      }
+    },
+    "rskAuthorContributionList": {
+      "type": "object",
+      "properties": {
+        "contributions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rskAuthorContribution"
+          }
+        }
+      }
+    },
+    "rskAuthorRank": {
+      "type": "object",
+      "properties": {
+        "author": {
+          "$ref": "#/definitions/rskAuthor"
+        },
+        "approvedChunks": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "approvedChanges": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "rewardValueUsd": {
+          "type": "number",
+          "format": "float"
+        },
+        "points": {
+          "type": "number",
+          "format": "float"
+        },
+        "currentRank": {
+          "$ref": "#/definitions/rskRank"
+        },
+        "nextRank": {
+          "$ref": "#/definitions/rskRank"
+        }
+      }
+    },
+    "rskAuthorRankList": {
+      "type": "object",
+      "properties": {
+        "rankings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rskAuthorRank"
+          }
+        }
+      }
+    },
+    "rskChangelog": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        }
+      }
+    },
+    "rskChangelogList": {
+      "type": "object",
+      "properties": {
+        "changelogs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rskChangelog"
+          }
+        }
+      }
+    },
+    "rskChunk": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "chunkedTranscriptId": {
+          "type": "string"
+        },
+        "raw": {
+          "type": "string"
+        },
+        "audioClipUri": {
+          "type": "string"
+        },
+        "numContributions": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "episodeId": {
+          "type": "string"
+        },
+        "startTimeMs": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "endTimeMs": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "rskChunkContribution": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "chunkId": {
+          "type": "string"
+        },
+        "transcript": {
+          "type": "string"
+        },
+        "state": {
+          "$ref": "#/definitions/rskContributionState"
+        },
+        "author": {
+          "$ref": "#/definitions/rskAuthor"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "stateComment": {
+          "type": "string"
+        }
+      }
+    },
+    "rskChunkContributionList": {
+      "type": "object",
+      "properties": {
+        "contributions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rskChunkContribution"
+          }
+        }
+      }
+    },
+    "rskChunkStates": {
+      "type": "object",
+      "properties": {
+        "states": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rskContributionState"
+          }
+        }
+      }
+    },
+    "rskChunkStats": {
+      "type": "object",
+      "properties": {
+        "numPending": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numSubmitted": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "suggestedNextChunkId": {
+          "type": "string"
+        }
+      }
+    },
+    "rskChunkedTranscriptList": {
+      "type": "object",
+      "properties": {
+        "chunked": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rskChunkedTranscriptStats"
+          }
+        }
+      }
+    },
+    "rskChunkedTranscriptStats": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "publication": {
+          "type": "string"
+        },
+        "series": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "episode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "chunkContributions": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/rskChunkStates"
+          }
+        },
+        "numChunks": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numContributions": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numPendingContributions": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numRequestApprovalContributions": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numApprovedContributions": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "numRejectedContributions": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "rskClaimedReward": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "claimKind": {
+          "type": "string"
+        },
+        "claimValue": {
+          "type": "number",
+          "format": "float"
+        },
+        "claimCurrency": {
+          "type": "string"
+        },
+        "claimDescription": {
+          "type": "string"
+        },
+        "claimAt": {
+          "type": "string"
+        }
+      }
+    },
+    "rskClaimedRewardList": {
+      "type": "object",
+      "properties": {
+        "rewards": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rskClaimedReward"
+          }
+        }
+      }
+    },
+    "rskCommunityProject": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      }
+    },
+    "rskCommunityProjectList": {
+      "type": "object",
+      "properties": {
+        "projects": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rskCommunityProject"
+          }
+        },
+        "resultCount": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "rskContributionState": {
+      "type": "string",
+      "enum": ["STATE_UNDEFINED", "STATE_REQUEST_APPROVAL", "STATE_PENDING", "STATE_APPROVED", "STATE_REJECTED"],
+      "default": "STATE_UNDEFINED"
+    },
+    "rskCreateTscriptImportRequest": {
+      "type": "object",
+      "properties": {
+        "epid": {
+          "type": "string",
+          "title": "must be in the correct format e.g. xfm-S2E36"
+        },
+        "mp3Uri": {
+          "type": "string"
+        },
+        "epname": {
+          "type": "string"
+        }
+      }
+    },
+    "rskCurrentRadioEpisode": {
+      "type": "object",
+      "properties": {
+        "shortId": {
+          "type": "string"
+        },
+        "startedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "rskDialog": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "pos": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "$ref": "#/definitions/DialogDialogType"
+        },
+        "actor": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "isMatchedRow": {
+          "type": "boolean"
+        },
+        "notable": {
+          "type": "boolean"
+        },
+        "offsetSec": {
+          "type": "string",
+          "format": "int64",
+          "title": "deprecated"
+        },
+        "offsetInferred": {
+          "type": "boolean"
+        },
+        "offsetDistance": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "offsetMs": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "durationMs": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "placeholder": {
+          "type": "boolean"
+        }
+      }
+    },
+    "rskDialogRange": {
+      "type": "object",
+      "properties": {
+        "start": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "end": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "rskDialogResult": {
+      "type": "object",
+      "properties": {
+        "transcript": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rskDialog"
+          }
+        },
+        "score": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "rskDonationArgs": {
+      "type": "object",
+      "properties": {
+        "recipient": {
+          "type": "string"
+        }
+      }
+    },
+    "rskDonationRecipient": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "mission": {
+          "type": "string"
+        },
+        "logoUrl": {
+          "type": "string"
+        },
+        "ngoId": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "quote": {
+          "type": "string"
+        }
+      }
+    },
+    "rskDonationRecipientList": {
+      "type": "object",
+      "properties": {
+        "organizations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rskDonationRecipient"
+          }
+        }
+      }
+    },
+    "rskDonationStats": {
+      "type": "object",
+      "properties": {
+        "stats": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rskRecipientStats"
+          }
+        }
+      }
+    },
+    "rskFieldMeta": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/definitions/FieldMetaKind"
+        }
+      }
+    },
+    "rskFieldValue": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "count": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "rskFieldValueList": {
+      "type": "object",
+      "properties": {
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rskFieldValue"
+          }
+        }
+      }
+    },
+    "rskFile": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "thumbnailName": {
+          "type": "string"
+        }
+      }
+    },
+    "rskIncomingDonation": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number",
+          "format": "float"
+        },
+        "amountCurrency": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "rskIncomingDonationList": {
+      "type": "object",
+      "properties": {
+        "donations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rskIncomingDonation"
+          }
+        }
+      }
+    },
+    "rskMedia": {
+      "type": "object",
+      "properties": {
+        "video": {
+          "type": "boolean"
+        },
+        "audio": {
+          "type": "boolean"
+        },
+        "audioRestricted": {
+          "type": "boolean"
+        }
+      }
+    },
+    "rskMetadata": {
+      "type": "object",
+      "properties": {
+        "searchFields": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rskFieldMeta"
+          }
+        },
+        "episodeShortIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "rskNextRadioEpisode": {
+      "type": "object",
+      "properties": {
+        "shortId": {
+          "type": "string"
+        }
+      }
+    },
+    "rskNotification": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/definitions/NotificationNotificationKind"
+        },
+        "message": {
+          "type": "string"
+        },
+        "clickThoughUrl": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "readAt": {
+          "type": "string"
+        }
+      }
+    },
+    "rskNotificationsList": {
+      "type": "object",
+      "properties": {
+        "notifications": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rskNotification"
+          }
+        }
+      }
+    },
+    "rskPendingRewardList": {
+      "type": "object",
+      "properties": {
+        "rewards": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rskReward"
+          }
+        }
+      }
+    },
+    "rskPrediction": {
+      "type": "object",
+      "properties": {
+        "line": {
+          "type": "string"
+        },
+        "fragment": {
+          "type": "string"
+        },
+        "epid": {
+          "type": "string"
+        },
+        "pos": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "actor": {
+          "type": "string"
+        }
+      }
+    },
+    "rskPublicationType": {
+      "type": "string",
+      "enum": [
+        "PUBLICATION_TYPE_UNKNOWN",
+        "PUBLICATION_TYPE_RADIO",
+        "PUBLICATION_TYPE_PODCAST",
+        "PUBLICATION_TYPE_PROMO",
+        "PUBLICATION_TYPE_TV",
+        "PUBLICATION_TYPE_OTHER"
+      ],
+      "default": "PUBLICATION_TYPE_UNKNOWN"
+    },
+    "rskPutRadioStateRequest": {
+      "type": "object",
+      "properties": {
+        "currentEpisode": {
+          "$ref": "#/definitions/rskCurrentRadioEpisode"
+        },
+        "currentTimestampMs": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "rskQuotas": {
+      "type": "object",
+      "properties": {
+        "bandwidthTotalMib": {
+          "type": "number",
+          "format": "float"
+        },
+        "bandwidthRemainingMib": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "rskRadioState": {
+      "type": "object",
+      "properties": {
+        "currentEpisode": {
+          "$ref": "#/definitions/rskCurrentRadioEpisode"
+        },
+        "currentTimestampMs": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "rskRandomQuote": {
+      "type": "object",
+      "properties": {
+        "quote": {
+          "type": "string"
+        },
+        "actor": {
+          "type": "string"
+        },
+        "epid": {
+          "type": "string"
+        },
+        "pos": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "rskRank": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "points": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "rskRatings": {
+      "type": "object",
+      "properties": {
+        "scores": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "format": "float"
+          }
+        },
+        "scoreAvg": {
+          "type": "number",
+          "format": "float"
+        },
+        "numScores": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "rskRecipientStats": {
+      "type": "object",
+      "properties": {
+        "donationRecipient": {
+          "type": "string"
+        },
+        "pointsSpent": {
+          "type": "number",
+          "format": "float"
+        },
+        "donatedAmountUsd": {
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "rskReward": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "kind": {
+          "$ref": "#/definitions/RewardRewardKind"
+        },
+        "name": {
+          "type": "string"
+        },
+        "criteria": {
+          "type": "string"
+        },
+        "value": {
+          "type": "number",
+          "format": "float"
+        },
+        "valueCurrency": {
+          "type": "string"
+        }
+      }
+    },
+    "rskRoadmap": {
+      "type": "object",
+      "properties": {
+        "markdown": {
+          "type": "string"
+        }
+      }
+    },
+    "rskSearchResult": {
+      "type": "object",
+      "properties": {
+        "episode": {
+          "$ref": "#/definitions/rskShortTranscript"
+        },
+        "dialogs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rskDialogResult"
+          }
+        }
+      }
+    },
+    "rskSearchResultList": {
+      "type": "object",
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rskSearchResult"
+          }
+        },
+        "resultCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "stats": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/rskSearchStats"
+          }
+        }
+      }
+    },
+    "rskSearchStats": {
+      "type": "object",
+      "properties": {
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "float"
+          }
+        }
+      }
+    },
+    "rskSearchTermPredictions": {
+      "type": "object",
+      "properties": {
+        "prefix": {
+          "type": "string"
+        },
+        "predictions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rskPrediction"
+          }
+        }
+      }
+    },
+    "rskShortTranscript": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "publication": {
+          "type": "string"
+        },
+        "series": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "episode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "transcriptAvailable": {
+          "type": "boolean"
+        },
+        "incomplete": {
+          "type": "boolean"
+        },
+        "releaseDate": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "synopsis": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rskSynopsis"
+          }
+        },
+        "triviaAvailable": {
+          "type": "boolean"
+        },
+        "actors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "shortId": {
+          "type": "string"
+        },
+        "offsetAccuracyPcnt": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "bestof": {
+          "type": "boolean"
+        },
+        "special": {
+          "type": "boolean"
+        },
+        "audioQuality": {
+          "$ref": "#/definitions/rskAudioQuality"
+        },
+        "media": {
+          "$ref": "#/definitions/rskMedia"
+        },
+        "publicationType": {
+          "$ref": "#/definitions/rskPublicationType"
+        },
+        "ratingScore": {
+          "type": "number",
+          "format": "float"
+        },
+        "numRatingScores": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ratingBreakdown": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "format": "float"
+          }
+        }
+      }
+    },
+    "rskShortTranscriptChange": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "episodeId": {
+          "type": "string"
+        },
+        "state": {
+          "$ref": "#/definitions/rskContributionState"
+        },
+        "author": {
+          "$ref": "#/definitions/rskAuthor"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "merged": {
+          "type": "boolean"
+        },
+        "pointsAwarded": {
+          "type": "number",
+          "format": "float"
+        },
+        "transcriptVersion": {
+          "type": "string"
+        }
+      }
+    },
+    "rskSong": {
+      "type": "object",
+      "properties": {
+        "spotifyUri": {
+          "type": "string"
+        },
+        "artist": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "album": {
+          "type": "string"
+        },
+        "episodeIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "albumImageUrl": {
+          "type": "string"
+        },
+        "transcribed": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "rskSongList": {
+      "type": "object",
+      "properties": {
+        "songs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rskSong"
+          }
+        },
+        "resultCount": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "rskSynopsis": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "startPos": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "endPos": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "rskTag": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string"
+        }
+      }
+    },
+    "rskTranscript": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "publication": {
+          "type": "string"
+        },
+        "series": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "episode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "transcript": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rskDialog"
+          }
+        },
+        "releaseDate": {
+          "type": "string"
+        },
+        "synopses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rskSynopsis"
+          }
+        },
+        "contributors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "incomplete": {
+          "type": "boolean"
+        },
+        "rawTranscript": {
+          "type": "string"
+        },
+        "shortId": {
+          "type": "string"
+        },
+        "trivia": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rskTrivia"
+          }
+        },
+        "actors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "offsetAccuracyPcnt": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "bestof": {
+          "type": "boolean"
+        },
+        "special": {
+          "type": "boolean"
+        },
+        "locked": {
+          "type": "boolean"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "audioQuality": {
+          "$ref": "#/definitions/rskAudioQuality"
+        },
+        "media": {
+          "$ref": "#/definitions/rskMedia"
+        },
+        "publicationType": {
+          "$ref": "#/definitions/rskPublicationType"
+        },
+        "ratings": {
+          "$ref": "#/definitions/rskRatings"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rskTag"
+          }
+        },
+        "completionReports": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "rskTranscriptChange": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "episodeId": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "transcript": {
+          "type": "string"
+        },
+        "state": {
+          "$ref": "#/definitions/rskContributionState"
+        },
+        "author": {
+          "$ref": "#/definitions/rskAuthor"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "merged": {
+          "type": "boolean"
+        },
+        "pointsAwarded": {
+          "type": "number",
+          "format": "float"
+        },
+        "transcriptVersion": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "releaseDate": {
+          "type": "string"
+        }
+      }
+    },
+    "rskTranscriptChangeDiff": {
+      "type": "object",
+      "properties": {
+        "diffs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "rskTranscriptChangeList": {
+      "type": "object",
+      "properties": {
+        "changes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rskShortTranscriptChange"
+          }
+        }
+      }
+    },
+    "rskTranscriptChunkList": {
+      "type": "object",
+      "properties": {
+        "chunks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rskChunk"
+          }
+        }
+      }
+    },
+    "rskTranscriptDialog": {
+      "type": "object",
+      "properties": {
+        "transcriptMeta": {
+          "$ref": "#/definitions/rskShortTranscript"
+        },
+        "dialog": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rskDialog"
+          }
+        },
+        "maxDialogPosition": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "rskTranscriptList": {
+      "type": "object",
+      "properties": {
+        "episodes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rskShortTranscript"
+          }
+        }
+      }
+    },
+    "rskTrivia": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "startPos": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "endPos": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "rskTscriptImport": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "epid": {
+          "type": "string",
+          "title": "must be in the correct format e.g. xfm-S2E36"
+        },
+        "mp3Uri": {
+          "type": "string"
+        },
+        "epname": {
+          "type": "string",
+          "title": "optional"
+        },
+        "log": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rskTscriptImportLog"
+          }
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "completedAt": {
+          "type": "string"
+        }
+      }
+    },
+    "rskTscriptImportList": {
+      "type": "object",
+      "properties": {
+        "imports": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/rskTscriptImport"
+          }
+        }
+      }
+    },
+    "rskTscriptImportLog": {
+      "type": "object",
+      "properties": {
+        "stage": {
+          "type": "string"
+        },
+        "msg": {
+          "type": "string"
         }
       }
     }
   }
+}

@@ -14,13 +14,12 @@ import { TranscriptMetadata } from 'src/app/module/shared/component/metadata-edi
 const DISMISS_HELP_KEY: string = 'contribute.change.help.hide';
 
 @Component({
-    selector: 'app-transcript-change',
-    templateUrl: './transcript-change.component.html',
-    styleUrls: ['./transcript-change.component.scss'],
-    standalone: false
+  selector: 'app-transcript-change',
+  templateUrl: './transcript-change.component.html',
+  styleUrls: ['./transcript-change.component.scss'],
+  standalone: false,
 })
 export class TranscriptChangeComponent implements OnInit, OnDestroy {
-
   epID: string;
 
   initialTranscript: string;
@@ -74,42 +73,48 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
     titleService.setTitle('Contribute');
 
     // don't bother prompting for login etc. if the intent is just to read the change.
-    route.queryParamMap.pipe((takeUntil(this.destroy$))).subscribe((params) => {
-      this.readOnly = params.get('readonly') === '1'
+    route.queryParamMap.pipe(takeUntil(this.destroy$)).subscribe((params) => {
+      this.readOnly = params.get('readonly') === '1';
     });
 
     route.paramMap.pipe(takeUntil(this.destroy$)).subscribe((d: Data) => {
-
       this.epID = d.params['epid'];
 
       this.loading.push(true);
-      this.apiClient.getTranscript({
-        epid: this.epID,
-        withRaw: true
-      }).pipe(takeUntil(this.destroy$)).subscribe((res: RskTranscript) => {
-        this.transcript = res;
-        this.metadata = { summary: res.summary, name: res.name, release_date: res.releaseDate };
+      this.apiClient
+        .getTranscript({
+          epid: this.epID,
+          withRaw: true,
+        })
+        .pipe(takeUntil(this.destroy$))
+        .subscribe((res: RskTranscript) => {
+          this.transcript = res;
+          this.metadata = { summary: res.summary, name: res.name, release_date: res.releaseDate };
 
-        if (!d.params['change_id']) {
-          this.initialTranscript = res.rawTranscript;
-        } else {
-          this.apiClient.getTranscriptChange({ id: d.params['change_id'] }).pipe(takeUntil(this.destroy$)).subscribe((res: RskTranscriptChange) => {
-            this.change = res;
-            this.checkUserCanEdit();
+          if (!d.params['change_id']) {
+            this.initialTranscript = res.rawTranscript;
+          } else {
+            this.apiClient
+              .getTranscriptChange({ id: d.params['change_id'] })
+              .pipe(takeUntil(this.destroy$))
+              .subscribe((res: RskTranscriptChange) => {
+                this.change = res;
+                this.checkUserCanEdit();
 
-            this.initialTranscript = res.transcript;
-            this.metadata = {
-              summary: res.summary ?? this.transcript.summary,
-              name: res.name ?? this.transcript.name,
-              release_date: res.releaseDate ?? this.transcript.releaseDate
-            };
+                this.initialTranscript = res.transcript;
+                this.metadata = {
+                  summary: res.summary ?? this.transcript.summary,
+                  name: res.name ?? this.transcript.name,
+                  release_date: res.releaseDate ?? this.transcript.releaseDate,
+                };
 
-            this.versionMismatchError = (this.change?.transcriptVersion !== this.transcript?.version);
-            this.userIsOwner = this.sessionService.getClaims()?.author_id === res.author.id || this.sessionService.getClaims()?.approver;
-            this.userIsApprover = this.sessionService.getClaims()?.approver;
-          });
-        }
-      }).add(() => this.loading.shift());
+                this.versionMismatchError = this.change?.transcriptVersion !== this.transcript?.version;
+                this.userIsOwner = this.sessionService.getClaims()?.author_id === res.author.id || this.sessionService.getClaims()?.approver;
+                this.userIsApprover = this.sessionService.getClaims()?.approver;
+              });
+          }
+        })
+        .add(() => this.loading.shift());
     });
 
     sessionService.onTokenChange.pipe(takeUntil(this.destroy$)).subscribe((token: string): void => {
@@ -126,8 +131,7 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.updateQueue.pipe(debounceTime(1000), takeUntil(this.destroy$)).subscribe(() => {
-      this.update(() => {
-      });
+      this.update(() => {});
     });
   }
 
@@ -142,21 +146,25 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
   create() {
     if (!this.change) {
       this.loading.push(true);
-      this.apiClient.createTranscriptChange({
-        epid: this.transcript.id,
-        body: {
-          transcript: this.transcriber.getContentSnapshot(),
-          transcriptVersion: this.transcript?.version || 'NONE',
-          name: this.metadata?.name ?? '',
-          summary: this.metadata?.summary ?? '',
-          releaseDate: this.metadata?.release_date ?? '',
-        }
-      }).pipe(takeUntil(this.destroy$)).subscribe((res: RskTranscriptChange) => {
-        this.initialTranscript = res.transcript;
-        this.transcriber.clearBackup();
-        this.alertService.success('Created', 'Draft change was created. It will now be auto-saved on change.');
-        this.router.navigate(['/ep', this.transcript.id, 'change', res.id]);
-      }).add(() => this.loading.shift());
+      this.apiClient
+        .createTranscriptChange({
+          epid: this.transcript.id,
+          body: {
+            transcript: this.transcriber.getContentSnapshot(),
+            transcriptVersion: this.transcript?.version || 'NONE',
+            name: this.metadata?.name ?? '',
+            summary: this.metadata?.summary ?? '',
+            releaseDate: this.metadata?.release_date ?? '',
+          },
+        })
+        .pipe(takeUntil(this.destroy$))
+        .subscribe((res: RskTranscriptChange) => {
+          this.initialTranscript = res.transcript;
+          this.transcriber.clearBackup();
+          this.alertService.success('Created', 'Draft change was created. It will now be auto-saved on change.');
+          this.router.navigate(['/ep', this.transcript.id, 'change', res.id]);
+        })
+        .add(() => this.loading.shift());
     }
   }
 
@@ -164,61 +172,73 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
     if (confirm('Really discard change?')) {
       this.loading.push(true);
       this.transcriber.clearBackup();
-      this.apiClient.deleteTranscriptChange({ id: this.change.id }).pipe(takeUntil(this.destroy$)).subscribe((res) => {
-        this.router.navigate(['/ep', this.transcript.id, 'change']);
-      }).add(() => this.loading.shift());
+      this.apiClient
+        .deleteTranscriptChange({ id: this.change.id })
+        .pipe(takeUntil(this.destroy$))
+        .subscribe((_res) => {
+          this.router.navigate(['/ep', this.transcript.id, 'change']);
+        })
+        .add(() => this.loading.shift());
     }
   }
 
   update(after: () => void) {
-    this._update(this.change.state).pipe(takeUntil(this.destroy$)).subscribe((res: RskTranscriptChange) => {
-      this.change = res;
-      this.checkUserCanEdit();
-      this.lastUpdateTimestamp = new Date();
-      after();
-    });
+    this._update(this.change.state)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((res: RskTranscriptChange) => {
+        this.change = res;
+        this.checkUserCanEdit();
+        this.lastUpdateTimestamp = new Date();
+        after();
+      });
   }
 
   private _update(state: RskContributionState): Observable<RskTranscriptChange> {
-    return this.apiClient.updateTranscriptChange({
-      id: this.change.id,
-      body: {
-        transcript: this.transcriber.getContentSnapshot(),
-        name: this.metadata.name,
-        summary: this.metadata.summary,
-        releaseDate: this.metadata.release_date,
-        state: state
-      }
-    }).pipe(takeUntil(this.destroy$));
+    return this.apiClient
+      .updateTranscriptChange({
+        id: this.change.id,
+        body: {
+          transcript: this.transcriber.getContentSnapshot(),
+          name: this.metadata.name,
+          summary: this.metadata.summary,
+          releaseDate: this.metadata.release_date,
+          state: state,
+        },
+      })
+      .pipe(takeUntil(this.destroy$));
   }
 
   private _updateState(state: RskContributionState) {
     this.loading.push(true);
-    this.apiClient.requestTranscriptChangeState({
-      id: this.change.id,
-      body: {
-        state: state,
-        pointsOnApprove: this.approvalPoints.value,
-      }
-    }).pipe(takeUntil(this.destroy$)).subscribe((res: RskTranscriptChange) => {
-      this.change.state = state;
-      this.checkUserCanEdit();
+    this.apiClient
+      .requestTranscriptChangeState({
+        id: this.change.id,
+        body: {
+          state: state,
+          pointsOnApprove: this.approvalPoints.value,
+        },
+      })
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((_res: RskTranscriptChange) => {
+        this.change.state = state;
+        this.checkUserCanEdit();
 
-      switch (this.change.state) {
-        case RskContributionState.STATE_PENDING:
-          this.alertService.success('Retracted', 'Change is now back in the pending state. It will not be reviewed until is is re-submitted.');
-          return;
-        case RskContributionState.STATE_APPROVED:
-          this.alertService.success('Approved', 'Change was approved.');
-          return;
-        case RskContributionState.STATE_REQUEST_APPROVAL:
-          this.alertService.success('Submitted', 'Change is now awaiting manual approval by an approver. This usually takes around 24 hours.');
-          return;
-        case RskContributionState.STATE_REJECTED:
-          this.alertService.success('Rejected', 'Change was rejected.');
-          return;
-      }
-    }).add(() => this.loading.shift());
+        switch (this.change.state) {
+          case RskContributionState.STATE_PENDING:
+            this.alertService.success('Retracted', 'Change is now back in the pending state. It will not be reviewed until is is re-submitted.');
+            return;
+          case RskContributionState.STATE_APPROVED:
+            this.alertService.success('Approved', 'Change was approved.');
+            return;
+          case RskContributionState.STATE_REQUEST_APPROVAL:
+            this.alertService.success('Submitted', 'Change is now awaiting manual approval by an approver. This usually takes around 24 hours.');
+            return;
+          case RskContributionState.STATE_REJECTED:
+            this.alertService.success('Rejected', 'Change was rejected.');
+            return;
+        }
+      })
+      .add(() => this.loading.shift());
   }
 
   checkUserCanEdit() {
@@ -243,9 +263,9 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
     // remove readonly param since it's now been moved into a writable state
     this.router.navigate([], {
       queryParams: {
-        'readonly': null,
+        readonly: null,
       },
-      queryParamsHandling: 'merge'
+      queryParamsHandling: 'merge',
     });
   }
 
@@ -259,11 +279,15 @@ export class TranscriptChangeComponent implements OnInit, OnDestroy {
 
   getDiff() {
     this.loading.push(true);
-    this.apiClient.getTranscriptChangeDiff({
-      id: this.change.id,
-    }).pipe(takeUntil(this.destroy$)).subscribe((res: RskTranscriptChangeDiff) => {
-      this.diffs = res.diffs;
-    }).add(() => this.loading.shift());
+    this.apiClient
+      .getTranscriptChangeDiff({
+        id: this.change.id,
+      })
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((res: RskTranscriptChangeDiff) => {
+        this.diffs = res.diffs;
+      })
+      .add(() => this.loading.shift());
   }
 
   checkReloadDiff(v: string) {

@@ -2,7 +2,7 @@ $container-max-widths: (
   sm: 700px,
   md: 720px,
   lg: 960px,
-  xl: 1140px
+  xl: 1140px,
 );
 
 /* corners */
@@ -14,16 +14,16 @@ $border-radius-sm: 0;
 $navbar-padding-y: 1rem;
 
 /* fonts */
-$font-family-base: 'IBM Plex Sans', sans-serif;
+$font-family-base: "IBM Plex Sans", sans-serif;
 
 /* colors */
-$primary: #E15132;
+$primary: #e15132;
 
-$pink: #D03E65;
-$purple: #A34785;
-$deep-purple: #6B508B;
-$blue: #3D5078;
-$deep-blue: #2F4858;
+$pink: #d03e65;
+$purple: #a34785;
+$deep-purple: #6b508b;
+$blue: #3d5078;
+$deep-blue: #2f4858;
 $code: #d9d9d9;
 
 /* custom */
@@ -54,9 +54,7 @@ $color-camfield: rgba(227, 55, 55, 0.1);
 $color-camfield-saturated: rgb(227, 55, 55);
 
 /* even smaller button */
-$input-btn-padding-y-xs:      .125rem !default;
-$input-btn-padding-x-xs:      .25rem !default;
-$input-btn-font-size-xs:      $font-size-sm * 0.80  !default;
-$input-btn-line-height-xs:    $line-height-sm * 0.80 !default;
-
-
+$input-btn-padding-y-xs: 0.125rem !default;
+$input-btn-padding-x-xs: 0.25rem !default;
+$input-btn-font-size-xs: $font-size-sm * 0.8 !default;
+$input-btn-line-height-xs: $line-height-sm * 0.8 !default;

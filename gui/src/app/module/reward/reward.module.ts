@@ -8,13 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [RedeemComponent, PendingRewardsComponent],
-  imports: [
-    CommonModule,
-    RouterModule,
-    ReactiveFormsModule,
-    SharedModule,
-  ],
-  exports: [RedeemComponent, PendingRewardsComponent]
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, SharedModule],
+  exports: [RedeemComponent, PendingRewardsComponent],
 })
-export class RewardModule {
-}
+export class RewardModule {}

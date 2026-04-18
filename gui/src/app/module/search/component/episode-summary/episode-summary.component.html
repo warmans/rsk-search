@@ -4,7 +4,8 @@
       <div
         (click)="toggleEpisode(episode)"
         class="icon d-flex align-items-center justify-content-around album-art"
-        [style.background-image]="'url('+episodeImage+')'">
+        [style.background-image]="'url(' + episodeImage + ')'"
+      >
         @if (episode.media.audio && !episode.media.audioRestricted) {
           <i class="bi-play-circle-fill text-body"></i>
         }
@@ -18,79 +19,92 @@
             @if (episode.transcriptAvailable) {
               <a [routerLink]="['/ep', episode.id]">
                 @if (episodeIdIsMeaningful) {
-                  <span>{{episode.publication | titlecase}} | Series {{episode.series}} Episode {{episode.episode}} @if (episode.name) {
-                    <span class="text-muted"> - {{episode.name}}</span>
-                  }</span>
+                  <span
+                    >{{ episode.publication | titlecase }} | Series {{ episode.series }} Episode {{ episode.episode }}
+                    @if (episode.name) {
+                      <span class="text-muted"> - {{ episode.name }}</span>
+                    }
+                  </span>
                 }
                 @if (!episodeIdIsMeaningful) {
-                  <span>{{episode.publication | titlecase}} |  {{ episode.name || "Unknown" }}</span>
+                  <span>{{ episode.publication | titlecase }} | {{ episode.name || "Unknown" }}</span>
                 }
               </a>
             }
             @if (!episode.transcriptAvailable) {
               <span>
                 @if (episodeIdIsMeaningful) {
-                  <span>{{episode.publication | titlecase}} | Series {{episode.series}} Episode {{episode.episode}} @if (episode.name) {
-                    <span class="text-muted"> - {{episode.name}}</span>
-                  }</span>
+                  <span
+                    >{{ episode.publication | titlecase }} | Series {{ episode.series }} Episode {{ episode.episode }}
+                    @if (episode.name) {
+                      <span class="text-muted"> - {{ episode.name }}</span>
+                    }
+                  </span>
                 }
                 @if (!episodeIdIsMeaningful) {
-                  <span>{{episode.publication | titlecase}} |  {{ episode.name || "Unknown" }}</span>
+                  <span>{{ episode.publication | titlecase }} | {{ episode.name || "Unknown" }}</span>
                 }
               </span>
             }
           </div>
           <div class="sub-title font-weight-light">
             @if (loggedIn && !episode.media.audioRestricted && episode.media.audio) {
-              <a [href]="'/dl/media/'+episode.shortId+'.mp3'" target="_blank">
-                {{episode.shortId}}
+              <a [href]="'/dl/media/' + episode.shortId + '.mp3'" target="_blank">
+                {{ episode.shortId }}
               </a>
             }
             @if (!loggedIn || !episode.media.audio) {
               <span>
-                {{episode.shortId}}
+                {{ episode.shortId }}
               </span>
-              } |
-              {{ ( episode.metadata["duration_ms"] | formatSeconds: true ) || "Duration Unknown" }} |
-              {{ (episode.releaseDate | date) || "Date Unknown" }} |
-              v{{ episode.version }}
-              |
-              <span title="Community episode rating ({{episode.numRatingScores}} ratings)">
-                <i class="bi" [ngClass]="{'bi-star':  episode.ratingScore <= 2, 'bi-star-half': episode.ratingScore > 2 && episode.ratingScore < 4, 'bi-star-fill': episode.ratingScore >= 4}"></i>
-                {{ episode.ratingScore || 0 | number:'1.0-2' }}/5
-              </span>
-            </div>
+            }
+            | {{ (episode.metadata["duration_ms"] | formatSeconds: true) || "Duration Unknown" }} | {{ (episode.releaseDate | date) || "Date Unknown" }} | v{{
+              episode.version
+            }}
+            |
+            <span title="Community episode rating ({{ episode.numRatingScores }} ratings)">
+              <i
+                class="bi"
+                [ngClass]="{
+                  'bi-star': episode.ratingScore <= 2,
+                  'bi-star-half': episode.ratingScore > 2 && episode.ratingScore < 4,
+                  'bi-star-fill': episode.ratingScore >= 4,
+                }"
+              ></i>
+              {{ episode.ratingScore || 0 | number: "1.0-2" }}/5
+            </span>
           </div>
         </div>
       </div>
-      @if (episode.transcriptAvailable) {
-        <div class="font-weight-light text-sm">
-          @if (episode.bestof) {
-            <div class="mr-2"><i class="bi bi-card-text mr-1"></i> Bestof Episode</div>
-          }
-          @if (episode.transcriptAvailable && !episode.incomplete) {
-            <div class="mr-2"><i class="bi bi-card-text mr-1"></i> Complete Transcript</div>
-          }
-          @if (!episode.transcriptAvailable || episode.incomplete) {
-            <div class="mr-2"><i class="bi bi-card-text text-danger mr-1"></i> Incomplete Transcript</div>
-          }
-          @if (episode.triviaAvailable) {
-            <div class="mr-2"><i class="bi bi-card-text mr-1"></i> Trivia</div>
-          }
-          <div title="Timecodes are inferred where missing. If a transcript includes more manually placed offsets the inferred offsets are more accurate.">
-            <i class="bi bi-card-text mr-1"></i> {{episode.offsetAccuracyPcnt | timecodeAccuracy}} Timecode Accuracy
-          </div>
+    </div>
+    @if (episode.transcriptAvailable) {
+      <div class="font-weight-light text-sm">
+        @if (episode.bestof) {
+          <div class="mr-2"><i class="bi bi-card-text mr-1"></i> Bestof Episode</div>
+        }
+        @if (episode.transcriptAvailable && !episode.incomplete) {
+          <div class="mr-2"><i class="bi bi-card-text mr-1"></i> Complete Transcript</div>
+        }
+        @if (!episode.transcriptAvailable || episode.incomplete) {
+          <div class="mr-2"><i class="bi bi-card-text text-danger mr-1"></i> Incomplete Transcript</div>
+        }
+        @if (episode.triviaAvailable) {
+          <div class="mr-2"><i class="bi bi-card-text mr-1"></i> Trivia</div>
+        }
+        <div title="Timecodes are inferred where missing. If a transcript includes more manually placed offsets the inferred offsets are more accurate.">
+          <i class="bi bi-card-text mr-1"></i> {{ episode.offsetAccuracyPcnt | timecodeAccuracy }} Timecode Accuracy
         </div>
-      }
-    </div>
-    <div class="body p-2">
-      @if (episode.summary) {
-        <p>{{ episode.summary }}</p>
-      }
-      <app-synopses [synopses]="episode.synopsis" [episodeID]="episode.id"></app-synopses>
-    </div>
-    <div class="foot p-2 font-weight-light d-flex justify-content-between">
-      <div></div>
-      <div>{{episode.actors.join(', ')}}</div>
-    </div>
+      </div>
+    }
   </div>
+  <div class="body p-2">
+    @if (episode.summary) {
+      <p>{{ episode.summary }}</p>
+    }
+    <app-synopses [synopses]="episode.synopsis" [episodeID]="episode.id"></app-synopses>
+  </div>
+  <div class="foot p-2 font-weight-light d-flex justify-content-between">
+    <div></div>
+    <div>{{ episode.actors.join(", ") }}</div>
+  </div>
+</div>

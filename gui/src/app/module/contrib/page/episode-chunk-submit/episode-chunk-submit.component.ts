@@ -11,13 +11,12 @@ import { RskChunk, RskChunkContribution, RskContributionState } from 'src/app/li
 import { EditorComponent } from '../../../shared/component/editor/editor.component';
 
 @Component({
-    selector: 'app-episode-chunk-submit',
-    templateUrl: './episode-chunk-submit.component.html',
-    styleUrls: ['./episode-chunk-submit.component.scss'],
-    standalone: false
+  selector: 'app-episode-chunk-submit',
+  templateUrl: './episode-chunk-submit.component.html',
+  styleUrls: ['./episode-chunk-submit.component.scss'],
+  standalone: false,
 })
 export class EpisodeChunkSubmit implements OnInit, OnDestroy {
-
   authenticated: boolean = false;
   chunk: RskChunk;
   contribution: RskChunkContribution;
@@ -63,34 +62,38 @@ export class EpisodeChunkSubmit implements OnInit, OnDestroy {
     titleService.setTitle('Contribute');
 
     route.paramMap.pipe(takeUntil(this.$destroy)).subscribe((d: Data) => {
-
       if (d.params['contribution_id']) {
-
         // load content from existing contribution
         this.loading.push(true);
-        this.apiClient.getChunkContribution({
-          contributionId: d.params['contribution_id']
-        }).pipe(takeUntil(this.$destroy)).subscribe((res: RskChunkContribution) => {
-          this.setContribution(res);
-        }).add(() => this.loading.shift());
+        this.apiClient
+          .getChunkContribution({
+            contributionId: d.params['contribution_id'],
+          })
+          .pipe(takeUntil(this.$destroy))
+          .subscribe((res: RskChunkContribution) => {
+            this.setContribution(res);
+          })
+          .add(() => this.loading.shift());
 
         this.loading.push(true);
-        this.apiClient.getTranscriptChunk({ id: d.params['id'] }).pipe(takeUntil(this.$destroy)).subscribe(
-          (v) => {
+        this.apiClient
+          .getTranscriptChunk({ id: d.params['id'] })
+          .pipe(takeUntil(this.$destroy))
+          .subscribe((v) => {
             if (!v) {
               return;
             }
             this.chunk = v;
-          }
-        ).add(() => this.loading.shift());
-
+          })
+          .add(() => this.loading.shift());
       } else {
-
         // load everything from the chunk
 
         this.loading.push(true);
-        this.apiClient.getTranscriptChunk({ id: d.params['id'] }).pipe(takeUntil(this.$destroy)).subscribe(
-          (v) => {
+        this.apiClient
+          .getTranscriptChunk({ id: d.params['id'] })
+          .pipe(takeUntil(this.$destroy))
+          .subscribe((v) => {
             if (!v) {
               return;
             }
@@ -99,8 +102,8 @@ export class EpisodeChunkSubmit implements OnInit, OnDestroy {
             this.chunk = v;
 
             this.setInitialTranscript(this.chunk.raw);
-          }
-        ).add(() => this.loading.shift());
+          })
+          .add(() => this.loading.shift());
       }
     });
 
@@ -122,7 +125,7 @@ export class EpisodeChunkSubmit implements OnInit, OnDestroy {
     });
   }
 
-  executeUpdate(text: string): void {
+  executeUpdate(_text: string): void {
     if (this.contribution && this.userCanEdit) {
       this.update();
     }
@@ -161,70 +164,82 @@ export class EpisodeChunkSubmit implements OnInit, OnDestroy {
   create() {
     if (!this.contribution) {
       this.loading.push(true);
-      this.apiClient.createChunkContribution({
-        chunkId: this.chunk.id,
-        body: {
-          transcript: this.editor.getContentSnapshot()
-        }
-      }).pipe(takeUntil(this.$destroy)).subscribe((res: RskChunkContribution) => {
-        this.editor.clearBackup();
-        this.alertService.success('Created', 'Draft was created. It will now be auto-saved on change.');
-        this.router.navigate(['/chunk', this.chunk.id, 'contrib', res.id]);
-      }).add(() => this.loading.shift());
+      this.apiClient
+        .createChunkContribution({
+          chunkId: this.chunk.id,
+          body: {
+            transcript: this.editor.getContentSnapshot(),
+          },
+        })
+        .pipe(takeUntil(this.$destroy))
+        .subscribe((res: RskChunkContribution) => {
+          this.editor.clearBackup();
+          this.alertService.success('Created', 'Draft was created. It will now be auto-saved on change.');
+          this.router.navigate(['/chunk', this.chunk.id, 'contrib', res.id]);
+        })
+        .add(() => this.loading.shift());
     }
   }
 
   update() {
-    this._update(this.contribution.state).subscribe((res: RskChunkContribution) => {
+    this._update(this.contribution.state).subscribe(() => {
       this.lastUpdateTimestamp = new Date();
       this.editor.clearBackup();
     });
   }
 
   private _update(state: RskContributionState): Observable<RskChunkContribution> {
-    return this.apiClient.updateChunkContribution({
-      contributionId: this.contribution.id,
-      body: {
-        transcript: this.editor.getContentSnapshot(),
-        state: state
-      }
-    }).pipe(takeUntil(this.$destroy));
+    return this.apiClient
+      .updateChunkContribution({
+        contributionId: this.contribution.id,
+        body: {
+          transcript: this.editor.getContentSnapshot(),
+          state: state,
+        },
+      })
+      .pipe(takeUntil(this.$destroy));
   }
 
   private _updateState(state: RskContributionState, comment?: string) {
     this.loading.push(true);
-    this.apiClient.requestChunkContributionState({
-      contributionId: this.contribution.id,
-      body: {
-        requestState: state,
-        comment: comment,
-      }
-    }).pipe(takeUntil(this.$destroy)).subscribe((res) => {
-      this.setContribution(res);
-      switch (state) {
-        case RskContributionState.STATE_PENDING:
-          this.alertService.success('Retracted', 'Submission is now back in the pending state. It will not be reviewed until is is re-submitted.');
-          return;
-        case RskContributionState.STATE_APPROVED:
-          this.alertService.success('Approved', 'Submission was approved.');
-          return;
-        case RskContributionState.STATE_REQUEST_APPROVAL:
-          this.alertService.success('Submitted', 'Submission is now awaiting manual approval by an approver. This usually takes around 24 hours.');
-          return;
-        case RskContributionState.STATE_REJECTED:
-          this.alertService.success('Rejected', 'Submission was rejected.');
-          return;
-      }
-    }).add(() => this.loading.shift());
+    this.apiClient
+      .requestChunkContributionState({
+        contributionId: this.contribution.id,
+        body: {
+          requestState: state,
+          comment: comment,
+        },
+      })
+      .pipe(takeUntil(this.$destroy))
+      .subscribe((res) => {
+        this.setContribution(res);
+        switch (state) {
+          case RskContributionState.STATE_PENDING:
+            this.alertService.success('Retracted', 'Submission is now back in the pending state. It will not be reviewed until is is re-submitted.');
+            return;
+          case RskContributionState.STATE_APPROVED:
+            this.alertService.success('Approved', 'Submission was approved.');
+            return;
+          case RskContributionState.STATE_REQUEST_APPROVAL:
+            this.alertService.success('Submitted', 'Submission is now awaiting manual approval by an approver. This usually takes around 24 hours.');
+            return;
+          case RskContributionState.STATE_REJECTED:
+            this.alertService.success('Rejected', 'Submission was rejected.');
+            return;
+        }
+      })
+      .add(() => this.loading.shift());
   }
 
   markComplete() {
     this.loading.push(true);
-    this._update(RskContributionState.STATE_REQUEST_APPROVAL).subscribe((res: RskChunkContribution) => {
-      this.setContribution(res);
-      this.lastUpdateTimestamp = new Date();
-      this.alertService.success('Submitted', 'Submission is now awaiting manual approval by an approver. This usually takes around 24 hours.');
-    }).add(() => this.loading.shift());
+    this._update(RskContributionState.STATE_REQUEST_APPROVAL)
+      .subscribe((res: RskChunkContribution) => {
+        this.setContribution(res);
+        this.lastUpdateTimestamp = new Date();
+        this.alertService.success('Submitted', 'Submission is now awaiting manual approval by an approver. This usually takes around 24 hours.');
+      })
+      .add(() => this.loading.shift());
   }
 
   markIncomplete() {

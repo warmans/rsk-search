@@ -99,12 +99,12 @@
                     <tr>
                       <th>Transcribers</th>
                       <td>
-                        @if (episode.metadata['pilkipedia_url']) {
+                        @if (episode.metadata["pilkipedia_url"]) {
                           <span>
                             <a [href]="episode.metadata['pilkipedia_url']" target="_blank">Pilkipedia</a>
                           </span>
                         }
-                        @if (episode.metadata['pilkipedia_url'] && transcribers) {
+                        @if (episode.metadata["pilkipedia_url"] && transcribers) {
                           <span> | </span>
                         }
                         <span>{{ transcribers }}</span>
@@ -114,15 +114,11 @@
                   <tr>
                     <th>Rating</th>
                     <td>
-                      <star-rating
-                        [starType]="'svg'"
-                        [rating]="episode.ratings.scoreAvg"
-                        [readOnly]="!authenticated"
-                        (starClickChange)="rateEpisode($event)">
+                      <star-rating [starType]="'svg'" [rating]="episode.ratings.scoreAvg" [readOnly]="!authenticated" (starClickChange)="rateEpisode($event)">
                       </star-rating>
-                      <span class="text-muted">Avg. {{episode.ratings.scoreAvg || 0 | number:'1.0-2'}}/5 from {{episode.ratings.numScores}} ratings</span>
+                      <span class="text-muted">Avg. {{ episode.ratings.scoreAvg || 0 | number: "1.0-2" }}/5 from {{ episode.ratings.numScores }} ratings</span>
                       @if (authenticated) {
-                        <span class="text-muted"> (your rating: {{episode?.ratings?.scores[authorIdentifier] || 'none'}})</span>
+                        <span class="text-muted"> (your rating: {{ episode?.ratings?.scores[authorIdentifier] || "none" }})</span>
                       }
                     </td>
                   </tr>
@@ -131,14 +127,10 @@
                       <th>Audio</th>
                       <td>
                         @if (!audioStatus || audioStatus?.state !== audioStates.playing) {
-                          <button class="btn btn-sm btn-primary" (click)="playAudio()">
-                            <i class="bi bi-play"></i> Play
-                          </button>
+                          <button class="btn btn-sm btn-primary" (click)="playAudio()"><i class="bi bi-play"></i> Play</button>
                         }
                         @if (audioStatus?.state === audioStates.playing) {
-                          <button class="btn btn-sm btn-primary" (click)="pauseAudio()">
-                            <i class="bi bi-pause"></i> Pause
-                          </button>
+                          <button class="btn btn-sm btn-primary" (click)="pauseAudio()"><i class="bi bi-pause"></i> Pause</button>
                         }
                         <span class="muted ml-3">({{ episode.offsetAccuracyPcnt | timecodeAccuracy }} Timecode Accuracy)</span>
                       </td>
@@ -190,7 +182,7 @@
               }
             </ul>
           }
-          @if (activeInfoPanel === 'synopsis') {
+          @if (activeInfoPanel === "synopsis") {
             <div>
               <div class="card-header border-top"></div>
               <div class="card-body">
@@ -198,7 +190,7 @@
               </div>
             </div>
           }
-          @if (activeInfoPanel === 'quotes') {
+          @if (activeInfoPanel === "quotes") {
             <div>
               <div class="card-header border-top"></div>
               <div class="card-body p-3">
@@ -213,13 +205,13 @@
               </div>
             </div>
           }
-          @if (activeInfoPanel === 'songs') {
+          @if (activeInfoPanel === "songs") {
             <div>
               <div class="card-header border-top"></div>
               <div class="card-body p-3">
                 @for (song of songs; track song) {
                   <div class="mb-1">
-                    @if (song.metadata['spotify_uri']) {
+                    @if (song.metadata["spotify_uri"]) {
                       <div>
                         <a class="text-paragraph" [href]="song.metadata['spotify_uri']">
                           <i class="bi-spotify text-primary mr-2"></i>
@@ -228,10 +220,12 @@
                         (<a [routerLink]="['/ep', episode?.id]" [fragment]="'pos-' + song?.pos">context</a>)
                       </div>
                     }
-                    @if (!song.metadata['spotify_uri']) {
+                    @if (!song.metadata["spotify_uri"]) {
                       <div>
                         <i class="bi-spotify text-muted mr-2"></i>
-                        <span class="text-paragraph">{{ song.content }}</span> (<a [routerLink]="['/ep', episode?.id]" [fragment]="'pos-' + song?.pos">context</a>)
+                        <span class="text-paragraph">{{ song.content }}</span> (<a [routerLink]="['/ep', episode?.id]" [fragment]="'pos-' + song?.pos"
+                          >context</a
+                        >)
                       </div>
                     }
                   </div>
@@ -239,7 +233,7 @@
               </div>
             </div>
           }
-          @if (activeInfoPanel === 'trivia') {
+          @if (activeInfoPanel === "trivia") {
             <div>
               <div class="card-header border-top"></div>
               <div class="card-body">
@@ -254,7 +248,7 @@
               </div>
             </div>
           }
-          @if (activeInfoPanel === 'media') {
+          @if (activeInfoPanel === "media") {
             <div>
               <div class="card-header border-top"></div>
               <div class="card-body">
@@ -288,14 +282,10 @@
                 <div class="d-flex">
                   <button class="btn btn-sm btn-primary" (click)="scrollToTop()"><i class="bi-arrow-up"></i> Top</button>
                   @if (scrollToID && selection) {
-                    <button class="btn btn-sm btn-primary ml-2" (click)="scrollToSelection()">
-                      <i class="bi-arrow-down"></i> Selection
-                    </button>
+                    <button class="btn btn-sm btn-primary ml-2" (click)="scrollToSelection()"><i class="bi-arrow-down"></i> Selection</button>
                   }
                   @if (scrollToID && selection) {
-                    <button class="btn btn-sm btn-info ml-2" (click)="copySelection()">
-                      <i class="bi-clipboard"></i> Copy Selection
-                    </button>
+                    <button class="btn btn-sm btn-info ml-2" (click)="copySelection()"><i class="bi-clipboard"></i> Copy Selection</button>
                   }
                   @if (scrollToID || scrollToSeconds) {
                     <button class="btn btn-sm btn-info ml-2" (click)="clearSelection()"><i class="bi-escape"></i> Clear Selection</button>

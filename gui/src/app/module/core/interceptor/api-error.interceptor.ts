@@ -12,18 +12,15 @@ interface ErrorDetails {
 
 @Injectable()
 export class APIErrorInterceptor implements HttpInterceptor {
+  constructor(
+    private alerts: AlertService,
+    private session: SessionService,
+  ) {}
 
-  constructor(private alerts: AlertService, private session: SessionService) {
-  }
-
-  intercept(
-    req: HttpRequest<any>,
-    next: HttpHandler,
-  ): Observable<HttpEvent<any>> {
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       tap(
-        (evt: any) => {
-        },
+        (_evt: any) => {},
         (err: HttpErrorResponse) => {
           if (!err) {
             return EMPTY;
@@ -32,7 +29,10 @@ export class APIErrorInterceptor implements HttpInterceptor {
           switch (err.status) {
             case 401:
               this.session.destroySession();
-              this.alerts.danger(`Your session expired or otherwise invalid and has been cleared. Please re-authenticate to access contribution features.`, ...(errText.details || []));
+              this.alerts.danger(
+                `Your session expired or otherwise invalid and has been cleared. Please re-authenticate to access contribution features.`,
+                ...(errText.details || []),
+              );
               break;
             default:
               this.alerts.danger(`API Call Failed: ${errText.text}`, ...(errText.details || []));

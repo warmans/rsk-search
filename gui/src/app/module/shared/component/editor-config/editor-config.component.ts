@@ -3,13 +3,12 @@ import { UntypedFormControl, UntypedFormGroup, ValidationErrors, ValidatorFn } f
 import { KeyPressEventCodes } from '../../../../lib/keys';
 
 @Component({
-    selector: 'app-editor-config',
-    templateUrl: './editor-config.component.html',
-    styleUrls: ['./editor-config.component.scss'],
-    standalone: false
+  selector: 'app-editor-config',
+  templateUrl: './editor-config.component.html',
+  styleUrls: ['./editor-config.component.scss'],
+  standalone: false,
 })
 export class EditorConfigComponent implements OnInit {
-
   open: boolean;
 
   @Input()
@@ -19,16 +18,16 @@ export class EditorConfigComponent implements OnInit {
   configUpdated: EventEmitter<EditorConfig> = new EventEmitter<EditorConfig>();
 
   configForm: UntypedFormGroup = new UntypedFormGroup({
-    'playPauseKey': new UntypedFormControl(),
-    'playbackRate': new UntypedFormControl(),
-    'backtrack': new UntypedFormControl(),
-    'fastForwardKey': new UntypedFormControl(),
-    'rewindKey': new UntypedFormControl(),
-    'insertOffsetKey': new UntypedFormControl(),
-    'insertOffsetBacktrack': new UntypedFormControl(),
-    'insertSynKey': new UntypedFormControl(),
-    'autoSeek': new UntypedFormControl(),
-    'wrapText': new UntypedFormControl(),
+    playPauseKey: new UntypedFormControl(),
+    playbackRate: new UntypedFormControl(),
+    backtrack: new UntypedFormControl(),
+    fastForwardKey: new UntypedFormControl(),
+    rewindKey: new UntypedFormControl(),
+    insertOffsetKey: new UntypedFormControl(),
+    insertOffsetBacktrack: new UntypedFormControl(),
+    insertSynKey: new UntypedFormControl(),
+    autoSeek: new UntypedFormControl(),
+    wrapText: new UntypedFormControl(),
   });
 
   keyCodes = KeyPressEventCodes;
@@ -59,7 +58,7 @@ export class EditorConfigComponent implements OnInit {
           continue;
         }
         if (KeyPressEventCodes.indexOf(group.get(ctrlName).value) > -1 && boundKeys[group.get(ctrlName).value]) {
-          group.get(ctrlName).setErrors({ 'duplicateValue': [`${group.get(ctrlName).value} already in use`] });
+          group.get(ctrlName).setErrors({ duplicateValue: [`${group.get(ctrlName).value} already in use`] });
         }
         boundKeys[group.get(ctrlName).value] = true;
       }
@@ -96,6 +95,6 @@ export class EditorConfig {
     public insertOffsetBacktrack: number = 0.5,
     public insertSynKey: string = '',
     public autoSeek: boolean = true,
-    public wrapText: boolean = true) {
-  }
+    public wrapText: boolean = true,
+  ) {}
 }

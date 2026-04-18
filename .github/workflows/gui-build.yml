@@ -33,6 +33,12 @@ jobs:
         working-directory: ${{env.GUI_ROOT}}
         run: npm ci
 
+      - name: Lint and Format Check
+        working-directory: ${{env.GUI_ROOT}}
+        run: |
+          npm run lint
+          npm run fmt:check
+
       - name: Build GUI
         working-directory: ${{env.GUI_ROOT}}
         run: npm run build

@@ -1,8 +1,8 @@
 import { Directive, ElementRef, Input } from '@angular/core';
 
 @Directive({
-    selector: '[focused]',
-    standalone: false
+  selector: '[focused]',
+  standalone: false,
 })
 export class FocusedDirective {
   @Input()
@@ -12,6 +12,5 @@ export class FocusedDirective {
     }
   }
 
-  constructor(private elementRef: ElementRef) {
-  }
+  constructor(private elementRef: ElementRef) {}
 }

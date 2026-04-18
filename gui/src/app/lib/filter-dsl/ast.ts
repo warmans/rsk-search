@@ -4,15 +4,13 @@ import { trimChars } from '../util';
 import { Bool, Float, Int, Str, Value } from './value';
 
 export function ParseAST(str: string): Filter {
-  return (new ASTParser(new Scanner(str, false))).parse();
+  return new ASTParser(new Scanner(str, false)).parse();
 }
 
 export class ASTParser {
+  private peeked: Tok = null;
 
-  private peeked: Tok = null
-
-  constructor(private s: Scanner) {
-  }
+  constructor(private s: Scanner) {}
 
   parse(): Filter {
     const filter = this.parseOuter(1);
@@ -129,4 +127,3 @@ export class ASTParser {
     throw new Error(`expected one of [${oneOf.join(', ')}], found ${t.tag} (${t.lexeme})`);
   }
 }
-

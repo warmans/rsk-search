@@ -1,8 +1,13 @@
 // https://stackoverflow.com/questions/4928586/get-caret-position-in-html-input
 // takes a HtmlElement (although for some reason the types are incompatible).
 export function getInputSelection(el: any) {
-  var start = 0, end = 0, normalizedValue, range,
-    textInputRange, len, endRange;
+  var start = 0,
+    end = 0,
+    normalizedValue,
+    range,
+    textInputRange,
+    len,
+    endRange;
 
   if (typeof el.selectionStart == 'number' && typeof el.selectionEnd == 'number') {
     start = el.selectionStart;
@@ -42,6 +47,6 @@ export function getInputSelection(el: any) {
 
   return {
     start: start,
-    end: end
+    end: end,
   };
 }

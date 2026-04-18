@@ -7,13 +7,12 @@ import { debounceTime, filter, takeUntil } from 'rxjs/operators';
 import { NavigationStart, Router } from '@angular/router';
 
 @Component({
-    selector: 'app-user-menu',
-    templateUrl: './user-menu.component.html',
-    styleUrls: ['./user-menu.component.scss'],
-    standalone: false
+  selector: 'app-user-menu',
+  templateUrl: './user-menu.component.html',
+  styleUrls: ['./user-menu.component.scss'],
+  standalone: false,
 })
 export class UserMenuComponent implements OnInit, OnDestroy {
-
   @Input()
   loggedInUser: Claims;
 
@@ -32,8 +31,10 @@ export class UserMenuComponent implements OnInit, OnDestroy {
 
   markRead: Subject<void> = new Subject<void>();
 
-  constructor(private apiClient: SearchAPIClient, private router: Router) {
-  }
+  constructor(
+    private apiClient: SearchAPIClient,
+    private router: Router,
+  ) {}
 
   @HostListener('document:click', ['$event'])
   clickOut(event) {
@@ -44,8 +45,7 @@ export class UserMenuComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this
-      .apiClient
+    this.apiClient
       .listNotifications({ filter: '', sortField: 'created_at', sortDirection: 'DESC', page: 1, pageSize: 5 })
       .pipe(takeUntil(this.destroy$))
       .subscribe((res) => {
@@ -53,25 +53,27 @@ export class UserMenuComponent implements OnInit, OnDestroy {
         this.unreads = (res.notifications.filter((n: RskNotification) => !n.readAt) || []).length;
       });
 
-    this
-      .markRead
-      .pipe(takeUntil(this.destroy$), debounceTime(1000))
-      .subscribe(() => {
-        if (this.unreads > 0) {
-          this.apiClient.markNotificationsRead().pipe(takeUntil(this.destroy$)).subscribe(() => {
+    this.markRead.pipe(takeUntil(this.destroy$), debounceTime(1000)).subscribe(() => {
+      if (this.unreads > 0) {
+        this.apiClient
+          .markNotificationsRead()
+          .pipe(takeUntil(this.destroy$))
+          .subscribe(() => {
             this.unreads = 0;
           });
-        }
-      });
-
-    this.router.events.pipe(
-      filter((routeEvent) => routeEvent instanceof NavigationStart),
-      takeUntil(this.destroy$)
-    ).subscribe(() => {
-      if (this.menuVisible) {
-        this.hideMenu();
       }
     });
+
+    this.router.events
+      .pipe(
+        filter((routeEvent) => routeEvent instanceof NavigationStart),
+        takeUntil(this.destroy$),
+      )
+      .subscribe(() => {
+        if (this.menuVisible) {
+          this.hideMenu();
+        }
+      });
   }
 
   ngOnDestroy(): void {

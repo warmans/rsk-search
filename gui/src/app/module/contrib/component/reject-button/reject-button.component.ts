@@ -1,22 +1,18 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit } from '@angular/core';
 import { UntypedFormControl } from '@angular/forms';
-import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
-import { AlertService } from '../../../core/service/alert/alert.service';
 
 @Component({
-    selector: 'app-reject-button',
-    templateUrl: './reject-button.component.html',
-    styleUrls: ['./reject-button.component.scss'],
-    standalone: false
+  selector: 'app-reject-button',
+  templateUrl: './reject-button.component.html',
+  styleUrls: ['./reject-button.component.scss'],
+  standalone: false,
 })
 export class RejectButtonComponent implements OnInit, OnDestroy {
-
   @Input()
   contributionId: string;
 
   @Input()
-  rejectAction: (contributionId: string, comment: string) => void = () => {
-  };
+  rejectAction: (contributionId: string, comment: string) => void = () => {};
 
   modalOpen: boolean = false;
 
@@ -26,11 +22,9 @@ export class RejectButtonComponent implements OnInit, OnDestroy {
 
   destroy$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor() {
-  }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   ngOnDestroy(): void {
     this.destroy$.next(true);
@@ -49,5 +43,4 @@ export class RejectButtonComponent implements OnInit, OnDestroy {
   cancel() {
     this.modalOpen = false;
   }
-
 }

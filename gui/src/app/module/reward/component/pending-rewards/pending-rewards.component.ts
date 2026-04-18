@@ -6,13 +6,12 @@ import { Router, RoutesRecognized } from '@angular/router';
 import { SessionService } from '../../../core/service/session/session.service';
 
 @Component({
-    selector: 'app-pending-rewards',
-    templateUrl: './pending-rewards.component.html',
-    styleUrls: ['./pending-rewards.component.scss'],
-    standalone: false
+  selector: 'app-pending-rewards',
+  templateUrl: './pending-rewards.component.html',
+  styleUrls: ['./pending-rewards.component.scss'],
+  standalone: false,
 })
 export class PendingRewardsComponent implements OnInit, OnDestroy {
-
   displayOnPage: boolean = true;
 
   rewards: RskReward[];
@@ -29,21 +28,27 @@ export class PendingRewardsComponent implements OnInit, OnDestroy {
 
   private destroy$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(private apiClient: SearchAPIClient, private router: Router, private session: SessionService) {
-  }
+  constructor(
+    private apiClient: SearchAPIClient,
+    private router: Router,
+    private session: SessionService,
+  ) {}
 
   ngOnInit(): void {
     this.router.events.subscribe((data) => {
       if (data instanceof RoutesRecognized) {
         this.displayOnPage = !data?.state?.root?.firstChild?.data?.disableRewardPopup;
         if (this.displayOnPage && this.session.getToken()) {
-          this.apiClient.listPendingRewards().pipe(takeUntil(this.destroy$)).subscribe((res) => {
-            this.rewards = res.rewards;
-            this.rewardIcons = [];
-            this.rewards.forEach(() => {
-              this.rewardIcons.push(this.randomPrize());
-            })
-          });
+          this.apiClient
+            .listPendingRewards()
+            .pipe(takeUntil(this.destroy$))
+            .subscribe((res) => {
+              this.rewards = res.rewards;
+              this.rewardIcons = [];
+              this.rewards.forEach(() => {
+                this.rewardIcons.push(this.randomPrize());
+              });
+            });
         }
       }
     });

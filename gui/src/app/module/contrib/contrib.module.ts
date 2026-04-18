@@ -27,14 +27,8 @@ import { ChangesComponent } from './component/changes/changes.component';
     RankingsComponent,
     CausesComponent,
     DonationsComponent,
-    ChangesComponent
+    ChangesComponent,
   ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    SharedModule,
-    ReactiveFormsModule,
-  ]
+  imports: [CommonModule, RouterModule, SharedModule, ReactiveFormsModule],
 })
-export class ContribModule {
-}
+export class ContribModule {}

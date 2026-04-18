@@ -8,13 +8,12 @@ import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms
 import { AlertService } from '../../../core/service/alert/alert.service';
 
 @Component({
-    selector: 'app-redeem',
-    templateUrl: './redeem.component.html',
-    styleUrls: ['./redeem.component.scss'],
-    standalone: false
+  selector: 'app-redeem',
+  templateUrl: './redeem.component.html',
+  styleUrls: ['./redeem.component.scss'],
+  standalone: false,
 })
 export class RedeemComponent implements OnInit {
-
   organizations: RskDonationRecipient[] = [];
 
   reward: RskReward;
@@ -32,29 +31,34 @@ export class RedeemComponent implements OnInit {
     private route: ActivatedRoute,
     private titleService: Title,
     private alertService: AlertService,
-    private router: Router) {
-
+    private router: Router,
+  ) {
     titleService.setTitle('Redeem reward');
 
     route.paramMap.pipe(takeUntil(this.destroy$)).subscribe((d: Data) => {
       if (d.params['id']) {
+        this.loading.push(true);
+        this.apiClient
+          .listPendingRewards()
+          .pipe(takeUntil(this.destroy$))
+          .subscribe((res) => {
+            this.reward = res.rewards.find((r) => r.id === d.params['id']);
+          })
+          .add(() => this.loading.pop());
 
         this.loading.push(true);
-        this.apiClient.listPendingRewards().pipe(takeUntil(this.destroy$)).subscribe((res) => {
-          this.reward = res.rewards.find((r) => r.id === d.params['id']);
-        }).add(() => this.loading.pop());
-
-        this.loading.push(true);
-        this.apiClient.listDonationRecipients({ rewardId: d.params['id'] }).pipe(takeUntil(this.destroy$)).subscribe((res) => {
-          this.organizations = res.organizations;
-        }).add(() => this.loading.pop());
+        this.apiClient
+          .listDonationRecipients({ rewardId: d.params['id'] })
+          .pipe(takeUntil(this.destroy$))
+          .subscribe((res) => {
+            this.organizations = res.organizations;
+          })
+          .add(() => this.loading.pop());
       }
     });
   }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   ngOnDestroy(): void {
     this.destroy$.next(true);
@@ -63,12 +67,16 @@ export class RedeemComponent implements OnInit {
 
   submit() {
     this.loading.push(true);
-    this.apiClient.claimReward({
-      id: this.reward.id,
-      body: { donationArgs: { recipient: this.form.get('cause').value } }
-    }).pipe(takeUntil(this.destroy$)).subscribe((res) => {
-      this.alertService.success('Reward collected successfully.');
-      this.router.navigate(['/contribute']);
-    }).add(() => this.loading.pop());
+    this.apiClient
+      .claimReward({
+        id: this.reward.id,
+        body: { donationArgs: { recipient: this.form.get('cause').value } },
+      })
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => {
+        this.alertService.success('Reward collected successfully.');
+        this.router.navigate(['/contribute']);
+      })
+      .add(() => this.loading.pop());
   }
 }

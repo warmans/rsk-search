@@ -4,10 +4,9 @@ import { RskQuotas } from 'src/app/lib/api-client/models';
 import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class QuotaService {
-
   private quotaSubject$: BehaviorSubject<RskQuotas> = new BehaviorSubject<RskQuotas>({});
   public quotas$: Observable<RskQuotas> = this.quotaSubject$.asObservable();
 

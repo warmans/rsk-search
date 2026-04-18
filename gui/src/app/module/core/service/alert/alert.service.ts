@@ -9,16 +9,14 @@ export interface Alert {
 const AUTO_REMOVE_AFTER_MS: number = 1000 * 5;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AlertService {
-
   alertsUpdated: EventEmitter<Alert[]> = new EventEmitter<Alert[]>();
 
   alerts: Alert[] = [];
 
-  constructor() {
-  }
+  constructor() {}
 
   danger(content: string, ...details: string[]) {
     this.setAlert('danger', content, details);

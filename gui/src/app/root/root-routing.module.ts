@@ -1,26 +1,24 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {SearchComponent} from '../module/search/page/search/search.component';
-import {EpisodeComponent} from '../module/search/page/episode/episode.component';
-import {RandomComponent} from '../module/contrib/page/random/random.component';
-import {AuthorProfile} from '../module/contrib/page/author-profile/author-profile.component';
-import {
-  EpisodeChunkContributions
-} from '../module/contrib/page/episode-chunk-contributions/episode-chunk-contributions.component';
-import {ContributeComponent} from '../module/contrib/page/contribute/contribute.component';
-import {RedeemComponent} from '../module/reward/page/redeem/redeem.component';
-import {TranscriptChangeComponent} from '../module/contrib/page/transcript-change/transcript-change.component';
-import {EpisodeChunkSubmit} from '../module/contrib/page/episode-chunk-submit/episode-chunk-submit.component';
-import {ChangelogComponent} from '../module/search/page/changelog/changelog.component';
-import {ImportComponent} from '../module/admin/page/import/import.component';
-import {CanActivateAdmin} from '../module/admin/can-activate-admin';
-import {QuotasComponent} from 'src/app/module/admin/page/quotas/quotas.component';
-import {IndexComponent} from "../module/more-shite/page/index/index.component";
-import {CatalogWarehouseComponent} from "../module/more-shite/component/catalog-warehouse/catalog-warehouse.component";
-import {RandomQuoteComponent} from "../module/more-shite/page/random-quote/random-quote.component";
-import {SongSearchComponent} from "../module/more-shite/page/song-search/song-search.component";
-import {CommunityProjectsComponent} from "../module/more-shite/page/community-projects/community-projects.component";
-import {ArchiveComponent} from "../module/more-shite/page/archive/archive.component";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { SearchComponent } from '../module/search/page/search/search.component';
+import { EpisodeComponent } from '../module/search/page/episode/episode.component';
+import { RandomComponent } from '../module/contrib/page/random/random.component';
+import { AuthorProfile } from '../module/contrib/page/author-profile/author-profile.component';
+import { EpisodeChunkContributions } from '../module/contrib/page/episode-chunk-contributions/episode-chunk-contributions.component';
+import { ContributeComponent } from '../module/contrib/page/contribute/contribute.component';
+import { RedeemComponent } from '../module/reward/page/redeem/redeem.component';
+import { TranscriptChangeComponent } from '../module/contrib/page/transcript-change/transcript-change.component';
+import { EpisodeChunkSubmit } from '../module/contrib/page/episode-chunk-submit/episode-chunk-submit.component';
+import { ChangelogComponent } from '../module/search/page/changelog/changelog.component';
+import { ImportComponent } from '../module/admin/page/import/import.component';
+import { CanActivateAdmin } from '../module/admin/can-activate-admin';
+import { QuotasComponent } from 'src/app/module/admin/page/quotas/quotas.component';
+import { IndexComponent } from '../module/more-shite/page/index/index.component';
+import { CatalogWarehouseComponent } from '../module/more-shite/component/catalog-warehouse/catalog-warehouse.component';
+import { RandomQuoteComponent } from '../module/more-shite/page/random-quote/random-quote.component';
+import { SongSearchComponent } from '../module/more-shite/page/song-search/song-search.component';
+import { CommunityProjectsComponent } from '../module/more-shite/page/community-projects/community-projects.component';
+import { ArchiveComponent } from '../module/more-shite/page/archive/archive.component';
 
 const routes: Routes = [
   {
@@ -71,7 +69,7 @@ const routes: Routes = [
     path: 'reward/redeem/:id',
     component: RedeemComponent,
     data: {
-      disableRewardPopup: true
+      disableRewardPopup: true,
     },
   },
   {
@@ -79,39 +77,39 @@ const routes: Routes = [
     component: ImportComponent,
     canActivate: [CanActivateAdmin],
     data: {
-      disableRewardPopup: true
-    }
+      disableRewardPopup: true,
+    },
   },
   {
     path: 'admin/quotas',
     component: QuotasComponent,
     canActivate: [CanActivateAdmin],
     data: {
-      disableRewardPopup: true
-    }
+      disableRewardPopup: true,
+    },
   },
   {
     path: 'more-shite',
     component: IndexComponent,
     children: [
       {
-        path: "random-quote",
+        path: 'random-quote',
         component: RandomQuoteComponent,
       },
       {
-        path: "song-search",
+        path: 'song-search',
         component: SongSearchComponent,
       },
       {
-        path: "catalog-warehouse",
+        path: 'catalog-warehouse',
         component: CatalogWarehouseComponent,
       },
       {
-        path: "community-projects",
+        path: 'community-projects',
         component: CommunityProjectsComponent,
       },
       {
-        path: "archive",
+        path: 'archive',
         component: ArchiveComponent,
       },
       {
@@ -121,19 +119,16 @@ const routes: Routes = [
       },
     ],
   },
-  {path: '', redirectTo: '/search', pathMatch: 'full'},
+  { path: '', redirectTo: '/search', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(
-      routes,
-      {
-        anchorScrolling: 'enabled',
-        onSameUrlNavigation: 'reload',
-      },
-    )],
+    RouterModule.forRoot(routes, {
+      anchorScrolling: 'enabled',
+      onSameUrlNavigation: 'reload',
+    }),
+  ],
   exports: [RouterModule],
 })
-export class RootRoutingModule {
-}
+export class RootRoutingModule {}

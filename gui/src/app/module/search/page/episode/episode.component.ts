@@ -1,28 +1,28 @@
-import {Component, EventEmitter, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute, Data, NavigationEnd, Router} from '@angular/router';
-import {SearchAPIClient} from 'src/app/lib/api-client/services/search';
-import {DialogType, RskArchive, RskDialog, RskTranscript, RskTranscriptChange, RskTranscriptChangeList} from 'src/app/lib/api-client/models';
-import {Location, ViewportScroller} from '@angular/common';
-import {filter, takeUntil} from 'rxjs/operators';
-import {Title} from '@angular/platform-browser';
-import {SessionService} from '../../../core/service/session/session.service';
-import {And, Eq, Neq} from 'src/app/lib/filter-dsl/filter';
-import {Bool, Str} from 'src/app/lib/filter-dsl/value';
-import {MetaService} from '../../../core/service/meta/meta.service';
-import {AudioService, PlayerState, Status} from '../../../core/service/audio/audio.service';
-import {Section, TranscriptComponent} from '../../../shared/component/transcript/transcript.component';
-import {combineLatest} from 'rxjs';
-import {parseSection} from '../../../shared/lib/fragment';
-import {ClipboardService} from '../../../core/service/clipboard/clipboard.service';
-import {CommunityAPIClient} from 'src/app/lib/api-client/services/community';
-import {episodeIdVariations} from 'src/app/lib/util';
-import {AlertService} from '../../../core/service/alert/alert.service';
+import { Component, EventEmitter, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Data, NavigationEnd, Router } from '@angular/router';
+import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
+import { DialogType, RskArchive, RskDialog, RskTranscript, RskTranscriptChange, RskTranscriptChangeList } from 'src/app/lib/api-client/models';
+import { Location, ViewportScroller } from '@angular/common';
+import { filter, takeUntil } from 'rxjs/operators';
+import { Title } from '@angular/platform-browser';
+import { SessionService } from '../../../core/service/session/session.service';
+import { And, Eq, Neq } from 'src/app/lib/filter-dsl/filter';
+import { Bool, Str } from 'src/app/lib/filter-dsl/value';
+import { MetaService } from '../../../core/service/meta/meta.service';
+import { AudioService, PlayerState, Status } from '../../../core/service/audio/audio.service';
+import { Section, TranscriptComponent } from '../../../shared/component/transcript/transcript.component';
+import { combineLatest } from 'rxjs';
+import { parseSection } from '../../../shared/lib/fragment';
+import { ClipboardService } from '../../../core/service/clipboard/clipboard.service';
+import { CommunityAPIClient } from 'src/app/lib/api-client/services/community';
+import { episodeIdVariations } from 'src/app/lib/util';
+import { AlertService } from '../../../core/service/alert/alert.service';
 
 @Component({
   selector: 'app-episode',
   templateUrl: './episode.component.html',
   styleUrls: ['./episode.component.scss'],
-  standalone: false
+  standalone: false,
 })
 export class EpisodeComponent implements OnInit, OnDestroy {
   loading: boolean = false;
@@ -88,7 +88,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
     private audioService: AudioService,
     private clipboard: ClipboardService,
     private alertService: AlertService,
-    private location: Location
+    private location: Location,
   ) {
     route.paramMap.pipe(takeUntil(this.unsubscribe$)).subscribe((d: Data) => {
       this.loadEpisode(d.params['id']);
@@ -184,6 +184,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
         },
         (err) => {
           this.error = 'Failed to fetch episode';
+          console.error(err);
         },
       )
       .add(() => (this.loading = false));

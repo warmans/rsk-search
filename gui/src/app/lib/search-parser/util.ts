@@ -10,5 +10,5 @@ export function TermsToFilter(terms: Term[]): Filter {
       filter = And(filter, term.toFilter());
     }
   });
-  return filter
+  return filter;
 }

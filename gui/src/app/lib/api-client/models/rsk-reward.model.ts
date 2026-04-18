@@ -1,7 +1,5 @@
 /* tslint:disable */
-import {
-  RewardKind,
-} from '.';
+import { RewardKind } from '.';
 
 export interface RskReward {
   criteria?: string;

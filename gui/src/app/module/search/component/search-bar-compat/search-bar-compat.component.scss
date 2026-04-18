@@ -21,7 +21,8 @@
       }
     }
 
-    .term-input:active, .term-input:focus {
+    .term-input:active,
+    .term-input:focus {
       outline: none;
       border: none;
     }
@@ -34,7 +35,6 @@
     width: 100%;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
-
 }
 .buttons {
   .btn {

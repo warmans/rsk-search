@@ -1,16 +1,15 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
-import {RskSearchStats} from '../../../../lib/api-client/models';
-import {ChartConfiguration} from 'chart.js';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { RskSearchStats } from '../../../../lib/api-client/models';
+import { ChartConfiguration } from 'chart.js';
 
 @Component({
-    selector: 'app-search-stats',
-    templateUrl: './search-stats.component.html',
-    styleUrls: ['./search-stats.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'app-search-stats',
+  templateUrl: './search-stats.component.html',
+  styleUrls: ['./search-stats.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class SearchStatsComponent implements OnInit {
-
   @Input()
   set rawStats(value: { [p: string]: RskSearchStats }) {
     this._rawStats = value;
@@ -33,20 +32,20 @@ export class SearchStatsComponent implements OnInit {
     elements: {
       point: {
         radius: 1,
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
       },
       line: {
         tension: 0.2,
         fill: false,
-      }
+      },
     },
     plugins: {
-      legend: {display: false},
+      legend: { display: false },
       tooltip: {
         position: 'nearest',
         displayColors: true,
         intersect: false,
-      }
+      },
     },
   };
 
@@ -59,7 +58,7 @@ export class SearchStatsComponent implements OnInit {
     elements: {
       bar: {
         borderWidth: 2,
-      }
+      },
     },
     responsive: true,
     plugins: {
@@ -68,19 +67,15 @@ export class SearchStatsComponent implements OnInit {
       },
       title: {
         display: false,
-      }
-    }
+      },
+    },
   };
 
   publicationCountData: ChartConfiguration['data'];
 
+  constructor() {}
 
-  constructor() {
-  }
-
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   updateCharts() {
     this.updateEpisodeCountData();
@@ -95,7 +90,6 @@ export class SearchStatsComponent implements OnInit {
     };
     for (let rawStatsKey in this._rawStats) {
       if (this._rawStats.hasOwnProperty(rawStatsKey)) {
-
         if (this.episodeCountData.labels === undefined) {
           // just take the first one as they should be identical anyway.
           this.episodeCountData.labels = this._rawStats[rawStatsKey].labels;
@@ -108,7 +102,7 @@ export class SearchStatsComponent implements OnInit {
           pointBackgroundColor: this.getLineColor(rawStatsKey),
           pointBorderColor: 'transparent',
           interaction: {
-            intersect: false
+            intersect: false,
           },
         };
         this.episodeCountData.datasets.push(set);
@@ -118,12 +112,14 @@ export class SearchStatsComponent implements OnInit {
 
   updateActorCountData() {
     this.actorCountData = {
-      datasets: [{
-        data: [],
-        pointBorderColor: 'transparent',
-        backgroundColor: 'rgba(225, 81, 50, 0.7)',
-        borderColor: 'transparent',
-      }],
+      datasets: [
+        {
+          data: [],
+          pointBorderColor: 'transparent',
+          backgroundColor: 'rgba(225, 81, 50, 0.7)',
+          borderColor: 'transparent',
+        },
+      ],
       labels: [],
     };
     for (let actor in this._rawStats) {
@@ -137,12 +133,14 @@ export class SearchStatsComponent implements OnInit {
 
   updatePublicationCountData() {
     this.publicationCountData = {
-      datasets: [{
-        data: [],
-        pointBorderColor: 'transparent',
-        backgroundColor: 'rgba(225, 81, 50, 0.7)',
-        borderColor: 'transparent',
-      }],
+      datasets: [
+        {
+          data: [],
+          pointBorderColor: 'transparent',
+          backgroundColor: 'rgba(225, 81, 50, 0.7)',
+          borderColor: 'transparent',
+        },
+      ],
       labels: [],
     };
 
@@ -154,8 +152,8 @@ export class SearchStatsComponent implements OnInit {
           if (publicationCountMap[this.getPublication(episode)] === undefined) {
             publicationCountMap[this.getPublication(episode)] = 0;
           }
-          publicationCountMap[this.getPublication(episode)] += this._rawStats[actor].values[idx]
-        })
+          publicationCountMap[this.getPublication(episode)] += this._rawStats[actor].values[idx];
+        });
       }
     }
 
@@ -169,11 +167,10 @@ export class SearchStatsComponent implements OnInit {
   }
 
   getPublication(episode: string): string {
-    return episode.split("-")[0]
+    return episode.split('-')[0];
   }
 
   getLineColor(dataName: string): string | undefined {
-
     // don't know how to use scss classes for plots - see variables.scss :/
     switch (dataName) {
       case 'ricky':

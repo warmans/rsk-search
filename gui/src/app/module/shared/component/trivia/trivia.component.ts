@@ -2,21 +2,19 @@ import { Component, Input, OnInit } from '@angular/core';
 import { RskTrivia } from '../../../../lib/api-client/models';
 
 @Component({
-    selector: 'app-trivia',
-    templateUrl: './trivia.component.html',
-    styleUrls: ['./trivia.component.scss'],
-    standalone: false
+  selector: 'app-trivia',
+  templateUrl: './trivia.component.html',
+  styleUrls: ['./trivia.component.scss'],
+  standalone: false,
 })
 export class TriviaComponent implements OnInit {
-
-
   @Input()
   episodeID: string;
 
   @Input()
   set trivia(value: RskTrivia[]) {
     this._trivia = value;
-    this.triviaTitles = value.map(v => this.simpleTrivia(v.description));
+    this.triviaTitles = value.map((v) => this.simpleTrivia(v.description));
   }
 
   get trivia(): RskTrivia[] {
@@ -27,15 +25,12 @@ export class TriviaComponent implements OnInit {
 
   triviaTitles: string[] = [];
 
-  constructor() {
-  }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   simpleTrivia(original: string): string {
-    const lines = (original.trim().split('\n') || []);
+    const lines = original.trim().split('\n') || [];
     return lines.length === 0 ? 'NA' : lines[0];
   }
-
 }

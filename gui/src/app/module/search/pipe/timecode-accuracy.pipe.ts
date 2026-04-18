@@ -1,12 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-    name: 'timecodeAccuracy',
-    standalone: false
+  name: 'timecodeAccuracy',
+  standalone: false,
 })
 export class TimecodeAccuracyPipe implements PipeTransform {
-  constructor() {
-  }
+  constructor() {}
 
   transform(accuracyPcnt: number): string {
     switch (true) {
@@ -20,7 +19,7 @@ export class TimecodeAccuracyPipe implements PipeTransform {
         return 'Good';
       case accuracyPcnt >= 20 && accuracyPcnt < 40:
         return 'Very Good';
-      case accuracyPcnt >= 40 :
+      case accuracyPcnt >= 40:
         return 'Great';
     }
   }

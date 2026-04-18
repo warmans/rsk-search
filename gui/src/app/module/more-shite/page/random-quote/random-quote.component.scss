@@ -1,4 +1,4 @@
-@import 'src/scss/variables';
+@import "src/scss/variables";
 
 .cover-background {
   position: absolute;
@@ -15,7 +15,6 @@
 }
 
 .quote {
-
   min-height: 100%;
   z-index: 100;
 
@@ -32,4 +31,3 @@
     font-size: 1rem;
   }
 }
-

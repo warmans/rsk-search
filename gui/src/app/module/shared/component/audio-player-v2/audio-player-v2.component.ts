@@ -10,7 +10,7 @@ import { addMonths, intervalToDuration, startOfMonth } from 'date-fns';
   selector: 'app-audio-player-v2',
   templateUrl: './audio-player-v2.component.html',
   styleUrls: ['./audio-player-v2.component.scss'],
-  standalone: false
+  standalone: false,
 })
 export class AudioPlayerV2Component implements OnInit {
   @Input()

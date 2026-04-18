@@ -1,14 +1,14 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {BehaviorSubject, Observable, Subject} from 'rxjs';
-import {debounceTime, takeUntil} from 'rxjs/operators';
-import {CompOp, Filter} from 'src/app/lib/filter-dsl/filter';
-import {RskPrediction} from 'src/app/lib/api-client/models';
-import {highlightPrediction} from 'src/app/lib/util';
-import {Term} from 'src/app/lib/search-parser/parser';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { debounceTime, takeUntil } from 'rxjs/operators';
+import { CompOp, Filter } from 'src/app/lib/filter-dsl/filter';
+import { RskPrediction } from 'src/app/lib/api-client/models';
+import { highlightPrediction } from 'src/app/lib/util';
+import { Term } from 'src/app/lib/search-parser/parser';
 
 export enum SuggestionType {
-  Dialog = "dialog",
-  Any = "any"
+  Dialog = 'dialog',
+  Any = 'any',
 }
 
 export interface Suggestion {
@@ -20,13 +20,12 @@ export interface Suggestion {
 }
 
 @Component({
-    selector: 'app-search-bar-suggestion',
-    templateUrl: './search-bar-suggestion.component.html',
-    styleUrls: ['./search-bar-suggestion.component.scss'],
-    standalone: false
+  selector: 'app-search-bar-suggestion',
+  templateUrl: './search-bar-suggestion.component.html',
+  styleUrls: ['./search-bar-suggestion.component.scss'],
+  standalone: false,
 })
 export class SearchBarSuggestionComponent implements OnInit {
-
   @Input()
   set term(value: Term) {
     this._term = value;
@@ -70,29 +69,28 @@ export class SearchBarSuggestionComponent implements OnInit {
   destroy$: Subject<void> = new Subject();
 
   constructor() {
-
-    this.termChanged$.pipe(debounceTime(100), takeUntil(this.destroy$))
-      .subscribe((term: Term) => {
-        this.loading = true;
-        this.dataFn(
-          term.value.replace(/"/g, ''),
-          this.termFilters,
-          term.op === CompOp.Eq)
-          .pipe(takeUntil(this.destroy$)).subscribe((res: string[] | RskPrediction[]) => {
+    this.termChanged$.pipe(debounceTime(100), takeUntil(this.destroy$)).subscribe((term: Term) => {
+      this.loading = true;
+      this.dataFn(term.value.replace(/"/g, ''), this.termFilters, term.op === CompOp.Eq)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe((res: string[] | RskPrediction[]) => {
           this.values = res.map((val: RskPrediction | string): Suggestion => {
-            return (typeof val === 'string') ? {type: SuggestionType.Any, term: val} : {
-              type: SuggestionType.Dialog,
-              term: val.line,
-              epid: val.epid,
-              pos: val.pos,
-              actor: val.actor,
-            }
+            return typeof val === 'string'
+              ? { type: SuggestionType.Any, term: val }
+              : {
+                  type: SuggestionType.Dialog,
+                  term: val.line,
+                  epid: val.epid,
+                  pos: val.pos,
+                  actor: val.actor,
+                };
           });
-          this.highlightedValues = res.map((val: RskPrediction | string) => (typeof val === 'string') ? val : highlightPrediction(val));
-        }).add(() => {
+          this.highlightedValues = res.map((val: RskPrediction | string) => (typeof val === 'string' ? val : highlightPrediction(val)));
+        })
+        .add(() => {
           this.loading = false;
         });
-      });
+    });
   }
 
   ngOnInit(): void {
@@ -134,9 +132,9 @@ export class SearchBarSuggestionComponent implements OnInit {
   selectTerm(line: Suggestion) {
     this.termSelected.next({
       type: line.type,
-      term: (/\s/).test(line.term) ? `"${line.term}"` : `${line.term}`,
+      term: /\s/.test(line.term) ? `"${line.term}"` : `${line.term}`,
       epid: line.epid,
-      pos: line.pos
+      pos: line.pos,
     });
   }
 }

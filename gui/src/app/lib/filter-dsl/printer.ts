@@ -9,18 +9,15 @@ export function PrintPlainText(f: Filter): string {
 }
 
 export class PlainTextPrinter implements Visitor {
-
   private buff: string[] = [];
 
-  constructor() {
-  }
+  constructor() {}
 
   result(): string {
     return this.buff.join(' ');
   }
 
   visitBoolFilter(f: BoolFilter): Visitor {
-
     const needsLparen = f.lhs.precedence() < f.precedence();
     if (needsLparen) {
       this.buff.push('(');
@@ -59,7 +56,6 @@ export function PrintHTML(renderer: Renderer2, f: Filter): HTMLElement {
 }
 
 export class HTMLPrinter implements Visitor {
-
   readonly el: HTMLElement;
 
   constructor(private renderer: Renderer2) {
@@ -67,7 +63,6 @@ export class HTMLPrinter implements Visitor {
   }
 
   visitBoolFilter(f: BoolFilter): Visitor {
-
     const boolEl = this.span(['bool-filter'], '');
 
     const needsLparen = f.lhs.precedence() < f.precedence();
@@ -107,7 +102,6 @@ export class HTMLPrinter implements Visitor {
   }
 
   visitCompFilter(f: CompFilter): Visitor {
-
     let value: string;
     switch (f.value.kind) {
       case ValueKind.String:

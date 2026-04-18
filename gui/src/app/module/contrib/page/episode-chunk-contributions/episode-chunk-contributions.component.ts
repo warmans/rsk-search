@@ -1,25 +1,24 @@
-import {Component, EventEmitter, OnInit} from '@angular/core';
-import {SearchAPIClient} from 'src/app/lib/api-client/services/search';
-import {RskChunk, RskChunkContribution, RskChunkContributionList, RskContributionState, RskTranscriptChunkList} from 'src/app/lib/api-client/models';
-import {takeUntil} from 'rxjs/operators';
-import {ActivatedRoute, Data} from '@angular/router';
-import {Title} from '@angular/platform-browser';
-import {parseTranscript, Tscript} from '../../../shared/lib/tscript';
-import {SessionService} from '../../../core/service/session/session.service';
-import {And, Eq} from 'src/app/lib/filter-dsl/filter';
-import {Str} from 'src/app/lib/filter-dsl/value';
+import { Component, EventEmitter, OnInit } from '@angular/core';
+import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
+import { RskChunk, RskChunkContribution, RskChunkContributionList, RskContributionState, RskTranscriptChunkList } from 'src/app/lib/api-client/models';
+import { takeUntil } from 'rxjs/operators';
+import { ActivatedRoute, Data } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { parseTranscript, Tscript } from '../../../shared/lib/tscript';
+import { SessionService } from '../../../core/service/session/session.service';
+import { And, Eq } from 'src/app/lib/filter-dsl/filter';
+import { Str } from 'src/app/lib/filter-dsl/value';
 
 @Component({
-    selector: 'app-episode-chunk-contributions',
-    templateUrl: './episode-chunk-contributions.component.html',
-    styleUrls: ['./episode-chunk-contributions.component.scss'],
-    standalone: false
+  selector: 'app-episode-chunk-contributions',
+  templateUrl: './episode-chunk-contributions.component.html',
+  styleUrls: ['./episode-chunk-contributions.component.scss'],
+  standalone: false,
 })
 export class EpisodeChunkContributions implements OnInit {
-
   chunkedTranscriptID: string;
 
-  chunks: Array<RskChunk & {selectedContribution?: number}> = [];
+  chunks: Array<RskChunk & { selectedContribution?: number }> = [];
 
   groupedContributions: { [index: string]: RskChunkContribution[] } = {};
 
@@ -39,9 +38,13 @@ export class EpisodeChunkContributions implements OnInit {
 
   private destroy$ = new EventEmitter<any>();
 
-  constructor(private apiClient: SearchAPIClient, private route: ActivatedRoute, private titleService: Title, private session: SessionService) {
-
-    session.onTokenChange.pipe(takeUntil(this.destroy$)).subscribe((token: string) => {
+  constructor(
+    private apiClient: SearchAPIClient,
+    private route: ActivatedRoute,
+    private titleService: Title,
+    private session: SessionService,
+  ) {
+    session.onTokenChange.pipe(takeUntil(this.destroy$)).subscribe(() => {
       this.approver = session.getClaims()?.approver || false;
     });
 
@@ -56,45 +59,49 @@ export class EpisodeChunkContributions implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   loadData() {
-
     let filter = Eq('tscript_id', Str(this.chunkedTranscriptID));
     if (this.stateFilter) {
       filter = And(filter, Eq('state', Str(this.stateFilter)));
     }
 
+    this.loading.push(true);
+    this.apiClient
+      .listTranscriptChunks({
+        chunkedTranscriptId: this.chunkedTranscriptID,
+        sortField: 'start_second',
+        sortDirection: 'asc',
+        pageSize: 200,
+      })
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((resp: RskTranscriptChunkList) => {
+        this.chunks = resp.chunks;
+      })
+      .add(() => this.loading.pop());
 
     this.loading.push(true);
-    this.apiClient.listTranscriptChunks({
-      chunkedTranscriptId: this.chunkedTranscriptID,
-      sortField: 'start_second',
-      sortDirection: 'asc',
-      pageSize: 200
-    }).pipe(takeUntil(this.destroy$)).subscribe((resp: RskTranscriptChunkList) => {
-      this.chunks = resp.chunks;
-    }).add(() => this.loading.pop());
-
-    this.loading.push(true);
-    this.apiClient.listChunkContributions({
-      filter: filter.print(),
-      pageSize: 200,
-    }).pipe(takeUntil(this.destroy$)).subscribe((val: RskChunkContributionList) => {
-      this.groupedContributions = {};
-      val.contributions.forEach((c) => {
-        if (c.state === RskContributionState.STATE_PENDING || c.state === RskContributionState.STATE_REJECTED) {
-          return;
-        }
-        if (this.groupedContributions[c.chunkId]) {
-          this.groupedContributions[c.chunkId].push(c);
-        } else {
-          this.groupedContributions[c.chunkId] = [c];
-        }
-      });
-    }).add(() => this.loading.pop());
+    this.apiClient
+      .listChunkContributions({
+        filter: filter.print(),
+        pageSize: 200,
+      })
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((val: RskChunkContributionList) => {
+        this.groupedContributions = {};
+        val.contributions.forEach((c) => {
+          if (c.state === RskContributionState.STATE_PENDING || c.state === RskContributionState.STATE_REJECTED) {
+            return;
+          }
+          if (this.groupedContributions[c.chunkId]) {
+            this.groupedContributions[c.chunkId].push(c);
+          } else {
+            this.groupedContributions[c.chunkId] = [c];
+          }
+        });
+      })
+      .add(() => this.loading.pop());
   }
 
   // unused - but might need to be re-implemented at some point
@@ -130,15 +137,18 @@ export class EpisodeChunkContributions implements OnInit {
 
   updateState(contributionId: string, state: RskContributionState, comment?: string) {
     this.loading.push(true);
-    this.apiClient.requestChunkContributionState({
+    this.apiClient
+      .requestChunkContributionState({
         contributionId: contributionId,
         body: {
           requestState: state,
           comment: comment,
-      }
-    }).subscribe((result) => {
-      this.loadData();
-    }).add(() => this.loading.pop());
+        },
+      })
+      .subscribe((_result) => {
+        this.loadData();
+      })
+      .add(() => this.loading.pop());
   }
 
   selectChunkContribution(oldID: string, ev: any) {

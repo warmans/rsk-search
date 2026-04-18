@@ -1,8 +1,5 @@
 /* tslint:disable */
-import {
-  RskAuthor,
-  RskRank,
-} from '.';
+import { RskAuthor, RskRank } from '.';
 
 export interface RskAuthorRank {
   approvedChanges?: number;

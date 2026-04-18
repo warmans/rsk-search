@@ -1,5 +1,4 @@
 <div class="container-fluid pt-3">
-
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a [routerLink]="['/search']">Home</a></li>
@@ -13,13 +12,12 @@
       @if (userCanEdit && change && this.versionMismatchError) {
         <div class="alert alert-danger">
           <strong>Version Mismatch</strong>
-          <p>Your change was created with transcript version {{ change?.transcriptVersion || 'NONE' }} but the transcript
-            is now at
-            version {{ transcript?.version || 'NONE' }}. This means merging your change will revert someone else's
-            contribution.
-          Unfortunately all you can do is discard the change and start again.</p>
-          <p>You may also be able to copy your current change to notepad, discard it and copy/paste the relevant sections
-          into a new change.</p>
+          <p>
+            Your change was created with transcript version {{ change?.transcriptVersion || "NONE" }} but the transcript is now at version
+            {{ transcript?.version || "NONE" }}. This means merging your change will revert someone else's contribution. Unfortunately all you can do is discard
+            the change and start again.
+          </p>
+          <p>You may also be able to copy your current change to notepad, discard it and copy/paste the relevant sections into a new change.</p>
         </div>
       }
 
@@ -27,16 +25,13 @@
         <div class="card-header d-flex align-items-center justify-content-between">
           Submit Transcript Change
           @if (instructionsHidden) {
-            <button class="btn btn-link btn-sm text-sm" (click)="undoHideInstructions()">Show
-              Instructions
-            </button>
+            <button class="btn btn-link btn-sm text-sm" (click)="undoHideInstructions()">Show Instructions</button>
           }
         </div>
         @if (!change) {
           <div class="card">
             <div class="card-body">
-              <p>Currently your contribution is only saved locally, you can create a draft to allow you to submit it for
-              approval.</p>
+              <p>Currently your contribution is only saved locally, you can create a draft to allow you to submit it for approval.</p>
               <button class="btn btn-success mt-2" (click)="create()">Create draft</button>
             </div>
           </div>
@@ -51,8 +46,10 @@
                 <div>
                   @if (change.state === cStates.STATE_PENDING) {
                     <div>
-                      <p>This means that the contribution has not yet been reviewed and can still be edited if you are the
-                      owner. Clicking the button below will mark it as being ready to be merged.</p>
+                      <p>
+                        This means that the contribution has not yet been reviewed and can still be edited if you are the owner. Clicking the button below will
+                        mark it as being ready to be merged.
+                      </p>
                       <button [disabled]="this.versionMismatchError" class="btn btn-success mt-2" (click)="markComplete()">
                         Submit for review <i class="bi-check"></i>
                       </button>
@@ -63,13 +60,10 @@
                     <div>
                       <p>This means your contribution will now be reviewed and merged (hopefully!).</p>
                       <div class="d-flex">
-                        <button class="btn btn-warning mt-2" (click)="markIncomplete()">Revert to incomplete <i
-                        class="bi-pen"></i></button>
+                        <button class="btn btn-warning mt-2" (click)="markIncomplete()">Revert to incomplete <i class="bi-pen"></i></button>
                         @if (userIsApprover) {
                           <div class="d-flex pt-2">
-                            <button class="btn btn-success ml-3" (click)="markApproved()">Approve
-                              ({{ this.approvalPoints.value }})
-                            </button>
+                            <button class="btn btn-success ml-3" (click)="markApproved()">Approve ({{ this.approvalPoints.value }})</button>
                             <div>
                               <select class="form-control" [formControl]="approvalPoints">
                                 <option value="0.2">Typo 0.2</option>
@@ -86,17 +80,14 @@
                     </div>
                   }
                   @if (change.state === cStates.STATE_APPROVED) {
-                    <div>
-                      This means your contributions was approved and will be merged into the canonical dataset.
-                    </div>
+                    <div>This means your contributions was approved and will be merged into the canonical dataset.</div>
                   }
                   @if (change.state === cStates.STATE_REJECTED) {
                     <div>
-                      <p>This means it was not possible to merge your contribution either because it was a duplicate,
-                      or because it did not appear to be correct.</p>
-                      <button class="btn btn-success mt-2" (click)="markIncomplete()">
-                        Revert to incomplete <i class="bi-pen"></i>
-                      </button>
+                      <p>
+                        This means it was not possible to merge your contribution either because it was a duplicate, or because it did not appear to be correct.
+                      </p>
+                      <button class="btn btn-success mt-2" (click)="markIncomplete()">Revert to incomplete <i class="bi-pen"></i></button>
                     </div>
                   }
                 </div>
@@ -117,105 +108,95 @@
               <strong class="mb-2">Objectives:</strong>
               <p>In order of importance here are things you should consider adding to the transcript:</p>
               <ul>
-                <li><strong>OFFSETS</strong> - Add timestamp offsets as often as possible. This improves accuracy of
-                timecodes.
-              </li>
-              <li><strong>SYN</strong> - Adding synopses to sections of text to summarise what happened in the episode.
-            </li>
-            <li><strong>Cleanup</strong> - General cleanup of transcript, especially when it was created from multiple
-            chunks.
+                <li><strong>OFFSETS</strong> - Add timestamp offsets as often as possible. This improves accuracy of timecodes.</li>
+                <li><strong>SYN</strong> - Adding synopses to sections of text to summarise what happened in the episode.</li>
+                <li><strong>Cleanup</strong> - General cleanup of transcript, especially when it was created from multiple chunks.</li>
+                <li>
+                  <strong>TRIVIA</strong> - Adding trivia tags are useful if you want to make a note about the dialog e.g. "karl did not win the lottery, the
+                  actual numbers were 517952".
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+  <div class="row mb-2">
+    <div class="col-12">
+      <ul class="nav nav-tabs font-weight-bold">
+        <li class="nav-item mr-2">
+          <a class="nav-link" (click)="activeTab = 'edit'" [ngClass]="{ active: activeTab === 'edit' }">Editor</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="activeTab = 'preview'" [ngClass]="{ active: activeTab === 'preview' }">Preview</a>
+        </li>
+        @if (!!change) {
+          <li class="nav-item">
+            <a class="nav-link" (click)="activeTab = 'diff'" [ngClass]="{ active: activeTab === 'diff' }">Diff</a>
           </li>
-          <li><strong>TRIVIA</strong> - Adding trivia tags are useful if you want to make a note about the dialog
-          e.g. "karl did not win the lottery, the actual numbers were
-          517952".
+        }
+        <li class="nav-item">
+          <a class="nav-link" (click)="activeTab = 'meta'" [ngClass]="{ active: activeTab === 'meta' }">Metadata</a>
         </li>
       </ul>
-    </div>
-  </div>
-</div>
-}
-</div>
-</div>
-<div class="row mb-2">
-  <div class="col-12">
 
-    <ul class="nav nav-tabs font-weight-bold">
-      <li class="nav-item mr-2">
-        <a class="nav-link" (click)="activeTab='edit'" [ngClass]="{'active': activeTab==='edit'}">Editor</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" (click)="activeTab='preview'" [ngClass]="{'active': activeTab==='preview'}">Preview</a>
-      </li>
-      @if (!!change) {
-        <li class="nav-item">
-          <a class="nav-link" (click)="activeTab='diff'" [ngClass]="{'active': activeTab==='diff'}">Diff</a>
-        </li>
+      <div [hidden]="!(activeTab === 'edit')">
+        <app-editor
+          #editor
+          [contentID]="change ? change.id : transcript?.id"
+          [contentVersion]="change ? change.transcriptVersion : transcript?.version"
+          [rawTranscript]="initialTranscript || ''"
+          [lastUpdateDate]="lastUpdateTimestamp"
+          [audioConfig]="{ episodeId: change ? change.episodeId : transcript?.id }"
+          [allowEdit]="userCanEdit"
+          [isSaved]="!!change?.id"
+          [chunkMode]="false"
+          (handleSave)="handleSave($event)"
+        >
+        </app-editor>
+      </div>
+
+      @if (activeTab === "preview") {
+        <div class="card">
+          <div class="card-header"></div>
+          <div class="card-body preview-window">
+            <!--todo: audio links should work, but there needs to be a new instance of the audio service to seek the audio on click -->
+            <app-transcript
+              [media]="transcript?.media"
+              [epid]="change ? change.episodeId : transcript?.id"
+              [rawTranscript]="transcriber.getContentSnapshot() || initialTranscript"
+              [searchResultMode]="false"
+              [enableAudioLinks]="false"
+              [enableLineLinking]="false"
+            ></app-transcript>
+          </div>
+        </div>
       }
-      <li class="nav-item">
-        <a class="nav-link" (click)="activeTab='meta'" [ngClass]="{'active': activeTab==='meta'}">Metadata</a>
-      </li>
-    </ul>
 
-    <div [hidden]="!(activeTab==='edit')">
-      <app-editor
-        #editor
-        [contentID]="change ? change.id : transcript?.id"
-        [contentVersion]="change ? change.transcriptVersion : transcript?.version"
-        [rawTranscript]="initialTranscript || ''"
-        [lastUpdateDate]="lastUpdateTimestamp"
-        [audioConfig]="{episodeId: change ? change.episodeId : transcript?.id}"
-        [allowEdit]="userCanEdit"
-        [isSaved]="!!change?.id"
-        [chunkMode]="false"
-        (handleSave)="handleSave($event)">
-      </app-editor>
+      @if (!!change && activeTab === "diff") {
+        <div class="card">
+          <div class="card-header"></div>
+          <div class="card-body preview-window">
+            @for (diff of diffs; track diff) {
+              <div>
+                <app-html-diff [unifiedDiff]="diff"></app-html-diff>
+              </div>
+            }
+          </div>
+        </div>
+      }
+
+      @if (activeTab === "meta") {
+        <div class="card">
+          <div class="card-header"></div>
+          <div class="card-body">
+            <app-metadata-editor [allowEdit]="userCanEdit" [transcriptMeta]="metadata" (metadataUpdated)="metadataUpdated($event)"> </app-metadata-editor>
+          </div>
+        </div>
+      }
     </div>
-
-    @if ((activeTab==='preview')) {
-      <div class="card">
-        <div class="card-header"></div>
-        <div class="card-body preview-window">
-          <!--todo: audio links should work, but there needs to be a new instance of the audio service to seek the audio on click -->
-          <app-transcript
-            [media]="transcript?.media"
-            [epid]="change ? change.episodeId : transcript?.id"
-            [rawTranscript]="transcriber.getContentSnapshot() || initialTranscript"
-            [searchResultMode]="false"
-            [enableAudioLinks]="false"
-          [enableLineLinking]="false"></app-transcript>
-        </div>
-      </div>
-    }
-
-    @if (!!change && (activeTab==='diff')) {
-      <div class="card">
-        <div class="card-header"></div>
-        <div class="card-body preview-window">
-          @for (diff of diffs; track diff) {
-            <div>
-              <app-html-diff [unifiedDiff]="diff"></app-html-diff>
-            </div>
-          }
-        </div>
-      </div>
-    }
-
-    @if ((activeTab==='meta')) {
-      <div class="card">
-        <div class="card-header"></div>
-        <div class="card-body">
-          <app-metadata-editor
-            [allowEdit]="userCanEdit"
-            [transcriptMeta]="metadata"
-            (metadataUpdated)="metadataUpdated($event)">
-          </app-metadata-editor>
-        </div>
-      </div>
-    }
-
   </div>
-</div>
-
 </div>
 
 @if (!readOnly) {

@@ -1,14 +1,12 @@
 <div class="container-fluid pt-3">
-
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a [routerLink]="['/search']">Home</a></li>
       <li class="breadcrumb-item"><a [routerLink]="['/contribute']">Contribute</a></li>
       @if (chunk) {
-        <li class="breadcrumb-item"><a [routerLink]="['/tscript', chunk.chunkedTranscriptId ]">{{
-          chunk?.chunkedTranscriptId ||
-          "loading..."
-        }}</a></li>
+        <li class="breadcrumb-item">
+          <a [routerLink]="['/tscript', chunk.chunkedTranscriptId]">{{ chunk?.chunkedTranscriptId || "loading..." }}</a>
+        </li>
       }
       <li class="breadcrumb-item active" aria-current="page">Create</li>
     </ol>
@@ -18,17 +16,15 @@
 
   <div class="row mb-3">
     <div class="col-12">
-
       @if (!userCanEdit && contribution.state !== cStates.STATE_REQUEST_APPROVAL) {
         <div class="alert alert-warning">
-          This contribution is not editable, either because you are
-          not the owner or because is has already been accepted or rejected
+          This contribution is not editable, either because you are not the owner or because is has already been accepted or rejected
         </div>
       }
       @if (!contribution && chunk?.numContributions > 0) {
         <div class="alert alert-warning">
-          There are already {{ chunk.numContributions }} approved or proposed contributions for this section of audio.
-          You can start a different one by clicking <a [routerLink]="['/chunk', 'next']">here</a>.
+          There are already {{ chunk.numContributions }} approved or proposed contributions for this section of audio. You can start a different one by clicking
+          <a [routerLink]="['/chunk', 'next']">here</a>.
         </div>
       }
     </div>
@@ -38,13 +34,11 @@
 
   <div class="row mb-3">
     <div class="col-12">
-
       <div class="card">
         @if (!contribution) {
           <div class="card">
             <div class="card-body">
-              <p>Currently your contribution is only saved locally, you can create a draft to allow you to submit it for
-              approval.</p>
+              <p>Currently your contribution is only saved locally, you can create a draft to allow you to submit it for approval.</p>
               <button class="btn btn-success mt-2" (click)="create()">Create draft</button>
             </div>
           </div>
@@ -59,11 +53,11 @@
                 <div>
                   @if (contribution.state === cStates.STATE_PENDING) {
                     <div>
-                      <p>This means that the contribution has not yet been reviewed and can still be edited if you are the
-                      owner. Clicking the button below will mark it as being ready to be merged.</p>
-                      <button class="btn btn-success mt-2" (click)="markComplete()">
-                        Submit for review <i class="bi-check"></i>
-                      </button>
+                      <p>
+                        This means that the contribution has not yet been reviewed and can still be edited if you are the owner. Clicking the button below will
+                        mark it as being ready to be merged.
+                      </p>
+                      <button class="btn btn-success mt-2" (click)="markComplete()">Submit for review <i class="bi-check"></i></button>
                       <button (click)="discard()" class="btn btn-danger ml-2 mt-2">Discard</button>
                     </div>
                   }
@@ -71,14 +65,12 @@
                     <div>
                       <p>This means your contribution will now be reviewed and merged (hopefully!).</p>
                       <div class="d-flex">
-                        <button class="btn btn-warning mt-2" (click)="markIncomplete()">Revert to incomplete <i
-                        class="bi-pen"></i></button>
+                        <button class="btn btn-warning mt-2" (click)="markIncomplete()">Revert to incomplete <i class="bi-pen"></i></button>
                         @if (userIsApprover) {
                           <div class="d-flex">
                             <button class="btn btn-success mt-2 ml-3" (click)="markApproved()">Approve</button>
                             <div class="mt-2 ml-3">
-                              <app-reject-button [contributionId]="contribution.id"
-                              [rejectAction]="rejectCallback"></app-reject-button>
+                              <app-reject-button [contributionId]="contribution.id" [rejectAction]="rejectCallback"></app-reject-button>
                             </div>
                           </div>
                         }
@@ -86,17 +78,14 @@
                     </div>
                   }
                   @if (contribution.state === cStates.STATE_APPROVED) {
-                    <div>
-                      This means your contributions was approved and will be merged into the canonical dataset.
-                    </div>
+                    <div>This means your contributions was approved and will be merged into the canonical dataset.</div>
                   }
                   @if (contribution.state === cStates.STATE_REJECTED) {
                     <div>
-                      <p>This means it was not possible to merge your contribution either because it was a duplicate,
-                      or because it did not appear to be correct.</p>
-                      <button class="btn btn-success mt-2" (click)="markIncomplete()">
-                        Revert to incomplete <i class="bi-pen"></i>
-                      </button>
+                      <p>
+                        This means it was not possible to merge your contribution either because it was a duplicate, or because it did not appear to be correct.
+                      </p>
+                      <button class="btn btn-success mt-2" (click)="markIncomplete()">Revert to incomplete <i class="bi-pen"></i></button>
                     </div>
                   }
                 </div>
@@ -112,17 +101,16 @@
 
   <div class="row mb-2">
     <div class="col-12">
-
       <ul class="nav nav-tabs font-weight-bold">
         <li class="nav-item mr-2">
-          <a class="nav-link" (click)="activeTab='edit'" [ngClass]="{'active': activeTab==='edit'}">Editor</a>
+          <a class="nav-link" (click)="activeTab = 'edit'" [ngClass]="{ active: activeTab === 'edit' }">Editor</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="activeTab='preview'" [ngClass]="{'active': activeTab==='preview'}">Preview</a>
+          <a class="nav-link" (click)="activeTab = 'preview'" [ngClass]="{ active: activeTab === 'preview' }">Preview</a>
         </li>
       </ul>
 
-      <div [hidden]="!(activeTab==='edit')">
+      <div [hidden]="!(activeTab === 'edit')">
         <app-editor
           #editor
           [contentID]="contribution ? contribution.id : chunk?.id"
@@ -130,26 +118,23 @@
           [rawTranscript]="initialTranscript"
           [lastUpdateDate]="lastUpdateTimestamp"
           [allowEdit]="userCanEdit"
-          [audioConfig]="{episodeId: (chunk?.chunkedTranscriptId.replace('ts-', 'ep-')), startMs: chunk?.startTimeMs, endMs: chunk?.endTimeMs}"
+          [audioConfig]="{ episodeId: chunk?.chunkedTranscriptId.replace('ts-', 'ep-'), startMs: chunk?.startTimeMs, endMs: chunk?.endTimeMs }"
           [isSaved]="contribution ? true : false"
           [chunkMode]="true"
-          (handleSave)="handleSave($event)">
+          (handleSave)="handleSave($event)"
+        >
         </app-editor>
       </div>
 
-      @if ((activeTab==='preview')) {
+      @if (activeTab === "preview") {
         <div class="card">
           <div class="card-header"></div>
           <div class="card-body preview-window">
-            <app-transcript
-              [rawTranscript]="editor.getContentSnapshot() || initialTranscript"
-              [searchResultMode]="false"
-              [enableLineLinking]="false">
+            <app-transcript [rawTranscript]="editor.getContentSnapshot() || initialTranscript" [searchResultMode]="false" [enableLineLinking]="false">
             </app-transcript>
           </div>
         </div>
       }
-
     </div>
   </div>
 </div>

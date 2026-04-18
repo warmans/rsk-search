@@ -1,11 +1,10 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SessionService {
-
   public onTokenChange: BehaviorSubject<string> = new BehaviorSubject<string>(null);
 
   private token: string | null;
@@ -67,10 +66,13 @@ export class SessionService {
   }
 }
 
-
 export class Claims {
-  constructor(readonly author_id: string, readonly approver: boolean, readonly identity: Identity, readonly oauth_provider: string) {
-  }
+  constructor(
+    readonly author_id: string,
+    readonly approver: boolean,
+    readonly identity: Identity,
+    readonly oauth_provider: string,
+  ) {}
 }
 
 export class Identity {

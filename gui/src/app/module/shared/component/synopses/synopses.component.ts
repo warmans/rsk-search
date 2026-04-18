@@ -2,14 +2,13 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 import { RskSynopsis } from '../../../../lib/api-client/models';
 
 @Component({
-    selector: 'app-synopses',
-    templateUrl: './synopses.component.html',
-    styleUrls: ['./synopses.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'app-synopses',
+  templateUrl: './synopses.component.html',
+  styleUrls: ['./synopses.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class SynopsesComponent implements OnInit {
-
   @Input()
   episodeID: string;
 
@@ -19,10 +18,7 @@ export class SynopsesComponent implements OnInit {
   @Input()
   showTitle: boolean = true;
 
-  constructor() {
-  }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

@@ -1,11 +1,12 @@
 <div class="alerts-container">
-  @for (a of (alerts || []); track a) {
-    <div
-      class="custom-alert custom-alert-{{a.level}} mb-3 p-2 animate__animated animate__backInDown shadow">
+  @for (a of alerts || []; track a) {
+    <div class="custom-alert custom-alert-{{ a.level }} mb-3 p-2 animate__animated animate__backInDown shadow">
       <button type="button" class="close" aria-label="Close" (click)="remove(a.content)">
         <span class="text-black-50" aria-hidden="true">&times;</span>
       </button>
-      <div><strong>{{ a.content }}</strong></div>
+      <div>
+        <strong>{{ a.content }}</strong>
+      </div>
       @if ((a?.details || []).length > 0) {
         <ul class="mt-2">
           @for (deet of a.details; track deet) {

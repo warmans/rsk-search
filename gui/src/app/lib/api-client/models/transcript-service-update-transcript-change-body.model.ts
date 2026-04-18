@@ -1,7 +1,5 @@
 /* tslint:disable */
-import {
-  RskContributionState,
-} from '.';
+import { RskContributionState } from '.';
 
 export interface TranscriptServiceUpdateTranscriptChangeBody {
   name?: string;

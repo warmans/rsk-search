@@ -1,16 +1,13 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-    selector: 'app-audio-player-fixed',
-    templateUrl: './audio-player-fixed.component.html',
-    styleUrls: ['./audio-player-fixed.component.scss'],
-    standalone: false
+  selector: 'app-audio-player-fixed',
+  templateUrl: './audio-player-fixed.component.html',
+  styleUrls: ['./audio-player-fixed.component.scss'],
+  standalone: false,
 })
 export class AudioPlayerFixedComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

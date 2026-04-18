@@ -1,7 +1,5 @@
 /* tslint:disable */
-import {
-  RskSong,
-} from '.';
+import { RskSong } from '.';
 
 export interface RskSongList {
   resultCount?: number;

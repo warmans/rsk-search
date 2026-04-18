@@ -31,23 +31,21 @@ export enum Tag {
 }
 
 const keywords = {
-  'and': Tag.And,
-  'or': Tag.Or,
-  'true': Tag.Bool,
-  'false': Tag.Bool,
-  'null': Tag.Null,
+  and: Tag.And,
+  or: Tag.Or,
+  true: Tag.Bool,
+  false: Tag.Bool,
+  null: Tag.Null,
 };
 
 export class Tok {
-
   constructor(
     public tag: Tag,
     public lexeme: string,
     public start: number,
     public end: number,
-    public error: string = null
-  ) {
-  }
+    public error: string = null,
+  ) {}
 
   trimLexeme(cutset: string): Tok {
     this.lexeme = trimChars(this.lexeme, cutset);
@@ -69,7 +67,6 @@ export function Scan(str: string, cstMode: boolean = false): Tok[] {
 }
 
 export class Scanner {
-
   input: string[] = [];
   pos: number = 0;
   offset: number = 0;
@@ -104,7 +101,7 @@ export class Scanner {
         if (this.matchNextChar('=')) {
           return this.emit(Tag.Like);
         }
-        return this.emit(Tag.FuzzyLike)
+        return this.emit(Tag.FuzzyLike);
       case '>':
         if (this.matchNextChar('=')) {
           return this.emit(Tag.Ge);
@@ -204,7 +201,7 @@ export class Scanner {
     return new Tok(tag, lexeme, start, end);
   }
 
-  private emitError(reason: string): Tok {
+  private emitError(_reason: string): Tok {
     const lexeme = this.input.slice(this.offset, this.input.length).join('');
     const start = this.offset;
     const end = this.input.length;

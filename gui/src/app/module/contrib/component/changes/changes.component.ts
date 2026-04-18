@@ -1,26 +1,25 @@
-import {Component, EventEmitter, Input} from '@angular/core';
+import { Component, EventEmitter, Input } from '@angular/core';
 import {
   RskAuthorContribution,
   RskAuthorContributionList,
   RskChunkedTranscriptStats,
-  RskContributionState, RskShortTranscriptChange,
+  RskContributionState,
+  RskShortTranscriptChange,
   RskTranscriptChange,
-  RskTranscriptChangeList
-} from "../../../../lib/api-client/models";
-import {And, Eq, Neq} from "../../../../lib/filter-dsl/filter";
-import {Bool, Str} from "../../../../lib/filter-dsl/value";
-import {takeUntil} from "rxjs/operators";
-import {SearchAPIClient} from "../../../../lib/api-client/services/search";
+  RskTranscriptChangeList,
+} from '../../../../lib/api-client/models';
+import { And, Eq, Neq } from '../../../../lib/filter-dsl/filter';
+import { Bool, Str } from '../../../../lib/filter-dsl/value';
+import { takeUntil } from 'rxjs/operators';
+import { SearchAPIClient } from '../../../../lib/api-client/services/search';
 
 @Component({
-    selector: 'app-changes',
-    templateUrl: './changes.component.html',
-    styleUrls: ['./changes.component.scss'],
-    standalone: false
+  selector: 'app-changes',
+  templateUrl: './changes.component.html',
+  styleUrls: ['./changes.component.scss'],
+  standalone: false,
 })
 export class ChangesComponent {
-
-
   private unsubscribe$: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   loading: boolean[] = [];
@@ -49,7 +48,7 @@ export class ChangesComponent {
 
     value.forEach((ts: RskChunkedTranscriptStats) => {
       if (this.progressMap[ts.id] === undefined) {
-        this.progressMap[ts.id] = {'total': 0, 'complete': 0, 'pending_approval': 0};
+        this.progressMap[ts.id] = { total: 0, complete: 0, pending_approval: 0 };
       }
       for (let chunkID in ts.chunkContributions) {
         this.progressMap[ts.id]['total']++;
@@ -81,8 +80,7 @@ export class ChangesComponent {
 
   private _chunks: RskChunkedTranscriptStats[] = [];
 
-  public constructor(private apiClient: SearchAPIClient) {
-  }
+  public constructor(private apiClient: SearchAPIClient) {}
 
   public ngOnInit() {
     this.getPendingChanges();
@@ -91,39 +89,42 @@ export class ChangesComponent {
 
   private getRecentContributions() {
     this.loading.push(true);
-    this.apiClient.listAuthorContributions({
-      pageSize: 10,
-      sortField: 'created_at',
-      sortDirection: 'DESC'
-    }).pipe(takeUntil(this.unsubscribe$)).subscribe((res: RskAuthorContributionList) => {
-      this.recentContributions = res.contributions;
-    }).add(() => {
-      this.loading.pop();
-    });
+    this.apiClient
+      .listAuthorContributions({
+        pageSize: 10,
+        sortField: 'created_at',
+        sortDirection: 'DESC',
+      })
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((res: RskAuthorContributionList) => {
+        this.recentContributions = res.contributions;
+      })
+      .add(() => {
+        this.loading.pop();
+      });
   }
 
   private getPendingChanges() {
     this.loading.push(true);
-    this.apiClient.listTranscriptChanges({
-      filter: And(
-        Eq('merged', Bool(false)),
-        Neq('state', Str('pending')),
-        Neq('state', Str('rejected')),
-      ).print()
-    }).pipe(takeUntil(this.unsubscribe$)).subscribe((res: RskTranscriptChangeList) => {
-      this.pendingChanges = res.changes;
-      this.unapprovedPendingChanges = 0;
-      (res.changes || []).forEach((ch: RskShortTranscriptChange) => {
-        if (ch.state === RskContributionState.STATE_REQUEST_APPROVAL) {
-          this.unapprovedPendingChanges += 1;
+    this.apiClient
+      .listTranscriptChanges({
+        filter: And(Eq('merged', Bool(false)), Neq('state', Str('pending')), Neq('state', Str('rejected'))).print(),
+      })
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((res: RskTranscriptChangeList) => {
+        this.pendingChanges = res.changes;
+        this.unapprovedPendingChanges = 0;
+        (res.changes || []).forEach((ch: RskShortTranscriptChange) => {
+          if (ch.state === RskContributionState.STATE_REQUEST_APPROVAL) {
+            this.unapprovedPendingChanges += 1;
+          }
+        });
+        if (this.pendingChanges.length > 0 && (this._chunks || []).length === 0) {
+          this.activeTab = 'pending';
         }
+      })
+      .add(() => {
+        this.loading.pop();
       });
-      if (this.pendingChanges.length > 0 && (this._chunks || []).length === 0) {
-        this.activeTab = 'pending';
-      }
-    }).add(() => {
-      this.loading.pop();
-    });
   }
-
 }

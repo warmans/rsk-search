@@ -1,7 +1,5 @@
 /* tslint:disable */
-import {
-  RskFile,
-} from '.';
+import { RskFile } from '.';
 
 export interface RskArchive {
   description?: string;

@@ -1,16 +1,15 @@
-import {Injectable} from '@angular/core';
-import {AudioService, PlayerMode, PlayerState} from "../audio/audio.service";
-import {takeUntil} from "rxjs/operators";
-import {Subject} from "rxjs";
-import {SearchAPIClient} from "../../../../lib/api-client/services/search";
-import {RskRadioState} from "../../../../lib/api-client/models";
-import {SessionService} from "../session/session.service";
+import { Injectable } from '@angular/core';
+import { AudioService, PlayerMode, PlayerState } from '../audio/audio.service';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { SearchAPIClient } from '../../../../lib/api-client/services/search';
+import { RskRadioState } from '../../../../lib/api-client/models';
+import { SessionService } from '../session/session.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RadioService {
-
   private detatchAudioService: Subject<void> = new Subject<void>();
 
   private lastUpdateSent: number = 0;
@@ -21,12 +20,16 @@ export class RadioService {
 
   public active: boolean = false;
 
-  constructor(private audioService: AudioService, private apiClient: SearchAPIClient, private session: SessionService) {
+  constructor(
+    private audioService: AudioService,
+    private apiClient: SearchAPIClient,
+    private session: SessionService,
+  ) {
     this.userIsLoggedIn = session.getToken() != null;
 
     this.session.onTokenChange.subscribe((token) => {
       this.userIsLoggedIn = token != null;
-    })
+    });
 
     this.audioService.mode$.subscribe((newMode: PlayerMode) => {
       if (newMode === PlayerMode.Radio) {
@@ -39,13 +42,13 @@ export class RadioService {
 
   start() {
     if (!this.userIsLoggedIn) {
-      return
+      return;
     }
     this.apiClient.getState().subscribe((state) => {
       this.state = state;
       this.applyState();
       this.attach();
-    })
+    });
   }
 
   attach() {
@@ -74,10 +77,10 @@ export class RadioService {
       this.state.currentTimestampMs = Math.floor(status.currentTime);
       if (status.audioID !== this.state.currentEpisode.shortId) {
         this.state.currentEpisode.shortId = status.audioID;
-        this.state.currentEpisode.startedAt = (new Date()).toISOString();
+        this.state.currentEpisode.startedAt = new Date().toISOString();
       }
 
-      const nowTs = (new Date()).getTime();
+      const nowTs = new Date().getTime();
       if (nowTs - this.lastUpdateSent > 2500 || this.lastUpdateSent === 0) {
         this.lastUpdateSent = nowTs;
         this.storeState();
@@ -99,15 +102,11 @@ export class RadioService {
       this.audioService.reset();
       return;
     }
-    this.audioService.setAudioSrcFromEpisodeName(
-      this.state.currentEpisode.shortId,
-      "RADIO",
-      PlayerMode.Radio,
-    );
+    this.audioService.setAudioSrcFromEpisodeName(this.state.currentEpisode.shortId, 'RADIO', PlayerMode.Radio);
 
     this.lastUpdateSent = 0;
     this.audioService.seekAudio(this.state.currentTimestampMs ?? 0);
-    this.audioService.playAudio()
+    this.audioService.playAudio();
   }
 
   fetchNext() {
@@ -115,17 +114,16 @@ export class RadioService {
       return;
     }
     this.apiClient.getNext().subscribe((next) => {
-
       this.state = {
         currentEpisode: {
           shortId: next.shortId,
-          startedAt: (new Date()).toISOString(),
+          startedAt: new Date().toISOString(),
         },
         currentTimestampMs: 0,
       };
 
       this.applyState();
-    })
+    });
   }
 
   storeState() {
@@ -135,6 +133,6 @@ export class RadioService {
     if (!this.state) {
       return;
     }
-    this.apiClient.putState({body: this.state}).subscribe();
+    this.apiClient.putState({ body: this.state }).subscribe();
   }
 }

@@ -6,17 +6,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { QuotasComponent } from './page/quotas/quotas.component';
 
 @NgModule({
-  declarations: [
-    ImportComponent,
-    QuotasComponent
-  ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule
-  ],
-  providers: [
-    CanActivateAdmin
-  ],
+  declarations: [ImportComponent, QuotasComponent],
+  imports: [CommonModule, ReactiveFormsModule],
+  providers: [CanActivateAdmin],
 })
-export class AdminModule {
-}
+export class AdminModule {}

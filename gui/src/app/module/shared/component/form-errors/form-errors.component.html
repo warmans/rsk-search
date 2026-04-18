@@ -1,33 +1,27 @@
 @if (field?.invalid) {
   <div class="text-danger mt-1 p-1">
     @if (field?.errors?.required) {
-      <div>
-        {{fieldName}} is required.
-      </div>
+      <div>{{ fieldName }} is required.</div>
     }
     @if (field?.errors?.maxlength) {
-      <div>
-        {{fieldName}} is too long (max length is {{ field .errors .maxlength .requiredLength }} characters).
-      </div>
+      <div>{{ fieldName }} is too long (max length is {{ field.errors.maxlength.requiredLength }} characters).</div>
     }
     @if (field?.errors?.apiErrors) {
       <div>
-        @for (err of (field?.errors?.apiErrors || []); track err) {
+        @for (err of field?.errors?.apiErrors || []; track err) {
           <div>{{ err }}</div>
         }
       </div>
     }
     @if (field?.errors?.duplicateValue) {
       <div>
-        @for (err of (field?.errors?.duplicateValue || []); track err) {
+        @for (err of field?.errors?.duplicateValue || []; track err) {
           <div>{{ err }}</div>
         }
       </div>
     }
     @if (field?.errors?.pattern) {
-      <div>
-        Input does not match expected pattern: {{field?.errors?.pattern.requiredPattern}}
-      </div>
+      <div>Input does not match expected pattern: {{ field?.errors?.pattern.requiredPattern }}</div>
     }
   </div>
 }

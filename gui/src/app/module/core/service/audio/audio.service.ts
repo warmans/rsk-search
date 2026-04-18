@@ -1,6 +1,6 @@
-import {Injectable, Query} from '@angular/core';
-import {BehaviorSubject, combineLatest, Observable} from 'rxjs';
-import { HttpParams } from "@angular/common/http";
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
+import { HttpParams } from '@angular/common/http';
 
 const STORAGE_KEY_LISTENLOG = 'audio_service_listen_log';
 const STORAGE_KEY_VOLUME = 'audio_service_volume';
@@ -9,12 +9,12 @@ export enum PlayerMode {
   Default = 'default',
   Standalone = 'standalone',
   Radio = 'radio',
-  ForceRemastered = 'force_remastered'
+  ForceRemastered = 'force_remastered',
 }
 
 export interface Status {
   audioID: string;
-  audioName: string,
+  audioName: string;
   audioFile: string;
   mode: PlayerMode;
   state: PlayerState;
@@ -34,7 +34,7 @@ export interface TimeStatus {
 
 export interface FileStatus {
   audioID: string;
-  audioName: string,
+  audioName: string;
   audioFile: string;
   mode: PlayerMode;
 }
@@ -48,10 +48,9 @@ export enum PlayerState {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AudioService {
-
   public audio: HTMLAudioElement;
 
   private audioID: string | null = null;
@@ -80,7 +79,7 @@ export class AudioService {
   private timeStatusSub: BehaviorSubject<TimeStatus> = new BehaviorSubject<TimeStatus>({
     currentTime: 0,
     totalTime: 0,
-    percentElapsed: 0
+    percentElapsed: 0,
   });
 
   private playerStatusSub: BehaviorSubject<PlayerState> = new BehaviorSubject(PlayerState.paused);
@@ -89,7 +88,7 @@ export class AudioService {
     audioFile: '',
     audioID: '',
     audioName: '',
-    mode: PlayerMode.Default
+    mode: PlayerMode.Default,
   });
   private audioHistoryLogSub: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(this.getListenLog());
   private errorsSub: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(this.getListenLog());
@@ -110,31 +109,31 @@ export class AudioService {
           this.clearSleepTimer();
         }
       }
-    })
-
-    combineLatest(
-      [this.timeStatusSub, this.playerStatusSub, this.percentLoadedSub, this.audioSourceSub, this.audioHistoryLogSub]
-    ).subscribe(([timeState, playerState, pcntLoaded, file, history]) => {
-      const status = {
-        audioID: file.audioID,
-        audioName: file.audioName,
-        audioFile: file.audioFile,
-        mode: file.mode,
-        state: playerState,
-        currentTime: timeState.currentTime,
-        totalTime: timeState.totalTime,
-        percentElapsed: timeState.percentElapsed,
-        percentLoaded: pcntLoaded,
-        listened: this.modeSub.getValue() === PlayerMode.Default ? history.indexOf(file.audioID) > -1 : false,
-        volume: this.audio.volume,
-        sleepTimerRemainder: this.sleepTimerRemaining,
-      };
-      this.statusSub.next(status);
-
-      if (playerState === PlayerState.playing || playerState === PlayerState.paused || playerState === PlayerState.ended) {
-        this.persistPlayerState(status);
-      }
     });
+
+    combineLatest([this.timeStatusSub, this.playerStatusSub, this.percentLoadedSub, this.audioSourceSub, this.audioHistoryLogSub]).subscribe(
+      ([timeState, playerState, pcntLoaded, file, history]) => {
+        const status = {
+          audioID: file.audioID,
+          audioName: file.audioName,
+          audioFile: file.audioFile,
+          mode: file.mode,
+          state: playerState,
+          currentTime: timeState.currentTime,
+          totalTime: timeState.totalTime,
+          percentElapsed: timeState.percentElapsed,
+          percentLoaded: pcntLoaded,
+          listened: this.modeSub.getValue() === PlayerMode.Default ? history.indexOf(file.audioID) > -1 : false,
+          volume: this.audio.volume,
+          sleepTimerRemainder: this.sleepTimerRemaining,
+        };
+        this.statusSub.next(status);
+
+        if (playerState === PlayerState.playing || playerState === PlayerState.paused || playerState === PlayerState.ended) {
+          this.persistPlayerState(status);
+        }
+      },
+    );
 
     this.tryLoadPlayerState();
     this.tryLoadPlayerVolume();
@@ -150,7 +149,7 @@ export class AudioService {
     this.audio.addEventListener('error', this.setPlayerStatus, false);
   }
 
-  private calculatePercentLoaded = (evt) => {
+  private calculatePercentLoaded = (_evt) => {
     if (this.audio.duration > 0) {
       for (var i = 0; i < this.audio.buffered.length; i++) {
         if (this.audio.buffered.start(this.audio.buffered.length - 1 - i) < this.audio.currentTime) {
@@ -197,21 +196,21 @@ export class AudioService {
     }
     this.pauseAudio();
 
-    let query = new HttpParams()
+    let query = new HttpParams();
     if (startMs || endMs) {
-      query = query.set("ts", `${startMs}${endMs ? "-" + endMs : ""}`)
+      query = query.set('ts', `${startMs}${endMs ? '-' + endMs : ''}`);
     }
     if (mode === PlayerMode.Radio || mode === PlayerMode.ForceRemastered) {
-      query = query.set("remastered", "1")
+      query = query.set('remastered', '1');
     }
     let audioUri: string = `/dl/media/${id}.mp3?` + query.toString();
 
     this.audioID = id;
     if (id !== null) {
-      this.audio.src = audioUri
+      this.audio.src = audioUri;
     }
     this.modeSub.next(mode ?? PlayerMode.Default);
-    this.audioSourceSub.next({audioFile: audioUri, audioID: id, audioName: name, mode: mode});
+    this.audioSourceSub.next({ audioFile: audioUri, audioID: id, audioName: name, mode: mode });
   }
 
   public playAudio(withOffset?: number): void {
@@ -235,7 +234,11 @@ export class AudioService {
   }
 
   public toggleAudio(withOffset?: number): void {
-    (this.audio.paused) ? this.playAudio(withOffset) : this.pauseAudio();
+    if (this.audio.paused) {
+      this.playAudio(withOffset);
+    } else {
+      this.pauseAudio();
+    }
   }
 
   /**
@@ -259,8 +262,7 @@ export class AudioService {
     let listenLog: string[] = [];
     try {
       listenLog = JSON.parse(localStorage.getItem(STORAGE_KEY_LISTENLOG) || '[]');
-    } catch (e) {
-    }
+    } catch {}
     return listenLog;
   }
 
@@ -271,7 +273,7 @@ export class AudioService {
   public markAsPlayed(): void {
     this.persistEpisodeListened(this.audioID);
     this.playerStatusSub.next(PlayerState.ended);
-    if (this.modeSub.getValue() === PlayerMode.Default){
+    if (this.modeSub.getValue() === PlayerMode.Default) {
       this.reset();
     }
   }
@@ -295,7 +297,7 @@ export class AudioService {
       } else {
         this.sleepTimerRemaining -= 1000;
       }
-    }, 1000)
+    }, 1000);
   }
 
   public clearSleepTimer() {
@@ -304,14 +306,14 @@ export class AudioService {
     this.sleepInterval = undefined;
   }
 
-  private calculateTime = (evt) => {
+  private calculateTime = (_evt) => {
     const ct = this.audio.currentTime;
     const d = this.audio.duration;
     this.timeStatusSub.next({
       currentTime: ct,
       totalTime: d,
       //todo: remove these
-      percentElapsed: ((Math.floor((100 / d) * ct)) || 0),
+      percentElapsed: Math.floor((100 / d) * ct) || 0,
     });
   };
 
@@ -337,7 +339,7 @@ export class AudioService {
       return;
     }
 
-    const listenLog = this.getListenLog()
+    const listenLog = this.getListenLog();
     if (listenLog.indexOf(audioID) === -1) {
       listenLog.push(audioID);
     }
@@ -395,6 +397,6 @@ export class AudioService {
   }
 
   private statusStorageKey() {
-    return `audio_service_status${this.modeSub.getValue() === PlayerMode.Standalone ? '-temp' : ''}`
+    return `audio_service_status${this.modeSub.getValue() === PlayerMode.Standalone ? '-temp' : ''}`;
   }
 }

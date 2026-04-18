@@ -1,19 +1,18 @@
 <div class="container-fluid pt-3">
   <div class="row mb-3">
     <div class="col">
-
       <div class="d-flex">
         <div class="flex-grow-1">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a [routerLink]="['/search']">Home</a></li>
               <li class="breadcrumb-item"><a [routerLink]="['/contribute']">Contribute</a></li>
-              <li class="breadcrumb-item active" aria-current="page">{{chunkedTranscriptID}}</li>
+              <li class="breadcrumb-item active" aria-current="page">{{ chunkedTranscriptID }}</li>
             </ol>
           </nav>
         </div>
         <div class="text-right pt-2">
-          <button class="btn btn-sm btn-secondary" [ngClass]="{'btn-info': stateFilter === 'request_approval'}" (click)="setStateFilter('request_approval')">
+          <button class="btn btn-sm btn-secondary" [ngClass]="{ 'btn-info': stateFilter === 'request_approval' }" (click)="setStateFilter('request_approval')">
             Toggle Pending Only
           </button>
         </div>
@@ -24,28 +23,21 @@
           <div>
             @if (!stateFilter || (stateFilter && (groupedContributions[ch.id] || []).length > 0)) {
               <div class="card-header">
-                {{ch.id}}
+                {{ ch.id }}
                 @if ((groupedContributions[ch.id] || []).length === 0) {
-                  <span>
-                    No contributions (<a [routerLink]="['/chunk', ch.id]">Create one now</a>)
-                  </span>
+                  <span> No contributions (<a [routerLink]="['/chunk', ch.id]">Create one now</a>) </span>
                 }
                 @if ((groupedContributions[ch.id] || []).length > 0) {
                   <span>
-                    by {{groupedContributions[ch.id][(ch.selectedContribution || 0)].author.name}} ::
-                    <app-contribution-state [state]="groupedContributions[ch.id][(ch.selectedContribution || 0)].state"></app-contribution-state>
+                    by {{ groupedContributions[ch.id][ch.selectedContribution || 0].author.name }} ::
+                    <app-contribution-state [state]="groupedContributions[ch.id][ch.selectedContribution || 0].state"></app-contribution-state>
                   </span>
                 }
                 @if ((groupedContributions[ch.id] || []).length > 1) {
                   <div class="float-right">
-                    <select
-                      class="form-control form-control-sm" style="max-width: 400px"
-                      (change)="ch.selectedContribution = $event.target.value">
+                    <select class="form-control form-control-sm" style="max-width: 400px" (change)="ch.selectedContribution = $event.target.value">
                       @for (contrib of groupedContributions[ch.id]; track contrib; let i = $index) {
-                        <option
-                          [value]="i"
-                          [selected]="ch.selectedContribution === i">{{contrib.id}} ({{contrib.state}})
-                        </option>
+                        <option [value]="i" [selected]="ch.selectedContribution === i">{{ contrib.id }} ({{ contrib.state }})</option>
                       }
                     </select>
                   </div>
@@ -59,21 +51,34 @@
                 }
                 @if ((groupedContributions[ch.id] || []).length > 0) {
                   <div>
-                    <app-transcript [transcript]="parseTscript(groupedContributions[ch.id][(ch.selectedContribution || 0)].transcript)"></app-transcript>
+                    <app-transcript [transcript]="parseTscript(groupedContributions[ch.id][ch.selectedContribution || 0].transcript)"></app-transcript>
                   </div>
                 }
               </div>
               @if ((groupedContributions[ch.id] || []).length > 0) {
                 <div>
-                  @if (approver && groupedContributions[ch.id][(ch.selectedContribution || 0)].state === states.STATE_REQUEST_APPROVAL) {
+                  @if (approver && groupedContributions[ch.id][ch.selectedContribution || 0].state === states.STATE_REQUEST_APPROVAL) {
                     <div class="card-footer d-flex">
-                      <div><a class="btn btn-success mr-3" (click)="updateState(groupedContributions[ch.id][(ch.selectedContribution || 0)].id, states.STATE_APPROVED)">Approve</a></div>
+                      <div>
+                        <a
+                          class="btn btn-success mr-3"
+                          (click)="updateState(groupedContributions[ch.id][ch.selectedContribution || 0].id, states.STATE_APPROVED)"
+                          >Approve</a
+                        >
+                      </div>
                       <div>
                         <div class="mr-3">
-                          <app-reject-button [contributionId]="groupedContributions[ch.id][(ch.selectedContribution || 0)].id" [rejectAction]="rejectCallback"></app-reject-button>
+                          <app-reject-button
+                            [contributionId]="groupedContributions[ch.id][ch.selectedContribution || 0].id"
+                            [rejectAction]="rejectCallback"
+                          ></app-reject-button>
                         </div>
                       </div>
-                      <div><a class="btn btn-info" [routerLink]="['/chunk', ch.id, 'contrib', groupedContributions[ch.id][(ch.selectedContribution || 0)].id]">Edit</a></div>
+                      <div>
+                        <a class="btn btn-info" [routerLink]="['/chunk', ch.id, 'contrib', groupedContributions[ch.id][ch.selectedContribution || 0].id]"
+                          >Edit</a
+                        >
+                      </div>
                     </div>
                   }
                 </div>

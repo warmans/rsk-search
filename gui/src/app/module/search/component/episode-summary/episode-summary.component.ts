@@ -1,33 +1,25 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  OnInit
-} from '@angular/core';
-import {RskPublicationType, RskShortTranscript} from '../../../../lib/api-client/models';
-import {AudioService, Status} from '../../../core/service/audio/audio.service';
-import {takeUntil} from 'rxjs/operators';
-import {SessionService} from 'src/app/module/core/service/session/session.service';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit } from '@angular/core';
+import { RskPublicationType, RskShortTranscript } from '../../../../lib/api-client/models';
+import { AudioService, Status } from '../../../core/service/audio/audio.service';
+import { takeUntil } from 'rxjs/operators';
+import { SessionService } from 'src/app/module/core/service/session/session.service';
 
 @Component({
-    selector: 'app-episode-summary',
-    templateUrl: './episode-summary.component.html',
-    styleUrls: ['./episode-summary.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'app-episode-summary',
+  templateUrl: './episode-summary.component.html',
+  styleUrls: ['./episode-summary.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class EpisodeSummaryComponent implements OnInit, OnDestroy {
-
   @Input()
   set episode(value: RskShortTranscript) {
     this._episode = value;
     this.episodeImage = value?.metadata['cover_art_url'] ? value?.metadata['cover_art_url'] : `/assets/cover/${value.publication}-s${value.series}.jpg`;
-    this.episodeIdIsMeaningful = value.publicationType === RskPublicationType.PUBLICATION_TYPE_RADIO ||
+    this.episodeIdIsMeaningful =
+      value.publicationType === RskPublicationType.PUBLICATION_TYPE_RADIO ||
       value.publicationType === RskPublicationType.PUBLICATION_TYPE_PODCAST ||
-      value.publicationType === RskPublicationType.PUBLICATION_TYPE_TV
+      value.publicationType === RskPublicationType.PUBLICATION_TYPE_TV;
   }
 
   get episode(): RskShortTranscript {
@@ -48,7 +40,11 @@ export class EpisodeSummaryComponent implements OnInit, OnDestroy {
 
   private destroy$ = new EventEmitter<void>();
 
-  constructor(private audioService: AudioService, private cdr: ChangeDetectorRef, private session: SessionService,) {
+  constructor(
+    private audioService: AudioService,
+    private cdr: ChangeDetectorRef,
+    private session: SessionService,
+  ) {
     session.onTokenChange.pipe(takeUntil(this.destroy$)).subscribe((token) => {
       if (token) {
         this.loggedIn = !!this.session.getClaims();
@@ -60,7 +56,7 @@ export class EpisodeSummaryComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.audioService.status.pipe(takeUntil(this.destroy$)).subscribe((status: Status) => {
-      const playing = (status.audioID === this.episode.shortId);
+      const playing = status.audioID === this.episode.shortId;
       if (playing !== this.playing) {
         this.playing = playing;
         this.cdr.detectChanges();

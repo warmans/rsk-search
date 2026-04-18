@@ -5,7 +5,7 @@
         <div class="mb-2">Song Search</div>
         <div class="w-100 d-flex justify-content-between">
           <div class="flex-grow-1 mr-2">
-            <input class="form-control" placeholder="Search by artist or song title" [formControl]="searchInput"/>
+            <input class="form-control" placeholder="Search by artist or song title" [formControl]="searchInput" />
           </div>
         </div>
       </div>
@@ -29,27 +29,23 @@
                   </div>
                 }
                 @if (song.albumImageUrl) {
-                  <img class="album-image" [src]="song.albumImageUrl"/>
+                  <img class="album-image" [src]="song.albumImageUrl" />
                 }
               </td>
               <td>
                 <a class="text-paragraph align-self-center" [href]="song.spotifyUri">
-                  <i class="bi-spotify text-primary mr-2"></i> <span class="text-paragraph">{{song.title}}</span>
+                  <i class="bi-spotify text-primary mr-2"></i> <span class="text-paragraph">{{ song.title }}</span>
                 </a>
               </td>
-              <td>{{song.artist}}</td>
+              <td>{{ song.artist }}</td>
               <td>
                 @for (epid of song.episodeIds; track epid) {
-                  <a
-                    class="badge badge-secondary mr-2"
-                  [routerLink]="['/ep', 'ep-'+epid]">{{epid}}</a>
+                  <a class="badge badge-secondary mr-2" [routerLink]="['/ep', 'ep-' + epid]">{{ epid }}</a>
                 }
               </td>
               <td>
                 @for (text of song.transcribed; track text) {
-                  <span
-                    class="text-muted text-sm mr-2 transcript pl-2 mb-1"
-                  >{{text}}</span>
+                  <span class="text-muted text-sm mr-2 transcript pl-2 mb-1">{{ text }}</span>
                 }
               </td>
             </tr>
@@ -60,27 +56,25 @@
         <nav aria-label="pages">
           <ul class="pagination">
             @for (i of pages; track i) {
-              <li class="page-item" [ngClass]="{'active': i === currentPage}">
-                <a class="page-link"
-                  [routerLink]="['/more-shite', 'song-search']"
-                  [queryParams]="{'page': i}"
-                  [queryParamsHandling]="'merge'">{{i}}
-                </a>
+              <li class="page-item" [ngClass]="{ active: i === currentPage }">
+                <a class="page-link" [routerLink]="['/more-shite', 'song-search']" [queryParams]="{ page: i }" [queryParamsHandling]="'merge'">{{ i }} </a>
               </li>
             }
             @if (morePages) {
               @if (currentPage > pages.length) {
                 <li class="page-item active">
-                  <a class="page-link " [routerLink]="['/more-shite', 'song-search']"
-                    [queryParams]="{'page': currentPage}"
-                    [queryParamsHandling]="'merge'">{{currentPage}}
+                  <a class="page-link" [routerLink]="['/more-shite', 'song-search']" [queryParams]="{ page: currentPage }" [queryParamsHandling]="'merge'"
+                    >{{ currentPage }}
                   </a>
                 </li>
               }
               <li class="page-item">
-                <a [routerLink]="['/more-shite', 'song-search']"
-                  [queryParams]="{'page': currentPage >= maxPages ? currentPage+1 : maxPages+1}"
-                  [queryParamsHandling]="'merge'" class="page-link">Next...
+                <a
+                  [routerLink]="['/more-shite', 'song-search']"
+                  [queryParams]="{ page: currentPage >= maxPages ? currentPage + 1 : maxPages + 1 }"
+                  [queryParamsHandling]="'merge'"
+                  class="page-link"
+                  >Next...
                 </a>
               </li>
             }

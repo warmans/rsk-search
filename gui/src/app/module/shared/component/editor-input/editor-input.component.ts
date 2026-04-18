@@ -1,17 +1,28 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { getOffsetValueFromLineInSeconds, isOffsetLine } from '../../lib/tscript';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
 @Component({
-    selector: 'app-editor-input',
-    templateUrl: './editor-input.component.html',
-    styleUrls: ['./editor-input.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'app-editor-input',
+  templateUrl: './editor-input.component.html',
+  styleUrls: ['./editor-input.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class EditorInputComponent implements OnInit, OnDestroy, AfterViewInit {
-
   _textContent = '';
 
   @Input()
@@ -47,14 +58,10 @@ export class EditorInputComponent implements OnInit, OnDestroy, AfterViewInit {
 
   destory$: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private renderer: Renderer2) {
-  }
+  constructor(private renderer: Renderer2) {}
 
   ngOnInit(): void {
-    this.textChangeDebouncer.pipe(
-      distinctUntilChanged(),
-      debounceTime(500),
-      takeUntil(this.destory$)).subscribe((v: string) => {
+    this.textChangeDebouncer.pipe(distinctUntilChanged(), debounceTime(500), takeUntil(this.destory$)).subscribe((v: string) => {
       this.textContentChange.next(v);
     });
   }
@@ -79,18 +86,13 @@ export class EditorInputComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   findAndReplace(find: string, replace: string) {
-
     // this is really dumb. If you want to preserve the undo buffer then you need top use this API... which is deprecated
     // and there is no replacement. And it sucks. Better than not allowing undo... I guess.
     // Currently, replace could break the HTML. I guess I should edit the innerText then re-create the inner HTML.
     // can't be bothered.
     this.editableContent.nativeElement.focus();
     document.execCommand('selectAll');
-    document.execCommand(
-      'insertHTML',
-      false,
-      this.editableContent.nativeElement.innerHTML.replace(new RegExp(`${find}`, 'g'), replace),
-    );
+    document.execCommand('insertHTML', false, this.editableContent.nativeElement.innerHTML.replace(new RegExp(`${find}`, 'g'), replace));
 
     this.contentChanged();
   }
@@ -110,7 +112,7 @@ export class EditorInputComponent implements OnInit, OnDestroy, AfterViewInit {
       }
       if (line.match(/^#OFFSET:.*/g)) {
         this.renderer.appendChild(this.editableContent.nativeElement, this.newOffsetElement(line));
-      } else if (line.match(/^#[\/]?(SYN|TRIVIA).*/g)) {
+      } else if (line.match(/^#[/]?(SYN|TRIVIA).*/g)) {
         this.renderer.appendChild(this.editableContent.nativeElement, this.newTextElement(line));
       } else {
         const el = this.renderer.createElement('span');
@@ -169,17 +171,9 @@ export class EditorInputComponent implements OnInit, OnDestroy, AfterViewInit {
 
     const insertAbove = forceInsertAbove || nd.parentNode.nextSibling == null;
     if (insertAbove) {
-      this.renderer.insertBefore(
-        nd.parentNode,
-        el,
-        nd,
-      );
+      this.renderer.insertBefore(nd.parentNode, el, nd);
     } else {
-      this.renderer.insertBefore(
-        nd.parentNode.parentNode,
-        el,
-        nd.parentNode.nextSibling,
-      );
+      this.renderer.insertBefore(nd.parentNode.parentNode, el, nd.parentNode.nextSibling);
     }
 
     this.contentChanged();
@@ -210,6 +204,8 @@ export class EditorInputComponent implements OnInit, OnDestroy, AfterViewInit {
 }
 
 class CaretFocus {
-  constructor(public line: string, public offset: number) {
-  }
+  constructor(
+    public line: string,
+    public offset: number,
+  ) {}
 }

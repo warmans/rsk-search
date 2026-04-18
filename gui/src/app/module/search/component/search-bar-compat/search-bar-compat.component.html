@@ -11,7 +11,8 @@
           placeholder='Enter unquoted terms for a broad search. "Quote" terms for an exact match. Filter by @speaker or ~publication.'
           [formControl]="inputFormControl"
           (keydown)="onKeydown($event)"
-          (keyup)="onKeyup($event)" />
+          (keyup)="onKeyup($event)"
+        />
       </form>
       <div class="controls pr-2">
         @if (terms?.length > 0) {
@@ -24,29 +25,31 @@
       <button class="btn btn-primary" (click)="emitQuery()"><i class="bi-search"></i></button>
     </div>
   </div>
-  @if (focusState === 'typing' && activeTerm?.field === 'actor') {
+  @if (focusState === "typing" && activeTerm?.field === "actor") {
     <div class="search-dropdown p-3 mt-2">
       <app-search-bar-suggestion
         [keyInput]="keyPress$"
         [term]="activeTerm"
         [dataFn]="mentionsDataFn"
         (emitQuery)="emitQuery()"
-        (termSelected)="applySuggestion($event)">
+        (termSelected)="applySuggestion($event)"
+      >
       </app-search-bar-suggestion>
     </div>
   }
-  @if (focusState === 'typing' && activeTerm?.field === 'publication') {
+  @if (focusState === "typing" && activeTerm?.field === "publication") {
     <div class="search-dropdown p-3 mt-2">
       <app-search-bar-suggestion
         [keyInput]="keyPress$"
         [term]="activeTerm"
         [dataFn]="publicationDataFn"
         (emitQuery)="emitQuery()"
-        (termSelected)="applySuggestion($event)">
+        (termSelected)="applySuggestion($event)"
+      >
       </app-search-bar-suggestion>
     </div>
   }
-  @if (focusState === 'typing' && activeTerm?.field === 'content') {
+  @if (focusState === "typing" && activeTerm?.field === "content") {
     <div class="search-dropdown p-3 mt-2">
       <app-search-bar-suggestion
         [keyInput]="keyPress$"
@@ -54,7 +57,8 @@
         [dataFn]="contentDataFn"
         [termFilters]="contentFilters"
         (emitQuery)="emitQuery()"
-        (termSelected)="applySuggestion($event)">
+        (termSelected)="applySuggestion($event)"
+      >
       </app-search-bar-suggestion>
     </div>
   }

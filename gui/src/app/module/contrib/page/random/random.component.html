@@ -7,10 +7,10 @@
           <p>Searching for available audio chunks to transcribe.</p>
           @if (chunkStats) {
             <div>
-              There are currently {{chunkStats.numPending}} chunks requiring transcription.<br />
+              There are currently {{ chunkStats.numPending }} chunks requiring transcription.<br />
               @if (chunkStats.suggestedNextChunkId) {
                 <div>
-                  Suggested next ID: <a [routerLink]="['/chunk', chunkStats.suggestedNextChunkId]">{{chunkStats.suggestedNextChunkId}}</a>
+                  Suggested next ID: <a [routerLink]="['/chunk', chunkStats.suggestedNextChunkId]">{{ chunkStats.suggestedNextChunkId }}</a>
                 </div>
               }
             </div>

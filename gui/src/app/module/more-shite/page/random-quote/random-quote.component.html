@@ -1,18 +1,18 @@
 <div class="w-100 vh-100 d-flex flex-column align-items-center">
-  <div class="background-illustration speaker-image cover-background"
-  [style.background-image]="'url(/assets/illustration/'+quoteImage+')'"></div>
+  <div class="background-illustration speaker-image cover-background" [style.background-image]="'url(/assets/illustration/' + quoteImage + ')'"></div>
   @if (quote) {
     <div class="quote text-center d-flex flex-row align-items-center foreground">
       <div class="px-3 px-xl-5 px-lg-5">
-      <!--button class="btn btn-primary btn-sm float-right" (click)="getQuote()">Generate</button-->
-      <a class="text-paragraph quote-text text-block-bg px-3" [routerLink]="['/ep', quote?.epid]"
-        [fragment]="'pos-'+(quote?.pos)">
-        {{quote?.quote}}
-      </a>
-      <div class="quote-footer pt-3">
-        <div class="actor text-right"><span class="bg-primary px-1 text-white">- {{quote.actor}}</span></div>
+        <!--button class="btn btn-primary btn-sm float-right" (click)="getQuote()">Generate</button-->
+        <a class="text-paragraph quote-text text-block-bg px-3" [routerLink]="['/ep', quote?.epid]" [fragment]="'pos-' + quote?.pos">
+          {{ quote?.quote }}
+        </a>
+        <div class="quote-footer pt-3">
+          <div class="actor text-right">
+            <span class="bg-primary px-1 text-white">- {{ quote.actor }}</span>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-}
+  }
 </div>

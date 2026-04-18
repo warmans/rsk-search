@@ -7,13 +7,11 @@ import { MetaService } from './service/meta/meta.service';
 import { OutgoingTokenInterceptor } from './interceptor/outgoing-token.interceptor';
 import { AudioService } from './service/audio/audio.service';
 import { ClipboardService } from 'src/app/module/core/service/clipboard/clipboard.service';
-import { RadioService } from "./service/radio/radio.service";
+import { RadioService } from './service/radio/radio.service';
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule
-  ],
+  imports: [CommonModule],
   providers: [
     AlertService,
     MetaService,
@@ -22,15 +20,12 @@ import { RadioService } from "./service/radio/radio.service";
     ClipboardService,
     { provide: HTTP_INTERCEPTORS, useClass: APIErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: OutgoingTokenInterceptor, multi: true },
-  ]
+  ],
 })
 export class CoreModule {
-
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
     if (parentModule) {
-      throw new Error(
-        'CoreModule is already loaded. Import it in the AppModule only'
-      );
+      throw new Error('CoreModule is already loaded. Import it in the AppModule only');
     }
   }
 }

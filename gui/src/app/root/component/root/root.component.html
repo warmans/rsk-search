@@ -1,7 +1,7 @@
 <nav class="navbar navbar-light bg-light">
   <div class="d-flex w-100 align-items-center">
     <div class="mr-3">
-      <a [routerLink]="['/search']"><img src="/assets/android-chrome-192x192.png" style="height: 3rem"/></a>
+      <a [routerLink]="['/search']"><img src="/assets/android-chrome-192x192.png" style="height: 3rem" /></a>
     </div>
     <div class="flex-grow-1">
       <app-search-bar-compat (queryUpdated)="executeSearch($event)"></app-search-bar-compat>
@@ -17,7 +17,7 @@
       </button>
       @if (loggedInUser) {
         <button class="btn btn-transparent btn-lg mr-3" (click)="toggleRadio()" title="Start radio">
-          <i class="bi-boombox" [ngClass]="{'text-primary': radioService.active}"></i>
+          <i class="bi-boombox" [ngClass]="{ 'text-primary': radioService.active }"></i>
         </button>
       }
       @if (!loggedInUser) {
@@ -42,10 +42,10 @@
 
 @if (bandwidthQuotaUsedPcnt > 95) {
   <div class="alert alert-warning">
-    <strong>Scrimpton has reached {{ bandwidthQuotaUsedPcnt * 100 | number}}% of its bandwidth quota.</strong>
-    <div>This means a bandwidth limit has been reached preventing further file downloads. This may prevent audio files
-      from being played until the quota is reset at the end of the
-      month.
+    <strong>Scrimpton has reached {{ bandwidthQuotaUsedPcnt * 100 | number }}% of its bandwidth quota.</strong>
+    <div>
+      This means a bandwidth limit has been reached preventing further file downloads. This may prevent audio files from being played until the quota is reset
+      at the end of the month.
     </div>
   </div>
 }

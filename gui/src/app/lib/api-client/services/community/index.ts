@@ -13,8 +13,8 @@ export { GuardedCommunityAPIClient } from './guarded-community-api-client.servic
  * provided options, headers and params will be used as default for each request
  */
 export interface DefaultHttpOptions {
-  headers?: {[key: string]: string};
-  params?: {[key: string]: string};
+  headers?: { [key: string]: string };
+  params?: { [key: string]: string };
   reportProgress?: boolean;
   withCredentials?: boolean;
 }
@@ -45,10 +45,10 @@ export class CommunityAPIClientModule {
     return {
       ngModule: CommunityAPIClientModule,
       providers: [
-        ...(config.domain != null ? [{provide: USE_DOMAIN, useValue: config.domain}] : []),
-        ...(config.httpOptions ? [{provide: USE_HTTP_OPTIONS, useValue: config.httpOptions}] : []),
-        ...(config.guardResponses ? [{provide: CommunityAPIClient, useClass: GuardedCommunityAPIClient }] : [CommunityAPIClient]),
-      ]
+        ...(config.domain != null ? [{ provide: USE_DOMAIN, useValue: config.domain }] : []),
+        ...(config.httpOptions ? [{ provide: USE_HTTP_OPTIONS, useValue: config.httpOptions }] : []),
+        ...(config.guardResponses ? [{ provide: CommunityAPIClient, useClass: GuardedCommunityAPIClient }] : [CommunityAPIClient]),
+      ],
     };
   }
 }

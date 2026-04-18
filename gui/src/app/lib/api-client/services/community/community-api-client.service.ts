@@ -21,15 +21,15 @@ type APIHttpOptions = HttpOptions & {
  */
 @Injectable()
 export class CommunityAPIClient implements CommunityAPIClientInterface {
-
   readonly options: APIHttpOptions;
 
-  readonly domain: string = `//${window.location.hostname}${window.location.port ? ':'+window.location.port : ''}`;
+  readonly domain: string = `//${window.location.hostname}${window.location.port ? ':' + window.location.port : ''}`;
 
-  constructor(private readonly http: HttpClient,
-              @Optional() @Inject(USE_DOMAIN) domain?: string,
-              @Optional() @Inject(USE_HTTP_OPTIONS) options?: DefaultHttpOptions) {
-
+  constructor(
+    private readonly http: HttpClient,
+    @Optional() @Inject(USE_DOMAIN) domain?: string,
+    @Optional() @Inject(USE_HTTP_OPTIONS) options?: DefaultHttpOptions,
+  ) {
     if (domain != null) {
       this.domain = domain;
     }
@@ -38,7 +38,7 @@ export class CommunityAPIClient implements CommunityAPIClientInterface {
       headers: new HttpHeaders(options && options.headers ? options.headers : {}),
       params: new HttpParams(options && options.params ? options.params : {}),
       ...(options && options.reportProgress ? { reportProgress: options.reportProgress } : {}),
-      ...(options && options.withCredentials ? { withCredentials: options.withCredentials } : {})
+      ...(options && options.withCredentials ? { withCredentials: options.withCredentials } : {}),
     };
   }
 
@@ -47,11 +47,11 @@ export class CommunityAPIClient implements CommunityAPIClientInterface {
    */
   listArchive(
     args: {
-      episodeIds?: string[],
-      page?: number,
-      pageSize?: number,
+      episodeIds?: string[];
+      page?: number;
+      pageSize?: number;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<models.RskArchiveList> {
     const path = `/api/community/archive`;
     const options: APIHttpOptions = {
@@ -78,13 +78,13 @@ export class CommunityAPIClient implements CommunityAPIClientInterface {
    */
   listCommunityProjects(
     args: {
-      filter?: string,
-      sortField?: string,
-      sortDirection?: string,
-      page?: number,
-      pageSize?: number,
+      filter?: string;
+      sortField?: string;
+      sortDirection?: string;
+      page?: number;
+      pageSize?: number;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<models.RskCommunityProjectList> {
     const path = `/api/community/project`;
     const options: APIHttpOptions = {

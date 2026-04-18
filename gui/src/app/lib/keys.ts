@@ -102,5 +102,5 @@ export const KeyPressEventCodes = [
   'BracketLeft',
   'Backslash',
   'BracketRight',
-  'Quote'
+  'Quote',
 ];

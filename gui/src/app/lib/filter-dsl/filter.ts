@@ -13,7 +13,7 @@ export enum CompOp {
   Ge = '>=',
 }
 
-function compOpPrecedence(op: CompOp): number {
+function compOpPrecedence(_op: CompOp): number {
   return 3;
 }
 
@@ -37,23 +37,25 @@ export function isBoolOp(token: Tok) {
 }
 
 export interface Visitor {
-  visitCompFilter(f: CompFilter): Visitor
+  visitCompFilter(f: CompFilter): Visitor;
 
-  visitBoolFilter(f: BoolFilter): Visitor
+  visitBoolFilter(f: BoolFilter): Visitor;
 }
 
 export interface Filter {
-  accept(v: Visitor): void
+  accept(v: Visitor): void;
 
-  precedence(): number
+  precedence(): number;
 
-  print(): string
+  print(): string;
 }
 
 export class CompFilter implements Filter {
-
-  constructor(public field: string, public op: CompOp, public value: Value) {
-  }
+  constructor(
+    public field: string,
+    public op: CompOp,
+    public value: Value,
+  ) {}
 
   accept(v: Visitor): void {
     v.visitCompFilter(this);
@@ -69,9 +71,11 @@ export class CompFilter implements Filter {
 }
 
 export class BoolFilter implements Filter {
-
-  constructor(public lhs: Filter, public op: BoolOp, public rhs: Filter) {
-  }
+  constructor(
+    public lhs: Filter,
+    public op: BoolOp,
+    public rhs: Filter,
+  ) {}
 
   accept(v: Visitor): void {
     v.visitBoolFilter(this);
@@ -106,7 +110,6 @@ export function Or(lhs: Filter, rhs: Filter, ...filters: Filter[]): Filter {
   return filter;
 }
 
-
 export function Eq(field: string, value: Value): Filter {
   return new CompFilter(field, CompOp.Eq, value);
 }
@@ -138,5 +141,3 @@ export function Like(field: string, value: Value): Filter {
 export function FuzzyLike(field: string, value: Value): Filter {
   return new CompFilter(field, CompOp.FuzzyLike, value);
 }
-
-

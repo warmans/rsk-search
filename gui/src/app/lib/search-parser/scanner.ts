@@ -12,15 +12,13 @@ export enum Tag {
 }
 
 export class Tok {
-
   constructor(
     public tag: Tag,
     public lexeme: string,
     public start: number,
     public end: number,
-    public error: string = null
-  ) {
-  }
+    public error: string = null,
+  ) {}
 }
 
 export function Scan(str: string): Tok[] {
@@ -37,7 +35,6 @@ export function Scan(str: string): Tok[] {
 }
 
 export class Scanner {
-
   input: string[] = [];
   pos: number = 0;
   offset: number = 0;
@@ -125,7 +122,7 @@ export class Scanner {
     return new Tok(tag, lexeme, start, end);
   }
 
-  private emitError(reason: string): Tok {
+  private emitError(_reason: string): Tok {
     const lexeme = this.input.slice(this.offset, this.input.length).join('');
     const start = this.offset;
     const end = this.input.length;

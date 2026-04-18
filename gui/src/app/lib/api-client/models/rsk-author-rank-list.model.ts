@@ -1,7 +1,5 @@
 /* tslint:disable */
-import {
-  RskAuthorRank,
-} from '.';
+import { RskAuthorRank } from '.';
 
 export interface RskAuthorRankList {
   rankings?: RskAuthorRank[];

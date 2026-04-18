@@ -1,7 +1,5 @@
 /* tslint:disable */
-import {
-  RskTscriptImportLog,
-} from '.';
+import { RskTscriptImportLog } from '.';
 
 export interface RskTscriptImport {
   completedAt?: string;

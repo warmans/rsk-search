@@ -7,13 +7,12 @@ import { Like } from 'src/app/lib/filter-dsl/filter';
 import { Str } from 'src/app/lib/filter-dsl/value';
 
 @Component({
-    selector: 'app-rankings',
-    templateUrl: './rankings.component.html',
-    styleUrls: ['./rankings.component.scss'],
-    standalone: false
+  selector: 'app-rankings',
+  templateUrl: './rankings.component.html',
+  styleUrls: ['./rankings.component.scss'],
+  standalone: false,
 })
 export class RankingsComponent implements OnInit, OnDestroy {
-
   private destroy$ = new EventEmitter<boolean>();
 
   ranking: RskAuthorRank[] = [];
@@ -23,8 +22,7 @@ export class RankingsComponent implements OnInit, OnDestroy {
   loading: boolean = false;
   showMoreInfo: boolean;
 
-  constructor(private apiClient: SearchAPIClient) {
-  }
+  constructor(private apiClient: SearchAPIClient) {}
 
   ngOnInit(): void {
     this.refreshRankings();
@@ -35,13 +33,15 @@ export class RankingsComponent implements OnInit, OnDestroy {
 
   refreshRankings(username?: string) {
     this.loading = true;
-    this.apiClient.listAuthorRanks(
-      { filter: (username || '').trim() ? Like('author_name', Str(username.trim())).print() : '' },
-    ).pipe(takeUntil(this.destroy$)).subscribe((res: RskAuthorRankList) => {
-      this.ranking = res.rankings;
-    }).add(() => {
-      this.loading = false;
-    });
+    this.apiClient
+      .listAuthorRanks({ filter: (username || '').trim() ? Like('author_name', Str(username.trim())).print() : '' })
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((res: RskAuthorRankList) => {
+        this.ranking = res.rankings;
+      })
+      .add(() => {
+        this.loading = false;
+      });
   }
 
   ngOnDestroy(): void {

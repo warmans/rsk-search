@@ -5,17 +5,16 @@ import { HttpOptions } from './';
 import * as models from '../../models';
 
 export interface CommunityAPIClientInterface {
-
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
   listArchive(
     args: {
-      episodeIds?: string[],
-      page?: number,
-      pageSize?: number,
+      episodeIds?: string[];
+      page?: number;
+      pageSize?: number;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<models.RskArchiveList>;
 
   /**
@@ -23,13 +22,12 @@ export interface CommunityAPIClientInterface {
    */
   listCommunityProjects(
     args: {
-      filter?: string,
-      sortField?: string,
-      sortDirection?: string,
-      page?: number,
-      pageSize?: number,
+      filter?: string;
+      sortField?: string;
+      sortDirection?: string;
+      page?: number;
+      pageSize?: number;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<models.RskCommunityProjectList>;
-
 }

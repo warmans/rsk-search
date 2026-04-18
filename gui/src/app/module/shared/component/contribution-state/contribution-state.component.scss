@@ -12,7 +12,7 @@
 
   &.bg-info {
     font-weight: bold;
-    background-color:  color.adjust($info, $lightness: 45%) !important;
+    background-color: color.adjust($info, $lightness: 45%) !important;
     color: color.adjust($info, $lightness: -2%);
   }
   &.bg-danger {
@@ -25,5 +25,4 @@
     background-color: color.adjust($success, $lightness: 45%) !important;
     color: color.adjust($success, $lightness: -2%);
   }
-
 }

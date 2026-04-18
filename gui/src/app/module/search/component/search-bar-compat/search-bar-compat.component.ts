@@ -1,36 +1,25 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  HostListener,
-  OnDestroy,
-  OnInit,
-  Output,
-  Renderer2,
-  ViewChild
-} from '@angular/core';
-import {UntypedFormControl} from '@angular/forms';
-import {Observable, Subject} from 'rxjs';
-import {distinctUntilChanged, map, takeUntil} from 'rxjs/operators';
-import {ParseTerms, Term} from 'src/app/lib/search-parser/parser';
-import {PrintFilterString, PrintPlaintext} from 'src/app/lib/search-parser/printer';
-import {getInputSelection} from 'src/app/lib/caret';
-import {SearchAPIClient} from 'src/app/lib/api-client/services/search';
-import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import {CompFilter, CompOp, Filter} from 'src/app/lib/filter-dsl/filter';
-import {ParseAST} from 'src/app/lib/filter-dsl/ast';
-import {FilterExtractor} from 'src/app/lib/filter-dsl/util';
-import {TermsToFilter} from 'src/app/lib/search-parser/util';
-import {Suggestion, SuggestionType} from "../search-bar-suggestion/search-bar-suggestion.component";
+import { Component, ElementRef, EventEmitter, HostListener, OnDestroy, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
+import { UntypedFormControl } from '@angular/forms';
+import { Observable, Subject } from 'rxjs';
+import { distinctUntilChanged, map, takeUntil } from 'rxjs/operators';
+import { ParseTerms, Term } from 'src/app/lib/search-parser/parser';
+import { PrintFilterString, PrintPlaintext } from 'src/app/lib/search-parser/printer';
+import { getInputSelection } from 'src/app/lib/caret';
+import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { CompFilter, CompOp, Filter } from 'src/app/lib/filter-dsl/filter';
+import { ParseAST } from 'src/app/lib/filter-dsl/ast';
+import { FilterExtractor } from 'src/app/lib/filter-dsl/util';
+import { TermsToFilter } from 'src/app/lib/search-parser/util';
+import { Suggestion, SuggestionType } from '../search-bar-suggestion/search-bar-suggestion.component';
 
 @Component({
-    selector: 'app-search-bar-compat',
-    templateUrl: './search-bar-compat.component.html',
-    styleUrls: ['./search-bar-compat.component.scss'],
-    standalone: false
+  selector: 'app-search-bar-compat',
+  templateUrl: './search-bar-compat.component.html',
+  styleUrls: ['./search-bar-compat.component.scss'],
+  standalone: false,
 })
 export class SearchBarCompatComponent implements OnInit, OnDestroy {
-
   @Output()
   queryUpdated: EventEmitter<string> = new EventEmitter<string>();
 
@@ -55,22 +44,31 @@ export class SearchBarCompatComponent implements OnInit, OnDestroy {
   lastParsed: string;
 
   // API for mentions
-  mentionsDataFn: (prefix: string, filter: Filter, exact: boolean) => Observable<any> = (prefix: string, filter: Filter, exact: boolean) => this.apiClient.listFieldValues({
-    field: 'actor',
-    prefix: prefix,
-  }).pipe(map(res => res.values.map((v) => v.value)));
+  mentionsDataFn: (prefix: string, filter: Filter, exact: boolean) => Observable<any> = (prefix: string, _filter: Filter, _exact: boolean) =>
+    this.apiClient
+      .listFieldValues({
+        field: 'actor',
+        prefix: prefix,
+      })
+      .pipe(map((res) => res.values.map((v) => v.value)));
 
-  publicationDataFn: (prefix: string, filter: Filter, exact: boolean) => Observable<any> = (prefix: string, filter: Filter, exact: boolean) => this.apiClient.listFieldValues({
-    field: 'publication',
-    prefix: prefix,
-  }).pipe(map(res => res.values.map((v) => v.value)));
+  publicationDataFn: (prefix: string, filter: Filter, exact: boolean) => Observable<any> = (prefix: string, _filter: Filter, _exact: boolean) =>
+    this.apiClient
+      .listFieldValues({
+        field: 'publication',
+        prefix: prefix,
+      })
+      .pipe(map((res) => res.values.map((v) => v.value)));
 
-  contentDataFn: (prefix: string, filter: Filter, exact: boolean) => Observable<any> = (prefix: string, filter: Filter, exact: boolean) => this.apiClient.predictSearchTerm({
-    prefix: prefix,
-    maxPredictions: 10,
-    query: filter ? filter.print() : '',
-    exact: exact,
-  }).pipe(map(res => res.predictions));
+  contentDataFn: (prefix: string, filter: Filter, exact: boolean) => Observable<any> = (prefix: string, filter: Filter, exact: boolean) =>
+    this.apiClient
+      .predictSearchTerm({
+        prefix: prefix,
+        maxPredictions: 10,
+        query: filter ? filter.print() : '',
+        exact: exact,
+      })
+      .pipe(map((res) => res.predictions));
 
   @ViewChild('componentRoot')
   componentRootEl: any;
@@ -104,9 +102,7 @@ export class SearchBarCompatComponent implements OnInit, OnDestroy {
     this.showHelp = false;
   }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   ngOnDestroy(): void {
     this.destroy$.next();
@@ -147,7 +143,7 @@ export class SearchBarCompatComponent implements OnInit, OnDestroy {
   // // important aspect of it.
   onKeydown(key: KeyboardEvent): boolean {
     this.keyPress$.next(key);
-    switch ((key.key || key.code)) {
+    switch (key.key || key.code) {
       case 'ArrowDown':
         return false;
       case 'ArrowUp':
@@ -197,19 +193,14 @@ export class SearchBarCompatComponent implements OnInit, OnDestroy {
 
   applySuggestion(suggestion: Suggestion) {
     if (suggestion.type === SuggestionType.Dialog) {
-      this.router.navigate(['/ep', suggestion.epid], {fragment: `pos-${suggestion.pos}`});
+      this.router.navigate(['/ep', suggestion.epid], { fragment: `pos-${suggestion.pos}` });
       return;
     }
-    const hasWhitespace: boolean = (/\s/).test(suggestion.term);
+    const hasWhitespace: boolean = /\s/.test(suggestion.term);
     const withoutQuotes: string = suggestion.term.replace(/"/g, '');
     switch (this.activeTerm?.field) {
       case 'content':
-        this.activeTerm = new Term(
-          {start: 0, end: withoutQuotes.length},
-          this.activeTerm.field,
-          withoutQuotes,
-          hasWhitespace ? CompOp.Eq : CompOp.Like,
-        );
+        this.activeTerm = new Term({ start: 0, end: withoutQuotes.length }, this.activeTerm.field, withoutQuotes, hasWhitespace ? CompOp.Eq : CompOp.Like);
         this.terms = [...this.terms.filter((t) => t === this.activeTerm || t.field !== 'content'), this.activeTerm];
         break;
       default:
@@ -250,7 +241,7 @@ export class SearchBarCompatComponent implements OnInit, OnDestroy {
         return;
       }
 
-      const hasWhitespace = (/\s/).test(compFilter.value.v);
+      const hasWhitespace = /\s/.test(compFilter.value.v);
       if (compFilter.field === 'content') {
         if (compFilter.op === CompOp.Like || compFilter.op === CompOp.FuzzyLike) {
           terms.push(`${compFilter.value.v}`);

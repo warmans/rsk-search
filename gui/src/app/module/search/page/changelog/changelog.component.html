@@ -1,5 +1,4 @@
 <div class="container pt-4">
-
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a [routerLink]="['/search']">Home</a></li>
@@ -9,17 +8,14 @@
 
   <div class="row mb-4">
     <div class="col">
-
       <div class="card mb-4">
         <div class="card-header">Changelogs</div>
-        <div class="card-body">
-          Below are the most recent changelogs for this website from newest to oldest.
-        </div>
+        <div class="card-body">Below are the most recent changelogs for this website from newest to oldest.</div>
       </div>
 
       @for (changelog of changelogs; track changelog) {
         <div class="card mb-4">
-          <div class="card-header">{{changelog.date}}</div>
+          <div class="card-header">{{ changelog.date }}</div>
           <div class="card-body">
             <app-markdown [raw]="changelog.content"></app-markdown>
           </div>

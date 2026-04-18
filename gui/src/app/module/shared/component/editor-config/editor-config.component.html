@@ -1,22 +1,20 @@
-<div class="modal" [ngClass]="{'open': open}" tabindex="-1" role="dialog">
-  <div class="modal-dialog  modal-dialog-centered" role="document">
+<div class="modal" [ngClass]="{ open: open }" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Editor Config</h5>
       </div>
       <div class="modal-body">
         <form [formGroup]="configForm">
-
           <div class="form-group">
             <div class="form-row">
               <div class="col-md-8">
-                <label for="play-pause-key"
-                  title="This key will cause the audio to be paused, and rewound by a couple of seconds.">
+                <label for="play-pause-key" title="This key will cause the audio to be paused, and rewound by a couple of seconds.">
                   Play/Pause Key <i class="bi-question-circle ml-2"></i>
                 </label>
-                <select id="play-pause-key"  class="form-control form-control-sm" formControlName="playPauseKey">
+                <select id="play-pause-key" class="form-control form-control-sm" formControlName="playPauseKey">
                   @for (c of keyCodes; track c) {
-                    <option [ngValue]="c">{{ c || 'NONE' }}</option>
+                    <option [ngValue]="c">{{ c || "NONE" }}</option>
                   }
                 </select>
                 <app-form-errors [form]="configForm" fieldName="playPauseKey"></app-form-errors>
@@ -25,7 +23,7 @@
                 <label for="rewindAmount" title="Number of seconds to backtrack each time audio is paused.">
                   Backtrack <i class="bi-question-circle ml-2"></i>
                 </label>
-                <input type="number" class="form-control form-control-sm" id="rewindAmount" placeholder="3" formControlName="backtrack">
+                <input type="number" class="form-control form-control-sm" id="rewindAmount" placeholder="3" formControlName="backtrack" />
                 <app-form-errors [form]="configForm" fieldName="rewindAmount"></app-form-errors>
               </div>
             </div>
@@ -34,16 +32,25 @@
             <label for="playbackRate" title="Adjust the speed of the playback where 0.5 is half speed and 2 is double speed.">
               Audio playback speed <i class="bi-question-circle ml-2"></i>
             </label>
-            <input type="number" class="form-control form-control-sm" id="playbackRate" placeholder="1.0" min="0.25" max="4" step="0.25" formControlName="playbackRate">
+            <input
+              type="number"
+              class="form-control form-control-sm"
+              id="playbackRate"
+              placeholder="1.0"
+              min="0.25"
+              max="4"
+              step="0.25"
+              formControlName="playbackRate"
+            />
             <app-form-errors [form]="configForm" fieldName="playbackRate"></app-form-errors>
           </div>
           <div class="form-group">
             <label for="ff-key" title="This key will cause the audio to skip forward a few seconds.">
               Skip Forward Key <i class="bi-question-circle ml-2"></i>
             </label>
-            <select id="ff-key"  class="form-control form-control-sm" formControlName="fastForwardKey">
+            <select id="ff-key" class="form-control form-control-sm" formControlName="fastForwardKey">
               @for (c of keyCodes; track c) {
-                <option [ngValue]="c">{{ c || 'NONE' }}</option>
+                <option [ngValue]="c">{{ c || "NONE" }}</option>
               }
             </select>
             <app-form-errors [form]="configForm" fieldName="fastForwardKey"></app-form-errors>
@@ -52,9 +59,9 @@
             <label for="rw-key" title="This key will cause the audio to skip backwards a few seconds.">
               Skip Backwards Key <i class="bi-question-circle ml-2"></i>
             </label>
-            <select id="rw-key"  class="form-control form-control-sm" formControlName="rewindKey">
+            <select id="rw-key" class="form-control form-control-sm" formControlName="rewindKey">
               @for (c of keyCodes; track c) {
-                <option [ngValue]="c">{{ c || 'NONE' }}</option>
+                <option [ngValue]="c">{{ c || "NONE" }}</option>
               }
             </select>
             <app-form-errors [form]="configForm" fieldName="rewindKey"></app-form-errors>
@@ -65,9 +72,9 @@
                 <label for="io-key" title="This key will insert an OFFSET for the current audio timestamp">
                   Insert OFFSET <i class="bi-question-circle ml-2"></i>
                 </label>
-                <select id="io-key"  class="form-control form-control-sm" formControlName="insertOffsetKey">
+                <select id="io-key" class="form-control form-control-sm" formControlName="insertOffsetKey">
                   @for (c of keyCodes; track c) {
-                    <option [ngValue]="c">{{ c || 'NONE' }}</option>
+                    <option [ngValue]="c">{{ c || "NONE" }}</option>
                   }
                 </select>
                 <app-form-errors [form]="configForm" fieldName="insertOffsetKey"></app-form-errors>
@@ -76,18 +83,16 @@
                 <label for="insertOffsetBacktrack" title="Subtract this many seconds from the offset that is inserted">
                   Backtrack <i class="bi-question-circle ml-2"></i>
                 </label>
-                <input type="number" class="form-control form-control-sm" id="insertOffsetBacktrack" placeholder="3" formControlName="insertOffsetBacktrack">
+                <input type="number" class="form-control form-control-sm" id="insertOffsetBacktrack" placeholder="3" formControlName="insertOffsetBacktrack" />
                 <app-form-errors [form]="configForm" fieldName="insertOffsetBacktrack"></app-form-errors>
               </div>
             </div>
           </div>
           <div class="form-group">
-            <label for="insertSynKey" title="This key will insert a synopsis tag">
-              Insert SYN <i class="bi-question-circle ml-2"></i>
-            </label>
-            <select id="insertSynKey"  class="form-control form-control-sm" formControlName="insertSynKey">
+            <label for="insertSynKey" title="This key will insert a synopsis tag"> Insert SYN <i class="bi-question-circle ml-2"></i> </label>
+            <select id="insertSynKey" class="form-control form-control-sm" formControlName="insertSynKey">
               @for (c of keyCodes; track c) {
-                <option [ngValue]="c">{{ c || 'NONE' }}</option>
+                <option [ngValue]="c">{{ c || "NONE" }}</option>
               }
             </select>
             <app-form-errors [form]="configForm" fieldName="insertSynKey"></app-form-errors>

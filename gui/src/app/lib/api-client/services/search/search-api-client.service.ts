@@ -21,15 +21,15 @@ type APIHttpOptions = HttpOptions & {
  */
 @Injectable()
 export class SearchAPIClient implements SearchAPIClientInterface {
-
   readonly options: APIHttpOptions;
 
-  readonly domain: string = `//${window.location.hostname}${window.location.port ? ':'+window.location.port : ''}`;
+  readonly domain: string = `//${window.location.hostname}${window.location.port ? ':' + window.location.port : ''}`;
 
-  constructor(private readonly http: HttpClient,
-              @Optional() @Inject(USE_DOMAIN) domain?: string,
-              @Optional() @Inject(USE_HTTP_OPTIONS) options?: DefaultHttpOptions) {
-
+  constructor(
+    private readonly http: HttpClient,
+    @Optional() @Inject(USE_DOMAIN) domain?: string,
+    @Optional() @Inject(USE_HTTP_OPTIONS) options?: DefaultHttpOptions,
+  ) {
     if (domain != null) {
       this.domain = domain;
     }
@@ -38,7 +38,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
       headers: new HttpHeaders(options && options.headers ? options.headers : {}),
       params: new HttpParams(options && options.params ? options.params : {}),
       ...(options && options.reportProgress ? { reportProgress: options.reportProgress } : {}),
-      ...(options && options.withCredentials ? { withCredentials: options.withCredentials } : {})
+      ...(options && options.withCredentials ? { withCredentials: options.withCredentials } : {}),
     };
   }
 
@@ -47,9 +47,9 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   createTscriptImport(
     args: {
-      body: models.RskCreateTscriptImportRequest,
+      body: models.RskCreateTscriptImportRequest;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<models.RskTscriptImport> {
     const path = `/api/admin/tscript/import`;
     const options: APIHttpOptions = {
@@ -65,13 +65,13 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   listTscriptImports(
     args: {
-      filter?: string,
-      sortField?: string,
-      sortDirection?: string,
-      page?: number,
-      pageSize?: number,
+      filter?: string;
+      sortField?: string;
+      sortDirection?: string;
+      page?: number;
+      pageSize?: number;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<models.RskTscriptImportList> {
     const path = `/api/admin/tscript/imports`;
     const options: APIHttpOptions = {
@@ -102,9 +102,9 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   deleteTscript(
     args: {
-      id: string,
+      id: string;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<object> {
     const path = `/api/admin/tscript/${args.id}`;
     const options: APIHttpOptions = {
@@ -120,9 +120,9 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   getAuthUrl(
     args: {
-      provider?: string,
+      provider?: string;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<models.RskAuthURL> {
     const path = `/api/auth/url`;
     const options: APIHttpOptions = {
@@ -141,13 +141,13 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   listAuthorContributions(
     args: {
-      filter?: string,
-      sortField?: string,
-      sortDirection?: string,
-      page?: number,
-      pageSize?: number,
+      filter?: string;
+      sortField?: string;
+      sortDirection?: string;
+      page?: number;
+      pageSize?: number;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<models.RskAuthorContributionList> {
     const path = `/api/author/contribution`;
     const options: APIHttpOptions = {
@@ -178,13 +178,13 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   listAuthorRanks(
     args: {
-      filter?: string,
-      sortField?: string,
-      sortDirection?: string,
-      page?: number,
-      pageSize?: number,
+      filter?: string;
+      sortField?: string;
+      sortDirection?: string;
+      page?: number;
+      pageSize?: number;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<models.RskAuthorRankList> {
     const path = `/api/author/ranks`;
     const options: APIHttpOptions = {
@@ -215,13 +215,13 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   listChangelogs(
     args: {
-      filter?: string,
-      sortField?: string,
-      sortDirection?: string,
-      page?: number,
-      pageSize?: number,
+      filter?: string;
+      sortField?: string;
+      sortDirection?: string;
+      page?: number;
+      pageSize?: number;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<models.RskChangelogList> {
     const path = `/api/changelog`;
     const options: APIHttpOptions = {
@@ -250,9 +250,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  listIncomingDonations(
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskIncomingDonationList> {
+  listIncomingDonations(requestHttpOptions?: HttpOptions): Observable<models.RskIncomingDonationList> {
     const path = `/api/donations`;
     const options: APIHttpOptions = {
       ...this.options,
@@ -265,9 +263,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  getMetadata(
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskMetadata> {
+  getMetadata(requestHttpOptions?: HttpOptions): Observable<models.RskMetadata> {
     const path = `/api/metadata`;
     const options: APIHttpOptions = {
       ...this.options,
@@ -280,9 +276,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  getNext(
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskNextRadioEpisode> {
+  getNext(requestHttpOptions?: HttpOptions): Observable<models.RskNextRadioEpisode> {
     const path = `/api/radio/next`;
     const options: APIHttpOptions = {
       ...this.options,
@@ -295,9 +289,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  getState(
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskRadioState> {
+  getState(requestHttpOptions?: HttpOptions): Observable<models.RskRadioState> {
     const path = `/api/radio/state`;
     const options: APIHttpOptions = {
       ...this.options,
@@ -312,9 +304,9 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   putState(
     args: {
-      body: models.RskPutRadioStateRequest,
+      body: models.RskPutRadioStateRequest;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<object> {
     const path = `/api/radio/state`;
     const options: APIHttpOptions = {
@@ -328,9 +320,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  listPendingRewards(
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskPendingRewardList> {
+  listPendingRewards(requestHttpOptions?: HttpOptions): Observable<models.RskPendingRewardList> {
     const path = `/api/rewards`;
     const options: APIHttpOptions = {
       ...this.options,
@@ -343,9 +333,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  listClaimedRewards(
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskClaimedRewardList> {
+  listClaimedRewards(requestHttpOptions?: HttpOptions): Observable<models.RskClaimedRewardList> {
     const path = `/api/rewards/claimed`;
     const options: APIHttpOptions = {
       ...this.options,
@@ -358,9 +346,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  getDonationStats(
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskDonationStats> {
+  getDonationStats(requestHttpOptions?: HttpOptions): Observable<models.RskDonationStats> {
     const path = `/api/rewards/stats`;
     const options: APIHttpOptions = {
       ...this.options,
@@ -375,10 +361,10 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   claimReward(
     args: {
-      id: string,
-      body: models.ContributionsServiceClaimRewardBody,
+      id: string;
+      body: models.ContributionsServiceClaimRewardBody;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<object> {
     const path = `/api/rewards/${args.id}/claim`;
     const options: APIHttpOptions = {
@@ -394,9 +380,9 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   listDonationRecipients(
     args: {
-      rewardId: string,
+      rewardId: string;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<models.RskDonationRecipientList> {
     const path = `/api/rewards/${args.rewardId}/recipients`;
     const options: APIHttpOptions = {
@@ -410,9 +396,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  getRoadmap(
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskRoadmap> {
+  getRoadmap(requestHttpOptions?: HttpOptions): Observable<models.RskRoadmap> {
     const path = `/api/roadmap`;
     const options: APIHttpOptions = {
       ...this.options,
@@ -427,11 +411,11 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   search(
     args: {
-      query?: string,
-      page?: number,
-      sort?: string,
+      query?: string;
+      page?: number;
+      sort?: string;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<models.RskSearchResultList> {
     const path = `/api/search`;
     const options: APIHttpOptions = {
@@ -456,12 +440,12 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   predictSearchTerm(
     args: {
-      prefix?: string,
-      maxPredictions?: number,
-      query?: string,
-      exact?: boolean,
+      prefix?: string;
+      maxPredictions?: number;
+      query?: string;
+      exact?: boolean;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<models.RskSearchTermPredictions> {
     const path = `/api/search/predict-terms`;
     const options: APIHttpOptions = {
@@ -487,9 +471,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  getRandomQuote(
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskRandomQuote> {
+  getRandomQuote(requestHttpOptions?: HttpOptions): Observable<models.RskRandomQuote> {
     const path = `/api/search/random-quote`;
     const options: APIHttpOptions = {
       ...this.options,
@@ -504,13 +486,13 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   listSongs(
     args: {
-      filter?: string,
-      sortField?: string,
-      sortDirection?: string,
-      page?: number,
-      pageSize?: number,
+      filter?: string;
+      sortField?: string;
+      sortDirection?: string;
+      page?: number;
+      pageSize?: number;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<models.RskSongList> {
     const path = `/api/search/songs`;
     const options: APIHttpOptions = {
@@ -539,9 +521,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  getHealth(
-    requestHttpOptions?: HttpOptions
-  ): Observable<object> {
+  getHealth(requestHttpOptions?: HttpOptions): Observable<object> {
     const path = `/api/status/health`;
     const options: APIHttpOptions = {
       ...this.options,
@@ -554,9 +534,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  getQuotaSummary(
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskQuotas> {
+  getQuotaSummary(requestHttpOptions?: HttpOptions): Observable<models.RskQuotas> {
     const path = `/api/status/quotas`;
     const options: APIHttpOptions = {
       ...this.options,
@@ -571,10 +549,10 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   listTranscripts(
     args: {
-      filter?: string,
-      includeRatingBreakdown?: boolean,
+      filter?: string;
+      includeRatingBreakdown?: boolean;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<models.RskTranscriptList> {
     const path = `/api/transcript`;
     const options: APIHttpOptions = {
@@ -596,13 +574,13 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   listTranscriptChanges(
     args: {
-      filter?: string,
-      sortField?: string,
-      sortDirection?: string,
-      page?: number,
-      pageSize?: number,
+      filter?: string;
+      sortField?: string;
+      sortDirection?: string;
+      page?: number;
+      pageSize?: number;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<models.RskTranscriptChangeList> {
     const path = `/api/transcript/change`;
     const options: APIHttpOptions = {
@@ -633,9 +611,9 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   getTranscriptChange(
     args: {
-      id: string,
+      id: string;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<models.RskTranscriptChange> {
     const path = `/api/transcript/change/${args.id}`;
     const options: APIHttpOptions = {
@@ -651,9 +629,9 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   deleteTranscriptChange(
     args: {
-      id: string,
+      id: string;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<object> {
     const path = `/api/transcript/change/${args.id}`;
     const options: APIHttpOptions = {
@@ -669,10 +647,10 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   updateTranscriptChange(
     args: {
-      id: string,
-      body: models.TranscriptServiceUpdateTranscriptChangeBody,
+      id: string;
+      body: models.TranscriptServiceUpdateTranscriptChangeBody;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<models.RskTranscriptChange> {
     const path = `/api/transcript/change/${args.id}`;
     const options: APIHttpOptions = {
@@ -688,9 +666,9 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   getTranscriptChangeDiff(
     args: {
-      id: string,
+      id: string;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<models.RskTranscriptChangeDiff> {
     const path = `/api/transcript/change/${args.id}/diff`;
     const options: APIHttpOptions = {
@@ -706,10 +684,10 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   requestTranscriptChangeState(
     args: {
-      id: string,
-      body: models.TranscriptServiceRequestTranscriptChangeStateBody,
+      id: string;
+      body: models.TranscriptServiceRequestTranscriptChangeStateBody;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<object> {
     const path = `/api/transcript/change/${args.id}/state`;
     const options: APIHttpOptions = {
@@ -723,9 +701,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  listChunkedTranscripts(
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskChunkedTranscriptList> {
+  listChunkedTranscripts(requestHttpOptions?: HttpOptions): Observable<models.RskChunkedTranscriptList> {
     const path = `/api/transcript/chunked`;
     const options: APIHttpOptions = {
       ...this.options,
@@ -740,9 +716,9 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   getChunkContribution(
     args: {
-      contributionId: string,
+      contributionId: string;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<models.RskChunkContribution> {
     const path = `/api/transcript/chunked/chunk/contribution/${args.contributionId}`;
     const options: APIHttpOptions = {
@@ -758,9 +734,9 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   deleteChunkContribution(
     args: {
-      contributionId: string,
+      contributionId: string;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<object> {
     const path = `/api/transcript/chunked/chunk/contribution/${args.contributionId}`;
     const options: APIHttpOptions = {
@@ -776,10 +752,10 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   updateChunkContribution(
     args: {
-      contributionId: string,
-      body: models.TranscriptServiceUpdateChunkContributionBody,
+      contributionId: string;
+      body: models.TranscriptServiceUpdateChunkContributionBody;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<models.RskChunkContribution> {
     const path = `/api/transcript/chunked/chunk/contribution/${args.contributionId}`;
     const options: APIHttpOptions = {
@@ -795,10 +771,10 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   requestChunkContributionState(
     args: {
-      contributionId: string,
-      body: models.TranscriptServiceRequestChunkContributionStateBody,
+      contributionId: string;
+      body: models.TranscriptServiceRequestChunkContributionStateBody;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<models.RskChunkContribution> {
     const path = `/api/transcript/chunked/chunk/contribution/${args.contributionId}/state`;
     const options: APIHttpOptions = {
@@ -814,13 +790,13 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   listChunkContributions(
     args: {
-      filter?: string,
-      sortField?: string,
-      sortDirection?: string,
-      page?: number,
-      pageSize?: number,
+      filter?: string;
+      sortField?: string;
+      sortDirection?: string;
+      page?: number;
+      pageSize?: number;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<models.RskChunkContributionList> {
     const path = `/api/transcript/chunked/chunk/contributions`;
     const options: APIHttpOptions = {
@@ -851,10 +827,10 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   createChunkContribution(
     args: {
-      chunkId: string,
-      body: models.TranscriptServiceCreateChunkContributionBody,
+      chunkId: string;
+      body: models.TranscriptServiceCreateChunkContributionBody;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<models.RskChunkContribution> {
     const path = `/api/transcript/chunked/chunk/${args.chunkId}/contribution`;
     const options: APIHttpOptions = {
@@ -870,9 +846,9 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   getTranscriptChunk(
     args: {
-      id: string,
+      id: string;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<models.RskChunk> {
     const path = `/api/transcript/chunked/chunk/${args.id}`;
     const options: APIHttpOptions = {
@@ -888,14 +864,14 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   listTranscriptChunks(
     args: {
-      chunkedTranscriptId: string,
-      filter?: string,
-      sortField?: string,
-      sortDirection?: string,
-      page?: number,
-      pageSize?: number,
+      chunkedTranscriptId: string;
+      filter?: string;
+      sortField?: string;
+      sortDirection?: string;
+      page?: number;
+      pageSize?: number;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<models.RskTranscriptChunkList> {
     const path = `/api/transcript/chunked/${args.chunkedTranscriptId}/chunks`;
     const options: APIHttpOptions = {
@@ -926,10 +902,10 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   getTranscript(
     args: {
-      epid: string,
-      withRaw?: boolean,
+      epid: string;
+      withRaw?: boolean;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<models.RskTranscript> {
     const path = `/api/transcript/${args.epid}`;
     const options: APIHttpOptions = {
@@ -948,10 +924,10 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   createTranscriptChange(
     args: {
-      epid: string,
-      body: models.TranscriptServiceCreateTranscriptChangeBody,
+      epid: string;
+      body: models.TranscriptServiceCreateTranscriptChangeBody;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<models.RskTranscriptChange> {
     const path = `/api/transcript/${args.epid}/change`;
     const options: APIHttpOptions = {
@@ -967,13 +943,13 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   getTranscriptDialog(
     args: {
-      epid: string,
-      pos: number,
-      numContextLines?: number,
-      rangeStart?: number,
-      rangeEnd?: number,
+      epid: string;
+      pos: number;
+      numContextLines?: number;
+      rangeStart?: number;
+      rangeEnd?: number;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<models.RskTranscriptDialog> {
     const path = `/api/transcript/${args.epid}/dialog/${args.pos}`;
     const options: APIHttpOptions = {
@@ -998,10 +974,10 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   setTranscriptRatingScore(
     args: {
-      epid: string,
-      body: models.TranscriptServiceSetTranscriptRatingScoreBody,
+      epid: string;
+      body: models.TranscriptServiceSetTranscriptRatingScoreBody;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<object> {
     const path = `/api/transcript/${args.epid}/rating/score`;
     const options: APIHttpOptions = {
@@ -1017,10 +993,10 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   bulkSetTranscriptRatingScore(
     args: {
-      epid: string,
-      body: models.TranscriptServiceBulkSetTranscriptRatingScoreBody,
+      epid: string;
+      body: models.TranscriptServiceBulkSetTranscriptRatingScoreBody;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<object> {
     const path = `/api/transcript/${args.epid}/rating/score/bulk`;
     const options: APIHttpOptions = {
@@ -1036,10 +1012,10 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   bulkSetTranscriptTag(
     args: {
-      epid: string,
-      body: models.TranscriptServiceBulkSetTranscriptTagsBody,
+      epid: string;
+      body: models.TranscriptServiceBulkSetTranscriptTagsBody;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<object> {
     const path = `/api/transcript/${args.epid}/tag/bulk`;
     const options: APIHttpOptions = {
@@ -1053,9 +1029,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  getChunkedTranscriptChunkStats(
-    requestHttpOptions?: HttpOptions
-  ): Observable<models.RskChunkStats> {
+  getChunkedTranscriptChunkStats(requestHttpOptions?: HttpOptions): Observable<models.RskChunkStats> {
     const path = `/api/transcripts/chunked/chunk-stats`;
     const options: APIHttpOptions = {
       ...this.options,
@@ -1070,13 +1044,13 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   listNotifications(
     args: {
-      filter?: string,
-      sortField?: string,
-      sortDirection?: string,
-      page?: number,
-      pageSize?: number,
+      filter?: string;
+      sortField?: string;
+      sortDirection?: string;
+      page?: number;
+      pageSize?: number;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<models.RskNotificationsList> {
     const path = `/api/user/notifications`;
     const options: APIHttpOptions = {
@@ -1105,9 +1079,7 @@ export class SearchAPIClient implements SearchAPIClientInterface {
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  markNotificationsRead(
-    requestHttpOptions?: HttpOptions
-  ): Observable<object> {
+  markNotificationsRead(requestHttpOptions?: HttpOptions): Observable<object> {
     const path = `/api/user/notifications/mark-all`;
     const options: APIHttpOptions = {
       ...this.options,
@@ -1122,10 +1094,10 @@ export class SearchAPIClient implements SearchAPIClientInterface {
    */
   listFieldValues(
     args: {
-      field: string,
-      prefix?: string,
+      field: string;
+      prefix?: string;
     },
-    requestHttpOptions?: HttpOptions
+    requestHttpOptions?: HttpOptions,
   ): Observable<models.RskFieldValueList> {
     const path = `/api/values/${args.field}`;
     const options: APIHttpOptions = {

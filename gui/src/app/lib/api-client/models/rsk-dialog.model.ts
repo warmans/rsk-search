@@ -1,7 +1,5 @@
 /* tslint:disable */
-import {
-  DialogType,
-} from '.';
+import { DialogType } from '.';
 
 export interface RskDialog {
   actor?: string;

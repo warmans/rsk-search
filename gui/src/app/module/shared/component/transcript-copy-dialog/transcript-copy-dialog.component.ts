@@ -4,13 +4,12 @@ import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { ClipboardService } from 'src/app/module/core/service/clipboard/clipboard.service';
 
 @Component({
-    selector: 'app-transcript-copy-dialog',
-    templateUrl: './transcript-copy-dialog.component.html',
-    styleUrls: ['./transcript-copy-dialog.component.scss'],
-    standalone: false
+  selector: 'app-transcript-copy-dialog',
+  templateUrl: './transcript-copy-dialog.component.html',
+  styleUrls: ['./transcript-copy-dialog.component.scss'],
+  standalone: false,
 })
 export class TranscriptCopyDialogComponent implements OnInit {
-
   @Input()
   payload: RskSearchResult;
 
@@ -21,7 +20,7 @@ export class TranscriptCopyDialogComponent implements OnInit {
 
   options: UntypedFormGroup = new UntypedFormGroup({
     markdown: new UntypedFormControl(),
-    includeTimestamps: new UntypedFormControl()
+    includeTimestamps: new UntypedFormControl(),
   });
 
   @HostListener('document:click', ['$event'])
@@ -32,16 +31,14 @@ export class TranscriptCopyDialogComponent implements OnInit {
     this.optionsOpen = false;
   }
 
-  constructor(private clipboardService: ClipboardService) {
-  }
+  constructor(private clipboardService: ClipboardService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   copyPlain() {
     let content: string[] = [];
     this.payload.dialogs.forEach((dialog) => {
-      content.push(...dialog.transcript.map(t => `${t.actor}: ${t.content}`));
+      content.push(...dialog.transcript.map((t) => `${t.actor}: ${t.content}`));
     });
     this.clipboardService.copyTextToClipboard(content.join('\n\n'));
     this.optionsOpen = false;
@@ -50,7 +47,7 @@ export class TranscriptCopyDialogComponent implements OnInit {
   copyMarkdown() {
     let content: string[] = [];
     this.payload.dialogs.forEach((dialog) => {
-      content.push(...dialog.transcript.map(t => t.isMatchedRow ? `> *__${t.actor}:__ ${t.content}*` : `> __${t.actor}:__ ${t.content}`));
+      content.push(...dialog.transcript.map((t) => (t.isMatchedRow ? `> *__${t.actor}:__ ${t.content}*` : `> __${t.actor}:__ ${t.content}`)));
     });
     this.clipboardService.copyTextToClipboard(content.join('\n\n'));
     this.optionsOpen = false;

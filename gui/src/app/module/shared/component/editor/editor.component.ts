@@ -1,41 +1,29 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  HostListener,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-  ViewChild
-} from '@angular/core';
-import {EditorConfig, EditorConfigComponent} from '../editor-config/editor-config.component';
-import {Subject} from 'rxjs';
-import {getFirstOffset} from '../../lib/tscript';
-import {distinctUntilChanged, takeUntil} from 'rxjs/operators';
-import {formatDistance, fromUnixTime, getUnixTime, isBefore, startOfDay, subDays} from 'date-fns';
-import {EditorInputComponent} from '../editor-input/editor-input.component';
-import {AudioService, PlayerMode, PlayerState, Status} from '../../../core/service/audio/audio.service';
-import {FindReplace} from '../find-replace/find-replace.component';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, HostListener, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { EditorConfig, EditorConfigComponent } from '../editor-config/editor-config.component';
+import { Subject } from 'rxjs';
+import { getFirstOffset } from '../../lib/tscript';
+import { distinctUntilChanged, takeUntil } from 'rxjs/operators';
+import { formatDistance, fromUnixTime, getUnixTime, isBefore, startOfDay, subDays } from 'date-fns';
+import { EditorInputComponent } from '../editor-input/editor-input.component';
+import { AudioService, PlayerMode, PlayerState, Status } from '../../../core/service/audio/audio.service';
+import { FindReplace } from '../find-replace/find-replace.component';
 
 const LOCAL_STORAGE_PREFIX = 'content-backup';
 
 export interface AudioConfig {
   episodeId: string;
-  startMs?: number,
-  endMs?: number,
+  startMs?: number;
+  endMs?: number;
 }
 
 @Component({
-    selector: 'app-editor',
-    templateUrl: './editor.component.html',
-    styleUrls: ['./editor.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'app-editor',
+  templateUrl: './editor.component.html',
+  styleUrls: ['./editor.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class EditorComponent implements OnInit, OnDestroy {
-
   @Input()
   contentID: string;
 
@@ -64,7 +52,7 @@ export class EditorComponent implements OnInit, OnDestroy {
     }
     this._audioConfig = value;
     if (!value) {
-      return
+      return;
     }
     this.loadAudio();
   }
@@ -134,39 +122,42 @@ export class EditorComponent implements OnInit, OnDestroy {
 
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent): boolean {
-    if (this._editorConfig?.playPauseKey && event.key === (this._editorConfig?.playPauseKey)) {
+    if (this._editorConfig?.playPauseKey && event.key === this._editorConfig?.playPauseKey) {
       this.audioService.toggleAudio(0 - (this._editorConfig?.backtrack || 3));
       return false;
     }
-    if (this._editorConfig?.rewindKey && event.key === (this._editorConfig?.rewindKey)) {
+    if (this._editorConfig?.rewindKey && event.key === this._editorConfig?.rewindKey) {
       this.skipBackwards();
       return false;
     }
-    if (this._editorConfig?.fastForwardKey && event.key === (this._editorConfig?.fastForwardKey)) {
+    if (this._editorConfig?.fastForwardKey && event.key === this._editorConfig?.fastForwardKey) {
       this.skipForward();
       return false;
     }
-    if (this._editorConfig?.fastForwardKey && event.key === (this._editorConfig?.fastForwardKey)) {
+    if (this._editorConfig?.fastForwardKey && event.key === this._editorConfig?.fastForwardKey) {
       this.skipForward();
       return false;
     }
-    if (this._editorConfig?.insertOffsetKey && event.key === (this._editorConfig?.insertOffsetKey)) {
+    if (this._editorConfig?.insertOffsetKey && event.key === this._editorConfig?.insertOffsetKey) {
       this.insertOffsetBelowCaret();
       return false;
     }
-    if (this._editorConfig?.insertSynKey && event.key === (this._editorConfig?.insertSynKey)) {
+    if (this._editorConfig?.insertSynKey && event.key === this._editorConfig?.insertSynKey) {
       this.insertSynAboveCaret();
       return false;
     }
     return true;
   }
 
-  constructor(private audioService: AudioService, private cdr: ChangeDetectorRef) {
+  constructor(
+    private audioService: AudioService,
+    private cdr: ChangeDetectorRef,
+  ) {
     audioService.status.pipe(takeUntil(this.$destroy)).subscribe((sta) => {
       this.audioStatus = sta;
     });
 
-    this.editorConfig = localStorage.getItem('editor-config') ? JSON.parse(localStorage.getItem('editor-config')) as EditorConfig : new EditorConfig();
+    this.editorConfig = localStorage.getItem('editor-config') ? (JSON.parse(localStorage.getItem('editor-config')) as EditorConfig) : new EditorConfig();
   }
 
   ngOnDestroy(): void {
@@ -176,11 +167,10 @@ export class EditorComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-
     try {
       this.cleanBackups();
     } catch (e) {
-      console.error("failed to cleanup local storage");
+      console.error('failed to cleanup local storage', e);
     }
 
     this.contentUpdated.pipe(distinctUntilChanged(), takeUntil(this.$destroy)).subscribe((v) => {
@@ -190,7 +180,7 @@ export class EditorComponent implements OnInit, OnDestroy {
       try {
         this.backupContent(v);
       } catch (e) {
-        console.error("cannot write to local storage", e);
+        console.error('cannot write to local storage', e);
       }
       this.save();
     });
@@ -264,8 +254,8 @@ export class EditorComponent implements OnInit, OnDestroy {
     for (let i = 0; i < localStorage.length; i++) {
       const key: string = localStorage.key(i);
       if (key.startsWith(LOCAL_STORAGE_PREFIX)) {
-        const parts: string[] = key.replace(LOCAL_STORAGE_PREFIX + "-", "").split("-");
-        if (parts.length > 0 && (/^[0-9]+/).test(parts[0])) {
+        const parts: string[] = key.replace(LOCAL_STORAGE_PREFIX + '-', '').split('-');
+        if (parts.length > 0 && /^[0-9]+/.test(parts[0])) {
           const itemDate = fromUnixTime(parseInt(parts[0]));
           if (isBefore(itemDate, subDays(new Date(), 3))) {
             // remove backups older than a week
@@ -278,7 +268,7 @@ export class EditorComponent implements OnInit, OnDestroy {
       }
       // clear legacy items from storage.
       // todo: this can be removed later
-      if (key.startsWith("chunk-backup")) {
+      if (key.startsWith('chunk-backup')) {
         localStorage.removeItem(key);
       }
     }
@@ -323,7 +313,7 @@ export class EditorComponent implements OnInit, OnDestroy {
 
   insertOffsetBelowCaret() {
     const startOffset = this.firstOffset > -1 ? this.firstOffset : 0;
-    const offsetSeconds = startOffset + (this.audioStatus?.currentTime || 0) - (this._editorConfig.insertOffsetBacktrack || 0)
+    const offsetSeconds = startOffset + (this.audioStatus?.currentTime || 0) - (this._editorConfig.insertOffsetBacktrack || 0);
     this.editorComponent.insertOffsetBelowCaret(offsetSeconds);
   }
 

@@ -1,7 +1,5 @@
 /* tslint:disable */
-import {
-  RskChunkStates,
-} from '.';
+import { RskChunkStates } from '.';
 
 export interface RskChunkedTranscriptStats {
   chunkContributions?: { [key: string]: RskChunkStates };

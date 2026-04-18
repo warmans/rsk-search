@@ -7,24 +7,22 @@ export interface FindReplace {
 }
 
 @Component({
-    selector: 'app-find-replace',
-    templateUrl: './find-replace.component.html',
-    styleUrls: ['./find-replace.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'app-find-replace',
+  templateUrl: './find-replace.component.html',
+  styleUrls: ['./find-replace.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class FindReplaceComponent {
-
   @Output()
   onSubmit: EventEmitter<FindReplace> = new EventEmitter<FindReplace>();
 
   form: UntypedFormGroup = new UntypedFormGroup({
-    'find': new UntypedFormControl('', [Validators.required]),
-    'replace': new UntypedFormControl(),
+    find: new UntypedFormControl('', [Validators.required]),
+    replace: new UntypedFormControl(),
   });
 
-  constructor() {
-  }
+  constructor() {}
 
   submit() {
     this.onSubmit.next({
@@ -32,5 +30,4 @@ export class FindReplaceComponent {
       replace: this.form.get('replace').value,
     });
   }
-
 }

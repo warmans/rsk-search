@@ -8,9 +8,8 @@ describe('MetadataEditorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MetadataEditorComponent ]
-    })
-    .compileComponents();
+      declarations: [MetadataEditorComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

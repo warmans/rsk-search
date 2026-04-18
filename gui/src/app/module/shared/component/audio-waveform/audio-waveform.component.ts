@@ -1,12 +1,12 @@
-import {AfterViewInit, ChangeDetectorRef, Component, Input, OnDestroy, OnInit} from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import WaveSurfer from 'wavesurfer.js';
 import RegionsPlugin from 'wavesurfer.js/plugins/regions';
-import {Region} from "wavesurfer.js/plugins/regions";
-import {Router} from "@angular/router";
-import ZoomPlugin from "wavesurfer.js/plugins/zoom";
-import {FormControl} from "@angular/forms";
-import {takeUntil} from "rxjs/operators";
-import {Subject} from "rxjs";
+import { Region } from 'wavesurfer.js/plugins/regions';
+import { Router } from '@angular/router';
+import ZoomPlugin from 'wavesurfer.js/plugins/zoom';
+import { FormControl } from '@angular/forms';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 const AUDIO_CONTEXT_MS = 2000;
 
@@ -14,14 +14,12 @@ const AUDIO_CONTEXT_MS = 2000;
   selector: 'app-audio-waveform',
   standalone: false,
   templateUrl: './audio-waveform.component.html',
-  styleUrl: './audio-waveform.component.scss'
+  styleUrl: './audio-waveform.component.scss',
 })
 export class AudioWaveformComponent implements OnInit, AfterViewInit, OnDestroy {
-
   @Input()
   set url(value: string) {
     this._url = value;
-
   }
 
   get url(): string {
@@ -55,18 +53,20 @@ export class AudioWaveformComponent implements OnInit, AfterViewInit, OnDestroy 
 
   destroy: Subject<void> = new Subject<void>();
 
-  constructor(private cdr: ChangeDetectorRef, private router: Router) {
-  }
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
     this.stripTagsControl.valueChanges.pipe(takeUntil(this.destroy)).subscribe(() => {
-      const path: string = this._url.split("?")[0];
+      const path: string = this._url.split('?')[0];
       this.exportURL = `${path}?${this.getExportQuerystring()}`;
-    })
+    });
   }
 
   ngAfterViewInit(): void {
-    this.render()
+    this.render();
   }
 
   ngOnDestroy(): void {
@@ -104,9 +104,9 @@ export class AudioWaveformComponent implements OnInit, AfterViewInit, OnDestroy 
           // Optionally, specify the maximum pixels-per-second factor while zooming
           maxZoom: 200,
         }),
-      )
+      );
 
-      const wsRegions = this.wave.registerPlugin(RegionsPlugin.create())
+      const wsRegions = this.wave.registerPlugin(RegionsPlugin.create());
 
       wsRegions.on('region-out', (region: Region) => {
         const currentTime: number = this.wave.getCurrentTime();
@@ -116,22 +116,22 @@ export class AudioWaveformComponent implements OnInit, AfterViewInit, OnDestroy 
         }
       });
 
-      wsRegions.on('region-updated', (region: Region) => {
-        const path: string = this._url.split("?")[0];
+      wsRegions.on('region-updated', (_region: Region) => {
+        const path: string = this._url.split('?')[0];
         this.exportURL = `${path}?${this.getExportQuerystring()}`;
-      })
+      });
 
       this.wave.on('decode', () => {
         this.region = wsRegions.addRegion({
           start: this.startContext / 1000,
-          end: this.wave.getDuration() - (this.endContext / 1000),
+          end: this.wave.getDuration() - this.endContext / 1000,
           content: 'Region to download',
           color: 'rgba(0, 255, 0, 0.1)',
           drag: true,
           resize: true,
         });
 
-        const path: string = this._url.split("?")[0];
+        const path: string = this._url.split('?')[0];
         this.exportURL = `${path}?${this.getExportQuerystring()}`;
       });
 
@@ -140,7 +140,6 @@ export class AudioWaveformComponent implements OnInit, AfterViewInit, OnDestroy 
       });
     });
   }
-
 
   onPlayPressed() {
     this.region.play();
@@ -153,12 +152,12 @@ export class AudioWaveformComponent implements OnInit, AfterViewInit, OnDestroy 
   audioSegmentUrl(): string {
     this.startContext = this.startTimestampMs > AUDIO_CONTEXT_MS ? AUDIO_CONTEXT_MS : AUDIO_CONTEXT_MS - this.startTimestampMs;
     this.endContext = this.episodeDurationMs > this.endTimestampMs + AUDIO_CONTEXT_MS ? AUDIO_CONTEXT_MS : this.episodeDurationMs - this.endTimestampMs;
-    return `${this.url}?ts=${this.startTimestampMs - this.startContext}-${this.endTimestampMs + this.endContext}`
+    return `${this.url}?ts=${this.startTimestampMs - this.startContext}-${this.endTimestampMs + this.endContext}`;
   }
 
   getExportQuerystring(): string {
-    const adjustedStartTimeMs = (this.startTimestampMs - this.startContext) + (this.region.start * 1000)
-    const adjustedEndTimeMs = (this.endTimestampMs + this.endContext) - ((this.wave.getDuration() - this.region.end) * 1000)
-    return `ts=${Math.floor(adjustedStartTimeMs).toFixed(0)}-${Math.ceil(adjustedEndTimeMs).toFixed(0)}&strip_tags=${this.stripTagsControl.value && 'true'}`
+    const adjustedStartTimeMs = this.startTimestampMs - this.startContext + this.region.start * 1000;
+    const adjustedEndTimeMs = this.endTimestampMs + this.endContext - (this.wave.getDuration() - this.region.end) * 1000;
+    return `ts=${Math.floor(adjustedStartTimeMs).toFixed(0)}-${Math.ceil(adjustedEndTimeMs).toFixed(0)}&strip_tags=${this.stripTagsControl.value && 'true'}`;
   }
 }

@@ -8,9 +8,8 @@ describe('TranscriptChangeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TranscriptChangeComponent ]
-    })
-    .compileComponents();
+      declarations: [TranscriptChangeComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

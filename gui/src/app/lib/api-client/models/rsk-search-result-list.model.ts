@@ -1,8 +1,5 @@
 /* tslint:disable */
-import {
-  RskSearchResult,
-  RskSearchStats,
-} from '.';
+import { RskSearchResult, RskSearchStats } from '.';
 
 export interface RskSearchResultList {
   resultCount?: number;

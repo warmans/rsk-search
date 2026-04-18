@@ -2,13 +2,12 @@ import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, UntypedFormGroup } from '@angular/forms';
 
 @Component({
-    selector: 'app-form-errors',
-    templateUrl: './form-errors.component.html',
-    styleUrls: ['./form-errors.component.scss'],
-    standalone: false
+  selector: 'app-form-errors',
+  templateUrl: './form-errors.component.html',
+  styleUrls: ['./form-errors.component.scss'],
+  standalone: false,
 })
 export class FormErrorsComponent implements OnInit {
-
   @Input()
   form: UntypedFormGroup;
 
@@ -17,8 +16,7 @@ export class FormErrorsComponent implements OnInit {
 
   field: AbstractControl;
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit(): void {
     if (!this.form) {

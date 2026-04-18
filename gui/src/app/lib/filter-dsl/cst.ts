@@ -5,7 +5,10 @@ import { isBoolOp } from './filter';
 import { Renderer2 } from '@angular/core';
 
 export class ParseError extends Error {
-  constructor(readonly reason: string, readonly cause: Tok = null) {
+  constructor(
+    readonly reason: string,
+    readonly cause: Tok = null,
+  ) {
     super();
   }
 
@@ -23,7 +26,7 @@ export enum NodeKind {
   Value = 'value',
   Whitespace = 'whitespace',
   ParseError = 'parse_error',
-  Unknown = 'unknown'
+  Unknown = 'unknown',
 }
 
 export class CSTNode {
@@ -100,7 +103,10 @@ export class TokenNode extends CSTNode {
 }
 
 export class ValueNode extends CSTNode {
-  constructor(public v: Value, public parent: CSTNode) {
+  constructor(
+    public v: Value,
+    public parent: CSTNode,
+  ) {
     super(NodeKind.Value);
   }
 
@@ -126,14 +132,13 @@ export class ValueNode extends CSTNode {
 }
 
 export function ParseCST(str: string) {
-  return (new CSTParser(new Scanner(str, true))).parse();
+  return new CSTParser(new Scanner(str, true)).parse();
 }
 
 export class CSTParser {
   private peeked: Tok[] = [];
 
-  constructor(private s: Scanner) {
-  }
+  constructor(private s: Scanner) {}
 
   parse(): CSTNode {
     const node = this.parseOuter(1, 0);
@@ -142,11 +147,9 @@ export class CSTParser {
   }
 
   private parseOuter(minPrec: number, depth: number): CSTNode {
-
     let innerNode = this.parseInner(depth);
 
     while (true) {
-
       const nextToken = this.peekNextNonWhitespace();
 
       if (nextToken.tag == Tag.Error) {
@@ -184,7 +187,6 @@ export class CSTParser {
   }
 
   private parseInner(depth: number): CSTNode {
-
     const node = new CSTNode(NodeKind.CompFilter);
     this.eatWhiteSpace(node);
 
@@ -199,7 +201,6 @@ export class CSTParser {
         node.appendChild(expr);
         return node;
       case Tag.Field:
-
         // field
         node.appendChild(new TokenNode(NodeKind.Field, t));
 
@@ -221,7 +222,6 @@ export class CSTParser {
   }
 
   private parseValue(): Value {
-
     let token = this.getNext();
     switch (token.tag) {
       case Tag.Null:
@@ -319,17 +319,14 @@ export function renderCST(renderer: Renderer2, root: CSTNode): HTMLElement {
 }
 
 class CSTPrinter {
-
   el: HTMLElement;
 
-  constructor(private renderer: Renderer2) {
-  }
+  constructor(private renderer: Renderer2) {}
 
   print(v: CSTNode) {
-
     this.el = this.span('', v.kind);
 
-    v.children.forEach((v => {
+    v.children.forEach((v) => {
       if (!v) {
         return;
       }
@@ -342,7 +339,7 @@ class CSTPrinter {
           this.el.appendChild(this.span(v.string(), v.kind));
         }
       }
-    }));
+    });
   }
 
   private span(innerText: string, ...cl: string[]): HTMLElement {
@@ -352,4 +349,3 @@ class CSTPrinter {
     return el;
   }
 }
-

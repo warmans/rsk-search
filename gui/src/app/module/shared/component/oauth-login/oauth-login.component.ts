@@ -1,23 +1,22 @@
-import {Component, EventEmitter, Input, OnDestroy} from '@angular/core';
-import {takeUntil} from 'rxjs/operators';
-import {SearchAPIClient} from 'src/app/lib/api-client/services/search';
-import {ActivatedRoute, Data, Router} from '@angular/router';
-import {SessionService} from 'src/app/module/core/service/session/session.service';
-import {FormControl} from "@angular/forms";
-import {RskAuthURL} from "../../../../lib/api-client/models";
+import { Component, EventEmitter, Input, OnDestroy } from '@angular/core';
+import { takeUntil } from 'rxjs/operators';
+import { SearchAPIClient } from 'src/app/lib/api-client/services/search';
+import { ActivatedRoute, Data, Router } from '@angular/router';
+import { SessionService } from 'src/app/module/core/service/session/session.service';
+import { FormControl } from '@angular/forms';
+import { RskAuthURL } from '../../../../lib/api-client/models';
 
 @Component({
-    selector: 'app-oauth-login',
-    templateUrl: './oauth-login.component.html',
-    styleUrls: ['./oauth-login.component.scss'],
-    standalone: false
+  selector: 'app-oauth-login',
+  templateUrl: './oauth-login.component.html',
+  styleUrls: ['./oauth-login.component.scss'],
+  standalone: false,
 })
 export class OauthLoginComponent implements OnDestroy {
-
   @Input()
   open: boolean = false;
 
-  authMethod: FormControl<string> = new FormControl<string>("reddit");
+  authMethod: FormControl<string> = new FormControl<string>('reddit');
 
   showMoreAuthInformation: boolean = false;
 
@@ -58,14 +57,17 @@ export class OauthLoginComponent implements OnDestroy {
 
   requestAuth() {
     this.loading = true;
-    this.apiClient.getAuthUrl({provider: this.authMethod.value}).pipe(takeUntil(this.destroy$)).subscribe((res: RskAuthURL) => {
-      document.location.href = res.url;
-    }).add((): boolean => this.loading = false);
+    this.apiClient
+      .getAuthUrl({ provider: this.authMethod.value })
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((res: RskAuthURL) => {
+        document.location.href = res.url;
+      })
+      .add((): boolean => (this.loading = false));
   }
 
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
   }
-
 }

@@ -8,10 +8,9 @@ describe('RandomQuoteComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RandomQuoteComponent]
-    })
-    .compileComponents();
-    
+      imports: [RandomQuoteComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(RandomQuoteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

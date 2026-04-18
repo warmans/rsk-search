@@ -1,16 +1,15 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
-import {marked} from 'marked';
-import {DomSanitizer} from "@angular/platform-browser";
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { marked } from 'marked';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
-    selector: 'app-markdown',
-    templateUrl: './markdown.component.html',
-    styleUrls: ['./markdown.component.scss'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: false
+  selector: 'app-markdown',
+  templateUrl: './markdown.component.html',
+  styleUrls: ['./markdown.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false,
 })
 export class MarkdownComponent implements OnInit {
-
   @Input()
   set raw(value: string) {
     this._raw = value;
@@ -25,14 +24,11 @@ export class MarkdownComponent implements OnInit {
 
   renderedHTML: any;
 
-  constructor(public sanitizer: DomSanitizer) {
-  }
+  constructor(public sanitizer: DomSanitizer) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   render() {
-
     const renderer = new marked.Renderer();
 
     /**
@@ -63,21 +59,21 @@ export class MarkdownComponent implements OnInit {
      * ![](https://example.com/my-image.png =400x)
      */
     renderer.image = function (src, title, alt) {
-      const parts = /(.*)\s+=\s*(\d*)\s*x\s*(\d*)\s*$/.exec(src)
-      var url = src
-      var height = undefined
-      var width = undefined
+      const parts = /(.*)\s+=\s*(\d*)\s*x\s*(\d*)\s*$/.exec(src);
+      var url = src;
+      var height = undefined;
+      var width = undefined;
       if (parts) {
-        url = parts[1]
-        height = parts[2]
-        width = parts[3]
+        url = parts[1];
+        height = parts[2];
+        width = parts[3];
       }
       var YouTube = mediaParseIdFromUrl('youtube', url);
       var Vimeo = mediaParseIdFromUrl('vimeo', url);
       var Viddler = mediaParseIdFromUrl('viddler', url);
       var DailyMotion = mediaParseIdFromUrl('dailymotion', url);
       var Html5 = mediaParseIdFromUrl('html5', url);
-      let res = ''
+      let res = '';
       if (YouTube !== undefined) {
         res = create_iframe('//www.youtube.com/embed/' + YouTube, title, alt, height, width);
       } else if (Vimeo !== undefined) {
@@ -88,36 +84,35 @@ export class MarkdownComponent implements OnInit {
         res = create_iframe('//www.dailymotion.com/embed/video/' + DailyMotion, title, alt, height, width);
       } else if (Html5) {
         res = '<video';
-        if (height) res += ' height="' + height + '"'
-        if (width) res += ' width="' + width + '"'
-        res += ' controls><source src="' + Html5['link'] + '" type="video/' + Html5['extension'] + '">'
-        if (alt) res += sanitize(alt)
+        if (height) res += ' height="' + height + '"';
+        if (width) res += ' width="' + width + '"';
+        res += ' controls><source src="' + Html5['link'] + '" type="video/' + Html5['extension'] + '">';
+        if (alt) res += sanitize(alt);
         res += '</video>';
       } else {
-        res = '<img '
-        if (height) res += ' height="' + height + '"'
-        if (width) res += ' width="' + width + '"'
-        res += 'src="' + sanitize(url) + '"'
-        if (alt) res += ' alt="' + sanitize(alt) + '"'
-        if (title) res += ' title="' + sanitize(title) + '"'
-        res += '>'
+        res = '<img ';
+        if (height) res += ' height="' + height + '"';
+        if (width) res += ' width="' + width + '"';
+        res += 'src="' + sanitize(url) + '"';
+        if (alt) res += ' alt="' + sanitize(alt) + '"';
+        if (title) res += ' title="' + sanitize(title) + '"';
+        res += '>';
       }
-      return res
-    }
+      return res;
+    };
     let markd = marked.setOptions({
-      renderer: renderer
-    })
+      renderer: renderer,
+    });
     this.renderedHTML = markd(this.raw);
   }
 }
 
-
 function sanitize(str) {
   return str.replace(/&<"/g, function (m) {
-    if (m === "&") return "&amp;"
-    if (m === "<") return "&lt;"
-    return "&quot;"
-  })
+    if (m === '&') return '&amp;';
+    if (m === '<') return '&lt;';
+    return '&quot;';
+  });
 }
 
 /**
@@ -134,7 +129,7 @@ function sanitize(str) {
  */
 function mediaParseIdFromUrl(provider, url) {
   if (provider === 'youtube') {
-    var youtubeRegex = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+    var youtubeRegex = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
     var youtubeMatch = url.match(youtubeRegex);
     if (youtubeMatch && youtubeMatch[7].length == 11) {
       return youtubeMatch[7];
@@ -150,7 +145,7 @@ function mediaParseIdFromUrl(provider, url) {
       return undefined;
     }
   } else if (provider === 'viddler') {
-    var viddlerRegex = /^.*((viddler.com\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+    var viddlerRegex = /^.*((viddler.com\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
     var viddlerMatch = url.match(viddlerRegex);
     if (viddlerMatch && viddlerMatch[7].length == 8) {
       return viddlerMatch[7];
@@ -176,7 +171,7 @@ function mediaParseIdFromUrl(provider, url) {
     var html5Match = url.match(html5Regex);
 
     if (html5Match && html5Match[1]) {
-      return {'link': html5Match[0], 'extension': html5Match[1]};
+      return { link: html5Match[0], extension: html5Match[1] };
     } else {
       return undefined;
     }
@@ -187,11 +182,10 @@ function mediaParseIdFromUrl(provider, url) {
 
 function create_iframe(src, title, alt, height, width) {
   var res = '<iframe';
-  if (title) res += ' title="' + sanitize(title) + '"'
-  if (height) res += ' height="' + height + '"'
-  if (width) res += ' width="' + width + '"'
+  if (title) res += ' title="' + sanitize(title) + '"';
+  if (height) res += ' height="' + height + '"';
+  if (width) res += ' width="' + width + '"';
   res += ' src="' + src + '" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen>';
   res += sanitize(alt) + '</iframe>';
   return res;
 }
-

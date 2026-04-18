@@ -1,7 +1,5 @@
 /* tslint:disable */
-import {
-  RskDialog,
-} from '.';
+import { RskDialog } from '.';
 
 export interface RskDialogResult {
   score?: number;

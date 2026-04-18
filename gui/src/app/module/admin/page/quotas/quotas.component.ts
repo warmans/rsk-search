@@ -5,13 +5,12 @@ import { RskQuotas } from 'src/app/lib/api-client/models';
 import { Subject } from 'rxjs';
 
 @Component({
-    selector: 'app-quotas',
-    templateUrl: './quotas.component.html',
-    styleUrls: ['./quotas.component.scss'],
-    standalone: false
+  selector: 'app-quotas',
+  templateUrl: './quotas.component.html',
+  styleUrls: ['./quotas.component.scss'],
+  standalone: false,
 })
 export class QuotasComponent implements OnInit, OnDestroy {
-
   private destroy$: Subject<void> = new Subject<void>();
 
   quotas: RskQuotas;
@@ -20,16 +19,14 @@ export class QuotasComponent implements OnInit, OnDestroy {
   constructor(quotaService: QuotaService) {
     quotaService.quotas$.pipe(takeUntil(this.destroy$)).subscribe((res: RskQuotas) => {
       this.quotas = res;
-      this.bandwidthQuotaUsedPcnt = (1 - (res.bandwidthRemainingMib / res.bandwidthTotalMib)) * 100;
+      this.bandwidthQuotaUsedPcnt = (1 - res.bandwidthRemainingMib / res.bandwidthTotalMib) * 100;
     });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
   }
-
 }

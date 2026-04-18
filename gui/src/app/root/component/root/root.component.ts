@@ -1,19 +1,18 @@
-import {Component, EventEmitter, OnDestroy, OnInit, Renderer2} from '@angular/core';
-import {Router} from '@angular/router';
-import {Claims, SessionService} from 'src/app/module/core/service/session/session.service';
-import {takeUntil} from 'rxjs/operators';
-import {RskQuotas} from 'src/app/lib/api-client/models';
-import {QuotaService} from 'src/app/module/core/service/quota/quota.service';
-import {RadioService} from "../../../module/core/service/radio/radio.service";
+import { Component, EventEmitter, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { Router } from '@angular/router';
+import { Claims, SessionService } from 'src/app/module/core/service/session/session.service';
+import { takeUntil } from 'rxjs/operators';
+import { RskQuotas } from 'src/app/lib/api-client/models';
+import { QuotaService } from 'src/app/module/core/service/quota/quota.service';
+import { RadioService } from '../../../module/core/service/radio/radio.service';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './root.component.html',
-    styleUrls: ['./root.component.scss'],
-    standalone: false
+  selector: 'app-root',
+  templateUrl: './root.component.html',
+  styleUrls: ['./root.component.scss'],
+  standalone: false,
 })
 export class RootComponent implements OnInit, OnDestroy {
-
   loggedInUser: Claims;
 
   darkTheme: boolean = true;
@@ -39,12 +38,12 @@ export class RootComponent implements OnInit, OnDestroy {
     });
     quotaService.quotas$.pipe(takeUntil(this.destroy$)).subscribe((res: RskQuotas) => {
       this.quotas = res;
-      this.bandwidthQuotaUsedPcnt = (1 - (res.bandwidthRemainingMib / res.bandwidthTotalMib));
+      this.bandwidthQuotaUsedPcnt = 1 - res.bandwidthRemainingMib / res.bandwidthTotalMib;
     });
   }
 
   executeSearch(query: string) {
-    this.router.navigate(['/search'], {queryParams: {q: query}});
+    this.router.navigate(['/search'], { queryParams: { q: query } });
   }
 
   logout() {

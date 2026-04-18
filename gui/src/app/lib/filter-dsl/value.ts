@@ -10,8 +10,11 @@ export enum ValueKind {
 }
 
 export class Value {
-  constructor(public kind: ValueKind, public v: any, public token: Tok = null) {
-  }
+  constructor(
+    public kind: ValueKind,
+    public v: any,
+    public token: Tok = null,
+  ) {}
 }
 
 export function Invalid(value: string, token: Tok = null): Value {
@@ -56,5 +59,4 @@ export function ValueFromFieldMeta(m: RskFieldMeta, value: any): Value {
     case FieldMetaKind.TEXT:
       return Str(value);
   }
-
 }

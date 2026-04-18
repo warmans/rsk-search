@@ -1,7 +1,5 @@
 /* tslint:disable */
-import {
-  RskFieldValue,
-} from '.';
+import { RskFieldValue } from '.';
 
 export interface RskFieldValueList {
   values?: RskFieldValue[];

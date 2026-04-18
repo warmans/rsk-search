@@ -1,7 +1,5 @@
 /* tslint:disable */
-import {
-  RskPrediction,
-} from '.';
+import { RskPrediction } from '.';
 
 export interface RskSearchTermPredictions {
   predictions?: RskPrediction[];

@@ -1,4 +1,4 @@
-import {DialogType, RskDialog, RskSynopsis, RskTrivia} from '../../../lib/api-client/models';
+import { DialogType, RskDialog, RskSynopsis, RskTrivia } from '../../../lib/api-client/models';
 
 export function lineHasActorPrefix(line: string): boolean {
   return line.length > 1 && line.indexOf(':') > -1;
@@ -47,13 +47,12 @@ export function isEndTriviaLine(line: string): boolean {
   return !!line.match(/^#[/]TRIVIA.*/g);
 }
 
-
 export function isGapLine(line: string): boolean {
   return !!line.match(/^#GAP:.*/g);
 }
 
 export function getOffsetValueFromLineInSeconds(line: string): number {
-  const match = line.match(/^#OFFSET:\s([0-9\.]+)/);
+  const match = line.match(/^#OFFSET:\s([0-9.]+)/);
   return match?.length == 2 ? parseFloat(match[1]) : -1;
 }
 
@@ -91,23 +90,22 @@ export function parseTranscript(transcript: string): Tscript {
     }
 
     if (isOffsetLine(line)) {
-      lastTimestampMs = getOffsetValueFromLineInSeconds(line)*1000
-      return
+      lastTimestampMs = getOffsetValueFromLineInSeconds(line) * 1000;
+      return;
     }
     if (isGapLine(line)) {
-
       tscript.transcript.push({
         type: DialogType.GAP,
         pos: pos,
         offsetMs: lastTimestampMs,
         content: line.replace(/^#GAP:/, ''),
       });
-      lastTimestampMs = undefined
+      lastTimestampMs = undefined;
       pos++;
-      return
+      return;
     }
     if (isStartSynopsisLine(line)) {
-      currentSynopsis = {description: getSynopsis(line), startPos: pos};
+      currentSynopsis = { description: getSynopsis(line), startPos: pos };
       return;
     }
     if (isEndSynopsisLine(line) && currentSynopsis) {
@@ -117,7 +115,7 @@ export function parseTranscript(transcript: string): Tscript {
       return;
     }
     if (isStartTriviaLine(line)) {
-      currentTrivia = {description: getTrivia(line), startPos: pos};
+      currentTrivia = { description: getTrivia(line), startPos: pos };
       return;
     }
     if (isEndTriviaLine(line) && currentTrivia) {
@@ -155,7 +153,7 @@ export function parseTranscript(transcript: string): Tscript {
     }
 
     //clear offset until a new one is scanned
-    lastTimestampMs = undefined
+    lastTimestampMs = undefined;
 
     pos++;
   });
@@ -172,6 +170,9 @@ export function parseTranscript(transcript: string): Tscript {
 }
 
 export class Tscript {
-  constructor(public transcript: RskDialog[], public synopses?: RskSynopsis[], public trivia?: RskTrivia[]) {
-  }
+  constructor(
+    public transcript: RskDialog[],
+    public synopses?: RskSynopsis[],
+    public trivia?: RskTrivia[],
+  ) {}
 }
