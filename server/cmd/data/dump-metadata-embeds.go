@@ -3,14 +3,15 @@ package data
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/spf13/cobra"
-	"github.com/warmans/rsk-search/pkg/models"
-	"github.com/warmans/rsk-search/pkg/util"
-	"go.uber.org/zap"
 	"os"
 	"path"
 	"slices"
 	"time"
+
+	"github.com/spf13/cobra"
+	"github.com/warmans/rsk-search/pkg/models"
+	"github.com/warmans/rsk-search/pkg/util"
+	"go.uber.org/zap"
 )
 
 type episodeDate struct {
@@ -31,6 +32,7 @@ func DumpMetadataEmbedsCmd() *cobra.Command {
 		"name":    {},
 		"guide":   {},
 		"podcast": {},
+		"nme":     {},
 	}
 
 	cmd := &cobra.Command{
