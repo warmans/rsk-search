@@ -1,5 +1,7 @@
 /* tslint:disable */
-import { RskRecipientStats } from '.';
+import {
+  RskRecipientStats,
+} from '.';
 
 export interface RskDonationStats {
   stats?: RskRecipientStats[];

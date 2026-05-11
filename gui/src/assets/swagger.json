@@ -2883,6 +2883,10 @@
         "pos": {
           "type": "integer",
           "format": "int32"
+        },
+        "offsetMs": {
+          "type": "integer",
+          "format": "int32"
         }
       }
     },

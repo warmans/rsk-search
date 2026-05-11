@@ -1,5 +1,7 @@
 /* tslint:disable */
-import { RskShortTranscriptChange } from '.';
+import {
+  RskShortTranscriptChange,
+} from '.';
 
 export interface RskTranscriptChangeList {
   changes?: RskShortTranscriptChange[];

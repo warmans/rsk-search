@@ -1,5 +1,7 @@
 /* tslint:disable */
-import { RskShortTranscript } from '.';
+import {
+  RskShortTranscript,
+} from '.';
 
 export interface RskTranscriptList {
   episodes?: RskShortTranscript[];

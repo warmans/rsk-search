@@ -3,6 +3,9 @@ package grpc
 import (
 	"context"
 	"fmt"
+	"slices"
+	"strings"
+
 	"github.com/gorilla/mux"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/warmans/rsk-search/gen/api"
@@ -18,8 +21,6 @@ import (
 	"go.uber.org/zap"
 	"google.golang.org/grpc"
 	"google.golang.org/protobuf/types/known/emptypb"
-	"slices"
-	"strings"
 )
 
 func NewSearchService(
@@ -148,10 +149,11 @@ func (s *SearchService) GetRoadmap(ctx context.Context, request *api.GetRoadmapR
 func (s *SearchService) GetRandomQuote(ctx context.Context, request *api.GetRandomQuoteRequest) (*api.RandomQuote, error) {
 	quote := s.episodeCache.RandomQuote()
 	return &api.RandomQuote{
-		Quote: quote.Dialog.Content,
-		Actor: quote.Dialog.Actor,
-		Epid:  quote.EpID,
-		Pos:   int32(quote.Dialog.Position),
+		Quote:    quote.Dialog.Content,
+		Actor:    quote.Dialog.Actor,
+		Epid:     quote.EpID,
+		Pos:      int32(quote.Dialog.Position),
+		OffsetMs: int32(quote.Dialog.Timestamp.Milliseconds()),
 	}, nil
 }
 

@@ -1,5 +1,7 @@
 /* tslint:disable */
-import { RskChangelog } from '.';
+import {
+  RskChangelog,
+} from '.';
 
 export interface RskChangelogList {
   changelogs?: RskChangelog[];

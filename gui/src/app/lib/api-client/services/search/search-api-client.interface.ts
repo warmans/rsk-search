@@ -5,14 +5,15 @@ import { HttpOptions } from './';
 import * as models from '../../models';
 
 export interface SearchAPIClientInterface {
+
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
   createTscriptImport(
     args: {
-      body: models.RskCreateTscriptImportRequest;
+      body: models.RskCreateTscriptImportRequest,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<models.RskTscriptImport>;
 
   /**
@@ -20,13 +21,13 @@ export interface SearchAPIClientInterface {
    */
   listTscriptImports(
     args: {
-      filter?: string;
-      sortField?: string;
-      sortDirection?: string;
-      page?: number;
-      pageSize?: number;
+      filter?: string,
+      sortField?: string,
+      sortDirection?: string,
+      page?: number,
+      pageSize?: number,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<models.RskTscriptImportList>;
 
   /**
@@ -34,9 +35,9 @@ export interface SearchAPIClientInterface {
    */
   deleteTscript(
     args: {
-      id: string;
+      id: string,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<object>;
 
   /**
@@ -44,9 +45,9 @@ export interface SearchAPIClientInterface {
    */
   getAuthUrl(
     args: {
-      provider?: string;
+      provider?: string,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<models.RskAuthURL>;
 
   /**
@@ -54,13 +55,13 @@ export interface SearchAPIClientInterface {
    */
   listAuthorContributions(
     args: {
-      filter?: string;
-      sortField?: string;
-      sortDirection?: string;
-      page?: number;
-      pageSize?: number;
+      filter?: string,
+      sortField?: string,
+      sortDirection?: string,
+      page?: number,
+      pageSize?: number,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<models.RskAuthorContributionList>;
 
   /**
@@ -68,13 +69,13 @@ export interface SearchAPIClientInterface {
    */
   listAuthorRanks(
     args: {
-      filter?: string;
-      sortField?: string;
-      sortDirection?: string;
-      page?: number;
-      pageSize?: number;
+      filter?: string,
+      sortField?: string,
+      sortDirection?: string,
+      page?: number,
+      pageSize?: number,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<models.RskAuthorRankList>;
 
   /**
@@ -82,69 +83,83 @@ export interface SearchAPIClientInterface {
    */
   listChangelogs(
     args: {
-      filter?: string;
-      sortField?: string;
-      sortDirection?: string;
-      page?: number;
-      pageSize?: number;
+      filter?: string,
+      sortField?: string,
+      sortDirection?: string,
+      page?: number,
+      pageSize?: number,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<models.RskChangelogList>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  listIncomingDonations(requestHttpOptions?: HttpOptions): Observable<models.RskIncomingDonationList>;
+  listIncomingDonations(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskIncomingDonationList>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  getMetadata(requestHttpOptions?: HttpOptions): Observable<models.RskMetadata>;
+  getMetadata(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskMetadata>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  getNext(requestHttpOptions?: HttpOptions): Observable<models.RskNextRadioEpisode>;
+  getNext(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskNextRadioEpisode>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  getState(requestHttpOptions?: HttpOptions): Observable<models.RskRadioState>;
+  getState(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskRadioState>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
   putState(
     args: {
-      body: models.RskPutRadioStateRequest;
+      body: models.RskPutRadioStateRequest,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<object>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  listPendingRewards(requestHttpOptions?: HttpOptions): Observable<models.RskPendingRewardList>;
+  listPendingRewards(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskPendingRewardList>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  listClaimedRewards(requestHttpOptions?: HttpOptions): Observable<models.RskClaimedRewardList>;
+  listClaimedRewards(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskClaimedRewardList>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  getDonationStats(requestHttpOptions?: HttpOptions): Observable<models.RskDonationStats>;
+  getDonationStats(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskDonationStats>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
   claimReward(
     args: {
-      id: string;
-      body: models.ContributionsServiceClaimRewardBody;
+      id: string,
+      body: models.ContributionsServiceClaimRewardBody,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<object>;
 
   /**
@@ -152,26 +167,28 @@ export interface SearchAPIClientInterface {
    */
   listDonationRecipients(
     args: {
-      rewardId: string;
+      rewardId: string,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<models.RskDonationRecipientList>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  getRoadmap(requestHttpOptions?: HttpOptions): Observable<models.RskRoadmap>;
+  getRoadmap(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskRoadmap>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
   search(
     args: {
-      query?: string;
-      page?: number;
-      sort?: string;
+      query?: string,
+      page?: number,
+      sort?: string,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<models.RskSearchResultList>;
 
   /**
@@ -179,52 +196,58 @@ export interface SearchAPIClientInterface {
    */
   predictSearchTerm(
     args: {
-      prefix?: string;
-      maxPredictions?: number;
-      query?: string;
-      exact?: boolean;
+      prefix?: string,
+      maxPredictions?: number,
+      query?: string,
+      exact?: boolean,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<models.RskSearchTermPredictions>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  getRandomQuote(requestHttpOptions?: HttpOptions): Observable<models.RskRandomQuote>;
+  getRandomQuote(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskRandomQuote>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
   listSongs(
     args: {
-      filter?: string;
-      sortField?: string;
-      sortDirection?: string;
-      page?: number;
-      pageSize?: number;
+      filter?: string,
+      sortField?: string,
+      sortDirection?: string,
+      page?: number,
+      pageSize?: number,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<models.RskSongList>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  getHealth(requestHttpOptions?: HttpOptions): Observable<object>;
+  getHealth(
+    requestHttpOptions?: HttpOptions
+  ): Observable<object>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  getQuotaSummary(requestHttpOptions?: HttpOptions): Observable<models.RskQuotas>;
+  getQuotaSummary(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskQuotas>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
   listTranscripts(
     args: {
-      filter?: string;
-      includeRatingBreakdown?: boolean;
+      filter?: string,
+      includeRatingBreakdown?: boolean,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscriptList>;
 
   /**
@@ -232,13 +255,13 @@ export interface SearchAPIClientInterface {
    */
   listTranscriptChanges(
     args: {
-      filter?: string;
-      sortField?: string;
-      sortDirection?: string;
-      page?: number;
-      pageSize?: number;
+      filter?: string,
+      sortField?: string,
+      sortDirection?: string,
+      page?: number,
+      pageSize?: number,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscriptChangeList>;
 
   /**
@@ -246,9 +269,9 @@ export interface SearchAPIClientInterface {
    */
   getTranscriptChange(
     args: {
-      id: string;
+      id: string,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscriptChange>;
 
   /**
@@ -256,9 +279,9 @@ export interface SearchAPIClientInterface {
    */
   deleteTranscriptChange(
     args: {
-      id: string;
+      id: string,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<object>;
 
   /**
@@ -266,10 +289,10 @@ export interface SearchAPIClientInterface {
    */
   updateTranscriptChange(
     args: {
-      id: string;
-      body: models.TranscriptServiceUpdateTranscriptChangeBody;
+      id: string,
+      body: models.TranscriptServiceUpdateTranscriptChangeBody,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscriptChange>;
 
   /**
@@ -277,9 +300,9 @@ export interface SearchAPIClientInterface {
    */
   getTranscriptChangeDiff(
     args: {
-      id: string;
+      id: string,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscriptChangeDiff>;
 
   /**
@@ -287,25 +310,27 @@ export interface SearchAPIClientInterface {
    */
   requestTranscriptChangeState(
     args: {
-      id: string;
-      body: models.TranscriptServiceRequestTranscriptChangeStateBody;
+      id: string,
+      body: models.TranscriptServiceRequestTranscriptChangeStateBody,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<object>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  listChunkedTranscripts(requestHttpOptions?: HttpOptions): Observable<models.RskChunkedTranscriptList>;
+  listChunkedTranscripts(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskChunkedTranscriptList>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
   getChunkContribution(
     args: {
-      contributionId: string;
+      contributionId: string,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<models.RskChunkContribution>;
 
   /**
@@ -313,9 +338,9 @@ export interface SearchAPIClientInterface {
    */
   deleteChunkContribution(
     args: {
-      contributionId: string;
+      contributionId: string,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<object>;
 
   /**
@@ -323,10 +348,10 @@ export interface SearchAPIClientInterface {
    */
   updateChunkContribution(
     args: {
-      contributionId: string;
-      body: models.TranscriptServiceUpdateChunkContributionBody;
+      contributionId: string,
+      body: models.TranscriptServiceUpdateChunkContributionBody,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<models.RskChunkContribution>;
 
   /**
@@ -334,10 +359,10 @@ export interface SearchAPIClientInterface {
    */
   requestChunkContributionState(
     args: {
-      contributionId: string;
-      body: models.TranscriptServiceRequestChunkContributionStateBody;
+      contributionId: string,
+      body: models.TranscriptServiceRequestChunkContributionStateBody,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<models.RskChunkContribution>;
 
   /**
@@ -345,13 +370,13 @@ export interface SearchAPIClientInterface {
    */
   listChunkContributions(
     args: {
-      filter?: string;
-      sortField?: string;
-      sortDirection?: string;
-      page?: number;
-      pageSize?: number;
+      filter?: string,
+      sortField?: string,
+      sortDirection?: string,
+      page?: number,
+      pageSize?: number,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<models.RskChunkContributionList>;
 
   /**
@@ -359,10 +384,10 @@ export interface SearchAPIClientInterface {
    */
   createChunkContribution(
     args: {
-      chunkId: string;
-      body: models.TranscriptServiceCreateChunkContributionBody;
+      chunkId: string,
+      body: models.TranscriptServiceCreateChunkContributionBody,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<models.RskChunkContribution>;
 
   /**
@@ -370,9 +395,9 @@ export interface SearchAPIClientInterface {
    */
   getTranscriptChunk(
     args: {
-      id: string;
+      id: string,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<models.RskChunk>;
 
   /**
@@ -380,14 +405,14 @@ export interface SearchAPIClientInterface {
    */
   listTranscriptChunks(
     args: {
-      chunkedTranscriptId: string;
-      filter?: string;
-      sortField?: string;
-      sortDirection?: string;
-      page?: number;
-      pageSize?: number;
+      chunkedTranscriptId: string,
+      filter?: string,
+      sortField?: string,
+      sortDirection?: string,
+      page?: number,
+      pageSize?: number,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscriptChunkList>;
 
   /**
@@ -395,10 +420,10 @@ export interface SearchAPIClientInterface {
    */
   getTranscript(
     args: {
-      epid: string;
-      withRaw?: boolean;
+      epid: string,
+      withRaw?: boolean,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscript>;
 
   /**
@@ -406,10 +431,10 @@ export interface SearchAPIClientInterface {
    */
   createTranscriptChange(
     args: {
-      epid: string;
-      body: models.TranscriptServiceCreateTranscriptChangeBody;
+      epid: string,
+      body: models.TranscriptServiceCreateTranscriptChangeBody,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscriptChange>;
 
   /**
@@ -417,13 +442,13 @@ export interface SearchAPIClientInterface {
    */
   getTranscriptDialog(
     args: {
-      epid: string;
-      pos: number;
-      numContextLines?: number;
-      rangeStart?: number;
-      rangeEnd?: number;
+      epid: string,
+      pos: number,
+      numContextLines?: number,
+      rangeStart?: number,
+      rangeEnd?: number,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscriptDialog>;
 
   /**
@@ -431,10 +456,10 @@ export interface SearchAPIClientInterface {
    */
   setTranscriptRatingScore(
     args: {
-      epid: string;
-      body: models.TranscriptServiceSetTranscriptRatingScoreBody;
+      epid: string,
+      body: models.TranscriptServiceSetTranscriptRatingScoreBody,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<object>;
 
   /**
@@ -442,10 +467,10 @@ export interface SearchAPIClientInterface {
    */
   bulkSetTranscriptRatingScore(
     args: {
-      epid: string;
-      body: models.TranscriptServiceBulkSetTranscriptRatingScoreBody;
+      epid: string,
+      body: models.TranscriptServiceBulkSetTranscriptRatingScoreBody,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<object>;
 
   /**
@@ -453,44 +478,49 @@ export interface SearchAPIClientInterface {
    */
   bulkSetTranscriptTag(
     args: {
-      epid: string;
-      body: models.TranscriptServiceBulkSetTranscriptTagsBody;
+      epid: string,
+      body: models.TranscriptServiceBulkSetTranscriptTagsBody,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<object>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  getChunkedTranscriptChunkStats(requestHttpOptions?: HttpOptions): Observable<models.RskChunkStats>;
+  getChunkedTranscriptChunkStats(
+    requestHttpOptions?: HttpOptions
+  ): Observable<models.RskChunkStats>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
   listNotifications(
     args: {
-      filter?: string;
-      sortField?: string;
-      sortDirection?: string;
-      page?: number;
-      pageSize?: number;
+      filter?: string,
+      sortField?: string,
+      sortDirection?: string,
+      page?: number,
+      pageSize?: number,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<models.RskNotificationsList>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
-  markNotificationsRead(requestHttpOptions?: HttpOptions): Observable<object>;
+  markNotificationsRead(
+    requestHttpOptions?: HttpOptions
+  ): Observable<object>;
 
   /**
    * Response generated for [ 200 ] HTTP response code.
    */
   listFieldValues(
     args: {
-      field: string;
-      prefix?: string;
+      field: string,
+      prefix?: string,
     },
-    requestHttpOptions?: HttpOptions,
+    requestHttpOptions?: HttpOptions
   ): Observable<models.RskFieldValueList>;
+
 }

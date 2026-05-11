@@ -1,5 +1,7 @@
 /* tslint:disable */
-import { NotificationKind } from '.';
+import {
+  NotificationKind,
+} from '.';
 
 export interface RskNotification {
   clickThoughUrl?: string;

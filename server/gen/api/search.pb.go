@@ -1086,6 +1086,7 @@ type RandomQuote struct {
 	Actor         string                 `protobuf:"bytes,2,opt,name=actor,proto3" json:"actor,omitempty"`
 	Epid          string                 `protobuf:"bytes,3,opt,name=epid,proto3" json:"epid,omitempty"`
 	Pos           int32                  `protobuf:"varint,4,opt,name=pos,proto3" json:"pos,omitempty"`
+	OffsetMs      int32                  `protobuf:"varint,5,opt,name=offset_ms,json=offsetMs,proto3" json:"offset_ms,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1144,6 +1145,13 @@ func (x *RandomQuote) GetEpid() string {
 func (x *RandomQuote) GetPos() int32 {
 	if x != nil {
 		return x.Pos
+	}
+	return 0
+}
+
+func (x *RandomQuote) GetOffsetMs() int32 {
+	if x != nil {
+		return x.OffsetMs
 	}
 	return 0
 }
@@ -1534,12 +1542,13 @@ const file_search_proto_rawDesc = "" +
 	"\tChangelog\x12\x12\n" +
 	"\x04date\x18\x01 \x01(\tR\x04date\x12\x18\n" +
 	"\acontent\x18\x02 \x01(\tR\acontent\"\x17\n" +
-	"\x15GetRandomQuoteRequest\"_\n" +
+	"\x15GetRandomQuoteRequest\"|\n" +
 	"\vRandomQuote\x12\x14\n" +
 	"\x05quote\x18\x01 \x01(\tR\x05quote\x12\x14\n" +
 	"\x05actor\x18\x02 \x01(\tR\x05actor\x12\x12\n" +
 	"\x04epid\x18\x03 \x01(\tR\x04epid\x12\x10\n" +
-	"\x03pos\x18\x04 \x01(\x05R\x03pos\"\xa1\x01\n" +
+	"\x03pos\x18\x04 \x01(\x05R\x03pos\x12\x1b\n" +
+	"\toffset_ms\x18\x05 \x01(\x05R\boffsetMs\"\xa1\x01\n" +
 	"\x10ListSongsRequest\x12\x16\n" +
 	"\x06filter\x18\x01 \x01(\tR\x06filter\x12\x1d\n" +
 	"\n" +

@@ -1,5 +1,8 @@
 /* tslint:disable */
-import { RskAuthor, RskContributionState } from '.';
+import {
+  RskAuthor,
+  RskContributionState,
+} from '.';
 
 export interface RskShortTranscriptChange {
   author?: RskAuthor;

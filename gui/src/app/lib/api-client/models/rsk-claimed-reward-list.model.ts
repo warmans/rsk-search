@@ -1,5 +1,7 @@
 /* tslint:disable */
-import { RskClaimedReward } from '.';
+import {
+  RskClaimedReward,
+} from '.';
 
 export interface RskClaimedRewardList {
   rewards?: RskClaimedReward[];

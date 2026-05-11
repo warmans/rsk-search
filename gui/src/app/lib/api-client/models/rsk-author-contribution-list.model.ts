@@ -1,5 +1,7 @@
 /* tslint:disable */
-import { RskAuthorContribution } from '.';
+import {
+  RskAuthorContribution,
+} from '.';
 
 export interface RskAuthorContributionList {
   contributions?: RskAuthorContribution[];

@@ -1,5 +1,7 @@
 /* tslint:disable */
-import { RskTscriptImport } from '.';
+import {
+  RskTscriptImport,
+} from '.';
 
 export interface RskTscriptImportList {
   imports?: RskTscriptImport[];

@@ -1,5 +1,7 @@
 /* tslint:disable */
-import { RskChunkContribution } from '.';
+import {
+  RskChunkContribution,
+} from '.';
 
 export interface RskChunkContributionList {
   contributions?: RskChunkContribution[];

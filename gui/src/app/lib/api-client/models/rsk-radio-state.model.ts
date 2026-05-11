@@ -1,5 +1,7 @@
 /* tslint:disable */
-import { RskCurrentRadioEpisode } from '.';
+import {
+  RskCurrentRadioEpisode,
+} from '.';
 
 export interface RskRadioState {
   currentEpisode?: RskCurrentRadioEpisode;

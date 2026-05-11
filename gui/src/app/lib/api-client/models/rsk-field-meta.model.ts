@@ -1,5 +1,7 @@
 /* tslint:disable */
-import { FieldMetaKind } from '.';
+import {
+  FieldMetaKind,
+} from '.';
 
 export interface RskFieldMeta {
   kind?: FieldMetaKind;

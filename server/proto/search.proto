@@ -228,6 +228,7 @@ message RandomQuote {
   string actor = 2;
   string epid = 3;
   int32 pos = 4;
+  int32 offset_ms = 5;
 }
 
 message ListSongsRequest {

@@ -1,5 +1,7 @@
 /* tslint:disable */
-import { RskContributionState } from '.';
+import {
+  RskContributionState,
+} from '.';
 
 export interface RskChunkStates {
   states?: RskContributionState[];

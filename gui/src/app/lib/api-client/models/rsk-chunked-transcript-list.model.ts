@@ -1,5 +1,7 @@
 /* tslint:disable */
-import { RskChunkedTranscriptStats } from '.';
+import {
+  RskChunkedTranscriptStats,
+} from '.';
 
 export interface RskChunkedTranscriptList {
   chunked?: RskChunkedTranscriptStats[];

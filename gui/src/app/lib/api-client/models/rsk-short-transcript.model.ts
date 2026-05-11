@@ -1,5 +1,10 @@
 /* tslint:disable */
-import { RskAudioQuality, RskMedia, RskPublicationType, RskSynopsis } from '.';
+import {
+  RskAudioQuality,
+  RskMedia,
+  RskPublicationType,
+  RskSynopsis,
+} from '.';
 
 export interface RskShortTranscript {
   actors?: string[];

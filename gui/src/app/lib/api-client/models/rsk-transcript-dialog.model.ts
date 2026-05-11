@@ -1,5 +1,8 @@
 /* tslint:disable */
-import { RskDialog, RskShortTranscript } from '.';
+import {
+  RskDialog,
+  RskShortTranscript,
+} from '.';
 
 export interface RskTranscriptDialog {
   dialog?: RskDialog[];

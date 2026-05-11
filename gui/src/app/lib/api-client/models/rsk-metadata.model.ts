@@ -1,5 +1,7 @@
 /* tslint:disable */
-import { RskFieldMeta } from '.';
+import {
+  RskFieldMeta,
+} from '.';
 
 export interface RskMetadata {
   episodeShortIds?: string[];
