@@ -5,8 +5,8 @@
     "episode": 6,
     "name": "The Ricky Gervais Guide to: The World Cup",
     "summary": "",
-    "version": "0.0.1",
-    "release_date": "2010-06-12T12:00:00Z",
+    "version": "0.0.2",
+    "release_date": "2010-06-12T00:00:00Z",
     "completion": "complete",
     "completion_reports": null,
     "bestof": false,
@@ -10276,9 +10276,16 @@
     "contributors": [
       "Oooch",
       "Oversteer_",
+      "lasermoai",
       "wqzkav"
     ],
-    "trivia": null,
+    "trivia": [
+      {
+        "description": "He won gold in sprint in the 2004 Athens Olympics.\n\nhttps://en.wikipedia.org/wiki/Darren_Campbell",
+        "start_pos": 316,
+        "end_pos": 317
+      }
+    ],
     "tags": null,
     "media": {
       "video_file_name": "",
@@ -10291,6 +10298,10 @@
     },
     "ratings": {
       "scores": {
+        "discord:alexb457": 2,
+        "discord:dragonq0105": 2.8,
+        "discord:paulgriffincsp": 2,
+        "discord:rowanator3000": 2,
         "reddit:pichushkins": 4
       }
     }

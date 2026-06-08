@@ -5801,7 +5801,7 @@
         "timestamp": 1785000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 52567000000,
+        "duration": 52565000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
@@ -5813,7 +5813,7 @@
       {
         "id": "ep-guide-S1E03-387",
         "pos": 387,
-        "timestamp": 1837567000000,
+        "timestamp": 1837565000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
         "duration": 13421000000,
@@ -5828,10 +5828,10 @@
       {
         "id": "ep-guide-S1E03-388",
         "pos": 388,
-        "timestamp": 1850988000000,
+        "timestamp": 1850986000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
-        "duration": 1380012000000,
+        "duration": 1380014000000,
         "type": "gap",
         "actor": "",
         "metadata": null,
@@ -5890,6 +5890,11 @@
     },
     "ratings": {
       "scores": {
+        "discord:alexb457": 3.5,
+        "discord:dragonq0105": 3.2,
+        "discord:harrybee": 4,
+        "discord:paulgriffincsp": 3,
+        "discord:rowanator3000": 3,
         "reddit:pichushkins": 5
       }
     }
