@@ -8,7 +8,8 @@ CREATE TABLE "episode"
     "special"          BOOLEAN,
     "release_date"     TIMESTAMP,
     "metadata"         JSON,
-    "contributors"     JSON
+    "contributors"     JSON,
+    "rating"           NUMERIC
 );
 
 CREATE TABLE "dialog"

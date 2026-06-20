@@ -380,7 +380,7 @@ message ShortTranscript {
   AudioQuality audio_quality = 20;
   Media media = 22;
   PublicationType publication_type = 23;
-  float rating_score = 24;
+  optional float rating_score = 24;
   int32 num_rating_scores = 25;
   map<string, float> rating_breakdown = 26;
 }
@@ -442,6 +442,10 @@ message GetTranscriptDialogRequest {
 message ListTranscriptsRequest {
   string filter = 1;
   bool include_rating_breakdown = 2;
+  string sort_field = 3;
+  string sort_direction = 4;
+  int32 page = 5;
+  int32 page_size = 6;
 }
 
 message TranscriptList {

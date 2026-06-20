@@ -349,18 +349,6 @@ func (e *Transcript) ShortProto(withRatingBreakdown bool) *api.ShortTranscript {
 		return nil
 	}
 
-	scoreTotal := float32(0)
-	numScores := len(e.Ratings.Scores)
-	if e.Ratings.Scores != nil {
-		for _, v := range e.Ratings.Scores {
-			scoreTotal += v
-		}
-	}
-	ratingScore := float32(0)
-	if numScores > 0 {
-		ratingScore = scoreTotal / float32(numScores)
-	}
-
 	ep := &api.ShortTranscript{
 		Id:                  e.ID(),
 		Publication:         e.Publication,
@@ -383,8 +371,8 @@ func (e *Transcript) ShortProto(withRatingBreakdown bool) *api.ShortTranscript {
 		AudioQuality:        e.AudioQuality.Proto(),
 		Media:               e.Media.Proto(),
 		PublicationType:     e.PublicationType.Proto(),
-		RatingScore:         ratingScore,
-		NumRatingScores:     int32(numScores),
+		RatingScore:         e.Ratings.Avg(),
+		NumRatingScores:     int32(len(e.Ratings.Scores)),
 	}
 	for k, s := range e.Synopsis {
 		ep.Synopsis[k] = s.Proto()
@@ -521,18 +509,25 @@ type Ratings struct {
 	Scores map[string]float32 `json:"scores"`
 }
 
-func (r Ratings) Proto() *api.Ratings {
+func (r Ratings) Total() float32 {
 	total := float32(0)
 	for _, v := range r.Scores {
 		total += v
 	}
-	avg := float32(0)
+	return total
+}
+
+func (r Ratings) Avg() *float32 {
 	if len(r.Scores) > 0 {
-		avg = total / float32(len(r.Scores))
+		return util.ToPtr(r.Total() / float32(len(r.Scores)))
 	}
+	return nil
+}
+
+func (r Ratings) Proto() *api.Ratings {
 	return &api.Ratings{
 		Scores:    r.Scores,
-		ScoreAvg:  avg,
+		ScoreAvg:  util.PFloat32(r.Avg()),
 		NumScores: int32(len(r.Scores)),
 	}
 }
@@ -584,6 +579,7 @@ type EpisodeMeta struct {
 	Episode         int32           `json:"episode"`
 	ReleaseDate     *time.Time      `json:"release_date"`
 	Special         bool            `json:"special"`
+	Rating          *float32        `json:"rating"`
 }
 
 func (e *EpisodeMeta) ID() string {

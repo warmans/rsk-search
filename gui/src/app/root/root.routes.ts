@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { SearchComponent } from '../module/search/page/search/search.component';
+import { IndexComponent as SearchIndexComponent } from '../module/search/page/index/index.component';
 import { EpisodeComponent } from '../module/search/page/episode/episode.component';
 import { RandomComponent } from '../module/contrib/page/random/random.component';
 import { AuthorProfile } from '../module/contrib/page/author-profile/author-profile.component';
@@ -22,7 +22,7 @@ import { ArchiveComponent } from '../module/more-shite/page/archive/archive.comp
 export const routes: Routes = [
   {
     path: 'search',
-    component: SearchComponent,
+    component: SearchIndexComponent,
   },
   {
     path: 'changelog',

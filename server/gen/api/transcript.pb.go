@@ -579,7 +579,7 @@ type ShortTranscript struct {
 	AudioQuality        AudioQuality           `protobuf:"varint,20,opt,name=audio_quality,json=audioQuality,proto3,enum=rsk.AudioQuality" json:"audio_quality,omitempty"`
 	Media               *Media                 `protobuf:"bytes,22,opt,name=media,proto3" json:"media,omitempty"`
 	PublicationType     PublicationType        `protobuf:"varint,23,opt,name=publication_type,json=publicationType,proto3,enum=rsk.PublicationType" json:"publication_type,omitempty"`
-	RatingScore         float32                `protobuf:"fixed32,24,opt,name=rating_score,json=ratingScore,proto3" json:"rating_score,omitempty"`
+	RatingScore         *float32               `protobuf:"fixed32,24,opt,name=rating_score,json=ratingScore,proto3,oneof" json:"rating_score,omitempty"`
 	NumRatingScores     int32                  `protobuf:"varint,25,opt,name=num_rating_scores,json=numRatingScores,proto3" json:"num_rating_scores,omitempty"`
 	RatingBreakdown     map[string]float32     `protobuf:"bytes,26,rep,name=rating_breakdown,json=ratingBreakdown,proto3" json:"rating_breakdown,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"fixed32,2,opt,name=value"`
 	unknownFields       protoimpl.UnknownFields
@@ -764,8 +764,8 @@ func (x *ShortTranscript) GetPublicationType() PublicationType {
 }
 
 func (x *ShortTranscript) GetRatingScore() float32 {
-	if x != nil {
-		return x.RatingScore
+	if x != nil && x.RatingScore != nil {
+		return *x.RatingScore
 	}
 	return 0
 }
@@ -1232,6 +1232,10 @@ type ListTranscriptsRequest struct {
 	state                  protoimpl.MessageState `protogen:"open.v1"`
 	Filter                 string                 `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
 	IncludeRatingBreakdown bool                   `protobuf:"varint,2,opt,name=include_rating_breakdown,json=includeRatingBreakdown,proto3" json:"include_rating_breakdown,omitempty"`
+	SortField              string                 `protobuf:"bytes,3,opt,name=sort_field,json=sortField,proto3" json:"sort_field,omitempty"`
+	SortDirection          string                 `protobuf:"bytes,4,opt,name=sort_direction,json=sortDirection,proto3" json:"sort_direction,omitempty"`
+	Page                   int32                  `protobuf:"varint,5,opt,name=page,proto3" json:"page,omitempty"`
+	PageSize               int32                  `protobuf:"varint,6,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
 	unknownFields          protoimpl.UnknownFields
 	sizeCache              protoimpl.SizeCache
 }
@@ -1278,6 +1282,34 @@ func (x *ListTranscriptsRequest) GetIncludeRatingBreakdown() bool {
 		return x.IncludeRatingBreakdown
 	}
 	return false
+}
+
+func (x *ListTranscriptsRequest) GetSortField() string {
+	if x != nil {
+		return x.SortField
+	}
+	return ""
+}
+
+func (x *ListTranscriptsRequest) GetSortDirection() string {
+	if x != nil {
+		return x.SortDirection
+	}
+	return ""
+}
+
+func (x *ListTranscriptsRequest) GetPage() int32 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *ListTranscriptsRequest) GetPageSize() int32 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
 }
 
 type TranscriptList struct {
@@ -3624,7 +3656,7 @@ const file_transcript_proto_rawDesc = "" +
 	"\x05Media\x12\x14\n" +
 	"\x05video\x18\x01 \x01(\bR\x05video\x12\x14\n" +
 	"\x05audio\x18\x02 \x01(\bR\x05audio\x12)\n" +
-	"\x10audio_restricted\x18\x03 \x01(\bR\x0faudioRestricted\"\xa1\b\n" +
+	"\x10audio_restricted\x18\x03 \x01(\bR\x0faudioRestricted\"\xb7\b\n" +
 	"\x0fShortTranscript\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12 \n" +
 	"\vpublication\x18\x02 \x01(\tR\vpublication\x12\x16\n" +
@@ -3650,8 +3682,8 @@ const file_transcript_proto_rawDesc = "" +
 	"\raudio_quality\x18\x14 \x01(\x0e2\x11.rsk.AudioQualityR\faudioQuality\x12 \n" +
 	"\x05media\x18\x16 \x01(\v2\n" +
 	".rsk.MediaR\x05media\x12?\n" +
-	"\x10publication_type\x18\x17 \x01(\x0e2\x14.rsk.PublicationTypeR\x0fpublicationType\x12!\n" +
-	"\frating_score\x18\x18 \x01(\x02R\vratingScore\x12*\n" +
+	"\x10publication_type\x18\x17 \x01(\x0e2\x14.rsk.PublicationTypeR\x0fpublicationType\x12&\n" +
+	"\frating_score\x18\x18 \x01(\x02H\x00R\vratingScore\x88\x01\x01\x12*\n" +
 	"\x11num_rating_scores\x18\x19 \x01(\x05R\x0fnumRatingScores\x12T\n" +
 	"\x10rating_breakdown\x18\x1a \x03(\v2).rsk.ShortTranscript.RatingBreakdownEntryR\x0fratingBreakdown\x1a;\n" +
 	"\rMetadataEntry\x12\x10\n" +
@@ -3659,7 +3691,8 @@ const file_transcript_proto_rawDesc = "" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\x1aB\n" +
 	"\x14RatingBreakdownEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\x02R\x05value:\x028\x01\"\xcd\x04\n" +
+	"\x05value\x18\x02 \x01(\x02R\x05value:\x028\x01B\x0f\n" +
+	"\r_rating_score\"\xcd\x04\n" +
 	"\x06Dialog\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x10\n" +
 	"\x03pos\x18\x02 \x01(\x05R\x03pos\x12*\n" +
@@ -3706,10 +3739,15 @@ const file_transcript_proto_rawDesc = "" +
 	"\x04epid\x18\x01 \x01(\tR\x04epid\x12\x14\n" +
 	"\x03pos\x18\x02 \x01(\x05B\x02\x18\x01R\x03pos\x12.\n" +
 	"\x11num_context_lines\x18\x03 \x01(\x05B\x02\x18\x01R\x0fnumContextLines\x12&\n" +
-	"\x05range\x18\x04 \x01(\v2\x10.rsk.DialogRangeR\x05range\"j\n" +
+	"\x05range\x18\x04 \x01(\v2\x10.rsk.DialogRangeR\x05range\"\xe1\x01\n" +
 	"\x16ListTranscriptsRequest\x12\x16\n" +
 	"\x06filter\x18\x01 \x01(\tR\x06filter\x128\n" +
-	"\x18include_rating_breakdown\x18\x02 \x01(\bR\x16includeRatingBreakdown\"B\n" +
+	"\x18include_rating_breakdown\x18\x02 \x01(\bR\x16includeRatingBreakdown\x12\x1d\n" +
+	"\n" +
+	"sort_field\x18\x03 \x01(\tR\tsortField\x12%\n" +
+	"\x0esort_direction\x18\x04 \x01(\tR\rsortDirection\x12\x12\n" +
+	"\x04page\x18\x05 \x01(\x05R\x04page\x12\x1b\n" +
+	"\tpage_size\x18\x06 \x01(\x05R\bpageSize\"B\n" +
 	"\x0eTranscriptList\x120\n" +
 	"\bepisodes\x18\x01 \x03(\v2\x14.rsk.ShortTranscriptR\bepisodes\"\xb2\x01\n" +
 	"\aRatings\x120\n" +
@@ -4155,6 +4193,7 @@ func file_transcript_proto_init() {
 		return
 	}
 	file_common_proto_init()
+	file_transcript_proto_msgTypes[2].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

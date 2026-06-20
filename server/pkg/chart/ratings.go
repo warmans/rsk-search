@@ -3,16 +3,18 @@ package chart
 import (
 	"context"
 	"fmt"
+	"image/color"
+	"slices"
+	"strings"
+
 	"github.com/fogleman/gg"
 	"github.com/golang/freetype/truetype"
 	"github.com/warmans/gochart"
 	"github.com/warmans/gochart/pkg/style"
 	"github.com/warmans/rsk-search/gen/api"
 	"github.com/warmans/rsk-search/pkg/filter"
+	"github.com/warmans/rsk-search/pkg/util"
 	"golang.org/x/image/font/gofont/goregular"
-	"image/color"
-	"slices"
-	"strings"
 )
 
 type Kind string
@@ -166,7 +168,7 @@ func createAveragesSeries(transcripts *api.TranscriptList) gochart.Series {
 
 	for _, v := range transcripts.Episodes {
 		XYs.X = append(XYs.X, v.ShortId)
-		XYs.Y = append(XYs.Y, float64(v.RatingScore))
+		XYs.Y = append(XYs.Y, float64(util.PFloat32(v.RatingScore)))
 	}
 
 	return gochart.NewXYSeries(XYs.X, XYs.Y)
@@ -193,7 +195,7 @@ func createSeriesAvgSeries(transcripts *api.TranscriptList) gochart.Series {
 			}
 		}
 
-		totals[label].sum += float64(v.RatingScore)
+		totals[label].sum += float64(util.PFloat32(v.RatingScore))
 		totals[label].count += 1
 	}
 

@@ -173,7 +173,44 @@
     </div>
     <div class="row">
       <div class="col">
-        <app-episode-list></app-episode-list>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="mb-0 font-weight-bold text-primary">{{ activeSection === "ratings" ? "By Rating" : "By Publication" }}</h5>
+          <div class="dropdown" [ngClass]="{ show: sectionDropdownOpen }">
+            <button
+              class="btn btn-sm btn-outline-secondary dropdown-toggle"
+              type="button"
+              (click)="sectionDropdownOpen = !sectionDropdownOpen"
+              [attr.aria-expanded]="sectionDropdownOpen"
+            >
+              {{ activeSection === "ratings" ? "By Rating" : "By Publication" }}
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" [ngClass]="{ show: sectionDropdownOpen }">
+              <a
+                class="dropdown-item clickable"
+                [routerLink]="['/search']"
+                [queryParams]="{ section: 'episodes' }"
+                [queryParamsHandling]="'merge'"
+                [ngClass]="{ active: activeSection === 'episodes' }"
+                (click)="sectionDropdownOpen = false"
+                >By Publication</a
+              >
+              <a
+                class="dropdown-item clickable"
+                [routerLink]="['/search']"
+                [queryParams]="{ section: 'ratings' }"
+                [queryParamsHandling]="'merge'"
+                [ngClass]="{ active: activeSection === 'ratings' }"
+                (click)="sectionDropdownOpen = false"
+                >By Rating</a
+              >
+            </div>
+          </div>
+        </div>
+        @if (activeSection === "ratings") {
+          <app-episode-ratings></app-episode-ratings>
+        } @else {
+          <app-episode-list></app-episode-list>
+        }
       </div>
     </div>
   </div>

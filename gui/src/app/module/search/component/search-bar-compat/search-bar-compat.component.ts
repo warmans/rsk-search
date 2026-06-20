@@ -13,13 +13,13 @@ import { FilterExtractor } from 'lib/filter-dsl/util';
 import { TermsToFilter } from 'lib/search-parser/util';
 import { Suggestion, SuggestionType, SearchBarSuggestionComponent } from '../search-bar-suggestion/search-bar-suggestion.component';
 import { SearchBarHelpComponent } from '../search-bar-help/search-bar-help.component';
-import { SearchComponent } from '../../page/search/search.component';
+import { IndexComponent } from '../../page/index/index.component';
 
 @Component({
   selector: 'app-search-bar-compat',
   templateUrl: './search-bar-compat.component.html',
   styleUrls: ['./search-bar-compat.component.scss'],
-  imports: [ReactiveFormsModule, FormsModule, SearchBarSuggestionComponent, SearchBarHelpComponent, SearchComponent],
+  imports: [ReactiveFormsModule, FormsModule, SearchBarSuggestionComponent, SearchBarHelpComponent, IndexComponent],
 })
 export class SearchBarCompatComponent implements OnInit, OnDestroy {
   @Output()

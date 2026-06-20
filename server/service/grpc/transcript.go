@@ -145,6 +145,11 @@ func (s *TranscriptService) ListTranscripts(ctx context.Context, req *api.ListTr
 		return nil, ErrInternal(err)
 	}
 
+	// The ratings in the result won't exactly match what's in the read-only DB
+	// because we update them to include both pending and merged ratings.
+	// whereas the ListEpisodes result is only merged ratings.
+	// This could cause small discrepanciesin ordering.
+
 	pendingRatings := make(map[string]models.Ratings)
 	if err := s.persistentDB.WithStore(func(s *rw.Store) error {
 		pendingRatings, err = s.ListPendingRatings(ctx)

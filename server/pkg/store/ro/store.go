@@ -5,6 +5,7 @@ import (
 	"embed"
 	"encoding/json"
 	"fmt"
+
 	"github.com/jmoiron/sqlx"
 	"github.com/pkg/errors"
 	"github.com/warmans/rsk-search/pkg/meta"
@@ -54,7 +55,7 @@ func (s *Store) InsertEpisodeWithTranscript(ctx context.Context, ep *models.Tran
 	}
 	_, err = s.tx.ExecContext(
 		ctx,
-		`INSERT INTO episode (id, publication_type, publication, series, episode, release_date, metadata, contributors, special) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) ON CONFLICT DO NOTHING`,
+		`INSERT INTO episode (id, publication_type, publication, series, episode, release_date, metadata, contributors, special, rating) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) ON CONFLICT DO NOTHING`,
 		ep.ID(),
 		ep.PublicationType,
 		ep.Publication,
@@ -64,6 +65,7 @@ func (s *Store) InsertEpisodeWithTranscript(ctx context.Context, ep *models.Tran
 		epMeta,
 		epContributors,
 		ep.Special,
+		ep.Ratings.Avg(),
 	)
 
 	for _, v := range ep.Transcript {
@@ -122,6 +124,7 @@ func (s *Store) ListEpisodes(ctx context.Context, q *common.QueryModifier) ([]*m
 		"episode":          "episode",
 		"release_date":     "release_date",
 		"special":          "special",
+		"rating_score":     "rating",
 	}
 
 	q.Apply(common.WithDefaultSorting("release_date", common.SortAsc))
@@ -133,7 +136,7 @@ func (s *Store) ListEpisodes(ctx context.Context, q *common.QueryModifier) ([]*m
 
 	rows, err := s.tx.QueryxContext(
 		ctx,
-		fmt.Sprintf(`SELECT publication_type, publication, series, episode, release_date, special  FROM episode %s %s %s`, where, order, paging),
+		fmt.Sprintf(`SELECT publication_type, publication, series, episode, release_date, special, rating  FROM episode %s %s %s`, where, order, paging),
 		params...,
 	)
 	if err != nil {
@@ -146,7 +149,14 @@ func (s *Store) ListEpisodes(ctx context.Context, q *common.QueryModifier) ([]*m
 	result := make([]*models.EpisodeMeta, 0)
 	for rows.Next() {
 		row := &models.EpisodeMeta{}
-		if err := rows.Scan(&row.PublicationType, &row.Publication, &row.Series, &row.Episode, &row.ReleaseDate, &row.Special); err != nil {
+		if err := rows.Scan(
+			&row.PublicationType,
+			&row.Publication,
+			&row.Series,
+			&row.Episode,
+			&row.ReleaseDate,
+			&row.Special,
+			&row.Rating); err != nil {
 			return nil, err
 		}
 		result = append(result, row)

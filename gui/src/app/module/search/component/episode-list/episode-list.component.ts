@@ -70,11 +70,8 @@ export class EpisodeListComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
   ) {
-    // todo: bug - list is loaded twice if the pace is refreshed with something in the URL
-    // this is a quick fix
-    if (!this.route.snapshot.queryParamMap.get('publication_type')) {
-      this.listEpisodes();
-    }
+    this.listEpisodes();
+
     route.queryParamMap.pipe(takeUntil(this.destroy$)).subscribe((params: ParamMap) => {
       this.activePublicationType = (params.get('publication_type') as RskPublicationType) ?? RskPublicationType.PUBLICATION_TYPE_RADIO;
       this.activeSubSection = params.get('subsection') ?? (this.activePublicationType === RskPublicationType.PUBLICATION_TYPE_RADIO ? 'xfm-S1' : undefined);

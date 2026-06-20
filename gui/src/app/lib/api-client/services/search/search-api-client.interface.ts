@@ -246,6 +246,10 @@ export interface SearchAPIClientInterface {
     args: {
       filter?: string,
       includeRatingBreakdown?: boolean,
+      sortField?: string,
+      sortDirection?: string,
+      page?: number,
+      pageSize?: number,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscriptList>;

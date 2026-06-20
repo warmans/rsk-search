@@ -6,6 +6,7 @@ export enum ValueKind {
   Int,
   Float,
   Bool,
+  Null,
   InvalidValue,
 }
 
@@ -35,6 +36,10 @@ export function Float(value: number, token: Tok = null): Value {
 
 export function Bool(value: boolean, token: Tok = null): Value {
   return new Value(ValueKind.Bool, value, token);
+}
+
+export function Null(): Value {
+  return new Value(ValueKind.Null, null, null);
 }
 
 export function ValueFromFieldMeta(m: RskFieldMeta, value: any): Value {

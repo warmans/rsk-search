@@ -573,6 +573,10 @@ export class SearchAPIClient implements SearchAPIClientInterface {
     args: {
       filter?: string,
       includeRatingBreakdown?: boolean,
+      sortField?: string,
+      sortDirection?: string,
+      page?: number,
+      pageSize?: number,
     },
     requestHttpOptions?: HttpOptions
   ): Observable<models.RskTranscriptList> {
@@ -587,6 +591,18 @@ export class SearchAPIClient implements SearchAPIClientInterface {
     }
     if ('includeRatingBreakdown' in args) {
       options.params = options.params.set('includeRatingBreakdown', String(args.includeRatingBreakdown));
+    }
+    if ('sortField' in args) {
+      options.params = options.params.set('sortField', String(args.sortField));
+    }
+    if ('sortDirection' in args) {
+      options.params = options.params.set('sortDirection', String(args.sortDirection));
+    }
+    if ('page' in args) {
+      options.params = options.params.set('page', String(args.page));
+    }
+    if ('pageSize' in args) {
+      options.params = options.params.set('pageSize', String(args.pageSize));
     }
     return this.sendRequest<models.RskTranscriptList>('GET', path, options);
   }

@@ -13,13 +13,14 @@ import { TranscriptComponent } from '../../../shared/component/transcript/transc
 import { NgClass } from '@angular/common';
 import { MarkdownComponent } from '../../../shared/component/markdown/markdown.component';
 import { EpisodeListComponent } from '../../component/episode-list/episode-list.component';
+import { EpisodeRatingsComponent } from '../../component/episode-ratings/episode-ratings.component';
 import { LoadingOverlayComponent } from '../../../shared/component/loading-overlay/loading-overlay.component';
 import { MatchedRowPosPipe } from '../../pipe/match-row-pos.pipe';
 
 @Component({
-  selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss'],
+  selector: 'app-search-index',
+  templateUrl: './index.component.html',
+  styleUrls: ['./index.component.scss'],
   imports: [
     SearchStatsComponent,
     ReactiveFormsModule,
@@ -29,11 +30,12 @@ import { MatchedRowPosPipe } from '../../pipe/match-row-pos.pipe';
     NgClass,
     MarkdownComponent,
     EpisodeListComponent,
+    EpisodeRatingsComponent,
     LoadingOverlayComponent,
     MatchedRowPosPipe,
   ],
 })
-export class SearchComponent implements OnInit, OnDestroy {
+export class IndexComponent implements OnInit, OnDestroy {
   loading: boolean[] = [];
 
   query: string;
@@ -50,6 +52,10 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   activeInfoPanel: 'contribute' | 'changelog' | 'roadmap' = 'contribute';
   roadmapMarkdown: string = 'Loading...';
+
+  activeSection: 'episodes' | 'ratings' = 'episodes';
+
+  sectionDropdownOpen: boolean = false;
 
   constructor(
     private apiClient: SearchAPIClient,
@@ -84,6 +90,7 @@ export class SearchComponent implements OnInit, OnDestroy {
       if (sorting) {
         this.currentSorting.setValue(sorting);
       }
+      this.activeSection = params.get('section') === 'ratings' ? 'ratings' : 'episodes';
       this.query = (params.get('q') || '').trim();
       if (this.query === '') {
         this.result = null;
