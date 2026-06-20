@@ -1,2 +1,1 @@
-- [ ] Re-work audio player to solve responsivity issues.
 - [ ] Make it easier to add images to transcript trivia.
