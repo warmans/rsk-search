@@ -30,11 +30,7 @@ if (environment.production) {
 bootstrapApplication(RootComponent, {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(
-      routes,
-      withInMemoryScrolling({ anchorScrolling: 'enabled', scrollPositionRestoration: 'top' }),
-      withRouterConfig({ onSameUrlNavigation: 'reload' }),
-    ),
+    provideRouter(routes, withInMemoryScrolling({ anchorScrolling: 'enabled' }), withRouterConfig({ onSameUrlNavigation: 'reload' })),
     importProvidersFrom(SearchAPIClientModule.forRoot(), CommunityAPIClientModule.forRoot(), StarRatingModule.forRoot(), NgbModule),
     Title,
     provideHttpClient(withInterceptorsFromDi()),

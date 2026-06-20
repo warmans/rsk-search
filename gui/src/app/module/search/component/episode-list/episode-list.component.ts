@@ -37,7 +37,7 @@ export class EpisodeListComponent implements OnInit, OnDestroy {
 
   searchInput: UntypedFormControl = new UntypedFormControl('');
 
-  private _activePublicationType: RskPublicationType = RskPublicationType.PUBLICATION_TYPE_RADIO;
+  private _activePublicationType: RskPublicationType;
 
   get activePublicationType(): RskPublicationType {
     return this._activePublicationType;
@@ -70,8 +70,6 @@ export class EpisodeListComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
   ) {
-    this.listEpisodes();
-
     route.queryParamMap.pipe(takeUntil(this.destroy$)).subscribe((params: ParamMap) => {
       this.activePublicationType = (params.get('publication_type') as RskPublicationType) ?? RskPublicationType.PUBLICATION_TYPE_RADIO;
       this.activeSubSection = params.get('subsection') ?? (this.activePublicationType === RskPublicationType.PUBLICATION_TYPE_RADIO ? 'xfm-S1' : undefined);

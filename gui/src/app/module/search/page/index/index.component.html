@@ -1,4 +1,4 @@
-@if (result?.results.length) {
+@if (results.length) {
   <div class="container-fluid pt-3">
     <div class="row mb-3">
       <div class="col">
@@ -18,7 +18,7 @@
     </div>
     <div class="row">
       <div class="col">
-        @for (res of result?.results; track res) {
+        @for (res of results; track res) {
           <div class="result card mb-3 animate__animated animate__fadeIn animate__faster">
             <div class="card-header font-weight-bold">
               <div class="d-flex justify-content-between">
@@ -52,37 +52,15 @@
             </div>
           </div>
         }
-        <nav aria-label="pages">
-          <ul class="pagination">
-            @for (i of pages; track i) {
-              <li class="page-item" [ngClass]="{ active: i === currentPage }">
-                <a class="page-link" [routerLink]="['/search']" [queryParams]="{ page: i }" [queryParamsHandling]="'merge'">{{ i }}</a>
-              </li>
-            }
-            @if (morePages) {
-              @if (currentPage >= pages.length) {
-                <li class="page-item active">
-                  <a class="page-link" [routerLink]="['/search']" [queryParams]="{ page: currentPage }" [queryParamsHandling]="'merge'">{{ currentPage }}</a>
-                </li>
-              }
-              <li class="page-item">
-                <a
-                  [routerLink]="['/search']"
-                  [queryParams]="{ page: currentPage >= 10 ? currentPage + 1 : 10 }"
-                  [queryParamsHandling]="'merge'"
-                  class="page-link"
-                  >Next...</a
-                >
-              </li>
-            }
-          </ul>
-        </nav>
+        @if (morePages) {
+          <div class="text-center text-muted py-3">Loading more results...</div>
+        }
       </div>
     </div>
   </div>
 }
 
-@if ((loading || []).length === 0 && query !== "" && !result?.results?.length) {
+@if ((loading || []).length === 0 && query !== "" && !results.length) {
   <div class="container-fluid pt-3">
     <div class="vh-100 d-flex flex-column justify-content-around align-items-center">
       <div class="card no-results mb-4" style="max-width: 800px">

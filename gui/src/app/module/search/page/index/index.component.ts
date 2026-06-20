@@ -1,9 +1,17 @@
-import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { SearchAPIClient } from 'lib/api-client/services/search';
 import { ActivatedRoute, ParamMap, Router, RouterLink } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
-import { RskChangelog, RskChunkedTranscriptList, RskChunkedTranscriptStats, RskDialog, RskSearchResultList, RskShortTranscript } from 'lib/api-client/models';
+import {
+  RskChangelog,
+  RskChunkedTranscriptList,
+  RskChunkedTranscriptStats,
+  RskDialog,
+  RskSearchResult,
+  RskSearchResultList,
+  RskShortTranscript,
+} from 'lib/api-client/models';
 import { AudioService } from '../../../core/service/audio/audio.service';
 import { ClipboardService } from 'module/core/service/clipboard/clipboard.service';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
@@ -40,10 +48,11 @@ export class IndexComponent implements OnInit, OnDestroy {
 
   query: string;
   result: RskSearchResultList;
-  pages: number[] = [];
-  currentPage: number;
+  results: RskSearchResult[] = [];
+  currentPage: number = 0;
   currentSorting = new FormControl<string>('_score');
   morePages: boolean = false;
+  private loadingNextPage: boolean = false;
   latestChangelog: RskChangelog;
   contributionsNeeded: number;
   banner: { image: string; url: string };
@@ -85,7 +94,6 @@ export class IndexComponent implements OnInit, OnDestroy {
     });
 
     route.queryParamMap.pipe(takeUntil(this.unsubscribe$)).subscribe((params: ParamMap) => {
-      this.currentPage = parseInt(params.get('page'), 10) || 0;
       let sorting = (params.get('sort') || '').trim();
       if (sorting) {
         this.currentSorting.setValue(sorting);
@@ -94,9 +102,10 @@ export class IndexComponent implements OnInit, OnDestroy {
       this.query = (params.get('q') || '').trim();
       if (this.query === '') {
         this.result = null;
+        this.results = [];
         return;
       }
-      this.executeQuery(this.query, this.currentPage, this.currentSorting.getRawValue() ?? '_score');
+      this.executeQuery(this.query, 0, this.currentSorting.getRawValue() ?? '_score');
     });
   }
 
@@ -133,8 +142,12 @@ export class IndexComponent implements OnInit, OnDestroy {
     this.unsubscribe$.complete();
   }
 
-  executeQuery(value: string, page: number, sort: string) {
-    this.result = undefined;
+  executeQuery(value: string, page: number, sort: string, append: boolean = false) {
+    if (!append) {
+      this.result = undefined;
+      this.results = [];
+    }
+    this.loadingNextPage = true;
     this.loading.push(true);
     this.apiClient
       .search({
@@ -145,15 +158,35 @@ export class IndexComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((res: RskSearchResultList) => {
         this.result = res;
+        this.results = append ? this.results.concat(res.results || []) : res.results || [];
+        this.currentPage = page;
         let totalPages = Math.ceil(res.resultCount / 15);
-        this.pages = Array(Math.min(totalPages, 10))
-          .fill(0)
-          .map((x, i) => i);
-        this.morePages = totalPages > 10;
+        this.morePages = page + 1 < totalPages;
       })
       .add(() => {
         this.loading.pop();
+        this.loadingNextPage = false;
       });
+  }
+
+  loadNextPage() {
+    if (this.loadingNextPage || !this.morePages || !this.query) {
+      return;
+    }
+    this.executeQuery(this.query, this.currentPage + 1, this.currentSorting.getRawValue() ?? '_score', true);
+  }
+
+  @HostListener('window:scroll')
+  onWindowScroll() {
+    if (this.query === '' || !this.morePages || this.loadingNextPage) {
+      return;
+    }
+    const threshold = 600;
+    const scrollPosition = window.innerHeight + window.scrollY;
+    const documentHeight = document.documentElement.scrollHeight;
+    if (scrollPosition >= documentHeight - threshold) {
+      this.loadNextPage();
+    }
   }
 
   onAudioTimestamp(ep: RskShortTranscript, tsMs: number) {

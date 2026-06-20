@@ -1,23 +1,21 @@
-<div class="card episode-list">
-  <div class="card-header p-2">
-    <span class="d-flex">
-      <a class="nav-link clickable py-0 pr-3 pl-1" [ngClass]="{ active: viewMode === 'grid', 'text-muted': viewMode !== 'grid' }" (click)="setViewMode('grid')"
-        >Grid</a
-      >
-      <a
-        class="nav-link clickable py-0 pr-3 pl-1"
-        [ngClass]="{ active: viewMode === 'list' && sortDirection === 'desc', 'text-muted': !(viewMode === 'list' && sortDirection === 'desc') }"
-        (click)="setSortDirection('desc')"
-        >Top 20</a
-      >
-      <a
-        class="nav-link clickable py-0 pr-3 pl-1"
-        [ngClass]="{ active: viewMode === 'list' && sortDirection === 'asc', 'text-muted': !(viewMode === 'list' && sortDirection === 'asc') }"
-        (click)="setSortDirection('asc')"
-        >Bottom 20</a
-      >
-    </span>
+<div class="d-flex justify-content-between flex-nowrap">
+  <div>
+    <ul class="nav nav-tabs font-weight-bold">
+      <li>
+        <a class="nav-link clickable" [ngClass]="{ active: viewMode === 'grid' }" (click)="setViewMode('grid')">Grid</a>
+      </li>
+      <li>
+        <a class="nav-link clickable" [ngClass]="{ active: viewMode === 'list' && sortDirection === 'desc' }" (click)="setSortDirection('desc')">Top 20</a>
+      </li>
+      <li>
+        <a class="nav-link clickable" [ngClass]="{ active: viewMode === 'list' && sortDirection === 'asc' }" (click)="setSortDirection('asc')">Bottom 20</a>
+      </li>
+    </ul>
   </div>
+</div>
+
+<div class="card episode-list">
+  <div class="card-header p-2"></div>
   <div class="card-body">
     <app-loading-spinner [loading]="loading.length > 0"></app-loading-spinner>
     @if (viewMode === "list") {
