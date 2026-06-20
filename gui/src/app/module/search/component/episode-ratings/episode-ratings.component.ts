@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, EventEmitter, HostListener, OnDestroy } from '@angular/core';
 import { SearchAPIClient } from 'lib/api-client/services/search';
 import { takeUntil } from 'rxjs/operators';
 import { RskShortTranscript, RskTranscriptList } from 'lib/api-client/models';
@@ -51,6 +51,11 @@ export class EpisodeRatingsComponent implements OnDestroy {
 
   private gridLoaded: boolean = false;
 
+  private readonly listPageSize: number = 20;
+  private listPage: number = 0;
+  morePages: boolean = false;
+  private loadingNextPage: boolean = false;
+
   private destroy$ = new EventEmitter<void>();
 
   constructor(private apiClient: SearchAPIClient) {
@@ -69,31 +74,67 @@ export class EpisodeRatingsComponent implements OnDestroy {
     this.viewMode = mode;
     if (mode === 'grid' && !this.gridLoaded) {
       this.loadGrid();
+    } else if (mode === 'list') {
+      this.listEpisodes();
     }
   }
 
   setSortDirection(direction: 'desc' | 'asc'): void {
-    const wasGrid = this.viewMode === 'grid';
-    this.viewMode = 'list';
-    if (!wasGrid && this.sortDirection === direction) {
+    if (this.viewMode === 'list' && this.sortDirection === direction) {
       return;
     }
+    this.viewMode = 'list';
     this.sortDirection = direction;
     this.listEpisodes();
   }
 
-  listEpisodes(): void {
-    this.transcriptList = [];
+  listEpisodes(append: boolean = false): void {
+    if (!append) {
+      this.transcriptList = [];
+      this.listPage = 0;
+      this.morePages = false;
+    }
+    this.loadingNextPage = true;
     this.loading.push(true);
     this.apiClient
-      .listTranscripts({ sortField: 'rating_score', sortDirection: this.sortDirection, pageSize: 20, filter: Neq('rating_score', Null()).print() })
+      .listTranscripts({
+        sortField: 'rating_score',
+        sortDirection: this.sortDirection,
+        page: this.listPage,
+        pageSize: this.listPageSize,
+        filter: Neq('rating_score', Null()).print(),
+      })
       .pipe(takeUntil(this.destroy$))
       .subscribe((res: RskTranscriptList) => {
-        this.transcriptList = res.episodes;
+        const episodes = res.episodes || [];
+        this.transcriptList = append ? this.transcriptList.concat(episodes) : episodes;
+        this.morePages = episodes.length >= this.listPageSize;
       })
       .add(() => {
         this.loading.pop();
+        this.loadingNextPage = false;
       });
+  }
+
+  loadNextPage(): void {
+    if (this.loadingNextPage || !this.morePages || this.viewMode !== 'list') {
+      return;
+    }
+    this.listPage += 1;
+    this.listEpisodes(true);
+  }
+
+  @HostListener('window:scroll')
+  onWindowScroll(): void {
+    if (this.viewMode !== 'list' || !this.morePages || this.loadingNextPage) {
+      return;
+    }
+    const threshold = 600;
+    const scrollPosition = window.innerHeight + window.scrollY;
+    const documentHeight = document.documentElement.scrollHeight;
+    if (scrollPosition >= documentHeight - threshold) {
+      this.loadNextPage();
+    }
   }
 
   loadGrid(): void {

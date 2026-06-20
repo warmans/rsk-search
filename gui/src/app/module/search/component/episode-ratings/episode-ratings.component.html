@@ -5,17 +5,31 @@
         <a class="nav-link clickable" [ngClass]="{ active: viewMode === 'grid' }" (click)="setViewMode('grid')">Grid</a>
       </li>
       <li>
-        <a class="nav-link clickable" [ngClass]="{ active: viewMode === 'list' && sortDirection === 'desc' }" (click)="setSortDirection('desc')">Top 20</a>
-      </li>
-      <li>
-        <a class="nav-link clickable" [ngClass]="{ active: viewMode === 'list' && sortDirection === 'asc' }" (click)="setSortDirection('asc')">Bottom 20</a>
+        <a class="nav-link clickable" [ngClass]="{ active: viewMode === 'list' }" (click)="setViewMode('list')">List</a>
       </li>
     </ul>
   </div>
 </div>
 
 <div class="card episode-list">
-  <div class="card-header p-2"></div>
+  <div class="card-header p-2">
+    @if (viewMode === "list") {
+      <span class="d-flex">
+        <a
+          class="nav-link clickable py-0 pr-3 pl-1"
+          [ngClass]="{ active: sortDirection === 'desc', 'text-muted': sortDirection !== 'desc' }"
+          (click)="setSortDirection('desc')"
+          >Highest rated</a
+        >
+        <a
+          class="nav-link clickable py-0 pr-3 pl-1"
+          [ngClass]="{ active: sortDirection === 'asc', 'text-muted': sortDirection !== 'asc' }"
+          (click)="setSortDirection('asc')"
+          >Lowest rated</a
+        >
+      </span>
+    }
+  </div>
   <div class="card-body">
     <app-loading-spinner [loading]="loading.length > 0"></app-loading-spinner>
     @if (viewMode === "list") {
@@ -23,6 +37,9 @@
         <div class="mb-2 episode-container animate__animated animate__fadeIn animate__faster">
           <app-episode-summary [episode]="ep"></app-episode-summary>
         </div>
+      }
+      @if (morePages) {
+        <div class="text-center text-muted py-3">Loading more results...</div>
       }
     } @else {
       @if (grid.columns.length > 0) {
