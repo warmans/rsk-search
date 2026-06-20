@@ -1,15 +1,18 @@
 <div class="card episode-list">
   <div class="card-header p-2">
     <span class="d-flex">
+      <a class="nav-link clickable py-0 pr-3 pl-1" [ngClass]="{ active: viewMode === 'grid', 'text-muted': viewMode !== 'grid' }" (click)="setViewMode('grid')"
+        >Grid</a
+      >
       <a
         class="nav-link clickable py-0 pr-3 pl-1"
-        [ngClass]="{ active: sortDirection === 'desc', 'text-muted': sortDirection !== 'desc' }"
+        [ngClass]="{ active: viewMode === 'list' && sortDirection === 'desc', 'text-muted': !(viewMode === 'list' && sortDirection === 'desc') }"
         (click)="setSortDirection('desc')"
         >Top 20</a
       >
       <a
         class="nav-link clickable py-0 pr-3 pl-1"
-        [ngClass]="{ active: sortDirection === 'asc', 'text-muted': sortDirection !== 'asc' }"
+        [ngClass]="{ active: viewMode === 'list' && sortDirection === 'asc', 'text-muted': !(viewMode === 'list' && sortDirection === 'asc') }"
         (click)="setSortDirection('asc')"
         >Bottom 20</a
       >
@@ -17,10 +20,51 @@
   </div>
   <div class="card-body">
     <app-loading-spinner [loading]="loading.length > 0"></app-loading-spinner>
-    @for (ep of transcriptList; track ep) {
-      <div class="mb-2 episode-container animate__animated animate__fadeIn animate__faster">
-        <app-episode-summary [episode]="ep"></app-episode-summary>
-      </div>
+    @if (viewMode === "list") {
+      @for (ep of transcriptList; track ep) {
+        <div class="mb-2 episode-container animate__animated animate__fadeIn animate__faster">
+          <app-episode-summary [episode]="ep"></app-episode-summary>
+        </div>
+      }
+    } @else {
+      @if (grid.columns.length > 0) {
+        <div class="ratings-grid-wrapper animate__animated animate__fadeIn animate__faster">
+          <table class="ratings-grid">
+            <thead>
+              <tr>
+                <th class="corner" rowspan="2">Ep</th>
+                @for (group of grid.groups; track group.publication) {
+                  <th class="group-header" [attr.colspan]="group.colspan" [title]="group.publication">{{ group.publication }}</th>
+                }
+              </tr>
+              <tr>
+                @for (col of grid.columns; track col.key) {
+                  <th class="col-header" [class.group-start]="col.groupStart" [class.group-end]="col.groupEnd" [title]="col.label">{{ col.label }}</th>
+                }
+              </tr>
+            </thead>
+            <tbody>
+              @for (epNum of grid.episodes; track epNum) {
+                <tr>
+                  <th class="row-header">{{ epNum }}</th>
+                  @for (col of grid.columns; track col.key) {
+                    @let cell = grid.cells[col.key]?.[epNum];
+                    <td class="rating-cell" [class.has-rating]="!!cell" [style.background-color]="cell ? ratingColor(cell.ratingScore) : ''">
+                      @if (cell) {
+                        <a [routerLink]="['/ep', cell.id]" [title]="cell.name + ' (' + (cell.ratingScore | number: '1.1-2') + '/5)'">{{
+                          cell.ratingScore | number: "1.1-1"
+                        }}</a>
+                      }
+                    </td>
+                  }
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      } @else if (loading.length === 0) {
+        <div class="text-muted p-2">No rated episodes found.</div>
+      }
     }
   </div>
 </div>
