@@ -4,7 +4,8 @@ plugins:
     out: gen_temp/api
     opt:
       - paths=source_relative
-  - remote: buf.build/grpc/go:v1.5.1
+      - default_api_level=API_HYBRID
+  - remote: buf.build/grpc/go:v1.6.2
     out: gen_temp/api
     opt:
       - paths=source_relative

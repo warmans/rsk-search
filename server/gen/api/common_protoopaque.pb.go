@@ -4,7 +4,7 @@
 // 	protoc        (unknown)
 // source: common.proto
 
-//go:build !protoopaque
+//go:build protoopaque
 
 package api
 
@@ -23,14 +23,14 @@ const (
 )
 
 type Author struct {
-	state           protoimpl.MessageState `protogen:"hybrid.v1"`
-	Id              string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name            string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	IdentityIconImg string                 `protobuf:"bytes,3,opt,name=identity_icon_img,json=identityIconImg,proto3" json:"identity_icon_img,omitempty"`
-	Supporter       bool                   `protobuf:"varint,4,opt,name=supporter,proto3" json:"supporter,omitempty"`
-	OauthProvider   string                 `protobuf:"bytes,5,opt,name=oauth_provider,json=oauthProvider,proto3" json:"oauth_provider,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state                      protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id              string                 `protobuf:"bytes,1,opt,name=id,proto3"`
+	xxx_hidden_Name            string                 `protobuf:"bytes,2,opt,name=name,proto3"`
+	xxx_hidden_IdentityIconImg string                 `protobuf:"bytes,3,opt,name=identity_icon_img,json=identityIconImg,proto3"`
+	xxx_hidden_Supporter       bool                   `protobuf:"varint,4,opt,name=supporter,proto3"`
+	xxx_hidden_OauthProvider   string                 `protobuf:"bytes,5,opt,name=oauth_provider,json=oauthProvider,proto3"`
+	unknownFields              protoimpl.UnknownFields
+	sizeCache                  protoimpl.SizeCache
 }
 
 func (x *Author) Reset() {
@@ -60,57 +60,57 @@ func (x *Author) ProtoReflect() protoreflect.Message {
 
 func (x *Author) GetId() string {
 	if x != nil {
-		return x.Id
+		return x.xxx_hidden_Id
 	}
 	return ""
 }
 
 func (x *Author) GetName() string {
 	if x != nil {
-		return x.Name
+		return x.xxx_hidden_Name
 	}
 	return ""
 }
 
 func (x *Author) GetIdentityIconImg() string {
 	if x != nil {
-		return x.IdentityIconImg
+		return x.xxx_hidden_IdentityIconImg
 	}
 	return ""
 }
 
 func (x *Author) GetSupporter() bool {
 	if x != nil {
-		return x.Supporter
+		return x.xxx_hidden_Supporter
 	}
 	return false
 }
 
 func (x *Author) GetOauthProvider() string {
 	if x != nil {
-		return x.OauthProvider
+		return x.xxx_hidden_OauthProvider
 	}
 	return ""
 }
 
 func (x *Author) SetId(v string) {
-	x.Id = v
+	x.xxx_hidden_Id = v
 }
 
 func (x *Author) SetName(v string) {
-	x.Name = v
+	x.xxx_hidden_Name = v
 }
 
 func (x *Author) SetIdentityIconImg(v string) {
-	x.IdentityIconImg = v
+	x.xxx_hidden_IdentityIconImg = v
 }
 
 func (x *Author) SetSupporter(v bool) {
-	x.Supporter = v
+	x.xxx_hidden_Supporter = v
 }
 
 func (x *Author) SetOauthProvider(v string) {
-	x.OauthProvider = v
+	x.xxx_hidden_OauthProvider = v
 }
 
 type Author_builder struct {
@@ -127,11 +127,11 @@ func (b0 Author_builder) Build() *Author {
 	m0 := &Author{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Id = b.Id
-	x.Name = b.Name
-	x.IdentityIconImg = b.IdentityIconImg
-	x.Supporter = b.Supporter
-	x.OauthProvider = b.OauthProvider
+	x.xxx_hidden_Id = b.Id
+	x.xxx_hidden_Name = b.Name
+	x.xxx_hidden_IdentityIconImg = b.IdentityIconImg
+	x.xxx_hidden_Supporter = b.Supporter
+	x.xxx_hidden_OauthProvider = b.OauthProvider
 	return m0
 }
 

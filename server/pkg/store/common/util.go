@@ -2,12 +2,23 @@ package common
 
 import (
 	"fmt"
+
 	"github.com/warmans/rsk-search/pkg/filter"
 	"github.com/warmans/rsk-search/pkg/filter/psql"
 )
 
 type Pager interface {
 	GetPage() int32
+	GetPageSize() int32
+}
+
+type OptionalPager interface {
+	HasPage() bool
+	HasPageSize() bool
+}
+
+// PageSizer does't allow paging, but s the number of results
+type PageSizer interface {
 	GetPageSize() int32
 }
 

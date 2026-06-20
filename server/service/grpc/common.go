@@ -2,17 +2,29 @@ package grpc
 
 import (
 	"context"
+	"strings"
+
 	"github.com/pkg/errors"
 	"github.com/warmans/rsk-search/pkg/filter"
 	"github.com/warmans/rsk-search/pkg/jwt"
 	"github.com/warmans/rsk-search/pkg/store/common"
-	"strings"
 )
 
 func NewQueryModifiers(req interface{}) (*common.QueryModifier, error) {
 	q := common.Q()
 	if p, ok := req.(common.Pager); ok {
-		q.Apply(common.WithPaging(p.GetPageSize(), p.GetPage()))
+		if op, opok := req.(common.OptionalPager); opok {
+			// if paging is optional only apply paging if page_size is set
+			if op.HasPageSize() {
+				q.Apply(common.WithPaging(p.GetPageSize(), p.GetPage()))
+			}
+		} else {
+			q.Apply(common.WithPaging(p.GetPageSize(), p.GetPage()))
+		}
+	} else {
+		if p, ok := req.(common.PageSizer); ok {
+			q.Apply(common.WithPaging(p.GetPageSize(), 0))
+		}
 	}
 	if p, ok := req.(common.Sorter); ok {
 		if p.GetSortField() != "" {

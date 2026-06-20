@@ -4,7 +4,7 @@
 // 	protoc        (unknown)
 // source: oauth.proto
 
-//go:build !protoopaque
+//go:build protoopaque
 
 package api
 
@@ -26,10 +26,10 @@ const (
 )
 
 type GetAuthURLRequest struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Provider      string                 `protobuf:"bytes,1,opt,name=provider,proto3" json:"provider,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state               protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Provider string                 `protobuf:"bytes,1,opt,name=provider,proto3"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
 }
 
 func (x *GetAuthURLRequest) Reset() {
@@ -59,13 +59,13 @@ func (x *GetAuthURLRequest) ProtoReflect() protoreflect.Message {
 
 func (x *GetAuthURLRequest) GetProvider() string {
 	if x != nil {
-		return x.Provider
+		return x.xxx_hidden_Provider
 	}
 	return ""
 }
 
 func (x *GetAuthURLRequest) SetProvider(v string) {
-	x.Provider = v
+	x.xxx_hidden_Provider = v
 }
 
 type GetAuthURLRequest_builder struct {
@@ -78,15 +78,15 @@ func (b0 GetAuthURLRequest_builder) Build() *GetAuthURLRequest {
 	m0 := &GetAuthURLRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Provider = b.Provider
+	x.xxx_hidden_Provider = b.Provider
 	return m0
 }
 
 type AuthURL struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Url           string                 `protobuf:"bytes,1,opt,name=url,proto3" json:"url,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Url string                 `protobuf:"bytes,1,opt,name=url,proto3"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *AuthURL) Reset() {
@@ -116,13 +116,13 @@ func (x *AuthURL) ProtoReflect() protoreflect.Message {
 
 func (x *AuthURL) GetUrl() string {
 	if x != nil {
-		return x.Url
+		return x.xxx_hidden_Url
 	}
 	return ""
 }
 
 func (x *AuthURL) SetUrl(v string) {
-	x.Url = v
+	x.xxx_hidden_Url = v
 }
 
 type AuthURL_builder struct {
@@ -135,7 +135,7 @@ func (b0 AuthURL_builder) Build() *AuthURL {
 	m0 := &AuthURL{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Url = b.Url
+	x.xxx_hidden_Url = b.Url
 	return m0
 }
 

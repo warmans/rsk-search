@@ -4,7 +4,7 @@
 // 	protoc        (unknown)
 // source: transcript.proto
 
-//go:build !protoopaque
+//go:build protoopaque
 
 package api
 
@@ -226,36 +226,36 @@ func (x Dialog_DialogType) Number() protoreflect.EnumNumber {
 }
 
 type Transcript struct {
-	state              protoimpl.MessageState `protogen:"hybrid.v1"`
-	Id                 string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Publication        string                 `protobuf:"bytes,2,opt,name=publication,proto3" json:"publication,omitempty"`
-	Series             int32                  `protobuf:"varint,3,opt,name=series,proto3" json:"series,omitempty"`
-	Episode            int32                  `protobuf:"varint,4,opt,name=episode,proto3" json:"episode,omitempty"`
-	Metadata           map[string]string      `protobuf:"bytes,5,rep,name=metadata,proto3" json:"metadata,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	Transcript         []*Dialog              `protobuf:"bytes,7,rep,name=transcript,proto3" json:"transcript,omitempty"`
-	ReleaseDate        string                 `protobuf:"bytes,8,opt,name=release_date,json=releaseDate,proto3" json:"release_date,omitempty"`
-	Synopses           []*Synopsis            `protobuf:"bytes,9,rep,name=synopses,proto3" json:"synopses,omitempty"`
-	Contributors       []string               `protobuf:"bytes,10,rep,name=contributors,proto3" json:"contributors,omitempty"`
-	Incomplete         bool                   `protobuf:"varint,11,opt,name=incomplete,proto3" json:"incomplete,omitempty"`
-	RawTranscript      string                 `protobuf:"bytes,12,opt,name=raw_transcript,json=rawTranscript,proto3" json:"raw_transcript,omitempty"`
-	ShortId            string                 `protobuf:"bytes,14,opt,name=short_id,json=shortId,proto3" json:"short_id,omitempty"`
-	Trivia             []*Trivia              `protobuf:"bytes,15,rep,name=trivia,proto3" json:"trivia,omitempty"`
-	Actors             []string               `protobuf:"bytes,16,rep,name=actors,proto3" json:"actors,omitempty"`
-	OffsetAccuracyPcnt int32                  `protobuf:"varint,17,opt,name=offset_accuracy_pcnt,json=offsetAccuracyPcnt,proto3" json:"offset_accuracy_pcnt,omitempty"`
-	Name               string                 `protobuf:"bytes,18,opt,name=name,proto3" json:"name,omitempty"`
-	Version            string                 `protobuf:"bytes,19,opt,name=version,proto3" json:"version,omitempty"`
-	Bestof             bool                   `protobuf:"varint,20,opt,name=bestof,proto3" json:"bestof,omitempty"`
-	Special            bool                   `protobuf:"varint,21,opt,name=special,proto3" json:"special,omitempty"`
-	Locked             bool                   `protobuf:"varint,22,opt,name=locked,proto3" json:"locked,omitempty"`
-	Summary            string                 `protobuf:"bytes,23,opt,name=summary,proto3" json:"summary,omitempty"`
-	AudioQuality       AudioQuality           `protobuf:"varint,24,opt,name=audio_quality,json=audioQuality,proto3,enum=rsk.AudioQuality" json:"audio_quality,omitempty"`
-	Media              *Media                 `protobuf:"bytes,26,opt,name=media,proto3" json:"media,omitempty"`
-	PublicationType    PublicationType        `protobuf:"varint,27,opt,name=publication_type,json=publicationType,proto3,enum=rsk.PublicationType" json:"publication_type,omitempty"`
-	Ratings            *Ratings               `protobuf:"bytes,28,opt,name=ratings,proto3" json:"ratings,omitempty"`
-	Tags               []*Tag                 `protobuf:"bytes,29,rep,name=tags,proto3" json:"tags,omitempty"`
-	CompletionReports  []string               `protobuf:"bytes,30,rep,name=completion_reports,json=completionReports,proto3" json:"completion_reports,omitempty"`
-	unknownFields      protoimpl.UnknownFields
-	sizeCache          protoimpl.SizeCache
+	state                         protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id                 string                 `protobuf:"bytes,1,opt,name=id,proto3"`
+	xxx_hidden_Publication        string                 `protobuf:"bytes,2,opt,name=publication,proto3"`
+	xxx_hidden_Series             int32                  `protobuf:"varint,3,opt,name=series,proto3"`
+	xxx_hidden_Episode            int32                  `protobuf:"varint,4,opt,name=episode,proto3"`
+	xxx_hidden_Metadata           map[string]string      `protobuf:"bytes,5,rep,name=metadata,proto3" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	xxx_hidden_Transcript         *[]*Dialog             `protobuf:"bytes,7,rep,name=transcript,proto3"`
+	xxx_hidden_ReleaseDate        string                 `protobuf:"bytes,8,opt,name=release_date,json=releaseDate,proto3"`
+	xxx_hidden_Synopses           *[]*Synopsis           `protobuf:"bytes,9,rep,name=synopses,proto3"`
+	xxx_hidden_Contributors       []string               `protobuf:"bytes,10,rep,name=contributors,proto3"`
+	xxx_hidden_Incomplete         bool                   `protobuf:"varint,11,opt,name=incomplete,proto3"`
+	xxx_hidden_RawTranscript      string                 `protobuf:"bytes,12,opt,name=raw_transcript,json=rawTranscript,proto3"`
+	xxx_hidden_ShortId            string                 `protobuf:"bytes,14,opt,name=short_id,json=shortId,proto3"`
+	xxx_hidden_Trivia             *[]*Trivia             `protobuf:"bytes,15,rep,name=trivia,proto3"`
+	xxx_hidden_Actors             []string               `protobuf:"bytes,16,rep,name=actors,proto3"`
+	xxx_hidden_OffsetAccuracyPcnt int32                  `protobuf:"varint,17,opt,name=offset_accuracy_pcnt,json=offsetAccuracyPcnt,proto3"`
+	xxx_hidden_Name               string                 `protobuf:"bytes,18,opt,name=name,proto3"`
+	xxx_hidden_Version            string                 `protobuf:"bytes,19,opt,name=version,proto3"`
+	xxx_hidden_Bestof             bool                   `protobuf:"varint,20,opt,name=bestof,proto3"`
+	xxx_hidden_Special            bool                   `protobuf:"varint,21,opt,name=special,proto3"`
+	xxx_hidden_Locked             bool                   `protobuf:"varint,22,opt,name=locked,proto3"`
+	xxx_hidden_Summary            string                 `protobuf:"bytes,23,opt,name=summary,proto3"`
+	xxx_hidden_AudioQuality       AudioQuality           `protobuf:"varint,24,opt,name=audio_quality,json=audioQuality,proto3,enum=rsk.AudioQuality"`
+	xxx_hidden_Media              *Media                 `protobuf:"bytes,26,opt,name=media,proto3"`
+	xxx_hidden_PublicationType    PublicationType        `protobuf:"varint,27,opt,name=publication_type,json=publicationType,proto3,enum=rsk.PublicationType"`
+	xxx_hidden_Ratings            *Ratings               `protobuf:"bytes,28,opt,name=ratings,proto3"`
+	xxx_hidden_Tags               *[]*Tag                `protobuf:"bytes,29,rep,name=tags,proto3"`
+	xxx_hidden_CompletionReports  []string               `protobuf:"bytes,30,rep,name=completion_reports,json=completionReports,proto3"`
+	unknownFields                 protoimpl.UnknownFields
+	sizeCache                     protoimpl.SizeCache
 }
 
 func (x *Transcript) Reset() {
@@ -285,321 +285,329 @@ func (x *Transcript) ProtoReflect() protoreflect.Message {
 
 func (x *Transcript) GetId() string {
 	if x != nil {
-		return x.Id
+		return x.xxx_hidden_Id
 	}
 	return ""
 }
 
 func (x *Transcript) GetPublication() string {
 	if x != nil {
-		return x.Publication
+		return x.xxx_hidden_Publication
 	}
 	return ""
 }
 
 func (x *Transcript) GetSeries() int32 {
 	if x != nil {
-		return x.Series
+		return x.xxx_hidden_Series
 	}
 	return 0
 }
 
 func (x *Transcript) GetEpisode() int32 {
 	if x != nil {
-		return x.Episode
+		return x.xxx_hidden_Episode
 	}
 	return 0
 }
 
 func (x *Transcript) GetMetadata() map[string]string {
 	if x != nil {
-		return x.Metadata
+		return x.xxx_hidden_Metadata
 	}
 	return nil
 }
 
 func (x *Transcript) GetTranscript() []*Dialog {
 	if x != nil {
-		return x.Transcript
+		if x.xxx_hidden_Transcript != nil {
+			return *x.xxx_hidden_Transcript
+		}
 	}
 	return nil
 }
 
 func (x *Transcript) GetReleaseDate() string {
 	if x != nil {
-		return x.ReleaseDate
+		return x.xxx_hidden_ReleaseDate
 	}
 	return ""
 }
 
 func (x *Transcript) GetSynopses() []*Synopsis {
 	if x != nil {
-		return x.Synopses
+		if x.xxx_hidden_Synopses != nil {
+			return *x.xxx_hidden_Synopses
+		}
 	}
 	return nil
 }
 
 func (x *Transcript) GetContributors() []string {
 	if x != nil {
-		return x.Contributors
+		return x.xxx_hidden_Contributors
 	}
 	return nil
 }
 
 func (x *Transcript) GetIncomplete() bool {
 	if x != nil {
-		return x.Incomplete
+		return x.xxx_hidden_Incomplete
 	}
 	return false
 }
 
 func (x *Transcript) GetRawTranscript() string {
 	if x != nil {
-		return x.RawTranscript
+		return x.xxx_hidden_RawTranscript
 	}
 	return ""
 }
 
 func (x *Transcript) GetShortId() string {
 	if x != nil {
-		return x.ShortId
+		return x.xxx_hidden_ShortId
 	}
 	return ""
 }
 
 func (x *Transcript) GetTrivia() []*Trivia {
 	if x != nil {
-		return x.Trivia
+		if x.xxx_hidden_Trivia != nil {
+			return *x.xxx_hidden_Trivia
+		}
 	}
 	return nil
 }
 
 func (x *Transcript) GetActors() []string {
 	if x != nil {
-		return x.Actors
+		return x.xxx_hidden_Actors
 	}
 	return nil
 }
 
 func (x *Transcript) GetOffsetAccuracyPcnt() int32 {
 	if x != nil {
-		return x.OffsetAccuracyPcnt
+		return x.xxx_hidden_OffsetAccuracyPcnt
 	}
 	return 0
 }
 
 func (x *Transcript) GetName() string {
 	if x != nil {
-		return x.Name
+		return x.xxx_hidden_Name
 	}
 	return ""
 }
 
 func (x *Transcript) GetVersion() string {
 	if x != nil {
-		return x.Version
+		return x.xxx_hidden_Version
 	}
 	return ""
 }
 
 func (x *Transcript) GetBestof() bool {
 	if x != nil {
-		return x.Bestof
+		return x.xxx_hidden_Bestof
 	}
 	return false
 }
 
 func (x *Transcript) GetSpecial() bool {
 	if x != nil {
-		return x.Special
+		return x.xxx_hidden_Special
 	}
 	return false
 }
 
 func (x *Transcript) GetLocked() bool {
 	if x != nil {
-		return x.Locked
+		return x.xxx_hidden_Locked
 	}
 	return false
 }
 
 func (x *Transcript) GetSummary() string {
 	if x != nil {
-		return x.Summary
+		return x.xxx_hidden_Summary
 	}
 	return ""
 }
 
 func (x *Transcript) GetAudioQuality() AudioQuality {
 	if x != nil {
-		return x.AudioQuality
+		return x.xxx_hidden_AudioQuality
 	}
 	return AudioQuality_AUDIO_QUALITY_UNKNOWN
 }
 
 func (x *Transcript) GetMedia() *Media {
 	if x != nil {
-		return x.Media
+		return x.xxx_hidden_Media
 	}
 	return nil
 }
 
 func (x *Transcript) GetPublicationType() PublicationType {
 	if x != nil {
-		return x.PublicationType
+		return x.xxx_hidden_PublicationType
 	}
 	return PublicationType_PUBLICATION_TYPE_UNKNOWN
 }
 
 func (x *Transcript) GetRatings() *Ratings {
 	if x != nil {
-		return x.Ratings
+		return x.xxx_hidden_Ratings
 	}
 	return nil
 }
 
 func (x *Transcript) GetTags() []*Tag {
 	if x != nil {
-		return x.Tags
+		if x.xxx_hidden_Tags != nil {
+			return *x.xxx_hidden_Tags
+		}
 	}
 	return nil
 }
 
 func (x *Transcript) GetCompletionReports() []string {
 	if x != nil {
-		return x.CompletionReports
+		return x.xxx_hidden_CompletionReports
 	}
 	return nil
 }
 
 func (x *Transcript) SetId(v string) {
-	x.Id = v
+	x.xxx_hidden_Id = v
 }
 
 func (x *Transcript) SetPublication(v string) {
-	x.Publication = v
+	x.xxx_hidden_Publication = v
 }
 
 func (x *Transcript) SetSeries(v int32) {
-	x.Series = v
+	x.xxx_hidden_Series = v
 }
 
 func (x *Transcript) SetEpisode(v int32) {
-	x.Episode = v
+	x.xxx_hidden_Episode = v
 }
 
 func (x *Transcript) SetMetadata(v map[string]string) {
-	x.Metadata = v
+	x.xxx_hidden_Metadata = v
 }
 
 func (x *Transcript) SetTranscript(v []*Dialog) {
-	x.Transcript = v
+	x.xxx_hidden_Transcript = &v
 }
 
 func (x *Transcript) SetReleaseDate(v string) {
-	x.ReleaseDate = v
+	x.xxx_hidden_ReleaseDate = v
 }
 
 func (x *Transcript) SetSynopses(v []*Synopsis) {
-	x.Synopses = v
+	x.xxx_hidden_Synopses = &v
 }
 
 func (x *Transcript) SetContributors(v []string) {
-	x.Contributors = v
+	x.xxx_hidden_Contributors = v
 }
 
 func (x *Transcript) SetIncomplete(v bool) {
-	x.Incomplete = v
+	x.xxx_hidden_Incomplete = v
 }
 
 func (x *Transcript) SetRawTranscript(v string) {
-	x.RawTranscript = v
+	x.xxx_hidden_RawTranscript = v
 }
 
 func (x *Transcript) SetShortId(v string) {
-	x.ShortId = v
+	x.xxx_hidden_ShortId = v
 }
 
 func (x *Transcript) SetTrivia(v []*Trivia) {
-	x.Trivia = v
+	x.xxx_hidden_Trivia = &v
 }
 
 func (x *Transcript) SetActors(v []string) {
-	x.Actors = v
+	x.xxx_hidden_Actors = v
 }
 
 func (x *Transcript) SetOffsetAccuracyPcnt(v int32) {
-	x.OffsetAccuracyPcnt = v
+	x.xxx_hidden_OffsetAccuracyPcnt = v
 }
 
 func (x *Transcript) SetName(v string) {
-	x.Name = v
+	x.xxx_hidden_Name = v
 }
 
 func (x *Transcript) SetVersion(v string) {
-	x.Version = v
+	x.xxx_hidden_Version = v
 }
 
 func (x *Transcript) SetBestof(v bool) {
-	x.Bestof = v
+	x.xxx_hidden_Bestof = v
 }
 
 func (x *Transcript) SetSpecial(v bool) {
-	x.Special = v
+	x.xxx_hidden_Special = v
 }
 
 func (x *Transcript) SetLocked(v bool) {
-	x.Locked = v
+	x.xxx_hidden_Locked = v
 }
 
 func (x *Transcript) SetSummary(v string) {
-	x.Summary = v
+	x.xxx_hidden_Summary = v
 }
 
 func (x *Transcript) SetAudioQuality(v AudioQuality) {
-	x.AudioQuality = v
+	x.xxx_hidden_AudioQuality = v
 }
 
 func (x *Transcript) SetMedia(v *Media) {
-	x.Media = v
+	x.xxx_hidden_Media = v
 }
 
 func (x *Transcript) SetPublicationType(v PublicationType) {
-	x.PublicationType = v
+	x.xxx_hidden_PublicationType = v
 }
 
 func (x *Transcript) SetRatings(v *Ratings) {
-	x.Ratings = v
+	x.xxx_hidden_Ratings = v
 }
 
 func (x *Transcript) SetTags(v []*Tag) {
-	x.Tags = v
+	x.xxx_hidden_Tags = &v
 }
 
 func (x *Transcript) SetCompletionReports(v []string) {
-	x.CompletionReports = v
+	x.xxx_hidden_CompletionReports = v
 }
 
 func (x *Transcript) HasMedia() bool {
 	if x == nil {
 		return false
 	}
-	return x.Media != nil
+	return x.xxx_hidden_Media != nil
 }
 
 func (x *Transcript) HasRatings() bool {
 	if x == nil {
 		return false
 	}
-	return x.Ratings != nil
+	return x.xxx_hidden_Ratings != nil
 }
 
 func (x *Transcript) ClearMedia() {
-	x.Media = nil
+	x.xxx_hidden_Media = nil
 }
 
 func (x *Transcript) ClearRatings() {
-	x.Ratings = nil
+	x.xxx_hidden_Ratings = nil
 }
 
 type Transcript_builder struct {
@@ -638,43 +646,43 @@ func (b0 Transcript_builder) Build() *Transcript {
 	m0 := &Transcript{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Id = b.Id
-	x.Publication = b.Publication
-	x.Series = b.Series
-	x.Episode = b.Episode
-	x.Metadata = b.Metadata
-	x.Transcript = b.Transcript
-	x.ReleaseDate = b.ReleaseDate
-	x.Synopses = b.Synopses
-	x.Contributors = b.Contributors
-	x.Incomplete = b.Incomplete
-	x.RawTranscript = b.RawTranscript
-	x.ShortId = b.ShortId
-	x.Trivia = b.Trivia
-	x.Actors = b.Actors
-	x.OffsetAccuracyPcnt = b.OffsetAccuracyPcnt
-	x.Name = b.Name
-	x.Version = b.Version
-	x.Bestof = b.Bestof
-	x.Special = b.Special
-	x.Locked = b.Locked
-	x.Summary = b.Summary
-	x.AudioQuality = b.AudioQuality
-	x.Media = b.Media
-	x.PublicationType = b.PublicationType
-	x.Ratings = b.Ratings
-	x.Tags = b.Tags
-	x.CompletionReports = b.CompletionReports
+	x.xxx_hidden_Id = b.Id
+	x.xxx_hidden_Publication = b.Publication
+	x.xxx_hidden_Series = b.Series
+	x.xxx_hidden_Episode = b.Episode
+	x.xxx_hidden_Metadata = b.Metadata
+	x.xxx_hidden_Transcript = &b.Transcript
+	x.xxx_hidden_ReleaseDate = b.ReleaseDate
+	x.xxx_hidden_Synopses = &b.Synopses
+	x.xxx_hidden_Contributors = b.Contributors
+	x.xxx_hidden_Incomplete = b.Incomplete
+	x.xxx_hidden_RawTranscript = b.RawTranscript
+	x.xxx_hidden_ShortId = b.ShortId
+	x.xxx_hidden_Trivia = &b.Trivia
+	x.xxx_hidden_Actors = b.Actors
+	x.xxx_hidden_OffsetAccuracyPcnt = b.OffsetAccuracyPcnt
+	x.xxx_hidden_Name = b.Name
+	x.xxx_hidden_Version = b.Version
+	x.xxx_hidden_Bestof = b.Bestof
+	x.xxx_hidden_Special = b.Special
+	x.xxx_hidden_Locked = b.Locked
+	x.xxx_hidden_Summary = b.Summary
+	x.xxx_hidden_AudioQuality = b.AudioQuality
+	x.xxx_hidden_Media = b.Media
+	x.xxx_hidden_PublicationType = b.PublicationType
+	x.xxx_hidden_Ratings = b.Ratings
+	x.xxx_hidden_Tags = &b.Tags
+	x.xxx_hidden_CompletionReports = b.CompletionReports
 	return m0
 }
 
 type Media struct {
-	state           protoimpl.MessageState `protogen:"hybrid.v1"`
-	Video           bool                   `protobuf:"varint,1,opt,name=video,proto3" json:"video,omitempty"`
-	Audio           bool                   `protobuf:"varint,2,opt,name=audio,proto3" json:"audio,omitempty"`
-	AudioRestricted bool                   `protobuf:"varint,3,opt,name=audio_restricted,json=audioRestricted,proto3" json:"audio_restricted,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state                      protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Video           bool                   `protobuf:"varint,1,opt,name=video,proto3"`
+	xxx_hidden_Audio           bool                   `protobuf:"varint,2,opt,name=audio,proto3"`
+	xxx_hidden_AudioRestricted bool                   `protobuf:"varint,3,opt,name=audio_restricted,json=audioRestricted,proto3"`
+	unknownFields              protoimpl.UnknownFields
+	sizeCache                  protoimpl.SizeCache
 }
 
 func (x *Media) Reset() {
@@ -704,35 +712,35 @@ func (x *Media) ProtoReflect() protoreflect.Message {
 
 func (x *Media) GetVideo() bool {
 	if x != nil {
-		return x.Video
+		return x.xxx_hidden_Video
 	}
 	return false
 }
 
 func (x *Media) GetAudio() bool {
 	if x != nil {
-		return x.Audio
+		return x.xxx_hidden_Audio
 	}
 	return false
 }
 
 func (x *Media) GetAudioRestricted() bool {
 	if x != nil {
-		return x.AudioRestricted
+		return x.xxx_hidden_AudioRestricted
 	}
 	return false
 }
 
 func (x *Media) SetVideo(v bool) {
-	x.Video = v
+	x.xxx_hidden_Video = v
 }
 
 func (x *Media) SetAudio(v bool) {
-	x.Audio = v
+	x.xxx_hidden_Audio = v
 }
 
 func (x *Media) SetAudioRestricted(v bool) {
-	x.AudioRestricted = v
+	x.xxx_hidden_AudioRestricted = v
 }
 
 type Media_builder struct {
@@ -747,40 +755,42 @@ func (b0 Media_builder) Build() *Media {
 	m0 := &Media{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Video = b.Video
-	x.Audio = b.Audio
-	x.AudioRestricted = b.AudioRestricted
+	x.xxx_hidden_Video = b.Video
+	x.xxx_hidden_Audio = b.Audio
+	x.xxx_hidden_AudioRestricted = b.AudioRestricted
 	return m0
 }
 
 type ShortTranscript struct {
-	state               protoimpl.MessageState `protogen:"hybrid.v1"`
-	Id                  string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Publication         string                 `protobuf:"bytes,2,opt,name=publication,proto3" json:"publication,omitempty"`
-	Series              int32                  `protobuf:"varint,3,opt,name=series,proto3" json:"series,omitempty"`
-	Episode             int32                  `protobuf:"varint,4,opt,name=episode,proto3" json:"episode,omitempty"`
-	TranscriptAvailable bool                   `protobuf:"varint,5,opt,name=transcript_available,json=transcriptAvailable,proto3" json:"transcript_available,omitempty"`
-	Incomplete          bool                   `protobuf:"varint,6,opt,name=incomplete,proto3" json:"incomplete,omitempty"`
-	ReleaseDate         string                 `protobuf:"bytes,7,opt,name=release_date,json=releaseDate,proto3" json:"release_date,omitempty"`
-	Summary             string                 `protobuf:"bytes,8,opt,name=summary,proto3" json:"summary,omitempty"`
-	Synopsis            []*Synopsis            `protobuf:"bytes,9,rep,name=synopsis,proto3" json:"synopsis,omitempty"`
-	TriviaAvailable     bool                   `protobuf:"varint,10,opt,name=trivia_available,json=triviaAvailable,proto3" json:"trivia_available,omitempty"`
-	Actors              []string               `protobuf:"bytes,11,rep,name=actors,proto3" json:"actors,omitempty"`
-	ShortId             string                 `protobuf:"bytes,13,opt,name=short_id,json=shortId,proto3" json:"short_id,omitempty"`
-	OffsetAccuracyPcnt  int32                  `protobuf:"varint,14,opt,name=offset_accuracy_pcnt,json=offsetAccuracyPcnt,proto3" json:"offset_accuracy_pcnt,omitempty"`
-	Name                string                 `protobuf:"bytes,15,opt,name=name,proto3" json:"name,omitempty"`
-	Version             string                 `protobuf:"bytes,16,opt,name=version,proto3" json:"version,omitempty"`
-	Metadata            map[string]string      `protobuf:"bytes,17,rep,name=metadata,proto3" json:"metadata,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	Bestof              bool                   `protobuf:"varint,18,opt,name=bestof,proto3" json:"bestof,omitempty"`
-	Special             bool                   `protobuf:"varint,19,opt,name=special,proto3" json:"special,omitempty"`
-	AudioQuality        AudioQuality           `protobuf:"varint,20,opt,name=audio_quality,json=audioQuality,proto3,enum=rsk.AudioQuality" json:"audio_quality,omitempty"`
-	Media               *Media                 `protobuf:"bytes,22,opt,name=media,proto3" json:"media,omitempty"`
-	PublicationType     PublicationType        `protobuf:"varint,23,opt,name=publication_type,json=publicationType,proto3,enum=rsk.PublicationType" json:"publication_type,omitempty"`
-	RatingScore         *float32               `protobuf:"fixed32,24,opt,name=rating_score,json=ratingScore,proto3,oneof" json:"rating_score,omitempty"`
-	NumRatingScores     int32                  `protobuf:"varint,25,opt,name=num_rating_scores,json=numRatingScores,proto3" json:"num_rating_scores,omitempty"`
-	RatingBreakdown     map[string]float32     `protobuf:"bytes,26,rep,name=rating_breakdown,json=ratingBreakdown,proto3" json:"rating_breakdown,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"fixed32,2,opt,name=value"`
-	unknownFields       protoimpl.UnknownFields
-	sizeCache           protoimpl.SizeCache
+	state                          protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id                  string                 `protobuf:"bytes,1,opt,name=id,proto3"`
+	xxx_hidden_Publication         string                 `protobuf:"bytes,2,opt,name=publication,proto3"`
+	xxx_hidden_Series              int32                  `protobuf:"varint,3,opt,name=series,proto3"`
+	xxx_hidden_Episode             int32                  `protobuf:"varint,4,opt,name=episode,proto3"`
+	xxx_hidden_TranscriptAvailable bool                   `protobuf:"varint,5,opt,name=transcript_available,json=transcriptAvailable,proto3"`
+	xxx_hidden_Incomplete          bool                   `protobuf:"varint,6,opt,name=incomplete,proto3"`
+	xxx_hidden_ReleaseDate         string                 `protobuf:"bytes,7,opt,name=release_date,json=releaseDate,proto3"`
+	xxx_hidden_Summary             string                 `protobuf:"bytes,8,opt,name=summary,proto3"`
+	xxx_hidden_Synopsis            *[]*Synopsis           `protobuf:"bytes,9,rep,name=synopsis,proto3"`
+	xxx_hidden_TriviaAvailable     bool                   `protobuf:"varint,10,opt,name=trivia_available,json=triviaAvailable,proto3"`
+	xxx_hidden_Actors              []string               `protobuf:"bytes,11,rep,name=actors,proto3"`
+	xxx_hidden_ShortId             string                 `protobuf:"bytes,13,opt,name=short_id,json=shortId,proto3"`
+	xxx_hidden_OffsetAccuracyPcnt  int32                  `protobuf:"varint,14,opt,name=offset_accuracy_pcnt,json=offsetAccuracyPcnt,proto3"`
+	xxx_hidden_Name                string                 `protobuf:"bytes,15,opt,name=name,proto3"`
+	xxx_hidden_Version             string                 `protobuf:"bytes,16,opt,name=version,proto3"`
+	xxx_hidden_Metadata            map[string]string      `protobuf:"bytes,17,rep,name=metadata,proto3" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	xxx_hidden_Bestof              bool                   `protobuf:"varint,18,opt,name=bestof,proto3"`
+	xxx_hidden_Special             bool                   `protobuf:"varint,19,opt,name=special,proto3"`
+	xxx_hidden_AudioQuality        AudioQuality           `protobuf:"varint,20,opt,name=audio_quality,json=audioQuality,proto3,enum=rsk.AudioQuality"`
+	xxx_hidden_Media               *Media                 `protobuf:"bytes,22,opt,name=media,proto3"`
+	xxx_hidden_PublicationType     PublicationType        `protobuf:"varint,23,opt,name=publication_type,json=publicationType,proto3,enum=rsk.PublicationType"`
+	xxx_hidden_RatingScore         float32                `protobuf:"fixed32,24,opt,name=rating_score,json=ratingScore,proto3,oneof"`
+	xxx_hidden_NumRatingScores     int32                  `protobuf:"varint,25,opt,name=num_rating_scores,json=numRatingScores,proto3"`
+	xxx_hidden_RatingBreakdown     map[string]float32     `protobuf:"bytes,26,rep,name=rating_breakdown,json=ratingBreakdown,proto3" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"fixed32,2,opt,name=value"`
+	XXX_raceDetectHookData         protoimpl.RaceDetectHookData
+	XXX_presence                   [1]uint32
+	unknownFields                  protoimpl.UnknownFields
+	sizeCache                      protoimpl.SizeCache
 }
 
 func (x *ShortTranscript) Reset() {
@@ -810,288 +820,292 @@ func (x *ShortTranscript) ProtoReflect() protoreflect.Message {
 
 func (x *ShortTranscript) GetId() string {
 	if x != nil {
-		return x.Id
+		return x.xxx_hidden_Id
 	}
 	return ""
 }
 
 func (x *ShortTranscript) GetPublication() string {
 	if x != nil {
-		return x.Publication
+		return x.xxx_hidden_Publication
 	}
 	return ""
 }
 
 func (x *ShortTranscript) GetSeries() int32 {
 	if x != nil {
-		return x.Series
+		return x.xxx_hidden_Series
 	}
 	return 0
 }
 
 func (x *ShortTranscript) GetEpisode() int32 {
 	if x != nil {
-		return x.Episode
+		return x.xxx_hidden_Episode
 	}
 	return 0
 }
 
 func (x *ShortTranscript) GetTranscriptAvailable() bool {
 	if x != nil {
-		return x.TranscriptAvailable
+		return x.xxx_hidden_TranscriptAvailable
 	}
 	return false
 }
 
 func (x *ShortTranscript) GetIncomplete() bool {
 	if x != nil {
-		return x.Incomplete
+		return x.xxx_hidden_Incomplete
 	}
 	return false
 }
 
 func (x *ShortTranscript) GetReleaseDate() string {
 	if x != nil {
-		return x.ReleaseDate
+		return x.xxx_hidden_ReleaseDate
 	}
 	return ""
 }
 
 func (x *ShortTranscript) GetSummary() string {
 	if x != nil {
-		return x.Summary
+		return x.xxx_hidden_Summary
 	}
 	return ""
 }
 
 func (x *ShortTranscript) GetSynopsis() []*Synopsis {
 	if x != nil {
-		return x.Synopsis
+		if x.xxx_hidden_Synopsis != nil {
+			return *x.xxx_hidden_Synopsis
+		}
 	}
 	return nil
 }
 
 func (x *ShortTranscript) GetTriviaAvailable() bool {
 	if x != nil {
-		return x.TriviaAvailable
+		return x.xxx_hidden_TriviaAvailable
 	}
 	return false
 }
 
 func (x *ShortTranscript) GetActors() []string {
 	if x != nil {
-		return x.Actors
+		return x.xxx_hidden_Actors
 	}
 	return nil
 }
 
 func (x *ShortTranscript) GetShortId() string {
 	if x != nil {
-		return x.ShortId
+		return x.xxx_hidden_ShortId
 	}
 	return ""
 }
 
 func (x *ShortTranscript) GetOffsetAccuracyPcnt() int32 {
 	if x != nil {
-		return x.OffsetAccuracyPcnt
+		return x.xxx_hidden_OffsetAccuracyPcnt
 	}
 	return 0
 }
 
 func (x *ShortTranscript) GetName() string {
 	if x != nil {
-		return x.Name
+		return x.xxx_hidden_Name
 	}
 	return ""
 }
 
 func (x *ShortTranscript) GetVersion() string {
 	if x != nil {
-		return x.Version
+		return x.xxx_hidden_Version
 	}
 	return ""
 }
 
 func (x *ShortTranscript) GetMetadata() map[string]string {
 	if x != nil {
-		return x.Metadata
+		return x.xxx_hidden_Metadata
 	}
 	return nil
 }
 
 func (x *ShortTranscript) GetBestof() bool {
 	if x != nil {
-		return x.Bestof
+		return x.xxx_hidden_Bestof
 	}
 	return false
 }
 
 func (x *ShortTranscript) GetSpecial() bool {
 	if x != nil {
-		return x.Special
+		return x.xxx_hidden_Special
 	}
 	return false
 }
 
 func (x *ShortTranscript) GetAudioQuality() AudioQuality {
 	if x != nil {
-		return x.AudioQuality
+		return x.xxx_hidden_AudioQuality
 	}
 	return AudioQuality_AUDIO_QUALITY_UNKNOWN
 }
 
 func (x *ShortTranscript) GetMedia() *Media {
 	if x != nil {
-		return x.Media
+		return x.xxx_hidden_Media
 	}
 	return nil
 }
 
 func (x *ShortTranscript) GetPublicationType() PublicationType {
 	if x != nil {
-		return x.PublicationType
+		return x.xxx_hidden_PublicationType
 	}
 	return PublicationType_PUBLICATION_TYPE_UNKNOWN
 }
 
 func (x *ShortTranscript) GetRatingScore() float32 {
-	if x != nil && x.RatingScore != nil {
-		return *x.RatingScore
+	if x != nil {
+		return x.xxx_hidden_RatingScore
 	}
 	return 0
 }
 
 func (x *ShortTranscript) GetNumRatingScores() int32 {
 	if x != nil {
-		return x.NumRatingScores
+		return x.xxx_hidden_NumRatingScores
 	}
 	return 0
 }
 
 func (x *ShortTranscript) GetRatingBreakdown() map[string]float32 {
 	if x != nil {
-		return x.RatingBreakdown
+		return x.xxx_hidden_RatingBreakdown
 	}
 	return nil
 }
 
 func (x *ShortTranscript) SetId(v string) {
-	x.Id = v
+	x.xxx_hidden_Id = v
 }
 
 func (x *ShortTranscript) SetPublication(v string) {
-	x.Publication = v
+	x.xxx_hidden_Publication = v
 }
 
 func (x *ShortTranscript) SetSeries(v int32) {
-	x.Series = v
+	x.xxx_hidden_Series = v
 }
 
 func (x *ShortTranscript) SetEpisode(v int32) {
-	x.Episode = v
+	x.xxx_hidden_Episode = v
 }
 
 func (x *ShortTranscript) SetTranscriptAvailable(v bool) {
-	x.TranscriptAvailable = v
+	x.xxx_hidden_TranscriptAvailable = v
 }
 
 func (x *ShortTranscript) SetIncomplete(v bool) {
-	x.Incomplete = v
+	x.xxx_hidden_Incomplete = v
 }
 
 func (x *ShortTranscript) SetReleaseDate(v string) {
-	x.ReleaseDate = v
+	x.xxx_hidden_ReleaseDate = v
 }
 
 func (x *ShortTranscript) SetSummary(v string) {
-	x.Summary = v
+	x.xxx_hidden_Summary = v
 }
 
 func (x *ShortTranscript) SetSynopsis(v []*Synopsis) {
-	x.Synopsis = v
+	x.xxx_hidden_Synopsis = &v
 }
 
 func (x *ShortTranscript) SetTriviaAvailable(v bool) {
-	x.TriviaAvailable = v
+	x.xxx_hidden_TriviaAvailable = v
 }
 
 func (x *ShortTranscript) SetActors(v []string) {
-	x.Actors = v
+	x.xxx_hidden_Actors = v
 }
 
 func (x *ShortTranscript) SetShortId(v string) {
-	x.ShortId = v
+	x.xxx_hidden_ShortId = v
 }
 
 func (x *ShortTranscript) SetOffsetAccuracyPcnt(v int32) {
-	x.OffsetAccuracyPcnt = v
+	x.xxx_hidden_OffsetAccuracyPcnt = v
 }
 
 func (x *ShortTranscript) SetName(v string) {
-	x.Name = v
+	x.xxx_hidden_Name = v
 }
 
 func (x *ShortTranscript) SetVersion(v string) {
-	x.Version = v
+	x.xxx_hidden_Version = v
 }
 
 func (x *ShortTranscript) SetMetadata(v map[string]string) {
-	x.Metadata = v
+	x.xxx_hidden_Metadata = v
 }
 
 func (x *ShortTranscript) SetBestof(v bool) {
-	x.Bestof = v
+	x.xxx_hidden_Bestof = v
 }
 
 func (x *ShortTranscript) SetSpecial(v bool) {
-	x.Special = v
+	x.xxx_hidden_Special = v
 }
 
 func (x *ShortTranscript) SetAudioQuality(v AudioQuality) {
-	x.AudioQuality = v
+	x.xxx_hidden_AudioQuality = v
 }
 
 func (x *ShortTranscript) SetMedia(v *Media) {
-	x.Media = v
+	x.xxx_hidden_Media = v
 }
 
 func (x *ShortTranscript) SetPublicationType(v PublicationType) {
-	x.PublicationType = v
+	x.xxx_hidden_PublicationType = v
 }
 
 func (x *ShortTranscript) SetRatingScore(v float32) {
-	x.RatingScore = &v
+	x.xxx_hidden_RatingScore = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 21, 24)
 }
 
 func (x *ShortTranscript) SetNumRatingScores(v int32) {
-	x.NumRatingScores = v
+	x.xxx_hidden_NumRatingScores = v
 }
 
 func (x *ShortTranscript) SetRatingBreakdown(v map[string]float32) {
-	x.RatingBreakdown = v
+	x.xxx_hidden_RatingBreakdown = v
 }
 
 func (x *ShortTranscript) HasMedia() bool {
 	if x == nil {
 		return false
 	}
-	return x.Media != nil
+	return x.xxx_hidden_Media != nil
 }
 
 func (x *ShortTranscript) HasRatingScore() bool {
 	if x == nil {
 		return false
 	}
-	return x.RatingScore != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 21)
 }
 
 func (x *ShortTranscript) ClearMedia() {
-	x.Media = nil
+	x.xxx_hidden_Media = nil
 }
 
 func (x *ShortTranscript) ClearRatingScore() {
-	x.RatingScore = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 21)
+	x.xxx_hidden_RatingScore = 0
 }
 
 type ShortTranscript_builder struct {
@@ -1127,51 +1141,54 @@ func (b0 ShortTranscript_builder) Build() *ShortTranscript {
 	m0 := &ShortTranscript{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Id = b.Id
-	x.Publication = b.Publication
-	x.Series = b.Series
-	x.Episode = b.Episode
-	x.TranscriptAvailable = b.TranscriptAvailable
-	x.Incomplete = b.Incomplete
-	x.ReleaseDate = b.ReleaseDate
-	x.Summary = b.Summary
-	x.Synopsis = b.Synopsis
-	x.TriviaAvailable = b.TriviaAvailable
-	x.Actors = b.Actors
-	x.ShortId = b.ShortId
-	x.OffsetAccuracyPcnt = b.OffsetAccuracyPcnt
-	x.Name = b.Name
-	x.Version = b.Version
-	x.Metadata = b.Metadata
-	x.Bestof = b.Bestof
-	x.Special = b.Special
-	x.AudioQuality = b.AudioQuality
-	x.Media = b.Media
-	x.PublicationType = b.PublicationType
-	x.RatingScore = b.RatingScore
-	x.NumRatingScores = b.NumRatingScores
-	x.RatingBreakdown = b.RatingBreakdown
+	x.xxx_hidden_Id = b.Id
+	x.xxx_hidden_Publication = b.Publication
+	x.xxx_hidden_Series = b.Series
+	x.xxx_hidden_Episode = b.Episode
+	x.xxx_hidden_TranscriptAvailable = b.TranscriptAvailable
+	x.xxx_hidden_Incomplete = b.Incomplete
+	x.xxx_hidden_ReleaseDate = b.ReleaseDate
+	x.xxx_hidden_Summary = b.Summary
+	x.xxx_hidden_Synopsis = &b.Synopsis
+	x.xxx_hidden_TriviaAvailable = b.TriviaAvailable
+	x.xxx_hidden_Actors = b.Actors
+	x.xxx_hidden_ShortId = b.ShortId
+	x.xxx_hidden_OffsetAccuracyPcnt = b.OffsetAccuracyPcnt
+	x.xxx_hidden_Name = b.Name
+	x.xxx_hidden_Version = b.Version
+	x.xxx_hidden_Metadata = b.Metadata
+	x.xxx_hidden_Bestof = b.Bestof
+	x.xxx_hidden_Special = b.Special
+	x.xxx_hidden_AudioQuality = b.AudioQuality
+	x.xxx_hidden_Media = b.Media
+	x.xxx_hidden_PublicationType = b.PublicationType
+	if b.RatingScore != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 21, 24)
+		x.xxx_hidden_RatingScore = *b.RatingScore
+	}
+	x.xxx_hidden_NumRatingScores = b.NumRatingScores
+	x.xxx_hidden_RatingBreakdown = b.RatingBreakdown
 	return m0
 }
 
 type Dialog struct {
-	state          protoimpl.MessageState `protogen:"hybrid.v1"`
-	Id             string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Pos            int32                  `protobuf:"varint,2,opt,name=pos,proto3" json:"pos,omitempty"`
-	Type           Dialog_DialogType      `protobuf:"varint,3,opt,name=type,proto3,enum=rsk.Dialog_DialogType" json:"type,omitempty"`
-	Actor          string                 `protobuf:"bytes,4,opt,name=actor,proto3" json:"actor,omitempty"`
-	Content        string                 `protobuf:"bytes,5,opt,name=content,proto3" json:"content,omitempty"`
-	Metadata       map[string]string      `protobuf:"bytes,6,rep,name=metadata,proto3" json:"metadata,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	IsMatchedRow   bool                   `protobuf:"varint,8,opt,name=is_matched_row,json=isMatchedRow,proto3" json:"is_matched_row,omitempty"`
-	Notable        bool                   `protobuf:"varint,9,opt,name=notable,proto3" json:"notable,omitempty"`
-	OffsetSec      int64                  `protobuf:"varint,10,opt,name=offset_sec,json=offsetSec,proto3" json:"offset_sec,omitempty"` //deprecated
-	OffsetInferred bool                   `protobuf:"varint,11,opt,name=offset_inferred,json=offsetInferred,proto3" json:"offset_inferred,omitempty"`
-	OffsetDistance int32                  `protobuf:"varint,12,opt,name=offset_distance,json=offsetDistance,proto3" json:"offset_distance,omitempty"`
-	OffsetMs       int32                  `protobuf:"varint,13,opt,name=offset_ms,json=offsetMs,proto3" json:"offset_ms,omitempty"`
-	DurationMs     int32                  `protobuf:"varint,14,opt,name=duration_ms,json=durationMs,proto3" json:"duration_ms,omitempty"`
-	Placeholder    bool                   `protobuf:"varint,15,opt,name=placeholder,proto3" json:"placeholder,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	state                     protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id             string                 `protobuf:"bytes,1,opt,name=id,proto3"`
+	xxx_hidden_Pos            int32                  `protobuf:"varint,2,opt,name=pos,proto3"`
+	xxx_hidden_Type           Dialog_DialogType      `protobuf:"varint,3,opt,name=type,proto3,enum=rsk.Dialog_DialogType"`
+	xxx_hidden_Actor          string                 `protobuf:"bytes,4,opt,name=actor,proto3"`
+	xxx_hidden_Content        string                 `protobuf:"bytes,5,opt,name=content,proto3"`
+	xxx_hidden_Metadata       map[string]string      `protobuf:"bytes,6,rep,name=metadata,proto3" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	xxx_hidden_IsMatchedRow   bool                   `protobuf:"varint,8,opt,name=is_matched_row,json=isMatchedRow,proto3"`
+	xxx_hidden_Notable        bool                   `protobuf:"varint,9,opt,name=notable,proto3"`
+	xxx_hidden_OffsetSec      int64                  `protobuf:"varint,10,opt,name=offset_sec,json=offsetSec,proto3"`
+	xxx_hidden_OffsetInferred bool                   `protobuf:"varint,11,opt,name=offset_inferred,json=offsetInferred,proto3"`
+	xxx_hidden_OffsetDistance int32                  `protobuf:"varint,12,opt,name=offset_distance,json=offsetDistance,proto3"`
+	xxx_hidden_OffsetMs       int32                  `protobuf:"varint,13,opt,name=offset_ms,json=offsetMs,proto3"`
+	xxx_hidden_DurationMs     int32                  `protobuf:"varint,14,opt,name=duration_ms,json=durationMs,proto3"`
+	xxx_hidden_Placeholder    bool                   `protobuf:"varint,15,opt,name=placeholder,proto3"`
+	unknownFields             protoimpl.UnknownFields
+	sizeCache                 protoimpl.SizeCache
 }
 
 func (x *Dialog) Reset() {
@@ -1201,156 +1218,156 @@ func (x *Dialog) ProtoReflect() protoreflect.Message {
 
 func (x *Dialog) GetId() string {
 	if x != nil {
-		return x.Id
+		return x.xxx_hidden_Id
 	}
 	return ""
 }
 
 func (x *Dialog) GetPos() int32 {
 	if x != nil {
-		return x.Pos
+		return x.xxx_hidden_Pos
 	}
 	return 0
 }
 
 func (x *Dialog) GetType() Dialog_DialogType {
 	if x != nil {
-		return x.Type
+		return x.xxx_hidden_Type
 	}
 	return Dialog_UNKNOWN
 }
 
 func (x *Dialog) GetActor() string {
 	if x != nil {
-		return x.Actor
+		return x.xxx_hidden_Actor
 	}
 	return ""
 }
 
 func (x *Dialog) GetContent() string {
 	if x != nil {
-		return x.Content
+		return x.xxx_hidden_Content
 	}
 	return ""
 }
 
 func (x *Dialog) GetMetadata() map[string]string {
 	if x != nil {
-		return x.Metadata
+		return x.xxx_hidden_Metadata
 	}
 	return nil
 }
 
 func (x *Dialog) GetIsMatchedRow() bool {
 	if x != nil {
-		return x.IsMatchedRow
+		return x.xxx_hidden_IsMatchedRow
 	}
 	return false
 }
 
 func (x *Dialog) GetNotable() bool {
 	if x != nil {
-		return x.Notable
+		return x.xxx_hidden_Notable
 	}
 	return false
 }
 
 func (x *Dialog) GetOffsetSec() int64 {
 	if x != nil {
-		return x.OffsetSec
+		return x.xxx_hidden_OffsetSec
 	}
 	return 0
 }
 
 func (x *Dialog) GetOffsetInferred() bool {
 	if x != nil {
-		return x.OffsetInferred
+		return x.xxx_hidden_OffsetInferred
 	}
 	return false
 }
 
 func (x *Dialog) GetOffsetDistance() int32 {
 	if x != nil {
-		return x.OffsetDistance
+		return x.xxx_hidden_OffsetDistance
 	}
 	return 0
 }
 
 func (x *Dialog) GetOffsetMs() int32 {
 	if x != nil {
-		return x.OffsetMs
+		return x.xxx_hidden_OffsetMs
 	}
 	return 0
 }
 
 func (x *Dialog) GetDurationMs() int32 {
 	if x != nil {
-		return x.DurationMs
+		return x.xxx_hidden_DurationMs
 	}
 	return 0
 }
 
 func (x *Dialog) GetPlaceholder() bool {
 	if x != nil {
-		return x.Placeholder
+		return x.xxx_hidden_Placeholder
 	}
 	return false
 }
 
 func (x *Dialog) SetId(v string) {
-	x.Id = v
+	x.xxx_hidden_Id = v
 }
 
 func (x *Dialog) SetPos(v int32) {
-	x.Pos = v
+	x.xxx_hidden_Pos = v
 }
 
 func (x *Dialog) SetType(v Dialog_DialogType) {
-	x.Type = v
+	x.xxx_hidden_Type = v
 }
 
 func (x *Dialog) SetActor(v string) {
-	x.Actor = v
+	x.xxx_hidden_Actor = v
 }
 
 func (x *Dialog) SetContent(v string) {
-	x.Content = v
+	x.xxx_hidden_Content = v
 }
 
 func (x *Dialog) SetMetadata(v map[string]string) {
-	x.Metadata = v
+	x.xxx_hidden_Metadata = v
 }
 
 func (x *Dialog) SetIsMatchedRow(v bool) {
-	x.IsMatchedRow = v
+	x.xxx_hidden_IsMatchedRow = v
 }
 
 func (x *Dialog) SetNotable(v bool) {
-	x.Notable = v
+	x.xxx_hidden_Notable = v
 }
 
 func (x *Dialog) SetOffsetSec(v int64) {
-	x.OffsetSec = v
+	x.xxx_hidden_OffsetSec = v
 }
 
 func (x *Dialog) SetOffsetInferred(v bool) {
-	x.OffsetInferred = v
+	x.xxx_hidden_OffsetInferred = v
 }
 
 func (x *Dialog) SetOffsetDistance(v int32) {
-	x.OffsetDistance = v
+	x.xxx_hidden_OffsetDistance = v
 }
 
 func (x *Dialog) SetOffsetMs(v int32) {
-	x.OffsetMs = v
+	x.xxx_hidden_OffsetMs = v
 }
 
 func (x *Dialog) SetDurationMs(v int32) {
-	x.DurationMs = v
+	x.xxx_hidden_DurationMs = v
 }
 
 func (x *Dialog) SetPlaceholder(v bool) {
-	x.Placeholder = v
+	x.xxx_hidden_Placeholder = v
 }
 
 type Dialog_builder struct {
@@ -1376,30 +1393,30 @@ func (b0 Dialog_builder) Build() *Dialog {
 	m0 := &Dialog{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Id = b.Id
-	x.Pos = b.Pos
-	x.Type = b.Type
-	x.Actor = b.Actor
-	x.Content = b.Content
-	x.Metadata = b.Metadata
-	x.IsMatchedRow = b.IsMatchedRow
-	x.Notable = b.Notable
-	x.OffsetSec = b.OffsetSec
-	x.OffsetInferred = b.OffsetInferred
-	x.OffsetDistance = b.OffsetDistance
-	x.OffsetMs = b.OffsetMs
-	x.DurationMs = b.DurationMs
-	x.Placeholder = b.Placeholder
+	x.xxx_hidden_Id = b.Id
+	x.xxx_hidden_Pos = b.Pos
+	x.xxx_hidden_Type = b.Type
+	x.xxx_hidden_Actor = b.Actor
+	x.xxx_hidden_Content = b.Content
+	x.xxx_hidden_Metadata = b.Metadata
+	x.xxx_hidden_IsMatchedRow = b.IsMatchedRow
+	x.xxx_hidden_Notable = b.Notable
+	x.xxx_hidden_OffsetSec = b.OffsetSec
+	x.xxx_hidden_OffsetInferred = b.OffsetInferred
+	x.xxx_hidden_OffsetDistance = b.OffsetDistance
+	x.xxx_hidden_OffsetMs = b.OffsetMs
+	x.xxx_hidden_DurationMs = b.DurationMs
+	x.xxx_hidden_Placeholder = b.Placeholder
 	return m0
 }
 
 type Synopsis struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Description   string                 `protobuf:"bytes,1,opt,name=description,proto3" json:"description,omitempty"`
-	StartPos      int32                  `protobuf:"varint,2,opt,name=start_pos,json=startPos,proto3" json:"start_pos,omitempty"`
-	EndPos        int32                  `protobuf:"varint,3,opt,name=end_pos,json=endPos,proto3" json:"end_pos,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Description string                 `protobuf:"bytes,1,opt,name=description,proto3"`
+	xxx_hidden_StartPos    int32                  `protobuf:"varint,2,opt,name=start_pos,json=startPos,proto3"`
+	xxx_hidden_EndPos      int32                  `protobuf:"varint,3,opt,name=end_pos,json=endPos,proto3"`
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
 func (x *Synopsis) Reset() {
@@ -1429,35 +1446,35 @@ func (x *Synopsis) ProtoReflect() protoreflect.Message {
 
 func (x *Synopsis) GetDescription() string {
 	if x != nil {
-		return x.Description
+		return x.xxx_hidden_Description
 	}
 	return ""
 }
 
 func (x *Synopsis) GetStartPos() int32 {
 	if x != nil {
-		return x.StartPos
+		return x.xxx_hidden_StartPos
 	}
 	return 0
 }
 
 func (x *Synopsis) GetEndPos() int32 {
 	if x != nil {
-		return x.EndPos
+		return x.xxx_hidden_EndPos
 	}
 	return 0
 }
 
 func (x *Synopsis) SetDescription(v string) {
-	x.Description = v
+	x.xxx_hidden_Description = v
 }
 
 func (x *Synopsis) SetStartPos(v int32) {
-	x.StartPos = v
+	x.xxx_hidden_StartPos = v
 }
 
 func (x *Synopsis) SetEndPos(v int32) {
-	x.EndPos = v
+	x.xxx_hidden_EndPos = v
 }
 
 type Synopsis_builder struct {
@@ -1472,19 +1489,19 @@ func (b0 Synopsis_builder) Build() *Synopsis {
 	m0 := &Synopsis{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Description = b.Description
-	x.StartPos = b.StartPos
-	x.EndPos = b.EndPos
+	x.xxx_hidden_Description = b.Description
+	x.xxx_hidden_StartPos = b.StartPos
+	x.xxx_hidden_EndPos = b.EndPos
 	return m0
 }
 
 type Trivia struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Description   string                 `protobuf:"bytes,1,opt,name=description,proto3" json:"description,omitempty"`
-	StartPos      int32                  `protobuf:"varint,2,opt,name=start_pos,json=startPos,proto3" json:"start_pos,omitempty"`
-	EndPos        int32                  `protobuf:"varint,3,opt,name=end_pos,json=endPos,proto3" json:"end_pos,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Description string                 `protobuf:"bytes,1,opt,name=description,proto3"`
+	xxx_hidden_StartPos    int32                  `protobuf:"varint,2,opt,name=start_pos,json=startPos,proto3"`
+	xxx_hidden_EndPos      int32                  `protobuf:"varint,3,opt,name=end_pos,json=endPos,proto3"`
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
 func (x *Trivia) Reset() {
@@ -1514,35 +1531,35 @@ func (x *Trivia) ProtoReflect() protoreflect.Message {
 
 func (x *Trivia) GetDescription() string {
 	if x != nil {
-		return x.Description
+		return x.xxx_hidden_Description
 	}
 	return ""
 }
 
 func (x *Trivia) GetStartPos() int32 {
 	if x != nil {
-		return x.StartPos
+		return x.xxx_hidden_StartPos
 	}
 	return 0
 }
 
 func (x *Trivia) GetEndPos() int32 {
 	if x != nil {
-		return x.EndPos
+		return x.xxx_hidden_EndPos
 	}
 	return 0
 }
 
 func (x *Trivia) SetDescription(v string) {
-	x.Description = v
+	x.xxx_hidden_Description = v
 }
 
 func (x *Trivia) SetStartPos(v int32) {
-	x.StartPos = v
+	x.xxx_hidden_StartPos = v
 }
 
 func (x *Trivia) SetEndPos(v int32) {
-	x.EndPos = v
+	x.xxx_hidden_EndPos = v
 }
 
 type Trivia_builder struct {
@@ -1557,18 +1574,18 @@ func (b0 Trivia_builder) Build() *Trivia {
 	m0 := &Trivia{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Description = b.Description
-	x.StartPos = b.StartPos
-	x.EndPos = b.EndPos
+	x.xxx_hidden_Description = b.Description
+	x.xxx_hidden_StartPos = b.StartPos
+	x.xxx_hidden_EndPos = b.EndPos
 	return m0
 }
 
 type GetTranscriptRequest struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Epid          string                 `protobuf:"bytes,1,opt,name=epid,proto3" json:"epid,omitempty"`
-	WithRaw       bool                   `protobuf:"varint,2,opt,name=with_raw,json=withRaw,proto3" json:"with_raw,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state              protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Epid    string                 `protobuf:"bytes,1,opt,name=epid,proto3"`
+	xxx_hidden_WithRaw bool                   `protobuf:"varint,2,opt,name=with_raw,json=withRaw,proto3"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *GetTranscriptRequest) Reset() {
@@ -1598,24 +1615,24 @@ func (x *GetTranscriptRequest) ProtoReflect() protoreflect.Message {
 
 func (x *GetTranscriptRequest) GetEpid() string {
 	if x != nil {
-		return x.Epid
+		return x.xxx_hidden_Epid
 	}
 	return ""
 }
 
 func (x *GetTranscriptRequest) GetWithRaw() bool {
 	if x != nil {
-		return x.WithRaw
+		return x.xxx_hidden_WithRaw
 	}
 	return false
 }
 
 func (x *GetTranscriptRequest) SetEpid(v string) {
-	x.Epid = v
+	x.xxx_hidden_Epid = v
 }
 
 func (x *GetTranscriptRequest) SetWithRaw(v bool) {
-	x.WithRaw = v
+	x.xxx_hidden_WithRaw = v
 }
 
 type GetTranscriptRequest_builder struct {
@@ -1629,17 +1646,17 @@ func (b0 GetTranscriptRequest_builder) Build() *GetTranscriptRequest {
 	m0 := &GetTranscriptRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Epid = b.Epid
-	x.WithRaw = b.WithRaw
+	x.xxx_hidden_Epid = b.Epid
+	x.xxx_hidden_WithRaw = b.WithRaw
 	return m0
 }
 
 type DialogRange struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Start         int32                  `protobuf:"varint,1,opt,name=start,proto3" json:"start,omitempty"`
-	End           int32                  `protobuf:"varint,2,opt,name=end,proto3" json:"end,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state            protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Start int32                  `protobuf:"varint,1,opt,name=start,proto3"`
+	xxx_hidden_End   int32                  `protobuf:"varint,2,opt,name=end,proto3"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *DialogRange) Reset() {
@@ -1669,24 +1686,24 @@ func (x *DialogRange) ProtoReflect() protoreflect.Message {
 
 func (x *DialogRange) GetStart() int32 {
 	if x != nil {
-		return x.Start
+		return x.xxx_hidden_Start
 	}
 	return 0
 }
 
 func (x *DialogRange) GetEnd() int32 {
 	if x != nil {
-		return x.End
+		return x.xxx_hidden_End
 	}
 	return 0
 }
 
 func (x *DialogRange) SetStart(v int32) {
-	x.Start = v
+	x.xxx_hidden_Start = v
 }
 
 func (x *DialogRange) SetEnd(v int32) {
-	x.End = v
+	x.xxx_hidden_End = v
 }
 
 type DialogRange_builder struct {
@@ -1700,21 +1717,19 @@ func (b0 DialogRange_builder) Build() *DialogRange {
 	m0 := &DialogRange{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Start = b.Start
-	x.End = b.End
+	x.xxx_hidden_Start = b.Start
+	x.xxx_hidden_End = b.End
 	return m0
 }
 
 type GetTranscriptDialogRequest struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	Epid  string                 `protobuf:"bytes,1,opt,name=epid,proto3" json:"epid,omitempty"`
-	// Deprecated: Marked as deprecated in transcript.proto.
-	Pos int32 `protobuf:"varint,2,opt,name=pos,proto3" json:"pos,omitempty"`
-	// Deprecated: Marked as deprecated in transcript.proto.
-	NumContextLines int32        `protobuf:"varint,3,opt,name=num_context_lines,json=numContextLines,proto3" json:"num_context_lines,omitempty"`
-	Range           *DialogRange `protobuf:"bytes,4,opt,name=range,proto3" json:"range,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state                      protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Epid            string                 `protobuf:"bytes,1,opt,name=epid,proto3"`
+	xxx_hidden_Pos             int32                  `protobuf:"varint,2,opt,name=pos,proto3"`
+	xxx_hidden_NumContextLines int32                  `protobuf:"varint,3,opt,name=num_context_lines,json=numContextLines,proto3"`
+	xxx_hidden_Range           *DialogRange           `protobuf:"bytes,4,opt,name=range,proto3"`
+	unknownFields              protoimpl.UnknownFields
+	sizeCache                  protoimpl.SizeCache
 }
 
 func (x *GetTranscriptDialogRequest) Reset() {
@@ -1744,7 +1759,7 @@ func (x *GetTranscriptDialogRequest) ProtoReflect() protoreflect.Message {
 
 func (x *GetTranscriptDialogRequest) GetEpid() string {
 	if x != nil {
-		return x.Epid
+		return x.xxx_hidden_Epid
 	}
 	return ""
 }
@@ -1752,7 +1767,7 @@ func (x *GetTranscriptDialogRequest) GetEpid() string {
 // Deprecated: Marked as deprecated in transcript.proto.
 func (x *GetTranscriptDialogRequest) GetPos() int32 {
 	if x != nil {
-		return x.Pos
+		return x.xxx_hidden_Pos
 	}
 	return 0
 }
@@ -1760,45 +1775,45 @@ func (x *GetTranscriptDialogRequest) GetPos() int32 {
 // Deprecated: Marked as deprecated in transcript.proto.
 func (x *GetTranscriptDialogRequest) GetNumContextLines() int32 {
 	if x != nil {
-		return x.NumContextLines
+		return x.xxx_hidden_NumContextLines
 	}
 	return 0
 }
 
 func (x *GetTranscriptDialogRequest) GetRange() *DialogRange {
 	if x != nil {
-		return x.Range
+		return x.xxx_hidden_Range
 	}
 	return nil
 }
 
 func (x *GetTranscriptDialogRequest) SetEpid(v string) {
-	x.Epid = v
+	x.xxx_hidden_Epid = v
 }
 
 // Deprecated: Marked as deprecated in transcript.proto.
 func (x *GetTranscriptDialogRequest) SetPos(v int32) {
-	x.Pos = v
+	x.xxx_hidden_Pos = v
 }
 
 // Deprecated: Marked as deprecated in transcript.proto.
 func (x *GetTranscriptDialogRequest) SetNumContextLines(v int32) {
-	x.NumContextLines = v
+	x.xxx_hidden_NumContextLines = v
 }
 
 func (x *GetTranscriptDialogRequest) SetRange(v *DialogRange) {
-	x.Range = v
+	x.xxx_hidden_Range = v
 }
 
 func (x *GetTranscriptDialogRequest) HasRange() bool {
 	if x == nil {
 		return false
 	}
-	return x.Range != nil
+	return x.xxx_hidden_Range != nil
 }
 
 func (x *GetTranscriptDialogRequest) ClearRange() {
-	x.Range = nil
+	x.xxx_hidden_Range = nil
 }
 
 type GetTranscriptDialogRequest_builder struct {
@@ -1816,23 +1831,25 @@ func (b0 GetTranscriptDialogRequest_builder) Build() *GetTranscriptDialogRequest
 	m0 := &GetTranscriptDialogRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Epid = b.Epid
-	x.Pos = b.Pos
-	x.NumContextLines = b.NumContextLines
-	x.Range = b.Range
+	x.xxx_hidden_Epid = b.Epid
+	x.xxx_hidden_Pos = b.Pos
+	x.xxx_hidden_NumContextLines = b.NumContextLines
+	x.xxx_hidden_Range = b.Range
 	return m0
 }
 
 type ListTranscriptsRequest struct {
-	state                  protoimpl.MessageState `protogen:"hybrid.v1"`
-	Filter                 string                 `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
-	IncludeRatingBreakdown bool                   `protobuf:"varint,2,opt,name=include_rating_breakdown,json=includeRatingBreakdown,proto3" json:"include_rating_breakdown,omitempty"`
-	SortField              string                 `protobuf:"bytes,3,opt,name=sort_field,json=sortField,proto3" json:"sort_field,omitempty"`
-	SortDirection          string                 `protobuf:"bytes,4,opt,name=sort_direction,json=sortDirection,proto3" json:"sort_direction,omitempty"`
-	Page                   *int32                 `protobuf:"varint,5,opt,name=page,proto3,oneof" json:"page,omitempty"`
-	PageSize               *int32                 `protobuf:"varint,6,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`
-	unknownFields          protoimpl.UnknownFields
-	sizeCache              protoimpl.SizeCache
+	state                             protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Filter                 string                 `protobuf:"bytes,1,opt,name=filter,proto3"`
+	xxx_hidden_IncludeRatingBreakdown bool                   `protobuf:"varint,2,opt,name=include_rating_breakdown,json=includeRatingBreakdown,proto3"`
+	xxx_hidden_SortField              string                 `protobuf:"bytes,3,opt,name=sort_field,json=sortField,proto3"`
+	xxx_hidden_SortDirection          string                 `protobuf:"bytes,4,opt,name=sort_direction,json=sortDirection,proto3"`
+	xxx_hidden_Page                   int32                  `protobuf:"varint,5,opt,name=page,proto3,oneof"`
+	xxx_hidden_PageSize               int32                  `protobuf:"varint,6,opt,name=page_size,json=pageSize,proto3,oneof"`
+	XXX_raceDetectHookData            protoimpl.RaceDetectHookData
+	XXX_presence                      [1]uint32
+	unknownFields                     protoimpl.UnknownFields
+	sizeCache                         protoimpl.SizeCache
 }
 
 func (x *ListTranscriptsRequest) Reset() {
@@ -1862,90 +1879,94 @@ func (x *ListTranscriptsRequest) ProtoReflect() protoreflect.Message {
 
 func (x *ListTranscriptsRequest) GetFilter() string {
 	if x != nil {
-		return x.Filter
+		return x.xxx_hidden_Filter
 	}
 	return ""
 }
 
 func (x *ListTranscriptsRequest) GetIncludeRatingBreakdown() bool {
 	if x != nil {
-		return x.IncludeRatingBreakdown
+		return x.xxx_hidden_IncludeRatingBreakdown
 	}
 	return false
 }
 
 func (x *ListTranscriptsRequest) GetSortField() string {
 	if x != nil {
-		return x.SortField
+		return x.xxx_hidden_SortField
 	}
 	return ""
 }
 
 func (x *ListTranscriptsRequest) GetSortDirection() string {
 	if x != nil {
-		return x.SortDirection
+		return x.xxx_hidden_SortDirection
 	}
 	return ""
 }
 
 func (x *ListTranscriptsRequest) GetPage() int32 {
-	if x != nil && x.Page != nil {
-		return *x.Page
+	if x != nil {
+		return x.xxx_hidden_Page
 	}
 	return 0
 }
 
 func (x *ListTranscriptsRequest) GetPageSize() int32 {
-	if x != nil && x.PageSize != nil {
-		return *x.PageSize
+	if x != nil {
+		return x.xxx_hidden_PageSize
 	}
 	return 0
 }
 
 func (x *ListTranscriptsRequest) SetFilter(v string) {
-	x.Filter = v
+	x.xxx_hidden_Filter = v
 }
 
 func (x *ListTranscriptsRequest) SetIncludeRatingBreakdown(v bool) {
-	x.IncludeRatingBreakdown = v
+	x.xxx_hidden_IncludeRatingBreakdown = v
 }
 
 func (x *ListTranscriptsRequest) SetSortField(v string) {
-	x.SortField = v
+	x.xxx_hidden_SortField = v
 }
 
 func (x *ListTranscriptsRequest) SetSortDirection(v string) {
-	x.SortDirection = v
+	x.xxx_hidden_SortDirection = v
 }
 
 func (x *ListTranscriptsRequest) SetPage(v int32) {
-	x.Page = &v
+	x.xxx_hidden_Page = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 4, 6)
 }
 
 func (x *ListTranscriptsRequest) SetPageSize(v int32) {
-	x.PageSize = &v
+	x.xxx_hidden_PageSize = v
+	protoimpl.X.SetPresent(&(x.XXX_presence[0]), 5, 6)
 }
 
 func (x *ListTranscriptsRequest) HasPage() bool {
 	if x == nil {
 		return false
 	}
-	return x.Page != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 4)
 }
 
 func (x *ListTranscriptsRequest) HasPageSize() bool {
 	if x == nil {
 		return false
 	}
-	return x.PageSize != nil
+	return protoimpl.X.Present(&(x.XXX_presence[0]), 5)
 }
 
 func (x *ListTranscriptsRequest) ClearPage() {
-	x.Page = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 4)
+	x.xxx_hidden_Page = 0
 }
 
 func (x *ListTranscriptsRequest) ClearPageSize() {
-	x.PageSize = nil
+	protoimpl.X.ClearPresent(&(x.XXX_presence[0]), 5)
+	x.xxx_hidden_PageSize = 0
 }
 
 type ListTranscriptsRequest_builder struct {
@@ -1963,20 +1984,26 @@ func (b0 ListTranscriptsRequest_builder) Build() *ListTranscriptsRequest {
 	m0 := &ListTranscriptsRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Filter = b.Filter
-	x.IncludeRatingBreakdown = b.IncludeRatingBreakdown
-	x.SortField = b.SortField
-	x.SortDirection = b.SortDirection
-	x.Page = b.Page
-	x.PageSize = b.PageSize
+	x.xxx_hidden_Filter = b.Filter
+	x.xxx_hidden_IncludeRatingBreakdown = b.IncludeRatingBreakdown
+	x.xxx_hidden_SortField = b.SortField
+	x.xxx_hidden_SortDirection = b.SortDirection
+	if b.Page != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 4, 6)
+		x.xxx_hidden_Page = *b.Page
+	}
+	if b.PageSize != nil {
+		protoimpl.X.SetPresentNonAtomic(&(x.XXX_presence[0]), 5, 6)
+		x.xxx_hidden_PageSize = *b.PageSize
+	}
 	return m0
 }
 
 type TranscriptList struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Episodes      []*ShortTranscript     `protobuf:"bytes,1,rep,name=episodes,proto3" json:"episodes,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state               protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Episodes *[]*ShortTranscript    `protobuf:"bytes,1,rep,name=episodes,proto3"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
 }
 
 func (x *TranscriptList) Reset() {
@@ -2006,13 +2033,15 @@ func (x *TranscriptList) ProtoReflect() protoreflect.Message {
 
 func (x *TranscriptList) GetEpisodes() []*ShortTranscript {
 	if x != nil {
-		return x.Episodes
+		if x.xxx_hidden_Episodes != nil {
+			return *x.xxx_hidden_Episodes
+		}
 	}
 	return nil
 }
 
 func (x *TranscriptList) SetEpisodes(v []*ShortTranscript) {
-	x.Episodes = v
+	x.xxx_hidden_Episodes = &v
 }
 
 type TranscriptList_builder struct {
@@ -2025,17 +2054,17 @@ func (b0 TranscriptList_builder) Build() *TranscriptList {
 	m0 := &TranscriptList{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Episodes = b.Episodes
+	x.xxx_hidden_Episodes = &b.Episodes
 	return m0
 }
 
 type Ratings struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Scores        map[string]float32     `protobuf:"bytes,1,rep,name=scores,proto3" json:"scores,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"fixed32,2,opt,name=value"`
-	ScoreAvg      float32                `protobuf:"fixed32,2,opt,name=score_avg,json=scoreAvg,proto3" json:"score_avg,omitempty"`
-	NumScores     int32                  `protobuf:"varint,3,opt,name=num_scores,json=numScores,proto3" json:"num_scores,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Scores    map[string]float32     `protobuf:"bytes,1,rep,name=scores,proto3" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"fixed32,2,opt,name=value"`
+	xxx_hidden_ScoreAvg  float32                `protobuf:"fixed32,2,opt,name=score_avg,json=scoreAvg,proto3"`
+	xxx_hidden_NumScores int32                  `protobuf:"varint,3,opt,name=num_scores,json=numScores,proto3"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
 }
 
 func (x *Ratings) Reset() {
@@ -2065,35 +2094,35 @@ func (x *Ratings) ProtoReflect() protoreflect.Message {
 
 func (x *Ratings) GetScores() map[string]float32 {
 	if x != nil {
-		return x.Scores
+		return x.xxx_hidden_Scores
 	}
 	return nil
 }
 
 func (x *Ratings) GetScoreAvg() float32 {
 	if x != nil {
-		return x.ScoreAvg
+		return x.xxx_hidden_ScoreAvg
 	}
 	return 0
 }
 
 func (x *Ratings) GetNumScores() int32 {
 	if x != nil {
-		return x.NumScores
+		return x.xxx_hidden_NumScores
 	}
 	return 0
 }
 
 func (x *Ratings) SetScores(v map[string]float32) {
-	x.Scores = v
+	x.xxx_hidden_Scores = v
 }
 
 func (x *Ratings) SetScoreAvg(v float32) {
-	x.ScoreAvg = v
+	x.xxx_hidden_ScoreAvg = v
 }
 
 func (x *Ratings) SetNumScores(v int32) {
-	x.NumScores = v
+	x.xxx_hidden_NumScores = v
 }
 
 type Ratings_builder struct {
@@ -2108,17 +2137,17 @@ func (b0 Ratings_builder) Build() *Ratings {
 	m0 := &Ratings{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Scores = b.Scores
-	x.ScoreAvg = b.ScoreAvg
-	x.NumScores = b.NumScores
+	x.xxx_hidden_Scores = b.Scores
+	x.xxx_hidden_ScoreAvg = b.ScoreAvg
+	x.xxx_hidden_NumScores = b.NumScores
 	return m0
 }
 
 type ChunkStates struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	States        []ContributionState    `protobuf:"varint,1,rep,packed,name=states,proto3,enum=rsk.ContributionState" json:"states,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state             protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_States []ContributionState    `protobuf:"varint,1,rep,packed,name=states,proto3,enum=rsk.ContributionState"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *ChunkStates) Reset() {
@@ -2148,13 +2177,13 @@ func (x *ChunkStates) ProtoReflect() protoreflect.Message {
 
 func (x *ChunkStates) GetStates() []ContributionState {
 	if x != nil {
-		return x.States
+		return x.xxx_hidden_States
 	}
 	return nil
 }
 
 func (x *ChunkStates) SetStates(v []ContributionState) {
-	x.States = v
+	x.xxx_hidden_States = v
 }
 
 type ChunkStates_builder struct {
@@ -2167,26 +2196,26 @@ func (b0 ChunkStates_builder) Build() *ChunkStates {
 	m0 := &ChunkStates{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.States = b.States
+	x.xxx_hidden_States = b.States
 	return m0
 }
 
 type ChunkedTranscriptStats struct {
-	state                           protoimpl.MessageState  `protogen:"hybrid.v1"`
-	Id                              string                  `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Publication                     string                  `protobuf:"bytes,2,opt,name=publication,proto3" json:"publication,omitempty"`
-	Series                          int32                   `protobuf:"varint,3,opt,name=series,proto3" json:"series,omitempty"`
-	Episode                         int32                   `protobuf:"varint,4,opt,name=episode,proto3" json:"episode,omitempty"`
-	ChunkContributions              map[string]*ChunkStates `protobuf:"bytes,5,rep,name=chunk_contributions,json=chunkContributions,proto3" json:"chunk_contributions,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	NumChunks                       int32                   `protobuf:"varint,6,opt,name=num_chunks,json=numChunks,proto3" json:"num_chunks,omitempty"`
-	NumContributions                int32                   `protobuf:"varint,7,opt,name=num_contributions,json=numContributions,proto3" json:"num_contributions,omitempty"`
-	NumPendingContributions         int32                   `protobuf:"varint,8,opt,name=num_pending_contributions,json=numPendingContributions,proto3" json:"num_pending_contributions,omitempty"`
-	NumRequestApprovalContributions int32                   `protobuf:"varint,9,opt,name=num_request_approval_contributions,json=numRequestApprovalContributions,proto3" json:"num_request_approval_contributions,omitempty"`
-	NumApprovedContributions        int32                   `protobuf:"varint,10,opt,name=num_approved_contributions,json=numApprovedContributions,proto3" json:"num_approved_contributions,omitempty"`
-	NumRejectedContributions        int32                   `protobuf:"varint,11,opt,name=num_rejected_contributions,json=numRejectedContributions,proto3" json:"num_rejected_contributions,omitempty"`
-	Name                            string                  `protobuf:"bytes,12,opt,name=name,proto3" json:"name,omitempty"`
-	unknownFields                   protoimpl.UnknownFields
-	sizeCache                       protoimpl.SizeCache
+	state                                      protoimpl.MessageState  `protogen:"opaque.v1"`
+	xxx_hidden_Id                              string                  `protobuf:"bytes,1,opt,name=id,proto3"`
+	xxx_hidden_Publication                     string                  `protobuf:"bytes,2,opt,name=publication,proto3"`
+	xxx_hidden_Series                          int32                   `protobuf:"varint,3,opt,name=series,proto3"`
+	xxx_hidden_Episode                         int32                   `protobuf:"varint,4,opt,name=episode,proto3"`
+	xxx_hidden_ChunkContributions              map[string]*ChunkStates `protobuf:"bytes,5,rep,name=chunk_contributions,json=chunkContributions,proto3" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	xxx_hidden_NumChunks                       int32                   `protobuf:"varint,6,opt,name=num_chunks,json=numChunks,proto3"`
+	xxx_hidden_NumContributions                int32                   `protobuf:"varint,7,opt,name=num_contributions,json=numContributions,proto3"`
+	xxx_hidden_NumPendingContributions         int32                   `protobuf:"varint,8,opt,name=num_pending_contributions,json=numPendingContributions,proto3"`
+	xxx_hidden_NumRequestApprovalContributions int32                   `protobuf:"varint,9,opt,name=num_request_approval_contributions,json=numRequestApprovalContributions,proto3"`
+	xxx_hidden_NumApprovedContributions        int32                   `protobuf:"varint,10,opt,name=num_approved_contributions,json=numApprovedContributions,proto3"`
+	xxx_hidden_NumRejectedContributions        int32                   `protobuf:"varint,11,opt,name=num_rejected_contributions,json=numRejectedContributions,proto3"`
+	xxx_hidden_Name                            string                  `protobuf:"bytes,12,opt,name=name,proto3"`
+	unknownFields                              protoimpl.UnknownFields
+	sizeCache                                  protoimpl.SizeCache
 }
 
 func (x *ChunkedTranscriptStats) Reset() {
@@ -2216,134 +2245,134 @@ func (x *ChunkedTranscriptStats) ProtoReflect() protoreflect.Message {
 
 func (x *ChunkedTranscriptStats) GetId() string {
 	if x != nil {
-		return x.Id
+		return x.xxx_hidden_Id
 	}
 	return ""
 }
 
 func (x *ChunkedTranscriptStats) GetPublication() string {
 	if x != nil {
-		return x.Publication
+		return x.xxx_hidden_Publication
 	}
 	return ""
 }
 
 func (x *ChunkedTranscriptStats) GetSeries() int32 {
 	if x != nil {
-		return x.Series
+		return x.xxx_hidden_Series
 	}
 	return 0
 }
 
 func (x *ChunkedTranscriptStats) GetEpisode() int32 {
 	if x != nil {
-		return x.Episode
+		return x.xxx_hidden_Episode
 	}
 	return 0
 }
 
 func (x *ChunkedTranscriptStats) GetChunkContributions() map[string]*ChunkStates {
 	if x != nil {
-		return x.ChunkContributions
+		return x.xxx_hidden_ChunkContributions
 	}
 	return nil
 }
 
 func (x *ChunkedTranscriptStats) GetNumChunks() int32 {
 	if x != nil {
-		return x.NumChunks
+		return x.xxx_hidden_NumChunks
 	}
 	return 0
 }
 
 func (x *ChunkedTranscriptStats) GetNumContributions() int32 {
 	if x != nil {
-		return x.NumContributions
+		return x.xxx_hidden_NumContributions
 	}
 	return 0
 }
 
 func (x *ChunkedTranscriptStats) GetNumPendingContributions() int32 {
 	if x != nil {
-		return x.NumPendingContributions
+		return x.xxx_hidden_NumPendingContributions
 	}
 	return 0
 }
 
 func (x *ChunkedTranscriptStats) GetNumRequestApprovalContributions() int32 {
 	if x != nil {
-		return x.NumRequestApprovalContributions
+		return x.xxx_hidden_NumRequestApprovalContributions
 	}
 	return 0
 }
 
 func (x *ChunkedTranscriptStats) GetNumApprovedContributions() int32 {
 	if x != nil {
-		return x.NumApprovedContributions
+		return x.xxx_hidden_NumApprovedContributions
 	}
 	return 0
 }
 
 func (x *ChunkedTranscriptStats) GetNumRejectedContributions() int32 {
 	if x != nil {
-		return x.NumRejectedContributions
+		return x.xxx_hidden_NumRejectedContributions
 	}
 	return 0
 }
 
 func (x *ChunkedTranscriptStats) GetName() string {
 	if x != nil {
-		return x.Name
+		return x.xxx_hidden_Name
 	}
 	return ""
 }
 
 func (x *ChunkedTranscriptStats) SetId(v string) {
-	x.Id = v
+	x.xxx_hidden_Id = v
 }
 
 func (x *ChunkedTranscriptStats) SetPublication(v string) {
-	x.Publication = v
+	x.xxx_hidden_Publication = v
 }
 
 func (x *ChunkedTranscriptStats) SetSeries(v int32) {
-	x.Series = v
+	x.xxx_hidden_Series = v
 }
 
 func (x *ChunkedTranscriptStats) SetEpisode(v int32) {
-	x.Episode = v
+	x.xxx_hidden_Episode = v
 }
 
 func (x *ChunkedTranscriptStats) SetChunkContributions(v map[string]*ChunkStates) {
-	x.ChunkContributions = v
+	x.xxx_hidden_ChunkContributions = v
 }
 
 func (x *ChunkedTranscriptStats) SetNumChunks(v int32) {
-	x.NumChunks = v
+	x.xxx_hidden_NumChunks = v
 }
 
 func (x *ChunkedTranscriptStats) SetNumContributions(v int32) {
-	x.NumContributions = v
+	x.xxx_hidden_NumContributions = v
 }
 
 func (x *ChunkedTranscriptStats) SetNumPendingContributions(v int32) {
-	x.NumPendingContributions = v
+	x.xxx_hidden_NumPendingContributions = v
 }
 
 func (x *ChunkedTranscriptStats) SetNumRequestApprovalContributions(v int32) {
-	x.NumRequestApprovalContributions = v
+	x.xxx_hidden_NumRequestApprovalContributions = v
 }
 
 func (x *ChunkedTranscriptStats) SetNumApprovedContributions(v int32) {
-	x.NumApprovedContributions = v
+	x.xxx_hidden_NumApprovedContributions = v
 }
 
 func (x *ChunkedTranscriptStats) SetNumRejectedContributions(v int32) {
-	x.NumRejectedContributions = v
+	x.xxx_hidden_NumRejectedContributions = v
 }
 
 func (x *ChunkedTranscriptStats) SetName(v string) {
-	x.Name = v
+	x.xxx_hidden_Name = v
 }
 
 type ChunkedTranscriptStats_builder struct {
@@ -2367,26 +2396,26 @@ func (b0 ChunkedTranscriptStats_builder) Build() *ChunkedTranscriptStats {
 	m0 := &ChunkedTranscriptStats{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Id = b.Id
-	x.Publication = b.Publication
-	x.Series = b.Series
-	x.Episode = b.Episode
-	x.ChunkContributions = b.ChunkContributions
-	x.NumChunks = b.NumChunks
-	x.NumContributions = b.NumContributions
-	x.NumPendingContributions = b.NumPendingContributions
-	x.NumRequestApprovalContributions = b.NumRequestApprovalContributions
-	x.NumApprovedContributions = b.NumApprovedContributions
-	x.NumRejectedContributions = b.NumRejectedContributions
-	x.Name = b.Name
+	x.xxx_hidden_Id = b.Id
+	x.xxx_hidden_Publication = b.Publication
+	x.xxx_hidden_Series = b.Series
+	x.xxx_hidden_Episode = b.Episode
+	x.xxx_hidden_ChunkContributions = b.ChunkContributions
+	x.xxx_hidden_NumChunks = b.NumChunks
+	x.xxx_hidden_NumContributions = b.NumContributions
+	x.xxx_hidden_NumPendingContributions = b.NumPendingContributions
+	x.xxx_hidden_NumRequestApprovalContributions = b.NumRequestApprovalContributions
+	x.xxx_hidden_NumApprovedContributions = b.NumApprovedContributions
+	x.xxx_hidden_NumRejectedContributions = b.NumRejectedContributions
+	x.xxx_hidden_Name = b.Name
 	return m0
 }
 
 type ChunkedTranscriptList struct {
-	state         protoimpl.MessageState    `protogen:"hybrid.v1"`
-	Chunked       []*ChunkedTranscriptStats `protobuf:"bytes,1,rep,name=chunked,proto3" json:"chunked,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state              protoimpl.MessageState     `protogen:"opaque.v1"`
+	xxx_hidden_Chunked *[]*ChunkedTranscriptStats `protobuf:"bytes,1,rep,name=chunked,proto3"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *ChunkedTranscriptList) Reset() {
@@ -2416,13 +2445,15 @@ func (x *ChunkedTranscriptList) ProtoReflect() protoreflect.Message {
 
 func (x *ChunkedTranscriptList) GetChunked() []*ChunkedTranscriptStats {
 	if x != nil {
-		return x.Chunked
+		if x.xxx_hidden_Chunked != nil {
+			return *x.xxx_hidden_Chunked
+		}
 	}
 	return nil
 }
 
 func (x *ChunkedTranscriptList) SetChunked(v []*ChunkedTranscriptStats) {
-	x.Chunked = v
+	x.xxx_hidden_Chunked = &v
 }
 
 type ChunkedTranscriptList_builder struct {
@@ -2435,17 +2466,17 @@ func (b0 ChunkedTranscriptList_builder) Build() *ChunkedTranscriptList {
 	m0 := &ChunkedTranscriptList{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Chunked = b.Chunked
+	x.xxx_hidden_Chunked = &b.Chunked
 	return m0
 }
 
 type ChunkStats struct {
-	state                protoimpl.MessageState `protogen:"hybrid.v1"`
-	NumPending           int32                  `protobuf:"varint,1,opt,name=num_pending,json=numPending,proto3" json:"num_pending,omitempty"`
-	NumSubmitted         int32                  `protobuf:"varint,2,opt,name=num_submitted,json=numSubmitted,proto3" json:"num_submitted,omitempty"`
-	SuggestedNextChunkId string                 `protobuf:"bytes,3,opt,name=suggested_next_chunk_id,json=suggestedNextChunkId,proto3" json:"suggested_next_chunk_id,omitempty"`
-	unknownFields        protoimpl.UnknownFields
-	sizeCache            protoimpl.SizeCache
+	state                           protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_NumPending           int32                  `protobuf:"varint,1,opt,name=num_pending,json=numPending,proto3"`
+	xxx_hidden_NumSubmitted         int32                  `protobuf:"varint,2,opt,name=num_submitted,json=numSubmitted,proto3"`
+	xxx_hidden_SuggestedNextChunkId string                 `protobuf:"bytes,3,opt,name=suggested_next_chunk_id,json=suggestedNextChunkId,proto3"`
+	unknownFields                   protoimpl.UnknownFields
+	sizeCache                       protoimpl.SizeCache
 }
 
 func (x *ChunkStats) Reset() {
@@ -2475,35 +2506,35 @@ func (x *ChunkStats) ProtoReflect() protoreflect.Message {
 
 func (x *ChunkStats) GetNumPending() int32 {
 	if x != nil {
-		return x.NumPending
+		return x.xxx_hidden_NumPending
 	}
 	return 0
 }
 
 func (x *ChunkStats) GetNumSubmitted() int32 {
 	if x != nil {
-		return x.NumSubmitted
+		return x.xxx_hidden_NumSubmitted
 	}
 	return 0
 }
 
 func (x *ChunkStats) GetSuggestedNextChunkId() string {
 	if x != nil {
-		return x.SuggestedNextChunkId
+		return x.xxx_hidden_SuggestedNextChunkId
 	}
 	return ""
 }
 
 func (x *ChunkStats) SetNumPending(v int32) {
-	x.NumPending = v
+	x.xxx_hidden_NumPending = v
 }
 
 func (x *ChunkStats) SetNumSubmitted(v int32) {
-	x.NumSubmitted = v
+	x.xxx_hidden_NumSubmitted = v
 }
 
 func (x *ChunkStats) SetSuggestedNextChunkId(v string) {
-	x.SuggestedNextChunkId = v
+	x.xxx_hidden_SuggestedNextChunkId = v
 }
 
 type ChunkStats_builder struct {
@@ -2518,15 +2549,15 @@ func (b0 ChunkStats_builder) Build() *ChunkStats {
 	m0 := &ChunkStats{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.NumPending = b.NumPending
-	x.NumSubmitted = b.NumSubmitted
-	x.SuggestedNextChunkId = b.SuggestedNextChunkId
+	x.xxx_hidden_NumPending = b.NumPending
+	x.xxx_hidden_NumSubmitted = b.NumSubmitted
+	x.xxx_hidden_SuggestedNextChunkId = b.SuggestedNextChunkId
 	return m0
 }
 
 type GetTranscriptChunkRequest struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	state         protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id string                 `protobuf:"bytes,1,opt,name=id,proto3"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -2558,13 +2589,13 @@ func (x *GetTranscriptChunkRequest) ProtoReflect() protoreflect.Message {
 
 func (x *GetTranscriptChunkRequest) GetId() string {
 	if x != nil {
-		return x.Id
+		return x.xxx_hidden_Id
 	}
 	return ""
 }
 
 func (x *GetTranscriptChunkRequest) SetId(v string) {
-	x.Id = v
+	x.xxx_hidden_Id = v
 }
 
 type GetTranscriptChunkRequest_builder struct {
@@ -2577,23 +2608,22 @@ func (b0 GetTranscriptChunkRequest_builder) Build() *GetTranscriptChunkRequest {
 	m0 := &GetTranscriptChunkRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Id = b.Id
+	x.xxx_hidden_Id = b.Id
 	return m0
 }
 
 type Chunk struct {
-	state               protoimpl.MessageState `protogen:"hybrid.v1"`
-	Id                  string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	ChunkedTranscriptId string                 `protobuf:"bytes,2,opt,name=chunked_transcript_id,json=chunkedTranscriptId,proto3" json:"chunked_transcript_id,omitempty"`
-	Raw                 string                 `protobuf:"bytes,3,opt,name=raw,proto3" json:"raw,omitempty"`
-	// Deprecated: Marked as deprecated in transcript.proto.
-	AudioClipUri     string `protobuf:"bytes,4,opt,name=audio_clip_uri,json=audioClipUri,proto3" json:"audio_clip_uri,omitempty"`
-	NumContributions int32  `protobuf:"varint,5,opt,name=num_contributions,json=numContributions,proto3" json:"num_contributions,omitempty"`
-	EpisodeId        string `protobuf:"bytes,6,opt,name=episode_id,json=episodeId,proto3" json:"episode_id,omitempty"`
-	StartTimeMs      int32  `protobuf:"varint,7,opt,name=start_time_ms,json=startTimeMs,proto3" json:"start_time_ms,omitempty"`
-	EndTimeMs        int32  `protobuf:"varint,8,opt,name=end_time_ms,json=endTimeMs,proto3" json:"end_time_ms,omitempty"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
+	state                          protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id                  string                 `protobuf:"bytes,1,opt,name=id,proto3"`
+	xxx_hidden_ChunkedTranscriptId string                 `protobuf:"bytes,2,opt,name=chunked_transcript_id,json=chunkedTranscriptId,proto3"`
+	xxx_hidden_Raw                 string                 `protobuf:"bytes,3,opt,name=raw,proto3"`
+	xxx_hidden_AudioClipUri        string                 `protobuf:"bytes,4,opt,name=audio_clip_uri,json=audioClipUri,proto3"`
+	xxx_hidden_NumContributions    int32                  `protobuf:"varint,5,opt,name=num_contributions,json=numContributions,proto3"`
+	xxx_hidden_EpisodeId           string                 `protobuf:"bytes,6,opt,name=episode_id,json=episodeId,proto3"`
+	xxx_hidden_StartTimeMs         int32                  `protobuf:"varint,7,opt,name=start_time_ms,json=startTimeMs,proto3"`
+	xxx_hidden_EndTimeMs           int32                  `protobuf:"varint,8,opt,name=end_time_ms,json=endTimeMs,proto3"`
+	unknownFields                  protoimpl.UnknownFields
+	sizeCache                      protoimpl.SizeCache
 }
 
 func (x *Chunk) Reset() {
@@ -2623,21 +2653,21 @@ func (x *Chunk) ProtoReflect() protoreflect.Message {
 
 func (x *Chunk) GetId() string {
 	if x != nil {
-		return x.Id
+		return x.xxx_hidden_Id
 	}
 	return ""
 }
 
 func (x *Chunk) GetChunkedTranscriptId() string {
 	if x != nil {
-		return x.ChunkedTranscriptId
+		return x.xxx_hidden_ChunkedTranscriptId
 	}
 	return ""
 }
 
 func (x *Chunk) GetRaw() string {
 	if x != nil {
-		return x.Raw
+		return x.xxx_hidden_Raw
 	}
 	return ""
 }
@@ -2645,70 +2675,70 @@ func (x *Chunk) GetRaw() string {
 // Deprecated: Marked as deprecated in transcript.proto.
 func (x *Chunk) GetAudioClipUri() string {
 	if x != nil {
-		return x.AudioClipUri
+		return x.xxx_hidden_AudioClipUri
 	}
 	return ""
 }
 
 func (x *Chunk) GetNumContributions() int32 {
 	if x != nil {
-		return x.NumContributions
+		return x.xxx_hidden_NumContributions
 	}
 	return 0
 }
 
 func (x *Chunk) GetEpisodeId() string {
 	if x != nil {
-		return x.EpisodeId
+		return x.xxx_hidden_EpisodeId
 	}
 	return ""
 }
 
 func (x *Chunk) GetStartTimeMs() int32 {
 	if x != nil {
-		return x.StartTimeMs
+		return x.xxx_hidden_StartTimeMs
 	}
 	return 0
 }
 
 func (x *Chunk) GetEndTimeMs() int32 {
 	if x != nil {
-		return x.EndTimeMs
+		return x.xxx_hidden_EndTimeMs
 	}
 	return 0
 }
 
 func (x *Chunk) SetId(v string) {
-	x.Id = v
+	x.xxx_hidden_Id = v
 }
 
 func (x *Chunk) SetChunkedTranscriptId(v string) {
-	x.ChunkedTranscriptId = v
+	x.xxx_hidden_ChunkedTranscriptId = v
 }
 
 func (x *Chunk) SetRaw(v string) {
-	x.Raw = v
+	x.xxx_hidden_Raw = v
 }
 
 // Deprecated: Marked as deprecated in transcript.proto.
 func (x *Chunk) SetAudioClipUri(v string) {
-	x.AudioClipUri = v
+	x.xxx_hidden_AudioClipUri = v
 }
 
 func (x *Chunk) SetNumContributions(v int32) {
-	x.NumContributions = v
+	x.xxx_hidden_NumContributions = v
 }
 
 func (x *Chunk) SetEpisodeId(v string) {
-	x.EpisodeId = v
+	x.xxx_hidden_EpisodeId = v
 }
 
 func (x *Chunk) SetStartTimeMs(v int32) {
-	x.StartTimeMs = v
+	x.xxx_hidden_StartTimeMs = v
 }
 
 func (x *Chunk) SetEndTimeMs(v int32) {
-	x.EndTimeMs = v
+	x.xxx_hidden_EndTimeMs = v
 }
 
 type Chunk_builder struct {
@@ -2729,27 +2759,27 @@ func (b0 Chunk_builder) Build() *Chunk {
 	m0 := &Chunk{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Id = b.Id
-	x.ChunkedTranscriptId = b.ChunkedTranscriptId
-	x.Raw = b.Raw
-	x.AudioClipUri = b.AudioClipUri
-	x.NumContributions = b.NumContributions
-	x.EpisodeId = b.EpisodeId
-	x.StartTimeMs = b.StartTimeMs
-	x.EndTimeMs = b.EndTimeMs
+	x.xxx_hidden_Id = b.Id
+	x.xxx_hidden_ChunkedTranscriptId = b.ChunkedTranscriptId
+	x.xxx_hidden_Raw = b.Raw
+	x.xxx_hidden_AudioClipUri = b.AudioClipUri
+	x.xxx_hidden_NumContributions = b.NumContributions
+	x.xxx_hidden_EpisodeId = b.EpisodeId
+	x.xxx_hidden_StartTimeMs = b.StartTimeMs
+	x.xxx_hidden_EndTimeMs = b.EndTimeMs
 	return m0
 }
 
 type ListTranscriptChunksRequest struct {
-	state               protoimpl.MessageState `protogen:"hybrid.v1"`
-	ChunkedTranscriptId string                 `protobuf:"bytes,1,opt,name=chunked_transcript_id,json=chunkedTranscriptId,proto3" json:"chunked_transcript_id,omitempty"`
-	Filter              string                 `protobuf:"bytes,2,opt,name=filter,proto3" json:"filter,omitempty"`
-	SortField           string                 `protobuf:"bytes,3,opt,name=sort_field,json=sortField,proto3" json:"sort_field,omitempty"`
-	SortDirection       string                 `protobuf:"bytes,4,opt,name=sort_direction,json=sortDirection,proto3" json:"sort_direction,omitempty"`
-	Page                int32                  `protobuf:"varint,5,opt,name=page,proto3" json:"page,omitempty"`
-	PageSize            int32                  `protobuf:"varint,6,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
-	unknownFields       protoimpl.UnknownFields
-	sizeCache           protoimpl.SizeCache
+	state                          protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_ChunkedTranscriptId string                 `protobuf:"bytes,1,opt,name=chunked_transcript_id,json=chunkedTranscriptId,proto3"`
+	xxx_hidden_Filter              string                 `protobuf:"bytes,2,opt,name=filter,proto3"`
+	xxx_hidden_SortField           string                 `protobuf:"bytes,3,opt,name=sort_field,json=sortField,proto3"`
+	xxx_hidden_SortDirection       string                 `protobuf:"bytes,4,opt,name=sort_direction,json=sortDirection,proto3"`
+	xxx_hidden_Page                int32                  `protobuf:"varint,5,opt,name=page,proto3"`
+	xxx_hidden_PageSize            int32                  `protobuf:"varint,6,opt,name=page_size,json=pageSize,proto3"`
+	unknownFields                  protoimpl.UnknownFields
+	sizeCache                      protoimpl.SizeCache
 }
 
 func (x *ListTranscriptChunksRequest) Reset() {
@@ -2779,68 +2809,68 @@ func (x *ListTranscriptChunksRequest) ProtoReflect() protoreflect.Message {
 
 func (x *ListTranscriptChunksRequest) GetChunkedTranscriptId() string {
 	if x != nil {
-		return x.ChunkedTranscriptId
+		return x.xxx_hidden_ChunkedTranscriptId
 	}
 	return ""
 }
 
 func (x *ListTranscriptChunksRequest) GetFilter() string {
 	if x != nil {
-		return x.Filter
+		return x.xxx_hidden_Filter
 	}
 	return ""
 }
 
 func (x *ListTranscriptChunksRequest) GetSortField() string {
 	if x != nil {
-		return x.SortField
+		return x.xxx_hidden_SortField
 	}
 	return ""
 }
 
 func (x *ListTranscriptChunksRequest) GetSortDirection() string {
 	if x != nil {
-		return x.SortDirection
+		return x.xxx_hidden_SortDirection
 	}
 	return ""
 }
 
 func (x *ListTranscriptChunksRequest) GetPage() int32 {
 	if x != nil {
-		return x.Page
+		return x.xxx_hidden_Page
 	}
 	return 0
 }
 
 func (x *ListTranscriptChunksRequest) GetPageSize() int32 {
 	if x != nil {
-		return x.PageSize
+		return x.xxx_hidden_PageSize
 	}
 	return 0
 }
 
 func (x *ListTranscriptChunksRequest) SetChunkedTranscriptId(v string) {
-	x.ChunkedTranscriptId = v
+	x.xxx_hidden_ChunkedTranscriptId = v
 }
 
 func (x *ListTranscriptChunksRequest) SetFilter(v string) {
-	x.Filter = v
+	x.xxx_hidden_Filter = v
 }
 
 func (x *ListTranscriptChunksRequest) SetSortField(v string) {
-	x.SortField = v
+	x.xxx_hidden_SortField = v
 }
 
 func (x *ListTranscriptChunksRequest) SetSortDirection(v string) {
-	x.SortDirection = v
+	x.xxx_hidden_SortDirection = v
 }
 
 func (x *ListTranscriptChunksRequest) SetPage(v int32) {
-	x.Page = v
+	x.xxx_hidden_Page = v
 }
 
 func (x *ListTranscriptChunksRequest) SetPageSize(v int32) {
-	x.PageSize = v
+	x.xxx_hidden_PageSize = v
 }
 
 type ListTranscriptChunksRequest_builder struct {
@@ -2858,20 +2888,20 @@ func (b0 ListTranscriptChunksRequest_builder) Build() *ListTranscriptChunksReque
 	m0 := &ListTranscriptChunksRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.ChunkedTranscriptId = b.ChunkedTranscriptId
-	x.Filter = b.Filter
-	x.SortField = b.SortField
-	x.SortDirection = b.SortDirection
-	x.Page = b.Page
-	x.PageSize = b.PageSize
+	x.xxx_hidden_ChunkedTranscriptId = b.ChunkedTranscriptId
+	x.xxx_hidden_Filter = b.Filter
+	x.xxx_hidden_SortField = b.SortField
+	x.xxx_hidden_SortDirection = b.SortDirection
+	x.xxx_hidden_Page = b.Page
+	x.xxx_hidden_PageSize = b.PageSize
 	return m0
 }
 
 type TranscriptChunkList struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Chunks        []*Chunk               `protobuf:"bytes,1,rep,name=chunks,proto3" json:"chunks,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state             protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Chunks *[]*Chunk              `protobuf:"bytes,1,rep,name=chunks,proto3"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *TranscriptChunkList) Reset() {
@@ -2901,13 +2931,15 @@ func (x *TranscriptChunkList) ProtoReflect() protoreflect.Message {
 
 func (x *TranscriptChunkList) GetChunks() []*Chunk {
 	if x != nil {
-		return x.Chunks
+		if x.xxx_hidden_Chunks != nil {
+			return *x.xxx_hidden_Chunks
+		}
 	}
 	return nil
 }
 
 func (x *TranscriptChunkList) SetChunks(v []*Chunk) {
-	x.Chunks = v
+	x.xxx_hidden_Chunks = &v
 }
 
 type TranscriptChunkList_builder struct {
@@ -2920,19 +2952,19 @@ func (b0 TranscriptChunkList_builder) Build() *TranscriptChunkList {
 	m0 := &TranscriptChunkList{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Chunks = b.Chunks
+	x.xxx_hidden_Chunks = &b.Chunks
 	return m0
 }
 
 type ListChunkContributionsRequest struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Filter        string                 `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
-	SortField     string                 `protobuf:"bytes,2,opt,name=sort_field,json=sortField,proto3" json:"sort_field,omitempty"`
-	SortDirection string                 `protobuf:"bytes,3,opt,name=sort_direction,json=sortDirection,proto3" json:"sort_direction,omitempty"`
-	Page          int32                  `protobuf:"varint,4,opt,name=page,proto3" json:"page,omitempty"`
-	PageSize      int32                  `protobuf:"varint,5,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                    protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Filter        string                 `protobuf:"bytes,1,opt,name=filter,proto3"`
+	xxx_hidden_SortField     string                 `protobuf:"bytes,2,opt,name=sort_field,json=sortField,proto3"`
+	xxx_hidden_SortDirection string                 `protobuf:"bytes,3,opt,name=sort_direction,json=sortDirection,proto3"`
+	xxx_hidden_Page          int32                  `protobuf:"varint,4,opt,name=page,proto3"`
+	xxx_hidden_PageSize      int32                  `protobuf:"varint,5,opt,name=page_size,json=pageSize,proto3"`
+	unknownFields            protoimpl.UnknownFields
+	sizeCache                protoimpl.SizeCache
 }
 
 func (x *ListChunkContributionsRequest) Reset() {
@@ -2962,57 +2994,57 @@ func (x *ListChunkContributionsRequest) ProtoReflect() protoreflect.Message {
 
 func (x *ListChunkContributionsRequest) GetFilter() string {
 	if x != nil {
-		return x.Filter
+		return x.xxx_hidden_Filter
 	}
 	return ""
 }
 
 func (x *ListChunkContributionsRequest) GetSortField() string {
 	if x != nil {
-		return x.SortField
+		return x.xxx_hidden_SortField
 	}
 	return ""
 }
 
 func (x *ListChunkContributionsRequest) GetSortDirection() string {
 	if x != nil {
-		return x.SortDirection
+		return x.xxx_hidden_SortDirection
 	}
 	return ""
 }
 
 func (x *ListChunkContributionsRequest) GetPage() int32 {
 	if x != nil {
-		return x.Page
+		return x.xxx_hidden_Page
 	}
 	return 0
 }
 
 func (x *ListChunkContributionsRequest) GetPageSize() int32 {
 	if x != nil {
-		return x.PageSize
+		return x.xxx_hidden_PageSize
 	}
 	return 0
 }
 
 func (x *ListChunkContributionsRequest) SetFilter(v string) {
-	x.Filter = v
+	x.xxx_hidden_Filter = v
 }
 
 func (x *ListChunkContributionsRequest) SetSortField(v string) {
-	x.SortField = v
+	x.xxx_hidden_SortField = v
 }
 
 func (x *ListChunkContributionsRequest) SetSortDirection(v string) {
-	x.SortDirection = v
+	x.xxx_hidden_SortDirection = v
 }
 
 func (x *ListChunkContributionsRequest) SetPage(v int32) {
-	x.Page = v
+	x.xxx_hidden_Page = v
 }
 
 func (x *ListChunkContributionsRequest) SetPageSize(v int32) {
-	x.PageSize = v
+	x.xxx_hidden_PageSize = v
 }
 
 type ListChunkContributionsRequest_builder struct {
@@ -3029,19 +3061,19 @@ func (b0 ListChunkContributionsRequest_builder) Build() *ListChunkContributionsR
 	m0 := &ListChunkContributionsRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Filter = b.Filter
-	x.SortField = b.SortField
-	x.SortDirection = b.SortDirection
-	x.Page = b.Page
-	x.PageSize = b.PageSize
+	x.xxx_hidden_Filter = b.Filter
+	x.xxx_hidden_SortField = b.SortField
+	x.xxx_hidden_SortDirection = b.SortDirection
+	x.xxx_hidden_Page = b.Page
+	x.xxx_hidden_PageSize = b.PageSize
 	return m0
 }
 
 type ChunkContributionList struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Contributions []*ChunkContribution   `protobuf:"bytes,1,rep,name=contributions,proto3" json:"contributions,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                    protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Contributions *[]*ChunkContribution  `protobuf:"bytes,1,rep,name=contributions,proto3"`
+	unknownFields            protoimpl.UnknownFields
+	sizeCache                protoimpl.SizeCache
 }
 
 func (x *ChunkContributionList) Reset() {
@@ -3071,13 +3103,15 @@ func (x *ChunkContributionList) ProtoReflect() protoreflect.Message {
 
 func (x *ChunkContributionList) GetContributions() []*ChunkContribution {
 	if x != nil {
-		return x.Contributions
+		if x.xxx_hidden_Contributions != nil {
+			return *x.xxx_hidden_Contributions
+		}
 	}
 	return nil
 }
 
 func (x *ChunkContributionList) SetContributions(v []*ChunkContribution) {
-	x.Contributions = v
+	x.xxx_hidden_Contributions = &v
 }
 
 type ChunkContributionList_builder struct {
@@ -3090,21 +3124,21 @@ func (b0 ChunkContributionList_builder) Build() *ChunkContributionList {
 	m0 := &ChunkContributionList{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Contributions = b.Contributions
+	x.xxx_hidden_Contributions = &b.Contributions
 	return m0
 }
 
 type ChunkContribution struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	ChunkId       string                 `protobuf:"bytes,2,opt,name=chunk_id,json=chunkId,proto3" json:"chunk_id,omitempty"`
-	Transcript    string                 `protobuf:"bytes,3,opt,name=transcript,proto3" json:"transcript,omitempty"`
-	State         ContributionState      `protobuf:"varint,5,opt,name=state,proto3,enum=rsk.ContributionState" json:"state,omitempty"`
-	Author        *Author                `protobuf:"bytes,6,opt,name=author,proto3" json:"author,omitempty"`
-	CreatedAt     string                 `protobuf:"bytes,7,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	StateComment  string                 `protobuf:"bytes,8,opt,name=state_comment,json=stateComment,proto3" json:"state_comment,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                   protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id           string                 `protobuf:"bytes,1,opt,name=id,proto3"`
+	xxx_hidden_ChunkId      string                 `protobuf:"bytes,2,opt,name=chunk_id,json=chunkId,proto3"`
+	xxx_hidden_Transcript   string                 `protobuf:"bytes,3,opt,name=transcript,proto3"`
+	xxx_hidden_State        ContributionState      `protobuf:"varint,5,opt,name=state,proto3,enum=rsk.ContributionState"`
+	xxx_hidden_Author       *Author                `protobuf:"bytes,6,opt,name=author,proto3"`
+	xxx_hidden_CreatedAt    string                 `protobuf:"bytes,7,opt,name=created_at,json=createdAt,proto3"`
+	xxx_hidden_StateComment string                 `protobuf:"bytes,8,opt,name=state_comment,json=stateComment,proto3"`
+	unknownFields           protoimpl.UnknownFields
+	sizeCache               protoimpl.SizeCache
 }
 
 func (x *ChunkContribution) Reset() {
@@ -3134,90 +3168,90 @@ func (x *ChunkContribution) ProtoReflect() protoreflect.Message {
 
 func (x *ChunkContribution) GetId() string {
 	if x != nil {
-		return x.Id
+		return x.xxx_hidden_Id
 	}
 	return ""
 }
 
 func (x *ChunkContribution) GetChunkId() string {
 	if x != nil {
-		return x.ChunkId
+		return x.xxx_hidden_ChunkId
 	}
 	return ""
 }
 
 func (x *ChunkContribution) GetTranscript() string {
 	if x != nil {
-		return x.Transcript
+		return x.xxx_hidden_Transcript
 	}
 	return ""
 }
 
 func (x *ChunkContribution) GetState() ContributionState {
 	if x != nil {
-		return x.State
+		return x.xxx_hidden_State
 	}
 	return ContributionState_STATE_UNDEFINED
 }
 
 func (x *ChunkContribution) GetAuthor() *Author {
 	if x != nil {
-		return x.Author
+		return x.xxx_hidden_Author
 	}
 	return nil
 }
 
 func (x *ChunkContribution) GetCreatedAt() string {
 	if x != nil {
-		return x.CreatedAt
+		return x.xxx_hidden_CreatedAt
 	}
 	return ""
 }
 
 func (x *ChunkContribution) GetStateComment() string {
 	if x != nil {
-		return x.StateComment
+		return x.xxx_hidden_StateComment
 	}
 	return ""
 }
 
 func (x *ChunkContribution) SetId(v string) {
-	x.Id = v
+	x.xxx_hidden_Id = v
 }
 
 func (x *ChunkContribution) SetChunkId(v string) {
-	x.ChunkId = v
+	x.xxx_hidden_ChunkId = v
 }
 
 func (x *ChunkContribution) SetTranscript(v string) {
-	x.Transcript = v
+	x.xxx_hidden_Transcript = v
 }
 
 func (x *ChunkContribution) SetState(v ContributionState) {
-	x.State = v
+	x.xxx_hidden_State = v
 }
 
 func (x *ChunkContribution) SetAuthor(v *Author) {
-	x.Author = v
+	x.xxx_hidden_Author = v
 }
 
 func (x *ChunkContribution) SetCreatedAt(v string) {
-	x.CreatedAt = v
+	x.xxx_hidden_CreatedAt = v
 }
 
 func (x *ChunkContribution) SetStateComment(v string) {
-	x.StateComment = v
+	x.xxx_hidden_StateComment = v
 }
 
 func (x *ChunkContribution) HasAuthor() bool {
 	if x == nil {
 		return false
 	}
-	return x.Author != nil
+	return x.xxx_hidden_Author != nil
 }
 
 func (x *ChunkContribution) ClearAuthor() {
-	x.Author = nil
+	x.xxx_hidden_Author = nil
 }
 
 type ChunkContribution_builder struct {
@@ -3236,25 +3270,25 @@ func (b0 ChunkContribution_builder) Build() *ChunkContribution {
 	m0 := &ChunkContribution{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Id = b.Id
-	x.ChunkId = b.ChunkId
-	x.Transcript = b.Transcript
-	x.State = b.State
-	x.Author = b.Author
-	x.CreatedAt = b.CreatedAt
-	x.StateComment = b.StateComment
+	x.xxx_hidden_Id = b.Id
+	x.xxx_hidden_ChunkId = b.ChunkId
+	x.xxx_hidden_Transcript = b.Transcript
+	x.xxx_hidden_State = b.State
+	x.xxx_hidden_Author = b.Author
+	x.xxx_hidden_CreatedAt = b.CreatedAt
+	x.xxx_hidden_StateComment = b.StateComment
 	return m0
 }
 
 type ShortChunkContribution struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	ChunkId       string                 `protobuf:"bytes,2,opt,name=chunk_id,json=chunkId,proto3" json:"chunk_id,omitempty"`
-	AuthorId      string                 `protobuf:"bytes,4,opt,name=author_id,json=authorId,proto3" json:"author_id,omitempty"`
-	State         ContributionState      `protobuf:"varint,5,opt,name=state,proto3,enum=rsk.ContributionState" json:"state,omitempty"`
-	StateComment  string                 `protobuf:"bytes,6,opt,name=state_comment,json=stateComment,proto3" json:"state_comment,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                   protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id           string                 `protobuf:"bytes,1,opt,name=id,proto3"`
+	xxx_hidden_ChunkId      string                 `protobuf:"bytes,2,opt,name=chunk_id,json=chunkId,proto3"`
+	xxx_hidden_AuthorId     string                 `protobuf:"bytes,4,opt,name=author_id,json=authorId,proto3"`
+	xxx_hidden_State        ContributionState      `protobuf:"varint,5,opt,name=state,proto3,enum=rsk.ContributionState"`
+	xxx_hidden_StateComment string                 `protobuf:"bytes,6,opt,name=state_comment,json=stateComment,proto3"`
+	unknownFields           protoimpl.UnknownFields
+	sizeCache               protoimpl.SizeCache
 }
 
 func (x *ShortChunkContribution) Reset() {
@@ -3284,57 +3318,57 @@ func (x *ShortChunkContribution) ProtoReflect() protoreflect.Message {
 
 func (x *ShortChunkContribution) GetId() string {
 	if x != nil {
-		return x.Id
+		return x.xxx_hidden_Id
 	}
 	return ""
 }
 
 func (x *ShortChunkContribution) GetChunkId() string {
 	if x != nil {
-		return x.ChunkId
+		return x.xxx_hidden_ChunkId
 	}
 	return ""
 }
 
 func (x *ShortChunkContribution) GetAuthorId() string {
 	if x != nil {
-		return x.AuthorId
+		return x.xxx_hidden_AuthorId
 	}
 	return ""
 }
 
 func (x *ShortChunkContribution) GetState() ContributionState {
 	if x != nil {
-		return x.State
+		return x.xxx_hidden_State
 	}
 	return ContributionState_STATE_UNDEFINED
 }
 
 func (x *ShortChunkContribution) GetStateComment() string {
 	if x != nil {
-		return x.StateComment
+		return x.xxx_hidden_StateComment
 	}
 	return ""
 }
 
 func (x *ShortChunkContribution) SetId(v string) {
-	x.Id = v
+	x.xxx_hidden_Id = v
 }
 
 func (x *ShortChunkContribution) SetChunkId(v string) {
-	x.ChunkId = v
+	x.xxx_hidden_ChunkId = v
 }
 
 func (x *ShortChunkContribution) SetAuthorId(v string) {
-	x.AuthorId = v
+	x.xxx_hidden_AuthorId = v
 }
 
 func (x *ShortChunkContribution) SetState(v ContributionState) {
-	x.State = v
+	x.xxx_hidden_State = v
 }
 
 func (x *ShortChunkContribution) SetStateComment(v string) {
-	x.StateComment = v
+	x.xxx_hidden_StateComment = v
 }
 
 type ShortChunkContribution_builder struct {
@@ -3351,19 +3385,19 @@ func (b0 ShortChunkContribution_builder) Build() *ShortChunkContribution {
 	m0 := &ShortChunkContribution{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Id = b.Id
-	x.ChunkId = b.ChunkId
-	x.AuthorId = b.AuthorId
-	x.State = b.State
-	x.StateComment = b.StateComment
+	x.xxx_hidden_Id = b.Id
+	x.xxx_hidden_ChunkId = b.ChunkId
+	x.xxx_hidden_AuthorId = b.AuthorId
+	x.xxx_hidden_State = b.State
+	x.xxx_hidden_StateComment = b.StateComment
 	return m0
 }
 
 type ChunkChunkContributionList struct {
-	state         protoimpl.MessageState    `protogen:"hybrid.v1"`
-	Contributions []*ShortChunkContribution `protobuf:"bytes,1,rep,name=contributions,proto3" json:"contributions,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                    protoimpl.MessageState     `protogen:"opaque.v1"`
+	xxx_hidden_Contributions *[]*ShortChunkContribution `protobuf:"bytes,1,rep,name=contributions,proto3"`
+	unknownFields            protoimpl.UnknownFields
+	sizeCache                protoimpl.SizeCache
 }
 
 func (x *ChunkChunkContributionList) Reset() {
@@ -3393,13 +3427,15 @@ func (x *ChunkChunkContributionList) ProtoReflect() protoreflect.Message {
 
 func (x *ChunkChunkContributionList) GetContributions() []*ShortChunkContribution {
 	if x != nil {
-		return x.Contributions
+		if x.xxx_hidden_Contributions != nil {
+			return *x.xxx_hidden_Contributions
+		}
 	}
 	return nil
 }
 
 func (x *ChunkChunkContributionList) SetContributions(v []*ShortChunkContribution) {
-	x.Contributions = v
+	x.xxx_hidden_Contributions = &v
 }
 
 type ChunkChunkContributionList_builder struct {
@@ -3412,15 +3448,15 @@ func (b0 ChunkChunkContributionList_builder) Build() *ChunkChunkContributionList
 	m0 := &ChunkChunkContributionList{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Contributions = b.Contributions
+	x.xxx_hidden_Contributions = &b.Contributions
 	return m0
 }
 
 type GetChunkContributionRequest struct {
-	state          protoimpl.MessageState `protogen:"hybrid.v1"`
-	ContributionId string                 `protobuf:"bytes,1,opt,name=contribution_id,json=contributionId,proto3" json:"contribution_id,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	state                     protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_ContributionId string                 `protobuf:"bytes,1,opt,name=contribution_id,json=contributionId,proto3"`
+	unknownFields             protoimpl.UnknownFields
+	sizeCache                 protoimpl.SizeCache
 }
 
 func (x *GetChunkContributionRequest) Reset() {
@@ -3450,13 +3486,13 @@ func (x *GetChunkContributionRequest) ProtoReflect() protoreflect.Message {
 
 func (x *GetChunkContributionRequest) GetContributionId() string {
 	if x != nil {
-		return x.ContributionId
+		return x.xxx_hidden_ContributionId
 	}
 	return ""
 }
 
 func (x *GetChunkContributionRequest) SetContributionId(v string) {
-	x.ContributionId = v
+	x.xxx_hidden_ContributionId = v
 }
 
 type GetChunkContributionRequest_builder struct {
@@ -3469,16 +3505,16 @@ func (b0 GetChunkContributionRequest_builder) Build() *GetChunkContributionReque
 	m0 := &GetChunkContributionRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.ContributionId = b.ContributionId
+	x.xxx_hidden_ContributionId = b.ContributionId
 	return m0
 }
 
 type CreateChunkContributionRequest struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	ChunkId       string                 `protobuf:"bytes,1,opt,name=chunk_id,json=chunkId,proto3" json:"chunk_id,omitempty"`
-	Transcript    string                 `protobuf:"bytes,2,opt,name=transcript,proto3" json:"transcript,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                 protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_ChunkId    string                 `protobuf:"bytes,1,opt,name=chunk_id,json=chunkId,proto3"`
+	xxx_hidden_Transcript string                 `protobuf:"bytes,2,opt,name=transcript,proto3"`
+	unknownFields         protoimpl.UnknownFields
+	sizeCache             protoimpl.SizeCache
 }
 
 func (x *CreateChunkContributionRequest) Reset() {
@@ -3508,24 +3544,24 @@ func (x *CreateChunkContributionRequest) ProtoReflect() protoreflect.Message {
 
 func (x *CreateChunkContributionRequest) GetChunkId() string {
 	if x != nil {
-		return x.ChunkId
+		return x.xxx_hidden_ChunkId
 	}
 	return ""
 }
 
 func (x *CreateChunkContributionRequest) GetTranscript() string {
 	if x != nil {
-		return x.Transcript
+		return x.xxx_hidden_Transcript
 	}
 	return ""
 }
 
 func (x *CreateChunkContributionRequest) SetChunkId(v string) {
-	x.ChunkId = v
+	x.xxx_hidden_ChunkId = v
 }
 
 func (x *CreateChunkContributionRequest) SetTranscript(v string) {
-	x.Transcript = v
+	x.xxx_hidden_Transcript = v
 }
 
 type CreateChunkContributionRequest_builder struct {
@@ -3539,18 +3575,18 @@ func (b0 CreateChunkContributionRequest_builder) Build() *CreateChunkContributio
 	m0 := &CreateChunkContributionRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.ChunkId = b.ChunkId
-	x.Transcript = b.Transcript
+	x.xxx_hidden_ChunkId = b.ChunkId
+	x.xxx_hidden_Transcript = b.Transcript
 	return m0
 }
 
 type UpdateChunkContributionRequest struct {
-	state          protoimpl.MessageState `protogen:"hybrid.v1"`
-	ContributionId string                 `protobuf:"bytes,1,opt,name=contribution_id,json=contributionId,proto3" json:"contribution_id,omitempty"`
-	Transcript     string                 `protobuf:"bytes,2,opt,name=transcript,proto3" json:"transcript,omitempty"`
-	State          ContributionState      `protobuf:"varint,3,opt,name=state,proto3,enum=rsk.ContributionState" json:"state,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	state                     protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_ContributionId string                 `protobuf:"bytes,1,opt,name=contribution_id,json=contributionId,proto3"`
+	xxx_hidden_Transcript     string                 `protobuf:"bytes,2,opt,name=transcript,proto3"`
+	xxx_hidden_State          ContributionState      `protobuf:"varint,3,opt,name=state,proto3,enum=rsk.ContributionState"`
+	unknownFields             protoimpl.UnknownFields
+	sizeCache                 protoimpl.SizeCache
 }
 
 func (x *UpdateChunkContributionRequest) Reset() {
@@ -3580,35 +3616,35 @@ func (x *UpdateChunkContributionRequest) ProtoReflect() protoreflect.Message {
 
 func (x *UpdateChunkContributionRequest) GetContributionId() string {
 	if x != nil {
-		return x.ContributionId
+		return x.xxx_hidden_ContributionId
 	}
 	return ""
 }
 
 func (x *UpdateChunkContributionRequest) GetTranscript() string {
 	if x != nil {
-		return x.Transcript
+		return x.xxx_hidden_Transcript
 	}
 	return ""
 }
 
 func (x *UpdateChunkContributionRequest) GetState() ContributionState {
 	if x != nil {
-		return x.State
+		return x.xxx_hidden_State
 	}
 	return ContributionState_STATE_UNDEFINED
 }
 
 func (x *UpdateChunkContributionRequest) SetContributionId(v string) {
-	x.ContributionId = v
+	x.xxx_hidden_ContributionId = v
 }
 
 func (x *UpdateChunkContributionRequest) SetTranscript(v string) {
-	x.Transcript = v
+	x.xxx_hidden_Transcript = v
 }
 
 func (x *UpdateChunkContributionRequest) SetState(v ContributionState) {
-	x.State = v
+	x.xxx_hidden_State = v
 }
 
 type UpdateChunkContributionRequest_builder struct {
@@ -3623,17 +3659,17 @@ func (b0 UpdateChunkContributionRequest_builder) Build() *UpdateChunkContributio
 	m0 := &UpdateChunkContributionRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.ContributionId = b.ContributionId
-	x.Transcript = b.Transcript
-	x.State = b.State
+	x.xxx_hidden_ContributionId = b.ContributionId
+	x.xxx_hidden_Transcript = b.Transcript
+	x.xxx_hidden_State = b.State
 	return m0
 }
 
 type DeleteChunkContributionRequest struct {
-	state          protoimpl.MessageState `protogen:"hybrid.v1"`
-	ContributionId string                 `protobuf:"bytes,1,opt,name=contribution_id,json=contributionId,proto3" json:"contribution_id,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	state                     protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_ContributionId string                 `protobuf:"bytes,1,opt,name=contribution_id,json=contributionId,proto3"`
+	unknownFields             protoimpl.UnknownFields
+	sizeCache                 protoimpl.SizeCache
 }
 
 func (x *DeleteChunkContributionRequest) Reset() {
@@ -3663,13 +3699,13 @@ func (x *DeleteChunkContributionRequest) ProtoReflect() protoreflect.Message {
 
 func (x *DeleteChunkContributionRequest) GetContributionId() string {
 	if x != nil {
-		return x.ContributionId
+		return x.xxx_hidden_ContributionId
 	}
 	return ""
 }
 
 func (x *DeleteChunkContributionRequest) SetContributionId(v string) {
-	x.ContributionId = v
+	x.xxx_hidden_ContributionId = v
 }
 
 type DeleteChunkContributionRequest_builder struct {
@@ -3682,17 +3718,17 @@ func (b0 DeleteChunkContributionRequest_builder) Build() *DeleteChunkContributio
 	m0 := &DeleteChunkContributionRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.ContributionId = b.ContributionId
+	x.xxx_hidden_ContributionId = b.ContributionId
 	return m0
 }
 
 type RequestChunkContributionStateRequest struct {
-	state          protoimpl.MessageState `protogen:"hybrid.v1"`
-	ContributionId string                 `protobuf:"bytes,1,opt,name=contribution_id,json=contributionId,proto3" json:"contribution_id,omitempty"`
-	RequestState   ContributionState      `protobuf:"varint,2,opt,name=request_state,json=requestState,proto3,enum=rsk.ContributionState" json:"request_state,omitempty"`
-	Comment        string                 `protobuf:"bytes,3,opt,name=comment,proto3" json:"comment,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	state                     protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_ContributionId string                 `protobuf:"bytes,1,opt,name=contribution_id,json=contributionId,proto3"`
+	xxx_hidden_RequestState   ContributionState      `protobuf:"varint,2,opt,name=request_state,json=requestState,proto3,enum=rsk.ContributionState"`
+	xxx_hidden_Comment        string                 `protobuf:"bytes,3,opt,name=comment,proto3"`
+	unknownFields             protoimpl.UnknownFields
+	sizeCache                 protoimpl.SizeCache
 }
 
 func (x *RequestChunkContributionStateRequest) Reset() {
@@ -3722,35 +3758,35 @@ func (x *RequestChunkContributionStateRequest) ProtoReflect() protoreflect.Messa
 
 func (x *RequestChunkContributionStateRequest) GetContributionId() string {
 	if x != nil {
-		return x.ContributionId
+		return x.xxx_hidden_ContributionId
 	}
 	return ""
 }
 
 func (x *RequestChunkContributionStateRequest) GetRequestState() ContributionState {
 	if x != nil {
-		return x.RequestState
+		return x.xxx_hidden_RequestState
 	}
 	return ContributionState_STATE_UNDEFINED
 }
 
 func (x *RequestChunkContributionStateRequest) GetComment() string {
 	if x != nil {
-		return x.Comment
+		return x.xxx_hidden_Comment
 	}
 	return ""
 }
 
 func (x *RequestChunkContributionStateRequest) SetContributionId(v string) {
-	x.ContributionId = v
+	x.xxx_hidden_ContributionId = v
 }
 
 func (x *RequestChunkContributionStateRequest) SetRequestState(v ContributionState) {
-	x.RequestState = v
+	x.xxx_hidden_RequestState = v
 }
 
 func (x *RequestChunkContributionStateRequest) SetComment(v string) {
-	x.Comment = v
+	x.xxx_hidden_Comment = v
 }
 
 type RequestChunkContributionStateRequest_builder struct {
@@ -3765,22 +3801,22 @@ func (b0 RequestChunkContributionStateRequest_builder) Build() *RequestChunkCont
 	m0 := &RequestChunkContributionStateRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.ContributionId = b.ContributionId
-	x.RequestState = b.RequestState
-	x.Comment = b.Comment
+	x.xxx_hidden_ContributionId = b.ContributionId
+	x.xxx_hidden_RequestState = b.RequestState
+	x.xxx_hidden_Comment = b.Comment
 	return m0
 }
 
 type CreateTranscriptChangeRequest struct {
-	state             protoimpl.MessageState `protogen:"hybrid.v1"`
-	Epid              string                 `protobuf:"bytes,1,opt,name=epid,proto3" json:"epid,omitempty"`
-	Transcript        string                 `protobuf:"bytes,2,opt,name=transcript,proto3" json:"transcript,omitempty"`
-	TranscriptVersion string                 `protobuf:"bytes,3,opt,name=transcript_version,json=transcriptVersion,proto3" json:"transcript_version,omitempty"`
-	Summary           string                 `protobuf:"bytes,4,opt,name=summary,proto3" json:"summary,omitempty"`
-	Name              string                 `protobuf:"bytes,5,opt,name=name,proto3" json:"name,omitempty"`
-	ReleaseDate       string                 `protobuf:"bytes,6,opt,name=release_date,json=releaseDate,proto3" json:"release_date,omitempty"`
-	unknownFields     protoimpl.UnknownFields
-	sizeCache         protoimpl.SizeCache
+	state                        protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Epid              string                 `protobuf:"bytes,1,opt,name=epid,proto3"`
+	xxx_hidden_Transcript        string                 `protobuf:"bytes,2,opt,name=transcript,proto3"`
+	xxx_hidden_TranscriptVersion string                 `protobuf:"bytes,3,opt,name=transcript_version,json=transcriptVersion,proto3"`
+	xxx_hidden_Summary           string                 `protobuf:"bytes,4,opt,name=summary,proto3"`
+	xxx_hidden_Name              string                 `protobuf:"bytes,5,opt,name=name,proto3"`
+	xxx_hidden_ReleaseDate       string                 `protobuf:"bytes,6,opt,name=release_date,json=releaseDate,proto3"`
+	unknownFields                protoimpl.UnknownFields
+	sizeCache                    protoimpl.SizeCache
 }
 
 func (x *CreateTranscriptChangeRequest) Reset() {
@@ -3810,68 +3846,68 @@ func (x *CreateTranscriptChangeRequest) ProtoReflect() protoreflect.Message {
 
 func (x *CreateTranscriptChangeRequest) GetEpid() string {
 	if x != nil {
-		return x.Epid
+		return x.xxx_hidden_Epid
 	}
 	return ""
 }
 
 func (x *CreateTranscriptChangeRequest) GetTranscript() string {
 	if x != nil {
-		return x.Transcript
+		return x.xxx_hidden_Transcript
 	}
 	return ""
 }
 
 func (x *CreateTranscriptChangeRequest) GetTranscriptVersion() string {
 	if x != nil {
-		return x.TranscriptVersion
+		return x.xxx_hidden_TranscriptVersion
 	}
 	return ""
 }
 
 func (x *CreateTranscriptChangeRequest) GetSummary() string {
 	if x != nil {
-		return x.Summary
+		return x.xxx_hidden_Summary
 	}
 	return ""
 }
 
 func (x *CreateTranscriptChangeRequest) GetName() string {
 	if x != nil {
-		return x.Name
+		return x.xxx_hidden_Name
 	}
 	return ""
 }
 
 func (x *CreateTranscriptChangeRequest) GetReleaseDate() string {
 	if x != nil {
-		return x.ReleaseDate
+		return x.xxx_hidden_ReleaseDate
 	}
 	return ""
 }
 
 func (x *CreateTranscriptChangeRequest) SetEpid(v string) {
-	x.Epid = v
+	x.xxx_hidden_Epid = v
 }
 
 func (x *CreateTranscriptChangeRequest) SetTranscript(v string) {
-	x.Transcript = v
+	x.xxx_hidden_Transcript = v
 }
 
 func (x *CreateTranscriptChangeRequest) SetTranscriptVersion(v string) {
-	x.TranscriptVersion = v
+	x.xxx_hidden_TranscriptVersion = v
 }
 
 func (x *CreateTranscriptChangeRequest) SetSummary(v string) {
-	x.Summary = v
+	x.xxx_hidden_Summary = v
 }
 
 func (x *CreateTranscriptChangeRequest) SetName(v string) {
-	x.Name = v
+	x.xxx_hidden_Name = v
 }
 
 func (x *CreateTranscriptChangeRequest) SetReleaseDate(v string) {
-	x.ReleaseDate = v
+	x.xxx_hidden_ReleaseDate = v
 }
 
 type CreateTranscriptChangeRequest_builder struct {
@@ -3889,24 +3925,24 @@ func (b0 CreateTranscriptChangeRequest_builder) Build() *CreateTranscriptChangeR
 	m0 := &CreateTranscriptChangeRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Epid = b.Epid
-	x.Transcript = b.Transcript
-	x.TranscriptVersion = b.TranscriptVersion
-	x.Summary = b.Summary
-	x.Name = b.Name
-	x.ReleaseDate = b.ReleaseDate
+	x.xxx_hidden_Epid = b.Epid
+	x.xxx_hidden_Transcript = b.Transcript
+	x.xxx_hidden_TranscriptVersion = b.TranscriptVersion
+	x.xxx_hidden_Summary = b.Summary
+	x.xxx_hidden_Name = b.Name
+	x.xxx_hidden_ReleaseDate = b.ReleaseDate
 	return m0
 }
 
 type ListTranscriptChangesRequest struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Filter        string                 `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
-	SortField     string                 `protobuf:"bytes,2,opt,name=sort_field,json=sortField,proto3" json:"sort_field,omitempty"`
-	SortDirection string                 `protobuf:"bytes,3,opt,name=sort_direction,json=sortDirection,proto3" json:"sort_direction,omitempty"`
-	Page          int32                  `protobuf:"varint,4,opt,name=page,proto3" json:"page,omitempty"`
-	PageSize      int32                  `protobuf:"varint,5,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                    protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Filter        string                 `protobuf:"bytes,1,opt,name=filter,proto3"`
+	xxx_hidden_SortField     string                 `protobuf:"bytes,2,opt,name=sort_field,json=sortField,proto3"`
+	xxx_hidden_SortDirection string                 `protobuf:"bytes,3,opt,name=sort_direction,json=sortDirection,proto3"`
+	xxx_hidden_Page          int32                  `protobuf:"varint,4,opt,name=page,proto3"`
+	xxx_hidden_PageSize      int32                  `protobuf:"varint,5,opt,name=page_size,json=pageSize,proto3"`
+	unknownFields            protoimpl.UnknownFields
+	sizeCache                protoimpl.SizeCache
 }
 
 func (x *ListTranscriptChangesRequest) Reset() {
@@ -3936,57 +3972,57 @@ func (x *ListTranscriptChangesRequest) ProtoReflect() protoreflect.Message {
 
 func (x *ListTranscriptChangesRequest) GetFilter() string {
 	if x != nil {
-		return x.Filter
+		return x.xxx_hidden_Filter
 	}
 	return ""
 }
 
 func (x *ListTranscriptChangesRequest) GetSortField() string {
 	if x != nil {
-		return x.SortField
+		return x.xxx_hidden_SortField
 	}
 	return ""
 }
 
 func (x *ListTranscriptChangesRequest) GetSortDirection() string {
 	if x != nil {
-		return x.SortDirection
+		return x.xxx_hidden_SortDirection
 	}
 	return ""
 }
 
 func (x *ListTranscriptChangesRequest) GetPage() int32 {
 	if x != nil {
-		return x.Page
+		return x.xxx_hidden_Page
 	}
 	return 0
 }
 
 func (x *ListTranscriptChangesRequest) GetPageSize() int32 {
 	if x != nil {
-		return x.PageSize
+		return x.xxx_hidden_PageSize
 	}
 	return 0
 }
 
 func (x *ListTranscriptChangesRequest) SetFilter(v string) {
-	x.Filter = v
+	x.xxx_hidden_Filter = v
 }
 
 func (x *ListTranscriptChangesRequest) SetSortField(v string) {
-	x.SortField = v
+	x.xxx_hidden_SortField = v
 }
 
 func (x *ListTranscriptChangesRequest) SetSortDirection(v string) {
-	x.SortDirection = v
+	x.xxx_hidden_SortDirection = v
 }
 
 func (x *ListTranscriptChangesRequest) SetPage(v int32) {
-	x.Page = v
+	x.xxx_hidden_Page = v
 }
 
 func (x *ListTranscriptChangesRequest) SetPageSize(v int32) {
-	x.PageSize = v
+	x.xxx_hidden_PageSize = v
 }
 
 type ListTranscriptChangesRequest_builder struct {
@@ -4003,25 +4039,25 @@ func (b0 ListTranscriptChangesRequest_builder) Build() *ListTranscriptChangesReq
 	m0 := &ListTranscriptChangesRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Filter = b.Filter
-	x.SortField = b.SortField
-	x.SortDirection = b.SortDirection
-	x.Page = b.Page
-	x.PageSize = b.PageSize
+	x.xxx_hidden_Filter = b.Filter
+	x.xxx_hidden_SortField = b.SortField
+	x.xxx_hidden_SortDirection = b.SortDirection
+	x.xxx_hidden_Page = b.Page
+	x.xxx_hidden_PageSize = b.PageSize
 	return m0
 }
 
 type UpdateTranscriptChangeRequest struct {
-	state           protoimpl.MessageState `protogen:"hybrid.v1"`
-	Id              string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Transcript      string                 `protobuf:"bytes,2,opt,name=transcript,proto3" json:"transcript,omitempty"`
-	State           ContributionState      `protobuf:"varint,3,opt,name=state,proto3,enum=rsk.ContributionState" json:"state,omitempty"`
-	PointsOnApprove float32                `protobuf:"fixed32,4,opt,name=points_on_approve,json=pointsOnApprove,proto3" json:"points_on_approve,omitempty"`
-	Summary         string                 `protobuf:"bytes,5,opt,name=summary,proto3" json:"summary,omitempty"`
-	Name            string                 `protobuf:"bytes,6,opt,name=name,proto3" json:"name,omitempty"`
-	ReleaseDate     string                 `protobuf:"bytes,7,opt,name=release_date,json=releaseDate,proto3" json:"release_date,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state                      protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id              string                 `protobuf:"bytes,1,opt,name=id,proto3"`
+	xxx_hidden_Transcript      string                 `protobuf:"bytes,2,opt,name=transcript,proto3"`
+	xxx_hidden_State           ContributionState      `protobuf:"varint,3,opt,name=state,proto3,enum=rsk.ContributionState"`
+	xxx_hidden_PointsOnApprove float32                `protobuf:"fixed32,4,opt,name=points_on_approve,json=pointsOnApprove,proto3"`
+	xxx_hidden_Summary         string                 `protobuf:"bytes,5,opt,name=summary,proto3"`
+	xxx_hidden_Name            string                 `protobuf:"bytes,6,opt,name=name,proto3"`
+	xxx_hidden_ReleaseDate     string                 `protobuf:"bytes,7,opt,name=release_date,json=releaseDate,proto3"`
+	unknownFields              protoimpl.UnknownFields
+	sizeCache                  protoimpl.SizeCache
 }
 
 func (x *UpdateTranscriptChangeRequest) Reset() {
@@ -4051,79 +4087,79 @@ func (x *UpdateTranscriptChangeRequest) ProtoReflect() protoreflect.Message {
 
 func (x *UpdateTranscriptChangeRequest) GetId() string {
 	if x != nil {
-		return x.Id
+		return x.xxx_hidden_Id
 	}
 	return ""
 }
 
 func (x *UpdateTranscriptChangeRequest) GetTranscript() string {
 	if x != nil {
-		return x.Transcript
+		return x.xxx_hidden_Transcript
 	}
 	return ""
 }
 
 func (x *UpdateTranscriptChangeRequest) GetState() ContributionState {
 	if x != nil {
-		return x.State
+		return x.xxx_hidden_State
 	}
 	return ContributionState_STATE_UNDEFINED
 }
 
 func (x *UpdateTranscriptChangeRequest) GetPointsOnApprove() float32 {
 	if x != nil {
-		return x.PointsOnApprove
+		return x.xxx_hidden_PointsOnApprove
 	}
 	return 0
 }
 
 func (x *UpdateTranscriptChangeRequest) GetSummary() string {
 	if x != nil {
-		return x.Summary
+		return x.xxx_hidden_Summary
 	}
 	return ""
 }
 
 func (x *UpdateTranscriptChangeRequest) GetName() string {
 	if x != nil {
-		return x.Name
+		return x.xxx_hidden_Name
 	}
 	return ""
 }
 
 func (x *UpdateTranscriptChangeRequest) GetReleaseDate() string {
 	if x != nil {
-		return x.ReleaseDate
+		return x.xxx_hidden_ReleaseDate
 	}
 	return ""
 }
 
 func (x *UpdateTranscriptChangeRequest) SetId(v string) {
-	x.Id = v
+	x.xxx_hidden_Id = v
 }
 
 func (x *UpdateTranscriptChangeRequest) SetTranscript(v string) {
-	x.Transcript = v
+	x.xxx_hidden_Transcript = v
 }
 
 func (x *UpdateTranscriptChangeRequest) SetState(v ContributionState) {
-	x.State = v
+	x.xxx_hidden_State = v
 }
 
 func (x *UpdateTranscriptChangeRequest) SetPointsOnApprove(v float32) {
-	x.PointsOnApprove = v
+	x.xxx_hidden_PointsOnApprove = v
 }
 
 func (x *UpdateTranscriptChangeRequest) SetSummary(v string) {
-	x.Summary = v
+	x.xxx_hidden_Summary = v
 }
 
 func (x *UpdateTranscriptChangeRequest) SetName(v string) {
-	x.Name = v
+	x.xxx_hidden_Name = v
 }
 
 func (x *UpdateTranscriptChangeRequest) SetReleaseDate(v string) {
-	x.ReleaseDate = v
+	x.xxx_hidden_ReleaseDate = v
 }
 
 type UpdateTranscriptChangeRequest_builder struct {
@@ -4142,19 +4178,19 @@ func (b0 UpdateTranscriptChangeRequest_builder) Build() *UpdateTranscriptChangeR
 	m0 := &UpdateTranscriptChangeRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Id = b.Id
-	x.Transcript = b.Transcript
-	x.State = b.State
-	x.PointsOnApprove = b.PointsOnApprove
-	x.Summary = b.Summary
-	x.Name = b.Name
-	x.ReleaseDate = b.ReleaseDate
+	x.xxx_hidden_Id = b.Id
+	x.xxx_hidden_Transcript = b.Transcript
+	x.xxx_hidden_State = b.State
+	x.xxx_hidden_PointsOnApprove = b.PointsOnApprove
+	x.xxx_hidden_Summary = b.Summary
+	x.xxx_hidden_Name = b.Name
+	x.xxx_hidden_ReleaseDate = b.ReleaseDate
 	return m0
 }
 
 type DeleteTranscriptChangeRequest struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	state         protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id string                 `protobuf:"bytes,1,opt,name=id,proto3"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4186,13 +4222,13 @@ func (x *DeleteTranscriptChangeRequest) ProtoReflect() protoreflect.Message {
 
 func (x *DeleteTranscriptChangeRequest) GetId() string {
 	if x != nil {
-		return x.Id
+		return x.xxx_hidden_Id
 	}
 	return ""
 }
 
 func (x *DeleteTranscriptChangeRequest) SetId(v string) {
-	x.Id = v
+	x.xxx_hidden_Id = v
 }
 
 type DeleteTranscriptChangeRequest_builder struct {
@@ -4205,15 +4241,15 @@ func (b0 DeleteTranscriptChangeRequest_builder) Build() *DeleteTranscriptChangeR
 	m0 := &DeleteTranscriptChangeRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Id = b.Id
+	x.xxx_hidden_Id = b.Id
 	return m0
 }
 
 type TranscriptChangeList struct {
-	state         protoimpl.MessageState   `protogen:"hybrid.v1"`
-	Changes       []*ShortTranscriptChange `protobuf:"bytes,1,rep,name=changes,proto3" json:"changes,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state              protoimpl.MessageState    `protogen:"opaque.v1"`
+	xxx_hidden_Changes *[]*ShortTranscriptChange `protobuf:"bytes,1,rep,name=changes,proto3"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *TranscriptChangeList) Reset() {
@@ -4243,13 +4279,15 @@ func (x *TranscriptChangeList) ProtoReflect() protoreflect.Message {
 
 func (x *TranscriptChangeList) GetChanges() []*ShortTranscriptChange {
 	if x != nil {
-		return x.Changes
+		if x.xxx_hidden_Changes != nil {
+			return *x.xxx_hidden_Changes
+		}
 	}
 	return nil
 }
 
 func (x *TranscriptChangeList) SetChanges(v []*ShortTranscriptChange) {
-	x.Changes = v
+	x.xxx_hidden_Changes = &v
 }
 
 type TranscriptChangeList_builder struct {
@@ -4262,26 +4300,26 @@ func (b0 TranscriptChangeList_builder) Build() *TranscriptChangeList {
 	m0 := &TranscriptChangeList{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Changes = b.Changes
+	x.xxx_hidden_Changes = &b.Changes
 	return m0
 }
 
 type TranscriptChange struct {
-	state             protoimpl.MessageState `protogen:"hybrid.v1"`
-	Id                string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	EpisodeId         string                 `protobuf:"bytes,2,opt,name=episode_id,json=episodeId,proto3" json:"episode_id,omitempty"`
-	Summary           string                 `protobuf:"bytes,3,opt,name=summary,proto3" json:"summary,omitempty"`
-	Transcript        string                 `protobuf:"bytes,4,opt,name=transcript,proto3" json:"transcript,omitempty"`
-	State             ContributionState      `protobuf:"varint,6,opt,name=state,proto3,enum=rsk.ContributionState" json:"state,omitempty"`
-	Author            *Author                `protobuf:"bytes,7,opt,name=author,proto3" json:"author,omitempty"`
-	CreatedAt         string                 `protobuf:"bytes,8,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	Merged            bool                   `protobuf:"varint,9,opt,name=merged,proto3" json:"merged,omitempty"`
-	PointsAwarded     float32                `protobuf:"fixed32,10,opt,name=points_awarded,json=pointsAwarded,proto3" json:"points_awarded,omitempty"`
-	TranscriptVersion string                 `protobuf:"bytes,11,opt,name=transcript_version,json=transcriptVersion,proto3" json:"transcript_version,omitempty"`
-	Name              string                 `protobuf:"bytes,12,opt,name=name,proto3" json:"name,omitempty"`
-	ReleaseDate       string                 `protobuf:"bytes,13,opt,name=release_date,json=releaseDate,proto3" json:"release_date,omitempty"`
-	unknownFields     protoimpl.UnknownFields
-	sizeCache         protoimpl.SizeCache
+	state                        protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id                string                 `protobuf:"bytes,1,opt,name=id,proto3"`
+	xxx_hidden_EpisodeId         string                 `protobuf:"bytes,2,opt,name=episode_id,json=episodeId,proto3"`
+	xxx_hidden_Summary           string                 `protobuf:"bytes,3,opt,name=summary,proto3"`
+	xxx_hidden_Transcript        string                 `protobuf:"bytes,4,opt,name=transcript,proto3"`
+	xxx_hidden_State             ContributionState      `protobuf:"varint,6,opt,name=state,proto3,enum=rsk.ContributionState"`
+	xxx_hidden_Author            *Author                `protobuf:"bytes,7,opt,name=author,proto3"`
+	xxx_hidden_CreatedAt         string                 `protobuf:"bytes,8,opt,name=created_at,json=createdAt,proto3"`
+	xxx_hidden_Merged            bool                   `protobuf:"varint,9,opt,name=merged,proto3"`
+	xxx_hidden_PointsAwarded     float32                `protobuf:"fixed32,10,opt,name=points_awarded,json=pointsAwarded,proto3"`
+	xxx_hidden_TranscriptVersion string                 `protobuf:"bytes,11,opt,name=transcript_version,json=transcriptVersion,proto3"`
+	xxx_hidden_Name              string                 `protobuf:"bytes,12,opt,name=name,proto3"`
+	xxx_hidden_ReleaseDate       string                 `protobuf:"bytes,13,opt,name=release_date,json=releaseDate,proto3"`
+	unknownFields                protoimpl.UnknownFields
+	sizeCache                    protoimpl.SizeCache
 }
 
 func (x *TranscriptChange) Reset() {
@@ -4311,145 +4349,145 @@ func (x *TranscriptChange) ProtoReflect() protoreflect.Message {
 
 func (x *TranscriptChange) GetId() string {
 	if x != nil {
-		return x.Id
+		return x.xxx_hidden_Id
 	}
 	return ""
 }
 
 func (x *TranscriptChange) GetEpisodeId() string {
 	if x != nil {
-		return x.EpisodeId
+		return x.xxx_hidden_EpisodeId
 	}
 	return ""
 }
 
 func (x *TranscriptChange) GetSummary() string {
 	if x != nil {
-		return x.Summary
+		return x.xxx_hidden_Summary
 	}
 	return ""
 }
 
 func (x *TranscriptChange) GetTranscript() string {
 	if x != nil {
-		return x.Transcript
+		return x.xxx_hidden_Transcript
 	}
 	return ""
 }
 
 func (x *TranscriptChange) GetState() ContributionState {
 	if x != nil {
-		return x.State
+		return x.xxx_hidden_State
 	}
 	return ContributionState_STATE_UNDEFINED
 }
 
 func (x *TranscriptChange) GetAuthor() *Author {
 	if x != nil {
-		return x.Author
+		return x.xxx_hidden_Author
 	}
 	return nil
 }
 
 func (x *TranscriptChange) GetCreatedAt() string {
 	if x != nil {
-		return x.CreatedAt
+		return x.xxx_hidden_CreatedAt
 	}
 	return ""
 }
 
 func (x *TranscriptChange) GetMerged() bool {
 	if x != nil {
-		return x.Merged
+		return x.xxx_hidden_Merged
 	}
 	return false
 }
 
 func (x *TranscriptChange) GetPointsAwarded() float32 {
 	if x != nil {
-		return x.PointsAwarded
+		return x.xxx_hidden_PointsAwarded
 	}
 	return 0
 }
 
 func (x *TranscriptChange) GetTranscriptVersion() string {
 	if x != nil {
-		return x.TranscriptVersion
+		return x.xxx_hidden_TranscriptVersion
 	}
 	return ""
 }
 
 func (x *TranscriptChange) GetName() string {
 	if x != nil {
-		return x.Name
+		return x.xxx_hidden_Name
 	}
 	return ""
 }
 
 func (x *TranscriptChange) GetReleaseDate() string {
 	if x != nil {
-		return x.ReleaseDate
+		return x.xxx_hidden_ReleaseDate
 	}
 	return ""
 }
 
 func (x *TranscriptChange) SetId(v string) {
-	x.Id = v
+	x.xxx_hidden_Id = v
 }
 
 func (x *TranscriptChange) SetEpisodeId(v string) {
-	x.EpisodeId = v
+	x.xxx_hidden_EpisodeId = v
 }
 
 func (x *TranscriptChange) SetSummary(v string) {
-	x.Summary = v
+	x.xxx_hidden_Summary = v
 }
 
 func (x *TranscriptChange) SetTranscript(v string) {
-	x.Transcript = v
+	x.xxx_hidden_Transcript = v
 }
 
 func (x *TranscriptChange) SetState(v ContributionState) {
-	x.State = v
+	x.xxx_hidden_State = v
 }
 
 func (x *TranscriptChange) SetAuthor(v *Author) {
-	x.Author = v
+	x.xxx_hidden_Author = v
 }
 
 func (x *TranscriptChange) SetCreatedAt(v string) {
-	x.CreatedAt = v
+	x.xxx_hidden_CreatedAt = v
 }
 
 func (x *TranscriptChange) SetMerged(v bool) {
-	x.Merged = v
+	x.xxx_hidden_Merged = v
 }
 
 func (x *TranscriptChange) SetPointsAwarded(v float32) {
-	x.PointsAwarded = v
+	x.xxx_hidden_PointsAwarded = v
 }
 
 func (x *TranscriptChange) SetTranscriptVersion(v string) {
-	x.TranscriptVersion = v
+	x.xxx_hidden_TranscriptVersion = v
 }
 
 func (x *TranscriptChange) SetName(v string) {
-	x.Name = v
+	x.xxx_hidden_Name = v
 }
 
 func (x *TranscriptChange) SetReleaseDate(v string) {
-	x.ReleaseDate = v
+	x.xxx_hidden_ReleaseDate = v
 }
 
 func (x *TranscriptChange) HasAuthor() bool {
 	if x == nil {
 		return false
 	}
-	return x.Author != nil
+	return x.xxx_hidden_Author != nil
 }
 
 func (x *TranscriptChange) ClearAuthor() {
-	x.Author = nil
+	x.xxx_hidden_Author = nil
 }
 
 type TranscriptChange_builder struct {
@@ -4473,33 +4511,33 @@ func (b0 TranscriptChange_builder) Build() *TranscriptChange {
 	m0 := &TranscriptChange{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Id = b.Id
-	x.EpisodeId = b.EpisodeId
-	x.Summary = b.Summary
-	x.Transcript = b.Transcript
-	x.State = b.State
-	x.Author = b.Author
-	x.CreatedAt = b.CreatedAt
-	x.Merged = b.Merged
-	x.PointsAwarded = b.PointsAwarded
-	x.TranscriptVersion = b.TranscriptVersion
-	x.Name = b.Name
-	x.ReleaseDate = b.ReleaseDate
+	x.xxx_hidden_Id = b.Id
+	x.xxx_hidden_EpisodeId = b.EpisodeId
+	x.xxx_hidden_Summary = b.Summary
+	x.xxx_hidden_Transcript = b.Transcript
+	x.xxx_hidden_State = b.State
+	x.xxx_hidden_Author = b.Author
+	x.xxx_hidden_CreatedAt = b.CreatedAt
+	x.xxx_hidden_Merged = b.Merged
+	x.xxx_hidden_PointsAwarded = b.PointsAwarded
+	x.xxx_hidden_TranscriptVersion = b.TranscriptVersion
+	x.xxx_hidden_Name = b.Name
+	x.xxx_hidden_ReleaseDate = b.ReleaseDate
 	return m0
 }
 
 type ShortTranscriptChange struct {
-	state             protoimpl.MessageState `protogen:"hybrid.v1"`
-	Id                string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	EpisodeId         string                 `protobuf:"bytes,2,opt,name=episode_id,json=episodeId,proto3" json:"episode_id,omitempty"`
-	State             ContributionState      `protobuf:"varint,6,opt,name=state,proto3,enum=rsk.ContributionState" json:"state,omitempty"`
-	Author            *Author                `protobuf:"bytes,7,opt,name=author,proto3" json:"author,omitempty"`
-	CreatedAt         string                 `protobuf:"bytes,8,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	Merged            bool                   `protobuf:"varint,9,opt,name=merged,proto3" json:"merged,omitempty"`
-	PointsAwarded     float32                `protobuf:"fixed32,10,opt,name=points_awarded,json=pointsAwarded,proto3" json:"points_awarded,omitempty"`
-	TranscriptVersion string                 `protobuf:"bytes,11,opt,name=transcript_version,json=transcriptVersion,proto3" json:"transcript_version,omitempty"`
-	unknownFields     protoimpl.UnknownFields
-	sizeCache         protoimpl.SizeCache
+	state                        protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id                string                 `protobuf:"bytes,1,opt,name=id,proto3"`
+	xxx_hidden_EpisodeId         string                 `protobuf:"bytes,2,opt,name=episode_id,json=episodeId,proto3"`
+	xxx_hidden_State             ContributionState      `protobuf:"varint,6,opt,name=state,proto3,enum=rsk.ContributionState"`
+	xxx_hidden_Author            *Author                `protobuf:"bytes,7,opt,name=author,proto3"`
+	xxx_hidden_CreatedAt         string                 `protobuf:"bytes,8,opt,name=created_at,json=createdAt,proto3"`
+	xxx_hidden_Merged            bool                   `protobuf:"varint,9,opt,name=merged,proto3"`
+	xxx_hidden_PointsAwarded     float32                `protobuf:"fixed32,10,opt,name=points_awarded,json=pointsAwarded,proto3"`
+	xxx_hidden_TranscriptVersion string                 `protobuf:"bytes,11,opt,name=transcript_version,json=transcriptVersion,proto3"`
+	unknownFields                protoimpl.UnknownFields
+	sizeCache                    protoimpl.SizeCache
 }
 
 func (x *ShortTranscriptChange) Reset() {
@@ -4529,101 +4567,101 @@ func (x *ShortTranscriptChange) ProtoReflect() protoreflect.Message {
 
 func (x *ShortTranscriptChange) GetId() string {
 	if x != nil {
-		return x.Id
+		return x.xxx_hidden_Id
 	}
 	return ""
 }
 
 func (x *ShortTranscriptChange) GetEpisodeId() string {
 	if x != nil {
-		return x.EpisodeId
+		return x.xxx_hidden_EpisodeId
 	}
 	return ""
 }
 
 func (x *ShortTranscriptChange) GetState() ContributionState {
 	if x != nil {
-		return x.State
+		return x.xxx_hidden_State
 	}
 	return ContributionState_STATE_UNDEFINED
 }
 
 func (x *ShortTranscriptChange) GetAuthor() *Author {
 	if x != nil {
-		return x.Author
+		return x.xxx_hidden_Author
 	}
 	return nil
 }
 
 func (x *ShortTranscriptChange) GetCreatedAt() string {
 	if x != nil {
-		return x.CreatedAt
+		return x.xxx_hidden_CreatedAt
 	}
 	return ""
 }
 
 func (x *ShortTranscriptChange) GetMerged() bool {
 	if x != nil {
-		return x.Merged
+		return x.xxx_hidden_Merged
 	}
 	return false
 }
 
 func (x *ShortTranscriptChange) GetPointsAwarded() float32 {
 	if x != nil {
-		return x.PointsAwarded
+		return x.xxx_hidden_PointsAwarded
 	}
 	return 0
 }
 
 func (x *ShortTranscriptChange) GetTranscriptVersion() string {
 	if x != nil {
-		return x.TranscriptVersion
+		return x.xxx_hidden_TranscriptVersion
 	}
 	return ""
 }
 
 func (x *ShortTranscriptChange) SetId(v string) {
-	x.Id = v
+	x.xxx_hidden_Id = v
 }
 
 func (x *ShortTranscriptChange) SetEpisodeId(v string) {
-	x.EpisodeId = v
+	x.xxx_hidden_EpisodeId = v
 }
 
 func (x *ShortTranscriptChange) SetState(v ContributionState) {
-	x.State = v
+	x.xxx_hidden_State = v
 }
 
 func (x *ShortTranscriptChange) SetAuthor(v *Author) {
-	x.Author = v
+	x.xxx_hidden_Author = v
 }
 
 func (x *ShortTranscriptChange) SetCreatedAt(v string) {
-	x.CreatedAt = v
+	x.xxx_hidden_CreatedAt = v
 }
 
 func (x *ShortTranscriptChange) SetMerged(v bool) {
-	x.Merged = v
+	x.xxx_hidden_Merged = v
 }
 
 func (x *ShortTranscriptChange) SetPointsAwarded(v float32) {
-	x.PointsAwarded = v
+	x.xxx_hidden_PointsAwarded = v
 }
 
 func (x *ShortTranscriptChange) SetTranscriptVersion(v string) {
-	x.TranscriptVersion = v
+	x.xxx_hidden_TranscriptVersion = v
 }
 
 func (x *ShortTranscriptChange) HasAuthor() bool {
 	if x == nil {
 		return false
 	}
-	return x.Author != nil
+	return x.xxx_hidden_Author != nil
 }
 
 func (x *ShortTranscriptChange) ClearAuthor() {
-	x.Author = nil
+	x.xxx_hidden_Author = nil
 }
 
 type ShortTranscriptChange_builder struct {
@@ -4643,24 +4681,24 @@ func (b0 ShortTranscriptChange_builder) Build() *ShortTranscriptChange {
 	m0 := &ShortTranscriptChange{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Id = b.Id
-	x.EpisodeId = b.EpisodeId
-	x.State = b.State
-	x.Author = b.Author
-	x.CreatedAt = b.CreatedAt
-	x.Merged = b.Merged
-	x.PointsAwarded = b.PointsAwarded
-	x.TranscriptVersion = b.TranscriptVersion
+	x.xxx_hidden_Id = b.Id
+	x.xxx_hidden_EpisodeId = b.EpisodeId
+	x.xxx_hidden_State = b.State
+	x.xxx_hidden_Author = b.Author
+	x.xxx_hidden_CreatedAt = b.CreatedAt
+	x.xxx_hidden_Merged = b.Merged
+	x.xxx_hidden_PointsAwarded = b.PointsAwarded
+	x.xxx_hidden_TranscriptVersion = b.TranscriptVersion
 	return m0
 }
 
 type RequestTranscriptChangeStateRequest struct {
-	state           protoimpl.MessageState `protogen:"hybrid.v1"`
-	Id              string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	State           ContributionState      `protobuf:"varint,2,opt,name=state,proto3,enum=rsk.ContributionState" json:"state,omitempty"`
-	PointsOnApprove float32                `protobuf:"fixed32,3,opt,name=points_on_approve,json=pointsOnApprove,proto3" json:"points_on_approve,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state                      protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id              string                 `protobuf:"bytes,1,opt,name=id,proto3"`
+	xxx_hidden_State           ContributionState      `protobuf:"varint,2,opt,name=state,proto3,enum=rsk.ContributionState"`
+	xxx_hidden_PointsOnApprove float32                `protobuf:"fixed32,3,opt,name=points_on_approve,json=pointsOnApprove,proto3"`
+	unknownFields              protoimpl.UnknownFields
+	sizeCache                  protoimpl.SizeCache
 }
 
 func (x *RequestTranscriptChangeStateRequest) Reset() {
@@ -4690,35 +4728,35 @@ func (x *RequestTranscriptChangeStateRequest) ProtoReflect() protoreflect.Messag
 
 func (x *RequestTranscriptChangeStateRequest) GetId() string {
 	if x != nil {
-		return x.Id
+		return x.xxx_hidden_Id
 	}
 	return ""
 }
 
 func (x *RequestTranscriptChangeStateRequest) GetState() ContributionState {
 	if x != nil {
-		return x.State
+		return x.xxx_hidden_State
 	}
 	return ContributionState_STATE_UNDEFINED
 }
 
 func (x *RequestTranscriptChangeStateRequest) GetPointsOnApprove() float32 {
 	if x != nil {
-		return x.PointsOnApprove
+		return x.xxx_hidden_PointsOnApprove
 	}
 	return 0
 }
 
 func (x *RequestTranscriptChangeStateRequest) SetId(v string) {
-	x.Id = v
+	x.xxx_hidden_Id = v
 }
 
 func (x *RequestTranscriptChangeStateRequest) SetState(v ContributionState) {
-	x.State = v
+	x.xxx_hidden_State = v
 }
 
 func (x *RequestTranscriptChangeStateRequest) SetPointsOnApprove(v float32) {
-	x.PointsOnApprove = v
+	x.xxx_hidden_PointsOnApprove = v
 }
 
 type RequestTranscriptChangeStateRequest_builder struct {
@@ -4733,15 +4771,15 @@ func (b0 RequestTranscriptChangeStateRequest_builder) Build() *RequestTranscript
 	m0 := &RequestTranscriptChangeStateRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Id = b.Id
-	x.State = b.State
-	x.PointsOnApprove = b.PointsOnApprove
+	x.xxx_hidden_Id = b.Id
+	x.xxx_hidden_State = b.State
+	x.xxx_hidden_PointsOnApprove = b.PointsOnApprove
 	return m0
 }
 
 type GetTranscriptChangeRequest struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	state         protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id string                 `protobuf:"bytes,1,opt,name=id,proto3"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4773,13 +4811,13 @@ func (x *GetTranscriptChangeRequest) ProtoReflect() protoreflect.Message {
 
 func (x *GetTranscriptChangeRequest) GetId() string {
 	if x != nil {
-		return x.Id
+		return x.xxx_hidden_Id
 	}
 	return ""
 }
 
 func (x *GetTranscriptChangeRequest) SetId(v string) {
-	x.Id = v
+	x.xxx_hidden_Id = v
 }
 
 type GetTranscriptChangeRequest_builder struct {
@@ -4792,13 +4830,13 @@ func (b0 GetTranscriptChangeRequest_builder) Build() *GetTranscriptChangeRequest
 	m0 := &GetTranscriptChangeRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Id = b.Id
+	x.xxx_hidden_Id = b.Id
 	return m0
 }
 
 type GetTranscriptChangeDiffRequest struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	state         protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id string                 `protobuf:"bytes,1,opt,name=id,proto3"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -4830,13 +4868,13 @@ func (x *GetTranscriptChangeDiffRequest) ProtoReflect() protoreflect.Message {
 
 func (x *GetTranscriptChangeDiffRequest) GetId() string {
 	if x != nil {
-		return x.Id
+		return x.xxx_hidden_Id
 	}
 	return ""
 }
 
 func (x *GetTranscriptChangeDiffRequest) SetId(v string) {
-	x.Id = v
+	x.xxx_hidden_Id = v
 }
 
 type GetTranscriptChangeDiffRequest_builder struct {
@@ -4849,15 +4887,15 @@ func (b0 GetTranscriptChangeDiffRequest_builder) Build() *GetTranscriptChangeDif
 	m0 := &GetTranscriptChangeDiffRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Id = b.Id
+	x.xxx_hidden_Id = b.Id
 	return m0
 }
 
 type TranscriptChangeDiff struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Diffs         []string               `protobuf:"bytes,2,rep,name=diffs,proto3" json:"diffs,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state            protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Diffs []string               `protobuf:"bytes,2,rep,name=diffs,proto3"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *TranscriptChangeDiff) Reset() {
@@ -4887,13 +4925,13 @@ func (x *TranscriptChangeDiff) ProtoReflect() protoreflect.Message {
 
 func (x *TranscriptChangeDiff) GetDiffs() []string {
 	if x != nil {
-		return x.Diffs
+		return x.xxx_hidden_Diffs
 	}
 	return nil
 }
 
 func (x *TranscriptChangeDiff) SetDiffs(v []string) {
-	x.Diffs = v
+	x.xxx_hidden_Diffs = v
 }
 
 type TranscriptChangeDiff_builder struct {
@@ -4906,17 +4944,17 @@ func (b0 TranscriptChangeDiff_builder) Build() *TranscriptChangeDiff {
 	m0 := &TranscriptChangeDiff{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Diffs = b.Diffs
+	x.xxx_hidden_Diffs = b.Diffs
 	return m0
 }
 
 type TranscriptDialog struct {
-	state             protoimpl.MessageState `protogen:"hybrid.v1"`
-	TranscriptMeta    *ShortTranscript       `protobuf:"bytes,1,opt,name=transcript_meta,json=transcriptMeta,proto3" json:"transcript_meta,omitempty"`
-	Dialog            []*Dialog              `protobuf:"bytes,2,rep,name=dialog,proto3" json:"dialog,omitempty"`
-	MaxDialogPosition int32                  `protobuf:"varint,3,opt,name=max_dialog_position,json=maxDialogPosition,proto3" json:"max_dialog_position,omitempty"`
-	unknownFields     protoimpl.UnknownFields
-	sizeCache         protoimpl.SizeCache
+	state                        protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_TranscriptMeta    *ShortTranscript       `protobuf:"bytes,1,opt,name=transcript_meta,json=transcriptMeta,proto3"`
+	xxx_hidden_Dialog            *[]*Dialog             `protobuf:"bytes,2,rep,name=dialog,proto3"`
+	xxx_hidden_MaxDialogPosition int32                  `protobuf:"varint,3,opt,name=max_dialog_position,json=maxDialogPosition,proto3"`
+	unknownFields                protoimpl.UnknownFields
+	sizeCache                    protoimpl.SizeCache
 }
 
 func (x *TranscriptDialog) Reset() {
@@ -4946,46 +4984,48 @@ func (x *TranscriptDialog) ProtoReflect() protoreflect.Message {
 
 func (x *TranscriptDialog) GetTranscriptMeta() *ShortTranscript {
 	if x != nil {
-		return x.TranscriptMeta
+		return x.xxx_hidden_TranscriptMeta
 	}
 	return nil
 }
 
 func (x *TranscriptDialog) GetDialog() []*Dialog {
 	if x != nil {
-		return x.Dialog
+		if x.xxx_hidden_Dialog != nil {
+			return *x.xxx_hidden_Dialog
+		}
 	}
 	return nil
 }
 
 func (x *TranscriptDialog) GetMaxDialogPosition() int32 {
 	if x != nil {
-		return x.MaxDialogPosition
+		return x.xxx_hidden_MaxDialogPosition
 	}
 	return 0
 }
 
 func (x *TranscriptDialog) SetTranscriptMeta(v *ShortTranscript) {
-	x.TranscriptMeta = v
+	x.xxx_hidden_TranscriptMeta = v
 }
 
 func (x *TranscriptDialog) SetDialog(v []*Dialog) {
-	x.Dialog = v
+	x.xxx_hidden_Dialog = &v
 }
 
 func (x *TranscriptDialog) SetMaxDialogPosition(v int32) {
-	x.MaxDialogPosition = v
+	x.xxx_hidden_MaxDialogPosition = v
 }
 
 func (x *TranscriptDialog) HasTranscriptMeta() bool {
 	if x == nil {
 		return false
 	}
-	return x.TranscriptMeta != nil
+	return x.xxx_hidden_TranscriptMeta != nil
 }
 
 func (x *TranscriptDialog) ClearTranscriptMeta() {
-	x.TranscriptMeta = nil
+	x.xxx_hidden_TranscriptMeta = nil
 }
 
 type TranscriptDialog_builder struct {
@@ -5000,19 +5040,19 @@ func (b0 TranscriptDialog_builder) Build() *TranscriptDialog {
 	m0 := &TranscriptDialog{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.TranscriptMeta = b.TranscriptMeta
-	x.Dialog = b.Dialog
-	x.MaxDialogPosition = b.MaxDialogPosition
+	x.xxx_hidden_TranscriptMeta = b.TranscriptMeta
+	x.xxx_hidden_Dialog = &b.Dialog
+	x.xxx_hidden_MaxDialogPosition = b.MaxDialogPosition
 	return m0
 }
 
 type SetTranscriptRatingScoreRequest struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Epid          string                 `protobuf:"bytes,1,opt,name=epid,proto3" json:"epid,omitempty"`
-	Score         float32                `protobuf:"fixed32,2,opt,name=score,proto3" json:"score,omitempty"`
-	Delete        bool                   `protobuf:"varint,3,opt,name=delete,proto3" json:"delete,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state             protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Epid   string                 `protobuf:"bytes,1,opt,name=epid,proto3"`
+	xxx_hidden_Score  float32                `protobuf:"fixed32,2,opt,name=score,proto3"`
+	xxx_hidden_Delete bool                   `protobuf:"varint,3,opt,name=delete,proto3"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *SetTranscriptRatingScoreRequest) Reset() {
@@ -5042,35 +5082,35 @@ func (x *SetTranscriptRatingScoreRequest) ProtoReflect() protoreflect.Message {
 
 func (x *SetTranscriptRatingScoreRequest) GetEpid() string {
 	if x != nil {
-		return x.Epid
+		return x.xxx_hidden_Epid
 	}
 	return ""
 }
 
 func (x *SetTranscriptRatingScoreRequest) GetScore() float32 {
 	if x != nil {
-		return x.Score
+		return x.xxx_hidden_Score
 	}
 	return 0
 }
 
 func (x *SetTranscriptRatingScoreRequest) GetDelete() bool {
 	if x != nil {
-		return x.Delete
+		return x.xxx_hidden_Delete
 	}
 	return false
 }
 
 func (x *SetTranscriptRatingScoreRequest) SetEpid(v string) {
-	x.Epid = v
+	x.xxx_hidden_Epid = v
 }
 
 func (x *SetTranscriptRatingScoreRequest) SetScore(v float32) {
-	x.Score = v
+	x.xxx_hidden_Score = v
 }
 
 func (x *SetTranscriptRatingScoreRequest) SetDelete(v bool) {
-	x.Delete = v
+	x.xxx_hidden_Delete = v
 }
 
 type SetTranscriptRatingScoreRequest_builder struct {
@@ -5085,19 +5125,19 @@ func (b0 SetTranscriptRatingScoreRequest_builder) Build() *SetTranscriptRatingSc
 	m0 := &SetTranscriptRatingScoreRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Epid = b.Epid
-	x.Score = b.Score
-	x.Delete = b.Delete
+	x.xxx_hidden_Epid = b.Epid
+	x.xxx_hidden_Score = b.Score
+	x.xxx_hidden_Delete = b.Delete
 	return m0
 }
 
 type BulkSetTranscriptRatingScoreRequest struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Epid          string                 `protobuf:"bytes,1,opt,name=epid,proto3" json:"epid,omitempty"`
-	Scores        map[string]float32     `protobuf:"bytes,2,rep,name=scores,proto3" json:"scores,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"fixed32,2,opt,name=value"`
-	OauthSource   string                 `protobuf:"bytes,3,opt,name=oauth_source,json=oauthSource,proto3" json:"oauth_source,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Epid        string                 `protobuf:"bytes,1,opt,name=epid,proto3"`
+	xxx_hidden_Scores      map[string]float32     `protobuf:"bytes,2,rep,name=scores,proto3" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"fixed32,2,opt,name=value"`
+	xxx_hidden_OauthSource string                 `protobuf:"bytes,3,opt,name=oauth_source,json=oauthSource,proto3"`
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
 func (x *BulkSetTranscriptRatingScoreRequest) Reset() {
@@ -5127,35 +5167,35 @@ func (x *BulkSetTranscriptRatingScoreRequest) ProtoReflect() protoreflect.Messag
 
 func (x *BulkSetTranscriptRatingScoreRequest) GetEpid() string {
 	if x != nil {
-		return x.Epid
+		return x.xxx_hidden_Epid
 	}
 	return ""
 }
 
 func (x *BulkSetTranscriptRatingScoreRequest) GetScores() map[string]float32 {
 	if x != nil {
-		return x.Scores
+		return x.xxx_hidden_Scores
 	}
 	return nil
 }
 
 func (x *BulkSetTranscriptRatingScoreRequest) GetOauthSource() string {
 	if x != nil {
-		return x.OauthSource
+		return x.xxx_hidden_OauthSource
 	}
 	return ""
 }
 
 func (x *BulkSetTranscriptRatingScoreRequest) SetEpid(v string) {
-	x.Epid = v
+	x.xxx_hidden_Epid = v
 }
 
 func (x *BulkSetTranscriptRatingScoreRequest) SetScores(v map[string]float32) {
-	x.Scores = v
+	x.xxx_hidden_Scores = v
 }
 
 func (x *BulkSetTranscriptRatingScoreRequest) SetOauthSource(v string) {
-	x.OauthSource = v
+	x.xxx_hidden_OauthSource = v
 }
 
 type BulkSetTranscriptRatingScoreRequest_builder struct {
@@ -5170,18 +5210,18 @@ func (b0 BulkSetTranscriptRatingScoreRequest_builder) Build() *BulkSetTranscript
 	m0 := &BulkSetTranscriptRatingScoreRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Epid = b.Epid
-	x.Scores = b.Scores
-	x.OauthSource = b.OauthSource
+	x.xxx_hidden_Epid = b.Epid
+	x.xxx_hidden_Scores = b.Scores
+	x.xxx_hidden_OauthSource = b.OauthSource
 	return m0
 }
 
 type BulkSetTranscriptTagsRequest struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Epid          string                 `protobuf:"bytes,1,opt,name=epid,proto3" json:"epid,omitempty"`
-	Tags          []*Tag                 `protobuf:"bytes,2,rep,name=tags,proto3" json:"tags,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state           protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Epid string                 `protobuf:"bytes,1,opt,name=epid,proto3"`
+	xxx_hidden_Tags *[]*Tag                `protobuf:"bytes,2,rep,name=tags,proto3"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *BulkSetTranscriptTagsRequest) Reset() {
@@ -5211,24 +5251,26 @@ func (x *BulkSetTranscriptTagsRequest) ProtoReflect() protoreflect.Message {
 
 func (x *BulkSetTranscriptTagsRequest) GetEpid() string {
 	if x != nil {
-		return x.Epid
+		return x.xxx_hidden_Epid
 	}
 	return ""
 }
 
 func (x *BulkSetTranscriptTagsRequest) GetTags() []*Tag {
 	if x != nil {
-		return x.Tags
+		if x.xxx_hidden_Tags != nil {
+			return *x.xxx_hidden_Tags
+		}
 	}
 	return nil
 }
 
 func (x *BulkSetTranscriptTagsRequest) SetEpid(v string) {
-	x.Epid = v
+	x.xxx_hidden_Epid = v
 }
 
 func (x *BulkSetTranscriptTagsRequest) SetTags(v []*Tag) {
-	x.Tags = v
+	x.xxx_hidden_Tags = &v
 }
 
 type BulkSetTranscriptTagsRequest_builder struct {
@@ -5242,17 +5284,17 @@ func (b0 BulkSetTranscriptTagsRequest_builder) Build() *BulkSetTranscriptTagsReq
 	m0 := &BulkSetTranscriptTagsRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Epid = b.Epid
-	x.Tags = b.Tags
+	x.xxx_hidden_Epid = b.Epid
+	x.xxx_hidden_Tags = &b.Tags
 	return m0
 }
 
 type Tag struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Timestamp     string                 `protobuf:"bytes,2,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Name      string                 `protobuf:"bytes,1,opt,name=name,proto3"`
+	xxx_hidden_Timestamp string                 `protobuf:"bytes,2,opt,name=timestamp,proto3"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
 }
 
 func (x *Tag) Reset() {
@@ -5282,24 +5324,24 @@ func (x *Tag) ProtoReflect() protoreflect.Message {
 
 func (x *Tag) GetName() string {
 	if x != nil {
-		return x.Name
+		return x.xxx_hidden_Name
 	}
 	return ""
 }
 
 func (x *Tag) GetTimestamp() string {
 	if x != nil {
-		return x.Timestamp
+		return x.xxx_hidden_Timestamp
 	}
 	return ""
 }
 
 func (x *Tag) SetName(v string) {
-	x.Name = v
+	x.xxx_hidden_Name = v
 }
 
 func (x *Tag) SetTimestamp(v string) {
-	x.Timestamp = v
+	x.xxx_hidden_Timestamp = v
 }
 
 type Tag_builder struct {
@@ -5313,8 +5355,8 @@ func (b0 Tag_builder) Build() *Tag {
 	m0 := &Tag{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Name = b.Name
-	x.Timestamp = b.Timestamp
+	x.xxx_hidden_Name = b.Name
+	x.xxx_hidden_Timestamp = b.Timestamp
 	return m0
 }
 

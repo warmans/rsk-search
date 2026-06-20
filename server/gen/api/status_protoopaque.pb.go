@@ -4,7 +4,7 @@
 // 	protoc        (unknown)
 // source: status.proto
 
-//go:build !protoopaque
+//go:build protoopaque
 
 package api
 
@@ -26,11 +26,11 @@ const (
 )
 
 type Quotas struct {
-	state                 protoimpl.MessageState `protogen:"hybrid.v1"`
-	BandwidthTotalMib     float32                `protobuf:"fixed32,1,opt,name=bandwidth_total_mib,json=bandwidthTotalMib,proto3" json:"bandwidth_total_mib,omitempty"`
-	BandwidthRemainingMib float32                `protobuf:"fixed32,2,opt,name=bandwidth_remaining_mib,json=bandwidthRemainingMib,proto3" json:"bandwidth_remaining_mib,omitempty"`
-	unknownFields         protoimpl.UnknownFields
-	sizeCache             protoimpl.SizeCache
+	state                            protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_BandwidthTotalMib     float32                `protobuf:"fixed32,1,opt,name=bandwidth_total_mib,json=bandwidthTotalMib,proto3"`
+	xxx_hidden_BandwidthRemainingMib float32                `protobuf:"fixed32,2,opt,name=bandwidth_remaining_mib,json=bandwidthRemainingMib,proto3"`
+	unknownFields                    protoimpl.UnknownFields
+	sizeCache                        protoimpl.SizeCache
 }
 
 func (x *Quotas) Reset() {
@@ -60,24 +60,24 @@ func (x *Quotas) ProtoReflect() protoreflect.Message {
 
 func (x *Quotas) GetBandwidthTotalMib() float32 {
 	if x != nil {
-		return x.BandwidthTotalMib
+		return x.xxx_hidden_BandwidthTotalMib
 	}
 	return 0
 }
 
 func (x *Quotas) GetBandwidthRemainingMib() float32 {
 	if x != nil {
-		return x.BandwidthRemainingMib
+		return x.xxx_hidden_BandwidthRemainingMib
 	}
 	return 0
 }
 
 func (x *Quotas) SetBandwidthTotalMib(v float32) {
-	x.BandwidthTotalMib = v
+	x.xxx_hidden_BandwidthTotalMib = v
 }
 
 func (x *Quotas) SetBandwidthRemainingMib(v float32) {
-	x.BandwidthRemainingMib = v
+	x.xxx_hidden_BandwidthRemainingMib = v
 }
 
 type Quotas_builder struct {
@@ -91,8 +91,8 @@ func (b0 Quotas_builder) Build() *Quotas {
 	m0 := &Quotas{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.BandwidthTotalMib = b.BandwidthTotalMib
-	x.BandwidthRemainingMib = b.BandwidthRemainingMib
+	x.xxx_hidden_BandwidthTotalMib = b.BandwidthTotalMib
+	x.xxx_hidden_BandwidthRemainingMib = b.BandwidthRemainingMib
 	return m0
 }
 

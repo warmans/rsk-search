@@ -4,7 +4,7 @@
 // 	protoc        (unknown)
 // source: community.proto
 
-//go:build !protoopaque
+//go:build protoopaque
 
 package api
 
@@ -26,15 +26,15 @@ const (
 )
 
 type CommunityProject struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Summary       string                 `protobuf:"bytes,3,opt,name=summary,proto3" json:"summary,omitempty"`
-	Content       string                 `protobuf:"bytes,4,opt,name=content,proto3" json:"content,omitempty"`
-	Url           string                 `protobuf:"bytes,5,opt,name=url,proto3" json:"url,omitempty"`
-	CreatedAt     string                 `protobuf:"bytes,6,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id        string                 `protobuf:"bytes,1,opt,name=id,proto3"`
+	xxx_hidden_Name      string                 `protobuf:"bytes,2,opt,name=name,proto3"`
+	xxx_hidden_Summary   string                 `protobuf:"bytes,3,opt,name=summary,proto3"`
+	xxx_hidden_Content   string                 `protobuf:"bytes,4,opt,name=content,proto3"`
+	xxx_hidden_Url       string                 `protobuf:"bytes,5,opt,name=url,proto3"`
+	xxx_hidden_CreatedAt string                 `protobuf:"bytes,6,opt,name=created_at,json=createdAt,proto3"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
 }
 
 func (x *CommunityProject) Reset() {
@@ -64,68 +64,68 @@ func (x *CommunityProject) ProtoReflect() protoreflect.Message {
 
 func (x *CommunityProject) GetId() string {
 	if x != nil {
-		return x.Id
+		return x.xxx_hidden_Id
 	}
 	return ""
 }
 
 func (x *CommunityProject) GetName() string {
 	if x != nil {
-		return x.Name
+		return x.xxx_hidden_Name
 	}
 	return ""
 }
 
 func (x *CommunityProject) GetSummary() string {
 	if x != nil {
-		return x.Summary
+		return x.xxx_hidden_Summary
 	}
 	return ""
 }
 
 func (x *CommunityProject) GetContent() string {
 	if x != nil {
-		return x.Content
+		return x.xxx_hidden_Content
 	}
 	return ""
 }
 
 func (x *CommunityProject) GetUrl() string {
 	if x != nil {
-		return x.Url
+		return x.xxx_hidden_Url
 	}
 	return ""
 }
 
 func (x *CommunityProject) GetCreatedAt() string {
 	if x != nil {
-		return x.CreatedAt
+		return x.xxx_hidden_CreatedAt
 	}
 	return ""
 }
 
 func (x *CommunityProject) SetId(v string) {
-	x.Id = v
+	x.xxx_hidden_Id = v
 }
 
 func (x *CommunityProject) SetName(v string) {
-	x.Name = v
+	x.xxx_hidden_Name = v
 }
 
 func (x *CommunityProject) SetSummary(v string) {
-	x.Summary = v
+	x.xxx_hidden_Summary = v
 }
 
 func (x *CommunityProject) SetContent(v string) {
-	x.Content = v
+	x.xxx_hidden_Content = v
 }
 
 func (x *CommunityProject) SetUrl(v string) {
-	x.Url = v
+	x.xxx_hidden_Url = v
 }
 
 func (x *CommunityProject) SetCreatedAt(v string) {
-	x.CreatedAt = v
+	x.xxx_hidden_CreatedAt = v
 }
 
 type CommunityProject_builder struct {
@@ -143,24 +143,24 @@ func (b0 CommunityProject_builder) Build() *CommunityProject {
 	m0 := &CommunityProject{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Id = b.Id
-	x.Name = b.Name
-	x.Summary = b.Summary
-	x.Content = b.Content
-	x.Url = b.Url
-	x.CreatedAt = b.CreatedAt
+	x.xxx_hidden_Id = b.Id
+	x.xxx_hidden_Name = b.Name
+	x.xxx_hidden_Summary = b.Summary
+	x.xxx_hidden_Content = b.Content
+	x.xxx_hidden_Url = b.Url
+	x.xxx_hidden_CreatedAt = b.CreatedAt
 	return m0
 }
 
 type ListCommunityProjectsRequest struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Filter        string                 `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
-	SortField     string                 `protobuf:"bytes,2,opt,name=sort_field,json=sortField,proto3" json:"sort_field,omitempty"`
-	SortDirection string                 `protobuf:"bytes,3,opt,name=sort_direction,json=sortDirection,proto3" json:"sort_direction,omitempty"`
-	Page          int32                  `protobuf:"varint,4,opt,name=page,proto3" json:"page,omitempty"`
-	PageSize      int32                  `protobuf:"varint,5,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                    protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Filter        string                 `protobuf:"bytes,1,opt,name=filter,proto3"`
+	xxx_hidden_SortField     string                 `protobuf:"bytes,2,opt,name=sort_field,json=sortField,proto3"`
+	xxx_hidden_SortDirection string                 `protobuf:"bytes,3,opt,name=sort_direction,json=sortDirection,proto3"`
+	xxx_hidden_Page          int32                  `protobuf:"varint,4,opt,name=page,proto3"`
+	xxx_hidden_PageSize      int32                  `protobuf:"varint,5,opt,name=page_size,json=pageSize,proto3"`
+	unknownFields            protoimpl.UnknownFields
+	sizeCache                protoimpl.SizeCache
 }
 
 func (x *ListCommunityProjectsRequest) Reset() {
@@ -190,57 +190,57 @@ func (x *ListCommunityProjectsRequest) ProtoReflect() protoreflect.Message {
 
 func (x *ListCommunityProjectsRequest) GetFilter() string {
 	if x != nil {
-		return x.Filter
+		return x.xxx_hidden_Filter
 	}
 	return ""
 }
 
 func (x *ListCommunityProjectsRequest) GetSortField() string {
 	if x != nil {
-		return x.SortField
+		return x.xxx_hidden_SortField
 	}
 	return ""
 }
 
 func (x *ListCommunityProjectsRequest) GetSortDirection() string {
 	if x != nil {
-		return x.SortDirection
+		return x.xxx_hidden_SortDirection
 	}
 	return ""
 }
 
 func (x *ListCommunityProjectsRequest) GetPage() int32 {
 	if x != nil {
-		return x.Page
+		return x.xxx_hidden_Page
 	}
 	return 0
 }
 
 func (x *ListCommunityProjectsRequest) GetPageSize() int32 {
 	if x != nil {
-		return x.PageSize
+		return x.xxx_hidden_PageSize
 	}
 	return 0
 }
 
 func (x *ListCommunityProjectsRequest) SetFilter(v string) {
-	x.Filter = v
+	x.xxx_hidden_Filter = v
 }
 
 func (x *ListCommunityProjectsRequest) SetSortField(v string) {
-	x.SortField = v
+	x.xxx_hidden_SortField = v
 }
 
 func (x *ListCommunityProjectsRequest) SetSortDirection(v string) {
-	x.SortDirection = v
+	x.xxx_hidden_SortDirection = v
 }
 
 func (x *ListCommunityProjectsRequest) SetPage(v int32) {
-	x.Page = v
+	x.xxx_hidden_Page = v
 }
 
 func (x *ListCommunityProjectsRequest) SetPageSize(v int32) {
-	x.PageSize = v
+	x.xxx_hidden_PageSize = v
 }
 
 type ListCommunityProjectsRequest_builder struct {
@@ -257,20 +257,20 @@ func (b0 ListCommunityProjectsRequest_builder) Build() *ListCommunityProjectsReq
 	m0 := &ListCommunityProjectsRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Filter = b.Filter
-	x.SortField = b.SortField
-	x.SortDirection = b.SortDirection
-	x.Page = b.Page
-	x.PageSize = b.PageSize
+	x.xxx_hidden_Filter = b.Filter
+	x.xxx_hidden_SortField = b.SortField
+	x.xxx_hidden_SortDirection = b.SortDirection
+	x.xxx_hidden_Page = b.Page
+	x.xxx_hidden_PageSize = b.PageSize
 	return m0
 }
 
 type CommunityProjectList struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Projects      []*CommunityProject    `protobuf:"bytes,1,rep,name=projects,proto3" json:"projects,omitempty"`
-	ResultCount   int32                  `protobuf:"varint,2,opt,name=result_count,json=resultCount,proto3" json:"result_count,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Projects    *[]*CommunityProject   `protobuf:"bytes,1,rep,name=projects,proto3"`
+	xxx_hidden_ResultCount int32                  `protobuf:"varint,2,opt,name=result_count,json=resultCount,proto3"`
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
 func (x *CommunityProjectList) Reset() {
@@ -300,24 +300,26 @@ func (x *CommunityProjectList) ProtoReflect() protoreflect.Message {
 
 func (x *CommunityProjectList) GetProjects() []*CommunityProject {
 	if x != nil {
-		return x.Projects
+		if x.xxx_hidden_Projects != nil {
+			return *x.xxx_hidden_Projects
+		}
 	}
 	return nil
 }
 
 func (x *CommunityProjectList) GetResultCount() int32 {
 	if x != nil {
-		return x.ResultCount
+		return x.xxx_hidden_ResultCount
 	}
 	return 0
 }
 
 func (x *CommunityProjectList) SetProjects(v []*CommunityProject) {
-	x.Projects = v
+	x.xxx_hidden_Projects = &v
 }
 
 func (x *CommunityProjectList) SetResultCount(v int32) {
-	x.ResultCount = v
+	x.xxx_hidden_ResultCount = v
 }
 
 type CommunityProjectList_builder struct {
@@ -331,18 +333,18 @@ func (b0 CommunityProjectList_builder) Build() *CommunityProjectList {
 	m0 := &CommunityProjectList{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Projects = b.Projects
-	x.ResultCount = b.ResultCount
+	x.xxx_hidden_Projects = &b.Projects
+	x.xxx_hidden_ResultCount = b.ResultCount
 	return m0
 }
 
 type ListArchiveRequest struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	EpisodeIds    []string               `protobuf:"bytes,1,rep,name=episode_ids,json=episodeIds,proto3" json:"episode_ids,omitempty"`
-	Page          int32                  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
-	PageSize      int32                  `protobuf:"varint,3,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                 protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_EpisodeIds []string               `protobuf:"bytes,1,rep,name=episode_ids,json=episodeIds,proto3"`
+	xxx_hidden_Page       int32                  `protobuf:"varint,2,opt,name=page,proto3"`
+	xxx_hidden_PageSize   int32                  `protobuf:"varint,3,opt,name=page_size,json=pageSize,proto3"`
+	unknownFields         protoimpl.UnknownFields
+	sizeCache             protoimpl.SizeCache
 }
 
 func (x *ListArchiveRequest) Reset() {
@@ -372,35 +374,35 @@ func (x *ListArchiveRequest) ProtoReflect() protoreflect.Message {
 
 func (x *ListArchiveRequest) GetEpisodeIds() []string {
 	if x != nil {
-		return x.EpisodeIds
+		return x.xxx_hidden_EpisodeIds
 	}
 	return nil
 }
 
 func (x *ListArchiveRequest) GetPage() int32 {
 	if x != nil {
-		return x.Page
+		return x.xxx_hidden_Page
 	}
 	return 0
 }
 
 func (x *ListArchiveRequest) GetPageSize() int32 {
 	if x != nil {
-		return x.PageSize
+		return x.xxx_hidden_PageSize
 	}
 	return 0
 }
 
 func (x *ListArchiveRequest) SetEpisodeIds(v []string) {
-	x.EpisodeIds = v
+	x.xxx_hidden_EpisodeIds = v
 }
 
 func (x *ListArchiveRequest) SetPage(v int32) {
-	x.Page = v
+	x.xxx_hidden_Page = v
 }
 
 func (x *ListArchiveRequest) SetPageSize(v int32) {
-	x.PageSize = v
+	x.xxx_hidden_PageSize = v
 }
 
 type ListArchiveRequest_builder struct {
@@ -415,18 +417,18 @@ func (b0 ListArchiveRequest_builder) Build() *ListArchiveRequest {
 	m0 := &ListArchiveRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.EpisodeIds = b.EpisodeIds
-	x.Page = b.Page
-	x.PageSize = b.PageSize
+	x.xxx_hidden_EpisodeIds = b.EpisodeIds
+	x.xxx_hidden_Page = b.Page
+	x.xxx_hidden_PageSize = b.PageSize
 	return m0
 }
 
 type ArchiveList struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Items         []*Archive             `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
-	ResultCount   int32                  `protobuf:"varint,2,opt,name=result_count,json=resultCount,proto3" json:"result_count,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Items       *[]*Archive            `protobuf:"bytes,1,rep,name=items,proto3"`
+	xxx_hidden_ResultCount int32                  `protobuf:"varint,2,opt,name=result_count,json=resultCount,proto3"`
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
 func (x *ArchiveList) Reset() {
@@ -456,24 +458,26 @@ func (x *ArchiveList) ProtoReflect() protoreflect.Message {
 
 func (x *ArchiveList) GetItems() []*Archive {
 	if x != nil {
-		return x.Items
+		if x.xxx_hidden_Items != nil {
+			return *x.xxx_hidden_Items
+		}
 	}
 	return nil
 }
 
 func (x *ArchiveList) GetResultCount() int32 {
 	if x != nil {
-		return x.ResultCount
+		return x.xxx_hidden_ResultCount
 	}
 	return 0
 }
 
 func (x *ArchiveList) SetItems(v []*Archive) {
-	x.Items = v
+	x.xxx_hidden_Items = &v
 }
 
 func (x *ArchiveList) SetResultCount(v int32) {
-	x.ResultCount = v
+	x.xxx_hidden_ResultCount = v
 }
 
 type ArchiveList_builder struct {
@@ -487,21 +491,20 @@ func (b0 ArchiveList_builder) Build() *ArchiveList {
 	m0 := &ArchiveList{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Items = b.Items
-	x.ResultCount = b.ResultCount
+	x.xxx_hidden_Items = &b.Items
+	x.xxx_hidden_ResultCount = b.ResultCount
 	return m0
 }
 
 type Archive struct {
-	state          protoimpl.MessageState `protogen:"hybrid.v1"`
-	Id             string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Description    string                 `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
-	RelatedEpisode string                 `protobuf:"bytes,3,opt,name=related_episode,json=relatedEpisode,proto3" json:"related_episode,omitempty"`
-	// Deprecated: Marked as deprecated in community.proto.
-	Files         []string `protobuf:"bytes,4,rep,name=files,proto3" json:"files,omitempty"`
-	Media         []*File  `protobuf:"bytes,5,rep,name=media,proto3" json:"media,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                     protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id             string                 `protobuf:"bytes,1,opt,name=id,proto3"`
+	xxx_hidden_Description    string                 `protobuf:"bytes,2,opt,name=description,proto3"`
+	xxx_hidden_RelatedEpisode string                 `protobuf:"bytes,3,opt,name=related_episode,json=relatedEpisode,proto3"`
+	xxx_hidden_Files          []string               `protobuf:"bytes,4,rep,name=files,proto3"`
+	xxx_hidden_Media          *[]*File               `protobuf:"bytes,5,rep,name=media,proto3"`
+	unknownFields             protoimpl.UnknownFields
+	sizeCache                 protoimpl.SizeCache
 }
 
 func (x *Archive) Reset() {
@@ -531,21 +534,21 @@ func (x *Archive) ProtoReflect() protoreflect.Message {
 
 func (x *Archive) GetId() string {
 	if x != nil {
-		return x.Id
+		return x.xxx_hidden_Id
 	}
 	return ""
 }
 
 func (x *Archive) GetDescription() string {
 	if x != nil {
-		return x.Description
+		return x.xxx_hidden_Description
 	}
 	return ""
 }
 
 func (x *Archive) GetRelatedEpisode() string {
 	if x != nil {
-		return x.RelatedEpisode
+		return x.xxx_hidden_RelatedEpisode
 	}
 	return ""
 }
@@ -553,37 +556,39 @@ func (x *Archive) GetRelatedEpisode() string {
 // Deprecated: Marked as deprecated in community.proto.
 func (x *Archive) GetFiles() []string {
 	if x != nil {
-		return x.Files
+		return x.xxx_hidden_Files
 	}
 	return nil
 }
 
 func (x *Archive) GetMedia() []*File {
 	if x != nil {
-		return x.Media
+		if x.xxx_hidden_Media != nil {
+			return *x.xxx_hidden_Media
+		}
 	}
 	return nil
 }
 
 func (x *Archive) SetId(v string) {
-	x.Id = v
+	x.xxx_hidden_Id = v
 }
 
 func (x *Archive) SetDescription(v string) {
-	x.Description = v
+	x.xxx_hidden_Description = v
 }
 
 func (x *Archive) SetRelatedEpisode(v string) {
-	x.RelatedEpisode = v
+	x.xxx_hidden_RelatedEpisode = v
 }
 
 // Deprecated: Marked as deprecated in community.proto.
 func (x *Archive) SetFiles(v []string) {
-	x.Files = v
+	x.xxx_hidden_Files = v
 }
 
 func (x *Archive) SetMedia(v []*File) {
-	x.Media = v
+	x.xxx_hidden_Media = &v
 }
 
 type Archive_builder struct {
@@ -601,20 +606,20 @@ func (b0 Archive_builder) Build() *Archive {
 	m0 := &Archive{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Id = b.Id
-	x.Description = b.Description
-	x.RelatedEpisode = b.RelatedEpisode
-	x.Files = b.Files
-	x.Media = b.Media
+	x.xxx_hidden_Id = b.Id
+	x.xxx_hidden_Description = b.Description
+	x.xxx_hidden_RelatedEpisode = b.RelatedEpisode
+	x.xxx_hidden_Files = b.Files
+	x.xxx_hidden_Media = &b.Media
 	return m0
 }
 
 type File struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	ThumbnailName string                 `protobuf:"bytes,2,opt,name=thumbnail_name,json=thumbnailName,proto3" json:"thumbnail_name,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                    protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Name          string                 `protobuf:"bytes,1,opt,name=name,proto3"`
+	xxx_hidden_ThumbnailName string                 `protobuf:"bytes,2,opt,name=thumbnail_name,json=thumbnailName,proto3"`
+	unknownFields            protoimpl.UnknownFields
+	sizeCache                protoimpl.SizeCache
 }
 
 func (x *File) Reset() {
@@ -644,24 +649,24 @@ func (x *File) ProtoReflect() protoreflect.Message {
 
 func (x *File) GetName() string {
 	if x != nil {
-		return x.Name
+		return x.xxx_hidden_Name
 	}
 	return ""
 }
 
 func (x *File) GetThumbnailName() string {
 	if x != nil {
-		return x.ThumbnailName
+		return x.xxx_hidden_ThumbnailName
 	}
 	return ""
 }
 
 func (x *File) SetName(v string) {
-	x.Name = v
+	x.xxx_hidden_Name = v
 }
 
 func (x *File) SetThumbnailName(v string) {
-	x.ThumbnailName = v
+	x.xxx_hidden_ThumbnailName = v
 }
 
 type File_builder struct {
@@ -675,8 +680,8 @@ func (b0 File_builder) Build() *File {
 	m0 := &File{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Name = b.Name
-	x.ThumbnailName = b.ThumbnailName
+	x.xxx_hidden_Name = b.Name
+	x.xxx_hidden_ThumbnailName = b.ThumbnailName
 	return m0
 }
 

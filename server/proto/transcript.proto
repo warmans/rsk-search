@@ -444,8 +444,8 @@ message ListTranscriptsRequest {
   bool include_rating_breakdown = 2;
   string sort_field = 3;
   string sort_direction = 4;
-  int32 page = 5;
-  int32 page_size = 6;
+  optional int32 page = 5;
+  optional int32 page_size = 6;
 }
 
 message TranscriptList {

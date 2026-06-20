@@ -4,7 +4,7 @@
 // 	protoc        (unknown)
 // source: admin.proto
 
-//go:build !protoopaque
+//go:build protoopaque
 
 package api
 
@@ -26,8 +26,8 @@ const (
 )
 
 type DeleteTscriptRequest struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	state         protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id string                 `protobuf:"bytes,1,opt,name=id,proto3"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -59,13 +59,13 @@ func (x *DeleteTscriptRequest) ProtoReflect() protoreflect.Message {
 
 func (x *DeleteTscriptRequest) GetId() string {
 	if x != nil {
-		return x.Id
+		return x.xxx_hidden_Id
 	}
 	return ""
 }
 
 func (x *DeleteTscriptRequest) SetId(v string) {
-	x.Id = v
+	x.xxx_hidden_Id = v
 }
 
 type DeleteTscriptRequest_builder struct {
@@ -78,17 +78,17 @@ func (b0 DeleteTscriptRequest_builder) Build() *DeleteTscriptRequest {
 	m0 := &DeleteTscriptRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Id = b.Id
+	x.xxx_hidden_Id = b.Id
 	return m0
 }
 
 type CreateTscriptImportRequest struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Epid          string                 `protobuf:"bytes,1,opt,name=epid,proto3" json:"epid,omitempty"` // must be in the correct format e.g. xfm-S2E36
-	Mp3Uri        string                 `protobuf:"bytes,2,opt,name=mp3_uri,json=mp3Uri,proto3" json:"mp3_uri,omitempty"`
-	Epname        string                 `protobuf:"bytes,3,opt,name=epname,proto3" json:"epname,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state             protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Epid   string                 `protobuf:"bytes,1,opt,name=epid,proto3"`
+	xxx_hidden_Mp3Uri string                 `protobuf:"bytes,2,opt,name=mp3_uri,json=mp3Uri,proto3"`
+	xxx_hidden_Epname string                 `protobuf:"bytes,3,opt,name=epname,proto3"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *CreateTscriptImportRequest) Reset() {
@@ -118,35 +118,35 @@ func (x *CreateTscriptImportRequest) ProtoReflect() protoreflect.Message {
 
 func (x *CreateTscriptImportRequest) GetEpid() string {
 	if x != nil {
-		return x.Epid
+		return x.xxx_hidden_Epid
 	}
 	return ""
 }
 
 func (x *CreateTscriptImportRequest) GetMp3Uri() string {
 	if x != nil {
-		return x.Mp3Uri
+		return x.xxx_hidden_Mp3Uri
 	}
 	return ""
 }
 
 func (x *CreateTscriptImportRequest) GetEpname() string {
 	if x != nil {
-		return x.Epname
+		return x.xxx_hidden_Epname
 	}
 	return ""
 }
 
 func (x *CreateTscriptImportRequest) SetEpid(v string) {
-	x.Epid = v
+	x.xxx_hidden_Epid = v
 }
 
 func (x *CreateTscriptImportRequest) SetMp3Uri(v string) {
-	x.Mp3Uri = v
+	x.xxx_hidden_Mp3Uri = v
 }
 
 func (x *CreateTscriptImportRequest) SetEpname(v string) {
-	x.Epname = v
+	x.xxx_hidden_Epname = v
 }
 
 type CreateTscriptImportRequest_builder struct {
@@ -161,23 +161,23 @@ func (b0 CreateTscriptImportRequest_builder) Build() *CreateTscriptImportRequest
 	m0 := &CreateTscriptImportRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Epid = b.Epid
-	x.Mp3Uri = b.Mp3Uri
-	x.Epname = b.Epname
+	x.xxx_hidden_Epid = b.Epid
+	x.xxx_hidden_Mp3Uri = b.Mp3Uri
+	x.xxx_hidden_Epname = b.Epname
 	return m0
 }
 
 type TscriptImport struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Epid          string                 `protobuf:"bytes,2,opt,name=epid,proto3" json:"epid,omitempty"` // must be in the correct format e.g. xfm-S2E36
-	Mp3Uri        string                 `protobuf:"bytes,3,opt,name=mp3_uri,json=mp3Uri,proto3" json:"mp3_uri,omitempty"`
-	Epname        string                 `protobuf:"bytes,4,opt,name=epname,proto3" json:"epname,omitempty"` // optional
-	Log           []*TscriptImportLog    `protobuf:"bytes,5,rep,name=log,proto3" json:"log,omitempty"`
-	CreatedAt     string                 `protobuf:"bytes,6,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	CompletedAt   string                 `protobuf:"bytes,7,opt,name=completed_at,json=completedAt,proto3" json:"completed_at,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                  protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id          string                 `protobuf:"bytes,1,opt,name=id,proto3"`
+	xxx_hidden_Epid        string                 `protobuf:"bytes,2,opt,name=epid,proto3"`
+	xxx_hidden_Mp3Uri      string                 `protobuf:"bytes,3,opt,name=mp3_uri,json=mp3Uri,proto3"`
+	xxx_hidden_Epname      string                 `protobuf:"bytes,4,opt,name=epname,proto3"`
+	xxx_hidden_Log         *[]*TscriptImportLog   `protobuf:"bytes,5,rep,name=log,proto3"`
+	xxx_hidden_CreatedAt   string                 `protobuf:"bytes,6,opt,name=created_at,json=createdAt,proto3"`
+	xxx_hidden_CompletedAt string                 `protobuf:"bytes,7,opt,name=completed_at,json=completedAt,proto3"`
+	unknownFields          protoimpl.UnknownFields
+	sizeCache              protoimpl.SizeCache
 }
 
 func (x *TscriptImport) Reset() {
@@ -207,79 +207,81 @@ func (x *TscriptImport) ProtoReflect() protoreflect.Message {
 
 func (x *TscriptImport) GetId() string {
 	if x != nil {
-		return x.Id
+		return x.xxx_hidden_Id
 	}
 	return ""
 }
 
 func (x *TscriptImport) GetEpid() string {
 	if x != nil {
-		return x.Epid
+		return x.xxx_hidden_Epid
 	}
 	return ""
 }
 
 func (x *TscriptImport) GetMp3Uri() string {
 	if x != nil {
-		return x.Mp3Uri
+		return x.xxx_hidden_Mp3Uri
 	}
 	return ""
 }
 
 func (x *TscriptImport) GetEpname() string {
 	if x != nil {
-		return x.Epname
+		return x.xxx_hidden_Epname
 	}
 	return ""
 }
 
 func (x *TscriptImport) GetLog() []*TscriptImportLog {
 	if x != nil {
-		return x.Log
+		if x.xxx_hidden_Log != nil {
+			return *x.xxx_hidden_Log
+		}
 	}
 	return nil
 }
 
 func (x *TscriptImport) GetCreatedAt() string {
 	if x != nil {
-		return x.CreatedAt
+		return x.xxx_hidden_CreatedAt
 	}
 	return ""
 }
 
 func (x *TscriptImport) GetCompletedAt() string {
 	if x != nil {
-		return x.CompletedAt
+		return x.xxx_hidden_CompletedAt
 	}
 	return ""
 }
 
 func (x *TscriptImport) SetId(v string) {
-	x.Id = v
+	x.xxx_hidden_Id = v
 }
 
 func (x *TscriptImport) SetEpid(v string) {
-	x.Epid = v
+	x.xxx_hidden_Epid = v
 }
 
 func (x *TscriptImport) SetMp3Uri(v string) {
-	x.Mp3Uri = v
+	x.xxx_hidden_Mp3Uri = v
 }
 
 func (x *TscriptImport) SetEpname(v string) {
-	x.Epname = v
+	x.xxx_hidden_Epname = v
 }
 
 func (x *TscriptImport) SetLog(v []*TscriptImportLog) {
-	x.Log = v
+	x.xxx_hidden_Log = &v
 }
 
 func (x *TscriptImport) SetCreatedAt(v string) {
-	x.CreatedAt = v
+	x.xxx_hidden_CreatedAt = v
 }
 
 func (x *TscriptImport) SetCompletedAt(v string) {
-	x.CompletedAt = v
+	x.xxx_hidden_CompletedAt = v
 }
 
 type TscriptImport_builder struct {
@@ -298,22 +300,22 @@ func (b0 TscriptImport_builder) Build() *TscriptImport {
 	m0 := &TscriptImport{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Id = b.Id
-	x.Epid = b.Epid
-	x.Mp3Uri = b.Mp3Uri
-	x.Epname = b.Epname
-	x.Log = b.Log
-	x.CreatedAt = b.CreatedAt
-	x.CompletedAt = b.CompletedAt
+	x.xxx_hidden_Id = b.Id
+	x.xxx_hidden_Epid = b.Epid
+	x.xxx_hidden_Mp3Uri = b.Mp3Uri
+	x.xxx_hidden_Epname = b.Epname
+	x.xxx_hidden_Log = &b.Log
+	x.xxx_hidden_CreatedAt = b.CreatedAt
+	x.xxx_hidden_CompletedAt = b.CompletedAt
 	return m0
 }
 
 type TscriptImportLog struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Stage         string                 `protobuf:"bytes,1,opt,name=stage,proto3" json:"stage,omitempty"`
-	Msg           string                 `protobuf:"bytes,2,opt,name=msg,proto3" json:"msg,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state            protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Stage string                 `protobuf:"bytes,1,opt,name=stage,proto3"`
+	xxx_hidden_Msg   string                 `protobuf:"bytes,2,opt,name=msg,proto3"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *TscriptImportLog) Reset() {
@@ -343,24 +345,24 @@ func (x *TscriptImportLog) ProtoReflect() protoreflect.Message {
 
 func (x *TscriptImportLog) GetStage() string {
 	if x != nil {
-		return x.Stage
+		return x.xxx_hidden_Stage
 	}
 	return ""
 }
 
 func (x *TscriptImportLog) GetMsg() string {
 	if x != nil {
-		return x.Msg
+		return x.xxx_hidden_Msg
 	}
 	return ""
 }
 
 func (x *TscriptImportLog) SetStage(v string) {
-	x.Stage = v
+	x.xxx_hidden_Stage = v
 }
 
 func (x *TscriptImportLog) SetMsg(v string) {
-	x.Msg = v
+	x.xxx_hidden_Msg = v
 }
 
 type TscriptImportLog_builder struct {
@@ -374,20 +376,20 @@ func (b0 TscriptImportLog_builder) Build() *TscriptImportLog {
 	m0 := &TscriptImportLog{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Stage = b.Stage
-	x.Msg = b.Msg
+	x.xxx_hidden_Stage = b.Stage
+	x.xxx_hidden_Msg = b.Msg
 	return m0
 }
 
 type ListTscriptImportsRequest struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Filter        string                 `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
-	SortField     string                 `protobuf:"bytes,2,opt,name=sort_field,json=sortField,proto3" json:"sort_field,omitempty"`
-	SortDirection string                 `protobuf:"bytes,3,opt,name=sort_direction,json=sortDirection,proto3" json:"sort_direction,omitempty"`
-	Page          int32                  `protobuf:"varint,4,opt,name=page,proto3" json:"page,omitempty"`
-	PageSize      int32                  `protobuf:"varint,5,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                    protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Filter        string                 `protobuf:"bytes,1,opt,name=filter,proto3"`
+	xxx_hidden_SortField     string                 `protobuf:"bytes,2,opt,name=sort_field,json=sortField,proto3"`
+	xxx_hidden_SortDirection string                 `protobuf:"bytes,3,opt,name=sort_direction,json=sortDirection,proto3"`
+	xxx_hidden_Page          int32                  `protobuf:"varint,4,opt,name=page,proto3"`
+	xxx_hidden_PageSize      int32                  `protobuf:"varint,5,opt,name=page_size,json=pageSize,proto3"`
+	unknownFields            protoimpl.UnknownFields
+	sizeCache                protoimpl.SizeCache
 }
 
 func (x *ListTscriptImportsRequest) Reset() {
@@ -417,57 +419,57 @@ func (x *ListTscriptImportsRequest) ProtoReflect() protoreflect.Message {
 
 func (x *ListTscriptImportsRequest) GetFilter() string {
 	if x != nil {
-		return x.Filter
+		return x.xxx_hidden_Filter
 	}
 	return ""
 }
 
 func (x *ListTscriptImportsRequest) GetSortField() string {
 	if x != nil {
-		return x.SortField
+		return x.xxx_hidden_SortField
 	}
 	return ""
 }
 
 func (x *ListTscriptImportsRequest) GetSortDirection() string {
 	if x != nil {
-		return x.SortDirection
+		return x.xxx_hidden_SortDirection
 	}
 	return ""
 }
 
 func (x *ListTscriptImportsRequest) GetPage() int32 {
 	if x != nil {
-		return x.Page
+		return x.xxx_hidden_Page
 	}
 	return 0
 }
 
 func (x *ListTscriptImportsRequest) GetPageSize() int32 {
 	if x != nil {
-		return x.PageSize
+		return x.xxx_hidden_PageSize
 	}
 	return 0
 }
 
 func (x *ListTscriptImportsRequest) SetFilter(v string) {
-	x.Filter = v
+	x.xxx_hidden_Filter = v
 }
 
 func (x *ListTscriptImportsRequest) SetSortField(v string) {
-	x.SortField = v
+	x.xxx_hidden_SortField = v
 }
 
 func (x *ListTscriptImportsRequest) SetSortDirection(v string) {
-	x.SortDirection = v
+	x.xxx_hidden_SortDirection = v
 }
 
 func (x *ListTscriptImportsRequest) SetPage(v int32) {
-	x.Page = v
+	x.xxx_hidden_Page = v
 }
 
 func (x *ListTscriptImportsRequest) SetPageSize(v int32) {
-	x.PageSize = v
+	x.xxx_hidden_PageSize = v
 }
 
 type ListTscriptImportsRequest_builder struct {
@@ -484,19 +486,19 @@ func (b0 ListTscriptImportsRequest_builder) Build() *ListTscriptImportsRequest {
 	m0 := &ListTscriptImportsRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Filter = b.Filter
-	x.SortField = b.SortField
-	x.SortDirection = b.SortDirection
-	x.Page = b.Page
-	x.PageSize = b.PageSize
+	x.xxx_hidden_Filter = b.Filter
+	x.xxx_hidden_SortField = b.SortField
+	x.xxx_hidden_SortDirection = b.SortDirection
+	x.xxx_hidden_Page = b.Page
+	x.xxx_hidden_PageSize = b.PageSize
 	return m0
 }
 
 type TscriptImportList struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Imports       []*TscriptImport       `protobuf:"bytes,1,rep,name=imports,proto3" json:"imports,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state              protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Imports *[]*TscriptImport      `protobuf:"bytes,1,rep,name=imports,proto3"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *TscriptImportList) Reset() {
@@ -526,13 +528,15 @@ func (x *TscriptImportList) ProtoReflect() protoreflect.Message {
 
 func (x *TscriptImportList) GetImports() []*TscriptImport {
 	if x != nil {
-		return x.Imports
+		if x.xxx_hidden_Imports != nil {
+			return *x.xxx_hidden_Imports
+		}
 	}
 	return nil
 }
 
 func (x *TscriptImportList) SetImports(v []*TscriptImport) {
-	x.Imports = v
+	x.xxx_hidden_Imports = &v
 }
 
 type TscriptImportList_builder struct {
@@ -545,7 +549,7 @@ func (b0 TscriptImportList_builder) Build() *TscriptImportList {
 	m0 := &TscriptImportList{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Imports = b.Imports
+	x.xxx_hidden_Imports = &b.Imports
 	return m0
 }
 

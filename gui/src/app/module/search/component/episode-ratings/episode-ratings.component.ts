@@ -99,7 +99,7 @@ export class EpisodeRatingsComponent implements OnDestroy {
   loadGrid(): void {
     this.loading.push(true);
     this.apiClient
-      .listTranscripts({ sortField: 'rating_score', sortDirection: 'desc', pageSize: 1000, filter: Neq('rating_score', Null()).print() })
+      .listTranscripts({ sortField: 'rating_score', sortDirection: 'desc', filter: Neq('rating_score', Null()).print() })
       .pipe(takeUntil(this.destroy$))
       .subscribe((res: RskTranscriptList) => {
         this.grid = this.buildGrid(res.episodes || []);

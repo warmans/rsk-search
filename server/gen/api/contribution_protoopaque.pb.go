@@ -4,7 +4,7 @@
 // 	protoc        (unknown)
 // source: contribution.proto
 
-//go:build !protoopaque
+//go:build protoopaque
 
 package api
 
@@ -112,14 +112,14 @@ func (x AuthorContribution_ContributionType) Number() protoreflect.EnumNumber {
 
 // NEW rankings
 type ListAuthorRanksRequest struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Filter        string                 `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
-	SortField     string                 `protobuf:"bytes,2,opt,name=sort_field,json=sortField,proto3" json:"sort_field,omitempty"`
-	SortDirection string                 `protobuf:"bytes,3,opt,name=sort_direction,json=sortDirection,proto3" json:"sort_direction,omitempty"`
-	Page          int32                  `protobuf:"varint,4,opt,name=page,proto3" json:"page,omitempty"`
-	PageSize      int32                  `protobuf:"varint,5,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                    protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Filter        string                 `protobuf:"bytes,1,opt,name=filter,proto3"`
+	xxx_hidden_SortField     string                 `protobuf:"bytes,2,opt,name=sort_field,json=sortField,proto3"`
+	xxx_hidden_SortDirection string                 `protobuf:"bytes,3,opt,name=sort_direction,json=sortDirection,proto3"`
+	xxx_hidden_Page          int32                  `protobuf:"varint,4,opt,name=page,proto3"`
+	xxx_hidden_PageSize      int32                  `protobuf:"varint,5,opt,name=page_size,json=pageSize,proto3"`
+	unknownFields            protoimpl.UnknownFields
+	sizeCache                protoimpl.SizeCache
 }
 
 func (x *ListAuthorRanksRequest) Reset() {
@@ -149,57 +149,57 @@ func (x *ListAuthorRanksRequest) ProtoReflect() protoreflect.Message {
 
 func (x *ListAuthorRanksRequest) GetFilter() string {
 	if x != nil {
-		return x.Filter
+		return x.xxx_hidden_Filter
 	}
 	return ""
 }
 
 func (x *ListAuthorRanksRequest) GetSortField() string {
 	if x != nil {
-		return x.SortField
+		return x.xxx_hidden_SortField
 	}
 	return ""
 }
 
 func (x *ListAuthorRanksRequest) GetSortDirection() string {
 	if x != nil {
-		return x.SortDirection
+		return x.xxx_hidden_SortDirection
 	}
 	return ""
 }
 
 func (x *ListAuthorRanksRequest) GetPage() int32 {
 	if x != nil {
-		return x.Page
+		return x.xxx_hidden_Page
 	}
 	return 0
 }
 
 func (x *ListAuthorRanksRequest) GetPageSize() int32 {
 	if x != nil {
-		return x.PageSize
+		return x.xxx_hidden_PageSize
 	}
 	return 0
 }
 
 func (x *ListAuthorRanksRequest) SetFilter(v string) {
-	x.Filter = v
+	x.xxx_hidden_Filter = v
 }
 
 func (x *ListAuthorRanksRequest) SetSortField(v string) {
-	x.SortField = v
+	x.xxx_hidden_SortField = v
 }
 
 func (x *ListAuthorRanksRequest) SetSortDirection(v string) {
-	x.SortDirection = v
+	x.xxx_hidden_SortDirection = v
 }
 
 func (x *ListAuthorRanksRequest) SetPage(v int32) {
-	x.Page = v
+	x.xxx_hidden_Page = v
 }
 
 func (x *ListAuthorRanksRequest) SetPageSize(v int32) {
-	x.PageSize = v
+	x.xxx_hidden_PageSize = v
 }
 
 type ListAuthorRanksRequest_builder struct {
@@ -216,19 +216,19 @@ func (b0 ListAuthorRanksRequest_builder) Build() *ListAuthorRanksRequest {
 	m0 := &ListAuthorRanksRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Filter = b.Filter
-	x.SortField = b.SortField
-	x.SortDirection = b.SortDirection
-	x.Page = b.Page
-	x.PageSize = b.PageSize
+	x.xxx_hidden_Filter = b.Filter
+	x.xxx_hidden_SortField = b.SortField
+	x.xxx_hidden_SortDirection = b.SortDirection
+	x.xxx_hidden_Page = b.Page
+	x.xxx_hidden_PageSize = b.PageSize
 	return m0
 }
 
 type AuthorRankList struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Rankings      []*AuthorRank          `protobuf:"bytes,1,rep,name=rankings,proto3" json:"rankings,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state               protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Rankings *[]*AuthorRank         `protobuf:"bytes,1,rep,name=rankings,proto3"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
 }
 
 func (x *AuthorRankList) Reset() {
@@ -258,13 +258,15 @@ func (x *AuthorRankList) ProtoReflect() protoreflect.Message {
 
 func (x *AuthorRankList) GetRankings() []*AuthorRank {
 	if x != nil {
-		return x.Rankings
+		if x.xxx_hidden_Rankings != nil {
+			return *x.xxx_hidden_Rankings
+		}
 	}
 	return nil
 }
 
 func (x *AuthorRankList) SetRankings(v []*AuthorRank) {
-	x.Rankings = v
+	x.xxx_hidden_Rankings = &v
 }
 
 type AuthorRankList_builder struct {
@@ -277,21 +279,21 @@ func (b0 AuthorRankList_builder) Build() *AuthorRankList {
 	m0 := &AuthorRankList{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Rankings = b.Rankings
+	x.xxx_hidden_Rankings = &b.Rankings
 	return m0
 }
 
 type AuthorRank struct {
-	state           protoimpl.MessageState `protogen:"hybrid.v1"`
-	Author          *Author                `protobuf:"bytes,1,opt,name=author,proto3" json:"author,omitempty"`
-	ApprovedChunks  int32                  `protobuf:"varint,2,opt,name=approved_chunks,json=approvedChunks,proto3" json:"approved_chunks,omitempty"`
-	ApprovedChanges int32                  `protobuf:"varint,3,opt,name=approved_changes,json=approvedChanges,proto3" json:"approved_changes,omitempty"`
-	RewardValueUsd  float32                `protobuf:"fixed32,4,opt,name=reward_value_usd,json=rewardValueUsd,proto3" json:"reward_value_usd,omitempty"`
-	Points          float32                `protobuf:"fixed32,5,opt,name=points,proto3" json:"points,omitempty"`
-	CurrentRank     *Rank                  `protobuf:"bytes,6,opt,name=current_rank,json=currentRank,proto3" json:"current_rank,omitempty"`
-	NextRank        *Rank                  `protobuf:"bytes,7,opt,name=next_rank,json=nextRank,proto3" json:"next_rank,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state                      protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Author          *Author                `protobuf:"bytes,1,opt,name=author,proto3"`
+	xxx_hidden_ApprovedChunks  int32                  `protobuf:"varint,2,opt,name=approved_chunks,json=approvedChunks,proto3"`
+	xxx_hidden_ApprovedChanges int32                  `protobuf:"varint,3,opt,name=approved_changes,json=approvedChanges,proto3"`
+	xxx_hidden_RewardValueUsd  float32                `protobuf:"fixed32,4,opt,name=reward_value_usd,json=rewardValueUsd,proto3"`
+	xxx_hidden_Points          float32                `protobuf:"fixed32,5,opt,name=points,proto3"`
+	xxx_hidden_CurrentRank     *Rank                  `protobuf:"bytes,6,opt,name=current_rank,json=currentRank,proto3"`
+	xxx_hidden_NextRank        *Rank                  `protobuf:"bytes,7,opt,name=next_rank,json=nextRank,proto3"`
+	unknownFields              protoimpl.UnknownFields
+	sizeCache                  protoimpl.SizeCache
 }
 
 func (x *AuthorRank) Reset() {
@@ -321,112 +323,112 @@ func (x *AuthorRank) ProtoReflect() protoreflect.Message {
 
 func (x *AuthorRank) GetAuthor() *Author {
 	if x != nil {
-		return x.Author
+		return x.xxx_hidden_Author
 	}
 	return nil
 }
 
 func (x *AuthorRank) GetApprovedChunks() int32 {
 	if x != nil {
-		return x.ApprovedChunks
+		return x.xxx_hidden_ApprovedChunks
 	}
 	return 0
 }
 
 func (x *AuthorRank) GetApprovedChanges() int32 {
 	if x != nil {
-		return x.ApprovedChanges
+		return x.xxx_hidden_ApprovedChanges
 	}
 	return 0
 }
 
 func (x *AuthorRank) GetRewardValueUsd() float32 {
 	if x != nil {
-		return x.RewardValueUsd
+		return x.xxx_hidden_RewardValueUsd
 	}
 	return 0
 }
 
 func (x *AuthorRank) GetPoints() float32 {
 	if x != nil {
-		return x.Points
+		return x.xxx_hidden_Points
 	}
 	return 0
 }
 
 func (x *AuthorRank) GetCurrentRank() *Rank {
 	if x != nil {
-		return x.CurrentRank
+		return x.xxx_hidden_CurrentRank
 	}
 	return nil
 }
 
 func (x *AuthorRank) GetNextRank() *Rank {
 	if x != nil {
-		return x.NextRank
+		return x.xxx_hidden_NextRank
 	}
 	return nil
 }
 
 func (x *AuthorRank) SetAuthor(v *Author) {
-	x.Author = v
+	x.xxx_hidden_Author = v
 }
 
 func (x *AuthorRank) SetApprovedChunks(v int32) {
-	x.ApprovedChunks = v
+	x.xxx_hidden_ApprovedChunks = v
 }
 
 func (x *AuthorRank) SetApprovedChanges(v int32) {
-	x.ApprovedChanges = v
+	x.xxx_hidden_ApprovedChanges = v
 }
 
 func (x *AuthorRank) SetRewardValueUsd(v float32) {
-	x.RewardValueUsd = v
+	x.xxx_hidden_RewardValueUsd = v
 }
 
 func (x *AuthorRank) SetPoints(v float32) {
-	x.Points = v
+	x.xxx_hidden_Points = v
 }
 
 func (x *AuthorRank) SetCurrentRank(v *Rank) {
-	x.CurrentRank = v
+	x.xxx_hidden_CurrentRank = v
 }
 
 func (x *AuthorRank) SetNextRank(v *Rank) {
-	x.NextRank = v
+	x.xxx_hidden_NextRank = v
 }
 
 func (x *AuthorRank) HasAuthor() bool {
 	if x == nil {
 		return false
 	}
-	return x.Author != nil
+	return x.xxx_hidden_Author != nil
 }
 
 func (x *AuthorRank) HasCurrentRank() bool {
 	if x == nil {
 		return false
 	}
-	return x.CurrentRank != nil
+	return x.xxx_hidden_CurrentRank != nil
 }
 
 func (x *AuthorRank) HasNextRank() bool {
 	if x == nil {
 		return false
 	}
-	return x.NextRank != nil
+	return x.xxx_hidden_NextRank != nil
 }
 
 func (x *AuthorRank) ClearAuthor() {
-	x.Author = nil
+	x.xxx_hidden_Author = nil
 }
 
 func (x *AuthorRank) ClearCurrentRank() {
-	x.CurrentRank = nil
+	x.xxx_hidden_CurrentRank = nil
 }
 
 func (x *AuthorRank) ClearNextRank() {
-	x.NextRank = nil
+	x.xxx_hidden_NextRank = nil
 }
 
 type AuthorRank_builder struct {
@@ -445,23 +447,23 @@ func (b0 AuthorRank_builder) Build() *AuthorRank {
 	m0 := &AuthorRank{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Author = b.Author
-	x.ApprovedChunks = b.ApprovedChunks
-	x.ApprovedChanges = b.ApprovedChanges
-	x.RewardValueUsd = b.RewardValueUsd
-	x.Points = b.Points
-	x.CurrentRank = b.CurrentRank
-	x.NextRank = b.NextRank
+	x.xxx_hidden_Author = b.Author
+	x.xxx_hidden_ApprovedChunks = b.ApprovedChunks
+	x.xxx_hidden_ApprovedChanges = b.ApprovedChanges
+	x.xxx_hidden_RewardValueUsd = b.RewardValueUsd
+	x.xxx_hidden_Points = b.Points
+	x.xxx_hidden_CurrentRank = b.CurrentRank
+	x.xxx_hidden_NextRank = b.NextRank
 	return m0
 }
 
 type Rank struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Points        float32                `protobuf:"fixed32,3,opt,name=points,proto3" json:"points,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state             protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id     string                 `protobuf:"bytes,1,opt,name=id,proto3"`
+	xxx_hidden_Name   string                 `protobuf:"bytes,2,opt,name=name,proto3"`
+	xxx_hidden_Points float32                `protobuf:"fixed32,3,opt,name=points,proto3"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
 }
 
 func (x *Rank) Reset() {
@@ -491,35 +493,35 @@ func (x *Rank) ProtoReflect() protoreflect.Message {
 
 func (x *Rank) GetId() string {
 	if x != nil {
-		return x.Id
+		return x.xxx_hidden_Id
 	}
 	return ""
 }
 
 func (x *Rank) GetName() string {
 	if x != nil {
-		return x.Name
+		return x.xxx_hidden_Name
 	}
 	return ""
 }
 
 func (x *Rank) GetPoints() float32 {
 	if x != nil {
-		return x.Points
+		return x.xxx_hidden_Points
 	}
 	return 0
 }
 
 func (x *Rank) SetId(v string) {
-	x.Id = v
+	x.xxx_hidden_Id = v
 }
 
 func (x *Rank) SetName(v string) {
-	x.Name = v
+	x.xxx_hidden_Name = v
 }
 
 func (x *Rank) SetPoints(v float32) {
-	x.Points = v
+	x.xxx_hidden_Points = v
 }
 
 type Rank_builder struct {
@@ -534,17 +536,17 @@ func (b0 Rank_builder) Build() *Rank {
 	m0 := &Rank{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Id = b.Id
-	x.Name = b.Name
-	x.Points = b.Points
+	x.xxx_hidden_Id = b.Id
+	x.xxx_hidden_Name = b.Name
+	x.xxx_hidden_Points = b.Points
 	return m0
 }
 
 type PendingRewardList struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Rewards       []*Reward              `protobuf:"bytes,1,rep,name=rewards,proto3" json:"rewards,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state              protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Rewards *[]*Reward             `protobuf:"bytes,1,rep,name=rewards,proto3"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *PendingRewardList) Reset() {
@@ -574,13 +576,15 @@ func (x *PendingRewardList) ProtoReflect() protoreflect.Message {
 
 func (x *PendingRewardList) GetRewards() []*Reward {
 	if x != nil {
-		return x.Rewards
+		if x.xxx_hidden_Rewards != nil {
+			return *x.xxx_hidden_Rewards
+		}
 	}
 	return nil
 }
 
 func (x *PendingRewardList) SetRewards(v []*Reward) {
-	x.Rewards = v
+	x.xxx_hidden_Rewards = &v
 }
 
 type PendingRewardList_builder struct {
@@ -593,20 +597,20 @@ func (b0 PendingRewardList_builder) Build() *PendingRewardList {
 	m0 := &PendingRewardList{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Rewards = b.Rewards
+	x.xxx_hidden_Rewards = &b.Rewards
 	return m0
 }
 
 type Reward struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Kind          Reward_RewardKind      `protobuf:"varint,2,opt,name=kind,proto3,enum=rsk.Reward_RewardKind" json:"kind,omitempty"`
-	Name          string                 `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
-	Criteria      string                 `protobuf:"bytes,4,opt,name=criteria,proto3" json:"criteria,omitempty"`
-	Value         float32                `protobuf:"fixed32,5,opt,name=value,proto3" json:"value,omitempty"`
-	ValueCurrency string                 `protobuf:"bytes,6,opt,name=value_currency,json=valueCurrency,proto3" json:"value_currency,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                    protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id            string                 `protobuf:"bytes,1,opt,name=id,proto3"`
+	xxx_hidden_Kind          Reward_RewardKind      `protobuf:"varint,2,opt,name=kind,proto3,enum=rsk.Reward_RewardKind"`
+	xxx_hidden_Name          string                 `protobuf:"bytes,3,opt,name=name,proto3"`
+	xxx_hidden_Criteria      string                 `protobuf:"bytes,4,opt,name=criteria,proto3"`
+	xxx_hidden_Value         float32                `protobuf:"fixed32,5,opt,name=value,proto3"`
+	xxx_hidden_ValueCurrency string                 `protobuf:"bytes,6,opt,name=value_currency,json=valueCurrency,proto3"`
+	unknownFields            protoimpl.UnknownFields
+	sizeCache                protoimpl.SizeCache
 }
 
 func (x *Reward) Reset() {
@@ -636,68 +640,68 @@ func (x *Reward) ProtoReflect() protoreflect.Message {
 
 func (x *Reward) GetId() string {
 	if x != nil {
-		return x.Id
+		return x.xxx_hidden_Id
 	}
 	return ""
 }
 
 func (x *Reward) GetKind() Reward_RewardKind {
 	if x != nil {
-		return x.Kind
+		return x.xxx_hidden_Kind
 	}
 	return Reward_UNKNOWN
 }
 
 func (x *Reward) GetName() string {
 	if x != nil {
-		return x.Name
+		return x.xxx_hidden_Name
 	}
 	return ""
 }
 
 func (x *Reward) GetCriteria() string {
 	if x != nil {
-		return x.Criteria
+		return x.xxx_hidden_Criteria
 	}
 	return ""
 }
 
 func (x *Reward) GetValue() float32 {
 	if x != nil {
-		return x.Value
+		return x.xxx_hidden_Value
 	}
 	return 0
 }
 
 func (x *Reward) GetValueCurrency() string {
 	if x != nil {
-		return x.ValueCurrency
+		return x.xxx_hidden_ValueCurrency
 	}
 	return ""
 }
 
 func (x *Reward) SetId(v string) {
-	x.Id = v
+	x.xxx_hidden_Id = v
 }
 
 func (x *Reward) SetKind(v Reward_RewardKind) {
-	x.Kind = v
+	x.xxx_hidden_Kind = v
 }
 
 func (x *Reward) SetName(v string) {
-	x.Name = v
+	x.xxx_hidden_Name = v
 }
 
 func (x *Reward) SetCriteria(v string) {
-	x.Criteria = v
+	x.xxx_hidden_Criteria = v
 }
 
 func (x *Reward) SetValue(v float32) {
-	x.Value = v
+	x.xxx_hidden_Value = v
 }
 
 func (x *Reward) SetValueCurrency(v string) {
-	x.ValueCurrency = v
+	x.xxx_hidden_ValueCurrency = v
 }
 
 type Reward_builder struct {
@@ -715,24 +719,21 @@ func (b0 Reward_builder) Build() *Reward {
 	m0 := &Reward{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Id = b.Id
-	x.Kind = b.Kind
-	x.Name = b.Name
-	x.Criteria = b.Criteria
-	x.Value = b.Value
-	x.ValueCurrency = b.ValueCurrency
+	x.xxx_hidden_Id = b.Id
+	x.xxx_hidden_Kind = b.Kind
+	x.xxx_hidden_Name = b.Name
+	x.xxx_hidden_Criteria = b.Criteria
+	x.xxx_hidden_Value = b.Value
+	x.xxx_hidden_ValueCurrency = b.ValueCurrency
 	return m0
 }
 
 type ClaimRewardRequest struct {
-	state protoimpl.MessageState `protogen:"hybrid.v1"`
-	Id    string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// Types that are valid to be assigned to Args:
-	//
-	//	*ClaimRewardRequest_DonationArgs
-	Args          isClaimRewardRequest_Args `protobuf_oneof:"args"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state           protoimpl.MessageState    `protogen:"opaque.v1"`
+	xxx_hidden_Id   string                    `protobuf:"bytes,1,opt,name=id,proto3"`
+	xxx_hidden_Args isClaimRewardRequest_Args `protobuf_oneof:"args"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *ClaimRewardRequest) Reset() {
@@ -762,21 +763,14 @@ func (x *ClaimRewardRequest) ProtoReflect() protoreflect.Message {
 
 func (x *ClaimRewardRequest) GetId() string {
 	if x != nil {
-		return x.Id
+		return x.xxx_hidden_Id
 	}
 	return ""
 }
 
-func (x *ClaimRewardRequest) GetArgs() isClaimRewardRequest_Args {
-	if x != nil {
-		return x.Args
-	}
-	return nil
-}
-
 func (x *ClaimRewardRequest) GetDonationArgs() *DonationArgs {
 	if x != nil {
-		if x, ok := x.Args.(*ClaimRewardRequest_DonationArgs); ok {
+		if x, ok := x.xxx_hidden_Args.(*claimRewardRequest_DonationArgs); ok {
 			return x.DonationArgs
 		}
 	}
@@ -784,39 +778,39 @@ func (x *ClaimRewardRequest) GetDonationArgs() *DonationArgs {
 }
 
 func (x *ClaimRewardRequest) SetId(v string) {
-	x.Id = v
+	x.xxx_hidden_Id = v
 }
 
 func (x *ClaimRewardRequest) SetDonationArgs(v *DonationArgs) {
 	if v == nil {
-		x.Args = nil
+		x.xxx_hidden_Args = nil
 		return
 	}
-	x.Args = &ClaimRewardRequest_DonationArgs{v}
+	x.xxx_hidden_Args = &claimRewardRequest_DonationArgs{v}
 }
 
 func (x *ClaimRewardRequest) HasArgs() bool {
 	if x == nil {
 		return false
 	}
-	return x.Args != nil
+	return x.xxx_hidden_Args != nil
 }
 
 func (x *ClaimRewardRequest) HasDonationArgs() bool {
 	if x == nil {
 		return false
 	}
-	_, ok := x.Args.(*ClaimRewardRequest_DonationArgs)
+	_, ok := x.xxx_hidden_Args.(*claimRewardRequest_DonationArgs)
 	return ok
 }
 
 func (x *ClaimRewardRequest) ClearArgs() {
-	x.Args = nil
+	x.xxx_hidden_Args = nil
 }
 
 func (x *ClaimRewardRequest) ClearDonationArgs() {
-	if _, ok := x.Args.(*ClaimRewardRequest_DonationArgs); ok {
-		x.Args = nil
+	if _, ok := x.xxx_hidden_Args.(*claimRewardRequest_DonationArgs); ok {
+		x.xxx_hidden_Args = nil
 	}
 }
 
@@ -827,8 +821,8 @@ func (x *ClaimRewardRequest) WhichArgs() case_ClaimRewardRequest_Args {
 	if x == nil {
 		return ClaimRewardRequest_Args_not_set_case
 	}
-	switch x.Args.(type) {
-	case *ClaimRewardRequest_DonationArgs:
+	switch x.xxx_hidden_Args.(type) {
+	case *claimRewardRequest_DonationArgs:
 		return ClaimRewardRequest_DonationArgs_case
 	default:
 		return ClaimRewardRequest_Args_not_set_case
@@ -839,18 +833,18 @@ type ClaimRewardRequest_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
 	Id string
-	// Fields of oneof Args:
+	// Fields of oneof xxx_hidden_Args:
 	DonationArgs *DonationArgs
-	// -- end of Args
+	// -- end of xxx_hidden_Args
 }
 
 func (b0 ClaimRewardRequest_builder) Build() *ClaimRewardRequest {
 	m0 := &ClaimRewardRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Id = b.Id
+	x.xxx_hidden_Id = b.Id
 	if b.DonationArgs != nil {
-		x.Args = &ClaimRewardRequest_DonationArgs{b.DonationArgs}
+		x.xxx_hidden_Args = &claimRewardRequest_DonationArgs{b.DonationArgs}
 	}
 	return m0
 }
@@ -869,17 +863,17 @@ type isClaimRewardRequest_Args interface {
 	isClaimRewardRequest_Args()
 }
 
-type ClaimRewardRequest_DonationArgs struct {
+type claimRewardRequest_DonationArgs struct {
 	DonationArgs *DonationArgs `protobuf:"bytes,2,opt,name=donation_args,json=donationArgs,proto3,oneof"`
 }
 
-func (*ClaimRewardRequest_DonationArgs) isClaimRewardRequest_Args() {}
+func (*claimRewardRequest_DonationArgs) isClaimRewardRequest_Args() {}
 
 type DonationArgs struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Recipient     string                 `protobuf:"bytes,1,opt,name=recipient,proto3" json:"recipient,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Recipient string                 `protobuf:"bytes,1,opt,name=recipient,proto3"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
 }
 
 func (x *DonationArgs) Reset() {
@@ -909,13 +903,13 @@ func (x *DonationArgs) ProtoReflect() protoreflect.Message {
 
 func (x *DonationArgs) GetRecipient() string {
 	if x != nil {
-		return x.Recipient
+		return x.xxx_hidden_Recipient
 	}
 	return ""
 }
 
 func (x *DonationArgs) SetRecipient(v string) {
-	x.Recipient = v
+	x.xxx_hidden_Recipient = v
 }
 
 type DonationArgs_builder struct {
@@ -928,15 +922,15 @@ func (b0 DonationArgs_builder) Build() *DonationArgs {
 	m0 := &DonationArgs{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Recipient = b.Recipient
+	x.xxx_hidden_Recipient = b.Recipient
 	return m0
 }
 
 type ListDonationRecipientsRequest struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	RewardId      string                 `protobuf:"bytes,1,opt,name=reward_id,json=rewardId,proto3" json:"reward_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state               protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_RewardId string                 `protobuf:"bytes,1,opt,name=reward_id,json=rewardId,proto3"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
 }
 
 func (x *ListDonationRecipientsRequest) Reset() {
@@ -966,13 +960,13 @@ func (x *ListDonationRecipientsRequest) ProtoReflect() protoreflect.Message {
 
 func (x *ListDonationRecipientsRequest) GetRewardId() string {
 	if x != nil {
-		return x.RewardId
+		return x.xxx_hidden_RewardId
 	}
 	return ""
 }
 
 func (x *ListDonationRecipientsRequest) SetRewardId(v string) {
-	x.RewardId = v
+	x.xxx_hidden_RewardId = v
 }
 
 type ListDonationRecipientsRequest_builder struct {
@@ -985,15 +979,15 @@ func (b0 ListDonationRecipientsRequest_builder) Build() *ListDonationRecipientsR
 	m0 := &ListDonationRecipientsRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.RewardId = b.RewardId
+	x.xxx_hidden_RewardId = b.RewardId
 	return m0
 }
 
 type DonationRecipientList struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Organizations []*DonationRecipient   `protobuf:"bytes,1,rep,name=organizations,proto3" json:"organizations,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                    protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Organizations *[]*DonationRecipient  `protobuf:"bytes,1,rep,name=organizations,proto3"`
+	unknownFields            protoimpl.UnknownFields
+	sizeCache                protoimpl.SizeCache
 }
 
 func (x *DonationRecipientList) Reset() {
@@ -1023,13 +1017,15 @@ func (x *DonationRecipientList) ProtoReflect() protoreflect.Message {
 
 func (x *DonationRecipientList) GetOrganizations() []*DonationRecipient {
 	if x != nil {
-		return x.Organizations
+		if x.xxx_hidden_Organizations != nil {
+			return *x.xxx_hidden_Organizations
+		}
 	}
 	return nil
 }
 
 func (x *DonationRecipientList) SetOrganizations(v []*DonationRecipient) {
-	x.Organizations = v
+	x.xxx_hidden_Organizations = &v
 }
 
 type DonationRecipientList_builder struct {
@@ -1042,21 +1038,21 @@ func (b0 DonationRecipientList_builder) Build() *DonationRecipientList {
 	m0 := &DonationRecipientList{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Organizations = b.Organizations
+	x.xxx_hidden_Organizations = &b.Organizations
 	return m0
 }
 
 type DonationRecipient struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Mission       string                 `protobuf:"bytes,3,opt,name=mission,proto3" json:"mission,omitempty"`
-	LogoUrl       string                 `protobuf:"bytes,4,opt,name=logo_url,json=logoUrl,proto3" json:"logo_url,omitempty"`
-	NgoId         string                 `protobuf:"bytes,5,opt,name=ngo_id,json=ngoId,proto3" json:"ngo_id,omitempty"`
-	Url           string                 `protobuf:"bytes,6,opt,name=url,proto3" json:"url,omitempty"`
-	Quote         string                 `protobuf:"bytes,7,opt,name=quote,proto3" json:"quote,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state              protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id      string                 `protobuf:"bytes,1,opt,name=id,proto3"`
+	xxx_hidden_Name    string                 `protobuf:"bytes,2,opt,name=name,proto3"`
+	xxx_hidden_Mission string                 `protobuf:"bytes,3,opt,name=mission,proto3"`
+	xxx_hidden_LogoUrl string                 `protobuf:"bytes,4,opt,name=logo_url,json=logoUrl,proto3"`
+	xxx_hidden_NgoId   string                 `protobuf:"bytes,5,opt,name=ngo_id,json=ngoId,proto3"`
+	xxx_hidden_Url     string                 `protobuf:"bytes,6,opt,name=url,proto3"`
+	xxx_hidden_Quote   string                 `protobuf:"bytes,7,opt,name=quote,proto3"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *DonationRecipient) Reset() {
@@ -1086,79 +1082,79 @@ func (x *DonationRecipient) ProtoReflect() protoreflect.Message {
 
 func (x *DonationRecipient) GetId() string {
 	if x != nil {
-		return x.Id
+		return x.xxx_hidden_Id
 	}
 	return ""
 }
 
 func (x *DonationRecipient) GetName() string {
 	if x != nil {
-		return x.Name
+		return x.xxx_hidden_Name
 	}
 	return ""
 }
 
 func (x *DonationRecipient) GetMission() string {
 	if x != nil {
-		return x.Mission
+		return x.xxx_hidden_Mission
 	}
 	return ""
 }
 
 func (x *DonationRecipient) GetLogoUrl() string {
 	if x != nil {
-		return x.LogoUrl
+		return x.xxx_hidden_LogoUrl
 	}
 	return ""
 }
 
 func (x *DonationRecipient) GetNgoId() string {
 	if x != nil {
-		return x.NgoId
+		return x.xxx_hidden_NgoId
 	}
 	return ""
 }
 
 func (x *DonationRecipient) GetUrl() string {
 	if x != nil {
-		return x.Url
+		return x.xxx_hidden_Url
 	}
 	return ""
 }
 
 func (x *DonationRecipient) GetQuote() string {
 	if x != nil {
-		return x.Quote
+		return x.xxx_hidden_Quote
 	}
 	return ""
 }
 
 func (x *DonationRecipient) SetId(v string) {
-	x.Id = v
+	x.xxx_hidden_Id = v
 }
 
 func (x *DonationRecipient) SetName(v string) {
-	x.Name = v
+	x.xxx_hidden_Name = v
 }
 
 func (x *DonationRecipient) SetMission(v string) {
-	x.Mission = v
+	x.xxx_hidden_Mission = v
 }
 
 func (x *DonationRecipient) SetLogoUrl(v string) {
-	x.LogoUrl = v
+	x.xxx_hidden_LogoUrl = v
 }
 
 func (x *DonationRecipient) SetNgoId(v string) {
-	x.NgoId = v
+	x.xxx_hidden_NgoId = v
 }
 
 func (x *DonationRecipient) SetUrl(v string) {
-	x.Url = v
+	x.xxx_hidden_Url = v
 }
 
 func (x *DonationRecipient) SetQuote(v string) {
-	x.Quote = v
+	x.xxx_hidden_Quote = v
 }
 
 type DonationRecipient_builder struct {
@@ -1177,21 +1173,21 @@ func (b0 DonationRecipient_builder) Build() *DonationRecipient {
 	m0 := &DonationRecipient{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Id = b.Id
-	x.Name = b.Name
-	x.Mission = b.Mission
-	x.LogoUrl = b.LogoUrl
-	x.NgoId = b.NgoId
-	x.Url = b.Url
-	x.Quote = b.Quote
+	x.xxx_hidden_Id = b.Id
+	x.xxx_hidden_Name = b.Name
+	x.xxx_hidden_Mission = b.Mission
+	x.xxx_hidden_LogoUrl = b.LogoUrl
+	x.xxx_hidden_NgoId = b.NgoId
+	x.xxx_hidden_Url = b.Url
+	x.xxx_hidden_Quote = b.Quote
 	return m0
 }
 
 type ClaimedRewardList struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Rewards       []*ClaimedReward       `protobuf:"bytes,1,rep,name=rewards,proto3" json:"rewards,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state              protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Rewards *[]*ClaimedReward      `protobuf:"bytes,1,rep,name=rewards,proto3"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *ClaimedRewardList) Reset() {
@@ -1221,13 +1217,15 @@ func (x *ClaimedRewardList) ProtoReflect() protoreflect.Message {
 
 func (x *ClaimedRewardList) GetRewards() []*ClaimedReward {
 	if x != nil {
-		return x.Rewards
+		if x.xxx_hidden_Rewards != nil {
+			return *x.xxx_hidden_Rewards
+		}
 	}
 	return nil
 }
 
 func (x *ClaimedRewardList) SetRewards(v []*ClaimedReward) {
-	x.Rewards = v
+	x.xxx_hidden_Rewards = &v
 }
 
 type ClaimedRewardList_builder struct {
@@ -1240,20 +1238,20 @@ func (b0 ClaimedRewardList_builder) Build() *ClaimedRewardList {
 	m0 := &ClaimedRewardList{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Rewards = b.Rewards
+	x.xxx_hidden_Rewards = &b.Rewards
 	return m0
 }
 
 type ClaimedReward struct {
-	state            protoimpl.MessageState `protogen:"hybrid.v1"`
-	Id               string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	ClaimKind        string                 `protobuf:"bytes,2,opt,name=claim_kind,json=claimKind,proto3" json:"claim_kind,omitempty"`
-	ClaimValue       float32                `protobuf:"fixed32,3,opt,name=claim_value,json=claimValue,proto3" json:"claim_value,omitempty"`
-	ClaimCurrency    string                 `protobuf:"bytes,4,opt,name=claim_currency,json=claimCurrency,proto3" json:"claim_currency,omitempty"`
-	ClaimDescription string                 `protobuf:"bytes,5,opt,name=claim_description,json=claimDescription,proto3" json:"claim_description,omitempty"`
-	ClaimAt          string                 `protobuf:"bytes,6,opt,name=claim_at,json=claimAt,proto3" json:"claim_at,omitempty"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
+	state                       protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Id               string                 `protobuf:"bytes,1,opt,name=id,proto3"`
+	xxx_hidden_ClaimKind        string                 `protobuf:"bytes,2,opt,name=claim_kind,json=claimKind,proto3"`
+	xxx_hidden_ClaimValue       float32                `protobuf:"fixed32,3,opt,name=claim_value,json=claimValue,proto3"`
+	xxx_hidden_ClaimCurrency    string                 `protobuf:"bytes,4,opt,name=claim_currency,json=claimCurrency,proto3"`
+	xxx_hidden_ClaimDescription string                 `protobuf:"bytes,5,opt,name=claim_description,json=claimDescription,proto3"`
+	xxx_hidden_ClaimAt          string                 `protobuf:"bytes,6,opt,name=claim_at,json=claimAt,proto3"`
+	unknownFields               protoimpl.UnknownFields
+	sizeCache                   protoimpl.SizeCache
 }
 
 func (x *ClaimedReward) Reset() {
@@ -1283,68 +1281,68 @@ func (x *ClaimedReward) ProtoReflect() protoreflect.Message {
 
 func (x *ClaimedReward) GetId() string {
 	if x != nil {
-		return x.Id
+		return x.xxx_hidden_Id
 	}
 	return ""
 }
 
 func (x *ClaimedReward) GetClaimKind() string {
 	if x != nil {
-		return x.ClaimKind
+		return x.xxx_hidden_ClaimKind
 	}
 	return ""
 }
 
 func (x *ClaimedReward) GetClaimValue() float32 {
 	if x != nil {
-		return x.ClaimValue
+		return x.xxx_hidden_ClaimValue
 	}
 	return 0
 }
 
 func (x *ClaimedReward) GetClaimCurrency() string {
 	if x != nil {
-		return x.ClaimCurrency
+		return x.xxx_hidden_ClaimCurrency
 	}
 	return ""
 }
 
 func (x *ClaimedReward) GetClaimDescription() string {
 	if x != nil {
-		return x.ClaimDescription
+		return x.xxx_hidden_ClaimDescription
 	}
 	return ""
 }
 
 func (x *ClaimedReward) GetClaimAt() string {
 	if x != nil {
-		return x.ClaimAt
+		return x.xxx_hidden_ClaimAt
 	}
 	return ""
 }
 
 func (x *ClaimedReward) SetId(v string) {
-	x.Id = v
+	x.xxx_hidden_Id = v
 }
 
 func (x *ClaimedReward) SetClaimKind(v string) {
-	x.ClaimKind = v
+	x.xxx_hidden_ClaimKind = v
 }
 
 func (x *ClaimedReward) SetClaimValue(v float32) {
-	x.ClaimValue = v
+	x.xxx_hidden_ClaimValue = v
 }
 
 func (x *ClaimedReward) SetClaimCurrency(v string) {
-	x.ClaimCurrency = v
+	x.xxx_hidden_ClaimCurrency = v
 }
 
 func (x *ClaimedReward) SetClaimDescription(v string) {
-	x.ClaimDescription = v
+	x.xxx_hidden_ClaimDescription = v
 }
 
 func (x *ClaimedReward) SetClaimAt(v string) {
-	x.ClaimAt = v
+	x.xxx_hidden_ClaimAt = v
 }
 
 type ClaimedReward_builder struct {
@@ -1362,24 +1360,24 @@ func (b0 ClaimedReward_builder) Build() *ClaimedReward {
 	m0 := &ClaimedReward{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Id = b.Id
-	x.ClaimKind = b.ClaimKind
-	x.ClaimValue = b.ClaimValue
-	x.ClaimCurrency = b.ClaimCurrency
-	x.ClaimDescription = b.ClaimDescription
-	x.ClaimAt = b.ClaimAt
+	x.xxx_hidden_Id = b.Id
+	x.xxx_hidden_ClaimKind = b.ClaimKind
+	x.xxx_hidden_ClaimValue = b.ClaimValue
+	x.xxx_hidden_ClaimCurrency = b.ClaimCurrency
+	x.xxx_hidden_ClaimDescription = b.ClaimDescription
+	x.xxx_hidden_ClaimAt = b.ClaimAt
 	return m0
 }
 
 type ListAuthorContributionsRequest struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Filter        string                 `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
-	SortField     string                 `protobuf:"bytes,2,opt,name=sort_field,json=sortField,proto3" json:"sort_field,omitempty"`
-	SortDirection string                 `protobuf:"bytes,3,opt,name=sort_direction,json=sortDirection,proto3" json:"sort_direction,omitempty"`
-	Page          int32                  `protobuf:"varint,4,opt,name=page,proto3" json:"page,omitempty"`
-	PageSize      int32                  `protobuf:"varint,5,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                    protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Filter        string                 `protobuf:"bytes,1,opt,name=filter,proto3"`
+	xxx_hidden_SortField     string                 `protobuf:"bytes,2,opt,name=sort_field,json=sortField,proto3"`
+	xxx_hidden_SortDirection string                 `protobuf:"bytes,3,opt,name=sort_direction,json=sortDirection,proto3"`
+	xxx_hidden_Page          int32                  `protobuf:"varint,4,opt,name=page,proto3"`
+	xxx_hidden_PageSize      int32                  `protobuf:"varint,5,opt,name=page_size,json=pageSize,proto3"`
+	unknownFields            protoimpl.UnknownFields
+	sizeCache                protoimpl.SizeCache
 }
 
 func (x *ListAuthorContributionsRequest) Reset() {
@@ -1409,57 +1407,57 @@ func (x *ListAuthorContributionsRequest) ProtoReflect() protoreflect.Message {
 
 func (x *ListAuthorContributionsRequest) GetFilter() string {
 	if x != nil {
-		return x.Filter
+		return x.xxx_hidden_Filter
 	}
 	return ""
 }
 
 func (x *ListAuthorContributionsRequest) GetSortField() string {
 	if x != nil {
-		return x.SortField
+		return x.xxx_hidden_SortField
 	}
 	return ""
 }
 
 func (x *ListAuthorContributionsRequest) GetSortDirection() string {
 	if x != nil {
-		return x.SortDirection
+		return x.xxx_hidden_SortDirection
 	}
 	return ""
 }
 
 func (x *ListAuthorContributionsRequest) GetPage() int32 {
 	if x != nil {
-		return x.Page
+		return x.xxx_hidden_Page
 	}
 	return 0
 }
 
 func (x *ListAuthorContributionsRequest) GetPageSize() int32 {
 	if x != nil {
-		return x.PageSize
+		return x.xxx_hidden_PageSize
 	}
 	return 0
 }
 
 func (x *ListAuthorContributionsRequest) SetFilter(v string) {
-	x.Filter = v
+	x.xxx_hidden_Filter = v
 }
 
 func (x *ListAuthorContributionsRequest) SetSortField(v string) {
-	x.SortField = v
+	x.xxx_hidden_SortField = v
 }
 
 func (x *ListAuthorContributionsRequest) SetSortDirection(v string) {
-	x.SortDirection = v
+	x.xxx_hidden_SortDirection = v
 }
 
 func (x *ListAuthorContributionsRequest) SetPage(v int32) {
-	x.Page = v
+	x.xxx_hidden_Page = v
 }
 
 func (x *ListAuthorContributionsRequest) SetPageSize(v int32) {
-	x.PageSize = v
+	x.xxx_hidden_PageSize = v
 }
 
 type ListAuthorContributionsRequest_builder struct {
@@ -1476,19 +1474,19 @@ func (b0 ListAuthorContributionsRequest_builder) Build() *ListAuthorContribution
 	m0 := &ListAuthorContributionsRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Filter = b.Filter
-	x.SortField = b.SortField
-	x.SortDirection = b.SortDirection
-	x.Page = b.Page
-	x.PageSize = b.PageSize
+	x.xxx_hidden_Filter = b.Filter
+	x.xxx_hidden_SortField = b.SortField
+	x.xxx_hidden_SortDirection = b.SortDirection
+	x.xxx_hidden_Page = b.Page
+	x.xxx_hidden_PageSize = b.PageSize
 	return m0
 }
 
 type AuthorContributionList struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Contributions []*AuthorContribution  `protobuf:"bytes,1,rep,name=contributions,proto3" json:"contributions,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                    protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Contributions *[]*AuthorContribution `protobuf:"bytes,1,rep,name=contributions,proto3"`
+	unknownFields            protoimpl.UnknownFields
+	sizeCache                protoimpl.SizeCache
 }
 
 func (x *AuthorContributionList) Reset() {
@@ -1518,13 +1516,15 @@ func (x *AuthorContributionList) ProtoReflect() protoreflect.Message {
 
 func (x *AuthorContributionList) GetContributions() []*AuthorContribution {
 	if x != nil {
-		return x.Contributions
+		if x.xxx_hidden_Contributions != nil {
+			return *x.xxx_hidden_Contributions
+		}
 	}
 	return nil
 }
 
 func (x *AuthorContributionList) SetContributions(v []*AuthorContribution) {
-	x.Contributions = v
+	x.xxx_hidden_Contributions = &v
 }
 
 type AuthorContributionList_builder struct {
@@ -1537,20 +1537,20 @@ func (b0 AuthorContributionList_builder) Build() *AuthorContributionList {
 	m0 := &AuthorContributionList{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Contributions = b.Contributions
+	x.xxx_hidden_Contributions = &b.Contributions
 	return m0
 }
 
 type AuthorContribution struct {
-	state            protoimpl.MessageState              `protogen:"hybrid.v1"`
-	Id               string                              `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	EpisodeId        string                              `protobuf:"bytes,2,opt,name=episode_id,json=episodeId,proto3" json:"episode_id,omitempty"`
-	ContributionType AuthorContribution_ContributionType `protobuf:"varint,3,opt,name=contribution_type,json=contributionType,proto3,enum=rsk.AuthorContribution_ContributionType" json:"contribution_type,omitempty"`
-	Author           *Author                             `protobuf:"bytes,7,opt,name=author,proto3" json:"author,omitempty"`
-	Points           float32                             `protobuf:"fixed32,8,opt,name=points,proto3" json:"points,omitempty"`
-	CreatedAt        string                              `protobuf:"bytes,9,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
+	state                       protoimpl.MessageState              `protogen:"opaque.v1"`
+	xxx_hidden_Id               string                              `protobuf:"bytes,1,opt,name=id,proto3"`
+	xxx_hidden_EpisodeId        string                              `protobuf:"bytes,2,opt,name=episode_id,json=episodeId,proto3"`
+	xxx_hidden_ContributionType AuthorContribution_ContributionType `protobuf:"varint,3,opt,name=contribution_type,json=contributionType,proto3,enum=rsk.AuthorContribution_ContributionType"`
+	xxx_hidden_Author           *Author                             `protobuf:"bytes,7,opt,name=author,proto3"`
+	xxx_hidden_Points           float32                             `protobuf:"fixed32,8,opt,name=points,proto3"`
+	xxx_hidden_CreatedAt        string                              `protobuf:"bytes,9,opt,name=created_at,json=createdAt,proto3"`
+	unknownFields               protoimpl.UnknownFields
+	sizeCache                   protoimpl.SizeCache
 }
 
 func (x *AuthorContribution) Reset() {
@@ -1580,79 +1580,79 @@ func (x *AuthorContribution) ProtoReflect() protoreflect.Message {
 
 func (x *AuthorContribution) GetId() string {
 	if x != nil {
-		return x.Id
+		return x.xxx_hidden_Id
 	}
 	return ""
 }
 
 func (x *AuthorContribution) GetEpisodeId() string {
 	if x != nil {
-		return x.EpisodeId
+		return x.xxx_hidden_EpisodeId
 	}
 	return ""
 }
 
 func (x *AuthorContribution) GetContributionType() AuthorContribution_ContributionType {
 	if x != nil {
-		return x.ContributionType
+		return x.xxx_hidden_ContributionType
 	}
 	return AuthorContribution_CONTRIBUTION_TYPE_UNKNOWN
 }
 
 func (x *AuthorContribution) GetAuthor() *Author {
 	if x != nil {
-		return x.Author
+		return x.xxx_hidden_Author
 	}
 	return nil
 }
 
 func (x *AuthorContribution) GetPoints() float32 {
 	if x != nil {
-		return x.Points
+		return x.xxx_hidden_Points
 	}
 	return 0
 }
 
 func (x *AuthorContribution) GetCreatedAt() string {
 	if x != nil {
-		return x.CreatedAt
+		return x.xxx_hidden_CreatedAt
 	}
 	return ""
 }
 
 func (x *AuthorContribution) SetId(v string) {
-	x.Id = v
+	x.xxx_hidden_Id = v
 }
 
 func (x *AuthorContribution) SetEpisodeId(v string) {
-	x.EpisodeId = v
+	x.xxx_hidden_EpisodeId = v
 }
 
 func (x *AuthorContribution) SetContributionType(v AuthorContribution_ContributionType) {
-	x.ContributionType = v
+	x.xxx_hidden_ContributionType = v
 }
 
 func (x *AuthorContribution) SetAuthor(v *Author) {
-	x.Author = v
+	x.xxx_hidden_Author = v
 }
 
 func (x *AuthorContribution) SetPoints(v float32) {
-	x.Points = v
+	x.xxx_hidden_Points = v
 }
 
 func (x *AuthorContribution) SetCreatedAt(v string) {
-	x.CreatedAt = v
+	x.xxx_hidden_CreatedAt = v
 }
 
 func (x *AuthorContribution) HasAuthor() bool {
 	if x == nil {
 		return false
 	}
-	return x.Author != nil
+	return x.xxx_hidden_Author != nil
 }
 
 func (x *AuthorContribution) ClearAuthor() {
-	x.Author = nil
+	x.xxx_hidden_Author = nil
 }
 
 type AuthorContribution_builder struct {
@@ -1670,20 +1670,20 @@ func (b0 AuthorContribution_builder) Build() *AuthorContribution {
 	m0 := &AuthorContribution{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Id = b.Id
-	x.EpisodeId = b.EpisodeId
-	x.ContributionType = b.ContributionType
-	x.Author = b.Author
-	x.Points = b.Points
-	x.CreatedAt = b.CreatedAt
+	x.xxx_hidden_Id = b.Id
+	x.xxx_hidden_EpisodeId = b.EpisodeId
+	x.xxx_hidden_ContributionType = b.ContributionType
+	x.xxx_hidden_Author = b.Author
+	x.xxx_hidden_Points = b.Points
+	x.xxx_hidden_CreatedAt = b.CreatedAt
 	return m0
 }
 
 type DonationStats struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Stats         []*RecipientStats      `protobuf:"bytes,1,rep,name=stats,proto3" json:"stats,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state            protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Stats *[]*RecipientStats     `protobuf:"bytes,1,rep,name=stats,proto3"`
+	unknownFields    protoimpl.UnknownFields
+	sizeCache        protoimpl.SizeCache
 }
 
 func (x *DonationStats) Reset() {
@@ -1713,13 +1713,15 @@ func (x *DonationStats) ProtoReflect() protoreflect.Message {
 
 func (x *DonationStats) GetStats() []*RecipientStats {
 	if x != nil {
-		return x.Stats
+		if x.xxx_hidden_Stats != nil {
+			return *x.xxx_hidden_Stats
+		}
 	}
 	return nil
 }
 
 func (x *DonationStats) SetStats(v []*RecipientStats) {
-	x.Stats = v
+	x.xxx_hidden_Stats = &v
 }
 
 type DonationStats_builder struct {
@@ -1732,17 +1734,17 @@ func (b0 DonationStats_builder) Build() *DonationStats {
 	m0 := &DonationStats{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Stats = b.Stats
+	x.xxx_hidden_Stats = &b.Stats
 	return m0
 }
 
 type RecipientStats struct {
-	state             protoimpl.MessageState `protogen:"hybrid.v1"`
-	DonationRecipient string                 `protobuf:"bytes,1,opt,name=donation_recipient,json=donationRecipient,proto3" json:"donation_recipient,omitempty"`
-	PointsSpent       float32                `protobuf:"fixed32,2,opt,name=points_spent,json=pointsSpent,proto3" json:"points_spent,omitempty"`
-	DonatedAmountUsd  float32                `protobuf:"fixed32,3,opt,name=donated_amount_usd,json=donatedAmountUsd,proto3" json:"donated_amount_usd,omitempty"`
-	unknownFields     protoimpl.UnknownFields
-	sizeCache         protoimpl.SizeCache
+	state                        protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_DonationRecipient string                 `protobuf:"bytes,1,opt,name=donation_recipient,json=donationRecipient,proto3"`
+	xxx_hidden_PointsSpent       float32                `protobuf:"fixed32,2,opt,name=points_spent,json=pointsSpent,proto3"`
+	xxx_hidden_DonatedAmountUsd  float32                `protobuf:"fixed32,3,opt,name=donated_amount_usd,json=donatedAmountUsd,proto3"`
+	unknownFields                protoimpl.UnknownFields
+	sizeCache                    protoimpl.SizeCache
 }
 
 func (x *RecipientStats) Reset() {
@@ -1772,35 +1774,35 @@ func (x *RecipientStats) ProtoReflect() protoreflect.Message {
 
 func (x *RecipientStats) GetDonationRecipient() string {
 	if x != nil {
-		return x.DonationRecipient
+		return x.xxx_hidden_DonationRecipient
 	}
 	return ""
 }
 
 func (x *RecipientStats) GetPointsSpent() float32 {
 	if x != nil {
-		return x.PointsSpent
+		return x.xxx_hidden_PointsSpent
 	}
 	return 0
 }
 
 func (x *RecipientStats) GetDonatedAmountUsd() float32 {
 	if x != nil {
-		return x.DonatedAmountUsd
+		return x.xxx_hidden_DonatedAmountUsd
 	}
 	return 0
 }
 
 func (x *RecipientStats) SetDonationRecipient(v string) {
-	x.DonationRecipient = v
+	x.xxx_hidden_DonationRecipient = v
 }
 
 func (x *RecipientStats) SetPointsSpent(v float32) {
-	x.PointsSpent = v
+	x.xxx_hidden_PointsSpent = v
 }
 
 func (x *RecipientStats) SetDonatedAmountUsd(v float32) {
-	x.DonatedAmountUsd = v
+	x.xxx_hidden_DonatedAmountUsd = v
 }
 
 type RecipientStats_builder struct {
@@ -1815,14 +1817,14 @@ func (b0 RecipientStats_builder) Build() *RecipientStats {
 	m0 := &RecipientStats{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.DonationRecipient = b.DonationRecipient
-	x.PointsSpent = b.PointsSpent
-	x.DonatedAmountUsd = b.DonatedAmountUsd
+	x.xxx_hidden_DonationRecipient = b.DonationRecipient
+	x.xxx_hidden_PointsSpent = b.PointsSpent
+	x.xxx_hidden_DonatedAmountUsd = b.DonatedAmountUsd
 	return m0
 }
 
 type ListIncomingDonationsRequest struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
+	state         protoimpl.MessageState `protogen:"opaque.v1"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1865,10 +1867,10 @@ func (b0 ListIncomingDonationsRequest_builder) Build() *ListIncomingDonationsReq
 }
 
 type IncomingDonationList struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Donations     []*IncomingDonation    `protobuf:"bytes,1,rep,name=donations,proto3" json:"donations,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Donations *[]*IncomingDonation   `protobuf:"bytes,1,rep,name=donations,proto3"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
 }
 
 func (x *IncomingDonationList) Reset() {
@@ -1898,13 +1900,15 @@ func (x *IncomingDonationList) ProtoReflect() protoreflect.Message {
 
 func (x *IncomingDonationList) GetDonations() []*IncomingDonation {
 	if x != nil {
-		return x.Donations
+		if x.xxx_hidden_Donations != nil {
+			return *x.xxx_hidden_Donations
+		}
 	}
 	return nil
 }
 
 func (x *IncomingDonationList) SetDonations(v []*IncomingDonation) {
-	x.Donations = v
+	x.xxx_hidden_Donations = &v
 }
 
 type IncomingDonationList_builder struct {
@@ -1917,18 +1921,18 @@ func (b0 IncomingDonationList_builder) Build() *IncomingDonationList {
 	m0 := &IncomingDonationList{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Donations = b.Donations
+	x.xxx_hidden_Donations = &b.Donations
 	return m0
 }
 
 type IncomingDonation struct {
-	state          protoimpl.MessageState `protogen:"hybrid.v1"`
-	Name           string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Amount         float32                `protobuf:"fixed32,2,opt,name=amount,proto3" json:"amount,omitempty"`
-	AmountCurrency string                 `protobuf:"bytes,3,opt,name=amount_currency,json=amountCurrency,proto3" json:"amount_currency,omitempty"`
-	Note           string                 `protobuf:"bytes,4,opt,name=note,proto3" json:"note,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	state                     protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Name           string                 `protobuf:"bytes,1,opt,name=name,proto3"`
+	xxx_hidden_Amount         float32                `protobuf:"fixed32,2,opt,name=amount,proto3"`
+	xxx_hidden_AmountCurrency string                 `protobuf:"bytes,3,opt,name=amount_currency,json=amountCurrency,proto3"`
+	xxx_hidden_Note           string                 `protobuf:"bytes,4,opt,name=note,proto3"`
+	unknownFields             protoimpl.UnknownFields
+	sizeCache                 protoimpl.SizeCache
 }
 
 func (x *IncomingDonation) Reset() {
@@ -1958,46 +1962,46 @@ func (x *IncomingDonation) ProtoReflect() protoreflect.Message {
 
 func (x *IncomingDonation) GetName() string {
 	if x != nil {
-		return x.Name
+		return x.xxx_hidden_Name
 	}
 	return ""
 }
 
 func (x *IncomingDonation) GetAmount() float32 {
 	if x != nil {
-		return x.Amount
+		return x.xxx_hidden_Amount
 	}
 	return 0
 }
 
 func (x *IncomingDonation) GetAmountCurrency() string {
 	if x != nil {
-		return x.AmountCurrency
+		return x.xxx_hidden_AmountCurrency
 	}
 	return ""
 }
 
 func (x *IncomingDonation) GetNote() string {
 	if x != nil {
-		return x.Note
+		return x.xxx_hidden_Note
 	}
 	return ""
 }
 
 func (x *IncomingDonation) SetName(v string) {
-	x.Name = v
+	x.xxx_hidden_Name = v
 }
 
 func (x *IncomingDonation) SetAmount(v float32) {
-	x.Amount = v
+	x.xxx_hidden_Amount = v
 }
 
 func (x *IncomingDonation) SetAmountCurrency(v string) {
-	x.AmountCurrency = v
+	x.xxx_hidden_AmountCurrency = v
 }
 
 func (x *IncomingDonation) SetNote(v string) {
-	x.Note = v
+	x.xxx_hidden_Note = v
 }
 
 type IncomingDonation_builder struct {
@@ -2013,10 +2017,10 @@ func (b0 IncomingDonation_builder) Build() *IncomingDonation {
 	m0 := &IncomingDonation{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Name = b.Name
-	x.Amount = b.Amount
-	x.AmountCurrency = b.AmountCurrency
-	x.Note = b.Note
+	x.xxx_hidden_Name = b.Name
+	x.xxx_hidden_Amount = b.Amount
+	x.xxx_hidden_AmountCurrency = b.AmountCurrency
+	x.xxx_hidden_Note = b.Note
 	return m0
 }
 
@@ -2219,7 +2223,7 @@ func file_contribution_proto_init() {
 	}
 	file_common_proto_init()
 	file_contribution_proto_msgTypes[6].OneofWrappers = []any{
-		(*ClaimRewardRequest_DonationArgs)(nil),
+		(*claimRewardRequest_DonationArgs)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{

@@ -4,7 +4,7 @@
 // 	protoc        (unknown)
 // source: radio.proto
 
-//go:build !protoopaque
+//go:build protoopaque
 
 package api
 
@@ -26,11 +26,11 @@ const (
 )
 
 type RadioState struct {
-	state              protoimpl.MessageState `protogen:"hybrid.v1"`
-	CurrentEpisode     *CurrentRadioEpisode   `protobuf:"bytes,1,opt,name=current_episode,json=currentEpisode,proto3" json:"current_episode,omitempty"`
-	CurrentTimestampMs int32                  `protobuf:"varint,3,opt,name=current_timestamp_ms,json=currentTimestampMs,proto3" json:"current_timestamp_ms,omitempty"`
-	unknownFields      protoimpl.UnknownFields
-	sizeCache          protoimpl.SizeCache
+	state                         protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_CurrentEpisode     *CurrentRadioEpisode   `protobuf:"bytes,1,opt,name=current_episode,json=currentEpisode,proto3"`
+	xxx_hidden_CurrentTimestampMs int32                  `protobuf:"varint,3,opt,name=current_timestamp_ms,json=currentTimestampMs,proto3"`
+	unknownFields                 protoimpl.UnknownFields
+	sizeCache                     protoimpl.SizeCache
 }
 
 func (x *RadioState) Reset() {
@@ -60,35 +60,35 @@ func (x *RadioState) ProtoReflect() protoreflect.Message {
 
 func (x *RadioState) GetCurrentEpisode() *CurrentRadioEpisode {
 	if x != nil {
-		return x.CurrentEpisode
+		return x.xxx_hidden_CurrentEpisode
 	}
 	return nil
 }
 
 func (x *RadioState) GetCurrentTimestampMs() int32 {
 	if x != nil {
-		return x.CurrentTimestampMs
+		return x.xxx_hidden_CurrentTimestampMs
 	}
 	return 0
 }
 
 func (x *RadioState) SetCurrentEpisode(v *CurrentRadioEpisode) {
-	x.CurrentEpisode = v
+	x.xxx_hidden_CurrentEpisode = v
 }
 
 func (x *RadioState) SetCurrentTimestampMs(v int32) {
-	x.CurrentTimestampMs = v
+	x.xxx_hidden_CurrentTimestampMs = v
 }
 
 func (x *RadioState) HasCurrentEpisode() bool {
 	if x == nil {
 		return false
 	}
-	return x.CurrentEpisode != nil
+	return x.xxx_hidden_CurrentEpisode != nil
 }
 
 func (x *RadioState) ClearCurrentEpisode() {
-	x.CurrentEpisode = nil
+	x.xxx_hidden_CurrentEpisode = nil
 }
 
 type RadioState_builder struct {
@@ -102,17 +102,17 @@ func (b0 RadioState_builder) Build() *RadioState {
 	m0 := &RadioState{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.CurrentEpisode = b.CurrentEpisode
-	x.CurrentTimestampMs = b.CurrentTimestampMs
+	x.xxx_hidden_CurrentEpisode = b.CurrentEpisode
+	x.xxx_hidden_CurrentTimestampMs = b.CurrentTimestampMs
 	return m0
 }
 
 type CurrentRadioEpisode struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	ShortId       string                 `protobuf:"bytes,1,opt,name=short_id,json=shortId,proto3" json:"short_id,omitempty"`
-	StartedAt     string                 `protobuf:"bytes,2,opt,name=started_at,json=startedAt,proto3" json:"started_at,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_ShortId   string                 `protobuf:"bytes,1,opt,name=short_id,json=shortId,proto3"`
+	xxx_hidden_StartedAt string                 `protobuf:"bytes,2,opt,name=started_at,json=startedAt,proto3"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
 }
 
 func (x *CurrentRadioEpisode) Reset() {
@@ -142,24 +142,24 @@ func (x *CurrentRadioEpisode) ProtoReflect() protoreflect.Message {
 
 func (x *CurrentRadioEpisode) GetShortId() string {
 	if x != nil {
-		return x.ShortId
+		return x.xxx_hidden_ShortId
 	}
 	return ""
 }
 
 func (x *CurrentRadioEpisode) GetStartedAt() string {
 	if x != nil {
-		return x.StartedAt
+		return x.xxx_hidden_StartedAt
 	}
 	return ""
 }
 
 func (x *CurrentRadioEpisode) SetShortId(v string) {
-	x.ShortId = v
+	x.xxx_hidden_ShortId = v
 }
 
 func (x *CurrentRadioEpisode) SetStartedAt(v string) {
-	x.StartedAt = v
+	x.xxx_hidden_StartedAt = v
 }
 
 type CurrentRadioEpisode_builder struct {
@@ -173,17 +173,17 @@ func (b0 CurrentRadioEpisode_builder) Build() *CurrentRadioEpisode {
 	m0 := &CurrentRadioEpisode{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.ShortId = b.ShortId
-	x.StartedAt = b.StartedAt
+	x.xxx_hidden_ShortId = b.ShortId
+	x.xxx_hidden_StartedAt = b.StartedAt
 	return m0
 }
 
 type PutRadioStateRequest struct {
-	state              protoimpl.MessageState `protogen:"hybrid.v1"`
-	CurrentEpisode     *CurrentRadioEpisode   `protobuf:"bytes,1,opt,name=current_episode,json=currentEpisode,proto3" json:"current_episode,omitempty"`
-	CurrentTimestampMs int32                  `protobuf:"varint,3,opt,name=current_timestamp_ms,json=currentTimestampMs,proto3" json:"current_timestamp_ms,omitempty"`
-	unknownFields      protoimpl.UnknownFields
-	sizeCache          protoimpl.SizeCache
+	state                         protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_CurrentEpisode     *CurrentRadioEpisode   `protobuf:"bytes,1,opt,name=current_episode,json=currentEpisode,proto3"`
+	xxx_hidden_CurrentTimestampMs int32                  `protobuf:"varint,3,opt,name=current_timestamp_ms,json=currentTimestampMs,proto3"`
+	unknownFields                 protoimpl.UnknownFields
+	sizeCache                     protoimpl.SizeCache
 }
 
 func (x *PutRadioStateRequest) Reset() {
@@ -213,35 +213,35 @@ func (x *PutRadioStateRequest) ProtoReflect() protoreflect.Message {
 
 func (x *PutRadioStateRequest) GetCurrentEpisode() *CurrentRadioEpisode {
 	if x != nil {
-		return x.CurrentEpisode
+		return x.xxx_hidden_CurrentEpisode
 	}
 	return nil
 }
 
 func (x *PutRadioStateRequest) GetCurrentTimestampMs() int32 {
 	if x != nil {
-		return x.CurrentTimestampMs
+		return x.xxx_hidden_CurrentTimestampMs
 	}
 	return 0
 }
 
 func (x *PutRadioStateRequest) SetCurrentEpisode(v *CurrentRadioEpisode) {
-	x.CurrentEpisode = v
+	x.xxx_hidden_CurrentEpisode = v
 }
 
 func (x *PutRadioStateRequest) SetCurrentTimestampMs(v int32) {
-	x.CurrentTimestampMs = v
+	x.xxx_hidden_CurrentTimestampMs = v
 }
 
 func (x *PutRadioStateRequest) HasCurrentEpisode() bool {
 	if x == nil {
 		return false
 	}
-	return x.CurrentEpisode != nil
+	return x.xxx_hidden_CurrentEpisode != nil
 }
 
 func (x *PutRadioStateRequest) ClearCurrentEpisode() {
-	x.CurrentEpisode = nil
+	x.xxx_hidden_CurrentEpisode = nil
 }
 
 type PutRadioStateRequest_builder struct {
@@ -255,16 +255,16 @@ func (b0 PutRadioStateRequest_builder) Build() *PutRadioStateRequest {
 	m0 := &PutRadioStateRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.CurrentEpisode = b.CurrentEpisode
-	x.CurrentTimestampMs = b.CurrentTimestampMs
+	x.xxx_hidden_CurrentEpisode = b.CurrentEpisode
+	x.xxx_hidden_CurrentTimestampMs = b.CurrentTimestampMs
 	return m0
 }
 
 type NextRadioEpisode struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	ShortId       string                 `protobuf:"bytes,1,opt,name=short_id,json=shortId,proto3" json:"short_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state              protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_ShortId string                 `protobuf:"bytes,1,opt,name=short_id,json=shortId,proto3"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *NextRadioEpisode) Reset() {
@@ -294,13 +294,13 @@ func (x *NextRadioEpisode) ProtoReflect() protoreflect.Message {
 
 func (x *NextRadioEpisode) GetShortId() string {
 	if x != nil {
-		return x.ShortId
+		return x.xxx_hidden_ShortId
 	}
 	return ""
 }
 
 func (x *NextRadioEpisode) SetShortId(v string) {
-	x.ShortId = v
+	x.xxx_hidden_ShortId = v
 }
 
 type NextRadioEpisode_builder struct {
@@ -313,7 +313,7 @@ func (b0 NextRadioEpisode_builder) Build() *NextRadioEpisode {
 	m0 := &NextRadioEpisode{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.ShortId = b.ShortId
+	x.xxx_hidden_ShortId = b.ShortId
 	return m0
 }
 

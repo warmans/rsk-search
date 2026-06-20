@@ -4,7 +4,7 @@
 // 	protoc        (unknown)
 // source: user.proto
 
-//go:build !protoopaque
+//go:build protoopaque
 
 package api
 
@@ -76,14 +76,14 @@ func (x Notification_NotificationKind) Number() protoreflect.EnumNumber {
 }
 
 type ListNotificationsRequest struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Filter        string                 `protobuf:"bytes,1,opt,name=filter,proto3" json:"filter,omitempty"`
-	SortField     string                 `protobuf:"bytes,2,opt,name=sort_field,json=sortField,proto3" json:"sort_field,omitempty"`
-	SortDirection string                 `protobuf:"bytes,3,opt,name=sort_direction,json=sortDirection,proto3" json:"sort_direction,omitempty"`
-	Page          int32                  `protobuf:"varint,4,opt,name=page,proto3" json:"page,omitempty"`
-	PageSize      int32                  `protobuf:"varint,5,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                    protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Filter        string                 `protobuf:"bytes,1,opt,name=filter,proto3"`
+	xxx_hidden_SortField     string                 `protobuf:"bytes,2,opt,name=sort_field,json=sortField,proto3"`
+	xxx_hidden_SortDirection string                 `protobuf:"bytes,3,opt,name=sort_direction,json=sortDirection,proto3"`
+	xxx_hidden_Page          int32                  `protobuf:"varint,4,opt,name=page,proto3"`
+	xxx_hidden_PageSize      int32                  `protobuf:"varint,5,opt,name=page_size,json=pageSize,proto3"`
+	unknownFields            protoimpl.UnknownFields
+	sizeCache                protoimpl.SizeCache
 }
 
 func (x *ListNotificationsRequest) Reset() {
@@ -113,57 +113,57 @@ func (x *ListNotificationsRequest) ProtoReflect() protoreflect.Message {
 
 func (x *ListNotificationsRequest) GetFilter() string {
 	if x != nil {
-		return x.Filter
+		return x.xxx_hidden_Filter
 	}
 	return ""
 }
 
 func (x *ListNotificationsRequest) GetSortField() string {
 	if x != nil {
-		return x.SortField
+		return x.xxx_hidden_SortField
 	}
 	return ""
 }
 
 func (x *ListNotificationsRequest) GetSortDirection() string {
 	if x != nil {
-		return x.SortDirection
+		return x.xxx_hidden_SortDirection
 	}
 	return ""
 }
 
 func (x *ListNotificationsRequest) GetPage() int32 {
 	if x != nil {
-		return x.Page
+		return x.xxx_hidden_Page
 	}
 	return 0
 }
 
 func (x *ListNotificationsRequest) GetPageSize() int32 {
 	if x != nil {
-		return x.PageSize
+		return x.xxx_hidden_PageSize
 	}
 	return 0
 }
 
 func (x *ListNotificationsRequest) SetFilter(v string) {
-	x.Filter = v
+	x.xxx_hidden_Filter = v
 }
 
 func (x *ListNotificationsRequest) SetSortField(v string) {
-	x.SortField = v
+	x.xxx_hidden_SortField = v
 }
 
 func (x *ListNotificationsRequest) SetSortDirection(v string) {
-	x.SortDirection = v
+	x.xxx_hidden_SortDirection = v
 }
 
 func (x *ListNotificationsRequest) SetPage(v int32) {
-	x.Page = v
+	x.xxx_hidden_Page = v
 }
 
 func (x *ListNotificationsRequest) SetPageSize(v int32) {
-	x.PageSize = v
+	x.xxx_hidden_PageSize = v
 }
 
 type ListNotificationsRequest_builder struct {
@@ -180,19 +180,19 @@ func (b0 ListNotificationsRequest_builder) Build() *ListNotificationsRequest {
 	m0 := &ListNotificationsRequest{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Filter = b.Filter
-	x.SortField = b.SortField
-	x.SortDirection = b.SortDirection
-	x.Page = b.Page
-	x.PageSize = b.PageSize
+	x.xxx_hidden_Filter = b.Filter
+	x.xxx_hidden_SortField = b.SortField
+	x.xxx_hidden_SortDirection = b.SortDirection
+	x.xxx_hidden_Page = b.Page
+	x.xxx_hidden_PageSize = b.PageSize
 	return m0
 }
 
 type NotificationsList struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	Notifications []*Notification        `protobuf:"bytes,1,rep,name=notifications,proto3" json:"notifications,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                    protoimpl.MessageState `protogen:"opaque.v1"`
+	xxx_hidden_Notifications *[]*Notification       `protobuf:"bytes,1,rep,name=notifications,proto3"`
+	unknownFields            protoimpl.UnknownFields
+	sizeCache                protoimpl.SizeCache
 }
 
 func (x *NotificationsList) Reset() {
@@ -222,13 +222,15 @@ func (x *NotificationsList) ProtoReflect() protoreflect.Message {
 
 func (x *NotificationsList) GetNotifications() []*Notification {
 	if x != nil {
-		return x.Notifications
+		if x.xxx_hidden_Notifications != nil {
+			return *x.xxx_hidden_Notifications
+		}
 	}
 	return nil
 }
 
 func (x *NotificationsList) SetNotifications(v []*Notification) {
-	x.Notifications = v
+	x.xxx_hidden_Notifications = &v
 }
 
 type NotificationsList_builder struct {
@@ -241,20 +243,20 @@ func (b0 NotificationsList_builder) Build() *NotificationsList {
 	m0 := &NotificationsList{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Notifications = b.Notifications
+	x.xxx_hidden_Notifications = &b.Notifications
 	return m0
 }
 
 type Notification struct {
-	state          protoimpl.MessageState        `protogen:"hybrid.v1"`
-	Id             string                        `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Kind           Notification_NotificationKind `protobuf:"varint,2,opt,name=kind,proto3,enum=rsk.Notification_NotificationKind" json:"kind,omitempty"`
-	Message        string                        `protobuf:"bytes,3,opt,name=message,proto3" json:"message,omitempty"`
-	ClickThoughUrl string                        `protobuf:"bytes,4,opt,name=click_though_url,json=clickThoughUrl,proto3" json:"click_though_url,omitempty"`
-	CreatedAt      string                        `protobuf:"bytes,5,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	ReadAt         string                        `protobuf:"bytes,6,opt,name=read_at,json=readAt,proto3" json:"read_at,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
+	state                     protoimpl.MessageState        `protogen:"opaque.v1"`
+	xxx_hidden_Id             string                        `protobuf:"bytes,1,opt,name=id,proto3"`
+	xxx_hidden_Kind           Notification_NotificationKind `protobuf:"varint,2,opt,name=kind,proto3,enum=rsk.Notification_NotificationKind"`
+	xxx_hidden_Message        string                        `protobuf:"bytes,3,opt,name=message,proto3"`
+	xxx_hidden_ClickThoughUrl string                        `protobuf:"bytes,4,opt,name=click_though_url,json=clickThoughUrl,proto3"`
+	xxx_hidden_CreatedAt      string                        `protobuf:"bytes,5,opt,name=created_at,json=createdAt,proto3"`
+	xxx_hidden_ReadAt         string                        `protobuf:"bytes,6,opt,name=read_at,json=readAt,proto3"`
+	unknownFields             protoimpl.UnknownFields
+	sizeCache                 protoimpl.SizeCache
 }
 
 func (x *Notification) Reset() {
@@ -284,68 +286,68 @@ func (x *Notification) ProtoReflect() protoreflect.Message {
 
 func (x *Notification) GetId() string {
 	if x != nil {
-		return x.Id
+		return x.xxx_hidden_Id
 	}
 	return ""
 }
 
 func (x *Notification) GetKind() Notification_NotificationKind {
 	if x != nil {
-		return x.Kind
+		return x.xxx_hidden_Kind
 	}
 	return Notification_UNDEFINED_KIND
 }
 
 func (x *Notification) GetMessage() string {
 	if x != nil {
-		return x.Message
+		return x.xxx_hidden_Message
 	}
 	return ""
 }
 
 func (x *Notification) GetClickThoughUrl() string {
 	if x != nil {
-		return x.ClickThoughUrl
+		return x.xxx_hidden_ClickThoughUrl
 	}
 	return ""
 }
 
 func (x *Notification) GetCreatedAt() string {
 	if x != nil {
-		return x.CreatedAt
+		return x.xxx_hidden_CreatedAt
 	}
 	return ""
 }
 
 func (x *Notification) GetReadAt() string {
 	if x != nil {
-		return x.ReadAt
+		return x.xxx_hidden_ReadAt
 	}
 	return ""
 }
 
 func (x *Notification) SetId(v string) {
-	x.Id = v
+	x.xxx_hidden_Id = v
 }
 
 func (x *Notification) SetKind(v Notification_NotificationKind) {
-	x.Kind = v
+	x.xxx_hidden_Kind = v
 }
 
 func (x *Notification) SetMessage(v string) {
-	x.Message = v
+	x.xxx_hidden_Message = v
 }
 
 func (x *Notification) SetClickThoughUrl(v string) {
-	x.ClickThoughUrl = v
+	x.xxx_hidden_ClickThoughUrl = v
 }
 
 func (x *Notification) SetCreatedAt(v string) {
-	x.CreatedAt = v
+	x.xxx_hidden_CreatedAt = v
 }
 
 func (x *Notification) SetReadAt(v string) {
-	x.ReadAt = v
+	x.xxx_hidden_ReadAt = v
 }
 
 type Notification_builder struct {
@@ -363,12 +365,12 @@ func (b0 Notification_builder) Build() *Notification {
 	m0 := &Notification{}
 	b, x := &b0, m0
 	_, _ = b, x
-	x.Id = b.Id
-	x.Kind = b.Kind
-	x.Message = b.Message
-	x.ClickThoughUrl = b.ClickThoughUrl
-	x.CreatedAt = b.CreatedAt
-	x.ReadAt = b.ReadAt
+	x.xxx_hidden_Id = b.Id
+	x.xxx_hidden_Kind = b.Kind
+	x.xxx_hidden_Message = b.Message
+	x.xxx_hidden_ClickThoughUrl = b.ClickThoughUrl
+	x.xxx_hidden_CreatedAt = b.CreatedAt
+	x.xxx_hidden_ReadAt = b.ReadAt
 	return m0
 }
 
