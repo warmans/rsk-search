@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { SearchAPIClient } from '../../../../lib/api-client/services/search';
 import { RskRandomQuote } from '../../../../lib/api-client/models';
-import { takeUntil } from 'rxjs/operators';
+import { finalize, takeUntil } from 'rxjs/operators';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -13,6 +13,7 @@ import { RouterLink } from '@angular/router';
 export class RandomQuoteComponent implements OnInit, OnDestroy {
   quote: RskRandomQuote;
   quoteImage: string;
+  loading: boolean = false;
 
   destroy$: EventEmitter<void> = new EventEmitter<void>();
 
@@ -23,9 +24,16 @@ export class RandomQuoteComponent implements OnInit, OnDestroy {
   }
 
   getQuote() {
+    if (this.loading) {
+      return;
+    }
+    this.loading = true;
     this.apiClient
       .getRandomQuote()
-      .pipe(takeUntil(this.destroy$))
+      .pipe(
+        takeUntil(this.destroy$),
+        finalize(() => (this.loading = false)),
+      )
       .subscribe((res: RskRandomQuote) => {
         this.quote = res;
         switch (res.actor) {

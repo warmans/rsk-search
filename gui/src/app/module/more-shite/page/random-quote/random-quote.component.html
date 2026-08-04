@@ -12,7 +12,14 @@
             <span class="actor-name text-block-bg px-2">&mdash; {{ quote.actor }}</span>
           </div>
           <div class="refresh text-center pt-3">
-            <button class="btn btn-primary btn-sm" (click)="getQuote()" title="Show another quote"><i class="bi-arrow-clockwise"></i> Refresh</button>
+            <button class="btn btn-primary btn-sm" [disabled]="loading" (click)="getQuote()" title="Show another quote">
+              @if (loading) {
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              } @else {
+                <i class="bi-arrow-clockwise"></i>
+              }
+              Refresh
+            </button>
           </div>
         </div>
       </div>
