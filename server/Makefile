@@ -204,7 +204,6 @@ extract.dev: build
 	./bin/rsk-search db merge-transcript-tags --rw-db-dsn=${DEV_DB_DSN} --dry-run=false
 	$(MAKE) dev.infer-offsets dev.refresh-data dev.merge-sentiments
 
-
 .PHONY: report.prod
 report.prod: build
 ifndef PROD_DB_DSN
