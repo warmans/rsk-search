@@ -18,6 +18,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # must be a PAT: pushes made with GITHUB_TOKEN do not trigger the
+          # downstream server build/publish and deploy workflows
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
 
       - name: Setup Go
         uses: actions/setup-go@v5
