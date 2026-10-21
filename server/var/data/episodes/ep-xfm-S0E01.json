@@ -9,7 +9,7 @@
     "release_date": "1998-02-01T00:00:00Z",
     "completion": "gaps",
     "completion_reports": [
-      "Machine transcription (whisper-1) with a text-only cleaning pass. Speaker labels are inferred only where clear from context; unknown rows may contain multiple speakers. Wording, turn boundaries and timestamps still need audio review."
+      "Machine transcript; wording and speaker labels need review."
     ],
     "bestof": false,
     "special": false,
@@ -18,11 +18,7 @@
     "audio_quality": "",
     "metadata": {
       "cover_art_url": "/assets/cover/default.jpg",
-      "duration_ms": "1211000",
-      "transcription_model": "whisper-1",
-      "transcription_review_status": "unreviewed",
-      "transcription_cleaning_status": "text_cleaned_audio_review_pending",
-      "speaker_attribution": "partial_context_inference_not_audio_verified"
+      "duration_ms": "1211000"
     },
     "transcript": [
       {
