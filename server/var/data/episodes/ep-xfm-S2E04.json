@@ -583,7 +583,58 @@
         "sentiment": "negative"
       }
     ],
-    "synopsis": null,
+    "synopsis": [
+      {
+        "description": "Karl introduces the best bits",
+        "start_pos": 2,
+        "end_pos": 4
+      },
+      {
+        "description": "If it was a chicken it would work",
+        "start_pos": 6,
+        "end_pos": 6
+      },
+      {
+        "description": "The horse in the house",
+        "start_pos": 8,
+        "end_pos": 12
+      },
+      {
+        "description": "The way I see it",
+        "start_pos": 14,
+        "end_pos": 16
+      },
+      {
+        "description": "Forrest Gump",
+        "start_pos": 18,
+        "end_pos": 18
+      },
+      {
+        "description": "How many calculators do you need?",
+        "start_pos": 20,
+        "end_pos": 20
+      },
+      {
+        "description": "The smell of bacon",
+        "start_pos": 22,
+        "end_pos": 25
+      },
+      {
+        "description": "Mr Freeze",
+        "start_pos": 26,
+        "end_pos": 26
+      },
+      {
+        "description": "Bricks don't fall in wars",
+        "start_pos": 28,
+        "end_pos": 29
+      },
+      {
+        "description": "Will it be horrible?",
+        "start_pos": 31,
+        "end_pos": 31
+      }
+    ],
     "contributors": [
       "MonotoneCreeper"
     ],
