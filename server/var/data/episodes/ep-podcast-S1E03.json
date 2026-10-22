@@ -6515,7 +6515,43 @@
         "sentiment": ""
       }
     ],
-    "synopsis": null,
+    "synopsis": [
+      {
+        "description": "Animal welfare",
+        "start_pos": 19,
+        "end_pos": 102
+      },
+      {
+        "description": "I'm a Celebrity",
+        "start_pos": 103,
+        "end_pos": 158
+      },
+      {
+        "description": "Monkey News: the sanctuary",
+        "start_pos": 159,
+        "end_pos": 210
+      },
+      {
+        "description": "Parasitic wasps",
+        "start_pos": 211,
+        "end_pos": 274
+      },
+      {
+        "description": "Ageing backwards",
+        "start_pos": 275,
+        "end_pos": 349
+      },
+      {
+        "description": "Slogan T-shirts",
+        "start_pos": 350,
+        "end_pos": 404
+      },
+      {
+        "description": "Embarrassing purchases",
+        "start_pos": 405,
+        "end_pos": 426
+      }
+    ],
     "contributors": [
       "AngusGillott",
       "KickedMeHeight",

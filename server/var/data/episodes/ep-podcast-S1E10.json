@@ -4505,7 +4505,33 @@
         "sentiment": ""
       }
     ],
-    "synopsis": null,
+    "synopsis": [
+      {
+        "description": "Talking animals",
+        "start_pos": 21,
+        "end_pos": 50
+      },
+      {
+        "description": "Time travel",
+        "start_pos": 51,
+        "end_pos": 100
+      },
+      {
+        "description": "Adult nappies",
+        "start_pos": 101,
+        "end_pos": 138
+      },
+      {
+        "description": "Karl's diary",
+        "start_pos": 139,
+        "end_pos": 188
+      },
+      {
+        "description": "Monkey News: the jockey",
+        "start_pos": 189,
+        "end_pos": 293
+      }
+    ],
     "contributors": [
       "Hopper2004",
       "New-Difficulty-6049",

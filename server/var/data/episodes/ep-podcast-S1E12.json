@@ -5000,7 +5000,33 @@
         "sentiment": ""
       }
     ],
-    "synopsis": null,
+    "synopsis": [
+      {
+        "description": "The Guinness Book of Records",
+        "start_pos": 20,
+        "end_pos": 47
+      },
+      {
+        "description": "Meeting Suzanne",
+        "start_pos": 48,
+        "end_pos": 71
+      },
+      {
+        "description": "Being an animal",
+        "start_pos": 72,
+        "end_pos": 191
+      },
+      {
+        "description": "Karl's diary",
+        "start_pos": 192,
+        "end_pos": 245
+      },
+      {
+        "description": "Monkey News: retired chimponauts",
+        "start_pos": 246,
+        "end_pos": 323
+      }
+    ],
     "contributors": [
       "Hopper2004",
       "KomradeKvestions",
