@@ -5675,7 +5675,38 @@
         "sentiment": ""
       }
     ],
-    "synopsis": null,
+    "synopsis": [
+      {
+        "description": "Giving presents",
+        "start_pos": 27,
+        "end_pos": 72
+      },
+      {
+        "description": "Karl's diary",
+        "start_pos": 73,
+        "end_pos": 129
+      },
+      {
+        "description": "Face transplants",
+        "start_pos": 130,
+        "end_pos": 165
+      },
+      {
+        "description": "Learning from mistakes",
+        "start_pos": 166,
+        "end_pos": 208
+      },
+      {
+        "description": "Animal designs",
+        "start_pos": 209,
+        "end_pos": 261
+      },
+      {
+        "description": "Monkey News: the co-pilot",
+        "start_pos": 262,
+        "end_pos": 370
+      }
+    ],
     "contributors": [
       "MchlPtrsn",
       "New-Difficulty-6049",

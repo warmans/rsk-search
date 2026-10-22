@@ -4790,7 +4790,38 @@
         "sentiment": ""
       }
     ],
-    "synopsis": null,
+    "synopsis": [
+      {
+        "description": "Watching insects",
+        "start_pos": 6,
+        "end_pos": 111
+      },
+      {
+        "description": "Beach huts",
+        "start_pos": 112,
+        "end_pos": 124
+      },
+      {
+        "description": "School sports",
+        "start_pos": 125,
+        "end_pos": 156
+      },
+      {
+        "description": "Body transplants",
+        "start_pos": 157,
+        "end_pos": 204
+      },
+      {
+        "description": "Karl's diary",
+        "start_pos": 205,
+        "end_pos": 299
+      },
+      {
+        "description": "The moth poem",
+        "start_pos": 300,
+        "end_pos": 318
+      }
+    ],
     "contributors": [
       "Just_Economics",
       "Rowanator3000"

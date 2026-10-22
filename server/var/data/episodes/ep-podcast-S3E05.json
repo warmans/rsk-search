@@ -4370,7 +4370,28 @@
         "sentiment": ""
       }
     ],
-    "synopsis": null,
+    "synopsis": [
+      {
+        "description": "Karl's book",
+        "start_pos": 3,
+        "end_pos": 103
+      },
+      {
+        "description": "Redesigning the body",
+        "start_pos": 104,
+        "end_pos": 173
+      },
+      {
+        "description": "Steve's night out",
+        "start_pos": 174,
+        "end_pos": 220
+      },
+      {
+        "description": "Karl's diary",
+        "start_pos": 221,
+        "end_pos": 289
+      }
+    ],
     "contributors": [
       "Rowanator3000",
       "jostanbo"

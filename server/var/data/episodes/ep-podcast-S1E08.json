@@ -7550,7 +7550,38 @@
         "sentiment": ""
       }
     ],
-    "synopsis": null,
+    "synopsis": [
+      {
+        "description": "Gran Canaria",
+        "start_pos": 15,
+        "end_pos": 67
+      },
+      {
+        "description": "Karl's diary",
+        "start_pos": 68,
+        "end_pos": 184
+      },
+      {
+        "description": "World records",
+        "start_pos": 185,
+        "end_pos": 225
+      },
+      {
+        "description": "Nicknames",
+        "start_pos": 226,
+        "end_pos": 309
+      },
+      {
+        "description": "CB radio",
+        "start_pos": 310,
+        "end_pos": 387
+      },
+      {
+        "description": "Monkey News: bobsleighing",
+        "start_pos": 388,
+        "end_pos": 486
+      }
+    ],
     "contributors": [
       "Benjamoose",
       "HaruSpagghetti",

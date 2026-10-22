@@ -6050,7 +6050,33 @@
         "sentiment": ""
       }
     ],
-    "synopsis": null,
+    "synopsis": [
+      {
+        "description": "Marrying Graham",
+        "start_pos": 5,
+        "end_pos": 49
+      },
+      {
+        "description": "Room 102: slugs",
+        "start_pos": 50,
+        "end_pos": 132
+      },
+      {
+        "description": "Room 102: wasted talent",
+        "start_pos": 133,
+        "end_pos": 225
+      },
+      {
+        "description": "Room 102: restless legs",
+        "start_pos": 226,
+        "end_pos": 295
+      },
+      {
+        "description": "Room 102: human progress",
+        "start_pos": 296,
+        "end_pos": 397
+      }
+    ],
     "contributors": [],
     "trivia": null,
     "tags": null,

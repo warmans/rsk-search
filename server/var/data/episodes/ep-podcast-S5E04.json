@@ -3935,7 +3935,28 @@
         "sentiment": ""
       }
     ],
-    "synopsis": null,
+    "synopsis": [
+      {
+        "description": "Mum's pet spider",
+        "start_pos": 1,
+        "end_pos": 33
+      },
+      {
+        "description": "Nazi Germany",
+        "start_pos": 34,
+        "end_pos": 69
+      },
+      {
+        "description": "Protecting Anne Frank",
+        "start_pos": 70,
+        "end_pos": 162
+      },
+      {
+        "description": "Desert Island Discs",
+        "start_pos": 163,
+        "end_pos": 252
+      }
+    ],
     "contributors": [
       "mossycow456"
     ],
