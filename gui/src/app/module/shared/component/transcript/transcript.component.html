@@ -37,7 +37,7 @@
               }
               @if (media?.audio && audioOffsetsAvailable && enableAudioLinks) {
                 <div class="text-sm timestamp mb-2 py-2 flex-shrink-0 d-flex flex-column justify-content-center" style="width: 4rem">
-                  @if (line.offsetMs > 0) {
+                  @if (line.offsetMs != null && line.offsetMs >= 0) {
                     <div
                       title="Timestamps are inferred and may not be accurate. These can be improved using the corrections feature."
                       [ngClass]="{ 'text-muted': line.offsetInferred }"

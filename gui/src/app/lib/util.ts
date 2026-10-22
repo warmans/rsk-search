@@ -39,7 +39,7 @@ export function shortenStringToNearestWord(line: string, targetLength: number): 
 }
 
 export function formatSecondsAsTimestamp(seconds: number | string, secondsAreMilliseconds?: boolean): string {
-  if (!seconds) {
+  if (!seconds && seconds !== 0) {
     return '-';
   }
 
