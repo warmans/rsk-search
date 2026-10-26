@@ -149,25 +149,60 @@ func (c *DownloadService) DownloadPlaintextArchive(resp http.ResponseWriter, req
 	http.ServeFile(resp, req, path.Join(c.serviceConfig.FilesBasePath, "gen", "episodes-plaintext.zip"))
 }
 
-func (c *DownloadService) incrementDownloadQuotas(ctx context.Context, mediaType string, fileID string, fileBytes int64) error {
+// checkDownloadQuota verifies that serving a download of estimatedBytes would
+// not exceed the monthly bandwidth quota. It records nothing; the bytes
+// actually served are recorded via recordDownloadUsage once the response has
+// been written.
+func (c *DownloadService) checkDownloadQuota(ctx context.Context, estimatedBytes int64) error {
+	c.logger.Debug("Checking download quota", zap.Int64("estimated_bytes", estimatedBytes))
 
-	c.logger.Debug("Incrementing download quotas", zap.String("media_type", mediaType), zap.String("file_id", fileID), zap.Int64("bytes", fileBytes))
-
-	if err := c.incrementQuotas(ctx, mediaType, fileID, fileBytes); err != nil {
-		if errors.Is(err, context.Canceled) {
-			// user went away
-			return nil
+	fileMib := quota.BytesAsMib(estimatedBytes)
+	if fileMib == 0 {
+		return nil
+	}
+	return c.rwStoreConn.WithStore(func(s *rw.Store) error {
+		_, currentMib, err := s.GetMediaStatsForCurrentMonth(ctx)
+		if err != nil {
+			if errors.Is(err, context.Canceled) || strings.HasSuffix(err.Error(), "driver: bad connection") {
+				return nil
+			}
+			return errors.Wrap(err, "failed to get current usage")
 		}
+		c.httpMetrics.OutboundMediaQuotaRemaining.Set(quota.BandwidthQuotaInMiB - currentMib)
+		if currentMib+fileMib > quota.BandwidthQuotaInMiB {
+			return DownloadsOverQuota
+		}
+		return nil
+	})
+}
+
+// recordDownloadUsage records the bytes that were actually served against the
+// monthly bandwidth quota. It must be called after the response has been
+// written, e.g. using the count from a countingResponseWriter.
+func (c *DownloadService) recordDownloadUsage(ctx context.Context, mediaType string, fileID string, bytesWritten int64) {
+	fileMib := quota.BytesAsMib(bytesWritten)
+	if fileMib <= 0 {
+		return
+	}
+
+	// the request context may already be canceled if the client disconnected
+	// mid-download, but the bytes were still served so they must be recorded.
+	recordCtx := context.WithoutCancel(ctx)
+
+	if err := c.rwStoreConn.WithStore(func(s *rw.Store) error {
+		if err := s.IncrementMediaAccessLog(recordCtx, mediaType, fileID, fileMib); err != nil {
+			return errors.Wrap(err, "failed to increment access log bytes")
+		}
+		return nil
+	}); err != nil {
 		c.logger.Error(
-			"Download failed processing quota",
+			"Failed to record download usage",
 			zap.Error(err),
 			zap.String("episode", fileID),
-			zap.Int64("num_bytes", fileBytes),
+			zap.Int64("num_bytes", bytesWritten),
 		)
-		return err
 	}
-	c.httpMetrics.OutboundMediaBytesTotal.Set(float64(fileBytes))
-	return nil
+	c.httpMetrics.OutboundMediaBytesTotal.Set(float64(bytesWritten))
 }
 
 func (c *DownloadService) servePartialAudioFile(
@@ -432,64 +467,65 @@ func (c *DownloadService) DownloadEpisodeMedia(resp http.ResponseWriter, req *ht
 			zap.Stringp("custom_text", customText),
 		)
 
-		if episode.Media.VideoFileName != "" {
-			switch wantFormat {
-			// serve partial video
-			case "gif":
-				c.downloadGif(req.Context(), resp, episode, startTimestamp, endTimestamp, customText)
-				return
-				// serve partial audio
-			default:
-				http.Error(resp, "Unknown format requested for video media", http.StatusBadRequest)
-				return
-			}
+	if episode.Media.VideoFileName != "" {
+		switch wantFormat {
+		// serve partial video
+		case "gif":
+			countingResp := NewCountingResponseWriter(resp)
+			c.downloadGif(req.Context(), countingResp, episode, startTimestamp, endTimestamp, customText)
+			c.recordDownloadUsage(req.Context(), "gif", episode.ShortID(), countingResp.BytesWritten())
+			return
+			// serve partial audio
+		default:
+			http.Error(resp, "Unknown format requested for video media", http.StatusBadRequest)
+			return
 		}
+	}
 
-		// audio file
-		if wantFormat != "mp3" && wantFormat != "webm" && wantFormat != "gif" {
-			http.Error(resp, "Only audio can be exported without either pos or ts specified", http.StatusBadRequest)
-			return
-		}
+	// audio file
+	if wantFormat != "mp3" && wantFormat != "webm" && wantFormat != "gif" {
+		http.Error(resp, "Only audio can be exported without either pos or ts specified", http.StatusBadRequest)
+		return
+	}
 
-		// todo: this is wrong because the Range header may prevent the full file being returned,
-		// note sure if it's worth just using a counting response writer.
-		if err := c.incrementDownloadQuotas(
-			req.Context(),
-			wantFormat,
-			episode.ShortID(),
-			calculateDownloadQuotaUsage(episode, endTimestamp-startTimestamp),
-		); err != nil {
-			if errors.Is(err, DownloadsOverQuota) {
-				c.logger.Debug(err.Error())
-			} else {
-				c.logger.Error(
-					"Download quota calculation failed",
-					zap.String("file", episode.ShortID()),
-					zap.String("format", wantFormat),
-					zap.Error(err),
-				)
-				http.Error(resp, "Failed to calculate bandwidth quota", http.StatusInternalServerError)
-			}
-			return
-		}
-		if err = c.servePartialAudioFile(
-			req,
-			resp,
-			episode,
-			mediaFilePath,
-			startTimestamp,
-			endTimestamp,
-			withoutID3Metadata(stripID3Tags == "true"),
-			withOutputFormat(wantFormat),
-			withShift(shiftDuration),
-			withExtendOrTrim(extendOrTrimDuration),
-		); err != nil {
-			c.logger.Error("Failed to serve partial audio file", zap.Error(err))
-			return
+	// the estimate is only used to reject requests that would exceed the quota;
+	// the bytes actually served are recorded once the response is complete.
+	if err := c.checkDownloadQuota(
+		req.Context(),
+		calculateDownloadQuotaUsage(episode, endTimestamp-startTimestamp),
+	); err != nil {
+		if errors.Is(err, DownloadsOverQuota) {
+			c.logger.Debug(err.Error())
+		} else {
+			c.logger.Error(
+				"Download quota check failed",
+				zap.String("file", episode.ShortID()),
+				zap.String("format", wantFormat),
+				zap.Error(err),
+			)
+			http.Error(resp, "Failed to calculate bandwidth quota", http.StatusInternalServerError)
 		}
 		return
-
 	}
+	countingResp := NewCountingResponseWriter(resp)
+	if err = c.servePartialAudioFile(
+		req,
+		countingResp,
+		episode,
+		mediaFilePath,
+		startTimestamp,
+		endTimestamp,
+		withoutID3Metadata(stripID3Tags == "true"),
+		withOutputFormat(wantFormat),
+		withShift(shiftDuration),
+		withExtendOrTrim(extendOrTrimDuration),
+	); err != nil {
+		c.logger.Error("Failed to serve partial audio file", zap.Error(err))
+	}
+	c.recordDownloadUsage(req.Context(), wantFormat, episode.ShortID(), countingResp.BytesWritten())
+	return
+
+}
 
 	// whole audio file
 
@@ -506,15 +542,18 @@ func (c *DownloadService) DownloadEpisodeMedia(resp http.ResponseWriter, req *ht
 		http.Error(resp, "Episode not found", http.StatusNotFound)
 		return
 	}
-	if err := c.incrementDownloadQuotas(req.Context(), wantFormat, episode.ShortID(), fileStat.Size()); err != nil {
+	if err := c.checkDownloadQuota(req.Context(), fileStat.Size()); err != nil {
 		if errors.Is(err, DownloadsOverQuota) {
 			http.Error(resp, "Bandwidth quota exhausted", http.StatusTooManyRequests)
 		} else {
+			c.logger.Error("Download quota check failed", zap.Error(err))
 			http.Error(resp, "Failed to calculate bandwidth quota", http.StatusInternalServerError)
 		}
 		return
 	}
-	http.ServeFile(resp, req, mediaFilePath)
+	countingResp := NewCountingResponseWriter(resp)
+	http.ServeFile(countingResp, req, mediaFilePath)
+	c.recordDownloadUsage(req.Context(), wantFormat, episode.ShortID(), countingResp.BytesWritten())
 }
 
 func (c *DownloadService) DownloadFile(resp http.ResponseWriter, req *http.Request) {
@@ -540,18 +579,20 @@ func (c *DownloadService) DownloadFile(resp http.ResponseWriter, req *http.Reque
 		return
 	}
 
-	if err = c.incrementQuotas(req.Context(), "file", fileName, fileStat.Size()); err != nil {
+	if err = c.checkDownloadQuota(req.Context(), fileStat.Size()); err != nil {
 		if errors.Is(err, DownloadsOverQuota) {
 			c.logger.Debug(err.Error())
 			http.Error(resp, "Bandwidth quota exhausted", http.StatusTooManyRequests)
 		} else {
-			c.logger.Error("Download failed processing quota", zap.Error(err))
+			c.logger.Error("Download quota check failed", zap.Error(err))
 			http.Error(resp, "Failed to calculate bandwidth quota", http.StatusInternalServerError)
 		}
 		return
 	}
 
-	http.ServeFile(resp, req, filePath)
+	countingResp := NewCountingResponseWriter(resp)
+	http.ServeFile(countingResp, req, filePath)
+	c.recordDownloadUsage(req.Context(), "file", fileName, countingResp.BytesWritten())
 }
 
 func (c *DownloadService) downloadGif(ctx context.Context, resp http.ResponseWriter, episode *models.Transcript, startTimestamp time.Duration, endTimestamp time.Duration, customText *string) {
@@ -581,7 +622,6 @@ func (c *DownloadService) downloadGif(ctx context.Context, resp http.ResponseWri
 
 		//todo: write content type headers?
 
-		countingWriter := NewCountingWriter(writer)
 		err := ffmpeg_go.
 			Input(path.Join(c.serviceConfig.MediaBasePath, "video", episode.Media.VideoFileName),
 				ffmpeg_go.KwArgs{
@@ -596,13 +636,10 @@ func (c *DownloadService) downloadGif(ctx context.Context, resp http.ResponseWri
 						util.FfmpegSanitizeDrawtext(FormatGifText(56, dialog)),
 					),
 				},
-			).WithOutput(countingWriter, os.Stderr).Run()
+			).WithOutput(writer, os.Stderr).Run()
 		if err != nil {
 			c.logger.Error("ffmpeg failed", zap.Error(err))
 			return err
-		}
-		if err := c.incrementQuotas(ctx, "gif", episode.ShortID(), int64(countingWriter.BytesWritten())); err != nil {
-			c.logger.Error("Failed to increment quotas", zap.Error(err))
 		}
 		return nil
 	})
@@ -644,17 +681,19 @@ func (c *DownloadService) DownloadVideoSprite(resp http.ResponseWriter, req *htt
 		return
 	}
 
-	if err = c.incrementQuotas(req.Context(), "sprite", path.Base(filePath), fileStat.Size()); err != nil {
+	if err = c.checkDownloadQuota(req.Context(), fileStat.Size()); err != nil {
 		if errors.Is(err, DownloadsOverQuota) {
 			c.logger.Debug(err.Error())
 			http.Error(resp, "Bandwidth quota exhausted", http.StatusTooManyRequests)
 		} else {
-			c.logger.Error("Download failed processing quota", zap.Error(err))
+			c.logger.Error("Download quota check failed", zap.Error(err))
 			http.Error(resp, "Failed to calculate bandwidth quota", http.StatusInternalServerError)
 		}
 		return
 	}
-	http.ServeFile(resp, req, filePath)
+	countingResp := NewCountingResponseWriter(resp)
+	http.ServeFile(countingResp, req, filePath)
+	c.recordDownloadUsage(req.Context(), "sprite", path.Base(filePath), countingResp.BytesWritten())
 }
 
 func (c *DownloadService) DownloadEpisodeJSON(resp http.ResponseWriter, req *http.Request) {
@@ -689,33 +728,6 @@ func (c *DownloadService) DownloadEpisodePlaintext(resp http.ResponseWriter, req
 	resp.Header().Set("Content-Disposition", fmt.Sprintf("attachment; filename=%s", fileName))
 	resp.Header().Set("Content-Type", "text/plain")
 	http.ServeFile(resp, req, path.Join(c.serviceConfig.FilesBasePath, "gen", "plaintext", fileName))
-}
-
-func (c *DownloadService) incrementQuotas(ctx context.Context, mediaType string, fileID string, fileBytes int64) error {
-	fileMib := quota.BytesAsMib(fileBytes)
-	if fileMib == 0 {
-		return nil
-	}
-	return c.rwStoreConn.WithStore(func(s *rw.Store) error {
-		_, currentMib, err := s.GetMediaStatsForCurrentMonth(ctx)
-		if err != nil {
-			if errors.Is(err, context.Canceled) || strings.HasSuffix(err.Error(), "driver: bad connection") {
-				return nil
-			}
-			return errors.Wrap(err, "failed to get current usage")
-		}
-		c.httpMetrics.OutboundMediaQuotaRemaining.Set(quota.BandwidthQuotaInMiB - currentMib)
-		if currentMib+fileMib > quota.BandwidthQuotaInMiB {
-			return DownloadsOverQuota
-		}
-		if err := s.IncrementMediaAccessLog(ctx, mediaType, fileID, fileMib); err != nil {
-			if errors.Is(err, context.Canceled) {
-				return nil
-			}
-			return errors.Wrap(err, "failed to increment access log bytes")
-		}
-		return nil
-	})
 }
 
 func (c *DownloadService) getVideoPartialName(actor string) string {
@@ -758,18 +770,20 @@ func (c *DownloadService) DownloadArchiveFile(resp http.ResponseWriter, req *htt
 		return
 	}
 
-	if err = c.incrementQuotas(req.Context(), "archive_file", fileName, fileStat.Size()); err != nil {
+	if err = c.checkDownloadQuota(req.Context(), fileStat.Size()); err != nil {
 		if errors.Is(err, DownloadsOverQuota) {
 			c.logger.Debug(err.Error())
 			http.Error(resp, "Bandwidth quota exhausted", http.StatusTooManyRequests)
 		} else {
-			c.logger.Error("Download failed processing quota", zap.Error(err))
+			c.logger.Error("Download quota check failed", zap.Error(err))
 			http.Error(resp, "Failed to calculate bandwidth quota", http.StatusInternalServerError)
 		}
 		return
 	}
 
-	http.ServeFile(resp, req, filePath)
+	countingResp := NewCountingResponseWriter(resp)
+	http.ServeFile(countingResp, req, filePath)
+	c.recordDownloadUsage(req.Context(), "archive_file", fileName, countingResp.BytesWritten())
 }
 
 func calculateDownloadQuotaUsage(ep *models.Transcript, duration time.Duration) int64 {
@@ -803,27 +817,33 @@ func parseTsParam(ts string) (time.Duration, time.Duration, error) {
 	return time.Duration(startTs) * time.Millisecond, time.Duration(endTs) * time.Millisecond, nil
 }
 
-// CountingWriter via https://github.com/jeanfric/goembed/blob/master/countingwriter/countingwriter.go
-type CountingWriter struct {
-	writer       io.Writer
-	bytesWritten int
+// countingResponseWriter wraps an http.ResponseWriter and counts the bytes
+// successfully written to the client. Download quota usage is recorded from
+// this count so that range requests and abandoned downloads only record the
+// bytes actually served rather than the full file size.
+type countingResponseWriter struct {
+	http.ResponseWriter
+	bytesWritten int64
 }
 
-func NewCountingWriter(w io.Writer) *CountingWriter {
-	return &CountingWriter{
-		writer:       w,
-		bytesWritten: 0,
-	}
+func NewCountingResponseWriter(w http.ResponseWriter) *countingResponseWriter {
+	return &countingResponseWriter{ResponseWriter: w}
 }
 
-func (w *CountingWriter) Write(b []byte) (int, error) {
-	n, err := w.writer.Write(b)
-	w.bytesWritten += n
+func (w *countingResponseWriter) Write(b []byte) (int, error) {
+	n, err := w.ResponseWriter.Write(b)
+	w.bytesWritten += int64(n)
 	return n, err
 }
 
-// BytesWritten returns the number of bytes that were written to the wrapped writer.
-func (w *CountingWriter) BytesWritten() int {
+func (w *countingResponseWriter) Flush() {
+	if f, ok := w.ResponseWriter.(http.Flusher); ok {
+		f.Flush()
+	}
+}
+
+// BytesWritten returns the number of bytes that were written to the client.
+func (w *countingResponseWriter) BytesWritten() int64 {
 	return w.bytesWritten
 }
 
