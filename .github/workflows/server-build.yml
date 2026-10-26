@@ -1,7 +1,7 @@
 name: server build/publish
 
 env:
-  GOLANGCI_VERSION: "v2.1.2"
+  GOLANGCI_VERSION: "v2.15.0"
   SERVER_ROOT: ./server
 
 on:

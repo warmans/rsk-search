@@ -31,7 +31,7 @@ install.buf:
 
 .PHONY: install.golangci
 install.golangci:
-	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(LOCAL_BIN) v2.1.2
+	curl -sSfL https://golangci-lint.run/install.sh | sh -s -- -b $(LOCAL_BIN) v2.15.0
 
 .PHONY: check.env
 check.env:
