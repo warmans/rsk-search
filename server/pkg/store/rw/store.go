@@ -1462,7 +1462,7 @@ func (s *Store) GetMediaStatsForCurrentMonth(ctx context.Context) (int64, float6
 	err := s.tx.QueryRowxContext(
 		ctx,
 		`
-			SELECT COALESCE(SUM(num_times_accessed), 0), COALESCE(SUM(total_mib *num_times_accessed), 0) 
+			SELECT COALESCE(SUM(num_times_accessed), 0), COALESCE(SUM(total_mib), 0) 
 			FROM media_access_log
 			WHERE time_bucket >= $1 AND time_bucket < $2`,
 		startOfMonth,
