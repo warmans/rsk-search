@@ -297,20 +297,20 @@ func Export(dialog []models.Dialog, synopsis []models.Synopsis, trivia []models.
 		if !options.stripMetadata {
 
 			if d.Type == models.DialogTypeGap {
-				output.WriteString(fmt.Sprintf("#GAP: %s\n", d.Duration.String()))
+				fmt.Fprintf(&output, "#GAP: %s\n", d.Duration.String())
 				continue
 			}
 
 			if d.Timestamp > 0 && !d.TimestampInferred {
-				output.WriteString(fmt.Sprintf("#OFFSET: %0.2f\n", d.Timestamp.Seconds()))
+				fmt.Fprintf(&output, "#OFFSET: %0.2f\n", d.Timestamp.Seconds())
 			}
 			for _, syn := range synopsis {
 				if d.Position == syn.StartPos {
 					synopsisLines := strings.Split(syn.Description, "\n")
-					output.WriteString(fmt.Sprintf("#SYN: %s\n", synopsisLines[0]))
+						fmt.Fprintf(&output, "#SYN: %s\n", synopsisLines[0])
 					if len(synopsisLines) > 1 {
 						for _, line := range synopsisLines[1:] {
-							output.WriteString(fmt.Sprintf("# %s\n", strings.TrimSpace(line)))
+							fmt.Fprintf(&output, "# %s\n", strings.TrimSpace(line))
 						}
 					}
 				}
@@ -321,10 +321,10 @@ func Export(dialog []models.Dialog, synopsis []models.Synopsis, trivia []models.
 			for _, triv := range trivia {
 				if d.Position == triv.StartPos {
 					triviaLines := strings.Split(triv.Description, "\n")
-					output.WriteString(fmt.Sprintf("#TRIVIA: %s\n", triviaLines[0]))
+						fmt.Fprintf(&output, "#TRIVIA: %s\n", triviaLines[0])
 					if len(triviaLines) > 1 {
 						for _, line := range triviaLines[1:] {
-							output.WriteString(fmt.Sprintf("# %s\n", strings.TrimSpace(line)))
+							fmt.Fprintf(&output, "# %s\n", strings.TrimSpace(line))
 						}
 					}
 				}
@@ -348,7 +348,7 @@ func Export(dialog []models.Dialog, synopsis []models.Synopsis, trivia []models.
 		case models.DialogTypeSong:
 			actor = "song"
 		}
-		output.WriteString(fmt.Sprintf("%s%s: %s\n", noteable, actor, d.Content))
+		fmt.Fprintf(&output, "%s%s: %s\n", noteable, actor, d.Content)
 	}
 	return output.String(), nil
 }

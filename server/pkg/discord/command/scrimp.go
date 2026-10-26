@@ -680,18 +680,18 @@ func (b *SearchCommand) audioFileResponse(
 		switch d.Type {
 		case api.Dialog_CHAT:
 			if d.Actor == "" {
-				dialogFormatted.WriteString(fmt.Sprintf("\n> *%s*", d.Content))
+				fmt.Fprintf(&dialogFormatted, "\n> *%s*", d.Content)
 			} else {
 				if d.IsMatchedRow {
-					dialogFormatted.WriteString(fmt.Sprintf("\n> **%s:** %s", d.Actor, d.Content))
+					fmt.Fprintf(&dialogFormatted, "\n> **%s:** %s", d.Actor, d.Content)
 				} else {
-					dialogFormatted.WriteString(fmt.Sprintf("\n> **%s:** %s", d.Actor, d.Content))
+					fmt.Fprintf(&dialogFormatted, "\n> **%s:** %s", d.Actor, d.Content)
 				}
 			}
 		case api.Dialog_NONE:
-			dialogFormatted.WriteString(fmt.Sprintf("\n> *%s*", d.Content))
+			fmt.Fprintf(&dialogFormatted, "\n> *%s*", d.Content)
 		case api.Dialog_SONG:
-			dialogFormatted.WriteString(fmt.Sprintf("\n> **SONG:** %s", d.Content))
+			fmt.Fprintf(&dialogFormatted, "\n> **SONG:** %s", d.Content)
 		}
 	}
 
