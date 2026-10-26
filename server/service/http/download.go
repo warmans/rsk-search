@@ -3,6 +3,15 @@ package http
 import (
 	"context"
 	"fmt"
+	"io"
+	"math/rand/v2"
+	"net/http"
+	"os"
+	"path"
+	"strconv"
+	"strings"
+	"time"
+
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	"github.com/pkg/errors"
@@ -18,14 +27,6 @@ import (
 	"github.com/warmans/rsk-search/service/config"
 	"github.com/warmans/rsk-search/service/metrics"
 	"go.uber.org/zap"
-	"io"
-	"math/rand/v2"
-	"net/http"
-	"os"
-	"path"
-	"strconv"
-	"strings"
-	"time"
 )
 
 type partialFileOptions struct {
@@ -459,7 +460,7 @@ func (c *DownloadService) DownloadEpisodeMedia(resp http.ResponseWriter, req *ht
 			calculateDownloadQuotaUsage(episode, endTimestamp-startTimestamp),
 		); err != nil {
 			if errors.Is(err, DownloadsOverQuota) {
-				http.Error(resp, "Bandwidth quota exhausted", http.StatusTooManyRequests)
+				c.logger.Debug(err.Error())
 			} else {
 				c.logger.Error(
 					"Download quota calculation failed",
@@ -540,10 +541,11 @@ func (c *DownloadService) DownloadFile(resp http.ResponseWriter, req *http.Reque
 	}
 
 	if err = c.incrementQuotas(req.Context(), "file", fileName, fileStat.Size()); err != nil {
-		c.logger.Error("Download failed processing quota", zap.Error(err))
 		if errors.Is(err, DownloadsOverQuota) {
+			c.logger.Debug(err.Error())
 			http.Error(resp, "Bandwidth quota exhausted", http.StatusTooManyRequests)
 		} else {
+			c.logger.Error("Download failed processing quota", zap.Error(err))
 			http.Error(resp, "Failed to calculate bandwidth quota", http.StatusInternalServerError)
 		}
 		return
@@ -643,10 +645,11 @@ func (c *DownloadService) DownloadVideoSprite(resp http.ResponseWriter, req *htt
 	}
 
 	if err = c.incrementQuotas(req.Context(), "sprite", path.Base(filePath), fileStat.Size()); err != nil {
-		c.logger.Error("Download failed processing quota", zap.Error(err))
 		if errors.Is(err, DownloadsOverQuota) {
+			c.logger.Debug(err.Error())
 			http.Error(resp, "Bandwidth quota exhausted", http.StatusTooManyRequests)
 		} else {
+			c.logger.Error("Download failed processing quota", zap.Error(err))
 			http.Error(resp, "Failed to calculate bandwidth quota", http.StatusInternalServerError)
 		}
 		return
@@ -756,10 +759,11 @@ func (c *DownloadService) DownloadArchiveFile(resp http.ResponseWriter, req *htt
 	}
 
 	if err = c.incrementQuotas(req.Context(), "archive_file", fileName, fileStat.Size()); err != nil {
-		c.logger.Error("Download failed processing quota", zap.Error(err))
 		if errors.Is(err, DownloadsOverQuota) {
+			c.logger.Debug(err.Error())
 			http.Error(resp, "Bandwidth quota exhausted", http.StatusTooManyRequests)
 		} else {
+			c.logger.Error("Download failed processing quota", zap.Error(err))
 			http.Error(resp, "Failed to calculate bandwidth quota", http.StatusInternalServerError)
 		}
 		return
