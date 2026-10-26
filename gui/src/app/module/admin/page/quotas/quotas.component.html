@@ -11,8 +11,7 @@
             </div>
           </div>
           <div class="text-muted">
-            {{ (quotas?.bandwidthTotalMib - quotas?.bandwidthRemainingMib || 0) / 1024 | number }}Mib /
-            {{ (quotas?.bandwidthTotalMib || 0) / 1024 | number }}Mib
+            {{ quotas?.bandwidthTotalMib - quotas?.bandwidthRemainingMib || 0 | number }}Mib / {{ quotas?.bandwidthTotalMib || 0 | number }}Mib
           </div>
         </div>
       </div>
