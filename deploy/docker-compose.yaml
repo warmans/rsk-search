@@ -97,6 +97,9 @@ services:
     environment:
       RSK_SEARCH_ENV: "prod"
       RSK_SEARCH_RW_DB_DSN: "postgres://scrimpton:insecure@postgres:5432/scrimpton?sslmode=disable"
+      # REQUIRED: generate a real key with `openssl rand -base64 48` or the
+      # server will refuse to start (it rejects empty/known-default keys).
+      # Must match the key used by the discord-bot (JWT_KEY env).
       RSK_SEARCH_JWT_KEY: ""
       RSK_SEARCH_OAUTH_REDDIT_SECRET: ""
       RSK_SEARCH_OAUTH_REDDIT_APP_ID: ""

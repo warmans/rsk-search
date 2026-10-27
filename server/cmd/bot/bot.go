@@ -46,6 +46,9 @@ func RootCommand() *cobra.Command {
 				}
 			}()
 
+			if err := jwtConfig.Validate(); err != nil {
+				return fmt.Errorf("invalid JWT config: %w", err)
+			}
 			auth := jwt.NewAuth(jwtConfig)
 			systemToken, err := auth.NewSystemJWT()
 			if err != nil {

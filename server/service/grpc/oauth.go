@@ -46,7 +46,9 @@ func (s *OauthService) GetAuthURL(ctx context.Context, request *api.GetAuthURLRe
 		if parsed, err := url.Parse(md["grpcgateway-referer"][0]); err == nil {
 			parsed.RawQuery = ""
 			parsed.RawFragment = ""
-			returnURL = parsed.String()
+			// the referer is client-controlled so only same-origin URLs may be
+			// used as the post-login return target
+			returnURL = s.oauthCfg.SanitizeReturnURL(parsed.String())
 		}
 	}
 	switch models.OauthProvider(request.Provider) {

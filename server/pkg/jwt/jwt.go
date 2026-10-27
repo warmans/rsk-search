@@ -14,6 +14,14 @@ import (
 
 const Issuer string = "scrimpton"
 
+// insecureDefaultKey was the historic default signing key. It is explicitly
+// rejected so a misconfigured deployment fails to start rather than issuing
+// tokens anyone can forge using the public source.
+const insecureDefaultKey = "insecure"
+
+// MinKeyLength is the minimum HMAC-SHA256 signing key length in bytes.
+const MinKeyLength = 32
+
 type Claims struct {
 	jwt.RegisteredClaims
 	AuthorID      string           `json:"author_id"`
@@ -45,8 +53,23 @@ type Config struct {
 }
 
 func (c *Config) RegisterFlags(fs *pflag.FlagSet, prefix string) {
-	flag.StringVarEnv(fs, &c.SigningKey, prefix, "jwt-key", "insecure", "Key used to sign JWTs")
+	flag.StringVarEnv(fs, &c.SigningKey, prefix, "jwt-key", "", "Key used to sign JWTs")
 	flag.Int64VarEnv(fs, &c.ExpireTime, prefix, "jwt-expire-time", 60*60*24*365, "Number of seconds token is valid for")
+}
+
+// Validate rejects configurations that would let attackers forge tokens with a
+// known or trivially guessable key.
+func (c *Config) Validate() error {
+	if c.SigningKey == "" {
+		return fmt.Errorf("JWT signing key is not set (env or --jwt-key). Generate one with: openssl rand -base64 48")
+	}
+	if c.SigningKey == insecureDefaultKey {
+		return fmt.Errorf("JWT signing key is set to the known default %q and must be changed", insecureDefaultKey)
+	}
+	if len(c.SigningKey) < MinKeyLength {
+		return fmt.Errorf("JWT signing key must be at least %d bytes (got %d)", MinKeyLength, len(c.SigningKey))
+	}
+	return nil
 }
 
 func NewAuth(cfg *Config) *Auth {

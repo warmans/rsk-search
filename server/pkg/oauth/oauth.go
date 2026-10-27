@@ -2,6 +2,9 @@ package oauth
 
 import (
 	"fmt"
+	"net/url"
+	"strings"
+
 	"github.com/spf13/pflag"
 	"github.com/warmans/rsk-search/pkg/flag"
 )
@@ -28,6 +31,28 @@ func (c *Config) RegisterFlags(fs *pflag.FlagSet, prefix string) {
 
 func (c *Config) ProviderReturnURL(provider string) string {
 	return fmt.Sprintf(c.ReturnURL, provider)
+}
+
+// SanitizeReturnURL returns rawURL only if it points at the same origin as the
+// configured ReturnURL (scheme, host and port). Any other origin is rejected
+// by returning an empty string. This stops a forged Referer from turning the
+// post-login redirect into an open redirect that leaks the session token.
+func (c *Config) SanitizeReturnURL(rawURL string) string {
+	if rawURL == "" {
+		return ""
+	}
+	want, err := url.Parse(c.ProviderReturnURL("reddit"))
+	if err != nil || want.Host == "" {
+		return ""
+	}
+	got, err := url.Parse(rawURL)
+	if err != nil || got.Host == "" {
+		return ""
+	}
+	if !strings.EqualFold(got.Scheme, want.Scheme) || !strings.EqualFold(got.Host, want.Host) {
+		return ""
+	}
+	return rawURL
 }
 
 type RedditIdentity struct {

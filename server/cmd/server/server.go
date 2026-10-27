@@ -159,6 +159,9 @@ func ServerCmd() *cobra.Command {
 
 			// setup oauth
 			tokenCache := oauth.NewCSRFCache()
+			if err := jwtConfig.Validate(); err != nil {
+				return fmt.Errorf("invalid JWT config: %w", err)
+			}
 			auth := jwt.NewAuth(jwtConfig)
 
 			// validate pledge config

@@ -67,12 +67,16 @@ func (c *OauthService) RedditReturnHandler(resp http.ResponseWriter, req *http.R
 		return
 	}
 
-	var ok bool
-	returnURL, ok = c.oauthCache.VerifyCSRFToken(state)
+	payload, ok := c.oauthCache.VerifyCSRFToken(state)
 	if !ok {
 		returnParams.Add("error", "Request has invalid state, the request may have expired")
 		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
 		return
+	}
+	// the state payload is only populated for same-origin referers; anything
+	// else falls back to the default return page
+	if payload != "" {
+		returnURL = payload
 	}
 
 	bearerToken, err := c.getBearerToken(models.OauthProviderReddit, "https://www.reddit.com/api/v1/access_token", code, c.oauthCfg.RedditAppID, c.oauthCfg.RedditSecret, state)
@@ -143,6 +147,7 @@ func (c *OauthService) RedditReturnHandler(resp http.ResponseWriter, req *http.R
 	if author.Banned {
 		returnParams.Add("error", "Account is not allowed.")
 		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
+		return
 	}
 
 	token, err := c.auth.NewJWTForIdentity(author, authorIdentity)
@@ -327,12 +332,16 @@ func (c *OauthService) DiscordReturnHandler(resp http.ResponseWriter, req *http.
 		return
 	}
 
-	var ok bool
-	returnURL, ok = c.oauthCache.VerifyCSRFToken(state)
+	payload, ok := c.oauthCache.VerifyCSRFToken(state)
 	if !ok {
 		returnParams.Add("error", "Request has invalid state, the request may have expired")
 		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
 		return
+	}
+	// the state payload is only populated for same-origin referers; anything
+	// else falls back to the default return page
+	if payload != "" {
+		returnURL = payload
 	}
 
 	bearerToken, err := c.getBearerToken(models.OauthProviderDiscord, "https://discord.com/api/oauth2/token", code, c.oauthCfg.DiscordAppID, c.oauthCfg.DiscordSecret, state)
@@ -382,6 +391,7 @@ func (c *OauthService) DiscordReturnHandler(resp http.ResponseWriter, req *http.
 	if author.Banned {
 		returnParams.Add("error", "Account is not allowed.")
 		http.Redirect(resp, req, fmt.Sprintf("%s?%s", returnURL, returnParams.Encode()), http.StatusFound)
+		return
 	}
 
 	token, err := c.auth.NewJWTForIdentity(author, authorIdentity)
