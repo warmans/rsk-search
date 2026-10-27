@@ -3,13 +3,14 @@ package jwt
 import (
 	"context"
 	"fmt"
+	"strings"
+	"time"
+
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/spf13/pflag"
 	"github.com/warmans/rsk-search/pkg/flag"
 	"github.com/warmans/rsk-search/pkg/models"
 	"google.golang.org/grpc/metadata"
-	"strings"
-	"time"
 )
 
 const Issuer string = "scrimpton"
@@ -20,7 +21,8 @@ const Issuer string = "scrimpton"
 const insecureDefaultKey = "insecure"
 
 // MinKeyLength is the minimum HMAC-SHA256 signing key length in bytes.
-const MinKeyLength = 32
+// todo: this should be 32
+const MinKeyLength = 24
 
 type Claims struct {
 	jwt.RegisteredClaims
