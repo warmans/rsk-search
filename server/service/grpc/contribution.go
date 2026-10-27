@@ -159,15 +159,24 @@ func (s *ContributionsService) ListClaimedRewards(ctx context.Context, empty *em
 
 func (s *ContributionsService) ClaimReward(ctx context.Context, request *api.ClaimRewardRequest) (*emptypb.Empty, error) {
 
+	claims, err := GetClaims(ctx, s.auth)
+	if err != nil {
+		return nil, err
+	}
+
 	if s.srvCfg.RewardsDisabled {
 		return nil, ErrFailedPrecondition("rewards are disabled temporarily")
 	}
 
-	err := s.persistentDB.WithStore(func(store *rw.Store) error {
+	err = s.persistentDB.WithStore(func(store *rw.Store) error {
 
 		reward, err := store.GetRewardForUpdate(ctx, request.Id)
 		if err != nil {
 			return err
+		}
+
+		if reward.AuthorID != claims.AuthorID {
+			return ErrPermissionDenied("reward does not belong to the authenticated author")
 		}
 
 		donationArgs := request.GetDonationArgs()

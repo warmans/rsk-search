@@ -39,7 +39,7 @@ func stringFromEnv(p *string, prefix, name string) {
 
 func boolFromEnv(p *bool, prefix, name string) {
 	if prefix != "" {
-		prefix = "_" + strings.ToUpper(prefix)
+		prefix = strings.ToUpper(prefix) + "_"
 	}
 	val := os.Getenv(fmt.Sprintf("%s%s", prefix, strings.ToUpper(strings.ReplaceAll(name, "-", "_"))))
 	if val == "" {
@@ -52,7 +52,7 @@ func boolFromEnv(p *bool, prefix, name string) {
 
 func int64FromEnv(p *int64, prefix, name string) {
 	if prefix != "" {
-		prefix = "_" + strings.ToUpper(prefix)
+		prefix = strings.ToUpper(prefix) + "_"
 	}
 	val := os.Getenv(fmt.Sprintf("%s%s", prefix, strings.ToUpper(strings.ReplaceAll(name, "-", "_"))))
 	if val == "" {

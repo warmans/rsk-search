@@ -205,7 +205,7 @@ func (j *BlugeQuery) eqFilter(field string, value filter.Value) (bluge.Query, er
 				if err != nil {
 					return nil, fmt.Errorf("failed to parse %s as date: %s", field, err.Error())
 				}
-				q := bluge.NewDateRangeQuery(ts, ts)
+				q := bluge.NewDateRangeInclusiveQuery(ts, ts, true, true)
 				q.SetField(field)
 				return q, nil
 			}

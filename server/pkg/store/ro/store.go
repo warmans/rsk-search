@@ -109,7 +109,7 @@ func (s *Store) GetDialogWithContext(ctx context.Context, dialogID string, withC
 func (s *Store) InsertChangelog(ctx context.Context, ep *models.Changelog) error {
 	_, err := s.tx.ExecContext(
 		ctx,
-		`INSERT INTO changelog ("date", "content") VALUES ($2, $3)`,
+		`INSERT INTO changelog ("date", "content") VALUES ($1, $2)`,
 		util.SqlDate(&ep.Date),
 		ep.Content,
 	)

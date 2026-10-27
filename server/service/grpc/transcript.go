@@ -167,14 +167,18 @@ func (s *TranscriptService) ListTranscripts(ctx context.Context, req *api.ListTr
 			s.logger.Error("failed to get episode from cache", zap.Error(err))
 			continue
 		}
-		// merge pending ratings if any
-		if ep.Ratings.Scores == nil {
-			ep.Ratings.Scores = make(map[string]float32)
-		}
+		// merge pending ratings if any. the episode is a shallow copy that shares
+		// its ratings map with the cache so merge into a fresh map rather than
+		// mutating the shared one.
 		if pending, ok := pendingRatings[ep.ShortID()]; ok {
-			for k, v := range pending.Scores {
-				ep.Ratings.Scores[k] = v
+			merged := make(map[string]float32, len(ep.Ratings.Scores)+len(pending.Scores))
+			for k, v := range ep.Ratings.Scores {
+				merged[k] = v
 			}
+			for k, v := range pending.Scores {
+				merged[k] = v
+			}
+			ep.Ratings.Scores = merged
 		}
 		el.Episodes = append(el.Episodes, ep.ShortProto(true))
 	}
