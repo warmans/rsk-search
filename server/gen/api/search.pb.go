@@ -1769,16 +1769,17 @@ func (b0 SongList_builder) Build() *SongList {
 }
 
 type Song struct {
-	state         protoimpl.MessageState `protogen:"hybrid.v1"`
-	SpotifyUri    string                 `protobuf:"bytes,1,opt,name=spotify_uri,json=spotifyUri,proto3" json:"spotify_uri,omitempty"`
-	Artist        string                 `protobuf:"bytes,2,opt,name=artist,proto3" json:"artist,omitempty"`
-	Title         string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
-	Album         string                 `protobuf:"bytes,4,opt,name=album,proto3" json:"album,omitempty"`
-	EpisodeIds    []string               `protobuf:"bytes,5,rep,name=episode_ids,json=episodeIds,proto3" json:"episode_ids,omitempty"`
-	AlbumImageUrl string                 `protobuf:"bytes,6,opt,name=album_image_url,json=albumImageUrl,proto3" json:"album_image_url,omitempty"`
-	Transcribed   []string               `protobuf:"bytes,7,rep,name=transcribed,proto3" json:"transcribed,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state           protoimpl.MessageState `protogen:"hybrid.v1"`
+	SpotifyUri      string                 `protobuf:"bytes,1,opt,name=spotify_uri,json=spotifyUri,proto3" json:"spotify_uri,omitempty"`
+	Artist          string                 `protobuf:"bytes,2,opt,name=artist,proto3" json:"artist,omitempty"`
+	Title           string                 `protobuf:"bytes,3,opt,name=title,proto3" json:"title,omitempty"`
+	Album           string                 `protobuf:"bytes,4,opt,name=album,proto3" json:"album,omitempty"`
+	EpisodeIds      []string               `protobuf:"bytes,5,rep,name=episode_ids,json=episodeIds,proto3" json:"episode_ids,omitempty"`
+	AlbumImageUrl   string                 `protobuf:"bytes,6,opt,name=album_image_url,json=albumImageUrl,proto3" json:"album_image_url,omitempty"`
+	Transcribed     []string               `protobuf:"bytes,7,rep,name=transcribed,proto3" json:"transcribed,omitempty"`
+	FirstOccurrence string                 `protobuf:"bytes,8,opt,name=first_occurrence,json=firstOccurrence,proto3" json:"first_occurrence,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
 }
 
 func (x *Song) Reset() {
@@ -1855,6 +1856,13 @@ func (x *Song) GetTranscribed() []string {
 	return nil
 }
 
+func (x *Song) GetFirstOccurrence() string {
+	if x != nil {
+		return x.FirstOccurrence
+	}
+	return ""
+}
+
 func (x *Song) SetSpotifyUri(v string) {
 	x.SpotifyUri = v
 }
@@ -1883,16 +1891,21 @@ func (x *Song) SetTranscribed(v []string) {
 	x.Transcribed = v
 }
 
+func (x *Song) SetFirstOccurrence(v string) {
+	x.FirstOccurrence = v
+}
+
 type Song_builder struct {
 	_ [0]func() // Prevents comparability and use of unkeyed literals for the builder.
 
-	SpotifyUri    string
-	Artist        string
-	Title         string
-	Album         string
-	EpisodeIds    []string
-	AlbumImageUrl string
-	Transcribed   []string
+	SpotifyUri      string
+	Artist          string
+	Title           string
+	Album           string
+	EpisodeIds      []string
+	AlbumImageUrl   string
+	Transcribed     []string
+	FirstOccurrence string
 }
 
 func (b0 Song_builder) Build() *Song {
@@ -1906,6 +1919,7 @@ func (b0 Song_builder) Build() *Song {
 	x.EpisodeIds = b.EpisodeIds
 	x.AlbumImageUrl = b.AlbumImageUrl
 	x.Transcribed = b.Transcribed
+	x.FirstOccurrence = b.FirstOccurrence
 	return m0
 }
 
@@ -2111,7 +2125,7 @@ const file_search_proto_rawDesc = "" +
 	"\tpage_size\x18\x05 \x01(\x05R\bpageSize\"N\n" +
 	"\bSongList\x12\x1f\n" +
 	"\x05songs\x18\x01 \x03(\v2\t.rsk.SongR\x05songs\x12!\n" +
-	"\fresult_count\x18\x02 \x01(\x05R\vresultCount\"\xd6\x01\n" +
+	"\fresult_count\x18\x02 \x01(\x05R\vresultCount\"\x81\x02\n" +
 	"\x04Song\x12\x1f\n" +
 	"\vspotify_uri\x18\x01 \x01(\tR\n" +
 	"spotifyUri\x12\x16\n" +
@@ -2121,7 +2135,8 @@ const file_search_proto_rawDesc = "" +
 	"\vepisode_ids\x18\x05 \x03(\tR\n" +
 	"episodeIds\x12&\n" +
 	"\x0falbum_image_url\x18\x06 \x01(\tR\ralbumImageUrl\x12 \n" +
-	"\vtranscribed\x18\a \x03(\tR\vtranscribed\"\x13\n" +
+	"\vtranscribed\x18\a \x03(\tR\vtranscribed\x12)\n" +
+	"\x10first_occurrence\x18\b \x01(\tR\x0ffirstOccurrence\"\x13\n" +
 	"\x11GetRoadmapRequest\"%\n" +
 	"\aRoadmap\x12\x1a\n" +
 	"\bmarkdown\x18\x01 \x01(\tR\bmarkdown2\xdd\t\n" +

@@ -7,6 +7,25 @@
           <div class="flex-grow-1 mr-2">
             <input class="form-control" placeholder="Search by artist or song title" [formControl]="searchInput" />
           </div>
+          <div>
+            <div class="dropdown" [ngClass]="{ show: sortDropdownOpen }">
+              <button
+                class="btn btn-sm btn-outline-secondary dropdown-toggle"
+                type="button"
+                (click)="sortDropdownOpen = !sortDropdownOpen"
+                [attr.aria-expanded]="sortDropdownOpen"
+              >
+                {{ currentSortLabel }}
+              </button>
+              <div class="dropdown-menu dropdown-menu-right" [ngClass]="{ show: sortDropdownOpen }">
+                @for (option of sortOptions; track option) {
+                  <a class="dropdown-item clickable" [ngClass]="{ active: option.value === currentSorting }" (click)="setSorting(option.value)">{{
+                    option.label
+                  }}</a>
+                }
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="card-body pb-0 mb-0">
@@ -15,6 +34,7 @@
             <th></th>
             <th>Song Title</th>
             <th>Artist</th>
+            <th>First Occurrence</th>
             <th>Episodes</th>
             <th>Transcription</th>
           </tr>
@@ -38,6 +58,7 @@
                 </a>
               </td>
               <td>{{ song.artist }}</td>
+              <td>{{ song.firstOccurrence }}</td>
               <td>
                 @for (epid of song.episodeIds; track epid) {
                   <a class="badge badge-secondary mr-2" [routerLink]="['/ep', 'ep-' + epid]">{{ epid }}</a>

@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"github.com/warmans/rsk-search/pkg/models"
 	"io/fs"
+	"time"
 )
 
 //go:embed data/episode-date-map.json
@@ -17,6 +18,7 @@ var orderedEpisodes embed.FS
 var parsedIndex = map[string]string{}
 var episodeIDMap = map[string]struct{}{}
 var episodeOrder = []string{}
+var episodeDatesByID = map[string]time.Time{}
 
 func init() {
 	epIndexFile, err := episodeDateIndex.Open("data/episode-date-map.json")
@@ -32,6 +34,11 @@ func init() {
 	}
 	for _, v := range parsedIndex {
 		episodeIDMap[fmt.Sprintf("ep-%s", v)] = struct{}{}
+	}
+	for k, v := range parsedIndex {
+		if t, err := time.Parse(time.RFC3339, k); err == nil {
+			episodeDatesByID[v] = t
+		}
 	}
 
 	orderedEpsFile, err := orderedEpisodes.Open("data/episode-order.json")

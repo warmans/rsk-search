@@ -38,18 +38,20 @@ CREATE INDEX changelog_date ON changelog ("date");
 
 CREATE TABLE "song"
 (
-    "spotify_uri"     TEXT,
-    "artist"          TEXT,
-    "title"           TEXT,
-    "album"           TEXT,
-    "episode_ids"     JSONB,
-    "album_image_url" TEXT,
-    "transcribed"     JSONB
+    "spotify_uri"      TEXT,
+    "artist"           TEXT,
+    "title"            TEXT,
+    "album"            TEXT,
+    "episode_ids"      JSONB,
+    "album_image_url"  TEXT,
+    "transcribed"      JSONB,
+    "first_occurrence" DATE
 );
 
 CREATE INDEX song_title ON song ("title");
 CREATE INDEX song_artist ON song ("artist");
 CREATE INDEX song_album ON song ("album");
+CREATE INDEX song_first_occurrence ON song ("first_occurrence");
 
 
 CREATE TABLE "community_project"

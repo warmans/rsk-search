@@ -242,9 +242,14 @@ func (s *Store) InsertSong(ctx context.Context, song meta.Song) error {
 	if err != nil {
 		return err
 	}
+	// unknown dates must be NULL rather than an empty string so they scan back into a nil *time.Time
+	var firstOccurrence interface{}
+	if song.FirstOccurrence != nil {
+		firstOccurrence = util.SqlDate(song.FirstOccurrence)
+	}
 	_, err = s.tx.ExecContext(
 		ctx,
-		`INSERT INTO song ("spotify_uri", "artist", "title", "album", "episode_ids", "album_image_url", "transcribed") VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+		`INSERT INTO song ("spotify_uri", "artist", "title", "album", "episode_ids", "album_image_url", "transcribed", "first_occurrence") VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
 		song.Track.TrackURI,
 		song.Track.Artist(),
 		song.Track.Name,
@@ -252,16 +257,18 @@ func (s *Store) InsertSong(ctx context.Context, song meta.Song) error {
 		string(episodeIds),
 		song.Track.AlbumImageUrl,
 		string(transcribed),
+		firstOccurrence,
 	)
 	return err
 }
 
 func (s *Store) ListSongs(ctx context.Context, q *common.QueryModifier) ([]*models.Song, int64, error) {
 	fieldMap := map[string]string{
-		"artist":      "artist",
-		"title":       "title",
-		"album":       "album",
-		"episode_ids": "episode_ids",
+		"artist":           "artist",
+		"title":            "title",
+		"album":            "album",
+		"episode_ids":      "episode_ids",
+		"first_occurrence": "first_occurrence",
 	}
 
 	q.Apply(common.WithDefaultSorting("title", common.SortAsc))
@@ -273,7 +280,7 @@ func (s *Store) ListSongs(ctx context.Context, q *common.QueryModifier) ([]*mode
 
 	rows, err := s.tx.QueryxContext(
 		ctx,
-		fmt.Sprintf(`SELECT spotify_uri, artist, title, album, episode_ids, album_image_url, transcribed, COUNT() OVER() as total_rows FROM song %s %s %s`, where, order, paging),
+		fmt.Sprintf(`SELECT spotify_uri, artist, title, album, episode_ids, album_image_url, transcribed, first_occurrence, COUNT() OVER() as total_rows FROM song %s %s %s`, where, order, paging),
 		params...,
 	)
 	if err != nil {
@@ -289,7 +296,7 @@ func (s *Store) ListSongs(ctx context.Context, q *common.QueryModifier) ([]*mode
 		row := &models.Song{}
 		var episodeIDRaw []byte
 		var transcribedRaw []byte
-		if err := rows.Scan(&row.SpotifyURI, &row.Artist, &row.Title, &row.Album, &episodeIDRaw, &row.AlbumImageURL, &transcribedRaw, &totalRows); err != nil {
+		if err := rows.Scan(&row.SpotifyURI, &row.Artist, &row.Title, &row.Album, &episodeIDRaw, &row.AlbumImageURL, &transcribedRaw, &row.FirstOccurrence, &totalRows); err != nil {
 			return nil, 0, err
 		}
 		if len(episodeIDRaw) > 0 {

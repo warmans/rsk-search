@@ -1046,6 +1046,8 @@ export function isRskSong(arg: any): arg is models.RskSong {
     ( typeof arg.artist === 'undefined' || typeof arg.artist === 'string' ) &&
     // episodeIds?: string[]
     ( typeof arg.episodeIds === 'undefined' || (Array.isArray(arg.episodeIds) && arg.episodeIds.every((item: unknown) => typeof item === 'string')) ) &&
+    // firstOccurrence?: string
+    ( typeof arg.firstOccurrence === 'undefined' || typeof arg.firstOccurrence === 'string' ) &&
     // spotifyUri?: string
     ( typeof arg.spotifyUri === 'undefined' || typeof arg.spotifyUri === 'string' ) &&
     // title?: string

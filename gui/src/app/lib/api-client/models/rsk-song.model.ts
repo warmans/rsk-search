@@ -5,6 +5,7 @@ export interface RskSong {
   albumImageUrl?: string;
   artist?: string;
   episodeIds?: string[];
+  firstOccurrence?: string;
   spotifyUri?: string;
   title?: string;
   transcribed?: string[];

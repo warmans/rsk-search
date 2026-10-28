@@ -6,6 +6,7 @@ import (
 	"github.com/warmans/rsk-search/pkg/spotify"
 	"io/fs"
 	"slices"
+	"time"
 )
 
 //go:embed data/songs.json
@@ -39,6 +40,8 @@ type Song struct {
 	Terms      []string
 	EpisodeIDs []string
 	Track      *spotify.Track
+	// release date of the earliest episode the song appears in. Derived on extraction, not persisted.
+	FirstOccurrence *time.Time `json:"-"`
 }
 
 type SongMetaMap struct {
@@ -64,6 +67,7 @@ func (s SongMetaMap) ExtractSorted() Songs {
 		if v == nil || v.Track == nil {
 			continue
 		}
+		v.FirstOccurrence = firstOccurrence(v.EpisodeIDs)
 		songSlice = append(songSlice, *v)
 	}
 	slices.SortFunc(songSlice, func(a, b Song) int {
@@ -73,4 +77,19 @@ func (s SongMetaMap) ExtractSorted() Songs {
 		return -1
 	})
 	return songSlice
+}
+
+// firstOccurrence returns the release date of the earliest known episode the song appears in, or nil if none are known.
+func firstOccurrence(episodeIDs []string) *time.Time {
+	var first *time.Time
+	for _, id := range episodeIDs {
+		date, ok := episodeDatesByID[id]
+		if !ok {
+			continue
+		}
+		if first == nil || date.Before(*first) {
+			first = &date
+		}
+	}
+	return first
 }
