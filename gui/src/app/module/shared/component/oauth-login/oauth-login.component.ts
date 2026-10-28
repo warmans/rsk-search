@@ -45,7 +45,7 @@ export class OauthLoginComponent implements OnDestroy {
         let urlTree = this.router.parseUrl(this.router.url);
         urlTree.queryParams = {};
         urlTree.fragment = null;
-        this.router.navigate([urlTree.toString()]);
+        this.router.navigateByUrl(urlTree, { replaceUrl: true });
       }
     });
 

@@ -271,8 +271,14 @@ export class EpisodeChunkSubmit implements OnInit, OnDestroy {
 
   discard() {
     if (confirm('are you sure you want to discard saved transcript?')) {
-      this.apiClient.deleteChunkContribution({ contributionId: this.contribution.id });
-      this.router.navigate(['/chunk', this.chunk.id]);
+      this.loading.push(true);
+      this.apiClient
+        .deleteChunkContribution({ contributionId: this.contribution.id })
+        .pipe(takeUntil(this.$destroy))
+        .subscribe(() => {
+          this.router.navigate(['/chunk', this.chunk.id]);
+        })
+        .add(() => this.loading.shift());
     }
   }
 }

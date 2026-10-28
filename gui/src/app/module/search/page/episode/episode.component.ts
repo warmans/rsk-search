@@ -188,7 +188,7 @@ export class EpisodeComponent implements OnInit, OnDestroy {
           if (this.episode?.synopses && this.episode?.synopses.length > 0) {
             availableInfoPanels.push('synopsis');
           }
-          if (this.quotes && this.episode?.synopses.length > 0) {
+          if (this.quotes.length > 0) {
             availableInfoPanels.push('quotes');
           }
           if (this.songs && this.songs.length > 0) {

@@ -107,7 +107,7 @@ export class MarkdownComponent implements OnInit {
 }
 
 function sanitize(str) {
-  return str.replace(/&<"/g, function (m) {
+  return str.replace(/[&<"]/g, function (m) {
     if (m === '&') return '&amp;';
     if (m === '<') return '&lt;';
     return '&quot;';

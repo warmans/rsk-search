@@ -60,9 +60,9 @@ export class SessionService {
     this.registerToken(null);
   }
 
-  // atob doesn't support base64 completely (??). Meaning _ will break it. Just replacing it seems to fix it.
+  // atob doesn't support base64url (- and _). Just replacing them seems to fix it.
   private static decodeBase64(str: string): string {
-    return atob(str.replace(/_/g, '/'));
+    return atob(str.replace(/-/g, '+').replace(/_/g, '/'));
   }
 }
 
