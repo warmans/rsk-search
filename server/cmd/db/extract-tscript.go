@@ -6,6 +6,9 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"os"
+	"sort"
+
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 	"github.com/warmans/rsk-search/pkg/data"
@@ -15,8 +18,6 @@ import (
 	"github.com/warmans/rsk-search/pkg/store/rw"
 	"github.com/warmans/rsk-search/pkg/transcript"
 	"go.uber.org/zap"
-	"os"
-	"sort"
 )
 
 var stdoutPrinter = json.NewEncoder(os.Stdout)
@@ -97,10 +98,9 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 				}
 			}
 
-			// clear old data
-			episodeOnDisk.Synopsis = nil
+			// the transcript is rebuilt from scratch but synopsis/trivia are
+			// merged by position so entries that only exist on disk are kept
 			episodeOnDisk.Transcript = nil
-			episodeOnDisk.Trivia = nil
 
 			// contributors should be merged with whatever is on disk
 			uniqueContributors := map[string]struct{}{}
@@ -191,9 +191,18 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 					uniqueContributors[author.Name] = struct{}{}
 				}
 				episodeOnDisk.Transcript = append(episodeOnDisk.Transcript, ts.Transcript...)
-				episodeOnDisk.Synopsis = append(episodeOnDisk.Synopsis, ts.Synopsis...)
-				episodeOnDisk.Trivia = append(episodeOnDisk.Trivia, ts.Trivia...)
+				episodeOnDisk.Synopsis = upsertSynopsis(episodeOnDisk.Synopsis, ts.Synopsis)
+				episodeOnDisk.Trivia = upsertTrivia(episodeOnDisk.Trivia, ts.Trivia)
 			}
+
+			// keep entries in position order; stable so on-disk entries without
+			// a DB counterpart keep their relative order
+			sort.SliceStable(episodeOnDisk.Synopsis, func(i, j int) bool {
+				return episodeOnDisk.Synopsis[i].StartPos < episodeOnDisk.Synopsis[j].StartPos
+			})
+			sort.SliceStable(episodeOnDisk.Trivia, func(i, j int) bool {
+				return episodeOnDisk.Trivia[i].StartPos < episodeOnDisk.Trivia[j].StartPos
+			})
 
 			contributors := []string{}
 			for c := range uniqueContributors {
@@ -215,4 +224,44 @@ func extract(outputDataPath string, conn *rw.Conn, dryRun bool, logger *zap.Logg
 		return nil
 	})
 	return err
+}
+
+// upsertSynopsis adds incoming entries to existing, replacing any entry that
+// covers the same start/end positions. Entries already in existing with no
+// incoming counterpart are left untouched.
+func upsertSynopsis(existing []models.Synopsis, incoming []models.Synopsis) []models.Synopsis {
+	for _, in := range incoming {
+		replaced := false
+		for i := range existing {
+			if existing[i].StartPos == in.StartPos && existing[i].EndPos == in.EndPos {
+				existing[i] = in
+				replaced = true
+				break
+			}
+		}
+		if !replaced {
+			existing = append(existing, in)
+		}
+	}
+	return existing
+}
+
+// upsertTrivia adds incoming entries to existing, replacing any entry that
+// covers the same start/end positions. Entries already in existing with no
+// incoming counterpart are left untouched.
+func upsertTrivia(existing []models.Trivia, incoming []models.Trivia) []models.Trivia {
+	for _, in := range incoming {
+		replaced := false
+		for i := range existing {
+			if existing[i].StartPos == in.StartPos && existing[i].EndPos == in.EndPos {
+				existing[i] = in
+				replaced = true
+				break
+			}
+		}
+		if !replaced {
+			existing = append(existing, in)
+		}
+	}
+	return existing
 }
