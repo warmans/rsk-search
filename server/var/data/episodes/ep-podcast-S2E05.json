@@ -5735,7 +5735,48 @@
         "sentiment": ""
       }
     ],
-    "synopsis": null,
+    "synopsis": [
+      {
+        "description": "Sigmund Freud",
+        "start_pos": 4,
+        "end_pos": 59
+      },
+      {
+        "description": "Sayings",
+        "start_pos": 60,
+        "end_pos": 77
+      },
+      {
+        "description": "Pets and insects",
+        "start_pos": 78,
+        "end_pos": 138
+      },
+      {
+        "description": "Medical intervention",
+        "start_pos": 139,
+        "end_pos": 193
+      },
+      {
+        "description": "Noah's Ark",
+        "start_pos": 194,
+        "end_pos": 234
+      },
+      {
+        "description": "Karl's diary",
+        "start_pos": 235,
+        "end_pos": 282
+      },
+      {
+        "description": "Swimming lessons",
+        "start_pos": 283,
+        "end_pos": 314
+      },
+      {
+        "description": "Rockbusters",
+        "start_pos": 315,
+        "end_pos": 376
+      }
+    ],
     "contributors": [
       "MechanicalChomp",
       "ThePumpk1nMaster",

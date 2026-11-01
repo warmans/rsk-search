@@ -4700,7 +4700,38 @@
         "sentiment": ""
       }
     ],
-    "synopsis": null,
+    "synopsis": [
+      {
+        "description": "Karl's workload",
+        "start_pos": 3,
+        "end_pos": 43
+      },
+      {
+        "description": "Three Minute Wonders",
+        "start_pos": 44,
+        "end_pos": 83
+      },
+      {
+        "description": "Steve's dancing",
+        "start_pos": 84,
+        "end_pos": 118
+      },
+      {
+        "description": "Flies and inventions",
+        "start_pos": 119,
+        "end_pos": 168
+      },
+      {
+        "description": "Clippable mugs",
+        "start_pos": 169,
+        "end_pos": 250
+      },
+      {
+        "description": "Karl's diary",
+        "start_pos": 251,
+        "end_pos": 310
+      }
+    ],
     "contributors": [
       "mossycow456"
     ],
