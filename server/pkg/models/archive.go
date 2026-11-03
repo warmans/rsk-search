@@ -19,7 +19,6 @@ func (a *ArchiveMeta) Proto() *api.Archive {
 		Id:             a.OriginalMessageID,
 		Description:    a.Description,
 		RelatedEpisode: a.Episode,
-		Files:          a.Files, //nolint:staticcheck // Keep the deprecated field populated for clients that have not switched to Media.
 		Media:          []*api.File{},
 	}
 	for _, f := range a.Files {
