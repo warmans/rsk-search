@@ -19,7 +19,6 @@ func (a *ArchiveMeta) Proto() *api.Archive {
 		Id:             a.OriginalMessageID,
 		Description:    a.Description,
 		RelatedEpisode: a.Episode,
-		Files:          a.Files,
 		Media:          []*api.File{},
 	}
 	for _, f := range a.Files {
