@@ -55,7 +55,7 @@
         "timestamp": 18040000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 1290000000,
+        "duration": 1060000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
@@ -67,14 +67,14 @@
       {
         "id": "ep-podcast-S3E04-4",
         "pos": 4,
-        "timestamp": 19330000000,
-        "timestamp_inferred": true,
-        "timestamp_distance": 1,
-        "duration": 650000000,
+        "timestamp": 19100000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "duration": 1400000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "Alright?",
+        "content": "Alright.",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
@@ -82,14 +82,14 @@
       {
         "id": "ep-podcast-S3E04-5",
         "pos": 5,
-        "timestamp": 19980000000,
-        "timestamp_inferred": true,
-        "timestamp_distance": 1,
-        "duration": 21670000000,
+        "timestamp": 20500000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "duration": 27000000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "Yeah. First of all, I'm sorry to do this but me and Steve have got to bring something up that's been bugging us for a couple of weeks now, but it's reached. You are so fucking lazy, Karl, at the moment. You have time off, right. You go away every weekend. So me and Steve are so precious with so many things to do with extras and books coming out and stuff.",
+        "content": "Yeah. First of all, I'm sorry to do this but me and Steve have got to bring something up that's been bugging us for a couple of weeks now, but it's reached. You are so fucking lazy, Karl, at the moment. You have time off, right? You go away every weekend. So me and Steve are so precious with so many things to do with Extras and books coming out and stuff. I've never anyone whinge about going in with kidney stones. I know loads of people that had kidney stones.",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
@@ -97,14 +97,14 @@
       {
         "id": "ep-podcast-S3E04-6",
         "pos": 6,
-        "timestamp": 41650000000,
+        "timestamp": 47500000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 960000000,
+        "duration": 500000000,
         "type": "chat",
-        "actor": "ricky",
+        "actor": "karl",
         "metadata": null,
-        "content": "You.",
+        "content": "Not like mine.",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
@@ -112,14 +112,14 @@
       {
         "id": "ep-podcast-S3E04-7",
         "pos": 7,
-        "timestamp": 42610000000,
+        "timestamp": 48000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 4760000000,
+        "duration": 26310000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "I've never heard anyone whinge about going in with kidney stones. I know loads of people that had kidney stones.",
+        "content": "Yeah, yeah. No, no, you're saying not like that because they have, they've had the operation. I know people that had their appendix out, right. An actual under the knife operation and he was back at work the next day and he had a bit of a, a sore side. But you have whinged now. for weeks and weeks, everything you say, oh, I've had this, oh, gotta go in again. But you're still well enough to go away every weekend to see your folks or your in laws or holiday and it's. We are so, you know... Sometimes you've gotta pull together, mate.",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
@@ -127,36 +127,6 @@
       {
         "id": "ep-podcast-S3E04-8",
         "pos": 8,
-        "timestamp": 47370000000,
-        "timestamp_inferred": true,
-        "timestamp_distance": 1,
-        "duration": 500000000,
-        "type": "chat",
-        "actor": "karl",
-        "metadata": null,
-        "content": "Not like that.",
-        "notable": false,
-        "placeholder": false,
-        "sentiment": ""
-      },
-      {
-        "id": "ep-podcast-S3E04-9",
-        "pos": 9,
-        "timestamp": 47870000000,
-        "timestamp_inferred": true,
-        "timestamp_distance": 1,
-        "duration": 26440000000,
-        "type": "chat",
-        "actor": "ricky",
-        "metadata": null,
-        "content": "They’ve had the— yeah, yeah. No, no, you say not like that because they have, they've had the operation. I know people that had their appendix out, right. An actual under the knife operation and he was back at work the next day and he had a bit of a, a sore side. But you have wins now. For weeks and weeks, everything you say, oh, I've had this, oh, gotta go in again. But you're still wouldn't have to go away every weekend to see your folks or your in laws or holiday and it's. We are so, you know, sometimes you've gotta pull together, mate.",
-        "notable": false,
-        "placeholder": false,
-        "sentiment": ""
-      },
-      {
-        "id": "ep-podcast-S3E04-10",
-        "pos": 10,
         "timestamp": 74310000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -170,8 +140,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-11",
-        "pos": 11,
+        "id": "ep-podcast-S3E04-9",
+        "pos": 9,
         "timestamp": 79510000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -185,8 +155,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-12",
-        "pos": 12,
+        "id": "ep-podcast-S3E04-10",
+        "pos": 10,
         "timestamp": 79910000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -200,8 +170,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-13",
-        "pos": 13,
+        "id": "ep-podcast-S3E04-11",
+        "pos": 11,
         "timestamp": 84270000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -209,14 +179,14 @@
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "Karl, I read your diary every week. All you seem to do is spend time in a cafe having a cup of tea and a bit of breakfast, constantly visiting. You don't even like your family.",
+        "content": "Karl, I read your diary every week. All you seem to do is spend time in a cafe having a cup of tea and a bit of breakfast, who are you constantly visiting? You don't even like your family.",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-14",
-        "pos": 14,
+        "id": "ep-podcast-S3E04-12",
+        "pos": 12,
         "timestamp": 92970000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -224,14 +194,14 @@
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "I thought it's not my family, is it?",
+        "content": "It's not my family, is it? It's Suzanne's family.",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-15",
-        "pos": 15,
+        "id": "ep-podcast-S3E04-13",
+        "pos": 13,
         "timestamp": 95770000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -245,38 +215,38 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-16",
-        "pos": 16,
+        "id": "ep-podcast-S3E04-14",
+        "pos": 14,
         "timestamp": 97290000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 6440000000,
+        "duration": 5910000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "But you say I'm working that weekend, I'm working that weekend. We have to put what, let's put this in first. You know, it's a busy time, family's.",
+        "content": "But you say I'm working that weekend, I'm working that weekend. We have to put what, let's put this in first. You know, it's a busy time.",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-17",
-        "pos": 17,
-        "timestamp": 103730000000,
+        "id": "ep-podcast-S3E04-15",
+        "pos": 15,
+        "timestamp": 103200000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 1560000000,
+        "duration": 2090000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "Important and you can't keep messing people.",
+        "content": "Family's important innit? And you can't keep messing people around.",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-18",
-        "pos": 18,
+        "id": "ep-podcast-S3E04-16",
+        "pos": 16,
         "timestamp": 105290000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -290,8 +260,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-19",
-        "pos": 19,
+        "id": "ep-podcast-S3E04-17",
+        "pos": 17,
         "timestamp": 106810000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -305,8 +275,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-20",
-        "pos": 20,
+        "id": "ep-podcast-S3E04-18",
+        "pos": 18,
         "timestamp": 109130000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -314,7 +284,37 @@
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "You know, if I don't want to go into what I'm doing. But I've got loads.",
+        "content": "Loads of stuff. I don't want to go into what I'm doing. But I've got loads of stuff.",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S3E04-19",
+        "pos": 19,
+        "timestamp": 111090000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "duration": 6610000000,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "But all I hear is you're always having meetings. You're always going for meetings. I don't know what that means, meetings. Other than being in a bloody cafe.",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S3E04-20",
+        "pos": 20,
+        "timestamp": 117700000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "duration": 2510000000,
+        "type": "chat",
+        "actor": "ricky",
+        "metadata": null,
+        "content": "Yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah.",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
@@ -322,14 +322,14 @@
       {
         "id": "ep-podcast-S3E04-21",
         "pos": 21,
-        "timestamp": 111090000000,
+        "timestamp": 120210000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 1760000000,
+        "duration": 4620000000,
         "type": "chat",
-        "actor": "steve",
+        "actor": "ricky",
         "metadata": null,
-        "content": "But all I hear is you're always having meetings.",
+        "content": "No, seriously though, so you've been on your travels, you've got, you know, you've got lots to talk about so...",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
@@ -337,14 +337,14 @@
       {
         "id": "ep-podcast-S3E04-22",
         "pos": 22,
-        "timestamp": 112850000000,
+        "timestamp": 124830000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 6960000000,
+        "duration": 1780000000,
         "type": "chat",
-        "actor": "ricky",
+        "actor": "karl",
         "metadata": null,
-        "content": "I'm always going from meetings. I don't know what that means. Meetings. Yeah, yeah, yeah, yeah, yeah, yeah, yeah, yeah.",
+        "content": "Yeah, I've got to go in hospital again as well.",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
@@ -352,51 +352,6 @@
       {
         "id": "ep-podcast-S3E04-23",
         "pos": 23,
-        "timestamp": 119810000000,
-        "timestamp_inferred": false,
-        "timestamp_distance": 0,
-        "duration": 400000000,
-        "type": "chat",
-        "actor": "ricky",
-        "metadata": null,
-        "content": "So.",
-        "notable": false,
-        "placeholder": false,
-        "sentiment": ""
-      },
-      {
-        "id": "ep-podcast-S3E04-24",
-        "pos": 24,
-        "timestamp": 120210000000,
-        "timestamp_inferred": false,
-        "timestamp_distance": 0,
-        "duration": 4320000000,
-        "type": "chat",
-        "actor": "ricky",
-        "metadata": null,
-        "content": "No, seriously though, so you've been on your travels, you've got, you know, you've got lots to talk about.",
-        "notable": false,
-        "placeholder": false,
-        "sentiment": ""
-      },
-      {
-        "id": "ep-podcast-S3E04-25",
-        "pos": 25,
-        "timestamp": 124530000000,
-        "timestamp_inferred": false,
-        "timestamp_distance": 0,
-        "duration": 2080000000,
-        "type": "chat",
-        "actor": "karl",
-        "metadata": null,
-        "content": "So yeah, I've Got to go in hospital again as well.",
-        "notable": false,
-        "placeholder": false,
-        "sentiment": ""
-      },
-      {
-        "id": "ep-podcast-S3E04-26",
-        "pos": 26,
         "timestamp": 126610000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -404,14 +359,14 @@
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "So what's your current state with your old.",
+        "content": "So what's your current state with your old?",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-27",
-        "pos": 27,
+        "id": "ep-podcast-S3E04-24",
+        "pos": 24,
         "timestamp": 129090000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -425,8 +380,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-28",
-        "pos": 28,
+        "id": "ep-podcast-S3E04-25",
+        "pos": 25,
         "timestamp": 130410000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -440,8 +395,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-29",
-        "pos": 29,
+        "id": "ep-podcast-S3E04-26",
+        "pos": 26,
         "timestamp": 132770000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -449,14 +404,14 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "You're fine. You wouldn't have to go away, you wouldn't have to go on holiday, you wouldn't have to visit people. You went on a train, you went to Manchester. You must be well enough. So you're well enough to do this.",
+        "content": "You're fine. You're well enough to go away, you're well enough to go on holiday, you're well enough to visit people. You went on a train, you went to Manchester. You must be well enough. So you're well enough to do this.",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-30",
-        "pos": 30,
+        "id": "ep-podcast-S3E04-27",
+        "pos": 27,
         "timestamp": 139730000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -470,38 +425,38 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-31",
-        "pos": 31,
+        "id": "ep-podcast-S3E04-28",
+        "pos": 28,
         "timestamp": 144450000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 920000000,
+        "duration": 150000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "I know, that's what I mean.",
+        "content": "I know.",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-32",
-        "pos": 32,
-        "timestamp": 145370000000,
+        "id": "ep-podcast-S3E04-29",
+        "pos": 29,
+        "timestamp": 144600000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 1080000000,
+        "duration": 1850000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "So we all had a pop up.",
+        "content": "That's what I mean. So we all had some time off.",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-33",
-        "pos": 33,
+        "id": "ep-podcast-S3E04-30",
+        "pos": 30,
         "timestamp": 146450000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -515,8 +470,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-34",
-        "pos": 34,
+        "id": "ep-podcast-S3E04-31",
+        "pos": 31,
         "timestamp": 149000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -524,14 +479,14 @@
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "That's alright. But we're still visiting a place is what I'm saying.",
+        "content": "That's alright. But that's still visiting a place is what I'm saying.",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-35",
-        "pos": 35,
+        "id": "ep-podcast-S3E04-32",
+        "pos": 32,
         "timestamp": 151960000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -539,89 +494,44 @@
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "Well, that's ridiculous thing to say. That's like saying a pilot doesn't work because he's visiting a place.",
+        "content": "Well, that's a ridiculous thing to say. That's like saying a pilot doesn't work because he's visiting a place.",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-36",
-        "pos": 36,
+        "id": "ep-podcast-S3E04-33",
+        "pos": 33,
         "timestamp": 155400000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 1240000000,
+        "duration": 1000000000,
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "No. Cause he doesn't visit it. No.",
+        "content": "No, cause he doesn't visit it. You don't get out the plane.",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-37",
-        "pos": 37,
-        "timestamp": 156640000000,
+        "id": "ep-podcast-S3E04-34",
+        "pos": 34,
+        "timestamp": 156400000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 7680000000,
+        "duration": 10120000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "You sit down on your ass sometimes you hire a car so you can't be reading or studying, you're driving for six hours. I went there working. We went to America.",
+        "content": "No you sit down on your arse. Sometimes you hire a car so you can't be reading or studying, you're driving for six hours. I went there working. We went to America, we were working. I went to Bristol, I was working.",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-38",
-        "pos": 38,
-        "timestamp": 164320000000,
-        "timestamp_inferred": false,
-        "timestamp_distance": 0,
-        "duration": 680000000,
-        "type": "chat",
-        "actor": "ricky",
-        "metadata": null,
-        "content": "We were working.",
-        "notable": false,
-        "placeholder": false,
-        "sentiment": ""
-      },
-      {
-        "id": "ep-podcast-S3E04-39",
-        "pos": 39,
-        "timestamp": 165000000000,
-        "timestamp_inferred": false,
-        "timestamp_distance": 0,
-        "duration": 760000000,
-        "type": "chat",
-        "actor": "ricky",
-        "metadata": null,
-        "content": "I went to Bristol.",
-        "notable": false,
-        "placeholder": false,
-        "sentiment": ""
-      },
-      {
-        "id": "ep-podcast-S3E04-40",
-        "pos": 40,
-        "timestamp": 165760000000,
-        "timestamp_inferred": false,
-        "timestamp_distance": 0,
-        "duration": 760000000,
-        "type": "chat",
-        "actor": "steve",
-        "metadata": null,
-        "content": "I was working.",
-        "notable": false,
-        "placeholder": false,
-        "sentiment": ""
-      },
-      {
-        "id": "ep-podcast-S3E04-41",
-        "pos": 41,
+        "id": "ep-podcast-S3E04-35",
+        "pos": 35,
         "timestamp": 166520000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -629,14 +539,14 @@
         "type": "chat",
         "actor": "karl",
         "metadata": null,
-        "content": "Shut up.",
+        "content": "Oh shut up.",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-42",
-        "pos": 42,
+        "id": "ep-podcast-S3E04-36",
+        "pos": 36,
         "timestamp": 167960000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -650,8 +560,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-43",
-        "pos": 43,
+        "id": "ep-podcast-S3E04-37",
+        "pos": 37,
         "timestamp": 168760000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -665,8 +575,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-44",
-        "pos": 44,
+        "id": "ep-podcast-S3E04-38",
+        "pos": 38,
         "timestamp": 169520000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -680,8 +590,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-45",
-        "pos": 45,
+        "id": "ep-podcast-S3E04-39",
+        "pos": 39,
         "timestamp": 170520000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -695,53 +605,83 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-46",
-        "pos": 46,
+        "id": "ep-podcast-S3E04-40",
+        "pos": 40,
         "timestamp": 171720000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 8320000000,
+        "duration": 8780000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "The truth does hurt. And it's interesting that he suddenly snapped at you there. I know because I wondered to myself, if it weren't for you, Mr. Ricky Gervais, what would this man, this little round headed man be doing?",
+        "content": "The truth does hurt. And it's interesting that he suddenly snapped at you there. I know because I wondered to myself, if it weren't for you, Mr. Ricky Gervais, what would this man, this little round headed man be doing right now?",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-47",
-        "pos": 47,
-        "timestamp": 180040000000,
+        "id": "ep-podcast-S3E04-41",
+        "pos": 41,
+        "timestamp": 180500000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 3740000000,
+        "duration": 3280000000,
         "type": "chat",
         "actor": "ricky",
         "metadata": null,
-        "content": "Right all Stephen. Fuck all.",
+        "content": "Fuck all Stephen. Fuck. All.",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-48",
-        "pos": 48,
+        "id": "ep-podcast-S3E04-42",
+        "pos": 42,
         "timestamp": 183780000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
-        "duration": 29370000000,
+        "duration": 17820000000,
         "type": "chat",
         "actor": "steve",
         "metadata": null,
-        "content": "Yeah, I went back to Bristol at the weekend. As you know, we all had a bit of time off and actually I was quite annoyed because I passed the pub near where my parents live and they had a band on. You know, pubs sometimes have a band on and the name of the band, I'm disappointed that I missed them. The name of the band, Rick, was Loose Change. But what I like about Loose Change is it's the least evocative name for a band, isn't it? It's not sexy, it's nothing. It's got no kind of mood or feel to it at all.",
+        "content": "Yeah, I went back to Bristol at the weekend. As you know, we all had a bit of time off and actually I was quite annoyed because I passed the pub near where my parents live and they had a band on. You know, pubs sometimes have a band on? And the name of the band, I'm disappointed that I missed them. The name of the band, Rick, was Loose Change.",
         "notable": false,
         "placeholder": false,
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-49",
-        "pos": 49,
+        "id": "ep-podcast-S3E04-43",
+        "pos": 43,
+        "timestamp": 201600000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "duration": 1800000000,
+        "type": "chat",
+        "actor": "",
+        "metadata": null,
+        "content": "Ricky chuckles",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S3E04-44",
+        "pos": 44,
+        "timestamp": 203400000000,
+        "timestamp_inferred": false,
+        "timestamp_distance": 0,
+        "duration": 9750000000,
+        "type": "chat",
+        "actor": "steve",
+        "metadata": null,
+        "content": "But what I like about Loose Change is it's the least evocative name for a band, isn't it? It's not sexy, it's nothing. It's got no kind of mood or feel to it at all.",
+        "notable": false,
+        "placeholder": false,
+        "sentiment": ""
+      },
+      {
+        "id": "ep-podcast-S3E04-45",
+        "pos": 45,
         "timestamp": 213150000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -755,8 +695,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-50",
-        "pos": 50,
+        "id": "ep-podcast-S3E04-46",
+        "pos": 46,
         "timestamp": 220150000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -770,8 +710,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-51",
-        "pos": 51,
+        "id": "ep-podcast-S3E04-47",
+        "pos": 47,
         "timestamp": 222910000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -785,8 +725,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-52",
-        "pos": 52,
+        "id": "ep-podcast-S3E04-48",
+        "pos": 48,
         "timestamp": 224350000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -800,8 +740,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-53",
-        "pos": 53,
+        "id": "ep-podcast-S3E04-49",
+        "pos": 49,
         "timestamp": 297200000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -815,8 +755,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-54",
-        "pos": 54,
+        "id": "ep-podcast-S3E04-50",
+        "pos": 50,
         "timestamp": 299600000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -830,8 +770,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-55",
-        "pos": 55,
+        "id": "ep-podcast-S3E04-51",
+        "pos": 51,
         "timestamp": 300560000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -845,8 +785,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-56",
-        "pos": 56,
+        "id": "ep-podcast-S3E04-52",
+        "pos": 52,
         "timestamp": 305360000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -860,8 +800,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-57",
-        "pos": 57,
+        "id": "ep-podcast-S3E04-53",
+        "pos": 53,
         "timestamp": 312480000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -875,8 +815,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-58",
-        "pos": 58,
+        "id": "ep-podcast-S3E04-54",
+        "pos": 54,
         "timestamp": 317230000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -890,8 +830,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-59",
-        "pos": 59,
+        "id": "ep-podcast-S3E04-55",
+        "pos": 55,
         "timestamp": 318120000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -905,8 +845,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-60",
-        "pos": 60,
+        "id": "ep-podcast-S3E04-56",
+        "pos": 56,
         "timestamp": 319440000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -920,8 +860,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-61",
-        "pos": 61,
+        "id": "ep-podcast-S3E04-57",
+        "pos": 57,
         "timestamp": 326520000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -935,8 +875,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-62",
-        "pos": 62,
+        "id": "ep-podcast-S3E04-58",
+        "pos": 58,
         "timestamp": 335120000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -950,8 +890,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-63",
-        "pos": 63,
+        "id": "ep-podcast-S3E04-59",
+        "pos": 59,
         "timestamp": 337640000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -965,8 +905,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-64",
-        "pos": 64,
+        "id": "ep-podcast-S3E04-60",
+        "pos": 60,
         "timestamp": 338040000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -980,8 +920,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-65",
-        "pos": 65,
+        "id": "ep-podcast-S3E04-61",
+        "pos": 61,
         "timestamp": 340440000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -995,8 +935,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-66",
-        "pos": 66,
+        "id": "ep-podcast-S3E04-62",
+        "pos": 62,
         "timestamp": 349680000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1010,8 +950,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-67",
-        "pos": 67,
+        "id": "ep-podcast-S3E04-63",
+        "pos": 63,
         "timestamp": 351320000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1025,8 +965,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-68",
-        "pos": 68,
+        "id": "ep-podcast-S3E04-64",
+        "pos": 64,
         "timestamp": 351680000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1040,8 +980,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-69",
-        "pos": 69,
+        "id": "ep-podcast-S3E04-65",
+        "pos": 65,
         "timestamp": 390970000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1055,8 +995,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-70",
-        "pos": 70,
+        "id": "ep-podcast-S3E04-66",
+        "pos": 66,
         "timestamp": 392250000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1070,8 +1010,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-71",
-        "pos": 71,
+        "id": "ep-podcast-S3E04-67",
+        "pos": 67,
         "timestamp": 394250000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1085,8 +1025,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-72",
-        "pos": 72,
+        "id": "ep-podcast-S3E04-68",
+        "pos": 68,
         "timestamp": 395130000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1100,8 +1040,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-73",
-        "pos": 73,
+        "id": "ep-podcast-S3E04-69",
+        "pos": 69,
         "timestamp": 396050000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1115,8 +1055,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-74",
-        "pos": 74,
+        "id": "ep-podcast-S3E04-70",
+        "pos": 70,
         "timestamp": 397370000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1130,8 +1070,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-75",
-        "pos": 75,
+        "id": "ep-podcast-S3E04-71",
+        "pos": 71,
         "timestamp": 401500000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1145,8 +1085,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-76",
-        "pos": 76,
+        "id": "ep-podcast-S3E04-72",
+        "pos": 72,
         "timestamp": 402300000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1160,8 +1100,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-77",
-        "pos": 77,
+        "id": "ep-podcast-S3E04-73",
+        "pos": 73,
         "timestamp": 412700000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1175,8 +1115,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-78",
-        "pos": 78,
+        "id": "ep-podcast-S3E04-74",
+        "pos": 74,
         "timestamp": 415220000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1190,8 +1130,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-79",
-        "pos": 79,
+        "id": "ep-podcast-S3E04-75",
+        "pos": 75,
         "timestamp": 431190000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1205,8 +1145,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-80",
-        "pos": 80,
+        "id": "ep-podcast-S3E04-76",
+        "pos": 76,
         "timestamp": 431510000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1220,8 +1160,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-81",
-        "pos": 81,
+        "id": "ep-podcast-S3E04-77",
+        "pos": 77,
         "timestamp": 442550000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1235,8 +1175,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-82",
-        "pos": 82,
+        "id": "ep-podcast-S3E04-78",
+        "pos": 78,
         "timestamp": 447190000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1250,8 +1190,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-83",
-        "pos": 83,
+        "id": "ep-podcast-S3E04-79",
+        "pos": 79,
         "timestamp": 450870000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1265,8 +1205,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-84",
-        "pos": 84,
+        "id": "ep-podcast-S3E04-80",
+        "pos": 80,
         "timestamp": 461530000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -1280,8 +1220,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-85",
-        "pos": 85,
+        "id": "ep-podcast-S3E04-81",
+        "pos": 81,
         "timestamp": 462890000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1295,8 +1235,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-86",
-        "pos": 86,
+        "id": "ep-podcast-S3E04-82",
+        "pos": 82,
         "timestamp": 469090000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1310,8 +1250,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-87",
-        "pos": 87,
+        "id": "ep-podcast-S3E04-83",
+        "pos": 83,
         "timestamp": 478930000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1325,8 +1265,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-88",
-        "pos": 88,
+        "id": "ep-podcast-S3E04-84",
+        "pos": 84,
         "timestamp": 480810000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1340,8 +1280,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-89",
-        "pos": 89,
+        "id": "ep-podcast-S3E04-85",
+        "pos": 85,
         "timestamp": 486330000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -1355,8 +1295,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-90",
-        "pos": 90,
+        "id": "ep-podcast-S3E04-86",
+        "pos": 86,
         "timestamp": 487160000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1370,8 +1310,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-91",
-        "pos": 91,
+        "id": "ep-podcast-S3E04-87",
+        "pos": 87,
         "timestamp": 488040000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1385,8 +1325,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-92",
-        "pos": 92,
+        "id": "ep-podcast-S3E04-88",
+        "pos": 88,
         "timestamp": 505240000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1400,8 +1340,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-93",
-        "pos": 93,
+        "id": "ep-podcast-S3E04-89",
+        "pos": 89,
         "timestamp": 550650000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1415,8 +1355,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-94",
-        "pos": 94,
+        "id": "ep-podcast-S3E04-90",
+        "pos": 90,
         "timestamp": 551320000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -1430,8 +1370,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-95",
-        "pos": 95,
+        "id": "ep-podcast-S3E04-91",
+        "pos": 91,
         "timestamp": 553830000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -1445,8 +1385,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-96",
-        "pos": 96,
+        "id": "ep-podcast-S3E04-92",
+        "pos": 92,
         "timestamp": 554250000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1460,8 +1400,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-97",
-        "pos": 97,
+        "id": "ep-podcast-S3E04-93",
+        "pos": 93,
         "timestamp": 579530000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -1475,8 +1415,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-98",
-        "pos": 98,
+        "id": "ep-podcast-S3E04-94",
+        "pos": 94,
         "timestamp": 579950000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -1490,8 +1430,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-99",
-        "pos": 99,
+        "id": "ep-podcast-S3E04-95",
+        "pos": 95,
         "timestamp": 583190000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -1505,8 +1445,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-100",
-        "pos": 100,
+        "id": "ep-podcast-S3E04-96",
+        "pos": 96,
         "timestamp": 583500000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -1520,8 +1460,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-101",
-        "pos": 101,
+        "id": "ep-podcast-S3E04-97",
+        "pos": 97,
         "timestamp": 585160000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1535,8 +1475,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-102",
-        "pos": 102,
+        "id": "ep-podcast-S3E04-98",
+        "pos": 98,
         "timestamp": 585600000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1550,8 +1490,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-103",
-        "pos": 103,
+        "id": "ep-podcast-S3E04-99",
+        "pos": 99,
         "timestamp": 590120000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1565,8 +1505,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-104",
-        "pos": 104,
+        "id": "ep-podcast-S3E04-100",
+        "pos": 100,
         "timestamp": 590520000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1580,8 +1520,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-105",
-        "pos": 105,
+        "id": "ep-podcast-S3E04-101",
+        "pos": 101,
         "timestamp": 595680000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1595,8 +1535,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-106",
-        "pos": 106,
+        "id": "ep-podcast-S3E04-102",
+        "pos": 102,
         "timestamp": 596200000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1610,8 +1550,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-107",
-        "pos": 107,
+        "id": "ep-podcast-S3E04-103",
+        "pos": 103,
         "timestamp": 598800000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1625,8 +1565,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-108",
-        "pos": 108,
+        "id": "ep-podcast-S3E04-104",
+        "pos": 104,
         "timestamp": 611580000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1640,8 +1580,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-109",
-        "pos": 109,
+        "id": "ep-podcast-S3E04-105",
+        "pos": 105,
         "timestamp": 616500000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1655,8 +1595,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-110",
-        "pos": 110,
+        "id": "ep-podcast-S3E04-106",
+        "pos": 106,
         "timestamp": 621980000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1670,8 +1610,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-111",
-        "pos": 111,
+        "id": "ep-podcast-S3E04-107",
+        "pos": 107,
         "timestamp": 628060000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1685,8 +1625,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-112",
-        "pos": 112,
+        "id": "ep-podcast-S3E04-108",
+        "pos": 108,
         "timestamp": 631420000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1700,8 +1640,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-113",
-        "pos": 113,
+        "id": "ep-podcast-S3E04-109",
+        "pos": 109,
         "timestamp": 640060000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1715,8 +1655,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-114",
-        "pos": 114,
+        "id": "ep-podcast-S3E04-110",
+        "pos": 110,
         "timestamp": 645900000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1730,8 +1670,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-115",
-        "pos": 115,
+        "id": "ep-podcast-S3E04-111",
+        "pos": 111,
         "timestamp": 650940000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1745,8 +1685,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-116",
-        "pos": 116,
+        "id": "ep-podcast-S3E04-112",
+        "pos": 112,
         "timestamp": 661620000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1760,8 +1700,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-117",
-        "pos": 117,
+        "id": "ep-podcast-S3E04-113",
+        "pos": 113,
         "timestamp": 670100000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1775,8 +1715,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-118",
-        "pos": 118,
+        "id": "ep-podcast-S3E04-114",
+        "pos": 114,
         "timestamp": 672420000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1790,8 +1730,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-119",
-        "pos": 119,
+        "id": "ep-podcast-S3E04-115",
+        "pos": 115,
         "timestamp": 696830000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1805,8 +1745,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-120",
-        "pos": 120,
+        "id": "ep-podcast-S3E04-116",
+        "pos": 116,
         "timestamp": 697230000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1820,8 +1760,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-121",
-        "pos": 121,
+        "id": "ep-podcast-S3E04-117",
+        "pos": 117,
         "timestamp": 700350000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1835,8 +1775,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-122",
-        "pos": 122,
+        "id": "ep-podcast-S3E04-118",
+        "pos": 118,
         "timestamp": 702590000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1850,8 +1790,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-123",
-        "pos": 123,
+        "id": "ep-podcast-S3E04-119",
+        "pos": 119,
         "timestamp": 711710000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1865,8 +1805,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-124",
-        "pos": 124,
+        "id": "ep-podcast-S3E04-120",
+        "pos": 120,
         "timestamp": 732220000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1880,8 +1820,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-125",
-        "pos": 125,
+        "id": "ep-podcast-S3E04-121",
+        "pos": 121,
         "timestamp": 742490000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1895,8 +1835,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-126",
-        "pos": 126,
+        "id": "ep-podcast-S3E04-122",
+        "pos": 122,
         "timestamp": 756090000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1910,8 +1850,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-127",
-        "pos": 127,
+        "id": "ep-podcast-S3E04-123",
+        "pos": 123,
         "timestamp": 760010000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1925,8 +1865,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-128",
-        "pos": 128,
+        "id": "ep-podcast-S3E04-124",
+        "pos": 124,
         "timestamp": 775550000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1940,8 +1880,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-129",
-        "pos": 129,
+        "id": "ep-podcast-S3E04-125",
+        "pos": 125,
         "timestamp": 789910000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1955,8 +1895,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-130",
-        "pos": 130,
+        "id": "ep-podcast-S3E04-126",
+        "pos": 126,
         "timestamp": 797230000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1970,8 +1910,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-131",
-        "pos": 131,
+        "id": "ep-podcast-S3E04-127",
+        "pos": 127,
         "timestamp": 814510000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -1985,8 +1925,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-132",
-        "pos": 132,
+        "id": "ep-podcast-S3E04-128",
+        "pos": 128,
         "timestamp": 825640000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2000,8 +1940,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-133",
-        "pos": 133,
+        "id": "ep-podcast-S3E04-129",
+        "pos": 129,
         "timestamp": 830600000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2015,8 +1955,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-134",
-        "pos": 134,
+        "id": "ep-podcast-S3E04-130",
+        "pos": 130,
         "timestamp": 832040000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2030,8 +1970,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-135",
-        "pos": 135,
+        "id": "ep-podcast-S3E04-131",
+        "pos": 131,
         "timestamp": 833400000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2045,8 +1985,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-136",
-        "pos": 136,
+        "id": "ep-podcast-S3E04-132",
+        "pos": 132,
         "timestamp": 842240000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2060,8 +2000,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-137",
-        "pos": 137,
+        "id": "ep-podcast-S3E04-133",
+        "pos": 133,
         "timestamp": 842910000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -2075,8 +2015,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-138",
-        "pos": 138,
+        "id": "ep-podcast-S3E04-134",
+        "pos": 134,
         "timestamp": 843150000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -2090,8 +2030,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-139",
-        "pos": 139,
+        "id": "ep-podcast-S3E04-135",
+        "pos": 135,
         "timestamp": 843720000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2105,8 +2045,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-140",
-        "pos": 140,
+        "id": "ep-podcast-S3E04-136",
+        "pos": 136,
         "timestamp": 848150000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2120,8 +2060,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-141",
-        "pos": 141,
+        "id": "ep-podcast-S3E04-137",
+        "pos": 137,
         "timestamp": 851110000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2135,8 +2075,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-142",
-        "pos": 142,
+        "id": "ep-podcast-S3E04-138",
+        "pos": 138,
         "timestamp": 853430000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2150,8 +2090,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-143",
-        "pos": 143,
+        "id": "ep-podcast-S3E04-139",
+        "pos": 139,
         "timestamp": 855790000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -2165,8 +2105,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-144",
-        "pos": 144,
+        "id": "ep-podcast-S3E04-140",
+        "pos": 140,
         "timestamp": 856690000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -2180,8 +2120,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-145",
-        "pos": 145,
+        "id": "ep-podcast-S3E04-141",
+        "pos": 141,
         "timestamp": 886930000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2195,8 +2135,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-146",
-        "pos": 146,
+        "id": "ep-podcast-S3E04-142",
+        "pos": 142,
         "timestamp": 889770000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2210,8 +2150,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-147",
-        "pos": 147,
+        "id": "ep-podcast-S3E04-143",
+        "pos": 143,
         "timestamp": 891010000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2225,8 +2165,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-148",
-        "pos": 148,
+        "id": "ep-podcast-S3E04-144",
+        "pos": 144,
         "timestamp": 893890000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2240,8 +2180,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-149",
-        "pos": 149,
+        "id": "ep-podcast-S3E04-145",
+        "pos": 145,
         "timestamp": 904330000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2255,8 +2195,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-150",
-        "pos": 150,
+        "id": "ep-podcast-S3E04-146",
+        "pos": 146,
         "timestamp": 908210000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2270,8 +2210,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-151",
-        "pos": 151,
+        "id": "ep-podcast-S3E04-147",
+        "pos": 147,
         "timestamp": 912810000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2285,8 +2225,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-152",
-        "pos": 152,
+        "id": "ep-podcast-S3E04-148",
+        "pos": 148,
         "timestamp": 921290000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2300,8 +2240,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-153",
-        "pos": 153,
+        "id": "ep-podcast-S3E04-149",
+        "pos": 149,
         "timestamp": 925610000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2315,8 +2255,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-154",
-        "pos": 154,
+        "id": "ep-podcast-S3E04-150",
+        "pos": 150,
         "timestamp": 928770000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2330,8 +2270,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-155",
-        "pos": 155,
+        "id": "ep-podcast-S3E04-151",
+        "pos": 151,
         "timestamp": 929000000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -2345,8 +2285,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-156",
-        "pos": 156,
+        "id": "ep-podcast-S3E04-152",
+        "pos": 152,
         "timestamp": 933250000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2360,8 +2300,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-157",
-        "pos": 157,
+        "id": "ep-podcast-S3E04-153",
+        "pos": 153,
         "timestamp": 938930000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2375,8 +2315,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-158",
-        "pos": 158,
+        "id": "ep-podcast-S3E04-154",
+        "pos": 154,
         "timestamp": 968040000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2390,8 +2330,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-159",
-        "pos": 159,
+        "id": "ep-podcast-S3E04-155",
+        "pos": 155,
         "timestamp": 968700000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -2405,8 +2345,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-160",
-        "pos": 160,
+        "id": "ep-podcast-S3E04-156",
+        "pos": 156,
         "timestamp": 970320000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2420,8 +2360,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-161",
-        "pos": 161,
+        "id": "ep-podcast-S3E04-157",
+        "pos": 157,
         "timestamp": 970480000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -2435,8 +2375,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-162",
-        "pos": 162,
+        "id": "ep-podcast-S3E04-158",
+        "pos": 158,
         "timestamp": 972280000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2450,8 +2390,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-163",
-        "pos": 163,
+        "id": "ep-podcast-S3E04-159",
+        "pos": 159,
         "timestamp": 985700000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2465,8 +2405,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-164",
-        "pos": 164,
+        "id": "ep-podcast-S3E04-160",
+        "pos": 160,
         "timestamp": 987620000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2480,8 +2420,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-165",
-        "pos": 165,
+        "id": "ep-podcast-S3E04-161",
+        "pos": 161,
         "timestamp": 1020520000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2495,8 +2435,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-166",
-        "pos": 166,
+        "id": "ep-podcast-S3E04-162",
+        "pos": 162,
         "timestamp": 1023760000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2510,8 +2450,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-167",
-        "pos": 167,
+        "id": "ep-podcast-S3E04-163",
+        "pos": 163,
         "timestamp": 1025720000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2525,8 +2465,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-168",
-        "pos": 168,
+        "id": "ep-podcast-S3E04-164",
+        "pos": 164,
         "timestamp": 1029560000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2540,8 +2480,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-169",
-        "pos": 169,
+        "id": "ep-podcast-S3E04-165",
+        "pos": 165,
         "timestamp": 1040599000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2555,8 +2495,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-170",
-        "pos": 170,
+        "id": "ep-podcast-S3E04-166",
+        "pos": 166,
         "timestamp": 1041839000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2570,8 +2510,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-171",
-        "pos": 171,
+        "id": "ep-podcast-S3E04-167",
+        "pos": 167,
         "timestamp": 1048700000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2585,8 +2525,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-172",
-        "pos": 172,
+        "id": "ep-podcast-S3E04-168",
+        "pos": 168,
         "timestamp": 1052660000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2600,8 +2540,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-173",
-        "pos": 173,
+        "id": "ep-podcast-S3E04-169",
+        "pos": 169,
         "timestamp": 1054620000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2615,8 +2555,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-174",
-        "pos": 174,
+        "id": "ep-podcast-S3E04-170",
+        "pos": 170,
         "timestamp": 1058100000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2630,8 +2570,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-175",
-        "pos": 175,
+        "id": "ep-podcast-S3E04-171",
+        "pos": 171,
         "timestamp": 1071220000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2645,8 +2585,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-176",
-        "pos": 176,
+        "id": "ep-podcast-S3E04-172",
+        "pos": 172,
         "timestamp": 1074740000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2660,8 +2600,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-177",
-        "pos": 177,
+        "id": "ep-podcast-S3E04-173",
+        "pos": 173,
         "timestamp": 1078960000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2675,8 +2615,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-178",
-        "pos": 178,
+        "id": "ep-podcast-S3E04-174",
+        "pos": 174,
         "timestamp": 1079930000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -2690,8 +2630,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-179",
-        "pos": 179,
+        "id": "ep-podcast-S3E04-175",
+        "pos": 175,
         "timestamp": 1087650000000,
         "timestamp_inferred": true,
         "timestamp_distance": 2,
@@ -2705,8 +2645,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-180",
-        "pos": 180,
+        "id": "ep-podcast-S3E04-176",
+        "pos": 176,
         "timestamp": 1089200000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -2720,8 +2660,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-181",
-        "pos": 181,
+        "id": "ep-podcast-S3E04-177",
+        "pos": 177,
         "timestamp": 1094320000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2735,8 +2675,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-182",
-        "pos": 182,
+        "id": "ep-podcast-S3E04-178",
+        "pos": 178,
         "timestamp": 1098600000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2750,8 +2690,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-183",
-        "pos": 183,
+        "id": "ep-podcast-S3E04-179",
+        "pos": 179,
         "timestamp": 1101840000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2765,8 +2705,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-184",
-        "pos": 184,
+        "id": "ep-podcast-S3E04-180",
+        "pos": 180,
         "timestamp": 1117680000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2780,8 +2720,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-185",
-        "pos": 185,
+        "id": "ep-podcast-S3E04-181",
+        "pos": 181,
         "timestamp": 1127520000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2795,8 +2735,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-186",
-        "pos": 186,
+        "id": "ep-podcast-S3E04-182",
+        "pos": 182,
         "timestamp": 1130310000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2810,8 +2750,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-187",
-        "pos": 187,
+        "id": "ep-podcast-S3E04-183",
+        "pos": 183,
         "timestamp": 1140710000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2825,8 +2765,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-188",
-        "pos": 188,
+        "id": "ep-podcast-S3E04-184",
+        "pos": 184,
         "timestamp": 1146710000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2840,8 +2780,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-189",
-        "pos": 189,
+        "id": "ep-podcast-S3E04-185",
+        "pos": 185,
         "timestamp": 1151590000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2855,8 +2795,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-190",
-        "pos": 190,
+        "id": "ep-podcast-S3E04-186",
+        "pos": 186,
         "timestamp": 1169770000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2870,8 +2810,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-191",
-        "pos": 191,
+        "id": "ep-podcast-S3E04-187",
+        "pos": 187,
         "timestamp": 1171290000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2885,8 +2825,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-192",
-        "pos": 192,
+        "id": "ep-podcast-S3E04-188",
+        "pos": 188,
         "timestamp": 1176330000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2900,8 +2840,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-193",
-        "pos": 193,
+        "id": "ep-podcast-S3E04-189",
+        "pos": 189,
         "timestamp": 1179610000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2915,8 +2855,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-194",
-        "pos": 194,
+        "id": "ep-podcast-S3E04-190",
+        "pos": 190,
         "timestamp": 1185570000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2930,8 +2870,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-195",
-        "pos": 195,
+        "id": "ep-podcast-S3E04-191",
+        "pos": 191,
         "timestamp": 1186050000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2945,8 +2885,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-196",
-        "pos": 196,
+        "id": "ep-podcast-S3E04-192",
+        "pos": 192,
         "timestamp": 1187630000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2960,8 +2900,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-197",
-        "pos": 197,
+        "id": "ep-podcast-S3E04-193",
+        "pos": 193,
         "timestamp": 1189390000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2975,8 +2915,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-198",
-        "pos": 198,
+        "id": "ep-podcast-S3E04-194",
+        "pos": 194,
         "timestamp": 1200150000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -2990,8 +2930,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-199",
-        "pos": 199,
+        "id": "ep-podcast-S3E04-195",
+        "pos": 195,
         "timestamp": 1200990000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3005,8 +2945,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-200",
-        "pos": 200,
+        "id": "ep-podcast-S3E04-196",
+        "pos": 196,
         "timestamp": 1205390000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3020,8 +2960,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-201",
-        "pos": 201,
+        "id": "ep-podcast-S3E04-197",
+        "pos": 197,
         "timestamp": 1207150000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3035,8 +2975,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-202",
-        "pos": 202,
+        "id": "ep-podcast-S3E04-198",
+        "pos": 198,
         "timestamp": 1210710000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3050,8 +2990,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-203",
-        "pos": 203,
+        "id": "ep-podcast-S3E04-199",
+        "pos": 199,
         "timestamp": 1220300000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3065,8 +3005,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-204",
-        "pos": 204,
+        "id": "ep-podcast-S3E04-200",
+        "pos": 200,
         "timestamp": 1221340000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3080,8 +3020,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-205",
-        "pos": 205,
+        "id": "ep-podcast-S3E04-201",
+        "pos": 201,
         "timestamp": 1224940000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3095,8 +3035,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-206",
-        "pos": 206,
+        "id": "ep-podcast-S3E04-202",
+        "pos": 202,
         "timestamp": 1228700000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3110,8 +3050,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-207",
-        "pos": 207,
+        "id": "ep-podcast-S3E04-203",
+        "pos": 203,
         "timestamp": 1233100000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3125,8 +3065,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-208",
-        "pos": 208,
+        "id": "ep-podcast-S3E04-204",
+        "pos": 204,
         "timestamp": 1242180000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3140,8 +3080,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-209",
-        "pos": 209,
+        "id": "ep-podcast-S3E04-205",
+        "pos": 205,
         "timestamp": 1245320000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3155,8 +3095,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-210",
-        "pos": 210,
+        "id": "ep-podcast-S3E04-206",
+        "pos": 206,
         "timestamp": 1254040000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3170,8 +3110,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-211",
-        "pos": 211,
+        "id": "ep-podcast-S3E04-207",
+        "pos": 207,
         "timestamp": 1256760000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3185,8 +3125,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-212",
-        "pos": 212,
+        "id": "ep-podcast-S3E04-208",
+        "pos": 208,
         "timestamp": 1258840000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3200,8 +3140,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-213",
-        "pos": 213,
+        "id": "ep-podcast-S3E04-209",
+        "pos": 209,
         "timestamp": 1260160000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3215,8 +3155,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-214",
-        "pos": 214,
+        "id": "ep-podcast-S3E04-210",
+        "pos": 210,
         "timestamp": 1267440000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3230,8 +3170,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-215",
-        "pos": 215,
+        "id": "ep-podcast-S3E04-211",
+        "pos": 211,
         "timestamp": 1268200000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3245,8 +3185,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-216",
-        "pos": 216,
+        "id": "ep-podcast-S3E04-212",
+        "pos": 212,
         "timestamp": 1270830000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3260,8 +3200,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-217",
-        "pos": 217,
+        "id": "ep-podcast-S3E04-213",
+        "pos": 213,
         "timestamp": 1272030000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3275,8 +3215,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-218",
-        "pos": 218,
+        "id": "ep-podcast-S3E04-214",
+        "pos": 214,
         "timestamp": 1278750000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3290,8 +3230,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-219",
-        "pos": 219,
+        "id": "ep-podcast-S3E04-215",
+        "pos": 215,
         "timestamp": 1289470000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3305,8 +3245,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-220",
-        "pos": 220,
+        "id": "ep-podcast-S3E04-216",
+        "pos": 216,
         "timestamp": 1289790000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3320,8 +3260,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-221",
-        "pos": 221,
+        "id": "ep-podcast-S3E04-217",
+        "pos": 217,
         "timestamp": 1291510000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3335,8 +3275,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-222",
-        "pos": 222,
+        "id": "ep-podcast-S3E04-218",
+        "pos": 218,
         "timestamp": 1292430000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3350,8 +3290,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-223",
-        "pos": 223,
+        "id": "ep-podcast-S3E04-219",
+        "pos": 219,
         "timestamp": 1295590000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3365,8 +3305,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-224",
-        "pos": 224,
+        "id": "ep-podcast-S3E04-220",
+        "pos": 220,
         "timestamp": 1296190000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3380,8 +3320,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-225",
-        "pos": 225,
+        "id": "ep-podcast-S3E04-221",
+        "pos": 221,
         "timestamp": 1303890000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3395,8 +3335,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-226",
-        "pos": 226,
+        "id": "ep-podcast-S3E04-222",
+        "pos": 222,
         "timestamp": 1306730000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3410,8 +3350,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-227",
-        "pos": 227,
+        "id": "ep-podcast-S3E04-223",
+        "pos": 223,
         "timestamp": 1330570000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3425,8 +3365,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-228",
-        "pos": 228,
+        "id": "ep-podcast-S3E04-224",
+        "pos": 224,
         "timestamp": 1336850000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3440,8 +3380,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-229",
-        "pos": 229,
+        "id": "ep-podcast-S3E04-225",
+        "pos": 225,
         "timestamp": 1342010000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3455,8 +3395,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-230",
-        "pos": 230,
+        "id": "ep-podcast-S3E04-226",
+        "pos": 226,
         "timestamp": 1347850000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3470,8 +3410,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-231",
-        "pos": 231,
+        "id": "ep-podcast-S3E04-227",
+        "pos": 227,
         "timestamp": 1347970000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3485,8 +3425,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-232",
-        "pos": 232,
+        "id": "ep-podcast-S3E04-228",
+        "pos": 228,
         "timestamp": 1352250000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3500,8 +3440,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-233",
-        "pos": 233,
+        "id": "ep-podcast-S3E04-229",
+        "pos": 229,
         "timestamp": 1356620000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3515,8 +3455,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-234",
-        "pos": 234,
+        "id": "ep-podcast-S3E04-230",
+        "pos": 230,
         "timestamp": 1359100000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3530,8 +3470,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-235",
-        "pos": 235,
+        "id": "ep-podcast-S3E04-231",
+        "pos": 231,
         "timestamp": 1360780000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3545,8 +3485,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-236",
-        "pos": 236,
+        "id": "ep-podcast-S3E04-232",
+        "pos": 232,
         "timestamp": 1362940000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3560,8 +3500,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-237",
-        "pos": 237,
+        "id": "ep-podcast-S3E04-233",
+        "pos": 233,
         "timestamp": 1370140000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3575,8 +3515,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-238",
-        "pos": 238,
+        "id": "ep-podcast-S3E04-234",
+        "pos": 234,
         "timestamp": 1371700000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3590,8 +3530,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-239",
-        "pos": 239,
+        "id": "ep-podcast-S3E04-235",
+        "pos": 235,
         "timestamp": 1373580000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3605,8 +3545,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-240",
-        "pos": 240,
+        "id": "ep-podcast-S3E04-236",
+        "pos": 236,
         "timestamp": 1375020000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3620,8 +3560,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-241",
-        "pos": 241,
+        "id": "ep-podcast-S3E04-237",
+        "pos": 237,
         "timestamp": 1381700000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3635,8 +3575,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-242",
-        "pos": 242,
+        "id": "ep-podcast-S3E04-238",
+        "pos": 238,
         "timestamp": 1381900000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3650,8 +3590,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-243",
-        "pos": 243,
+        "id": "ep-podcast-S3E04-239",
+        "pos": 239,
         "timestamp": 1386620000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3665,8 +3605,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-244",
-        "pos": 244,
+        "id": "ep-podcast-S3E04-240",
+        "pos": 240,
         "timestamp": 1395460000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3680,8 +3620,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-245",
-        "pos": 245,
+        "id": "ep-podcast-S3E04-241",
+        "pos": 241,
         "timestamp": 1396820000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3695,8 +3635,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-246",
-        "pos": 246,
+        "id": "ep-podcast-S3E04-242",
+        "pos": 242,
         "timestamp": 1404020000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3710,8 +3650,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-247",
-        "pos": 247,
+        "id": "ep-podcast-S3E04-243",
+        "pos": 243,
         "timestamp": 1405780000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3725,8 +3665,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-248",
-        "pos": 248,
+        "id": "ep-podcast-S3E04-244",
+        "pos": 244,
         "timestamp": 1407700000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3740,8 +3680,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-249",
-        "pos": 249,
+        "id": "ep-podcast-S3E04-245",
+        "pos": 245,
         "timestamp": 1408620000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3755,8 +3695,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-250",
-        "pos": 250,
+        "id": "ep-podcast-S3E04-246",
+        "pos": 246,
         "timestamp": 1409820000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3770,8 +3710,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-251",
-        "pos": 251,
+        "id": "ep-podcast-S3E04-247",
+        "pos": 247,
         "timestamp": 1417170000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3785,8 +3725,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-252",
-        "pos": 252,
+        "id": "ep-podcast-S3E04-248",
+        "pos": 248,
         "timestamp": 1427250000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3800,8 +3740,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-253",
-        "pos": 253,
+        "id": "ep-podcast-S3E04-249",
+        "pos": 249,
         "timestamp": 1428530000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3815,8 +3755,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-254",
-        "pos": 254,
+        "id": "ep-podcast-S3E04-250",
+        "pos": 250,
         "timestamp": 1436610000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3830,8 +3770,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-255",
-        "pos": 255,
+        "id": "ep-podcast-S3E04-251",
+        "pos": 251,
         "timestamp": 1437410000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3845,8 +3785,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-256",
-        "pos": 256,
+        "id": "ep-podcast-S3E04-252",
+        "pos": 252,
         "timestamp": 1447180000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3860,8 +3800,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-257",
-        "pos": 257,
+        "id": "ep-podcast-S3E04-253",
+        "pos": 253,
         "timestamp": 1452780000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3875,8 +3815,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-258",
-        "pos": 258,
+        "id": "ep-podcast-S3E04-254",
+        "pos": 254,
         "timestamp": 1460860000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3890,8 +3830,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-259",
-        "pos": 259,
+        "id": "ep-podcast-S3E04-255",
+        "pos": 255,
         "timestamp": 1462860000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3905,8 +3845,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-260",
-        "pos": 260,
+        "id": "ep-podcast-S3E04-256",
+        "pos": 256,
         "timestamp": 1465430000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3920,8 +3860,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-261",
-        "pos": 261,
+        "id": "ep-podcast-S3E04-257",
+        "pos": 257,
         "timestamp": 1470710000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3935,8 +3875,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-262",
-        "pos": 262,
+        "id": "ep-podcast-S3E04-258",
+        "pos": 258,
         "timestamp": 1473070000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3950,8 +3890,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-263",
-        "pos": 263,
+        "id": "ep-podcast-S3E04-259",
+        "pos": 259,
         "timestamp": 1479430000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3965,8 +3905,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-264",
-        "pos": 264,
+        "id": "ep-podcast-S3E04-260",
+        "pos": 260,
         "timestamp": 1480190000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3980,8 +3920,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-265",
-        "pos": 265,
+        "id": "ep-podcast-S3E04-261",
+        "pos": 261,
         "timestamp": 1483710000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -3995,8 +3935,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-266",
-        "pos": 266,
+        "id": "ep-podcast-S3E04-262",
+        "pos": 262,
         "timestamp": 1487590000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4010,8 +3950,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-267",
-        "pos": 267,
+        "id": "ep-podcast-S3E04-263",
+        "pos": 263,
         "timestamp": 1487870000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4025,8 +3965,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-268",
-        "pos": 268,
+        "id": "ep-podcast-S3E04-264",
+        "pos": 264,
         "timestamp": 1488270000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4040,8 +3980,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-269",
-        "pos": 269,
+        "id": "ep-podcast-S3E04-265",
+        "pos": 265,
         "timestamp": 1503450000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4055,8 +3995,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-270",
-        "pos": 270,
+        "id": "ep-podcast-S3E04-266",
+        "pos": 266,
         "timestamp": 1508170000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4070,8 +4010,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-271",
-        "pos": 271,
+        "id": "ep-podcast-S3E04-267",
+        "pos": 267,
         "timestamp": 1509610000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4085,8 +4025,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-272",
-        "pos": 272,
+        "id": "ep-podcast-S3E04-268",
+        "pos": 268,
         "timestamp": 1514570000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4100,8 +4040,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-273",
-        "pos": 273,
+        "id": "ep-podcast-S3E04-269",
+        "pos": 269,
         "timestamp": 1524420000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4115,8 +4055,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-274",
-        "pos": 274,
+        "id": "ep-podcast-S3E04-270",
+        "pos": 270,
         "timestamp": 1527060000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4130,8 +4070,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-275",
-        "pos": 275,
+        "id": "ep-podcast-S3E04-271",
+        "pos": 271,
         "timestamp": 1533300000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4145,8 +4085,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-276",
-        "pos": 276,
+        "id": "ep-podcast-S3E04-272",
+        "pos": 272,
         "timestamp": 1542500000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4160,8 +4100,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-277",
-        "pos": 277,
+        "id": "ep-podcast-S3E04-273",
+        "pos": 273,
         "timestamp": 1543830000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4175,8 +4115,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-278",
-        "pos": 278,
+        "id": "ep-podcast-S3E04-274",
+        "pos": 274,
         "timestamp": 1569720000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4190,8 +4130,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-279",
-        "pos": 279,
+        "id": "ep-podcast-S3E04-275",
+        "pos": 275,
         "timestamp": 1570560000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4205,8 +4145,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-280",
-        "pos": 280,
+        "id": "ep-podcast-S3E04-276",
+        "pos": 276,
         "timestamp": 1572120000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4220,8 +4160,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-281",
-        "pos": 281,
+        "id": "ep-podcast-S3E04-277",
+        "pos": 277,
         "timestamp": 1573840000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4235,8 +4175,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-282",
-        "pos": 282,
+        "id": "ep-podcast-S3E04-278",
+        "pos": 278,
         "timestamp": 1586440000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4250,8 +4190,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-283",
-        "pos": 283,
+        "id": "ep-podcast-S3E04-279",
+        "pos": 279,
         "timestamp": 1589160000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4265,8 +4205,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-284",
-        "pos": 284,
+        "id": "ep-podcast-S3E04-280",
+        "pos": 280,
         "timestamp": 1598540000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4280,8 +4220,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-285",
-        "pos": 285,
+        "id": "ep-podcast-S3E04-281",
+        "pos": 281,
         "timestamp": 1602780000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4295,8 +4235,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-286",
-        "pos": 286,
+        "id": "ep-podcast-S3E04-282",
+        "pos": 282,
         "timestamp": 1611580000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4310,8 +4250,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-287",
-        "pos": 287,
+        "id": "ep-podcast-S3E04-283",
+        "pos": 283,
         "timestamp": 1614060000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4325,8 +4265,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-288",
-        "pos": 288,
+        "id": "ep-podcast-S3E04-284",
+        "pos": 284,
         "timestamp": 1616460000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4340,8 +4280,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-289",
-        "pos": 289,
+        "id": "ep-podcast-S3E04-285",
+        "pos": 285,
         "timestamp": 1618180000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4355,8 +4295,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-290",
-        "pos": 290,
+        "id": "ep-podcast-S3E04-286",
+        "pos": 286,
         "timestamp": 1628760000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4370,8 +4310,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-291",
-        "pos": 291,
+        "id": "ep-podcast-S3E04-287",
+        "pos": 287,
         "timestamp": 1629320000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4385,8 +4325,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-292",
-        "pos": 292,
+        "id": "ep-podcast-S3E04-288",
+        "pos": 288,
         "timestamp": 1636680000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4400,8 +4340,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-293",
-        "pos": 293,
+        "id": "ep-podcast-S3E04-289",
+        "pos": 289,
         "timestamp": 1640160000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4415,8 +4355,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-294",
-        "pos": 294,
+        "id": "ep-podcast-S3E04-290",
+        "pos": 290,
         "timestamp": 1646520000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4430,8 +4370,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-295",
-        "pos": 295,
+        "id": "ep-podcast-S3E04-291",
+        "pos": 291,
         "timestamp": 1655720000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4445,8 +4385,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-296",
-        "pos": 296,
+        "id": "ep-podcast-S3E04-292",
+        "pos": 292,
         "timestamp": 1656920000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4460,8 +4400,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-297",
-        "pos": 297,
+        "id": "ep-podcast-S3E04-293",
+        "pos": 293,
         "timestamp": 1658920000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4475,8 +4415,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-298",
-        "pos": 298,
+        "id": "ep-podcast-S3E04-294",
+        "pos": 294,
         "timestamp": 1665880000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4490,8 +4430,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-299",
-        "pos": 299,
+        "id": "ep-podcast-S3E04-295",
+        "pos": 295,
         "timestamp": 1668000000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4505,8 +4445,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-300",
-        "pos": 300,
+        "id": "ep-podcast-S3E04-296",
+        "pos": 296,
         "timestamp": 1701810000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4520,8 +4460,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-301",
-        "pos": 301,
+        "id": "ep-podcast-S3E04-297",
+        "pos": 297,
         "timestamp": 1705690000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4535,8 +4475,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-302",
-        "pos": 302,
+        "id": "ep-podcast-S3E04-298",
+        "pos": 298,
         "timestamp": 1723530000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4550,8 +4490,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-303",
-        "pos": 303,
+        "id": "ep-podcast-S3E04-299",
+        "pos": 299,
         "timestamp": 1731050000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4565,8 +4505,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-304",
-        "pos": 304,
+        "id": "ep-podcast-S3E04-300",
+        "pos": 300,
         "timestamp": 1741620000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4580,8 +4520,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-305",
-        "pos": 305,
+        "id": "ep-podcast-S3E04-301",
+        "pos": 301,
         "timestamp": 1742420000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4595,8 +4535,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-306",
-        "pos": 306,
+        "id": "ep-podcast-S3E04-302",
+        "pos": 302,
         "timestamp": 1745900000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4610,8 +4550,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-307",
-        "pos": 307,
+        "id": "ep-podcast-S3E04-303",
+        "pos": 303,
         "timestamp": 1759540000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4625,8 +4565,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-308",
-        "pos": 308,
+        "id": "ep-podcast-S3E04-304",
+        "pos": 304,
         "timestamp": 1765570000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4640,8 +4580,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-309",
-        "pos": 309,
+        "id": "ep-podcast-S3E04-305",
+        "pos": 305,
         "timestamp": 1775090000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4655,8 +4595,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-310",
-        "pos": 310,
+        "id": "ep-podcast-S3E04-306",
+        "pos": 306,
         "timestamp": 1779890000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4670,8 +4610,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-311",
-        "pos": 311,
+        "id": "ep-podcast-S3E04-307",
+        "pos": 307,
         "timestamp": 1788530000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4685,8 +4625,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-312",
-        "pos": 312,
+        "id": "ep-podcast-S3E04-308",
+        "pos": 308,
         "timestamp": 1789250000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4700,8 +4640,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-313",
-        "pos": 313,
+        "id": "ep-podcast-S3E04-309",
+        "pos": 309,
         "timestamp": 1791300000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4715,8 +4655,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-314",
-        "pos": 314,
+        "id": "ep-podcast-S3E04-310",
+        "pos": 310,
         "timestamp": 1793140000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4730,8 +4670,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-315",
-        "pos": 315,
+        "id": "ep-podcast-S3E04-311",
+        "pos": 311,
         "timestamp": 1795300000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4745,8 +4685,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-316",
-        "pos": 316,
+        "id": "ep-podcast-S3E04-312",
+        "pos": 312,
         "timestamp": 1798220000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4760,8 +4700,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-317",
-        "pos": 317,
+        "id": "ep-podcast-S3E04-313",
+        "pos": 313,
         "timestamp": 1799700000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4775,8 +4715,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-318",
-        "pos": 318,
+        "id": "ep-podcast-S3E04-314",
+        "pos": 314,
         "timestamp": 1804500000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4790,8 +4730,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-319",
-        "pos": 319,
+        "id": "ep-podcast-S3E04-315",
+        "pos": 315,
         "timestamp": 1811620000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4805,8 +4745,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-320",
-        "pos": 320,
+        "id": "ep-podcast-S3E04-316",
+        "pos": 316,
         "timestamp": 1814180000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4820,8 +4760,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-321",
-        "pos": 321,
+        "id": "ep-podcast-S3E04-317",
+        "pos": 317,
         "timestamp": 1815180000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -4835,8 +4775,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-322",
-        "pos": 322,
+        "id": "ep-podcast-S3E04-318",
+        "pos": 318,
         "timestamp": 1818460000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4850,8 +4790,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-323",
-        "pos": 323,
+        "id": "ep-podcast-S3E04-319",
+        "pos": 319,
         "timestamp": 1820740000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4865,8 +4805,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-324",
-        "pos": 324,
+        "id": "ep-podcast-S3E04-320",
+        "pos": 320,
         "timestamp": 1825440000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4880,8 +4820,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-325",
-        "pos": 325,
+        "id": "ep-podcast-S3E04-321",
+        "pos": 321,
         "timestamp": 1831200000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4895,8 +4835,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-326",
-        "pos": 326,
+        "id": "ep-podcast-S3E04-322",
+        "pos": 322,
         "timestamp": 1832760000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4910,8 +4850,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-327",
-        "pos": 327,
+        "id": "ep-podcast-S3E04-323",
+        "pos": 323,
         "timestamp": 1834280000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4925,8 +4865,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-328",
-        "pos": 328,
+        "id": "ep-podcast-S3E04-324",
+        "pos": 324,
         "timestamp": 1841640000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4940,8 +4880,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-329",
-        "pos": 329,
+        "id": "ep-podcast-S3E04-325",
+        "pos": 325,
         "timestamp": 1854860000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4955,8 +4895,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-330",
-        "pos": 330,
+        "id": "ep-podcast-S3E04-326",
+        "pos": 326,
         "timestamp": 1861500000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4970,8 +4910,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-331",
-        "pos": 331,
+        "id": "ep-podcast-S3E04-327",
+        "pos": 327,
         "timestamp": 1867580000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -4985,8 +4925,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-332",
-        "pos": 332,
+        "id": "ep-podcast-S3E04-328",
+        "pos": 328,
         "timestamp": 1872700000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5000,8 +4940,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-333",
-        "pos": 333,
+        "id": "ep-podcast-S3E04-329",
+        "pos": 329,
         "timestamp": 1882450000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5015,8 +4955,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-334",
-        "pos": 334,
+        "id": "ep-podcast-S3E04-330",
+        "pos": 330,
         "timestamp": 1883650000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5030,8 +4970,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-335",
-        "pos": 335,
+        "id": "ep-podcast-S3E04-331",
+        "pos": 331,
         "timestamp": 1889970000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5045,8 +4985,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-336",
-        "pos": 336,
+        "id": "ep-podcast-S3E04-332",
+        "pos": 332,
         "timestamp": 1899350000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -5060,8 +5000,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-337",
-        "pos": 337,
+        "id": "ep-podcast-S3E04-333",
+        "pos": 333,
         "timestamp": 1900030000000,
         "timestamp_inferred": true,
         "timestamp_distance": 1,
@@ -5075,8 +5015,8 @@
         "sentiment": ""
       },
       {
-        "id": "ep-podcast-S3E04-338",
-        "pos": 338,
+        "id": "ep-podcast-S3E04-334",
+        "pos": 334,
         "timestamp": 1902540000000,
         "timestamp_inferred": false,
         "timestamp_distance": 0,
@@ -5094,36 +5034,37 @@
       {
         "description": "Karl's workload",
         "start_pos": 3,
-        "end_pos": 47
+        "end_pos": 41
       },
       {
         "description": "Three Minute Wonders",
-        "start_pos": 48,
-        "end_pos": 91
+        "start_pos": 42,
+        "end_pos": 87
       },
       {
         "description": "Steve's dancing",
-        "start_pos": 92,
-        "end_pos": 132
+        "start_pos": 88,
+        "end_pos": 128
       },
       {
         "description": "Flies and inventions",
-        "start_pos": 133,
-        "end_pos": 192
+        "start_pos": 129,
+        "end_pos": 188
       },
       {
         "description": "Clippable mugs",
-        "start_pos": 193,
-        "end_pos": 274
+        "start_pos": 189,
+        "end_pos": 270
       },
       {
         "description": "Karl's diary",
-        "start_pos": 275,
-        "end_pos": 334
+        "start_pos": 271,
+        "end_pos": 330
       }
     ],
     "contributors": [
-      "mossycow456"
+      "mossycow456",
+      "null_con"
     ],
     "trivia": null,
     "tags": null,
