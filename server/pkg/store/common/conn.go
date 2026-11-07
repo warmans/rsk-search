@@ -2,16 +2,19 @@ package common
 
 import (
 	"database/sql"
+	"database/sql/driver"
 	"embed"
+	"errors"
 	"fmt"
+	"io"
+	"path"
+	"strings"
+
 	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
 	"github.com/spf13/pflag"
 	"github.com/warmans/rsk-search/pkg/flag"
 	"github.com/warmans/rsk-search/pkg/util"
-	"io"
-	"path"
-	"strings"
 )
 
 type Config struct {
@@ -119,12 +122,18 @@ func (c *Conn) WithTx(f func(tx *sqlx.Tx) error) error {
 		return fmt.Errorf("failed to start transaction: %w", err)
 	}
 	if err := f(tx); err != nil {
-		if err2 := tx.Rollback(); err2 != nil {
-			return fmt.Errorf("failed to rollback (%s) from error : %w)", err2.Error(), err)
+		// a rollback failing with a dead connection means the query was already
+		// killed (e.g. cancelled via context); the original error says why
+		if err2 := tx.Rollback(); err2 != nil && !errors.Is(err2, driver.ErrBadConn) && !errors.Is(err2, sql.ErrTxDone) {
+			return fmt.Errorf("failed to rollback (%s) from error: %w", err2.Error(), err)
 		}
 		return err
 	}
 	return tx.Commit()
+}
+
+func (c *Conn) DB() *sqlx.DB {
+	return c.db
 }
 
 func (c *Conn) Close() error {

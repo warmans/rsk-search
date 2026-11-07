@@ -70,8 +70,25 @@ func (c *Conn) WithStore(f func(s *Store) error) error {
 	})
 }
 
+// WithStoreNoTx runs f with a Store bound directly to the connection pool.
+// Single-statement operations need no transaction; skipping it avoids
+// BEGIN/COMMIT round-trips and spurious rollback errors when the caller's
+// context is cancelled mid-query.
+func (c *Conn) WithStoreNoTx(f func(s *Store) error) error {
+	return f(&Store{tx: c.DB()})
+}
+
+// dbtx is satisfied by both *sqlx.Tx and *sqlx.DB so a Store can run against
+// either a transaction or the connection pool directly.
+type dbtx interface {
+	ExecContext(ctx context.Context, query string, args ...interface{}) (sql.Result, error)
+	QueryRowContext(ctx context.Context, query string, args ...interface{}) *sql.Row
+	QueryRowxContext(ctx context.Context, query string, args ...interface{}) *sqlx.Row
+	QueryxContext(ctx context.Context, query string, args ...interface{}) (*sqlx.Rows, error)
+}
+
 type Store struct {
-	tx *sqlx.Tx
+	tx dbtx
 }
 
 func (s *Store) DeleteTscript(ctx context.Context, id string) error {
