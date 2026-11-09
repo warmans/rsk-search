@@ -118,11 +118,14 @@ export class EpisodeListComponent implements OnInit, OnDestroy {
       this.transcriptList?.filter((t) => {
         return t.publicationType === this.activePublicationType && (!this.activeSubSection || `${t.publication}-S${t.series}` === this.activeSubSection);
       }) || []
-    ).sort((v, k): number => {
-      if (v.releaseDate) {
-        return new Date(v.releaseDate).getTime() > new Date(k.releaseDate).getTime() ? 1 : -1;
+    ).sort((a, b): number => {
+      // Sort by release date first.
+      if (a.releaseDate && b.releaseDate) {
+        const dateOrder = new Date(a.releaseDate).getTime() - new Date(b.releaseDate).getTime();
+        if (dateOrder) return dateOrder;
       }
-      return v.series * 100 + v.episode > k.series * 100 + k.episode ? 1 : -1;
+      // Break date ties (or missing dates) by season, then episode.
+      return a.series - b.series || a.episode - b.episode;
     });
   }
 
