@@ -1,0 +1,1 @@
+DELETE FROM transcript_rating_score WHERE (author_id, episode_id) IN (('mCfP3tZdvPU7hgYk5B8G5o', 'xfm-S1E19'));
