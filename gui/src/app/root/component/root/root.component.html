@@ -15,6 +15,9 @@
           <i class="bi-sun-fill"></i>
         }
       </button>
+      <button class="btn btn-transparent btn-lg" (click)="playRandomClip()" [disabled]="randomClipLoading" title="Play a random clip">
+        <i class="bi-shuffle" [ngClass]="{ 'text-primary': randomClipLoading }"></i>
+      </button>
       @if (loggedInUser) {
         <button class="btn btn-transparent btn-lg mr-3" (click)="toggleRadio()" title="Start radio">
           <i class="bi-boombox" [ngClass]="{ 'text-primary': radioService.active }"></i>
